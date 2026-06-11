@@ -1428,7 +1428,7 @@ After you post a form and save the html file and perform the following steps:
 
 #### Supported Payment Methods
 
-You can use the following payment methods and their test details to make the payment.
+You can use the following default payment methods and their test details to make the payment.
 
 <Tabs>
   <Tab title="NetBanking">
@@ -1473,5 +1473,11 @@ You can use the following payment methods and their test details to make the pay
     | Airtel | You can use your mobile number.                                   |        |
   </Tab>
 </Tabs>
+
+Apart from the above default payment methods, you can <Anchor target="_blank" href="https://docs.payu.in/docs/payu-payment-page-customization#configure-checkout-payment-methods-and-settings">enable the following payment methods</Anchor> in the checkout:
+
+- BNPL
+- EMI
+- International Payments
 
 <br />
