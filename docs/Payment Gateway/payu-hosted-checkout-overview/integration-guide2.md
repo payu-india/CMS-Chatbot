@@ -16,21 +16,21 @@ Follow these steps to integrate the PayU Hosted Checkout on your website and acc
   items={[
     {
       title: "1. Build Integration",
-      href: "/docs/prebuilt-checkout-payu-hosted",
+      href: "https://docs.payu.in/docs/integration-guide2#1-build-integration",
       icon: "fa-code",
       target: "_self",
       text: "Build your test integration for PayU Hosted Checkout.",
     },
     {
       title: "2. Test Integration",
-      href: "/docs/prebuilt-checkout-payu-hosted",
+      href: "https://docs.payu.in/docs/integration-guide2#2-test-integration",
       icon: "fa-flask",
       target: "_self",
       text: "Validate your PayU Hosted Checkout integration by testing transactions in the sandbox environment.",
     },
     {
       title: "3. Production Checklist",
-      href: "/docs/prebuilt-checkout-payu-hosted",
+      href: "https://docs.payu.in/docs/integration-guide2#3-go-live-checklist",
       icon: "fa-check-circle",
       target: "_self",
       text: "Follow this checklist to ensure your integration is ready before going live.",
