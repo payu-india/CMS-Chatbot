@@ -1486,9 +1486,17 @@ You can use the following default payment methods and their test details to make
 
 It is equally important to test the failed transaction. Perform the following steps to simulate the failed transaction.
 
-<Accordion title="My Accordion Title" icon="fa-info-circle">
+<Accordion title="Failed Transaction Steps" icon="fa-info-circle">
 1. Open the HTML file to initiate the transaction.
 2. Select any payment method and simulate a failed transaction by providing a invalid test credentials.
 </Accordion>
+
+> ✅ **Verify**
+>
+> - [x] Failure URL is triggered
+> - [x] Customer receives appropriate messaging
+> - [x] Order remains unpaid
+>
+>
 
 <br />
