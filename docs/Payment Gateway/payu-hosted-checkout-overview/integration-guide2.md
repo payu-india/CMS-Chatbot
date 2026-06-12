@@ -394,6 +394,9 @@ To ensure the payment request is secure, you should generate a hash using your t
   * Keep empty pipes for missing UDFs
   * Generate hash on backend only
   * Never expose salt
+  
+  ```Test Hash Value      1be625350f785a208a737f05151f8fee378aa332be1a5f361546f3bbe6fa42f000ea985765b686e11dce4e3ad934dac763bd755624996f82bb01cf7b4f2b468b
+  ```
 
   <Callout icon="🚧" theme="warn">
     **Important**
