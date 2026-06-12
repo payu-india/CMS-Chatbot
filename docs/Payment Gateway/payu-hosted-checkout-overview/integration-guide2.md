@@ -5,6 +5,8 @@ hidden: false
 metadata:
   robots: index
 ---
+PayU Hosted Checkout enables merchants to securely accept online payments by redirecting customers to a PayU-hosted payment page.&#x20;
+
 Follow these steps to integrate the PayU Hosted Checkout on your website and accept live payments.<br />
 
 > 👍 **Payment Flow**
@@ -42,9 +44,19 @@ Follow these steps to integrate the PayU Hosted Checkout on your website and acc
 
 Go through the <Anchor target="_blank" href="https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/payu-hosted-checkout-quick-start#prerequisites">prerequisites</Anchor> before you proceed with the integration.
 
-## 1. Build Integration
+## Supported Payment Methods
 
-Follow these steps to build an integration:
+These payment methods are available by default for PayU hosted checkout.
+
+- NetBanking
+- Credit Cards
+- Debit Cards
+- UPI
+- Wallets
+
+## 1. Build Integration&#x20;
+
+By the end of this guide, you will be able to:
 
 1. To start with, you should [prepare payment request parameters](https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#step-11-prepare-payment-request-parameters) before passing them in the code.
 2. After knowing parameters, you should [generate a secure hash](https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#step-12-generate-secure-hash) using a logic and a certain parameters.
