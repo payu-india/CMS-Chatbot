@@ -410,7 +410,7 @@ To ensure the payment request is secure, you should generate a hash using your t
 
 </Accordion>
 
-### Step 1.3 Create a Payment Request
+### Step 1.3 Redirect Customers to PayU Checkout
 
 Now that you have created the hash value combine the below into a request that will be sent to PayU in a HTML form.
 
