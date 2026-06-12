@@ -5,20 +5,19 @@ hidden: true
 metadata:
   robots: index
 ---
-Use this section when you want **LazyPay** as a <Glossary>BNPL</Glossary> option on **your own checkout** (merchant hosted or seamless flow): you call PayU’s eligibility service, collect payment with the **`/_payment`** API, then verify the outcome on your servers. LazyPay lets customers pay later on their billing cycle while you settle with PayU as for other BNPL instruments.
-
+Use this section when you want **LazyPay** as a <Glossary>BNPL</Glossary> option on **your own checkout** (merchant hosted or seamless flow): you call PayU’s eligibility service, collect payment with the `/_payment` API, then verify the outcome on your servers. LazyPay lets customers pay later on their billing cycle while you settle with PayU as for other BNPL instruments.
 
 ## Benefits for your customers
 
-* Pay later with LazyPay on eligible purchases, subject to lender rules and approval.
-* Checkout stays on your experience (no full redirect to a separate PayU payment page for the whole journey).
-* Eligibility can be checked up front so LazyPay is shown only when the customer can use it.
+- Pay later with LazyPay on eligible purchases, subject to lender rules and approval.
+- Checkout stays on your experience (no full redirect to a separate PayU payment page for the whole journey).
+- Eligibility can be checked up front so LazyPay is shown only when the customer can use it.
 
 ## Benefits for your business
 
-* You control layout, fields, and when to surface LazyPay (based on eligibility API responses).
-* Standard PayU **hash**, **redirect**, and **verification** patterns apply, consistent with other merchant-hosted modes.
-* You can align LazyPay with your wider BNPL or affordability strategy using the same PayU keys and reconciliation tools.
+- You control layout, fields, and when to surface LazyPay (based on eligibility API responses).
+- Standard PayU **hash**, **redirect**, and **verification** patterns apply, consistent with other merchant-hosted modes.
+- You can align LazyPay with your wider BNPL or affordability strategy using the same PayU keys and reconciliation tools.
 
 ## Refunds
 
@@ -31,20 +30,17 @@ Use this section when you want **LazyPay** as a <Glossary>BNPL</Glossary> option
 
 You may run **multiple partial refunds** until the cumulative refunded amount does not exceed the original transaction amount. **Processing fees, GST, and lender charges** may or may not be reversed depending on lender and PayU policy—see the detailed notes in [Refunds for BNPL](doc:refunds-for-bnpl).
 
-
-<Callout icon="📘" theme="info">
-  **Before you begin**
-
-  * LazyPay and BNPL must be **enabled and configured** on your merchant account. For enablement, configuration, onboarding, and **test mobile whitelisting** for LazyPay, work with your **PayU Key Account Manager (KAM)**.
-  * Use **HTTPS** for **`surl`** and **`furl`**. Plan for **server-side verification** of each transaction; do not treat the browser redirect alone as proof of payment.
-  * For the **`bankcode`** value and other BNPL lenders, see [BNPL Codes](doc:bnpl-codes). For first-time vs repeat customer behaviour (linking, OTP, tokens) at the product level, see [BNPL Link and Pay](doc:collect-payments-with-bnpl-using-link-and-pay). For the BNPL product hub in this guide set, see [BNPL Integration](doc:payu-bnpl-integration-introduction).
-</Callout>
-
+> 📘
+>
+> **Before you begin**
+>
+> - LazyPay and BNPL must be **enabled and configured** on your merchant account. For enablement, configuration, onboarding, and **test mobile whitelisting** for LazyPay, work with your **PayU Key Account Manager (KAM)**.
+> - Use **HTTPS** for `surl` and `furl`. Plan for **server-side verification** of each transaction; do not treat the browser redirect alone as proof of payment.
+> - For the `bankcode` value and other BNPL lenders, see [BNPL Codes](doc:bnpl-codes). For first-time vs repeat customer behaviour (linking, OTP, tokens) at the product level, see [BNPL Link and Pay](doc:collect-payments-with-bnpl-using-link-and-pay). For the BNPL product hub in this guide set, see [BNPL Integration](doc:payu-bnpl-integration-introduction).
 
 > 🚧 Minimum amount for BNPL transaction
 >
 > Minimum amounts can vary by lender. Confirm allowed limits with your **PayU Key Account Manager (KAM)**.
-
 
 ## Sample request
 
@@ -69,7 +65,7 @@ curl --location 'https://test.payu.in/info/linkAndPay/get_emi_checkout_details' 
 >
 > For authorization calculation logic, refer to [Get EMI Checkout Details API > Required parameters for calculating authorization](ref:get-emi-checkout-details-api#required-parameters-for-calculating-authorization).
 
-
+<br />
 
 ### GCD request (var1 JSON body)
 
@@ -121,14 +117,15 @@ curl --location 'https://test.payu.in/info/linkAndPay/get_emi_checkout_details' 
 }
 ```
 
-## Sample response
+## Sample Response
 
-## Notes
-
-- In the GCD response, if the merchant only wants 1A/1B or ETB customers, the merchant must only check lenders under **EMI → ALL → Cardless** and **EMI → PayInParts**.
-- If the merchant also wants to show NTB lenders, the **EMI → NTB** section must be checked as well.
-- There is a new `paymentOptions.emi` filter: **`payInParts`**.
-
+> 📘 NoteS:
+>
+> - In the GCD response, if the merchant only wants 1A/1B or ETB customers, the merchant must only check lenders under **EMI → ALL → Cardless** and **EMI → PayInParts**.
+>
+> - If the merchant also wants to show NTB lenders, the **EMI → NTB** section must be checked as well.
+>
+> - There is a new `paymentOptions.emi` filter: `payInParts`.
 
 ### GCD response — customer is ETB
 
@@ -469,7 +466,7 @@ curl --location 'https://test.payu.in/info/linkAndPay/get_emi_checkout_details' 
 }
 ```
 
-#$# GCD response — customer is NTB
+# $# GCD response — customer is NTB
 
 ```json
 {
@@ -1117,7 +1114,6 @@ curl --location 'https://test.payu.in/info/linkAndPay/get_emi_checkout_details' 
 }
 ```
 
-
 ### GECD response — registration success
 
 ```json
@@ -1189,13 +1185,12 @@ curl --location 'https://test.payu.in/info/linkAndPay/get_emi_checkout_details' 
 }
 ```
 
-
-| Field | Description |
-| :-- | :-- |
-| status | Provider status in BNPL context. |
-| kfsLink | Key Fact Statement or disclosure URL when applicable. |
-| eligible | Whether LazyPay can be offered for this amount and user context. |
+| Field          | Description                                                                |
+| :------------- | :------------------------------------------------------------------------- |
+| status         | Provider status in BNPL context.                                           |
+| kfsLink        | Key Fact Statement or disclosure URL when applicable.                      |
+| eligible       | Whether LazyPay can be offered for this amount and user context.           |
 | customerLinked | Whether the user has completed linking for repeat / one-click style flows. |
-| PayuToken | Token used on subsequent calls when supported by your integration. |
+| PayuToken      | Token used on subsequent calls when supported by your integration.         |
 
 For additional success and failure shapes (including multi-lender responses), refer to [Get EMI Checkout Details API > Sample response](ref:get-emi-checkout-details-api#sample-response).
