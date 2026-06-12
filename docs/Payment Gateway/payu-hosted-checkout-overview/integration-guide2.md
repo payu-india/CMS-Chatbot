@@ -1396,13 +1396,12 @@ After the payment is successful or failed, PayU POSTs back to your `surl` or `fu
 <Image src="https://files.readme.io/7acf9d72438a6a00b637ef4c70c13b8a4871c3aa6055d7c985bbef5f980fa502-reverse_hashing_flow.png" align="center" caption="_Reverse Hashing Flow_" border={true} framed={true} />
 
 
-> ✅ **Verification Checklist**
+> ✅ **Validation Rules:**
 >
-> - [x] Verify every transaction response.
->
-> - [x] Reject mismatched hashes.
->
-> - [x] Log verification failures.
+> - Generated hash must match response hash
+> - Amount must match original order
+> - Transaction ID must exist
+> - Order should not already be paid
 
 <Accordion title="Reverse Hashing Logic" icon="fa-arrow-rotate-left">
 Create a hash using the following logic.<br/>
@@ -1413,6 +1412,14 @@ sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amo
 
 You should compare the hash value you got from the above logic with the hash value you received in the response. The payment is verified if the hash values match and update the order state.
 </Accordion>
+
+> ⚠️ **Watch Out!**
+>
+> If hash mismatches:
+>
+> - Reject callback
+> - Log security event
+> - Do not mark payment successful
 
 You can also use the <Anchor target="_blank" href="https://payu-hashverificationtool.onrender.com/">PayU's Hash Verification System</Anchor> to generate a hash (reverse hash) for payment verification.
 
