@@ -31,30 +31,31 @@ metadata:
 
 Use this approach if you want to:
 
-* Go live quickly
-* Avoid handling card or payment data
-* Use a ready-made payment experience
+- Go live quickly
+- Avoid handling card or payment data
+- Use a ready-made payment experience
 
 Know More about PayU Hosted Checkout and how the payment flow works.
 
-<Callout icon="📘" theme="info">
-  **Other Integration Options:**
-
-  Consider other integrations if you need:
-
-  * Full control over payment UI
-  * In-page checkout experience
-  * Backend-only payment processing
-</Callout>
+> 📘
+>
+> **Other Integration Options:**
+>
+> Consider other integrations if you need:
+>
+> - Full control over payment UI
+> - In-page checkout experience
+> - Backend-only payment processing
 
 ## Prerequisites
 
 Before you begin with PayU Hosted Checkout integration:
 
-* Create a PayU account.
-* Get your merchant key and salt for test and production environment.
-* Make sure https success (surl) and failure (furl) URLs are reachable from the public internet.
-* Ability to generate SHA-512 on the server (not recommended in browser).
+- Create a PayU account.
+- Get your merchant key and salt for test and production environment.
+- Make sure https success (surl) and failure (furl) URLs are reachable from the public internet.
+- Ability to generate SHA-512 on the server (not recommended in browser).
+- Make sure you have the transaction ID created.
 
 ## Integration Steps Overview
 
@@ -70,10 +71,10 @@ Below is the overview of the PayU Hosted Checkout integration:
 
 Follow the below steps to make your test payment:
 
-| **Environment**            | **URL**                                                            |
-| :------------------------- | :----------------------------------------------------------------- |
-| **Test Environment**       | [https://test.payu.in/_payment](https://test.payu.in/_payment)     |
-| **Production Environment** | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
+| **Environment**            | **URL**                                                             |
+| :------------------------- | :------------------------------------------------------------------ |
+| **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
+| **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
 <Accordion title="Step 1: Prepare Request Parameters" icon="fa-info-circle">
   Define these mandatory parameters. You can also send optional parameters in the request. Refer to the detailed integration guide for more parameters and their descriptions.
@@ -251,12 +252,14 @@ Follow the below steps to make your test payment:
 
 After you complete the test payment:
 
-* Handle payment response
-* Verify transaction status
-* Move to production
+- Handle payment response
+- Verify transaction status
+- Move to production
 
 ## Next Steps
 
 Now that you have created your first test payment go to the
 
-* Integration Guide for the detailed steps and different language bindings.
+- Integration Guide for the detailed steps and different language bindings.
+
+<br />
