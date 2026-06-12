@@ -1425,18 +1425,16 @@ You can also use the <Anchor target="_blank" href="https://payu-hashverification
 
 ### Step 1.5 Verify the Payment
 
-after the transaction is complete, you should check the payment status .&#x20;
+After the transaction is complete, you should check the payment status. Use PayU verification mechanisms for reconciliation. This is the recommended verification order:
+
+1. Reverse hash validation (_step 1.4)_
+2. Webhooks
+3. Verify Payment API
+4. PayU Dashboard
 
 <Accordion title="Verify Payment Methods" icon="fa-check-double">
   <Tabs>
-  <Tab title="1. Verify from Dashboard">
-    To verify the payment from the PayU Dashboard:<br/>
-    1. Log in to the <a href="https://onboarding.payu.in/app/account/signin" target="_blank">PayU Dashboard</a> and click **Transactions** from the left menu.
-    2. Check if a **Payu ID (Transaction ID)** is created for the recent transaction and if the payment is successful, the status is marked as **Success**.<br/>
-    <Image       src="https://files.readme.io/30840455deadfe76c808f4954f9d18dcdb2a949d9e6851ee8566e9f58094bd3d-varify_payment_dashboard.png" align="center" caption="_Verify the Payment from Dashboard_" border={true} framed={false} />
-  </Tab>
-
-  <Tab title="2. Verify using Webhooks">
+  <Tab title="1. Verify using Webhooks">
     Configure the webhooks to monitor the status of payments.<br/>
     
     Webhooks enable a server to communicate with another server by sending an HTTP callback or message.<br/>
@@ -1446,8 +1444,15 @@ after the transaction is complete, you should check the payment status .&#x20;
     Know how to <a href="https://docs.payu.in/docs/webhook-events-and-sample-payloads" target="_blank">manage Webhooks</a> for Payments.<br/>
   </Tab>
 
-  <Tab title="3. Verify using APIs">
+  <Tab title="2. Verify using APIs">
     You can poll the <a href="https://docs.payu.in/reference/verify_payment_api" target="_blank">Verify Payment API</a> to verify the payment.
+  </Tab>
+
+  <Tab title="3. Verify from Dashboard">
+    To verify the payment from the PayU Dashboard:<br/>
+    1. Log in to the <a href="https://onboarding.payu.in/app/account/signin" target="_blank">PayU Dashboard</a> and click **Transactions** from the left menu.
+    2. Check if a **Payu ID (Transaction ID)** is created for the recent transaction and if the payment is successful, the status is marked as **Success**.<br/>
+    <Image       src="https://files.readme.io/30840455deadfe76c808f4954f9d18dcdb2a949d9e6851ee8566e9f58094bd3d-varify_payment_dashboard.png" align="center" caption="_Verify the Payment from Dashboard_" border={true} framed={false} />
   </Tab>
 </Tabs>
 </Accordion>
