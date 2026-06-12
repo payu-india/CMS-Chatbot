@@ -18,7 +18,7 @@ In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you 
 
 > 📘 **Note on merged bank codes:**&#x20;
 >
-> Allahabad bank, Oriental Bank of Commerce, Union Bank of India and Syndicate Bank have merged with other banks. For more information, refer to [Merged banks and supported bank codes]()
+> Allahabad bank, Oriental Bank of Commerce, Union Bank of India and Syndicate Bank have merged with other banks. For more information, refer to [Merged banks and supported bank codes](<doc: net-banking-codes#merged-banks-and-supported-bank-codes>)
 
 <br />
 
