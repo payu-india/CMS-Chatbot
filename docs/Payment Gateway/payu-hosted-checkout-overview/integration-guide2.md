@@ -1566,10 +1566,13 @@ Make sure you update the test environment with the production environment.
 </Accordion>
 
 <Accordion title="Security Checklist" icon="fa-shield-check">
-* Hash generation occurs server-side
-* Salt is never exposed
-* HTTPS is enforced
-* Sensitive information is not logged
+- [x] Hash generation occurs server-side
+
+- [x] Salt is never exposed
+
+- [x] HTTPS is enforced
+
+- [x] Sensitive information is not logged
 </Accordion>
 
 <Accordion title="Webhooks" icon="fa-info-circle">
@@ -1577,12 +1580,18 @@ Make sure the <a href="https://docs.payu.in/docs/webhook-events-and-sample-paylo
 </Accordion>
 
 <Accordion title="Production Readiness" icon="fa-clipboard-check">
+- [x] Hash validation implemented
+
+- [x] Reverse hash validation implemented
+
+- [x] Callback retries handled
+
+- [x] Duplicate processing prevented
+
 - [x] Failure URL is triggered
-- [x] Failure URL is triggered
-- [x] Failure URL is triggered
-- [x] Failure URL is triggered
-- [x] Failure URL is triggered
-- [x] Failure URL is triggered
+
+- [x] Alerting configured
+
 - [x] Failure URL is triggered
 </Accordion>
 
