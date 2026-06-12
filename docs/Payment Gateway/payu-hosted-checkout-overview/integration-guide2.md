@@ -1474,7 +1474,7 @@ After you build the integration, you should test it thoroughly before going live
 
 ### Step 2.1 Simulate a Successful Transaction
 
-<Accordion title="Successful Transaction Steps" icon="fa-info-circle">
+<Accordion title="Successful Transaction Steps" icon="fa-circle-check">
 After you post a form and save the html file and perform the following steps:
 1. Open the file to initiate the transaction.
 2. Select the payment method and make a test transaction to ensure the integration is working as expected.
