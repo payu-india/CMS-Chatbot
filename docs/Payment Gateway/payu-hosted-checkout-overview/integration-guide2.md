@@ -398,7 +398,7 @@ To ensure the payment request is secure, you should generate a hash using your t
   #### Expected Output
   You get the hash value similar to the example below. You should pass this value along with other mandatory parameters in the next step.<br/>
 
-  ```text Example Hash Output
+  ```text Example Hash Value
 1be625350f785a208a737f05151f8fee378aa332be1a5f361546f3bbe6fa42f000ea985765b686e11dce4e3ad934dac763bd755624996f82bb01cf7b4f2b468b
   ```
 
