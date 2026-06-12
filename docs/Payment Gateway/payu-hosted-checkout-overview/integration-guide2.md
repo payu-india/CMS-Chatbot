@@ -70,7 +70,7 @@ By the end of this guide, you will be able to:
 
 Collect and structure the below parameters before initiating a transaction. This section has two parts, mandatory parameters required to test the integration and optional advanced parameters you can pass to collect additional  information.
 
-<Accordion title="Mandatory Parameters and Description" icon="fa-tabel">
+<Accordion title="Mandatory Parameters and Description" icon="fa-table">
 These are minimum mandatory paramerters required to create a transaction.
 
 | Parameter     | Description                                                                                                                                                                                                        |
