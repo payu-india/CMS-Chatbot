@@ -1350,6 +1350,19 @@ Refer to the Errors section for the parameters and description.
 
 </Accordion>
 
+#### What Next - Customer Journey
+
+Customer selects a payment method and completes the payment.
+
+**Expected Output**
+
+These are the expected outcomes of the transaction.
+
+- Success
+- Failure
+- Pending
+- Cancelled
+
 #### Step 1.3.1 Customize PayU Payment Page _(Optional)_
 
 <Accordion title="Customize Checkout" icon="fa-gear">
