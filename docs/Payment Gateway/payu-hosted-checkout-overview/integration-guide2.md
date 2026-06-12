@@ -386,7 +386,7 @@ To ensure the payment request is secure, you should generate a hash using your t
     Replace the key and salt values with your test values obtained from the dashboard. Know more about generating test values.
   </Callout>
 
-  **Points to Remember**
+  #### Points to Remember
 
   These are the points to remember while concatenating params in the hash logic.
 
@@ -395,7 +395,7 @@ To ensure the payment request is secure, you should generate a hash using your t
   * Generate hash on backend only
   * Never expose salt
   
-  **Expected Output**
+  #### Expected Output
   You get the hash value similar to the example below. You should pass this value along with other mandatory parameters in the next step.
 
   ```text Example Hash Output
