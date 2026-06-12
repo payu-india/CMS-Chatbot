@@ -1595,4 +1595,25 @@ Make sure the <a href="https://docs.payu.in/docs/webhook-events-and-sample-paylo
 - [x] Failure URL is triggered
 </Accordion>
 
+## Errors and Troubleshooting
+
+<Accordion title="Invalid Hash" icon="fa-fingerprint">
+**Error Causes**
+
+* Wrong parameter order
+* Missing pipe (`|`) separators
+* Incorrect salt
+* Missing empty UDF placeholders
+* Extra spaces in input values
+
+**Recommended Fix**
+
+* Verify hash sequence exactly matches PayU documentation.
+* Ensure all empty UDF fields still include separators (`|||||||||||`).
+* Confirm merchant key and salt are correct.
+* Remove leading/trailing spaces from all parameters.
+* Generate hash using SHA-512 only.
+* Generate hash on backend, never frontend.
+</Accordion>
+
 <br />
