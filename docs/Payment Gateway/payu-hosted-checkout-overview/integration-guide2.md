@@ -1354,6 +1354,7 @@ Refer to the Errors section for the parameters and description.
 
 Customer selects a payment method and completes the payment. PayU then sends the transaction response parameters.
 
+<Accordion title="Customer Journey Outcome" icon="fa-route">
 **Expected Output**
 
 These are the expected outcomes of the transaction.
@@ -1362,6 +1363,12 @@ These are the expected outcomes of the transaction.
 - Failure
 - Pending
 - Cancelled
+
+PayU then redirects to:
+
+- `surl` for success
+- `furl` for failure
+</Accordion>
 
 #### Step 1.3.1 Customize PayU Payment Page _(Optional)_
 
