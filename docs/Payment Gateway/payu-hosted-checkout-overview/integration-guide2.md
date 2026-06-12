@@ -394,9 +394,10 @@ To ensure the payment request is secure, you should generate a hash using your t
 
   These are the points to remember while concatenating params in the hash logic.
 
-  * Missing `|` separators for empty fields
-  * Incorrect parameter order
-  * Extra spaces or hidden characters
+  * Maintain exact parameter order
+  * Keep empty pipes for missing UDFs
+  * Generate hash on backend only
+  * Never expose salt
 
   <Callout icon="🚧" theme="warn">
     **Important**
