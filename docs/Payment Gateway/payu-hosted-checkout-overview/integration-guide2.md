@@ -1577,9 +1577,13 @@ Make sure the <a href="https://docs.payu.in/docs/webhook-events-and-sample-paylo
 </Accordion>
 
 <Accordion title="Production Readiness" icon="fa-clipboard-check">
-  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
-  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
-  occaecat cupidatat non proident!
+- [x] Failure URL is triggered
+- [x] Failure URL is triggered
+- [x] Failure URL is triggered
+- [x] Failure URL is triggered
+- [x] Failure URL is triggered
+- [x] Failure URL is triggered
+- [x] Failure URL is triggered
 </Accordion>
 
 <br />
