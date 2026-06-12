@@ -1616,4 +1616,84 @@ Make sure the <a href="https://docs.payu.in/docs/webhook-events-and-sample-paylo
 * Generate hash on backend, never frontend.
 </Accordion>
 
+<Accordion title="Payment Page Not Loading" icon="fa-circle-xmark">
+**Error Causes**
+
+* Wrong endpoint URL
+* Request sent using GET instead of POST
+* Missing mandatory parameters
+* Browser JavaScript error
+* Firewall/network issue
+
+**Recommended Fix**
+
+* Ensure to use the correct environment endpoint.
+* Ensure the form method is POST
+* Validate all mandatory parameters.
+* Remove leading/trailing spaces from all parameters.
+* Check browser developer console.
+* Inspect browser network requests.
+</Accordion>
+
+<Accordion title="Callback Not Triggered (surl / furl)" icon="fa-link-slash">
+**Error Causes**
+
+* Invalid callback URL
+* Localhost used
+* Firewall restriction
+* SSL/TLS issue
+* Callback endpoint inaccessible
+
+**Recommended Fix**
+
+* Ensure callback URL is publicly accessible
+* Use HTTPS only
+* Do not use localhost
+* Verify endpoint accepts POST requests
+* Return HTTP 200 after processing callback
+</Accordion>
+
+<Accordion title="Reverse Hash Mismatch" icon="fa-fingerprint">
+**Error Causes**
+
+* Wrong reverse hash sequence
+* Missing UDF placeholders
+* Wrong salt
+* Using request hash logic instead of reverse hash logic
+
+**Recommended Fix**
+
+* Use reverse hash sequence exactly as documented
+* Ensure UDF fields are included in reverse order
+* Verify status field is included
+* Confirm salt matches merchant configuration
+</Accordion>
+
+<Accordion title="Duplicate Order Processing" icon="fa-copy">
+**Error Causes**
+
+* Callback retries
+* No idempotency checks
+* Order state not verified before processing
+
+**Recommended Fix**
+
+* Implement idempotency checks before processing
+</Accordion>
+
+<Accordion title="Amount Mismatch" icon="fa-fingerprint">
+**Error Causes**
+
+* Order modified after checkout started
+* Incorrect amount formatting
+* Wrong order fetched from database
+
+**Recommended Fix**
+
+* Compare callback amount with original transaction amount
+* Normalize decimal precision
+* Reject mismatched callbacks
+* Log mismatch for investigation
+</Accordion>
+
 <br />
