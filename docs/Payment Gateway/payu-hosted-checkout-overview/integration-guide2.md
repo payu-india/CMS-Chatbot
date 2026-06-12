@@ -400,10 +400,12 @@ To ensure the payment request is secure, you should generate a hash using your t
   ```
 
   <Callout icon="🚧" theme="warn">
-    **Important**
+    **Common Causes of Invalid Hash:**
 
-    * Hash must always be generated on the **backend**
-    * Any mismatch will result in `Invalid Hash` errors
+    * Wrong parameter order.
+    * Missing pipe separators
+    * Wrong salt
+    * Extra spaces
   </Callout>
 
 </Accordion>
