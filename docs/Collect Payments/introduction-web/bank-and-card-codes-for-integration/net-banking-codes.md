@@ -34,11 +34,11 @@ In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you 
 
 Use the **bankcode** from the row that matches how you onboarded the customer or how your checkout labels the bank. The following table maps common merger cases to the corresponding entries in the searchable list:
 
-| Erstwhile bank            | Successor bank       | Supported **bankcode** values |
-| ------------------------- | -------------------- | ----------------------------- |
-| Allahabad Bank            | Indian Bank          | `INDB` (Indian Bank)          |
-| Oriental Bank of Commerce | Punjab National Bank | `PNBB` (Punjab National Bank) |
-| United Bank of India      | Punjab National Bank | `PNBB` (Punjab National Bank) |
-| Syndicate Bank            | Canara Bank          | `CABB` (Canara Bank)          |
+| Erstwhile bank (with the bankcode) | Successor bank       | Supported **bankcode** values |
+| ---------------------------------- | -------------------- | ----------------------------- |
+| Allahabad Bank (`ALLB`)            | Indian Bank          | `INDB` (Indian Bank)          |
+| Oriental Bank of Commerce (`OBCB`) | Punjab National Bank | `PNBB` (Punjab National Bank) |
+| United Bank of India (`UNIB`)      | Punjab National Bank | `PNBB` (Punjab National Bank) |
+| Syndicate Bank (`SYNDB`)           | Canara Bank          | `CABB` (Canara Bank)          |
 
 <br />
