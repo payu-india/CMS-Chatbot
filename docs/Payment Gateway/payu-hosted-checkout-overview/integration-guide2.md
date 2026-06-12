@@ -9,6 +9,10 @@ PayU Hosted Checkout enables merchants to securely accept online payments by red
 
 Follow these steps to integrate the PayU Hosted Checkout on your website and accept live payments.<br />
 
+```text Example Hash Output
+1be625350f785a208a737f05151f8fee378aa332be1a5f361546f3bbe6fa42f000ea985765b686e11dce4e3ad934dac763bd755624996f82bb01cf7b4f2b468b
+```
+
 > 👍 **Payment Flow**
 >
 > Before you start integrating, it’s important to understand how <Anchor target="_blank" href="https://docs.payu.in/docs/payu-hosted-checkout-overview#how-payment-flow-works">PayU Hosted Checkout payment flow</Anchor> and <Anchor target="_blank" href="https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/payu-hosted-checkout-overview#customer-journey">customer journey works</Anchor>.
@@ -395,7 +399,8 @@ To ensure the payment request is secure, you should generate a hash using your t
   * Generate hash on backend only
   * Never expose salt
   
-  ```Test Hash Value      1be625350f785a208a737f05151f8fee378aa332be1a5f361546f3bbe6fa42f000ea985765b686e11dce4e3ad934dac763bd755624996f82bb01cf7b4f2b468b
+  ```text Example Hash Output
+1be625350f785a208a737f05151f8fee378aa332be1a5f361546f3bbe6fa42f000ea985765b686e11dce4e3ad934dac763bd755624996f82bb01cf7b4f2b468b
   ```
 
   <Callout icon="🚧" theme="warn">
