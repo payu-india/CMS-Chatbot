@@ -109,7 +109,7 @@ Send these optional parameters in the request as required.
 
 ### Step 1.2: Generate Secure Hash
 
-To ensure the payment request is secure, you should generate a hash using your transaction details and merchant credentials. This hash is used to verify that the request has not been altered. Know more about hash generation.
+To ensure the payment request is secure, you should generate a hash using your transaction details and merchant credentials. Hash protects the request from tampering.
 
 <Accordion title="Steps to Generate Hash" icon="fa-key">
   The hash is created by concatenating the following parameters in a specific order. Refer to the Step 1.1 Prepare Payment Request Parameters for the parameter description and example values.
