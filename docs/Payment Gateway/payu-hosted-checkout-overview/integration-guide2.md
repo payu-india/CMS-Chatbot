@@ -56,7 +56,7 @@ These payment methods are available by default for PayU hosted checkout.
 
 ## 1. Build Integration&#x20;
 
-By the end of this guide, you will be able to:
+Below are the steps to build an integration:
 
 1. To start with, you should [prepare payment request parameters](https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#step-11-prepare-payment-request-parameters) before passing them in the code.
 2. After knowing parameters, you should [generate a secure hash](https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#step-12-generate-secure-hash) using a logic and a certain parameters.
