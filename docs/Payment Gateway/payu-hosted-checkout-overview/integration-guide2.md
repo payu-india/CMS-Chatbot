@@ -1352,7 +1352,7 @@ Refer to the Errors section for the parameters and description.
 
 #### What Next - Customer Journey
 
-Customer selects a payment method and completes the payment.
+Customer selects a payment method and completes the payment. PayU then sends the transaction response parameters.
 
 **Expected Output**
 
