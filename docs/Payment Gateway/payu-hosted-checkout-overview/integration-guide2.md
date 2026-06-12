@@ -828,6 +828,9 @@ Now that you have created the hash value, combine the below to submit a payment 
   \}          
   ```
 
+  #### Expected Output:
+  Customers are redirected to the PayU checkout page and the passed information are displayed as shown in the screenshot below.
+
   <Callout icon="🚧" theme="warn">
     **Request Parameters**
 
