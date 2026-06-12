@@ -9,33 +9,8 @@ metadata:
 next:
   description: ''
 ---
----
-title: Seamless Integration
-excerpt: Build a seamless integration to create your own UI for payment flow.
-deprecated: false
-hidden: false
-metadata:
-  title: ''
-  description: >-
-    PayU iOS Core SDK seamless integration: native card/UPI flows, payment params, hash, callbacks, test credentials, and go-live.
-  keywords:
-    - payu ios core sdk seamless payment integration india
-    - ios payment gateway sdk seamless integration steps payu
-    - integrate payment gateway ios app core sdk payu seamless
-    - iphone native payment sdk seamless integration guide payu
-    - payment gateway ios swift seamless sdk integration payu
-    - payu ios coresdk seamless card upi integration steps
-    - mobile payment sdk ios seamless native integration payu
-    - ios in app payment seamless integration hash payu sdk
-    - payu ios sdk test sandbox seamless integration guide
-    - native ios payment gateway seamless integration payu
-    - ios card upi payment sdk seamless integration developer
-    - payment gateway ios sdk integration seamless india payu
-  robots: index
-next:
-  description: ''
----
 Build a seamless iOS Core SDK integration to create your own UI for payment flow.
+
 <Accordion title="Prerequisites" icon="fa-code">
   > ❗️ Before you begin
   >
@@ -421,15 +396,15 @@ Build a seamless iOS Core SDK integration to create your own UI for payment flow
     })
     ```objectivec Objective-C
     self.createRequest = [PayUCreateRequest new];
-    [self.createRequest createRequestWithPaymentParam:self.paymentParamForPassing forPaymentType:PAYMENT_PG_EMI withCompletionBlock:^(NSMutableURLRequest *request, NSString *postParam, NSString *error) {
+    [self.createRequest createRequestWithPaymentParam:self.paymentParamForPassing forPaymentType:PAYMENT_PG_EMI withCompletionBlock:^(NSMutableURLRequest *request, NSString *postParam, NSString *error) \{
         if (error == nil) {
                 //It is good to go state. You can use request parameter in webview to open Payment Page
         }
-        else{
+        else\{
          //Something went wrong with Parameter, error contains the error Message string
 
-        }
-    }];
+        \}
+    \}];
     ```
   </Accordion>
 
@@ -514,7 +489,7 @@ Build a seamless iOS Core SDK integration to create your own UI for payment flow
   2. Get the request by using the`createRequestWithPaymentParam` method as follows:
 
   ```swift Swift
-  reateRequest.createRequest(withPaymentParam: paymentParamForPassing, forPaymentType: PAYMENT_PG_LAZYPAY, withCompletionBlock: { request, postParam, error in
+  createRequest.createRequest(withPaymentParam: paymentParamForPassing, forPaymentType: PAYMENT_PG_LAZYPAY, withCompletionBlock: { request, postParam, error in
   if error == nil {
   //It is good to go. You can use request parameter in webview to open Payment Page
   } else {
@@ -624,3 +599,5 @@ Build a seamless iOS Core SDK integration to create your own UI for payment flow
 <IOS_Test_the_Integration />
 
 <IOS_Go_Live />
+
+<br />
