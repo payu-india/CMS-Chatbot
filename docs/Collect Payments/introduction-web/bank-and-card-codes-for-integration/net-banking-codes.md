@@ -16,6 +16,10 @@ next:
 ---
 In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you must use **NB** with **pg** parameter for collecting payment using Net Banking. The following table provides the codes for the leading banks in India. This code must be used as a value with the **<Glossary>bankcode</Glossary>** parameter.
 
+> 📘 **Note on merged bank codes:**&#x20;
+>
+> Allahabad bank, Oriental Bank of Commerce, Union Bank of India and Syndicate Bank have merged with other banks. For more information, refer to [Merged banks and supported bank codes]()
+
 <br />
 
 <SearchableTableRemote
@@ -27,10 +31,6 @@ In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you 
 <br />
 
 ## Merged banks and supported bank codes
-
-> 📘 **Note on merged bank codes:**&#x20;
->
-> After RBI-led mergers, customers may still identify with the former bank name. On the PayU platform, Net Banking continues to support the relevant **bankcode** values for both the **successor bank** and the **erstwhile (pre-merger)** bank rows in the following table so you need to change a stored **bankcode** solely because the customer’s account was migrated to a successor bank.&#x20;
 
 Use the **bankcode** from the row that matches how you onboarded the customer or how your checkout labels the bank. The following table maps common merger cases to the corresponding entries in the searchable list:
 
