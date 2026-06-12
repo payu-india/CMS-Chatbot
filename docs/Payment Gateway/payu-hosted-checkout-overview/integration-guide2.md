@@ -1576,4 +1576,10 @@ Make sure you update the test environment with the production environment.
 Make sure the <a href="https://docs.payu.in/docs/webhook-events-and-sample-payloads" target="_blank">webhook is configured</a>.
 </Accordion>
 
+<Accordion title="Production Readiness" icon="fa-clipboard-check">
+  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
+  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
+  occaecat cupidatat non proident!
+</Accordion>
+
 <br />
