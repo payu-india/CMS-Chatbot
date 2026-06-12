@@ -45,8 +45,8 @@ You may run **multiple partial refunds** until the cumulative refunded amount do
 >
 > Minimum amounts can vary by lender. Confirm allowed limits with your **PayU Key Account Manager (KAM)**.
 
-##Eligibility Check for Lazypay
-### Sample request
+
+## Sample request
 
 ```curl
 curl --location 'https://test.payu.in/info/linkAndPay/get_emi_checkout_details' \
@@ -69,17 +69,9 @@ curl --location 'https://test.payu.in/info/linkAndPay/get_emi_checkout_details' 
 >
 > For authorization calculation logic, refer to [Get EMI Checkout Details API > Required parameters for calculating authorization](ref:get-emi-checkout-details-api#required-parameters-for-calculating-authorization).
 
-### Sample response
 
-## Notes from the PRD
 
-- In the GCD response, if the merchant only wants 1A/1B or ETB customers, the merchant must only check lenders under **EMI → ALL → Cardless** and **EMI → PayInParts**.
-- If the merchant also wants to show NTB lenders, the **EMI → NTB** section must be checked as well.
-- There is a new `paymentOptions.emi` filter: **`payInParts`**.
-
----
-
-## GCD request (var1 JSON body)
+### GCD request (var1 JSON body)
 
 ```json
 {
@@ -128,6 +120,15 @@ curl --location 'https://test.payu.in/info/linkAndPay/get_emi_checkout_details' 
   }
 }
 ```
+
+## Sample response
+
+## Notes
+
+- In the GCD response, if the merchant only wants 1A/1B or ETB customers, the merchant must only check lenders under **EMI → ALL → Cardless** and **EMI → PayInParts**.
+- If the merchant also wants to show NTB lenders, the **EMI → NTB** section must be checked as well.
+- There is a new `paymentOptions.emi` filter: **`payInParts`**.
+
 
 ### GCD response — customer is ETB
 
