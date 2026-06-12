@@ -831,6 +831,10 @@ Now that you have created the hash value, combine the below to submit a payment 
   #### Expected Output:
   Customers are redirected to the PayU checkout page and the passed information are displayed as shown in the screenshot below.
 
+  
+  <Image   src="https://files.readme.io/3ed5132991aabc924f10d0b5e4c5dbd1ef396f2966b4330af3451ed9b417d435-payu-hosted-checkout-exp-output.png" align="center" caption="_PayU Hosted Checkout_" border={true} />
+
+
   <Callout icon="🚧" theme="warn">
     **Request Parameters**
 
@@ -1541,5 +1545,9 @@ Make sure you update the test environment with the production environment.
 <Accordion title="Webhooks" icon="fa-info-circle">
 Make sure the <a href="https://docs.payu.in/docs/webhook-events-and-sample-payloads" target="_blank">webhook is configured</a>.
 </Accordion>
+
+
+<Image src="https://files.readme.io/3ed5132991aabc924f10d0b5e4c5dbd1ef396f2966b4330af3451ed9b417d435-payu-hosted-checkout-exp-output.png" align="center" caption="_PayU Hosted Checkout_" border={true} />
+
 
 <br />
