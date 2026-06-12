@@ -390,9 +390,9 @@ To ensure the payment request is secure, you should generate a hash using your t
 
   <br />
 
-  **Common Mistake**
+  **Points to Remember**
 
-  These are the common mistakes you may commit while concatenating params in the hash logic.
+  These are the points to remember while concatenating params in the hash logic.
 
   * Missing `|` separators for empty fields
   * Incorrect parameter order
