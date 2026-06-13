@@ -54,6 +54,8 @@ You can decide based on:
 - What you want to build (goal-based solution)
 - What business you run (industry-based solution)
 
+This helps you quickly identify the most suitable payment solution for your use case.
+
 <Tabs>
   <Tab title="Choose by Goal">
     Use this table if you already know what you want to build.
@@ -78,7 +80,7 @@ You can decide based on:
   </Tab>
 </Tabs>
 
-This helps you quickly identify the most suitable payment solution for your use case.
+<br />
 
 <Accordion title="E-commerce (Retail and D2C)" icon="fa-cart-shopping">
   **Challenges**
