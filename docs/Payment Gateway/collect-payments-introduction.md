@@ -19,6 +19,17 @@ next:
 ---
 A enables businesses to securely accept payments from customers through their website or mobile application. Accept payments securely on your website, mobile app, or e-commerce store using PayU Payment Gateway.
 
+PayU enables businesses to collect payments through:
+
+- UPI
+- Credit & Debit Cards
+- Net Banking
+- Wallets
+- EMI / Buy Now Pay Later (BNPL)
+- Recurring Payments
+
+PayU offers multiple integration methods depending on your business requirements, technical architecture, and checkout experience goals.
+
 <Accordion title="Benefits" icon="fa-lightbulb">
   * **Secure and Reliable Transactions**: The PayU Payment Gateway ensures that every transaction is securely processed using encryption and industry-standard safeguards, helping protect customers from fraud and unauthorized access.
   * **Faster and Smoother Payments**: PayU provides an optimized checkout experience that reduces friction and enables quick transaction processing, ensuring a smooth payment journey for customers.
