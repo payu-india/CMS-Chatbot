@@ -17,7 +17,7 @@ next:
       title: Start Here - Choose Your Integration
       type: basic
 ---
-A **payment gateway** enables businesses to securely accept payments from customers through their website or mobile application. The **PayU Payment Gateway** acts as a secure bridge between your customer, your application, and the banking networks to process transactions safely and reliably.
+A enables businesses to securely accept payments from customers through their website or mobile application. Accept payments securely on your website, mobile app, or e-commerce store using PayU Payment Gateway.
 
 <Accordion title="Benefits" icon="fa-lightbulb">
   * **Secure and Reliable Transactions**: The PayU Payment Gateway ensures that every transaction is securely processed using encryption and industry-standard safeguards, helping protect customers from fraud and unauthorized access.
@@ -175,11 +175,11 @@ A **payment gateway** enables businesses to securely accept payments from custom
   * **Users:** Unified checkout experience
 </Accordion>
 
-<Callout icon="📘" theme="info">
-  **Implementation Tips**
-
-  Combine Hosted or Seamless Checkout + UPI + Cards + Recurring Payments based on your business model to optimize success rates and user experience.
-</Callout>
+> 📘
+>
+> **Implementation Tips**
+>
+> Combine Hosted or Seamless Checkout + UPI + Cards + Recurring Payments based on your business model to optimize success rates and user experience.
 
 ## Payment Gateway for Web, Mobile and E-commerce
 
@@ -224,7 +224,7 @@ PayU offers the following various integrations:
                   style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}
                 >
                   <span style={{ width: "20px", display: "inline-flex", justifyContent: "center" }}>
-                    <i className={`${item.icon} fa-lg`} />
+                    <i className={`${item.icon} fa-lg`}></i>
                   </span>
                   <a
                     href={item.link}
@@ -270,7 +270,7 @@ PayU offers the following various integrations:
                   style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}
                 >
                   <span style={{ width: "20px", display: "inline-flex", justifyContent: "center" }}>
-                    <i className={`${item.icon} fa-lg`} />
+                    <i className={`${item.icon} fa-lg`}></i>
                   </span>
                   <a
                     href={item.link}
@@ -310,7 +310,7 @@ PayU offers the following various integrations:
                   style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}
                 >
                   <span style={{ width: "20px", display: "inline-flex", justifyContent: "center" }}>
-                    <i className={`${item.icon} fa-lg`} />
+                    <i className={`${item.icon} fa-lg`}></i>
                   </span>
                   <a
                     href={item.link}
