@@ -82,10 +82,6 @@ This helps you quickly identify the most suitable payment solution for your use 
     | Financial Services (Lending / NBFCs) | EMI collections, repayments, compliance | Payment Links, eMandates, UPI Collect |
     | Marketplaces & Aggregators | Multi-seller transactions, split settlements | Hosted Checkout, Merchant Hosted, Split Payments |
   </Tab>
-
-  <Tab title="Third Tab">
-    Here's content that's only inside the third Tab.
-  </Tab>
 </Tabs>
 
 <br />
