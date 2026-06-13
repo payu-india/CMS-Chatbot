@@ -45,7 +45,40 @@ PayU offers multiple integration methods depending on your business requirements
   * **Operational Efficiency**: PayU simplifies payment management with centralized tracking and reporting, reducing manual effort and improving operational workflows.
 </Accordion>
 
-## Payment Gateway Solutions by Industry
+## Choose Your Integration Path
+
+Not sure which PayU integration to use? Start by choosing what best describes your needs.
+
+You can decide based on:
+
+- What you want to build (goal-based solution)
+- What business you run (industry-based solution)
+
+<Tabs>
+  <Tab title="Choose by Goal">
+    Use this table if you already know what you want to build.
+    | IF YOU WANT TO… | USE THIS INTEGRATION | WHY THIS FITS |
+    | ----------------- | -------------------- | --------------- |
+    | Accept payments quickly with minimal engineering effort | PayU Hosted Checkout | Fastest way to go live with minimal development |
+    | Build your own branded checkout experience | Merchant Hosted Checkout | Full control over UI and checkout experience |
+    | Process payments entirely using backend APIs | Server-to-Server (S2S) | Ideal for advanced orchestration and backend-heavy systems |
+    | Accept payments inside a mobile app | Mobile SDKs | Native and optimized payment experience for mobile users |
+    | Enable recurring subscription billing | Recurring Payments / AutoPay | Automates recurring charges and reduces churn |
+    | Improve UPI payment experience | UPI Intent / Collect | Faster UPI flows and better success rates |
+    | Offer EMI or BNPL options | EMI / BNPL Integration | Helps increase conversion for high-value transactions |
+    | Start accepting payments without coding | E-commerce Plugins | Quick setup for popular e-commerce platforms |
+  </Tab>
+
+  <Tab title="Second Tab">
+    Here's content that's only inside the second Tab.
+  </Tab>
+
+  <Tab title="Third Tab">
+    Here's content that's only inside the third Tab.
+  </Tab>
+</Tabs>
+
+This helps you quickly identify the most suitable payment solution for your use case.
 
 <Accordion title="E-commerce (Retail and D2C)" icon="fa-cart-shopping">
   **Challenges**
