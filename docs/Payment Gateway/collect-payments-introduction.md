@@ -72,9 +72,9 @@ This helps you quickly identify the most suitable payment solution for your use 
   </Tab>
 
   <Tab title="Choose by Industry">
-    | **IF YOU ARE IN:** | **COMMON CHALLENGES** | **RECOMMENDED SOLUTIONS** |
+    | **IF YOU ARE IN:** | **COMMON CHALLENGES** | **YOU CAN GO WITH** |
     | ---------------- | ------------------ | --------------------- |
-    | E-commerce / Retail / D2C | Cart abandonment, multiple payment preferences | Hosted Checkout, UPI, Cards, BNPL |
+    | E-commerce, Retail, or D2C | Cart abandonment, multiple payment preferences | Hosted Checkout, UPI, Cards, BNPL |
     | Travel & Ticketing | Time-sensitive bookings, payment failures | Hosted Checkout, UPI Intent, International Cards |
     | EdTech | High ticket sizes, EMI requirements, recurring fees | Hosted Checkout, EMI, Payment Links, Recurring Payments |
     | Gaming & Digital Services | Microtransactions, instant confirmations | Merchant Hosted, S2S, Tokenized Cards, SDKs |
