@@ -1,5 +1,5 @@
 ---
-title: Payment Gateway Overview
+title: Collect Payments with PayU
 deprecated: false
 hidden: false
 metadata:
