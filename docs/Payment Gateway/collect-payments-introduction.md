@@ -30,7 +30,9 @@ PayU enables businesses to collect payments through:
 
 PayU offers multiple integration methods depending on your business requirements, technical architecture, and checkout experience goals.
 
-<Accordion title="Why Use PayU?" icon="fa-lightbulb">
+## Why Use PayU?
+
+<Accordion title="Benefits" icon="fa-lightbulb">
   * **Secure and Reliable Transactions**: The PayU Payment Gateway ensures that every transaction is securely processed using encryption and industry-standard safeguards, helping protect customers from fraud and unauthorized access.
   * **Faster and Smoother Payments**: PayU provides an optimized checkout experience that reduces friction and enables quick transaction processing, ensuring a smooth payment journey for customers.
   * **Reduced Payment Failures**: With real-time transaction handling and intelligent processing, PayU helps minimize failed payments and improves overall payment success rates.
