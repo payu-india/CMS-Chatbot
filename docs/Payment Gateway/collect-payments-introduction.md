@@ -57,7 +57,7 @@ You can decide based on:
 <Tabs>
   <Tab title="Choose by Goal">
     Use this table if you already know what you want to build.
-    | IF YOU WANT TO… | USE THIS INTEGRATION | WHY THIS FITS |
+    | **IF YOU WANT TO:** | **USE THIS INTEGRATION** | **WHY THIS FITS** |
     | ----------------- | -------------------- | --------------- |
     | Accept payments quickly with minimal engineering effort | PayU Hosted Checkout | Fastest way to go live with minimal development |
     | Build your own branded checkout experience | Merchant Hosted Checkout | Full control over UI and checkout experience |
