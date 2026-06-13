@@ -71,8 +71,16 @@ This helps you quickly identify the most suitable payment solution for your use 
     | Start accepting payments without coding | E-commerce Plugins | Quick setup for popular e-commerce platforms |
   </Tab>
 
-  <Tab title="Second Tab">
-    Here's content that's only inside the second Tab.
+  <Tab title="Choose by Industry">
+    | IF YOU ARE IN… | COMMON CHALLENGES | RECOMMENDED SOLUTIONS |
+    | ---------------- | ------------------ | --------------------- |
+    | E-commerce / Retail / D2C | Cart abandonment, multiple payment preferences | Hosted Checkout, UPI, Cards, BNPL |
+    | Travel & Ticketing | Time-sensitive bookings, payment failures | Hosted Checkout, UPI Intent, International Cards |
+    | EdTech | High ticket sizes, EMI requirements, recurring fees | Hosted Checkout, EMI, Payment Links, Recurring Payments |
+    | Gaming & Digital Services | Microtransactions, instant confirmations | Merchant Hosted, S2S, Tokenized Cards, SDKs |
+    | Subscription Businesses (SaaS / OTT) | Recurring billing, failed renewals, churn | Recurring Payments, Saved Cards, AutoPay |
+    | Financial Services (Lending / NBFCs) | EMI collections, repayments, compliance | Payment Links, eMandates, UPI Collect |
+    | Marketplaces & Aggregators | Multi-seller transactions, split settlements | Hosted Checkout, Merchant Hosted, Split Payments |
   </Tab>
 
   <Tab title="Third Tab">
