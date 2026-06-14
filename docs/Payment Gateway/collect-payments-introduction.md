@@ -72,7 +72,7 @@ This helps you quickly identify the most suitable payment solution for your use 
   </Tab>
 
   <Tab title="Choose by Industry">
-    | **IF YOU ARE IN:** | **COMMON CHALLENGES** | **YOU CAN GO WITH** |
+    | **If You Are In:** | **Common Challenges** | **You Can Choose** |
     | ---------------- | ------------------ | --------------------- |
     | E-commerce, Retail, or D2C | Cart abandonment, multiple payment preferences | Hosted Checkout, UPI, Cards, BNPL |
     | Travel & Ticketing | Time-sensitive bookings, payment failures | Hosted Checkout, UPI Intent, International Cards |
