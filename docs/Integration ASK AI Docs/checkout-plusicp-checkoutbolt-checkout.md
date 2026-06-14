@@ -1,8 +1,119 @@
 ---
 title: 'Checkout Plus|ICP Checkout|Bolt Checkout '
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
 Checkout Plus offers your customers a simplified checkout experience that keeps them in the context of your website throughout the payment process. It is the easiest way to collect The payment page opens as a pop-up (aka modal) on your website which is a completely redirectionless payment experience.
+
+Customer Experience Journey:
+
+1.Select the Buy Now button on Customer Website.
+
+**Integration Steps**
+
+**Step 1: Add meta-tags & scripts in the HTML header**
+
+Add the following meta-tag & JS script in the HTML header section of your website:-
+
+\<!DOCTYPE html> <br />\<html> <br />  \<head> <br />   \<meta charset="utf-8"> <br />   \<meta name="viewport" content="width=device-width, initial-scale=1">   \<script src="https\://jssdk.payu.in/bolt/bolt.min.js">\</script> For PROD //\<script src="https\://jssdk-uat.payu.in/bolt/bolt.min.js">\</script> For UAT   \</head> <br />  \<body> <br />   \<div> <br />    \<button id="submit">Pay\</button> <br />   \</div> <br />  \</body> <br />\</html>
+
+**Step 2: Pass transaction request objects**
+
+The bolt.launch() function takes two arguments:-
+
+1.In the first argument, the **data** objects contain the transaction request data, The format of  the data object is as shown below:-
+
+var data = { key: ‘Your Merchant key', <br />hash: hash, <br />txnid: txnID, <br />amount: '1.00', <br />firstnam<br />email: "", <br />phone: "9999999999", <br />prod<br />surl: <br />furl: '<br />lastname: 'Rastogi' <br />};
+
+2.The second argument is the Handler which contains two functions. The  responseHandler() function and the catchException() function.
+
+var handlers = {responseHandler: function (BOLT) { if(BOLT.response.txnStatus == "SUCCESS"){ <br />console.log('Your payment has been successful'); }
+
+<br />
+
+<br />
+
+if (BOLT.response.txnStatus == "FAILED") { <br />console.log('Payment failed. Please try again.'); <br />} <br />if(BOLT.response.txnStatus == "CANCEL"){ <br />console.log('Payment failed. Please try again.'); <br />} <br />}, <br />catchException: function (BOLT) { <br />console.log('Payment failed. Please try again.'); <br />}};
+
+**Sample Request to open checkout in modal trigger following javascript code snippet.**
+
+$(document).on('click','#submit',function () { <br />var data = { key: 'Your Merchant Key', <br />    hash: hash, <br />    txnid: txnID, <br />    amount: "1.00", <br />    firstname: "Mansi", <br />    email: "text\@example.com", <br />    phone: "9999999999", <br />    productinfo: 'BOLT', <br />    surl: 'http\://thirdparty.com/testresponse.php', <br />    furl: 'http\://thirdparty.com/testresponse.php', <br />    lastname: 'Rastogi', <br />   }; <br />var handlers = {responseHandler: function (BOLT) { <br />     if(BOLT.response.txnStatus == "SUCCESS"){ <br />      console.log('Your payment has been successful');      } <br />     if (BOLT.response.txnStatus == "FAILED") { <br />       console.log('Payment failed. Please try again.');      } <br />     if(BOLT.response.txnStatus == "CANCEL"){ <br />       console.log('Payment failed. Please try again.');      } <br />    }, <br />    catchException: function (BOLT) { <br />     console.log('Payment failed. Please try again.');     }};                 <br />   bolt.launch( data , handlers ); <br />  });
+
+**Request parameters list**
+
+| **Parameter** | **Description** | **Example** |
+| ------------- | --------------- | ----------- |
+
+<br />
+
+<br />
+
+<br />
+
+| key **mandatory**       | String The merchant key is provided by <br />PayU and acts as a <br />unique identifier for a specific merchant <br />account in the PayU’s database.                                                                         | Your Test Key                                                                                                                                                                     |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| hash **mandatory**      | String This field must contain the has and it is used to avoid the <br />possibility of <br />transaction <br />tampering. For more <br />information on hash <br />generat<br />refer to                                     | eabec285da28fd <br />0e3054d41a4d24fe <br />9f7599c9d0b6664 <br />6f7a9984303fd612 <br />4044b6206daf831 <br />e9a8bda28a6200d <br />318293a13d6c193 <br />109b60bd4b4f8b09c90972 |
+| txnid **mandatory**     | String The <br />transaction ID is the <br />order reference <br />number generated by the merchant to track a particular order. It can be used only once and PayU’s system does <br />not accept a duplicate Transaction ID. | s7hhDQVWvbhBdN                                                                                                                                                                    |
+| amount **mandatory**    | integer The transaction amount, expressed in the currency subunit, such as paise (in case of INR). For example, for an actual amount <br />of “299.35” it should be "29935"                                                   | 29935                                                                                                                                                                             |
+| firstname **mandatory** | String This parameter must contain the first name of the customer.                                                                                                                                                            | Ashish                                                                                                                                                                            |
+| lastname **optional**   | String This parameter must contain the last <br />name of the customer.                                                                                                                                                       | Verma                                                                                                                                                                             |
+
+<br />
+
+<br />
+
+<br />
+
+| email **mandatory**       | String This parameter must contain the email ID of the customer.                                                                                                                                                                                                                      |                    |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
+| phone **mandatory**       | String This parameter must contain the phone number of the <br />customer.                                                                                                                                                                                                            | 9876543210         |
+| productinfo **mandatory** | String This parameter must contain a brief <br />description of the <br />product.\`                                                                                                                                                                                                  | iPhone             |
+| surl **mandatory**        | String Success <br />URL(surl) – This must contain the URL on <br />which PayU will <br />redirect the final <br />response if the <br />transaction is <br />successful.                                                                                                             | <br />             |
+| furl **mandatory**        | String Failure URL (furl) – This must <br />contain the URL on which PayU will <br />redirect the final <br />response in case of failure.                                                                                                                                            | <br />             |
+| udf1  <br />**optional**  | String User-defined fields (udf) are used to store any information corresponding to a <br />particular transaction. Merchants can use up to 5 udfs in the post <br />designated as udf1, <br />udf2, udf3, udf4, udf5. For example, you can store customer's <br />preferred payment. | Payment Preference |
+
+<br />
+
+<br />
+
+<br />
+
+| udf2  <br />**optional** | String User-defined fields(udf) are used to store any information corresponding to a <br />particular transaction. Merchants can use up to 5 udfs in the post <br />designated as udf1, <br />udf2, udf3, udf4, udf5. For example, you can store customer's <br />preferred payment.  | Shipping Method   |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
+| udf3 <br /> **optional** | String User-defined fields (udf) are used to store any information corresponding to a <br />particular transaction. Merchants can use up to 5 udfs in the post <br />designated as udf1, <br />udf2, udf3, udf4, udf5. For example, you can store customer's <br />preferred payment. | Shipping Address1 |
+| udf4 <br /> **optional** | String User-defined fields (udf) are used to store any information corresponding to a <br />particular transaction. Merchants can use up to 5 udfs in the post <br />designated as udf1, <br />udf2, udf3, udf4, udf5. For example, you can store customer's <br />preferred payment. | Shipping City     |
+
+<br />
+
+<br />
+
+<br />
+
+| udf5  <br />**optional**        | String User-defined fields (udf) are used to store any information corresponding to a <br />particular transaction. Merchants can use up to 5 udfs in the post <br />designated as udf1, <br />udf2, udf3, udf4, udf5. For example, you can store customer's <br />preferred payment. | Shipping Zip Code                 |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
+| drop\_category **optional**     | String This parameter is used if you want to hide one or multiple <br />payment options. For example, if you <br />consider the payment options such as credit card, debit card, and <br />net banking, you can hide the credit card <br />mode of payment.                           | creditcard\|debitcard             |
+| enforce\_paymethod **optional** | String\`This parameter allows you to <br />customize the payment options for each <br />transaction. You can <br />enforce specific <br />payment modes, cards scheme, specific banks under Net Banking <br />using this method.                                                      | creditcard\|debitcard\|HDFB\|AXIB |
+
+**Step 3: Fetch the response using responseHandler**
+
+The responseHandler() function fetches the response from PayU once the transaction is completed. In case of a successful, failed, or cancelled transaction, response parameters will be returned to the responseHandler() function based on the corresponding logic defined by the merchant.
+
+**CatchException**
+
+<br />
+
+<br />
+
+The catchException() function captures the transaction message in case of any exceptions.
+
+**Sample Response:-**
+
+mihpayid: 403993715523615328 <br />mode: CC <br />status: success <br />unmappedstatus: captured <br />key: JPM7Fg <br />txnid: 50QJq6lBJBmx14 <br />amount: 10.00 <br />cardCategory: domestic <br />discount: 0.00 <br />net\_amount\_debit: 10 <br />addedon: 2021-07-28 15:11:37 <br />productinfo: iPhone <br />firstname: PayU User <br />lastname: <br />address1: <br />address2: <br />city: <br />state: <br />country: <br />zipcode: <br />email: test\@gmail.com <br />phone: 9876543210 <br />udf1: <br />udf2: <br />udf3: <br />udf4: <br />udf5: <br />udf6: <br />udf7: <br />udf8: <br />udf9: <br />udf10: <br />hash: <br />afeab9dcf4e43d47f8fbf5a6838d393c70694a58e30ada08e6cb86ac943236c05717c5f5e4872 d671fe81d0d9b2d9facd44e9a061ba621aff6f20c4343ea5dfa <br />field1: <br />field2: <br />field3: <br />field4: <br />field5: <br />field6: <br />field7: <br />field8: <br />field9: Transaction Completed Successfully <br />payment\_source: payu <br />PG\_TYPE: CC-PG <br />bank\_ref\_num: 7f0d5ada-59bb-41d7-9e41-20a6af2406c9 <br />bankcode: CC <br />error: E000 <br />error\_Message: No Error <br />name\_on\_card: test <br />cardnum: 411111XXXXXX1111
+
+<br />
+
+<br />
+
+cardhash: This field is no longer supported in postback params.
