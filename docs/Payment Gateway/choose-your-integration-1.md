@@ -1,7 +1,7 @@
 ---
-title: Start Here - Choose Your Integration
+title: '[Additional] Start Here - Choose Your Integration'
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 next:
