@@ -59,16 +59,16 @@ This helps you quickly identify the most suitable payment solution for your use 
 <Tabs>
   <Tab title="Choose by Goal">
     Use this table if you already know what you want to build.
-    | **Goal** | **You Can Choose** | **Why This Fits** | **Workflow** |
+    | **Goal** | **You Can Choose** | **Benefits** | **Workflow** |
     | ----------------- | -------------------- | --------------- |
     | I’m a startup and want to go live fast | PayU Hosted Checkout | Accept payments quickly with minimal engineering effort | Create Account → Get Credentials → Create Payment Request → Redirect Customer → Receive Callback → Go Live |
-    | Build your own branded checkout experience | Merchant Hosted Checkout | Full control over UI and checkout experience |
-    | Process payments entirely using backend APIs | Server-to-Server (S2S) | Ideal for advanced orchestration and backend-heavy systems |
-    | Accept payments inside a mobile app | Mobile SDKs | Native and optimized payment experience for mobile users |
-    | Enable recurring subscription billing | Recurring Payments / AutoPay | Automates recurring charges and reduces churn |
-    | Improve UPI payment experience | UPI Intent / Collect | Faster UPI flows and better success rates |
-    | Offer EMI or BNPL options | EMI / BNPL Integration | Helps increase conversion for high-value transactions |
-    | Start accepting payments without coding | E-commerce Plugins | Quick setup for popular e-commerce platforms |
+    | I want full control over checkout UX | Merchant Hosted Checkout | Build your own branded checkout experience | Build Checkout UI → Collect Payment Details → Call PayU APIs → Handle Response → Verify Payment |
+    | I need backend-only payment orchestration | Server-to-Server (S2S) | Process payments entirely using backend APIs | Customer Initiates Payment → Merchant Backend Calls PayU APIs → Process Authentication → Receive Payment Status → Update Order |
+    | I’m building a mobile app | Mobile SDKs | Native and optimized payment experience for mobile users | Install SDK → Initialize Payment → Launch Checkout → Receive Callback → Verify Transaction |
+    | I need subscription billing | Recurring Payments / AutoPay | Automates recurring charges and reduces churn | Create Subscription Plan → Enable AutoPay → Collect Mandate → Charge Recurring Payments |
+    | I want faster UPI payments with better success rates | UPI Intent / Collect | Faster UPI flows and better success rates | Customer Selects UPI → Launch UPI App / Collect Request → Customer Authorizes Payment → Receive Confirmation |
+    | I want to offer EMI or Pay Later options | EMI / BNPL Integration | Helps increase conversion for high-value transactions | Customer Selects EMI / BNPL → Choose Tenure / Provider → Complete Eligibility Check → Payment Approved |
+    | I run an e-commerce store on Shopify or WooCommerce | E-commerce Plugins | Quick setup for popular e-commerce platforms | Install Plugin → Configure Credentials → Enable Payment Methods → Start Accepting Payments |
   </Tab>
 
   <Tab title="Choose by Industry">
