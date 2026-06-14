@@ -1,11 +1,12 @@
 ---
 title: 'Subscription or Recurring Payments '
+excerpt: Subscription or Recurring Payments
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-**Subscription or Recurring Payments&#x20;**<br />The Recurring Payments or Standing Instruction (SI) is the mode of payment agreed by the customer to pay against a package for each payment term during the subscription.
+The Recurring Payments or Standing Instruction (SI) is the mode of payment agreed by the customer to pay against a package for each payment term during the subscription.
 
 Recurring Payments is an easy and automated method to reduce the administrative burden for periodical payments. Based on the specified pay modes, the customer gives a mandate to the bank to debit a fixed amount from the customer’s account and pay to the merchant.
 
@@ -31,9 +32,19 @@ Doc Reference: **Payment Method Supported: -**<br />1.CARD <br />2. UPI <br />3.
 
 <br />
 
+<br />
+
 **Response**: <br />   \[mihpayid] => 403993715531561494 <br />  \[mode] => UPI <br />  \[status] => success <br />  \[unmappedstatus] => captured <br />  \[key] => z8a7yT <br />  \[txnid] => 14702db39d4552518127 <br />  \[amount] => 100.00 <br />  \[discount] => 0.00 <br />  \[net\_amount\_debit] => 100 <br />  \[addedon] => 2024-05-17 12:22:03 <br />  \[productinfo] => Product Info <br />  \[firstname] => Payu-Admin <br />  \[lastname] => <br />  \[address1] => <br />  \[address2] => <br />  \[city] => <br />  \[state] => <br />  \[country] => <br />  \[zipcode] => <br />  \[email] => <br />  \[phone] => 1234567890 <br />  \[udf1] =>
 
+<br />
+
+<br />
+
   \[udf2] => <br />  \[udf3] => <br />  \[udf4] => Executed Verified <br />  \[udf5] => <br />  \[udf6] => <br />  \[udf7] => <br />  \[udf8] => <br />  \[udf9] => <br />  \[udf10] => <br />  \[hash] => <br />0c217084e19d45d38267f0eb3d0500588aef5745c3db457c417bd66ef300a72b24d1d80e124b6937 40e413d7fef4bfbc4187cc8bdacdb46075733dd9fcee03ce <br />  \[field1] => 9999999999\@upi <br />  \[field2] => HDFXQQOF2EB513U0AJK75JSL3GRDN4AXZV59 <br />  \[field3] => 9999999999\@upi <br />  \[field4] => MASUDA BIBI DAFADAR <br />  \[field5] => 403993715531561494 <br />  \[field6] => <br />  \[field7] => Mandate Request Approved <br />  \[field8] => generic <br />  \[field9] => MD202|Mandate Request Approved|Completed Using Verify API <br />  \[payment\_source] => sist <br />  \[meCode] => {"pgMid":"HDFC000000000105"} <br />  \[PG\_TYPE] => UPI-PG
+
+<br />
+
+<br />
 
 &#x20;\[bank\_ref\_num] => 1715928742512 <br /> \[bankcode] => UPI <br /> \[error] => E000 <br /> \[error\_Message] => No Error <br /> \[splitInfo] => {"splitStatus":"splitNotReceived","splitSegments":\[]}
 
@@ -47,11 +58,17 @@ The **Pre-Debit Notification** API allows the merchants to send a pre-debit noti
 
 <br />
 
+<br />
+
 **Response:-**<br /> { <br />  "status": "active", <br />  "action": "MANDATE\_STATUS", <br />  "authpayuid": "403993715531561494", <br />  "amount": "200.00", <br />  "mandateStartDate": "2024-05-17 00:00:00", <br />  "mandateEndDate": "2025-12-30 00:00:00" <br />}
 
 In case of Mandate already Revoked:- <br />{ <br />  "status": "revoked", <br />  "action": "MANDATE\_STATUS", <br />  "authpayuid": "403993715531561494", <br />  "amount": "200.00", <br />  "mandateStartDate": "2024-05-17 00:00:00", <br />  "mandateEndDate": "2026-12-31 00:00:00" <br />}
 
 **Pre-Debit Notification API Call:&#x20;**&#x41;s the Mandate status is in Active State, We can call the Pre-Debit Notification. API.
+
+<br />
+
+<br />
 
 **Request:-**<br /> curl --location ' \ <br />--header 'Content-Type: application/x-www-form-urlencoded' \ <br />--data-urlencode 'key=z8a7yT' \ <br />--data-urlencode 'command=pre\_debit\_SI' \ <br />--data-urlencode <br />'hash=7c8a21ecced9352dffba52149d27afc4701b8e5f7195f426365cb6d465875ea4a7e38dd13549 7ed560f48e5b05116cccd05994f9049d9aa74bc7b16c133bef59' \ <br />--data-urlencode <br />'var1={"authpayuid":"403993715531561494","requestid":"pre\_403993715531561494","debitdat e":"2024-05-17","invoiceDisplayNumber":"pre\_403993715531561494","amount":"200.00"}'
 
@@ -59,9 +76,17 @@ In case of Mandate already Revoked:- <br />{ <br />  "status": "revoked", <br 
 
 **Note**:- **In order to retrieve the status of Notification shared or Delete the shared notification. Action parameter can be passed in pre debit notification API.**
 
+<br />
+
+<br />
+
 **Recurring API Request&#x20;**<br />It will be called on Debit Date provided in Pre-Debit API Call:- <br />**&#x20;Request:-**<br />curl --location  \ <br />--header 'Content-Type: application/x-www-form-urlencoded' \ <br />--data-urlencode 'key=z8a7yT' \ <br />--data-urlencode 'command=si\_transaction' \ <br />--data-urlencode <br />'hash=0285d6c5edac170d48404e8ca5213c82161f24dd880ba1bf1250ae86a2c1b40b792dcc87c40 254d5eac91fc7c7a8041ba098f51c4c3776377469adfe9856f749 ' \ <br />--data-u<br />'var1={","txnid":"rec\_403993715531561494","invoiceDisplayNumber":"pre\_4039937 15531561494"}'
 
 **&#x20;Response:-**<br />{ <br />   "status": 1, <br />   "message": "Transaction Processed successfully", <br />   "details": { <br />   "rec\_403993715531561494": { <br />    "authpayuid": "403993715531561494", <br />    "transactionid": "rec\_403993715531561494", <br />    "amount": "200", <br />    "user\_credentials": "z8a7yT:14702db39d4552518127",     "card\_token": "",
+
+<br />
+
+<br />
 
    "payuid": "403993715531562010", <br />   "status": "in progress", <br />   "udf1": null, <br />   "field9": "MD202|Mandate Request Approved",    "udf2": "", <br />   "udf3": "", <br />   "udf4": "Executed", <br />   "udf5": "403993715531561494", <br />   "phone": "9876543210", <br />   "email": "" <br />  } <br />  } <br />}
 
@@ -69,21 +94,37 @@ In case of Mandate already Revoked:- <br />{ <br />  "status": "revoked", <br 
 
 **Verify\_Payment API:-**<br />**Request:-**<br />curl --location ' \ --header 'accept: application/json' \ <br />--header 'Content-Type: application/x-www-form-urlencoded' \ --data-urlencode 'key=z8a7yT' \ <br />--data-urlencode 'command=verify\_payment' \\
 
+<br />
+
+<br />
+
 \--data-urlencode 'var1=rec\_403993715531561494' \ --data-urlencode 'hash={{hash}}'
 
 **&#x20;Response:-**<br /> { <br />  "status": 1, <br />  "msg": "1 out of 1 Transactions Fetched Successfully",   "transaction\_details": { <br />  "rec\_403993715531561494": { <br />   "mihpayid": "403993715531562010", <br />   "request\_id": "", <br />   "bank\_ref\_num": "1715928742512", <br />   "amt": "200.00", <br />   "transaction\_amount": "200.00", <br />   "txnid": "rec\_403993715531561494", <br />   "additional\_charges": "0.00", <br />   "productinfo": "SI", <br />   "firstname": "", <br />   "bankcode": "UPISI", <br />   "udf1": null, <br />   "udf3": null, <br />   "udf4": "Executed Verified", <br />   "udf5": "403993715531561494",
+
+<br />
+
+<br />
 
    "field2": "HDFXQQOF2EB513U0AJK75JSL3GRDN4AXZV59", <br />   "field9": "MD202|Mandate Request Approved|Completed Using Verify API",    "error\_code": "E000", <br />   "addedon": "2024-05-17 12:53:21", <br />   "payment\_source": "sirecurring", <br />   "card\_type": null, <br />   "error\_Message": "No Error", <br />   "meCode": "{\\"pgMid\\":\\"HDFC000000000105\\"}", <br />   "net\_amount\_debit": 200, <br />   "disc": "0.00", <br />   "mode": "UPISI", <br />   "PG\_TYPE": "UPISI-PG", <br />   "card\_no": "", <br />   "udf2": null, <br />   "status": "success", <br />   "unmappedstatus": "captured", <br />   "Merchant\_UTR": null, <br />   "Settled\_At": "0000-00-00 00:00:00" <br />  } <br />  } <br />}
 
 **Manage UPI Recurring:-**
 
-We have 3 more APIs in order to Manage the UPI Transaction:- 1.Cancel Mandate API <br />2.Modification API <br />3.Validate VPA API
+<br />
+
+<br />
+
+&#x20;We have 3 more APIs in order to Manage the UPI Transaction:- 1.Cancel Mandate API <br />2.Modification API <br />3.Validate VPA API
 
 **Cancel Mandate API:-**<br />**Cancel Recurring Registration** API allows the merchants to cancel the UPI registration from their website. It is a mandate to implement the **Cancel Recurring Registration** API so that your customers can use Recurring Payments as per their need.
 
 **Request:-**<br />curl --location ' \ <br />--header 'Content-Type: application/x-www-form-urlencoded' \ <br />--data-urlencode 'key=z8a7yT' \ <br />--data-urlencode 'command=upi\_mandate\_revoke' \ <br />--data-urlencode 'var1={"authPayuId": "403993715531561494","requestId": "170520241329"}' \ --data-urlencode <br />'hash=0faa5e95829bb2466acc934e0f863ebfdbce24674cb148174f63fd78ec48c56a4a16d10367ed ec60c02748d0fe36dff13a0eb3b8b399034e50ce95be06878ad2'
 
 **Response:-**<br />{ <br />   "status": 1, <br />   "action": "MANDATE\_REVOKE", <br />   "message": "Mandate Revoked Successfully"
+
+<br />
+
+<br />
 
 }
 
@@ -93,11 +134,19 @@ We have 3 more APIs in order to Manage the UPI Transaction:- 1.Cancel Mandate AP
 
 **Response:-**<br /> { <br />  "status": 1, <br />  "action": "MANDATE\_UPDATE", <br />  "message": "Mandate update pending at PG. Please wait for webhook or use upi\_mandate\_status service to confirm updated status" <br />}
 
+<br />
+
+<br />
+
 **Validate VPA API :-**<br />This API is required only for seamless integration. After the customer enters VPA on the merchant page, you need to call this API to check for VPA validation. If VPA is valid only then, the second call should be made.
 
 **Request:-**<br /> curl --location  \ <br />--header 'accept: application/json' \ <br />--header 'Content-Type: application/x-www-form-urlencoded' \ <br />--data-urlencode 'key=z8a7yT' \ <br />--data-urlencode 'command=validateVPA' \ <br />--data-urlencode 'var1=9999999999\@upi' \ <br />--data-urlencode <br />'hash=5c787cff9c9c2525def4f0af0d47b527f4e5a7ac5b3de578ccc50c8e33c4ffc1fb12ac254285d4 35502bec1e7f65b3981565716bf44dc3bf4fd6bc536d44ebe9' \ <br />--data-urlencode 'var2={"validateAutoPayVPA":"1"}'
 
 **Response:-**<br /> { <br />   "status": "SUCCESS", <br />   "vpa": "9999999999\@upi", <br />   "isVPAValid": 1, <br />   "payerAccountName": "MASUDA BIBI DAFADAR",    "isAutoPayVPAValid": 1, <br />   "isAutoPayBankValid": "NA"
+
+<br />
+
+<br />
 
 } <br />**&#x20;----------------------------------------------------------------------------------------------------** **Paymode – E-Nach**
 
@@ -113,13 +162,29 @@ We have 3 more APIs in order to Manage the UPI Transaction:- 1.Cancel Mandate AP
 
 **Request:-**<br />**hash:**&#x63;2ee7e1a0d7b1fd7040e85eedf06cfd6928e734251313e738fb2e9a3ec9931b478519bcbc65c 79018866a8accbfcb390bda4c1abba72c728d69906e1c523c8e3 <br />**key:&#x20;**&#x7A;8a7yT
 
+<br />
+
+<br />
+
 **txnid:&#x20;**&#x38;59370d845f484493c8d <br />**api\_version:&#x20;**&#x37; <br />**amount:&#x20;**&#x31;0 <br />**firstname:&#x20;**&#x50;ayu-Admin <br />**email:&#x20;**<br />**phone:&#x20;**&#x31;234567890 <br />**productinfo:&#x20;**&#x50;roduct Info <br />**surl:&#x20;**<br />**furl:&#x20;**<br />**si:&#x20;**&#x31; <br />**free\_trial:&#x20;**&#x31; <br />**beneficiarydetail:&#x20;**{"beneficiaryName":"Sachin Tendulkar","beneficiaryAccountNumber": "1211450021","beneficiaryAccountType":"SAVINGS", "beneficiaryIfscCode":"ICIC0000046", "verificationMode":"DEBIT\_CARD"} <br />**pg:&#x20;**&#x45;NACH <br />**bankcode:&#x20;**&#x49;CICENCC <br />**si\_details:**{"billingAmount":"1.00","billingCurrency":"INR","billingCycle":"ADHOC","billingI nterval":1,"paymentStartDate":"2024-05-21","paymentEndDate":"2025-12-30"}
 
 **Response:-**<br />\[mihpayid] => 403993715531574955 <br />  \[mode] => ENACH <br />  \[status] => success <br />  \[unmappedstatus] => captured <br />  \[key] => z8a7yT
 
+<br />
+
+<br />
+
 &#x20;\[txnid] => 859370d845f484493c8d <br /> \[amount] => 0.00 <br /> \[discount] => 0.00 <br /> \[net\_amount\_debit] => 0 <br /> \[addedon] => 2024-05-20 14:22:46 <br /> \[productinfo] => Product Info <br /> \[firstname] => Payu-Admin <br /> \[lastname] => <br /> \[address1] => <br /> \[address2] => <br /> \[city] => <br /> \[state] => <br /> \[country] => <br /> \[zipcode] => <br /> \[email] => <br /> \[phone] => 1234567890 <br /> \[udf1] => <br /> \[udf2] => <br /> \[udf3] => <br /> \[udf4] => <br /> \[udf5] => <br /> \[udf6] => <br /> \[udf7] =>
 
+<br />
+
+<br />
+
   \[udf8] => <br />  \[udf9] => <br />  \[udf10] => <br />  \[hash] => <br />05fa2a831243d868d26f7ec92df74d10178b3a5940c5b0766d1ab62d51a3cc44ea800e3f01552fe43 c1ca8dafe3a08e37efa06f006e024d667df0d81979e3ed2 <br />  \[field1] => ENACH443662560604006640 <br />  \[field2] => 815166426722674149 <br />  \[field3] => <br />  \[field4] => <br />  \[field5] => <br />  \[field6] => <br />  \[field7] => <br />  \[field8] => <br />  \[field9] => Mandate successfully scheduled at bank end: Your payment is scheduled successfully <br />  \[payment\_source] => sist <br />  \[meCode] => {"payeeId":"000000000722"} <br />  \[PG\_TYPE] => ENACH-PG <br />  \[bank\_ref\_num] => 428500781657255627 <br />  \[bankcode] => ICICENCC <br />  \[error] => E000 <br />  \[error\_Message] => No Error <br />  \[splitInfo] => {"splitStatus":"splitNotReceived","splitSegments":\[]}
+
+<br />
+
+<br />
 
 **Pre-Debit Notification API&#x20;**<br />This API is not required for Enach. Hence we can directly proceed with Recurring API call, Post mandate status Check API.
 
@@ -128,6 +193,10 @@ We have 3 more APIs in order to Manage the UPI Transaction:- 1.Cancel Mandate AP
 **Request:-&#x20;**<br />curl --location ' \ <br />--header 'Content-Type: application/x-www-form-urlencoded' \ <br />--data-urlencode 'key=z8a7yT' \ <br />--data-urlencode 'command=NB\_mandate\_status' \ <br />--data-urlencode 'var1={"authPayuId": "403993715531574955","requestId": "202405201420"}' \ --data-urlencode 'hash= <br />c57de6a378619d725118431000d11b9278e2267118f49f1fc7e1566d5dd589aa633d7bd438647f9a f5e8fea6b032b6f182ed9428d091fdf740fe93b40afebe72'
 
 **Response:-**<br />{ <br />   "status": "SUCCESS", <br />   "action": "NB\_mandate\_status", <br />   "authpayuid": "403993715531574955", <br />   "amount": "1.00", <br />   "mandateStartDate": "2024-05-21",
+
+<br />
+
+<br />
 
 &#x20;"mandateEndDate": "2025-12-30"
 
@@ -164,6 +233,8 @@ For ENACH, pending status  is common with most Net Banking (except ICICI in the 
   "message": "Transaction Processed successfully", <br />  "details": { <br />  "rec\_403993715531574955": { <br />   "authpayuid": "403993715531574955", <br />   "transactionid": "rec\_403993715531574955", <br />   "amount": "1", <br />   "user\_credentials": "z8a7yT:859370d845f484493c8d",    "card\_token": "", <br />   "payuid": "403993715531575128", <br />   "status": "captured", <br />   "udf1": null, <br />   "field9": "Payment Successful", <br />   "udf2": "", <br />   "udf3": "", <br />   "udf4": "", <br />   "udf5": "", <br />   "phone": "9876543210", <br />   "email": "" <br />  } <br />  } <br />}
 
 **Manage E-Mandates**
+
+<br />
 
 <br />
 
@@ -322,14 +393,5 @@ If any activity performed on the Subscription via third party PSP app or issuing
 • **Event Covered for UPI:** Pause/Active/Revoked <br />• **Event Covered for Cards:** Active/Deleted <br />• **Event Covered for NB**: CANCEL\_FAILURE/ CANCEL\_SUCCESS
 
 **For Sample Response received for third party Modification, Refer:-**
-
-<br />
-
-<br />
-
--
-- •••
--
-- Go toPage
 
 <br />
