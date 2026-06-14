@@ -1,7 +1,7 @@
 ---
 title: 'Single MID for MCC Merchants Flow '
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
