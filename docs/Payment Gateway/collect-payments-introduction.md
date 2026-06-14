@@ -60,7 +60,7 @@ This helps you quickly identify the most suitable payment solution for your use 
   <Tab title="Choose by Goal">
     Use this table if you already know what you want to build.
     | **Goal** | **You Can Choose** | **Benefits** | **Workflow** |
-    | ----------------- | -------------------- | --------------- |
+    | ----------------- | -------------------- | --------------- | --------------- |
     | I’m a startup and want to go live fast | PayU Hosted Checkout | Accept payments quickly with minimal engineering effort | Create Account → Get Credentials → Create Payment Request → Redirect Customer → Receive Callback → Go Live |
     | I want full control over checkout UX | Merchant Hosted Checkout | Build your own branded checkout experience | Build Checkout UI → Collect Payment Details → Call PayU APIs → Handle Response → Verify Payment |
     | I need backend-only payment orchestration | Server-to-Server (S2S) | Process payments entirely using backend APIs | Customer Initiates Payment → Merchant Backend Calls PayU APIs → Process Authentication → Receive Payment Status → Update Order |
