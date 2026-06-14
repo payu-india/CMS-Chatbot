@@ -58,7 +58,7 @@ This helps you quickly identify the most suitable payment solution for your use 
 
 <Tabs>
   <Tab title="Choose by Goal">
-    Use this table if you already know what you want to build.
+    Use this table if you already know what you want to build.<br/>
     | **Goal** | **You Can Choose** | **Benefits** | **Workflow** |
     | ----------------- | -------------------- | --------------- | --------------- |
     | I’m a startup and want to go live fast | PayU Hosted Checkout | Accept payments quickly with minimal engineering effort | Create Account → Get Credentials → Create Payment Request → Redirect Customer → Receive Callback → Go Live |
@@ -72,6 +72,7 @@ This helps you quickly identify the most suitable payment solution for your use 
   </Tab>
 
   <Tab title="Choose by Industry">
+    Choose your integration based on your industry:<br/>
     | **If You Are In:** | **Common Challenges** | **You Can Choose** |
     | ---------------- | ------------------ | --------------------- |
     | E-commerce, Retail, or D2C | Cart abandonment, multiple payment preferences | Hosted Checkout, UPI, Cards, BNPL |
