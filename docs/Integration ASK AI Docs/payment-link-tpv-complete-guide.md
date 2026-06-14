@@ -1,7 +1,7 @@
 ---
 title: Payment Link TPV Complete Guide
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
