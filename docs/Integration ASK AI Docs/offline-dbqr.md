@@ -1,7 +1,7 @@
 ---
 title: 'Offline DBQR '
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
