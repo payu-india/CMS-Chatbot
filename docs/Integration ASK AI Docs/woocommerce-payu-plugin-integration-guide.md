@@ -1,7 +1,7 @@
 ---
 title: 'WooCommerce PayU Plugin Integration Guide '
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
