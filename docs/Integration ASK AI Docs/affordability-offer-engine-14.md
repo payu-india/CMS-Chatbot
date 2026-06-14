@@ -1,7 +1,7 @@
 ---
 title: 'Affordability (Offer Engine) 1/4 '
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
