@@ -238,4 +238,14 @@ PayU offers the following various integrations:
   </Tab>
 </Tabs>
 
+## Next Steps
+
+Now that you have chosen your integration path, continue to the corresponding implementation guide:
+
+- PayU Hosted Checkout Integration
+- Merchant Hosted Checkout
+- Server-to-Server Integration
+- Mobile SDK Integration
+- Plugin Setup Guide
+
 <br />
