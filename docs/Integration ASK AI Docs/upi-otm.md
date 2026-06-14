@@ -1,14 +1,11 @@
 ---
 title: UPI OTM
-excerpt: >-
-  Integrate UPI One-Time Mandate to block funds, capture the final amount,
-  verify status, and cancel blocked registrations.
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-**<br />UPI OTM&#x20;**<br />The feature is intended to the use case of Block and Capture, where merchant generally blocks the amount initially and basis the service provided, debits the amount from the customer’s account.
+The feature is intended to the use case of Block and Capture, where merchant generally blocks the amount initially and basis the service provided, debits the amount from the customer’s account.
 
 Similar to Cards, UPI OTM also requires merchant to perform “Block/Auth payment” also called as Mandate Registrations followed by “Recurring/Capture payment”.
 
@@ -161,7 +158,5 @@ This interface allows merchants to cancel UPI registration from their website. O
 <br />
 
 PayU’s Refund API is used for cancellation of the Mandate or Auth Transactions:-
-
-<br />
 
 <br />
