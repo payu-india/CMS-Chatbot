@@ -2,7 +2,7 @@
 title: Split Settlements / Aggregator
 excerpt: 'SPLIT SETTLEMENT/ AGGREGATOR MODEL '
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
