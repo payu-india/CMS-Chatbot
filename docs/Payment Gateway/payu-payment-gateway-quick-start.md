@@ -4,7 +4,7 @@ excerpt: >-
   Start PayU payment gateway integration quickly. Follow the fastest path using
   PayU Hosted Checkout to accept online payments with minimal setup.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   description: >-
     Start PayU payment gateway integration quickly. Follow the fastest path
@@ -25,9 +25,9 @@ This page helps you **start accepting payments quickly** using the available che
 
 If your goal is to:
 
-* Accept payments with minimal setup
-* Avoid building a payment UI
-* Go live quickly
+- Accept payments with minimal setup
+- Avoid building a payment UI
+- Go live quickly
 
 👉 **Hosted Checkout is the recommended starting point**
 
@@ -39,14 +39,14 @@ It provides a ready-to-use payment page and requires the least integration effor
 
 PayU also provides other integration methods such as:
 
-* **Web Checkout** for building a custom payment UI
-* **APIs (Server-to-Server)** for fully backend-driven flows
+- **Merchant Hosted Checkout** for building a custom payment UI
+- **APIs (Server-to-Server)** for fully backend-driven flows
 
 These options offer more flexibility but require additional development effort.
 
 ***
 
-## Quick Steps for First Payment
+## Quick Steps for First Payment (PayU Hosted Checkout)
 
 Below are the quick steps to your first successful payment:
 
@@ -68,7 +68,7 @@ You can complete your **first test payment within minutes** using this approach.
 
 Make sure you:
 
-* Have access to PayU test credentials
+- Have access to PayU test credentials
 
 ***
 
@@ -79,3 +79,5 @@ Make sure you:
 This will walk you through creating your first working payment with a minimal setup.
 
 ***
+
+<br />
