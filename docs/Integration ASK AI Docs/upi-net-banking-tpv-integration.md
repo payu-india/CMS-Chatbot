@@ -1,7 +1,7 @@
 ---
 title: 'UPI & Net-Banking TPV Integration '
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
