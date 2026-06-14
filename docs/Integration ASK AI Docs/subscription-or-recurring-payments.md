@@ -14,23 +14,20 @@ Doc Reference: **Payment Method Supported: -**<br />1.CARD <br />2. UPI <br />3.
 
 &#x20;Majorly three steps involved in overall Subscription Payment Journey: - 1.Registration Transaction <br />2.Pre-Debit Notification <br />3.Recurring Call
 
-**Customer Experience: -&#x20;**&#x52;efer below link for Customer’s UI experience for each pay mode. <br />**&#x20;----------------------------------------------------------------------------------------------------**<br />  **Paymode - UPI&#x20;**<br />**Limitations while Testing&#x20;**:- <br />·       Amount should be = > 2.
+**Customer Experience: -** Refer below link for Customer's UI experience for each pay mode. <br />**----------------------------------------------------------------------------------------------------**<br />**Paymode - UPI**
 
-·       Billing amount should be = >200.
+**Limitations while Testing:**
 
-·       Test UPI- 9999999999\@upi
+- Amount should be >= 2
+- Billing amount should be >= 200
+- Test UPI: 9999999999\@upi
+- Mandatorily call the verify\_payment API after si\_transaction API to make the transaction status success. Initially it will be in in\_process state.
 
-<br />
+**Registration Transaction Request:**
 
-<br />
-
-·       Mandatorily call the verify\_payment API after si\_transaction API to make the transaction status success. Initially it will be in in\_process state.
-
-**Registration Transaction Request: -&#x20;**<br />The parameters shared below are for non-seamless integration. For seamless integration refer to the below doc link for additional parameters required for UPI Paymode:- <br />
+The parameters shared below are for non-seamless integration. For seamless integration refer to the below doc link for additional parameters required for UPI Paymode:-
 
 **Request:-**<br />**hash:**&#x38;e704dd989a1b9f33202d6d725aeb61382ab9d4fa9697ec84e8cba653b25deee73e9efff33e0 6f31ecb18313e9754390951f3cfcf7e75bffdd1907fa54175fac <br />**key:&#x20;**&#x7A;8a7yT <br />**txnid:&#x20;**&#x31;4702db39d4552518127 <br />**api\_version:&#x20;**&#x37; <br />**amount:&#x20;**&#x31;00 <br />**firstname:&#x20;**&#x50;ayu-Admin <br />**email:&#x20;**<br />**phone:&#x20;**&#x31;234567890 <br />**productinfo:&#x20;**&#x50;roduct Info <br />**surl:&#x20;**<br />**furl:&#x20;**<br />**si:&#x20;**&#x31; <br />**si\_details:&#x20;**<br />{"billingAmount":"200.00","billingCurrency":"INR","billingCycle":"ADHOC","billingInterval": 1,"paymentStartDate":"2024-05-17","paymentEndDate":"2025-12-30"}
-
-<br />
 
 <br />
 
