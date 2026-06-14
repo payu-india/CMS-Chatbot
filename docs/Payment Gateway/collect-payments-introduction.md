@@ -59,9 +59,9 @@ This helps you quickly identify the most suitable payment solution for your use 
 <Tabs>
   <Tab title="Choose by Goal">
     Use this table if you already know what you want to build.
-    | **IF YOU WANT TO:** | **USE THIS INTEGRATION** | **WHY THIS FITS** |
+    | **Goal** | **You Can Choose** | **Why This Fits** | **Workflow** |
     | ----------------- | -------------------- | --------------- |
-    | Accept payments quickly with minimal engineering effort | PayU Hosted Checkout | Fastest way to go live with minimal development |
+    | I’m a startup and want to go live fast | PayU Hosted Checkout | Accept payments quickly with minimal engineering effort | Create Account → Get Credentials → Create Payment Request → Redirect Customer → Receive Callback → Go Live |
     | Build your own branded checkout experience | Merchant Hosted Checkout | Full control over UI and checkout experience |
     | Process payments entirely using backend APIs | Server-to-Server (S2S) | Ideal for advanced orchestration and backend-heavy systems |
     | Accept payments inside a mobile app | Mobile SDKs | Native and optimized payment experience for mobile users |
