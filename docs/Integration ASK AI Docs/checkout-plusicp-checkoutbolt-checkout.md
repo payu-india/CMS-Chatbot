@@ -1,7 +1,7 @@
 ---
 title: 'Checkout Plus|ICP Checkout|Bolt Checkout '
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
