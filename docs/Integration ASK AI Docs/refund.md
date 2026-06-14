@@ -1,7 +1,7 @@
 ---
 title: 'Refund: '
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
