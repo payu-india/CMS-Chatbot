@@ -18,6 +18,9 @@ This reference describes Get Checkout Details `get_checkout_details` API to chec
 
 ## Request Parameters
 
+
+<Accordion title="Request Parameters" icon="fa-info-table">
+
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
 <tr>
@@ -39,12 +42,7 @@ This reference describes Get Checkout Details `get_checkout_details` API to chec
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>var1<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> JSON string containing:<br>
-• <code>requestId</code><br>
-• <code>transactionDetails</code> (e.g. <code>amount</code>, <code>source</code>, <code>pre_authorize</code>, <code>additional_charges</code>)<br>
-• <code>useCase</code> (e.g. <code>checkCustomerEligibility</code>, <code>checkNTBCustomerEligibility</code>, <code>returnUserLimit</code>)<br>
-• <code>customerDetails</code> (e.g. <code>mobile</code>)<br>
-• <code>filters.paymentOptions.emi</code> (e.g. <code>dc</code>, <code>cardless</code>, and <code>payInParts</code> when you need Pay-in-parts lenders in the response)</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> JSON Object containing the fields to check eligibility. For more information, refer to  <a href="#var1-json-fields-description">var1 JSON Fields Description</a></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>{"requestId":"abc123","transactionDetails":{"amount":500}}</p></td>
 </tr>
 <tr>
@@ -55,10 +53,114 @@ This reference describes Get Checkout Details `get_checkout_details` API to chec
 </tbody>
 </table>
 
+#### var1 JSON Fields Description
+<Accordion title=" var1 JSON Fields Description" icon="fa-info-circle">
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>requestId<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Unique identifier for this Get Checkout Details call.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>transactionDetails<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Transaction context (amount and optional metadata) used for eligibility.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>transactionDetails.source<br><code>optional</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Optional payment-source hint; sample uses <code>null</code>.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>null</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>transactionDetails.amount<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Number</code> Amount for which eligibility is evaluated.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>transactionDetails.pre_authorize<br><code>optional</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Any</code> Pre-authorization context when applicable; sample uses <code>null</code>.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>null</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>transactionDetails.additional_charges<br><code>optional</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Any</code> Additional charges when applicable; sample uses <code>null</code>.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>null</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>useCase<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Flags that control which eligibility checks GCD performs.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>useCase.checkNTBCustomerEligibility<br><code>optional</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Boolean</code> When <code>true</code>, requests new-to-bank (NTB) style checks where supported.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>true</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>useCase.checkCustomerEligibility<br><code>optional</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Boolean</code> When <code>true</code>, requests standard customer eligibility.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>true</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>useCase.returnUserLimit<br><code>optional</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Boolean</code> When <code>true</code>, may return repeat-user / limit information where supported.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>true</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>customerDetails<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Customer attributes required for EMI / Pay-in-parts lookups.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>customerDetails.mobile<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Mobile number used for lender and Pay-in-parts eligibility.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>filters<br><code>optional</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Limits which payment options are returned in the GCD payload.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>filters.paymentOptions<br><code>optional</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Wrapper for payment-option filters.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>filters.paymentOptions.emi<br><code>optional</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> EMI filters (debit card EMI, cardless EMI, Pay-in-parts).</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>filters.paymentOptions.emi.dc<br><code>optional</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Debit-card EMI scope; sample uses <code>"all"</code>.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>"all"</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>filters.paymentOptions.emi.cardless<br><code>optional</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Cardless EMI scope; sample uses <code>"all"</code>.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>"all"</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>filters.paymentOptions.emi.payInParts<br><code>optional</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Set to <code>"all"</code> when your pack must return PayInParts lenders (for example LazyPay Pay-in-3 / <code>LAZYPI3</code>) in addition to cardless EMI.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>"all"</p></td>
+</tr>
+</tbody>
+</table>
+</Accordion>
+</Accordion>
 
-<br />
 
-## Sample request
+<Accordion title="Sample request" icon="fa-code">
 
 The following matches the integration sample you provided (`Cookie` omitted; `key` shown as `JP***g` like other PayU API reference pages—substitute your real merchant key if different), with `hash` templated.
 
@@ -288,11 +390,11 @@ if (curl_error($ch)) {
 curl_close($ch);
 ?>
 ```
+</Accordion>
 
-
-To surface **PayInParts** lenders in the response (as in the PRD), add `"payInParts":"all"` next to `dc` / `cardless` inside `filters.paymentOptions.emi` when your pack requires it.
 
 ## Sample response
+To surface **PayInParts** lenders in the response (as in the PRD), add `"payInParts":"all"` next to `dc` / `cardless` inside `filters.paymentOptions.emi` when your pack requires it.
 
 ### Customer is ETB
 
