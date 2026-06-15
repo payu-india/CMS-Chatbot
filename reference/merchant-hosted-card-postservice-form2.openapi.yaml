@@ -145,14 +145,17 @@ paths:
         content:
           application/x-www-form-urlencoded:
             schema:
-              oneOf:
-                - $ref: '#/components/schemas/GetBinInfoFormBody'
-                - $ref: '#/components/schemas/CheckIsDomesticFormBody'
-              discriminator:
-                propertyName: command
-                mapping:
-                  getBinInfo: '#/components/schemas/GetBinInfoFormBody'
-                  check_isDomestic: '#/components/schemas/CheckIsDomesticFormBody'
+              allOf:
+                - $ref: '#/components/schemas/PostserviceForm2CommandSelector'
+                - type: object
+                  oneOf:
+                    - $ref: '#/components/schemas/GetBinInfoFormBody'
+                    - $ref: '#/components/schemas/CheckIsDomesticFormBody'
+                  discriminator:
+                    propertyName: command
+                    mapping:
+                      getBinInfo: '#/components/schemas/GetBinInfoFormBody'
+                      check_isDomestic: '#/components/schemas/CheckIsDomesticFormBody'
             examples:
               getBinInfoSingleBin:
                 summary: getBinInfo — single BIN with enhanced flags (Postman-style)
@@ -278,6 +281,24 @@ components:
           error_description: MERCHANT_NOT_FOUND
           title: Merchant not found
   schemas:
+    PostserviceForm2CommandSelector:
+      type: object
+      required:
+        - command
+      properties:
+        command:
+          type: string
+          enum:
+            - getBinInfo
+            - check_isDomestic
+          description: >
+            PayU `postservice` command for this endpoint (with query `form=2`).
+
+            **getBinInfo** — BIN metadata, feature lists, or paginated BIN
+            catalogue.
+
+            **check_isDomestic** — whether a six-digit BIN is domestic or
+            international (and related card metadata).
     PayUSearchableErrorTableJSON:
       type: object
       description: >-
@@ -330,8 +351,11 @@ components:
             (linked from the API Reference pages).
         command:
           type: string
-          const: getBinInfo
-          description: Must be `getBinInfo` for the Get BIN Info API.
+          enum:
+            - getBinInfo
+          description: >-
+            Must be `getBinInfo` for the Get BIN Info API (see
+            `PostserviceForm2CommandSelector.command`).
         var1:
           type: string
           description: >
@@ -417,8 +441,11 @@ components:
           description: Merchant key provided by PayU for authentication.
         command:
           type: string
-          const: check_isDomestic
-          description: Must be `check_isDomestic` for the Check is Domestic (Card BIN) API.
+          enum:
+            - check_isDomestic
+          description: >-
+            Must be `check_isDomestic` for the Check is Domestic (Card BIN) API
+            (see `PostserviceForm2CommandSelector.command`).
         var1:
           type: string
           pattern: ^[0-9]{6}$
