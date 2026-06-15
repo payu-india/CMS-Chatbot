@@ -188,9 +188,7 @@ paths:
   /merchant/postservice.php:
     post:
       operationId: merchantPostservicePhpCheckout
-      summary: >-
-        POST /merchant/postservice.php — net banking status, checkout details,
-        verify (Postman)
+      summary: General APIs for Net Banking
       description: >
         `application/x-www-form-urlencoded`. Postman uses this path for
         **getNetBankingStatus** and
