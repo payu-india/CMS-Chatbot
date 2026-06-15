@@ -21,9 +21,7 @@ This page documents the following commands with `postservice` and `postservice.p
 
 </Accordion>
 
-> ⚠️ -
-
-<Cards_PayU_Labs />
+ <Cards_PayU_Labs />
 
 <br />
 
