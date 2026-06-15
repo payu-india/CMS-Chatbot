@@ -5,26 +5,13 @@ hidden: true
 metadata:
   robots: index
 ---
----
-title: LazyPay Pay-in-3 - Merchant Hosted Checkout Integration
-excerpt: ''
-deprecated: false
-hidden: false
-metadata:
-  title: Integrate LazyPay Pay-in-3 with Merchant Hosted Checkout
-  description: >-
-    Check PayInParts / LazyPay Pay-in-3 eligibility using Get Checkout Details,
-    then initiate merchant-hosted payment and handle the PayU response.
-  robots: index
-next:
-  description: ''
----
+When your customer wants **LazyPay Pay-in-3** (PayInParts), use **Get Checkout Details** (`get_checkout_details`) to retrieve eligible payment options—including the `payInParts` catalogue—before you post the transaction using Collect Payment API(`/_payment)`. If the customer is eligible, complete the merchant-hosted collect flow and verify the outcome. You will get response for various scenarios whether customer is Existing to Bank (ETB) or New to Bank (NTB) customer.
 
-When your customer wants **LazyPay Pay-in-3** (PayInParts), use **Get Checkout Details** (`get_checkout_details`) to retrieve eligible payment options—including the **`payInParts`** catalogue—before you post the transaction to **`/_payment`**. If the customer is eligible, complete the merchant-hosted collect flow and verify the outcome.
+##
 
-<Callout icon="📘" theme="info">
-  **Handle Guest Checkout Transaction**: You can handle Guest Checkout transactions for EMI and BNPL integrations where applicable. For more information, refer to [Cards Integration > Handling Guest Checkout Transactions](doc:collect-payments-with-cards-seamless#handling-guest-checkout-transactions).
-</Callout>
+> 📘
+>
+> **Handle Guest Checkout Transaction**: You can handle Guest Checkout transactions for EMI and BNPL integrations where applicable. For more information, refer to [Cards Integration > Handling Guest Checkout Transactions](doc:collect-payments-with-cards-seamless#handling-guest-checkout-transactions).
 
 **Steps to integrate**
 
@@ -54,14 +41,12 @@ When your customer wants **LazyPay Pay-in-3** (PayInParts), use **Get Checkout D
 
 ## Step 1: Check PayInParts and LazyPay Pay-in-3 eligibility
 
-After you collect the customer’s mobile number and the amount to be paid, call **Get Checkout Details** on **`POST /merchant/postservice?form=2`** with the **`filters.paymentOptions.emi`** structure that includes cardless EMI (and **`payInParts`** when your pack requires Pay-in-parts lenders in the response). The sample request and ETB sample response below match [Get Checkout Details — PayInParts (GCD)](ref:gcd-payinparts-get-checkout-details).
+After you collect the customer’s mobile number and the amount to be paid, call **Get Checkout Details** on `POST /merchant/postservice?form=2` with the `filters.paymentOptions.emi` structure that includes cardless EMI (and `payInParts` when your pack requires Pay-in-parts lenders in the response). The sample request and ETB sample response below match [Get Checkout Details — PayInParts (GCD)](ref:gcd-payinparts-get-checkout-details).
 
-
-| Environment | URL |
-| :-- | :-- |
-| Production | `https://info.payu.in/merchant/postservice?form=2` |
-| Test | `https://test.payu.in/merchant/postservice?form=2` |
-
+| Environment | URL                                                |
+| :---------- | :------------------------------------------------- |
+| Production  | `https://info.payu.in/merchant/postservice?form=2` |
+| Test        | `https://test.payu.in/merchant/postservice?form=2` |
 
 <Accordion title="Request Parameters" icon="fa-info-table">
 
@@ -200,9 +185,9 @@ After you collect the customer’s mobile number and the amount to be paid, call
 </tr>
 </tbody>
 </table>
-</Accordion>
-</Accordion>
 
+</Accordion>
+</Accordion>
 
 <Accordion title="Sample request" icon="fa-info-circle">
 
@@ -220,7 +205,7 @@ To surface **PayInParts** lenders in the response (as in the PRD), add **`"payIn
 
 </Accordion>
 
-### Sample response 
+### Sample response
 
 <Accordion title="ETB — from PayInParts lenders PDF" icon="fa-info-circle">
 
@@ -2036,3 +2021,5 @@ Post the following additional parameters for using the Cardless EMI. Check the r
 ## Step 4: Verify Payment
 
 <Verify_Payment_Tabs />
+
+<br />
