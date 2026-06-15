@@ -420,7 +420,7 @@ curl_close($ch);
 
 #### Sample response
 
-<Accordion title="ETB — from PayInParts lenders PDF" icon="fa-info-circle">
+<Accordion title="ETB" icon="fa-info-circle">
 
 **Scenario:** GCD response when the customer is **ETB** (`httpCode` **200**, `status` **1**). 
 ```json
