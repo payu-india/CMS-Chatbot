@@ -188,6 +188,235 @@ After you collect the customer’s mobile number and the amount to be paid, call
 </Accordion>
 </Accordion>
 
+<Accordion title="Sample request" icon="fa-code">
+```curl
+curl --location 'https://info.payu.in/merchant/postservice?form=2' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'key=JP***g' \
+--data-urlencode 'command=get_checkout_details' \
+--data-urlencode 'var1={"requestId":"9078698a15d746feadcffbdaf979a198","transactionDetails":{"source":null,"amount":16721,"pre_authorize":null,"additional_charges":null},"useCase":{"checkNTBCustomerEligibility":true,"checkCustomerEligibility":true,"returnUserLimit":true},"customerDetails":{"mobile":"9910522063"},"filters":{"paymentOptions":{"emi":{"dc":"all","cardless":"all"}}}}' \
+--data-urlencode 'hash={{info_hash}}'
+```
+```python
+import requests
+
+url = "https://info.payu.in/merchant/postservice?form=2"
+
+headers = {
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+data = {
+    "key": "JP***g",
+    "command": "get_checkout_details",
+    "var1": '{"requestId":"9078698a15d746feadcffbdaf979a198","transactionDetails":{"source":null,"amount":16721,"pre_authorize":null,"additional_charges":null},"useCase":{"checkNTBCustomerEligibility":true,"checkCustomerEligibility":true,"returnUserLimit":true},"customerDetails":{"mobile":"9910522063"},"filters":{"paymentOptions":{"emi":{"dc":"all","cardless":"all"}}}}',
+    "hash": "{{info_hash}}"
+}
+
+try:
+    response = requests.post(url, headers=headers, data=data)
+    print("Status Code:", response.status_code)
+    print("Response:", response.text)
+except requests.exceptions.RequestException as e:
+    print("Error:", e)
+```
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        var client = new HttpClient();
+
+        var formData = new List<KeyValuePair<string, string>>
+        {
+            new KeyValuePair<string, string>("key", "JP***g"),
+            new KeyValuePair<string, string>("command", "get_checkout_details"),
+            new KeyValuePair<string, string>("var1", "{\"requestId\":\"9078698a15d746feadcffbdaf979a198\",\"transactionDetails\":{\"source\":null,\"amount\":16721,\"pre_authorize\":null,\"additional_charges\":null},\"useCase\":{\"checkNTBCustomerEligibility\":true,\"checkCustomerEligibility\":true,\"returnUserLimit\":true},\"customerDetails\":{\"mobile\":\"9910522063\"},\"filters\":{\"paymentOptions\":{\"emi\":{\"dc\":\"all\",\"cardless\":\"all\"}}}}"),
+            new KeyValuePair<string, string>("hash", "{{info_hash}}")
+        };
+
+        var content = new FormUrlEncodedContent(formData);
+
+        try
+        {
+            var response = await client.PostAsync("https://info.payu.in/merchant/postservice?form=2", content);
+            string responseBody = await response.Content.ReadAsStringAsync();
+            Console.WriteLine("Status Code: " + response.StatusCode);
+            Console.WriteLine("Response: " + responseBody);
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine("Error: " + e.Message);
+        }
+    }
+}
+```
+```javascript
+async function getCheckoutDetails() {
+    const url = "https://info.payu.in/merchant/postservice?form=2";
+
+    const formData = new URLSearchParams();
+    formData.append("key", "JP***g");
+    formData.append("command", "get_checkout_details");
+    formData.append("var1", JSON.stringify({
+        requestId: "9078698a15d746feadcffbdaf979a198",
+        transactionDetails: {
+            source: null,
+            amount: 16721,
+            pre_authorize: null,
+            additional_charges: null
+        },
+        useCase: {
+            checkNTBCustomerEligibility: true,
+            checkCustomerEligibility: true,
+            returnUserLimit: true
+        },
+        customerDetails: {
+            mobile: "9910522063"
+        },
+        filters: {
+            paymentOptions: {
+                emi: {
+                    dc: "all",
+                    cardless: "all"
+                }
+            }
+        }
+    }));
+    formData.append("hash", "{{info_hash}}");
+
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: formData.toString()
+        });
+
+        const data = await response.text();
+        console.log("Status Code:", response.status);
+        console.log("Response:", data);
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+getCheckoutDetails();
+```
+```java
+import java.io.*;
+import java.net.*;
+
+public class GetCheckoutDetails {
+    public static void main(String[] args) {
+        try {
+            URL url = new URL("https://info.payu.in/merchant/postservice?form=2");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            conn.setDoOutput(true);
+
+            String var1 = URLEncoder.encode(
+                "{"requestId":"9078698a15d746feadcffbdaf979a198","transactionDetails":{"source":null,"amount":16721,"pre_authorize":null,"additional_charges":null},"useCase":{"checkNTBCustomerEligibility":true,"checkCustomerEligibility":true,"returnUserLimit":true},"customerDetails":{"mobile":"9910522063"},"filters":{"paymentOptions":{"emi":{"dc":"all","cardless":"all"}}}}",
+                "UTF-8"
+            );
+
+            String formData = "key=" + URLEncoder.encode("JP***g", "UTF-8")
+                + "&command=" + URLEncoder.encode("get_checkout_details", "UTF-8")
+                + "&var1=" + var1
+                + "&hash=" + URLEncoder.encode("{{info_hash}}", "UTF-8");
+
+            try (OutputStream os = conn.getOutputStream()) {
+                os.write(formData.getBytes("UTF-8"));
+            }
+
+            int statusCode = conn.getResponseCode();
+            System.out.println("Status Code: " + statusCode);
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            StringBuilder response = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                response.append(line);
+            }
+            reader.close();
+
+            System.out.println("Response: " + response.toString());
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+```php
+<?php
+
+$url = "https://info.payu.in/merchant/postservice?form=2";
+
+$postFields = http_build_query([
+    "key"     => "JP***g",
+    "command" => "get_checkout_details",
+    "var1"    => json_encode([
+        "requestId"          => "9078698a15d746feadcffbdaf979a198",
+        "transactionDetails" => [
+            "source"             => null,
+            "amount"             => 16721,
+            "pre_authorize"      => null,
+            "additional_charges" => null
+        ],
+        "useCase" => [
+            "checkNTBCustomerEligibility" => true,
+            "checkCustomerEligibility"    => true,
+            "returnUserLimit"             => true
+        ],
+        "customerDetails" => [
+            "mobile" => "9910522063"
+        ],
+        "filters" => [
+            "paymentOptions" => [
+                "emi" => [
+                    "dc"       => "all",
+                    "cardless" => "all"
+                ]
+            ]
+        ]
+    ]),
+    "hash" => "{{info_hash}}"
+]);
+
+$ch = curl_init();
+
+curl_setopt_array($ch, [
+    CURLOPT_URL            => $url,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_POST           => true,
+    CURLOPT_POSTFIELDS     => $postFields,
+    CURLOPT_HTTPHEADER     => [
+        "Content-Type: application/x-www-form-urlencoded"
+    ]
+]);
+
+$response = curl_exec($ch);
+
+if (curl_error($ch)) {
+    echo "Error: " . curl_error($ch);
+} else {
+    echo "Status Code: " . curl_getinfo($ch, CURLINFO_HTTP_CODE) . "\n";
+    echo "Response: " . $response . "\n";
+}
+
+curl_close($ch);
+?>
+```
+</Accordion>
+
 #### Sample response
 
 <Accordion title="ETB — from PayInParts lenders PDF" icon="fa-info-circle">
