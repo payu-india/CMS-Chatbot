@@ -1,0 +1,640 @@
+openapi: 3.1.0
+jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
+x-payu-error-code-datasets:
+  developer_guide_page: reference/Collect Payment/error-codes.md
+  published_error_codes: https://docs.payu.in/reference/error-codes
+  searchable_table_json:
+    payment_error_codes: >-
+      https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/payment-error-codes.json
+    other_error_codes: >-
+      https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/other-error-codes.json
+    issuer_decline_error_codes: >-
+      https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/issuer-decline-error-codes.json
+    field7_card_payments: >-
+      https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/field7-card-payments.json
+    auth_n_error_codes: >-
+      https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/auth-n-error-codes.json
+    auth_z_error_codes: >-
+      https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/auth-z-error-codes.json
+    alt_id_error_codes: >-
+      https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/alt-id-error-codes.json
+    netbanking_wallets: >-
+      https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/netbanking-wallets.json
+    upi_error_codes: >-
+      https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/upi-error-codes.json
+info:
+  title: Merchant Hosted Checkout — merchant/postservice and postservice.php
+  version: 1.0.0
+  description: >
+    OpenAPI 3.1 for **all** `postservice` / `postservice.php` command requests
+    in
+
+    `Postman Collection/Merchant Hosted Checkout.postman_collection (1).json` on
+    host `test.payu.in`.
+
+
+    **Path 1 —** `POST /merchant/postservice` with query **`form=2`**
+    (required): BIN, EMI, UPI helpers
+
+    plus **verify_payment** (same body as in the Verify Payment API Reference,
+    which uses this URL).
+
+
+    **Path 2 —** `POST /merchant/postservice.php`: **getNetBankingStatus**,
+    **get_checkout_details** (no `form` in Postman),
+
+    and **verify_payment** with **`form=2`** (as in Postman).
+
+
+    Discriminate requests with **`command`** + **`allOf`** + **`oneOf`** (same
+    pattern as
+
+    `API Collection/merchant-hosted-card-postservice-form2.openapi.yaml`).
+
+
+    Error catalogues: `x-payu-error-code-datasets` and
+    `components.examples.CuratedCardBinHashRelatedErrorCodes`.
+externalDocs:
+  description: PayU India API Reference (introduction)
+  url: https://docs.payu.in/reference/introduction-api-reference
+servers:
+  - url: https://test.payu.in
+    description: Test environment
+  - url: https://info.payu.in
+    description: Production environment (per PayU General APIs documentation)
+tags:
+  - name: MerchantHostedPostservice
+    description: >-
+      Merchant Hosted Checkout — postservice (form=2) and postservice.php
+      commands from the Postman collection
+    externalDocs:
+      description: PayU error codes (API Reference)
+      url: https://docs.payu.in/reference/error-codes
+paths:
+  /merchant/postservice:
+    post:
+      operationId: merchantPostserviceForm2Checkout
+      summary: POST /merchant/postservice?form=2 — BIN, EMI, UPI, verify
+      description: >
+        `application/x-www-form-urlencoded`. Query **`form=2`** is **required**.
+
+
+        Postman: Cards / EMI / UPI helpers; **verify_payment** samples in API
+        Reference use this path (Postman duplicate under `.php` is described on
+        `POST /merchant/postservice.php`).
+
+
+        References: `reference/General/bin-apis/*`,
+        `reference/General/emi-apis/*`,
+
+        `reference/Subscriptions/api-commands-to-manage-upi-recurring-transaction/validate_vpa_api.md`,
+
+        `reference/General/check-transaction-apis/verify_payment_api.md`.
+      tags:
+        - MerchantHostedPostservice
+      parameters:
+        - name: form
+          in: query
+          required: true
+          description: Must be `2`.
+          schema:
+            type: string
+            const: '2'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/PostserviceForm2CommandSelector'
+                - type: object
+                  oneOf:
+                    - $ref: '#/components/schemas/GetBinInfoFormBody'
+                    - $ref: '#/components/schemas/CheckIsDomesticFormBody'
+                    - $ref: >-
+                        #/components/schemas/GetEmiAmountAccordingToInterestFormBody
+                    - $ref: '#/components/schemas/EligibleBinsForEmiFormBody'
+                    - $ref: '#/components/schemas/ValidateVpaFormBody'
+                    - $ref: '#/components/schemas/VerifyPaymentFormBody'
+                  discriminator:
+                    propertyName: command
+                    mapping:
+                      getBinInfo: '#/components/schemas/GetBinInfoFormBody'
+                      check_isDomestic: '#/components/schemas/CheckIsDomesticFormBody'
+                      getEmiAmountAccordingToInterest: >-
+                        #/components/schemas/GetEmiAmountAccordingToInterestFormBody
+                      eligibleBinsForEMI: '#/components/schemas/EligibleBinsForEmiFormBody'
+                      validateVPA: '#/components/schemas/ValidateVpaFormBody'
+                      verify_payment: '#/components/schemas/VerifyPaymentFormBody'
+            examples:
+              getBinInfo:
+                summary: getBinInfo (Postman — Cards)
+                value:
+                  command: getBinInfo
+                  key: '{{merchant_key}}'
+                  var1: '2'
+                  var2: '512345'
+                  var3: ''
+                  var4: ''
+                  var5: '1'
+                  hash: '{{server_generated_hash}}'
+              check_isDomestic:
+                summary: check_isDomestic (Postman — Cards)
+                value:
+                  command: check_isDomestic
+                  key: '{{merchant_key}}'
+                  var1: '462273'
+                  hash: '{{server_generated_hash}}'
+              getEmiAmountAccordingToInterest:
+                summary: getEmiAmountAccordingToInterest (Postman — EMI)
+                value:
+                  command: getEmiAmountAccordingToInterest
+                  key: '{{merchant_key}}'
+                  var1: '20000'
+                  hash: '{{server_generated_hash}}'
+              verify_payment:
+                summary: verify_payment (API Reference URL — same path without .php)
+                value:
+                  command: verify_payment
+                  key: '{{merchant_key}}'
+                  var1: '{{txnid}}'
+                  hash: '{{server_generated_hash}}'
+              eligibleBinsForEMI:
+                summary: eligibleBinsForEMI (Postman — EMI)
+                value:
+                  command: eligibleBinsForEMI
+                  key: '{{merchant_key}}'
+                  var1: Bin
+                  var2: '512345'
+                  hash: '{{server_generated_hash}}'
+              validateVPA:
+                summary: validateVPA (Postman — UPI)
+                value:
+                  command: validateVPA
+                  key: '{{merchant_key}}'
+                  var1: 9999999999@upi
+                  hash: '{{server_generated_hash}}'
+      responses:
+        '200':
+          description: Command-specific JSON or text; see each API Reference page.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/GetBinInfoResponseWrapper'
+                  - $ref: '#/components/schemas/CheckIsDomesticResponse'
+                  - $ref: '#/components/schemas/PostserviceGenericJsonResponse'
+            text/plain:
+              schema:
+                type: string
+        '400':
+          description: Bad request.
+        '401':
+          description: Authentication or hash failure.
+        '500':
+          description: Server error.
+  /merchant/postservice.php:
+    post:
+      operationId: merchantPostservicePhpCheckout
+      summary: >-
+        POST /merchant/postservice.php — net banking status, checkout details,
+        verify (Postman)
+      description: >
+        `application/x-www-form-urlencoded`. Postman uses this path for
+        **getNetBankingStatus** and
+
+        **get_checkout_details** without `form`, and **verify_payment** with
+        **`form=2`**.
+
+
+        References:
+        `reference/General/health-check-apis/get_net_banking_status_api.md`,
+
+        `reference/General/get_checkout_details/index.md`,
+
+        `reference/General/check-transaction-apis/verify_payment_api.md`.
+      tags:
+        - MerchantHostedPostservice
+      parameters:
+        - name: form
+          in: query
+          required: false
+          description: >
+            Use **`2`** for **verify_payment** (Postman). Omit for
+            **getNetBankingStatus** and **get_checkout_details** in the
+            collection.
+          schema:
+            type: string
+            enum:
+              - '2'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/PostservicePhpCommandSelector'
+                - type: object
+                  oneOf:
+                    - $ref: '#/components/schemas/GetNetBankingStatusFormBody'
+                    - $ref: '#/components/schemas/GetCheckoutDetailsFormBody'
+                    - $ref: '#/components/schemas/VerifyPaymentFormBody'
+                  discriminator:
+                    propertyName: command
+                    mapping:
+                      getNetBankingStatus: '#/components/schemas/GetNetBankingStatusFormBody'
+                      get_checkout_details: '#/components/schemas/GetCheckoutDetailsFormBody'
+                      verify_payment: '#/components/schemas/VerifyPaymentFormBody'
+            examples:
+              getNetBankingStatus:
+                summary: getNetBankingStatus (Postman — Net Banking)
+                value:
+                  command: getNetBankingStatus
+                  key: '{{merchant_key}}'
+                  var1: default
+                  hash: '{{server_generated_hash}}'
+              get_checkout_details:
+                summary: get_checkout_details (Postman — EMI / BNPL)
+                value:
+                  command: get_checkout_details
+                  key: '{{merchant_key}}'
+                  var1: >-
+                    {"transactionDetails":{"amount":"100.00","txnid":"asdusucbshb"},"usecase":{"checkDownStatus":"true"},"requestId":"yegdyyshds"}
+                  hash: '{{server_generated_hash}}'
+              verify_payment:
+                summary: verify_payment (Postman — Net Banking / Cards / UPI / Wallets)
+                value:
+                  command: verify_payment
+                  key: '{{merchant_key}}'
+                  var1: '{{txnid}}'
+                  hash: '{{server_generated_hash}}'
+      responses:
+        '200':
+          description: Command-specific response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostserviceGenericJsonResponse'
+            text/plain:
+              schema:
+                type: string
+        '400':
+          description: Bad request.
+        '401':
+          description: Authentication or hash failure.
+        '500':
+          description: Server error.
+components:
+  examples:
+    CuratedCardBinHashRelatedErrorCodes:
+      summary: >-
+        Curated payu-docs-assets error rows (see x-payu-error-code-datasets for
+        full tables).
+      value:
+        - errors: E000
+          error_message: No Error
+          error_description: Successful transaction
+          title: NO_ERROR
+        - errors: E700
+          error_message: Validation of secure hash failed
+          error_description: SECURE_HASH_FAILURE
+          title: SECURE_HASH_FAILURE
+        - errors: E908
+          error_message: International cards not allowed
+          error_description: UNKNOWN_BINS_NO_ACTIVE_PG_ASSIGNED
+          title: UNKNOWN_BINS_NO_ACTIVE_PG_ASSIGNED
+        - errors: E4934
+          error_message: Invalid BIN
+          error_description: Bin Not Found
+          title: INVALID_BIN
+        - errors: E306
+          error_message: Card authentication failure
+          error_description: TRANSACTION_INVALID_PG
+          title: TRANSACTION_INVALID_PG
+        - errors: E335
+          error_message: Transaction failed due to incomplete authentication process
+          error_description: The cardholder is enrolled in Payer Authentication. Please authe
+          title: AUTHENTICATION_INCOMPLETE
+        - errors: E303
+          error_message: Payer could not be authenticated
+          error_description: Encountered a Payer Authentication problem. Payer could not be a
+          title: AUTHENTICATION_ERROR
+        - errors: E500
+          error_message: Bank failed to authenticate the customer
+          error_description: UNKNOWN_ERROR_PG
+          title: UNKNOWN_ERROR_PG
+        - errors: E910
+          error_message: EMI is not supported on this card
+          error_description: INVALID_EMI_CARD_BIN
+          title: INVALID_EMI_CARD_BIN
+        - errors: EX014
+          error_message: 'Merchant Param: Key not supplied'
+          error_description: MERCHANT_PARAM_KEY_EMPTY
+          title: 'Merchant Param: Key not supplied'
+        - errors: EX023
+          error_message: Verifier hash mismatch
+          error_description: VERIFIER_MISMATCH
+          title: Verifier hash mismatch
+        - errors: EX013
+          error_message: Insufficient Input
+          error_description: INSUFFICIENT_INPUT
+          title: Insufficient Input
+        - errors: EX025
+          error_message: Merchant not found
+          error_description: MERCHANT_NOT_FOUND
+          title: Merchant not found
+  schemas:
+    PostserviceForm2CommandSelector:
+      type: object
+      required:
+        - command
+      properties:
+        command:
+          type: string
+          enum:
+            - getBinInfo
+            - check_isDomestic
+            - getEmiAmountAccordingToInterest
+            - eligibleBinsForEMI
+            - validateVPA
+            - verify_payment
+          description: >
+            Commands using **`/merchant/postservice?form=2`** in Postman or API
+            Reference.
+    PostservicePhpCommandSelector:
+      type: object
+      required:
+        - command
+      properties:
+        command:
+          type: string
+          enum:
+            - getNetBankingStatus
+            - get_checkout_details
+            - verify_payment
+          description: >
+            Commands using **`/merchant/postservice.php`** in the Postman
+            collection.
+
+            Some API Reference samples use **`getNetbankingStatus`** casing;
+            Postman uses **`getNetBankingStatus`** — use the spelling your
+            integration was built against.
+    PayUSearchableErrorTableJSON:
+      type: object
+      required:
+        - headers
+        - codeColumns
+        - rows
+      properties:
+        headers:
+          type: array
+          items:
+            type: string
+        codeColumns:
+          type: array
+          items:
+            type: integer
+        rows:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+    GetNetBankingStatusFormBody:
+      type: object
+      required:
+        - key
+        - command
+        - var1
+        - hash
+      properties:
+        key:
+          type: string
+        command:
+          type: string
+          enum:
+            - getNetBankingStatus
+          description: >-
+            Postman value; see also get_net_banking_status_api.md for alternate
+            casing in samples.
+        var1:
+          type: string
+          description: >-
+            Use `default` for all banks or a net banking bank code (see Net
+            Banking Codes in docs).
+        hash:
+          type: string
+          description: >-
+            SHA-512: `sha512(key|command|var1|salt)` per Get Net Banking Status
+            API.
+    GetCheckoutDetailsFormBody:
+      type: object
+      required:
+        - key
+        - command
+        - var1
+        - hash
+      properties:
+        key:
+          type: string
+        command:
+          type: string
+          enum:
+            - get_checkout_details
+        var1:
+          type: string
+          description: >-
+            JSON string for transaction details, use case, requestId, etc. See
+            `reference/General/get_checkout_details/index.md`.
+        hash:
+          type: string
+          description: >-
+            Request integrity hash per Get Checkout Details documentation
+            (generate per PayU hashing rules for this command).
+    VerifyPaymentFormBody:
+      type: object
+      required:
+        - key
+        - command
+        - var1
+        - hash
+      properties:
+        key:
+          type: string
+        command:
+          type: string
+          enum:
+            - verify_payment
+        var1:
+          type: string
+          description: >-
+            Transaction id(s) — txnid from your server; pipe-separated for
+            multiple (see verify_payment_api.md).
+        hash:
+          type: string
+          description: >-
+            SHA-512: `sha512(key|command|var1|salt)` per Verify Payment API
+            Reference.
+    GetBinInfoFormBody:
+      type: object
+      required:
+        - key
+        - command
+        - var1
+        - hash
+      properties:
+        key:
+          type: string
+        command:
+          type: string
+          enum:
+            - getBinInfo
+        var1:
+          type: string
+          enum:
+            - '1'
+            - '2'
+            - '3'
+        var2:
+          type: string
+        var3:
+          type: string
+        var4:
+          type: string
+        var5:
+          type: string
+        hash:
+          type: string
+          description: 'SHA-512: `sha512(key|command|var1|salt)`.'
+    CheckIsDomesticFormBody:
+      type: object
+      required:
+        - key
+        - command
+        - var1
+        - hash
+      properties:
+        key:
+          type: string
+        command:
+          type: string
+          enum:
+            - check_isDomestic
+        var1:
+          type: string
+          pattern: ^[0-9]{6}$
+        hash:
+          type: string
+          description: 'SHA-512: `sha512(key|command|var1|salt)`.'
+    GetEmiAmountAccordingToInterestFormBody:
+      type: object
+      required:
+        - key
+        - command
+        - var1
+        - hash
+      properties:
+        key:
+          type: string
+        command:
+          type: string
+          enum:
+            - getEmiAmountAccordingToInterest
+        var1:
+          type: string
+        hash:
+          type: string
+          description: 'SHA-512: `sha512(key|command|var1|salt)`.'
+    EligibleBinsForEmiFormBody:
+      type: object
+      required:
+        - key
+        - command
+        - var1
+        - var2
+        - hash
+      properties:
+        key:
+          type: string
+        command:
+          type: string
+          enum:
+            - eligibleBinsForEMI
+        var1:
+          type: string
+          description: '`Bin` or `NET` per Eligible BINs for EMI API.'
+        var2:
+          type: string
+        var3:
+          type: string
+          description: Optional bank name filter.
+        hash:
+          type: string
+          description: 'SHA-512: `sha512(key|command|var1|salt)` per eligiblebinsforemi.md.'
+    ValidateVpaFormBody:
+      type: object
+      required:
+        - key
+        - command
+        - var1
+        - hash
+      properties:
+        key:
+          type: string
+        command:
+          type: string
+          enum:
+            - validateVPA
+        var1:
+          type: string
+        var2:
+          type: string
+          description: >-
+            Optional JSON (e.g. recurring validateAutoPayVPA). Hash may depend
+            on posted fields — confirm with PayU hashing docs if var2 is sent.
+        hash:
+          type: string
+          description: >-
+            SHA-512: `sha512(key|command|var1|salt)` per validate_vpa_api.md
+            when only var1 is used.
+    GetBinInfoResponseWrapper:
+      type: object
+      required:
+        - status
+        - data
+      properties:
+        status:
+          type: integer
+          enum:
+            - 0
+            - 1
+        data:
+          oneOf:
+            - type: string
+            - type: object
+              additionalProperties: true
+    CheckIsDomesticResponse:
+      type: object
+      required:
+        - isDomestic
+        - issuingBank
+        - cardType
+        - cardCategory
+      properties:
+        isDomestic:
+          type: string
+          enum:
+            - 'Y'
+            - 'N'
+        issuingBank:
+          type: string
+        cardType:
+          type: string
+        cardCategory:
+          type: string
+          enum:
+            - CC
+            - DC
+    PostserviceGenericJsonResponse:
+      type: object
+      additionalProperties: true
