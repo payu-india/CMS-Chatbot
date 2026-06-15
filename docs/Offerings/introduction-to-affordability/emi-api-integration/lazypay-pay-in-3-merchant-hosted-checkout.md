@@ -792,7 +792,7 @@ To surface **PayInParts** lenders in the response (as in the PRD), add **`"payIn
 }
 ```
 
-## GCD response — customer is not eligible
+#### GCD response — customer is not eligible
 
 ```json
 {
