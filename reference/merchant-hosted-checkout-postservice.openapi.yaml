@@ -174,20 +174,7 @@ paths:
     post:
       operationId: merchantPostservicePhpCheckout
       summary: General APIs for Net Banking
-      description: >
-        `application/x-www-form-urlencoded`. Postman uses this path for
-        **getNetBankingStatus** and
-
-        **get_checkout_details** without `form`, and **verify_payment** with
-        **`form=2`**.
-
-
-        References:
-        `reference/General/health-check-apis/get_net_banking_status_api.md`,
-
-        `reference/General/get_checkout_details/index.md`,
-
-        `reference/General/check-transaction-apis/verify_payment_api.md`.
+      description: ''
       tags:
         - MerchantHostedPostservice
       parameters:
