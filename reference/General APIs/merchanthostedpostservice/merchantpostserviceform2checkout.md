@@ -789,3 +789,4 @@ curl_close($ch);
 <Callout icon="📘" theme="info">
   For request parameters, response fields, and error semantics, refer to the canonical references: [Get BIN Info API](ref:get_bin_info_api), [Check is Domestic API](ref:check_is_domestic_api), and [Verify Payment API](ref:verify_payment_api).
 </Callout>
+## Request Parameters
