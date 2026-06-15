@@ -1,58 +1,34 @@
 ---
 title: Get EMI/BNPL Checkout Details API - LazyPay Pay-in-3
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
----
-title: Get EMI / BNPL Checkout Details API (LazyPay)
-excerpt: ''
-deprecated: false
-hidden: false
-metadata:
-  title: Get EMI BNPL Checkout Details for LazyPay
-  description: >-
-    Check LazyPay BNPL or Lazy Pay in 3 (Pay-in-3) eligibility using
-    get_emi_checkout_details with bankCode LAZYPAY or LZYPI3 (or LAZYPI3 per pack).
-  keywords:
-    - LazyPay eligibility API
-    - Lazy Pay in 3
-    - LZYPI3
-    - LAZYPAY get_emi_checkout_details
-    - BNPL checkout details LazyPay
-  robots: index
-next:
-  description: ''
----
-This API is used to **check LazyPay eligibility** and related checkout details (for example linking status, KFS link, tokens, and Pay-in-3 instalment context when applicable) before you call **`/_payment`**. It is the same **Get EMI / BNPL checkout details** service as the full reference; this page focuses on **`LAZYPAY`** (classic BNPL) and **`LZYPI3`** (Pay-in-3 — some internal samples use **`LAZYPI3`**; use the literal your **v1** pack prints). For all headers, digest and HMAC variants, NTB flows, and the complete body schema, refer to [Get EMI Checkout Details API](ref:get-emi-checkout-details-api).
+This API is used to **check LazyPay eligibility** and related checkout details (for example linking status, KFS link, tokens, and Pay-in-3 instalment context when applicable) before you call `/_payment`. It is the same **Get EMI / BNPL checkout details** service as the full reference; this page focuses on `LAZYPAY` (classic BNPL) and `LZYPI3` (Pay-in-3 — some internal samples use `LAZYPI3`; use the literal your **v1** pack prints). For all headers, digest and HMAC variants, NTB flows, and the complete body schema, refer to [Get EMI Checkout Details API](ref:get-emi-checkout-details-api).
 
-> **Signing (hash-based only):** **`Digest`** and **`Authorization`** use SHA / HMAC over the JSON body and `Date` as in [Get EMI Checkout Details API](ref:get-emi-checkout-details-api). That is **not** the same string construction as the **`hash`** field on merchant-hosted **`/_payment`**, and **not** the **`sha512(key|command|var1|SALT)`** string used for **[Get Checkout Details](ref:get_checkout_details)** on **`postservice.php`**—follow each endpoint’s sample. Pay-in-3 seamless flows often call **Get Checkout Details** first (command hash) and then this API.
+> **Signing (hash-based only):** `Digest` and `Authorization` use SHA / HMAC over the JSON body and `Date` as in [Get EMI Checkout Details API](ref:get-emi-checkout-details-api). That is **not** the same string construction as the `hash` field on merchant-hosted `/_payment`, and **not** the `sha512(key|command|var1|SALT)` string used for **[Get Checkout Details](ref:get_checkout_details)** on `postservice.php`—follow each endpoint’s sample. Pay-in-3 seamless flows often call **Get Checkout Details** first (command hash) and then this API.
 
 ### Environment
 
-| | |
-| :-- | :-- |
-| Test Environment | [https://test.payu.in/info/linkAndPay/get_emi_checkout_details](https://test.payu.in/info/linkAndPay/get_emi_checkout_details) |
-| Production Environment | [https://info.payu.in/linkAndPay/get_emi_checkout_details](https://info.payu.in/linkAndPay/get_emi_checkout_details) |
+|                        |                                                                                                                                   |
+| :--------------------- | :-------------------------------------------------------------------------------------------------------------------------------- |
+| Test Environment       | [https://test.payu.in/info/linkAndPay/get\_emi\_checkout\_details](https://test.payu.in/info/linkAndPay/get_emi_checkout_details) |
+| Production Environment | [https://info.payu.in/linkAndPay/get\_emi\_checkout\_details](https://info.payu.in/linkAndPay/get_emi_checkout_details)           |
 
 ## Request parameters
 
-### Header
+###
 
-For the full header specification (**Date**, **Digest**, **Authorization**, **platformId**, and signing examples), refer to [Get EMI Checkout Details API > Request Parameters](ref:get-emi-checkout-details-api#request-parameters).
-
-### Body parameters (LazyPay Link and Pay eligibility)
-
-| Parameter | Description | Example |
-| :-- | :-- | :-- |
-| bankCode `mandatory` | LazyPay product: classic BNPL or Pay-in-3 | `LAZYPAY` or `LZYPI3` (some packs use `LAZYPI3`) |
-| Key `mandatory` | Merchant key from the PayU Dashboard | `yFbXg3` |
-| phone `mandatory` | Customer mobile number for eligibility | `9999999999` |
-| amount `mandatory` | Transaction amount (numeric or string per integration pack) | `21` |
-| userCredentials `optional` | Unique user identifier in the form `merchantKey:userId` | `yFbXg3:test_sud` |
-| payuToken `optional` | PayU instrument token when applicable | `null` |
-| requestId `optional` | Correlation id for the request | `Testing_111` |
+| Parameter                  | Description                                                 | Example                                          |
+| :------------------------- | :---------------------------------------------------------- | :----------------------------------------------- |
+| bankCode `mandatory`       | LazyPay product: classic BNPL or Pay-in-3                   | `LAZYPAY` or `LZYPI3` (some packs use `LAZYPI3`) |
+| Key `mandatory`            | Merchant key from the PayU Dashboard                        | `yFbXg3`                                         |
+| phone `mandatory`          | Customer mobile number for eligibility                      | `9999999999`                                     |
+| amount `mandatory`         | Transaction amount (numeric or string per integration pack) | `21`                                             |
+| userCredentials `optional` | Unique user identifier in the form `merchantKey:userId`     | `yFbXg3:test_sud`                                |
+| payuToken `optional`       | PayU instrument token when applicable                       | `null`                                           |
+| requestId `optional`       | Correlation id for the request                              | `Testing_111`                                    |
 
 > 📘 Note
 >
@@ -81,7 +57,7 @@ curl --location 'https://test.payu.in/info/linkAndPay/get_emi_checkout_details' 
 
 ### Pay-in-3 (bankCode `LZYPI3`)
 
-Same headers and signing rules as above; only the JSON body’s **`bankCode`** (and typically **amount / phone**) change per your Pay-in-3 pack.
+Same headers and signing rules as above; only the JSON body’s `bankCode` (and typically **amount / phone**) change per your Pay-in-3 pack.
 
 ```curl
 curl --location 'https://test.payu.in/info/linkAndPay/get_emi_checkout_details' \
@@ -125,12 +101,12 @@ curl --location 'https://test.payu.in/info/linkAndPay/get_emi_checkout_details' 
 }
 ```
 
-| Field | Description |
-| :-- | :-- |
-| status | Provider status in BNPL context. |
-| kfsLink | Key Fact Statement or disclosure URL when applicable. |
-| eligible | Whether LazyPay can be offered for this amount and user context. |
+| Field          | Description                                                                |
+| :------------- | :------------------------------------------------------------------------- |
+| status         | Provider status in BNPL context.                                           |
+| kfsLink        | Key Fact Statement or disclosure URL when applicable.                      |
+| eligible       | Whether LazyPay can be offered for this amount and user context.           |
 | customerLinked | Whether the user has completed linking for repeat / one-click style flows. |
-| PayuToken | Token used on subsequent calls when supported by your integration. |
+| PayuToken      | Token used on subsequent calls when supported by your integration.         |
 
 For additional success and failure shapes (including multi-lender responses), refer to [Get EMI Checkout Details API > Sample response](ref:get-emi-checkout-details-api#sample-response).
