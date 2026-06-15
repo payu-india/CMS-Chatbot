@@ -4,43 +4,22 @@ api:
   operationId: merchantPostserviceForm2Checkout
 hidden: true
 ---
----
-title: Merchant Hosted Checkout — Cards postservice commands
-excerpt: >-
-  API reference for card-related `postservice?form=2` commands used with Merchant
-  Hosted Checkout: getBinInfo, check_isDomestic, and verify_payment.
-deprecated: false
-hidden: false
-metadata:
-  title: Merchant Hosted Checkout — Cards postservice commands
-  description: >-
-    Reference for PayU Merchant Hosted card flows that call
-    POST /merchant/postservice?form=2 for BIN lookup, domestic check, and
-    payment verification.
-  keywords:
-    - getBinInfo
-    - check_isDomestic
-    - verify_payment
-    - postservice form=2
-    - merchant hosted cards
-  robots: index
----
+This page documents the following commands with `postservice`  commonly used for **Cards** in Merchant Hosted Checkout. For full parameter tables and hashing rules, refer the Request Parameter sub-section below (at end of this section).
 
-This page documents the following commands with **`postservice`**  commonly used for **Cards** in Merchant Hosted Checkout. For full parameter tables and hashing rules, refer the Request Parameter sub-section below (at end of this section).
-
-* <Accordion title="getBinInfo" icon="fa-info-circle">
+- <Accordion title="getBinInfo" icon="fa-info-circle">
   Retrieves issuing bank, card type, category, domestic or international flag, ATM PIN and OTP-on-the-fly support, and optional zero-redirect or SI flags for a **single BIN**, **feature-filtered lists**, or **paginated bulk** BIN data. Use a **9-digit BIN** where possible for accuracy.
+
 </Accordion>
 
-* <Accordion title="check_isDomestic" icon="fa-info-circle">
+- <Accordion title="check_isDomestic" icon="fa-info-circle">
   Determines whether a **BIN** (first six digits of the card) is **domestic or international**, and returns issuing bank, card type, and credit or debit category.
+
 </Accordion>
 
-* <Accordion title="verify_payment" icon="fa-info-circle">
+- <Accordion title="verify_payment" icon="fa-info-circle">
   Returns the **status and details** of a transaction for a given **merchant transaction ID** (`var1`). Use it to **reconcile** with PayU after you receive the payment response.
-</Accordion>
 
-> ⚠️ -
+</Accordion>
 
 <Cards_PayU_Labs />
 
@@ -834,7 +813,10 @@ curl_close($ch);
 
 </Accordion>
 
-<Callout icon="📘" theme="info">
-  For request parameters, response fields, and error semantics, refer to the canonical references: [Get BIN Info API](ref:get_bin_info_api), [Check is Domestic API](ref:check_is_domestic_api), and [Verify Payment API](ref:verify_payment_api).
-</Callout>
+> 📘
+>
+> For request parameters, response fields, and error semantics, refer to the canonical references: [Get BIN Info API](ref:get_bin_info_api), [Check is Domestic API](ref:check_is_domestic_api), and [Verify Payment API](ref:verify_payment_api).
+
 ## Request Parameters
+
+<br />
