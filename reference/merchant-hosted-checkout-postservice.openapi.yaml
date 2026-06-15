@@ -74,7 +74,7 @@ paths:
   /merchant/postservice:
     post:
       operationId: merchantPostserviceForm2Checkout
-      summary: POST /merchant/postservice?form=2 — BIN, EMI, verify
+      summary: General APIs for Cards
       description: >
         `application/x-www-form-urlencoded`. Query **`form=2`** is **required**.
 
