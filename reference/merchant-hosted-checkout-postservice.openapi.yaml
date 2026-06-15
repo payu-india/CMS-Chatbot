@@ -75,22 +75,7 @@ paths:
     post:
       operationId: merchantPostserviceForm2Checkout
       summary: General APIs for Cards
-      description: >
-        `application/x-www-form-urlencoded`. Query **`form=2`** is **required**.
-
-
-        Postman: Cards and EMI helpers; **verify_payment** samples in API
-        Reference use this path (Postman duplicate under `.php` is described on
-        `POST /merchant/postservice.php`).
-
-
-        References: `reference/General/bin-apis/get_bin_info_api.md`,
-        `reference/General/bin-apis/check_is_domestic_api.md`,
-
-        `reference/General/emi-apis/get_emi_according_to_interest_api/index.md`,
-        `reference/General/emi-apis/eligiblebinsforemi.md`,
-
-        `reference/General/check-transaction-apis/verify_payment_api.md`.
+      description: ''
       tags:
         - MerchantHostedPostservice
       parameters:
