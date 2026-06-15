@@ -32,7 +32,7 @@ In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you 
 
 ## Merged banks and supported bank codes
 
-Use the **bankcode** from the row that matches how you onboarded the customer or how your checkout labels the bank. The following table maps common merger cases to the corresponding entries in the searchable list:
+After RBI-led mergers, customers may still identify with the former bank name. On the PayU platform, Net Banking continues to support the relevant bankcode values for both the successor bank and the erstwhile (pre-merger) bank rows in the following table so you need to change a stored bankcode solely because the customer's account was migrated to a successor bank. Use the bankcode from the row that matches how you onboarded the customer or how your checkout labels the bank.&#x20;
 
 | Erstwhile bank (with the bankcode) | Successor bank       | Supported **bankcode** values |
 | ---------------------------------- | -------------------- | ----------------------------- |
