@@ -34,7 +34,7 @@ info:
 
 
     **Path 1 —** `POST /merchant/postservice` with query **`form=2`**
-    (required): BIN, EMI, UPI helpers
+    (required): BIN and EMI helpers
 
     plus **verify_payment** (same body as in the Verify Payment API Reference,
     which uses this URL).
@@ -74,20 +74,21 @@ paths:
   /merchant/postservice:
     post:
       operationId: merchantPostserviceForm2Checkout
-      summary: General APIs for Cards
+      summary: POST /merchant/postservice?form=2 — BIN, EMI, verify
       description: >
         `application/x-www-form-urlencoded`. Query **`form=2`** is **required**.
 
 
-        Postman: Cards / EMI / UPI helpers; **verify_payment** samples in API
+        Postman: Cards and EMI helpers; **verify_payment** samples in API
         Reference use this path (Postman duplicate under `.php` is described on
         `POST /merchant/postservice.php`).
 
 
-        References: `reference/General/bin-apis/*`,
-        `reference/General/emi-apis/*`,
+        References: `reference/General/bin-apis/get_bin_info_api.md`,
+        `reference/General/bin-apis/check_is_domestic_api.md`,
 
-        `reference/Subscriptions/api-commands-to-manage-upi-recurring-transaction/validate_vpa_api.md`,
+        `reference/General/emi-apis/get_emi_according_to_interest_api/index.md`,
+        `reference/General/emi-apis/eligiblebinsforemi.md`,
 
         `reference/General/check-transaction-apis/verify_payment_api.md`.
       tags:
@@ -114,7 +115,6 @@ paths:
                     - $ref: >-
                         #/components/schemas/GetEmiAmountAccordingToInterestFormBody
                     - $ref: '#/components/schemas/EligibleBinsForEmiFormBody'
-                    - $ref: '#/components/schemas/ValidateVpaFormBody'
                     - $ref: '#/components/schemas/VerifyPaymentFormBody'
                   discriminator:
                     propertyName: command
@@ -124,7 +124,6 @@ paths:
                       getEmiAmountAccordingToInterest: >-
                         #/components/schemas/GetEmiAmountAccordingToInterestFormBody
                       eligibleBinsForEMI: '#/components/schemas/EligibleBinsForEmiFormBody'
-                      validateVPA: '#/components/schemas/ValidateVpaFormBody'
                       verify_payment: '#/components/schemas/VerifyPaymentFormBody'
             examples:
               getBinInfo:
@@ -167,13 +166,6 @@ paths:
                   var1: Bin
                   var2: '512345'
                   hash: '{{server_generated_hash}}'
-              validateVPA:
-                summary: validateVPA (Postman — UPI)
-                value:
-                  command: validateVPA
-                  key: '{{merchant_key}}'
-                  var1: 9999999999@upi
-                  hash: '{{server_generated_hash}}'
       responses:
         '200':
           description: Command-specific JSON or text; see each API Reference page.
@@ -196,7 +188,9 @@ paths:
   /merchant/postservice.php:
     post:
       operationId: merchantPostservicePhpCheckout
-      summary: General APIs - Net Banking
+      summary: >-
+        POST /merchant/postservice.php — net banking status, checkout details,
+        verify (Postman)
       description: >
         `application/x-www-form-urlencoded`. Postman uses this path for
         **getNetBankingStatus** and
@@ -354,11 +348,11 @@ components:
             - check_isDomestic
             - getEmiAmountAccordingToInterest
             - eligibleBinsForEMI
-            - validateVPA
             - verify_payment
           description: >
-            Commands using **`/merchant/postservice?form=2`** in Postman or API
-            Reference.
+            Commands using **`/merchant/postservice?form=2`** (this OpenAPI file
+            omits **validateVPA**; use the Validate VPA API Reference if you
+            need that command).
     PostservicePhpCommandSelector:
       type: object
       required:
@@ -483,27 +477,96 @@ components:
       properties:
         key:
           type: string
+          description: >
+            Merchant key provided by PayU for authentication. For key and salt
+            generation see
+
+            Production: Generate Merchant Key and Salt on PayU Dashboard; Test:
+            Generate Test Merchant Key and Salt
+
+            (linked from the API Reference pages).
         command:
           type: string
           enum:
             - getBinInfo
+          description: >-
+            Must be `getBinInfo` for the Get BIN Info API (see
+            `PostserviceForm2CommandSelector.command`).
         var1:
           type: string
+          description: >
+            Mode selector:
+
+            - **1** — Single BIN-level information (output for one BIN only).
+
+            - **2** — Feature-level information; returns BIN lists for the
+            chosen feature in `var2`.
+
+            - **3** — All BINs and their information (paginate with `var3` /
+            `var4`).
+
+            See `reference/General/bin-apis/get_bin_info_api.md` (use-case table
+            for var1–var5 combinations).
           enum:
             - '1'
             - '2'
             - '3'
         var2:
           type: string
+          description: >
+            Interpretation depends on `var1`:
+
+            - If `var1` = **1**, pass the BIN (typically 6–9 digits; 9-digit BIN
+            recommended for accuracy).
+
+            - If `var1` = **2**, pass **1** for ATM PIN support BIN list, or
+            **2** for OTP-on-the-fly (IVR) BIN list.
+
+            - If `var1` = **3**, leave empty (invalid to pass a BIN in `var2`
+            when `var1` is 3).
         var3:
           type: string
+          description: >
+            Start index for paginated / list modes. Defaults to **0** when
+            omitted (per API Reference).
+
+            Used when requesting multiple cards (e.g. `var1` = 2 or 3).
         var4:
           type: string
+          description: >
+            Page size / offset (number of BIN records per page). Default **100**
+            when omitted.
+
+            Adjust with `var3` for pagination (see use-case table in Get BIN
+            Info API Reference).
         var5:
           type: string
+          description: >
+            When `var1` = **1** and `var5` = **1**, the response can include
+            extra fields
+
+            `is_zero_redirect_supported` and `is_si_supported`. For `var1` =
+            **2** or **3**,
+
+            use **0** or **1** per the Get BIN Info API Reference; extra SI /
+            zero-redirect flags
+
+            are not returned the same way as for single-BIN mode. Optional
+            `var7` (not modelled here)
+
+            can be used to receive `messageVersion` in the response when enabled
+            — contact your
+
+            PayU Key Account Manager (KAM) for `additionalCardType` / related
+            enablement.
         hash:
           type: string
-          description: 'SHA-512: `sha512(key|command|var1|salt)`.'
+          description: >
+            SHA-512 checksum for request integrity. **Sequence:**
+            `sha512(key|command|var1|salt)`
+
+            (pipe-separated, then hash with merchant salt). Regenerate when any
+            hashed field changes.
     CheckIsDomesticFormBody:
       type: object
       required:
@@ -569,32 +632,6 @@ components:
         hash:
           type: string
           description: 'SHA-512: `sha512(key|command|var1|salt)` per eligiblebinsforemi.md.'
-    ValidateVpaFormBody:
-      type: object
-      required:
-        - key
-        - command
-        - var1
-        - hash
-      properties:
-        key:
-          type: string
-        command:
-          type: string
-          enum:
-            - validateVPA
-        var1:
-          type: string
-        var2:
-          type: string
-          description: >-
-            Optional JSON (e.g. recurring validateAutoPayVPA). Hash may depend
-            on posted fields — confirm with PayU hashing docs if var2 is sent.
-        hash:
-          type: string
-          description: >-
-            SHA-512: `sha512(key|command|var1|salt)` per validate_vpa_api.md
-            when only var1 is used.
     GetBinInfoResponseWrapper:
       type: object
       required:
@@ -606,7 +643,11 @@ components:
           enum:
             - 0
             - 1
+          description: 1 success; 0 failure (see Get BIN Info API Reference).
         data:
+          description: >-
+            BIN payload or error message string when status is 0 — see Get BIN
+            Info API Reference.
           oneOf:
             - type: string
             - type: object
