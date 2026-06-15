@@ -86,7 +86,7 @@ After you collect the customer’s mobile number and the amount to be paid, call
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>var1<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> JSON Object containing the fields to check eligibility. For more information, refer to  [var1 JSON Fields Description](#var1-json-fields-description)</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> JSON Object containing the fields to check eligibility. For more information, refer to  <a href="#var1-json-fields-description">var1 JSON Fields Description</a></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>{"requestId":"abc123","transactionDetails":{"amount":500}}</p></td>
 </tr>
 <tr>
