@@ -28,7 +28,7 @@ metadata:
 
 This page documents the following commands with **`postservice`**  commonly used for **Cards** in Merchant Hosted Checkout. For full parameter tables and hashing rules, refer the Request Parameter sub-section below.
 
-* <Accordion title="Get Bin Info" icon="fa-info-circle">
+* <Accordion title="getBinInfo" icon="fa-info-circle">
   Retrieves issuing bank, card type, category, domestic or international flag, ATM PIN and OTP-on-the-fly support, and optional zero-redirect or SI flags for a **single BIN**, **feature-filtered lists**, or **paginated bulk** BIN data. Use a **9-digit BIN** where possible for accuracy.
 </Accordion>
 
@@ -43,11 +43,12 @@ This page documents the following commands with **`postservice`**  commonly used
 
 <GENERALAPIsEnvironment />
 
-<Accordion title="getBinInfo" icon="fa-credit-card">
+<Accordion title="Get Bin Info" icon="fa-credit-card">
 
 ## Sample request and response
 
-## For Single Card
+### Sample request
+#### For Single Card
 
   The following values are specified in the var1, var2, and var5 for this scenario:
 
@@ -62,7 +63,7 @@ This page documents the following commands with **`postservice`**  commonly used
   -d "key=JP***g&command=getBinInfo&var1=2&var2=512345&var3=&var4=&var5=1&hash=df4ff56008defd9d7f9bf09506061f5c790dbe1d011659d85b88d34323ff49a65181e522eddf3075285c17708566709c803d3b0b0979120804b00f62236062a2"
   ```
 
-  ## For Multiple Cards
+  #### For Multiple Cards
 
   ```bash
   curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
