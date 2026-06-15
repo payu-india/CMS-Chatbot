@@ -7,8 +7,6 @@ metadata:
 ---
 When your customer wants **LazyPay Pay-in-3** (PayInParts), use **Get Checkout Details** (`get_checkout_details`) to retrieve eligible payment options—including the `payInParts` catalogue—before you post the transaction using Collect Payment API(`/_payment)`. If the customer is eligible, complete the merchant-hosted collect flow and verify the outcome. You will get response for various scenarios whether customer is Existing to Bank (ETB) or New to Bank (NTB) customer.
 
-##
-
 > 📘
 >
 > **Handle Guest Checkout Transaction**: You can handle Guest Checkout transactions for EMI and BNPL integrations where applicable. For more information, refer to [Cards Integration > Handling Guest Checkout Transactions](doc:collect-payments-with-cards-seamless#handling-guest-checkout-transactions).
@@ -40,7 +38,9 @@ When your customer wants **LazyPay Pay-in-3** (PayInParts), use **Get Checkout D
 </Cards>
 
 ## Step 1: Check PayInParts and LazyPay Pay-in-3 eligibility
+
 ### Step 1a. Check in PayInParts Eligibility
+
 After you collect the customer’s mobile number and the amount to be paid, call **Get Checkout Details** on `POST /merchant/postservice?form=2` with the `filters.paymentOptions.emi` structure that includes cardless EMI (and `payInParts` when your pack requires Pay-in-parts lenders in the response). The sample request and ETB sample response below match [Get Checkout Details — PayInParts (GCD)](ref:gcd-payinparts-get-checkout-details).
 
 | Environment | URL                                                |
@@ -185,6 +185,7 @@ After you collect the customer’s mobile number and the amount to be paid, call
 </tr>
 </tbody>
 </table>
+
 </Accordion>
 </Accordion>
 
@@ -1410,13 +1411,47 @@ curl_close($ch);
 }
 ```
 </Accordion>
-## Step 1.b: Check EMI Eligibility for NTB Customers [Optional]
-If the customer is found to be NTB, you must calculate the EMI eligibility using Get Checkout API with "checkNTBCustomerEligibility": true, as below:
-<Accordion title="Sample request">
 
+### Step 1.b: Check EMI Eligibility for NTB Customers \[Optional]
+
+If the customer is found to be NTB, you must calculate the EMI eligibility using Get Checkout API with "checkNTBCustomerEligibility": true, as below:
+
+<Accordion title="Sample request">
+```curl
+curl --location 'https://info.payu.in/merchant/postservice?form=2' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'key=JP***g' \
+--data-urlencode 'command=get_checkout_details' \
+--data-urlencode 'var1=`{
+  "requestId": "9078698a15d746feadcffbdaf979a198",
+  "transactionDetails": {
+    "source": null,
+    "amount": 47990,
+    "pre_authorize": null,
+    "additional_charges": null
+  },
+  "useCase": {
+    "checkNTBCustomerEligibility": false,
+    "checkCustomerEligibility": true,
+    "returnUserLimit": true
+  },
+  "customerDetails": {
+    "mobile": "9123412345"
+  },
+  "filters": {
+    "paymentOptions": {
+      "emi": {
+        "cardless": "all"
+      }
+    }
+  }
+}`
+}
+```
 </Accordion>
+
 <Accordion title="Sample response">
-{
+\{
 ```json
   "requestId": "9078698a15d746feadcffbdaf979a198",
   "transactionDetails": {
