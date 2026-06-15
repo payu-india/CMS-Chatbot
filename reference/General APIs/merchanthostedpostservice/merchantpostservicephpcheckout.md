@@ -4,41 +4,71 @@ api:
   operationId: merchantPostservicePhpCheckout
 hidden: true
 ---
----
-title: Merchant Hosted Checkout — Net Banking postservice commands
-excerpt: >-
-  API reference for Net Banking and checkout helper commands on postservice
-  (getNetbankingStatus, get_checkout_details) and verify_payment.
-deprecated: false
-hidden: false
-metadata:
-  title: Merchant Hosted Checkout — Net Banking postservice commands
-  description: >-
-    Reference for Merchant Hosted Net Banking flows using postservice?form=2 and
-    merchant/postservice.php?form=2 for health, checkout details, and verification.
-  keywords:
-    - getNetbankingStatus
-    - get_checkout_details
-    - verify_payment
-    - postservice.php
-    - merchant hosted net banking
-  robots: index
----
+This page documents the following commands with `postservice` and `postservice.php` commonly used for **Net Banking** and custom checkout in Merchant Hosted Checkout. For full parameter tables and hashing rules, refer the Request Parameter sub-section below (at the end of this section).
 
-This page documents the following commands with **`postservice`** and **`postservice.php`** commonly used for **Net Banking** and custom checkout in Merchant Hosted Checkout. For full parameter tables and hashing rules, refer the Request Parameter sub-section below.
-
-* <Accordion title="getNetbankingStatus" icon="fa-info-circle">
+- <Accordion title="getNetbankingStatus" icon="fa-info-circle">
   Checks whether a **specific Net Banking option** (by `ibibo_code` in `var1`) is **up or down**, or returns status for **all** options when `var1` is **`default`**. Use it to handle bank-side downtime in the UI.
+
 </Accordion>
 
-* <Accordion title="get_checkout_details" icon="fa-info-circle">
+- <Accordion title="get_checkout_details" icon="fa-info-circle">
   Returns **extended checkout information** for custom checkout pages: payment option metadata, **additional charges**, eligibility, and **downtime** details, driven by the JSON payload in `var1`.
+
 </Accordion>
 
-* <Accordion title="verify_payment" icon="fa-info-circle">
+- <Accordion title="verify_payment" icon="fa-info-circle">
   Returns the **status and details** of a transaction for a given **merchant transaction ID** (`var1`). Use it to reconcile PayU records for Net Banking and other modes after the payment response.
+
 </Accordion>
 
+> ⚠️ -
+
+<Cards_PayU_Labs />
+
+<br />
+
+## Postman Collection
+
+Accelerate your integration workflow with our Postman collection for PayU Hosted Checkout. Click the Download Postman Collection button below to download and get started.
+
+<br />
+
+<HTMLBlock>{`
+                <style>
+                .tooltip-btn {
+                    position: relative;
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-weight: bold; /* Added this line */
+                }
+                .tooltip-btn:hover::after {
+                    content: attr(data-tooltip);
+                    position: absolute;
+                    bottom: 125%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: #333;
+                    color: white;
+                    padding: 5px 10px;
+                    border-radius: 4px;
+                    white-space: nowrap;
+                    font-size: 12px;
+                    z-index: 1;
+                }
+                </style>
+
+                <button onclick="window.open('https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/collection/ioepu0t/merchant-hosted-checkout?sideView=agentMode', '_blank')" 
+                        class="tooltip-btn" 
+                        data-tooltip="Click to download the Postman collection and explore APIs.">
+                    Access Postman Collection
+                </button>
+`}</HTMLBlock>
+
+<br />
 
 <GENERALAPIsEnvironment />
 
@@ -989,8 +1019,10 @@ Use case: **Get extended payment details** (same samples as [Get Checkout Detail
 
 </Accordion>
 
-<Callout icon="📘" theme="info">
-  For request parameters, response fields, and error semantics, refer to the canonical references: [Get Net Banking Status API](ref:get_net_banking_status_api), [Get Checkout Details API](ref:get_checkout_details), and [Verify Payment API](ref:verify_payment_api).
-</Callout>
+> 📘
+>
+> For request parameters, response fields, and error semantics, refer to the canonical references: [Get Net Banking Status API](ref:get_net_banking_status_api), [Get Checkout Details API](ref:get_checkout_details), and [Verify Payment API](ref:verify_payment_api).
 
 ## Request Parameters
+
+<br />
