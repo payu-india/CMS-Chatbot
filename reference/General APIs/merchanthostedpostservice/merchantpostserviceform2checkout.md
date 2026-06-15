@@ -26,29 +26,26 @@ metadata:
   robots: index
 ---
 
-This page documents **`postservice?form=2`** commands commonly used for **cards** in Merchant Hosted Checkout. For full parameter tables and hashing rules, see the linked canonical API reference pages.
+This page documents the following commands with **`postservice`**  commonly used for **Cards** in Merchant Hosted Checkout. For full parameter tables and hashing rules, refer the Request Parameter sub-section below.
 
-## Overview
-
-<Accordion title="getBinInfo" icon="fa-info-circle">
+* <Accordion title="Get Bin Info" icon="fa-info-circle">
   Retrieves issuing bank, card type, category, domestic or international flag, ATM PIN and OTP-on-the-fly support, and optional zero-redirect or SI flags for a **single BIN**, **feature-filtered lists**, or **paginated bulk** BIN data. Use a **9-digit BIN** where possible for accuracy.
 </Accordion>
 
-<Accordion title="check_isDomestic" icon="fa-info-circle">
+* <Accordion title="check_isDomestic" icon="fa-info-circle">
   Determines whether a **BIN** (first six digits of the card) is **domestic or international**, and returns issuing bank, card type, and credit or debit category.
 </Accordion>
 
-<Accordion title="verify_payment" icon="fa-info-circle">
+* <Accordion title="verify_payment" icon="fa-info-circle">
   Returns the **status and details** of a transaction for a given **merchant transaction ID** (`var1`). Use it to **reconcile** with PayU after you receive the payment response.
 </Accordion>
 
-## Environment
 
 <GENERALAPIsEnvironment />
 
 <Accordion title="getBinInfo" icon="fa-credit-card">
 
-### Sample request
+## Sample request and response
 
 ## For Single Card
 
@@ -80,7 +77,7 @@ This page documents **`postservice?form=2`** commands commonly used for **cards*
 
 ### Sample response
 
-## Success Scenario
+* Success Scenario
 
   **For single card:**
 
@@ -178,7 +175,7 @@ This page documents **`postservice?form=2`** commands commonly used for **cards*
   )
   ```
 
-  ## Failure Scenarios
+* Failure Scenarios
 
   **If BIN is not passed with var2 when requesting for single BIN details (var1=1):**
 
@@ -212,7 +209,7 @@ This page documents **`postservice?form=2`** commands commonly used for **cards*
 
 </Accordion>
 
-<Accordion title="check_isDomestic" icon="fa-credit-card">
+<Accordion title="Check if it is a Domestic Card" icon="fa-credit-card">
 
 ### Sample request
 
@@ -222,7 +219,6 @@ This page documents **`postservice?form=2`** commands commonly used for **cards*
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "key=JP***g&command=check_isDomestic&var1=462273&hash=df4ff56008defd9d7f9bf09506061f5c790dbe1d011659d85b88d34323ff49a65181e522eddf3075285c17708566709c803d3b0b0979120804b00f62236062a2"
   ```
-
 ```python
 import requests
 
@@ -423,7 +419,7 @@ curl_close($ch);
 
 </Accordion>
 
-<Accordion title="verify_payment" icon="fa-credit-card">
+<Accordion title="Verify Payment" icon="fa-credit-card">
 
 ### Sample request
 
