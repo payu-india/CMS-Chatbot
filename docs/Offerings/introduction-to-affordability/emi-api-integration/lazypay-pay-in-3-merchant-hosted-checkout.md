@@ -40,7 +40,7 @@ When your customer wants **LazyPay Pay-in-3** (PayInParts), use **Get Checkout D
 </Cards>
 
 ## Step 1: Check PayInParts and LazyPay Pay-in-3 eligibility
-
+### Step 1a. Check in PayInParts Eligibility
 After you collect the customer’s mobile number and the amount to be paid, call **Get Checkout Details** on `POST /merchant/postservice?form=2` with the `filters.paymentOptions.emi` structure that includes cardless EMI (and `payInParts` when your pack requires Pay-in-parts lenders in the response). The sample request and ETB sample response below match [Get Checkout Details — PayInParts (GCD)](ref:gcd-payinparts-get-checkout-details).
 
 | Environment | URL                                                |
@@ -185,32 +185,15 @@ After you collect the customer’s mobile number and the amount to be paid, call
 </tr>
 </tbody>
 </table>
-
 </Accordion>
 </Accordion>
 
-<Accordion title="Sample request" icon="fa-info-circle">
-
-
-```bash
-curl --location 'https://info.payu.in/merchant/postservice?form=2' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'key=JP***g' \
---data-urlencode 'command=get_checkout_details' \
---data-urlencode 'var1={"requestId":"9078698a15d746feadcffbdaf979a198","transactionDetails":{"source":null,"amount":16721,"pre_authorize":null,"additional_charges":null},"useCase":{"checkNTBCustomerEligibility":true,"checkCustomerEligibility":true,"returnUserLimit":true},"customerDetails":{"mobile":"9910522063"},"filters":{"paymentOptions":{"emi":{"dc":"all","cardless":"all"}}}}' \
---data-urlencode 'hash={{info_hash}}'
-```
-
-To surface **PayInParts** lenders in the response, add **`"payInParts":"all"`** next to **`dc`** / **`cardless`** inside **`filters.paymentOptions.emi`** when your pack requires it.
-
-</Accordion>
 
 ### Sample response
 
 <Accordion title="ETB — from PayInParts lenders PDF" icon="fa-info-circle">
 
 **Scenario:** GCD response when the customer is **ETB** (`httpCode` **200**, `status` **1**). 
-
 ```json
 {
   "httpCode": "200",
@@ -547,8 +530,103 @@ To surface **PayInParts** lenders in the response, add **`"payInParts":"all"`** 
   }
 }
 ```
+</Accordion>
+## Step 1.b: Check EMI Eligibility for NTB Customers [Optional]
+
+<Accordion title="Sample response">
+{
+  "requestId": "9078698a15d746feadcffbdaf979a198",
+  "transactionDetails": {
+    "source": null,
+    "amount": 47990,
+    "pre_authorize": null,
+    "additional_charges": null
+  },
+  "useCase": {
+    "checkNTBCustomerEligibility": false,
+    "checkCustomerEligibility": true,
+    "returnUserLimit": true
+  },
+  "customerDetails": {
+    "mobile": "9123412345"
+  },
+  "filters": {
+    "paymentOptions": {
+      "emi": {
+        "cardless": "all"
+      }
+    }
+  },
+  "details": {
+    "paymentOptions": {
+      "emi": {
+        "all": {
+          "cardless": {
+            "all": {
+              "LPEMI": {
+                "tenureOptions": {
+                  "LPEMI12": {
+                    "tenure": 12,
+                    "maximumAmount": null,
+                    "maximumEligibleLimit": 1000000,
+                    "eligibility": {
+                      "status": true
+                    }
+                  },
+                  "LPEMI": {
+                    "tenure": 0,
+                    "maximumAmount": null,
+                    "maximumEligibleLimit": 1000000,
+                    "eligibility": {
+                      "status": true
+                    }
+                  },
+                  "LPEMI09": {
+                    "tenure": 9,
+                    "maximumAmount": null,
+                    "maximumEligibleLimit": 1000000,
+                    "eligibility": {
+                      "status": true
+                    }
+                  },
+                  "LPEMI03": {
+                    "tenure": 3,
+                    "maximumAmount": null,
+                    "maximumEligibleLimit": 1000000,
+                    "eligibility": {
+                      "status": true
+                    }
+                  },
+                  "LPEMI06": {
+                    "tenure": 6,
+                    "maximumAmount": null,
+                    "maximumEligibleLimit": 1000000,
+                    "eligibility": {
+                      "status": true
+                    }
+                  }
+                },
+                "maximumAmount": null,
+                "eligibility": {
+                  "status": true
+                }
+              }
+            },
+            "hasEligible": true
+          }
+        }
+      }
+    }
+  },
+  "registeredAmtConvFee": null,
+  "recurringAmtConvFee": null,
+  "configData": null,
+  "status": 1
+}
 
 </Accordion>
+
+
 
 <Accordion title="GCD response — customer is NTB" icon="fa-info-circle">
 
