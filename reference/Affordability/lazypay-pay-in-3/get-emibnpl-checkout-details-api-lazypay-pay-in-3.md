@@ -14,7 +14,7 @@ This reference describes Get Checkout Details `get_checkout_details` API to chec
 | Production  | `https://info.payu.in/merchant/postservice?form=2` |
 | Test        | `https://test.payu.in/merchant/postservice?form=2` |
 
-Some gateways still accept `postservice.php?form=2`. Confirm with your **PayU Key Account Manager (KAM)**.
+
 
 ## Request Parameters
 
