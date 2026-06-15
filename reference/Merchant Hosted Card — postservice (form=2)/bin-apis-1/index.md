@@ -1,4 +1,4 @@
 ---
 title: BIN APIs
-hidden: false
+hidden: true
 ---
