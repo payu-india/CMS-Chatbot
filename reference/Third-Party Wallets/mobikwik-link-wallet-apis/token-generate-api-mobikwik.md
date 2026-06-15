@@ -174,7 +174,7 @@ mid=MBK9006&cell=9311032820&msgcode=504&merchantname=TestMerchant&amount=200&otp
                 155
             </td>
             <td style="border-color:#000000;border-width:1.0px;height:14.0px;padding:4.0px;width:319.0px;">
-                EIther OTP missing or Invalid OTP
+                Either OTP missing or Invalid OTP
             </td>
         </tr>
         <tr>
