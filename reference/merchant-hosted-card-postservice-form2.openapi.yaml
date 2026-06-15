@@ -1,0 +1,482 @@
+openapi: 3.1.0
+jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
+x-payu-error-code-datasets:
+  developer_guide_page: reference/Collect Payment/error-codes.md
+  published_error_codes: https://docs.payu.in/reference/error-codes
+  searchable_table_json:
+    payment_error_codes: >-
+      https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/payment-error-codes.json
+    other_error_codes: >-
+      https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/other-error-codes.json
+    issuer_decline_error_codes: >-
+      https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/issuer-decline-error-codes.json
+    field7_card_payments: >-
+      https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/field7-card-payments.json
+    auth_n_error_codes: >-
+      https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/auth-n-error-codes.json
+    auth_z_error_codes: >-
+      https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/auth-z-error-codes.json
+    alt_id_error_codes: >-
+      https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/alt-id-error-codes.json
+    netbanking_wallets: >-
+      https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/netbanking-wallets.json
+    upi_error_codes: >-
+      https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/upi-error-codes.json
+info:
+  title: Merchant Hosted Card — postservice (form=2)
+  version: 1.0.0
+  description: >
+    OpenAPI description for Merchant Hosted card-supporting commands sent to
+
+    `POST /merchant/postservice?form=2` (same URL pattern as the **getBinInfo
+    API** and
+
+    **CARD BIN API** requests in `API Collection/Merchant Hosted
+    Checkout.postman_collection_9th_June.json`):
+
+    **getBinInfo** and **check_isDomestic**.
+
+
+    Parameter descriptions and hash rules are aligned with the PayU India API
+    Reference
+
+    (General → BIN APIs): [Get BIN
+    Info](https://docs.payu.in/reference/get-bin-info-api),
+
+    [Check is Domestic](https://docs.payu.in/reference/check-is-domestic-api).
+
+
+    **Error handling:** Standard PayU payment responses use **`error`** (PayU
+    error code) and
+
+    **`error_message` / `message`** as described in `reference/Collect
+    Payment/error-codes.md`.
+
+    Published catalogue: [Error
+    Codes](https://docs.payu.in/reference/error-codes). Full tables are
+
+    published as JSON datasets (URLs under
+    `x-payu-error-code-datasets.searchable_table_json` in this file).
+
+
+    **BIN command responses:** `getBinInfo` returns logical failures as JSON
+    with **`status`: 0**
+
+    and **`data`** as a human-readable string (see Get BIN Info API Reference).
+    That pattern is
+
+    separate from the E-series payment error table but complements it when
+    correlating checkout failures.
+
+
+    **operationId note:** OpenAPI allows only one `POST` per path; this spec
+    uses a single
+
+    operation with a request body `discriminator` on `command` to distinguish
+    **getBinInfo**
+
+    and **check_isDomestic**.
+
+
+    **Further reading (local devguide):**
+    `reference/General/field-7-field-8-error-codes.md`,
+
+    `reference/General/issuer-decline-error-codes.md` (Field7/8 and issuer
+    decline mappings for cards).
+externalDocs:
+  description: PayU India API Reference (introduction)
+  url: https://docs.payu.in/reference/introduction-api-reference
+servers:
+  - url: https://test.payu.in
+    description: Test environment
+  - url: https://info.payu.in
+    description: Production environment (BIN / postservice commands per PayU API Reference)
+tags:
+  - name: BIN APIs
+    description: General BIN APIs used from Merchant Hosted card checkout flows
+    externalDocs:
+      description: PayU error codes (API Reference)
+      url: https://docs.payu.in/reference/error-codes
+paths:
+  /merchant/postservice:
+    post:
+      operationId: merchantPostserviceForm2
+      summary: postservice command (form=2) — getBinInfo or check_isDomestic
+      description: >
+        Submit `application/x-www-form-urlencoded` body with `command` set to
+        either
+
+        `getBinInfo` or `check_isDomestic`. Query parameter **`form=2`** is
+        required.
+
+
+        In-repo API Reference sources:
+
+        - `reference/General/bin-apis/get_bin_info_api.md`
+
+        - `reference/General/bin-apis/check_is_domestic_api.md`
+
+
+        Published API Reference:
+
+        - Get BIN Info — https://docs.payu.in/reference/get-bin-info-api
+
+        - Check is Domestic —
+        https://docs.payu.in/reference/check-is-domestic-api
+
+        - Error codes (catalogue) — https://docs.payu.in/reference/error-codes
+
+        - Curated card/BIN/hash-related codes —
+        `components.examples.CuratedCardBinHashRelatedErrorCodes`
+      tags:
+        - BIN APIs
+      parameters:
+        - name: form
+          in: query
+          required: true
+          description: >-
+            Required form selector for this postservice interface; must be `2`
+            for these commands.
+          schema:
+            type: string
+            const: '2'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/GetBinInfoFormBody'
+                - $ref: '#/components/schemas/CheckIsDomesticFormBody'
+              discriminator:
+                propertyName: command
+                mapping:
+                  getBinInfo: '#/components/schemas/GetBinInfoFormBody'
+                  check_isDomestic: '#/components/schemas/CheckIsDomesticFormBody'
+            examples:
+              getBinInfoSingleBin:
+                summary: getBinInfo — single BIN with enhanced flags (Postman-style)
+                value:
+                  command: getBinInfo
+                  key: '{{merchant_key}}'
+                  var1: '2'
+                  var2: '512345'
+                  var3: ''
+                  var4: ''
+                  var5: '1'
+                  hash: '{{server_generated_hash}}'
+              checkIsDomestic:
+                summary: check_isDomestic — six-digit BIN
+                value:
+                  command: check_isDomestic
+                  key: '{{merchant_key}}'
+                  var1: '462273'
+                  hash: '{{server_generated_hash}}'
+      responses:
+        '200':
+          description: >
+            Success or logical failure (`status` 0 for getBinInfo-style JSON).
+
+            Payload shape varies by command; PayU may return JSON or legacy
+            serialised structures
+
+            depending on environment — validate `Content-Type` at runtime.
+
+
+            For payment and platform **E-series / EX-series** codes returned on
+            other PayU card flows,
+
+            see `components.examples.CuratedCardBinHashRelatedErrorCodes` and
+            the remote JSON linked from
+
+            `x-payu-error-code-datasets` (same sources as the developer guide
+            error tables).
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/GetBinInfoResponseWrapper'
+                  - $ref: '#/components/schemas/CheckIsDomesticResponse'
+            text/plain:
+              schema:
+                type: string
+                description: Non-JSON or legacy text responses
+        '400':
+          description: >-
+            Bad request — malformed parameters or unsupported combination of
+            fields.
+        '401':
+          description: >
+            Authentication or hash validation failure (invalid key or hash
+            sequence). Cross-check
+
+            with **E700** (secure hash failure) and **EX023** (verifier hash
+            mismatch) in the curated
+
+            examples and full `payment_error_codes` / `other_error_codes`
+            datasets.
+        '500':
+          description: PayU server error.
+components:
+  examples:
+    CuratedCardBinHashRelatedErrorCodes:
+      summary: >-
+        Curated rows from payu-docs-assets payment-error-codes.json and
+        other-error-codes.json (card, BIN, authentication, hash, merchant key).
+        Full lists: see x-payu-error-code-datasets.
+      value:
+        - errors: E000
+          error_message: No Error
+          error_description: Successful transaction
+          title: NO_ERROR
+        - errors: E700
+          error_message: Validation of secure hash failed
+          error_description: SECURE_HASH_FAILURE
+          title: SECURE_HASH_FAILURE
+        - errors: E908
+          error_message: International cards not allowed
+          error_description: UNKNOWN_BINS_NO_ACTIVE_PG_ASSIGNED
+          title: UNKNOWN_BINS_NO_ACTIVE_PG_ASSIGNED
+        - errors: E4934
+          error_message: Invalid BIN
+          error_description: Bin Not Found
+          title: INVALID_BIN
+        - errors: E306
+          error_message: Card authentication failure
+          error_description: TRANSACTION_INVALID_PG
+          title: TRANSACTION_INVALID_PG
+        - errors: E335
+          error_message: Transaction failed due to incomplete authentication process
+          error_description: The cardholder is enrolled in Payer Authentication. Please authe
+          title: AUTHENTICATION_INCOMPLETE
+        - errors: E303
+          error_message: Payer could not be authenticated
+          error_description: Encountered a Payer Authentication problem. Payer could not be a
+          title: AUTHENTICATION_ERROR
+        - errors: E500
+          error_message: Bank failed to authenticate the customer
+          error_description: UNKNOWN_ERROR_PG
+          title: UNKNOWN_ERROR_PG
+        - errors: E910
+          error_message: EMI is not supported on this card
+          error_description: INVALID_EMI_CARD_BIN
+          title: INVALID_EMI_CARD_BIN
+        - errors: EX014
+          error_message: 'Merchant Param: Key not supplied'
+          error_description: MERCHANT_PARAM_KEY_EMPTY
+          title: 'Merchant Param: Key not supplied'
+        - errors: EX023
+          error_message: Verifier hash mismatch
+          error_description: VERIFIER_MISMATCH
+          title: Verifier hash mismatch
+        - errors: EX013
+          error_message: Insufficient Input
+          error_description: INSUFFICIENT_INPUT
+          title: Insufficient Input
+        - errors: EX025
+          error_message: Merchant not found
+          error_description: MERCHANT_NOT_FOUND
+          title: Merchant not found
+  schemas:
+    PayUSearchableErrorTableJSON:
+      type: object
+      description: >-
+        Envelope shape used by the developer guide remote error tables
+        (SearchableTableRemote). Each dataset URL under
+        x-payu-error-code-datasets.searchable_table_json returns this shape.
+      required:
+        - headers
+        - codeColumns
+        - rows
+      properties:
+        headers:
+          type: array
+          items:
+            type: string
+          description: >-
+            Column titles; Collect Payment error-codes tables use
+            ["Errors","Error_message/Message","Error Description","Title"].
+        codeColumns:
+          type: array
+          items:
+            type: integer
+          description: >-
+            Zero-based column indices that hold the primary error code
+            (typically Errors is column 0).
+        rows:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+          description: Table body rows; each row aligns positionally with headers.
+    GetBinInfoFormBody:
+      type: object
+      required:
+        - key
+        - command
+        - var1
+        - hash
+      properties:
+        key:
+          type: string
+          description: >
+            Merchant key provided by PayU for authentication. For key and salt
+            generation see
+
+            **Production:** Generate Merchant Key and Salt on PayU Dashboard;
+            **Test:** Generate Test Merchant Key and Salt
+
+            (linked from the API Reference pages).
+        command:
+          type: string
+          const: getBinInfo
+          description: Must be `getBinInfo` for the Get BIN Info API.
+        var1:
+          type: string
+          description: >
+            Mode selector:
+
+            - **1** — Single BIN-level information (output for one BIN only).
+
+            - **2** — Feature-level information; returns BIN lists for the
+            chosen feature in `var2`.
+
+            - **3** — All BINs and their information (paginate with `var3` /
+            `var4`).
+          enum:
+            - '1'
+            - '2'
+            - '3'
+        var2:
+          type: string
+          description: >
+            Interpretation depends on `var1`:
+
+            - If `var1` = **1**, pass the BIN (typically 6–9 digits; 9-digit BIN
+            recommended for accuracy).
+
+            - If `var1` = **2**, pass **1** for ATM PIN support BIN list, or
+            **2** for OTP-on-the-fly (IVR) BIN list.
+
+            - If `var1` = **3**, leave empty (invalid to pass a BIN in `var2`
+            when `var1` is 3).
+        var3:
+          type: string
+          description: >
+            Start index for paginated / list modes. Defaults to **0** when
+            omitted (per API Reference).
+
+            Used when requesting multiple cards (e.g. `var1` = 2 or 3).
+        var4:
+          type: string
+          description: >
+            Page size / offset (number of BIN records per page). Default **100**
+            when omitted.
+
+            Adjust with `var3` for pagination (see use-case table in Get BIN
+            Info API Reference).
+        var5:
+          type: string
+          description: >
+            When `var1` = **1** and `var5` = **1**, the response can include
+            extra fields
+
+            `is_zero_redirect_supported` and `is_si_supported`. For `var1` =
+            **2** or **3**,
+
+            use **0** or **1** per the Get BIN Info API Reference; extra SI /
+            zero-redirect flags
+
+            are not returned the same way as for single-BIN mode. Optional
+            `var7` (not modelled here)
+
+            can be used to receive `messageVersion` in the response when enabled
+            — contact your
+
+            PayU Key Account Manager (KAM) for `additionalCardType` / related
+            enablement.
+        hash:
+          type: string
+          description: >
+            SHA-512 checksum for request integrity. **Sequence:**
+            `sha512(key|command|var1|salt)`
+
+            (pipe-separated, then hash with merchant salt). Regenerate when any
+            hashed field changes.
+    CheckIsDomesticFormBody:
+      type: object
+      required:
+        - key
+        - command
+        - var1
+        - hash
+      properties:
+        key:
+          type: string
+          description: Merchant key provided by PayU for authentication.
+        command:
+          type: string
+          const: check_isDomestic
+          description: Must be `check_isDomestic` for the Check is Domestic (Card BIN) API.
+        var1:
+          type: string
+          pattern: ^[0-9]{6}$
+          description: >
+            First **six** digits of the card number (BIN). International vs
+            domestic detection
+
+            and issuing-bank hints depend on this value.
+        hash:
+          type: string
+          description: >
+            SHA-512 security hash. **Sequence:**
+            `sha512(key|command|var1|salt)`.
+    GetBinInfoResponseWrapper:
+      type: object
+      required:
+        - status
+        - data
+      properties:
+        status:
+          type: integer
+          enum:
+            - 0
+            - 1
+          description: >
+            **1** — success; **0** — failure or validation error. When `status`
+            is 0, `data` may be a string message.
+        data:
+          description: >-
+            BIN payload or error message string — see Get BIN Info API Reference
+            for shapes.
+          oneOf:
+            - type: string
+            - type: object
+              additionalProperties: true
+    CheckIsDomesticResponse:
+      type: object
+      required:
+        - isDomestic
+        - issuingBank
+        - cardType
+        - cardCategory
+      properties:
+        isDomestic:
+          type: string
+          enum:
+            - 'Y'
+            - 'N'
+          description: '**Y** — domestic BIN; **N** — international BIN.'
+        issuingBank:
+          type: string
+          description: Issuing bank name; often `UNKNOWN` for international BINs.
+        cardType:
+          type: string
+          description: Network / scheme (e.g. VISA, MAST, AMEX, MAES, DINER, Unknown).
+        cardCategory:
+          type: string
+          enum:
+            - CC
+            - DC
+          description: '**CC** — credit; **DC** — debit.'
