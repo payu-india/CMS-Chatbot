@@ -26,7 +26,7 @@ metadata:
   robots: index
 ---
 
-This page documents the following commands with **`postservice`**  commonly used for **Cards** in Merchant Hosted Checkout. For full parameter tables and hashing rules, refer the Request Parameter sub-section below.
+This page documents the following commands with **`postservice`**  commonly used for **Cards** in Merchant Hosted Checkout. For full parameter tables and hashing rules, refer the Request Parameter sub-section below (at end of this section).
 
 * <Accordion title="getBinInfo" icon="fa-info-circle">
   Retrieves issuing bank, card type, category, domestic or international flag, ATM PIN and OTP-on-the-fly support, and optional zero-redirect or SI flags for a **single BIN**, **feature-filtered lists**, or **paginated bulk** BIN data. Use a **9-digit BIN** where possible for accuracy.
@@ -40,6 +40,54 @@ This page documents the following commands with **`postservice`**  commonly used
   Returns the **status and details** of a transaction for a given **merchant transaction ID** (`var1`). Use it to **reconcile** with PayU after you receive the payment response.
 </Accordion>
 
+> ⚠️ -
+
+<Cards_PayU_Labs />
+
+<br />
+
+## Postman Collection
+
+Accelerate your integration workflow with our Postman collection for PayU Hosted Checkout. Click the Download Postman Collection button below to download and get started.
+
+<br />
+
+<HTMLBlock>{`
+                <style>
+                .tooltip-btn {
+                    position: relative;
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-weight: bold; /* Added this line */
+                }
+                .tooltip-btn:hover::after {
+                    content: attr(data-tooltip);
+                    position: absolute;
+                    bottom: 125%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: #333;
+                    color: white;
+                    padding: 5px 10px;
+                    border-radius: 4px;
+                    white-space: nowrap;
+                    font-size: 12px;
+                    z-index: 1;
+                }
+                </style>
+
+                <button onclick="window.open('https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/collection/ioepu0t/merchant-hosted-checkout?sideView=agentMode', '_blank')" 
+                        class="tooltip-btn" 
+                        data-tooltip="Click to download the Postman collection and explore APIs.">
+                    Access Postman Collection
+                </button>
+`}</HTMLBlock>
+
+<br />
 
 <GENERALAPIsEnvironment />
 
