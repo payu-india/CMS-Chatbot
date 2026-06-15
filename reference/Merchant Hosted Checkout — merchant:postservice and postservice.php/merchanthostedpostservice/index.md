@@ -1,4 +1,4 @@
 ---
 title: MerchantHostedPostservice
-hidden: false
+hidden: true
 ---
