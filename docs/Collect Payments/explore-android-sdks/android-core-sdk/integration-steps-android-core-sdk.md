@@ -15,34 +15,7 @@ metadata:
 next:
   description: ''
 ---
----
-title: Integration Steps
-excerpt: ''
-deprecated: false
-hidden: false
-metadata:
-  title: Integration Steps - Android Core SDK
-  description: >-
-    PayU Android Core SDK integration: Gradle setup, payment request, hash, surl/furl, seamless card/UPI flows, test env, and go-live.
-  robots: index
-  keywords:
-    - payu android core sdk seamless payment integration
-    - android payment gateway sdk integration steps payu india
-    - integrate payment gateway android app core sdk payu
-    - mobile payment sdk android native integration guide payu
-    - payu coresdk android gradle integration hash setup
-    - android upi card netbanking seamless sdk integration payu
-    - payment gateway android kotlin java sdk integration steps
-    - payu android sdk test environment sandbox integration
-    - android in app payment integration server side hash payu
-    - native otp assist card payment android sdk payu core
-    - android payment redirect surl furl sdk integration payu
-    - payu android core sdk developer integration guide india
-
-next:
-  description: ''
----
-Before you start with the integration, enable the payment methods that you want to offer to your customers from **Dashboard** > **Settings** > **Payment methods**. PayU enable Cards, UPI, and other payment methods by default, and it is recommend edthat you enable other payment methods that are relevant to you.
+Before you start with the integration, enable the payment methods that you want to offer to your customers from **Dashboard** > **Settings** > **Payment methods**. PayU enable Cards, UPI, and other payment methods by default, and it is recommended that you enable other payment methods that are relevant to you.
 
 ## Step 1: Create a PayU account
 
@@ -89,15 +62,15 @@ Create an object of PaymentParams, put all the obtained parameters in it by usin
   ```
 </Accordion>
 
-> * Transaction ID should be kept unique for each transaction and not more than 25 characters.
-> * udf1 to udf5 are options params where you can pass additional information related to transaction. If you don't want to use it, then send them as empty string like, udf1=""
-> * Email and First name can be empty strings "" if you don't want to use them
-> * For store user card feature
->   /*_These are used for store card feature. If you are not using it then user_credentials = "default"_ user _credentials takes of the form like user_credentials = "merchant_key : user_id"_ here merchant _key = your merchant key,_ user_id = unique id related to user like, email, phone number, etc._/
-> * For SURL ,Success url is where the transaction response is posted by PayU on successful transaction.PayU recommends you to design or use your own surl and furl after testing is completed. See Handling SURL and FURL.
-> * For FURL, Failure url is where the transaction response is posted by PayU on failed transaction. PayU recommends you to design or use your own surl and furl after testing is completed. See Handling SURL and FURL.
-> * For offers `mPaymentParams.setOfferKey`("your_offer_key")
-> * For any other payment default param (like phone and others) mPaymentParams.setPhone("your_number")
+> - Transaction ID should be kept unique for each transaction and not more than 25 characters.
+> - udf1 to udf5 are options params where you can pass additional information related to transaction. If you don't want to use it, then send them as empty string like, udf1=""
+> - Email and First name can be empty strings "" if you don't want to use them
+> - For store user card feature
+>   /\*_These are used for store card feature. If you are not using it then user\_credentials = "default"_ user _credentials takes of the form like user\_credentials = "merchant\_key : user\_id"_ here merchant _key = your merchant key,_ user\_id = unique id related to user like, email, phone number, etc.\_/
+> - For SURL ,Success url is where the transaction response is posted by PayU on successful transaction.PayU recommends you to design or use your own surl and furl after testing is completed. See Handling SURL and FURL.
+> - For FURL, Failure url is where the transaction response is posted by PayU on failed transaction. PayU recommends you to design or use your own surl and furl after testing is completed. See Handling SURL and FURL.
+> - For offers `mPaymentParams.setOfferKey`("your\_offer\_key")
+> - For any other payment default param (like phone and others) mPaymentParams.setPhone("your\_number")
 
 ## Step 4: Hash generation
 
@@ -105,10 +78,10 @@ Create an object of PaymentParams, put all the obtained parameters in it by usin
 >
 > It is recommended to generate hash from server only. Keep your key and salt in server side hash generation code. For more information, refer to [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
 
-The following approach for generating hash is not recommended. However, this approach can be used to test in PRODUCTION_ENV
+The following approach for generating hash is not recommended. However, this approach can be used to test in PRODUCTION\_ENV
 
-* if your server-side hash generation code is not completely setup. While going live, this approach for hash generation
-* should not be used.
+- if your server-side hash generation code is not completely setup. While going live, this approach for hash generation
+- should not be used.
 
 <Accordion title="Hash generation code" icon="fa-code">
   ```
@@ -121,100 +94,101 @@ The following approach for generating hash is not recommended. However, this app
   // Do not keep salt anywhere in app.
   ```
 
-  Create an object of class `PayuHashes` and set the corresponding hashes using the default set methods provided
+Create an object of class `PayuHashes` and set the corresponding hashes using the default set methods provided
 
-  ```
-      public void generateHashFromSDK(PaymentParams mPaymentParams, String salt) {
-          PayuHashes payuHashes = new PayuHashes();
-          PostData postData = new PostData();
-  //        if(mPaymentParams.getBeneficiaryAccountNumber()== null){
-          // payment Hash;
-          checksum = null;
-          checksum = new PayUChecksum();
-          checksum.setAmount(mPaymentParams.getAmount());
-          checksum.setKey(mPaymentParams.getKey());
-          checksum.setTxnid(mPaymentParams.getTxnId());
-          checksum.setEmail(mPaymentParams.getEmail());
-          checksum.setSalt(salt);
-          checksum.setProductinfo(mPaymentParams.getProductInfo());
-          checksum.setFirstname(mPaymentParams.getFirstName());
-          checksum.setUdf1(mPaymentParams.getUdf1());
-          checksum.setUdf2(mPaymentParams.getUdf2());
-          checksum.setUdf3(mPaymentParams.getUdf3());
-          checksum.setUdf4(mPaymentParams.getUdf4());
-          checksum.setUdf5(mPaymentParams.getUdf5());
-          StringBuilder beneficiarydetail = new StringBuilder();
-          beneficiarydetail.append("{"+"\""+PayuConstants.BENEFICIARY_ACCOUNT_NUMBER+"\""+":"+"\""+mPaymentParams.getBeneficiaryAccountNumber()+"\"");
-          beneficiarydetail.append(","+"\""+PayuConstants.IFSC_CODE+"\""+":"+"\""+mPaymentParams.getIfscCode()+"\"");
-          beneficiarydetail.append("}");
-        
-          postData = checksum.getHash();
-          if (postData.getCode() == PayuErrors.NO_ERROR) {
-              payuHashes.setPaymentHash(postData.getResult());
-          }
+```
+    public void generateHashFromSDK(PaymentParams mPaymentParams, String salt) {
+        PayuHashes payuHashes = new PayuHashes();
+        PostData postData = new PostData();
+//        if(mPaymentParams.getBeneficiaryAccountNumber()== null){
+        // payment Hash;
+        checksum = null;
+        checksum = new PayUChecksum();
+        checksum.setAmount(mPaymentParams.getAmount());
+        checksum.setKey(mPaymentParams.getKey());
+        checksum.setTxnid(mPaymentParams.getTxnId());
+        checksum.setEmail(mPaymentParams.getEmail());
+        checksum.setSalt(salt);
+        checksum.setProductinfo(mPaymentParams.getProductInfo());
+        checksum.setFirstname(mPaymentParams.getFirstName());
+        checksum.setUdf1(mPaymentParams.getUdf1());
+        checksum.setUdf2(mPaymentParams.getUdf2());
+        checksum.setUdf3(mPaymentParams.getUdf3());
+        checksum.setUdf4(mPaymentParams.getUdf4());
+        checksum.setUdf5(mPaymentParams.getUdf5());
+        StringBuilder beneficiarydetail = new StringBuilder();
+        beneficiarydetail.append("{"+"\""+PayuConstants.BENEFICIARY_ACCOUNT_NUMBER+"\""+":"+"\""+mPaymentParams.getBeneficiaryAccountNumber()+"\"");
+        beneficiarydetail.append(","+"\""+PayuConstants.IFSC_CODE+"\""+":"+"\""+mPaymentParams.getIfscCode()+"\"");
+        beneficiarydetail.append("}");
+      
+        postData = checksum.getHash();
+        if (postData.getCode() == PayuErrors.NO_ERROR) {
+            payuHashes.setPaymentHash(postData.getResult());
+        }
 
-          if (mPaymentParams.getSubventionAmount() != null && !mPaymentParams.getSubventionAmount().isEmpty()){
-              subventionHash = calculateHash(""+mPaymentParams.getKey()+"|"+mPaymentParams.getTxnId()+"|"+mPaymentParams.getAmount()+"|"+mPaymentParams.getProductInfo()+"|"+mPaymentParams.getFirstName()+"|"+mPaymentParams.getEmail()+"|"+mPaymentParams.getUdf1()+"|"+mPaymentParams.getUdf2()+"|"+mPaymentParams.getUdf3()+"|"+mPaymentParams.getUdf4()+"|"+mPaymentParams.getUdf5()+"||||||"+salt+"|"+mPaymentParams.getSubventionAmount());
-          }
-          if (mPaymentParams.getSiParams()!=null){
-              siHash = calculateHash(""+mPaymentParams.getKey()+"|"+mPaymentParams.getTxnId()+"|"+mPaymentParams.getAmount()+"|"+mPaymentParams.getProductInfo()+"|"+mPaymentParams.getFirstName()+"|"+mPaymentParams.getEmail()+"|"+mPaymentParams.getUdf1()+"|"+mPaymentParams.getUdf2()+"|"+mPaymentParams.getUdf3()+"|"+mPaymentParams.getUdf4()+"|"+mPaymentParams.getUdf5()+"||||||"+prepareSiDetails()+"|"+salt);
-          }
-          if (beneficiarydetail!=null && beneficiarydetail.length()!=0 ){
-              tpvHash  = calculateHash(""+mPaymentParams.getKey()+"|"+mPaymentParams.getTxnId()+"|"+mPaymentParams.getAmount()+"|"+mPaymentParams.getProductInfo()+"|"+mPaymentParams.getFirstName()+"|"+mPaymentParams.getEmail()+"|"+mPaymentParams.getUdf1()+"|"+mPaymentParams.getUdf2()+"|"+mPaymentParams.getUdf3()+"|"+mPaymentParams.getUdf4()+"|"+mPaymentParams.getUdf5()+"||||||"+beneficiarydetail.toString()+"|"+salt);
+        if (mPaymentParams.getSubventionAmount() != null && !mPaymentParams.getSubventionAmount().isEmpty()){
+            subventionHash = calculateHash(""+mPaymentParams.getKey()+"|"+mPaymentParams.getTxnId()+"|"+mPaymentParams.getAmount()+"|"+mPaymentParams.getProductInfo()+"|"+mPaymentParams.getFirstName()+"|"+mPaymentParams.getEmail()+"|"+mPaymentParams.getUdf1()+"|"+mPaymentParams.getUdf2()+"|"+mPaymentParams.getUdf3()+"|"+mPaymentParams.getUdf4()+"|"+mPaymentParams.getUdf5()+"||||||"+salt+"|"+mPaymentParams.getSubventionAmount());
+        }
+        if (mPaymentParams.getSiParams()!=null){
+            siHash = calculateHash(""+mPaymentParams.getKey()+"|"+mPaymentParams.getTxnId()+"|"+mPaymentParams.getAmount()+"|"+mPaymentParams.getProductInfo()+"|"+mPaymentParams.getFirstName()+"|"+mPaymentParams.getEmail()+"|"+mPaymentParams.getUdf1()+"|"+mPaymentParams.getUdf2()+"|"+mPaymentParams.getUdf3()+"|"+mPaymentParams.getUdf4()+"|"+mPaymentParams.getUdf5()+"||||||"+prepareSiDetails()+"|"+salt);
+        }
+        if (beneficiarydetail!=null && beneficiarydetail.length()!=0 ){
+            tpvHash  = calculateHash(""+mPaymentParams.getKey()+"|"+mPaymentParams.getTxnId()+"|"+mPaymentParams.getAmount()+"|"+mPaymentParams.getProductInfo()+"|"+mPaymentParams.getFirstName()+"|"+mPaymentParams.getEmail()+"|"+mPaymentParams.getUdf1()+"|"+mPaymentParams.getUdf2()+"|"+mPaymentParams.getUdf3()+"|"+mPaymentParams.getUdf4()+"|"+mPaymentParams.getUdf5()+"||||||"+beneficiarydetail.toString()+"|"+salt);
 
-          }
-          /*}
+        }
+        /*}
 
-          else {
-              String hashString = merchantKey + "|" + mPaymentParams.getTxnId() + "|" + mPaymentParams.getAmount() + "|" + mPaymentParams.getProductInfo() + "|" + mPaymentParams.getFirstName() + "|" + mPaymentParams.getEmail() + "|" + mPaymentParams.getUdf1() + "|" + mPaymentParams.getUdf2() + "|" + mPaymentParams.getUdf3() + "|" + mPaymentParams.getUdf4() + "|" + mPaymentParams.getUdf5() + "||||||{\"beneficiaryAccountNumber\":\"" +mPaymentParams.getBeneficiaryAccountNumber()+ "\"}|" + salt;
+        else {
+            String hashString = merchantKey + "|" + mPaymentParams.getTxnId() + "|" + mPaymentParams.getAmount() + "|" + mPaymentParams.getProductInfo() + "|" + mPaymentParams.getFirstName() + "|" + mPaymentParams.getEmail() + "|" + mPaymentParams.getUdf1() + "|" + mPaymentParams.getUdf2() + "|" + mPaymentParams.getUdf3() + "|" + mPaymentParams.getUdf4() + "|" + mPaymentParams.getUdf5() + "||||||{\"beneficiaryAccountNumber\":\"" +mPaymentParams.getBeneficiaryAccountNumber()+ "\"}|" + salt;
 
-              paymentHash1 = calculateHash(hashString);
-              payuHashes.setPaymentHash(paymentHash1);
+            paymentHash1 = calculateHash(hashString);
+            payuHashes.setPaymentHash(paymentHash1);
 
 
 
-          }*/
+        }*/
 
-          // checksum for payemnt related details
-          // var1 should be either user credentials or default
-          String var1 = mPaymentParams.getUserCredentials() == null ? PayuConstants.DEFAULT : mPaymentParams.getUserCredentials();
-          String key = mPaymentParams.getKey();
+        // checksum for payemnt related details
+        // var1 should be either user credentials or default
+        String var1 = mPaymentParams.getUserCredentials() == null ? PayuConstants.DEFAULT : mPaymentParams.getUserCredentials();
+        String key = mPaymentParams.getKey();
 
-          if ((postData = calculateHash(key, PayuConstants.PAYMENT_RELATED_DETAILS_FOR_MOBILE_SDK, var1, salt)) != null && postData.getCode() == PayuErrors.NO_ERROR) // Assign post data first then check for success
-              payuHashes.setPaymentRelatedDetailsForMobileSdkHash(postData.getResult());
-          //vas
-          if ((postData = calculateHash(key, PayuConstants.VAS_FOR_MOBILE_SDK, PayuConstants.DEFAULT, salt)) != null && postData.getCode() == PayuErrors.NO_ERROR)
-              payuHashes.setVasForMobileSdkHash(postData.getResult());
+        if ((postData = calculateHash(key, PayuConstants.PAYMENT_RELATED_DETAILS_FOR_MOBILE_SDK, var1, salt)) != null && postData.getCode() == PayuErrors.NO_ERROR) // Assign post data first then check for success
+            payuHashes.setPaymentRelatedDetailsForMobileSdkHash(postData.getResult());
+        //vas
+        if ((postData = calculateHash(key, PayuConstants.VAS_FOR_MOBILE_SDK, PayuConstants.DEFAULT, salt)) != null && postData.getCode() == PayuErrors.NO_ERROR)
+            payuHashes.setVasForMobileSdkHash(postData.getResult());
 
-          // getIbibocodes
-          if ((postData = calculateHash(key, PayuConstants.GET_MERCHANT_IBIBO_CODES, PayuConstants.DEFAULT, salt)) != null && postData.getCode() == PayuErrors.NO_ERROR)
-              payuHashes.setMerchantIbiboCodesHash(postData.getResult());
+        // getIbibocodes
+        if ((postData = calculateHash(key, PayuConstants.GET_MERCHANT_IBIBO_CODES, PayuConstants.DEFAULT, salt)) != null && postData.getCode() == PayuErrors.NO_ERROR)
+            payuHashes.setMerchantIbiboCodesHash(postData.getResult());
 
-          if (!var1.contentEquals(PayuConstants.DEFAULT)) {
-              // get user card
-              if ((postData = calculateHash(key, PayuConstants.GET_TOKENISED_USER_CARD, var1, salt)) != null && postData.getCode() == PayuErrors.NO_ERROR) // todo rename storedc ard
-                  payuHashes.setStoredCardsHash(postData.getResult());
-             // delete user card
-              if ((postData = calculateHash(key, PayuConstants.DELETE_TOKENISED_USER_CARD, var1, salt)) != null && postData.getCode() == PayuErrors.NO_ERROR)
-                  payuHashes.setDeleteCardHash(postData.getResult());
-          }
+        if (!var1.contentEquals(PayuConstants.DEFAULT)) {
+            // get user card
+            if ((postData = calculateHash(key, PayuConstants.GET_TOKENISED_USER_CARD, var1, salt)) != null && postData.getCode() == PayuErrors.NO_ERROR) // todo rename storedc ard
+                payuHashes.setStoredCardsHash(postData.getResult());
+           // delete user card
+            if ((postData = calculateHash(key, PayuConstants.DELETE_TOKENISED_USER_CARD, var1, salt)) != null && postData.getCode() == PayuErrors.NO_ERROR)
+                payuHashes.setDeleteCardHash(postData.getResult());
+        }
 
-          // we have generated all the hases now lest launch sdk's ui
-          launchSdkUI(payuHashes);
-      }
+        // we have generated all the hases now lest launch sdk's ui
+        launchSdkUI(payuHashes);
+    }
 
-  ```
+```
 
-  ```
-  PayuHashes payuHashes = new PayuHashes();
-  payuHashes.setPaymentRelatedDetailsForMobileSdkHash();
-  payuHashes.setVasForMobileSdkHash();
-  payuHashes.setMerchantIbiboCodesHash();
-  payuHashes.setStoredCardsHash();
-  payuHashes.setDeleteCardHash();
-  payuHashes.setPaymentHash();
-  mPaymentParams.setHash(payuHashes.getPaymentHash());
-  ```
+```
+PayuHashes payuHashes = new PayuHashes();
+payuHashes.setPaymentRelatedDetailsForMobileSdkHash();
+payuHashes.setVasForMobileSdkHash();
+payuHashes.setMerchantIbiboCodesHash();
+payuHashes.setStoredCardsHash();
+payuHashes.setDeleteCardHash();
+payuHashes.setPaymentHash();
+mPaymentParams.setHash(payuHashes.getPaymentHash());
+```
+
 </Accordion>
 
 ## Step 5: Generate request for payment
@@ -487,19 +461,20 @@ The following approach for generating hash is not recommended. However, this app
 <Accordion title="TwidPay" icon="fa-code">
   1. To Pay using TwidPay, create the post data with PayuConstants.PAY\_BY\_REWARDS.
 
-  ```java
-   try {
-             mPostData = new PaymentPostParams(mPaymentParams, PayuConstants.PAY_BY_REWARDS).getPaymentPostParams();
-          }        } catch (Exception e) {
-              e.printStackTrace();
+```java
+ try {
+           mPostData = new PaymentPostParams(mPaymentParams, PayuConstants.PAY_BY_REWARDS).getPaymentPostParams();
+        }        } catch (Exception e) {
+            e.printStackTrace();
 
-  ```
+```
 
-  2. After a successful payment, you will get the Twid customer hash in field5 params of PayuResponse, which would use for the next transaction to skip authentication.
+2\. After a successful payment, you will get the Twid customer hash in field5 params of PayuResponse, which would use for the next transaction to skip authentication.
 
-  ```java Java
-  mPaymentParams.setTwidCustomerHash("Twid customer hash");
-  ```
+```java Java
+mPaymentParams.setTwidCustomerHash("Twid customer hash");
+```
+
 </Accordion>
 
 <Accordion title="Sodexo" icon="fa-code">
@@ -612,3 +587,5 @@ The following approach for generating hash is not recommended. However, this app
 </Accordion>
 
 <Go_Live_Checklist />
+
+<br />
