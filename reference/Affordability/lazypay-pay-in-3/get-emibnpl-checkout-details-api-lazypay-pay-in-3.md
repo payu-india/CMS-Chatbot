@@ -131,7 +131,6 @@ class Program
     }
 }
 ```
-
 ```javascript
 async function getCheckoutDetails() {
     const url = "https://info.payu.in/merchant/postservice?form=2";
@@ -185,7 +184,6 @@ async function getCheckoutDetails() {
 
 getCheckoutDetails();
 ```
-
 ```java
 import java.io.*;
 import java.net.*;
