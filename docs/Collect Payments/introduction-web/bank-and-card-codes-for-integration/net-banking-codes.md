@@ -32,13 +32,12 @@ In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you 
 
 ## Merged banks and supported bank codes
 
-After RBI-led mergers, customers may still identify with the former bank name. On the PayU platform, Net Banking continues to support the relevant bankcode values for both the successor bank and the erstwhile (pre-merger) bank rows in the following table so you need to change a stored bankcode solely because the customer's account was migrated to a successor bank. Use the bankcode from the row that matches how you onboarded the customer or how your checkout labels the bank.&#x20;
+Both the Erstwhile bank and Successor bank are supported in PayU Platform as mentioned below:
 
 | Erstwhile bank (with the bankcode) | Successor bank       | Supported **bankcode** values |
 | ---------------------------------- | -------------------- | ----------------------------- |
 | Allahabad Bank (`ALLB`)            | Indian Bank          | `INDB` (Indian Bank)          |
 | Oriental Bank of Commerce (`OBCB`) | Punjab National Bank | `PNBB` (Punjab National Bank) |
-| United Bank of India (`UNIB`)      | Punjab National Bank | `PNBB` (Punjab National Bank) |
 | Syndicate Bank (`SYNDB`)           | Canara Bank          | `CABB` (Canara Bank)          |
 
 <br />
