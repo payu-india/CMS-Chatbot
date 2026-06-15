@@ -1824,8 +1824,8 @@ Post the following additional parameters for using the Cardless EMI. Check the r
                         </tr>
                         <tr>
                           <td>bankcode <code>mandatory</code></td>
-                          <td><code>String</code> Post this parameter to identify payment options with unique bank codes and use getEmiAmountAccordingToInterest API to check for EMI code for corresponding tenure. For the list of EMI codes, refer to EMI Codes.</td>
-                          <td>HDFCCL06</td>
+                          <td><code>String</code> Post this parameter with the values as LZYPI3.</td>
+                          <td>LZYPI3</td>
                         </tr>
                         <tr>
                           <td>ccnum <code>mandatory only for Bajaj Finserv</code></td>
