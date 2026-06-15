@@ -36,8 +36,8 @@ Both the Erstwhile bank and Successor bank are supported in PayU Platform as men
 
 | Erstwhile bank (with the bankcode) | Successor bank       | Supported **bankcode** values |
 | ---------------------------------- | -------------------- | ----------------------------- |
-| Allahabad Bank (`ALLB`)            | Indian Bank          | `INDB` (Indian Bank)          |
-| Oriental Bank of Commerce (`OBCB`) | Punjab National Bank | `PNBB` (Punjab National Bank) |
-| Syndicate Bank (`SYNDB`)           | Canara Bank          | `CABB` (Canara Bank)          |
+| Allahabad Bank (`ALLB`)            | Indian Bank          | `INDB`                        |
+| Oriental Bank of Commerce (`OBCB`) | Punjab National Bank | `PNBB`                        |
+| Syndicate Bank (`SYNDB`)           | Canara Bank          | `CABB`                        |
 
 <br />
