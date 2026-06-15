@@ -992,3 +992,5 @@ Use case: **Get extended payment details** (same samples as [Get Checkout Detail
 <Callout icon="📘" theme="info">
   For request parameters, response fields, and error semantics, refer to the canonical references: [Get Net Banking Status API](ref:get_net_banking_status_api), [Get Checkout Details API](ref:get_checkout_details), and [Verify Payment API](ref:verify_payment_api).
 </Callout>
+
+## Request Parameters
