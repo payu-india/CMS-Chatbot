@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-This reference describes Get Checkout Details `get_checkout_details` API to check Pay-in-Parts lenders eligibility. You will get response as Existing to Bank (ETB) or New to Bank (NTB) customer. 
+This reference describes Get Checkout Details `get_checkout_details` API to check Pay-in-Parts lenders eligibility. You will get response for various scenarios whether customer is Existing to Bank (ETB) or New to Bank (NTB) customer.
 
 ## Environment
 
@@ -14,10 +14,9 @@ This reference describes Get Checkout Details `get_checkout_details` API to chec
 | Production  | `https://info.payu.in/merchant/postservice?form=2` |
 | Test        | `https://test.payu.in/merchant/postservice?form=2` |
 
-
+<br />
 
 ## Request Parameters
-
 
 <Accordion title="Request Parameters" icon="fa-info-table">
 
@@ -156,9 +155,9 @@ This reference describes Get Checkout Details `get_checkout_details` API to chec
 </tr>
 </tbody>
 </table>
-</Accordion>
-</Accordion>
 
+</Accordion>
+</Accordion>
 
 <Accordion title="Sample request" icon="fa-code">
 
@@ -392,8 +391,8 @@ curl_close($ch);
 ```
 </Accordion>
 
-
 ## Sample response
+
 To surface **PayInParts** lenders in the response (as in the PRD), add `"payInParts":"all"` next to `dc` / `cardless` inside `filters.paymentOptions.emi` when your pack requires it.
 
 ### Customer is ETB
