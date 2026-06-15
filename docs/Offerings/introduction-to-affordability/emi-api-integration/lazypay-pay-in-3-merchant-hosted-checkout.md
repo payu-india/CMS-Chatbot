@@ -422,7 +422,7 @@ curl_close($ch);
 
 <Accordion title="ETB" icon="fa-info-circle">
 
-**Scenario:** GCD response when the customer is **ETB** (`httpCode` **200**, `status` **1**). 
+**Scenario:** GCD response when the customer is **ETB** . 
 ```json
 {
   "httpCode": "200",
