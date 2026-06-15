@@ -8,7 +8,7 @@ metadata:
 ## Getting Started
 
 1. #### What is PayU Hosted Checkout?
-   <Accordion title="My Accordion Title" icon="fa-info-circle">
+   <Accordion title="Answer" icon="fa-comment-dots">
    PayU Hosted Checkout is a payment integration method where:
 
    - You redirect customers from your website to a **PayU-hosted payment page**
