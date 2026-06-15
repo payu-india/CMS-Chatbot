@@ -56,16 +56,14 @@ When your customer wants **LazyPay Pay-in-3** (PayInParts), use **Get Checkout D
 
 After you collect the customer’s mobile number and the amount to be paid, call **Get Checkout Details** on **`POST /merchant/postservice?form=2`** with the **`filters.paymentOptions.emi`** structure that includes cardless EMI (and **`payInParts`** when your pack requires Pay-in-parts lenders in the response). The sample request and ETB sample response below match [Get Checkout Details — PayInParts (GCD)](ref:gcd-payinparts-get-checkout-details).
 
-### Environment
 
 | Environment | URL |
 | :-- | :-- |
 | Production | `https://info.payu.in/merchant/postservice?form=2` |
 | Test | `https://test.payu.in/merchant/postservice?form=2` |
 
-Some gateways still accept **`postservice.php?form=2`**. Confirm with your **PayU Key Account Manager (KAM)**.
 
-### Request parameters
+<Accordion title="Request Parameters" icon="fa-info-table">
 
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -103,10 +101,10 @@ Some gateways still accept **`postservice.php?form=2`**. Confirm with your **Pay
 </tr>
 </tbody>
 </table>
+</Accordion>
 
-Do **not** send browser **`Cookie`** headers on server-to-server calls.
 
-### Sample request
+<Accordion title="Sample request" icon="fa-info-circle">
 
 The following matches the integration sample you provided (**`Cookie`** omitted; **`key`** shown as **`JP***g`** like other PayU API reference pages—substitute your real merchant key if different), with **`hash`** templated.
 
@@ -121,9 +119,11 @@ curl --location 'https://info.payu.in/merchant/postservice?form=2' \
 
 To surface **PayInParts** lenders in the response (as in the PRD), add **`"payInParts":"all"`** next to **`dc`** / **`cardless`** inside **`filters.paymentOptions.emi`** when your pack requires it.
 
+</Accordion>
+
 ### Sample response 
 
-#### ETB — from PayInParts lenders PDF
+<Accordion title="ETB — from PayInParts lenders PDF" icon="fa-info-circle">
 
 **Scenario:** GCD response when the customer is **ETB** (`httpCode` **200**, `status` **1**). The payload is large; structure below is **verbatim** from the PRD transcription (cardless EMI catalogue + **`payInParts`** block including **`LAZYPI3`**).
 
@@ -464,7 +464,9 @@ To surface **PayInParts** lenders in the response (as in the PRD), add **`"payIn
 }
 ```
 
-#### GCD response — customer is NTB
+</Accordion>
+
+<Accordion title="GCD response — customer is NTB" icon="fa-info-circle">
 
 ```json
 {
@@ -792,7 +794,9 @@ To surface **PayInParts** lenders in the response (as in the PRD), add **`"payIn
 }
 ```
 
-#### GCD response — customer is not eligible
+</Accordion>
+
+<Accordion title="GCD response — customer is not eligible" icon="fa-info-circle">
 
 ```json
 {
@@ -1111,6 +1115,8 @@ To surface **PayInParts** lenders in the response (as in the PRD), add **`"payIn
   }
 }
 ```
+
+</Accordion>
 
 ## Step 2: Initiate the payment
 
