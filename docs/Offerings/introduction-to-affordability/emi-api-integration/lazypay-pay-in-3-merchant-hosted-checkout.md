@@ -201,7 +201,7 @@ curl --location 'https://info.payu.in/merchant/postservice?form=2' \
 --data-urlencode 'hash={{info_hash}}'
 ```
 
-To surface **PayInParts** lenders in the response (as in the PRD), add **`"payInParts":"all"`** next to **`dc`** / **`cardless`** inside **`filters.paymentOptions.emi`** when your pack requires it.
+To surface **PayInParts** lenders in the response, add **`"payInParts":"all"`** next to **`dc`** / **`cardless`** inside **`filters.paymentOptions.emi`** when your pack requires it.
 
 </Accordion>
 
@@ -209,7 +209,7 @@ To surface **PayInParts** lenders in the response (as in the PRD), add **`"payIn
 
 <Accordion title="ETB — from PayInParts lenders PDF" icon="fa-info-circle">
 
-**Scenario:** GCD response when the customer is **ETB** (`httpCode` **200**, `status` **1**). The payload is large; structure below is **verbatim** from the PRD transcription (cardless EMI catalogue + **`payInParts`** block including **`LAZYPI3`**).
+**Scenario:** GCD response when the customer is **ETB** (`httpCode` **200**, `status` **1**). 
 
 ```json
 {
