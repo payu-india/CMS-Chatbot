@@ -56,7 +56,7 @@ When your customer wants **LazyPay Pay-in-3** (PayInParts), use **Get Checkout D
 
 After you collect the customer’s mobile number and the amount to be paid, call **Get Checkout Details** on **`POST /merchant/postservice?form=2`** with the **`filters.paymentOptions.emi`** structure that includes cardless EMI (and **`payInParts`** when your pack requires Pay-in-parts lenders in the response). The sample request and ETB sample response below match [Get Checkout Details — PayInParts (GCD)](ref:gcd-payinparts-get-checkout-details).
 
-## Endpoint
+### Environment
 
 | Environment | URL |
 | :-- | :-- |
@@ -65,7 +65,7 @@ After you collect the customer’s mobile number and the amount to be paid, call
 
 Some gateways still accept **`postservice.php?form=2`**. Confirm with your **PayU Key Account Manager (KAM)**.
 
-## Form body parameters
+## Request parameters
 
 | Field | Description |
 | :-- | :-- |
