@@ -67,12 +67,42 @@ Some gateways still accept **`postservice.php?form=2`**. Confirm with your **Pay
 
 ### Request parameters
 
-| Field | Description |
-| :-- | :-- |
-| **key** | Merchant key from the PayU Dashboard (masked test style: **`JP***g`** in samples). |
-| **command** | Must be **`get_checkout_details`**. |
-| **var1** | JSON string: **`requestId`**, **`transactionDetails`** (e.g. **`amount`**, **`source`**, **`pre_authorize`**, **`additional_charges`**), **`useCase`** (e.g. **`checkCustomerEligibility`**, **`checkNTBCustomerEligibility`**, **`returnUserLimit`**), **`customerDetails`** (e.g. **`mobile`**), **`filters.paymentOptions.emi`** (e.g. **`dc`**, **`cardless`**, and **`payInParts`** when you need Pay-in-parts lenders in the response). |
-| **hash** | **`sha512(key|command|var1|SALT)`** — see [Hashing request and response](doc:hashing-request-and-response). Replace **`{{info_hash}}`** with the computed digest. |
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>key<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Merchant key from the PayU Dashboard (masked test style: <code>JP***g</code> in samples).</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>JP***g</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>command<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Must be <code>get_checkout_details</code>.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>get_checkout_details</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>var1<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> JSON string containing:<br>
+• <code>requestId</code><br>
+• <code>transactionDetails</code> (e.g. <code>amount</code>, <code>source</code>, <code>pre_authorize</code>, <code>additional_charges</code>)<br>
+• <code>useCase</code> (e.g. <code>checkCustomerEligibility</code>, <code>checkNTBCustomerEligibility</code>, <code>returnUserLimit</code>)<br>
+• <code>customerDetails</code> (e.g. <code>mobile</code>)<br>
+• <code>filters.paymentOptions.emi</code> (e.g. <code>dc</code>, <code>cardless</code>, and <code>payInParts</code> when you need Pay-in-parts lenders in the response)</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>{"requestId":"abc123","transactionDetails":{"amount":500}}</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>hash<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> <code>sha512(key|command|var1|SALT)</code> — see <a href="doc:hashing-request-and-response">Hashing request and response</a>. Replace <code>{{info_hash}}</code> with the computed digest.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>{{info_hash}}</p></td>
+</tr>
+</tbody>
+</table>
 
 Do **not** send browser **`Cookie`** headers on server-to-server calls.
 
