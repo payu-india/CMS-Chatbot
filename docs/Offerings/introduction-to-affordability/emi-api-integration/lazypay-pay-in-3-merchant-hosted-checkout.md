@@ -1429,7 +1429,7 @@ curl --location 'https://info.payu.in/merchant/postservice?form=2' \
 
 <Accordion title="Sample response" icon="fa-info-circle">
 
-Verbatim **GCD response — customer is NTB** from [Seamless response samples — GCD and GECD (PayInParts lenders)](../../../../PRDs/Lazypay/seamless-response-gcd-gecd-payinparts-lenders.md) (`httpCode` **200**, `status` **1**). Use **`data.details.paymentOption.emi.all`** for ETB-style cardless catalogue and **`data.details.paymentOption.emi.ntb`** for NTB Pay-in-parts (for example **`LAZYPI3`**) and NTB cardless blocks.
+Use the **`data.details.paymentOption.emi.ntb`** for NTB Pay-in-parts (for example **`LAZYPI3`**) and NTB cardless blocks.
 
 ```json
 {
