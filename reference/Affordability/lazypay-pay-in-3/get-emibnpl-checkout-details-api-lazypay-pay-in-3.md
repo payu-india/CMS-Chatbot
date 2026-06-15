@@ -5,9 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-This reference describes `command=get_checkout_details` on `POST /merchant/postservice?form=2` when you use `var1` filters for **cardless EMI** and **PayInParts** lenders (including **LazyPay Pay-in-3**). It is **standalone** for PayInParts / Pay-in-3 workstreams only.
-
-**Source for sample response:** Transcribed from `Seamless-Response for GCD and GECD for PayInParts Lenders-120626-053241.pdf` — same JSON as in [`PRDs/Lazypay/seamless-response-gcd-gecd-payinparts-lenders.md`](../../../../PRDs/Lazypay/seamless-response-gcd-gecd-payinparts-lenders.md) (section **GCD response — customer is ETB**).
+This reference describes Get Checkout Details `get_checkout_details` API to check Pay-in-Parts lenders eligibility. You will get response as Existing to Bank (ETB) or New to Bank (NTB) customer. 
 
 ## Environment
 
@@ -294,7 +292,9 @@ curl_close($ch);
 
 To surface **PayInParts** lenders in the response (as in the PRD), add `"payInParts":"all"` next to `dc` / `cardless` inside `filters.paymentOptions.emi` when your pack requires it.
 
-## Sample response (ETB — from PayInParts lenders PDF)
+## Sample response
+
+### Customer is ETB
 
 **Scenario:** GCD response when the customer is **ETB** (`httpCode` **200**, `status` **1**). The payload is large; structure below is **verbatim** from the PRD transcription (cardless EMI catalogue + `payInParts` block including `LAZYPI3`).
 
@@ -635,7 +635,7 @@ To surface **PayInParts** lenders in the response (as in the PRD), add `"payInPa
 }
 ```
 
-## GCD response — customer is NTB
+### GCD response — customer is NTB
 
 ```json
 {
@@ -963,7 +963,7 @@ To surface **PayInParts** lenders in the response (as in the PRD), add `"payInPa
 }
 ```
 
-## GCD response — customer is not eligible
+### GCD response — customer is not eligible
 
 ```json
 {
