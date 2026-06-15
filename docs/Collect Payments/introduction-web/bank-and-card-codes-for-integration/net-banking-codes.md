@@ -34,10 +34,10 @@ In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you 
 
 Both the Erstwhile bank and Successor bank are supported in PayU Platform as mentioned below:
 
-| Erstwhile bank (with the bankcode) | Successor bank       | Supported **bankcode** values |
-| ---------------------------------- | -------------------- | ----------------------------- |
-| Allahabad Bank (`ALLB`)            | Indian Bank          | `INDB`                        |
-| Oriental Bank of Commerce (`OBCB`) | Punjab National Bank | `PNBB`                        |
-| Syndicate Bank (`SYNDB`)           | Canara Bank          | `CABB`                        |
+| Erstwhile bank (with the bankcode) | Successor bank      (**bankcode** value) |
+| ---------------------------------- | --------------------  |
+| Allahabad Bank (`ALLB`)            | Indian Bank          (`INDB`)                        |
+| Oriental Bank of Commerce (`OBCB`) | Punjab National Bank (`PNBB`)                       |
+| Syndicate Bank (`SYNDB`)           | Canara Bank          (`CABB`)                        |
 
 <br />
