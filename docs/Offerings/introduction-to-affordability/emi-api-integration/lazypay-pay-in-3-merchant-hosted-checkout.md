@@ -65,7 +65,7 @@ After you collect the customer’s mobile number and the amount to be paid, call
 
 Some gateways still accept **`postservice.php?form=2`**. Confirm with your **PayU Key Account Manager (KAM)**.
 
-## Request parameters
+### Request parameters
 
 | Field | Description |
 | :-- | :-- |
@@ -76,7 +76,7 @@ Some gateways still accept **`postservice.php?form=2`**. Confirm with your **Pay
 
 Do **not** send browser **`Cookie`** headers on server-to-server calls.
 
-## Sample request
+### Sample request
 
 The following matches the integration sample you provided (**`Cookie`** omitted; **`key`** shown as **`JP***g`** like other PayU API reference pages—substitute your real merchant key if different), with **`hash`** templated.
 
@@ -91,7 +91,9 @@ curl --location 'https://info.payu.in/merchant/postservice?form=2' \
 
 To surface **PayInParts** lenders in the response (as in the PRD), add **`"payInParts":"all"`** next to **`dc`** / **`cardless`** inside **`filters.paymentOptions.emi`** when your pack requires it.
 
-## Sample response (ETB — from PayInParts lenders PDF)
+### Sample response 
+
+#### ETB — from PayInParts lenders PDF
 
 **Scenario:** GCD response when the customer is **ETB** (`httpCode` **200**, `status` **1**). The payload is large; structure below is **verbatim** from the PRD transcription (cardless EMI catalogue + **`payInParts`** block including **`LAZYPI3`**).
 
@@ -432,7 +434,7 @@ To surface **PayInParts** lenders in the response (as in the PRD), add **`"payIn
 }
 ```
 
-## GCD response — customer is NTB
+#### GCD response — customer is NTB
 
 ```json
 {
