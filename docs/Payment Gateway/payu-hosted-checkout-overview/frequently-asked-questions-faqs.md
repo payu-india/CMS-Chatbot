@@ -26,6 +26,25 @@ metadata:
    - Backend server
    - HTTPS-enabled callback endpoint
    - Ability to generate SHA-512 hash
+   Minimum backend responsibilities:
+   - Generate request hash
+   - Validate reverse hash
+   - Process callbacks/webhooks
+   - Prevent duplicate order processing
+   </Accordion>
+3. #### What are the payment methods supported for PayU Hosted checkout?
+   <Accordion title="Answer" icon="fa-comment-dots">
+    These are the payment methods enabled by default PayU Hosted checkout:
+   - NetBanking
+   - Debit Card
+   - Credit Card
+   - UPI
+   - Wallet
+   You can enable these payment methods from the PayU dashboard if you are eligible. You should raise a request from the dashboard to enable these payment methods.
+   - BNPL
+   - EMI
+   - International Payments
+    
    </Accordion>
 
 <br />
