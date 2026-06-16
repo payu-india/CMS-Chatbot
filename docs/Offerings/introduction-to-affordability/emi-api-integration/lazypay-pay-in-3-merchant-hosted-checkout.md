@@ -1462,9 +1462,10 @@ curl --location 'https://info.payu.in/merchant/postservice?form=2' \
 ```
 </Accordion>
 
-<Accordion title="Sample response" icon="fa-info-circle">
+<Accordion title="Sample response" icon="fa-reply">
 
-Use the **`data.details.paymentOption.emi.ntb`** for NTB Pay-in-parts (for example **`LAZYPI3`**) and NTB cardless blocks.
+#### Success scenario
+Response when registration got success
 
 ```json
 {
@@ -1472,318 +1473,37 @@ Use the **`data.details.paymentOption.emi.ntb`** for NTB Pay-in-parts (for examp
   "message": "",
   "status": 1,
   "data": {
-    "details": {
-      "paymentOption": {
-        "emi": {
-          "all": {
-            "cardless": {
-              "all": {
-                "IDFCCL": {
-                  "tenureOptions": {
-                    "IDFCCL12": {
-                      "tenure": 12,
-                      "maximumAmount": null,
-                      "eligibility": {
-                        "status": false,
-                        "reason": "API Time Out"
-                      }
-                    },
-                    "IDFCCL03": {
-                      "tenure": 3,
-                      "maximumAmount": null,
-                      "eligibility": {
-                        "status": false,
-                        "reason": "API Time Out"
-                      }
-                    },
-                    "IDFCCL06": {
-                      "tenure": 6,
-                      "maximumAmount": null,
-                      "eligibility": {
-                        "status": false,
-                        "reason": "API Time Out"
-                      }
-                    },
-                    "IDFCCL09": {
-                      "tenure": 9,
-                      "maximumAmount": null,
-                      "eligibility": {
-                        "status": false,
-                        "reason": "API Time Out"
-                      }
-                    }
-                  },
-                  "maximumAmount": null,
-                  "eligibility": {
-                    "status": false,
-                    "reason": "Customer not eligible for EMI"
-                  }
-                },
-                "SMPI3": {
-                  "tenureOptions": {
-                    "SMPI03": {
-                      "tenure": 3,
-                      "maximumAmount": null,
-                      "eligibility": {
-                        "status": true
-                      }
-                    }
-                  },
-                  "maximumAmount": null,
-                  "eligibility": {
-                    "status": true
-                  }
-                },
-                "ZESTMON": {
-                  "tenureOptions": {
-                    "ZEST09": {
-                      "tenure": 9,
-                      "maximumAmount": null,
-                      "eligibility": {
-                        "status": false,
-                        "reason": "This mobile number is not eligible. Please change the mobile number."
-                      }
-                    },
-                    "ZEST06": {
-                      "tenure": 6,
-                      "maximumAmount": null,
-                      "eligibility": {
-                        "status": false,
-                        "reason": "This mobile number is not eligible. Please change the mobile number."
-                      }
-                    },
-                    "ZEST03": {
-                      "tenure": 3,
-                      "maximumAmount": null,
-                      "eligibility": {
-                        "status": false,
-                        "reason": "This mobile number is not eligible. Please change the mobile number."
-                      }
-                    },
-                    "ZESTMON": {
-                      "tenure": 0,
-                      "maximumAmount": null,
-                      "eligibility": {
-                        "status": false,
-                        "reason": "This mobile number is not eligible. Please change the mobile number."
-                      }
-                    },
-                    "ZEST12": {
-                      "tenure": 12,
-                      "maximumAmount": null,
-                      "eligibility": {
-                        "status": false,
-                        "reason": "This mobile number is not eligible. Please change the mobile number."
-                      }
-                    }
-                  },
-                  "maximumAmount": null,
-                  "eligibility": {
-                    "status": false,
-                    "reason": "Customer not eligible for EMI"
-                  }
-                },
-                "ICICCL": {
-                  "tenureOptions": {
-                    "ICICCL12": {
-                      "tenure": 12,
-                      "maximumAmount": null,
-                      "eligibility": {
-                        "status": false,
-                        "reason": "API Time Out"
-                      }
-                    },
-                    "ICICCL03": {
-                      "tenure": 3,
-                      "maximumAmount": null,
-                      "eligibility": {
-                        "status": false,
-                        "reason": "API Time Out"
-                      }
-                    },
-                    "ICICCL06": {
-                      "tenure": 6,
-                      "maximumAmount": null,
-                      "eligibility": {
-                        "status": false,
-                        "reason": "API Time Out"
-                      }
-                    },
-                    "ICICCL09": {
-                      "tenure": 9,
-                      "maximumAmount": null,
-                      "eligibility": {
-                        "status": false,
-                        "reason": "API Time Out"
-                      }
-                    }
-                  },
-                  "maximumAmount": null,
-                  "eligibility": {
-                    "status": false,
-                    "reason": "Customer not eligible for EMI"
-                  }
-                },
-                "HMECDT": {
-                  "tenureOptions": {
-                    "HMECDT03": {
-                      "tenure": 3,
-                      "maximumAmount": null,
-                      "eligibility": {
-                        "status": true
-                      },
-                      "maximumEligibleLimit": 12000.0
-                    },
-                    "HMECDT12": {
-                      "tenure": 12,
-                      "maximumAmount": null,
-                      "eligibility": {
-                        "status": true
-                      },
-                      "maximumEligibleLimit": 12000.0
-                    },
-                    "HMECDT18": {
-                      "tenure": 18,
-                      "maximumAmount": null,
-                      "eligibility": {
-                        "status": true
-                      },
-                      "maximumEligibleLimit": 12000.0
-                    },
-                    "HMECDT06": {
-                      "tenure": 6,
-                      "maximumAmount": null,
-                      "eligibility": {
-                        "status": true
-                      },
-                      "maximumEligibleLimit": 12000.0
-                    },
-                    "HMECDT09": {
-                      "tenure": 9,
-                      "maximumAmount": null,
-                      "eligibility": {
-                        "status": true
-                      },
-                      "maximumEligibleLimit": 12000.0
-                    }
-                  },
-                  "maximumAmount": null,
-                  "eligibility": {
-                    "status": true
-                  }
-                },
-                "LPEMI": {
-                  "tenureOptions": {
-                    "LPEMI12": {
-                      "tenure": 12,
-                      "maximumAmount": null,
-                      "eligibility": {
-                        "status": false,
-                        "reason": "This mobile number is not eligible. Please change the mobile number."
-                      }
-                    },
-                    "LPEMI": {
-                      "tenure": 0,
-                      "maximumAmount": null,
-                      "eligibility": {
-                        "status": false,
-                        "reason": "This mobile number is not eligible. Please change the mobile number."
-                      }
-                    },
-                    "LPEMI09": {
-                      "tenure": 9,
-                      "maximumAmount": null,
-                      "eligibility": {
-                        "status": false,
-                        "reason": "Minimum required amount is 15000"
-                      }
-                    },
-                    "LPEMI03": {
-                      "tenure": 3,
-                      "maximumAmount": null,
-                      "eligibility": {
-                        "status": false,
-                        "reason": "This mobile number is not eligible. Please change the mobile number."
-                      }
-                    },
-                    "LPEMI06": {
-                      "tenure": 6,
-                      "maximumAmount": null,
-                      "eligibility": {
-                        "status": false,
-                        "reason": "This mobile number is not eligible. Please change the mobile number."
-                      }
-                    }
-                  },
-                  "maximumAmount": null,
-                  "eligibility": {
-                    "status": false,
-                    "reason": "Customer not eligible for EMI"
-                  }
-                },
-                "HDFC_CL": {
-                  "tenureOptions": {
-                    "HDFCCL09": {
-                      "tenure": 9,
-                      "maximumAmount": null,
-                      "eligibility": {
-                        "status": true
-                      }
-                    },
-                    "HDFCCL18": {
-                      "tenure": 18,
-                      "maximumAmount": null,
-                      "eligibility": {
-                        "status": true
-                      }
-                    },
-                    "HDFCCL06": {
-                      "tenure": 6,
-                      "maximumAmount": null,
-                      "eligibility": {
-                        "status": true
-                      }
-                    },
-                    "HDFCCL03": {
-                      "tenure": 3,
-                      "maximumAmount": null,
-                      "eligibility": {
-                        "status": true
-                      }
-                    },
-                    "HDFCCL12": {
-                      "tenure": 12,
-                      "maximumAmount": null,
-                      "eligibility": {
-                        "status": true
-                      }
-                    }
-                  },
-                  "maximumAmount": null,
-                  "eligibility": {
-                    "status": true
-                  }
-                }
-              },
-              "hasEligible": true
-            }
-          },
-          "ntb": {
-            "payInParts": {
-              "all": {
-                "LAZYPI3": {
-                  "maximumAmount": null,
-                  "eligibility": {
-                    "status": true
-                  }
-                }
-              },
-              "hasEligible": true
+    "emi": {
+      "ntb": {
+        "payInParts": {
+          "LAZYPI3": {
+            "tenure": "3",
+            "minimumAmount": 3000.0,
+            "maximumAmount": 180000.0,
+            "interestRate": 0,
+            "processingFee": 78.67,
+            "processingFeeGst": 12.0,
+            "maximumEligibleLimit": 51000.0,
+            "eligibility": {
+              "status": true
             },
-            "cardless": {
-              "all": {},
-              "hasEligible": false
-            }
+            "repaymentSchedule": [
+              {
+                "amount": 3333.33,
+                "serialNo": 0,
+                "dueDate": "2026-06-10"
+              },
+              {
+                "amount": 3333.0,
+                "serialNo": 1,
+                "dueDate": "2026-08-01"
+              },
+              {
+                "amount": 3333.67,
+                "serialNo": 2,
+                "dueDate": "2026-09-01"
+              }
+            ]
           }
         }
       }
@@ -1791,6 +1511,29 @@ Use the **`data.details.paymentOption.emi.ntb`** for NTB Pay-in-parts (for examp
   }
 }
 
+```
+#### Failure scenario
+When registration got failed:
+```
+{
+  "httpCode": "200",
+  "message": "",
+  "status": 1,
+  "data": {
+    "emi": {
+      "ntb": {
+        "payInParts": {
+          "LAZYPI3": {
+            "eligibility": {
+              "status": false,
+              "reason": "This mobile number is not eligible. Please change the mobile number."
+            }
+          }
+        }
+      }
+    }
+  }
+}
 ```
 
 </Accordion>
