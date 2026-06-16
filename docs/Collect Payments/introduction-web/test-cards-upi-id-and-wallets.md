@@ -291,12 +291,12 @@ The following table provides details of some of the test cards that you can use 
 >
 > **Note**: Any value can be used for the **name** parameter in Test environment.
 
-| **Card Number**     | Network     | **Expiry** | **CVV** |        |
-| ------------------- | :---------- | ---------- | ------- | ------ |
-| 5506900480000008    | Master Card | 05/2030    | 123     |        |
-| 4895370077346937    | VISA        | 05/2030    | 123     |        |
-| 6071-4898-7654-3212 | RUPAY       | 12/27      | 123     | 123456 |
-| 6074-8299-0000-4938 | RUPAY       | 12/27      | 123     | 123456 |
+| **Card Number**     | Network     | **Expiry** | **CVV** |
+| ------------------- | :---------- | ---------- | ------- |
+| 5506900480000008    | Master Card | 05/2030    | 123     |
+| 4895370077346937    | VISA        | 05/2030    | 123     |
+| 6071-4898-7654-3212 | RUPAY       | 12/27      | 123     |
+| 6074-8299-0000-4938 | RUPAY       | 12/27      | 123     |
 
 ## Test UPI ID
 
