@@ -25,7 +25,7 @@ To integrate vault with the Simple REST APIs, this section describes the followi
 
 > 📘 Note:
 >
-> To use tokenisation, you need to get the Token Requestor onboarding to be done. Contact your PayU Key Account Manager (KAM) to get the onboarding done.
+> To use tokenization, you need to get the Token Requestor onboarding to be done. Contact your PayU Key Account Manager (KAM) to get the onboarding done.
 
 * [First-time transaction](#first-time-transaction)
 * [Repeat transaction with token](#repeat-transaction-with-token)
