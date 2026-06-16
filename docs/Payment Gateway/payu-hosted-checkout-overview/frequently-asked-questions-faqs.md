@@ -46,5 +46,18 @@ metadata:
    - International Payments
     
    </Accordion>
+4. #### Does Hosted Checkout reduce PCI compliance?
+   <Accordion title="Answer" icon="fa-comment-dots">
+   Yes. Since card data is collected on PayU infrastructure, PCI scope is reduced.
+   You should still secure these:
+   - Backend APIs
+   - Secrets
+   - Callbacks
+   - Webhooks
+   Never expose these:
+   - Salt
+   - Internal auth tokens
+   - Secret keys
+   </Accordion>
 
 <br />
