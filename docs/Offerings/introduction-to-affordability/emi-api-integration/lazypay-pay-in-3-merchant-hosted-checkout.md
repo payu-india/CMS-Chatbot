@@ -1477,6 +1477,251 @@ curl --location 'https://pp94info.payu.in/info/linkAndPay/get_emi_checkout_detai
     }
 }'
 ```
+```python
+import requests
+import json
+
+url = "https://pp94info.payu.in/info/linkAndPay/get_emi_checkout_details"
+
+headers = {
+    "x-credential-username": "x0i6r2",
+    "Content-Type": "application/json",
+    "authorization": "{{authorization}}",
+    "date": "{{date}}"
+}
+
+payload = {
+    "bankCode": "LAZYPI3",
+    "phone": "8178959206",
+    "amount": "10000.00",
+    "pg": "EMI",
+    "checkCustomerEligibilityWithDetails": True,
+    "customerDetails": {
+        "panNumber": "KMEPS9053J",
+        "dob": "14-12-1996",
+        "zipcode": "411014",
+        "firstName": "Shray",
+        "lastName": "Suri",
+        "bureauPullConsent": "false",
+        "gender": "Male",
+        "income": "100000",
+        "employeeType": "Salaried"
+    }
+}
+
+try:
+    response = requests.post(url, headers=headers, data=json.dumps(payload))
+    print("Status Code:", response.status_code)
+    print("Response:", response.text)
+except requests.exceptions.RequestException as e:
+    print("Error:", e)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        var client = new HttpClient();
+
+        client.DefaultRequestHeaders.Add("x-credential-username", "x0i6r2");
+        client.DefaultRequestHeaders.Add("authorization", "{{authorization}}");
+        client.DefaultRequestHeaders.Add("date", "{{date}}");
+
+        var jsonBody = @"{
+            ""bankCode"": ""LAZYPI3"",
+            ""phone"": ""8178959206"",
+            ""amount"": ""10000.00"",
+            ""pg"": ""EMI"",
+            ""checkCustomerEligibilityWithDetails"": true,
+            ""customerDetails"": {
+                ""panNumber"": ""KMEPS9053J"",
+                ""dob"": ""14-12-1996"",
+                ""zipcode"": ""411014"",
+                ""firstName"": ""Shray"",
+                ""lastName"": ""Suri"",
+                ""bureauPullConsent"": ""false"",
+                ""gender"": ""Male"",
+                ""income"": ""100000"",
+                ""employeeType"": ""Salaried""
+            }
+        }";
+
+        var content = new StringContent(jsonBody, Encoding.UTF8, "application/json");
+
+        try
+        {
+            var response = await client.PostAsync("https://pp94info.payu.in/info/linkAndPay/get_emi_checkout_details", content);
+            string responseBody = await response.Content.ReadAsStringAsync();
+            Console.WriteLine("Status Code: " + response.StatusCode);
+            Console.WriteLine("Response: " + responseBody);
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine("Error: " + e.Message);
+        }
+    }
+}
+```
+```javascript
+async function getEmiCheckoutDetails() {
+    const url = "https://pp94info.payu.in/info/linkAndPay/get_emi_checkout_details";
+
+    const payload = {
+        bankCode: "LAZYPI3",
+        phone: "8178959206",
+        amount: "10000.00",
+        pg: "EMI",
+        checkCustomerEligibilityWithDetails: true,
+        customerDetails: {
+            panNumber: "KMEPS9053J",
+            dob: "14-12-1996",
+            zipcode: "411014",
+            firstName: "Shray",
+            lastName: "Suri",
+            bureauPullConsent: "false",
+            gender: "Male",
+            income: "100000",
+            employeeType: "Salaried"
+        }
+    };
+
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "x-credential-username": "x0i6r2",
+                "Content-Type": "application/json",
+                "authorization": "{{authorization}}",
+                "date": "{{date}}"
+            },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await response.text();
+        console.log("Status Code:", response.status);
+        console.log("Response:", data);
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+getEmiCheckoutDetails();
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.nio.charset.StandardCharsets;
+
+public class GetEmiCheckoutDetails {
+    public static void main(String[] args) {
+        try {
+            URL url = new URL("https://pp94info.payu.in/info/linkAndPay/get_emi_checkout_details");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("x-credential-username", "x0i6r2");
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("authorization", "{{authorization}}");
+            conn.setRequestProperty("date", "{{date}}");
+            conn.setDoOutput(true);
+
+            String jsonBody = "{"
+                + ""bankCode": "LAZYPI3","
+                + ""phone": "8178959206","
+                + ""amount": "10000.00","
+                + ""pg": "EMI","
+                + ""checkCustomerEligibilityWithDetails": true,"
+                + ""customerDetails": {"
+                    + ""panNumber": "KMEPS9053J","
+                    + ""dob": "14-12-1996","
+                    + ""zipcode": "411014","
+                    + ""firstName": "Shray","
+                    + ""lastName": "Suri","
+                    + ""bureauPullConsent": "false","
+                    + ""gender": "Male","
+                    + ""income": "100000","
+                    + ""employeeType": "Salaried""
+                + "}"
+            + "}";
+
+            try (OutputStream os = conn.getOutputStream()) {
+                os.write(jsonBody.getBytes(StandardCharsets.UTF_8));
+            }
+
+            int statusCode = conn.getResponseCode();
+            System.out.println("Status Code: " + statusCode);
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            StringBuilder response = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                response.append(line);
+            }
+            reader.close();
+
+            System.out.println("Response: " + response.toString());
+
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+```php
+<?php
+
+$url = "https://pp94info.payu.in/info/linkAndPay/get_emi_checkout_details";
+
+$payload = json_encode([
+    "bankCode"                           => "LAZYPI3",
+    "phone"                              => "8178959206",
+    "amount"                             => "10000.00",
+    "pg"                                 => "EMI",
+    "checkCustomerEligibilityWithDetails" => true,
+    "customerDetails"                    => [
+        "panNumber"         => "KMEPS9053J",
+        "dob"               => "14-12-1996",
+        "zipcode"           => "411014",
+        "firstName"         => "Shray",
+        "lastName"          => "Suri",
+        "bureauPullConsent" => "false",
+        "gender"            => "Male",
+        "income"            => "100000",
+        "employeeType"      => "Salaried"
+    ]
+]);
+
+$ch = curl_init();
+
+curl_setopt_array($ch, [
+    CURLOPT_URL            => $url,
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_POST           => true,
+    CURLOPT_POSTFIELDS     => $payload,
+    CURLOPT_HTTPHEADER     => [
+        "x-credential-username: x0i6r2",
+        "Content-Type: application/json",
+        "authorization: {{authorization}}",
+        "date: {{date}}"
+    ]
+]);
+
+$response = curl_exec($ch);
+
+if (curl_error($ch)) {
+    echo "Error: " . curl_error($ch);
+} else {
+    echo "Status Code: " . curl_getinfo($ch, CURLINFO_HTTP_CODE) . "\n";
+    echo "Response: " . $response . "\n";
+}
+
+curl_close($ch);
+?>
+```
 </Accordion>
 
 <Accordion title="Sample response" icon="fa-reply">
