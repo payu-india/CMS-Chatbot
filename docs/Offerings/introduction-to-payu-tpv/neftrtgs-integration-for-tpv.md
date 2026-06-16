@@ -23,13 +23,26 @@ next:
 ---
 Integrate <Glossary>TPV</Glossary> through NEFT/RTGS using the procedure described in this section.
 
+**Steps to integrate**
+<Cards columns={2}>
+  <Card title="1. List Account Numbers" href="#step-1-list-the-account-numbers">
+    Collect or prepare account numbers to post to PayU for TPV
+  </Card>
+  <Card title="2. Post Parameters" href="#step-2-post-the-parameters-to-payu">
+    Post the Collect Payment (**_payment**) request with NEFT/RTGS parameters
+  </Card>
+  <Card title="3. Check Response" href="#step-3-check-the-response-from-payu">
+    Validate the response hash and store **mihpayid** and **txnid**
+  </Card>
+</Cards>
+
 ## Step 1: List the Account Numbers
 
 Collect or prepare a list of account numbers that must be posted to PayU for TPV at step 2.
 
 ## Step 2: Post the parameters to PayU
 
-With the following additional parameters, make the transaction request with the customer's bank account number to the PayU using the Collect Payment (**_payment**) API. For more information, refer to [Collect Payment API - Merchant Hosted Checkout](doc:_payment_merchant_hosted).
+With the following additional parameters, make the transaction request with the customer's bank account number to the PayU using the Collect Payment (**\_payment**) API. For more information, refer to [Collect Payment API - Merchant Hosted Checkout](doc:_payment_merchant_hosted).
 
 <PaymentAPIEnvironment />
 
@@ -103,7 +116,7 @@ With the following additional parameters, make the transaction request with the 
       </td>
 
       <td>
-        The api\_version "6" must be passed fro this parameter.
+        The api\_version "6" must be passed from this parameter.
       </td>
 
       <td>
@@ -195,3 +208,4 @@ The following table describes the parameters in the response from PayU:
 > PayU recommends you. to verify the transaction details using the **Verification Payment** API. For more information, For API reference, refer to <a href="verify_payment_api" target="_blank">Verify Payment API</a>.
 </Accordion>
 
+<br />
