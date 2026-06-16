@@ -116,7 +116,7 @@ This API is authorised through a client token generated using the client ID and 
 
     <tr>
       <td>
-        merchant\[business\_details]\[registered\_name]<br /><code>optional</code>
+        merchant\[business\_details]\[registered\_name]<br /><code>mandatory</code>
       </td>
 
       <td>
