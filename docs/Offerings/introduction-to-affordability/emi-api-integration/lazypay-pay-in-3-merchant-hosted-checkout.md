@@ -1447,18 +1447,35 @@ curl_close($ch);
 ```
 </Accordion>
 
-### Step 1.b: Check EMI Eligibility for NTB Customers \[Optional]
+### Step 1b: Check EMI Eligibility for NTB Customers \[Optional]
 
 If the customer is found to be NTB, you must calculate the EMI eligibility using **Get Checkout Details** with `checkNTBCustomerEligibility`**:&#x20;**`true` (alongside `checkCustomerEligibility` and `returnUserLimit` as required). Align `filters.paymentOptions.emi` with the PayInParts PRD sample: include `cardless` and `payInParts` (for example both `"all"`) so Pay-in-parts lenders can appear where applicable; then interpret the `emi` payload including any **NTB** section per [Seamless response samples — GCD and GECD (PayInParts lenders)](../../../../PRDs/Lazypay/seamless-response-gcd-gecd-payinparts-lenders.md).
 
 <Accordion title="Sample request" icon="fa-code">
-```bash
-curl --location 'https://info.payu.in/merchant/postservice?form=2' \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data-urlencode 'key=JP***g' \
-  --data-urlencode 'command=get_checkout_details' \
-  --data-urlencode 'var1={"bankCode":"LAZYPI3","phone":"8178959206","amount":"10000.00","pg":"EMI","checkCustomerEligibilityWithDetails":true,"customerDetails":{"panNumber":"KMEPS9053J","dob":"14-12-1996","zipcode":"411014","firstName":"Shray","lastName":"Suri","bureauPullConsent":"false","gender":"Male","income":"100000","employeeType":"Salaried"}}' \
-  --data-urlencode 'hash={{info_hash}}'
+```
+curl --location 'https://pp94info.payu.in/info/linkAndPay/get_emi_checkout_details' \
+--header 'x-credential-username: x0i6r2' \
+--header 'Content-Type: application/json' \
+--header 'authorization: {{authorization}}' \
+--header 'date: {{date}}' \
+--data '{
+    "bankCode": "LAZYPI3",
+    "phone": "8178959206", 
+    "amount": "10000.00",
+    "pg": "EMI",
+    "checkCustomerEligibilityWithDetails": true,
+    "customerDetails": {
+        "panNumber": "KMEPS9053J",
+        "dob": "14-12-1996",
+        "zipcode": "411014",
+        "firstName": "Shray",
+        "lastName": "Suri",
+        "bureauPullConsent": "false",
+        "gender": "Male",
+        "income": "100000",
+        "employeeType": "Salaried"
+    }
+}'
 ```
 </Accordion>
 
