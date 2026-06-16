@@ -7,6 +7,16 @@ metadata:
 ---
 When your customer wants **LazyPay Pay-in-3** (PayInParts), use **Get Checkout Details** (`get_checkout_details`) to retrieve eligible payment options—including the `payInParts` catalogue—before you post the transaction using Collect Payment API(`/_payment)`. If the customer is eligible, complete the merchant-hosted collect flow and verify the outcome. You will get response for various scenarios whether customer is Existing to Bank (ETB) or New to Bank (NTB) customer.
 
+Seamless merchants need Pay-in-3; checkout APIs must support eligibility, the right payment details, and customer types 1a, 1b, 2a of the [customer journey]().
+
+### Customer journey
+
+Customer chooses Pay in 3 and enters mobile.
+Merchant calls GCD with amount and mobile; system checks Pay in 3 eligibility.
+1a / 1b: GCD returns eligible flow details (story lists: is\_eligible: true, down payment, 2nd/3rd instalment amounts and dates, processing fee, GST if applicable).
+2a: GCD returns eligibility without Pay in 3 tenures; merchant collects PI (name, PAN, pincode, gender, bureau consent), then calls Get EMI Checkout Details; bureau pull → tenures if eligible, or not eligible.
+On proceed, merchant calls \_payment with LazyPay Pay in 3 ibibo code LZYPI3.
+
 > 📘
 >
 > **Handle Guest Checkout Transaction**: You can handle Guest Checkout transactions for EMI and BNPL integrations where applicable. For more information, refer to [Cards Integration > Handling Guest Checkout Transactions](doc:collect-payments-with-cards-seamless#handling-guest-checkout-transactions).
@@ -1414,7 +1424,7 @@ curl_close($ch);
 
 ### Step 1.b: Check EMI Eligibility for NTB Customers \[Optional]
 
-If the customer is found to be NTB, you must calculate the EMI eligibility using **Get Checkout Details** with **`checkNTBCustomerEligibility`: `true`** (alongside **`checkCustomerEligibility`** and **`returnUserLimit`** as required). Align **`filters.paymentOptions.emi`** with the PayInParts PRD sample: include **`cardless`** and **`payInParts`** (for example both **`"all"`**) so Pay-in-parts lenders can appear where applicable; then interpret the **`emi`** payload including any **NTB** section per [Seamless response samples — GCD and GECD (PayInParts lenders)](../../../../PRDs/Lazypay/seamless-response-gcd-gecd-payinparts-lenders.md).
+If the customer is found to be NTB, you must calculate the EMI eligibility using **Get Checkout Details** with `checkNTBCustomerEligibility`**:&#x20;**`true` (alongside `checkCustomerEligibility` and `returnUserLimit` as required). Align `filters.paymentOptions.emi` with the PayInParts PRD sample: include `cardless` and `payInParts` (for example both `"all"`) so Pay-in-parts lenders can appear where applicable; then interpret the `emi` payload including any **NTB** section per [Seamless response samples — GCD and GECD (PayInParts lenders)](../../../../PRDs/Lazypay/seamless-response-gcd-gecd-payinparts-lenders.md).
 
 <Accordion title="Sample request" icon="fa-code">
 ```bash
