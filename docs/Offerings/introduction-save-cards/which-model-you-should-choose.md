@@ -18,7 +18,7 @@ For seamless integration, minor changes are expected in the APIs, which is expla
 
 You would need the token, expiry, and TAVV values to be passed using PayU **\_payment** API. Apart from this, no further changes are expected. For more information, refer to [Collect Payments using a Tokenized Card](doc:collect-payments-using-a-saved-card).
 
-## Choosing the Tokenzation Model
+## Choosing the Tokenization Model
 
 PayU offers the following models to integrate vault using PayU Hosted Checkout or Merchant Hosted Checkout integration:
 
