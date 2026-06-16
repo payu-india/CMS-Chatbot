@@ -7,15 +7,40 @@ metadata:
 ---
 When your customer wants **LazyPay Pay-in-3** (PayInParts), use **Get Checkout Details** (`get_checkout_details`) to retrieve eligible payment options—including the `payInParts` catalogue—before you post the transaction using Collect Payment API(`/_payment)`. If the customer is eligible, complete the merchant-hosted collect flow and verify the outcome. You will get response for various scenarios whether customer is Existing to Bank (ETB) or New to Bank (NTB) customer.
 
-Seamless merchants need Pay-in-3; checkout APIs must support eligibility, the right payment details, and customer types 2 & 3 of the [customer journey](#customer-journey).
+Seamless merchants need the ability to offer Pay in 3 payment option to their customers. The integration requires modifications to existing checkout APIs to handle customer eligibility checks, return appropriate payment details, and support different customer types (1a, 1b, 2a) as in [Customer Journey](#customer-journey).
 
-### Customer journey
+### Customer Journey
 
-1. Customer chooses Pay in 3 and enters mobile.
-2. Merchant calls GCD with amount and mobile; system checks Pay in 3 eligibility.
+1. Customer selects "Pay in 3" option and enters mobile number
+2. Seamless merchant calls **Get Checkout Details API** with amount and mobile number
+3. System checks customer eligibility for Pay in 3
+4. System returns eligibility response based on customer type:
 
-   GCD returns eligible flow details.
-3. GCD returns eligibility without Pay in 3 tenures; merchant collects PI (name, PAN, pincode, gender, bureau consent), then calls Get EMI Checkout Details; bureau pull → tenures if eligible, or not eligible.<br />On proceed, merchant calls \_payment with LazyPay Pay in 3 ibibo code LZYPI3.
+#### For Customer Type 1a & 1b
+
+- Get Checkout Details API returns:
+  - `is_eligible: true`
+  - Down payment amount (pay now amount customer pays during transaction)
+  - 2nd installment amount and date
+  - 3rd installment amount and date
+  - Processing fee and GST (if applicable)
+
+#### For Customer Type 2a
+
+- Get Checkout Details API returns eligibility check but **does not return tenures** for Pay in 3
+- Merchant collects additional PI (Personal Information) details from customer:
+  - Name
+  - PAN
+  - Pincode
+  - Gender
+  - Consent for bureau pull
+- Merchant calls **Get EMI Checkout Details API** with collected PI details
+- System performs bureau pull and returns:
+  - Tenures if customer is eligible
+  - Not eligible status if customer fails eligibility check
+
+1. Eligible customer clicks "Proceed" on merchant website
+2. Merchant calls `_payment` API with selected pay mode i.e Lazypay pay in 3 **Ibibo code: LZYPI3**
 
 > 📘
 >
