@@ -57,13 +57,6 @@ The following table provides details of some of the test cards that you can use 
 | 5118-7000-0000-0003 | Mastercard | 05/30  | 123 | 123456 |
 | 4594-5380-5063-9999 | VISA       | 05/30  | 123 | 123456 |
 
-### Rupay Card
-
-| Card Number    | Network | Expiry | CVV | OTP |
-| ------------------- | ----------- | ---------- | ------- | ------- |
-| 6071-4898-7654-3212 | RUPAY       | 12/27      | 123     | 123456  |
-| 6074-8299-0000-4938 | RUPAY       | 12/27      | 123     | 123456  |
-
 ## EMI test cards
 
 > 📘 **Note**:&#x20;
@@ -292,7 +285,7 @@ The following table provides details of some of the test cards that you can use 
 | USD $    | 4755964453587236 | 12/2030    | 596     | 725356  |
 | Euro €   | 4020419926566936 | 12/2030    | 041     | 725356  |
 
-## Save cards
+## Tokenized or Saved cards
 
 > 📘
 >
@@ -302,6 +295,10 @@ The following table provides details of some of the test cards that you can use 
 | ---------------- | :---------- | ---------- | ------- |
 | 5506900480000008 | Master Card | 05/2030    | 123     |
 | 4895370077346937 | VISA        | 05/2030    | 123     |
+| 6071-4898-7654-3212 | RUPAY   | 12/27  | 123 | 123456 |
+| 6074-8299-0000-4938 | RUPAY   | 12/27  | 123 | 123456 |
+
+## E
 
 ## Test UPI ID
 
