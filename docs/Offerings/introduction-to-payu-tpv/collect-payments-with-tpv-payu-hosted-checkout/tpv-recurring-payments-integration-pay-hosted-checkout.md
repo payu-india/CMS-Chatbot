@@ -128,7 +128,7 @@ Submit the transaction parameters to PayU's payment gateway using the appropriat
   </tr>
   <tr>
   <td>free_trial<br/><code>optional</code></td>
-  <td>String - Parameter to setup free trial periods</td>
+  <td>String - Parameter to set up free trial periods</td>
   <td>"1"</td>
   </tr>
   <tr>
