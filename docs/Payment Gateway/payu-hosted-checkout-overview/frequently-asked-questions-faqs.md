@@ -20,9 +20,9 @@ metadata:
 2. #### What are the minimum prerequisites to integrate PayU hosted checkout?
    <Accordion title="Answer" icon="fa-comment-dots">
    These are the prerequisites to integrate PayU hosted checkout:
-   - PayU merchant account
-   - Merchant test Key and Salt for testing your integration
-   - Merchant live Key and Salt to go live
+   - <a href="https://docs.payu.in/docs/register-for-a-merchant-account-on-dashboard" target="_blank">PayU merchant account</a>
+   - <a href="https://docs.payu.in/docs/generate-test-merchant-key-and-salt">Merchant test Key and Salt</a> for testing your integration
+   - <a href="https://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard">Merchant live Key and Salt</a> to go live
    - Backend server
    - HTTPS-enabled callback endpoint
    - Ability to generate SHA-512 hash
