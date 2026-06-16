@@ -1454,11 +1454,11 @@ If the customer is found to be NTB, you must calculate the EMI eligibility using
 <Accordion title="Sample request" icon="fa-code">
 ```bash
 curl --location 'https://info.payu.in/merchant/postservice?form=2' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'key=JP***g' \
---data-urlencode 'command=get_checkout_details' \
---data-urlencode 'var1={"requestId":"9078698a15d746feadcffbdaf979a198","transactionDetails":{"source":null,"amount":47990,"pre_authorize":null,"additional_charges":null},"useCase":{"checkNTBCustomerEligibility":true,"checkCustomerEligibility":true,"returnUserLimit":true},"customerDetails":{"mobile":"9123412345"},"filters":{"paymentOptions":{"emi":{"cardless":"all","payInParts":"all"}}}}' \
---data-urlencode 'hash={{info_hash}}'
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data-urlencode 'key=JP***g' \
+  --data-urlencode 'command=get_checkout_details' \
+  --data-urlencode 'var1={"bankCode":"LAZYPI3","phone":"8178959206","amount":"10000.00","pg":"EMI","checkCustomerEligibilityWithDetails":true,"customerDetails":{"panNumber":"KMEPS9053J","dob":"14-12-1996","zipcode":"411014","firstName":"Shray","lastName":"Suri","bureauPullConsent":"false","gender":"Male","income":"100000","employeeType":"Salaried"}}' \
+  --data-urlencode 'hash={{info_hash}}'
 ```
 </Accordion>
 
