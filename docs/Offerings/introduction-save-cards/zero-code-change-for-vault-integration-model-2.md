@@ -21,9 +21,9 @@ next:
 ---
 The Model 2 involves only zero code change and this section describes the general workflow.
 
-> 📘
+> 📘 **Note**:&#x20;
 >
-> **Note**: To use tokenisation, you need to get the Token Requestor onboarding to be done. Contact your PayU Key Account Manager (KAM) to get the onboarding done.
+> To use tokenization, you need to get the Token Requestor onboarding to be done. Contact your PayU Key Account Manager (KAM) to get the onboarding done.
 
 <br />
 
