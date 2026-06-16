@@ -102,7 +102,7 @@ This API is authorised through a client token generated using the client ID and 
 
     <tr>
       <td>
-        merchant\[business\_details]\[business\_entity\_type]<br /><code>mandatory</code>
+        merchant\[business\_details]\[business\_entity\_type]<br /><code>optional</code>
       </td>
 
       <td>
