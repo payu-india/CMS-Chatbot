@@ -57,9 +57,9 @@ The following table provides details of some of the test cards that you can use 
 | 5118-7000-0000-0003 | Mastercard | 05/30  | 123 | 123456 |
 | 4594-5380-5063-9999 | VISA       | 05/30  | 123 | 123456 |
 
-## Rupay Card
+### Rupay Card
 
-| **Card Number**     | **Network** | **Expiry** | **CVV** | **OTP** |
+| Card Number    | Network | Expiry | CVV | OTP |
 | ------------------- | ----------- | ---------- | ------- | ------- |
 | 6071-4898-7654-3212 | RUPAY       | 12/27      | 123     | 123456  |
 | 6074-8299-0000-4938 | RUPAY       | 12/27      | 123     | 123456  |
