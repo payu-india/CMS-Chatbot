@@ -35,4 +35,11 @@ Pay-in-3 offers the following benefits to both customers and merchants:
 - **Reduced cart abandonment**: Customers are more likely to complete checkout when the full payment isn't due upfront.
 - **Merchant gets paid upfront**: Merchants receive the full order value at the time of transaction — as Lazypay takes on the responsibility (and risk) of collecting the remaining installments from the customer. There is no impact to your settlement cycle.
 
+## Integrate Pay-in-3
+
+You can integrate with any of the following integrations:
+
+- PayU Hosted Checkout
+- [Merchant Hosted Checkout](doc:lazypay-pay-in-3-merchant-hosted-checkout)
+
 <br />
