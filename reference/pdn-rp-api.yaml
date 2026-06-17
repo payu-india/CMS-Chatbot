@@ -15,7 +15,7 @@ paths:
     post:
       summary: Create a Pre-debit Notification and Recurring Payments Transaction
       description: >-
-        Use this endpoint to creates a pre-debit notification and processes a
+        Use this endpoint to create a pre-debit notification and processes a
         recurring debit against an existing mandate.
       tags:
         - Subscription APIs
