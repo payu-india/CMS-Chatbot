@@ -1850,11 +1850,6 @@ Post the following additional parameters for using the Cardless EMI. Check the r
                           <td>abc@payu.in</td>
                         </tr>
                         <tr>
-                          <td>panNumber <code>mandatory for ICICI, HDFC Bank, and Homecredit Cardless EMI. Not mandatory for other banks</code></td>
-                          <td><code>String</code> PAN number of the customer.</td>
-                          <td>ABCTY1234D</td>
-                        </tr>
-                        <tr>
                           <td>phone <code>mandatory</code></td>
                           <td><code>String</code> The phone number of the customer.</td>
                           <td></td>
@@ -1968,16 +1963,7 @@ Post the following additional parameters for using the Cardless EMI. Check the r
                     </table>
   `}</HTMLBlock>
 
-  > 📘 Notes for panNumber:
-  >
-  > * Only 4-digit number of the PAN\*\*: Pass the 4-digit numeral in a sequential order as in the PAN.
-  > * This parameter is mandatory for ICICI Bank and HDFC Bank Cardless EMI. Not mandatory for other banks
-  > * The data validation performed is either the whole PAN card number or 4-dig-t number of the PAN.
-  >   * **Whole PAN card Number**: For validating the whole PAN Card number:
-  >     * It should be ten characters long.
-  >     * The first five characters should be any upper case alphabets.
-  >     * The next four-characters should be any number from 0 to 9.
-  >     * The last(tenth) character should be any upper case alphabet.   It should not contain any white spaces.
+ 
 </Accordion>
 
 <HashingRequestParameters />
