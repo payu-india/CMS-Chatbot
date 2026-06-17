@@ -5,20 +5,21 @@ hidden: true
 metadata:
   robots: index
 ---
-When your customer wants **LazyPay Pay-in-3** (PayInParts), use **Get Checkout Details** (`get_checkout_details`) to retrieve eligible payment options—including the `payInParts` catalogue—before you post the transaction using Collect Payment API(`/_payment)`. If the customer is eligible, complete the merchant-hosted collect flow and verify the outcome. You will get response for various scenarios whether customer is Existing to Bank (ETB) or New to Bank (NTB) customer.
-
-Seamless merchants need the ability to offer Pay in 3 payment option to their customers. The integration requires modifications to existing checkout APIs to handle customer eligibility checks, return appropriate payment details, and support different customer types (1a, 1b, 2a) as in [Customer Journey](#customer-journey).
+Start by using the Get Checkout Details API (get\_checkout\_details) to fetch the eligible payment options available for the customer. This will include the payInParts param in the response if they are eligible. The response will indicate whether the customer is an Pre approved (Existing to Bank or ETB) customer or Not Pre-approved (New to Bank or NTB customer. Make sure to do this before processing the transaction through the **Collect Payment** API (/**\_payment**) as this will help to check customer's eligibility before making payments call.
+If the customer is eligible, proceed with the merchant-hosted collect flow and verify the transaction outcome.
 
 ### Customer Journey
 
-1. Customer selects "Pay in 3" option and enters mobile number
+1. Customer selects "Pay-in-3" option and enters mobile number
 2. Seamless merchant calls **Get Checkout Details API** with amount and mobile number
 3. System checks customer eligibility for Pay-in-3
-4. System returns eligibility response based on customer type:
+4. System returns complete repayment schedule will be returned.&#x20;
+
+   You need to show the repayment schedule to the customer, so that they can initiate payment.
 
 #### For pre-approved customers
 
-- Get Checkout Details API returns:
+- **Get Checkout Details&#x20;**&#x41;PI returns:
   - `is_eligible: true`
   - Down payment amount (pay now amount customer pays during transaction)
   - 2nd installment amount and date
@@ -27,7 +28,7 @@ Seamless merchants need the ability to offer Pay in 3 payment option to their cu
 
 #### For non pre-approved (NTB) customers
 
-- Get Checkout Details API returns eligibility check but **does not return tenures** for Pay-in-3
+- **Get Checkout Details** API returns eligibility check but **does not return tenures** for Pay-in-3
 - Merchant collects additional PI (Personal Information) details from customer:
   - Name
   - PAN
@@ -74,9 +75,9 @@ Seamless merchants need the ability to offer Pay in 3 payment option to their cu
 
 ## Step 1: Check LazyPay Pay in 3 Eligibility
 
-### Step 1a. LazyPay Pay-in-3 eligibility (GCD)
+### Step 1a. Check eligibility on basis of ETB
 
-After you collect the customer’s mobile number and the amount to be paid, call **Get Checkout Details** on `POST /merchant/postservice?form=2` with the `filters.paymentOptions.emi` structure that includes cardless EMI (and `payInParts` when your pack must return Pay-in-3 lenders in the response). The sample request and ETB sample response below align with [Get Checkout Details (GCD) — Pay-in-3 catalogue](ref:gcd-payinparts-get-checkout-details).
+After you collect the customer’s mobile number and the amount to be paid, call **Get Checkout Details** on `POST /merchant/postservice?form=2` with the `filters.paymentOptions.emi` structure that includes cardless EMI (and `payInParts` when your pack must return Pay-in-3 lenders in the response). The sample request and ETB sample response below align with [Get Checkout Details (GCD) — Pay-in-3 catalogue](ref:gcd-payinparts-get-checkout-details).&#x20;
 
 | Environment | URL                                                |
 | :---------- | :------------------------------------------------- |
@@ -454,6 +455,8 @@ curl_close($ch);
 </Accordion>
 
 #### Sample response
+
+> ✅ The response will provide complete repayment schedule will be returned. You must display this schedule to your customer.&#x20;
 
 <Accordion title="ETB" icon="fa-info-circle">
 
@@ -1447,11 +1450,11 @@ curl_close($ch);
 ```
 </Accordion>
 
-### Step 1b: NTB eligibility — Get EMI Checkout Details (GECD) [Optional]
+### Step 1b: NTB eligibility — Get EMI Checkout Details (GECD) \[Optional]
 
 If **Get Checkout Details** shows the customer is **NTB** for LazyPay Pay-in-3, you must obtain full eligibility using **Get EMI Checkout Details** (GECD). Collect the required **personal information (PI)** from the customer and include it in the GECD request to check main eligibility. When the customer is eligible, the response includes the **down payment**, **2nd and 3rd installment amounts and dates**, and any applicable fees (similar to the pre-approved path).
 
-If the customer is **NTB**, you can also drive NTB-oriented checks on **Get Checkout Details** by setting **`checkNTBCustomerEligibility`** to **`true`** (alongside **`checkCustomerEligibility`** and **`returnUserLimit`** as required). In **`filters.paymentOptions.emi`**, include **`cardless`** and **`payInParts`** (for example both **`"all"`**) so Pay-in-3 lenders such as **`LAZYPI3`** can appear where your pack supports them, then interpret the **`emi`** payload including any **NTB** block. 
+If the customer is **NTB**, you can also drive NTB-oriented checks on **Get Checkout Details** by setting `checkNTBCustomerEligibility` to `true` (alongside `checkCustomerEligibility` and `returnUserLimit` as required). In `filters.paymentOptions.emi`, include `cardless` and `payInParts` (for example both `"all"`) so Pay-in-3 lenders such as `LAZYPI3` can appear where your pack supports them, then interpret the `emi` payload including any **NTB** block.
 
 <Accordion title="Sample request" icon="fa-code">
 ```
