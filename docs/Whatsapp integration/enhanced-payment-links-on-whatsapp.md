@@ -59,15 +59,73 @@ Meta defines three WhatsApp commerce payment flavours; EPL sits at the **lowest 
 4. The **browser** opens PayU **hosted checkout**; the customer pays with any supported method.
 5. PayU processes the payment and sends your existing **PG webhook** (same payload and reconciliation patterns as today).
 
-***
+The following **sequence diagram** matches the steps above (same styling as other PayU Developer Guide sequence diagrams such as the refunds workflow).
 
 ```mermaid
-Merchant system
-  → PayU API: create payment link
-  → WhatsApp Cloud API: send approved template (CTA URL includes PayU link suffix)
-  → Customer taps Pay Now → PayU hosted checkout in browser
-  → Customer pays → PayU webhook to merchant (same as existing payment links)
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "mirrorActors": false,
+    "rightAngles": true,
+    "messageAlign": "left",
+    "fontSize": 12,
+    "actorFontSize": 12,
+    "noteFontSize": 11,
+    "actorMargin": 90,
+    "width": 170,
+    "boxMargin": 10,
+    "messageMargin": 38,
+    "diagramMarginX": 60,
+    "diagramMarginY": 18
+  },
+  "themeVariables": {
+    "fontFamily": "Arial, Helvetica, sans-serif",
+    "fontSize": "12px",
+    "background": "#FFFFFF",
+    "primaryColor": "#A6C307",
+    "primaryTextColor": "#002843",
+    "primaryBorderColor": "#002843",
+    "secondaryColor": "#F4F9E0",
+    "lineColor": "#002843",
+    "textColor": "#002843",
+    "actorBkg": "#A6C307",
+    "actorBorder": "#002843",
+    "actorTextColor": "#002843",
+    "actorLineColor": "#002843",
+    "signalColor": "#002843",
+    "signalTextColor": "#002843",
+    "labelBoxBkgColor": "#F4F9E0",
+    "labelBoxBorderColor": "#A6C307",
+    "noteBkgColor": "#F4F9E0",
+    "noteTextColor": "#002843",
+    "noteBorderColor": "#A6C307",
+    "activationBkgColor": "#E8F0C4",
+    "activationBorderColor": "#002843"
+  }
+}}%%
+sequenceDiagram
+    box Merchant
+        participant MS as Merchant system
+    end
+    box PayU
+        participant PU as PayU
+    end
+    box WhatsApp
+        participant WA as Cloud API
+    end
+    participant C as Customer
+
+    MS->>PU: Create payment link
+    PU-->>MS: Payment link URL
+    MS->>WA: Send approved template (CTA includes PayU link suffix)
+    WA->>C: Template card with Pay Now
+    Note over C: Tap Pay Now — opens browser
+    C->>PU: Hosted checkout (browser)
+    C->>PU: Complete payment
+    PU->>MS: PG webhook (same as payment links)
 ```
+
+***
 
 ## Benefits for your business
 
