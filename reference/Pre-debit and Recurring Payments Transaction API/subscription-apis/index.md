@@ -1,4 +1,4 @@
 ---
 title: Subscription APIs
-hidden: false
+hidden: true
 ---
