@@ -1165,9 +1165,9 @@ curl_close($ch);
 ```
 </Accordion>
 
-### Step 1b: Check Main Eligibility for New to the Bank (NTB) Customer
+### Step 1b: Check Main Eligibility for NTB Customer
 
-If **Get Checkout Details** shows the customer is **NTB** for LazyPay Pay-in-3, you must obtain full eligibility using **Get EMI Checkout Details** (GECD). Collect the required **personal information (PI)** from the customer and include it in the GECD request to check main eligibility. When the customer is eligible, the response includes the **down payment**, **2nd and 3rd installment amounts and dates**, and any applicable fees (similar to the pre-approved path).
+If **Get Checkout Details** shows the customer is New to the Bank (**NTB)** for LazyPay Pay-in-3, you must obtain full eligibility using **Get EMI Checkout Details** (GECD). Collect the required **personal information (PI)** from the customer and include it in the GECD request to check main eligibility. When the customer is eligible, the response includes the **down payment**, **2nd and 3rd installment amounts and dates**, and any applicable fees (similar to the pre-approved path).
 
 <Accordion title="Sample request" icon="fa-code">
 ```
