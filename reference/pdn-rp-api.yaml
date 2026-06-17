@@ -1,0 +1,325 @@
+openapi: 3.0.0
+info:
+  title: Pre-debit and Recurring Payments Transaction API
+  description: >-
+    Schedule pre-debit notifications and recurring debits against an existing
+    mandate.
+  version: 1.0.0
+servers:
+  - url: https://info.payu.in
+    description: Production Environment
+  - url: https://test.payu.in
+    description: Test Environment
+paths:
+  /merchant/webservice/service.php:
+    post:
+      summary: Pre-debit and Recurring Payments Transaction API
+      description: >-
+        Creates a pre-debit notification and processes a recurring debit against
+        an existing mandate.
+      tags:
+        - Subscription APIs
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - key
+                - hash
+                - var1
+              properties:
+                key:
+                  type: string
+                  description: >-
+                    The merchant key generated from the dashboard. Know how to
+                    generate the
+                    [test](https://docs.payu.in/docs/generate-test-merchant-key-and-salt)
+                    and
+                    [live](https://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard)
+                    keys from the dashboard.
+                hash:
+                  type: string
+                  description: >
+                    SHA512 hash generated using the formula:
+                    SHA512(key|command|var1|salt), where key is the merchant
+                    key, command is the API command, var1 is the request
+                    parameter, and salt is the merchant salt.
+                command:
+                  type: string
+                  description: API command.
+                  example: si_transaction
+                var1:
+                  $ref: '#/components/schemas/SITransactionRequest'
+            examples:
+              request:
+                summary: SI Transaction Request
+                value:
+                  key: JPM7Fg
+                  hash: >-
+                    1be625350f785a208a737f05151f8fee378aa332be1a5f361546f3bbe6fa42f000ea985765b686e11dce4e3ad934dac763bd755624996f82bb01cf7b4f2b468b
+                  command: si_transaction
+                  var1:
+                    authPayuId: '403993715529787'
+                    txnId: TXN_20240415_001
+                    amount: '499.00'
+                    debitDate: '2024-04-20'
+                    debitType: PREDEBIT_AND_RECURRING
+                    currency: INR
+                    planId: PLAN_MONTHLY_999
+                    mandateSeqNo: '2'
+                    email: aarav@example.com
+                    phone: '9999999999'
+                    firstname: Aarav
+                    lastname: Sinha
+      responses:
+        '200':
+          description: Request processed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+              examples:
+                success:
+                  summary: Successful Response
+                  value:
+                    status: 1
+                    message: Debit Scheduled successfully
+                    details: []
+                    predebitDetails: []
+        '400':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                validationError:
+                  summary: Missing Debit Date
+                  value:
+                    status: 0
+                    message: debitDate is mandatory
+                    errorCode: SIR004
+                    action: SI_RECURRING
+components:
+  schemas:
+    SITransactionRequest:
+      type: object
+      required:
+        - authPayuId
+        - txnId
+        - amount
+      properties:
+        authPayuId:
+          type: string
+          description: PayU mandate ID received during mandate registration.
+          example: '403993715529787'
+        txnId:
+          type: string
+          description: Unique merchant transaction identifier.
+          example: TXN_20240415_001
+        amount:
+          type: string
+          description: Debit amount.
+          example: '499.00'
+        debitDate:
+          type: string
+          format: date
+          description: |
+            Scheduled debit date in YYYY-MM-DD format.
+
+            Required for:
+            - UPI mandates
+            - Credit Card mandates
+            - Debit Card mandates
+            - eNACH mandates
+
+            Must be a future date within the allowed billing cycle window.
+        debitType:
+          type: string
+          description: |
+            Type of debit request.
+
+            Possible values:
+            - PREDEBIT_AND_RECURRING
+            - PREDEBIT
+            - RECURRING
+          enum:
+            - PREDEBIT_AND_RECURRING
+            - PREDEBIT
+            - RECURRING
+          default: PREDEBIT_AND_RECURRING
+        currency:
+          type: string
+          default: INR
+          description: Transaction currency.
+          example: INR
+        planId:
+          type: string
+          description: The unique subscription plan identifier.
+          example: PLAN_MONTHLY_999
+        mandateSeqNo:
+          type: string
+          description: The mandate sequence number.
+          example: '2'
+        additional_charges:
+          type: string
+          description: Flat surcharge amount.
+          example: '0.00'
+        percentage_additional_charges:
+          type: string
+          description: Percentage-based surcharge.
+          example: '0.00'
+        invoiceDisplayNumber:
+          type: string
+          description: |
+            Merchant invoice reference.
+
+            Mandatory when debitType is:
+            - PREDEBIT
+            - RECURRING
+        udf2:
+          type: string
+          description: User-defined field 2.
+        udf3:
+          type: string
+          description: User-defined field 3.
+        udf4:
+          type: string
+          description: User-defined field 4.
+        udf5:
+          type: string
+          description: User-defined field 5.
+        email:
+          type: string
+          description: The customer email address.
+        phone:
+          type: string
+          description: The customer phone number.
+        firstname:
+          type: string
+          description: The customer first name.
+        lastname:
+          type: string
+          description: The customer last name.
+        address1:
+          type: string
+          description: The customer address line 1.
+          example: 123 Main Street
+        address2:
+          type: string
+          description: The customer address line 2.
+          example: Apt 4B
+        city:
+          type: string
+          description: The customer city.
+          example: Bangalore
+        state:
+          type: string
+          description: The customer state.
+          example: Karnataka
+        country:
+          type: string
+          description: The customer country.
+          example: India
+        zipcode:
+          type: string
+          description: ZIP or postal code.
+          example: '560001'
+        more_info:
+          type: array
+          description: Merchant metadata.
+          items:
+            $ref: '#/components/schemas/MoreInfo'
+    MoreInfo:
+      type: object
+      properties:
+        wtParams:
+          type: array
+          items:
+            $ref: '#/components/schemas/WTParams'
+    WTParams:
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of the WT parameter.
+          example: mutual_fund
+        plan:
+          type: string
+          description: The subscription plan name or identifier.
+          example: GD
+        folio:
+          type: string
+          description: The mutual fund folio number.
+          example: '9104927822'
+        amount:
+          type: string
+          description: The amount associated with the WT parameter.
+          example: '100'
+        option:
+          type: string
+          description: The investment option for mutual funds (e.g., "growth", "dividend").
+          example: G
+        scheme:
+          type: string
+          description: The mutual fund scheme name or identifier.
+          example: LT
+        receipt:
+          type: string
+          description: The receipt number for the transaction.
+          example: '12345'
+        mf_member_id:
+          type: string
+          description: The mutual fund member ID.
+          example: '12345'
+        mf_user_id:
+          type: string
+          description: The mutual fund user ID.
+          example: '7740'
+        mf_partner:
+          type: string
+          description: The mutual fund partner name or identifier.
+          example: cams
+        mf_investment_type:
+          type: string
+          description: The type of mutual fund investment (e.g., "SIP", "Lumpsum").
+          example: L
+        mf_amc_code:
+          type: string
+          description: The AMC (Asset Management Company) code.
+    SuccessResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: 1 indicates success.
+        message:
+          type: string
+          description: Human-readable response message.
+        details:
+          type: object
+          description: Recurring debit response details.
+        predebitDetails:
+          type: object
+          description: Pre-debit response details.
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          description: 0 indicates failure.
+          example: 0
+        message:
+          type: string
+          description: Human-readable error message.
+          example: debitDate is mandatory
+        errorCode:
+          type: string
+          description: API error code.
+          example: SIR004
+        action:
+          type: string
+          description: Action that failed.
+          example: SI_RECURRING
