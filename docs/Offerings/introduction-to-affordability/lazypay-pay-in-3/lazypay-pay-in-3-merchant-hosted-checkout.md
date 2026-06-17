@@ -16,7 +16,7 @@ Seamless merchants need the ability to offer Pay in 3 payment option to their cu
 3. System checks customer eligibility for Pay in 3
 4. System returns eligibility response based on customer type:
 
-#### For Customer Type 1a & 1b
+#### For pre-approved customers
 
 - Get Checkout Details API returns:
   - `is_eligible: true`
@@ -25,7 +25,7 @@ Seamless merchants need the ability to offer Pay in 3 payment option to their cu
   - 3rd installment amount and date
   - Processing fee and GST (if applicable)
 
-#### For Customer Type 2a
+#### For non pre-approved (NTB) customers
 
 - Get Checkout Details API returns eligibility check but **does not return tenures** for Pay in 3
 - Merchant collects additional PI (Personal Information) details from customer:
@@ -39,8 +39,8 @@ Seamless merchants need the ability to offer Pay in 3 payment option to their cu
   - Tenures if customer is eligible
   - Not eligible status if customer fails eligibility check
 
-1. Eligible customer clicks "Proceed" on merchant website
-2. Merchant calls `_payment` API with selected pay mode i.e Lazypay pay in 3 **Ibibo code: LZYPI3**
+5. Eligible customer clicks "Proceed" on merchant website
+6. Merchant calls `_payment` API with selected pay mode i.e Lazypay pay in 3 **Ibibo code: LZYPI3**
 
 > 📘
 >
@@ -49,8 +49,8 @@ Seamless merchants need the ability to offer Pay in 3 payment option to their cu
 **Steps to integrate**
 
 <Cards columns={2}>
-  <Card title="1. Check PayInParts / Pay-in-3 eligibility" href="#step-1-check-payinparts-and-lazypay-pay-in-3-eligibility">
-    Call **Get Checkout Details** with PayInParts filters and interpret the GCD response (including **`LAZYPI3`**) before payment initiation.
+  <Card title="1. Check LazyPay Pay in 3 eligibility" href="#step-1-check-lazypay-pay-in-3-eligibility">
+    Call **Get Checkout Details** with the right EMI filters and interpret the GCD response (including **`LAZYPI3`**) before payment initiation.
 
     <br />
   </Card>
@@ -72,11 +72,11 @@ Seamless merchants need the ability to offer Pay in 3 payment option to their cu
   </Card>
 </Cards>
 
-## Step 1: Check PayInParts and LazyPay Pay-in-3 eligibility
+## Step 1: Check LazyPay Pay in 3 Eligibility
 
-### Step 1a. Check in PayInParts Eligibility
+### Step 1a. LazyPay Pay-in-3 eligibility (GCD)
 
-After you collect the customer’s mobile number and the amount to be paid, call **Get Checkout Details** on `POST /merchant/postservice?form=2` with the `filters.paymentOptions.emi` structure that includes cardless EMI (and `payInParts` when your pack requires Pay-in-parts lenders in the response). The sample request and ETB sample response below match [Get Checkout Details — PayInParts (GCD)](ref:gcd-payinparts-get-checkout-details).
+After you collect the customer’s mobile number and the amount to be paid, call **Get Checkout Details** on `POST /merchant/postservice?form=2` with the `filters.paymentOptions.emi` structure that includes cardless EMI (and `payInParts` when your pack must return Pay-in-3 lenders in the response). The sample request and ETB sample response below align with [Get Checkout Details (GCD) — Pay-in-3 catalogue](ref:gcd-payinparts-get-checkout-details).
 
 | Environment | URL                                                |
 | :---------- | :------------------------------------------------- |
@@ -180,12 +180,12 @@ After you collect the customer’s mobile number and the amount to be paid, call
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>customerDetails<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Customer attributes required for EMI / Pay-in-parts lookups.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Customer attributes required for EMI / Pay-in-3 catalogue lookups.</p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"></td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>customerDetails.mobile<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Mobile number used for lender and Pay-in-parts eligibility.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Mobile number used for lender and Pay-in-3 eligibility.</p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"></td>
 </tr>
 <tr>
@@ -200,7 +200,7 @@ After you collect the customer’s mobile number and the amount to be paid, call
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>filters.paymentOptions.emi<br><code>optional</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> EMI filters (debit card EMI, cardless EMI, Pay-in-parts).</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> EMI filters (debit card EMI, cardless EMI, Pay-in-3 catalogue).</p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"></td>
 </tr>
 <tr>
@@ -215,7 +215,7 @@ After you collect the customer’s mobile number and the amount to be paid, call
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>filters.paymentOptions.emi.payInParts<br><code>optional</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Set to <code>"all"</code> when your pack must return PayInParts lenders (for example LazyPay Pay-in-3 / <code>LAZYPI3</code>) in addition to cardless EMI.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Set to <code>"all"</code> when your pack must return Pay-in-3 lenders (for example LazyPay Pay-in-3 / <code>LAZYPI3</code>) in addition to cardless EMI.</p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>"all"</p></td>
 </tr>
 </tbody>
@@ -1447,9 +1447,11 @@ curl_close($ch);
 ```
 </Accordion>
 
-### Step 1b: Check EMI Eligibility for NTB Customers \[Optional]
+### Step 1b: NTB eligibility — Get EMI Checkout Details (GECD) [Optional]
 
-If the customer is found to be NTB, you must calculate the EMI eligibility using **Get Checkout Details** with `checkNTBCustomerEligibility`**:&#x20;**`true` (alongside `checkCustomerEligibility` and `returnUserLimit` as required). Align `filters.paymentOptions.emi` with the PayInParts PRD sample: include `cardless` and `payInParts` (for example both `"all"`) so Pay-in-parts lenders can appear where applicable; then interpret the `emi` payload including any **NTB** section per [Seamless response samples — GCD and GECD (PayInParts lenders)](../../../../PRDs/Lazypay/seamless-response-gcd-gecd-payinparts-lenders.md).
+If **Get Checkout Details** shows the customer is **NTB** for LazyPay Pay-in-3, you must obtain full eligibility using **Get EMI Checkout Details** (GECD). Collect the required **personal information (PI)** from the customer and include it in the GECD request to check main eligibility. When the customer is eligible, the response includes the **down payment**, **2nd and 3rd installment amounts and dates**, and any applicable fees (similar to the pre-approved path).
+
+If the customer is **NTB**, you can also drive NTB-oriented checks on **Get Checkout Details** by setting **`checkNTBCustomerEligibility`** to **`true`** (alongside **`checkCustomerEligibility`** and **`returnUserLimit`** as required). In **`filters.paymentOptions.emi`**, include **`cardless`** and **`payInParts`** (for example both **`"all"`**) so Pay-in-3 lenders such as **`LAZYPI3`** can appear where your pack supports them, then interpret the **`emi`** payload including any **NTB** block. The sample request and responses on this page illustrate the expected shapes—no separate PRD link is required.
 
 <Accordion title="Sample request" icon="fa-code">
 ```
