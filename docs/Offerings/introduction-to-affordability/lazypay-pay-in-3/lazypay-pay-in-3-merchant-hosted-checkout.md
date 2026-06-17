@@ -41,7 +41,7 @@ If the customer is eligible, proceed with the merchant-hosted collect flow and v
   - Not eligible status if customer fails eligibility check
 
 5. Eligible customer clicks "Proceed" on merchant website
-6. Merchant calls `_payment` API with selected pay mode i.e Lazypay pay in 3 **Ibibo code: LZYPI3**
+6. Merchant calls `_payment` API with selected pay mode, that is, Lazypay pay-in-3,  **bankcode: LZYPI3**
 
 > 📘
 >
