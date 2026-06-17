@@ -13,7 +13,7 @@ Seamless merchants need the ability to offer Pay in 3 payment option to their cu
 
 1. Customer selects "Pay in 3" option and enters mobile number
 2. Seamless merchant calls **Get Checkout Details API** with amount and mobile number
-3. System checks customer eligibility for Pay in 3
+3. System checks customer eligibility for Pay-in-3
 4. System returns eligibility response based on customer type:
 
 #### For pre-approved customers
@@ -27,7 +27,7 @@ Seamless merchants need the ability to offer Pay in 3 payment option to their cu
 
 #### For non pre-approved (NTB) customers
 
-- Get Checkout Details API returns eligibility check but **does not return tenures** for Pay in 3
+- Get Checkout Details API returns eligibility check but **does not return tenures** for Pay-in-3
 - Merchant collects additional PI (Personal Information) details from customer:
   - Name
   - PAN
