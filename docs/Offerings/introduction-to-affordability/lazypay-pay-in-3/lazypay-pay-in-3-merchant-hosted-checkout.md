@@ -1451,7 +1451,7 @@ curl_close($ch);
 
 If **Get Checkout Details** shows the customer is **NTB** for LazyPay Pay-in-3, you must obtain full eligibility using **Get EMI Checkout Details** (GECD). Collect the required **personal information (PI)** from the customer and include it in the GECD request to check main eligibility. When the customer is eligible, the response includes the **down payment**, **2nd and 3rd installment amounts and dates**, and any applicable fees (similar to the pre-approved path).
 
-If the customer is **NTB**, you can also drive NTB-oriented checks on **Get Checkout Details** by setting **`checkNTBCustomerEligibility`** to **`true`** (alongside **`checkCustomerEligibility`** and **`returnUserLimit`** as required). In **`filters.paymentOptions.emi`**, include **`cardless`** and **`payInParts`** (for example both **`"all"`**) so Pay-in-3 lenders such as **`LAZYPI3`** can appear where your pack supports them, then interpret the **`emi`** payload including any **NTB** block. The sample request and responses on this page illustrate the expected shapes—no separate PRD link is required.
+If the customer is **NTB**, you can also drive NTB-oriented checks on **Get Checkout Details** by setting **`checkNTBCustomerEligibility`** to **`true`** (alongside **`checkCustomerEligibility`** and **`returnUserLimit`** as required). In **`filters.paymentOptions.emi`**, include **`cardless`** and **`payInParts`** (for example both **`"all"`**) so Pay-in-3 lenders such as **`LAZYPI3`** can appear where your pack supports them, then interpret the **`emi`** payload including any **NTB** block. 
 
 <Accordion title="Sample request" icon="fa-code">
 ```
