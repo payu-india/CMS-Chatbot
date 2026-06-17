@@ -59,15 +59,15 @@ Meta defines three WhatsApp commerce payment flavours; EPL sits at the **lowest 
 4. The **browser** opens PayU **hosted checkout**; the customer pays with any supported method.
 5. PayU processes the payment and sends your existing **PG webhook** (same payload and reconciliation patterns as today).
 
-```
+***
+
+```mermaid
 Merchant system
   → PayU API: create payment link
   → WhatsApp Cloud API: send approved template (CTA URL includes PayU link suffix)
   → Customer taps Pay Now → PayU hosted checkout in browser
   → Customer pays → PayU webhook to merchant (same as existing payment links)
 ```
-
-***
 
 ## Benefits for your business
 
@@ -78,7 +78,7 @@ Merchant system
 
 Real-world examples cited in product materials include **PolicyBazaar** (reported **17%** conversion uplift after EPL) and **Piramal Finance** for recurring EMI collection via links.
 
-### When EPL is a strong fit
+### When you must use EPL?
 
 - Insurance — premium renewals and policyholder collections.
 - Lending / NBFCs — EMI and recurring collection links.
@@ -86,14 +86,14 @@ Real-world examples cited in product materials include **PolicyBazaar** (reporte
 - Merchants who already run **PayU payment links** and want WhatsApp as an additional channel.
 - Teams that need **go-live in roughly 1–2 weeks** (often dominated by **Meta template approval**, typically **3–7 business days**).
 
-### When to consider another flavour instead
+### When to consider another flavour instead?
 
 - You need the customer to **stay inside WhatsApp** for the full payment UX → look at **PG Deep Integration** (or **UPI Intent** if UPI-only is acceptable).
 - You need **rich multi-line-item orders** and real-time **order status** purely in chat (for example food delivery) → **PG Deep Integration** is usually more appropriate.
 
 ***
 
-## Prequisites to go live on EPL
+## Prerequisites to go live on EPL
 
 | Requirement                          | Detail                                                                                                                      |
 | :----------------------------------- | :-------------------------------------------------------------------------------------------------------------------------- |
