@@ -293,12 +293,18 @@ paths:
                     predebitDetails: []
         '400':
           description: >
-            Failures return JSON with `status: 0`, a human-readable `message`,
-            and (for SI validation errors) `errorCode` and `action`.
+            Validation or business-rule failure. The JSON body includes `status:
+            0`, a human-readable `message`, and (for SI validation errors)
+            `errorCode` and `action`.
 
 
-            **Envelope / request issues** (often no `errorCode` in the response;
-            match on `message`):
+            <details>
+
+            <summary>Envelope / request issues (often no
+            <code>errorCode</code>)</summary>
+
+
+            Match on <code>message</code> when <code>errorCode</code> is absent.
 
 
             | Error code | Error | Cause | Recommended fix |
@@ -323,8 +329,16 @@ paths:
             created. |
 
 
-            **Structured error codes** (`errorCode` in the response body; from
-            *PREDEBIT_AND_RECURRING_API.pdf*):
+            </details>
+
+
+            <details>
+
+            <summary>SI error codes
+            (<code>SIR001</code>–<code>SIR007</code>)</summary>
+
+
+            From *PREDEBIT_AND_RECURRING_API.pdf*.
 
 
             | Error code | Error | Cause | Recommended fix |
@@ -358,6 +372,9 @@ paths:
             `debitDate` is outside the allowed billing-cycle window. | Select
             `debitDate` inside the permitted pre-debit range for this mandate;
             `{CYCLE}` in the message is replaced by the applicable cycle name. |
+
+
+            </details>
           x-error-codes:
             - code: null
               error: Key is empty
