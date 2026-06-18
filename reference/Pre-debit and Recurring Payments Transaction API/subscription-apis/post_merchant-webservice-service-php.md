@@ -71,6 +71,10 @@ curl -X POST "https://info.payu.in/merchant/postservice.php?form=2" \
 }'
 ```
 
+> 📘 **Request Parameter Description**
+>
+> Refer to the Form Data section for request parameter description.
+
 ## Sample Response
 
 ```json
@@ -85,5 +89,9 @@ curl -X POST "https://info.payu.in/merchant/postservice.php?form=2" \
   ]
 }
 ```
+
+> 📘 **Response Parameter Description**
+>
+> Refer to the Responses section for response parameter description.
 
 <br />
