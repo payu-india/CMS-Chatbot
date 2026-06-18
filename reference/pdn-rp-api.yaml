@@ -293,132 +293,78 @@ paths:
                     predebitDetails: []
         '400':
           description: >
-            Validation or business-rule failure. The JSON body includes `status:
-            0`, a human-readable `message`, and (for SI validation errors)
-            `errorCode` and `action`.
+            Validation or business-rule failure. Response JSON uses `status: 0`,
+            `message`, and when applicable `errorCode` and `action`.
 
 
-            **Envelope / request issues** (often no `errorCode`; match on
-            `message`)
+            <details>
+
+            <summary><strong>Envelope &amp; request issues</strong> — match on
+            <code>message</code> (often no <code>errorCode</code>)</summary>
 
 
-            code: null
+            | Code | Error | Cause | Recommended fix |
 
-            error: Key is empty
+            | :--- | :--- | :--- | :--- |
 
-            cause: Merchant key not sent in the request.
+            | — | Key is empty | Merchant key not sent. | Send the `key` form
+            field from the PayU dashboard for the correct environment (test vs
+            live). |
 
-            recommended_fix: Send the `key` form field using the merchant key
-            from the PayU dashboard for the correct environment (test vs live).
+            | — | Hash is empty / Invalid Hash. | Hash missing or digest
+            mismatch. | Recompute the documented SHA512 over pipe-delimited
+            `key`, `si_transaction`, `var1`, and `salt` using the exact posted
+            `var1` and salt. |
 
+            | — | Invalid Data. | `var1` is not valid JSON. | Serialize one JSON
+            object to `var1`; validate locally; form-encode without corrupting
+            quotes or braces. |
 
-            code: null
-
-            error: Hash is empty / Invalid Hash.
-
-            cause: Hash absent or does not match the expected SHA512 digest.
-
-            recommended_fix: Recompute SHA512(key|si_transaction|var1|salt) with
-            the exact posted var1 string, correct salt, and documented
-            pipe-delimited order.
-
-
-            code: null
-
-            error: Invalid Data.
-
-            cause: var1 is not valid JSON.
-
-            recommended_fix: Serialize var1 as a single JSON object string;
-            validate JSON locally; ensure form encoding does not corrupt braces
-            or quotes.
+            | — | Mandate entry not found | `authPayuId` not in `SI_txn`. | Use
+            `authPayuId` from mandate registration; call the same environment
+            (test/live) where the mandate exists. |
 
 
-            code: null
-
-            error: Mandate entry not found
-
-            cause: authPayuId not found in SI_txn.
-
-            recommended_fix: Use authPayuId from successful mandate registration
-            for this customer; verify you are calling the same environment where
-            the mandate exists.
+            </details>
 
 
-            **SI error codes** (`SIR001`–`SIR007`; from
-            *PREDEBIT_AND_RECURRING_API.pdf*)
+            <details>
+
+            <summary><strong>SI validation codes</strong> —
+            <code>SIR001</code>–<code>SIR007</code> (see
+            *PREDEBIT_AND_RECURRING_API.pdf*)</summary>
 
 
-            code: SIR001
+            | Code | Error | Cause | Recommended fix |
 
-            error: amount is mandatory
+            | :--- | :--- | :--- | :--- |
 
-            cause: amount missing from var1.
+            | SIR001 | amount is mandatory | `amount` missing from `var1`. |
+            Include `amount` as a decimal string (e.g. `"499.00"`) in `var1`. |
 
-            recommended_fix: Include amount in var1 as a decimal string (e.g.
-            "499.00").
+            | SIR002 | Invalid amount | Not a valid decimal. | Send a positive
+            decimal string only; no currency symbols or stray characters. |
 
+            | SIR003 | txnid is mandatory | `txnId` missing from `var1`. | Add a
+            unique merchant `txnId` for this debit in `var1`. |
 
-            code: SIR002
+            | SIR004 | debitDate is mandatory | `debitDate` missing for
+            UPI/CC/DC (and eNACH where required). | Include `debitDate` as
+            `YYYY-MM-DD` in `var1` per the spec. |
 
-            error: Invalid amount
+            | SIR005 | Invalid debitDate, expected format: YYYY-MM-DD | Wrong
+            date format. | Use strict `YYYY-MM-DD` for `debitDate`. |
 
-            cause: amount is not a valid decimal.
+            | SIR006 | debitDate must be a future date | Past date supplied. |
+            Choose a future `debitDate` allowed by PayU and the issuer. |
 
-            recommended_fix: Send a valid positive decimal string without
-            currency symbols or invalid characters.
-
-
-            code: SIR003
-
-            error: txnid is mandatory
-
-            cause: txnId missing from var1.
-
-            recommended_fix: Add a unique txnId for this transaction to the var1
-            JSON payload.
-
-
-            code: SIR004
-
-            error: debitDate is mandatory
-
-            cause: debitDate missing for UPI/CC/DC (and eNACH where required).
-
-            recommended_fix: For UPI, credit card, debit card, and eNACH,
-            include debitDate in YYYY-MM-DD inside var1 per the API
-            specification.
+            | SIR007 | debitDate exceeds the allowed range for {CYCLE} mandate |
+            Outside the mandate billing window. | Pick `debitDate` inside the
+            allowed pre-debit range; `{CYCLE}` names the applicable billing
+            cycle. |
 
 
-            code: SIR005
-
-            error: "Invalid debitDate, expected format: YYYY-MM-DD"
-
-            cause: Wrong date format for debitDate.
-
-            recommended_fix: Format debitDate strictly as YYYY-MM-DD.
-
-
-            code: SIR006
-
-            error: debitDate must be a future date
-
-            cause: Past date supplied for debitDate.
-
-            recommended_fix: Choose a future debitDate that satisfies PayU and
-            issuer billing rules.
-
-
-            code: SIR007
-
-            error: debitDate exceeds the allowed range for {CYCLE} mandate
-
-            cause: debitDate outside the allowed billing-cycle window for this
-            mandate.
-
-            recommended_fix: Align debitDate with the mandate's allowed
-            pre-debit window; interpret {CYCLE} from the response message for
-            the specific billing cycle.
+            </details>
           content:
             application/json:
               schema:
