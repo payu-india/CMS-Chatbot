@@ -67,7 +67,7 @@ metadata:
    **`surl`**: This is a success URL PayU redirects your customers to after the payment is successful. This is not the proof of a payment as:
      - Browser redirects can fail
      - Users may close browser
-     - Callbacks may be spoofed
+     - Callbacks may be spoofed<br/>
 
    **`furl`** This is a failure URL PayU redirects you customers to if the payment fails. You can use this page to show:
      - Failure reason
