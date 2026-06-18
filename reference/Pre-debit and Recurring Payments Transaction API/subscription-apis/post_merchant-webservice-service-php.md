@@ -104,6 +104,6 @@ curl -X POST "https://info.payu.in/merchant/postservice.php?form=2" \
 
 > 📘 **Response Parameter Description**
 >
-> Refer to the [Responses](https://docs.payu.in/reference/post_merchant-webservice-service-php#body-params) section for response parameter description.
+> Refer to the [Responses](https://docs.payu.in/reference/post_merchant-webservice-service-php#response-schemas) section for response parameter description.
 
 <br />
