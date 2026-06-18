@@ -293,8 +293,13 @@ paths:
                     predebitDetails: []
         '400':
           description: >
-            Validation or business-rule failure. The JSON body uses `status: 0`,
-            `message`, and when applicable `errorCode` and `action`.
+            Validation or business-rule failure. The JSON body uses:
+
+            - `status: 0`
+
+            - `message`
+
+            - When applicable `errorCode` and `action`
 
 
             **Envelope / request issues** (often no `errorCode`—match on
@@ -368,13 +373,12 @@ paths:
             </details>
 
 
-            **SI validation codes** (`SIR001`–`SIR007`,
-            *PREDEBIT_AND_RECURRING_API.pdf*)
+            **SI validation codes**
 
 
             <details>
 
-            <summary><code>SIR001</code> — amount is mandatory</summary>
+            <summary><code>SIR001</code>: amount is mandatory</summary>
 
 
             - **Cause:** `amount` missing from `var1`.
@@ -388,7 +392,7 @@ paths:
 
             <details>
 
-            <summary><code>SIR002</code> — Invalid amount</summary>
+            <summary><code>SIR002</code>: Invalid amount</summary>
 
 
             - **Cause:** Amount is not a valid decimal.
@@ -402,7 +406,7 @@ paths:
 
             <details>
 
-            <summary><code>SIR003</code> — txnid is mandatory</summary>
+            <summary><code>SIR003</code>: txnid is mandatory</summary>
 
 
             - **Cause:** `txnId` missing from `var1`.
@@ -416,7 +420,7 @@ paths:
 
             <details>
 
-            <summary><code>SIR004</code> — debitDate is mandatory</summary>
+            <summary><code>SIR004</code>: debitDate is mandatory</summary>
 
 
             - **Cause:** `debitDate` missing for UPI/CC/DC (and eNACH where
@@ -431,7 +435,7 @@ paths:
 
             <details>
 
-            <summary><code>SIR005</code> — Invalid debitDate
+            <summary><code>SIR005</code>: Invalid debitDate
             (YYYY-MM-DD)</summary>
 
 
@@ -445,7 +449,7 @@ paths:
 
             <details>
 
-            <summary><code>SIR006</code> — debitDate must be a future
+            <summary><code>SIR006</code>: debitDate must be a future
             date</summary>
 
 
@@ -460,7 +464,7 @@ paths:
 
             <details>
 
-            <summary><code>SIR007</code> — debitDate outside billing
+            <summary><code>SIR007</code>: debitDate outside billing
             window</summary>
 
 
