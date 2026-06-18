@@ -40,15 +40,21 @@ The customer journey involves three key steps:
 
 1. **Checkout Initiation**: Customer begins the payment process on the merchant's checkout page
 
-<Image align="center" border={true} src="https://files.readme.io/8ba8dec2112adc3f7050be48a91a43cec39eb6256de01c1a4c1cca3c1d36f5e5-tpv_si_step1.png" className="border" />
+
+<Image src="https://files.readme.io/8ba8dec2112adc3f7050be48a91a43cec39eb6256de01c1a4c1cca3c1d36f5e5-tpv_si_step1.png" align="center" border={true} />
+
 
 2. **PayU Redirect**: Customer is redirected to PayU's hosted checkout page for payment completion
 
-<Image align="center" border={true} src="https://files.readme.io/d2ac062dd599380f3d3a78e0158436c08750f4c13ea7be50326eba3d6e5a1994-tpv_si_step2.png" className="border" />
+
+<Image src="https://files.readme.io/d2ac062dd599380f3d3a78e0158436c08750f4c13ea7be50326eba3d6e5a1994-tpv_si_step2.png" align="center" border={true} />
+
 
 3. **Payment Processing**: Customer completes the payment using their preferred payment method (Net Banking or UPI)
 
-<Image align="center" border={true} src="https://files.readme.io/a3c1a3190a1aff209b493e606bef503a5f71f58d7647e77aa9ca9cbb429996e8-tpv_si_step3.png" className="border" />
+
+<Image src="https://files.readme.io/a3c1a3190a1aff209b493e606bef503a5f71f58d7647e77aa9ca9cbb429996e8-tpv_si_step3.png" align="center" border={true} />
+
 
 ## Step 1: Create Transaction with Beneficiary and SI Details
 
@@ -66,89 +72,22 @@ Submit the transaction parameters to PayU's payment gateway using the appropriat
 | **Production** | `https://secure.payu.in/_payment` |
 
 <Accordion title="Request parameters" icon="fa-code">
-  <HTMLBlock>{`
-  <table>
-  <thead>
-  <tr>
-  <th>Parameter</th>
-  <th>Description</th>
-  <th>Example</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-  <td>key<br/><code>mandatory</code></td>
-  <td>String - Merchant key provided by PayU during onboarding</td>
-  <td>"JPg***r"</td>
-  </tr>
-  <tr>
-  <td>txnid<br/><code>mandatory</code></td>
-  <td>String - Unique transaction ID for each order</td>
-  <td>"ypl938459435"</td>
-  </tr>
-  <tr>
-  <td>amount<br/><code>mandatory</code></td>
-  <td>String - Transaction amount</td>
-  <td>"100"</td>
-  </tr>
-  <tr>
-  <td>productinfo<br/><code>mandatory</code></td>
-  <td>String - Product description</td>
-  <td>"Test Product"</td>
-  </tr>
-  <tr>
-  <td>firstname<br/><code>mandatory</code></td>
-  <td>String - Customer's first name</td>
-  <td>"John"</td>
-  </tr>
-  <tr>
-  <td>email<br/><code>mandatory</code></td>
-  <td>String - Customer's email address</td>
-  <td>"john@example.com"</td>
-  </tr>
-  <tr>
-  <td>phone<br/><code>mandatory</code></td>
-  <td>String - Customer's phone number</td>
-  <td>"9999999999"</td>
-  </tr>
-  <tr>
-  <td>api_version<br/><code>mandatory</code></td>
-  <td>String - Version of the API</td>
-  <td>"6"</td>
-  </tr>
-  <tr>
-  <td>beneficiarydetail<br/><code>mandatory</code></td>
-  <td>JSON Object - Account numbers and associated details for verification</td>
-  <td>See structure below</td>
-  </tr>
-  <tr>
-  <td>si_details<br/><code>mandatory</code></td>
-  <td>JSON Object - Standing instruction details for autopay</td>
-  <td>See structure below</td>
-  </tr>
-  <tr>
-  <td>free_trial<br/><code>optional</code></td>
-  <td>String - Parameter to set up free trial periods</td>
-  <td>"1"</td>
-  </tr>
-  <tr>
-  <td>surl<br/><code>mandatory</code></td>
-  <td>String - Success URL for transaction response</td>
-  <td>"https://www.yoursurl.com"</td>
-  </tr>
-  <tr>
-  <td>furl<br/><code>mandatory</code></td>
-  <td>String - Failure URL for transaction response</td>
-  <td>"https://www.yourfailureurl.com"</td>
-  </tr>
-  <tr>
-  <td>hash<br/><code>mandatory</code></td>
-  <td>String - SHA512 Hash for securing the transaction request. For more information, refer to <a href="#hash-calcuation" Hash calculation </a></td>
-  <td>Generated using hash formula</td>
-  </tr>
-  </tbody>
-  </table>
-  `}</HTMLBlock>
+| Parameter | Description | Example |
+| --------- | ----------- | ------- |
+| `key` *mandatory* | `String` Merchant key provided by PayU during onboarding | `JPg***r` |
+| `txnid` *mandatory* | `String` Unique transaction ID for each order | `ypl938459435` |
+| `amount` *mandatory* | `String` Transaction amount | `100` |
+| `productinfo` *mandatory* | `String` Product description | `Test Product` |
+| `firstname` *mandatory* | `String` Customer's first name | `John` |
+| `email` *mandatory* | `String` Customer's email address | `john@example.com` |
+| `phone` *mandatory* | `String` Customer's phone number | `9999999999` |
+| `api_version` *mandatory* | `String` Version of the API | `7` |
+| `beneficiarydetail` *mandatory* | `JSON Object` Account numbers and associated details for verification | See structure below |
+| `si_details` *mandatory* | `JSON Object` Standing instruction details for autopay | See structure below |
+| `free_trial` *optional* | `String` Parameter to set up free trial periods | `1` |
+| `surl` *mandatory* | `String` Success URL for transaction response | `https://www.yoursurl.com` |
+| `furl` *mandatory* | `String` Failure URL for transaction response | `https://www.yourfailureurl.com` |
+| `hash` *mandatory* | `String` SHA512 hash for securing the transaction request. For more information, refer to [Hash calculation](#hash-calcuation). | Generated using hash formula |
 
   <Accordion title="Hash calculation" icon="fa-code">
     If UDF parameters are defined in the hash calculation, the same UDF fields must be included in the request sent to PayU.
@@ -307,3 +246,5 @@ Process the response from PayU and perform reverse hash validation to ensure tra
 
   <br />
 </Accordion>
+
+<br />
