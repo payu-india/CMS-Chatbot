@@ -265,7 +265,7 @@ paths:
                     lastname: Sinha
       responses:
         '200':
-          description: Request processed successfully.
+          description: Debit Scheduled successfully.
           content:
             application/json:
               schema:
