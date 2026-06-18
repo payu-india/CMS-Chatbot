@@ -446,13 +446,4 @@ paths:
                 Align debitDate with the mandate's allowed pre-debit window;
                 interpret {CYCLE} from the response message for the specific
                 billing cycle.
-          content:
-            application/json:
-              examples:
-                validationError:
-                  summary: Missing Debit Date
-                  value:
-                    status: 0
-                    message: debitDate is mandatory
-                    errorCode: SIR004
-                    action: SI_RECURRING
+          content: {}
