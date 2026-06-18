@@ -6,6 +6,7 @@
 - payment-consent-transaction-merchant-hosted
 - pre_debit_notification_api
 - recurring_payment_api
+- post_merchant-webservice-service-php
 - manage-recurring-payment-for-cards
 - manage-recurring-payments-for-net-banking
 - api-commands-to-manage-upi-recurring-transaction
