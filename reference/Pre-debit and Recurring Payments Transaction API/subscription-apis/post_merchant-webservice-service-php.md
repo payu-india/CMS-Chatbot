@@ -75,7 +75,7 @@ curl -X POST "https://info.payu.in/merchant/postservice.php?form=2" \
 
 > 📘 **Request Parameter Description**
 >
-> Refer to the Form Data section for request parameter description.
+> Refer to the [Form Data](https://docs.payu.in/reference/post_merchant-webservice-service-php#body-params) section for request parameter description.
 
 ## Sample Response
 
