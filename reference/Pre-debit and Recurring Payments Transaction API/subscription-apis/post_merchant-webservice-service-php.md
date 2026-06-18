@@ -18,6 +18,7 @@ hidden: true
 
 ## Sample Request
 
+<Accordion title="Request Payload" icon="fa-code">
 ```curl
 curl -X POST "https://info.payu.in/merchant/postservice.php?form=2" \
   -H "Content-Type: application/x-www-form-urlencoded" \
@@ -70,6 +71,7 @@ curl -X POST "https://info.payu.in/merchant/postservice.php?form=2" \
   ]
 }'
 ```
+</Accordion>
 
 > 📘 **Request Parameter Description**
 >
@@ -77,7 +79,8 @@ curl -X POST "https://info.payu.in/merchant/postservice.php?form=2" \
 
 ## Sample Response
 
-```json
+<Accordion title="Response Payload" icon="fa-code">
+```json Success Response
 {
   "status":1,
   "message":"Debit Scheduled successfully",
@@ -87,6 +90,35 @@ curl -X POST "https://info.payu.in/merchant/postservice.php?form=2" \
   "predebitDetails":[
     
   ]
+}
+```json Error Response
+{
+  "status":0,
+  "message":"debitDate is mandatory",
+  "errorCode":"SIR004",
+  "action":"SI_RECURRING"
+}
+```
+</Accordion>
+
+```json Success Response
+{
+  "status":1,
+  "message":"Debit Scheduled successfully",
+  "details":[
+    
+  ],
+  "predebitDetails":[
+    
+  ]
+}
+```
+```json Error Response
+{
+  "status":0,
+  "message":"debitDate is mandatory",
+  "errorCode":"SIR004",
+  "action":"SI_RECURRING"
 }
 ```
 
