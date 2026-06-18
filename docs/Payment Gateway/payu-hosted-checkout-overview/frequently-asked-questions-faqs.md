@@ -68,6 +68,7 @@ metadata:
      - Browser redirects can fail
      - Users may close browser
      - Callbacks may be spoofed
+
    **`furl`** This is a failure URL PayU redirects you customers to if the payment fails. You can use this page to show:
      - Failure reason
      - Retry button
