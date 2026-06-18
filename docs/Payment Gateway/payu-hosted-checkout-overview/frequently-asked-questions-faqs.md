@@ -64,7 +64,16 @@ metadata:
 
 1. #### What are `surl` and `furl`?
    <Accordion title="Answer" icon="fa-comment-dots">
+   **`surl`**: This is a success URL PayU redirects your customers to after the payment is successful. This is not the proof of a payment as:
+   - Browser redirects can fail
+   - Users may close browser
+   - Callbacks may be spoofed
+   **`furl`** This is a failure URL PayU redirects you customers to if the payment fails. You can use this page to show:
+   - Failure reason
+   - Retry button
+   - Support guidance
 
+   Do not mark payment failed permanently until server-side verification confirms failure.
    </Accordion>
 
 <br />
