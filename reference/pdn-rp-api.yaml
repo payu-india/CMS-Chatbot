@@ -13,10 +13,12 @@ servers:
 paths:
   /merchant/webservice/service.php:
     post:
-      summary: Pre-debit and Recurring Payments Transaction API
+      summary: >-
+        [Internal review]Create a Pre-debit Notification and Recurring Payments
+        Transaction
       description: >-
-        Creates a pre-debit notification and processes a recurring debit against
-        an existing mandate.
+        Use this endpoint to create a pre-debit notification and processes a
+        recurring debit against an existing mandate.
       tags:
         - Subscription APIs
       requestBody:
