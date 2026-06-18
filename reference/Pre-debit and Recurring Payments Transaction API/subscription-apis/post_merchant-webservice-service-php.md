@@ -91,6 +91,7 @@ curl -X POST "https://info.payu.in/merchant/postservice.php?form=2" \
     
   ]
 }
+```
 ```json Error Response
 {
   "status":0,
