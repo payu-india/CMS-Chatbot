@@ -297,14 +297,13 @@ paths:
             `message`, and when applicable `errorCode` and `action`.
 
 
-            ### Envelope and request issues
+            **Envelope / request issues** (often no `errorCode`—match on
+            `message`)
 
 
-            These often have **no `errorCode`**—use **`message`** to identify
-            the case.
+            <details>
 
-
-            **Key is empty**
+            <summary>Key is empty</summary>
 
 
             - **Code:** *(none)*
@@ -315,7 +314,12 @@ paths:
             dashboard for the correct environment (test vs live).
 
 
-            **Hash is empty / Invalid Hash.**
+            </details>
+
+
+            <details>
+
+            <summary>Hash is empty / Invalid Hash.</summary>
 
 
             - **Code:** *(none)*
@@ -327,7 +331,12 @@ paths:
             exact posted `var1` string and salt.
 
 
-            **Invalid Data.**
+            </details>
+
+
+            <details>
+
+            <summary>Invalid Data.</summary>
 
 
             - **Code:** *(none)*
@@ -339,7 +348,12 @@ paths:
             braces.
 
 
-            **Mandate entry not found**
+            </details>
+
+
+            <details>
+
+            <summary>Mandate entry not found</summary>
 
 
             - **Code:** *(none)*
@@ -351,13 +365,16 @@ paths:
             created.
 
 
-            ### SI validation codes (`SIR001`–`SIR007`)
+            </details>
 
 
-            From *PREDEBIT_AND_RECURRING_API.pdf*.
+            **SI validation codes** (`SIR001`–`SIR007`,
+            *PREDEBIT_AND_RECURRING_API.pdf*)
 
 
-            **`SIR001` — amount is mandatory**
+            <details>
+
+            <summary><code>SIR001</code> — amount is mandatory</summary>
 
 
             - **Cause:** `amount` missing from `var1`.
@@ -366,7 +383,12 @@ paths:
             `"499.00"`) in `var1`.
 
 
-            **`SIR002` — Invalid amount**
+            </details>
+
+
+            <details>
+
+            <summary><code>SIR002</code> — Invalid amount</summary>
 
 
             - **Cause:** Amount is not a valid decimal.
@@ -375,7 +397,12 @@ paths:
             currency symbols or invalid characters.
 
 
-            **`SIR003` — txnid is mandatory**
+            </details>
+
+
+            <details>
+
+            <summary><code>SIR003</code> — txnid is mandatory</summary>
 
 
             - **Cause:** `txnId` missing from `var1`.
@@ -384,7 +411,12 @@ paths:
             in `var1`.
 
 
-            **`SIR004` — debitDate is mandatory**
+            </details>
+
+
+            <details>
+
+            <summary><code>SIR004</code> — debitDate is mandatory</summary>
 
 
             - **Cause:** `debitDate` missing for UPI/CC/DC (and eNACH where
@@ -394,7 +426,13 @@ paths:
             per the API specification.
 
 
-            **`SIR005` — Invalid debitDate, expected format: YYYY-MM-DD**
+            </details>
+
+
+            <details>
+
+            <summary><code>SIR005</code> — Invalid debitDate
+            (YYYY-MM-DD)</summary>
 
 
             - **Cause:** Wrong date format.
@@ -402,7 +440,13 @@ paths:
             - **Recommended fix:** Use strict `YYYY-MM-DD` for `debitDate`.
 
 
-            **`SIR006` — debitDate must be a future date**
+            </details>
+
+
+            <details>
+
+            <summary><code>SIR006</code> — debitDate must be a future
+            date</summary>
 
 
             - **Cause:** A past date was supplied.
@@ -411,16 +455,23 @@ paths:
             and the issuer.
 
 
-            **`SIR007` — debitDate exceeds the allowed range for {CYCLE}
-            mandate**
+            </details>
 
 
-            - **Cause:** `debitDate` is outside the allowed billing-cycle
-            window.
+            <details>
+
+            <summary><code>SIR007</code> — debitDate outside billing
+            window</summary>
+
+
+            - **Cause:** `debitDate` is outside the allowed window for the
+            mandate (message may include <code>{CYCLE}</code>).
 
             - **Recommended fix:** Pick `debitDate` inside the permitted
-            pre-debit range; `{CYCLE}` in the message names the applicable
-            billing cycle.
+            pre-debit range for that billing cycle.
+
+
+            </details>
           content:
             application/json:
               schema:
