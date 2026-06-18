@@ -13,12 +13,10 @@ servers:
 paths:
   /merchant/webservice/service.php:
     post:
-      summary: >-
-        [Internal review]Create a Pre-debit Notification and Recurring Payments
-        Transaction
+      summary: Pre-debit and Recurring Payments Transaction API
       description: >-
-        Use this endpoint to create a pre-debit notification and processes a
-        recurring debit against an existing mandate.
+        Creates a pre-debit notification and processes a recurring debit against
+        an existing mandate.
       tags:
         - Subscription APIs
       requestBody:
@@ -295,9 +293,13 @@ paths:
                     predebitDetails: []
         '400':
           description: >
-            Validation or business-rule failure. The JSON body includes `status:
-            0`, a human-readable `message`, and (for SI validation errors)
-            `errorCode` and `action`.
+            Validation or business-rule failure. The JSON body includes: 
+
+            - `status: 0`
+
+            - A human-readable `message`
+
+            - `errorCode` and `action`
 
 
             <details>
@@ -338,9 +340,6 @@ paths:
 
             <summary>SI error codes
             (<code>SIR001</code>–<code>SIR007</code>)</summary>
-
-
-            From *PREDEBIT_AND_RECURRING_API.pdf*.
 
 
             | Error code | Error | Cause | Recommended fix |
