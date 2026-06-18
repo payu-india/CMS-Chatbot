@@ -446,25 +446,6 @@ paths:
                 billing cycle.
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: integer
-                    description: 0 indicates failure.
-                    example: 0
-                  message:
-                    type: string
-                    description: Human-readable error message.
-                    example: debitDate is mandatory
-                  errorCode:
-                    type: string
-                    description: API error code.
-                    example: SIR004
-                  action:
-                    type: string
-                    description: Action that failed.
-                    example: SI_RECURRING
               examples:
                 validationError:
                   summary: Missing Debit Date
