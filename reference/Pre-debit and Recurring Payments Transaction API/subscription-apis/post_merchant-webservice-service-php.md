@@ -101,27 +101,6 @@ curl -X POST "https://info.payu.in/merchant/postservice.php?form=2" \
 ```
 </Accordion>
 
-```json Success Response
-{
-  "status":1,
-  "message":"Debit Scheduled successfully",
-  "details":[
-    
-  ],
-  "predebitDetails":[
-    
-  ]
-}
-```
-```json Error Response
-{
-  "status":0,
-  "message":"debitDate is mandatory",
-  "errorCode":"SIR004",
-  "action":"SI_RECURRING"
-}
-```
-
 > 📘 **Response Parameter Description**
 >
 > Refer to the Responses section for response parameter description.
