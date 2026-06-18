@@ -60,4 +60,11 @@ metadata:
    - Secret keys
    </Accordion>
 
+## Integration Setup
+
+1. #### What are `surl` and `furl`?
+   <Accordion title="Answer" icon="fa-comment-dots">
+
+   </Accordion>
+
 <br />
