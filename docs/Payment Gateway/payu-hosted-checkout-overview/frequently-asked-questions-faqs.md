@@ -91,14 +91,31 @@ metadata:
    <Accordion title="Answer" icon="fa-comment-dots">
    The `amount` parameter in the PayU hosted checkout is crucial to generate a hash value. An invalid format or value will esssentially generate a invalid hash and make the integartion fail. Hence, alaways use the consistent decimal formatting.
    These are some of the valid and invalid value examples:
-   **Valid**
+   **Valid format**
    - `100`
    - `100.00`
    - `99.50`
-   **Invalid**
+   **Invalid format**
    - `₹100` 
    - `100,00` 
    - `100 INR`
+   </Accordion>
+
+## Hash Generation
+
+1. #### Why should I generate hash?
+   <Accordion title="Answer" icon="fa-comment-dots">
+   PayU defines two types of hashing:
+   **Forward Hash:** The forward hash is to protect the payment request from getting tampered. It is essential for you to create a hash using parameters to create a payment request.
+   **Reverse Hash:** The reverse hash is used to authenticate the payment received from customers.
+   Refer to the Generate Hash page for more information.
+   </Accordion>
+2. #### What is the exact PayU Hosted Checkout hash formula to create a payment request?
+   <Accordion title="Answer" icon="fa-comment-dots">
+   This is the hash logic to create a payment request using the PayU hosted checkout.
+   ```text: Forward Hash Logic
+   key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT
+   ```
    </Accordion>
 
 <br />
