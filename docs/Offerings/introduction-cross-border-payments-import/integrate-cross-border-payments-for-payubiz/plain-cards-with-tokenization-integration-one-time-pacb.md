@@ -55,7 +55,6 @@ Post the payment parameters to PayU's `_payment` API endpoint with tokenization 
 </Accordion>
 
 <Accordion title="Request Parameters" icon="fa-table">
-  <HTMLBlock>{`
 
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -254,8 +253,6 @@ Post the payment parameters to PayU's `_payment` API endpoint with tokenization 
 </tbody>
 </table>
 
-
-`}</HTMLBlock>
 
 
   <br />
