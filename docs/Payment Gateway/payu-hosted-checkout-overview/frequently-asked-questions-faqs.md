@@ -116,6 +116,35 @@ metadata:
    ```text: Forward Hash Logic
    key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT
    ```
+   **Hash Logic with Example Values**
+   ```text: Example Input Logic
+   gtKFFx|TXN001|100.00|Order123|Aarav|aarav@example.com|||||||||||eCwWELxi
+   ```
+   > 📘 **Points to Remember**
+   >
+   > - [x] Make sure to add separators (|) even though if you are not passing any user defined fields.
+   > - [x] One missing pipe will lead to invalid hash
+   > - [x] Ensure to create the hash in server.
    </Accordion>
+3. #### How do I troubleshoot an invalid hash error?
+   <Accordion title="Answer" icon="fa-comment-dots">
+   Use this debugging to troubleshoot the issue:
+   1. Verify the parameter order
+   2. Verify the amount format
+   3. Check for trailing spaces
+   4. Check if you have used the valid salt value
+   5. Check environment credentials
+   6. Check for the separators. Ensure you include separators even if you are not passing user defined fields as mentioned in the logic.
+   Most hash failures happen from:
+   - Wrong salt
+   - Missing pipes (|)
+   - Whitespace
+   - Amount mismatch
+   </Accordion>
+4. #### Can I generate hash in frontend?
+   <Accordion title="Answer" icon="fa-comment-dots">
+   No. You should not generate a hash value from frontend as it will expose the salt value. 
+   </Accordion>
+
 
 <br />
