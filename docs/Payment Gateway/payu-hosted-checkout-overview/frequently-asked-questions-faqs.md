@@ -154,6 +154,16 @@ metadata:
 
 ## Checkout Experience
 
-1. ####
+1. #### What happens if customer closes browser mid-payment?
+   <Accordion title="Answer" icon="fa-comment-dots">
+   The outcomne depends on the step where the customer has closed the browser. For example, if the customer has approved the UPI payment and immediately closes the browser. Then the possible outcomes are:
+   - Payment success
+   - No redirect
+   - Webhook still arrives
+   We recommend not to rely on browser state but on:
+   - Webhook
+   - Callback
+   - Status verification API
+   </Accordion>
 
 <br />
