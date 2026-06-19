@@ -60,6 +60,8 @@ metadata:
    - Secret keys
    </Accordion>
 
+***
+
 ## Integration Setup
 
 1. #### What are `surl` and `furl`?
@@ -100,6 +102,8 @@ metadata:
    - `100,00` 
    - `100 INR`
    </Accordion>
+
+***
 
 ## Hash Generation
 
@@ -143,8 +147,13 @@ metadata:
    </Accordion>
 4. #### Can I generate hash in frontend?
    <Accordion title="Answer" icon="fa-comment-dots">
-   No. You should not generate a hash value from frontend as it will expose the salt value. 
+   No. You should not generate a hash value from frontend as it will expose the salt value.
    </Accordion>
 
+***
+
+## Checkout Experience
+
+1. ####
 
 <br />
