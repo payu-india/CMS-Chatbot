@@ -76,5 +76,29 @@ metadata:
 
    Do not mark payment failed permanently until server-side verification confirms failure.
    </Accordion>
+2. #### Can localhost be used for testing callbacks?
+   <Accordion title="Answer" icon="fa-comment-dots">
+   No. You cannot use localhost for testing callbacks. PayU servers cannot reach: 
+   - Localhost 
+   - Private IPs 
+   - VPN-only endpoints
+   You can use
+   - Public staging server 
+   - Tunnel service
+   Your callback URL should be publicly reachable over HTTPS.
+   </Accordion>
+3. #### How should I format the `amount` parameter value?
+   <Accordion title="Answer" icon="fa-comment-dots">
+   The `amount` parameter in the PayU hosted checkout is crucial to generate a hash value. An invalid format or value will esssentially generate a invalid hash and make the integartion fail. Hence, alaways use the consistent decimal formatting.
+   These are some of the valid and invalid value examples:
+   **Valid**
+   - `100`
+   - `100.00`
+   - `99.50`
+   **Invalid**
+   - `₹100` 
+   - `100,00` 
+   - `100 INR`
+   </Accordion>
 
 <br />
