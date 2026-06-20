@@ -127,6 +127,18 @@ sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4
 sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|\|udf2\|\|udf4\|\|\|\|\|\|\|SALT)
 ```
 
+> 📘 **Partial UDF usage :**&#x20;
+>
+> The hash string must always contain exactly 5 UDF positions between `email` and `SALT`, regardless of how many UDFs you actually use. Use an empty string `""` for each unused UDF — never omit the pipe separators.**Example — using only udf1 and udf2:**
+>
+> ```
+> sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2||||||||SALT)
+>                                                               ↑↑↑
+>                                              udf3, udf4, udf5 = empty strings
+> ```
+>
+> The 6 pipes after udf5 (`||||||`) represent empty positions for additional fields — do not remove them.
+
 - **Scenario 3**: If none of the udf parameters (udf1-udf5) are posted, hash is calculated as:
 
 ```
