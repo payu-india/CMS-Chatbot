@@ -100,6 +100,16 @@ The following is a list of benefits of PayU Hosted Checkout:
 - Supports specific and generic intent for UPI payments on mobile web
 - Personalized payment experience (using recommendations) and offers.
 
+## List of APIs used for integration
+
+| Use case → Reference                                                                                                                            | `command` / primary value                              |
+| ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| Collect payment (redirect to PayU) — [Collect Payment API (PayU Hosted Checkout)](https://docs.payu.in/reference/_payment_payu_hosted_checkout) | Browser form `POST` to `_payment` (see endpoint below) |
+| Verify a payment — [Verify Payment API](https://docs.payu.in/reference/verify_payment_api)                                                      | `verify_payment`                                       |
+| Check transaction info — [Check Action Status with PayU ID](https://docs.payu.in/reference/check_action_status_api_with_payu_id)                | `check_action_status`                                  |
+| Get transaction by txnid — [Get Transaction Info API](https://docs.payu.in/reference/get_transaction_info_api)                                  | `get_transaction_info`                                 |
+| Refund a transaction — [Refund Transaction API](https://docs.payu.in/reference/refund_transaction_api)                                          | `cancel_refund_transaction`                            |
+
 ## Next Steps
 
 To integrate PayU Hosted Integration on your website or mobile, refer to:
