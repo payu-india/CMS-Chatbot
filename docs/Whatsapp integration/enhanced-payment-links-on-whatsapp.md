@@ -125,9 +125,9 @@ sequenceDiagram
     PU->>MS: PG webhook (same as payment links)
 ```
 
-### Customer journey
+## Customer journey
 
-#### Payment Experience with UPI URL​
+### Payment Experience with UPI URL​
 
 In a live integration, your backend creates the **UPI Intent** via PayU and sends `POST /messages` with `type: order_details` and `payment_type: "upi"` (per your programme spec). The customer-facing steps below mirror what the **training deck** illustrates on slide **12**.
 
@@ -162,7 +162,7 @@ In a live integration, your backend creates the **UPI Intent** via PayU and send
 
 <br />
 
-#### Payment Experience with EPL flow​
+### Payment Experience with EPL flow​
 
 <Accordion title="Step 1: Payment request appears in the chat" icon="fa-comment-dollar">
   The business sends an approved **template** message. The customer sees a **structured payment card**: amount (for example **₹100.00**), short instructions (“Please make the payment…”), optional **Pay with** hints (card brands), and a primary **Pay now** CTA on the card.
@@ -209,7 +209,7 @@ In a live integration, your backend creates the **UPI Intent** via PayU and send
 ![](https://files.readme.io/7a4b497de57af34eaf7079543c134838b2a9e16b5fcde504cf6cf95898c590f0-epl-training-slide9.gif)
 
 ***
-#### P2M / PG Deep Integration on WhatsApp
+### P2M / PG Deep Integration on WhatsApp Flow
 
 <Accordion title="Step 1: Business sends catalogue or order in WhatsApp" icon="fa-store">
   The merchant (or automation) sends a **structured order or catalogue** message in the conversation—line items, amounts, and context the customer needs before paying. This is typically an **`order_details`**-style interactive message initiated over the **WhatsApp Cloud API** once your PG and Meta **payment_configuration** are in place.
