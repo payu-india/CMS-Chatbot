@@ -102,8 +102,6 @@ The following is a list of benefits of PayU Hosted Checkout:
 
 ## List of APIs used for integration
 
-<br />
-
 | Use case → Reference                                                                                                                            | `command` / primary value                               |
 | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
 | Collect payment (redirect to PayU) — [Collect Payment API (PayU Hosted Checkout)](https://docs.payu.in/reference/_payment_payu_hosted_checkout) | Browser form `POST` to `_payment API` (see below table) |
