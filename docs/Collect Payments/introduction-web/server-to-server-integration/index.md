@@ -24,24 +24,24 @@ The legacy flow such as the PayU Hosted Checkout and Merchant Hosted Checkout in
 
 The prerequisites for integrating with S2S are:
 
-* You must have Payment Card Industry Data Security Standard (PCI-DSS) certification, which is mandatory for all entities seeking to store, process, and transmit cardholder data.
-* Sufficient technical bandwidth dedicated to managing the end-to-end web checkout processes in-house consistently.
+- You must have Payment Card Industry Data Security Standard (PCI-DSS) certification, which is mandatory for all entities seeking to store, process, and transmit cardholder data.
+- Sufficient technical bandwidth dedicated to managing the end-to-end web checkout processes in-house consistently.
 
 > 👍 Before you Begin:
 >
-> * PayU strongly recommends you test your integration using the test merchant Key or Salt. To create a test merchant account, refer to [Register for a Merchant Account on Dashboard](doc:register-for-a-merchant-account-on-dashboard). After you create a test merchant account, you can access the test Key or Salt as described in [Generate Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard).
-> * PayU recommends you integrate with Test environment initially. For merchants registered before August 3rd, 2023, use the following URL to sign up for the Test environment:
+> - PayU strongly recommends you test your integration using the test merchant Key or Salt. To create a test merchant account, refer to [Register for a Merchant Account on Dashboard](doc:register-for-a-merchant-account-on-dashboard). After you create a test merchant account, you can access the test Key or Salt as described in [Generate Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard).
+> - PayU recommends you integrate with Test environment initially. For merchants registered before August 3rd, 2023, use the following URL to sign up for the Test environment:
 >
 > [https://uat-onepayuonboarding.payu.in/app/account/signup](https://uat-onepayuonboarding.payu.in/app/account/signup)
 >
-> * Later, register for a Production account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
+> - Later, register for a Production account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
 
 ## Benefits of S2S workflow
 
 The benefits of the S2S flow are:
 
-* Delivers a better functional experience by eliminating intermediate browser hops that consume the customer’s internet bandwidth and procedural lags.
-* Reduces the number of jumps in the forward leg, so the S2S flow significantly reduces the probability of errors.
+- Delivers a better functional experience by eliminating intermediate browser hops that consume the customer’s internet bandwidth and procedural lags.
+- Reduces the number of jumps in the forward leg, so the S2S flow significantly reduces the probability of errors.
 
 With the above benefits, there are reduced chances of customers abandoning shopping cart during their shopping experience.
 
@@ -62,11 +62,15 @@ To get started with Server-to-Server integration, refer to [General Integration]
 
 **Step 1:** The customer completes shopping at your website and initiates a transaction with card credentials.
 
-<Image align="center" border={true} width="350px" src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/06/MicrosoftTeams-image-6-576x1024.jpg" className="border" />
+
+<Image src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/06/MicrosoftTeams-image-6-576x1024.jpg" align="center" width="350px" border={true} />
+
 
 **Step 2:** The customer enters the CVV and proceeds to complete the payment.
 
-<Image align="center" border={true} width="350px" src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/06/MicrosoftTeams-image-7-576x1024.jpg" className="border" />
+
+<Image src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/06/MicrosoftTeams-image-7-576x1024.jpg" align="center" width="350px" border={true} />
+
 
 **Step 3:** The merchant collects the Bank OTP for authentication where the customer needs to complete the transaction by using the OTP sent by the bank to the registered mobile number.
 
@@ -74,13 +78,13 @@ To get started with Server-to-Server integration, refer to [General Integration]
 
 PayU offers the following S2S integrations to collect card payments:
 
-* [Classic Integration for Cards](doc:integrate-with-s2s-for-cards-classic-integration)
-* [Decoupled Flow Integration](doc:integrate-with-decoupled-flow-s2s)
-* [Direct Authorization Integration](doc:integrate-with-direct-authorization-s2s)
+- [Classic Integration for Cards](doc:integrate-with-s2s-for-cards-classic-integration)
+- [Decoupled Flow Integration](doc:integrate-with-decoupled-flow-s2s)
+- [Direct Authorization Integration](doc:integrate-with-direct-authorization-s2s)
 
-<Callout icon="📘" theme="info">
-  Note: If you are using legacy integration of decoupled flow for S2S, refer to [Legacy Flow for Server-to-Server](doc:legacy-flow-for-server-to-server).
-</Callout>
+> 📘
+>
+> Note: If you are using legacy integration of decoupled flow for S2S, refer to [Legacy Flow for Server-to-Server](doc:legacy-flow-for-server-to-server).
 
 <br />
 
@@ -90,21 +94,39 @@ PayU offers the following S2S integrations to collect card payments:
 
 The UPI integration for S2S in general is described in the following sections:
 
-<Callout icon="❗️" theme="error">
-  **Important UPI Integration Changes as per NPCI Mandate on UPI Collect Disablement**
+> ❗️
+>
+> **Important UPI Integration Changes as per NPCI Mandate on UPI Collect Disablement**
+>
+> **Recommendation for Mobile Apps**: For Android and iOS apps, consider using PayU SDKs which have Smart Intent implementation built-in for higher success rates:
+>
+> - [Android Mobile SDKs](doc:explore-android-sdks)
+> - [iOS Mobile SDKs](doc:explore-ios-sdks)
 
-  **Recommendation for Mobile Apps**: For Android and iOS apps, consider using PayU SDKs which have Smart Intent implementation built-in for higher success rates:
-
-  * [Android Mobile SDKs](doc:explore-android-sdks)
-  * [iOS Mobile SDKs](doc:explore-ios-sdks)
-</Callout>
-
-* [UPI Collection S2S Integration](doc:upi-collection-s2s)
-* [UPI Intent S2S Integration](doc:upi-intent-server-to-server)
+- [UPI Collection S2S Integration](doc:upi-collection-s2s)
+- [UPI Intent S2S Integration](doc:upi-intent-server-to-server)
 
 The UPI S2S integration for PhonePe Offers and Omnichannel is described in the following sections:
 
-* [PhonePe Deep Offers S2S Integration](doc:phonepe-deep-offers-integration)
-* [UPI Omnichannel S2S Integration](doc:upi-omnichannel-integration)
+- [PhonePe Deep Offers S2S Integration](doc:phonepe-deep-offers-integration)
+- [UPI Omnichannel S2S Integration](doc:upi-omnichannel-integration)
 
 The [UPI Number Mapper API](ref:upi-number-mapper-api) describes how to get VPA for the given UPI number.
+
+## APIs Used for Integration
+
+| Use case → Reference                                                                                                                    | `command` / primary value                                                                           |
+| --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| S2S collect / orchestration (hub) — [Collect Payment API (S2S)](https://docs.payu.in/reference/_payment_server_to_server)               | Entry reference for **Server-to-Server** collect patterns; pair with mode-specific references below |
+| Cards — decoupled flow — [Cards Decoupled Flow](https://docs.payu.in/reference/_payment_s2s_decoupled_flow)                             | Backend collect path for decoupled cards (see page for request/response and signing)                |
+| Cards — direct authorization — [Cards Direct Authorization Flow](https://docs.payu.in/reference/_payment_s2s_direct_authorization_flow) | Backend collect path for direct authorization                                                       |
+| Cards — classic integration — [Classic Integration (S2S)](https://docs.payu.in/reference/_payment_s2s_classic_integration)              | Legacy/classic cards S2S pattern                                                                    |
+| UPI collect (S2S) — [UPI Collect (S2S)](https://docs.payu.in/reference/_payment_s2s_upi_collection)                                     | UPI collect server-to-server                                                                        |
+| Verify a payment — [Verify Payment API](https://docs.payu.in/reference/verify_payment_api)                                              | `verify_payment`                                                                                    |
+| Check transaction info — [Check Action Status with PayU ID](https://docs.payu.in/reference/check_action_status_api_with_payu_id)        | `check_action_status`                                                                               |
+| Get transaction by txnid — [Get Transaction Info API](https://docs.payu.in/reference/get_transaction_info_api)                          | `get_transaction_info`                                                                              |
+| Refund a transaction — [Refund Transaction API](https://docs.payu.in/reference/refund_transaction_api)                                  | `cancel_refund_transaction`                                                                         |
+
+> **Post-service (**`command`**&#x20;APIs) endpoint:** `POST https://info.payu.in/merchant/postservice.php?form=2`<br />**Post-service hash formula:** `sha512(key|command|var1|SALT)`<br />**Note:** **S2S “collect / authorize”** calls use **product-specific JSON/REST (or legacy) endpoints and signing** from the linked S2S guides — not the single `_payment` form hash row above. For **decoupled flow** integration steps (non-reference narrative), see [Decoupled Flow Integration](https://docs.payu.in/docs/integrate-with-decoupled-flow-s2s) **(Integration)**.
+
+<br />
