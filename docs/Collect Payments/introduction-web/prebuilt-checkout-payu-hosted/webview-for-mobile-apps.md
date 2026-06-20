@@ -15,36 +15,13 @@ metadata:
 next:
   description: ''
 ---
----
-title: Integrate WebView for Mobile Apps
-excerpt: ''
-deprecated: false
-hidden: false
-metadata:
-  title: Integrate WebView for Mobile Apps with PayU Hosted Checkout
-  description: >-
-    PayU Hosted Checkout in mobile WebView: Android/iOS deeplink handling, UPI intent, NPCI collect changes, and in-app hosted checkout integration.
-  keywords:
-    - payu hosted checkout webview mobile app integration
-    - integrate payu payment page webview android ios app
-    - payment gateway webview checkout integration payu india
-    - payu hosted checkout mobile app deeplink upi intent
-    - android ios webview payu payment integration guide
-    - in app payment webview payu hosted checkout integration
-    - payu webview checkout upi collect disablement handling
-    - mobile app payment gateway webview integration payu
-    - payu hosted checkout webview integration steps developer
-    - website payment webview mobile sdk hosted checkout payu
-    - payu collect payments webview android ios integration
-    - hosted checkout webview payment integration india payu
-  robots: index
-
-next:
-  description: ''
----
 WebView is a component that enables mobile apps to collect payments by loading the PayU checkout form within the app itself, rather than redirecting users to external browsers. It essentially embeds PayU's Hosted Checkout experience inside a WebView container within your mobile app. WebView essentially bridges the gap between web-based payment forms and native mobile app experiences, making payments feel more integrated and professional within your mobile application.
 
 You can collect payments from your mobile apps by opening the the PayU checkout form in a WebView. This allows you to reuse your PayU Hosted Checkout integration and get started quickly.
+
+> 📘 **UPI App List is platform-controlled:**&#x20;
+>
+> The list of UPI apps displayed on the payment screen (GPay, PhonePe, Paytm, etc.) is managed globally by PayU and cannot be customised per merchant. If you want to remove specific apps from this list, contact your PayU Key Account Manager (KAM) or<Anchor target="_blank" href="https://help.payu.in">&#x20;PayU Support</Anchor>.
 
 **Choose your platform integration guide:**
 
@@ -108,10 +85,10 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
 3. **Cross-Platform Support**: Available for both Android (using WebView) and iOS (using WKWebView), with platform-specific optimizations.
 
 4. **Comprehensive Payment Methods**: Supports all PayU payment options including:
-   * Credit/Debit cards
-   * UPI payments
-   * Digital wallets
-   * Buy Now Pay Later (BNPL) options
+   - Credit/Debit cards
+   - UPI payments
+   - Digital wallets
+   - Buy Now Pay Later (BNPL) options
 
 ## How It Works
 
@@ -122,10 +99,10 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
 
 ## Benefits
 
-* **Better User Experience**: No app switching or external browser redirects
-* **Faster Implementation**: Reuse existing PayU integration
-* **Security**: Server-side hash generation for transaction authentication
-* **UPI Intent Support**: Seamless integration with popular payment apps
+- **Better User Experience**: No app switching or external browser redirects
+- **Faster Implementation**: Reuse existing PayU integration
+- **Security**: Server-side hash generation for transaction authentication
+- **UPI Intent Support**: Seamless integration with popular payment apps
 
 ## Configure Native Webview and Chrome Custom Tab for Android
 
@@ -766,6 +743,7 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
     </tbody>
   </Table>
 </Accordion>
+
 <Accordion title="Add Method channel code in MainActivity" icon="fa-code">
   ```kotlin
   class MainActivity : FlutterActivity() {
@@ -906,3 +884,5 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
 
   Note:- If a new app is onboarded during checkout the corresponding PSP (Payment Service Provider) scheme must be added to the Info.plist file to support the new app intent.
 </Accordion>
+
+<br />
