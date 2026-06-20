@@ -9,6 +9,8 @@ PayU supports multiple ways to accept payments on WhatsApp in partnership with M
 
 **Enhanced Payment Links (EPL)** is the simplest option: you send an approved WhatsApp **template** message with a **Pay Now** call-to-action, the customer taps it, and completes payment on PayU’s **hosted checkout** in the browser (outside WhatsApp). If you already use PayU **payment links**, link generation and **webhooks** work the same as today.
 
+<br />
+
 <Cards>
   <Card title="Overview" href="#overview" icon="fa-info-circle">
     What EPL is and how it fits alongside other WhatsApp payment options.
@@ -164,6 +166,7 @@ In a live integration, your backend creates the **UPI Intent** via PayU and send
 
 <Accordion title="Step 1: Payment request appears in the chat" icon="fa-comment-dollar">
   The business sends an approved **template** message. The customer sees a **structured payment card**: amount (for example **₹100.00**), short instructions (“Please make the payment…”), optional **Pay with** hints (card brands), and a primary **Pay now** CTA on the card.
+</Accordion>
 
 <Accordion title="Step 2: Customer taps Pay now" icon="fa-hand-pointer">
   Tapping **Pay now** follows the **dynamic URL** on the CTA (your PayU payment link with the Meta-required suffix). WhatsApp then opens the **next payment UI**—in the training asset this is a **bottom sheet**; in other setups it can be **PayU checkout** in the in-app browser.
@@ -200,7 +203,8 @@ In a live integration, your backend creates the **UPI Intent** via PayU and send
 <Accordion title="Step 6: Success in chat and webhook to merchant" icon="fa-check-double">
   The conversation updates with a **completed payment** line (green outbound bubble: amount, **Send to** merchant, **Completed** with read receipts). The payment card in-thread may show a post-pay state (for example **View details**). Your **PayU PG webhook** fires on success with the same contract as for standard **payment links** (no separate EPL webhook type).
 </Accordion>
-
+<br />
+![](https://files.readme.io/7a4b497de57af34eaf7079543c134838b2a9e16b5fcde504cf6cf95898c590f0-epl-training-slide9.gif)
 ***
 
 ## Benefits for your business
