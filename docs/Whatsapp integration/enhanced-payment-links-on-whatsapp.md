@@ -125,17 +125,18 @@ sequenceDiagram
 
 ### Customer journey
 
-he walkthrough below is **tied to each training screenshot** (still frames from **slide 9 — “Payment Experience with EPL flow”** in `PRDs/training whatsapp.pptx`, Meta demo merchant **Jasper’s Market**). Labels such as **Choose payment method**, **Confirm payment**, and **POWERED BY UPI** match what appears in those images.
+#### Payment Experience with UPI URL​
 
-For **your** EPL integration, the surface after **Pay now** may be **PayU hosted checkout** in the **WhatsApp in-app browser** rather than the native **Pay on WhatsApp** sheet—customer steps (**pick method → confirm → authenticate → done**) stay the same even if the chrome differs.
+
+<Image src="https://files.readme.io/fa4790a59dc7d1a9722c2970ee10a68d5ad6eb1b1cdb7fdb558a05ac51b43e97-payment-experience-upi-url.gif" align="left" width="350px" border={true} />
+
 
 <br />
 
+#### Payment Experience with EPL flow​
+
 <Accordion title="Step 1: Payment request appears in the chat" icon="fa-comment-dollar">
   The business sends an approved **template** message. The customer sees a **structured payment card**: amount (for example **₹100.00**), short instructions (“Please make the payment…”), optional **Pay with** hints (card brands), and a primary **Pay now** CTA on the card.
-
-![](https://files.readme.io/d32ee7365d4ef035f7fa77e0aeeee86bddd87402ca34ac65db276d22d7e03744-epl-journey-frame-01.png)
-</Accordion>
 
 <Accordion title="Step 2: Customer taps Pay now" icon="fa-hand-pointer">
   Tapping **Pay now** follows the **dynamic URL** on the CTA (your PayU payment link with the Meta-required suffix). WhatsApp then opens the **next payment UI**—in the training asset this is a **bottom sheet**; in other setups it can be **PayU checkout** in the in-app browser.
@@ -150,7 +151,7 @@ For **your** EPL integration, the surface after **Pay now** may be **PayU hosted
   * **More payment methods** — **Google Pay**, **PhonePe**, **More UPI apps**, and **Other payment methods** (debit card, net banking, and more).
 
   The customer selects an option and taps **Continue** (green). Footer shows **POWERED BY UPI**.
-![](https://files.readme.io/01530121094cda71fbe344d89a5139546fa93a557e5b4fc493d9db9c9964b9d8-epl-journey-frame-02.png)
+
 </Accordion>
 
 <Accordion title="Step 4: Review and confirm payment" icon="fa-circle-check">
@@ -162,47 +163,40 @@ For **your** EPL integration, the surface after **Pay now** may be **PayU hosted
 
   When satisfied, the customer taps **Send payment** (green).
 
-![](https://files.readme.io/dc20c35795aa0379173571bb862a9e224694fedaa679e51ae88547fe01f29030-epl-journey-frame-03.png)
-
-![]
-(https://files.readme.io/ea2eb134643c8a989f11904080c99407090355260961d17690c85bc0fadbd677-epl-journey-frame-04.png)
-
 </Accordion>
 
 <Accordion title="Step 5: Authenticate" icon="fa-key">
   For the **UPI on WhatsApp** path shown in the training capture, the bank/UPI step shows **ENTER UPI PIN**, amount and merchant name, numeric keypad, and submit (**checkmark**). For **card / net banking** (if the customer chose **Other payment methods** earlier), authentication is **OTP** or the bank’s page instead—those paths are not shown in these stills.
-![](https://files.readme.io/5671899313eaa0988c8f7c2ebd518e3f4bff94358a91218280f14506a79580ce-epl-journey-frame-05.png)
 
 </Accordion>
 
 <Accordion title="Step 6: Success in chat and webhook to merchant" icon="fa-check-double">
   The conversation updates with a **completed payment** line (green outbound bubble: amount, **Send to** merchant, **Completed** with read receipts). The payment card in-thread may show a post-pay state (for example **View details**). Your **PayU PG webhook** fires on success with the same contract as for standard **payment links** (no separate EPL webhook type).
-![](https://files.readme.io/856526d4ad8dc035235144a238819c0334f822ef6228c5ed586b83b9933f7903-epl-journey-frame-06.png)
 </Accordion>
 
 ***
 
 ## Benefits for your business
 
-- **Minimal backend change** if you already use PayU payment links—reuse link APIs and webhooks.
-- **No OAuth linking** of your PayU account inside WhatsApp Business Manager for EPL.
-- **Full checkout breadth** on PayU hosted pages (EMI, auto-debit, etc.), not limited to in-chat UPI-only flows.
-- **Fastest path to WhatsApp collections** compared with deeper native integrations.
+\- **Minimal backend change** if you already use PayU payment links—reuse link APIs and webhooks.
+\- **No OAuth linking** of your PayU account inside WhatsApp Business Manager for EPL.
+\- **Full checkout breadth** on PayU hosted pages (EMI, auto-debit, etc.), not limited to in-chat UPI-only flows.
+\- **Fastest path to WhatsApp collections** compared with deeper native integrations.
 
 Real-world examples cited in product materials include **PolicyBazaar** (reported **17%** conversion uplift after EPL) and **Piramal Finance** for recurring EMI collection via links.
 
 ### When you must use EPL?
 
-- Insurance — premium renewals and policyholder collections.
-- Lending / NBFCs — EMI and recurring collection links.
-- Bulk **collections and reminders** with a pay link in each template message.
-- Merchants who already run **PayU payment links** and want WhatsApp as an additional channel.
-- Teams that need **go-live in roughly 1–2 weeks** (often dominated by **Meta template approval**, typically **3–7 business days**).
+\- Insurance — premium renewals and policyholder collections.
+\- Lending / NBFCs — EMI and recurring collection links.
+\- Bulk **collections and reminders** with a pay link in each template message.
+\- Merchants who already run **PayU payment links** and want WhatsApp as an additional channel.
+\- Teams that need **go-live in roughly 1–2 weeks** (often dominated by **Meta template approval**, typically **3–7 business days**).
 
 ### When to consider another flavour instead?
 
-- You need the customer to **stay inside WhatsApp** for the full payment UX → look at **PG Deep Integration** (or **UPI Intent** if UPI-only is acceptable).
-- You need **rich multi-line-item orders** and real-time **order status** purely in chat (for example food delivery) → **PG Deep Integration** is usually more appropriate.
+\- You need the customer to **stay inside WhatsApp** for the full payment UX → look at **PG Deep Integration** (or **UPI Intent** if UPI-only is acceptable).
+\- You need **rich multi-line-item orders** and real-time **order status** purely in chat (for example food delivery) → **PG Deep Integration** is usually more appropriate.
 
 ***
 
@@ -217,9 +211,9 @@ Real-world examples cited in product materials include **PolicyBazaar** (reporte
 | **OAuth to link PG in WA**           | **Not required** for EPL.                                                                                                   |
 | **Webhooks**                         | Keep your **existing PayU webhook**; no new WhatsApp payment webhook is required for EPL.                                   |
 
-> 👍 Contact PayU KAM
->
-> For **WABA verification**, **template submission**, **EPL allowlisting**, and **commercial enablement**, work with your **PayU Key Account Manager (KAM)** or your **BSP** so the correct Meta and PayU steps complete in order.
+\> 👍 Contact PayU KAM
+\>
+\> For **WABA verification**, **template submission**, **EPL allowlisting**, and **commercial enablement**, work with your **PayU Key Account Manager (KAM)** or your **BSP** so the correct Meta and PayU steps complete in order.
 
 ***
 
@@ -242,24 +236,24 @@ PayU is supported across **all three** solutions, so many merchants can start wi
 
 ## Go-live checklist
 
-- [ ] **Enterprise WABA** verified.
-- [ ] **Active PayU** (or supported PG) merchant account.
-- [ ] **Template** submitted with PayU CTA URL pattern; **approved** by Meta (often 3–7 business days).
-- [ ] WABA on **EPL GK biglist** (PayU / BSP).
-- [ ] Integration to **send the template** via WhatsApp Cloud API with the payment link.
-- [ ] **Payment link** generation already in use (or implemented)—no EPL-specific change to PayU link APIs.
-- [ ] **Existing PayU webhook** configured—unchanged for EPL.
-- [ ] **End-to-end** test in sandbox / pilot.
+\- \[ ] **Enterprise WABA** verified.
+\- \[ ] **Active PayU** (or supported PG) merchant account.
+\- \[ ] **Template** submitted with PayU CTA URL pattern; **approved** by Meta (often 3–7 business days).
+\- \[ ] WABA on **EPL GK biglist** (PayU / BSP).
+\- \[ ] Integration to **send the template** via WhatsApp Cloud API with the payment link.
+\- \[ ] **Payment link** generation already in use (or implemented)—no EPL-specific change to PayU link APIs.
+\- \[ ] **Existing PayU webhook** configured—unchanged for EPL.
+\- \[ ] **End-to-end** test in sandbox / pilot.
 
 **Typical timeline:** about **1–2 weeks**, often driven by template approval.
 
 ***
 
-> 📘 **PayU recommends**
->
-> - Treat EPL as the **default first step** for **link-based collections** and teams new to WhatsApp payments.
-> - Keep using the [API Reference](ref:introduction-api-reference) for exact PayU request fields alongside this product overview.
-> - Confirm **pricing and commercials** with your **PayU Key Account Manager (KAM)**; they are not covered in this technical overview.
+\> 📘 **PayU recommends**
+\>
+\> - Treat EPL as the **default first step** for **link-based collections** and teams new to WhatsApp payments.
+\> - Keep using the [API Reference](ref:introduction-api-reference) for exact PayU request fields alongside this product overview.
+\> - Confirm **pricing and commercials** with your **PayU Key Account Manager (KAM)**; they are not covered in this technical overview.
 
 ***
 
