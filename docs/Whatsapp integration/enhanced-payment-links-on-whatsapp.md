@@ -129,11 +129,12 @@ he walkthrough below is **tied to each training screenshot** (still frames from 
 
 For **your** EPL integration, the surface after **Pay now** may be **PayU hosted checkout** in the **WhatsApp in-app browser** rather than the native **Pay on WhatsApp** sheet—customer steps (**pick method → confirm → authenticate → done**) stay the same even if the chrome differs.
 
+<br />
+
 <Accordion title="Step 1: Payment request appears in the chat" icon="fa-comment-dollar">
   The business sends an approved **template** message. The customer sees a **structured payment card**: amount (for example **₹100.00**), short instructions (“Please make the payment…”), optional **Pay with** hints (card brands), and a primary **Pay now** CTA on the card.
 
-  <Image align="center" border={true} width="260px" src="./images/epl-customer-journey/epl-journey-frame-01.png" className="border" />
-</Accordion>
+![](https://files.readme.io/d32ee7365d4ef035f7fa77e0aeeee86bddd87402ca34ac65db276d22d7e03744-epl-journey-frame-01.png)
 
 <Accordion title="Step 2: Customer taps Pay now" icon="fa-hand-pointer">
   Tapping **Pay now** follows the **dynamic URL** on the CTA (your PayU payment link with the Meta-required suffix). WhatsApp then opens the **next payment UI**—in the training asset this is a **bottom sheet**; in other setups it can be **PayU checkout** in the in-app browser.
@@ -148,9 +149,7 @@ For **your** EPL integration, the surface after **Pay now** may be **PayU hosted
   * **More payment methods** — **Google Pay**, **PhonePe**, **More UPI apps**, and **Other payment methods** (debit card, net banking, and more).
 
   The customer selects an option and taps **Continue** (green). Footer shows **POWERED BY UPI**.
-
-  <Image align="center" border={true} width="260px" src="./images/epl-customer-journey/epl-journey-frame-02.png" className="border" />
-</Accordion>
+![](https://files.readme.io/01530121094cda71fbe344d89a5139546fa93a557e5b4fc493d9db9c9964b9d8-epl-journey-frame-02.png)
 
 <Accordion title="Step 4: Review and confirm payment" icon="fa-circle-check">
   The sheet moves to **Confirm payment** (back arrow to change method). The customer checks:
@@ -161,23 +160,23 @@ For **your** EPL integration, the surface after **Pay now** may be **PayU hosted
 
   When satisfied, the customer taps **Send payment** (green).
 
-  <Image align="center" border={true} width="260px" src="./images/epl-customer-journey/epl-journey-frame-03.png" className="border" />
+![](https://files.readme.io/dc20c35795aa0379173571bb862a9e224694fedaa679e51ae88547fe01f29030-epl-journey-frame-03.png)
 
-  <Image align="center" border={true} width="260px" src="./images/epl-customer-journey/epl-journey-frame-04.png" className="border" />
-</Accordion>
+![]
+(https://files.readme.io/ea2eb134643c8a989f11904080c99407090355260961d17690c85bc0fadbd677-epl-journey-frame-04.png)
+
+
 
 <Accordion title="Step 5: Authenticate" icon="fa-key">
   For the **UPI on WhatsApp** path shown in the training capture, the bank/UPI step shows **ENTER UPI PIN**, amount and merchant name, numeric keypad, and submit (**checkmark**). For **card / net banking** (if the customer chose **Other payment methods** earlier), authentication is **OTP** or the bank’s page instead—those paths are not shown in these stills.
+![](https://files.readme.io/5671899313eaa0988c8f7c2ebd518e3f4bff94358a91218280f14506a79580ce-epl-journey-frame-05.png)
 
-  <Image align="center" border={true} width="260px" src="./images/epl-customer-journey/epl-journey-frame-05.png" className="border" />
 </Accordion>
 
 <Accordion title="Step 6: Success in chat and webhook to merchant" icon="fa-check-double">
   The conversation updates with a **completed payment** line (green outbound bubble: amount, **Send to** merchant, **Completed** with read receipts). The payment card in-thread may show a post-pay state (for example **View details**). Your **PayU PG webhook** fires on success with the same contract as for standard **payment links** (no separate EPL webhook type).
-
-  <Image align="center" border={true} width="260px" src="./images/epl-customer-journey/epl-journey-frame-06.png" className="border" />
+![](https://files.readme.io/856526d4ad8dc035235144a238819c0334f822ef6228c5ed586b83b9933f7903-epl-journey-frame-06.png)
 </Accordion>
-
 
 ***
 
