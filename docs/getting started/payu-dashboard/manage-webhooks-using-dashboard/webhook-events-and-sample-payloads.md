@@ -4,9 +4,11 @@ excerpt: List of webhook events along with sample payloads.
 deprecated: false
 hidden: false
 metadata:
-  robots: index
   description: >-
-    Configure PayU Dashboard webhooks to receive payment, refund, and dispute notifications. Create, update, and monitor webhook events with sample payloads for merchant integrations. Covers Webhook Events and Sample Payloads.
+    Configure PayU Dashboard webhooks to receive payment, refund, and dispute
+    notifications. Create, update, and monitor webhook events with sample
+    payloads for merchant integrations. Covers Webhook Events and Sample
+    Payloads.
   keywords:
     - payu dashboard webhooks setup guide
     - configure payment webhooks payu merchant dashboard
@@ -18,8 +20,9 @@ metadata:
     - payu dashboard webhook refund dispute events
     - payment gateway webhooks payu vs razorpay cashfree
     - payu dashboard webhook configuration india
+  robots: index
 ---
-You can accept customer payments using PayU products. By subscribing to payments webhook events you can get notified about payment state changes. Know more about <Anchor label="managing webhooks using the dashboard" target="_blank" href="https://docs.payu.in/docs/manage-webhooks-using-dashboard">managing webhooks using the dashboard</Anchor>.
+You can accept customer payments using PayU products. By subscribing to payments webhook events you can get notified about payment state changes. Know more about <Anchor target="_blank" href="https://docs.payu.in/docs/manage-webhooks-using-dashboard">managing webhooks using the dashboard</Anchor>.
 
 ## List of Webhook Events
 
@@ -36,11 +39,11 @@ The table below lists the available webhook events.
 
 The following are the sample payloads for webhook events.
 
-<Callout icon="📘" theme="info">
-  The payment successful and failure payloads are in the Form POST URL Encoded format:
-
-  ` application/x-www-form-urlencode`
-</Callout>
+> 📘
+>
+> The payment successful and failure payloads are in the Form POST URL Encoded format:
+>
+> ` application/x-www-form-urlencode`
 
 ### Payment Successful
 
@@ -174,6 +177,10 @@ mihpayid=27553387529
 
 #### Payments Event Payload Parameter Description
 
+> 📘 **Webhook amount field:**&#x20;
+>
+> The `amount` field in the webhook payload reflects the **original transaction amount** passed in the payment request — it does not include convenience fees or MDR charges added by the merchant. If you have configured convenience fees, the `net_amount_debit` field (where available) reflects the actual amount debited from the customer's account. Always use `amount` for reconciliation against your order value and `net_amount_debit` for the customer-side amount.
+
 <Accordion title="Parameters and Description" icon="fa-table">
   | Parameters               | Description                                                                                                                                                                                                                                                     |
   | ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -226,14 +233,14 @@ The following table provides description for each status of the transaction. You
 
 ### Refund Successful
 
-<Callout icon="📘" theme="info">
-  **Note:**
-
-  The Refund and Dispute payloads are in the following format:
-
-  * **Method:** POST
-  * **Content type:** application/json
-</Callout>
+> 📘
+>
+> **Note:**
+>
+> The Refund and Dispute payloads are in the following format:
+>
+> - **Method:** POST
+> - **Content type:** application/json
 
 **Field reference:** `merchantTxnId` (merchant order ID), `mihpayid` (PayU transaction ID), `token` (merchant refund ID), `request_id` (PayU refund ID), `amt` (refund amount), `status` (`success` or `failure`), `action` (`refund`), `key` (merchant key), `bank_ref_num` / `bank_arn` (bank reference).
 
@@ -361,7 +368,7 @@ The following table provides description for each status of the transaction. You
   | cb\_status   | Current status of the chargeback. For the possible chargeback status values, refer to [cb\_status field values description](https://docs.payu.in/docs/webhooks-for-chargeback#cb_status-field-values-description) |
 </Accordion>
 
-#### cb_status Parameter Values
+#### cb\_status Parameter Values
 
 <Accordion title="Parameters and Description" icon="fa-table">
   The `cb_status` or chargeback status field can have the following values:<br />
@@ -378,15 +385,15 @@ The following table provides description for each status of the transaction. You
   | Closed under Fraud Liability | It indicates that the chargeback has been closed since the transaction has been identified as fraudulent. Moreover, PayU will cover the chargeback amount under the fraud liability program so the chargeback amount will be reversed back to the merchant account or will not be debited from the merchant's account. |
 </Accordion>
 
-<Callout icon="📘" theme="info">
-  **Webhook Logs**
-
-  You can now view the webhook logs on your dashboard by navigating to:
-
-  Dashboard -> Developers -> Webhook logs
-
-  Ensure that your webhook URL is captures and handles the posted response payload. Additionally, you may use the <Anchor label="Transaction Callback API" target="_blank" href="https://docs.payu.in/reference/transaction-callback-api">Transaction Callback API</Anchor> to manually test the response payload:
-</Callout>
+> 📘
+>
+> **Webhook Logs**
+>
+> You can now view the webhook logs on your dashboard by navigating to:
+>
+> Dashboard -> Developers -> Webhook logs
+>
+> Ensure that your webhook URL is captures and handles the posted response payload. Additionally, you may use the <Anchor target="_blank" href="https://docs.payu.in/reference/transaction-callback-api">Transaction Callback API</Anchor> to manually test the response payload:
 
 ## IP Addresses
 
@@ -396,3 +403,5 @@ All our webhook requests originate from a set of IP addresses. If your server-ha
 | :--------------------- | :--------------------------------------------------------------------- | :---------------------------------------------------------------------- |
 | Test Environment       | <ul><li>180.179.174.1</li> <li>3.6.73.183</li> <li>3.6.83.44</li></ul> | NA                                                                      |
 | Production Environment | <ul><li>3.7.89.1</li> <li>3.7.89.2</li> <li>3.7.89.3</li></ul>         | <ul><li>52.140.8.88</li> <li>52.140.8.89</li> <li>52.140.8.64</li></ul> |
+
+<br />
