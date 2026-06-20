@@ -135,6 +135,7 @@ For **your** EPL integration, the surface after **Pay now** may be **PayU hosted
   The business sends an approved **template** message. The customer sees a **structured payment card**: amount (for example **₹100.00**), short instructions (“Please make the payment…”), optional **Pay with** hints (card brands), and a primary **Pay now** CTA on the card.
 
 ![](https://files.readme.io/d32ee7365d4ef035f7fa77e0aeeee86bddd87402ca34ac65db276d22d7e03744-epl-journey-frame-01.png)
+</Accordion>
 
 <Accordion title="Step 2: Customer taps Pay now" icon="fa-hand-pointer">
   Tapping **Pay now** follows the **dynamic URL** on the CTA (your PayU payment link with the Meta-required suffix). WhatsApp then opens the **next payment UI**—in the training asset this is a **bottom sheet**; in other setups it can be **PayU checkout** in the in-app browser.
@@ -150,6 +151,7 @@ For **your** EPL integration, the surface after **Pay now** may be **PayU hosted
 
   The customer selects an option and taps **Continue** (green). Footer shows **POWERED BY UPI**.
 ![](https://files.readme.io/01530121094cda71fbe344d89a5139546fa93a557e5b4fc493d9db9c9964b9d8-epl-journey-frame-02.png)
+</Accordion>
 
 <Accordion title="Step 4: Review and confirm payment" icon="fa-circle-check">
   The sheet moves to **Confirm payment** (back arrow to change method). The customer checks:
@@ -165,7 +167,7 @@ For **your** EPL integration, the surface after **Pay now** may be **PayU hosted
 ![]
 (https://files.readme.io/ea2eb134643c8a989f11904080c99407090355260961d17690c85bc0fadbd677-epl-journey-frame-04.png)
 
-
+</Accordion>
 
 <Accordion title="Step 5: Authenticate" icon="fa-key">
   For the **UPI on WhatsApp** path shown in the training capture, the bank/UPI step shows **ENTER UPI PIN**, amount and merchant name, numeric keypad, and submit (**checkmark**). For **card / net banking** (if the customer chose **Other payment methods** earlier), authentication is **OTP** or the bank’s page instead—those paths are not shown in these stills.
