@@ -35,8 +35,6 @@ PayU supports multiple ways to accept payments on WhatsApp in partnership with M
   </Card>
 </Cards>
 
-## Overview
-
 EPL uses Meta’s **Enhanced Payment Links** pattern: PayU generates a **payment link** for the order, your system sends a WhatsApp **Cloud API** template whose CTA URL carries the PayU link (with the **PayU-specific URL suffix** Meta requires), WhatsApp shows an enhanced card with **Pay Now**, and the customer pays on PayU checkout using **UPI, cards, net banking, wallets, EMI**, and other methods your PayU setup supports.
 
 Meta defines three WhatsApp commerce payment flavours; EPL sits at the **lowest complexity** end (typically **1–2 weeks** to go live), with **no** PG-to-WhatsApp **OAuth** linking in Business Manager.
@@ -126,64 +124,59 @@ sequenceDiagram
 ```
 
 ### Customer journey
+
 he walkthrough below is **tied to each training screenshot** (still frames from **slide 9 — “Payment Experience with EPL flow”** in `PRDs/training whatsapp.pptx`, Meta demo merchant **Jasper’s Market**). Labels such as **Choose payment method**, **Confirm payment**, and **POWERED BY UPI** match what appears in those images.
 
 For **your** EPL integration, the surface after **Pay now** may be **PayU hosted checkout** in the **WhatsApp in-app browser** rather than the native **Pay on WhatsApp** sheet—customer steps (**pick method → confirm → authenticate → done**) stay the same even if the chrome differs.
 
-For a **system-level sequence** (merchant → PayU → WhatsApp Cloud API → customer → webhook), see [How the payment flow works](doc:enhanced-payment-links-overview#how-the-payment-flow-works) on the overview page.
+<Accordion title="Step 1: Payment request appears in the chat" icon="fa-comment-dollar">
+  The business sends an approved **template** message. The customer sees a **structured payment card**: amount (for example **₹100.00**), short instructions (“Please make the payment…”), optional **Pay with** hints (card brands), and a primary **Pay now** CTA on the card.
 
-### Step 1 — Payment request appears in the chat
+  <Image align="center" border={true} width="260px" src="./images/epl-customer-journey/epl-journey-frame-01.png" className="border" />
+</Accordion>
 
-The business sends an approved **template** message. The customer sees a **structured payment card**: amount (for example **₹100.00**), short instructions (“Please make the payment…”), optional **Pay with** hints (card brands), and a primary **Pay now** CTA on the card.
+<Accordion title="Step 2: Customer taps Pay now" icon="fa-hand-pointer">
+  Tapping **Pay now** follows the **dynamic URL** on the CTA (your PayU payment link with the Meta-required suffix). WhatsApp then opens the **next payment UI**—in the training asset this is a **bottom sheet**; in other setups it can be **PayU checkout** in the in-app browser.
 
-<Image align="center" border={true} width="260px" src="./images/epl-customer-journey/epl-journey-frame-01.png" className="border" />
+  There is no separate still between frames **01** and **02**; the animated GIF under [Assets and publishing](#assets-and-publishing) shows the transition.
+</Accordion>
 
-### Step 2 — Customer taps **Pay now**
+<Accordion title="Step 3: Choose payment method" icon="fa-list">
+  The customer sees **Choose payment method** (sheet header with close **X**). Typical options in the training UI:
 
-Tapping **Pay now** follows the **dynamic URL** on the CTA (your PayU payment link with the Meta-required suffix). WhatsApp then opens the **next payment UI**—in the training asset this is a **bottom sheet**; in other setups it can be **PayU checkout** in the in-app browser.
+  * **Pay on WhatsApp** — linked bank account (for example **ICICI Bank ••1234**) as **Default**, plus links to view balance or **Add payment method**.
+  * **More payment methods** — **Google Pay**, **PhonePe**, **More UPI apps**, and **Other payment methods** (debit card, net banking, and more).
 
+  The customer selects an option and taps **Continue** (green). Footer shows **POWERED BY UPI**.
 
-### Step 3 — Choose payment method
+  <Image align="center" border={true} width="260px" src="./images/epl-customer-journey/epl-journey-frame-02.png" className="border" />
+</Accordion>
 
-The customer sees **Choose payment method** (sheet header with close **X**). Typical options in the training UI:
+<Accordion title="Step 4: Review and confirm payment" icon="fa-circle-check">
+  The sheet moves to **Confirm payment** (back arrow to change method). The customer checks:
 
-* **Pay on WhatsApp** — linked bank account (for example **ICICI Bank ••1234**) as **Default**, plus links to view balance or **Add payment method**.
-* **More payment methods** — **Google Pay**, **PhonePe**, **More UPI apps**, and **Other payment methods** (debit card, net banking, and more).
+  * **Payee** — business name / logo and payee identifier (in the demo, a **UPI ID** such as `merchant@wabank`).
+  * **Pay from** — selected bank or instrument (for example **ICICI Bank ••5256**, **Default**).
+  * **Total** — e.g. **₹100.00**.
 
-The customer selects an option and taps **Continue** (green). Footer shows **POWERED BY UPI**.
+  When satisfied, the customer taps **Send payment** (green).
 
-<Image align="center" border={true} width="260px" src="./images/epl-customer-journey/epl-journey-frame-02.png" className="border" />
+  <Image align="center" border={true} width="260px" src="./images/epl-customer-journey/epl-journey-frame-03.png" className="border" />
 
+  <Image align="center" border={true} width="260px" src="./images/epl-customer-journey/epl-journey-frame-04.png" className="border" />
+</Accordion>
 
-### Step 4 — Review and confirm payment
+<Accordion title="Step 5: Authenticate" icon="fa-key">
+  For the **UPI on WhatsApp** path shown in the training capture, the bank/UPI step shows **ENTER UPI PIN**, amount and merchant name, numeric keypad, and submit (**checkmark**). For **card / net banking** (if the customer chose **Other payment methods** earlier), authentication is **OTP** or the bank’s page instead—those paths are not shown in these stills.
 
-The sheet moves to **Confirm payment** (back arrow to change method). The customer checks:
+  <Image align="center" border={true} width="260px" src="./images/epl-customer-journey/epl-journey-frame-05.png" className="border" />
+</Accordion>
 
-* **Payee** — business name / logo and payee identifier (in the demo, a **UPI ID** such as `merchant@wabank`).
-* **Pay from** — selected bank or instrument (for example **ICICI Bank ••5256**, **Default**).
-* **Total** — e.g. **₹100.00**.
+<Accordion title="Step 6: Success in chat and webhook to merchant" icon="fa-check-double">
+  The conversation updates with a **completed payment** line (green outbound bubble: amount, **Send to** merchant, **Completed** with read receipts). The payment card in-thread may show a post-pay state (for example **View details**). Your **PayU PG webhook** fires on success with the same contract as for standard **payment links** (no separate EPL webhook type).
 
-When satisfied, the customer taps **Send payment** (green).
-
-<Image align="center" border={true} width="260px" src="./images/epl-customer-journey/epl-journey-frame-03.png" className="border" />
-
-*Training still **03** — **Confirm payment** (summary before final send).*
-
-<Image align="center" border={true} width="260px" src="./images/epl-customer-journey/epl-journey-frame-04.png" className="border" />
-
-
-### Step 5 — Authenticate
-
-For the **UPI on WhatsApp** path shown in the training capture, the bank/UPI step shows **ENTER UPI PIN**, amount and merchant name, numeric keypad, and submit (**checkmark**). For **card / net banking** (if the customer chose **Other payment methods** earlier), authentication is **OTP** or the bank’s page instead—those paths are not shown in these stills.
-
-<Image align="center" border={true} width="260px" src="./images/epl-customer-journey/epl-journey-frame-05.png" className="border" />
-
-
-### Step 6 — Success in chat and webhook to merchant
-
-The conversation updates with a **completed payment** line (green outbound bubble: amount, **Send to** merchant, **Completed** with read receipts). The payment card in-thread may show a post-pay state (for example **View details**). Your **PayU PG webhook** fires on success with the same contract as for standard **payment links** (no separate EPL webhook type).
-
-<Image align="center" border={true} width="260px" src="./images/epl-customer-journey/epl-journey-frame-06.png" className="border" />
+  <Image align="center" border={true} width="260px" src="./images/epl-customer-journey/epl-journey-frame-06.png" className="border" />
+</Accordion>
 
 
 ***
