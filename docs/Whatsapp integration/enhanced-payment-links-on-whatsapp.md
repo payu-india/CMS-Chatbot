@@ -203,9 +203,36 @@ In a live integration, your backend creates the **UPI Intent** via PayU and send
 <Accordion title="Step 6: Success in chat and webhook to merchant" icon="fa-check-double">
   The conversation updates with a **completed payment** line (green outbound bubble: amount, **Send to** merchant, **Completed** with read receipts). The payment card in-thread may show a post-pay state (for example **View details**). Your **PayU PG webhook** fires on success with the same contract as for standard **payment links** (no separate EPL webhook type).
 </Accordion>
+
 <br />
+
 ![](https://files.readme.io/7a4b497de57af34eaf7079543c134838b2a9e16b5fcde504cf6cf95898c590f0-epl-training-slide9.gif)
+
 ***
+#### P2M / PG Deep Integration on WhatsApp
+
+<Accordion title="Step 1: Business sends catalogue or order in WhatsApp" icon="fa-store">
+  The merchant (or automation) sends a **structured order or catalogue** message in the conversation—line items, amounts, and context the customer needs before paying. This is typically an **`order_details`**-style interactive message initiated over the **WhatsApp Cloud API** once your PG and Meta **payment_configuration** are in place.
+</Accordion>
+
+<Accordion title="Step 2: Customer taps Review & Pay in the chat" icon="fa-hand-pointer">
+  From the order bubble or card, the customer taps **Review & Pay** (or the equivalent CTA Meta renders for your template). The UI stays **inside WhatsApp**; there is no hand-off to an external merchant web checkout for the core native flow.
+</Accordion>
+
+<Accordion title="Step 3: Native payment sheet opens" icon="fa-credit-card">
+  WhatsApp opens the **native payment sheet** so the customer can choose **UPI** (including linked bank / TPAP where offered), **cards**, **net banking**, **wallets**, and **EMI** when your programme supports it. Everything in this step remains in the **in-chat / Meta-native** payment experience described in the training deck.
+</Accordion>
+
+<Accordion title="Step 4: Customer completes payment without leaving WhatsApp" icon="fa-lock">
+  The customer enters **OTP**, **UPI PIN**, or other authentication required by the selected method. Authorisation completes **without leaving WhatsApp** for the native P2M path (contrast with **EPL**, where checkout opens in a browser, and contrast with **UPI Intent**–only flows that lean on UPI apps).
+</Accordion>
+
+<Accordion title="Step 5: Instant confirmation and order update in the chat" icon="fa-check-double">
+  On success, the customer sees **payment confirmation** and **order status** updates in the same thread (for example paid / processing / complete, depending on your implementation). Your backend should consume **WhatsApp payment / order webhooks** where configured, **and** continue to handle the **PayU PG webhook** for reconciliation—**PG Deep Integration** uses **both** channels versus EPL or UPI Intent alone.
+</Accordion>
+
+
+<Image src="https://files.readme.io/c5e2f5a86bc6fa4daf9e70becb83d20761dcf8da94e0c2510e9888c9e4788961-payment-experience-p2m-flow-lite.gif" align="left" width="300px" />
 
 ## Benefits for your business
 
