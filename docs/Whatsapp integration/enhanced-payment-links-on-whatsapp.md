@@ -20,7 +20,7 @@ PayU supports multiple ways to accept payments on WhatsApp in partnership with M
     End-to-end steps from link creation to webhook notification.
   </Card>
 
- <Card title="Customer Journey" href="#customer-journey" icon="fa-travel">
+ <Card title="Customer Journey" href="#customer-journey" icon="fa-info-travel">
     Why EPL is often the best starting point and typical industries.
   </Card>
 
