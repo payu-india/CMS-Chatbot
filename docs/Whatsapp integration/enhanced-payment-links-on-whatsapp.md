@@ -137,7 +137,7 @@ In a live integration, your backend creates the **UPI Intent** via PayU and send
 </Accordion>
 
 <Accordion title="Step 2: Review native order details (pending)" icon="fa-file-invoice">
-  The customer opens the **Order details** view (native screen in the training flow): merchant branding, **ORDER** reference, **Order pending** state, line items and pricing (including any discount), **Total**, and **Continue** to move toward payment.
+  The customer opens the **Order details** view: merchant branding, **ORDER** reference, **Order pending** state, line items and pricing (including any discount), **Total**, and **Continue** to move toward payment.
 
 </Accordion>
 
@@ -147,7 +147,7 @@ In a live integration, your backend creates the **UPI Intent** via PayU and send
 </Accordion>
 
 <Accordion title="Step 4: In-chat payment confirmation" icon="fa-circle-check">
-  In the thread, the customer sees the **order summary** alongside a **completed payment** bubble (amount, **Sent to** the business, **Completed** with read receipts). This corresponds to a successful **UPI** authorisation after the customer confirms on their bank or TPAP flow (not every sub-step is shown in the training stills).
+  In the thread, the customer sees the **order summary** alongside a **completed payment** bubble (amount, **Sent to** the business, **Completed** with read receipts). This corresponds to a successful **UPI** authorisation after the customer confirms on their bank or TPAP flow.
 
 </Accordion>
 
@@ -196,7 +196,7 @@ In a live integration, your backend creates the **UPI Intent** via PayU and send
 </Accordion>
 
 <Accordion title="Step 5: Authenticate" icon="fa-key">
-  For the **UPI on WhatsApp** path shown in the training capture, the bank/UPI step shows **ENTER UPI PIN**, amount and merchant name, numeric keypad, and submit (**checkmark**). For **card / net banking** (if the customer chose **Other payment methods** earlier), authentication is **OTP** or the bank’s page instead—those paths are not shown in these stills.
+  For the **UPI on WhatsApp** path, the bank/UPI step shows **ENTER UPI PIN**, amount and merchant name, numeric keypad, and submit (**checkmark**). For **card / net banking** (if the customer chose **Other payment methods** earlier), authentication is **OTP** or the bank’s page instead—those paths are not shown in these stills.
 
 </Accordion>
 
@@ -209,6 +209,7 @@ In a live integration, your backend creates the **UPI Intent** via PayU and send
 ![](https://files.readme.io/7a4b497de57af34eaf7079543c134838b2a9e16b5fcde504cf6cf95898c590f0-epl-training-slide9.gif)
 
 ***
+
 ### P2M / PG Deep Integration on WhatsApp Flow
 
 <Accordion title="Step 1: Business sends catalogue or order in WhatsApp" icon="fa-store">
@@ -233,6 +234,7 @@ In a live integration, your backend creates the **UPI Intent** via PayU and send
 
 
 <Image src="https://files.readme.io/c5e2f5a86bc6fa4daf9e70becb83d20761dcf8da94e0c2510e9888c9e4788961-payment-experience-p2m-flow-lite.gif" align="left" width="300px" />
+
 
 ## Benefits for your business
 
