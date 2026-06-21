@@ -129,7 +129,7 @@ sequenceDiagram
 
 ### Payment Experience with UPI URL​
 
-In a live integration, your backend creates the **UPI Intent** via PayU and sends `POST /messages` with `type: order_details` and `payment_type: "upi"` (per your programme spec). The customer-facing steps below mirror what the **training deck** illustrates on slide **12**.
+In a live integration, your backend creates the **UPI Intent** via PayU and sends `POST /messages` with `type: order_details` and `payment_type: "upi"` (per your programme spec).
 
 <Accordion title="Step 1: Choose payment path and receive the order card" icon="fa-comments">
   In the chat, the business asks how the customer wants to pay (for example **Pay with UPI** vs **Other payment option**). After the customer selects **Pay with UPI**, the business sends an **order-style message**: order reference, line item (for example **Electricity bill**), amount, short narrative, and actions such as **Review and pay** and **Pay now**.
@@ -169,13 +169,13 @@ In a live integration, your backend creates the **UPI Intent** via PayU and send
 </Accordion>
 
 <Accordion title="Step 2: Customer taps Pay now" icon="fa-hand-pointer">
-  Tapping **Pay now** follows the **dynamic URL** on the CTA (your PayU payment link with the Meta-required suffix). WhatsApp then opens the **next payment UI**—in the training asset this is a **bottom sheet**; in other setups it can be **PayU checkout** in the in-app browser.
+  Tapping **Pay now** follows the **dynamic URL** on the CTA (your PayU payment link with the Meta-required suffix). WhatsApp then opens the **next payment UI**, in other setups it can be **PayU checkout** in the in-app browser.
 
   There is no separate still between frames **01** and **02**; the animated GIF under [Assets and publishing](#assets-and-publishing) shows the transition.
 </Accordion>
 
 <Accordion title="Step 3: Choose payment method" icon="fa-list">
-  The customer sees **Choose payment method** (sheet header with close **X**). Typical options in the training UI:
+  The customer sees **Choose payment method** (sheet header with close **X**):
 
   * **Pay on WhatsApp** — linked bank account (for example **ICICI Bank ••1234**) as **Default**, plus links to view balance or **Add payment method**.
   * **More payment methods** — **Google Pay**, **PhonePe**, **More UPI apps**, and **Other payment methods** (debit card, net banking, and more).
@@ -220,7 +220,7 @@ In a live integration, your backend creates the **UPI Intent** via PayU and send
 </Accordion>
 
 <Accordion title="Step 3: Native payment sheet opens" icon="fa-credit-card">
-  WhatsApp opens the **native payment sheet** so the customer can choose **UPI** (including linked bank / TPAP where offered), **cards**, **net banking**, **wallets**, and **EMI** when your programme supports it. Everything in this step remains in the **in-chat / Meta-native** payment experience described in the training deck.
+  WhatsApp opens the **native payment sheet** so the customer can choose **UPI** (including linked bank / TPAP where offered), **cards**, **net banking**, **wallets**, and **EMI** when your programme supports it. 
 </Accordion>
 
 <Accordion title="Step 4: Customer completes payment without leaving WhatsApp" icon="fa-lock">
