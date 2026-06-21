@@ -20,6 +20,10 @@ PayU supports multiple ways to accept payments on WhatsApp in partnership with M
     End-to-end steps from link creation to webhook notification.
   </Card>
 
+ <Card title="Customer Journey" href="#customer-journey" icon="fa-travel">
+    Why EPL is often the best starting point and typical industries.
+  </Card>
+
   <Card title="Benefits and fit" href="#benefits-for-your-business" icon="fa-briefcase">
     Why EPL is often the best starting point and typical industries.
   </Card>
@@ -50,7 +54,9 @@ Meta defines three WhatsApp commerce payment flavours; EPL sits at the **lowest 
 | **Best for**                   | Collections, insurance, lending, EMI, fast go-live | Bill pay, utilities, BBPS, government | E-commerce, travel, quick commerce, food |
 
 ***
+
 <br />
+
 ## How the payment flow works
 
 1. Your backend calls PayU to **generate a payment link** (same as existing payment-link flows).
@@ -124,8 +130,11 @@ sequenceDiagram
     C->>PU: Complete payment
     PU->>MS: PG webhook (same as payment links)
 ```
+
 ***
+
 <br />
+
 ## Customer journey
 
 ### Payment Experience with UPI URL​
@@ -159,6 +168,8 @@ In a live integration, your backend creates the **UPI Intent** via PayU and send
 
 
 <Image src="https://files.readme.io/fa4790a59dc7d1a9722c2970ee10a68d5ad6eb1b1cdb7fdb558a05ac51b43e97-payment-experience-upi-url.gif" align="left" width="350px" border={true} />
+
+
 <br />
 
 ### Payment Experience with EPL flow​
@@ -208,6 +219,7 @@ In a live integration, your backend creates the **UPI Intent** via PayU and send
 ![](https://files.readme.io/7a4b497de57af34eaf7079543c134838b2a9e16b5fcde504cf6cf95898c590f0-epl-training-slide9.gif)
 
 ***
+
 <br />
 
 ### P2M / PG Deep Integration on WhatsApp Flow
@@ -235,8 +247,11 @@ In a live integration, your backend creates the **UPI Intent** via PayU and send
 
 <Image src="https://files.readme.io/c5e2f5a86bc6fa4daf9e70becb83d20761dcf8da94e0c2510e9888c9e4788961-payment-experience-p2m-flow-lite.gif" align="left" width="300px" />
 
+
 ***
+
 <br />
+
 ## Benefits for your business
 
 \- **Minimal backend change** if you already use PayU payment links—reuse link APIs and webhooks.
@@ -244,23 +259,25 @@ In a live integration, your backend creates the **UPI Intent** via PayU and send
 \- **Full checkout breadth** on PayU hosted pages (EMI, auto-debit, etc.), not limited to in-chat UPI-only flows.
 \- **Fastest path to WhatsApp collections** compared with deeper native integrations.
 
-Real-world examples cited in product materials include **PolicyBazaar** (reported **17%** conversion uplift after EPL) and **Piramal Finance** for recurring EMI collection via links.
-<br />
+Real-world examples cited in product materials include **PolicyBazaar** (reported **17%** conversion uplift after EPL) and **Piramal Finance** for recurring EMI collection via links. <br />
+
 ### When you must use EPL?
 
 \- Insurance — premium renewals and policyholder collections.
 \- Lending / NBFCs — EMI and recurring collection links.
 \- Bulk **collections and reminders** with a pay link in each template message.
 \- Merchants who already run **PayU payment links** and want WhatsApp as an additional channel.
-\- Teams that need **go-live in roughly 1–2 weeks** (often dominated by **Meta template approval**, typically **3–7 business days**).
-<br />
+\- Teams that need **go-live in roughly 1–2 weeks** (often dominated by **Meta template approval**, typically **3–7 business days**). <br />
+
 ### When to consider another flavour instead?
 
 \- You need the customer to **stay inside WhatsApp** for the full payment UX → look at **PG Deep Integration** (or **UPI Intent** if UPI-only is acceptable).
 \- You need **rich multi-line-item orders** and real-time **order status** purely in chat (for example food delivery) → **PG Deep Integration** is usually more appropriate.
 
 ***
+
 <br />
+
 ## Prerequisites to go live on EPL
 
 | Requirement                          | Detail                                                                                                                      |
@@ -294,7 +311,9 @@ Real-world examples cited in product materials include **PolicyBazaar** (reporte
 PayU is supported across **all three** solutions, so many merchants can start with **EPL** and later add **UPI Intent** or **PG Deep Integration** without changing payment gateway.
 
 ***
+
 <br />
+
 ## Go-live checklist
 
 \- \[ ] **Enterprise WABA** verified.
