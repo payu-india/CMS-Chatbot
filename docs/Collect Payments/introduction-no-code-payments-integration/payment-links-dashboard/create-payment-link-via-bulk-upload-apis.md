@@ -12,31 +12,11 @@ The bulk upload option using APIs lets you create many payment links by uploadin
 
 Below are the integration steps:
 
-<style>
-  {`
-            .zoom-card-link {
-              display: block;
-              color: inherit !important;
-              text-decoration: none !important;
-              transition: transform 0.2s ease;
-            }
-            .zoom-card-link h4,
-            .zoom-card-link p,
-            .zoom-card-link span {
-              color: inherit !important;
-              text-decoration: none !important;
-            }
-            .zoom-card-link:hover {
-              transform: scale(1.05);
-            }
-          `}
-</style>
-
 <Cards columns={3}>
   <Card>
     <a href="#step-1-get-the-access-token" className="zoom-card-link">
       <div style={{ color: "#000", padding: "8px" }}>
-        <i className="fa fa-key" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
+        <i className="fa fa-key" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
 
         <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Step 1. Get the Access Token</h4>
 
@@ -50,7 +30,7 @@ Below are the integration steps:
   <Card>
     <a href="#step-2-upload-the-bulk-file" className="zoom-card-link">
       <div style={{ color: "#000", padding: "8px" }}>
-        <i className="fa fa-file-upload" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
+        <i className="fa fa-file-upload" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
 
         <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Step 2. Upload the Bulk File</h4>
 
@@ -64,7 +44,7 @@ Below are the integration steps:
   <Card>
     <a href="#step-3-fetch-payment-links" className="zoom-card-link">
       <div style={{ color: "#000", padding: "8px" }}>
-        <i className="fa fa-link" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
+        <i className="fa fa-link" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
 
         <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Step 3. Fetch Payment Links</h4>
 
@@ -78,7 +58,7 @@ Below are the integration steps:
 
 ### Step 1. Get the Access Token
 
-The first step is to obtain an access token using the following API. Refer to the <Anchor label="Get Access Token API" target="_blank" href="https://docs.payu.in/reference/get-token-api-for-payment-links">Get Access Token API</Anchor> for more information.
+The first step is to obtain an access token using the following API. Refer to the <Anchor target="_blank" href="https://docs.payu.in/reference/get-token-api-for-payment-links">Get Access Token API</Anchor> for more information.
 
 <Cards>
   <Card title="Method">
@@ -449,3 +429,5 @@ Now that you have uploaded the file, use this API to fetch the payment links tha
   | `pass valid status param`               | `status` query value not in `active`, `inactive`, or `expired`. |
   | `error occured while bulk paymentLinks` | Server‑side exception                                           |
 </Accordion>
+
+<br />
