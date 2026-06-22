@@ -180,5 +180,15 @@ metadata:
    - Callback
    - Status verification API
    </Accordion>
+   ***
+   ## Reverse Hashing
+
+1) #### What is reverse hash validation?
+   <Accordion title="Answer" icon="fa-comment-dots">
+   Reverse hash validation a way to verify the authnticity of the payment made by customers.
+   After a customer completes a payment PayU returns a response hash in callback.
+   You must regenerate it and compare. This is the validation flow:
+
+   </Accordion>
 
 <br />
