@@ -9,6 +9,8 @@ PayU supports multiple ways to accept payments on WhatsApp in partnership with M
 
 **Enhanced Payment Links (EPL)** is the simplest option: you send an approved WhatsApp **template** message with a **Pay Now** call-to-action, the customer taps it, and completes payment on PayU’s **hosted checkout** in the browser (outside WhatsApp). If you already use PayU **payment links**, link generation and **webhooks** work the same as today.
 
+After you ensure [Prerequisites to go live on EPL](#prerequisites-to-go-live-on-epl)
+
 <br />
 
 <Cards>
