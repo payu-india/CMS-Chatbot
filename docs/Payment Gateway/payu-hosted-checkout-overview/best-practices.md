@@ -27,25 +27,29 @@ If the salt is exposed, attackers can forge payment requests by tampering critic
 
 ***
 
-## 2. Never Treat Browser Redirect as Payment Success
-
-Do **not** mark an order as paid just because the customer lands on `surl`.
-
-Browser redirects are unreliable because:
+<Accordion title="2. Never Consider Browser Redirect as Payment Success" icon="fa-triangle-exclamation">
+It is not recommended to mark an order as paid only because the customer lands on `surl`. Browser redirects are unreliable because:
 
 - Customer may close browser
+
 - Network may fail
+
 - Browser may crash
+
 - Redirect may be intercepted
+
 - Response may be spoofed
 
-### Best Practice
+It is recommended to mark the order as paid only after:
 
-Mark payment successful only after:
+- Reverse hash validation succeeds
 
-1. Reverse hash validation succeeds
-2. Callback/webhook is verified
-3. Payment status is confirmed
+- Callback/webhook is verified
+
+- Payment status is confirmed
+</Accordion>
+
+***
 
 ### Recommended Source of Truth
 
