@@ -276,8 +276,6 @@ Real-world examples cited in product materials include **PolicyBazaar** (reporte
 
 ***
 
-<br />
-
 ## Prerequisites to go live on EPL
 
 > 📌 Integrate with Meta&#x20;
