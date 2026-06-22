@@ -175,6 +175,10 @@ metadata:
    - Payment success
    - No redirect
    - Webhook still arrives
+   It is a good practice to check the payment status using any of the following:
+   - Webhook
+   - Callback
+   - Status verification API
    </Accordion>
 
 <br />
