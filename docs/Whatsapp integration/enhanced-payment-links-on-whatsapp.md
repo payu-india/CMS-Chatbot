@@ -37,10 +37,10 @@ After you ensure [Prerequisites to go live on EPL](#prerequisites-to-go-live-on-
   <Card title="Compare WhatsApp payment options" href="#compare-whatsapp-payment-options" icon="fa-table">
     EPL vs UPI Intent vs PG Deep Integration at a glance.
   </Card>
-
-  <Card title="Go-live checklist" href="#go-live-checklist" icon="fa-clipboard-check">
-    Checklist before you take EPL live.
+  <Card title="Prerequisites" href="##prerequisites-to-go-live-on-epl" icon="fa-table">
+    Prerequisites to go live on EPL
   </Card>
+
 </Cards>
 
 EPL uses Meta’s **Enhanced Payment Links** pattern: PayU generates a **payment link** for the order, your system sends a WhatsApp **Cloud API** template whose CTA URL carries the PayU link (with the **PayU-specific URL suffix** Meta requires), WhatsApp shows an enhanced card with **Pay Now**, and the customer pays on PayU checkout using **UPI, cards, net banking, wallets, EMI**, and other methods your PayU setup supports.
@@ -278,7 +278,7 @@ Real-world examples cited in product materials include **PolicyBazaar** (reporte
 
 ***
 
-## Prerequisites to go live on EPL
+## Prerequisites to Go Live on EPL
 
 > 📌 Integrate with Meta&#x20;
 >
