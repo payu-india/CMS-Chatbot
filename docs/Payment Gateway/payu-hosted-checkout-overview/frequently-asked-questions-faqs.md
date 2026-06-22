@@ -192,5 +192,24 @@ metadata:
    2. Use the returned hash and generate a reverse hash string.
    3. Compare hashes and authenticated if the hash matches. Reject the callback if the hash mismatches.
    </Accordion>
+2) #### What causes reverse hash mismatch?
+   <Accordion title="Answer" icon="fa-comment-dots">
+   These are the common causes of reverse hash mismatch:
+   - Wrong sequence
+   - Wrong salt
+   - Modified response data
+   - Whitespace issues
+   </Accordion>
+
+## Callback vs Webhook
+
+1. #### What is the difference between callback and webhook?
+   <Accordion title="Answer" icon="fa-comment-dots">
+   | Callback                | Webhook             |
+   | ----------------------- | ------------------- |
+   | Browser redirect        | Server-to-server    |
+   | Depends on user browser | Independent of user |
+   | Less reliable           | More reliable       |
+   </Accordion>
 
 <br />
