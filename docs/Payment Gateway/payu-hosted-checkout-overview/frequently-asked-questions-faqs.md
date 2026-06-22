@@ -188,7 +188,9 @@ metadata:
    Reverse hash validation a way to verify the authnticity of the payment made by customers.
    After a customer completes a payment PayU returns a response hash in callback.
    You must regenerate it and compare. This is the validation flow:
-
+   1. You receive a callback
+   2. Use the returned hash and generate a reverse hash string.
+   3. Compare hashes and authenticated if the hash matches. Reject the callback if the hash mismatches.
    </Accordion>
 
 <br />
