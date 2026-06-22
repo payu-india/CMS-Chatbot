@@ -284,14 +284,16 @@ Real-world examples cited in product materials include **PolicyBazaar** (reporte
 | :----------------------------------- | :-------------------------------------------------------------------------------------------------------------------------- |
 | **WhatsApp Business Account (WABA)** | **Enterprise** WABA, **verified** with Meta.                                                                                |
 | **Approved message template**        | Template with a **CTA button**; URL must follow Meta’s **PayU-specific link suffix** rules. Submitted and approved by Meta. |
-| **PayU account**                     | Standard PayU merchant account. (Razorpay and Cashfree are also supported in EPL programmes where applicable.)              |
+| **PayU account**                     | Standard PayU merchant account.                                                                                             |
 | **EPL allowlisting**                 | WABA must be added to Meta’s **EPL gating (GK) biglist**—PayU or your **BSP** drives this.                                  |
 | **OAuth to link PG in WA**           | **Not required** for EPL.                                                                                                   |
 | **Webhooks**                         | Keep your **existing PayU webhook**; no new WhatsApp payment webhook is required for EPL.                                   |
 
-\> 👍 Contact PayU KAM
-\>
-\> For **WABA verification**, **template submission**, **EPL allowlisting**, and **commercial enablement**, work with your **PayU Key Account Manager (KAM)** or your **BSP** so the correct Meta and PayU steps complete in order.
+> ✅ Gating list or allowlist (also known as GK biglist) is Meta's authorization mechanism for WhatsApp.
+
+> 📘 Contact PayU KAM
+>
+> For **WABA verification**, **template submission**, **EPL allowlisting**, and **commercial enablement**, work with your **PayU Key Account Manager (KAM)** or your **BSP** so the correct Meta and PayU steps complete in order.
 
 ***
 
@@ -303,7 +305,7 @@ Real-world examples cited in product materials include **PolicyBazaar** (reporte
 | **Meta template required**               | Yes                    | No                                  | No                                                                         |
 | **PG–WhatsApp OAuth**                    | No                     | No                                  | Yes                                                                        |
 | `payment_configuration`**&#x20;in Meta** | No                     | No                                  | Yes                                                                        |
-| **EPL GK biglist**                       | Yes                    | No                                  | No                                                                         |
+| **EPL gating list or allowlist**         | Yes                    | No                                  | No                                                                         |
 | **Webhook changes**                      | None (same PG webhook) | None (same PG webhook)              | Yes — add **WhatsApp payment status** webhooks; reconcile with PG webhooks |
 | **In-chat order management**             | No                     | No                                  | Full (`order_status`, payment lookup APIs)                                 |
 | **Customer leaves WhatsApp?**            | Yes (browser checkout) | Partial (UPI app)                   | No                                                                         |
