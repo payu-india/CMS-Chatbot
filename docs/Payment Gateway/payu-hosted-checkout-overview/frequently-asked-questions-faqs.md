@@ -165,5 +165,16 @@ metadata:
    - Callback
    - Status verification API
    </Accordion>
+2. #### Can I embed checkout in an iframe?
+   <Accordion title="Answer" icon="fa-comment-dots">
+   Need clarity
+   </Accordion>
+3. #### What happens if customers close browser mid-payment?
+   <Accordion title="Answer" icon="fa-comment-dots">
+   The payment might still succeed if a cutomer closed the browser mid-payment. However, it depends on when a customer has abandoned the payment. These are the possible outcomes:
+   - Payment success
+   - No redirect
+   - Webhook still arrives
+   </Accordion>
 
 <br />
