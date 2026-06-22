@@ -1,5 +1,5 @@
 ---
-title: Customize PayU Payment Page
+title: Customize PayU Hosted Checkout
 excerpt: ''
 deprecated: false
 hidden: false
@@ -10,316 +10,477 @@ metadata:
 next:
   description: ''
 ---
-After you complete PayU Hosted Checkout integration, you will be able to see the PayU Payment page similar to the following screenshot when calling the **Collect Payment** API:
+Customize the PayU Hosted Checkout experience by controlling:
 
-<Image align="center" border={true} width="400px" src="https://files.readme.io/1ee3893480e6e3d3c1e28d6ecffc4c52d1b3e8f2aba0247c9eb486dfef0fafc5-Screenshot_2024-09-06_at_11.54.02_AM.png" className="border" />
+- Which payment methods customers can see
+- Which payment methods should be hidden
+- Which checkout language should be displayed
+- Which payment methods should be enabled for your business
 
-You can customize the following in the Checkout page:
+Use this guide to reduce payment friction, improve conversion, and tailor checkout to your business needs.
 
-* [Enforce Pay Method or Remove Category](#enforce-pay-method-or-remove-category)
-* [Change the Language](#changing-the-language)
-* [Configure Payment Method and Checkout Settings](#configure-checkout-payment-methods-and-settings)
+***
 
-## Enforce Pay Method or Remove Category
+# Quickstart
 
-<Callout icon="📘" theme="info">
-  **Note**: Before implementing on your Production environment, PayU strongly recommends you to enforce the payment parameters described in this section on the Test environment.
-</Callout>
+| Goal                                                   | Use This                     |
+| ------------------------------------------------------ | ---------------------------- |
+| Show only specific payment methods (example: UPI only) | `enforce_paymethod`          |
+| Hide specific payment methods (example: wallets)       | `drop_category`              |
+| Change checkout language                               | Language parameter           |
+| Enable BNPL or other methods                           | PayU Dashboard configuration |
 
-You can append the parameter names in your transaction request to opt for all or some of the payment modes.
+***
 
-<Accordion title="Enforce payment customization" icon="fa-code">
-  Parameter name: **enforce\_paymethod**
+# Common Use Cases
 
-  This parameter allows you to customize the payment options for each transaction. You can enforce specific payment modes, cards scheme, and specific banks under Net Banking using this method.
+You can use this guide to:
 
-  You need to include the necessary payment options in this parameter and POST them to PayU at the transaction time. All the categories and sub-categories have specific values that need to be included in this string.
+- Show only UPI and cards
+- Hide credit cards
+- Hide wallets
+- Display checkout in Hindi or Tamil
+- Enable BNPL for eligible merchants
+- Restrict checkout based on business rules
 
-  The categories and sub-categories are as follows:
+***
 
-  | Category    | Sub-category                              |
-  | :---------- | :---------------------------------------- |
-  | Credit Card | MasterCard, Amex, Diners, etc.            |
-  | Debit Card  | Visa, MasterCard, Maestro, etc.           |
-  | Net Banking | SBI Net Banking, HDFC Net Banking, etc    |
-  | EMI         | CITI 3 Months EMI, HFC 6 Months EMI, etc. |
-  | Wallet      | Airtel Money, YPay, ITZ, Cash Card, etc.  |
-  | UPI         | GooglePay, PhonePe, UPI, etc.             |
+# Prerequisites
 
-<br/>
-  To enforce complete categories, use the values as described in the following table:
+Before customizing checkout, ensure you have:
 
-  | Category    | Value of enforced\_payment |
-  | :---------- | :------------------------- |
-  | Credit Card | creditcard                 |
-  | Debit Card  | debitcard                  |
-  | Net Banking | netbanking                 |
-  | NEFT/RTGS   | neftrtgs                   |
-  | EMI         | emi                        |
-  | UPI         | upi                        |
-  | Wallet      | cashcard                   |
-  | Sodexo      | SODEXO                     |
-  | BNPL        | bnpl                       |
-  | QR          | qr                         |
+- Active PayU merchant account (test or production)
+- API Key and Salt
+- Hosted Checkout integration completed
+- Merchant eligibility for payment methods you want to use
+- Dashboard permissions (for enabling methods)
 
-  To enforce sub-categories, use the respective bank codes for them. Contact PayU Support or at help.payu.in to get the respective bank codes.
+> **Important**
+> Some payment methods (such as BNPL) require PayU approval or merchant eligibility before they appear in checkout.
 
-  <Callout icon="📘" theme="info">
-    **Note**: Ensure that you are using the delimiter as pipe (|) character between the values in these examples.
-  </Callout>
-</Accordion>
+***
 
-<Accordion title="Usage examples" icon="fa-code">
-  #### creditcard|debitcard
+# Configuration Decision Matrix
 
-  All the credit card and debit card options are displayed (as the whole category is enforced). The rest of the categories will not be displayed, that is, EMI, cash card, credit card, debit card, etc. – as they are not being mentioned in the string.
+Use this decision matrix to choose the correct approach.
 
-  #### creditcard|netbanking|cashcard
+| If You Want To                      | Use                      |
+| ----------------------------------- | ------------------------ |
+| Allow only selected payment methods | Restrict Payment Methods |
+| Hide selected payment methods       | Drop Payment Methods     |
+| Change language                     | Set Checkout Language    |
+| Enable new payment category         | Dashboard Configuration  |
 
-  All the credit card, Net Banking, and cash card options are displayed (as the whole category is enforced for these).
+***
 
-  <Callout icon="📘" theme="info">
-    **Note**: Ensure you use this parameter only after testing properly as an incorrect string will lead to undesirable payment options being displayed.
-  </Callout>
+# Step 1: Enable Payment Methods in Dashboard (If Required)
 
-  For an example procedure on how to enforce payment with a credit card, refer to Enforce Payment with Credit Card.
-</Accordion>
+Some payment methods must be enabled at the merchant account level before they can appear in checkout.
 
-<Accordion title="Hide Specific Payment Modes" icon="fa-code">
-  **Parameter name : drop\_category**
+Examples:
 
-  The **drop\_category** parameter can be used if you want to hide one or multiple payment options. For example, if you consider the payment options such as credit card, debit card, and net banking, you can hide the credit card mode of payment.
+- BNPL
+- EMI
+- Specific wallets
+- Certain bank offers
 
-  If 30 Net Banking options are available and you want to drop two of those net banking options (that is, do not display those two options on the PayU page), the **drop\_category** parameter can be used effectively.
+Verify:
 
-  To drop the whole category, use the following values:
+- Payment method is enabled in dashboard
+- Merchant account is eligible
+- Feature is active in current environment
 
-  | Category    | Category Value |
-  | :---------- | :------------- |
-  | Credit Card | CC             |
-  | Debit Card  | DC             |
-  | Net Banking | NB             |
-  | NEFT/RTGS   | NEFTRTGS       |
-  | EMI         | EMI            |
-  | Wallet      | CASH           |
-  | BNPL        | BNPL           |
-  | Sodexo      | SODEXO         |
+***
 
-  To drop sub-categories mentioned in the above table, use the respective bank codes for them. For the list bankcodes, refer to [Bank and Card Codes for Integration](doc:bank-and-card-codes-for-integration).
-</Accordion>
+# Step 2: Restrict Checkout to Specific Payment Methods (`enforce_paymethod`)
 
-<Accordion title="Checkout customization examples" icon="fa-code">
-  **drop\_category – DC|VISA|MAST**
+Use this when you want a **whitelist**.
 
-  In this example:
+Examples:
 
-  * For the debit card category, only Visa and Master Card options will be dropped, so they are not displayed on the PayU page.
-  * All other active payment options are displayed.
+- Show only UPI
+- Show only cards
+- Show only UPI + NetBanking
 
-  **drop\_category – CC|AMEX, DC|VISA, EMI|EMI6**
+## How It Works
 
-  In this example:
+PayU will show only the payment methods you explicitly pass.
 
-  * For the credit card category, only the AMEX option is dropped and not displayed on the PayU page.
-  * In the debit card category, only the VISA option would be dropped.
-  * In the EMI category, only HDFC 6 months EMI option (bank code – EMI6) will be dropped.
-  * All the other active payment options will be displayed on the PayU page.
+***
 
-  <Callout icon="📘" theme="info">
-    **Note**: Use this parameter only after proper testing as an incorrect string will display undesirable payment modes.
-  </Callout>
-</Accordion>
+## Example: Show Only UPI
 
-## Change the Language
-
-To change the display language in PayU Hosted Checkout, add the `language` parameter to the payment request API call. The following video shows how vernacular support can improve your business:
-
-<Embed url="https://www.youtube.com/watch?v=7UCT0jFbB90" href="https://www.youtube.com/watch?v=7UCT0jFbB90" typeOfEmbed="youtube" html="%3Ciframe%20class%3D%22embedly-embed%22%20src%3D%22%2F%2Fcdn.embedly.com%2Fwidgets%2Fmedia.html%3Fsrc%3Dhttps%253A%252F%252Fwww.youtube.com%252Fembed%252F7UCT0jFbB90%253Ffeature%253Doembed%26display_name%3DYouTube%26url%3Dhttps%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253D7UCT0jFbB90%26image%3Dhttps%253A%252F%252Fi.ytimg.com%252Fvi%252F7UCT0jFbB90%252Fhqdefault.jpg%26key%3D7788cb384c9f4d5dbbdbeffd9fe4b92f%26type%3Dtext%252Fhtml%26schema%3Dyoutube%22%20width%3D%22854%22%20height%3D%22480%22%20scrolling%3D%22no%22%20title%3D%22YouTube%20embed%22%20frameborder%3D%220%22%20allow%3D%22autoplay%3B%20fullscreen%3B%20encrypted-media%3B%20picture-in-picture%3B%22%20allowfullscreen%3D%22true%22%3E%3C%2Fiframe%3E" />
-
-The `display_lang` parameter should be set to one of the following values (same as corresponding language spelling):
-
-* English
-* Hindi
-* Tamil
-* Telugu
-* Kannada
-* Gujarati
-* Marathi
-
-Here is an example payment request API call with the `display_lang` parameter set to Hindi:
-
-```curl
-curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&txnid=PQI6MqpYrjEefU&amount=10.00&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&display_lang=Hindi&hash=05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072"
+```json
+{
+  "enforce_paymethod": "upi"
+}
 ```
 
-The PayU payment page is displayed with the display language as "Hindi" similar to the following screenshot:
+***
 
-<Image border={false} src="https://files.readme.io/3aae0ef-hindipage.png" />
+## Example: Show Only UPI and Cards
 
-## Configure Checkout Payment Methods and Settings
+```json
+{
+  "enforce_paymethod": "upi|cards"
+}
+```
 
-By default, the following payment methods are enabled for merchants on PayU Payment page (with PayU Hosted Checkout integration):
+***
 
-* NetBanking
-* Debit Card
-* Credit Card
-* UPI
-* Wallet
+## Example: Restrict Using Bank Codes
 
-You can enable the following modes if you are eligible using Dashboard:
+```json
+{
+  "enforce_paymethod": "nb",
+  "bankcode": "HDFC"
+}
+```
 
-* BNPL
-* EMI
-* International Payments
+***
 
-<Callout icon="📘" theme="info">
-  **Note**: You can enable or activate any of the above payment modes only if your are eligible or you have signed an agreement with PayU. If you are unable to raise request using Dashboard, contact your PayU Key Account Manager.
-</Callout>
+## Common Failures for `enforce_paymethod`
 
-The following procedures describes how to enable payment mode or a feature.
+### Payment method not showing
 
-<Accordion title="Enable a payment method" icon="fa-table">
-  To configure the Dashboard to enable payment method:
+Possible causes:
 
-  1. Navigate to **Dashboard > Settings > Payment Methods.**
+- Invalid method value
+- Method not enabled for merchant
+- Bank code invalid
+- Hash not regenerated
 
-     The *Manage Payment Methods* page is displayed with **Debit Card** tab selected by default.
+***
 
-  <Image align="center" border={true} src="https://files.readme.io/30b21d8-Screenshot_2024-07-19_at_10.34.10_AM.png" width="722px" />
+# Step 3: Hide Specific Payment Methods (`drop_category`)
 
-  2. Select any of the payment method tab that you wish to configure.
+Use this when you want a **blacklist**.
 
-     If you are eligible for the payment method, the **Activate Now** button is displayed. For example, the **Activate Now** button is enabled in the **International Payments** tab.
+Examples:
 
-  <Image align="center" border={true} src="https://files.readme.io/87d81fd-Screenshot_2024-07-19_at_10.35.59_AM.png" width="722px" />
+- Hide wallets
+- Hide credit cards
+- Hide net banking
 
-  3. Click **Activate Now**.
+***
 
-     A pop-up dialog box is displayed similar to the following screenshot and this will vary according to the payment method:
+## Example: Hide Wallets
 
-  <Image align="center" src="https://files.readme.io/6d9c81f-Screenshot_2024-07-19_at_10.37.45_AM.png" width="622px" />
+```json
+{
+  "drop_category": "wallet"
+}
+```
 
-  4. Click **Proceed** to activate.
+***
 
-     A confirmation message is displayed.
-</Accordion>
+## Example: Hide Cards
 
-<Accordion title="Activate PayPal wallet" icon="fa-table">
-  To activate PayPal wallet and start collecting payments with PayPal:
+```json
+{
+  "drop_category": "cards"
+}
+```
 
-  1. Follow the steps as in [Enable a payment method](#enable-a-payment-method).
-  2. Click **Link PayPal account**.
+***
 
-  You are redirected to the PayPal page similar to the following screenshot.
+## Common Failures for Drop Configuration
 
-  <Image align="center" border={true} src="https://files.readme.io/15f4290-Screenshot_2024-03-14_at_2.22.56_PM.png" width="320px" />
+### Method still visible
 
-  3. Enter your email address that you want to use in future with PayPal.
+Possible causes:
 
-  <Image align="center" border={true} src="https://files.readme.io/fc21647-Screenshot_2024-03-14_at_2.23.12_PM.png" width="320px" />
+- Invalid category
+- Drop parameter not passed
+- Conflicting rules
+- Merchant-level override
 
-  4. Select your country as **India**.
-  5. Click **Next**.
-  6. Enter the password to create the account.
+***
 
-  <Image align="center" src="https://files.readme.io/c498645-Screenshot_2024-03-14_at_2.23.36_PM.png" width="320px" />
+# Step 4: Set Checkout Display Language
 
-  7. Select your nature of your business and PAN details, name to displayed on statement and website URL as required and click **Next**.
+Use this to localize checkout.
 
-  <Image align="center" border={true} src="https://files.readme.io/5d0d968-Screenshot_2024-03-14_at_5.07.28_PM.png" width="320px" />
+Supported examples:
 
-  8. Enter your name, date of birth and contact details.
+- English
+- Hindi
+- Tamil
 
-  <Image align="center" border={true} src="https://files.readme.io/e137009-paypal_name_dob.png" width="320px" />
+***
 
-  9. Scroll down and enter the business contact phone number and primary
+## Example: Hindi Checkout
 
-  <Image align="center" border={true} src="https://files.readme.io/2e3e74f-paypal_details_mobile_currency.png" width="320px" />
+```json
+{
+  "language": "hi"
+}
+```
 
-  10. Click **Next**.
+***
 
-  <Image align="center" border={true} src="https://files.readme.io/32522a2-paypal_details_thanks_signup.png" width="320px" />
+## Common Failures for Language Configuration
 
-  <Callout icon="📘" theme="info">
-    **Note**:  Contact your PayU Key Account Manager to remove a payment mode from the Checkout page.
-  </Callout>
-</Accordion>
+### Language not changing
 
-<Accordion title="Configure Checkout Settings" icon="fa-table">
-  You can customize your customer-facing checkout page that is displayed when you are using PayU Hosted Checkout integration. For more information on PayU hosted Checkout integration, refer to [PayU Hosted Checkout](doc:prebuilt-checkout-payu-hosted).
+Possible causes:
 
-  To update your brand settings:
+- Unsupported language
+- Invalid parameter
+- Language fallback to default
 
-  1. Navigate to **Dashboard > Settings > Checkout Settings.**
+***
 
-     The *Set up your brand* page is displayed.
+# Supported Parameter Reference
 
-  <Image align="center" border={true} src="https://files.readme.io/eb8cf99-Screenshot_2024-07-19_at_10.43.53_AM.png" />
+## Payment Method Values
 
-  2. Select or enter the details as described in the following table:
+Common supported values:
 
-  <Table align={["left","left"]}>
-    <thead>
-      <tr>
-        <th>
-          Field
-        </th>
+| Value    | Meaning            |
+| -------- | ------------------ |
+| `upi`    | UPI                |
+| `cards`  | Credit/Debit Cards |
+| `nb`     | Net Banking        |
+| `wallet` | Wallets            |
+| `emi`    | EMI                |
 
-        <th>
-          Description
-        </th>
-      </tr>
-    </thead>
+Refer to full PayU reference for all supported values.
 
-    <tbody>
-      <tr>
-        <td>
-          Brand Logo
-        </td>
+***
 
-        <td>
-          Enter the location or URL of the brand logo.
+## Bank Codes
 
-          **Note**: You need to that the size of the logo image is 90×90 and format of the logo image is PNG
-        </td>
-      </tr>
+Use bank codes when restricting specific banking methods.
 
-      <tr>
-        <td>
-          Secondary Color
-        </td>
+Examples:
 
-        <td>
-          Click the color chooser to choose the color theme for the checkout page.
-        </td>
-      </tr>
+- HDFC
+- ICICI
+- SBI
 
-      <tr>
-        <td>
-          Language
-        </td>
+***
 
-        <td>
-          Select the language from the **Language** drop-down list that has to be displayed on the Checkout page.
-        </td>
-      </tr>
+## Scheme Codes
 
-      <tr>
-        <td>
-          Owner Signature
-        </td>
+Use scheme codes for scheme-specific routing where applicable.
 
-        <td>
-          Click **Select the file from your library** to select the signature file and click **Upload** to complete the action.
-        </td>
-      </tr>
-    </tbody>
-  </Table>
+***
 
-  <Callout icon="📘" theme="info">
-    **Note**: While you configure each field above on the ,  you can see the preview in the right pane. For example, if you add or update the brand logo URL, it will be updated in the right pane preview.
-  </Callout>
-</Accordion>
+# Conflict & Precedence Rules
+
+Understanding precedence prevents unexpected behavior.
+
+***
+
+## What Happens if You Use Both `enforce_paymethod` and `drop_category`?
+
+Avoid using both unless explicitly supported.
+
+This can create conflicting rules.
+
+Example:
+
+- enforce = cards
+- drop = cards
+
+Result may be:
+
+- empty checkout
+- fallback behavior
+- invalid configuration
+
+***
+
+## Dashboard vs API Request Priority
+
+General precedence:
+
+1. Merchant eligibility
+2. Dashboard enablement
+3. Runtime request parameters
+
+If a payment method is not enabled for your merchant, runtime parameters cannot force it to appear.
+
+***
+
+## Invalid Parameter Behavior
+
+Depending on implementation, PayU may:
+
+- ignore invalid values
+- fallback to defaults
+- reject request
+
+Validate parameter values before production rollout.
+
+***
+
+# Validate Checkout After Customization
+
+Validation should happen in four stages.
+
+***
+
+## 1. Request Validation
+
+Verify:
+
+- parameter exists in request
+- value is correct
+- delimiters are correct
+
+***
+
+## 2. Hash Validation
+
+After adding customization parameters:
+
+- regenerate hash
+- verify parameter order
+- confirm request signature
+
+> **Warning**
+> Invalid hash is one of the most common integration failures after adding customization parameters.
+
+Common causes:
+
+- wrong parameter order
+- missing parameter in hash generation
+- stale hash
+
+***
+
+## 3. Checkout Validation
+
+Verify:
+
+- expected methods appear
+- hidden methods are absent
+- language changed correctly
+
+Test:
+
+- desktop
+- mobile
+- multiple browsers
+
+***
+
+## 4. Production Validation
+
+Before go-live:
+
+- test with real merchant configuration
+- validate dashboard enablement
+- verify analytics and logs
+
+***
+
+# Common Errors & Troubleshooting
+
+## Payment Method Not Showing
+
+Possible causes:
+
+- method not enabled
+- invalid value
+- merchant ineligible
+- incorrect bank code
+
+Fix:
+
+- validate reference values
+- verify dashboard setup
+- check request payload
+
+***
+
+## Payment Method Still Visible After Drop
+
+Possible causes:
+
+- wrong category
+- conflicting rules
+- parameter ignored
+
+Fix:
+
+- verify category values
+- check precedence rules
+
+***
+
+## Invalid Hash Error
+
+Possible causes:
+
+- parameter order issue
+- stale hash
+- missing parameter during signature generation
+
+Fix:
+
+- regenerate hash after every payload change
+- verify hash logic
+
+***
+
+## Checkout Language Not Changing
+
+Possible causes:
+
+- unsupported language
+- invalid language code
+- fallback behavior
+
+***
+
+# Best Practices
+
+Follow these recommendations:
+
+- Prefer `enforce_paymethod` when you need strict control
+- Use drop configuration sparingly
+- Always test in sandbox before production
+- Recalculate hash after request changes
+- Validate on desktop and mobile
+- Monitor conversion impact after customization
+
+***
+
+# FAQs
+
+## Can I show only UPI?
+
+Yes. Use `enforce_paymethod = upi`.
+
+***
+
+## Can I hide only credit cards?
+
+Yes, if cards are exposed as a supported drop category.
+
+***
+
+## Can I use both enforce and drop together?
+
+Avoid unless explicitly supported.
+
+***
+
+## Can I customize checkout per transaction?
+
+Yes, using request-level parameters.
+
+***
+
+## Why is BNPL not available?
+
+Possible reasons:
+
+- merchant not eligible
+- dashboard not enabled
+- feature unavailable in environment
+
+<br />
