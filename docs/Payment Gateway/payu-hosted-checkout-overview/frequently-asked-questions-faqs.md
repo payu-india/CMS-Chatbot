@@ -212,4 +212,26 @@ metadata:
    | Less reliable           | More reliable       |
    </Accordion>
 
+## Duplicate Processing
+
+1. #### How do I prevent duplicate order processing?
+   <Accordion title="Answer" icon="fa-comment-dots">
+   You can prevent duplicate order processing by implementing idempotency. These are the recommended rules:
+   - One successful payment per order
+   - Ignore duplicate callbacks and repeated webhooks
+   </Accordion>
+
+## Production Go-Live
+
+1. #### What is the production readiness checklist?
+   <Accordion title="Answer" icon="fa-comment-dots">
+   Verify these before going live:
+   **Security**
+   - Salt secured
+   - HTTPS enabled
+   - Callback validation implemented
+   **Functional**
+   - Success, failure and pending flows tested
+   </Accordion>
+
 <br />
