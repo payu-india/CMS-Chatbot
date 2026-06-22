@@ -280,6 +280,16 @@ Real-world examples cited in product materials include **PolicyBazaar** (reporte
 
 ## Prerequisites to go live on EPL
 
+> 📌 Integrate with Meta&#x20;
+>
+> Refer to the following to integrating with Meta before proceeding with PayU:
+>
+> - <Anchor target="_blank" href="https://developers.facebook.com/documentation/business-messaging/whatsapp/payments/payments-in/payment-links">Meta > Payment Links</Anchor>
+> - <Anchor target="_blank" href="https://developers.facebook.com/documentation/business-messaging/whatsapp/payments/payments-in/upi-intent/dynamic-vpa">Meta > UPI Intent</Anchor>
+> - <Anchor target="_blank" href="https://developers.facebook.com/documentation/business-messaging/whatsapp/payments/payments-in/enhanced-payment-links">Meta > Enhanced Payment Links</Anchor>
+
+The following table describes other prerequisites:
+
 | Requirement                          | Detail                                                                                                                      |
 | :----------------------------------- | :-------------------------------------------------------------------------------------------------------------------------- |
 | **WhatsApp Business Account (WABA)** | **Enterprise** WABA, **verified** with Meta.                                                                                |
@@ -329,13 +339,7 @@ PayU is supported across **all three** solutions, so many merchants can start wi
 
 **Typical timeline:** about **1–2 weeks**, often driven by template approval.
 
-***
-
-\> 📘 **PayU recommends**
-\>
-\> - Treat EPL as the **default first step** for **link-based collections** and teams new to WhatsApp payments.
-\> - Keep using the [API Reference](ref:introduction-api-reference) for exact PayU request fields alongside this product overview.
-\> - Confirm **pricing and commercials** with your **PayU Key Account Manager (KAM)**; they are not covered in this technical overview.
+<br />
 
 ***
 
