@@ -30,105 +30,119 @@ Use the **Get Checkout Details** API (`get_checkout_details`) to get information
 
 **Method:** POST (form-encoded)
 
-<Callout icon="👍" theme="okay">
-  **Reference:** For more information on using the **Get Checkout Details** API, refer to [Get Checkout Details API](ref:get-checkout-details-ntb-seamless-journey).
-</Callout>
+> 👍
+>
+> **Reference:** For more information on using the **Get Checkout Details** API, refer to [Get Checkout Details API](ref:get-checkout-details-ntb-seamless-journey).
 
 <Accordion title="Request parameters" icon="fa-list">
-  <Table>
+  <table style="width: 100%; border-collapse: collapse;">
     <thead>
       <tr>
-        <th>
-          Parameter
-        </th>
-
-        <th>
-          Description
-        </th>
-
-        <th>
-          Example
-        </th>
+        <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+        <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+        <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
       </tr>
     </thead>
-
     <tbody>
       <tr>
-        <td>
-          key  <br />  `mandatory`
-        </td>
-
-        <td>
-          <code>String</code> Merchant key provided by PayU.
-        </td>
-
-        <td>
-          JPM7Fg
-        </td>
+        <td style="border: 1px solid #ddd; padding: 8px;"><p>key<br><code>mandatory</code></p></td>
+        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Merchant key provided by PayU.</p></td>
+        <td style="border: 1px solid #ddd; padding: 8px;"><p>JPM7Fg</p></td>
       </tr>
-
       <tr>
-        <td>
-          command<br />  `mandatory`
-        </td>
-
-        <td>
-          <code>String</code> Must be <code>get\_checkout\_details</code> (name of the web-service).
-        </td>
-
-        <td>
-          get\_checkout\_details
-        </td>
+        <td style="border: 1px solid #ddd; padding: 8px;"><p>command<br><code>mandatory</code></p></td>
+        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Must be <code>get_checkout_details</code> (name of the web-service).</p></td>
+        <td style="border: 1px solid #ddd; padding: 8px;"><p>get_checkout_details</p></td>
       </tr>
-
       <tr>
-        <td>
-          var1<br />  `mandatory`
-        </td>
-
-        <td>
-          <code>String</code> JSON string containing requestId, transactionDetails, useCase, and optionally customerDetails and filters. See var1 JSON fields below.
-        </td>
-
-        <td>
-          See
-        </td>
+        <td style="border: 1px solid #ddd; padding: 8px;"><p>var1<br><code>mandatory</code></p></td>
+        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> JSON string containing requestId, transactionDetails, useCase, and optionally customerDetails and filters. See var1 JSON fields below.</p></td>
+        <td style="border: 1px solid #ddd; padding: 8px;"><p>See var1 JSON Object fields description</p></td>
       </tr>
-
       <tr>
-        <td>
-          hash<br />  `mandatory`
-        </td>
-
-        <td>
-          <code>String</code> The hash must be calculated based on the following logic:
-          sha512(key|command|var1|salt)
-        </td>
-
-        <td />
+        <td style="border: 1px solid #ddd; padding: 8px;"><p>hash<br><code>mandatory</code></p></td>
+        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The hash must be calculated based on the following logic: sha512(key|command|var1|salt)</p></td>
+        <td style="border: 1px solid #ddd; padding: 8px;"></td>
       </tr>
     </tbody>
-  </Table>
+  </table>
 
   <Accordion title="var1 JSON Object fields description" icon="fa-table">
-    | Parameter          | Description                                                                                                                                                                                                                                                                                                                                                                                       | Example                                        |
-    | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-    | requestId          | <code>String</code> Request ID.                                                                                                                                                                                                                                                                                                                                                                   | 12345678                                       |
-    | transactionDetails | <code>Object</code> Must contain <code>amount</code> (transaction amount) and optionally <code>txnid</code> (transaction ID).                                                                                                                                                                                                                                                                     | \{"amount": "100.00", "txnid": "TXN123"}       |
-    | useCase            | <code>Object</code> Flags for which information to return: <code>getExtendedPaymentDetails</code>, <code>getAdditionalCharges</code>, <code>getTaxSpecification</code>, <code>checkDownStatus</code>, <code>checkCustomerEligibility</code>. Optionally <code>filters</code> (e.g. <code>paymentOptions.emi.dc</code>, <code>cc</code>, <code>cardless</code>; <code>paymentOptions.bnpl</code>). | \{"getExtendedPaymentDetails": true}           |
-    | customerDetails    | <code>Object</code> Optional. Customer info (e.g. <code>mobile</code>) for eligibility checks.                                                                                                                                                                                                                                                                                                    | \{"mobile": "9098765432"}                      |
-    | filters            | <code>Object</code> Optional. Filter response by <code>paymentOptions</code> (emi.dc, cc, cardless; bnpl). Include "all" for all banks in a category.                                                                                                                                                                                                                                             | \{"paymentOptions": \{"emi": \{"dc": "ICIC"}}} |
+    <table style="width: 100%; border-collapse: collapse;">
+      <thead>
+        <tr>
+          <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+          <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+          <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>requestId</p></td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Request ID.</p></td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>12345678</p></td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>transactionDetails</p></td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Must contain <code>amount</code> (transaction amount) and optionally <code>txnid</code> (transaction ID).</p></td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>{"amount": "100.00", "txnid": "TXN123"}</p></td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>useCase</p></td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Flags for which information to return: <code>getExtendedPaymentDetails</code>, <code>getAdditionalCharges</code>, <code>getTaxSpecification</code>, <code>checkDownStatus</code>, <code>checkCustomerEligibility</code>. Optionally <code>filters</code> (e.g. <code>paymentOptions.emi.dc</code>, <code>cc</code>, <code>cardless</code>; <code>paymentOptions.bnpl</code>).</p></td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>{"getExtendedPaymentDetails": true}</p></td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>customerDetails</p></td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Optional. Customer info (e.g. <code>mobile</code>) for eligibility checks.</p></td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>{"mobile": "9098765432"}</p></td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>filters</p></td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Optional. Filter response by <code>paymentOptions</code> (emi.dc, cc, cardless; bnpl). Include "all" for all banks in a category.</p></td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>{"paymentOptions": {"emi": {"dc": "ICIC"}}}</p></td>
+        </tr>
+      </tbody>
+    </table>
   </Accordion>
 
   <Accordion title="useCase JSON Object Fields Description" icon="fa-table">
-    | Field                     | Description                                                                                                                                       |
-    | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | getExtendedPaymentDetails | <code>Boolean</code> Set <code>true</code> to check EMI eligibility (mobile/card) and “Buy Now Pay Later” modes; returns title, EMI breakup, etc. |
-    | getAdditionalCharges      | <code>Boolean</code> Set <code>true</code> to return additional charges for all payment options.                                                  |
-    | getTaxSpecification       | <code>Boolean</code> Set <code>true</code> to return tax specification from backend for splitting additional charges.                             |
-    | checkDownStatus           | <code>Boolean</code> Set <code>true</code> to return downtime of payment options.                                                                 |
-    | checkCustomerEligibility  | <code>Boolean</code> Set <code>true</code> to return customer eligibility.                                                                        |
-    |                           |                                                                                                                                                   |
+    <table style="width: 100%; border-collapse: collapse;">
+      <thead>
+        <tr>
+          <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
+          <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+          <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>getExtendedPaymentDetails</p></td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Boolean</code> Set <code>true</code> to check EMI eligibility (mobile/card) and "Buy Now Pay Later" modes; returns title, EMI breakup, etc.</p></td>
+          <td style="border: 1px solid #ddd; padding: 8px;"></td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>getAdditionalCharges</p></td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Boolean</code> Set <code>true</code> to return additional charges for all payment options.</p></td>
+          <td style="border: 1px solid #ddd; padding: 8px;"></td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>getTaxSpecification</p></td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Boolean</code> Set <code>true</code> to return tax specification from backend for splitting additional charges.</p></td>
+          <td style="border: 1px solid #ddd; padding: 8px;"></td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>checkDownStatus</p></td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Boolean</code> Set <code>true</code> to return downtime of payment options.</p></td>
+          <td style="border: 1px solid #ddd; padding: 8px;"></td>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p>checkCustomerEligibility</p></td>
+          <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Boolean</code> Set <code>true</code> to return customer eligibility.</p></td>
+          <td style="border: 1px solid #ddd; padding: 8px;"></td>
+        </tr>
+      </tbody>
+    </table>
   </Accordion>
 </Accordion>
 
@@ -146,23 +160,26 @@ Use the **Get Checkout Details** API (`get_checkout_details`) to get information
   <Callout icon="📘" theme="info">
     **Note**: You must look for the **eligibility** object is having **status=true**  inside the **ntb** JSON object similar to the following:
 
-    ```json
+````
+```json
 
-       "ntb": {
-                              "cardless": {
-                                  "all": {
-                                      "LPEMI": {
-                                          "maximumAmount": null,
-                                          "eligibility": {
-                                              "status": true
-                                          }
+   "ntb": {
+                          "cardless": {
+                              "all": {
+                                  "LPEMI": {
+                                      "maximumAmount": null,
+                                      "eligibility": {
+                                          "status": true
                                       }
-                                  },
-                                  "hasEligible": true
-                              }
+                                  }
+                              },
+                              "hasEligible": true
                           }
                       }
-    ```
+                  }
+```
+````
+
   </Callout>
 
   <Accordion title="Sample response for NTB Customer" icon="fa-reply">
@@ -433,6 +450,7 @@ Use the **Get Checkout Details** API (`get_checkout_details`) to get information
 
     ```
   </Accordion>
+
 </Accordion>
 
 ***
@@ -446,12 +464,11 @@ Use the **Get EMI Checkout Details** API to check detailed EMI eligibility for a
 | Test        | `https://test.payu.in/info/linkAndPay/get_emi_checkout_details` |
 | Production  | `https://info.payu.in/linkAndPay/get_emi_checkout_details`      |
 
-**Method:** POST (JSON body)  
-**Content-Type:** `application/json`
+**Method:** POST (JSON body)<br />**Content-Type:** `application/json`
 
-<Callout icon="👍" theme="okay">
-  **Reference:** For more information on using the **Get EMI Checkout Details** API, refer to [Get EMI Checkout Details API](ref:get-emi-checkout-details-api).
-</Callout>
+> 👍
+>
+> **Reference:** For more information on using the **Get EMI Checkout Details** API, refer to [Get EMI Checkout Details API](ref:get-emi-checkout-details-api).
 
 <Accordion title="Authentication (headers)" icon="fa-lock">
   * **Date** (mandatory): Request time in GMT (e.g. `Thu, 17 Feb 2022 08:17:59 GMT`).
@@ -532,3 +549,5 @@ Use the **Get EMI Checkout Details** API to check detailed EMI eligibility for a
   }
   ```
 </Accordion>
+
+<br />
