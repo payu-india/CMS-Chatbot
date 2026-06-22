@@ -12,34 +12,82 @@ The bulk upload option using APIs lets you create many payment links by uploadin
 
 Below are the integration steps:
 
+<style>
+  {`
+            .zoom-card-link {
+              display: block;
+              color: inherit !important;
+              text-decoration: none !important;
+              transition: transform 0.2s ease;
+            }
+            .zoom-card-link h4,
+            .zoom-card-link p,
+            .zoom-card-link span {
+              color: inherit !important;
+              text-decoration: none !important;
+            }
+            .zoom-card-link:hover {
+              transform: scale(1.05);
+            }
+          `}
+</style>
+
 <Cards columns={3}>
-  
+  <Card>
+    <a href="#step-1-get-the-access-token" className="zoom-card-link">
+      <div style={{ color: "#000", padding: "8px" }}>
+        <i className="fa fa-key" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
+
+        <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Step 1. Get the Access Token</h4>
+
+        <p style={{ margin: 0 }}>
+          Fetch the Bearer Token.
+        </p>
+      </div>
+    </a>
+  </Card>
+
+  <Card>
+    <a href="#step-2-upload-the-bulk-file" className="zoom-card-link">
+      <div style={{ color: "#000", padding: "8px" }}>
+        <i className="fa fa-file-upload" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
+
+        <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Step 2. Upload the Bulk File</h4>
+
+        <p style={{ margin: 0 }}>
+          Upload the .csv File to Create Payment Links.
+        </p>
+      </div>
+    </a>
+  </Card>
+
+  <Card>
+    <a href="#step-3-fetch-payment-links" className="zoom-card-link">
+      <div style={{ color: "#000", padding: "8px" }}>
+        <i className="fa fa-link" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }} />
+
+        <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Step 3. Fetch Payment Links</h4>
+
+        <p style={{ margin: 0 }}>
+          Get the Created Payment Links Using the Batch ID.
+        </p>
+      </div>
+    </a>
+  </Card>
 </Cards>
 
 ### Step 1. Get the Access Token
 
-The first step is to obtain an access token using the following API. Refer to the <Anchor target="_blank" href="https://docs.payu.in/reference/get-token-api-for-payment-links">Get Access Token API</Anchor> for more information.
+The first step is to obtain an access token using the following API. Refer to the <Anchor label="Get Access Token API" target="_blank" href="https://docs.payu.in/reference/get-token-api-for-payment-links">Get Access Token API</Anchor> for more information.
 
-<Cards columns={3}>
-  <Card title="Step 1. Get the Access Token" href="#step-1-get-the-access-token">
-    Authenticate using OAuth 2.0 to get a Bearer token required for all subsequent API calls
-
-    <br />
+<Cards>
+  <Card title="Method">
+    POST
   </Card>
 
-  <Card title="Step 2. Upload the Bulk File" href="#step-2-upload-the-bulk-file">
-    Upload a CSV file containing payment link details for bulk creation
-
-    <br />
+  <Card title="Endpoint">
+    /oauth/token
   </Card>
-
-  <Card title="Step 3. Fetch Payment Links" href="#step-3-fetch-payment-links">
-    Retrieve the status and details of the created payment links
-
-    <br />
-  </Card>
-
-  <br />
 </Cards>
 
 <Accordion title="Environment Details" icon="fa-cogs">
@@ -401,5 +449,3 @@ Now that you have uploaded the file, use this API to fetch the payment links tha
   | `pass valid status param`               | `status` query value not in `active`, `inactive`, or `expired`. |
   | `error occured while bulk paymentLinks` | Server‑side exception                                           |
 </Accordion>
-
-<br />
