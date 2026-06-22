@@ -327,24 +327,3 @@ PayU is supported across **all three** solutions, so many merchants can start wi
 ***
 
 <br />
-
-## Go-live checklist
-
-\- \[ ] **Enterprise WABA** verified.
-\- \[ ] **Active PayU** (or supported PG) merchant account.
-\- \[ ] **Template** submitted with PayU CTA URL pattern; **approved** by Meta (often 3–7 business days).
-\- \[ ] WABA on **EPL GK biglist** (PayU / BSP).
-\- \[ ] Integration to **send the template** via WhatsApp Cloud API with the payment link.
-\- \[ ] **Payment link** generation already in use (or implemented)—no EPL-specific change to PayU link APIs.
-\- \[ ] **Existing PayU webhook** configured—unchanged for EPL.
-\- \[ ] **End-to-end** test in sandbox / pilot.
-
-**Typical timeline:** about **1–2 weeks**, often driven by template approval.
-
-<br />
-
-***
-
-##
-
-<br />
