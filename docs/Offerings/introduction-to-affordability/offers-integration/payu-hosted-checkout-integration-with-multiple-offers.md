@@ -22,10 +22,6 @@ To integrate offers using PayU Hosted Checkout integration:
 
 You need to send an additional parameter (**user token)**, **api\_version** as 14, and hash as described in the following table. This user token would be used to identify the customer for applying velocity rules.
 
-Here is the fixed table:
-
-Here's the HTML code for your formatted table! 🧾
-
 <table>
   <thead>
     <tr>
@@ -92,7 +88,7 @@ For a sample response from PayU, refer to [Web Checkout Integration > PayU Hoste
 
 `transaction_offer` is added as a new object which will have all the details of both offers.
 
-```plaintext
+```json
 [transaction_offer] => {
   "offer_data": [
     {
@@ -330,39 +326,150 @@ The description of parameters for a Transaction-Level offer:
 
 The description of the object and fields in the response are described in the following table:
 
-| **Object or Field**               | **Description**                                                                             |
-| --------------------------------- | ------------------------------------------------------------------------------------------- |
-| cart\_details                     | This parameter contains object in a JSON format which has the SKU-based offer cart details. |
-| cart\_details.total\_items        | This field contains total SKU-based offer items in the cart.                                |
-| cart\_details.total\_cart\_amount | This field contains the total cart amount.                                                  |
-| cart\_details.offer\_applied      | This field contains the offer applied for the transaction.                                  |
-| cart\_details.offer\_availed      | This field contains the offer availed for the transaction.                                  |
-| cart\_details.offer\_auto\_apply  | This field contains the offer that was automatically applied.                               |
-| cart\_details.instant\_discount   | This field contains the instant discount amount for the offer.                              |
-| cart\_details.cashback\_discount  | This field contains the cashback discount amount for the offer.                             |
+<table>
+  <thead>
+    <tr>
+      <th>Object or Field</th>
+      <th>Description</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><p>cart_details</p></td>
+      <td><p>This parameter contains object in a JSON format which has the SKU-based offer cart details.</p></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><p>cart_details.total_items</p></td>
+      <td><p>This field contains total SKU-based offer items in the cart.</p></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><p>cart_details.total_cart_amount</p></td>
+      <td><p>This field contains the total cart amount.</p></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><p>cart_details.offer_applied</p></td>
+      <td><p>This field contains the offer applied for the transaction.</p></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><p>cart_details.offer_availed</p></td>
+      <td><p>This field contains the offer availed for the transaction.</p></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><p>cart_details.offer_auto_apply</p></td>
+      <td><p>This field contains the offer that was automatically applied.</p></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><p>cart_details.instant_discount</p></td>
+      <td><p>This field contains the instant discount amount for the offer.</p></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><p>cart_details.cashback_discount</p></td>
+      <td><p>This field contains the cashback discount amount for the offer.</p></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><p>cart_details.total_discount</p></td>
+      <td><p>This field contains the total discount amount for the offer.</p></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><p>cart_details.net_cart_amount</p></td>
+      <td><p>This field contains the net cart amount.</p></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><p>sku_details</p></td>
+      <td><p>This parameter contains an object in a JSON format that has the SKU details.<br/><strong>Note:</strong> The response can have multiple sku_details object as an offer can have multiple SKUs.</p></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><p>sku_details.sku_name</p></td>
+      <td><p>This parameter contains the SKU name.</p></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><p>sku_details.sku_id</p></td>
+      <td><p>This parameter contains the SKU ID.</p></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><p>sku_details.amount_per_sku</p></td>
+      <td><p>The parameter must contain the per SKU amount.</p></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><p>sku_details.quantity</p></td>
+      <td><p>The parameter must contain the quantity of SKU added in cart.</p></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><p>sku_details.offer_key</p></td>
+      <td><p>This parameter must contain the Offer Key(s) which can be used for this transaction.</p></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><p>sku_details.offer_auto_apply</p></td>
+      <td><p>This parameter contains the flag for when to enable auto application of best offer on this SKU.</p></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><p>sku_details.offer_applied</p></td>
+      <td><p>This field contains the offer applied for the SKU.</p></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><p>sku_details.offer_availed</p></td>
+      <td><p>This field contains the offer availed for the SKU.</p></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><p>sku_details.offer_status</p></td>
+      <td><p>This field contains the status of the offer for the SKU.</p></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><p>sku_details.offer_type</p></td>
+      <td><p>This field contains the type of the offer for the SKU.</p></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><p>sku_details.offer_auto_apply</p></td>
+      <td><p>This field contains the offer that was automatically applied for the SKU.</p></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><p>sku_details.is_nce</p></td>
+      <td><p>This field specifies whether the SKU is No-Cost-EMI offer.</p></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><p>sku_details.failure_reason</p></td>
+      <td><p>This field contains the failure or success reason.</p></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><p>sku_details.instant_discount</p></td>
+      <td><p>This field contains the instant discount amount for the SKU.</p></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><p>sku_details.cashback_discount</p></td>
+      <td><p>This field contains the cashback discount amount for the SKU.</p></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
 
-| cart\_details.total\_discount  
-  | This field contains the total discount amount for the offer. |  
-| cart\_details.net\_cart\_amount | This field contains the net cart amount. |  
-| sku\_details | This parameter contains an object in a JSON format that has the SKU details.  
-**Note**: The response can have multiple sku\_details object as an offer can have multuple SKUs. |  
-| sku\_details.sku\_name | This parameter contains the SKU name |  
-| sku\_details.sku\_id | This parameter contains the SKU ID |  
-| sku\_details.amount\_per\_sku | The parameter must contain the per SKU amount. |  
-| sku\_details.quantity | The parameter must contain the quantity of SKU added in cart. |  
-| sku\_details.offer\_key  | This parameter must contain the Offer Key(s) which can be used for this transaction. |  
-| sku\_details.offer\_auto\_apply  | This parameter contains the flag for when to enable auto application of best offer on this SKU. |  
-| sku\_details.offer\_applied | This field contains the offer applied for the SKU. |  
-| sku\_details,offer\_availed | This field contains the offer availed for the SKU. |  
-| sku\_details,offer\_status | This field contains the status of the offer for the SKU. |  
-| sku\_details,offer\_type | This field contains the type of the offer for the SKU. |  
-| sku\_details,offer\_auto\_apply | This field contains the offer that was automatically applied for the SKU. |  
-| sku\_details,is\_nce | This field specified whether the SKU is No-Cost-EMI offer. |  
-| sku\_details,failure\_reason | This field contains the failure or success reason. |  
-| sku\_details,instant\_discount | This field contains the instant discount amount for the SKU. |  
-| sku\_details,cashback\_discount | This field contains the cashback discount amount for the SKU. |
 
-1. Verify the payment.
+3. Verify the payment.
 
 Similar to the payment response, the same parameters can be handled as part of the **verify\_payment** API. For more information, refer to [Verify Payment Status by Transaction ID](https://devguide.payu.in/api/payments/transaction-verification-apis/verify_payment-api/).
 
