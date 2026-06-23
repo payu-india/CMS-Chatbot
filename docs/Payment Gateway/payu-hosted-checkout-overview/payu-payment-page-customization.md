@@ -99,7 +99,7 @@ PayU will show only the payment methods in the checkout you explicitly pass in t
 <Accordion title="Sample Payload" icon="fa-code">
 The `enforce_paymethod` parameter allows you to customize payment methods in the checkout. You can restrict specific payment modes, cards scheme, and specific banks under Net Banking using this parameter.
 
-```curl
+```curl: With Single Category
 # PayU Hosted Checkout - enforce payment method customization
 curl -X POST "https://test.payu.in/_payment" \
   -H "accept: application/json" \
@@ -114,7 +114,7 @@ curl -X POST "https://test.payu.in/_payment" \
   -d "surl=https://apiplayground-response.herokuapp.com/" \
   -d "furl=https://apiplayground-response.herokuapp.com/" \
   -d "enforce_paymethod=creditcard" \
-  -d "hash=REPLACE_WITH_GENERATED_HASH"
+  -d "hash=YOUR_HASH_VALUE"
 # Parameters include key, txnid, amount, surl, furl, hash; enforce_paymethod=creditcard
 ```
 
