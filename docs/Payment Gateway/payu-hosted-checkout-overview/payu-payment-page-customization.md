@@ -92,16 +92,17 @@ Examples:
 
 ### How it Works
 
-PayU will show only the payment methods you explicitly pass in the checkout.
+PayU will show only the payment methods in the checkout you explicitly pass in the request.
 
-***
+### Sample Request
 
-## Example: Show Only UPI
+<Accordion title="Sample Payload" icon="fa-code">
+The `enforce_paymethod` parameter allows you to customize payment methods in the checkout. You can restrict specific payment modes, cards scheme, and specific banks under Net Banking using this parameter.
 
-```json
-{
-  "enforce_paymethod": "upi"
-}
+
+</Accordion>
+
+```curl
 ```
 
 ***
