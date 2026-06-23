@@ -40,7 +40,7 @@ You can use this guide to:
 - Show only UPI and cards
 - Hide credit cards
 - Hide wallets
-- Display checkout in Hindi or Tamil
+- Display checkout in other languages
 - Enable BNPL for eligible merchants
 - Restrict checkout based on business rules
 </Accordion>
@@ -51,6 +51,7 @@ You can use this guide to:
 
 # Prerequisites
 
+<Accordion title="Checklist" icon="fa-list-check">
 Before customizing checkout, ensure you have:
 
 - Active PayU merchant account (test or production)
@@ -58,9 +59,11 @@ Before customizing checkout, ensure you have:
 - Hosted Checkout integration completed
 - Merchant eligibility for payment methods you want to use
 - Dashboard permissions (for enabling methods)
+</Accordion>
 
-> **Important**
-> Some payment methods (such as BNPL) require PayU approval or merchant eligibility before they appear in checkout.
+> ✅ **Enable Payment Methods**
+>
+> Some payment methods (such as BNPL) require PayU approval or merchant eligibility before they appear in checkout. Get in touch with your key account manager to enable them in the dashboard.
 
 ***
 
@@ -77,26 +80,7 @@ Use this decision matrix to choose the correct approach.
 
 ***
 
-# Step 1: Enable Payment Methods in Dashboard (If Required)
-
-Some payment methods must be enabled at the merchant account level before they can appear in checkout.
-
-Examples:
-
-- BNPL
-- EMI
-- Specific wallets
-- Certain bank offers
-
-Verify:
-
-- Payment method is enabled in dashboard
-- Merchant account is eligible
-- Feature is active in current environment
-
-***
-
-# Step 2: Restrict Checkout to Specific Payment Methods (`enforce_paymethod`)
+# Restrict Checkout to Specific Payment Methods (`enforce_paymethod`)
 
 Use this when you want a **whitelist**.
 
