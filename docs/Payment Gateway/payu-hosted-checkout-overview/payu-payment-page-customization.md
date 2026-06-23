@@ -32,8 +32,9 @@ Use this guide to reduce payment friction, improve conversion, and tailor checko
 
 ***
 
-# Common Use Cases
+# Use Cases
 
+<Accordion title="Common Use Cases" icon="fa-layer-group">
 You can use this guide to:
 
 - Show only UPI and cards
@@ -42,6 +43,9 @@ You can use this guide to:
 - Display checkout in Hindi or Tamil
 - Enable BNPL for eligible merchants
 - Restrict checkout based on business rules
+</Accordion>
+
+<br />
 
 ***
 
