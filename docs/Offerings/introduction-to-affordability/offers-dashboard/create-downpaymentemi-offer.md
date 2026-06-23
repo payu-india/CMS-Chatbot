@@ -10,211 +10,88 @@ metadata:
 next:
   description: ''
 ---
-Downpayment EMI is an **hybrid payment** **method** where a customer may choose to pay downpayment on a payment method and EMI via a different payment methods. For example, if a customer wants to purchase the newly launched laptop worth Rs 90,000.  The customer can use the **Downpayment+EMI** offer on your website to fund her purchase with UPI and avail No Cost EMI on their credit card. 
+### Steps to Create a No-Cost EMI Offer
 
-Downpayment+EMI offer allows you to :
+1. [Add the basic details](#step-1-add-the-basic-details)
+2. [Configure payment modes](#step-2-configure-payment-modes)
+3. [Include the Offer rules](#step-3-include-the-offer-rules)
+4. [Configure Offer Subvention Details](#step-4-configure-offer-subvention-details)
+5. [Review of the Offer](#step-5-review-of-the-offer)
 
-* **Making affordable products for end customer-** The customer can now use the funds available along with availing benefits of their credit line.
-* **Do more with your budget -** You can provide No Cost EMI with reduced subvention burden and acquire more customers.
+## Step 1: Add the basic details
 
-The procedure to create an Instant Discount or Cashback Offer on PayU Dashboard is similar.
-
-***
-
-### Steps to Create an Offer
-
-1. [Select the discount type](#step-1-select-the-discount-type)
-2. [Add basic details of the offer](#step-2-add-basic-details)
-3. [Include the offer rules or limitations](#step-3-include-the-offer-rules-or-limitations)
-4. [Set up EMI options](#step-4-set-up-emi-options)
-5. [Review the offer](#step-5-review-of-the-offer)
-
-***
-
-After you create an Instant Discount or Cashback Offer, you can collect payments from your customers using PayU Hosted (Non-seamless) or Merchant Hosted (Seamless) Checkout integration as described in the following sections:
-
-* PayU Hosted
-  * [Integrate with PayU Hosted Checkout - Offers](doc:payu-hosted-checkout-integration-with-offers)
-* Merchant Hosted Checkout
-  * [Instant Discount or Cashback using Merchant Hosted Checkout](doc:instant-discount-or-cashback-offers-integration-using-merchant-hosted-checkout)
-  * [SKU-Based Offer using Merchant Hosted Checkout](doc:collect-payments-with-sku-based-offer-using-merchant-hosted-checkout-offers-integration)
-
-***
-
-## Step 1: Select the discount type
-
-1. Navigate to [Offers Dashboard](doc:offers-dashboard).
+1. Navigate to [.Offers Dashboard](doc:offers-dashboard).
 2. Click **Create an Offer** at the top-right corner.
 
    The *Create New Offer* page is displayed.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Screenshot-2022-02-23-at-8.10.38-PM-1024x573.png)
+   <Image align="center" className="border" border={true} src="https://files.readme.io/94d041dbfbfc5faa76260a76e736cdbb4030553dddcde8c5ef3efeb9ca5d0f95-Screenshot_2025-06-03_at_10.16.03_AM.png" />
+3. Select **No Cost EMI** as the discount type.
 
-3. Select the **No Cost EMI** offer.
+ The *Basic Offer Details* page is displayed.
 
-  The *Basic Offer Details* page is displayed.
+<Image align="center" className="border" border={true} src="https://files.readme.io/bb329721a61f129bdf8cd8376b722d5d9608b22c87f214b9b3d61cc70983f3e1-Screenshot_2025-06-03_at_5.04.39_PM.png" />
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Screenshot-2022-02-23-at-8.11.36-PM-1024x573.png)
+4. Add the basic details. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer).
+5. After you complete the above details and click **Save & Process**.
 
-***
+   The *Payment Options* page is displayed.
 
-## Step 2: Add basic details
+<Image align="center" className="border" border={true} src="https://files.readme.io/2eb257440a7bc87f172cfb2e617bdde10d3a2792eb87bd3d442e860689565c00-Screenshot_2025-06-03_at_5.06.06_PM.png" />
 
-1. Include the basic details as described in the following table and then click **Save & Process**:
-
-<Table>
-  <thead>
-    <tr>
-      <th>
-        **Field**
-      </th>
-
-      <th>
-        **Description**
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        Title
-      </td>
-
-      <td>
-        Enter a unique title for the offer. This would be displayed as the offer title on your Checkout page.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Description
-      </td>
-
-      <td>
-        Enter the offer text that would be shown to your customer at checkout (for PayU Hosted Checkout Integration transactions).
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        From Date, From Time, To Date, To Time
-      </td>
-
-      <td>
-        Enter the offer validity date and time range. Your offer will be valid and visible to the customer between this time period. You can specify the time range up to the seconds detail.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Terms & Conditions
-      </td>
-
-      <td>
-        Enter the text content that should appear under the “Terms and Conditions” on the Checkout page for customers.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Terms & Conditions Links
-      </td>
-
-      <td>
-        Enter the hyperlinks for independent hosted pages.  
-
-        * \*Note\*\*: It is recommended to be used only If it is absolutely necessary to avoid redirections outside your customer purchase journey).
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-2. After you complete the above details and click **Save & Process**,
-
-   The *Set Offer Rules* page is displayed.
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/05/Screenshot-2022-05-26-at-11.39.03-AM-1-1024x665.png)
-
-3. Scroll down *Set Offer Rules* page for the **Additional Options** section.
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/06/Offers_Details_Additional_Options-875x1024.png)
-
-> 📘 Note:
+> 📘 Note
 >
 > When you are creating an offer, you can choose to save the incomplete offer details in the Draft state using the **Save as Draft & Exit** button at the top-right corner and publish it later.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Screenshot-2022-02-23-at-8.15.59-PM-1024x573.png)
+## Step 2: Configure payment modes
 
-***
+1. Click the **Allow Downpayment with No Cost EMI** toggle button to show the EMI options which are eligible for downpayment in the next two steps.
 
-## Step 3: Include the Offer rules or limitations
-
-The procedure to include the rules and limitations is similar to creating an Instant Discount or Cashback Offer. For more information, refer to [Create an Instant Discount or Cashback Offer](https://docs.payu.in/docs/create-an-offer#step-3-include-the-offer-rules-or-limitations).
-
-***
-
-## Step 4: Set up EMI options
-
-To complete the offer details for No Cost EMI:
-
-1. Select **Cards** from the **Select EMI Type** drop-down list:
-
-> **Note**: Currently, only Downpayment via Credit Card and No Cost EMI on Credit Cards.
-
-The *Setup Payment options of your offer* page is updated to display the options for Cards EMI.
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/03/Screenshot-2022-03-21-at-7.41.49-PM-1-1024x877.png)
-
-2. Click **Add Payment Option**.
-
-   The offer for the debit card payment option gets added to the Setup *Payment options of your offer* page.
-
-3. Select **EMI** to add the cards supporting No-Cost EMI.
-
-4. Enter the details as described in the *Setup EMI Options* page. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer).
-
-5. Select **Yes** in the **Subvent GST** field to subvent the GST for the customers.
-
-> **Notes**: The following must be taken care if you select the **Subvent GST** check box:
+> 📘 Note:
 >
-> * Create these types of offers if there is an agreement with the bank/brand. Reach out to KAM for any queries
-> * Bank share, brand share, and merchant share should all add up to 100%
-> * You will receive your reconciliation reports in this email
-> * Reconciliation will be possible only after the refund window
+> The **Downpayment Eligible** label in green colour is displayed next to the **Credit Card Name** column similar to the following screenshot as it is applicable only. This is not applicable for Debit Card or Cardless, so they are displayed in yellow colour.
+>
+> <Image align="center" className="border" border={true} src="https://files.readme.io/061a6f12abbddf3a51e7faad601caf7e84dd38bb0ada0defaed90ed5b41974e7-dashboard_emi_downpayment_enabled.png" />
 
-6. Scroll down and  select the **All downpayment options with No Cost EMI** that you want to configure
+2. For each of the following sub tabs, select the desired item on first column and **Tenures** column on which you wish to enable the offer. You can select all tenures of a specific bank and choose specific tenures for each bank.
+   * Credit Card
+   * Debit Card
+   * Cardless
+3. Select the **Set an exclusion/inclusion bin for the offer** check box to include/exclude the offer on a select list of BINs on the banks that were selected in Step 1 (of Configure payment modes) using the following steps in each **Exclusion Bin** and **Inclusion Bin** sub tabs:
+   * Click **Download Sample File** if you are not having the sample file or CSV file template. The CSV file contains some sample BIN numbers (first 6 digits of Debit Card or Credit Cards), which you need to update according to your requirements.
+   * Update the CSV or text file to include the BIN details. For updating the CSV file, you can use Microsoft Excel or any other Spreadsheet tool. 
+   * Click the browse button in the **Add a list of bins that you want to include or exclude on offer** to upload the updated CSV file.
 
-<Image align="center" src="https://files.readme.io/a485b5f-create_offer_downpayment_options.webp" />
+<Image align="center" className="border" border={true} src="https://files.readme.io/ffcb358c53def42d01a66edd5348191f536fd70af20a216e8e8c262b094a706d-dashboard_payment_options_emi_exclusion_list.png" />
 
-7. Select any of the following options:
+4. Select **Yes** in the **Subvent GST** if you wish to collect GST for the subvention amount.
+5. Click **Next**.
 
-* **Absolute Downpayment**: Configure a flat amount against a tenure that you want to accept as Downpayment
-* **Percentage Downpayment**: Configure the percentage of transaction/product amount against a tenure that you want to accept as Downpayment.
+The *Enter details of your Offer* page is displayed
 
-8. Select the bank and tenures where you want to provide No Cost EMI or No Cost EMI With downpayment.
+<Image align="center" className="border" border={true} src="https://files.readme.io/8e8036030bd73b52addefb493b5ad800c10cc446b32fa2ddc194879dd8148c5a-dashboard_emi_offer_details.png" />
 
-   For example: in the following screenshot, Axis bank for No Cost EMI and No Cost EMI with Downpayment on different tenures.
+## Step 3: Include the Offer rules
 
-<Image align="center" width="422px" src="https://files.readme.io/4563832-create-offer-card-emi-options.png" />
+1. Enter the offer rules and limitations on the *Set Offer Rules* page. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer#step-3-include-the-offer-rules).
+2. After you complete the above details and click **Next**.
 
-9. Select tenures where you want to provide only No Cost EMI and No Cost EMI with Downpayment.
+   The *Subvention Details* page is displayed.
 
-   For example, in the following screenshot, No Cost EMI on 3 and 6 month tenure for Axis bank that was selected and No Cost EMI with Downpayment on.
+## Step 4: Configure Offer Subvention Details
 
-<Image align="center" src="https://files.readme.io/a178007-create_offer_emi_card_downpayment_options.webp" />
+1. Enter the subvention details in the *Subvention Details* page. For more information, refer to refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer#step-4-configure-offer-subvention-details).
+2. After you complete the above details and click **Next**.
 
-10. Click **Save & Proceed**.
+The *Preview Details* page is displayed
 
-***
+## Step 5: Review of the Offer
 
-## **Step 5: Review of the Offer**
-
-The *Preview of Cashback Offer* page summarizes the details you provided in Step 2 to Step 4.
+The *Preview Details* page summarizes the details you provided in Step 2 to Step 4.
 
 1. Review all the configurations added before you make the offer available to your customers.
 2. Click the **Edit** button to return back to the corresponding page and update the configuration.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/02/Screenshot-2022-02-23-at-8.32.06-PM-1024x573.png)
+<Image align="center" className="border" border={true} src="https://files.readme.io/0b82b32bea63aec925e5a31d7918397f489b0e59f19f187ba4e52790539de677-Screenshot_2025-06-03_at_6.04.05_PM.png" />
 
-3. Click **Publish Offer** to make it available to customers.
+3. Click **Publish** to make it available to customers.
