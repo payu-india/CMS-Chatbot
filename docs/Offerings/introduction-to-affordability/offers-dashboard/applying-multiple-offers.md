@@ -25,7 +25,7 @@ To support the application of multiple offers, PayU has introduced a new offer t
 * A Base offer can only be No-Cost EMI or Low-Cost EMI
 * On the PayU Payment page with PayU Hosted Checkout integration, the Base Offer will be applied automatically without the need for user to select them. If the offer is applicable, it will be applied
 
-### Steps to Create a No-Cost EMI Offer
+### Steps to Create a Base Offer
 
 1. [Add the basic details](#step-1-add-the-basic-details)
 2. [Configure payment modes](#step-2-configure-payment-modes)
@@ -41,7 +41,7 @@ To support the application of multiple offers, PayU has introduced a new offer t
    The *Create New Offer* page is displayed.
 
    <Image align="center" className="border" border={true} src="https://files.readme.io/94d041dbfbfc5faa76260a76e736cdbb4030553dddcde8c5ef3efeb9ca5d0f95-Screenshot_2025-06-03_at_10.16.03_AM.png" />
-3. Select **No Cost EMI** as the discount type.
+3. Select **Base Offer** as the discount type.
 
  The *Basic Offer Details* page is displayed.
 
