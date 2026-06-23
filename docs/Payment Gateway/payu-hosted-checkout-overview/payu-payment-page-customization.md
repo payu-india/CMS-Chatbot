@@ -82,7 +82,7 @@ Use this decision matrix to choose the correct approach.
 
 # Restrict Checkout to Specific Payment Methods (`enforce_paymethod`)
 
-Use this when you want a **whitelist**.
+You can append the parameter names in your transaction request to restrict checkout to some of the payment modes.
 
 Examples:
 
@@ -90,9 +90,9 @@ Examples:
 - Show only cards
 - Show only UPI + NetBanking
 
-## How It Works
+### How it Works
 
-PayU will show only the payment methods you explicitly pass.
+PayU will show only the payment methods you explicitly pass in the checkout.
 
 ***
 
