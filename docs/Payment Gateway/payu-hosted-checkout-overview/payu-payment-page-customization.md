@@ -99,10 +99,45 @@ PayU will show only the payment methods in the checkout you explicitly pass in t
 <Accordion title="Sample Payload" icon="fa-code">
 The `enforce_paymethod` parameter allows you to customize payment methods in the checkout. You can restrict specific payment modes, cards scheme, and specific banks under Net Banking using this parameter.
 
+```curl
+# PayU Hosted Checkout - enforce payment method customization
+curl -X POST "https://test.payu.in/_payment" \
+  -H "accept: application/json" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "key=JP***g" \
+  -d "txnid=ENFCC001" \
+  -d "amount=10.00" \
+  -d "firstname=PayU%20User" \
+  -d "email=test@gmail.com" \
+  -d "phone=9876543210" \
+  -d "productinfo=iPhone" \
+  -d "surl=https://apiplayground-response.herokuapp.com/" \
+  -d "furl=https://apiplayground-response.herokuapp.com/" \
+  -d "enforce_paymethod=creditcard" \
+  -d "hash=REPLACE_WITH_GENERATED_HASH"
+# Parameters include key, txnid, amount, surl, furl, hash; enforce_paymethod=creditcard
+```
+
 
 </Accordion>
 
 ```curl
+# PayU Hosted Checkout - enforce payment method customization
+curl -X POST "https://test.payu.in/_payment" \
+  -H "accept: application/json" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "key=JP***g" \
+  -d "txnid=ENFCC001" \
+  -d "amount=10.00" \
+  -d "firstname=PayU%20User" \
+  -d "email=test@gmail.com" \
+  -d "phone=9876543210" \
+  -d "productinfo=iPhone" \
+  -d "surl=https://apiplayground-response.herokuapp.com/" \
+  -d "furl=https://apiplayground-response.herokuapp.com/" \
+  -d "enforce_paymethod=creditcard" \
+  -d "hash=REPLACE_WITH_GENERATED_HASH"
+# Parameters include key, txnid, amount, surl, furl, hash; enforce_paymethod=creditcard
 ```
 
 ***
