@@ -1,7 +1,7 @@
 ---
 title: Enhanced Payment Links on WhatsApp
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
