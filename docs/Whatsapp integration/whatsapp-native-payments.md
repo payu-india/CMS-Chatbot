@@ -47,24 +47,29 @@ This part of the documentation includes:
   </Card>
 </Cards>
 
-
 ## Why are native payments on WhatsApp important?
 
 WhatsApp Business has proven to be an effective customer engagement channel for a wide range of business use cases. However, businesses have been unable to complete the sales cycle on the platform.
 
 With PayU’s in-app payments on WhatsApp Business, businesses can now offer their customers a native payment experience inside WhatsApp. This opens up a range of commercial opportunities for businesses, including the following:
 
-* Recover Abandoned Carts
+- Recover Abandoned Carts
 
-<Image align="center" width="200px" src="https://files.readme.io/505b3a0-image.png" />
 
-* Upsell or Cross-sell with Offers & Coupons
+<Image src="https://files.readme.io/505b3a0-image.png" align="center" width="200px" />
 
-<Image align="center" width="200px" src="https://files.readme.io/60da5b6-image.png" />
 
-* Convert Cash on Delivery orders to Pre-paid
+- Upsell or Cross-sell with Offers & Coupons
 
-<Image align="center" width="200px" src="https://files.readme.io/d2b2fe4-image.png" />
+
+<Image src="https://files.readme.io/60da5b6-image.png" align="center" width="200px" />
+
+
+- Convert Cash on Delivery orders to Pre-paid
+
+
+<Image src="https://files.readme.io/d2b2fe4-image.png" align="center" width="200px" />
+
 
 ## How does PayU help your business?
 
@@ -74,20 +79,24 @@ With PayU’s in-app payments on WhatsApp Business, businesses can now offer the
 
 ## Payments Journey
 
-<Image align="center" border={true} src="https://files.readme.io/ed4f484-image.png" className="border" />
+
+<Image src="https://files.readme.io/ed4f484-image.png" align="center" border={true} />
+
 
 ## Experience Native WhatsApp Payments
 
 Experience the native WhatsApp payments journey yourself by scanning the below QR code.
 
-<Image align="center" width="222px" src="https://files.readme.io/8627f02-original-F69B5B9C-4A28-49D5-A089-E50E849C8FC2_1.jpeg" />
+
+<Image src="https://files.readme.io/8627f02-original-F69B5B9C-4A28-49D5-A089-E50E849C8FC2_1.jpeg" align="center" width="222px" />
+
 
 ## Pre-requisites
 
 You must ensure that you have the following:
 
-* WhatsApp Business Account​
-* Active PayU Merchant Account
+- WhatsApp Business Account​
+- Active PayU Merchant Account
 
 ## Steps to Integrate
 
@@ -98,8 +107,16 @@ You must ensure that you have the following:
 
 The Partner Integration APIs are used for WhatsApp integration. The Partner Integration APIs are:
 
-* [Getting Access Token](ref:getting-access-token)
-* [Hosted Checkout Integration - Partner Integration](ref:hosted-checkout-api-partner-integration)
-* [UPI S2S Integration for Partners](ref:upi-s2s-partner-integration-api)
-* [Refund Transaction API – Partner Integration](ref:refund-transaction-api-partner-integration)
-* [Partner Refund Status API](ref:refund-status-api-partner-integration)
+- [Getting Access Token](ref:getting-access-token)
+- [Hosted Checkout Integration - Partner Integration](ref:hosted-checkout-api-partner-integration)
+- [UPI S2S Integration for Partners](ref:upi-s2s-partner-integration-api)
+- [Refund Transaction API – Partner Integration](ref:refund-transaction-api-partner-integration)
+- [Partner Refund Status API](ref:refund-status-api-partner-integration)
+
+## Enhanced Payment Links
+
+Send an approved WhatsApp template message with a **Pay Now** button so that your customer completes payment on PayU’s Hosted Checkout page on the default browser (outside WhatsApp). For more information, refer to [Enhanced Payment Links on WhatsApp.](doc:enhanced-payment-links-on-whatsapp)
+
+📘
+
+<br />
