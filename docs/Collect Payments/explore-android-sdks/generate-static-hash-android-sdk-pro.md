@@ -285,7 +285,6 @@ private String getSHA(String str) {
 </html>
 
 ```
-
 ```php
 <?php
 
