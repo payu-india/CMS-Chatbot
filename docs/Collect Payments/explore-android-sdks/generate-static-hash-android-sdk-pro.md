@@ -112,7 +112,7 @@ The following table describes all static hashes:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        `<key>|`<br/>`get_payment_instrument|`<br/>`<userCredential>|`<br/>`<salt>`
+        `<key>|`<br/>`get_payment_`<br/>`instrument|`<br/>`<userCredential>|`<br/>`<salt>`
       </td>
     </tr>
 
@@ -126,7 +126,7 @@ The following table describes all static hashes:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        `<key>\|`<br/>`get_payment_details\|`<br/>`<userCredential>\|`<br/>`<salt>`
+        `<key>\|`<br/>`get_payment_`<br/>`details\|`<br/>`<userCredential>\|`<br/>`<salt>`
       </td>
     </tr>
   </tbody>
