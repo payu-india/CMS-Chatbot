@@ -4,4 +4,4 @@
 - v2-generate-upi-intent-api
 - v2-get-checkout-details
 - bin-apis
-- get-transaction-details-api
+- v2-get-transaction-details-api
