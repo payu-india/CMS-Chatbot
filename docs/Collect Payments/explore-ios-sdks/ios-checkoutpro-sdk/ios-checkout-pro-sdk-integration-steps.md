@@ -70,7 +70,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   import PayUCheckoutProBaseKit
   import PayUParamsKit
   ```
-  ```objectivec Objective-C
+  ```c
   #import <PayUCheckoutProKit/PayUCheckoutProKit.h>
   #import <PayUCheckoutProBaseKit/PayUCheckoutProBaseKit.h>
   #import <PayUBizCoreKit/PayUBizCoreKit.h>
@@ -92,10 +92,10 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   <Accordion title="CrashReporter" icon="fa-code">
     In order to receive all the crashes related to our SDKs, add the following line to your AppDelegate `didFinishLaunchingWithOptions` method:
 
-    ```swift Swift
+    ```swift
     PayUCheckoutPro.start()
     ```
-    ```objectivec Objective-C
+    ```c
     [PayUCheckoutPro start];
     ```
   </Accordion>
@@ -119,7 +119,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
                                         
     paymentParam.userCredential = <String> // For saving and fetching user’s saved card
     ```
-    ```objective-c
+    ```c
     PayUPaymentParam *paymentParam = [[PayUPaymentParam alloc] initWithKey:<#(NSString * _Nonnull)#>
                                                              transactionId:<#(NSString * _Nonnull)#>
                                                                     amount:<#(NSString * _Nonnull)#>
@@ -242,7 +242,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
       paymentParam.additionalParam[PaymentParamConstant.udf5] = <String>
       paymentParam.additionalParam[PaymentParamConstant.walletURN] = <String>  // Required for Amul Wallet
       ```
-      ```objective-c
+      ```c
       paymentParam.additionalParam = [[NSDictionary alloc] initWithObjectsAndKeys:
                                           <#(NSString)#>, PaymentParamConstant.udf1,
                                           <#(NSString)#>, PaymentParamConstant.udf2,
@@ -272,7 +272,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
                 
                 paymentParam.siParam = siInfo
     ```
-    ```objective-c
+    ```c
     paymentParam.siParams = siParam;
     ```
   </Accordion>
@@ -288,7 +288,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
        paymentParam.siParam = siInfo
      #isPreAuthTxn must be true for OTM transactions
     ```
-    ```objective-c
+    ```c
     paymentParam.siParams = siParam;
     ```
   </Accordion>
@@ -300,7 +300,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     paymentParam.additionalCharges = "CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55"
     paymentParam.percentageAdditionalCharges = "CC:50,SBIB:100,DINR:100,DC:25,NB:50"
     ```
-    ```objective-c
+    ```c
     paymentParam.additionalCharges = @"CC:12,AMEX:19,SBIB:98,DINR:2,DC:25,NB:55";
     paymentParam.percentageAdditionalCharges = @"CC:50,SBIB:100,DINR:100,DC:25,NB:50";
     ```
@@ -331,7 +331,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
       ```swift
       paymentParam.splitPaymentDetails = ""
       ```
-      ```objective-c
+      ```c
       paymentParam.splitPaymentDetails = @"";
       ```
     </Accordion>
@@ -386,7 +386,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     // Attach SKU details to payment params
     paymentParam.skuDetail = skuDetails
     ```
-    ```objective-c
+    ```c
     PayUSku *sku1 = [PayUSku new];
     sku1.skuId = @"111";
     sku1.skuName = @"Shoes";
@@ -438,7 +438,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
       paymentParam.payuBeneficieryDetails = beneficiaryList
       ```
-      ```objective-c
+      ```c
       PayUBeneficiaryParams *beneficiary1 = [[PayUBeneficiaryParams alloc]
           initWithBeneficiaryName:@""
           beneficiaryAccountNumber:@"002001600674"
@@ -478,7 +478,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
       paymentParam.payuBeneficieryDetails = beneficiaryList
       ```
-      ```objective-c
+      ```c
       PayUBeneficiaryParams *beneficiary1 = [[PayUBeneficiaryParams alloc]
           initWithBeneficiaryName:@"John Doe"
           beneficiaryAccountNumber:@"002001600674"
@@ -530,7 +530,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
       paymentParam.payuBeneficieryDetails = beneficiaryList
       ```
-      ```objective-c
+      ```c
       // Beneficiary details for UPI
       PayUBeneficiaryParams *upiBeneficiary = [[PayUBeneficiaryParams alloc]
           initWithBeneficiaryName:@""
@@ -594,7 +594,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
     paymentParam.address = address
     ```
-    ```objective-c
+    ```c
     PayUAddressDetails *address = [[PayUAddressDetails alloc] init];
     address.lastName = @"Doe";
     address.address1 = @"34 Saikripa-Estate, Tilak Nagar";
@@ -633,7 +633,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     ```swift
     paymentParam.additionalParam[PaymentParamConstant.udf5] = "INV-2024-001234"
     ```
-    ```objective-c
+    ```c
     paymentParam.additionalParam[PaymentParamConstantUdf5] = @"INV-2024-001234";
     ```
 
@@ -687,7 +687,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 
     paymentParam.products = [product]
     ```
-    ```objective-c
+    ```c
     PayUWealthProducts *product = [[PayUWealthProducts alloc]
         initWithType:@"mutual_fund"
         amount:@"50000"
@@ -736,7 +736,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     // Usage - Multiple offers
     paymentParam.enforcementOfferKeys = ["OFFER123", "OFFER456", "OFFER789"]
     ```
-    ```objective-c
+    ```c
     paymentParam.enforcementOfferKeys = @[@"offer_key_1"];
 
     // Usage - Multiple offers
@@ -777,7 +777,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
     paymentParam.additionalParam[PaymentParamConstant.sourceId] = "src_xxx"
     paymentParam.additionalParam[PaymentParamConstant.merchantAccessKey] = "YOUR_KEY"
     ```
-    ```objective-c
+    ```c
     // UDF Parameters
     paymentParam.additionalParam[PaymentParamConstantUdf1] = @"udf1";
     paymentParam.additionalParam[PaymentParamConstantUdf2] = @"udf2";
@@ -821,7 +821,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   ```swift
   PayUCheckoutPro.open(on: self, paymentParam: paymentParam, config: <PayUCheckoutProConfig>, delegate: self)
   ```
-  ```objective-c
+  ```c
   [PayUCheckoutPro openOn:self paymentParam:paymentParam config:<#(PayUCheckoutProConfig * _Nullable)#> delegate:self];
   ```
 </Accordion>
@@ -872,7 +872,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
       onCompletion([hashName : hashFetchedFromServer])
   }
   ```
-  ```objective-c
+  ```c
   /// This function is called when we successfully process the payment
   /// @param response  success response
   - (void)onPaymentSuccessWithResponse:(id _Nullable)response {
