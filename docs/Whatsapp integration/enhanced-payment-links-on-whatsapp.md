@@ -7,11 +7,13 @@ metadata:
 ---
 PayU supports multiple ways to accept payments on WhatsApp in partnership with Meta. Merchants integrate with PayU; PayU handles the Meta side—you do not need a separate commercial or technical integration with Meta for these flows.
 
-**Enhanced Payment Links (EPL)** is the simplest option: you send an approved WhatsApp **template** message with a **Pay Now** call-to-action, the customer taps it, and completes payment on PayU’s **Hosted Checkout** page on the browser (outside WhatsApp). If you already use PayU **payment links**, link generation and **webhooks** work the same as today.
+**Enhanced Payment Links (EPL)** is the simplest option: you send an approved WhatsApp **template** message with a **Pay Now** call-to-action, the customer taps it, and completes payment on PayU’s **Hosted Checkout** page on the browser (outside WhatsApp). If you already use PayU **payment links**, link generation and **webhooks** work the same as today. For more information, refer to [Payment Links.](doc:payment-links-dashboard)
 
-> 📘 Prerequisites for integration
->
-> After you ensure that the list of items listed under [Prerequisites to go live on EPL,](#prerequisites-to-go-live-on-epl) the integration with PayU is complete and not other steps are required.&#x20;
+<Callout icon="📘" theme="info">
+  ### Prerequisites for integration
+
+  After you ensure that the list of items listed under [Prerequisites to go live on EPL,](#prerequisites-to-go-live-on-epl) the integration with PayU is complete and not other steps are required.&#x20;
+</Callout>
 
 <br />
 
@@ -275,20 +277,21 @@ Real-world examples cited in product materials include **PolicyBazaar** (reporte
 
 ### When to consider another flavour instead?
 
-\- You need the customer to **stay inside WhatsApp** for the full payment UX → look at **PG Deep Integration** (or **UPI Intent** if UPI-only is acceptable).
-\- You need **rich multi-line-item orders** and real-time **order status** purely in chat (for example food delivery) → **PG Deep Integration** is usually more appropriate.
+\- You need the customer to **stay inside WhatsApp** for the full payment UX → look at **PG Deep Integration** (or **UPI Intent** if UPI-only is acceptable). For more information, refer to [Integrate WhatsApp Payments.](doc:integrate-whatsapp-payments)<br />- You need **rich multi-line-item orders** and real-time **order status** purely in chat (for example food delivery) → **PG Deep Integration** is usually more appropriate. For more information, refer to&#x20;
 
 ***
 
 ## Prerequisites to Go Live on EPL
 
-> 📌 Integrate with Meta&#x20;
->
-> Refer to the following to integrating with Meta before proceeding with PayU:
->
-> - <Anchor target="_blank" href="https://developers.facebook.com/documentation/business-messaging/whatsapp/payments/payments-in/payment-links">Meta > Payment Links</Anchor>
-> - <Anchor target="_blank" href="https://developers.facebook.com/documentation/business-messaging/whatsapp/payments/payments-in/upi-intent/dynamic-vpa">Meta > UPI Intent</Anchor>
-> - <Anchor target="_blank" href="https://developers.facebook.com/documentation/business-messaging/whatsapp/payments/payments-in/enhanced-payment-links">Meta > Enhanced Payment Links</Anchor>
+<Callout icon="📌" theme="default">
+  ### Integrate with Meta&#x20;
+
+  Refer to the following to integrating with Meta before proceeding with PayU:
+
+  - <Anchor target="_blank" href="https://developers.facebook.com/documentation/business-messaging/whatsapp/payments/payments-in/payment-links">Meta > Payment Links</Anchor>
+  - <Anchor target="_blank" href="https://developers.facebook.com/documentation/business-messaging/whatsapp/payments/payments-in/upi-intent/dynamic-vpa">Meta > UPI Intent</Anchor>
+  - <Anchor target="_blank" href="https://developers.facebook.com/documentation/business-messaging/whatsapp/payments/payments-in/enhanced-payment-links">Meta > Enhanced Payment Links</Anchor>
+</Callout>
 
 The following table describes other prerequisites:
 
@@ -301,11 +304,15 @@ The following table describes other prerequisites:
 | **OAuth to link PG in WA**           | **Not required** for EPL.                                                                                                   |
 | **Webhooks**                         | Keep your **existing PayU webhook**; no new WhatsApp payment webhook is required for EPL.                                   |
 
-> ✅ Gating list or allowlist (also known as GK biglist) is Meta's authorization mechanism for WhatsApp.
+<Callout icon="✅" theme="okay">
+  ### Gating list or allowlist (also known as GK biglist) is Meta's authorization mechanism for WhatsApp.
+</Callout>
 
-> 📘 Contact PayU KAM
->
-> For **WABA verification**, **template submission**, **EPL allowlisting**, and **commercial enablement**, work with your **PayU Key Account Manager (KAM)** or your **BSP** so the correct Meta and PayU steps complete in order.
+<Callout icon="📘" theme="info">
+  ### Contact PayU KAM
+
+  For **WABA verification**, **template submission**, **EPL allowlisting**, and **commercial enablement**, work with your **PayU Key Account Manager (KAM)** or your **BSP** so the correct Meta and PayU steps complete in order.
+</Callout>
 
 ***
 
