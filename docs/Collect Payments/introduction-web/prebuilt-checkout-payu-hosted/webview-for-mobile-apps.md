@@ -137,7 +137,7 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
   ```
 
   Pass the postData to load the PayU checkout form with the transaction data using *postUrl*() method.
-
+<HTMLBlock>{`
   <Table align={["left","left"]}>
     <thead>
       <tr>
@@ -171,6 +171,8 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
       </tr>
     </tbody>
   </Table>
+`}</HTMLBlock>
+
 </Accordion>
 
 <Accordion title="Set WebViewClient" icon="fa-code">
