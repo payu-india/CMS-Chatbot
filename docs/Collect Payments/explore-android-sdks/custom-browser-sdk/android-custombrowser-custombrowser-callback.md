@@ -46,7 +46,7 @@ The following error messages are thrown in the callback method:
   * `resultData.getErrorMessage()`— Gives error message in case PaymentOption is not available.
     onVpaEntered(String vpa, PackageListDialogFragment `packageListDialogFragment)`(Available from version 7.3.0): Merchants must override this function and provide verifyVpaHash in case they want payment through UPI Collect flow.
 
-```Text JAVA
+```java
 packageListDialogFragment.verifyVpa(verifyVpaHash);
 ```
 
@@ -56,7 +56,7 @@ packageListDialogFragment.verifyVpa(verifyVpaHash);
 
 The sample code block for PayUCustomBrowserCallback:
 
-```java Java
+```java
 PayUCustomBrowserCallback payUCustomBrowserCallback = new PayUCustomBrowserCallback() {
 @Override
 public void onPaymentFailure(String payuResponse,String merchantResponse) {
