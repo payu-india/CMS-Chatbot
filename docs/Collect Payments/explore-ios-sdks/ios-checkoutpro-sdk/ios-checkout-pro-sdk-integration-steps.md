@@ -1192,7 +1192,7 @@ Some of the listed schemes may not be actively used at the moment, but they are 
   <Accordion title="Create a Custom Note List and Pass to SDK" icon="fa-info-circle">
     Create a list of custom notes that you want to pass to the CheckoutPro SDK. For each custom note, custom\_note and custom\_note\_category need to be passed.To pass the custom note list, Create a PayUCheckoutProConfig object and set the CustomNoteDetails similar to the following code block:
 
-    ```swift Swift
+    ```swift
     var customNotes = [PayUCustomNote]()
     let customNote1 = PayUCustomNote()
     customNote.note = “<your note message>”
