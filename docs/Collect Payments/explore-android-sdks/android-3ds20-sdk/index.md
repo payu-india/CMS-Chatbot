@@ -26,6 +26,7 @@ metadata:
 next:
   description: ''
 ---
+
 ---
 title: Android 3DS 2.0 SDK
 excerpt: ''
@@ -145,7 +146,7 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
         </td>
 
         <td>
-          Merchants have to create the payment param object and pass it which will contain info such as `cardDetails`, SI details, etc. For more information, refer to <a href="https://docs.payu.in/docs/integration-steps-android-checkout-pro#step-3-build-the-payment-parameters-mandatory-step">SDK Integration \> Build the payment parameters</a>.
+          Merchants have to create the payment param object and pass it which will contain info such as `cardDetails`, SI details, etc. For more information, refer to <a href="https://docs.payu.in/docs/integration-steps-android-checkout-pro#step-3-build-the-payment-parameters-mandatory-step">SDK Integration &gt; Build the payment parameters</a>.
         </td>
       </tr>
 
@@ -155,42 +156,108 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
         </td>
 
         <td>
-        This parameter contains the fields as a JSON object. For more information, refer to <a href="#callback-json-fields-description"> callback JSON Fields Description</a>
+        This parameter contains the fields as a JSON object. For more information, refer to <a href="#callback-json-fields-description">callback JSON Fields Description</a>.
         </td>
       </tr>
     </tbody>
   </Table>
-#### config JSON Fields Description
-| Parameter | Description |
-|-----------|-------------|
-| `config.uiCustomisation` | Set UI customization object. For more information, refer to [GUI Customisation](#gui-customization). |
-| `config.isProduction` | Set the environment where you want to test: `true` for the Production environment; `false` for the Test environment. |
-| `config.fallback3DS1` | Set the value as `true` to complete payment on the bank page in case of any failure. By default, the value is `false`. |
-| `config.autoRead` | Set the value as `true` to allow auto-read OTP and fill in the OTP field. By default, the value is `false`. |
-| `config.autoSubmit` | Set the value as `true` to submit the OTP automatically without any user interaction. By default, the value is `false`. |
-| `config.authenticateOnly` | Pass this as `true` if you want to authenticate only using PayU. By default, PayU will authorize. |
-| `config.setDefaultProgressLoader(true, "HexColor")` | Set to show the default loader instead of the full-page loader by passing `true`; to change the color of the progress bar, pass a valid hex code. |
-| `config.enableCustomizedOtpUIFlow` | To customise the UI with your content, pass as `true`. |
-| `config.enableTxnTimeoutTimer` | Pass as `true` to show a timer for page timeout. |
-| `config.merchantName` | Pass the merchant name with customised OTP flow (e.g. `"merchant name"`). |
-| `config.amount` | Pass the transaction amount with customised OTP flow (e.g. `"txn amount"`). |
-| `val acsContentConfig` | `ACSContentConfig()` |
-| `acsContentConfig.otpContent` | OTP message text (e.g. `"OTP has been sent to your registered mobile number"`). You can set this value as per your need. |
-| `acsContentConfig.resendButtonTitle` | Resend button title. You can set this value as per your need. |
-| `acsContentConfig.submitButtonTitle` | Submit button title. You can set this value as per your need. |
-| `acsContentConfig.resendInfoContent` | Resend info content. You can set this value as per your need. |
-| `acsContentConfig.maxResendInfoContent` | Max resend info content. You can set this value as per your need. |
-| `config.acsContentConfig` | `acsContentConfig` |
 
-#### callback JSON Fields Description
-<p>This parameter contains the following methods:</p>
-<ul>
-  <li><code>fun onPaymentSuccess(successResponse: Any)</code>: It will contain a success response. This will be a JSON Object, parse response as per your need.</li>
-  <li><code>fun onPaymentFailure(failureResponse: Any)</code>: It will contain a failure response. This will be a JSON Object, parse response as per your need.</li>
-  <li><code>fun onPaymentCancel(isTxnInitiated: Boolean)</code>: It will tell if payment was canceled.</li>
-  <li><code>fun onError(errorCode: Int, errorMessage: String)</code>: It will contain failure reason code and reason.</li>
-  <li><code>fun generateHash(map: HashMap&lt;String, String&gt;, hashGenerationListener: PayUHashGeneratedListener)</code>: Merchant will get a map with the type of hash and hash string as the value of the map. Refer to <a href="#sample-code-for-callback-generateHash">Sample code for callback - generateHash</a>.</li>
-</ul>
+  <h4 id="config-json-fields-description">config JSON Fields Description</h4>
+
+  <HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>config.uiCustomisation</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Set UI customization object. For more information, refer to <a href="#gui-customization">GUI Customisation</a>.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>config.isProduction</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Set the environment where you want to test: <code>true</code> for the Production environment; <code>false</code> for the Test environment.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>config.fallback3DS1</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Set the value as <code>true</code> to complete payment on the bank page in case of any failure. By default, the value is <code>false</code>.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>config.autoRead</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Set the value as <code>true</code> to allow auto-read OTP and fill in the OTP field. By default, the value is <code>false</code>.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>config.autoSubmit</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Set the value as <code>true</code> to submit the OTP automatically without any user interaction. By default, the value is <code>false</code>.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>config.authenticateOnly</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Pass this as <code>true</code> if you want to authenticate only using PayU. By default, PayU will authorize.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>config.setDefaultProgressLoader(true, &quot;HexColor&quot;)</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Set to show the default loader instead of the full-page loader by passing <code>true</code>; to change the color of the progress bar, pass a valid hex code.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>config.enableCustomizedOtpUIFlow</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>To customise the UI with your content, pass as <code>true</code>.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>config.enableTxnTimeoutTimer</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Pass as <code>true</code> to show a timer for page timeout.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>config.merchantName</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Pass the merchant name with customised OTP flow (e.g. <code>&quot;merchant name&quot;</code>).</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>config.amount</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Pass the transaction amount with customised OTP flow (e.g. <code>&quot;txn amount&quot;</code>).</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>val acsContentConfig</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>ACSContentConfig()</code></p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>acsContentConfig.otpContent</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>OTP message text (e.g. <code>&quot;OTP has been sent to your registered mobile number&quot;</code>). You can set this value as per your need.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>acsContentConfig.resendButtonTitle</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Resend button title. You can set this value as per your need.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>acsContentConfig.submitButtonTitle</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Submit button title. You can set this value as per your need.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>acsContentConfig.resendInfoContent</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Resend info content. You can set this value as per your need.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>acsContentConfig.maxResendInfoContent</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Max resend info content. You can set this value as per your need.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>config.acsContentConfig</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>acsContentConfig</code></p></td>
+    </tr>
+  </tbody>
+</table>
+  `}</HTMLBlock>
+
+  <h4 id="callback-json-fields-description">callback JSON Fields Description</h4>
+  <p>This parameter contains the following methods:</p>
+  <ul>
+    <li><code>fun onPaymentSuccess(successResponse: Any)</code>: It will contain a success response. This will be a JSON Object, parse response as per your need.</li>
+    <li><code>fun onPaymentFailure(failureResponse: Any)</code>: It will contain a failure response. This will be a JSON Object, parse response as per your need.</li>
+    <li><code>fun onPaymentCancel(isTxnInitiated: Boolean)</code>: It will tell if payment was canceled.</li>
+    <li><code>fun onError(errorCode: Int, errorMessage: String)</code>: It will contain failure reason code and reason.</li>
+    <li><code>fun generateHash(map: HashMap&lt;String, String&gt;, hashGenerationListener: PayUHashGeneratedListener)</code>: Merchant will get a map with the type of hash and hash string as the value of the map. Refer to <a href="#sample-code-for-callback-generateHash">Sample code for callback - generateHash</a>.</li>
+  </ul>
 
   <Accordion title="Sample code for callback - generateHash" icon="fa-code">
     ```kotlin
@@ -225,7 +292,7 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
 
 <Accordion title="Decoupled Flow" icon="fa-code">
   <Accordion title="Step 1:Initialise SDK" icon="fa-code">
-    Initialization of SDK is required if the merchant is utilizing PayU 3DS 2.0 for Decoupled functionality. For more information on properties, refer to [GUI customisation](#gui-customization).
+    Initialization of SDK is required if the merchant is utilizing PayU 3DS 2.0 for Decoupled functionality. For more information on properties, refer to <a href="#gui-customization">GUI customisation</a>.
 
     ```Text Kotlin
     PayU3DS2.initialise(
@@ -239,11 +306,30 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
     >
     > If auto-read is false, auto-submit will not work whereas auto-read will work in case of auto-submit is false.
 
-    | Parameter         | Description                            |
-    | :---------------- | :------------------------------------- |
-    | Key               | The key provided to merchant by PayU.  |
-    | RequestId         | Unique request ID for the transaction. |
-    | AppCompatActivity | Required to initialise SDK.            |
+    <HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Key</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>The key provided to merchant by PayU.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>RequestId</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Unique request ID for the transaction.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>AppCompatActivity</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Required to initialise SDK.</p></td>
+    </tr>
+  </tbody>
+</table>
+    `}</HTMLBlock>
 
     <Accordion title="GUI customisation" icon="fa-code">
       The following components can be customized:
@@ -591,17 +677,34 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
   ```
 
   <Accordion title="Parameters" icon="fa-code">
-    | Parameter           | Description                                                                               |
-    | ------------------- | ----------------------------------------------------------------------------------------- |
-    | **activity**        | Pass the current `Activity` instance where the WebView will be launched.                  |
-    | **params**          | A map containing key-value pairs for configuration. Valid keys include:                   |
-    |                     | \* `APIConstants.ACS_TEMPLATE` — Contains the ACS template.                               |
-    |                     | - `APIConstants.AUTO_READ` — Pass `true` to enable auto-reading of the data.              |
-    |                     | \* `APIConstants.AUTO_SUBMIT` — Pass `true` to enable auto-submission of the form.        |
-    |                     | - `APIConstants.SURL` — Success URL to redirect after successful payment.                 |
-    |                     | \* `APIConstants.FURL` — Failure URL to redirect after failed payment.                    |
-    | **uiCustomisation** | Customize the bottom sheet UI for the redirection flow. Use the `UICustomisation` object. |
-    | **callback**        | Callback interface to receive the payment status: success, failure, or error.             |
+    <HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><strong>activity</strong></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Pass the current <code>Activity</code> instance where the WebView will be launched.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><strong>params</strong></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>A map containing key-value pairs for configuration. Valid keys include:</p><ul><li><code>APIConstants.ACS_TEMPLATE</code> — Contains the ACS template.</li><li><code>APIConstants.AUTO_READ</code> — Pass <code>true</code> to enable auto-reading of the data.</li><li><code>APIConstants.AUTO_SUBMIT</code> — Pass <code>true</code> to enable auto-submission of the form.</li><li><code>APIConstants.SURL</code> — Success URL to redirect after successful payment.</li><li><code>APIConstants.FURL</code> — Failure URL to redirect after failed payment.</li></ul></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><strong>uiCustomisation</strong></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Customize the bottom sheet UI for the redirection flow. Use the <code>UICustomisation</code> object.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><strong>callback</strong></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Callback interface to receive the payment status: success, failure, or error.</p></td>
+    </tr>
+  </tbody>
+</table>
+    `}</HTMLBlock>
   </Accordion>
 
   <Accordion title="Sample Code" icon="fa-code">
@@ -668,27 +771,37 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
 </Accordion>
 
 <Accordion title="Error codes" icon="fa-code">
-  | Code | Description                      |
-  | :--- | :------------------------------- |
-  | 0    | Success                          |
-  | 1    | Fail                             |
-  | 3    | Challenge timeout                |
-  | 4    | Challenge protocol error         |
-  | 5    | Challenge cancelled              |
-  | 101  | Card bin or card token was empty |
-  | 102  | Merchant key null                |
-  | 103  | Amount not in correct format     |
-  | 104  | Transaction ID null              |
-  | 105  | Hash null                        |
-  | 106  | Card not supported on 3DS 2.0    |
-  | 107  | Card scheme not supported        |
-  | 108  | Hash incorrect                   |
-  | 500  | Something went wrong             |
-  | 504  | Gateway timeout                  |
+  <HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px;">Code</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td style="border: 1px solid #ddd; padding: 8px;"><p>0</p></td><td style="border: 1px solid #ddd; padding: 8px;"><p>Success</p></td></tr>
+    <tr><td style="border: 1px solid #ddd; padding: 8px;"><p>1</p></td><td style="border: 1px solid #ddd; padding: 8px;"><p>Fail</p></td></tr>
+    <tr><td style="border: 1px solid #ddd; padding: 8px;"><p>3</p></td><td style="border: 1px solid #ddd; padding: 8px;"><p>Challenge timeout</p></td></tr>
+    <tr><td style="border: 1px solid #ddd; padding: 8px;"><p>4</p></td><td style="border: 1px solid #ddd; padding: 8px;"><p>Challenge protocol error</p></td></tr>
+    <tr><td style="border: 1px solid #ddd; padding: 8px;"><p>5</p></td><td style="border: 1px solid #ddd; padding: 8px;"><p>Challenge cancelled</p></td></tr>
+    <tr><td style="border: 1px solid #ddd; padding: 8px;"><p>101</p></td><td style="border: 1px solid #ddd; padding: 8px;"><p>Card bin or card token was empty</p></td></tr>
+    <tr><td style="border: 1px solid #ddd; padding: 8px;"><p>102</p></td><td style="border: 1px solid #ddd; padding: 8px;"><p>Merchant key null</p></td></tr>
+    <tr><td style="border: 1px solid #ddd; padding: 8px;"><p>103</p></td><td style="border: 1px solid #ddd; padding: 8px;"><p>Amount not in correct format</p></td></tr>
+    <tr><td style="border: 1px solid #ddd; padding: 8px;"><p>104</p></td><td style="border: 1px solid #ddd; padding: 8px;"><p>Transaction ID null</p></td></tr>
+    <tr><td style="border: 1px solid #ddd; padding: 8px;"><p>105</p></td><td style="border: 1px solid #ddd; padding: 8px;"><p>Hash null</p></td></tr>
+    <tr><td style="border: 1px solid #ddd; padding: 8px;"><p>106</p></td><td style="border: 1px solid #ddd; padding: 8px;"><p>Card not supported on 3DS 2.0</p></td></tr>
+    <tr><td style="border: 1px solid #ddd; padding: 8px;"><p>107</p></td><td style="border: 1px solid #ddd; padding: 8px;"><p>Card scheme not supported</p></td></tr>
+    <tr><td style="border: 1px solid #ddd; padding: 8px;"><p>108</p></td><td style="border: 1px solid #ddd; padding: 8px;"><p>Hash incorrect</p></td></tr>
+    <tr><td style="border: 1px solid #ddd; padding: 8px;"><p>500</p></td><td style="border: 1px solid #ddd; padding: 8px;"><p>Something went wrong</p></td></tr>
+    <tr><td style="border: 1px solid #ddd; padding: 8px;"><p>504</p></td><td style="border: 1px solid #ddd; padding: 8px;"><p>Gateway timeout</p></td></tr>
+  </tbody>
+</table>
+  `}</HTMLBlock>
 </Accordion>
 
 ## Sample App
 
 The sample application for integration with 3DS 2.0 SDK sample app :
 
-[https://github.com/payu-intrepos/FlashPay-3ds-Android](https://github.com/payu-intrepos/FlashPay-3ds-Android)
+<a href="https://github.com/payu-intrepos/FlashPay-3ds-Android">https://github.com/payu-intrepos/FlashPay-3ds-Android</a>
