@@ -167,6 +167,7 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
     </tbody>
   </Table>
 `}</HTMLBlock>
+
   <Accordion title="Sample code for callback - generateHash" icon="fa-code">
     ```kotlin
     if (map.containsKey("hashString") && map.containsKey("hashName")) {
