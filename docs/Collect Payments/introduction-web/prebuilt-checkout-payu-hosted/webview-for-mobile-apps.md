@@ -262,7 +262,7 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
   </Accordion>
 
   <Accordion title="Java (WebViewClient)" icon="fa-code">
-  ```Text Java
+  ```java
   private class MyWebViewClient extends WebViewClient { 
    @Override 
    public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) { 
