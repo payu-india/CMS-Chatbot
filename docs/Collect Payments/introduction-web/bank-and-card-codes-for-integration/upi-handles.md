@@ -20,7 +20,7 @@ The following UPI handles are supported by PayU for recurring payments:
 <Callout icon="📘" theme="info">
   ### Complete list of UPI handles:
 
-  For the exhaustive UPI handles list,  refer to <Anchor target="_blank" href="https://www.npci.org.in/product/upi/all-members">National Payments Corporation of India (NPCI) - Enabling digital payments in India</Anchor> website
+  For the exhaustive UPI handles list,  refer to the <Anchor target="_blank" href="https://www.npci.org.in/product/upi/all-members">National Payments Corporation of India (NPCI) - Enabling digital payments in India</Anchor> website
 </Callout>
 
 <br />
