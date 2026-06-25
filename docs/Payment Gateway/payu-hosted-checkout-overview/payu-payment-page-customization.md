@@ -116,7 +116,7 @@ PayU will show only the payment methods in the checkout you explicitly pass in t
 
 <Tabs>
   <Tab title="With Single Category">
-  ```curl With Single Category
+  ```curl
 # PayU Hosted Checkout - enforce payment method customization
 curl -X POST "https://test.payu.in/_payment" \
   -H "accept: application/json" \
