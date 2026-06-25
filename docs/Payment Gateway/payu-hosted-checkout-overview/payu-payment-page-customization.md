@@ -267,6 +267,55 @@ axios.post(url, qs.stringify(payload), { headers })
     console.error(error);
   });
 ```
+```java
+import java.io.IOException;
+import java.net.URI;
+import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        // PayU Hosted Checkout - enforce payment method customization
+        HttpClient client = HttpClient.newHttpClient();
+
+        // Request body: key, txnid, amount, surl, furl, hash; enforce_paymethod=creditcard
+        Map<String, String> params = new HashMap<>();
+        params.put("key", "JP***g");
+        params.put("txnid", "ENFCC001");
+        params.put("amount", "10.00");
+        params.put("firstname", "PayU User");
+        params.put("email", "test@gmail.com");
+        params.put("phone", "9876543210");
+        params.put("productinfo", "iPhone");
+        params.put("surl", "https://apiplayground-response.herokuapp.com/");
+        params.put("furl", "https://apiplayground-response.herokuapp.com/");
+        params.put("enforce_paymethod", "creditcard");
+        params.put("hash", "REPLACE_WITH_GENERATED_HASH");
+
+        String formData = params.entrySet().stream()
+            .map(e -> URLEncoder.encode(e.getKey(), StandardCharsets.UTF_8) + "="
+                    + URLEncoder.encode(e.getValue(), StandardCharsets.UTF_8))
+            .collect(Collectors.joining("&"));
+
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        System.out.println(response.body());
+    }
+}
+```
 
 ## Example: Show Only UPI and Cards
 
