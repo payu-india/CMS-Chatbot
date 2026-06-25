@@ -42,7 +42,7 @@ The following table describes all static hashes:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        `<key><br>|payment_related_details_for_mobile_sdk<br>|<userCredential>|<salt>`
+        `<key><br/>|payment_related_details_for_mobile_sdk<br/>|<userCredential>|<salt>`
       </td>
     </tr>
 
