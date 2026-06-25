@@ -94,7 +94,7 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
 <Accordion title="Using PayU implementation" icon="fa-code">
   Call the method to initiate payment through us and we will return a success or failure callback post-transaction completion.
 
-  ```kotlin Kotlin
+  ```kotlin
   fun initiatePayment(
           activity: AppCompatActivity,
           config: PayU3DS2Config,
@@ -134,7 +134,7 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
 </table>
   `}</HTMLBlock>
 
-  <h4 id="config-json-fields-description">config JSON Fields Description</h4>
+#### config JSON Fields Description
 
   <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -221,15 +221,6 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
 </table>
   `}</HTMLBlock>
 
-  <h4 id="callback-json-fields-description">callback JSON Fields Description</h4>
-  <p>This parameter contains the following methods:</p>
-  <ul>
-    <li><code>fun onPaymentSuccess(successResponse: Any)</code>: It will contain a success response. This will be a JSON Object, parse response as per your need.</li>
-    <li><code>fun onPaymentFailure(failureResponse: Any)</code>: It will contain a failure response. This will be a JSON Object, parse response as per your need.</li>
-    <li><code>fun onPaymentCancel(isTxnInitiated: Boolean)</code>: It will tell if payment was canceled.</li>
-    <li><code>fun onError(errorCode: Int, errorMessage: String)</code>: It will contain failure reason code and reason.</li>
-    <li><code>fun generateHash(map: HashMap&lt;String, String&gt;, hashGenerationListener: PayUHashGeneratedListener)</code>: Merchant will get a map with the type of hash and hash string as the value of the map. Refer to <a href="#sample-code-for-callback-generateHash">Sample code for callback - generateHash</a>.</li>
-  </ul>
 
   <Accordion title="Sample code for callback - generateHash" icon="fa-code">
     ```kotlin
@@ -266,7 +257,7 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
   <Accordion title="Step 1:Initialise SDK" icon="fa-code">
     Initialization of SDK is required if the merchant is utilizing PayU 3DS 2.0 for Decoupled functionality. For more information on properties, refer to <a href="#gui-customization">GUI customisation</a>.
 
-    ```Text Kotlin
+    ```kotlin
     PayU3DS2.initialise(
      key: String,
      requestId: String,
