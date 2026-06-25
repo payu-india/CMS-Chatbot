@@ -135,28 +135,7 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
         </td>
 
         <td>
-          This parameter contains the following properties:
-
-          * **config.uiCustomisation** = Set UI customization object. For more information, refer to [GUI Customisation](#gui-customization)
-          * **config.isProduction** = Set environment where you want to test:
-            **true** for the Production environment
-          * **false** for the Test environment
-          * **config.fallback3DS1** = Set the value as true to complete payment on the bank page in case of any failure. By default, the value is false
-          * **config.autoRead** = Set the values as true to allow auto-read OTP and fill in the OTP field. By default, the value is false.
-          * **config.autoSubmit** = Set the values as true to submit the OTP automatically without any user interaction. By default, the value is false.
-          * **config.authenticateOnly** = Pass this as true if you want to authenticate only using PayU. By default we will authorize.
-          * **config.setDefaultProgressLoader(true, "HexColor")**: Set to show default loader instead of full page loader pass true, and to change color of progress bar pass valid hexcode.
-          * **config.enableCustomizedOtpUIFlow** = //To customise UI with your content please pass as true
-          * **config.enableTxnTimeoutTimer** = //pass as true to show timer for page timeout
-            **config.merchantName** = "merchant name"// pass merchant name with customised OTP Flow
-          * **config.amount** = "txn amount"// pass transaction amount with customised OTP Flow
-          * **val acsContentConfig** = ACSContentConfig()
-          * **acsContentConfig.otpContent** = "OTP has been sent to your registered mobile number". //you can set this value to as per your need
-          * **acsContentConfig.resendButtonTitle** = //you can set this value to as per your need
-          * **acsContentConfig.submitButtonTitle** = //you can set this value to as per your need
-          * **acsContentConfig.resendInfoContent** = //you can set this value to as per your need
-          * **acsContentConfig.maxResendInfoContent** = //you can set this value to as per your need
-          * **config.acsContentConfig** = acsContentConfig
+          This parameter contains the following fields in a JSON format. For more information, refer to <a config.
         </td>
       </tr>
 
@@ -194,6 +173,27 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
       </tr>
     </tbody>
   </Table>
+#### config field description
+| Parameter | Description |
+|-----------|-------------|
+| `config.uiCustomisation` | Set UI customization object. For more information, refer to [GUI Customisation](#gui-customization). |
+| `config.isProduction` | Set the environment where you want to test: `true` for the Production environment; `false` for the Test environment. |
+| `config.fallback3DS1` | Set the value as `true` to complete payment on the bank page in case of any failure. By default, the value is `false`. |
+| `config.autoRead` | Set the value as `true` to allow auto-read OTP and fill in the OTP field. By default, the value is `false`. |
+| `config.autoSubmit` | Set the value as `true` to submit the OTP automatically without any user interaction. By default, the value is `false`. |
+| `config.authenticateOnly` | Pass this as `true` if you want to authenticate only using PayU. By default, PayU will authorize. |
+| `config.setDefaultProgressLoader(true, "HexColor")` | Set to show the default loader instead of the full-page loader by passing `true`; to change the color of the progress bar, pass a valid hex code. |
+| `config.enableCustomizedOtpUIFlow` | To customise the UI with your content, pass as `true`. |
+| `config.enableTxnTimeoutTimer` | Pass as `true` to show a timer for page timeout. |
+| `config.merchantName` | Pass the merchant name with customised OTP flow (e.g. `"merchant name"`). |
+| `config.amount` | Pass the transaction amount with customised OTP flow (e.g. `"txn amount"`). |
+| `val acsContentConfig` | `ACSContentConfig()` |
+| `acsContentConfig.otpContent` | OTP message text (e.g. `"OTP has been sent to your registered mobile number"`). You can set this value as per your need. |
+| `acsContentConfig.resendButtonTitle` | Resend button title. You can set this value as per your need. |
+| `acsContentConfig.submitButtonTitle` | Submit button title. You can set this value as per your need. |
+| `acsContentConfig.resendInfoContent` | Resend info content. You can set this value as per your need. |
+| `acsContentConfig.maxResendInfoContent` | Max resend info content. You can set this value as per your need. |
+| `config.acsContentConfig` | `acsContentConfig` |
 
   <Accordion title="Sample code for callback - generateHash" icon="fa-code">
     ```kotlin
