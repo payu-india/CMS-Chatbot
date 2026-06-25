@@ -617,7 +617,7 @@ print $response->content;
   </Tab>
 </Tabs>
 
-Refer to the Step 1.1 Prepare Payment Request Parameters in the&#x20;
+Refer to the <Anchor target="_blank" href="https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide#step-11-prepare-payment-request-parameters">Step 1.1 Prepare Payment Request Parameters</Anchor> in the **Accept Payments using PayU Hosted Checkout** page for request parameter description.
 
 ***
 
