@@ -710,7 +710,7 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
   ```
 
   Pass the postData to load the PayU checkout form with the transaction data using *postUrl*() method.
-
+<HTMLBlock>{`
   <Table align={["left","left"]}>
     <thead>
       <tr>
@@ -744,6 +744,8 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
       </tr>
     </tbody>
   </Table>
+
+`}</HTMLBlock>
 </Accordion>
 
 <Accordion title="Add Method channel code in MainActivity" icon="fa-code">
@@ -860,7 +862,7 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
 <Accordion title="For iOS Add LSApplicationQueriesSchemes" icon="fa-code">
   To allow your application to support UPI intent, you must add the PSP applications for which you want to enable UPI intents to the **LSApplicationQueriesSchemes** in the info.plist file of your project.
 
-  ```plaintext
+  ```json
   <key>LSApplicationQueriesSchemes</key> 
   <array> 
   		<string>phonepe</string>
