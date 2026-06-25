@@ -74,7 +74,7 @@ Before you start with the integration, enable the payment methods that you want 
   2. Set the environment variable: `export GOOGLE_APPLICATION_CREDENTIALS=your-key-filename.json
      Configure JAVA_HOME.`
 
-  ```Text bash
+  ```bash
   cd java-docs-samples/storage/xml-api/cmdline-sample
   #Compile and run
   mvn compile install
@@ -93,7 +93,7 @@ Before you start with the integration, enable the payment methods that you want 
 <Accordion title="Build the PayU object" icon="fa-code">
   Use the sample code snippet to build an instance of PayU Object for Java SDK:
 
-  ```Text JAVA
+  ```java
   PayuClient payuClient = PayuClient.init("KEY", "SALT");
   // Need to set merchant key and salt
   ```
@@ -105,7 +105,7 @@ Before you start with the integration, enable the payment methods that you want 
   * **Method**: `Post`
   * **Request header**: `Content-Type  multipart/form-data`
 
-  ```Text JAVA
+  ```java
 
     PayuClient payuClient = PayuClient.init("Key", "salt");
 
@@ -134,7 +134,7 @@ Before you start with the integration, enable the payment methods that you want 
   * **Method**: `POST`
   * **Request header**: `Content-Type  multipart/form-data`
 
-  ```Text JAVA
+  ```java
 
     PayuClient payuClient = PayuClient.init("Key", "salt");
 
@@ -159,7 +159,7 @@ Before you start with the integration, enable the payment methods that you want 
   * **Method**: `POST`
   * **Request header**: `multipart/form-data`
 
-  ```Text JAVA
+  ```java
 
     PayuClient payuClient = PayuClient.init("Key", "salt");
 
@@ -189,7 +189,7 @@ Before you start with the integration, enable the payment methods that you want 
 
   **Request type**: multipart/form-data
 
-  ```Text JAVA
+  ```java
 
     PayuClient payuClient = PayuClient.init("Key", "salt");
 
@@ -225,7 +225,7 @@ Before you start with the integration, enable the payment methods that you want 
   * **Method**: `POST`
   * **Request type**: `multipart/form-data`
 
-  ```Text JAVA
+  ```java
 
     PayuClient payuClient = PayuClient.init("Key", "salt");
 
@@ -251,7 +251,7 @@ Before you start with the integration, enable the payment methods that you want 
   * **Method**: `POST`
   * **Request header**: `multipart/form-data`
 
-  ```Text JAVA
+  ```java
 
     PayuClient payuClient = PayuClient.init("Key", "salt");
 
@@ -281,7 +281,7 @@ Before you start with the integration, enable the payment methods that you want 
   * **Method**: `POST`
   * **Request header**: `multipart/form-data`
 
-  ```Text JAVA
+  ```java
 
     PayuClient payuClient = PayuClient.init("Key", "salt");
 
@@ -318,7 +318,7 @@ Before you start with the integration, enable the payment methods that you want 
   * **Method**: `POST`
   * **Request header**: `multipart/form-data`
 
-  ```Text JAVA
+  ```java
 
     PayuClient payuClient = PayuClient.init("Key", "salt");
 
@@ -359,7 +359,7 @@ Before you start with the integration, enable the payment methods that you want 
   * **Method**: `POST`
   * **Request header**: `multipart/form-data`
 
-  ```Text JAVA
+  ```java
 
     PayuClient payuClient = PayuClient.init("Key", "salt");
 
