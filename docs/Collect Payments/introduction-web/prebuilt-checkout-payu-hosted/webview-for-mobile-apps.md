@@ -430,7 +430,7 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
      -> First set for multiple window in webview setting `webSettings.setSupportMultipleWindows(true)` and then set webview client for same and override onCreateWindow function. In onCreateWindow create new webView.
 
      <Accordion title="Handle window.open (Android)" icon="fa-code">
-     ```
+     ```java
        // To support multiple windows
              myWebView.setWebChromeClient(new WebChromeClient() {
                  @Override
@@ -511,7 +511,7 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
   <Accordion title="Step 1: Add LSApplicationQueriesSchemes" icon="fa-code">
     To allow your application to support UPI intent, you must add the PSP applications for which you want to enable UPI intents to the **LSApplicationQueriesSchemes** in the info.plist file of your project.
 
-    ```plaintext
+    ```json
     <key>LSApplicationQueriesSchemes</key> 
     <array> 
     		<string>phonepe</string>
