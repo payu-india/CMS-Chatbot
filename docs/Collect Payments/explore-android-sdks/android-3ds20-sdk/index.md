@@ -135,7 +135,7 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
         </td>
 
         <td>
-          This parameter contains the following fields in a JSON format. For more information, refer to <a config.
+          This parameter contains the following fields in a JSON format. For more information, refer to <a href="#config-json-fields-description">config JSON Fields Description</a>.
         </td>
       </tr>
 
@@ -145,11 +145,7 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
         </td>
 
         <td>
-          Merchants have to create the payment param object and pass it which will contain info such as `cardDeatails`, SI details, etc. For more information, refer to
-
-          [SDK Integration > Build the payment parameters](doc:integration-steps-android-checkout-pro#step-3-build-the-payment-parameters-mandatory-step)
-
-          .
+          Merchants have to create the payment param object and pass it which will contain info such as `cardDetails`, SI details, etc. For more information, refer to <a href="https://docs.payu.in/docs/integration-steps-android-checkout-pro#step-3-build-the-payment-parameters-mandatory-step">SDK Integration \> Build the payment parameters</a>.
         </td>
       </tr>
 
@@ -159,21 +155,12 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
         </td>
 
         <td>
-          This parameter contains the following methods:
-          **fun onPaymentSuccess(successResponse: Any)**: It will contain a success response. This will be a JSON Object, parse response as per your need.
-          **fun onPaymentFailure(failureResponse: Any)**: It will contain a failure response. This will be a JSON Object, parse response as per your need
-          **fun onPaymentCancel(isTxnInitiated: Boolean)**: It will tell if payment was canceled.
-          **fun onError(errorCode: Int, errorMessage: String)**: It will contain failure reason code and reason.
-          **fun generateHash(map: HashMap&lt;String, String&gt;, hashGenerationListener: PayUHashGeneratedListener)**: Merchant will get a map with the type of hash and hash string as the value of the map. Refer to the
-
-          [ Sample code for callback - generateHash](#sample-code-for-callback-generateHash)
-
-          .
+        This parameter contains the fields as a JSON object. For more information, refer to <a href="#callback-json-fields-description"> callback JSON Fields Description</a>
         </td>
       </tr>
     </tbody>
   </Table>
-#### config field description
+#### config JSON Fields Description
 | Parameter | Description |
 |-----------|-------------|
 | `config.uiCustomisation` | Set UI customization object. For more information, refer to [GUI Customisation](#gui-customization). |
@@ -194,6 +181,16 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
 | `acsContentConfig.resendInfoContent` | Resend info content. You can set this value as per your need. |
 | `acsContentConfig.maxResendInfoContent` | Max resend info content. You can set this value as per your need. |
 | `config.acsContentConfig` | `acsContentConfig` |
+
+#### callback JSON Fields Description
+<p>This parameter contains the following methods:</p>
+<ul>
+  <li><code>fun onPaymentSuccess(successResponse: Any)</code>: It will contain a success response. This will be a JSON Object, parse response as per your need.</li>
+  <li><code>fun onPaymentFailure(failureResponse: Any)</code>: It will contain a failure response. This will be a JSON Object, parse response as per your need.</li>
+  <li><code>fun onPaymentCancel(isTxnInitiated: Boolean)</code>: It will tell if payment was canceled.</li>
+  <li><code>fun onError(errorCode: Int, errorMessage: String)</code>: It will contain failure reason code and reason.</li>
+  <li><code>fun generateHash(map: HashMap&lt;String, String&gt;, hashGenerationListener: PayUHashGeneratedListener)</code>: Merchant will get a map with the type of hash and hash string as the value of the map. Refer to <a href="#sample-code-for-callback-generateHash">Sample code for callback - generateHash</a>.</li>
+</ul>
 
   <Accordion title="Sample code for callback - generateHash" icon="fa-code">
     ```kotlin
