@@ -16,7 +16,6 @@ metadata:
 | "Too Many Requests" Error — Causes and Fix                   | error-handling, general-faqs                                                           | 🟠 Medium |
 | Flutter SDK — Current Version and Install Source             | flutter-checkoutpro-sdk                                                                | 🟠 Medium |
 | React Native — Dynamic Hash Common Mistakes                  | reactnative-checkoutpro-android-integration, iOS React Native page                     | 🔴 High   |
-| Pluxee Card — Not Supported in Mobile SDK                    | integrate-with-merchant-hosted-checkout-for-pluxee-card                                | 🟠 Medium |
 | Split Settlement via Payment Links — Compatibility Statement | absolute-split-during-transaction-integration, payment-links-dashboard                 | 🟠 Medium |
 | Bulk Payment Links — `IsPartialPaymentAllowed` Column        | bulk-upload-to-create-multiple-payments-links                                          | 🟡 Low    |
 | UAT Offers / No Cost EMI Dashboard — 503 Error               | Offers integration page, general-faqs                                                  | 🟡 Low    |
@@ -29,9 +28,11 @@ metadata:
 
 ### Note content:
 
-> 📘 **UPI App List is platform-controlled:**&#x20;
->
-> The list of UPI apps displayed on the payment screen (GPay, PhonePe, Paytm, etc.) is managed globally by PayU and cannot be customised per merchant. If you want to remove specific apps from this list, contact your PayU Key Account Manager (KAM) or<Anchor target="_blank" href="https://help.payu.in">&#x20;PayU Support</Anchor>.
+<Callout icon="📘" theme="info">
+  ### **UPI App List is platform-controlled:**&#x20;
+
+  The list of UPI apps displayed on the payment screen (GPay, PhonePe, Paytm, etc.) is managed globally by PayU and cannot be customised per merchant. If you want to remove specific apps from this list, contact your PayU Key Account Manager (KAM) or<Anchor target="_blank" href="https://help.payu.in">&#x20;PayU Support</Anchor>.
+</Callout>
 
 ### Why this note is needed:
 
@@ -53,19 +54,21 @@ Multiple tickets (reopened 3–8 times) from merchants confused by unexpected UP
 
 ### Note content:
 
-> 📘 **Partial UDF usage :**&#x20;
->
-> The hash string must always contain exactly 5 UDF positions between `email` and `SALT`, regardless of how many UDFs you actually use. Use an empty string `""` for each unused UDF — never omit the pipe separators.**Example — using only udf1 and udf2:**
->
-> **Use illustration below:**
->
-> ```
-> sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2||||||||SALT)
->                                                              ↑↑↑
->                                              udf3, udf4, udf5 = empty strings
-> ```
->
-> The 6 pipes after udf5 (`||||||`) represent empty positions for additional fields — do not remove them.
+<Callout icon="📘" theme="info">
+  ### **Partial UDF usage :**&#x20;
+
+  The hash string must always contain exactly 5 UDF positions between `email` and `SALT`, regardless of how many UDFs you actually use. Use an empty string `""` for each unused UDF — never omit the pipe separators.**Example — using only udf1 and udf2:**
+
+  **Use illustration below:**
+
+  ```
+  sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2||||||||SALT)
+                                                               ↑↑↑
+                                               udf3, udf4, udf5 = empty strings
+  ```
+
+  The 6 pipes after udf5 (`||||||`) represent empty positions for additional fields — do not remove them.
+</Callout>
 
 ### Why this note is needed:
 
@@ -81,9 +84,11 @@ A direct merchant question reopened 3 times — merchants using only 1–2 UDF f
 
 ### Note content:
 
-> 📘 **Webhook amount field:**&#x20;
->
-> The `amount` field in the webhook payload reflects the **original transaction amount** passed in the payment request — it does not include convenience fees or MDR charges added by the merchant. If you have configured convenience fees, the `net_amount_debit` field (where available) reflects the actual amount debited from the customer's account. Always use `amount` for reconciliation against your order value and `net_amount_debit` for the customer-side amount.
+<Callout icon="📘" theme="info">
+  ### **Webhook amount field:**&#x20;
+
+  The `amount` field in the webhook payload reflects the **original transaction amount** passed in the payment request — it does not include convenience fees or MDR charges added by the merchant. If you have configured convenience fees, the `net_amount_debit` field (where available) reflects the actual amount debited from the customer's account. Always use `amount` for reconciliation against your order value and `net_amount_debit` for the customer-side amount.
+</Callout>
 
 ### Why this note is needed:
 
@@ -97,16 +102,18 @@ Reopened 3 times — merchants integrating convenience fees were unsure which am
 
 ### Note content:
 
-> 📘 **Quick reference — required&#x20;**`command`**&#x20;values:**
->
-> | Use case                 | `command` value             |
-> | ------------------------ | --------------------------- |
-> | Verify a payment         | `verify_payment`            |
-> | Check transaction info   | `check_action_status`       |
-> | Get transaction by txnid | `get_transaction_info`      |
-> | Refund a transaction     | `cancel_refund_transaction` |
->
-> **API endpoint:** `POST https://info.payu.in/merchant/postservice.php?form=2`<br />**Hash formula:** `sha512(key|command|var1|SALT)`
+<Callout icon="📘" theme="info">
+  ### **Quick reference — required&#x20;**`command`**&#x20;values:**
+
+  | Use case                 | `command` value             |
+  | ------------------------ | --------------------------- |
+  | Verify a payment         | `verify_payment`            |
+  | Check transaction info   | `check_action_status`       |
+  | Get transaction by txnid | `get_transaction_info`      |
+  | Refund a transaction     | `cancel_refund_transaction` |
+
+  **API endpoint:** `POST https://info.payu.in/merchant/postservice.php?form=2`<br />**Hash formula:** `sha512(key|command|var1|SALT)`
+</Callout>
 
 ### Why this note is needed:
 
@@ -124,9 +131,11 @@ Reopened 4 times — merchants did not know the exact string value required for 
 
 ### Note content:
 
-> 📘 **"Too many Requests" error:**&#x20;
->
-> If you see _"Sorry, we are unable to process your payment due to Too many Requests. Please try after 60 seconds"_, this is caused by **Rate limit exceeded** — Too many payment requests sent in a short window from the same merchant key. Wait 60 seconds and retry.
+<Callout icon="📘" theme="info">
+  ### **"Too many Requests" error:**&#x20;
+
+  If you see _"Sorry, we are unable to process your payment due to Too many Requests. Please try after 60 seconds"_, this is caused by **Rate limit exceeded** — Too many payment requests sent in a short window from the same merchant key. Wait 60 seconds and retry.
+</Callout>
 
 ### Why this note is needed:
 
@@ -140,15 +149,17 @@ Multiple merchant tickets arrived with this exact error message verbatim, yet no
 
 ### Note content:
 
-> 📘 **Current SDK version and install source:**
->
-> | SDK                        | Latest Version                                                     | Install via                       |
-> | -------------------------- | ------------------------------------------------------------------ | --------------------------------- |
-> | Flutter CheckoutPro SDK    | Check [Version History](https://docs.payu.in/docs/version-history) | `pub.dev` — add to `pubspec.yaml` |
-> | Flutter Custom Browser SDK | Check release notes                                                | `pub.dev`                         |
-> | Flutter UPI SDK            | Check release notes                                                | `pub.dev`                         |
->
-> Always use the latest version. To install: add the package to your `pubspec.yaml` and run `flutter pub get`. Do not download SDK files manually — use the pub.dev package registry.
+<Callout icon="📘" theme="info">
+  ### **Current SDK version and install source:**
+
+  | SDK                        | Latest Version                                                     | Install via                       |
+  | -------------------------- | ------------------------------------------------------------------ | --------------------------------- |
+  | Flutter CheckoutPro SDK    | Check [Version History](https://docs.payu.in/docs/version-history) | `pub.dev` — add to `pubspec.yaml` |
+  | Flutter Custom Browser SDK | Check release notes                                                | `pub.dev`                         |
+  | Flutter UPI SDK            | Check release notes                                                | `pub.dev`                         |
+
+  Always use the latest version. To install: add the package to your `pubspec.yaml` and run `flutter pub get`. Do not download SDK files manually — use the pub.dev package registry.
+</Callout>
 
 ### Why this note is needed:
 
@@ -166,27 +177,29 @@ Reopened 7 times — the highest reopen count for any Flutter ticket in the data
 
 ### Note content:
 
-> 📘 **Notes during dynamic hash generation:**
->
-> The `generateHash` callback receives a JavaScript object (hashMap). You must:
->
-> 1. Extract `PayUCheckoutProConstants.CP_HASH_STRING` from the hashMap — this is the pre-built string excluding your salt.
-> 2. Send this string to **your server** to append the salt and compute SHA-512.
-> 3. Return the computed hash via the callback using `PayUCheckoutProConstants.CP_HASH_NAME` as the key.
->
-> **If you return&#x20;**`null`**,&#x20;**`undefined`**, or an incorrect key**, the SDK silently fails with `[PayU] Dynamic hash generation failure` in the console and no payment screen appears.
->
-> ```javascript
-> // Correct pattern:
-> generateHash: (hashMap) => {
->   const hashString = hashMap[PayUCheckoutProConstants.CP_HASH_STRING];
->   const hashName = hashMap[PayUCheckoutProConstants.CP_HASH_NAME];
->   // Send hashString to your server → get computedHash back. Your backend will append the salt at the end of hashstring and convert using SHA512 and then pass it back to front-end.
->   const result = {};
->   result[hashName] = computedHash; // key must be hashName, not a custom string
->   return result;
-> }
-> ```
+<Callout icon="📘" theme="info">
+  ### **Notes during dynamic hash generation:**
+
+  The `generateHash` callback receives a JavaScript object (hashMap). You must:
+
+  1. Extract `PayUCheckoutProConstants.CP_HASH_STRING` from the hashMap — this is the pre-built string excluding your salt.
+  2. Send this string to **your server** to append the salt and compute SHA-512.
+  3. Return the computed hash via the callback using `PayUCheckoutProConstants.CP_HASH_NAME` as the key.
+
+  **If you return&#x20;**`null`**,&#x20;**`undefined`**, or an incorrect key**, the SDK silently fails with `[PayU] Dynamic hash generation failure` in the console and no payment screen appears.
+
+  ```javascript
+  // Correct pattern:
+  generateHash: (hashMap) => {
+    const hashString = hashMap[PayUCheckoutProConstants.CP_HASH_STRING];
+    const hashName = hashMap[PayUCheckoutProConstants.CP_HASH_NAME];
+    // Send hashString to your server → get computedHash back. Your backend will append the salt at the end of hashstring and convert using SHA512 and then pass it back to front-end.
+    const result = {};
+    result[hashName] = computedHash; // key must be hashName, not a custom string
+    return result;
+  }
+  ```
+</Callout>
 
 ### Why this note is needed:
 
@@ -200,9 +213,11 @@ Reopened 6 times — the exact error `[PayU] Dynamic hash generation failure` wa
 
 ### Note content:
 
-> 📘 **Split Settlement and Payment Links:**&#x20;
->
-> Split settlement is supported for **direct API integrations** (PayU Hosted Checkout, Merchant Hosted Checkout, and S2S). Split settlement via **Payment Links** has limited support — the split parameters cannot be passed through the Payment Links creation API in the same way as direct payment APIs. If you require split settlement on payment link transactions, contact your KAM to understand the supported configuration for your account.
+<Callout icon="📘" theme="info">
+  ### **Split Settlement and Payment Links:**&#x20;
+
+  Split settlement is supported for **direct API integrations** (PayU Hosted Checkout, Merchant Hosted Checkout, and S2S). Split settlement via **Payment Links** has limited support — the split parameters cannot be passed through the Payment Links creation API in the same way as direct payment APIs. If you require split settlement on payment link transactions, contact your KAM to understand the supported configuration for your account.
+</Callout>
 
 ### Why this note is needed:
 
@@ -216,9 +231,11 @@ Direct merchant ticket asking about this combination — no cross-reference exis
 
 ### Note content:
 
-> 📘 **Partial payment option in bulk links:**&#x20;
->
-> To enable partial payment on bulk-created payment links, include the column `IsPartialPaymentAllowed` in your CSV upload with value `1` (enabled) or `0` (disabled). If this column is absent, partial payment defaults to disabled.**Known behaviour:** If the partial payment option does not appear on the generated payment link despite setting `IsPartialPaymentAllowed=1`.
+<Callout icon="📘" theme="info">
+  ### **Partial payment option in bulk links:**&#x20;
+
+  To enable partial payment on bulk-created payment links, include the column `IsPartialPaymentAllowed` in your CSV upload with value `1` (enabled) or `0` (disabled). If this column is absent, partial payment defaults to disabled.**Known behaviour:** If the partial payment option does not appear on the generated payment link despite setting `IsPartialPaymentAllowed=1`.
+</Callout>
 
 ### Why this note is needed:
 
