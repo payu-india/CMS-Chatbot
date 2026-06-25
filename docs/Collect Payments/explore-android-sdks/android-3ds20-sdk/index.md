@@ -26,6 +26,34 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Android 3DS 2.0 SDK
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: Android 3DS 2.0 SDK
+  description: ''
+  keywords:
+    - PayU 3DS 2.0 SDK integration steps
+    - PayU India 3DS 2.0 SDK for Android Integration Steps
+    - Android 3DS 2.0 SDK integration Steps
+    - 3DS 2.0 SDK integration steps
+    - PayU 3DS 2.0 integration guide
+    - >-
+      How to integrate PayU 3DS 2.0 SDK in Android.Step-by-step PayU 3DS 2.0 SDK
+      integration
+    - PayU 3DS 2.0 SDK integration for Android apps
+    - Detailed guide for PayU 3DS 2.0 SDK integration steps
+    - PayU 3DS2.0 SDK integration steps
+    - PayU India 3DS2.0 SDK steps
+    - Android 3DS2.0 SDK integration
+    - 3DS2.0 SDK integration steps
+    - PayU 3DS2.0 integration guide
+  robots: index
+next:
+  description: ''
+---
 Power native experience on the new 3DS 2.0 protocol for card transactions. Less latent, highly customisable, highest uptime with option to fallback in case of failures. Going forward from October 2023, only through a certified 3DS SDK can a merchant power native experience on app.
 
 <Accordion title="Benefits & features​" icon="fa-code">
@@ -66,7 +94,7 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
 <Accordion title="Using PayU implementation" icon="fa-code">
   Call the method to initiate payment through us and we will return a success or failure callback post-transaction completion.
 
-  ```kotlin
+  ```kotlin Kotlin
   fun initiatePayment(
           activity: AppCompatActivity,
           config: PayU3DS2Config,
@@ -76,7 +104,7 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
   ```
 
   You have to pass the following parameters:
-<HTMLBlock>{`
+
   <Table>
     <thead>
       <tr>
@@ -111,7 +139,7 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
 
           * **config.uiCustomisation** = Set UI customization object. For more information, refer to [GUI Customisation](#gui-customization)
           * **config.isProduction** = Set environment where you want to test:
-            *true*\* for the Production environment
+            **true** for the Production environment
           * **false** for the Test environment
           * **config.fallback3DS1** = Set the value as true to complete payment on the bank page in case of any failure. By default, the value is false
           * **config.autoRead** = Set the values as true to allow auto-read OTP and fill in the OTP field. By default, the value is false.
@@ -120,7 +148,7 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
           * **config.setDefaultProgressLoader(true, "HexColor")**: Set to show default loader instead of full page loader pass true, and to change color of progress bar pass valid hexcode.
           * **config.enableCustomizedOtpUIFlow** = //To customise UI with your content please pass as true
           * **config.enableTxnTimeoutTimer** = //pass as true to show timer for page timeout
-            *config.merchantName*\* = "merchant name"// pass merchant name with customised OTP Flow
+            **config.merchantName** = "merchant name"// pass merchant name with customised OTP Flow
           * **config.amount** = "txn amount"// pass transaction amount with customised OTP Flow
           * **val acsContentConfig** = ACSContentConfig()
           * **acsContentConfig.otpContent** = "OTP has been sent to your registered mobile number". //you can set this value to as per your need
@@ -157,7 +185,7 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
           **fun onPaymentFailure(failureResponse: Any)**: It will contain a failure response. This will be a JSON Object, parse response as per your need
           **fun onPaymentCancel(isTxnInitiated: Boolean)**: It will tell if payment was canceled.
           **fun onError(errorCode: Int, errorMessage: String)**: It will contain failure reason code and reason.
-          **fun generateHash(map: HashMap\<String, String>, hashGenerationListener**: PayUHashGeneratedListener): Merchant will get a map with the type of hash and hash string as the value of the map. Refer to the
+          **fun generateHash(map: HashMap&lt;String, String&gt;, hashGenerationListener: PayUHashGeneratedListener)**: Merchant will get a map with the type of hash and hash string as the value of the map. Refer to the
 
           [ Sample code for callback - generateHash](#sample-code-for-callback-generateHash)
 
@@ -166,7 +194,6 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
       </tr>
     </tbody>
   </Table>
-`}</HTMLBlock>
 
   <Accordion title="Sample code for callback - generateHash" icon="fa-code">
     ```kotlin
@@ -201,7 +228,7 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
 
 <Accordion title="Decoupled Flow" icon="fa-code">
   <Accordion title="Step 1:Initialise SDK" icon="fa-code">
-    Initialization of SDK is required if the merchant is utilizing PayU 3DS 2.0 for Decoupled functionality. For more information on properties, refer to \<\<Description of Properties in Initialization>>.
+    Initialization of SDK is required if the merchant is utilizing PayU 3DS 2.0 for Decoupled functionality. For more information on properties, refer to [GUI customisation](#gui-customization).
 
     ```Text Kotlin
     PayU3DS2.initialise(
@@ -287,36 +314,28 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
       The response includes the following parameters:
 
       <HTMLBlock>{`
-                                                <table style="width: 100%; border-collapse: collapse;">
-                                                <thead>
-                                                <tr>
-                                                  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
-                                                  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr>
-                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p>
-                                                </td>
-                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the status of the web service call. The status can be any of the following:  </p>
-                                                <p>0 - If the web service call succeeded  </p>
-                                                <p>1 - If the web service call failed.</p>
-                                                </td>
-                                                </tr>
-                                                <tr>
-                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>errorMessage</p>
-                                                </td>
-                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>The error message with details of what went wrong.</p>
-                                                </td>
-                                                </tr>
-                                                <tr>
-                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>result</p>
-                                                </td>
-                                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>Success response with details. Refer to the following class (below the table) for the response structure.</p>
-                                                </td>
-                                                </tr>
-                                                </tbody>
-                                                </table>
+<table style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the status of the web service call. The status can be any of the following:</p><p>0 - If the web service call succeeded</p><p>1 - If the web service call failed.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>errorMessage</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>The error message with details of what went wrong.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>result</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Success response with details. Refer to the following class (below the table) for the response structure.</p></td>
+    </tr>
+  </tbody>
+</table>
       `}</HTMLBlock>
 
       The following items are in the response:
@@ -352,36 +371,28 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
     **PayU3DS2Response**: Three items are in the response:
 
     <HTMLBlock>{`
-                                <table style="width: 100%; border-collapse: collapse;">
-                                <thead>
-                                <tr>
-                                  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
-                                  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p>
-                                </td>
-                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the status of the web service call. The status can be any of the following:  </p>
-                                <p>0 - If the web service call succeeded  </p>
-                                <p>1 - If the web service call failed.</p>
-                                </td>
-                                </tr>
-                                <tr>
-                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>errorMessage</p>
-                                </td>
-                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>The error message with details of what went wrong.</p>
-                                </td>
-                                </tr>
-                                <tr>
-                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>result</p>
-                                </td>
-                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>Success response with details. Refer to the following class (below the table) for the response structure.</p>
-                                </td>
-                                </tr>
-                                </tbody>
-                                </table>
+<table style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>status</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter returns the status of the web service call. The status can be any of the following:</p><p>0 - If the web service call succeeded</p><p>1 - If the web service call failed.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>errorMessage</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>The error message with details of what went wrong.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>result</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Success response with details. Refer to the following class (below the table) for the response structure.</p></td>
+    </tr>
+  </tbody>
+</table>
     `}</HTMLBlock>
 
     ```kotlin Kotlin
@@ -410,33 +421,24 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
     ```
 
     <HTMLBlock>{`
-                                <table style="width: 100%; border-collapse: collapse;">
-                                <thead>
-                                <tr>
-                                  <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
-                                  <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>activity</p>
-                                </td>
-                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the <code>AppCompatActivity</code> reference.</p>
-                                </td>
-                                </tr>
-                                <tr>
-                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>challengeParameter</p>
-                                </td>
-                                  <td style="border: 1px solid #ddd; padding: 8px;"><p>Create an object of ChallengeParameter class with the following parameters :  </p>
-                                <p>ChallengeParameter(&quot;acsSignedContent&quot;, &quot;acsRefNumber&quot;, &quot;acsTransactionID&quot;, &quot;threeDSServerTransactionID&quot;)  </p>
-                                <p><strong>acsSignedContent</strong>= Send ACS Signed Content received in ARes  </p>
-                                <p><strong>acsRefNumber</strong>= Send ACS Ref Number Content received in ARes  </p>
-                                <p><strong>acsTransactionID</strong>= Send ACS Transaction ID received in ARes  </p>
-                                <p><strong>threeDSServerTransactionID</strong>= Send ThreeDS Server Transaction ID received in ARes</p>
-                                </td>
-                                </tr>
-                                </tbody>
-                                </table>
+<table style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>activity</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the <code>AppCompatActivity</code> reference.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>challengeParameter</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Create an object of ChallengeParameter class with the following parameters:</p><p>ChallengeParameter(&quot;acsSignedContent&quot;, &quot;acsRefNumber&quot;, &quot;acsTransactionID&quot;, &quot;threeDSServerTransactionID&quot;)</p><p><strong>acsSignedContent</strong>= Send ACS Signed Content received in ARes</p><p><strong>acsRefNumber</strong>= Send ACS Ref Number Content received in ARes</p><p><strong>acsTransactionID</strong>= Send ACS Transaction ID received in ARes</p><p><strong>threeDSServerTransactionID</strong>= Send ThreeDS Server Transaction ID received in ARes</p></td>
+    </tr>
+  </tbody>
+</table>
     `}</HTMLBlock>
 
     Before invoking this method, generate the authentication request through any aggregator and pass the above-defined challenge parameters to initiate challenges.
