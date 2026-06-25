@@ -74,7 +74,7 @@ The following features are supported in the PHP SDK:
 <Accordion title="Build PayU object" icon="fa-code">
   Use the following code snippet to create the instance of the PayU class object:
 
-  ```Text PHP
+  ```phg
   namespace <namespace_name>;
   require_once('PayU.php');
   $payu_obj = new PayU();
@@ -82,7 +82,7 @@ The following features are supported in the PHP SDK:
 
   Set the credentials data and URL using the following code sample:
 
-  ```Text PHP
+  ```php
   $payu_obj->env_prod = 0;  //  1 for Live Environment/ 0 for SandBox Environment
       $payu_obj->key = '<key>';
       $payu_obj->salt = '<salt>';
@@ -96,7 +96,7 @@ The following features are supported in the PHP SDK:
 <Accordion title="Initiate a payment" icon="fa-code">
   This method can be used to submit HTML form code with the required parameters.
 
-  ```Text PHP
+  ```php
       public function showPaymentForm($params) {
           ?>
           <form action="<?= $this->url; ?>" id="payment_form_submit" method="post">
@@ -135,7 +135,7 @@ The following features are supported in the PHP SDK:
 <Accordion title="Verify payment" icon="fa-code">
   This method can be used to fetch the status/details of a transaction using txnid or payuid.
 
-  ```Text PHP
+  ```php
       public function verifyPayment($params) {
          if(!empty($params['txnid'])){
               $transaction = $this->getTransactionByTxnId($params['txnid']);
@@ -153,7 +153,7 @@ The following features are supported in the PHP SDK:
 <Accordion title="Get transaction details" icon="fa-code">
   This method This method can be used to fetch the details of the transactions within a date and time range.
 
-  ```Text PHP
+  ```php
     public function getTransaction($params) {
           $command = ($params['type'] == 'time') ? self::GET_TRANSACTION_INFO_API : self::GET_TRANSACTION_DETAILS_API;
           $this->params['data'] = ['var1' => $params['from'], 'var2' => $params['to'], 'command' => $command];
@@ -180,7 +180,7 @@ The following features are supported in the PHP SDK:
 <Accordion title="Cencel refund transaction" icon="fa-code">
   This method can be used to initiate refunds for a specific transaction.
 
-  ```Text PHP
+  ```php
    public function cancelRefundTransaction($params) {
           $this->params['data'] = ['var1' => $params['payuid'], 'var2' => $params['txnid'], 'var3' => $params['amount'], 'command' => self::CANCEL_REFUND_API];
           return $this->execute();
@@ -224,7 +224,7 @@ The following features are supported in the PHP SDK:
 <Accordion title="Get issuing bank status" icon="fa-code">
   This method can be used to check downtime through bin number.
 
-  ```Text PHP
+  ```php
    public function getIssuingBankStatus($params) {
           $this->params['data'] = ['var1' => $params['cardnum'], 'command' => self::GET_ISSUING_BANK_STATUS_API];
           return $this->execute();
@@ -250,7 +250,7 @@ The following features are supported in the PHP SDK:
 <Accordion title="Create invoice" icon="fa-code">
   This method can be used to create email and SMS invoice ( Pay by link ).
 
-  ```Text PHP
+  ```php
    public function createPaymentInvoice($params) {
           $this->params['data'] = ['var1' => $params['details'], 'command' => self::CREATE_INVOICE_API];
           return $this->execute();
@@ -263,7 +263,7 @@ The following features are supported in the PHP SDK:
 <Accordion title="Expire invoice" icon="fa-code">
   This method can be used to expire email and SMS invoice ( Pay by link ).
 
-  ```Text PHP
+  ```php
    public function expirePaymentInvoice($params) {
           $this->params['data'] = ['var1' => $params['txnid'], 'command' => self::EXPIRE_INVOICE_API];
           return $this->execute();
@@ -276,7 +276,7 @@ The following features are supported in the PHP SDK:
 <Accordion title="Elligible bins for EMI" icon="fa-code">
   This method can be used to check the card eligibilty for EMI through the bin number.
 
-  ```Text PHP
+  ```php
    public function checkEligibleEMIBins($params) {
           $this->params['data'] = ['var1' => $params['bin'], 'var2' => $params['card_num'], 'var3' => $params['bank_name'], 'command' => self::CHECK_ELIGIBLE_BIN_FOR_EMI_API];
           return $this->execute();
@@ -289,7 +289,7 @@ The following features are supported in the PHP SDK:
 <Accordion title="Get EMI amount according to interest" icon="fa-code">
   This method can be used to fetch EMI interest amount according to Banks and tenure.
 
-  ```Text PHP
+  ```php
    public function getEmiAmount($params) {
           $this->params['data'] = ['var1' => $params['amount'], 'command' => self::GET_EMI_AMOUNT_ACCORDING_TO_INTEREST_API];
           return $this->execute();
@@ -302,7 +302,7 @@ The following features are supported in the PHP SDK:
 <Accordion title="Get settlement details" icon="fa-code">
   This method can be used to fetch settlement details for a particular date or UTR number.
 
-  ```Text PHP
+  ```php
    public function getSettlementDetails($params) {
           $this->params['data'] = ['var1' => $params['data'], 'command' => self::GET_SETTLEMENT_DETAILS_API];
           return $this->execute();
@@ -316,7 +316,7 @@ The following features are supported in the PHP SDK:
 <Accordion title="Get checkout detail" icon="fa-code">
   This method can be used to fetch payment options, eligibility, recommendations, and downtime details.
 
-  ```Text PHP
+  ```php
    public function getCheckoutDetails($params) {
           $this->params['data'] = ['var1' => $params['data'], 'command' => self::GET_CHECKOUT_DETAILS_API];
           return $this->execute();
