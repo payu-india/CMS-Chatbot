@@ -12,11 +12,19 @@ next:
 ---
 The dynamic QR generation API returns a UPI QR which can be used for offline payment collections.
 
+<Callout icon="⚠️" theme="warn">
+  ### **UPI QR test limitations:**
+
+  - UPI QR transactions require the `DBQR` flag to be activated on your merchant account. If you receive an error when posting with `pg=DBQR` and `bankcode=UPIDBQR`, contact your KAM to enable this feature.
+  - UPI QR in the test environment may show failures that do not replicate in production. If UPI QR transactions fail consistently in UAT with no clear error, contact [integration@payu.in](mailto:integration@payu.in) with your MID and a sample transaction ID for investigation.
+  - Ensure `txn_s2s_flow=4` is included in your QR payment request. Without this flag, the DBQR flow will not initiate correctly.
+</Callout>
+
 ## Environment
 
-| Environment | URL                                                                |
-| :---------- | :----------------------------------------------------------------- |
-| Production  | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
+| Environment | URL                                                                 |
+| :---------- | :------------------------------------------------------------------ |
+| Production  | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
 HTTP Method: **POST**
 
@@ -227,9 +235,13 @@ curl --request POST \
 }
 ```
 
-> 📘 Next steps:
->
-> After your perform the above, you need to perform the following:
->
-> 1. **Check UPI transaction status**: Check the transaction status using the Verify Payment API (**verify_payment**) API. For more information, refer to [Verify Payment API](ref:verify_payment_api).
-> 2. **Check the S2S callback response**: The response to this call would be a base64 encoded JSON containing transaction ID and other transaction details. This is similar to Step4 of [UPI Collection - S2S](ref:_payment_s2s_upi_collection).
+<Callout icon="📘" theme="info">
+  ### Next steps:
+
+  After your perform the above, you need to perform the following:
+
+  1. **Check UPI transaction status**: Check the transaction status using the Verify Payment API (**verify\_payment**) API. For more information, refer to [Verify Payment API](ref:verify_payment_api).
+  2. **Check the S2S callback response**: The response to this call would be a base64 encoded JSON containing transaction ID and other transaction details. This is similar to Step4 of [UPI Collection - S2S](ref:_payment_s2s_upi_collection).
+</Callout>
+
+<br />
