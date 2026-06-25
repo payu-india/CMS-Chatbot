@@ -16,31 +16,6 @@ metadata:
     - ' Android PhonePe SDK Integration Steps'
   robots: index
 ---
----
-title: Integration Steps
-deprecated: false
-hidden: false
-link:
-  new_tab: false
-metadata:
-  title: Android PhonePe SDK Integration Steps
-  description: >-
-    Integrate PhonePe in-app payments on Android with PayU: SDK dependency, intent flow, hash, callbacks, and sandbox testing.
-  robots: index
-  keywords:
-    - phonepe sdk android integration payu payment gateway
-    - payu phonepe android in app payment integration steps
-    - integrate phonepe android app native sdk payu india
-    - android wallet payment sdk phonepe integration guide payu
-    - google pay phonepe in app payment sdk android payu
-    - mobile payment sdk android phonepe intent flow payu
-    - payment gateway android phonepe sdk integration steps
-    - payu android phonepe sdk hash callback integration
-    - android native phonepe payment integration developer payu
-    - payu phonepe sdk test environment android integration
-    - wallet sdk android india phonepe payu integration
-    - android in app wallet payment phonepe payu gateway
----
 The Android PhonePe SDK integration involves the following steps:
 
 <Cards columns={3}>
@@ -67,13 +42,13 @@ The Android PhonePe SDK integration involves the following steps:
 
 ### Step 1: Create a PayU account
 
-First, create a PayU account. See [Register for a Merchant Account](https://docs.payu.in/docs/register-for-a-merchant-account-on-dashboard).
+Create a PayU account. For more information, refer to [Register for a Merchant Account](https://docs.payu.in/docs/register-for-a-merchant-account-on-dashboard).
 
 ### Step 2: Set up build.gradle
 
 Add the following URL in the root project’s build.gradle:
 
-```
+```json
 allprojects {
   repositories {
     maven {
@@ -93,10 +68,10 @@ implementation 'in.payu:phonepe-intent:1.8.9'
 
 PayUPhonePeCallback provides the following callback methods.
 
-* onPaymentOptionFailure (String payuResponse, String merchantResponse): Calls when payment fails.
-* onPaymentOptionSuccess (String payuResponse, String merchantResponse): Calls when payment succeeds.
-* onPaymentOptionInitialisationFailure (int errorCode, String description): Called for PhonePe initialisation failure.
-* onPaymentOptionInitialisationSuccess (boolean result): Callback when PhonePe is successfully initialised.
+- onPaymentOptionFailure (String payuResponse, String merchantResponse): Calls when payment fails.
+- onPaymentOptionSuccess (String payuResponse, String merchantResponse): Calls when payment succeeds.
+- onPaymentOptionInitialisationFailure (int errorCode, String description): Called for PhonePe initialisation failure.
+- onPaymentOptionInitialisationSuccess (boolean result): Callback when PhonePe is successfully initialised.
 
 Following are error messages concerning PhonePe initialization failure.
 
@@ -121,7 +96,7 @@ Following are error messages concerning PhonePe initialization failure.
 
 Create an instance of PayUPhonePeCallback similar to the following code block:
 
-```java Java
+```java
 PayUPhonePeCallback payUPhonePeCallback = new PayUPhonePeCallback() {
 @Override
 public void onPaymentOptionFailure(String payuResponse, String merchantResponse) {
@@ -162,48 +137,52 @@ If you are using the SDK with a test merchant, provide the following metadata va
 
 SDK provides the checkForPaymentAvailability method to check if PhonePe payment is available or not on the device. This method must be executed before showing PhonePe as a checkout option.
 
-```java JAVA
+```java
 PhonePe.getInstance().checkForPaymentAvailability(Activity activity, PayUPhonePeCallback callback, String paymentOptionHash, String merchantKey, String user_credentials)
 ```
 
 Where:
 
-* PayUPhonePeCallback: the class to provide callbacks
-* Activity : Activity
-* paymentOptionHash: Payment Related Details hash
-* merchantKey: PayU Merchant Key
-* user_credentials: Provide user credentials or use “default”
+- PayUPhonePeCallback: the class to provide callbacks
+- Activity : Activity
+- paymentOptionHash: Payment Related Details hash
+- merchantKey: PayU Merchant Key
+- user\_credentials: Provide user credentials or use “default”
 
-> 📘 Generate PaymentOption Hash
->
-> To generate `PaymentOption` Hash refer to  [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
->
-> **Formula** :-sha512(key|command|var1|salt)
->
-> where
->
-> * key=YOUR KEY
-> * command="payment_related_details_for_mobile_sdk" // Api Commands
-> * salt= YOUR SALT
-> * var1= default // Pass `default` value in var1
+<Callout icon="📘" theme="info">
+  ### Generate PaymentOption Hash
+
+  To generate `PaymentOption` Hash refer to  [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
+
+  **Formula** :-sha512(key|command|var1|salt)
+
+  where
+
+  - key=YOUR KEY
+  - command="payment\_related\_details\_for\_mobile\_sdk" // Api Commands
+  - salt= YOUR SALT
+  - var1= default // Pass `default` value in var1
+</Callout>
 
 ### Step 6: Make Payment by PhonePe
 
 After successful initialization of PhonePe by calling checkForPaymentAvailability method, call makePayment method to make payment.
 
-```java Java
+```java
 PhonePe.getInstance().makePayment(PayUPhonePeCallback callback, Activity activity, String postData,boolean isUserCacheEnabled, View customDialogView);
 ```
 
 Where:
 
-* **PayUPhonePeCallback**: the class to provide callbacks
-* **Activity**: activity instance
-* **postData**: PayU postdata
-* **isUserCacheEnabled**: To Enable/Disable User Cache
-* **customDialogView**: Provide your Custom Progress dialog view (Optional)
+- **PayUPhonePeCallback**: the class to provide callbacks
+- **Activity**: activity instance
+- **postData**: PayU postdata
+- **isUserCacheEnabled**: To Enable/Disable User Cache
+- **customDialogView**: Provide your Custom Progress dialog view (Optional)
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Generate Payment Hash**: To generate a payment hash refer to [Hash Generation](https://docs.payu.in/docs/hash-generation#payment-hash).
 
   **Formula** :-sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||salt)
@@ -220,6 +199,8 @@ txnid=1524122818080&productinfo=product_info&user_credentials=default&key=*****&
 After you get the response from SDK, make sure to confirm it with the PayU server.
 
 <Callout icon="🚧" theme="warn">
+  ###
+
   **Remember**: It is recommended to implement the PayU Webhook or backend verify call from your backend. For more information, refer to [Webhooks](doc:webhooks-copy).
 </Callout>
 
@@ -257,10 +238,10 @@ First, create a PayU account. See [Register for a Merchant Account](https://docs
 
 PayUPhonePeCallback provides the following callback methods.
 
-* onPaymentOptionFailure (String payuResponse, String merchantResponse): Calls when payment fails.
-* onPaymentOptionSuccess (String payuResponse, String merchantResponse): Calls when payment succeeds.
-* onPaymentOptionInitialisationFailure (int errorCode, String description): Called for PhonePe initialisation failure.
-* onPaymentOptionInitialisationSuccess (boolean result): Callback when PhonePe is successfully initialised.
+- onPaymentOptionFailure (String payuResponse, String merchantResponse): Calls when payment fails.
+- onPaymentOptionSuccess (String payuResponse, String merchantResponse): Calls when payment succeeds.
+- onPaymentOptionInitialisationFailure (int errorCode, String description): Called for PhonePe initialisation failure.
+- onPaymentOptionInitialisationSuccess (boolean result): Callback when PhonePe is successfully initialised.
 
 Following are error messages concerning PhonePe initialization failure.
 
@@ -286,7 +267,7 @@ Following are error messages concerning PhonePe initialization failure.
 <Accordion title="Create PayUPhonePeCallback instance" icon="fa-code">
   Create an instance of PayUPhonePeCallback similar to the following code block:
 
-  ```java Java
+  ```java
   PayUPhonePeCallback payUPhonePeCallback = new PayUPhonePeCallback() {
   @Override
   public void onPaymentOptionFailure(String payuResponse, String merchantResponse) {
@@ -344,18 +325,20 @@ SDK provides the checkForPaymentAvailability method to check if PhonePe payment 
   * user\_credentials: Provide user credentials or use “default”
 </Accordion>
 
-> 📘 Generate PaymentOption Hash
->
-> To generate `PaymentOption` Hash refer to  [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
->
-> **Formula** :-sha512(key|command|var1|salt)
->
-> where
->
-> * key=YOUR KEY
-> * command="payment_related_details_for_mobile_sdk" // Api Commands
-> * salt= YOUR SALT
-> * var1= default // Pass `default` value in var1
+<Callout icon="📘" theme="info">
+  ### Generate PaymentOption Hash
+
+  To generate `PaymentOption` Hash refer to  [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
+
+  **Formula** :-sha512(key|command|var1|salt)
+
+  where
+
+  - key=YOUR KEY
+  - command="payment\_related\_details\_for\_mobile\_sdk" // Api Commands
+  - salt= YOUR SALT
+  - var1= default // Pass `default` value in var1
+</Callout>
 
 #### Step 7.6: Make Payment by PhonePe
 
@@ -376,6 +359,8 @@ After successful initialization of PhonePe by calling checkForPaymentAvailabilit
 </Accordion>
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Generate Payment Hash**: To generate a payment hash refer to [Hash Generation](https://docs.payu.in/docs/hash-generation#payment-hash).
 
   **Formula** :-sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||salt)
@@ -392,6 +377,8 @@ txnid=1524122818080&productinfo=product_info&user_credentials=default&key=*****&
 After you get the response from SDK, make sure to confirm it with the PayU server.
 
 <Callout icon="🚧" theme="warn">
+  ###
+
   **Remember**: It is recommended to implement the PayU Webhook or backend verify call from your backend. For more information, refer to [Webhooks](doc:webhooks).
 </Callout>
 
@@ -413,7 +400,9 @@ You can make test payments using one of the payment methods configured at the Ch
 
 ### Test UPI Intent/InApp flow
 
-> ❗️ **Not available in Test mode**: The UPI in-app and UPI intent flow is not available in the Test mode.
+<Callout icon="❗️" theme="error">
+  ### **Not available in Test mode**: The UPI in-app and UPI intent flow is not available in the Test mode.
+</Callout>
 
 ## Go-live Checklist
 
@@ -423,9 +412,11 @@ Ensure these steps before you deploy the integration in a live environment.
 
 After testing the integration, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
 
-> 🚧 Watch Out!
->
-> Ensure that you are using the production merchant key and salt generated in the live mode.
+<Callout icon="🚧" theme="warn">
+  ### Watch Out!
+
+  Ensure that you are using the production merchant key and salt generated in the live mode.
+</Callout>
 
 <ProductionKeyAndSaltProcedure />
 
