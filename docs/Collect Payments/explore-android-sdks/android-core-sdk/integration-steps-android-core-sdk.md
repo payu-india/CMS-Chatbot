@@ -36,7 +36,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 Create an object of PaymentParams, put all the obtained parameters in it by using its default set methods and setHash to paymentHash.
 
 <Accordion title="PaymentParams object" icon="fa-code">
-  ```Text Java
+  ```java
   PaymentParams mPaymentParams = new PaymentParams();
   mPaymentParams.setKey(merchantKey);
   mPaymentParams.setTxnId("" + System.currentTimeMillis());
@@ -57,8 +57,6 @@ Create an object of PaymentParams, put all the obtained parameters in it by usin
   mPaymentParams.setOfferKey("YONOYSF@6445");
   mPaymentParams.setHash("<pass the payment Hash>");
 
-  ```
-  ```Text Kotlin
   ```
 </Accordion>
 
@@ -84,7 +82,7 @@ The following approach for generating hash is not recommended. However, this app
 - should not be used.
 
 <Accordion title="Hash generation code" icon="fa-code">
-  ```
+  ```java
   /******************************
    * Client hash generation
    ***********************************/
@@ -209,7 +207,7 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
 
   2. Get the request by using the `createRequestWithPaymentParam` method as follows:
 
-  ```Text Java
+  ```java
    try {
            mPostData = new PaymentPostParams(mPaymentParams, PayuConstants.CC).getPaymentPostParams();
         } catch (Exception e) {
@@ -223,7 +221,7 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
 
   1. Set the StoredCard parameter similar to the following code snippet:
 
-  ```Text Java
+  ```java
   mPaymentParams.setCardNumber(cardNumber);
   mPaymentParams.setCardName(cardName);
   mPaymentParams.setNameOnCard(cardholderName);
@@ -237,7 +235,7 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
 
   2. Get the request by using the `PaymentPostParams` method as follows:
 
-  ```Text Java
+  ```java
    try {
            mPostData = new PaymentPostParams(mPaymentParams, PayuConstants.CC).getPaymentPostParams();
         } catch (Exception e) {
@@ -262,7 +260,7 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
   <Accordion title="Third Party-Card Tokenization" icon="fa-code">
     1. For cards tokenized outside the PayU platform merchant needs to pass the below parameters.
 
-    ```Text Java
+    ```java
     mPaymentParams.setCardTokenType(1); //it should be passed as 1
     TokenizedCardAdditionalParam additionalParam = new TokenizedCardAdditionalParam();
     additionalParam.setLast4Digits("1234"); //last 4 digits of card
@@ -299,7 +297,7 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
 <Accordion title="Recurring Payments in NetBanking" icon="fa-code">
   For recurring payments in Net Banking, you need to collect the following details:
 
-  ```Text Java
+  ```java
   BeneficiaryDetails beneficiaryDetails = new BeneficiaryDetails();
   beneficiaryDetails.setBeneficiaryName("John Doe");
   beneficiaryDetails.setBeneficiaryAccountNumber("51234567890");
@@ -335,7 +333,7 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
 
   2. Get the request by using the `PaymentPostParams` method as follows:
 
-  ```
+  ```java
   try {
        mPostData = new PaymentPostParams(mPaymentParams, PayuConstants.EMI).getPaymentPostParams();
       } catch (Exception e) {
@@ -347,19 +345,19 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
 <Accordion title="Cardless EMI" icon="fa-code">
   For doing CardLess EMI transactions, `setCardLess `must be set to true along with setting the bank code in the payment parameters similar to the following code snippet:
 
-  ```Text Java
+  ```java
   mPaymentParams.setBankCode("ZESTMON"); //For Zestmoney CardLess EMI
   ```
 
   For the Zestmoney CardLess EMI transactions, the phone number must also be set in payment parameters similar to the following code snippet:
 
-  ```Text Java
+  ```java
   mPaymentParams.setPhone("9000000000");
   ```
 
   2. Get the request by using the `PaymentPostParams` method as follows:
 
-  ```
+  ```java
   try {
        mPostData = new PaymentPostParams(mPaymentParams, PayuConstants.EMI).getPaymentPostParams();
       } catch (Exception e) {
@@ -371,7 +369,7 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
 <Accordion title="No-Cost EMI" icon="fa-code">
   For posting No-Cost EMI transactions, the subvention amount needs to be sent along with the above EMI parameters similar to the following code snippet:
 
-  ```Text Java
+  ```java
   mPaymentParams.setCardNumber(“5123456789012346”); 
   mPaymentParams.setNameOnCard(“test”); 
   mPaymentParams.setExpiryMonth(“06”); 
@@ -397,13 +395,13 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
 
   1. Set the cashcard parameter as follows:
 
-  ```Text Java
+  ```java
   mPaymentParams.setBankCode(bankCode);
   ```
 
   2. Get the request by using the `PaymentPostParams` method as follows:
 
-  ```Text Java
+  ```java
    try {
               mPostData = new PaymentPostParams(mPaymentParams, PayuConstants.CASH).getPaymentPostParams();
           } catch (Exception e) {
@@ -417,7 +415,7 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
 
   1. Set the VPA parameter as follows:
 
-  ```Text Java
+  ```java
   mPaymentParams.setVpa(virtualPaymentAddress);
   ```
 
@@ -428,7 +426,7 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
 
   2. Get the request by using the `PaymentPostParams` method as follows:
 
-  ```
+  ```java
   try {
        mPostData = new PaymentPostParams(mPaymentParams, PayuConstants.UPI).getPaymentPostParams();
      } catch (Exception e) {
@@ -442,13 +440,13 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
 
   1. Notify(callback) the URL of the merchant where notification of transaction status will be sent on completion of the transaction. It should be HTTPS.
 
-  ```Text Java
+  ```java
   mPaymentParams.setNotifyURL(<Merchant Callback Url>);
   ```
 
   2. Get the request by using the `PaymentPostParams` method as follows:
 
-  ```Text Java
+  ```java
   try{
       mPostData = new PaymentPostParams(mPaymentParams, PayuConstants.LAZYPAY).getPaymentPostParams();
        }
@@ -471,7 +469,7 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
 
 2\. After a successful payment, you will get the Twid customer hash in field5 params of PayuResponse, which would use for the next transaction to skip authentication.
 
-```java Java
+```java
 mPaymentParams.setTwidCustomerHash("Twid customer hash");
 ```
 
@@ -480,7 +478,7 @@ mPaymentParams.setTwidCustomerHash("Twid customer hash");
 <Accordion title="Sodexo" icon="fa-code">
   1. To pay using Sodexo, create the post data with PAYMENT\_PG\_SODEXO:
 
-  ```java Java
+  ```java
   mPaymentParams.setCardNumber(cardNumber);
   mPaymentParams.setCardName(cardName);
   mPaymentParams.setNameOnCard(cardholderName);
@@ -501,7 +499,7 @@ mPaymentParams.setTwidCustomerHash("Twid customer hash");
 
   After a successful payment, you would get the Sodexo source ID in the field3 param of PayU response, which can be used to show and get stored Sodexo card details and also can be used for initiating payment.
 
-  ```java Java
+  ```java
   mPaymentParams.setsodexoSourceId("srcid123");
   ```
 </Accordion>
@@ -564,7 +562,7 @@ mPaymentParams.setTwidCustomerHash("Twid customer hash");
       **Remove code from manifest**: Ensure to remove the code from the manifest file before going live.
     </Callout>
 
-    ```Text XML
+    ```XML
     <application>
     <meta-data android:name="payu_debug_mode_enabled" android:value="true" /> // set the value to false for production environment
     <meta-data android:name="payu_web_service_url" android:value="https://test.payu.in" /> //Comment in case of Production-->
