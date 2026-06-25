@@ -26,6 +26,7 @@ metadata:
 next:
   description: ''
 ---
+
 ---
 title: Android 3DS 2.0 SDK
 excerpt: ''
@@ -105,61 +106,34 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
 
   You have to pass the following parameters:
 
-  <Table>
-    <thead>
-      <tr>
-        <th>
-          Parameter
-        </th>
-
-        <th>
-          Description
-        </th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr>
-        <td>
-          activity
-        </td>
-
-        <td>
-          This parameter contains the `AppCompatActivity` reference.
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          config
-        </td>
-
-        <td>
-          This parameter contains the following fields in a JSON format. For more information, refer to <a href="#config-json-fields-description">config JSON Fields Description</a>.
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          paymentParams
-        </td>
-
-        <td>
-          Merchants have to create the payment param object and pass it which will contain info such as `cardDetails`, SI details, etc. For more information, refer to <a href="https://docs.payu.in/docs/integration-steps-android-checkout-pro#step-3-build-the-payment-parameters-mandatory-step">SDK Integration &gt; Build the payment parameters</a>.
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          callback
-        </td>
-
-        <td>
-        This parameter contains the fields as a JSON object. For more information, refer to <a href="#callback-json-fields-description">callback JSON Fields Description</a>.
-        </td>
-      </tr>
-    </tbody>
-  </Table>
+  <HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px;">Parameter</th>
+      <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>activity</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the <code>AppCompatActivity</code> reference.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>config</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the following fields in a JSON format. For more information, refer to <a href="#config-json-fields-description">config JSON Fields Description</a>.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentParams</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Merchants have to create the payment param object and pass it which will contain info such as <code>cardDetails</code>, SI details, etc. For more information, refer to <a href="https://docs.payu.in/docs/integration-steps-android-checkout-pro#step-3-build-the-payment-parameters-mandatory-step">SDK Integration &gt; Build the payment parameters</a>.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>callback</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>This parameter contains the fields as a JSON object. For more information, refer to <a href="#callback-json-fields-description">callback JSON Fields Description</a>.</p></td>
+    </tr>
+  </tbody>
+</table>
+  `}</HTMLBlock>
 
   <h4 id="config-json-fields-description">config JSON Fields Description</h4>
 
