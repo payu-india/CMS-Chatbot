@@ -42,7 +42,7 @@ The following table describes all static hashes:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        `<key>`<br/>`|payment_related_details_for_mobile_sdk|`<br/>`<userCredential>|<salt>`
+        `<key>`<br/>`|payment_related_details_for_mobile_sdk|`<br/>`<userCredential>|`<br/>`<salt>`
       </td>
     </tr>
 
@@ -56,7 +56,7 @@ The following table describes all static hashes:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        `<key>|eligibleBinsForEMI|default|<salt>`
+        `<key>|`<br/>`eligibleBinsForEMI|`<br/>`default|`<br/>`<salt>`
       </td>
     </tr>
 
@@ -70,7 +70,7 @@ The following table describes all static hashes:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        `<key>|vas_for_mobile_sdk|<amount>|<salt>`
+        `<key>|`<br/>`vas_for_mobile_sdk|`<br/>`<amount>|`<br/>`<salt>`
       </td>
     </tr>
 
@@ -84,7 +84,7 @@ The following table describes all static hashes:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        `<key>|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||salt`
+        `<key>|`<br/>`txnid|`<br/>`amount|`<br/>`productinfo|`<br/>`firstname|`<br/>`email|`<br/>`udf1|`<br/>`udf2|`<br/>`udf3|udf4|udf5||||||`<br/>`salt`
       </td>
     </tr>
 
@@ -98,7 +98,7 @@ The following table describes all static hashes:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        `<key>|delete_payment_instrument|<userCredential>|<salt>`
+        `<key>|`<br/>`delete_payment_instrument`<br/>`|<userCredential>|`<br/>`<salt>`
       </td>
     </tr>
 
@@ -112,7 +112,7 @@ The following table describes all static hashes:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        `<key>|get_payment_instrument|<userCredential>|<salt>`
+        `<key>|`<br/>`get_payment_instrument|`<br/>`<userCredential>|`<br/>`<salt>`
       </td>
     </tr>
 
@@ -126,7 +126,7 @@ The following table describes all static hashes:
       </td>
 
       <td style={{ textAlign: "left" }}>
-        `<key>\|get_payment_details\|<userCredential>\|<salt>`
+        `<key>\|`<br/>`get_payment_details\|`<br/>`<userCredential>\|`<br/>`<salt>`
       </td>
     </tr>
   </tbody>
