@@ -619,30 +619,13 @@ print $response->content;
 
 Refer to the <Anchor target="_blank" href="https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide#step-11-prepare-payment-request-parameters">Step 1.1 Prepare Payment Request Parameters</Anchor> in the **Accept Payments using PayU Hosted Checkout** page for request parameter description.
 
-***
+### Expected Outcome
 
-## Example: Show Only UPI and Cards
-
-```json
-{
-  "enforce_paymethod": "upi|cards"
-}
-```
+The categories passed in the `enforce_paymethod` parameter are displayed in the checkout.
 
 ***
 
-## Example: Restrict Using Bank Codes
-
-```json
-{
-  "enforce_paymethod": "nb",
-  "bankcode": "HDFC"
-}
-```
-
-***
-
-## Common Failures for `enforce_paymethod`
+### Errors and Troubleshooting
 
 ### Payment method not showing
 
