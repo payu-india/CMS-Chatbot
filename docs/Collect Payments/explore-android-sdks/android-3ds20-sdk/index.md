@@ -305,7 +305,7 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
       * GUI
       * The sample code blocks for the above:
 
-      ```kotlin Kotlin
+      ```kotlin
       var buttonCustomisation = ButtonCustomisation.Builder()
                                 .setBackgroundColor("colorCode") //HEX CODE
                                 .setCornerRadius(5).build() //Integer
