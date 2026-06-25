@@ -146,7 +146,7 @@ Create an object of class `PayuHashes` and set the corresponding hashes using th
 
         }*/
 
-        // checksum for payemnt related details
+        // checksum for payment related details
         // var1 should be either user credentials or default
         String var1 = mPaymentParams.getUserCredentials() == null ? PayuConstants.DEFAULT : mPaymentParams.getUserCredentials();
         String key = mPaymentParams.getKey();
