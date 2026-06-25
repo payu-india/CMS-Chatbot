@@ -90,7 +90,7 @@ The following table describes all static hashes:
 
     <tr>
       <td style={{ textAlign: "left" }}>
-        `delete_payment_instrument`
+        `delete_payment_`<br/>`instrument`
       </td>
 
       <td style={{ textAlign: "left" }}>
@@ -104,7 +104,7 @@ The following table describes all static hashes:
 
     <tr>
       <td style={{ textAlign: "left" }}>
-        `get_payment_instrument`
+        `get_payment_`<br/>`instrument`
       </td>
 
       <td style={{ textAlign: "left" }}>
@@ -118,7 +118,7 @@ The following table describes all static hashes:
 
     <tr>
       <td style={{ textAlign: "left" }}>
-        `get_payment_details`
+        `get_payment_`<br/>`details`
       </td>
 
       <td style={{ textAlign: "left" }}>
