@@ -30,7 +30,7 @@ HTTP Method: **POST**
 | Production Environment | [https://info.payu.in/v4/reporting/transactions](https://info.payu.in/v4/reporting/transactions) |
 
 ## Request headers
-
+<V2_payment_header_params />
 
 ## Request body parameters
 
