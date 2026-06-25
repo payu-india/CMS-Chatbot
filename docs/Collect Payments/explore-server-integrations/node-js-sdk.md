@@ -92,7 +92,7 @@ npm install payu-websdk
 
 Use the sample code snippet to build an instance of PayU Object:
 
-```Text Node.js
+```node
 const PayU = require("payu");
 
 const payuClient = new PayU({
@@ -113,7 +113,7 @@ This method genereates an auto-submit HTML form to intitiate the transaction.
 
 Create a JSON with the payment parameters and pass it as the argument of the `paymentInitiate` method of the `payuClient` object
 
-```Text Node.js
+```node
 const PayU = require("payu");
 
 const payuClient = new PayU({
@@ -138,7 +138,7 @@ payuClient.paymentInitiate(<JSON>).then((res)=>{
 
 You must implement this method to verify the status of the payment once the payment is done. Pass the `txnID` as the aggument of the `verifyPayment` method of the payuClient object.
 
-```Text Node.js
+```node
 const PayU = require("payu");
 
 const payuClient = new PayU({
@@ -163,7 +163,7 @@ payuClient.verifyPayment(<txnID>).then((res)=>{
 
 The `get_Transaction_Details` method takes the START_DATE and END_DATE, and returns the details of all transaction happened during that period. The output consists of the status of the API (success or failed) and all the transaction details in an array format.
 
-```Text Node.js
+```node
 const PayU = require("payu");
 
 const payuClient = new PayU({
@@ -188,7 +188,7 @@ payuClient.getTransactionDetails(<START_DATE>,<END_DATE>).then((res)=>{
 
 You can use this method to retrieve settlement details which the bank has to settle for you. Pass either the date for which you want to get all the settlement details or the UTR ((Unique Transaction Reference number-alphanumeric))number of the transaction as the argument of the `getSettlementDetails` method.
 
-```Text Node.js
+```node
 const PayU = require("payu");
 
 const payuClient = new PayU({
@@ -213,7 +213,7 @@ payuClient.getSettlementDetails(<date/UTR nunmber>).then((res)=>{
 
 The Get Net Banking Status API (getNetbankingStatus) is used to help you in handling the NetBanking Downtime. A few times, one or more Net Banking options may be facing downtime due to issues observed at the bank's end. This API is used to tell the status of one or all the Net Banking options. The status can be either up or down. If you want to know the status of a specific Net Banking option, the input parameter should contain the corresponding `ibibo_code`. If you want to know the status of all the Net Banking options, the input parameter should contain the value as default.
 
-```Text Node.js
+```node
 const PayU = require("payu");
 
 const payuClient = new PayU({
@@ -268,7 +268,7 @@ The get_checkout_details API is a generic API using which they can get informati
   eligibility details
 * **Downtime details**: The downtime status of the payment options.
 
-```Text Node.js
+```node
 const PayU = require("payu");
 
 const payuClient = new PayU({
@@ -293,7 +293,7 @@ payuClient.getCheckoutDetails(<JSON>).then((res)=>{
 
 The Get EMI Amount According to Interest API (getEmiAmountAccordingToInterest) is used to get the EMI interest bank rates for all the enabled EMIs.
 
-```Text Node.js
+```node
 const PayU = require("payu");
 
 const payuClient = new PayU({
@@ -318,7 +318,7 @@ payuClient.getEmiAmountAccordingToInterest(<amount>).then((res)=>{
 
 The Create Invoice API (create_invoice) allows you to create an email invoice for your customer and provides an option to send the email invoice to the customer either immediately or later through automation.
 
-```Text Node.js
+```node
 const PayU = require("payu");
 
 const payuClient = new PayU({
@@ -343,7 +343,7 @@ payuClient.createInvoice(<JSON>).then((res)=>{
 
 The Expire Invoice API (expire_invoice) is used to expire an invoice link corresponding to the txnID. In few cases, an invoice might be sent to an incorrect email ID by the merchant. In such scenario, you can discard that invoice by expiring it.
 
-```Text Node.js
+```node
 const PayU = require("payu");
 
 const payuClient = new PayU({
@@ -368,7 +368,7 @@ payuClient.expireInvoice(<txnID>).then((res)=>{
 
 The Eligible Bin for EMI API (eligibleBinsForEMI) is used only when the merchant needs the EMI feature of PayU. If you are managing card details on your website, this API can tell the issuing bank of the card bin. It also provides the minimum eligible amount for a particular bank.
 
-```Text Node.js
+```node
 const PayU = require("payu");
 
 const payuClient = new PayU({
@@ -398,7 +398,7 @@ The checkIsDomestic method is used to detect whether a particular BIN number is 
 3. card category such as Credit/Debit, etc.
 4. var1 is bin number which is the first 6 digits of a Credit/Debit card.
 
-```Text Node.js
+```node
 const PayU = require("payu");
 
 const payuClient = new PayU({
@@ -423,7 +423,7 @@ payuClient.checkIsDomestic(<bin>).then((res)=>{
 
 The Check Action Status API (check_action_status) is used to check the status of the refund or cancel requests.
 
-```Text Node.js
+```node
 const PayU = require("payu");
 
 const payuClient = new PayU({
@@ -451,7 +451,7 @@ The Cancel Refund Transaction API (cancel_refund_transaction) can be used for th
 1. Cancel a transaction that is in 'auth' state at the moment
 2. Refund a transaction that is in a 'captured' state at the moment.
 
-```Text Node.js
+```node
 const PayU = require("payu");
 
 const payuClient = new PayU({
@@ -478,7 +478,7 @@ This method will let you validate VPA if it is a valid VPA or not.
 
 After the customer enters VPA on the merchant page, you need to call this API to check for VPA validation. If VPA is valid only then, the second call should be made.
 
-```Text Node.js
+```node
 const PayU = require("payu");
 
 const payuClient = new PayU({
@@ -503,7 +503,7 @@ payuClient.validateVPA(<VPA>).then((res)=>{
 
 The UDF Update API is used to update the UDF1-UDF5 values of a transaction. UDFs are the user-defined fields which are posted from the merchant to PayU. This API is specifically used to update the values in these fields in the PayU database. The return parameters are the updated UDF values of the transaction.
 
-```Text Node.js
+```node
 const PayU = require("payu");
 
 const payuClient = new PayU({
