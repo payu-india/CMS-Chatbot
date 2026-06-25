@@ -61,9 +61,11 @@ Before customizing checkout, ensure you have:
 - Dashboard permissions (for enabling methods)
 </Accordion>
 
-> ✅ **Enable Payment Methods**
->
-> Some payment methods (such as BNPL) require PayU approval or merchant eligibility before they appear in checkout. Get in touch with your key account manager to enable them in the dashboard.
+<Callout icon="✅" theme="okay">
+  ### **Enable Payment Methods**
+
+  Some payment methods (such as BNPL) require PayU approval or merchant eligibility before they appear in checkout. Get in touch with your key account manager to enable them in the dashboard.
+</Callout>
 
 ***
 
@@ -90,38 +92,31 @@ Examples:
 - Show only cards
 - Show only UPI + NetBanking
 
+The `enforce_paymethod` parameter allows you to customize payment methods in the checkout. You can restrict specific payment modes, cards scheme, and specific banks under NetBanking using this parameter.
+
+These are the categories, sub-categories and their values you can pass in the `enforce_paymethod` parameter.
+
+| **Category** | **Sub-category**                          | **Value**    |
+| ------------ | ----------------------------------------- | ------------ |
+| Credit Card  | MasterCard, Amex, Diners, etc.            | `creditcard` |
+| Debit Card   | Visa, MasterCard, Maestro, etc.           | `debitcard`  |
+| Net Banking  | SBI Net Banking, HDFC Net Banking, etc    | `netbanking` |
+| EMI          | CITI 3 Months EMI, HFC 6 Months EMI, etc. | `emi`        |
+| Wallet       | Airtel Money, YPay, ITZ, Cash Card, etc.  | `cashcard`   |
+| UPI          | GooglePay, PhonePe, UPI, etc.             | `upi`        |
+| Sodexo       | N/A                                       | `SODEXO`     |
+| BNPL         | N/A                                       | `bnpl`       |
+| QR           | N/A                                       | `qr`         |
+
 ### How it Works
 
 PayU will show only the payment methods in the checkout you explicitly pass in the request.
 
 ### Sample Request
 
-<Accordion title="Sample Payload" icon="fa-code">
-The `enforce_paymethod` parameter allows you to customize payment methods in the checkout. You can restrict specific payment modes, cards scheme, and specific banks under Net Banking using this parameter.
-
-```curl: With Single Category
-# PayU Hosted Checkout - enforce payment method customization
-curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g" \
-  -d "txnid=ENFCC001" \
-  -d "amount=10.00" \
-  -d "firstname=PayU%20User" \
-  -d "email=test@gmail.com" \
-  -d "phone=9876543210" \
-  -d "productinfo=iPhone" \
-  -d "surl=https://apiplayground-response.herokuapp.com/" \
-  -d "furl=https://apiplayground-response.herokuapp.com/" \
-  -d "enforce_paymethod=creditcard" \
-  -d "hash=YOUR_HASH_VALUE"
-# Parameters include key, txnid, amount, surl, furl, hash; enforce_paymethod=creditcard
-```
-
-
-</Accordion>
-
-```curl
+<Tabs>
+  <Tab title="With Single Category">
+  ```curl With Single Category
 # PayU Hosted Checkout - enforce payment method customization
 curl -X POST "https://test.payu.in/_payment" \
   -H "accept: application/json" \
@@ -139,6 +134,31 @@ curl -X POST "https://test.payu.in/_payment" \
   -d "hash=REPLACE_WITH_GENERATED_HASH"
 # Parameters include key, txnid, amount, surl, furl, hash; enforce_paymethod=creditcard
 ```
+  </Tab>
+
+  <Tab title="With Multiple Categories">
+
+To add multiple categories, pass the `enforce_paymethod` parameter value with categories separated by `|` as given in the sample below.<br/>
+  ```curl With Multiple Categories
+# PayU Hosted Checkout - enforce payment method customization
+curl -X POST "https://test.payu.in/_payment" \
+  -H "accept: application/json" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "key=JP***g" \
+  -d "txnid=ENFCCDC001" \
+  -d "amount=10.00" \
+  -d "firstname=PayU%20User" \
+  -d "email=test@gmail.com" \
+  -d "phone=9876543210" \
+  -d "productinfo=iPhone" \
+  -d "surl=https://apiplayground-response.herokuapp.com/" \
+  -d "furl=https://apiplayground-response.herokuapp.com/" \
+  -d "enforce_paymethod=creditcard|debitcard" \
+  -d "hash=REPLACE_WITH_GENERATED_HASH"
+# Parameters include key, txnid, amount, surl, furl, hash; enforce_paymethod=creditcard|debitcard
+```
+  </Tab>
+</Tabs>
 
 ***
 
