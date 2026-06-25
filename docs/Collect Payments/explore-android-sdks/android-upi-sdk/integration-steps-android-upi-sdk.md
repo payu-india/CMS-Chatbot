@@ -230,7 +230,7 @@ To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-a
 <Accordion title="Step 4.2: For UPI OTM (Optional Step)" icon="fa-code">
   For UPI One Time Mandate Payments, then generate the below payment params additionally
 
-  ```java Java
+  ```java
   SIParams siParams = new SIParams();
   SIParamsDetails siParamsDetails = new SIParamsDetails();
   siParamsDetails.setPreAuthorize(true);
@@ -238,7 +238,7 @@ To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-a
   siParamsDetails.setPaymentEndDate("2026-05-23");
   siParams.setSi_details(siParamsDetails);       
   ```
-  ```kotlin Kotlin
+  ```kotlin
   val siParams = SIParams()
   val siParamsDetails = SIParamsDetails()
   siParamsDetails.isPreAuthorize = true
@@ -249,10 +249,10 @@ To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-a
 
   For more information on the PayUSIParams parameters, refer to [PayU Standing Instructions Parameters](https://docs.payu.in/docs/android-standing-instruction-parameters). After creating the above `PayUSIParams` object, configure it in the `PayUPaymentParams` object. For UPI One Time Mandate Payments, complete `PayUPaymentParams` similar to the following code block:
 
-  ```java Java
+  ```java
   mPaymentParamsUpiSdk.setSiParams(siParams);
   ```
-  ```kotlin Kotlin
+  ```kotlin
   paymentParamsUpiSdk.siParams = siParams
   ```
 </Accordion>
@@ -662,7 +662,7 @@ Where:
 
 After creating the hash, you need to call the getCommandResponse() method of UPI with postdata.
 
-```java JAVA
+```java
 Upi upi = Upi.getInstance();
 upi.getCommandResponse(Activity, postdata, PayUUPICallback);
 ```
