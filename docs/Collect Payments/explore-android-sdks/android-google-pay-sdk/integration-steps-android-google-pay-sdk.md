@@ -102,33 +102,33 @@ The following are error messages when the Google Pay Payment fail:
 Create an instance of `PayUGPayCallback` similar to the following code block:
 
 <Accordion title="Create an instance of `PayUGPayCallback" icon="fa-code">
-  ```java Java
-  PayUGPayCallback payUGPayCallback = new PayUGPayCallback() {
-              @Override
-              public void onPaymentSuccess(String payuResponse, String merchantResponse) {
-                  Log.d(TAG, "onPaymentSuccess: " + payuResponse + "-------------------" + merchantResponse);
-              }
+  ```java
+PayUGPayCallback payUGPayCallback = new PayUGPayCallback() {
+    @Override
+    public void onPaymentSuccess(String payuResponse, String merchantResponse) {
+        Log.d(TAG, "onPaymentSuccess: " + payuResponse + "-------------------" + merchantResponse);
+    }
 
-              @Override
-              public void onPaymentFailure(String payuResponse, String merchantResponse) {
-                  Log.d(TAG, "onPaymentFailure: " + payuResponse + "-------------------" + merchantResponse);
-              }
+    @Override
+    public void onPaymentFailure(String payuResponse, String merchantResponse) {
+        Log.d(TAG, "onPaymentFailure: " + payuResponse + "-------------------" + merchantResponse);
+    }
 
-              @Override
-              public void onPaymentInitialisationSuccess() {
-                  Log.d(TAG, "onPaymentInitialisationSuccess: ");
-              }
+    @Override
+    public void onPaymentInitialisationSuccess() {
+        Log.d(TAG, "onPaymentInitialisationSuccess: ");
+    }
 
-              @Override
-              public void onPaymentInitialisationFailure(int errorCode, String description) {
-                  Log.d(TAG, "onPaymentInitialisationFailure: " + errorCode + "---------------------" + description);
-              }
+    @Override
+    public void onPaymentInitialisationFailure(int errorCode, String description) {
+        Log.d(TAG, "onPaymentInitialisationFailure: " + errorCode + "---------------------" + description);
+    }
 
-              @Override
-              public void onGpayErrorReceived(int errorCode, String description) {
-                  Log.d(TAG, "onGpayErrorReceived: " + errorCode + "---------------------" + description);
-              }
-          };
+    @Override
+    public void onGpayErrorReceived(int errorCode, String description) {
+        Log.d(TAG, "onGpayErrorReceived: " + errorCode + "---------------------" + description);
+    }
+};
   ```
 </Accordion>
 
@@ -137,7 +137,7 @@ Create an instance of `PayUGPayCallback` similar to the following code block:
 If you are using the SDK with a test merchant, provide this metadata value to the manifest file:
 
 <Accordion title="Manifest File" icon="fa-code">
-  ```xml XML
+  ```xml
   <application>
     <meta-data
       android:name="payu_web_service_url"
