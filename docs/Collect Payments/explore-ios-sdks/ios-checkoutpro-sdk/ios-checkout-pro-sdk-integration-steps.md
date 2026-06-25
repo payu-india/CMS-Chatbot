@@ -65,7 +65,7 @@ First, create a PayU account. For more information, refer to [Register for a Mer
   * Install dependency using the pod install command in terminal
   * Add the following imports in the class where you need to initiate a payment.
 
-  ```swift Swift
+  ```swift
   import PayUCheckoutProKit
   import PayUCheckoutProBaseKit
   import PayUParamsKit
