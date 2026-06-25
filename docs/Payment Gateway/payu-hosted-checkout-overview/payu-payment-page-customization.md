@@ -617,7 +617,7 @@ print $response->content;
   </Tab>
 </Tabs>
 
-Refer to the&#x20;
+Refer to the Step 1.1 Prepare Payment Request Parameters in the&#x20;
 
 ***
 
