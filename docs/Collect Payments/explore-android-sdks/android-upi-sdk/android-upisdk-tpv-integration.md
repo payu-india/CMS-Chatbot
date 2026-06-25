@@ -63,7 +63,7 @@ To pay using UPI, you need to pass a beneficiary account number parameter as des
 ## Make Payment
 
 <Accordion title="Set Beneficiary Parameters" icon="fa-code">
-  ```Text JAVA
+  ```java
   // For single account number 
   mPaymentParams.setBeneficiaryAccountNumber("123456789");
   mPaymentParams.setIfscCode("SBIN000700");
@@ -72,7 +72,7 @@ To pay using UPI, you need to pass a beneficiary account number parameter as des
   mPaymentParams.setBeneficiaryAccountNumber("123456789|23456782|1234567"); 
   mPaymentParams.setIfscCode("SBIN000700|KTKN2937492|ICIC0002522");
   ```
-  ```Text Kotlin
+  ```kotlin
   // For single account number 
   mPaymentParams.beneficiaryAccountNumber = "123456789"
   mPaymentParams.ifscCode = "SBIN000700"
@@ -88,7 +88,7 @@ To pay using UPI, you need to pass a beneficiary account number parameter as des
 After setting the above parameters for the UPI Collect transaction, you can get the payment post parameters using the following code block:
 
 <Accordion title="UPI Collect Code Sample" icon="fa-code">
-  ```Text JAVA
+  ```java
   // To provide customer VPA
   mPaymentParams.setVpa("valid VPA")‌;
   try {
@@ -97,7 +97,7 @@ After setting the above parameters for the UPI Collect transaction, you can get 
       e.printStackTrace();
   }
   ```
-  ```Text Kotlin
+  ```kotlin
   // To provide customer VPA
   mPaymentParams.vpa = "valid VPA";
   try {
@@ -113,14 +113,14 @@ After setting the above parameters for the UPI Collect transaction, you can get 
 After setting the above parameters for the UPI INTENT transaction, you can get the payment post parameters using the following code snippet:
 
 <Accordion title="Generic Intent Code Sample" icon="fa-code">
-  ```Text JAVA
+  ```java
   try {
       mPostData = new PaymentPostParams(mPaymentParams, PayuConstants.INTTPV).getPaymentPostParams();
   } catch (Exception e) {
       e.printStackTrace();
   }
   ```
-  ```Text Kotlin
+  ```kotlin
   try {
       mPostData = PaymentPostParams(mPaymentParams, PayuConstants.UPI_INTENT).paymentPostParams
   } catch (Exception e) {
@@ -134,7 +134,7 @@ After setting the above parameters for the UPI INTENT transaction, you can get t
 After setting the above parameters for the UPI INTENT transaction, you can get the payment post parameters using the following code snippet:
 
 <Accordion title="Specific App Intent Code Sample" icon="fa-code">
-  ```java Java
+  ```java
   // To pass the package name
   mPaymentParams.setPackageName("<Package Name>")‌;
   try {
@@ -143,7 +143,7 @@ After setting the above parameters for the UPI INTENT transaction, you can get t
       e.printStackTrace();
   }
   ```
-  ```kotlin Kotlin
+  ```kotlin
   // To pass the package name
   mPaymentParams.setPackageName("<Package Name>")‌;
   try {
@@ -159,7 +159,7 @@ After setting the above parameters for the UPI INTENT transaction, you can get t
 For TEZ transaction, you can get the payment post params using the below:
 
 <Accordion title="Tez (Google Pay) Code Sample" icon="fa-code">
-  ```java Java
+  ```java
   try {
       mPostData = new PaymentPostParams(mPaymentParams, PayuConstants.TEZTPV).getPaymentPostParams();
   } catch (Exception e) {
