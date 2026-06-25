@@ -17,4 +17,10 @@ The following UPI handles are supported by PayU for recurring payments:
   maxHeight="500px"
 />
 
+<Callout icon="📘" theme="info">
+  ### Complete list of UPI handles:
+
+  For the exhaustive UPI handles list please visit National Payments Corporation of India (NPCI) - Enabling digital payments in India
+</Callout>
+
 <br />
