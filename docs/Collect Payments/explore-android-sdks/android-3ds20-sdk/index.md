@@ -66,7 +66,7 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
 <Accordion title="Using PayU implementation" icon="fa-code">
   Call the method to initiate payment through us and we will return a success or failure callback post-transaction completion.
 
-  ```kotlin Kotlin
+  ```kotlin
   fun initiatePayment(
           activity: AppCompatActivity,
           config: PayU3DS2Config,
@@ -76,7 +76,7 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
   ```
 
   You have to pass the following parameters:
-
+<HTMLBlock>{`
   <Table>
     <thead>
       <tr>
@@ -166,7 +166,7 @@ Power native experience on the new 3DS 2.0 protocol for card transactions. Less 
       </tr>
     </tbody>
   </Table>
-
+`}</HTMLBlock>
   <Accordion title="Sample code for callback - generateHash" icon="fa-code">
     ```kotlin
     if (map.containsKey("hashString") && map.containsKey("hashName")) {
