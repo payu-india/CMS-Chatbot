@@ -16,11 +16,11 @@ The Native OTP Assist SDK provides several customization options allowing you to
 
 You can display your brand logo in the PayU Native OTP Assist SDK to reinforce trust and branding. To set a logo in the SDK, you need to pass the drawable ID of the logo image resource from your app.
 
-```Text Kotlin
+```kotlin
 val payUOtpAssistConfig = PayUOtpAssistConfig() 
 payUOtpAssistConfig.merchantLogo = R.drawable.merchant_logo 
 ```
-```Text JAVA
+```java
 PayUOtpAssistConfig payUOtpAssistConfig = new PayUOtpAssistConfig(); 
 payUOtpAssistConfig.setMerchantLogo(R.drawable.merchant_logo); 
 ```
@@ -29,7 +29,7 @@ payUOtpAssistConfig.setMerchantLogo(R.drawable.merchant_logo);
 
 Our SDK allows you to change the theme color, and you need to set this primary color in your color file.
 
-```Text XML
+```XML
 <color name="payu_otp_assist_primary_color">#fd416d</color>
 ```
 
@@ -37,11 +37,11 @@ Our SDK allows you to change the theme color, and you need to set this primary c
 
 PayU will wait for a specified time for the OTP, after which the SDK falls back to the manual OTP screen. The default time is 30 seconds; you may change it to any other duration. PayU recommends you configure the timeout to less than 60 seconds for a better user experience.
 
-```Text JAVA
+```java
 PayUOtpAssistConfig payUOtpAssistConfig = new PayUOtpAssistConfig(); 
 payUOtpAssistConfig.setWaitingTime(45000); 
 ```
-```Text Kotlin
+```kotlin
 val payUOtpAssistConfig = PayUOtpAssistConfig() 
 payUOtpAssistConfig.waitingTime = 45000 
 ```
@@ -50,7 +50,7 @@ payUOtpAssistConfig.waitingTime = 45000
 
 Merchants can enable/disable the auto-submit OTP flow using the following flag. The default value is set to true.
 
-```Text Node
+```Node
 PayUOtpAssistConfig payUOtpAssistConfig = new PayUOtpAssistConfig();
 payUOtpAssistConfig.setShouldAllowAutoSubmit(true); 
 ```
@@ -59,12 +59,12 @@ payUOtpAssistConfig.setShouldAllowAutoSubmit(true);
 
 Merchant response timeout is the duration PayU will wait for merchant surl/furl to load before passing the transaction response back to the app. If merchant surl/furl pages take longer to load, PayU has a response timeout of 10 sec by default. However, if you feel that the surl/furl can take longer than 10 seconds, you can configure this flag.
 
-```Text JAVA
+```java
 PayUOtpAssistConfig payUOtpAssistConfig = new PayUOtpAssistConfig();
 payUOtpAssistConfig.setMerchantResponseTimeout(25000); 
 // for 25 seconds timeout 
 ```
-```Text Kotlin
+```kotlin
 PayUOtpAssistConfig payUOtpAssistConfig = new PayUOtpAssistConfig();
 payUOtpAssistConfig.setMerchantResponseTimeout(25000); 
 // for 25 seconds timeout 
@@ -88,11 +88,11 @@ After the payment gets successful, the user's mobile vibrates for 0.5Sec. You ne
 
 You can disable merchant summary from the UI.
 
-```Text JAVA
+```java
 PayUOtpAssistConfig payUOtpAssistConfig = new PayUOtpAssistConfig();
 payUOtpAssistConfig.setShouldShowMerchantSummary(false);
 ```
-```Text Kotlin
+```kotlin
 val payUOtpAssistConfig = PayUOtpAssistConfig() 
 payUOtpAssistConfig.shouldShowMerchantSummary=false   
 ```
