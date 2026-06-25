@@ -109,7 +109,7 @@ Before you start with the integration, enable the payment methods that you want 
 
   Payment option details: The extended details for each payment option available for the merchant. Additional charges: The additional charges configured for all payment options. eligibility details Downtime details: The downtime status of the payment options.
 
-  ```Text Python
+  ```python
 
     PayuClient payuClient = PayuClient.init("Key", "salt");
 
@@ -129,7 +129,7 @@ Before you start with the integration, enable the payment methods that you want 
 <Accordion title="Get transaction details" icon="fa-code">
   The Get Transaction Details (get\_Transaction\_Details) API takes works on basis input as two dates (initial and final), between which the transaction details are needed. The output consists of the status of the API (success or failed) and all the transaction details in an array format.
 
-  ```Text Python
+  ```python
 
     PayuClient payuClient = PayuClient.init("Key", "salt");
 
@@ -155,7 +155,7 @@ Before you start with the integration, enable the payment methods that you want 
 
   Cancel a transaction that is in 'auth' state at the moment Refund a transaction that is in a 'captured' state at the moment. In this API: var1 is the Payu ID (mihpayid) of the transaction, var2 should contain the Token ID (unique token from the merchant)
 
-  ```Text Python
+  ```python
 
     PayuClient payuClient = PayuClient.init("Key", "salt");
 
@@ -184,7 +184,7 @@ Before you start with the integration, enable the payment methods that you want 
 
   Use the following sample code to create an Invoice.
 
-  ```Text Python
+  ```python
   PayuClient payuClient = PayuClient.init("Key", "salt");
         String HashForcreateinvoice = crate_invoiceHash.generateHashForCreateInvoice();
     Invoice obj1 = new Invoice();
@@ -199,7 +199,7 @@ Before you start with the integration, enable the payment methods that you want 
 
   Use the following sample code to expire an invoice.
 
-  ```Text Python
+  ```python
    PayuClient payuClient = PayuClient.init("Key", "salt");
    String HashForexpireinvoice = expire_invoiceHash.generateHashForexpireInvoice();
     DowntimeCheckAPI obj2 = new DowntimeCheckAPI();
@@ -219,7 +219,7 @@ Before you start with the integration, enable the payment methods that you want 
 
   After the customer enters VPA on the merchant page, you need to call this API to check for VPA validation. If VPA is valid only then, the second call should be made.
 
-  ```Text Python
+  ```python
 
     PayuClient payuClient = PayuClient.init("Key", "salt");
 
@@ -276,7 +276,7 @@ Before you start with the integration, enable the payment methods that you want 
 
   ### eligibleBinsForEMI
 
-  ```Text Python
+  ```python
    PayuClient payuClient = PayuClient.init("Key", "salt");
         String HashForeligibleBinsForEMI= eligibleBinsForEMI.generateHashForeligibleBinsForEMI()
     DowntimeCheckAPI obj1 = new DowntimeCheckAPI();
@@ -291,7 +291,7 @@ Before you start with the integration, enable the payment methods that you want 
 
   ### getEmiAmountAccordingToInterest
 
-  ```Text Python
+  ```python
    PayuClient payuClient = PayuClient.init("Key", "salt");
   String HashForEmiAmountAccordingToInterest= EmiAmountAccordingToInterest.generateHashForEmiAmountAccordingToInterest();
     DowntimeCheckAPI obj2 = new DowntimeCheckAPI();
@@ -314,7 +314,7 @@ Before you start with the integration, enable the payment methods that you want 
   * card category such as Credit/Debit, etc.
   * var1 is bin number which is the first 6 digits of a Credit/Debit card.
 
-  ```Text Python
+  ```python
 
     PayuClient payuClient = PayuClient.init("Key", "salt");
 
@@ -336,7 +336,7 @@ Before you start with the integration, enable the payment methods that you want 
 <Accordion title="Verify payment" icon="fa-code">
   The Verify Payment (verify\_payment) API gives you the status of the transaction. PayU recommends using this API to reconcile with PayU's database after you receive the response.
 
-  ```Text Python
+  ```python
 
     PayuClient payuClient = PayuClient.init("Key", "salt");
 
