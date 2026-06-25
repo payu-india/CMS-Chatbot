@@ -26,7 +26,6 @@ metadata:
 next:
   description: ''
 ---
-
 ---
 title: Android 3DS 2.0 SDK
 excerpt: ''
