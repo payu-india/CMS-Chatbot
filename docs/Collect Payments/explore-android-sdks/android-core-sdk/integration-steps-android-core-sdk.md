@@ -248,7 +248,7 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
   <Accordion title="Card Tokenization with PayU" icon="fa-code">
     1. For Cards tokenized with PayU platform merchant needs to pass the below parameters.
 
-    ```Text Java
+    ```javsa
     mPaymentParams.setCvv(cvv); // pass the correct cvv
     mPaymentParam.setCardToken(cardtoken); // pass the store card token
     mPaymentParams.setCardTokenType(0); //it should be passed as 0
@@ -322,7 +322,7 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
 
   1. Set the EMI parameter for instance:
 
-  ```Text Java
+  ```java
   mPaymentParams.setCardNumber(“5123456789012346”); 
   mPaymentParams.setNameOnCard(“test”); 
   mPaymentParams.setExpiryMonth(“06”); 
