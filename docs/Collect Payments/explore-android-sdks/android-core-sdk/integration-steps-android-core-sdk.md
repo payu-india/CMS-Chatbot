@@ -279,13 +279,13 @@ mPaymentParams.setHash(payuHashes.getPaymentHash());
 
   1. Set the NetBanking parameter as follows:
 
-  ```Text Java
+  ```java
   mPaymentParams.setBankCode(bankCode);
   ```
 
   2. Get the request by using the `PaymentPostParams` method as follows:
 
-  ```Text Java
+  ```java
   try {
               mPostData = new PaymentPostParams(mPaymentParams, PayuConstants.NB).getPaymentPostParams();
           } catch (Exception e) {
