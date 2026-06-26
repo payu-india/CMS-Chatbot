@@ -35,9 +35,10 @@ The Generate Token API is used to generate the token to be used in [Step 1b](#st
 <br/>
 **Environment**
 
-| Test           | [https://uat-accounts.payu.in](https://uat-accounts.payu.in) |
+| | |
 | :------------- | :----------------------------------------------------------- |
-| **Production** | [https://accounts.payu.in](https://accounts.payu.in)         |
+| **Test** | [https://uat-accounts.payu.in](https://uat-accounts.payu.in) |
+| **Production** | [https://accounts.payu.in](https://accounts.payu.in) |
 <br/>
 <Accordion title="Request parameters" icon="fa-info-circle">
 <HTMLBlock>{`
@@ -130,30 +131,33 @@ The Generate Token API is used to generate the token to be used in [Step 1b](#st
 The PAN Card Status Check API allows merchants to verify PAN (Permanent Account Number) card details. It validates whether a given PAN number is active, confirms if the provided name and date of birth match the official PAN records, and checks the seeding status of the PAN. This API is essential for KYC (Know Your Customer) processes, identity verification, and regulatory compliance.
 <br/>
 **Environment**
-| Test           | https://uat-onepayuonboarding.payu.in/ |
+
+| | |
 | :------------- | :----------------------------------------------------------- |
-| **Production** | https://onboarding.payu.in/       |
+| **Test** | [https://uat-onepayuonboarding.payu.in/](https://uat-onepayuonboarding.payu.in/) |
+| **Production** | [https://onboarding.payu.in/](https://onboarding.payu.in/) |
 
 <br/>
 <Accordion title="Request parameters" icon="fa-table">
 
 #### Header
+
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
 <tr>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameters</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
   <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
   <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>token</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Authorization</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter must contain the token that must be revoked.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Bearer token from <a href="#step-1a-generate-token">Step 1a: Generate Token</a>.</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>{token}</code></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Bearer {access_token}</code></p>
 </td>
 </tr>
 </tbody>
@@ -161,7 +165,9 @@ The PAN Card Status Check API allows merchants to verify PAN (Permanent Account 
 `}</HTMLBlock>
 
 <br/>
-####Body Parameters
+
+#### Body parameters
+
   | Parameter                     | Description                                                   | Example      |
   | ----------------------------- | ------------------------------------------------------------- | ------------ |
   | `pan_number`<br />`mandatory` | The PAN (Permanent Account Number) to be verified             | "CYCPD2784G" |
@@ -211,15 +217,15 @@ The PAN Card Status Check API allows merchants to verify PAN (Permanent Account 
   | ------------ | ------------------------------------------------------- | -------------------------------------------------------------------- |
   | id           | Unique identifier for the verification request          | `86235`                                                              |
   | api\_name    | Identifier of the API that was called                   | `"pan_status_check"`                                                 |
-  | identifier   | A unique hash identifier for the verification request   | `79c0d918a4f4661cb9cb`<br/>`17d96d24ac1cf0`<br/>`>4b6013d504cc766a`<br/>`c5235380bfc0d5` |
+  | identifier   | A unique hash identifier for the verification request   | `"79c0d918a4f4661cb9cb17d96d24ac1cf04b6013d504cc766ac5235380bfc0d5"` |
   | response     | Contains the verification results                       | See result table below                                               |
   | status       | Overall status of the API call                          | `"success"`                                                          |
   | http\_status | HTTP status code of the response                        | `200`                                                                |
-  | client\_id   | Unique identifier of the client making the request      | `195ab95fa4700eeaa`<br/>`f38b7f5b538d2979`<br/>`f0f281e0a4eaedca`<br/>`1aa675b79b331a2` |
+  | client\_id   | Unique identifier of the client making the request      | `"195ab95fa4700eeaaf38b7f5b538d2979f0f281e0a4eaedca1aa675b79b331a2"` |
   | created\_at  | Timestamp when the verification record was created      | `"2025-04-30T05:51:40.000Z"`                                         |
   | updated\_at  | Timestamp when the verification record was last updated | `"2025-04-30T05:51:40.000Z"`                                         |
   | client\_name | Name of the client account                              | `"SignzyClient"`                                                     |
-<br/>
+
   #### Response Result Object
 
   | Parameter     | Description                                                        | Example    |
@@ -271,7 +277,7 @@ The following parameters (mandatory) must be posted using any of the following s
   | `udf3`<br />`optional but recommended for higher approval rate`                             | `String` The date of birth of the buyer must be collected using this field in the DD-MM-YYYY format as on their Permanent Account Number (PAN).<br /><br />*Note: This should be validated by PAN Status Check API*                                                                                                                                                                                                                                                                                                                                                                    | 02-02-1980                        |
   | `udf4`<br />`mandatory for payment aggregators`                             | `String` This parameter must include end merchant legal entity name.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | XYZ Pvt. Ltd.                     |
   | `udf5`<br />`mandatory for cross-border payments`                                                     | `String` The invoice ID or invoice number must be collected using this field.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | INV123456                         |
-  | `buyer_type_business`<br />`conditional for cross-border transactions`      | This parameter is used to identify whether it is a business-to-business transaction. If 1 is posted, it is a B2B transaction.<br /><br />In case of B2B, no other LRS specific parameters (listed below) need to be sent, as B2B transactions are outside the scope of the regulation.                                                                                                                                                                                                                                                                                                 | 0                                 |
+  | `buyer_type_business`<br />`conditional for cross-border transactions`      | `String` This parameter is used to identify whether it is a business-to-business transaction. If 1 is posted, it is a B2B transaction.<br /><br />In case of B2B, no other LRS specific parameters (listed below) need to be sent, as B2B transactions are outside the scope of the regulation.                                                                                                                                                                                                                                                                                                 | 0                                 |
   | `lrs_mandatory_limit_declaration`<br />`mandatory for LRS S2S transactions` | `String` Mandatory declaration from buyer that they have remitted less than $250,000 USD under Liberalised Remittance Scheme.<br /><br />**Note**: The limit is as per RBI regulation and needs to be mandatorily collected on the checkout page.                                                                                                                                                                                                                                                                                                                                      | 1                                 |
   | `lrs_tnc`<br />`mandatory for LRS S2S transactions`                         | `String` Mandatory declaration from buyer that they agree to PayU's terms & conditions.<br /><br />**Note**: The declaration needs to be taken mandatorily from the buyer on the checkout page.                                                                                                                                                                                                                                                                                                                                                                                        | 1                                 |
   | `lrs_service_type`<br />`mandatory for LRS S2S transactions`                | `String` The LRS service type describes the nature of service & decides the tax amount based on it. For more information, refer to the [lrs\_service\_type parameter values](#lrs_service_type-parameter-values) table.                                                                                                                                                                                                                                                                                                                                                                | travel                            |
@@ -280,7 +286,7 @@ The following parameters (mandatory) must be posted using any of the following s
 
   #### lrs\_service\_type parameter values
 
-  | **lrs\_service\_type** | **Txn Amount \<= INR 10 lacs** | **Txn Amount > INR 10 lacs** |
+  | **lrs\_service\_type** | **Txn Amount \<= INR 10 lacs** | **Txn Amount \> INR 10 lacs** |
   | ---------------------- | ------------------------------ | ---------------------------- |
   | education\_loan        | 0                              | 0                            |
   | education\_non\_loan   | 0                              | 5%                           |
