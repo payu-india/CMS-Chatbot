@@ -103,6 +103,12 @@ curl --location --request PATCH 'https://uatoneapi.payu.in/payout/v2/virtualAcco
 
 | Field           | Description                                                                                |
 | ------------------- | ------------------------------------------------------------------------------------------ |
+| `virtualAccountId`     | PayU-assigned VA identifier. Use this in get-details, deactivate, and list-deposits APIs. |
+| `merchantId`           | Sub-merchant MID the VA belongs to                                                        |
+| `virtualAccountName`   | Name supplied at creation                                                                 |
+| `virtualAccountNumber` | Account number the payer credits                                                          |
+| `ifsc`                 | IFSC for the VA (corporate VA IFSC for Axis-backed accounts)                              |
+| `merchantName`         | Registered merchant name                                                                  |
 | isActive    | `false` after successful deactivation                                                      |
 | noOfPages     | Total pages for the current `pageSize`                                                                                 |
 | totalElements   | Total VA records for the MID                                                                                           |
