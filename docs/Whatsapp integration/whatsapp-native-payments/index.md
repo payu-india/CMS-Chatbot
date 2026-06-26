@@ -83,6 +83,10 @@ With PayU’s in-app payments on WhatsApp Business, businesses can now offer the
 <Image src="https://files.readme.io/ed4f484-image.png" align="center" border={true} />
 
 
+<br />
+
+For the detailed customer journey, refer to [Customer Journey - WhatsApp Integration.](doc:customer-journey-whatsapp-integration)
+
 ## Experience Native WhatsApp Payments
 
 Experience the native WhatsApp payments journey yourself by scanning the below QR code.
