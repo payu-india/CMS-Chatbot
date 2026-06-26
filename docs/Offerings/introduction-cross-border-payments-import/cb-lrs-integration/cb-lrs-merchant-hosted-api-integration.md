@@ -97,6 +97,7 @@ The Generate Token API is used to generate the token to be used in [Step 1b](#st
     </tbody>
   </Table>
 `}</HTMLBlock>
+
 </Accordion>
 <br/>
 <Accordion title="Sample request" icon="fa-info-circle">
