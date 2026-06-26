@@ -1,10 +1,10 @@
 ---
-title: Integrate WhatsApp Payments
+title: Integrate P2M or UPI Intent URL for  WhatsApp Payments
 excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: Integrate PayU for WhatsApp Payments
+  title: Integrate P2M or UPI Intent URL for  WhatsApp Payments
   description: >-
     Learn how to integrate WhatsApp Payments with PayU to enhance your business
     transactions. This guide provides detailed steps for setting up and managing
