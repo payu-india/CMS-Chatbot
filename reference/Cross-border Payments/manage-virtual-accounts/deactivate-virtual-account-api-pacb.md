@@ -107,7 +107,7 @@ curl --location --request PATCH 'https://uatoneapi.payu.in/payout/v2/virtualAcco
 
 
 <Callout icon="📘" theme="info">
-  ### Note:
+Note:
 
   Deactivation blocks **new** incoming transfers to the VA. Credits already received and linked PayU transactions are not removed. Contact your PayU Key Account Manager (KAM) if you need to reactivate a VA.
 </Callout>
