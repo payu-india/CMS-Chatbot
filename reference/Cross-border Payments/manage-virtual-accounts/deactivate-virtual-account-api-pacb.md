@@ -101,13 +101,13 @@ curl --location --request PATCH 'https://uatoneapi.payu.in/payout/v2/virtualAcco
 
 ### data JSON Fields Description
 
-| Parameter           | Description                                                                                |
+| Field           | Description                                                                                |
 | ------------------- | ------------------------------------------------------------------------------------------ |
-| isActive`     | `false` after successful deactivation                                                      |
-| `noOfPages`       | Total pages for the current `pageSize`                                                                                 |
-| `totalElements`   | Total VA records for the MID                                                                                           |
-| `currentPage`     | Current page number                                                                                                    |
-| `virtualAccounts` | Array of VA objects  |
+| isActive    | `false` after successful deactivation                                                      |
+| noOfPages     | Total pages for the current `pageSize`                                                                                 |
+| totalElements   | Total VA records for the MID                                                                                           |
+| currentPage    | Current page number                                                                                                    |
+| virtualAccounts | Array of VA objects  |
 
 <Callout icon="📘" theme="info">
 Note:
