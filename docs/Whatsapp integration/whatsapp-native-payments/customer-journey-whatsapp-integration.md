@@ -1,5 +1,5 @@
 ---
-title: Customer Journey - WhatsApp Integration
+title: Customer Journey
 deprecated: false
 hidden: false
 metadata:
