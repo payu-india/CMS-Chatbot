@@ -1,7 +1,7 @@
 ---
 title: Integrate Merchant Hosted Checkout
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Integrate Merchant Hosted Checkout - Cross Border Transaction under LRS
   keywords:
@@ -132,6 +132,34 @@ https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_statu
 ```
 
 <Accordion title="Request parameters" icon="fa-table">
+
+#### Header
+<HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+<thead>
+<tr>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameters</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>token</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter must contain the token that must be revoked.</p>
+</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>{token}</code></p>
+</td>
+</tr>
+</tbody>
+</table>
+`}</HTMLBlock>
+
+
+
+
+####Body Parameters
   | Parameter                     | Description                                                   | Example      |
   | ----------------------------- | ------------------------------------------------------------- | ------------ |
   | `pan_number`<br />`mandatory` | The PAN (Permanent Account Number) to be verified             | "CYCPD2784G" |
