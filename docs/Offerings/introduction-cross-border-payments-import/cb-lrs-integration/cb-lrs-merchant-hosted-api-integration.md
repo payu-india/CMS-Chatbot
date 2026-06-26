@@ -39,6 +39,8 @@ The Generate Token API is used to generate the token to be used in [Step 1b](#st
 | **Production** | [https://accounts.payu.in](https://accounts.payu.in)         |
 
 <Accordion title="Request parameters" icon="fa-info-circle">
+<HTMLBlock>{`
+
   <Table>
     <thead>
       <tr>
@@ -94,6 +96,9 @@ The Generate Token API is used to generate the token to be used in [Step 1b](#st
       </tr>
     </tbody>
   </Table>
+
+
+`}</HTMLBlock>
 </Accordion>
 
 <Accordion title="Sample request" icon="fa-info-circle">
