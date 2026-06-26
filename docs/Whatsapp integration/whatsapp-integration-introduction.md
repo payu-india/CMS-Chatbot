@@ -12,7 +12,7 @@ PayU supports multiple ways to accept payments on WhatsApp in partnership with M
 - **UPI Intent URL:&#x20;**&#x55;PI Intent URL sends a structured **order\_details** message in WhatsApp; when the customer taps **Pay Now**, where the opens with the amount pre-filled, they authorise with UPI PIN, and the business gets confirmation in chat. It as a lightweight and no Meta template approval is required, and suited to utility bills, quick collections, and subscription renewals.&#x20;
 
   You can use your existing PayU PG webhook; enablement typically involves VPA / MCC / payment code from PayU rather than full P2M payment\_configuration. For more information, refer to [WhatsApp Payments Integration.](doc:whatsapp-native-payments)
-- **Enhanced Payment Links (EPL)** is the simplest option: you send an approved WhatsApp **template** message with a **Pay Now** call-to-action, the customer taps it, and completes payment on PayU’s **Hosted Checkout** page on the browser (outside WhatsApp) and on WhatsApp app itself for UPI payments. If you already use PayU **payment links**, link generation and **webhooks** work the same as today. For more information, refer to [Enhanced Payment Links on WhatsApp.](doc:enhanced-payment-links-on-whatsapp)
+- **Enhanced Payment Links (EPL)** is the simplest option: you send an approved WhatsApp **template** message with a **Pay Now** call-to-action, the customer taps it, and completes payment on PayU’s **Hosted Checkout** page, whereas on WhatsApp app itself for UPI payments. If you already use PayU **payment links**, link generation and **webhooks** work the same as today. For more information, refer to [Enhanced Payment Links on WhatsApp.](doc:enhanced-payment-links-on-whatsapp)
 
 ## PayU Offerings
 
