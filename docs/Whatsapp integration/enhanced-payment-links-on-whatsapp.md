@@ -49,7 +49,6 @@ PayU supports multiple ways to accept payments on WhatsApp in partnership with M
 
 EPL uses Meta’s **Enhanced Payment Links** pattern: PayU generates a **payment link** for the order, your system sends a WhatsApp **Cloud API** template whose CTA URL carries the PayU link (with the **PayU-specific URL suffix** Meta requires), WhatsApp shows an enhanced card with **Pay Now**, and the customer pays on PayU checkout using **UPI, cards, net banking, wallets, EMI**, and other methods your PayU setup supports.
 
-
 ## How the payment flow works
 
 1. Your backend calls PayU to **generate a payment link** (same as existing payment-link flows).
@@ -206,23 +205,18 @@ Real-world examples cited in product materials include **PolicyBazaar** (reporte
 <Callout icon="📌" theme="default">
   ### Integrate with Meta&#x20;
 
-  Refer to the following to integrating with Meta before proceeding with PayU:
-
-  - <Anchor target="_blank" href="https://developers.facebook.com/documentation/business-messaging/whatsapp/payments/payments-in/payment-links">Meta > Payment Links</Anchor>
-  - <Anchor target="_blank" href="https://developers.facebook.com/documentation/business-messaging/whatsapp/payments/payments-in/upi-intent/dynamic-vpa">Meta > UPI Intent</Anchor>
-  - <Anchor target="_blank" href="https://developers.facebook.com/documentation/business-messaging/whatsapp/payments/payments-in/enhanced-payment-links">Meta > Enhanced Payment Links</Anchor>
+  Refer to the following to integrating with Meta before proceeding with PayU. For more information, refer to <Anchor target="_blank" href="https://developers.facebook.com/documentation/business-messaging/whatsapp/payments/payments-in/enhanced-payment-links">Meta > Enhanced Payment Links</Anchor>
 </Callout>
 
 The following table describes other prerequisites:
 
-| Requirement                          | Detail                                                                                                                      |
-| :----------------------------------- | :-------------------------------------------------------------------------------------------------------------------------- |
-| **WhatsApp Business Account (WABA)** | **Enterprise** WABA, **verified** with Meta.                                                                                |
-| **Approved message template**        | Template with a **CTA button**; URL must follow Meta’s **PayU-specific link suffix** rules. Submitted and approved by Meta. |
-| **PayU account**                     | Standard PayU merchant account.                                                                                             |
-| **EPL allowlisting**                 | WABA must be added to Meta’s **EPL gating list**—PayU or your **BSP** drives this.                                          |
-| **OAuth to link PG in WA**           | **Not required** for EPL.                                                                                                   |
-| **Webhooks**                         | Keep your **existing PayU webhook**; no new WhatsApp payment webhook is required for EPL.                                   |
+| Requirement                          | Detail                                                                                                                          |
+| :----------------------------------- | :------------------------------------------------------------------------------------------------------------------------------ |
+| **WhatsApp Business Account (WABA)** | **Enterprise** WABA, **verified** with Meta.                                                                                    |
+| **Approved message template**        | Template with a **CTA button**; URL must follow Meta’s **PayU-specific link suffix** rules. Submitted and approved by Meta.     |
+| **PayU account**                     | Standard PayU merchant account.                                                                                                 |
+| **EPL allowlisting**                 | WABA must be added to Meta’s **EPL gating list**, which will be done by PayU Key Account Manager (KAM). Contact your PayU KAM.  |
+| **Webhooks**                         | Keep your **existing PayU webhook**; no new WhatsApp payment webhook is required for EPL.                                       |
 
 <Callout icon="✅" theme="okay">
   ### Gating list or allowlist (also known as GK biglist) is Meta's authorization mechanism for WhatsApp.
@@ -231,7 +225,7 @@ The following table describes other prerequisites:
 <Callout icon="📘" theme="info">
   ### Contact PayU KAM
 
-  For **WABA verification**, **template submission**, **EPL allowlisting**, and **commercial enablement**, work with your **PayU Key Account Manager (KAM)** or your **BSP** so the correct Meta and PayU steps complete in order.
+  For **WABA verification**, **EPL allowlisting**, and **commercial enablement**, work with your **PayU Key Account Manager (KAM)** or your **BSP** so the correct Meta and PayU steps complete in order.
 </Callout>
 
 ***
