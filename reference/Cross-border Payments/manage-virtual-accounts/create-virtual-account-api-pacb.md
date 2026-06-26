@@ -1,8 +1,9 @@
 ---
-title: Create Virtual Account API - PACB
+title: Create Virtual Account API
 deprecated: false
 hidden: true
 metadata:
+  title: Create Virtual Account API - PACB
   robots: index
 ---
 Provision a **Virtual Account (VA)** for a Cross-Border Payments sub-merchant. PayU returns the VA number and IFSC that the payer uses for NEFT, RTGS, or IMPS transfers.
