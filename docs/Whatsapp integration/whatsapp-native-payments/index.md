@@ -4,7 +4,7 @@ excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: P2M or UPI Intent URL Integration - WhatsApp Payments
+  title: P2M or UPI Intent URL for WhatsApp Payments
   description: >-
     Discover how to integrate and use WhatsApp Native Payments with PayU. This
     guide provides detailed instructions for setting up, managing transactions,
