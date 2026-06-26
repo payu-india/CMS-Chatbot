@@ -19,11 +19,11 @@ Provision a **Virtual Account (VA)** for a Cross-Border Payments sub-merchant. P
 
 ### Request Header
 
-| Parameter                      | Description                                                                                                           | Example                                                                 |
-| ------------------------------ | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| Authorization<br />`mandatory` | `String` - Bearer access token from Payouts authentication. For more information on generating Bearer token, refer to | Bearer aab9dc927c4a68af7eb95ef694f0b48bb731c5a1a7111786d6658d774db14188 |
-| merchantId<br />`mandatory`    | `Integer` - PayU MID of the sub-merchant                                                                              | 12345                                                                   |
-| Content-Type<br />`mandatory`  | `String` - Request body format. Set to `application/json`                                                             | application/json                                                        |
+| Parameter                      | Description                                                                                                           | Example                                                                                         |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Authorization<br />`mandatory` | `String` - Bearer access token from Payouts authentication. For more information on generating Bearer token, refer to | Bearer aab9dc927<br />c4a68af7eb95ef69<br />4f0b48bb731c5a1a<br />7111786d6658d774<br />db14188 |
+| merchantId<br />`mandatory`    | `Integer` - PayU MID of the sub-merchant                                                                              | 12345                                                                                           |
+| Content-Type<br />`mandatory`  | `String` - Request body format. Set to `application/json`                                                             | application/json                                                                                |
 
 ### Body Parameters
 
@@ -101,16 +101,66 @@ curl --location --request POST 'https://uatoneapi.payu.in/payout/v2/virtualAccou
 
 ## Response parameters
 
-| Parameter                   | Description                                                                               |
-| --------------------------- | ----------------------------------------------------------------------------------------- |
-| `data.virtualAccountId`     | PayU-assigned VA identifier. Use this in get-details, deactivate, and list-deposits APIs. |
-| `data.merchantId`           | Sub-merchant MID the VA belongs to                                                        |
-| `data.virtualAccountName`   | Name supplied at creation                                                                 |
-| `data.virtualAccountNumber` | Account number the payer credits                                                          |
-| `data.ifsc`                 | IFSC for the VA (corporate VA IFSC for Axis-backed accounts)                              |
-| `data.merchantName`         | Registered merchant name                                                                  |
-| `data.isActive`             | `true` when the VA accepts new credits                                                    |
-| `data.externalRefId`        | Merchant reference ID, if provided                                                        |
+  <HTMLBlock>{`
+            <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+              <thead>
+                <tr style="background-color: #f5f5f5;">
+                  <th style="padding: 10px; border: 1px solid #ddd; font-weight: bold; text-align: left;">Parameter</th>
+                  <th style="padding: 10px; border: 1px solid #ddd; font-weight: bold; text-align: left;">Description</th>
+                  <th style="padding: 10px; border: 1px solid #ddd; font-weight: bold; text-align: left;">Example</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">status</td>
+                  <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">
+                    This parameter returns the status of web service call. The status can be any of the following: 
+                    <ul style="padding-left: 20px; margin-top: 5px;">
+                      <li>0 - If web service call failed.</li>
+                      <li>1 - If web service call succeeded</li>
+                    </ul>
+                  </td>
+                  <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">0</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">msg</td>
+                  <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">This parameter returns the reason string.</td>
+                  <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">
+                    For example, any of the following messages are displayed:
+                    <ul style="padding-left: 20px; margin-top: 5px;">
+                      <li>Parameter missing</li>
+                      <li>Token is empty</li>
+                      <li>Amount is empty</li>
+                      <li>Transaction not exists</li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">data</td>
+                  <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">This parameter contains the virtual account details in JSON format. For more infomration, refer to [data JSON Fields Description](#data-json-fields-description)</td>
+                  <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;"><code>{"TDR": 0}</code></td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">TDR_details.TDR</td>
+                  <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">The Transaction Discount Rate value for the given transaction.</td>
+                  <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">0</td>
+                </tr>
+              </tbody>
+            </table>
+  `}</HTMLBlock>
+
+### data JSON Fields Description
+
+| Parameter              | Description                                                                               |
+| ---------------------- | ----------------------------------------------------------------------------------------- |
+| `virtualAccountId`     | PayU-assigned VA identifier. Use this in get-details, deactivate, and list-deposits APIs. |
+| `merchantId`           | Sub-merchant MID the VA belongs to                                                        |
+| `virtualAccountName`   | Name supplied at creation                                                                 |
+| `virtualAccountNumber` | Account number the payer credits                                                          |
+| `ifsc`                 | IFSC for the VA (corporate VA IFSC for Axis-backed accounts)                              |
+| `merchantName`         | Registered merchant name                                                                  |
+| `isActive`             | `true` when the VA accepts new credits                                                    |
+| `externalRefId`        | Merchant reference ID, if provided                                                        |
 
 <Callout icon="📘" theme="info">
   ### Note:
