@@ -1,8 +1,9 @@
 ---
-title: ' Deactivate Virtual Account API - PACB'
+title: ' Deactivate Virtual Account API'
 deprecated: false
 hidden: true
 metadata:
+  title: ' Deactivate Virtual Account API - PACB'
   robots: index
 ---
 ---
