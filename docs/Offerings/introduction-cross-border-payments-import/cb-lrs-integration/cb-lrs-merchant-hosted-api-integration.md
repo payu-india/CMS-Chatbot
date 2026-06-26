@@ -32,12 +32,13 @@ You must generate the bearer token as in [Step 1a](#step-1a-generate-token) and 
 
 ### Step 1a: Generate Token
 The Generate Token API is used to generate the token to be used in [Step 1b](#step-1b-validate-pan-card-using-api).
+<br/>
 **Environment**
 
 | Test           | [https://uat-accounts.payu.in](https://uat-accounts.payu.in) |
 | :------------- | :----------------------------------------------------------- |
 | **Production** | [https://accounts.payu.in](https://accounts.payu.in)         |
-
+<br/>
 <Accordion title="Request parameters" icon="fa-info-circle">
   <Table>
     <thead>
@@ -95,7 +96,7 @@ The Generate Token API is used to generate the token to be used in [Step 1b](#st
     </tbody>
   </Table>
 </Accordion>
-
+<br/>
 <Accordion title="Sample request" icon="fa-info-circle">
   ```curl
   curl --location -g --request POST '{{hub_base_url}}/oauth/token' \
@@ -106,7 +107,7 @@ The Generate Token API is used to generate the token to be used in [Step 1b](#st
   --data-urlencode 'scope=get_pan_details'
   ```
 </Accordion>
-
+<br/>
 <Accordion title="Sample response" icon="fa-info-circle">
   ### Success scenario
 
@@ -120,17 +121,17 @@ The Generate Token API is used to generate the token to be used in [Step 1b](#st
   }
   ```
 </Accordion>
-
+<br/>
 ### Step 1b: Validate PAN Card using API
 
 The PAN Card Status Check API allows merchants to verify PAN (Permanent Account Number) card details. It validates whether a given PAN number is active, confirms if the provided name and date of birth match the official PAN records, and checks the seeding status of the PAN. This API is essential for KYC (Know Your Customer) processes, identity verification, and regulatory compliance.
-
-**Endpoint**
+<br/>
+**Environment**
 | Test           | https://uat-onepayuonboarding.payu.in/ |
 | :------------- | :----------------------------------------------------------- |
 | **Production** | https://onboarding.payu.in/       |
 
-
+<br/>
 <Accordion title="Request parameters" icon="fa-table">
 
 #### Header
@@ -156,7 +157,7 @@ The PAN Card Status Check API allows merchants to verify PAN (Permanent Account 
 </table>
 `}</HTMLBlock>
 
-
+<br/>
 ####Body Parameters
   | Parameter                     | Description                                                   | Example      |
   | ----------------------------- | ------------------------------------------------------------- | ------------ |
@@ -177,7 +178,7 @@ The PAN Card Status Check API allows merchants to verify PAN (Permanent Account 
   }'
   ```
 </Accordion>
-
+<br/>
 <Accordion title="Sample Response" icon="fa-reply">
   ```json
   {
@@ -201,7 +202,7 @@ The PAN Card Status Check API allows merchants to verify PAN (Permanent Account 
   }
   ```
 </Accordion>
-
+<br/>
 <Accordion title="Response Parameters" icon="fa-table">
   | Parameter    | Description                                             | Example                                                              |
   | ------------ | ------------------------------------------------------- | -------------------------------------------------------------------- |
@@ -215,7 +216,7 @@ The PAN Card Status Check API allows merchants to verify PAN (Permanent Account 
   | created\_at  | Timestamp when the verification record was created      | `"2025-04-30T05:51:40.000Z"`                                         |
   | updated\_at  | Timestamp when the verification record was last updated | `"2025-04-30T05:51:40.000Z"`                                         |
   | client\_name | Name of the client account                              | `"SignzyClient"`                                                     |
-
+<br/>
   #### Response Result Object
 
   | Parameter     | Description                                                        | Example    |
@@ -225,7 +226,7 @@ The PAN Card Status Check API allows merchants to verify PAN (Permanent Account 
   | dobMatch      | Indicates if the provided DOB matches with PAN records (Y/N)       | `"Y"`      |
   | seedingStatus | Indicates if the PAN is seeded with additional verifications (Y/N) | `"Y"`      |
 </Accordion>
-
+***
 ## Step 2: Request Payment with PayU
 
 The following parameters (mandatory) must be posted using any of the following seamless integration.
