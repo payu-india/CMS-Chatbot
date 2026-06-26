@@ -38,67 +38,13 @@ The Generate Token API is used to generate the token to be used in [Step 1b](#st
 | :------------- | :----------------------------------------------------------- |
 | **Production** | [https://accounts.payu.in](https://accounts.payu.in)         |
 
-<Accordion title="Request parameters" icon="fa-info-circle">
-<HTMLBlock>{`
-
-  <Table>
-    <thead>
-      <tr>
-        <th>
-          Parameters
-        </th>
-
-        <th>
-          Description
-        </th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr>
-        <td>
-          client\_id
-        </td>
-
-        <td>
-          For getting your client ID, refer to [Get Client ID and Secret from Dashboard](doc:get-client-id-and-secret-from-dashboard)
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          client\_secret
-        </td>
-
-        <td>
-          For getting your client secret, refer to [Get Client ID and Secret from Dashboard](doc:get-client-id-and-secret-from-dashboard)
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          scope
-        </td>
-
-        <td>
-          The scope that must be used for PAN Card validation is `get_pan_details`.
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          grant\_type
-        </td>
-
-        <td>
-          This parameter contains a constant value used to get the access token. The grant\_type used across the partner integration is **client\_credentials**.
-        </td>
-      </tr>
-    </tbody>
-  </Table>
-
-
-`}</HTMLBlock>
+<Accordion title="Request parameters" icon="fa-table">
+  | Parameter | Description |
+  | :--- | :--- |
+  | `client_id` | For getting your client ID, refer to [Get Client ID and Secret from Dashboard](doc:get-client-id-and-secret-from-dashboard). |
+  | `client_secret` | For getting your client secret, refer to [Get Client ID and Secret from Dashboard](doc:get-client-id-and-secret-from-dashboard). |
+  | `scope` | The scope that must be used for PAN Card validation is `get_pan_details`. |
+  | `grant_type` | This parameter contains a constant value used to get the access token. The `grant_type` used across the partner integration is **client_credentials**. |
 </Accordion>
 
 <Accordion title="Sample request" icon="fa-info-circle">
