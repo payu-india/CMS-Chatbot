@@ -207,11 +207,11 @@ The PAN Card Status Check API allows merchants to verify PAN (Permanent Account 
   | ------------ | ------------------------------------------------------- | -------------------------------------------------------------------- |
   | id           | Unique identifier for the verification request          | `86235`                                                              |
   | api\_name    | Identifier of the API that was called                   | `"pan_status_check"`                                                 |
-  | identifier   | A unique hash identifier for the verification request   | `"79c0d918a4f4661cb9cb17d96d24ac1cf04b6013d504cc766ac5235380bfc0d5"` |
+  | identifier   | A unique hash identifier for the verification request   | `79c0d918a4f4661cb9cb`<br/>`17d96d24ac1cf0`<br/>`>4b6013d504cc766a`<br/>`c5235380bfc0d5` |
   | response     | Contains the verification results                       | See result table below                                               |
   | status       | Overall status of the API call                          | `"success"`                                                          |
   | http\_status | HTTP status code of the response                        | `200`                                                                |
-  | client\_id   | Unique identifier of the client making the request      | `"195ab95fa4700eeaaf38b7f5b538d2979f0f281e0a4eaedca1aa675b79b331a2"` |
+  | client\_id   | Unique identifier of the client making the request      | `195ab95fa4700eeaa`<br/>`f38b7f5b538d2979`<br/>`f0f281e0a4eaedca`<br/>`1aa675b79b331a2` |
   | created\_at  | Timestamp when the verification record was created      | `"2025-04-30T05:51:40.000Z"`                                         |
   | updated\_at  | Timestamp when the verification record was last updated | `"2025-04-30T05:51:40.000Z"`                                         |
   | client\_name | Name of the client account                              | `"SignzyClient"`                                                     |
