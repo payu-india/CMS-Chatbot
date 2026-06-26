@@ -8,7 +8,7 @@ metadata:
 ---
 PayU supports multiple ways to accept payments on WhatsApp in partnership with Meta. Merchants integrate with PayU; PayU handles the Meta side—you do not need a separate commercial or technical integration with Meta for these flows.
 
-- **P2M** (PG Deep Integration): P2M is Meta’s full in-chat checkout: When your business sends a **catalogue&#x20;**&#x6F;r **order** in WhatsApp, the customer taps **Review & Pay**, and a native payment sheet opens the following payment modes without leaving the app:&#x20;
+- **P2M** (PG Deep Integration or Native WhatsApp Native Payments): P2M is Meta’s full in-chat checkout: When your business sends a **catalogue&#x20;**&#x6F;r **order** in WhatsApp, the customer taps **Review & Pay**, and a native payment sheet opens the following payment modes without leaving the app:&#x20;
   - UPI
   - Cards
   - Net Banking
