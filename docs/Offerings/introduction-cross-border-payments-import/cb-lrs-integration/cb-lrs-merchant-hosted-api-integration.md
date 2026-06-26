@@ -119,7 +119,7 @@ The Generate Token API is used to generate the token to be used in [Step 1b](#st
   "created_at": 1763036368
   }
   ```
-
+</Accordion>
 
 ### Step 1b: Validate PAN Card using API
 
