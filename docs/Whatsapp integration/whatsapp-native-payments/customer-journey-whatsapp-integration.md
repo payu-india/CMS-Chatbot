@@ -1,7 +1,7 @@
 ---
 title: Customer Journey - WhatsApp Integration
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
@@ -64,4 +64,3 @@ In a live integration, your backend creates the **UPI Intent** via PayU and send
 
 
 <Image src="https://files.readme.io/c5e2f5a86bc6fa4daf9e70becb83d20761dcf8da94e0c2510e9888c9e4788961-payment-experience-p2m-flow-lite.gif" align="left" width="300px" wrap={true} />
-
