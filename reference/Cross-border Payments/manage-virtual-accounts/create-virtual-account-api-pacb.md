@@ -32,8 +32,7 @@ Provision a **Virtual Account (VA)** for a Cross-Border Payments sub-merchant. P
 | virtualAccountName<br />`mandatory` | `String` - Display name for the VA in reports and dashboards | Storefront collections Q1 |
 | externalRefId<br />`optional`       | `String` - Your reference ID for reconciliation              | merchant-va-ref-001       |
 
-<details>
-  <summary>Sample request</summary>
+## Sample Request
 
 ```curl
 curl --location --request POST 'https://uatoneapi.payu.in/payout/v2/virtualAccounts' \
@@ -45,12 +44,8 @@ curl --location --request POST 'https://uatoneapi.payu.in/payout/v2/virtualAccou
   "externalRefId": "merchant-va-ref-001"
 }'
 ```
-
-</details>
-
-<details>
-  <summary>Sample success response</summary>
-
+## Sample Response
+### Success scenario
 ```json
 {
   "status": 0,
@@ -68,12 +63,8 @@ curl --location --request POST 'https://uatoneapi.payu.in/payout/v2/virtualAccou
   "code": null
 }
 ```
-
-</details>
-
-<details>
-  <summary>Sample validation failure response</summary>
-
+### Failure scenario
+**virtualAccountName parameter value is posted blank** 
 ```json
 {
   "status": 1,
@@ -82,12 +73,7 @@ curl --location --request POST 'https://uatoneapi.payu.in/payout/v2/virtualAccou
   "code": 100125
 }
 ```
-
-</details>
-
-<details>
-  <summary>Sample generic failure response</summary>
-
+**Virtual Account Name is already present or unable to create**
 ```json
 {
   "status": 1,
@@ -97,11 +83,7 @@ curl --location --request POST 'https://uatoneapi.payu.in/payout/v2/virtualAccou
 }
 ```
 
-</details>
-
-## Response parameters
-
-  
+## Response Parameters
 
 <HTMLBlock>{`
           <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
@@ -139,7 +121,7 @@ curl --location --request POST 'https://uatoneapi.payu.in/payout/v2/virtualAccou
               </tr>
               <tr>
                 <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">data</td>
-                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">This parameter contains the virtual account details in JSON format. For more information, refer to <a href="data-json-fields-description">data JSON Fields Descriptiont</a>
+                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">This parameter contains the virtual account details in JSON format. For more information, refer to <a href="#data-json-fields-description">data JSON Fields Description</a>
 </td>
                 <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">refer to <a href="data-json-fields-description">data JSON Fields Descriptiont></td>
               </tr>
