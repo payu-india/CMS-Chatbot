@@ -1,5 +1,5 @@
 ---
-title: PayU Devguide MCP Configuration
+title: PayU Devguide Builder MCP Configuration
 deprecated: false
 hidden: false
 metadata:
