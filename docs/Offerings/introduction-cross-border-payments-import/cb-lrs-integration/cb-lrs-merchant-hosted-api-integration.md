@@ -29,9 +29,9 @@ The steps to integrate involves:
 
 ## Step 1: Validate the PAN card
 
-The PAN Card Status Check API allows merchants to verify PAN (Permanent Account Number) card details. It validates whether a given PAN number is active, confirms if the provided name and date of birth match the official PAN records, and checks the seeding status of the PAN. This API is essential for KYC (Know Your Customer) processes, identity verification, and regulatory compliance.
 
 ### Step 1a: Generate Token
+The Generate Token API is used to generate the token to be used in Step 1b.
 ### Environment
 
 | Test           | [https://uat-accounts.payu.in](https://uat-accounts.payu.in) |
@@ -122,10 +122,13 @@ The PAN Card Status Check API allows merchants to verify PAN (Permanent Account 
 
 
 ### Step 1b: Validate PAN Card using API
+
+The PAN Card Status Check API allows merchants to verify PAN (Permanent Account Number) card details. It validates whether a given PAN number is active, confirms if the provided name and date of birth match the official PAN records, and checks the seeding status of the PAN. This API is essential for KYC (Know Your Customer) processes, identity verification, and regulatory compliance.
+
 **Endpoint**
 
 ```
-https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
+https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_statu
 ```
 
 <Accordion title="Request parameters" icon="fa-table">
