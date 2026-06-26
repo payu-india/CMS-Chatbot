@@ -36,16 +36,18 @@ To enable payments for partners powered by PayU, following steps need to be comp
 
 PayU has partnered with the top BSPs in India for seamless integration & enablement with a few clicks. Please reach out to your BSP to enable WhatsApp payments. In case your BSP currently does not offer native payments, please reach out to Meta directly.
 
-<Callout icon="👍">
-  **Reference**: For more details around the WhatsApp Business APIs for native payments, refer to [Meta Native Payments Documentation ](https://developers.facebook.com/docs/whatsapp/on-premises/payments-api/payments-in/pg).
+<Callout icon="👍" theme="okay">
+  ### **Reference:**
+
+  For more details around the WhatsApp Business APIs for native payments, refer to <Anchor target="_blank" href="https://developers.facebook.com/docs/whatsapp/on-premises/payments-api/payments-in/pg">Meta Native Payments Documentation&#x20;</Anchor>.
 </Callout>
 
 ## Step 2: Link PayU Account with WhatsApp
 
 Once the BSP has integrated with WhatsApp Business APIs and integrated payments, you need to link your PayU account with WhatsApp. Depending on how your WhatsApp Business account is managed, following approaches are applicable:
 
-* **Self-owned WhatsApp Business Account**: Directly link your WhatsApp Business Account with PayU using the Meta Business Manager. This is applicable if your have direct access to your Meta Business Manager.
-* **BSP-owned WhatsApp Business Account**: Link your WhatsApp Business Account with the help of the BSP provider. This is applicable if you do not have direct access to your Meta Business Manager - and the BSP runs it end-to-end.
+- **Self-owned WhatsApp Business Account**: Directly link your WhatsApp Business Account with PayU using the Meta Business Manager. This is applicable if your have direct access to your Meta Business Manager.
+- **BSP-owned WhatsApp Business Account**: Link your WhatsApp Business Account with the help of the BSP provider. This is applicable if you do not have direct access to your Meta Business Manager - and the BSP runs it end-to-end.
 
 ### Self-owned WhatsApp Business Account
 
@@ -57,9 +59,11 @@ To integrate PayU with your WhatsApp Business Account:
 4. Shares the link generated with the merchant that will redirect to PayU payment page.
 5. Configure PayU Key and Salt. For more information on checking your Key and Salt, refer to [Check your API Key and Salt](doc:check-api-key-and-salt).
 
-> 📘 Reference:
->
-> For detailed instructions on self-owned WhatsApp business account linking, refer to [Link PayU with WhatsApp Business Account​](doc:link-payu-with-whatsapp-business-account).
+<Callout icon="📘" theme="info">
+  ### Reference:
+
+  For detailed instructions on self-owned WhatsApp business account linking, refer to [Link PayU with WhatsApp Business Account​](doc:link-payu-with-whatsapp-business-account).
+</Callout>
 
 ### BSP-owned WhatsApp Business Account
 
