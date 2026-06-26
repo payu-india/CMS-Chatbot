@@ -1,8 +1,4 @@
 ---
-title: Get Access Token
-excerpt: >-
-  Obtain an access token using OAuth 2.0 Client Credentials flow for API
-  authentication
 api:
   file: PayU_OAuth2_Collection.json
   operationId: getAccessToken
@@ -12,13 +8,17 @@ link:
 ---
 The **Get Token API** returns the authentication token generated using the client ID and client secret.
 
+
 ### Environment
 
 | Test           | [https://uat-accounts.payu.in](https://uat-accounts.payu.in) |
 | :------------- | :----------------------------------------------------------- |
 | **Production** | [https://accounts.payu.in](https://accounts.payu.in)         |
 
+
 <Accordion title="Additional information for request parameters" icon="fa-info-circle">
+
+<HTMLBlock>{`
   <Table>
     <thead>
       <tr>
@@ -82,6 +82,9 @@ The **Get Token API** returns the authentication token generated using the clien
       </tr>
     </tbody>
   </Table>
+
+`}</HTMLBlock>
+
 </Accordion>
 
 <Accordion title="Response parameters" icon="fa-download">
@@ -177,3 +180,5 @@ The **Get Token API** returns the authentication token generated using the clien
 </Accordion>
 
 ## Request parameters
+
+<br />
