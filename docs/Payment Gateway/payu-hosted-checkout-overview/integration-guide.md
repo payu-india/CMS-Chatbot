@@ -9,9 +9,11 @@ PayU Hosted Checkout enables merchants to securely accept online payments by red
 
 Follow these steps to integrate the PayU Hosted Checkout on your website and accept live payments.<br />
 
-> 👍 **Payment Flow**
->
-> Before you start integrating, it’s important to understand how <Anchor target="_blank" href="https://docs.payu.in/docs/payu-hosted-checkout-overview#how-payment-flow-works">PayU Hosted Checkout payment flow</Anchor> and <Anchor target="_blank" href="https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/payu-hosted-checkout-overview#customer-journey">customer journey works</Anchor>.
+<Callout icon="👍" theme="okay">
+  ### **Payment Flow**
+
+  Before you start integrating, it’s important to understand how <Anchor target="_blank" href="https://docs.payu.in/docs/payu-hosted-checkout-overview#how-payment-flow-works">PayU Hosted Checkout payment flow</Anchor> and <Anchor target="_blank" href="https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/payu-hosted-checkout-overview#customer-journey">customer journey works</Anchor>.
+</Callout>
 
 <HoverCardGrid
   columns={2}
@@ -40,9 +42,13 @@ Follow these steps to integrate the PayU Hosted Checkout on your website and acc
   ]}
 />
 
+***
+
 ## Prerequisites
 
 Go through the <Anchor target="_blank" href="https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/payu-hosted-checkout-quick-start#prerequisites">prerequisites</Anchor> before you proceed with the integration.
+
+***
 
 ## Supported Payment Methods
 
@@ -53,6 +59,8 @@ These payment methods are available by default for PayU hosted checkout.
 - Debit Cards
 - UPI
 - Wallets
+
+***
 
 ## 1. Build Integration&#x20;
 
@@ -65,6 +73,8 @@ Below are the steps to build an integration:
 4. After you receive a response, you should [verify it via reverse hashing](https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#step-14-verify-response-via-reverse-hashing). This is a critical step to verify the authenticity of the payment.
    1. You should [create a reverse hash](https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#step-141-reverse-hashing) using a hash logic mentioned in this step.
 5. After the transaction is done, should [verify the payment](https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#step-15-verify-the-payment) status as a final step.
+
+***
 
 ### Step 1.1 Prepare Payment Request Parameters
 
@@ -106,6 +116,8 @@ Send these optional parameters in the request as required.
 | `custom_note`      | `string` Use this parameter to display a message on the PayU Payment page. This can be useful if you want to provide additional information to your customers, such as an extra charge for a particular product. The message specified in the custom\_note parameter will be displayed below the payment options. For example, `You will be charged an extra amount of Rs 100 on this transaction.` |
 | `note_category`    | `string` Use this parameter to specify which payment options the custom note message should be displayed for. This parameter should contain a comma-separated list of the payment options that you want the custom note to be displayed for. Example: `CC, NB` This will show the custom\_note for Credit Card and Net banking.                                                                     |
 </Accordion>
+
+***
 
 ### Step 1.2: Generate Secure Hash
 
@@ -412,6 +424,8 @@ To ensure the payment request is secure, you should generate a hash using your t
   </Callout>
 
 </Accordion>
+
+***
 
 ### Step 1.3 Redirect Customers to PayU Checkout
 
@@ -1382,6 +1396,8 @@ You can customize the following in the Checkout page:<br/>
 Refer to the <a href="https://docs.payu.in/docs/payu-payment-page-customization" target="_blank">Customize PayU Payment Page</a> for more information about cutomizing the PayU payment page.
 </Accordion>
 
+***
+
 ### Step 1.4 Verify Response via Reverse Hashing
 
 Response verification ensures that the response originated from PayU and has not been modified. It protects against:
@@ -1396,12 +1412,14 @@ After the payment is successful or failed, PayU POSTs back to your `surl` or `fu
 <Image src="https://files.readme.io/7acf9d72438a6a00b637ef4c70c13b8a4871c3aa6055d7c985bbef5f980fa502-reverse_hashing_flow.png" align="center" caption="_Reverse Hashing Flow_" border={true} framed={true} />
 
 
-> ✅ **Validation Rules:**
->
-> - Generated hash must match response hash
-> - Amount must match original order
-> - Transaction ID must exist
-> - Order should not already be paid
+<Callout icon="✅" theme="okay">
+  ### **Validation Rules:**
+
+  - Generated hash must match response hash
+  - Amount must match original order
+  - Transaction ID must exist
+  - Order should not already be paid
+</Callout>
 
 <Accordion title="Reverse Hashing Logic" icon="fa-arrow-rotate-left">
 Create a hash using the following logic.<br/>
@@ -1413,15 +1431,19 @@ sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amo
 You should compare the hash value you got from the above logic with the hash value you received in the response. The payment is verified if the hash values match and update the order state.
 </Accordion>
 
-> ⚠️ **Watch Out!**
->
-> If hash mismatches:
->
-> - Reject callback
-> - Log security event
-> - Do not mark payment successful
+<Callout icon="⚠️" theme="warn">
+  ### **Watch Out!**
+
+  If hash mismatches:
+
+  - Reject callback
+  - Log security event
+  - Do not mark payment successful
+</Callout>
 
 You can also use the <Anchor target="_blank" href="https://payu-hashverificationtool.onrender.com/">PayU's Hash Verification System</Anchor> to generate a hash (reverse hash) for payment verification.
+
+***
 
 ### Step 1.5 Verify the Payment
 
@@ -1457,20 +1479,26 @@ After the transaction is complete, you should check the payment status. Use PayU
 </Tabs>
 </Accordion>
 
+***
+
 ## 2. Test Integration
 
 After you build the integration, you should test it thoroughly before going live.<br />
 
-> ⚠️ **Watch out!**
->
-> This is a test page. Before making the payment:
->
-> - **Verify API Credentials:** Double-check that you are using the correct key and salt for the test environment.
->
-> - **Validate Hash Calculation:** The most common point of failure is an incorrect hash.
->   - Temporarily print the string that you are passing into the hash function on your server.
->   - Ensure the order of the parameters exactly matches the format specified in the documentation.
->   - Verify that there are no empty or null values for mandatory parameters in the hash string.
+<Callout icon="⚠️" theme="warn">
+  ### **Watch out!**
+
+  This is a test page. Before making the payment:
+
+  - **Verify API Credentials:** Double-check that you are using the correct key and salt for the test environment.
+
+  - **Validate Hash Calculation:** The most common point of failure is an incorrect hash.
+    - Temporarily print the string that you are passing into the hash function on your server.
+    - Ensure the order of the parameters exactly matches the format specified in the documentation.
+    - Verify that there are no empty or null values for mandatory parameters in the hash string.
+</Callout>
+
+***
 
 ### Step 2.1 Simulate a Successful Transaction
 
@@ -1526,13 +1554,17 @@ You can use the following default payment methods and their test details to make
   | Airtel | You can use your mobile number.                                   |        |
 </Accordion>
 
-> 📘 **Handy Tips**
->
-> Apart from the above default payment methods, you can <Anchor target="_blank" href="https://docs.payu.in/docs/payu-payment-page-customization#configure-checkout-payment-methods-and-settings">enable the following payment methods</Anchor> in the checkout:
->
-> - BNPL
-> - EMI
-> - International Payments
+<Callout icon="📘" theme="info">
+  ### **Handy Tips**
+
+  Apart from the above default payment methods, you can <Anchor target="_blank" href="https://docs.payu.in/docs/payu-payment-page-customization#configure-checkout-payment-methods-and-settings">enable the following payment methods</Anchor> in the checkout:
+
+  - BNPL
+  - EMI
+  - International Payments
+</Callout>
+
+***
 
 ### Step 2.2 Simulate a Failed Transaction
 
@@ -1543,15 +1575,19 @@ It is equally important to test the failed transaction. Perform the following st
 2. Select any payment method and simulate a failed transaction by providing a invalid test credentials.
 </Accordion>
 
-> ✅ **Verify**
->
-> Verify the following during a failed transaction:
->
-> - [x] Failure URL is triggered
->
-> - [x] Customer receives appropriate messaging
->
-> - [x] Order remains unpaid
+<Callout icon="✅" theme="okay">
+  ### **Verify**
+
+  Verify the following during a failed transaction:
+
+  - [x] Failure URL is triggered
+
+  - [x] Customer receives appropriate messaging
+
+  - [x] Order remains unpaid
+</Callout>
+
+***
 
 ## 3. Go-live Checklist
 
@@ -1594,6 +1630,8 @@ Make sure the <a href="https://docs.payu.in/docs/webhook-events-and-sample-paylo
 
 - [x] Failure URL is triggered
 </Accordion>
+
+***
 
 ## Errors and Troubleshooting
 
