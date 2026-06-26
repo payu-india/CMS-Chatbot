@@ -623,22 +623,22 @@ Refer to the <Anchor target="_blank" href="https://docs.payu.in/v3.0_pg-web-chec
 
 The categories passed in the `enforce_paymethod` parameter are displayed in the checkout.
 
-***
-
 ### Errors and Troubleshooting
 
-### Payment method not showing
-
-Possible causes:
-
+<Accordion title="Payment method not showing" icon="fa-info-circle">
+**Possible causes:**
 - Invalid method value
+
 - Method not enabled for merchant
+
 - Bank code invalid
+
 - Hash not regenerated
+</Accordion>
 
 ***
 
-# Step 3: Hide Specific Payment Methods (`drop_category`)
+# Hide Specific Payment Methods (`drop_category`)
 
 Use this when you want a **blacklist**.
 
