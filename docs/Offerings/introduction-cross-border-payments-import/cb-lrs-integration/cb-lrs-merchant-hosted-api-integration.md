@@ -128,7 +128,10 @@ The PAN Card Status Check API allows merchants to verify PAN (Permanent Account 
 **Endpoint**
 
 ```
-https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_statu
+| Test           | https://uat-onepayuonboarding.payu.in/ |
+| :------------- | :----------------------------------------------------------- |
+| **Production** | https://onboarding.payu.in/       |
+
 ```
 
 <Accordion title="Request parameters" icon="fa-table">
@@ -157,8 +160,6 @@ https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_statu
 `}</HTMLBlock>
 
 
-
-
 ####Body Parameters
   | Parameter                     | Description                                                   | Example      |
   | ----------------------------- | ------------------------------------------------------------- | ------------ |
@@ -169,7 +170,7 @@ https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_statu
 
 <Accordion title="Sample Request" icon="fa-code">
   ```bash
-  curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status' \
+  curl --location 'https://uat-onepayuonboarding.payu.in/dvs/kyc/check_pan_card_status' \
   --header 'Content-Type: application/json' \
   --header 'Authorization: Bearer 55c6edd7928aa4122021130a728782ae4dffd341843d83b90f613bf334d57e40' \
   --data '{
