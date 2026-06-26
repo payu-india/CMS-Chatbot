@@ -31,6 +31,97 @@ The steps to integrate involves:
 
 The PAN Card Status Check API allows merchants to verify PAN (Permanent Account Number) card details. It validates whether a given PAN number is active, confirms if the provided name and date of birth match the official PAN records, and checks the seeding status of the PAN. This API is essential for KYC (Know Your Customer) processes, identity verification, and regulatory compliance.
 
+### Step 1a: Generate Token
+### Environment
+
+| Test           | [https://uat-accounts.payu.in](https://uat-accounts.payu.in) |
+| :------------- | :----------------------------------------------------------- |
+| **Production** | [https://accounts.payu.in](https://accounts.payu.in)         |
+
+<Accordion title="Additional information for request parameters" icon="fa-info-circle">
+  <Table>
+    <thead>
+      <tr>
+        <th>
+          Parameters
+        </th>
+
+        <th>
+          Description
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>
+          client\_id
+        </td>
+
+        <td>
+          For getting your client ID, refer to [Get Client ID and Secret from Dashboard](doc:get-client-id-and-secret-from-dashboard)
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          client\_secret
+        </td>
+
+        <td>
+          For getting your client secret, refer to [Get Client ID and Secret from Dashboard](doc:get-client-id-and-secret-from-dashboard)
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          scope
+        </td>
+
+        <td>
+          The scope that must be used for PAN Card validation is `get_pan_details`.
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          grant\_type
+        </td>
+
+        <td>
+          This parameter contains a constant value used to get the access token. The grant\_type used across the partner integration is **client\_credentials**.
+        </td>
+      </tr>
+    </tbody>
+  </Table>
+</Accordion>
+
+<Accordion title="Sample request" icon="fa-info-circle">
+  ```curl
+  curl --location -g --request POST '{{hub_base_url}}/oauth/token' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data-urlencode 'client_id={{client_id}}' \
+  --data-urlencode 'client_secret={{client_secret}}' \
+  --data-urlencode 'grant_type=client_credentials' \
+  --data-urlencode 'scope=get_pan_details'
+  ```
+</Accordion>
+
+<Accordion title="Sample response" icon="fa-info-circle">
+  ### Success scenario
+
+  ```json
+  {
+  "access_token": "55c6edd7928aa4122021130a728782ae4dffd341843d83b90f613bf334d57e40",
+  "token_type": "Bearer",
+  "expires_in": 7011,
+  "scope": "create_payment_links",
+  "created_at": 1763036368
+  }
+  ```
+
+
+### Step 1b: Validate PAN Card using API
 **Endpoint**
 
 ```
@@ -49,10 +140,7 @@ https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
   ```bash
   curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status' \
   --header 'Content-Type: application/json' \
-  --header 'Date: Thu, 17 Jun 2025 08:17:59 GMT' \
-  --header 'Digest: DFXmqI0rFnXlmHLlsRwdDMw9vUSVzyYQzGP+MKLo8f8=' \
-  --header 'Authorization: hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="7qjgpH9B4QALxDR0nVlHdEKEYMZ0XeJ0QpnvveSyqMo="' \
-  --header 'platformId: 1' \
+  --header 'Authorization: Bearer 55c6edd7928aa4122021130a728782ae4dffd341843d83b90f613bf334d57e40' \
   --data '{
       "pan_number": "CYCPD2784G",
       "name": "AKASH DEEP",
