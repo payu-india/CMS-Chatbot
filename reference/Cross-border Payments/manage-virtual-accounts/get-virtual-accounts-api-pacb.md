@@ -1,7 +1,7 @@
 ---
 title: Get Virtual Accounts API - PACB
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
