@@ -117,6 +117,4 @@ The Partner Integration APIs are used for WhatsApp integration. The Partner Inte
 
 Send an approved WhatsApp template message with a **Pay Now** button so that your customer completes payment on PayU’s Hosted Checkout page on the default browser (outside WhatsApp). For more information, refer to [Enhanced Payment Links on WhatsApp.](doc:enhanced-payment-links-on-whatsapp)
 
-📘
-
 <br />
