@@ -1,7 +1,7 @@
 ---
 title: Introduction
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: WhatsApp Integration Introduction
   robots: index
