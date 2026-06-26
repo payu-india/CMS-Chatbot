@@ -3,6 +3,7 @@ title: Customer Journey - WhatsApp Integration
 deprecated: false
 hidden: false
 metadata:
+  title: Customer Journey - WhatsApp Integration
   robots: index
 ---
 ## Payment Experience with UPI Intent URL​
