@@ -32,7 +32,7 @@ You must generate the bearer token as in [Step 1a](#step-1a-generate-token) and 
 
 ### Step 1a: Generate Token
 The Generate Token API is used to generate the token to be used in [Step 1b](#step-1b-validate-pan-card-using-api).
-### Environment
+**Environment**
 
 | Test           | [https://uat-accounts.payu.in](https://uat-accounts.payu.in) |
 | :------------- | :----------------------------------------------------------- |
