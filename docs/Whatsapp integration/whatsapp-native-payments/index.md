@@ -26,24 +26,32 @@ Customers can now access to a wide range of payment options, including UPI, card
 This part of the documentation includes:
 
 <Cards>
-  <Card title="Why are native payments on WhatsApp important?" href="#why-are-native-payments-on-whatsapp-important" icon="fa-info-circle" target="_blank">
-    Understand the value of enabling payments directly inside WhatsApp for your users and business.
+  <Card title="Why are native payments on WhatsApp important?" href="#why-are-native-payments-on-whatsapp-important" icon="fa-info-circle">
+    Value of completing the sales cycle inside WhatsApp and common use cases.
   </Card>
 
-  <Card title="How does PayU help your business?" href="#how-does-payu-help-your-business" icon="fa-briefcase" target="_blank">
-    Learn how PayU supports your WhatsApp payment integration and what you get from the partnership.
+  <Card title="How does PayU help your business?" href="#how-does-payu-help-your-business" icon="fa-briefcase">
+    Conversion, payment modes, and what PayU brings to WhatsApp Commerce.
   </Card>
 
-  <Card title="Payments Journey" href="#payments-journey" icon="fa-route" target="_blank">
-    End-to-end flow of how payments work from initiation to completion on WhatsApp.
+  <Card title="Experience Native WhatsApp Payments" href="#experience-native-whatsapp-payments" icon="fa-mobile-alt">
+    Try the native payments journey using the sample QR code.
   </Card>
 
-  <Card title="Experience Native WhatsApp Payments" href="#experience-native-whatsapp-payments" icon="fa-mobile-alt" target="_blank">
-    See or try the native WhatsApp payment experience before integrating.
+  <Card title="Pre-requisites" href="#pre-requisites" icon="fa-list-check">
+    WABA and PayU merchant account requirements before you integrate.
   </Card>
 
-  <Card title="Pre-requisites" href="#pre-requisites" icon="fa-list-check" target="_blank">
-    What you need in place before integrating WhatsApp payments with PayU.
+  <Card title="Customer Journey" href="#customer-journey" icon="fa-route">
+    UPI Intent URL and P2M payment experiences with step-by-step accordions.
+  </Card>
+
+  <Card title="Steps to Integrate" href="#steps-to-integrate" icon="fa-tools">
+    WhatsApp Business APIs, BSP enablement, and linking PayU with your WABA.
+  </Card>
+
+  <Card title="WhatsApp Integration APIs" href="#whatsapp-integration-apis" icon="fa-code">
+    Partner Integration APIs for access token, checkout, UPI S2S, and refunds.
   </Card>
 </Cards>
 
@@ -93,7 +101,9 @@ You must ensure that you have the following:
 - Active PayU Merchant Account
 
 ***
+
 ## Customer Journey
+
 ### Payment Experience with UPI Intent URL​
 
 In a live integration, your backend creates the **UPI Intent** via PayU and sends `POST /messages` with `type: order_details` and `payment_type: "upi"` (per your programme spec).
@@ -165,11 +175,13 @@ In a live integration, your backend creates the **UPI Intent** via PayU and send
 ## WhatsApp Integration APIs
 
 The Partner Integration APIs are used for WhatsApp integration. The Partner Integration APIs are:
-| API | Description |
-| :--- | :--- |
-| [Getting Access Token](ref:getting-access-token) | Obtains the **OAuth access token** used for Partner Integration payment APIs. After PayU returns an **auth_code** on your redirect URI, validate it to receive an **access_token** (and **refresh_token**); use that token instead of merchant key/salt on subsequent partner calls. |
+
+| API                                                                                              | Description                                                                                                                                                                                                                                                                                                            |
+| :----------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Getting Access Token](ref:getting-access-token)                                                 | Obtains the **OAuth access token** used for Partner Integration payment APIs. After PayU returns an **auth\_code** on your redirect URI, validate it to receive an **access\_token** (and **refresh\_token**); use that token instead of merchant key/salt on subsequent partner calls.                                |
 | [Hosted Checkout Integration - Partner Integration](ref:hosted-checkout-api-partner-integration) | Initiates a **hosted checkout** payment on behalf of a referred merchant: your server posts the transaction to PayU, the customer completes payment on **PayU’s payment page**, you **validate the redirect response**, **verify** the transaction, and receive a **server-to-server callback** with the final status. |
-| [UPI S2S Integration for Partners](ref:upi-s2s-partner-integration-api) | Runs **server-to-server UPI Intent** for partners (including WhatsApp flows): **initiate** the payment with the partner **access token**, **invoke UPI Intent** on the customer’s device, **verify** payment, and handle PayU’s **S2S callback**—without using merchant key/salt for those calls. |
-| [Refund Transaction API – Partner Integration](ref:refund-transaction-api-partner-integration) | Lets a partner **cancel** a transaction still in **auth** state or **refund** a **captured** transaction for a merchant, using the partner authentication model and the merchant/refund identifiers required in the API. |
-| [Partner Refund Status API](ref:refund-status-api-partner-integration) | Lets a partner **look up the status** of a refund (by merchant and refund identifiers), using a **Bearer token** in the request header, so you can reconcile refunds initiated via the Partner Refund API. |
+| [UPI S2S Integration for Partners](ref:upi-s2s-partner-integration-api)                          | Runs **server-to-server UPI Intent** for partners (including WhatsApp flows): **initiate** the payment with the partner **access token**, **invoke UPI Intent** on the customer’s device, **verify** payment, and handle PayU’s **S2S callback**—without using merchant key/salt for those calls.                      |
+| [Refund Transaction API – Partner Integration](ref:refund-transaction-api-partner-integration)   | Lets a partner **cancel** a transaction still in **auth** state or **refund** a **captured** transaction for a merchant, using the partner authentication model and the merchant/refund identifiers required in the API.                                                                                               |
+| [Partner Refund Status API](ref:refund-status-api-partner-integration)                           | Lets a partner **look up the status** of a refund (by merchant and refund identifiers), using a **Bearer token** in the request header, so you can reconcile refunds initiated via the Partner Refund API.                                                                                                             |
+
 <br />
