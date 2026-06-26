@@ -6,6 +6,8 @@ metadata:
   title: Customer Journey - WhatsApp Integration
   robots: index
 ---
+This section describes the payment experience for the customers after you integrate PayUs offerings with WhatsApp.&#x20;
+
 ## Payment Experience with UPI Intent URL​
 
 In a live integration, your backend creates the **UPI Intent** via PayU and sends `POST /messages` with `type: order_details` and `payment_type: "upi"` (per your programme spec).
@@ -38,8 +40,8 @@ In a live integration, your backend creates the **UPI Intent** via PayU and send
 
 <Image src="https://files.readme.io/fa4790a59dc7d1a9722c2970ee10a68d5ad6eb1b1cdb7fdb558a05ac51b43e97-payment-experience-upi-url.gif" align="left" width="350px" border={true} wrap={true} />
 
-***
 
+***
 
 ## P2M / PG Deep Integration on WhatsApp Flow
 
@@ -65,3 +67,6 @@ In a live integration, your backend creates the **UPI Intent** via PayU and send
 
 
 <Image src="https://files.readme.io/c5e2f5a86bc6fa4daf9e70becb83d20761dcf8da94e0c2510e9888c9e4788961-payment-experience-p2m-flow-lite.gif" align="left" width="300px" wrap={true} />
+
+
+<br />
