@@ -15,7 +15,7 @@ Retrieve a **paginated list** of Virtual Accounts provisioned for a Cross-Border
 | Test        | `https://uatoneapi.payu.in/payout/v2/virtualAccounts`    | GET    |
 | Production  | `https://payout.payumoney.com/payout/v2/virtualAccounts` | GET    |
 
-## Request headers
+## Request Headers
 
 | Parameter                      | Description                                                | Example                                                                 |
 | ------------------------------ | ---------------------------------------------------------- | ----------------------------------------------------------------------- |
@@ -29,20 +29,16 @@ Retrieve a **paginated list** of Virtual Accounts provisioned for a Cross-Border
 | pageOffset<br />`optional` | `Integer` - Page number (1-based). Default: 1          | 1       |
 | pageSize<br />`optional`   | `Integer` - Records per page. Default: 10. Maximum: 50 | 10      |
 
-<details>
-  <summary>Sample request</summary>
+## Sample Request
 
 ```curl
 curl --location --request GET 'https://uatoneapi.payu.in/payout/v2/virtualAccounts?pageOffset=1&pageSize=10' \
 --header 'Authorization: Bearer <access_token>' \
 --header 'merchantId: 12345'
 ```
-
-</details>
-
-<details>
-  <summary>Sample success response</summary>
-
+## Sample Response
+### Success scenario
+#### When a list of virtual accounts exist
 ```json
 {
   "status": 0,
@@ -67,11 +63,7 @@ curl --location --request GET 'https://uatoneapi.payu.in/payout/v2/virtualAccoun
   "code": null
 }
 ```
-
-</details>
-
-<details>
-  <summary>Sample empty response</summary>
+#### When no virtual accounts exist
 
 ```json
 {
@@ -87,15 +79,56 @@ curl --location --request GET 'https://uatoneapi.payu.in/payout/v2/virtualAccoun
 }
 ```
 
-</details>
+## Response Parameters
 
-## Response parameters
-
+<HTMLBlock>{`
+          <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+            <thead>
+              <tr style="background-color: #f5f5f5;">
+                <th style="padding: 10px; border: 1px solid #ddd; font-weight: bold; text-align: left;">Parameter</th>
+                <th style="padding: 10px; border: 1px solid #ddd; font-weight: bold; text-align: left;">Description</th>
+                <th style="padding: 10px; border: 1px solid #ddd; font-weight: bold; text-align: left;">Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">status</td>
+                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">
+                  This parameter returns the status of web service call. The status can be any of the following: 
+                  <ul style="padding-left: 20px; margin-top: 5px;">
+                    <li>0 - If web service call failed.</li>
+                    <li>1 - If web service call succeeded</li>
+                  </ul>
+                </td>
+                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">0</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">msg</td>
+                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">This parameter returns the reason string.</td>
+                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">
+                  For example, any of the following messages are displayed:
+                  <ul style="padding-left: 20px; margin-top: 5px;">
+                    <li>Parameter missing</li>
+                    <li>Token is empty</li>
+                    <li>Amount is empty</li>
+                    <li>Transaction not exists</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">data</td>
+                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">This parameter contains the virtual account details in JSON format. For more information, refer to <a href="#data-json-fields-description">data JSON Fields Description</a>
+</td>
+                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">refer to <a href="data-json-fields-description">data JSON Fields Descriptiont></td>
+              </tr>
+             
+            </tbody>
+          </table>
+`}</HTMLBlock>
+### data JSON Fields Description
 | Parameter              | Description                                                                                                            |
 | ---------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `data.noOfPages`       | Total pages for the current `pageSize`                                                                                 |
-| `data.totalElements`   | Total VA records for the MID                                                                                           |
-| `data.currentPage`     | Current page number                                                                                                    |
-| `data.virtualAccounts` | Array of VA objects (same fields as [Create Virtual Account API - PACB](ref:create-virtual-account-api-pacb) response) |
-
-For a single VA by ID, use [Get Virtual Account Details API - PACB](ref:get-virtual-account-details-api-pacb).
+| `noOfPages`       | Total pages for the current `pageSize`                                                                                 |
+| `totalElements`   | Total VA records for the MID                                                                                           |
+| `currentPage`     | Current page number                                                                                                    |
+| `virtualAccounts` | Array of VA objects  |
