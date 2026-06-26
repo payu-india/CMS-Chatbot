@@ -1,5 +1,5 @@
 ---
-title: WhatsApp Payments Integration
+title: WhatsApp Payments Integration - Overview
 excerpt: ''
 deprecated: false
 hidden: false
