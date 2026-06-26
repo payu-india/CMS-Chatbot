@@ -1,10 +1,10 @@
 ---
-title: WhatsApp Payments Integration - Overview
+title: WhatsApp Payments Integration
 excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: ''
+  title: WhatsApp Payments Integration - Overview
   description: >-
     Discover how to integrate and use WhatsApp Native Payments with PayU. This
     guide provides detailed instructions for setting up, managing transactions,
