@@ -20,6 +20,8 @@ metadata:
 next:
   description: ''
 ---
+The steps to integrate **P2M** (PG Deep Integration or Native WhatsApp Payments or UPI Intent URL for WhatsApp payments is the same.
+
 To enable payments for partners powered by PayU, following steps need to be completed:
 
 <Cards>
@@ -34,7 +36,7 @@ To enable payments for partners powered by PayU, following steps need to be comp
 
 ## Step 1: Integrate with WhatsApp Business APIs
 
-PayU has partnered with the top BSPs in India for seamless integration & enablement with a few clicks. Please reach out to your BSP to enable WhatsApp payments. In case your BSP currently does not offer native payments, please reach out to Meta directly.
+PayU has partnered with the top BSPs in India for seamless integration & enablement with a few clicks. **Contact** your BSP to enable WhatsApp payments. In case your BSP currently does not offer native payments, please reach out to Meta directly.
 
 <Callout icon="👍" theme="okay">
   ### **Reference:**
@@ -44,7 +46,7 @@ PayU has partnered with the top BSPs in India for seamless integration & enablem
 
 ## Step 2: Link PayU Account with WhatsApp
 
-Once the BSP has integrated with WhatsApp Business APIs and integrated payments, you need to link your PayU account with WhatsApp. Depending on how your WhatsApp Business account is managed, following approaches are applicable:
+After the BSP has integrated with WhatsApp Business APIs and integrated payments, you need to link your PayU account with WhatsApp. Depending on how your WhatsApp Business account is managed, following approaches are applicable:
 
 - **Self-owned WhatsApp Business Account**: Directly link your WhatsApp Business Account with PayU using the Meta Business Manager. This is applicable if your have direct access to your Meta Business Manager.
 - **BSP-owned WhatsApp Business Account**: Link your WhatsApp Business Account with the help of the BSP provider. This is applicable if you do not have direct access to your Meta Business Manager - and the BSP runs it end-to-end.
