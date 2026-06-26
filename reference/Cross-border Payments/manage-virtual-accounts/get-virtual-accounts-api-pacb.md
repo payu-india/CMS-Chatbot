@@ -1,8 +1,9 @@
 ---
-title: Get Virtual Accounts API - PACB
+title: Get Virtual Accounts API
 deprecated: false
 hidden: true
 metadata:
+  title: Get Virtual Accounts API - PACB
   robots: index
 ---
 Retrieve a **paginated list** of Virtual Accounts provisioned for a Cross-Border Payments sub-merchant MID.
