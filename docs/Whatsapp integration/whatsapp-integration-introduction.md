@@ -14,9 +14,9 @@ PayU supports multiple ways to accept payments on WhatsApp in partnership with M
   - Net Banking
   - Wallets&#x20;
   - EMI&#x20;
-  It is the highest-capability flavour and best for e-commerce, D2C, travel, and OTT but needs  integration (often with a BSP), PG–WhatsApp OAuth, and handling both WhatsApp payment webhooks and PayU PG webhooks.&#x20;
+  It is the highest-capability flavour and best for e-commerce, D2C, travel, and OTT but needs  integration (often with a BSP), PG–WhatsApp OAuth, and handling both WhatsApp payment webhooks and PayU PG webhooks. &#x20;
 - **UPI Intent URL:&#x20;**&#x55;PI Intent URL sends a structured **order\_details** message in WhatsApp; when the customer taps **Pay Now**, where the opens with the amount pre-filled, they authorise with UPI PIN, and the business gets confirmation in chat. It as a lightweight and no Meta template approval is required, and suited to utility bills, quick collections, and subscription renewals. You can use your existing PayU PG webhook; enablement typically involves VPA / MCC / payment code from PayU rather than full P2M payment\_configuration.
-- **Enhanced Payment Links (EPL)** is the simplest option: you send an approved WhatsApp **template** message with a **Pay Now** call-to-action, the customer taps it, and completes payment on PayU’s **Hosted Checkout** page on the browser (outside WhatsApp) and on WhatsApp app itself for UPI payments. If you already use PayU **payment links**, link generation and **webhooks** work the same as today. For more information, refer to [Payment Links.](doc:payment-links-dashboard)
+- **Enhanced Payment Links (EPL)** is the simplest option: you send an approved WhatsApp **template** message with a **Pay Now** call-to-action, the customer taps it, and completes payment on PayU’s **Hosted Checkout** page on the browser (outside WhatsApp) and on WhatsApp app itself for UPI payments. If you already use PayU **payment links**, link generation and **webhooks** work the same as today. For more information, refer to [Enhanced Payment Links on WhatsApp.](doc:enhanced-payment-links-on-whatsapp)
 
 ## PayU Offerings
 
@@ -34,16 +34,16 @@ Meta defines three WhatsApp commerce payment flavours; EPL sits at the **lowest 
 
 ## Comparison of WhatsApp payment options
 
-| Dimension                                | EPL                    | UPI Intent                          | PG Deep Integration                                                        |
-| :--------------------------------------- | :--------------------- | :---------------------------------- | :------------------------------------------------------------------------- |
-| **What you send**                        | Template + CTA URL     | `order_details` interactive message | `order_details` interactive message                                        |
-| **Meta template required**               | Yes                    | No                                  | No                                                                         |
-| **PG–WhatsApp OAuth**                    | No                     | No                                  | Yes                                                                        |
-| `payment_configuration`**&#x20;in Meta** | No                     | No                                  | Yes                                                                        |
-| **EPL allowlist or gating list**         | Yes                    | No                                  | No                                                                         |
-| **Webhook changes**                      | None (same PG webhook) | None (same PG webhook)              | Yes — add **WhatsApp payment status** webhooks; reconcile with PG webhooks |
-| **In-chat order management**             | No                     | No                                  | Full (`order_status`, payment lookup APIs)                                 |
-| **Customer leaves WhatsApp?**            | Yes (browser checkout) | Partial (UPI app)                   | No                                                                         |
+| Dimension                                | PG Deep Integration                                                        | UPI Intent                          | EPL                    |
+| :--------------------------------------- | :------------------------------------------------------------------------- | :---------------------------------- | :--------------------- |
+| **What you send**                        | `order_details` interactive message                                        | `order_details` interactive message | Template + CTA URL     |
+| **Meta template required**               | No                                                                         | No                                  | Yes                    |
+| **PG–WhatsApp OAuth**                    | Yes                                                                        | No                                  | No                     |
+| `payment_configuration`**&#x20;in Meta** | Yes                                                                        | No                                  | No                     |
+| **EPL allowlist or gating list**         | No                                                                         | No                                  | Yes                    |
+| **Webhook changes**                      | Yes — add **WhatsApp payment status** webhooks; reconcile with PG webhooks | None (same PG webhook)              | None (same PG webhook) |
+| **In-chat order management**             | Full (`order_status`, payment lookup APIs)                                 | No                                  | No                     |
+| **Customer leaves WhatsApp?**            | No                                                                         | Partial (UPI app)                   | Yes (browser checkout) |
 
 PayU is supported across **all three** solutions, so many merchants can start with **EPL** and later add **UPI Intent** or **PG Deep Integration** without changing payment gateway.
 
