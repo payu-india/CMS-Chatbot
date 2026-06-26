@@ -126,13 +126,10 @@ The Generate Token API is used to generate the token to be used in [Step 1b](#st
 The PAN Card Status Check API allows merchants to verify PAN (Permanent Account Number) card details. It validates whether a given PAN number is active, confirms if the provided name and date of birth match the official PAN records, and checks the seeding status of the PAN. This API is essential for KYC (Know Your Customer) processes, identity verification, and regulatory compliance.
 
 **Endpoint**
-
-```
 | Test           | https://uat-onepayuonboarding.payu.in/ |
 | :------------- | :----------------------------------------------------------- |
 | **Production** | https://onboarding.payu.in/       |
 
-```
 
 <Accordion title="Request parameters" icon="fa-table">
 
