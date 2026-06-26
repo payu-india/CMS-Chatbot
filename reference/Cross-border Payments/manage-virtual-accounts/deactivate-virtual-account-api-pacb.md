@@ -1,7 +1,7 @@
 ---
 title: ' Deactivate Virtual Account API - PACB'
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
