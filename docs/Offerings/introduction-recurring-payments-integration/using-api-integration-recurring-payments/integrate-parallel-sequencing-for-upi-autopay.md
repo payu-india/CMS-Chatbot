@@ -3,7 +3,7 @@ title: Integrate Parallel Sequencing for UPI AutoPay
 deprecated: false
 hidden: true
 metadata:
-  title: Integrrate Parallel Sequencing for UPI Autopay
+  title: Integrate Parallel Sequencing for UPI Autopay
   robots: index
 ---
 This section explains how to integrate parallel sequencing for UPI AutoPay transactions. Parallel sequencing allows you to run pre-debits and executions simultaneously for different sequence numbers.
