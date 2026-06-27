@@ -16,33 +16,6 @@ metadata:
 next:
   description: ''
 ---
----
-title: Integration Steps
-excerpt: ''
-deprecated: false
-hidden: false
-metadata:
-  title: Integration Steps - Android Checkout Pro
-  description: >-
-    Integrate PayU CheckoutPro SDK on Android: Gradle/Maven Central, hash, payment params, callbacks, test cards, and production go-live.
-  robots: index
-  keywords:
-    - payu checkoutpro sdk android integration steps india
-    - android payment gateway sdk integration checkout pro payu
-    - integrate payment gateway in android app kotlin java payu
-    - mobile payment sdk integration android checkout payu
-    - payu android sdk gradle maven central integration guide
-    - android payment hash generation checkoutpro sdk payu
-    - payment gateway android sdk test sandbox go live payu
-    - payu checkout pro android native payment integration
-    - android upi card netbanking wallet sdk checkoutpro payu
-    - payu android checkoutpro payment callback integration steps
-    - razorpay cashfree alternative payu android payment sdk
-    - android in app payment integration checkout pro payu india
-
-next:
-  description: ''
----
 Before you start with the integration, enable the payment methods that you want to offer to your customers from **Dashboard > Settings > Payment methods**.  For more information, refer. to [Checkout Payment Modes](doc:payu-payment-page-customization#configure-checkout-payment-methods-and-settings). By default, Cards, UPI, and other payment methods are enabled, and PayU recommends that you to enable other payment methods that are relevant to you.
 
 ## SDK Integration
@@ -56,6 +29,8 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 ### Step 2: Include the SDK in your app build.gradle
 
 <Callout icon="❗️" theme="error">
+  ###
+
   **Maven Central**: PayU has moved to Maven Central, update your existing dependency with the following configuration:
 
   ```gradle
@@ -75,10 +50,12 @@ compileOptions {
     }
 ```
 
-> ❗️ Compatibility:
->
-> 1. **Android SDK** — Version 21 and above.
-> 2. **Compile SDK** — version 31 and above.
+<Callout icon="❗️" theme="error">
+  ### Compatibility:
+
+  1. **Android SDK** — Version 21 and above.
+  2. **Compile SDK** — version 31 and above.
+</Callout>
 
 <Accordion title="2.1 Import Runtime Issue" icon="fa-code">
   > 🚧 Import Runtime Issue
@@ -300,6 +277,7 @@ To initiate a payment, your app must send transactional information to the Check
     </tr>
   </tbody>
 </table>
+
 `}</HTMLBlock>
 </Accordion>
 
@@ -520,99 +498,100 @@ To initiate a payment, your app must send transactional information to the Check
 <Accordion title="Step 3.9: WealthTech Flow" icon="fa-code">
   WealthTech flow enables payments for wealth management products like mutual funds. You need to pass wealth product details as a list of PayUWealthProducts objects.
 
-  ```java
-  private ArrayList<PayUWealthProducts> getWealthTechList(JSONArray jsonArray) {
-      ArrayList<PayUWealthProducts> list = new ArrayList<>();
-      
-      try {
-          for (int i = 0; i < jsonArray.length(); i++) {
-              JSONObject jsonObject = jsonArray.getJSONObject(i);
-              
-              PayUWealthProducts payUWealthProducts = new PayUWealthProducts.Builder(
-                  jsonObject.optString("type"),
-                  jsonObject.optString("amount"),
-                  jsonObject.optString("receipt"),
-                  jsonObject.optString("mf_member_id"),
-                  jsonObject.optString("mf_user_id"),
-                  jsonObject.optString("mf_partner"),
-                  jsonObject.optString("mf_investment_type")
-              )
-              .setFolio(jsonObject.optString("folio"))
-              .setPlan(jsonObject.optString("plan"))
-              .setMfAmcCode(jsonObject.optString("mf_amc_code"))
-              .build();
-              
-              list.add(payUWealthProducts);
-          }
-      } catch (Exception e) {
-          System.out.println("Error parsing JSON: " + e.getMessage());
-      }
-      
-      return list;
-  }
+```java
+private ArrayList<PayUWealthProducts> getWealthTechList(JSONArray jsonArray) {
+    ArrayList<PayUWealthProducts> list = new ArrayList<>();
+    
+    try {
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject jsonObject = jsonArray.getJSONObject(i);
+            
+            PayUWealthProducts payUWealthProducts = new PayUWealthProducts.Builder(
+                jsonObject.optString("type"),
+                jsonObject.optString("amount"),
+                jsonObject.optString("receipt"),
+                jsonObject.optString("mf_member_id"),
+                jsonObject.optString("mf_user_id"),
+                jsonObject.optString("mf_partner"),
+                jsonObject.optString("mf_investment_type")
+            )
+            .setFolio(jsonObject.optString("folio"))
+            .setPlan(jsonObject.optString("plan"))
+            .setMfAmcCode(jsonObject.optString("mf_amc_code"))
+            .build();
+            
+            list.add(payUWealthProducts);
+        }
+    } catch (Exception e) {
+        System.out.println("Error parsing JSON: " + e.getMessage());
+    }
+    
+    return list;
+}
 
-  // Sample JSON format
-  String jsonString = "[{\"type\":\"mutual_fund\",\"plan\":\"GD\",\"folio\":\"9104927822\",\"amount\":\"50000\",\"option\":\"G\",\"scheme\":\"LT\",\"receipt\":\"77407\",\"mf_member_id\":\"123445\",\"mf_user_id\":\"77407\",\"mf_partner\":\"cams\",\"mf_investment_type\":\"L\",\"mf_amc_code\":\"UTB\"}]";
-  JSONArray jsonArray = new JSONArray(jsonString);
-  ArrayList<PayUWealthProducts> wealthProductsList = getWealthTechList(jsonArray);
+// Sample JSON format
+String jsonString = "[{\"type\":\"mutual_fund\",\"plan\":\"GD\",\"folio\":\"9104927822\",\"amount\":\"50000\",\"option\":\"G\",\"scheme\":\"LT\",\"receipt\":\"77407\",\"mf_member_id\":\"123445\",\"mf_user_id\":\"77407\",\"mf_partner\":\"cams\",\"mf_investment_type\":\"L\",\"mf_amc_code\":\"UTB\"}]";
+JSONArray jsonArray = new JSONArray(jsonString);
+ArrayList<PayUWealthProducts> wealthProductsList = getWealthTechList(jsonArray);
 
-  // Add to payment params
-  paymentParams.setPayUWealthProducts(wealthProductsList);
-  ```
-  ```kotlin
-  private fun getWealthTechList(jsonArray: JSONArray): ArrayList<PayUWealthProducts> {
-      val list = ArrayList<PayUWealthProducts>()
-      
-      try {
-          for (i in 0 until jsonArray.length()) {
-              val jsonObject = jsonArray.getJSONObject(i)
-              
-              val payUWealthProducts = PayUWealthProducts.Builder(
-                  jsonObject.optString("type"),
-                  jsonObject.optString("amount"),
-                  jsonObject.optString("receipt"),
-                  jsonObject.optString("mf_member_id"),
-                  jsonObject.optString("mf_user_id"),
-                  jsonObject.optString("mf_partner"),
-                  jsonObject.optString("mf_investment_type")
-              )
-              .setFolio(jsonObject.optString("folio"))
-              .setPlan(jsonObject.optString("plan"))
-              .setMfAmcCode(jsonObject.optString("mf_amc_code"))
-              .build()
-              
-              list.add(payUWealthProducts)
-          }
-      } catch (e: Exception) {
-          println("Error parsing JSON: ${e.message}")
-      }
-      
-      return list
-  }
+// Add to payment params
+paymentParams.setPayUWealthProducts(wealthProductsList);
+```
+```kotlin
+private fun getWealthTechList(jsonArray: JSONArray): ArrayList<PayUWealthProducts> {
+    val list = ArrayList<PayUWealthProducts>()
+    
+    try {
+        for (i in 0 until jsonArray.length()) {
+            val jsonObject = jsonArray.getJSONObject(i)
+            
+            val payUWealthProducts = PayUWealthProducts.Builder(
+                jsonObject.optString("type"),
+                jsonObject.optString("amount"),
+                jsonObject.optString("receipt"),
+                jsonObject.optString("mf_member_id"),
+                jsonObject.optString("mf_user_id"),
+                jsonObject.optString("mf_partner"),
+                jsonObject.optString("mf_investment_type")
+            )
+            .setFolio(jsonObject.optString("folio"))
+            .setPlan(jsonObject.optString("plan"))
+            .setMfAmcCode(jsonObject.optString("mf_amc_code"))
+            .build()
+            
+            list.add(payUWealthProducts)
+        }
+    } catch (e: Exception) {
+        println("Error parsing JSON: ${e.message}")
+    }
+    
+    return list
+}
 
-  // Sample JSON format
-  val jsonString = """[{"type":"mutual_fund","plan":"GD","folio":"9104927822","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]"""
-  val jsonArray = JSONArray(jsonString)
-  val wealthProductsList = getWealthTechList(jsonArray)
+// Sample JSON format
+val jsonString = """[{"type":"mutual_fund","plan":"GD","folio":"9104927822","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]"""
+val jsonArray = JSONArray(jsonString)
+val wealthProductsList = getWealthTechList(jsonArray)
 
-  // Add to payment params
-  paymentParams.setPayUWealthProducts(wealthProductsList)
-  ```
+// Add to payment params
+paymentParams.setPayUWealthProducts(wealthProductsList)
+```
 
-  ### WealthTech Parameters
+### WealthTech Parameters
 
-  | Parameter            | Required   | Description                       |
-  | -------------------- | ---------- | --------------------------------- |
-  | type                 | ✓ Required | Product type (e.g., mutual\_fund) |
-  | amount               | ✓ Required | Investment amount                 |
-  | receipt              | ✓ Required | Receipt number                    |
-  | mf\_member\_id       | ✓ Required | Member ID                         |
-  | mf\_user\_id         | ✓ Required | User ID                           |
-  | mf\_partner          | ✓ Required | Partner name (e.g., cams)         |
-  | mf\_investment\_type | ✓ Required | Investment type                   |
-  | folio                | Optional   | Folio number                      |
-  | plan                 | Optional   | Plan code                         |
-  | mf\_amc\_code        | Optional   | AMC code                          |
+| Parameter            | Required   | Description                       |
+| -------------------- | ---------- | --------------------------------- |
+| type                 | ✓ Required | Product type (e.g., mutual\_fund) |
+| amount               | ✓ Required | Investment amount                 |
+| receipt              | ✓ Required | Receipt number                    |
+| mf\_member\_id       | ✓ Required | Member ID                         |
+| mf\_user\_id         | ✓ Required | User ID                           |
+| mf\_partner          | ✓ Required | Partner name (e.g., cams)         |
+| mf\_investment\_type | ✓ Required | Investment type                   |
+| folio                | Optional   | Folio number                      |
+| plan                 | Optional   | Plan code                         |
+| mf\_amc\_code        | Optional   | AMC code                          |
+
 </Accordion>
 
 <Accordion title="Step 3.10: Enforce Offer Keys" icon="fa-code">
@@ -733,7 +712,7 @@ To initiate a payment, your app must send transactional information to the Check
     </tr>
     <tr>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>SkuDetails <code>'madatory'</code></p></td>
-      <td style="border: 1px solid #ddd; padding: 8px;"><p>Create list of SKU as per products added in cart and add this list in SKU details. and set sku detials to PayUPaymentParams.</p><ul><li>\<em>Note:- \</em>When we use SKU features then it's a mandatory parameter otherwise it's not required.</li></ul></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Create list of SKU as per products added in cart and add this list in SKU details. and set sku details to PayUPaymentParams.</p><ul><li>\<em>Note:- \</em>When we use SKU features then it's a mandatory parameter otherwise it's not required.</li></ul></td>
     </tr>
     <tr>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>additionalCharges</p></td>
@@ -782,6 +761,7 @@ To initiate a payment, your app must send transactional information to the Check
     </tr>
   </tbody>
 </table>
+
 `}</HTMLBlock>
 
   ***
@@ -852,6 +832,8 @@ To initiate a payment, your app must send transactional information to the Check
 This step is to generate a hash that secures your payment request to PayU.
 
 <Callout icon="🚧" theme="warn">
+  ###
+
   **Generate hash on your server**: Always generate the hashes on your server. Do not generate the hashes locally in your app, as it will compromise the security of the transactions.
 </Callout>
 
@@ -875,7 +857,7 @@ The CheckoutPro SDK uses hashes to ensure the security of the transaction and pr
 </Accordion>
 
 <Accordion title="Step 4.2: Passing dynamic hashes" icon="fa-code">
-  For generating and passing dynamic hashes, the merchant will receive a call from the generateHash method of PayUCheckoutProListener.
+  For generating and passing dynamic hashes, the merchant will receive a call from the generateHash method of `PayUCheckoutProListener`.
 
   ```java
   public void generateHash(@NotNull HashMap map, @NotNull PayUHashGenerationListener hashGenerationListener) { 
@@ -909,7 +891,7 @@ The CheckoutPro SDK uses hashes to ensure the security of the transaction and pr
 
   To extract the hash string and hash name from the map received in `generateHash()` method, use the following keys:
 
-  `CP_HASH_STRING` -> This will contain a complete hash string excluding salt. For eg, for vas for mobile SDK hash, the hash string will contain `“<key>\|<command>\|<var1>|”`. Merchant can append their salt at the end of the hash string to calculate the hash.
+  `CP_HASH_STRING` -> This will contain a complete hash string excluding salt. For example, for "vas" for mobile SDK hash, the hash string will contain `“<key>\|<command>\|<var1>|”`. Merchant can append their salt at the end of the hash string to calculate the hash.
   `CP_HASH_NAME `-> This will contain the hash name.
 </Accordion>
 
@@ -1114,10 +1096,10 @@ Confirm to PayUCheckoutProListener and use these functions to get appropriate ca
 
 ### Sample Responses
 
-> 🚧 Callback response notes:
->
-> * In case of `UPI intent/InApp flow`,  you will not receive a callback response in surl or furl. In this case, the format of PayU response received will be different from other payment options that you need to handle at your end.
-> * Consider the **mihpayid** in the PayU response as **PayU ID/ID**
+\> 🚧 Callback response notes:
+\>
+\> \* In case of `UPI intent/InApp flow`,  you will not receive a callback response in surl or furl. In this case, the format of PayU response received will be different from other payment options that you need to handle at your end.
+\> \* Consider the **mihpayid** in the PayU response as **PayU ID/ID**
 
 <Accordion title="Card/NB/Wallet and other transactions" icon="fa-code">
   ```json
@@ -1344,10 +1326,8 @@ Confirm to PayUCheckoutProListener and use these functions to get appropriate ca
 
 The following are the additional Android SDK offerings:
 
-* Offer Integration
-* MCP Integration
-* Custom Note Integration
-* Add-on SDKs
+_Offer Integration_ MCP Integration
+_Custom Note Integration_ Add-on SDKs
 
 <Accordion title="Offers Integration" icon="fa-code">
   Kindly add the `setUserToken` parameter in paymentParam.
@@ -1492,9 +1472,9 @@ After the integration is complete, you must test the integration before you go l
 
 You can make test payments using one of the payment methods configured at the Checkout.
 
-> 🚧 Callout
->
-> The UPI in-app and UPI intent flow is not available in the Test mode.
+\> 🚧 Callout
+\>
+\> The UPI in-app and UPI intent flow is not available in the Test mode.
 
 <TestingChecklist />
 
@@ -1558,6 +1538,8 @@ Ensure these steps before you deploy the integration in a live environment.
 After testing the integration end-to-end, once you are confident that the integration is working as expected, you can switch to live mode to start accepting payments from your customers.
 
 <Callout icon="🚧" theme="warn">
+  ###
+
   **Generate Production Key and Salt**: Ensure that you are using the production merchant key and salt generated in the live mode.
 </Callout>
 
@@ -1573,7 +1555,7 @@ PayU recommends you to design, your own SURL and FURL.
 
 Refer the link to [Handling SURL and FURL](https://docs.payu.in/docs/handling-redirect-urls-surlfurl-with-android-sdk) doc details.
 
-> 🚧 We are not recommended to go live with PayU SURL and FURL.
+\> 🚧 We are not recommended to go live with PayU SURL and FURL.
 
 ### Checklist 4:- Remove/comment meta -data code from manifest file :-
 
