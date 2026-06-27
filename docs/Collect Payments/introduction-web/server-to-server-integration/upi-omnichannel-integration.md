@@ -38,9 +38,11 @@ This section describes how to integrate UPI for Omnichannel with S2S integration
   <br />
 </Cards>
 
-> 👍 Before you begin:
->
-> Register for an account with PayU before you start integration. For more information, refer to <a href="https://docs.payu.in/v1/docs/register-for-a-merchant-account-on-dashboard" target="_blank"> Register for a Merchant Account</a>.
+<Callout icon="👍" theme="okay">
+  ### Before you begin:
+
+  Register for an account with PayU before you start integration. For more information, refer to <a href="https://docs.payu.in/v1/docs/register-for-a-merchant-account-on-dashboard" target="_blank"> Register for a Merchant Account</a>.
+</Callout>
 
 ## Step 1: Initiate payment
 
@@ -154,7 +156,7 @@ Post the **initiatePayment** API to initiate payment with all the required param
       <tr>
         <td style="border: 1px solid #ddd; padding: 8px;"><p>txn_s2s_flow</p>
       </td>
-        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>enumm</code> The type of transaction flow. This field is mandatory for all types of S2S flows that drive the response types of transactions. For POS, specify the value as 4.</p>
+        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>enum</code> The type of transaction flow. This field is mandatory for all types of S2S flows that drive the response types of transactions. For POS, specify the value as 4.</p>
       </td>
         <td style="border: 1px solid #ddd; padding: 8px;"><p>4</p>
       </td>
@@ -331,7 +333,7 @@ Post the **initiatePayment** API to initiate payment with all the required param
 
 ## Step 2: Check UPI transaction status
 
-After receiving a successful response from the above API, the need to check the status of the transaction using the **Verify Payment **API. Web services can be accessed by making a server to server call on the following PayU URLs. For a sample request or response, refer to  <Anchor label="Verify Payment API" target="_blank" href="ref:verify_payment_api">Verify Payment API</Anchor>under API Reference.
+After receiving a successful response from the above API, the need to check the status of the transaction using the **Verify Payment** API. Web services can be accessed by making a server to server call on the following PayU URLs. For a sample request or response, refer to  <Anchor target="_blank" href="ref:verify_payment_api">Verify Payment API</Anchor>under API Reference.
 
 ## Step 3: PayU sends S2S callback response
 
