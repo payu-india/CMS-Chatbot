@@ -12,10 +12,10 @@ next:
 ---
 ### Environment
 
-|                        |                                                                                                                                    |
-| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| Test Environment       | \<[https://test.payu.in/info/linkAndPay/get_emi_checkout_details>](https://test.payu.in/info/linkAndPay/get_emi_checkout_details>) |
-| Production Environment | \<[https://info.payu.in/linkAndPay/get_emi_checkout_details>](https://info.payu.in/linkAndPay/get_emi_checkout_details>)           |
+|                        |                                                                                                                                       |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Test Environment       | \<[https://test.payu.in/info/linkAndPay/get\_emi\_checkout\_details>](https://test.payu.in/info/linkAndPay/get_emi_checkout_details>) |
+| Production Environment | \<[https://info.payu.in/linkAndPay/get\_emi\_checkout\_details>](https://info.payu.in/linkAndPay/get_emi_checkout_details>)           |
 
 ## Request Parameters
 
@@ -57,6 +57,7 @@ The request header contains the following fields:
 <li><strong>username</strong>: The merchant key of the merchant.</li>
 <li><strong>algorithm</strong>: This must have the value as <strong>hmac-sha512</strong> that is used for this API</li>
 <li><strong>headers</strong>: This must have the value as <strong>date digest</strong></li>
+
 <li><strong>signature</strong>: This must contain the hmacsha512 of (signing_string, merchant_secret), where:<ul>
 <li><strong>signing_string</strong>: This is in the &quot;<strong>Date</strong>&quot;+&quot;\n&quot;+&quot;<strong>Digest</strong>&quot; format. Here, the Date and Digest is the same values in the fields listed in this table For example, &quot;Thu, 17 Feb 2022 08:17:59 GMT&quot;&quot;\n&quot;+“vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=“</li>
 <li><strong>merchant_secret</strong>: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to <a href="https://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard">Generate Merchant Key and Salt on PayU Dashboard</a></li>
@@ -70,7 +71,7 @@ The request header contains the following fields:
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>platformId<br><strong>mandatory</strong></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the platform ID and include the value as <strong>1</strong>.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the platform ID and you must include the value as <strong>1</strong>.</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>1</p>
 </td>
@@ -81,8 +82,8 @@ The request header contains the following fields:
 
 #### Required parameters for calculating authorization
 
-* Date
-* Authorization
+- Date
+- Authorization
 
 The following sample Java code contains the logic used to encrypt as described in the above table:
 
@@ -198,9 +199,11 @@ curl --location 'https://test.payu.in/info/linkAndPay/get_emi_checkout_details' 
 }'
 ```
 
-> 📘 Authorization calculation logic:
->
-> For authorization calculation logic, refer to[ Required parameters for calculating authorization](#required-parameters-for-calculating-authorization).
+<Callout icon="📘" theme="info">
+  ### Authorization calculation logic:
+
+  For authorization calculation logic, refer to[ Required parameters for calculating authorization](#required-parameters-for-calculating-authorization).
+</Callout>
 
 ## Sample response
 
@@ -234,7 +237,7 @@ curl --location 'https://test.payu.in/info/linkAndPay/get_emi_checkout_details' 
 
 ### Failure scenario
 
-* Customer eligible but not linked
+- Customer eligible but not linked
 
 ```json
 {
@@ -300,7 +303,7 @@ curl --location 'https://test.payu.in/info/linkAndPay/get_emi_checkout_details' 
 }
 ```
 
-* Customer not eligible
+- Customer not eligible
 
 ```json
 {
