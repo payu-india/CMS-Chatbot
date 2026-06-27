@@ -14,7 +14,7 @@ After the Subscription is created, Zion generates a unique subscription ID and r
 
 **Post Method**: POST
 
-**Path**: \{base_url}/api/sub/v1/merchant/subscriptions/\{subscriptionId}
+**Path**: {base\_url}/api/sub/v1/merchant/subscriptions/{subscriptionId}
 
 **Environment**
 
@@ -180,29 +180,30 @@ The request body parameters to create a subscription request are:
 </table>
 `}</HTMLBlock>
 
-> 📘 Notes:
->
-> For using Define Subscription API, **authRefId** is not mandatory. This is because, merchant can define subscription and receives Subscription Id which can be sent in the Consent transaction so that Zion automatically associates authRefId with Subscription Id in the background. We will see this in detail during Consent transaction integration.  
-> Without authRefId, subscription cannot be **Enabled **because as represents which card / bank account needs to be charged during billing cycle of various plans. So, it needs to be associated with Subscription in either of the following:
->
-> * During define Subscription call with assumption that consent transaction is already completed
-> * By defining subscription without it but then passing Subscription Id in Consent transaction request
-> * Using Update Subscription API
+<Callout icon="📘" theme="info">
+  ### Notes:
+
+  For using Define Subscription API, **authRefId** is not mandatory. This is because, merchant can define subscription and receives Subscription Id which can be sent in the Consent transaction so that Zion automatically associates authRefId with Subscription Id in the background. We will see this in detail during Consent transaction integration.<br />Without authRefId, subscription cannot be **Enabled** because as represents which card / bank account needs to be charged during billing cycle of various plans. So, it needs to be associated with Subscription in either of the following:
+
+  - During define Subscription call with assumption that consent transaction is already completed
+  - By defining subscription without it but then passing Subscription Id in Consent transaction request
+  - Using Update Subscription API
+</Callout>
 
 ### Sample plan
 
 For a yearly plan starting from 1st Jan 2019, having monthly subscription of 100 Rs, the plan details look similar to the following:
 
-* planName = MONEY SAVER
-* billingCycle = MONTHLY
-* billingInterval = 1
-* amount
-  * value = 100.00
-  * currency = INR
-* startDate = 2019-01-01T00:00:00.000Z
-* totalCount = 12
+- planName = MONEY SAVER
+- billingCycle = MONTHLY
+- billingInterval = 1
+- amount
+  - value = 100.00
+  - currency = INR
+- startDate = 2019-01-01T00:00:00.000Z
+- totalCount = 12
 
-Zion will start charging customer from 1 Jan 2019 till 1 Dec 2019, 1st of every month with total charge requests will be 12 and then will stop automatically****
+Zion will start charging customer from 1 Jan 2019 till 1 Dec 2019, 1st of every month with total charge requests will be 12 and then will stop automatically\*\*\*\*
 
 ### X-PayU-Subscription-Signature Generation Method
 
@@ -210,7 +211,7 @@ Zion will start charging customer from 1 Jan 2019 till 1 Dec 2019, 1st of every 
 signatureData = SHA512("merchantId:" + merchantId + "|subscriptionPlanIds:" + subscriptionPlanIds + "|" + merchantSalt)  
 ```
 
-where, subscriptionPlanIds = “[” + planId1 + “|” + planId2 + “]” if you have more than one plan to be associated with the given subscription. 
+where, subscriptionPlanIds = “\[” + planId1 + “|” + planId2 + “]” if you have more than one plan to be associated with the given subscription. 
 
 Example:
 
@@ -356,7 +357,7 @@ curl --location 'https://subscription.payu.in/api/sub/v1/merchant/subscriptions'
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>deleted</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This is returned as false by default. It is returned as true only when plan is deleted from given subscription by calling delete plan with subcription method<br><br>Sample value – false</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This is returned as false by default. It is returned as true only when plan is deleted from given subscription by calling delete plan with subscription method<br><br>Sample value – false</p>
 </td>
 </tr>
 <tr>
@@ -486,3 +487,5 @@ curl --location 'https://subscription.payu.in/api/sub/v1/merchant/subscriptions'
 </tbody>
 </table>
 `}</HTMLBlock>
+
+<br />
