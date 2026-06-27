@@ -57,7 +57,7 @@ curl --location 'https://payout.payumoney.com/payout/merchant/smartSend/details?
 | msg                  | Contains the response message for transaction                                                                                                                                                                                                       | String           |                                       |
 | link                 | Contains the Smart pay link                                                                                                                                                                                                                         | String           |                                       |
 | succeedOn            | Timestamp when Transaction got succeeded                                                                                                                                                                                                            | Timestamp in UTC | "2023-11-09T00:00:01.000+0000"        |
-| txnSource            | Contains source of transcation                                                                                                                                                                                                                      | String           | "API"                                 |
+| txnSource            | Contains source of transaction                                                                                                                                                                                                                      | String           | "API"                                 |
 
 ### Smart Send Status Descriptions
 
