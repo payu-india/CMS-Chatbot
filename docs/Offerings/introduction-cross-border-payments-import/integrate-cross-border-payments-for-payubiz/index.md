@@ -24,18 +24,20 @@ metadata:
 ---
 This part of the document includes the steps-to-integrate for the following payment modes with various integrations:
 
-* [ PayU Hosted Payment Integration](doc:cb-integration-non-seamless) (**Non-seamless**)
-* Server-to-Server Integration (**Seamless**)
-  * [ NetBanking Integration](doc:netbanking-integration-merchant-hosted-integration-cb)
-  * **Cards**
-    * [ Plain Cards Integration](doc:plain-cards-integration-one-time-pacb)
-    * [Tokenize Card with PayU Tokenization Integration](doc:plain-cards-with-tokenization-integration-one-time-pacb)
-    * [Saved Cards with a PayU Token Integration](doc:cards-with-payu-tokenization-one-time-pacb)
-    * [Saved Cards with a Network Token Integration](doc:network-tokens-one-time-payment-pacb)
-  * [ UPI Intent with S2S Integration](doc:pacb-upi-intent-with-s2s-integration)
+- [ PayU Hosted Payment Integration](doc:cb-integration-non-seamless) (**Non-seamless**)
+- Server-to-Server Integration (**Seamless**)
+  - [ NetBanking Integration](doc:netbanking-integration-merchant-hosted-integration-cb)
+  - **Cards**
+    - [ Plain Cards Integration](doc:plain-cards-integration-one-time-pacb)
+    - [Tokenize Card with PayU Tokenization Integration](doc:plain-cards-with-tokenization-integration-one-time-pacb)
+    - [Saved Cards with a PayU Token Integration](doc:cards-with-payu-tokenization-one-time-pacb)
+    - [Saved Cards with a Network Token Integration](doc:network-tokens-one-time-payment-pacb)
+  - [ UPI Intent with S2S Integration](doc:pacb-upi-intent-with-s2s-integration)
 
 <Callout icon="📘" theme="info">
-  **Note:** For collecting Cross-Boder Payments using PayU toke, you have to perform the integration steps as in [ Tokenize Card with PayU Tokenization](doc:plain-cards-with-tokenization-integration-one-time-pacb) and then use the [Saved Cards with a PayU Token Integration](doc:cards-with-payu-tokenization-one-time-pacb).
+  ###
+
+  **Note:** For collecting Cross-Border Payments using PayU token, you have to perform the integration steps as in [ Tokenize Card with PayU Tokenization](doc:plain-cards-with-tokenization-integration-one-time-pacb) and then use the [Saved Cards with a PayU Token Integration](doc:cards-with-payu-tokenization-one-time-pacb).
 </Callout>
 
 The cross-border payment integration for PayU involves the following steps for the various payment methods in general:
@@ -59,24 +61,30 @@ The cross-border payment integration for PayU involves the following steps for t
 </Cards>
 
 <Callout icon="📘" theme="info">
-  **Reference**: After completing the above steps, you update the invoice, as in [Integrate Cross Border Payments  ](doc:integrate-cross-border-payments-with-payu-new)>  <Anchor label="Step 2: Update Invoice ID" target="_blank" href="doc:integrate-cross-border-payments-with-payu-new#step-2-update-invoice-id-conditional">Step 2: Update Invoice ID</Anchor>
+  ###
+
+  **Reference**: After completing the above steps, you update the invoice, as in [Integrate Cross Border Payments  ](doc:integrate-cross-border-payments-with-payu-new)>  <Anchor target="_blank" href="doc:integrate-cross-border-payments-with-payu-new#step-2-update-invoice-id-conditional">Step 2: Update Invoice ID</Anchor>
 </Callout>
 
 ## Step 1: Make Payment using Web Checkout Integration
 
 The following parameters (mandatory) must be posted using any of the following Web Checkout integration:
 
-* [PayU Hosted Payment](https://docs.payu.in/docs/cb-integration-non-seamless)
-* Merchant Hosted Checkout
-  * [NetBanking Integration](https://docs.payu.in/docs/netbanking-integration-merchant-hosted-integration-cb)
-  * Cards
-    * [Plain Cards](https://docs.payu.in/docs/plain-cards-integration-one-time-pacb)
-    * [Cards with PayU Tokenization](https://docs.payu.in/docs/cards-with-payu-tokenization-one-time-pacb)
-    * [Network Tokens Integration](https://docs.payu.in/docs/network-tokens-one-time-payment-pacb)
-  * [UPI Intent with S2S Integration ](https://docs.payu.in/docs/pacb-upi-intent-with-s2s-integration)
+- [PayU Hosted Payment](https://docs.payu.in/docs/cb-integration-non-seamless)
+- Merchant Hosted Checkout
+  - [NetBanking Integration](https://docs.payu.in/docs/netbanking-integration-merchant-hosted-integration-cb)
+  - Cards
+    - [Plain Cards](https://docs.payu.in/docs/plain-cards-integration-one-time-pacb)
+    - [Cards with PayU Tokenization](https://docs.payu.in/docs/cards-with-payu-tokenization-one-time-pacb)
+    - [Network Tokens Integration](https://docs.payu.in/docs/network-tokens-one-time-payment-pacb)
+  - [UPI Intent with S2S Integration ](https://docs.payu.in/docs/pacb-upi-intent-with-s2s-integration)
 
 <Callout icon="👍" theme="okay">
+  ###
+
   Experience the end-to-end **PayU Hosted > Cross-Border Payments** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
+
+    
 
   <HTMLBlock>{`
                                                       <style>
@@ -116,12 +124,14 @@ The following parameters (mandatory) must be posted using any of the following W
 
 ***
 
-## Step 2: Update Invoice ID [Conditional]
+## Step 2: Update Invoice ID \[Conditional]
 
 <Update_Invoice_ID />
 
 ***
 
-## Step 3: Upload the Invoices [Optional]
+## Step 3: Upload the Invoices \[Optional]
 
 <Upload_Invoices />
+
+<br />
