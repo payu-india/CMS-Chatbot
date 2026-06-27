@@ -213,8 +213,7 @@
               }
             }
           }
-        },
-        "deprecated": false
+        }
       },
       "parameters": []
     }
