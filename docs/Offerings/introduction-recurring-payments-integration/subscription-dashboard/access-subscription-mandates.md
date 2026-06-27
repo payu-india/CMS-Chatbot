@@ -38,7 +38,7 @@ This part of the document includes the following sections:
 - [Filter and View a Mandate Details](https://docs.payu.in/docs/access-subscription-mandates?isFramePreview=true#filter-and-view-a-mandate-details)
 - [View a Mandate Activity](https://docs.payu.in/docs/access-subscription-mandates?isFramePreview=true#view-a-mandate-activity)
 - [View Payments Received for a Mandate](https://docs.payu.in/docs/access-subscription-mandates?isFramePreview=true#view-payments-received-for-a-mandate)
-- [Download a Memo for a Bounced Transacton](https://docs.payu.in/docs/access-subscription-mandates?isFramePreview=true#download-a-memo-for-a-bounced-transacton)
+- [Download a Memo for a Bounced Transaction](https://docs.payu.in/docs/access-subscription-mandates?isFramePreview=true#download-a-memo-for-a-bounced-transacton)
 
 <Callout icon="📘" theme="info">
   ###
