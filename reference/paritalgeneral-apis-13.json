@@ -1,1 +1,423 @@
-{"openapi":"3.1.0","info":{"title":"ParitalGeneral APIs","contact":{},"version":"1.0"},"jsonSchemaDialect":"https://json-schema.org/draft/2020-12/schema","servers":[{"url":"https://uatoneapi.payu.in/payout/","variables":{}}],"paths":{"/merchant/validateVpa":{"post":{"tags":["Misc"],"summary":"validateVPA","description":"","operationId":"validateVPA","parameters":[{"name":"payoutMerchantId","in":"header","description":"This parameter must contain the merchant ID provided while onboarding","required":true,"style":"simple","schema":{"type":"string"}},{"name":"vpa","in":"query","description":"This parameter contains the UPA handle that has to be validated.","required":true,"style":"form","explode":true,"schema":{"type":"string","examples":["anything@payu"]}},{"name":"Content-Type","in":"header","description":"","required":true,"style":"simple","schema":{"const":"application/json","type":"string"}}],"responses":{"200":{"description":"","headers":{},"content":{}}},"deprecated":false,"servers":[{"url":"https://uatoneapi.payu.in/payout/","variables":{}}]},"parameters":[]},"/payment/verifyAccount":{"post":{"tags":["Misc"],"summary":"Verify Account","operationId":"VerifyAccount","parameters":[{"name":"accountNumber","in":"query","description":"Indicates the beneficiary account Number","required":true,"style":"form","explode":true,"schema":{"type":"number","contentEncoding":"double"}},{"name":"ifscCode","in":"query","description":"Indicates IFSC Code of the Bank Account","required":true,"style":"form","explode":true,"schema":{"type":"string"}},{"name":"merchantRefId","in":"query","description":"Unique identifier from merchant to identify the status","required":true,"style":"form","explode":true,"schema":{"type":"string"}},{"name":"validateIfsc","in":"query","description":"Flags as true or false to validate IFSC or not respectively.","style":"form","explode":true,"schema":{"type":"boolean"}},{"name":"beneName","in":"query","description":"Indicates the beneficiary name.","style":"form","explode":true,"schema":{"type":"string"}},{"name":"nameMatching","in":"query","description":"Flags as True to check name matching.","style":"form","explode":true,"schema":{"type":"boolean"}},{"name":"amount","in":"query","description":"Indicates the amount to be submitted for penny drop transaction.","style":"form","explode":true,"schema":{"type":"integer","contentEncoding":"int32"}},{"name":"purpose","in":"query","description":"Indicates the reason of verification","required":true,"style":"form","explode":true,"schema":{"type":"string"}},{"name":"payoutMerchantId","in":"header","description":"This parameter must contain the merchant ID provided while onboarding","required":true,"style":"simple","schema":{"type":"integer","contentEncoding":"int32"}},{"name":"Content-Type","in":"header","description":"","required":true,"style":"simple","schema":{"const":"application/json","type":"string"}}],"responses":{"200":{"description":"","headers":{}}},"deprecated":false},"parameters":[]},"/merchant/smartSend/details":{"get":{"tags":["Misc"],"summary":"Smart Send Details API","operationId":"SmartSendDetailsAPI","parameters":[{"name":"payoutMerchantId","in":"query","description":"This parameter must contain the merchant ID provided while onboarding.","required":true,"style":"form","explode":true,"schema":{"type":"string","examples":["1111157"]}},{"name":"merchantRefId","in":"query","description":"Unique identifier from merchant to identify the status","required":true,"style":"form","explode":true,"schema":{"type":"string","examples":["1"]}},{"name":"Content-Type","in":"header","description":"","required":true,"style":"simple","schema":{"const":"application/json","type":"string"}}],"responses":{"200":{"description":"","headers":{}}},"deprecated":false},"parameters":[]}},"components":{"schemas":{"var1":{"title":"var1","required":["amount","txnid","productinfo","firstname","email","phone"],"type":"object","properties":{"amount":{"type":"string","description":"This parameter contains the payment amount of the particular transaction."},"txnid":{"type":"string","description":"This parameter contains the merchant-generated transaction number which is used to track a particular order (must be unique every time if already successful, otherwise you get an error of the duplicate transaction)."},"productinfo":{"type":"string","description":"This parameter contains the product Description."},"firstname":{"type":"string","description":"This parameter contains the first name of the customer."},"email":{"type":"string","description":"This parameter contains the email address of the customer."},"phone":{"type":"string","description":"This parameter contains the phone number of the customer."},"address1":{"type":"string","description":"This parameter contains the first line of the billing address."},"city":{"type":"string","description":"This parameter contains the city where the customer resides."},"state":{"type":"string","description":"This parameter contains the state where the customer resides."},"country":{"type":"string","description":"This parameter contains the country where the customer resides."},"zipcode":{"type":"string","description":"This parameter contains the zip code of the customer's address."},"template_id":{"type":"string","description":"This parameter contains the template ID to be provided in case of more than one email invoice template. Merchant can decide which template to use and provide the particular template ID in this parameter."},"validation_period":{"type":"integer","description":"This parameter contains the number of days for which the email invoice usage is valid (If this field is left empty, the default value will be taken as 7 days).","contentEncoding":"int32"},"send_email_now":{"type":"string","description":"This parameter contains the flag to specify whether the email invoice needs to be sent to customer at the time of creation or later."},"send_sms":{"type":"string","description":"This parameter contains the flag to specify whether the SMS invoice needs to be sent to customer."},"time_unit":{"type":"string","description":"This parameter contains the any of the following time unit of validation period: M: Minute,, H: Hour or D: Days","examples":["H"]}},"examples":[{"amount":"10000","txnid":"abaac3330","productinfo":"iPhone","firstname":"Samir","email":"test@test.com","phone":"7401099153","address1":"testaddress","city":"Mumbai","state":"Maharashtra","country":"India","zipcode":"122002","template_id":"1290","validation_period":6,"send_email_now":"0","send_sms":"1"}]},"command":{"title":"command","const":"validateVPA","type":"string","description":"This parameter must contain the command as validateVPA.","examples":["validateVPA"]},"Content-Type":{"title":"Content-Type","const":"application/x-www-form-urlencoded","type":"string","examples":["application/x-www-form-urlencoded"]},"form":{"title":"form","const":2,"type":"integer","examples":[2]},"key":{"title":"key","const":"JPM7Fg","type":"string","description":"This parameter must contain merchant key provided by PayU.","examples":["JPM7Fg"]}},"securitySchemes":{"httpBearer":{"type":"http","scheme":"bearer"}}},"security":[{"httpBearer":[]}],"tags":[{"name":"Misc","description":""}],"x-readme":{"explorer-enabled":true,"proxy-enabled":true}}
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "ParitalGeneral APIs",
+    "contact": {},
+    "version": "1.0"
+  },
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "servers": [
+    {
+      "url": "https://uatoneapi.payu.in/payout/",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/merchant/validateVpa": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "validateVPA",
+        "description": "",
+        "operationId": "validateVPA",
+        "parameters": [
+          {
+            "name": "payoutMerchantId",
+            "in": "header",
+            "description": "This parameter must contain the merchant ID provided while onboarding",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "vpa",
+            "in": "query",
+            "description": "This parameter contains the UPA handle that has to be validated.",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "examples": [
+                "anything@payu"
+              ]
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "const": "application/json",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false,
+        "servers": [
+          {
+            "url": "https://uatoneapi.payu.in/payout/",
+            "variables": {}
+          }
+        ]
+      },
+      "parameters": []
+    },
+    "/payment/verifyAccount": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Verify Account",
+        "operationId": "VerifyAccount",
+        "parameters": [
+          {
+            "name": "accountNumber",
+            "in": "query",
+            "description": "Indicates the beneficiary account Number",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "number",
+              "contentEncoding": "double"
+            }
+          },
+          {
+            "name": "ifscCode",
+            "in": "query",
+            "description": "Indicates IFSC Code of the Bank Account",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "merchantRefId",
+            "in": "query",
+            "description": "Unique identifier from merchant to identify the status",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "validateIfsc",
+            "in": "query",
+            "description": "Flags as true or false to validate IFSC or not respectively.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "beneName",
+            "in": "query",
+            "description": "Indicates the beneficiary name.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "nameMatching",
+            "in": "query",
+            "description": "Flags as True to check name matching.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "description": "Indicates the amount to be submitted for penny drop transaction.",
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "contentEncoding": "int32"
+            }
+          },
+          {
+            "name": "purpose",
+            "in": "query",
+            "description": "Indicates the reason of verification",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "payoutMerchantId",
+            "in": "header",
+            "description": "This parameter must contain the merchant ID provided while onboarding",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "contentEncoding": "int32"
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "const": "application/json",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "parameters": []
+    },
+    "/merchant/smartSend/details": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Smart Send Details API",
+        "operationId": "SmartSendDetailsAPI",
+        "parameters": [
+          {
+            "name": "payoutMerchantId",
+            "in": "query",
+            "description": "This parameter must contain the merchant ID provided while onboarding.",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "examples": [
+                "1111157"
+              ]
+            }
+          },
+          {
+            "name": "merchantRefId",
+            "in": "query",
+            "description": "Unique identifier from merchant to identify the status",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "examples": [
+                "1"
+              ]
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "const": "application/json",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "var1": {
+        "title": "var1",
+        "required": [
+          "amount",
+          "txnid",
+          "productinfo",
+          "firstname",
+          "email",
+          "phone"
+        ],
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "string",
+            "description": "This parameter contains the payment amount of the particular transaction."
+          },
+          "txnid": {
+            "type": "string",
+            "description": "This parameter contains the merchant-generated transaction number which is used to track a particular order (must be unique every time if already successful, otherwise you get an error of the duplicate transaction)."
+          },
+          "productinfo": {
+            "type": "string",
+            "description": "This parameter contains the product Description."
+          },
+          "firstname": {
+            "type": "string",
+            "description": "This parameter contains the first name of the customer."
+          },
+          "email": {
+            "type": "string",
+            "description": "This parameter contains the email address of the customer."
+          },
+          "phone": {
+            "type": "string",
+            "description": "This parameter contains the phone number of the customer."
+          },
+          "address1": {
+            "type": "string",
+            "description": "This parameter contains the first line of the billing address."
+          },
+          "city": {
+            "type": "string",
+            "description": "This parameter contains the city where the customer resides."
+          },
+          "state": {
+            "type": "string",
+            "description": "This parameter contains the state where the customer resides."
+          },
+          "country": {
+            "type": "string",
+            "description": "This parameter contains the country where the customer resides."
+          },
+          "zipcode": {
+            "type": "string",
+            "description": "This parameter contains the zip code of the customer's address."
+          },
+          "template_id": {
+            "type": "string",
+            "description": "This parameter contains the template ID to be provided in case of more than one email invoice template. Merchant can decide which template to use and provide the particular template ID in this parameter."
+          },
+          "validation_period": {
+            "type": "integer",
+            "description": "This parameter contains the number of days for which the email invoice usage is valid (If this field is left empty, the default value will be taken as 7 days).",
+            "contentEncoding": "int32"
+          },
+          "send_email_now": {
+            "type": "string",
+            "description": "This parameter contains the flag to specify whether the email invoice needs to be sent to customer at the time of creation or later."
+          },
+          "send_sms": {
+            "type": "string",
+            "description": "This parameter contains the flag to specify whether the SMS invoice needs to be sent to customer."
+          },
+          "time_unit": {
+            "type": "string",
+            "description": "This parameter contains the any of the following time unit of validation period: M: Minute,, H: Hour or D: Days",
+            "examples": [
+              "H"
+            ]
+          }
+        },
+        "examples": [
+          {
+            "amount": "10000",
+            "txnid": "abaac3330",
+            "productinfo": "iPhone",
+            "firstname": "Samir",
+            "email": "test@test.com",
+            "phone": "7401099153",
+            "address1": "testaddress",
+            "city": "Mumbai",
+            "state": "Maharashtra",
+            "country": "India",
+            "zipcode": "122002",
+            "template_id": "1290",
+            "validation_period": 6,
+            "send_email_now": "0",
+            "send_sms": "1"
+          }
+        ]
+      },
+      "command": {
+        "title": "command",
+        "const": "validateVPA",
+        "type": "string",
+        "description": "This parameter must contain the command as validateVPA.",
+        "examples": [
+          "validateVPA"
+        ]
+      },
+      "Content-Type": {
+        "title": "Content-Type",
+        "const": "application/x-www-form-urlencoded",
+        "type": "string",
+        "examples": [
+          "application/x-www-form-urlencoded"
+        ]
+      },
+      "form": {
+        "title": "form",
+        "const": 2,
+        "type": "integer",
+        "examples": [
+          2
+        ]
+      },
+      "key": {
+        "title": "key",
+        "const": "JPM7Fg",
+        "type": "string",
+        "description": "This parameter must contain merchant key provided by PayU.",
+        "examples": [
+          "JPM7Fg"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "httpBearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "httpBearer": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Misc",
+      "description": ""
+    }
+  ],
+  "x-readme": {
+    "explorer-enabled": true,
+    "proxy-enabled": true
+  }
+}
