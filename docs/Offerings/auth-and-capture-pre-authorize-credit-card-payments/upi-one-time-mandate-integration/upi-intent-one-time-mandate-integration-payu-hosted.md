@@ -10,12 +10,16 @@ metadata:
 next:
   description: ''
 ---
-The pre_authorize parameter is used to pre-authorize payments using the PayU Hosted Checkout integration with the _payment API.
+The pr&#x65;_&#x61;uthorize parameter is used to pre-authorize payments using the PayU Hosted Checkout integration with the_ payment API.
 
 You need to activate the Pre-authorize payments before you start using the functionality. Contact your PayU KAM to enable this functionality.
 
 <Callout icon="👍" theme="okay">
+  ###
+
   Automatically generate code including hashing for your eCommerce website to integrate UPI OTM - PayU Hosted Checkout with zero coding knowledge:
+
+    
 
   <HTMLBlock>{`
                           <style>
@@ -105,8 +109,8 @@ You need to activate the Pre-authorize payments before you start using the funct
 
 When you initiate a pre-auth transaction request:
 
-* The PayU response contains the intentURIData parameter
-* For success cases, this provides a URL to invoke the intent
+- The PayU response contains the intentURIData parameter
+- For success cases, this provides a URL to invoke the intent
 
 <Accordion title="Sample response" icon="fa-code">
   **Success scenario**
@@ -248,13 +252,19 @@ To capture a pre-authorized payment, use the following command. After the API co
 <br />
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Notes**:
 
-  * The **unamappedstatus** to **auth** can be checked using thje <Anchor label="Verify Payment API" target="_blank" href="ref:verify_payment_api">Verify Payment API</Anchor> and in callback response in the Transaction callback.
-  * To check the status of the Auth Request and then Capture Request sent, use the **check_action_status** API. For more information,  refer to  <Anchor label="Check Refund Status API with Request ID" target="_blank" href="ref:check_action_status_api_with_request_id">Check Refund Status API with Request ID</Anchor>.
-  * If you want to cancel or refund a pre-authorized payment, refer to [Cancel a Pre-Authorized Payment](doc:cancel-a-pre-authorized-payment).
+  - The **unamappedstatus** to **auth** can be checked using the <Anchor target="_blank" href="ref:verify_payment_api">Verify Payment API</Anchor> and in callback response in the Transaction callback.
+  - To check the status of the Auth Request and then Capture Request sent, use the **check\_action\_status** API. For more information,  refer to  <Anchor target="_blank" href="ref:check_action_status_api_with_request_id">Check Refund Status API with Request ID</Anchor>.
+  - If you want to cancel or refund a pre-authorized payment, refer to [Cancel a Pre-Authorized Payment](doc:cancel-a-pre-authorized-payment).
 </Callout>
 
 <Callout icon="👍" theme="okay">
-  **Reference**: For cancelling pre-auth payments, refer to <Anchor label="Cancel a Pre-Authorized Transaction API" target="_blank" href="ref:cancel-a-pre-authorized-transaction">Cancel a Pre-Authorized Transaction API</Anchor>.
+  ###
+
+  **Reference**: For cancelling pre-auth payments, refer to <Anchor target="_blank" href="ref:cancel-a-pre-authorized-transaction">Cancel a Pre-Authorized Transaction API</Anchor>.
 </Callout>
+
+<br />
