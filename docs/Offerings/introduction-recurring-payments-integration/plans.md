@@ -41,10 +41,12 @@ You can create a plan:
 - From PayU dashboard.
 - Using APIs.
 
-> 📘 **Handy Tips**
->
-> - Creating a plan is optional. You can create a subscription without creating a plan.
-> - You can create multiple subscriptions for a plan.
+<Callout icon="📘" theme="info">
+  ### **Handy Tips**
+
+  - Creating a plan is optional. You can create a subscription without creating a plan.
+  - You can create multiple subscriptions for a plan.
+</Callout>
 
 ## Prerequisites
 
@@ -179,9 +181,7 @@ Find answers to frequently asked questions about SI plans.
    </Accordion>
 5. #### Can I update a plan mid-cycle?
    <Accordion title="Answer" icon="fa-comment-dots">
-     Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
-     ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
-     occaecat cupidatat non proident!
+   To be included
    </Accordion>
 
 <br />
