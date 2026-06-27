@@ -13,13 +13,19 @@ next:
 This section describes the request and response parameters with sample request and response for UPI One-Time mandate Intent and Collect flow. For more information on integration, refer to [Merchant Hosted Integration - UPI OTM](doc:merchant-hosted-integration-upi-otm).
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Note**: Currently, PayU supports UPI One-Time Mandate only for the Seamless integration.
 </Callout>
 
 <br />
 
 <Callout icon="👍" theme="okay">
+  ###
+
   Experience the end-to-end **Merchant Hosted Checkout**> **UPI** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
+
+    
 
   <HTMLBlock>{`
                           <style>
@@ -99,9 +105,9 @@ This section describes the request and response parameters with sample request a
       </td>
 
       <td>
-        `varchar` This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant’s) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction. `Character limit`: 25
+        `varchar` This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant’s) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, if you use the same Transaction ID, it will fail. Hence, you must post us a unique transaction ID for every new transaction. `Character limit`: 25
 
-        * _Note_*: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of ‘duplicate Order ID.’
+        - _Note_\*: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of ‘duplicate Order ID.’
       </td>
 
       <td>
@@ -117,7 +123,7 @@ This section describes the request and response parameters with sample request a
       <td>
         `float` This parameter should contain the payment amount of the particular transaction.
 
-        * _Note_*: Type-cast the amount to float type
+        - _Note_\*: Type-cast the amount to float type
       </td>
 
       <td>
@@ -175,7 +181,7 @@ This section describes the request and response parameters with sample request a
       <td>
         `varchar` Must contain the phone number of the customer.
 
-        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions. Character limit: 50
+        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is required to provide the correct information Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions. Character limit: 50
       </td>
 
       <td>
@@ -235,8 +241,8 @@ This section describes the request and response parameters with sample request a
       </td>
 
       <td>
-        * **UPI**: Used for UPI Collect
-        * **INTENT**: Used for UPI Intent
+        - **UPI**: Used for UPI Collect
+        - **INTENT**: Used for UPI Intent
       </td>
     </tr>
 
@@ -252,13 +258,13 @@ This section describes the request and response parameters with sample request a
       </td>
 
       <td>
-        abc@payu
+        abc\@payu
       </td>
     </tr>
 
     <tr>
       <td>
-        txn_s2s_flow `mandatory`
+        txn\_s2s\_flow `mandatory`
       </td>
 
       <td>
@@ -272,7 +278,7 @@ This section describes the request and response parameters with sample request a
 
     <tr>
       <td>
-        pre_authorize `mandatory for Pre-Auth`
+        pre\_authorize `mandatory for Pre-Auth`
       </td>
 
       <td>
@@ -286,19 +292,19 @@ This section describes the request and response parameters with sample request a
 
     <tr>
       <td>
-        si_Details
+        si\_Details
       </td>
 
       <td>
         This parameter contains the following information in JSON format:
 
-        * paymentStartDate
-        * paymentEndDate
-          * _Example_*:  \{"paymentStartDate":"2024-07-24","paymentEndDate":"2024-07-28"}
+        - paymentStartDate
+        - paymentEndDate
+          - _Example_\*:  {"paymentStartDate":"2024-07-24","paymentEndDate":"2024-07-28"}
       </td>
 
       <td>
-        \{"paymentStartDate":"2024-07-24","paymentEndDate":"2024-07-28"}
+        {"paymentStartDate":"2024-07-24","paymentEndDate":"2024-07-28"}
       </td>
     </tr>
 
@@ -310,7 +316,7 @@ This section describes the request and response parameters with sample request a
       <td>
         Hash is a crucial parameter used to ensure that any date is not tampered while redirecting customer from the merchant website to PayU’s payment interface while registration transactions.
 
-        It is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si_details by merchant salt.
+        It is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si\_details by merchant salt.
 
         In the case of registration transaction, the formula is used to calculate this hash is similar to the following: `HASH = SHA512(sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT))`
       </td>
@@ -814,7 +820,7 @@ For Intent, as part of response, Intent URL is returned. Now, merchant needs to 
 
 For Intent, as part of response, Intent URL is returned. Now merchant needs to use data received in intentURIData parameter, JSON decode the response and use URL to invoke intent at their end
 
-After the transaction is authorised by the customer, PayU will receive confirmation. Same will be passed to the merchant as webhook
+After the transaction is authorised by the customer, PayU will receive confirmation. PayU will pass the confirmation to the merchant as webhook.
 
 ```json
 {
