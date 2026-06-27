@@ -1,10 +1,8 @@
 ---
-title: Get Checkout Details API
 excerpt: ''
 api:
   file: others-12.json
   operationId: get-checkout_details
-deprecated: false
 hidden: false
 metadata:
   title: Get Checkout Details API
@@ -25,14 +23,16 @@ metadata:
 next:
   description: ''
 ---
-The Get Checkout Details (**get_checkout_details**) API is a generic API using which they can get information when you create the custom checkout pages, that will contain the payment options, offers, recommendations, and downtime details. The API provides the following details: 
+The Get Checkout Details (**get\_checkout\_details**) API is a generic API using which they can get information when you create the custom checkout pages, that will contain the payment options, offers, recommendations, and downtime details. The API provides the following details: 
 
-* **Payment option details**: The extended details for each payment option are available for the merchant.
-* **Additional charges**: The additional charges are configured for all payment options.
-* eligibility details
-* **Downtime details**: The downtime status of the payment options.
+- **Payment option details**: The extended details for each payment option are available for the merchant.
+- **Additional charges**: The additional charges are configured for all payment options.
+- eligibility details
+- **Downtime details**: The downtime status of the payment options.
 
 <Callout icon="📮" theme="default">
+  ###
+
   **Postman Collection**: Access the Get Checkout Details API Postman Collection from the following location:
 
   [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/f1fv12l/getcheckoutdetails-paymodes](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/f1fv12l/getcheckoutdetails-paymodes)
@@ -2157,7 +2157,7 @@ The following JSON must be used in var1 for checking down status:
   | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
   | requestId   **mandatory**          | `String` This parameter must contain the request ID.                                                                                                                                                                                                                                                                                                                                                                                                             | 12345678                                                                                                       |
   | transactionDetails   **mandatory** | `JSON` This parameter must contain the following fields in a JSON format as in the example:      - **amount**: This field contains the transaction amount - ` **txnid**: This fields contains the transaction ID.`                                                                                                                                                                                                                                               |  `{       "amount": 12345.12     }`                                                                            |
-  | useCase   **mandatory**            | `JSON` This field contains list of fields for which you want get information. For the list of fields and its description, refer to the [Additional Info for General APIs > useCase JSON Field Description](#usecase-json-field-descriptions). table.                                                                                                                                                                                                             | ` {     "getExtendedPaymentDetails": true     }`                                                               |
+  | useCase   **mandatory**            | `JSON` This field contains list of fields for which you want to get information. For the list of fields and its description, refer to the [Additional Info for General APIs > useCase JSON Field Description](#usecase-json-field-descriptions). table.                                                                                                                                                                                                             | ` {     "getExtendedPaymentDetails": true     }`                                                               |
   | filters   **optional**             | `JSON`This parameter is used to filter the response of this API based on one or more following in the **paymentOptions** field:      - **cc**: Filter the credit cards. - **dc**: Filter the debit cards. - **nb**: Filter the Net Banking - **emi**:  Filter the EMI options. For list of EMI options, refer to [EMI Options for Get Checkout Details API](#emi-options-for-get-checkout-details-api). - **upi**: Filter the UPI - **cash**: Filter the wallets | `{ "paymentOptions":     {       "emi": {                     "dc": "SBIN,KKBK,ICIC"               }      } }` |
 
   ### useCase JSON Field Description
@@ -2184,7 +2184,7 @@ The following JSON must be used in var1 for checking down status:
   | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
   | requestId   **mandatory**          | `String` This parameter must contain the request ID.                                                                                                                                                                                                                                                                                                                                                                                                             | 12345678                                                                                                       |
   | transactionDetails   **mandatory** | `JSON` This parameter must contain the following fields in a JSON format as in the example:      - **amount**: This field contains the transaction amount - ` **txnid**: This fields contains the transaction ID.`                                                                                                                                                                                                                                               |  `{       "amount": 12345.12     }`                                                                            |
-  | useCase   **mandatory**            | `JSON` This field contains list of fields for which you want get information. For the list of fields and its description, refer to the [useCase JSON field descriptions](#usecase-json-field-descriptions). table.                                                                                                                                                                                                                                               | ` {     "getExtendedPaymentDetails": true     }`                                                               |
+  | useCase   **mandatory**            | `JSON` This field contains list of fields for which you want to get information. For the list of fields and its description, refer to the [useCase JSON field descriptions](#usecase-json-field-descriptions). table.                                                                                                                                                                                                                                               | ` {     "getExtendedPaymentDetails": true     }`                                                               |
   | filters   **optional**             | `JSON`This parameter is used to filter the response of this API based on one or more following in the **paymentOptions** field:      - **cc**: Filter the credit cards. - **dc**: Filter the debit cards. - **nb**: Filter the Net Banking - **emi**:  Filter the EMI options. For list of EMI options, refer to [EMI Options for Get Checkout Details API](#emi-options-for-get-checkout-details-api). - **upi**: Filter the UPI - **cash**: Filter the wallets | `{ "paymentOptions":     {       "emi": {                     "dc": "SBIN,KKBK,ICIC"               }      } }` |
 
   ### useCase JSON field descriptions
@@ -2196,3 +2196,5 @@ The following JSON must be used in var1 for checking down status:
   | getTaxSpecification`optional`       | `Boolean` This flag is posted as **true** to returns the tax specification configured on the backend. Clients can use the result to show the split of additional charges for each payment option. For a sample request or response using this field, refer to the [Get Tax Specification](#getTaxSpecification) section.                                                                                                                       |
   | checkDownStatus`optional`           | `Boolean` This flag is posted as **true** to return the downtime of the payment options. For a sample request or response using this field, refer to [Check Down Status](#checkDownStatus) field.                                                                                                                                                                                                                                              |
 </Accordion>
+
+<br />
