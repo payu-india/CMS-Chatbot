@@ -24,7 +24,7 @@ metadata:
     - tpv third party verification upi sdk ios integration payu
     - ios payment gateway tpv beneficiary validation payu sdk
     - integrate tpv ios app payu core sdk seamless payment
-    - iphone upi tpv payment sdk integration steps payu
+    - iPhone upi tpv payment sdk integration steps payu
     - payment gateway ios tpv integration developer guide payu
     - payu ios coresdk third party verification flow integration
     - mobile upi tpv sdk ios native integration payu india
