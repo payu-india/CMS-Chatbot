@@ -10,10 +10,14 @@ metadata:
 next:
   description: ''
 ---
-The **pre_authorize** parameter is used to pre-authorize payments using the PayU Hosted Checkout integration with the **_payment** API.
+The **pre\_authorize** parameter is used to pre-authorize payments using the PayU Hosted Checkout integration with the **\_payment** API.
 
 <Callout icon="👍" theme="okay">
+  ###
+
   Experience the end-to-end **Pre-Authorize Payments** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
+
+    
 
   <HTMLBlock>{`
                   <style>
@@ -54,6 +58,8 @@ The **pre_authorize** parameter is used to pre-authorize payments using the PayU
 <br />
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Note**: You need to activate the Pre-Authorize Payments before you start using this integration. Contact your PayU Key Account Manager (KAM) to activate Pre-Authorize Payments.
 </Callout>
 
@@ -85,14 +91,14 @@ The **pre_authorize** parameter is used to pre-authorize payments using the PayU
 
 ## Step 1: Post the pre-auth transaction request
 
-The **pre_authorize** parameter as specified is used to pre-authorize payments using the PayU Hosted Checkout integration with the **_payment** API. For **Try-It** experience, refer to <Anchor label="Pre-Authorize Payment" target="_blank" href="ref:pre_authorize_payment">Pre-Authorize Payment</Anchor> for the complete list parameters with **Try It** experience.
+The **pre\_authorize** parameter as specified is used to pre-authorize payments using the PayU Hosted Checkout integration with the **\_payment** API. For **Try-It** experience, refer to <Anchor target="_blank" href="ref:pre_authorize_payment">Pre-Authorize Payment</Anchor> for the complete list parameters with **Try It** experience.
 
 **Environment**
 
-|                            |                                                                      |
-| :------------------------- | :------------------------------------------------------------------- |
-| **Test Environment**       | [https://test.payu.in/_payment>](https://test.payu.in/_payment>)     |
-| **Production Environment** | [https://secure.payu.in/_payment>](https://secure.payu.in/_payment>) |
+|                            |                                                                       |
+| :------------------------- | :-------------------------------------------------------------------- |
+| **Test Environment**       | [https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
+| **Production Environment** | [https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
 <Accordion title="Request parameters" icon="fa-table">
   <HTMLBlock>{`
@@ -538,13 +544,19 @@ To capture a pre-authorized payment, use the following command. After the API co
 <br />
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Notes**:
 
-  * The **unamappedstatus** to **auth** can be checked using thje <Anchor label="Verify Payment API" target="_blank" href="ref:verify_payment_api">Verify Payment API</Anchor> and in callback response in the Transaction callback.
-  * To check the status of the Auth Request and then Capture Request sent, use the **check_action_status** API. For more information,  refer to  <Anchor label="Check Refund Status API with Request ID" target="_blank" href="ref:check_action_status_api_with_request_id">Check Refund Status API with Request ID</Anchor>.
-  * If you want to cancel or refund a pre-authorized payment, refer to [Cancel a Pre-Authorized Payment](doc:cancel-a-pre-authorized-payment).
+  - The **unamappedstatus** to **auth** can be checked using the <Anchor target="_blank" href="ref:verify_payment_api">Verify Payment API</Anchor> and in callback response in the Transaction callback.
+  - To check the status of the Auth Request and then Capture Request sent, use the **check\_action\_status** API. For more information,  refer to  <Anchor target="_blank" href="ref:check_action_status_api_with_request_id">Check Refund Status API with Request ID</Anchor>.
+  - If you want to cancel or refund a pre-authorized payment, refer to [Cancel a Pre-Authorized Payment](doc:cancel-a-pre-authorized-payment).
 </Callout>
 
 <Callout icon="👍" theme="okay">
-  **Reference**: For cancelling pre-auth payments, refer to <Anchor label="Cancel a Pre-Authorized Transaction API" target="_blank" href="ref:cancel-a-pre-authorized-transaction">Cancel a Pre-Authorized Transaction API</Anchor>.
+  ###
+
+  **Reference**: For cancelling pre-auth payments, refer to <Anchor target="_blank" href="ref:cancel-a-pre-authorized-transaction">Cancel a Pre-Authorized Transaction API</Anchor>.
 </Callout>
+
+<br />
