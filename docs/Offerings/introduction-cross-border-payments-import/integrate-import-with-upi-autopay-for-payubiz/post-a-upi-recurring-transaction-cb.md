@@ -32,7 +32,7 @@ Post the pre-debit notification before 48 hours of the actual debit to notify th
 </Accordion>
 
 <Accordion title="Sample response" icon="fa-download">
-  **Successful sceanario**
+  **Successful scenario**
 
   ```plaintext
   {
@@ -518,7 +518,7 @@ Initiate recurring using the **Recurring Payment Transaction** API including the
   > For UPI, call the **verify\_settlement** API after 10 mins from time of initiation whereas for Net Banking it can be called up to T+2 once in a day.
 </Accordion>
 
-## Step 3: Update Invoice ID [Optional]
+## Step 3: Update Invoice ID \[Optional]
 
 If the Invoice ID value was unavailable when posting the transaction at [Step 1](#step-1-make-payment-using-web-checkout-integration), it can be updated using the **UDF Update** API by posting it in the UDF5 parameter.
 
@@ -701,3 +701,5 @@ According to the RBI guidelines, the invoice file must be shared with PayU withi
 <Accordion title="Response Code and Description" icon="fa-list">
   Refer to [Response Code and Description - Invoice Upload API](ref:response-code-and-description-invoice-upload-api).
 </Accordion>
+
+<br />
