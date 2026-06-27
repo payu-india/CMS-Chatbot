@@ -19,9 +19,11 @@ WebView is a component that enables mobile apps to collect payments by loading t
 
 You can collect payments from your mobile apps by opening the the PayU checkout form in a WebView. This allows you to reuse your PayU Hosted Checkout integration and get started quickly.
 
-> 📘 **UPI App List is platform-controlled:**&#x20;
->
-> The list of UPI apps displayed on the payment screen (GPay, PhonePe, Paytm, etc.) is managed globally by PayU and cannot be customised per merchant. If you want to remove specific apps from this list, contact your PayU Key Account Manager (KAM) or<Anchor target="_blank" href="https://help.payu.in">&#x20;PayU Support</Anchor>.
+<Callout icon="📘" theme="info">
+  ### **UPI App List is platform-controlled:**&#x20;
+
+  The list of UPI apps displayed on the payment screen (GPay, PhonePe, Paytm, etc.) is managed globally by PayU and cannot be customised per merchant. If you want to remove specific apps from this list, contact your PayU Key Account Manager (KAM) or<Anchor target="_blank" href="https://help.payu.in">&#x20;PayU Support</Anchor>.
+</Callout>
 
 **Choose your platform integration guide:**
 
@@ -353,7 +355,7 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
 </Accordion>
 
 <Accordion title="Handle in Chrome Custom Tab" icon="fa-code">
-  Open url in cct(chrome custom tab) -
+  Open url in CCT(Chrome custom tab) -
 
   ```
   val builder = CustomTabsIntent.Builder()  
@@ -421,7 +423,7 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
 
      Example value of userAgent - Mozilla/5.0 (Linux; Android 13; SM-G981B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36
 
-  7. CSS Issues: Since different merchants use various languages in their applications, CSS issues have occasionally been reported in Flutter applications. While the layout may display correctly in web browsers like Safari and Chrome, it sometimes encounters problems when viewed in a Flutter webview. Eg android:windowSoftInputMode="adjustResize" - if in manifest file this is not added, keyboard opens on top of input field."
+  7. CSS Issues: Since different merchants use various languages in their applications, CSS issues have occasionally been reported in Flutter applications. While the layout may display correctly in web browsers like Safari and Chrome, it sometimes encounters problems when viewed in a Flutter webview. For example,  android:windowSoftInputMode="adjustResize" - if in manifest file this is not added, keyboard opens on top of input field."
 
      -> This may be due to wrong User Agent. always pass right User Agent to webView
 
@@ -539,7 +541,7 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
   </Accordion>
 
   <Accordion title="Step 2: Handle DeepLinks" icon="fa-code">
-    Here, the `decidePolicyFor` method checks if the URL in the naviagtion action is an HTTP or HTTPS schema. If it is not, then the code checks if UIApplication can open the URL.  it is needed when new url loaded in webView and also handle intent flow.
+    Here, the `decidePolicyFor` method checks if the URL in the navigation action is an HTTP or HTTPS schema. If it is not, then the code checks if UIApplication can open the URL.  it is needed when new url loaded in webView and also handle intent flow.
 
     ```swift
     class WebViewController: UIViewController, WKNavigationDelegate {
@@ -602,7 +604,7 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
 
   Set Correct User Agent String value otherwise may get unexpected UI and function Issues in custom webView. Ex:- For IOS device (Mozilla/5.0 (iPhone; CPU iPhone OS 12\_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 Mobile/15E148 Safari/604.1).
 
-  #### 3. Some issues arise when merchants configure their system to close the webview whenever an error occurs on the checkout page Eg ERR\_BLOCKED\_BY\_ORB:
+  #### 3. Some issues arise when merchants configure their system to close the webview whenever an error occurs on the checkout page. For exxample, ERR\_BLOCKED\_BY\_ORB:
 
   This may be because web Page is not loaded/rendered properly. this type of error can be ignored.
 
@@ -620,7 +622,7 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
 
   Set `self.webView.evaluateJavaScript("sessionStorage.setItem('payuHandleIntent', true)")` and Intent app will be open if proper Queried schemes added in info.plist
 
-  #### 8. CSS Issues: Since different merchants use various languages in their applications, CSS issues have occasionally been reported in Flutter applications. While the layout may display correctly in web browsers like Safari and Chrome, it sometimes encounters problems when viewed in a Flutter webview. Eg android:windowSoftInputMode=
+  #### 8. CSS Issues: Since different merchants use various languages in their applications, CSS issues have occasionally been reported in Flutter applications. While the layout may display correctly in web browsers like Safari and Chrome, it sometimes encounters problems when viewed in a Flutter webview. For example,  android:windowSoftInputMode=
 
   If in manifest file this is not added, keyboard opens on top of input field. :- This may be due to wrong User Agent. always pass right User Agent to webView
 
@@ -887,9 +889,12 @@ You can collect payments from your mobile apps by opening the the PayU checkout 
   Each string in the array is the name of the PSP apps (in lowercase) for which you want to enable the UPI intent.
 
 </Accordion>
+
 <Callout icon="📘" theme="info">
+  ###
+
   Note:
-If a new app is onboarded during checkout the corresponding PSP (Payment Service Provider) scheme must be added to the Info.plist file to support the new app intent.
+  If a new app is onboarded during checkout the corresponding PSP (Payment Service Provider) scheme must be added to the Info.plist file to support the new app intent.
 </Callout>
 
 <br />
