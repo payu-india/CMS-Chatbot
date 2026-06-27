@@ -20,28 +20,6 @@ metadata:
 next:
   description: ''
 ---
----
-title: Flutter UPI SDK
-excerpt: ''
-deprecated: false
-hidden: false
-metadata:
-  title: Flutter UPI SDK
-  description: >-
-    This document outlines the knowledge base for UPI transactions, detailing
-    the differences between Collect and Intent transactions, and provides
-    guidance on integrating UPI SDK with React Native and Flutter, including
-    compatibility requirements and integration steps.
-  keywords:
-    - Flutter UPI SDK
-    - Integrate Flutter UPI SDK
-    - ' Flutter UPI SDK Integration'
-    - Integrate Mobile Flutter UPI SDK
-    - PayU Mobile Flutter UPI SDK
-  robots: index
-next:
-  description: ''
----
 This cluster aims to document all the knowledge base for UPI transactions. Implementation of most of the UPI flows is different when compared to normal transactions.
 
 There are broadly two types of UPI transactions, Collect and Intent(Pure Intent/In-App). For collect transactions, PayU informs the payment gateway to trigger a transaction to the app linked to the provided VPA, which asks the user for approval.
@@ -49,10 +27,12 @@ There are broadly two types of UPI transactions, Collect and Intent(Pure Intent/
 For intent transactions, we delegate the transaction process to an external app like BHIM, Google Pay, etc, which lets users transfer money to a VPA specified by us. After that, we use the PG (related to the specified VPA) for verification. PayU has a pre-configured VPA (distinct on the PG-Merchant level) on which the app makes the user pay the amount. To integrate UPI SDK with React Native, see Integrate UPI SDK with Flutter.
 
 <Callout icon="❗️" theme="error">
+  ###
+
   **Prerequisites for Google Pay:**
 
-  * To start transacting through Google Pay™, register your business on Google using the Google Onboarding form, In this registration process, you need to add the merchant VPAs created by PayU for you. In the case of multiple VPAs, all of them need to be registered with Google.
-  * To enable Google Pay, contact your Point of Contact at Google. For any further queries or help with onboarding, send a mail to PayU Mobile Integration Team.
+  - To start transacting through Google Pay™, register your business on Google using the Google Onboarding form, In this registration process, you need to add the merchant VPAs created by PayU for you. In the case of multiple VPAs, all of them need to be registered with Google.
+  - To enable Google Pay, contact your Point of Contact at Google. For any further queries or help with onboarding, send a mail to PayU Mobile Integration Team.
 </Callout>
 
 ***
@@ -67,7 +47,7 @@ For intent transactions, we delegate the transaction process to an external app 
 
 ## iOS
 
-* iOS version: 11
+- iOS version: 11
 
 ## SDK Integration
 
@@ -195,9 +175,9 @@ To integrate the Flutter UPI SDK, perform the following steps:
     **Warning**: Always generate the hash at your backend to ensure security.
   </Callout>
 
-  Hash is required to authenticate the request and to make sure MiTM has not happened while data was traveling over the network. You have to set the hash in the hash parameter during the creation of payment parameters.
+Hash is required to authenticate the request and to make sure MiTM has not happened while data was traveling over the network. You have to set the hash in the hash parameter during the creation of payment parameters.
 
-  Use the following format to generate the hash:
+Use the following format to generate the hash:
 
   <Accordion title="Normal Payment Hash" icon="fa-code">
 For Normal transactions, use the following format to generate the hash:
@@ -271,44 +251,45 @@ For Normal transactions, use the following format to generate the hash:
   <Accordion title="WealthTech Payment Hash" icon="fa-code">
     ## Hash Formula
 
-    ```
-    sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|beneficiarydetail|si_details|user_token|offer_key|offer_auto_apply|cart_details|products|SALT)
-    ```
+````
+```
+sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|beneficiarydetail|si_details|user_token|offer_key|offer_auto_apply|cart_details|products|SALT)
+```
 
-    ### Products Format
+### Products Format
 
-    ```json
-    [{
-      "type": "mutual_fund",
-      "plan": "GD",
-      "folio": "9104927822",
-      "amount": "50000",
-      "option": "G",
-      "scheme": "LT",
-      "receipt": "77407",
-      "mf_member_id": "123445",
-      "mf_user_id": "77407",
-      "mf_partner": "cams",
-      "mf_investment_type": "L",
-      "mf_amc_code": "UTB"
-    }]
-    ```
+```json
+[{
+  "type": "mutual_fund",
+  "plan": "GD",
+  "folio": "9104927822",
+  "amount": "50000",
+  "option": "G",
+  "scheme": "LT",
+  "receipt": "77407",
+  "mf_member_id": "123445",
+  "mf_user_id": "77407",
+  "mf_partner": "cams",
+  "mf_investment_type": "L",
+  "mf_amc_code": "UTB"
+}]
+```
 
-    ### Example
+### Example
 
-    ```java
-    String hashData = "<Key>|1714544838994|10|productInfo|firstName|test@gmail.com|udf1|udf2|udf3|udf4|udf5||||||{\"beneficiaryAccountNumber\":\"002001600674\",\"ifscCode\":\"HDFC0000090\"}|{\"paymentStartDate\":\"2026-04-20\",\"paymentEndDate\":\"2026-06-20\",\"billingAmount\":\"10\",\"billingCurrency\":\"INR\",\"billingCycle\":\"ADHOC\",\"billingInterval\":\"1\"}|||||[{\"type\":\"mutual_fund\",\"plan\":\"GD\",\"folio\":\"9104927822\",\"amount\":\"50000\",\"option\":\"G\",\"scheme\":\"LT\",\"receipt\":\"77407\",\"mf_member_id\":\"123445\",\"mf_user_id\":\"77407\",\"mf_partner\":\"cams\",\"mf_investment_type\":\"L\",\"mf_amc_code\":\"UTB\"}]|<Salt>";
-    ```
+```java
+String hashData = "<Key>|1714544838994|10|productInfo|firstName|test@gmail.com|udf1|udf2|udf3|udf4|udf5||||||{\"beneficiaryAccountNumber\":\"002001600674\",\"ifscCode\":\"HDFC0000090\"}|{\"paymentStartDate\":\"2026-04-20\",\"paymentEndDate\":\"2026-06-20\",\"billingAmount\":\"10\",\"billingCurrency\":\"INR\",\"billingCycle\":\"ADHOC\",\"billingInterval\":\"1\"}|||||[{\"type\":\"mutual_fund\",\"plan\":\"GD\",\"folio\":\"9104927822\",\"amount\":\"50000\",\"option\":\"G\",\"scheme\":\"LT\",\"receipt\":\"77407\",\"mf_member_id\":\"123445\",\"mf_user_id\":\"77407\",\"mf_partner\":\"cams\",\"mf_investment_type\":\"L\",\"mf_amc_code\":\"UTB\"}]|<Salt>";
+```
+````
+
   </Accordion>
 
-  ## 📝 Important Notes
+## 📝 Important Notes
 
-  * All hash values are generated using **SHA-512** algorithm
-  * Use pipe (`|`) as the separator between parameters
-  * Empty parameters must be represented with empty strings between pipes (e.g., `||||||`)
-  * JSON objects (beneficiarydetail, si\_details, products) should be properly formatted and escaped when used in hash generation
-  * Always use your actual **key** and **salt** values provided by PayU
-</Accordion>
+\* All hash values are generated using **SHA-512** algorithm
+\* Use pipe (`|`) as the separator between parameters
+\* Empty parameters must be represented with empty strings between pipes (e.g., `||||||`)
+_JSON objects (beneficiarydetail, si\_details, products) should be properly formatted and escaped when used in hash generation_ Always use your actual **key** and **salt** values provided by PayU </Accordion>
 
 <Accordion title="Step 5: Generate Payment Parameters" icon="fa-code">
   Set up the payment parameters for the SDK to initiate a transaction request. Use the following sample code for a quick integration:
@@ -451,6 +432,7 @@ For Normal transactions, use the following format to generate the hash:
     </tr>
   </tbody>
 </table>
+
 `}</HTMLBlock>
   </Accordion>
 </Accordion>
@@ -558,7 +540,7 @@ For Normal transactions, use the following format to generate the hash:
   > Things to remember while testing an integration:
   >
   > 1. To test the integration make sure that you are making a transaction call to the test endpoint.
-  > 2. Use your test key and salt for the transaction requests. See [Genearate test key and salt](https://docs.payu.in/docs/generate-test-merchant-key-and-salt).
+  > 2. Use your test key and salt for the transaction requests. See [Generate test key and salt](https://docs.payu.in/docs/generate-test-merchant-key-and-salt).
   > 3. Set the value of the `environment` parameters to `1`.
 
   You can make test payments using one of the payment methods configured at the Checkout.
