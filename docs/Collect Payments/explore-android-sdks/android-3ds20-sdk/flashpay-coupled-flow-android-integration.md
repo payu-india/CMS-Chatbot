@@ -12,21 +12,6 @@ metadata:
     - FlashPay Coupled Flow 3DS 2.0 Integration on Android
   robots: index
 ---
----
-title: FlashPay Coupled Flow 3DS 2.0 Integration
-deprecated: false
-hidden: false
-metadata:
-  title: FlashPay Coupled Flow 3DS 2.0 Integration - Android SDK
-  description: >-
-    This section describes the step-by-step procedure to integrate FlashPay
-    Coupled Flow 3DS 2.0 on Android SDK
-  keywords:
-    - Android FlashPay Coupled Flow 3DS 2.0 Integration
-    - FlashPay Coupled Flow 3DS 2.0 Integration on Android
-  robots: index
----
-
 FlashPay solution primarily offers a single comprehensive SDK which is equipped to operate on 3DS protocols and additionally manages e2e authentication, including advanced biometric-based OOB authentication.
 
 <Cards columns={3}>
@@ -49,8 +34,8 @@ FlashPay solution primarily offers a single comprehensive SDK which is equipped 
 
 PayU SDK offers the following methods to integrate with 3DS 2.0:
 
-* **SDK Integration**: Min SDK Version is v21 Compile SDK Version is v31 or later
-* **Maven Dependency URL** Use the following code snippet in your app’s build.gradle file:
+- **SDK Integration**: Min SDK Version is v21 Compile SDK Version is v31 or later
+- **Maven Dependency URL** Use the following code snippet in your app’s build.gradle file:
 
 Add the following dependency in your app-level gradle file:
 
@@ -58,12 +43,12 @@ Add the following dependency in your app-level gradle file:
 implementation 'in.payu:threeds-sdk:2.0.0'
 ```
 
-* Use our SDK for a complete transaction:
-  * Collecting device details
-  * Invoking an authentication request through our 3DS Server
-  * Invoking challenge
-  * Completing authorization through PayU
-  * Use our SDK for collecting device details and to render challenge screens.
+- Use our SDK for a complete transaction:
+  - Collecting device details
+  - Invoking an authentication request through our 3DS Server
+  - Invoking challenge
+  - Completing authorization through PayU
+  - Use our SDK for collecting device details and to render challenge screens.
 
 ## Step 2. Installation
 
@@ -569,7 +554,7 @@ implementation 'in.payu:threeds-sdk:2.0.0'
         </td>
 
         <td>
-          ture/false
+          true/false
         </td>
       </tr>
 
@@ -837,5 +822,9 @@ implementation 'in.payu:threeds-sdk:2.0.0'
 ***
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Note**: This integration guide covers the complete setup process for FlashPay Android SDK. Ensure proper implementation of all callback methods and error handling for a seamless user experience.
 </Callout>
+
+<br />
