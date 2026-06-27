@@ -53,8 +53,7 @@ Create a `PaymentInitialization` class object and call `initiateSignatureCapture
 
     <tr>
       <td>
-        Ref.No \
-        `mandatory`
+        Ref.No <br />`mandatory`
       </td>
 
       <td>
@@ -68,8 +67,7 @@ Create a `PaymentInitialization` class object and call `initiateSignatureCapture
 
     <tr>
       <td>
-        Signature\
-        `mandatory`
+        Signature<br />`mandatory`
       </td>
 
       <td>
@@ -102,9 +100,9 @@ catch (RuntimeException e)
 
 ## Response parameters
 
-| Parameter | Description                                                                                           | Example                            |
-| :-------- | :---------------------------------------------------------------------------------------------------- | :--------------------------------- |
-| Response  | `objectResponse` returns the details of response objects such as response code,response messaege etc. | Refer to Response payload objects. |
+| Parameter | Description                                                                                          | Example                            |
+| :-------- | :--------------------------------------------------------------------------------------------------- | :--------------------------------- |
+| Response  | `objectResponse` returns the details of response objects such as response code,response message etc. | Refer to Response payload objects. |
 
 ## Sample response
 
@@ -138,3 +136,5 @@ private final Handler handler = new Handler()
 	};
 };
 ```
+
+<br />
