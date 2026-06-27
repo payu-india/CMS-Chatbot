@@ -29,11 +29,11 @@ This documentation provides comprehensive guidance for integrating with PayU's P
 
 PayU merchant onboarding APIs allows partners to:
 
-* Onboard merchants to the PayU platform
-* Manage merchant KYC processes
-* Verify bank account details
-* Handle electronic signatures for agreements
-* Receive real-time status updates via webhooks
+- Onboard merchants to the PayU platform
+- Manage merchant KYC processes
+- Verify bank account details
+- Handle electronic signatures for agreements
+- Receive real-time status updates via webhooks
 
 ## Authentication and Authorization
 
@@ -43,9 +43,9 @@ PayU Merchant Onboarding employs token-based authentication with OAuth 2.0 stand
 
 The token-based authentication works as follows:
 
-* Partners obtain an access token using their credentials
-* This token is included in subsequent API requests
-* Tokens expire after a set period and must be refreshed
+- Partners obtain an access token using their credentials
+- This token is included in subsequent API requests
+- Tokens expire after a set period and must be refreshed
 
 > **Important**: Access tokens should be securely stored and never exposed in client-side code.
 
@@ -107,10 +107,10 @@ Different merchant types require different documentation. The exact requirements
 
 PayU accepts various document types for KYC verification, including:
 
-* Identity proofs (PAN Card, Aadhaar, etc.)
-* Address proofs
-* Business registration documents
-* Bank account proofs
+- Identity proofs (PAN Card, Aadhaar, etc.)
+- Address proofs
+- Business registration documents
+- Bank account proofs
 
 For an exhaustive list of documents required for an entity, please refer to [KYC Checklist](https://docs.payu.in/docs/documents-checklist-for-account-activation#/).
 
@@ -135,8 +135,8 @@ Webhooks allow partners to receive notifications about changes in merchant statu
 
 For webhook integration details, please refer to:
 
-* [Register Webhooks API](https://docs.payu.in/reference/register-webhooks-api-to-get-real-time-merchant-status#/)
-* [Get Real-Time Merchant Status Using Webhooks](https://docs.payu.in/reference/get-real-time-merchant-status-using-webhooks#/)
+- [Register Webhooks API](https://docs.payu.in/reference/register-webhooks-api-to-get-real-time-merchant-status#/)
+- [Get Real-Time Merchant Status Using Webhooks](https://docs.payu.in/reference/get-real-time-merchant-status-using-webhooks#/)
 
 ### Security Considerations for Webhooks
 
@@ -179,7 +179,7 @@ KYC document verification can encounter various issues. For detailed information
   | Uploaded PAN card is not clear                                                            | Re-upload the clear copy of PAN card                                                                                                            |
   | <h3>Government Issued Certificate Document</h3>                                           |                                                                                                                                                 |
   | Mismatch in business name on profile and govt. proof copy                                 | Re-upload govt. proof copy with correct legal name or get the business name changed on your profile as per your Govt. proof.                    |
-  | Invalid govt proof, not verified by govt official                                         | Upload the valid govt. proof copy like GST , Udhyog aadhar, registartion certificate etc. and same should be verified by govt. official.        |
+  | Invalid govt proof, not verified by govt official                                         | Upload the valid govt. proof copy like GST , Udhyog aadhar, registration certificate etc. and same should be verified by govt. official.        |
   | Partnership deed is not verified by registrar                                             | Upload the partnership deed verified by registrar                                                                                               |
   | Society deed is not verified by registrar                                                 | Upload the society deed verified by registrar                                                                                                   |
   | Details on certificate of Incorporation mismatch with available details on MCA            | Upload the form 18 or 22 and certificate of incorporation.                                                                                      |
@@ -213,7 +213,7 @@ KYC document verification can encounter various issues. For detailed information
   | Incomplete address proof uploaded                                                         | Please re-upload the complete copy of address proof                                                                                             |
   | Address proof copy not uploaded                                                           | Please upload the copy of address proof                                                                                                         |
   | Address proof copy uploaded is not clear                                                  | Please re-upload a readable copy of address proof with signature                                                                                |
-  | Attached address proof is not valid                                                       | Re-upload valid address proof ( ex. Aadhar card/Voter Id/Passposrt/ DL etc. )                                                                   |
+  | Attached address proof is not valid                                                       | Re-upload valid address proof ( ex. Aadhar card/Voter Id/Passport/ DL etc. )                                                                   |
   | Incomplete address written on your profile                                                | Update address details as per the attached address proof on your profile.                                                                       |
   | Entity ( Individual/proprietor/Pvt ltd etc ) written mismatch with the provided documents | Re-upload correct document as per the Entity.                                                                                                   |
   | <h3>PAN Card of Signing Authority Document</h3>                                           |                                                                                                                                                 |
@@ -227,16 +227,18 @@ KYC document verification can encounter various issues. For detailed information
 
 Common issues include:
 
-* Document quality problems
-* Information mismatches
-* Missing required fields
-* Format incompatibility
+- Document quality problems
+- Information mismatches
+- Missing required fields
+- Format incompatibility
 
 ## Flow Diagram
 
 Here is a diagram for the high-level integration flow:
 
-<Image align="center" src="https://files.readme.io/c8dadf9a8456cf38beec1f5464cb0e78a277fe681bcb9105c981521178b42526-Screenshot_2025-05-13_at_1.39.39_AM.png" />
+
+<Image src="https://files.readme.io/c8dadf9a8456cf38beec1f5464cb0e78a277fe681bcb9105c981521178b42526-Screenshot_2025-05-13_at_1.39.39_AM.png" align="center" />
+
 
 <br />
 
@@ -244,19 +246,21 @@ Here is a diagram for the high-level integration flow:
 
 When integrating with PayU's APIs, follow these security best practices:
 
-* Implement proper token management
-* Use HTTPS for all communications
-* Validate webhook signatures
-* Securely store sensitive data
-* Implement proper error handling
+- Implement proper token management
+- Use HTTPS for all communications
+- Validate webhook signatures
+- Securely store sensitive data
+- Implement proper error handling
 
 ## Testing Recommendations
 
 Testing is essential before moving to production. PayU provides a sandbox environment for testing purposes. Test key aspects including:
 
-* Authentication flows
-* Merchant creation and updates
-* Document uploads
-* Bank verification
-* Error handling
-* Webhook processing
+- Authentication flows
+- Merchant creation and updates
+- Document uploads
+- Bank verification
+- Error handling
+- Webhook processing
+
+<br />
