@@ -14,11 +14,11 @@ Some of the APIs of the POS SDK shares common response parameters. This topic co
 
 ## ICCTransactionResponse
 
-| Parameter            | Description                                               | Example                              |
-| :------------------- | :-------------------------------------------------------- | :----------------------------------- |
-| Transaction Response | `object` Returns the list of transaction response object. | Refer &lt;&lt;TransactionResponse&gt;&gt; table. |
-| Response             | `object` Returns the list of response object.             | Refer &lt;&lt;Response&gt;&gt; table.            |
-|                      |                                                           |                                      |
+| Parameter            | Description                                               | Example                                |
+| :------------------- | :-------------------------------------------------------- | :------------------------------------- |
+| Transaction Response | `object` Returns the list of transaction response object. | Refer \<\<TransactionResponse>> table. |
+| Response             | `object` Returns the list of response object.             | Refer \<\<Response>> table.            |
+|                      |                                                           |                                        |
 
 ## TransactionResponse fields description
 
@@ -41,16 +41,16 @@ Some of the APIs of the POS SDK shares common response parameters. This topic co
 
 ## TransactionStatusResponse
 
-| Parameter           | Description                      | Sample                                  |
-| :------------------ | :------------------------------- | :-------------------------------------- |
-| TransactionResponse | `object` The transaction details | Refer &lt;&lt;ICCTransactionResponse&gt;&gt; table. |
-| Response            | `object` The payment details     | Refer &lt;&lt;Response&gt;&gt; Table.               |
+| Parameter           | Description                      | Sample                                    |
+| :------------------ | :------------------------------- | :---------------------------------------- |
+| TransactionResponse | `object` The transaction details | Refer \<\<ICCTransactionResponse>> table. |
+| Response            | `object` The payment details     | Refer \<\<Response>> Table.               |
 
-## Aquirer banks
+## Acquirer banks
 
-| Parameter | Description                             | Sample              |
-| :-------- | :-------------------------------------- | :------------------ |
-| EMI       | list Returns a list of &lt;&lt;EMI&gt;&gt; objects. | Refer &lt;&lt;EMI&gt;&gt; table |
+| Parameter | Description                               | Sample                |
+| :-------- | :---------------------------------------- | :-------------------- |
+| EMI       | list Returns a list of \<\<EMI>> objects. | Refer \<\<EMI>> table |
 
 ## EMI
 
@@ -62,3 +62,5 @@ Some of the APIs of the POS SDK shares common response parameters. This topic co
 | emiAmount     | `double` The monthly instalment amount.                                               | 2555.75   |
 | bankName      | `string` The bank name.                                                               | Axis Bank |
 | Tenure        | `long` The tenure of emi.                                                             | 6         |
+
+<br />
