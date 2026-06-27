@@ -10,54 +10,29 @@ metadata:
 next:
   description: ''
 ---
----
-title: Pluxee Card Integration
-excerpt: ''
-deprecated: false
-hidden: false
-metadata:
-  title: ''
-  description: >-
-    Pluxee card integration with PayU merchant-hosted checkout: meal card payments, API setup, hash, and Pluxee payment mode on your website.
-  keywords:
-    - payu pluxee card integration merchant hosted checkout web
-    - pluxee meal card payment gateway integration payu india
-    - integrate pluxee card payments website custom checkout payu
-    - merchant hosted pluxee card payment integration guide payu
-    - payu pluxee card api integration steps web checkout
-    - website pluxee payment integration payu merchant hosted
-    - payu collect payments pluxee card custom checkout integration
-    - server side pluxee card payment integration payu website
-    - payment gateway pluxee card integration merchant hosted payu
-    - payu custom checkout pluxee card hash integration developer
-    - pluxee sodexo card payment integration payu web india
-    - merchant hosted meal card payment integration payu website
-  robots: index
-
-next:
-  description: ''
----
-This section describes the parameters required to collect payments using the Pluxee card with Merchant Hosted Checkout integration (using **_payment** API) with a sample request and response.
+This section describes the parameters required to collect payments using the Pluxee card with Merchant Hosted Checkout integration (using **\_payment** API) with a sample request and response.
 
 <Callout icon="📘" theme="info">
-  **Note**: Before you use the **_payment** API to collect a payment, it is recommended to use the <Anchor label="Fetch Balance API" target="_blank" href="https://docs.payu.in/reference/fetch-balance-api-sodexo">Fetch Balance API</Anchor> (**check_balance** API) to check the Pluxee card balance and display it on the checkout page for the customer.
+  ###
+
+  **Note**: Before you use the **\_payment** API to collect a payment, it is recommended to use the <Anchor target="_blank" href="https://docs.payu.in/reference/fetch-balance-api-sodexo">Fetch Balance API</Anchor> (**check\_balance** API) to check the Pluxee card balance and display it on the checkout page for the customer.
 </Callout>
 
 ## Sodexo with Merchant Hosted Checkout Integration Workflow
 
 The following describes the characteristics and workflow involved using Merchant Hosted Checkout with Pluxee:
 
-* The existing **_payment** API used to initiate payments for online transactions will be used to initiate seamless payments for Pluxee payment option.
-* For Sodexo payment option mode or PG is **MC** and Ibibo_code or bankcodeis **SODEXO**.
-* In case customer provides the consent to save the card details with merchant on their check-out page:
-  * Merchant should pass **save_sodexo_card** parameter value as **1** when initiating the transaction using **_payment** API.
-  * After the transaction is processed and successful, for saved card transactions, Sodexo will share the sourceId with PayU and PayU will share this **sourceId** with merchant in the field3 parameter.
+- The existing **\_payment** API used to initiate payments for online transactions will be used to initiate seamless payments for Pluxee payment option.
+- For Sodexo payment option mode or PG is **MC** and Ibibo\_code or bankcode is **SODEXO**.
+- In case customer provides the consent to save the card details with merchant on their check-out page:
+  - Merchant should pass **save\_sodexo\_card** parameter value as **1** when initiating the transaction using **\_payment** API.
+  - After the transaction is processed and successful, for saved card transactions, Sodexo will share the sourceId with PayU and PayU will share this **sourceId** with merchant in the field3 parameter.
 
 > **Note**: Merchant is not allowed to store the complete card number or card expiry or card CVV details entered by the customer, even if customer provides permission to store the card.
 
-* Merchant can also initiate transaction using source ID for repeat transactions where customer has provided permission to save the card during the first transaction. In this case, merchant should pass sourceId value in **source_id** parameter in the **_payment** API at the time of transaction initiation.
-* In case **source_id** parameter is passed, PayU will directly initiate the transaction using this sourceId.
-* Merchants are recommended to use the **check_balance** API for checking the Sodexo card balance. This will provide better experience to customers as available balance can be displayed up-front to customer and can have better SRT as scenarios where balance is less than transaction amount can be stopped at the checkout page itself.
+- Merchant can also initiate transaction using source ID for repeat transactions where customer has provided permission to save the card during the first transaction. In this case, merchant should pass sourceId value in **source\_id** parameter in the **\_payment** API at the time of transaction initiation.
+- In case **source\_id** parameter is passed, PayU will directly initiate the transaction using this sourceId.
+- Merchants are recommended to use the **check\_balance** API for checking the Sodexo card balance. This will provide better experience to customers as available balance can be displayed up-front to customer and can have better SRT as scenarios where balance is less than transaction amount can be stopped at the checkout page itself.
 
 ## Steps to Integrate:
 
@@ -89,10 +64,10 @@ Customers will select the **Pluxee** payment option on your website and enter th
 
 **Environment**
 
-|                            |                                                                    |
-| :------------------------- | :----------------------------------------------------------------- |
-| **Test Environment**       | [https://test.payu.in/_payment](https://test.payu.in/_payment)     |
-| **Production Environment** | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
+|                            |                                                                     |
+| :------------------------- | :------------------------------------------------------------------ |
+| **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
+| **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
 <Accordion title="Request parameters" icon="fa-table">
   Post the following request parameters for the Pluxee card integration.
@@ -465,3 +440,5 @@ Customers will select the **Pluxee** payment option on your website and enter th
 ## Step 3: Verify the payment
 
 <Verify_Payment_Tabs />
+
+<br />
