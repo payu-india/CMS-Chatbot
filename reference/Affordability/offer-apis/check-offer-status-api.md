@@ -12,8 +12,8 @@ next:
 ---
 The Check Offer Status API (**check\_offer\_status**) can be used for the following scenarios:
 
-* [Check Merchant Specific Offers](https://devguide.payu.in/api/integration-apis/offers/check_offer_status#merchant)
-* [Check Card Specific Offers](https://devguide.payu.in/api/integration-apis/offers/check_offer_status#card)
+- [Check Merchant Specific Offers](https://devguide.payu.in/api/integration-apis/offers/check_offer_status#merchant)
+- [Check Card Specific Offers](https://devguide.payu.in/api/integration-apis/offers/check_offer_status#card)
 
 **Environment**
 
@@ -60,8 +60,7 @@ The Check Offer Status API is used to check the status of an offer for a particu
 
     <tr>
       <td>
-        var2\
-        **mandatory**
+        var2<br />**mandatory**
       </td>
 
       <td>
@@ -75,8 +74,7 @@ The Check Offer Status API is used to check the status of an offer for a particu
 
     <tr>
       <td>
-        var3\
-        **optional**
+        var3<br />**optional**
       </td>
 
       <td>
@@ -90,8 +88,7 @@ The Check Offer Status API is used to check the status of an offer for a particu
 
     <tr>
       <td>
-        var4\
-        **optional**
+        var4<br />**optional**
       </td>
 
       <td>
@@ -105,8 +102,7 @@ The Check Offer Status API is used to check the status of an offer for a particu
 
     <tr>
       <td>
-        var5\
-        **mandatory**
+        var5<br />**mandatory**
       </td>
 
       <td>
@@ -120,8 +116,7 @@ The Check Offer Status API is used to check the status of an offer for a particu
 
     <tr>
       <td>
-        var6\
-        **optional**
+        var6<br />**optional**
       </td>
 
       <td>
@@ -135,8 +130,7 @@ The Check Offer Status API is used to check the status of an offer for a particu
 
     <tr>
       <td>
-        var7\
-        **optional**
+        var7<br />**optional**
       </td>
 
       <td>
@@ -150,8 +144,7 @@ The Check Offer Status API is used to check the status of an offer for a particu
 
     <tr>
       <td>
-        var8\
-        **optional**
+        var8<br />**optional**
       </td>
 
       <td>
@@ -167,12 +160,10 @@ The Check Offer Status API is used to check the status of an offer for a particu
 
 Error Codes:
 
-* ‘INVALID\_OFFER’=>’E001′
-* ‘INVALID\_PAYMENT\_METHOD’=>’E002’
+- ‘INVALID\_OFFER’=>’E001′
+- ‘INVALID\_PAYMENT\_METHOD’=>’E002’
 
-**In the Output:**\
-Parameter ‘status’ = 1, means offer is valid\
-Parameter ‘status’ = 0, means offer is invalid
+**In the Output:**<br />Parameter ‘status’ = 1, means offer is valid<br />Parameter ‘status’ = 0, means offer is invalid
 
 ### Sample Request
 
@@ -185,9 +176,11 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2"
 
 ### Sample Response
 
-> 📘 Note:
->
-> In the response, the category will be the passed Category.
+<Callout icon="📘" theme="info">
+  ### Note:
+
+  In the response, the category will be the passed Category.
+</Callout>
 
 #### Success Scenario
 
@@ -208,7 +201,7 @@ If the offer is valid:
 
 #### Failure Scenario
 
-* If the offer has expired:
+- If the offer has expired:
 
 If the offer has expired
 
@@ -226,7 +219,7 @@ Array
 )
 ```
 
-* If the card limit is exhausted:
+- If the card limit is exhausted:
 
 If the card limit is exhausted
 
@@ -244,7 +237,7 @@ Array
 )
 ```
 
-* If the offer\_key is invalid:
+- If the offer\_key is invalid:
 
 If the offer\_key is invalid
 
@@ -304,12 +297,11 @@ The return parameters are status, msg, error\_code (In case of error), category,
 
     <tr>
       <td>
-        var2\
-        **mandatory**
+        var2<br />**mandatory**
       </td>
 
       <td>
-        This parameter must be contain the amount.
+        This parameter must contain the amount.
       </td>
 
       <td>
@@ -319,8 +311,7 @@ The return parameters are status, msg, error\_code (In case of error), category,
 
     <tr>
       <td>
-        var3\
-        **optional**
+        var3<br />**optional**
       </td>
 
       <td>
@@ -334,8 +325,7 @@ The return parameters are status, msg, error\_code (In case of error), category,
 
     <tr>
       <td>
-        var4\
-        **optional**
+        var4<br />**optional**
       </td>
 
       <td>
@@ -349,8 +339,7 @@ The return parameters are status, msg, error\_code (In case of error), category,
 
     <tr>
       <td>
-        var5\
-        **mandatory**
+        var5<br />**mandatory**
       </td>
 
       <td>
@@ -366,13 +355,13 @@ The return parameters are status, msg, error\_code (In case of error), category,
 
 Error Codes
 
-* ‘INVALID\_OFFER’=>’E001′
-* ‘INVALID\_PAYMENT\_METHOD’=>’E002’
+- ‘INVALID\_OFFER’=>’E001′
+- ‘INVALID\_PAYMENT\_METHOD’=>’E002’
 
 **In the Output:**
 
-* Parameter ‘status’ = 1, means offer is valid
-* Parameter ‘status’ = 0, means offer is invalid
+- Parameter ‘status’ = 1, means offer is valid
+- Parameter ‘status’ = 0, means offer is invalid
 
 ### Sample Request
 
@@ -385,9 +374,11 @@ curl -X POST "https://test.payu.in/merchant/postservice?form=2"
 
 ### Sample Response
 
-> 📘 Note:
->
-> In the response, the category will be the passed Category.
+<Callout icon="📘" theme="info">
+  ### Note:
+
+  In the response, the category will be the passed Category.
+</Callout>
 
 #### Success Scenario
 
@@ -408,7 +399,7 @@ If the offer is valid:
 
 #### Failure Scenario
 
-* If the offer has expired:
+- If the offer has expired:
 
 If the offer has expired
 
@@ -426,7 +417,7 @@ Array
 )
 ```
 
-* If the card limit is exhausted:
+- If the card limit is exhausted:
 
 If the card limit is exhausted
 
@@ -444,7 +435,7 @@ Array
 )
 ```
 
-* If the offer\_key is invalid:
+- If the offer\_key is invalid:
 
 If the offer\_key is invalid
 
@@ -460,3 +451,5 @@ Array
 [offer_remaining_count] => Unknown
 )
 ```
+
+<br />
