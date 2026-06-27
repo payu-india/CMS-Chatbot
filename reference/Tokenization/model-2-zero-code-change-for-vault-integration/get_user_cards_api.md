@@ -2,7 +2,6 @@
 api:
   file: storecard-7.json
   operationId: GetUserCards
-deprecated: false
 hidden: false
 metadata:
   title: Get User Cards API
@@ -24,11 +23,17 @@ next:
 Use the **Get User Cards** API to get the card details of a customer in Model 2.
 
 <Callout icon="📘" theme="info">
-  **Note**: While PayU token is sent in payment response, the network/issuer token creation may fail. In this case, the subsequent transaction with the said PayU token may fail. Merchant can do a **get_user_cards API** to fetch only active/tokenized cards or listen to notification API (to be published) to maintain state at your end.
+  ###
+
+  **Note**: While PayU token is sent in payment response, the network/issuer token creation may fail. In this case, the subsequent transaction with the said PayU token may fail. Merchant can do a **get\_user\_cards API** to fetch only active/tokenized cards or listen to notification API (to be published) to maintain state at your end.
 </Callout>
 
 <Callout icon="👍" theme="okay">
+  ###
+
   Experience the end-to-end **Merchant Hosted Checkout** flow and instantly generate the complete code for seamless, zero-coding integration into your website. Select **Repeat Customer > Get User Cards** from left navigation pane after opening the following page:
+
+    
 
   <HTMLBlock>{`
                             <style>
@@ -66,7 +71,7 @@ Use the **Get User Cards** API to get the card details of a customer in Model 2.
   `}</HTMLBlock>
 </Callout>
 
-The Get User Cards API (**get_user_cards**) is used to fetch all the cards for a customer which were saved earlier. In this API, the card number and other sensitive information are not returned.
+The Get User Cards API (**get\_user\_cards**) is used to fetch all the cards for a customer which were saved earlier. In this API, the card number and other sensitive information are not returned.
 
 HTTP Method: **POST**
 
@@ -93,7 +98,7 @@ HTTP Method: **POST**
     ```plaintext
     {
         "status": 1,
-        "msg": "Cards fetched Succesfully",
+        "msg": "Cards fetched Successfully",
         "user_cards": {
             "0c186bdb8c0ebda30ab9d92816772cbfb946d027": {
                 "card_no": "XXXXXXXXXXXX8548",
@@ -449,7 +454,7 @@ HTTP Method: **POST**
           This field returns the JSON object with all the metadata and card art.
         </td>
 
-        <td />
+        <td></td>
       </tr>
 
       <tr>
@@ -502,3 +507,5 @@ HTTP Method: **POST**
 <Accordion title="Reference info for request parameters" icon="fa-flask">
   `<KeyHashForGeneralParametersDescription />`
 </Accordion>
+
+<br />
