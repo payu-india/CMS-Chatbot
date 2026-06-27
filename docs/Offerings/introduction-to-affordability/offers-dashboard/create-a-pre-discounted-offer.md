@@ -23,9 +23,11 @@ Pre-discounted offers are applied at your (merchant) end and the transaction amo
 
 This procedure describes how to create a Prebuilt offer on PayU Dashboard and it is similar to creating a Discount offer.
 
-> 📘
->
-> **Note**: In Merchant Hosted Checkout integration, hide all other offers if Pre-Discounted offer is used.
+<Callout icon="📘" theme="info">
+  ###
+
+  **Note**: In Merchant Hosted Checkout integration, hide all other offers if Pre-Discounted offer is used.
+</Callout>
 
 ***
 
@@ -78,7 +80,9 @@ The Choose an Offer Type to get started.
 <Image src="https://files.readme.io/20face5ca921ac455c7dd74ba8fb532e274b2ac4dd69b581d64b52b3072af1a7-dashboard-prediscounted-payment-options.png" align="center" border={true} />
 
 
-> 📘 **Note**: When you are creating an offer, you can choose to save the incomplete offer details in the Draft state using the **Save as Draft & Exit** button at the top-right corner and publish it later.
+<Callout icon="📘" theme="info">
+  ### **Note**: When you are creating an offer, you can choose to save the incomplete offer details in the Draft state using the **Save as Draft & Exit** button at the top-right corner and publish it later.
+</Callout>
 
 ## Step 2: Configure payment modes
 
@@ -114,7 +118,7 @@ The Choose an Offer Type to get started.
 
         <td>
           * Click **Download Sample File** if you are not having the sample file or CSV file template. The CSV file contains some sample BIN numbers (first 6 digits of Debit Card or Credit Cards), which you need to update according to your requirements.
-          * Update the CSV file to include the BINs.
+          * Update the CSV file to be included in the BINs.
           * Click the **Upload Bins** button upload the bins to be included.
 
             ![](https://files.readme.io/eb89a85f7a1920608e9f00e451d11cb8c92ce606734891c80383ad1a015c93e5-dashboard_payment_options_debit_card_upload_card_bin.png)
@@ -196,7 +200,7 @@ The Choose an Offer Type to get started.
     <tbody>
       <tr>
         <td>
-          Upload Bins to be include
+          Upload Bins to be included
         </td>
 
         <td>
