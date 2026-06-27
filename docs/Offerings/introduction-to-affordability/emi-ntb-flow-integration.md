@@ -9,7 +9,7 @@ This section describes how to integrate New-to-Bank (NTB) flow as described in t
 
 <Cards>
   <Card title=" Step 1: Get Checkout Details" href="#step-1-check-eligibility" icon="fa-rocket">
-    USe Get Checkout Details API and look for ntb in the response.
+    Use Get Checkout Details API and look for ntb in the response.
   </Card>
 
   <Card title="Step 2: Get EMI Checkout Details" href="#step-2-get-emi-checkout-details" icon="fa-code">
@@ -30,9 +30,11 @@ Use the **Get Checkout Details** API (`get_checkout_details`) to get information
 
 **Method:** POST (form-encoded)
 
-> 👍
->
-> **Reference:** For more information on using the **Get Checkout Details** API, refer to [Get Checkout Details API](ref:get-checkout-details-ntb-seamless-journey).
+<Callout icon="👍" theme="okay">
+  ###
+
+  **Reference:** For more information on using the **Get Checkout Details** API, refer to [Get Checkout Details API](ref:get-checkout-details-ntb-seamless-journey).
+</Callout>
 
 <Accordion title="Request parameters" icon="fa-list">
   <table style="width: 100%; border-collapse: collapse;">
@@ -176,7 +178,7 @@ Use the **Get Checkout Details** API (`get_checkout_details`) to get information
                               "hasEligible": true
                           }
                       }
-                  }
+                  \}
 ```
 ````
 
@@ -466,16 +468,16 @@ Use the **Get EMI Checkout Details** API to check detailed EMI eligibility for a
 
 **Method:** POST (JSON body)<br />**Content-Type:** `application/json`
 
-> 👍
->
-> **Reference:** For more information on using the **Get EMI Checkout Details** API, refer to [Get EMI Checkout Details API](ref:get-emi-checkout-details-api).
+\> 👍
+\>
+\> **Reference:** For more information on using the **Get EMI Checkout Details** API, refer to [Get EMI Checkout Details API](ref:get-emi-checkout-details-api).
 
 <Accordion title="Authentication (headers)" icon="fa-lock">
   * **Date** (mandatory): Request time in GMT (e.g. `Thu, 17 Feb 2022 08:17:59 GMT`).
   * **Authorization** (mandatory): HMAC-SHA512 signature. Format:\
     `hmac username="<merchant_key>", algorithm="hmac-sha512", headers="date digest", signature="<signature>"`\
     Signing string: `Date + "\n" + Digest`. Use merchant **Salt** as secret.\
-    For more information, referr to [Get EMI Checkout Details API > Authorization](ref:get-emi-checkout-details-api#required-parameters-for-calculating-authorization).
+    For more information, refer to [Get EMI Checkout Details API > Authorization](ref:get-emi-checkout-details-api#required-parameters-for-calculating-authorization).
   * **Digest** (mandatory when required by spec): Base64(sha256(request body)).
   * **platformId** (mandatory): Set to `1`.
 </Accordion>
