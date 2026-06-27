@@ -317,7 +317,7 @@ This section explains how to implement the **_payment** API for by Wealth Tech m
   | :------------- | :----------------------------------------------------------------------------------------------------- | --------- | ------ | ------------------------------------------------------------------------------------------------ |
   | key `string`   | `mandatory` This parameter is the unique Merchant Key provided by PayU                                 |           |        |                                                                                                  |
   | var1 `object`  | The variable 1 object details.                                                                         |           |        |                                                                                                  |
-  | hash `string`  | `mandatory` It is used to avoid the possibility of transaction tampering. Hash formula: \`sha512(key\\ | command\\ | var1\\ | salt)\`. Please regenerate hash at the end everytime you make a change to the request parameters |
+  | hash `string`  | `mandatory` It is used to avoid the possibility of transaction tampering. Hash formula: \`sha512(key\\ | command\\ | var1\\ | salt)\`. Please regenerate hash at the end every time you make a change to the request parameters |
   | command `enum` | `mandatory` The command name for this REST API call is pre\_debit\_SI.                                 |           |        |                                                                                                  |
 
   <Accordion title="var1 Object parameters" icon="fa-table">
