@@ -23,6 +23,8 @@ Understanding the difference helps you choose the right approach:
 | **Customer Experience** | Positive              | Negative                      |
 
 <Callout icon="💡" theme="default">
+  ###
+
   **Best Practice:** Always process refunds proactively when customers have legitimate complaints. This prevents chargebacks and maintains good customer relationships.
 </Callout>
 
@@ -34,9 +36,9 @@ Understanding the difference helps you choose the right approach:
 
 A partial refund is when the refund amount is **less than** the original payment amount. Use this when:
 
-* Customer returns only part of an order
-* Partial service was delivered
-* Offering goodwill discount after complaint
+- Customer returns only part of an order
+- Partial service was delivered
+- Offering goodwill discount after complaint
 
 **Example:**
 
@@ -53,9 +55,9 @@ Partial Refund Amount: ₹500
 
 A full refund is when the refund amount **equals** the original payment amount. Use this when:
 
-* Customer cancels the entire order
-* Order cannot be fulfilled
-* Product/service not delivered
+- Customer cancels the entire order
+- Order cannot be fulfilled
+- Product/service not delivered
 
 **Example:**
 
@@ -84,7 +86,9 @@ Refund 3: ₹5,000 (Product C returned)
 Total Refunded: ₹10,000 ✓
 ```
 
-> ⚠️ **Note:** Total refund amount cannot exceed the original transaction amount.
+<Callout icon="⚠️" theme="warn">
+  ### **Note:** Total refund amount cannot exceed the original transaction amount.
+</Callout>
 
 ***
 
@@ -94,7 +98,9 @@ PayU automatically initiates refunds in specific scenarios where a transaction f
 
 ### How It Works
 
-<Image align="center" border={false} width="450px" src="https://files.readme.io/0076248a4b081620eeb6fda5f130165772e90b5a68c74bd17b74a9c858565af2-refunds_flow.png" />
+
+<Image src="https://files.readme.io/0076248a4b081620eeb6fda5f130165772e90b5a68c74bd17b74a9c858565af2-refunds_flow.png" align="center" width="450px" />
+
 
 ### Enabling Automatic Refunds
 
@@ -102,9 +108,9 @@ Automatic refunds are **not enabled by default**. To enable:
 
 1. Contact your PayU Key Account Manager (KAM)
 
-Or 
+Or
 
-Send an email tp [integration@payu.in](mailto:integration@payu.in)
+Send an email to [integration@payu.in](mailto:integration@payu.in)
 
 1. Specify the transaction types you want auto-refund enabled for
 
@@ -125,20 +131,11 @@ Send an email tp [integration@payu.in](mailto:integration@payu.in)
 
 A customer is eligible for a refund when:
 
-✅ Payment was successfully captured (status: `success`)  
-✅ Customer did not receive the expected goods/services  
-✅ Product was returned as per return policy  
-✅ Service was cancelled within cancellation window  
-✅ Duplicate payment was made  
-✅ Incorrect amount was charged
+✅ Payment was successfully captured (status: `success`)<br />✅ Customer did not receive the expected goods/services<br />✅ Product was returned as per return policy<br />✅ Service was cancelled within cancellation window<br />✅ Duplicate payment was made<br />✅ Incorrect amount was charged
 
 ### When Refunds Cannot Be Processed
 
-❌ Transaction is still pending (not yet captured)  
-❌ Transaction already fully refunded  
-❌ Transaction older than refund window (varies by payment method)  
-❌ Chargeback already filed for the transaction  
-❌ Transaction was voided/reversed
+❌ Transaction is still pending (not yet captured)<br />❌ Transaction already fully refunded<br />❌ Transaction older than refund window (varies by payment method)<br />❌ Chargeback already filed for the transaction<br />❌ Transaction was voided/reversed
 
 ***
 
@@ -159,6 +156,8 @@ A customer is eligible for a refund when:
 | **PayPal**            | Instant           | 3-5 business days  | 3-5 days   |
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Note:** Public sector banks may take additional 2-3 business days for Net Banking refunds.
 </Callout>
 
@@ -234,7 +233,7 @@ A customer is eligible for a refund when:
       </td>
 
       <td>
-        * (Final)
+        - (Final)
       </td>
     </tr>
 
@@ -270,7 +269,9 @@ A customer is eligible for a refund when:
 
 ### State Flow Diagram
 
-<Image align="center" border={false} width="500px" src="https://files.readme.io/5d52f825e2b8d4a3533c6b07a103462e311cdaa1755ebefed90b6147e2f55393-refund_states.png" />
+
+<Image src="https://files.readme.io/5d52f825e2b8d4a3533c6b07a103462e311cdaa1755ebefed90b6147e2f55393-refund_states.png" align="center" width="500px" />
+
 
 ## Refund Methods
 
@@ -312,7 +313,9 @@ When you process a refund, it affects your settlements:
 
 ### How Refund Deduction Works
 
-<Image align="center" border={false} width="550px" src="https://files.readme.io/118bbf9276ddd7924ba02d33e661b2ac10a72ea9861243d3caf71adf5a25bc8e-how_settlement_works_with_example.png" />
+
+<Image src="https://files.readme.io/118bbf9276ddd7924ba02d33e661b2ac10a72ea9861243d3caf71adf5a25bc8e-how_settlement_works_with_example.png" align="center" width="550px" />
+
 
 ### Insufficient Settlement Balance
 
@@ -328,10 +331,10 @@ If your settlement balance is insufficient to cover refunds:
 
 Refunds appear in your settlement reports with:
 
-* Original transaction ID
-* Refund request ID
-* Refund amount
-* Deduction date
+- Original transaction ID
+- Refund request ID
+- Refund amount
+- Deduction date
 
 ## Refund Constraints
 
@@ -355,7 +358,9 @@ Refunds appear in your settlement reports with:
 | **EMI**         | Up to 180 days                         |
 | **BNPL**        | Varies by provider (typically 90 days) |
 
-> ⚠️ **Note:** Refunds requested after the window may require manual intervention. Contact PayU support.
+<Callout icon="⚠️" theme="warn">
+  ### **Note:** Refunds requested after the window may require manual intervention. Contact PayU support.
+</Callout>
 
 ### Transaction Status Requirements
 
@@ -377,14 +382,14 @@ Refunds appear in your settlement reports with:
 When a refund is processed, customers receive:
 
 1. **Email notification** from PayU
-   * Refund amount
-   * Original transaction details
-   * Expected credit timeline
-   * Reference number
+   - Refund amount
+   - Original transaction details
+   - Expected credit timeline
+   - Reference number
 
 2. **SMS notification** (if enabled)
-   * Short confirmation message
-   * Refund amount
+   - Short confirmation message
+   - Refund amount
 
 ### Merchant Notifications
 
@@ -402,19 +407,19 @@ For webhook setup, refer to [Webhooks for Refunds](/docs/webhooks-for-refunds).
 
 ### Do's ✅
 
-* Process refunds promptly (within 24-48 hours of request)
-* Communicate expected timeline to customers
-* Keep records of refund reasons
-* Use webhooks for real-time status updates
-* Publish clear refund policy on your website
+- Process refunds promptly (within 24-48 hours of request)
+- Communicate expected timeline to customers
+- Keep records of refund reasons
+- Use webhooks for real-time status updates
+- Publish clear refund policy on your website
 
 ### Don'ts ❌
 
-* Don't delay refunds hoping customer will forget
-* Don't process refund for pending transactions
-* Don't refund more than original amount
-* Don't ignore failed refund notifications
-* Don't promise instant refunds (timelines vary)
+- Don't delay refunds hoping customer will forget
+- Don't process refund for pending transactions
+- Don't refund more than original amount
+- Don't ignore failed refund notifications
+- Don't promise instant refunds (timelines vary)
 
 ***
 
@@ -456,10 +461,10 @@ RECOMMENDED REFUND POLICY ELEMENTS
 
 Refund timelines vary by payment method:
 
-* **UPI/Wallets:** 1-3 business days
-* **Cards:** 5-7 business days
-* **Net Banking:** 5-10 business days
-* **EMI/BNPL:** 7-14 business days
+- **UPI/Wallets:** 1-3 business days
+- **Cards:** 5-7 business days
+- **Net Banking:** 5-10 business days
+- **EMI/BNPL:** 7-14 business days
 
 ### Can I cancel a refund after initiating?
 
@@ -469,10 +474,10 @@ No, once a refund is initiated, it cannot be cancelled. Ensure you verify detail
 
 Common reasons:
 
-* Customer's account is closed
-* Bank rejected the refund
-* Invalid account details
-* Timeout during processing
+- Customer's account is closed
+- Bank rejected the refund
+- Invalid account details
+- Timeout during processing
 
 Contact PayU support with the refund ID for specific failure reasons.
 
