@@ -5,24 +5,6 @@ hidden: true
 metadata:
   robots: index
 ---
----
-title: APIs for Partner integration
-excerpt: >-
-  Full server-to-server control: onboarding sequence, entity-specific steps, post-activation
-  payments and webhooks.
-deprecated: false
-hidden: false
-metadata:
-  title: PayU Partner Full API Integration
-  description: >-
-    Architecture, ordered onboarding steps, individual vs non-individual flows,
-    and post-activation payments.
-  keywords:
-    - PayU partner API integration
-    - reseller onboarding API
-  robots: index
----
-
 Full control. The merchant never leaves your platform. You build the UI; PayU provides the APIs.
 
 ## Architecture
@@ -75,4 +57,4 @@ flowchart TD
 
 List of Partner Integration APIs in a table with respective scope and grant type used in **Get Token** API.
 
-Day-0 flags enable S2S payments, tokenisation, callbacks, and refunds. Link to [Collect, verify, refund](doc:collect-verify-refund) and [Webhooks](doc:webhooks-partner).
+Day-0 flags enable S2S payments, tokenization, callbacks, and refunds. Link to [Collect, verify, refund](doc:collect-verify-refund) and [Webhooks](doc:webhooks-partner).
