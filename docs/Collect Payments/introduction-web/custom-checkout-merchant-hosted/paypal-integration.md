@@ -10,65 +10,42 @@ metadata:
 next:
   description: ''
 ---
----
-title: PayPal Integration
-excerpt: ''
-deprecated: false
-hidden: false
-metadata:
-  title: ''
-  description: >-
-    PayPal integration with PayU merchant-hosted checkout: PayPal payment mode, API parameters, hash, redirect flow, and international payments on web.
-  keywords:
-    - payu paypal integration merchant hosted checkout web
-    - payment gateway paypal integration custom checkout payu india
-    - integrate paypal payments website merchant hosted payu guide
-    - payu paypal payment api integration steps web checkout
-    - merchant hosted paypal payment gateway integration payu
-    - website paypal checkout integration payu custom payment payu
-    - payu collect payments paypal merchant hosted integration developer
-    - server side paypal payment integration payu website checkout
-    - payu paypal hash payment mode integration web guide
-    - payment gateway paypal india integration merchant hosted payu
-    - payu custom checkout paypal api integration steps website
-    - international payment paypal integration payu web checkout
-  robots: index
-
-next:
-  description: ''
----
 Integrate PayU with PayPal wallets to facilitate international payments. PayPal can be seamlessly integrated with your PayU Hosted or Merchant Hosted Checkout integration. Customers have the option to utilize PayPal Currency Conversion to convert international payments from INR (or other currencies) to their chosen currency. This ensures businesses can continue accepting payments via PayPal. Payments made through PayPal are directly transferred to your PayPal wallet, with settlements processed in INR.
 
 You can accept payments within the transaction limits of your PayU account. Discover more about alternative payment methods and their respective transaction limits. This section describes the following:
 
-* [Customer journey](https://docs.payu.in/docs/paypal-integration#customer-journey)
-* [Benefits](https://docs.payu.in/docs/paypal-integration#benefits)
-* [Steps to Integrate](https://docs.payu.in/docs/paypal-integration#steps-to-integrate)
+- [Customer journey](https://docs.payu.in/docs/paypal-integration#customer-journey)
+- [Benefits](https://docs.payu.in/docs/paypal-integration#benefits)
+- [Steps to Integrate](https://docs.payu.in/docs/paypal-integration#steps-to-integrate)
 
 ## Customer journey
 
 1. Customer is redirected to PayU Payment page.
 2. Customer selects the **Wallets** option.
 
-<Image align="center" border={true} src="https://files.readme.io/429e564-payu_payment_pagE_wallets_list.png" className="border" />
+
+<Image src="https://files.readme.io/429e564-payu_payment_pagE_wallets_list.png" align="center" border={true} />
+
 
 3. Customer selects the **Paypal** option.
 
-<Image align="center" border={true} src="https://files.readme.io/44bffcc-payu_payment_paypal_page.png" className="border" />
+
+<Image src="https://files.readme.io/44bffcc-payu_payment_paypal_page.png" align="center" border={true} />
+
 
 4. Customer selects the preferred currency and clicks **PayPal**.
 
-   The success or failure response is sent back to you by PayU after vaerfication.
+   The success or failure response is sent back to you by PayU after verification.
 
 ## Benefits
 
 Incorporating PayU into your Checkout system offers several benefits:
 
-* Improved Success Rates: Experience success rates up to 20% higher.
-* Accelerated Settlement: Receive payments on a T+1 settlement schedule.
-* Extensive User Base: Access over 30 Crore PayPal users worldwide.
-* No Extra Charges: Transaction rates are determined by PayPal.
-* Currency Conversion: Facilitate currency conversions from INR to your customers' preferred currencies.
+- Improved Success Rates: Experience success rates up to 20% higher.
+- Accelerated Settlement: Receive payments on a T+1 settlement schedule.
+- Extensive User Base: Access over 30 Crore PayPal users worldwide.
+- No Extra Charges: Transaction rates are determined by PayPal.
+- Currency Conversion: Facilitate currency conversions from INR to your customers' preferred currencies.
 
 ## Steps to Integrate
 
@@ -97,6 +74,8 @@ Incorporating PayU into your Checkout system offers several benefits:
 You need use **bankcode** as PAYPAL with the **pg** as PAYPAL.
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Reference**: For the **Try It** experience ), refer to <a href="https://docs.payu.in/reference/_payment_merchant_hosted_wallets" target="_blank">Collect Payments API</a> under API Reference.
 </Callout>
 
@@ -133,6 +112,7 @@ You need use **bankcode** as PAYPAL with the **pg** as PAYPAL.
   | udf4 <br /> `optional`         | string - This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                     | custom\_data\_4                                                                                |
   | udf5 <br /> `optional`         | string - This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                     | custom\_data\_5                                                                                |
 <br/>
+
 <Accordion title="Understanding Hashing and sample code" icon="fa-code">
   <HashingRequestParameters />
 
@@ -375,12 +355,14 @@ You need use **bankcode** as PAYPAL with the **pg** as PAYPAL.
   ```
 </Accordion>
 
-> 📘 Note:
->
-> Ensure your PayPal account maintains sufficient funds before initiating a refund. Refunds can be initiated either through the PayU Dashboard or the **Refund Transasction** API. Refunded amounts are deducted from your PayPal account and credited to your customer's PayPal account. For more information, refer to:
->
-> * <Anchor label="Refunds Dashboard" target="_blank" href="https://docs.payu.in/docs/refunds-dashboard">Refunds Dashboard</Anchor>.
-> * <Anchor label="Refunds Transaction API" target="_blank" href="https://docs.payu.in/reference/refund_transaction_api">Refunds Transaction API</Anchor>.
+<Callout icon="📘" theme="info">
+  ### Note:
+
+  Ensure your PayPal account maintains sufficient funds before initiating a refund. Refunds can be initiated either through the PayU Dashboard or the **Refund Transaction** API. Refunded amounts are deducted from your PayPal account and credited to your customer's PayPal account. For more information, refer to:
+
+  - <Anchor target="_blank" href="https://docs.payu.in/docs/refunds-dashboard">Refunds Dashboard</Anchor>.
+  - <Anchor target="_blank" href="https://docs.payu.in/reference/refund_transaction_api">Refunds Transaction API</Anchor>.
+</Callout>
 
 ### Step 2: Check the response from PayU
 
@@ -451,3 +433,5 @@ You need use **bankcode** as PAYPAL with the **pg** as PAYPAL.
 ### Step 3: Verify the payment
 
 <Verify_Payment_Tabs />
+
+<br />
