@@ -36,9 +36,13 @@ curl --location --request GET 'https://uatoneapi.payu.in/payout/v2/virtualAccoun
 --header 'Authorization: Bearer <access_token>' \
 --header 'merchantId: 12345'
 ```
+
 ## Sample Response
+
 ### Success scenario
+
 #### When a list of virtual accounts exist
+
 ```json
 {
   "status": 0,
@@ -63,6 +67,7 @@ curl --location --request GET 'https://uatoneapi.payu.in/payout/v2/virtualAccoun
   "code": null
 }
 ```
+
 #### When no virtual accounts exist
 
 ```json
@@ -119,16 +124,20 @@ curl --location --request GET 'https://uatoneapi.payu.in/payout/v2/virtualAccoun
                 <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">data</td>
                 <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">This parameter contains the virtual account details in JSON format. For more information, refer to <a href="#data-json-fields-description">data JSON Fields Description</a>
 </td>
-                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">refer to <a href="data-json-fields-description">data JSON Fields Descriptiont></td>
+                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">refer to <a href="data-json-fields-description">data JSON Fields Description></td>
               </tr>
              
             </tbody>
           </table>
 `}</HTMLBlock>
+
 ### data JSON Fields Description
-| Parameter              | Description                                                                                                            |
-| ---------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `noOfPages`       | Total pages for the current `pageSize`                                                                                 |
-| `totalElements`   | Total VA records for the MID                                                                                           |
-| `currentPage`     | Current page number                                                                                                    |
-| `virtualAccounts` | Array of VA objects  |
+
+| Parameter         | Description                            |
+| ----------------- | -------------------------------------- |
+| `noOfPages`       | Total pages for the current `pageSize` |
+| `totalElements`   | Total VA records for the MID           |
+| `currentPage`     | Current page number                    |
+| `virtualAccounts` | Array of VA objects                    |
+
+<br />
