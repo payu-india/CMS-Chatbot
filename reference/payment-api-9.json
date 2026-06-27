@@ -187,8 +187,7 @@
               }
             }
           }
-        },
-        "deprecated": false
+        }
       },
       "parameters": []
     }
