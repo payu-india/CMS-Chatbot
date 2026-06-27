@@ -34,6 +34,8 @@ metadata:
 You can collect payments from customers with leading cards using the Merchant Hosted integration. You need to ensure that **CC** or **DC** for the {/* Fixed Glossary component syntax */}<Glossary>pg</Glossary> parameter and card code based on the desired card provider for the {/* Fixed Glossary component syntax */}<Glossary>bankcode</Glossary> parameter is posted.
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Note**: PayU accepts domestic and international transactions, but international transactions need to be enabled by writing to PayU Integration Team ([integration@pay.in](mailto:integration@pay.in)).
 </Callout>
 
@@ -58,7 +60,7 @@ You can collect payments from customers with leading cards using the Merchant Ho
 </Accordion>
 
 <Accordion title="Sample response" icon="fa-reply">
-  ### Normal tranasaction
+  ### Normal transaction
 
   ```
   mihpayid=403993715531077182&mode=CC&status=success&unmappedstatus=captured&key=JPM7Fg&txnid=ypl938459435dfdfdf&amount=1000.00&cardCategory=domestic&discount=0.00&net_amount_debit=1000&addedon=2024-02-27+15%3A11%3A37&productinfo=iPhone&firstname=Ashish+User&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=ashish%40gmail.com&phone=9876543210&udf1=&udf2=&udf3=&udf4=&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&hash=afeab9dcf4e43d47f8fbf5a6838d393c70694a58e30ada08e6cb86ac943236c05717c5f5e4872d671fe81d0d9b2d9facd44e9a061ba621aff6f20c4343ea5dfa&field1=&field2=&field3=&field4=&field5=&field6=&field7=&field8=&field9=Transaction+Completed+Successfully&payment_source=payu&PG_TYPE=CC-PG&bank_ref_num=7f0d5ada-59bb-41d7-9e41-20a6af2406c9&bankcode=CC&error=E000&error_Message=No+Error&name_on_card=test&cardnum=411111XXXXXX1111&cardhash=This+field+is+no+longer+supported+in+postback+params.
@@ -230,7 +232,9 @@ You can collect payments from customers with leading cards using the Merchant Ho
 ## Request parameters
 
 <Callout icon="🚧" theme="warn">
-  **Values to be used in Test environment**: For values to be used in Test environment, refer to <Anchor label="Test Cards, UPI ID and Wallets" target="_blank" href="doc:test-cards-upi-id-and-wallets">Test Cards, UPI ID and Wallets</Anchor>.
+  ###
+
+  **Values to be used in Test environment**: For values to be used in Test environment, refer to <Anchor target="_blank" href="doc:test-cards-upi-id-and-wallets">Test Cards, UPI ID and Wallets</Anchor>.
 </Callout>
 
 {/* Properly formatted JSX component */}
@@ -238,8 +242,12 @@ You can collect payments from customers with leading cards using the Merchant Ho
 <TransactionStages />
 
 <Callout icon="📘" theme="info">
+  ###
+
   **References:**
 
-  * For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
-  * Card number formats of various card types: [Card Number Formats](doc:card-number-formats).
+  - For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+  - Card number formats of various card types: [Card Number Formats](doc:card-number-formats).
 </Callout>
+
+<br />
