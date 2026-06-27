@@ -88,9 +88,11 @@ HTTP Method: **POST**
   </tbody>
 </Table>
 
-> 📘 Note:
->
-> The **pid** is **payoutMerchantId**, however it is different from the PayU merchant id. Check the Payouts Dashboard or call the PayU Customer Support if you don't know your **payoutsMerchantID**.
+<Callout icon="📘" theme="info">
+  ### Note:
+
+  The **pid** is **payoutMerchantId**, however it is different from the PayU merchant id. Check the Payouts Dashboard or call the PayU Customer Support if you don't know your **payoutsMerchantID**.
+</Callout>
 
 ## Request parameters
 
@@ -212,7 +214,7 @@ curl --location 'https://uatoneapi.payu.in/payout/beneficiary' \
 | email         | This field returns the email ID of the beneficiary.                                                                                                       |
 | mobile        | This field returns the mobile number of the beneficiary.                                                                                                  |
 | accountNo     | This fields returns the account number of the beneficiary.                                                                                                |
-| ifsc          | This field returns the IFSC code of the bank brach with which the beneficiary holds the account.                                                          |
+| ifsc          | This field returns the IFSC code of the bank branch with which the beneficiary holds the account.                                                         |
 | vpa           | This field returns the VPA ID of the beneficiary if they have registered for UPI.                                                                         |
 | merchantId    | This field returns the PayU merchant ID of the beneficiary.                                                                                               |
 | isValid       | This field returns any of the following values to indicate whether the account is valid or not:                                                           |
@@ -224,7 +226,7 @@ curl --location 'https://uatoneapi.payu.in/payout/beneficiary' \
 
 ## Sample response
 
-* Success scenario
+- Success scenario
 
 ```json
 { 
@@ -250,7 +252,7 @@ curl --location 'https://uatoneapi.payu.in/payout/beneficiary' \
 }
 ```
 
-* Failure scenario
+- Failure scenario
 
 ```json
 {
@@ -265,3 +267,5 @@ curl --location 'https://uatoneapi.payu.in/payout/beneficiary' \
   }
 }
 ```
+
+<br />
