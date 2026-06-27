@@ -17,9 +17,11 @@ next:
 ---
 PayU CommercePro Checkout provides a comprehensive checkout solution for your business. It helps minimize the COD RTO by analyzing customer shopping history and address quality. It allows your customers to securely save their payment details and addresses and use them across PayU network businesses. PayU CommercePro Checkout optimizes your checkout experience end-to-end by configuring the PayU offer engine and the PayU recommendation engine for your website/app checkout page.
 
-> 📘
->
-> **Enable CommercePro Checkout**: If Checkout Express is not enabled, contact your PayU Key Account Manager (KAM) or click **Help** at the top-right corner of PayU Dashboard to raise a ticket with PayU Support.
+<Callout icon="📘" theme="info">
+  ###
+
+  **Enable CommercePro Checkout**: If Checkout Express is not enabled, contact your PayU Key Account Manager (KAM) or click **Help** at the top-right corner of PayU Dashboard to raise a ticket with PayU Support.
+</Callout>
 
 ## Features:
 
@@ -54,7 +56,7 @@ PayU supports CommercePro on the following platforms:
 <Image src="https://files.readme.io/b6a26b3-2.webp" align="center" />
 
 
-2. Your customer selects a delivery adress.
+2. Your customer selects a delivery adresss.
 
 
 <Image src="https://files.readme.io/01ad51a-3.png" align="center" />
