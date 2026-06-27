@@ -10,20 +10,20 @@ metadata:
 next:
   description: ''
 ---
-## Request parameters for _payment API
+## Request parameters for \_payment API
 
 <Table align={["left","left","left"]}>
   <thead>
     <tr>
-      <th style={{ textAlign: "left" }}>
+      <th>
         Parameter
       </th>
 
-      <th style={{ textAlign: "left" }}>
+      <th>
         Description
       </th>
 
-      <th style={{ textAlign: "left" }}>
+      <th>
         Example
       </th>
     </tr>
@@ -31,598 +31,578 @@ next:
 
   <tbody>
     <tr>
-      <td style={{ textAlign: "left" }}>
-        key
-
-        <code>mandatory</code>
+      <td>
+        key<code>mandatory</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         <code>varchar</code> This parameter is the unique Merchant Key provided by PayU for your merchant account.
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         Your Test Key
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        txnid
-
-        <code>mandatory</code>
+      <td>
+        txnid<code>mandatory</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         <code>varchar</code> This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant's) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction. <code>Character limit</code>: 25
 
-        * **Note**: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of 'duplicate Order ID.'
+        - **Note**: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of 'duplicate Order ID.'
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         fd3e847h2
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        amount
-
-        <code>mandatory</code>
+      <td>
+        amount<code>mandatory</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         <code>float</code> This parameter should contain the payment amount of the particular transaction.
 
-        * **Note**: Type-cast the amount to float type Depending upon the merchant use case, this value will vary.
+        - **Note**: Type-cast the amount to float type Depending upon the merchant use case, this value will vary.
 
-        * It can be either 0 INR (for Net Banking) or min 1 INR (for Cards & UPI) in penny transaction use case.
+        - It can be either 0 INR (for Net Banking) or min 1 INR (for Cards & UPI) in penny transaction use case.
 
-        * In the case of first instalment use cases, this amount can be equal to initiate setup amount, but this use case will be supported only against selected Net Banking (ICICI and HDFC), all Credit / Debit Cards, and UPI
+        - In the case of first instalment use cases, this amount can be equal to initiate setup amount, but this use case will be supported only against selected Net Banking (ICICI and HDFC), all Credit / Debit Cards, and UPI
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         1000
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
+      <td>
         productinfo
 
-        <br />
+
 
         <code>mandatory</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         <code>varchar</code> This parameter should contain a brief product description. It should be a string describing the product. <code>Character limit</code>: 100
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         Time Magazine Subscription
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
+      <td>
         firstname
 
-        <br />
+
 
         <code>mandatory</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         <code>varchar</code> Must contain the first name of the customer. <code>Character limit</code>: 60
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         Ashish
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
+      <td>
         email
 
-        <br />
+
 
         <code>mandatory</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         <code>varchar</code> Must contain the email of the customer. This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information. Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions. Character limit: 50
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         [Ashish@test.com](mailto:Ashish@test.com)
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
+      <td>
         phone
 
-        <br />
+
 
         <code>mandatory</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
-        <code>varchar</code> Must contain the phone number of the customer.
-
-        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions. Character limit: 50
+      <td>
+        <code>varchar</code> Must contain the phone number of the customer.This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions. Character limit: 50
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         9843176540
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
+      <td>
         surl
 
-        <br />
+
 
         <code>mandatory</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         surL is the acronym for Success URL. This parameter must contain the URL on which PayU will redirect the final response if the transaction is successful.
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
 
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
+      <td>
         furl
 
-        <br />
+
 
         <code>mandatory</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         furl is the acronym for for Failure URL. This parameter must contain the URL on which PayU will redirect the final response if the transaction is failed.
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
 
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        api_version
+      <td>
+        api\_version
 
-        <br />
+
 
         <code>mandatory</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         This parameter must always needs to be passed as 7.
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         7
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
+      <td>
         hash
 
-        <br />
+
 
         <code>mandatory</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
-        Hash is a crucial parameter used to ensure that any date is not tampered while redirecting customer from the merchant website to PayU's payment interface while registration transactions.
+      <td>
+        Hash is a crucial parameter used to ensure that any date is not tampered while redirecting customer from the merchant website to PayU's payment interface while registration transactions.It is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si\_details by merchant salt.In the case of registration transaction, the formula is used to calculate this hash is similar to the following: <code>HASH = SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|SALT)</code>
 
-        It is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si_details by merchant salt.
-
-        In the case of registration transaction, the formula is used to calculate this hash is similar to the following: <code>HASH = SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|SALT)</code>
-
-        * **Note:**Hash logic for_payment API version 19: The following hash logic must be used for _payment API with** api_version=19**: <code>key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|user_token|offer_key|offer_auto_apply|cart_details|extra_charges|phone</code>
+        - **Note:Hash logic fo&#x72;_&#x70;ayment API version 19: The following hash logic must be used for_ payment API with api\_version=19**: <code>key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|user_token|offer_key|offer_auto_apply|cart_details|extra_charges|phone</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
 
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
+      <td>
         <h3>Seamless integration</h3>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
 
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
 
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
+      <td>
         pg
 
-        <br />
+
 
         <code>mandatory for seamless flow</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         <code>String</code> The pg parameter must contain the payment method. If no value is specified for this parameter 'CC' will be takes as default value. Refer to the following sections for integration with various payment modes:
 
-        * Net Banking: **NB**
-        * Card:
-        * **DC**for Debit Card
-        * **CC** for Credit Card
-        * UPI: **UPI**
-        * Wallets: **CASH**
-        * EMI: **EMI**
-        * BNPL:**BNPL**
-        * EFTNET (NEFT/RTGS): **NEFTRTGS**
-        * QR: **QR**
+        - Net Banking: **NB**
+        - Card:
+        - **DC**for Debit Card
+        - **CC** for Credit Card
+        - UPI: **UPI**
+        - Wallets: **CASH**
+        - EMI: **EMI**
+        - BNPL:**BNPL**
+        - EFTNET (NEFT/RTGS): **NEFTRTGS**
+        - QR: **QR**
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
 
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
+      <td>
         bankcode
 
-        <br />
+
 
         <code>mandatory for seamless flow</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. For more information, refer to any of the following based on the payment mode used in the **pg** parameter:
 
-        * For NetBanking: [Net Banking Codes](doc:net-banking-codes)
-        * For Cards: [Card Number Formats](doc:card-number-formats) and [Card Type Codes and Supported Banks for Cards](doc:card-type-codes-and-supported-banks-for-cards).
-        * For UPI: [UPI Handles](doc:upi-handles)
-        * For Wallets: [Wallet Codes](doc:wallet-codes)
-        * For EMI: [EMI Codes](doc:emi-codes)
-        * For BNPL: [BNPL Codes](doc:bnpl-codes)
+        - For NetBanking: [Net Banking Codes](doc:net-banking-codes)
+        - For Cards: [Card Number Formats](doc:card-number-formats) and [Card Type Codes and Supported Banks for Cards](doc:card-type-codes-and-supported-banks-for-cards).
+        - For UPI: [UPI Handles](doc:upi-handles)
+        - For Wallets: [Wallet Codes](doc:wallet-codes)
+        - For EMI: [EMI Codes](doc:emi-codes)
+        - For BNPL: [BNPL Codes](doc:bnpl-codes)
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
 
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
+      <td>
         udf1
 
-        <br />
+
 
         <code>optional for seamless flow</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5. <code>Character Limit-255</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
 
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
+      <td>
         udf2
 
-        <br />
+
 
         <code>optional for seamless flow</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5. <code>Character Limit-255</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
 
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
+      <td>
         udf3
 
-        <br />
+
 
         <code>optional for seamless flow</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5. <code>Character Limit-255</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
 
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
+      <td>
         udf4
 
-        <br />
+
 
         <code>optional for seamless flow</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5. <code>Character Limit-255</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
 
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
+      <td>
         ud1f5
 
-        <br />
+
 
         <code>optional for seamless flow</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5. <code>Character Limit-255</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
 
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
+      <td>
         ccnum
 
-        <br />
+
 
         <code>mandatory for cards in seamless flow</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
-        <code>String</code> Use 13-19 digit card number for credit/debit cards (15 digits for AMEX, 13-19 for Maestro) and validate with LUHN algorithm. Refer to
-
-        [Card Number Formats](doc:card-number-formats)
-
-        and display.error message for an invalid input.
+      <td>
+        <code>String</code> Use 13-19 digit card number for credit/debit cards (15 digits for AMEX, 13-19 for Maestro) and validate with LUHN algorithm. Refer to[Card Number Formats](doc:card-number-formats)and display.error message for an invalid input.
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
 
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
+      <td>
         ccvv
 
-        <br />
+
 
         <code>mandatory for cards in seamless flow</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         <code>String</code> This parameter must contain the name on card – as entered by the customer for the transaction.
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
 
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
+      <td>
         ccexpmon
 
-        <br />
+
 
         <code>mandatory for cards in seamless flow</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         <code>String</code> This parameter must contain the card's expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively.
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
 
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
+      <td>
         ccexpyr
 
-        <br />
+
 
         <code>mandatory for cards in seamless flow</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         <code>String</code> This parameter must contain the card's expiry year – as entered by the customer for the transaction. It must be of four digits.
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
 
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
+      <td>
         threeDS2RequestData
 
-        <br />
+
 
         <code>mandatory for cards in seamless flow</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
-        <code>String</code> This parameter must contain the card's expiry year – as entered by the customer for the transaction. It must be of four digits.. For more information, refer to Request Parameter for
-
-        [3DS Secure 2.0 Transaction](doc:collect-payments-with-cards-seamless#request-parameter-for-3ds-secure-20-transaction)
-
-        .
+      <td>
+        <code>String</code> This parameter must contain the card's expiry year – as entered by the customer for the transaction. It must be of four digits.. For more information, refer to Request Parameter for[3DS Secure 2.0 Transaction](doc:collect-payments-with-cards-seamless#request-parameter-for-3ds-secure-20-transaction).
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
 
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
+      <td>
         <h3>Server-to-Server Integration</h3>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
 
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
 
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        s2s_client_ip
+      <td>
+        s2s\_client\_ip
 
-        <br />
+
 
         <code>mandatory for S2S</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         <code>String</code>This parameter must have the source IP of the customer.
 
-        * **Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        - **Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
 
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        s2s_device_info
+      <td>
+        s2s\_device\_info
 
-        <br />
+
 
         <code>mandatory for S2S</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         <code>String</code>This parameter must have the customer agent's device. Note: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
 
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        txn_s2s_flow
+      <td>
+        txn\_s2s\_flow
 
-        <br />
+
 
         <code>mandatory for S2S</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         <code>String</code> This parameter must be passed with any of the following values:
 
-        * **4** for S2S
-        * **3** for Direct Authorizatoin
+        - **4** for S2S
+        - **3** for Direct Authorizatoin
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
 
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        authentication_flow
+      <td>
+        authentication\_flow
 
-        <br />
+
 
         <code>mandatory for S2S</code>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         This parameter must be passed with the value as **REDIRECT** for classic S2S integration.
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
 
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
+      <td>
         <strong>Webhooks</strong>
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
 
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
 
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        partner_webhook_success
+      <td>
+        partner\_webhook\_success
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         Parameter to pass the Webhook URL for Success transaction response, Multiple URLs can be passed by separating the URLs using (,) Comma. Use HTTP secure URLs. Pass the non URL encoded URL Only
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         <a href="https://test.payu.in/admin/test_response">[https://test.payu.in/admin/test_response](https://test.payu.in/admin/test_response)</a>
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        partner_webhook_failure
+      <td>
+        partner\_webhook\_failure
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         Parameter to pass the Webhook URL for failure transaction response,  Multiple URLs can be passed by separating the URLs using (,) Comma. Use HTTP secure URLs. Pass the non URL encoded URL Only
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         <a href="https://test.payu.in/admin/test_response">[https://test.payu.in/admin/test_response](https://test.payu.in/admin/test_response)</a>
       </td>
     </tr>
@@ -633,14 +613,14 @@ next:
 
 ### Additional parameters for Guest Checkout
 
-| **Parameter**               | **Description**                                                                                                                           | **Example** |
-| :-------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------- | :---------- |
-| alt_id `mandatory`          | `String` This parameter must contain Alt ID for the guest checkout.                                                                       |             |
-| ccexpmon `mandatory`        | `String` This parameter must contain the Alt ID expiry month. For VISA cards, Plain card's expiry month need to be posted this parameter. | 10          |
-| ccexpyr `mandatory`         | `String` This parameter must contain the Alt ID expiry year. For VISA cards, Plain card's expiry year need to be posted this parameter.   | 2021        |
-| additional_info `mandatory` | `JSON`The fields which are included in this JSON are described in the next table.                                                         |             |
+| **Parameter**                | **Description**                                                                                                                           | **Example** |
+| :--------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------- | :---------- |
+| alt\_id `mandatory`          | `String` This parameter must contain Alt ID for the guest checkout.                                                                       |             |
+| ccexpmon `mandatory`         | `String` This parameter must contain the Alt ID expiry month. For VISA cards, Plain card's expiry month need to be posted this parameter. | 10          |
+| ccexpyr `mandatory`          | `String` This parameter must contain the Alt ID expiry year. For VISA cards, Plain card's expiry year need to be posted this parameter.   | 2021        |
+| additional\_info `mandatory` | `JSON`The fields which are included in this JSON are described in the next table.                                                         |             |
 
-The description of the fields in the additional_info JSON.
+The description of the fields in the additional\_info JSON.
 
 | Field            | Description                                                                                                                                                                   |
 | :--------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -654,6 +634,7 @@ The description of the fields in the additional_info JSON.
 
 <HTMLBlock>{`
 <div style={{ maxWidth: "85%", overflowX: "auto" }}>
+
 <Table>
   <thead>
     <tr>
@@ -809,6 +790,7 @@ The description of the fields in the additional_info JSON.
 
 <HTMLBlock>{`
 <div style={{ maxWidth: "85%", overflowX: "auto" }}>
+
 <Table>
   <thead>
     <tr>
@@ -934,6 +916,7 @@ The description of the fields in the additional_info JSON.
 
 <HTMLBlock>{`
 <div style={{ maxWidth: "85%", overflowX: "auto" }}>
+
 <Table>
   <thead>
     <tr>
@@ -1024,21 +1007,21 @@ The description of the fields in the additional_info JSON.
 
 ## Using card on a decoupled Flow with Network token or other partner tokenization
 
-| **Parameter**                      | **Description**                                                                                                                                                                                                                                                  | **Example**                                                                                 |
-| :--------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------ |
-| ccvv **optional**                  | `varchar` This parameter must contain the CVV number of the card – as entered by the customer for the transaction.                                                                                                                                               | 123                                                                                         |
-| storecard_token_type **mandatory** | `integer` This parameter is used to specify store card token type, that is, tokenization partner. For this scenario, you must include 1.                                                                                                                         | 1                                                                                           |
-| store_card_token **mandatory**     | `varchar` This must include the token generated by PayU for the card.                                                                                                                                                                                            | 1234 4567 2456 3566                                                                         |
-| additional_info **mandatory**      | This parameter will contain the additional information in the following JSON format: \{"\{user.glossay:last4Digits}": "1234", "<Glossary>TAVV</Glossary>": "ABCDEFGH","<Glossary>trid</Glossary>":"1234567890", "<Glossary>tokenRefNo</Glossary>":"abcde123456"} | \{“last4Digits": “1234", “tavv": “ABCDEFGH","trid":"1234567890", “tokenRefNo":"abcde123456" |
+| **Parameter**                        | **Description**                                                                                                                                                                                                                                                 | **Example**                                                                                |
+| :----------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------- |
+| ccvv **optional**                    | `varchar` This parameter must contain the CVV number of the card – as entered by the customer for the transaction.                                                                                                                                              | 123                                                                                        |
+| storecard\_token\_type **mandatory** | `integer` This parameter is used to specify store card token type, that is, tokenization partner. For this scenario, you must include 1.                                                                                                                        | 1                                                                                          |
+| store\_card\_token **mandatory**     | `varchar` This must include the token generated by PayU for the card.                                                                                                                                                                                           | 1234 4567 2456 3566                                                                        |
+| additional\_info **mandatory**       | This parameter will contain the additional information in the following JSON format: {"{user.glossary:last4Digits}": "1234", "<Glossary>TAVV</Glossary>": "ABCDEFGH","<Glossary>trid</Glossary>":"1234567890", "<Glossary>tokenRefNo</Glossary>":"abcde123456"} | {“last4Digits": “1234", “tavv": “ABCDEFGH","trid":"1234567890", “tokenRefNo":"abcde123456" |
 
 #### Using Card on a decoupled flow with PayU rtokenization
 
-| **Parameter**                      | **Description**                                                                                                                                                                                                                                                  | **Example**                                                                                 |
-| :--------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------ |
-| ccvv **optional**                  | `varchar` This parameter must contain the CVV number of the card – as entered by the customer for the transaction.                                                                                                                                               | 123                                                                                         |
-| storecard_token_type **mandatory** | `integer` This parameter is used to specify store card token type, that is, tokenization partner. For this scenario, you must include 0.                                                                                                                         | 1                                                                                           |
-| store_card_token **mandatory**     | `varchar` This must include the token generated by PayU for the card.                                                                                                                                                                                            | 1234 4567 2456 3566                                                                         |
-| additional_info **mandatory**      | This parameter will contain the additional information in the following JSON format: \{"\{user.glossay:last4Digits}": "1234", "<Glossary>TAVV</Glossary>": "ABCDEFGH","<Glossary>trid</Glossary>":"1234567890", "<Glossary>tokenRefNo</Glossary>":"abcde123456"} | \{“last4Digits": “1234", “tavv": “ABCDEFGH","trid":"1234567890", “tokenRefNo":"abcde123456" |
+| **Parameter**                        | **Description**                                                                                                                                                                                                                                                | **Example**                                                                                |
+| :----------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------- |
+| ccvv **optional**                    | `varchar` This parameter must contain the CVV number of the card – as entered by the customer for the transaction.                                                                                                                                             | 123                                                                                        |
+| storecard\_token\_type **mandatory** | `integer` This parameter is used to specify store card token type, that is, tokenization partner. For this scenario, you must include 0.                                                                                                                       | 1                                                                                          |
+| store\_card\_token **mandatory**     | `varchar` This must include the token generated by PayU for the card.                                                                                                                                                                                          | 1234 4567 2456 3566                                                                        |
+| additional\_info **mandatory**       | This parameter will contain the additional information in the following JSON format: {"{user.glossay:last4Digits}": "1234", "<Glossary>TAVV</Glossary>": "ABCDEFGH","<Glossary>trid</Glossary>":"1234567890", "<Glossary>tokenRefNo</Glossary>":"abcde123456"} | {“last4Digits": “1234", “tavv": “ABCDEFGH","trid":"1234567890", “tokenRefNo":"abcde123456" |
 
 ## Character Limit for Request Parameters
 
@@ -1221,13 +1204,13 @@ The description of the fields in the additional_info JSON.
       <td>
         This parameter provides the reason for failure for failed transactions.
 
-        * _Note_* that failure reasons may vary depending on the error codes from different banks.
+        - _Note_\* that failure reasons may vary depending on the error codes from different banks.
       </td>
     </tr>
 
     <tr>
       <td>
-        error_message
+        error\_message
       </td>
 
       <td>
@@ -1251,7 +1234,7 @@ The description of the fields in the additional_info JSON.
 
     <tr>
       <td>
-        PG_TYPE
+        PG\_TYPE
       </td>
 
       <td>
@@ -1261,7 +1244,7 @@ The description of the fields in the additional_info JSON.
 
     <tr>
       <td>
-        bank_ref_num
+        bank\_ref\_num
       </td>
 
       <td>
@@ -1287,18 +1270,20 @@ The description of the fields in the additional_info JSON.
 
 ## Response for initial Server-to-Server request
 
-| **Parameter**    | **Description**                                                                                                                                                                                                                                                            |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| result           | This parameter contains a JSON Object that includes **post_uri** and **post_data** fields.                                                                                                                                                                                 |
-| result.post_uri  | This field contains the redirect URL.                                                                                                                                                                                                                                      |
-| result.post_data | post_data is a base64 encoded string. The merchant needs to decode post_data, which is an HTML format with auto submit, which then needs to be shown on the customer’s browser. The HTML being auto submit, it will take the customer to the bank page for authentication. |
-| status           | This field contains the status for the transaction.                                                                                                                                                                                                                        |
-| error            | For the failed transactions, this parameter provides the reason for  failure.                                                                                                                                                                                              |
-| message          | This field contains any additional message about the transaction.                                                                                                                                                                                                          |
+| **Parameter**     | **Description**                                                                                                                                                                                                                                                              |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| result            | This parameter contains a JSON Object that includes **post\_uri** and **post\_data** fields.                                                                                                                                                                                 |
+| result.post\_uri  | This field contains the redirect URL.                                                                                                                                                                                                                                        |
+| result.post\_data | post\_data is a base64 encoded string. The merchant needs to decode post\_data, which is an HTML format with auto submit, which then needs to be shown on the customer’s browser. The HTML being auto submit, it will take the customer to the bank page for authentication. |
+| status            | This field contains the status for the transaction.                                                                                                                                                                                                                          |
+| error             | For the failed transactions, this parameter provides the reason for  failure.                                                                                                                                                                                                |
+| message           | This field contains any additional message about the transaction.                                                                                                                                                                                                            |
 
-> 📘 Note:
->
-> The reason for failure depends upon the error codes provided by different banks and hence the detailing of error reasons may differ from one transaction to another. The merchant can use this parameter to retrieve the reason for failure for a particular transaction.
+<Callout icon="📘" theme="info">
+  ### Note:
+
+  The reason for failure depends upon the error codes provided by different banks and hence the detailing of error reasons may differ from one transaction to another. The merchant can use this parameter to retrieve the reason for failure for a particular transaction.
+</Callout>
 
 #### metaData JSON Fields Description
 
@@ -1456,7 +1441,7 @@ The description of the fields in the additional_info JSON.
       <td>
         PayU calculates the hash using a string of other parameters and returns it to the merchant. The merchant must verify the hash, and only then mark a transaction as success/failure. This is to make sure that the transaction hasn’t been tampered with. The calculation is as follows:  sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
 
-        * _Note_*: The handling of udf1 – udf5 parameters remains similar to the hash calculation when the merchant sends it in the transaction request to PayU. If any of the udf (udf1-udf5) was posted in the transaction request, it must be taken in hash calculation also. If none of the udf parameters were posted in the transaction request, they should be left empty in the hash calculation too.
+        - _Note_\*: The handling of udf1 – udf5 parameters remains similar to the hash calculation when the merchant sends it in the transaction request to PayU. If any of the udf (udf1-udf5) was posted in the transaction request, it must be taken in hash calculation also. If none of the udf parameters were posted in the transaction request, they should be left empty in the hash calculation too.
       </td>
     </tr>
 
@@ -1468,7 +1453,7 @@ The description of the fields in the additional_info JSON.
       <td>
         For the failed transactions, this parameter provides the reason for  failure. 
 
-        * _Note_*: The reason for failure depends upon the error codes provided by different banks and hence the detailing of error reasons may differ from one transaction to another. The merchant can use this parameter to retrieve the reason for failure for a particular transaction.
+        - _Note_\*: The reason for failure depends upon the error codes provided by different banks and hence the detailing of error reasons may differ from one transaction to another. The merchant can use this parameter to retrieve the reason for failure for a particular transaction.
       </td>
     </tr>
 
@@ -1484,7 +1469,7 @@ The description of the fields in the additional_info JSON.
 
     <tr>
       <td>
-        PG_TYPE
+        PG\_TYPE
       </td>
 
       <td>
@@ -1494,7 +1479,7 @@ The description of the fields in the additional_info JSON.
 
     <tr>
       <td>
-        bank_ref_num
+        bank\_ref\_num
       </td>
 
       <td>
@@ -1542,8 +1527,8 @@ The description of the fields in the additional_info JSON.
       <td>
         This field contains contains any of the following to indicate whether the card supports S2S:
 
-        * **true**: Card supports S2S
-        * **false**: Card does not support S2S
+        - **true**: Card supports S2S
+        - **false**: Card does not support S2S
       </td>
     </tr>
 
@@ -1575,8 +1560,8 @@ The description of the fields in the additional_info JSON.
       <td>
         This field contains contains any of the following to indicate whether the card is domestic or international:
 
-        * **true**: It is a domestic card
-        * **false**: It is an international card
+        - **true**: It is a domestic card
+        - **false**: It is an international card
       </td>
     </tr>
   </tbody>
