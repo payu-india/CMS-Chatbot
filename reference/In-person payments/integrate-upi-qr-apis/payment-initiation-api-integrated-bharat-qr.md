@@ -43,10 +43,7 @@ The **Payment Initiation** API is used to initiate payment towards an Integrated
       </td>
 
       <td>
-        string This parameter must contain the merchant key for the merchant’s account at PayU.  
-        Reference: For more information on how to generate the Key and Salt, refer to any of the following:  
-        Production: Generate Production Merchant Key and Sat.  
-        Test: Generate Test Merchant Key and Salt.
+        string This parameter must contain the merchant key for the merchant’s account at PayU.<br />Reference: For more information on how to generate the Key and Salt, refer to any of the following:<br />Production: Generate Production Merchant Key and Sat.<br />Test: Generate Test Merchant Key and Salt.
       </td>
 
       <td>
@@ -56,8 +53,7 @@ The **Payment Initiation** API is used to initiate payment towards an Integrated
 
     <tr>
       <td>
-        txnid  
-        `mandatory`
+        txnid<br />`mandatory`
       </td>
 
       <td>
@@ -71,8 +67,7 @@ The **Payment Initiation** API is used to initiate payment towards an Integrated
 
     <tr>
       <td>
-        amount  
-        `mandatory`
+        amount<br />`mandatory`
       </td>
 
       <td>
@@ -86,8 +81,7 @@ The **Payment Initiation** API is used to initiate payment towards an Integrated
 
     <tr>
       <td>
-        qrId  
-        `mandatory`
+        qrId<br />`mandatory`
       </td>
 
       <td>
@@ -101,8 +95,7 @@ The **Payment Initiation** API is used to initiate payment towards an Integrated
 
     <tr>
       <td>
-        productinfo  
-        `mandatory`
+        productinfo<br />`mandatory`
       </td>
 
       <td>
@@ -116,8 +109,7 @@ The **Payment Initiation** API is used to initiate payment towards an Integrated
 
     <tr>
       <td>
-        expirytime  
-        `mandatory`
+        expirytime<br />`mandatory`
       </td>
 
       <td>
@@ -131,8 +123,7 @@ The **Payment Initiation** API is used to initiate payment towards an Integrated
 
     <tr>
       <td>
-        udf3  
-        `optional`
+        udf3<br />`optional`
       </td>
 
       <td>
@@ -146,8 +137,7 @@ The **Payment Initiation** API is used to initiate payment towards an Integrated
 
     <tr>
       <td>
-        udf4  
-        `optional`
+        udf4<br />`optional`
       </td>
 
       <td>
@@ -161,8 +151,7 @@ The **Payment Initiation** API is used to initiate payment towards an Integrated
 
     <tr>
       <td>
-        udf5  
-        `optional`
+        udf5<br />`optional`
       </td>
 
       <td>
@@ -176,8 +165,7 @@ The **Payment Initiation** API is used to initiate payment towards an Integrated
 
     <tr>
       <td>
-        firstname  
-        `optional`
+        firstname<br />`optional`
       </td>
 
       <td>
@@ -191,8 +179,7 @@ The **Payment Initiation** API is used to initiate payment towards an Integrated
 
     <tr>
       <td>
-        lastname  
-        `optional`
+        lastname<br />`optional`
       </td>
 
       <td>
@@ -206,8 +193,7 @@ The **Payment Initiation** API is used to initiate payment towards an Integrated
 
     <tr>
       <td>
-        email  
-        `optional`
+        email<br />`optional`
       </td>
 
       <td>
@@ -221,8 +207,7 @@ The **Payment Initiation** API is used to initiate payment towards an Integrated
 
     <tr>
       <td>
-        phone  
-        `optional`
+        phone<br />`optional`
       </td>
 
       <td>
@@ -236,14 +221,11 @@ The **Payment Initiation** API is used to initiate payment towards an Integrated
 
     <tr>
       <td>
-        hash  
-        `mandatory`
+        hash<br />`mandatory`
       </td>
 
       <td>
-        `string` This parameter must be include absolutely crucial and is similar to the hash parameter used in the transaction request send by the merchant to PayU. PayU calculates the hash using a string of other parameters and returns to the merchant. The merchant must verify the hash and then only mark a transaction as success/failure. This is to make sure that the transaction hasn’t been tampered with. The hash calculation is in the following format: `sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo |amount|txnid|key)  `  
-        The handling of udf1 – udf5 parameters remains similar to the hash calculation when the merchant sends it in the transaction request to PayU.  
-        If any of the udf (udf1- udf5) was posted in the transaction request, it must be taken in hash calculation also. If none of the udf parameters were posted in the transaction request, they should be left empty in the hash calculation too.
+        `string` This parameter must be included absolutely crucial and is similar to the hash parameter used in the transaction request send by the merchant to PayU. PayU calculates the hash using a string of other parameters and returns to the merchant. The merchant must verify the hash and then only mark a transaction as success/failure. This is to make sure that the transaction hasn’t been tampered with. The hash calculation is in the following format: `sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo |amount|txnid|key)  `<br />The handling of udf1 – udf5 parameters remains similar to the hash calculation when the merchant sends it in the transaction request to PayU.<br />If any of the udf (udf1- udf5) was posted in the transaction request, it must be taken in hash calculation also. If none of the udf parameters were posted in the transaction request, they should be left empty in the hash calculation too.
       </td>
 
       <td>
