@@ -31,8 +31,8 @@ This section describes the procedure to upload the registration transactions in 
 
 ## Prerequisites
 
-* Download the sample file as in below [procedure](#procedure) (Steps 1 to 5) and update it to include the data to be uploaded.
-* Ensure that all mandatory fields in the file are filled with the correct details. The columns in the Excel sheet for upload are described in the following table:
+- Download the sample file as in below [procedure](#procedure) (Steps 1 to 5) and update it to include the data to be uploaded.
+- Ensure that all mandatory fields in the file are filled with the correct details. The columns in the Excel sheet for upload are described in the following table:
 
 <Accordion title="Description of Columns in Excel sheet for uploading transactions in bulk" icon="fa-info-table">
   <Table align={["left","left","left"]}>
@@ -234,7 +234,7 @@ This section describes the procedure to upload the registration transactions in 
 
       <tr>
         <td style={{ textAlign: "left" }}>
-          Cutomer City
+          Customer City
         </td>
 
         <td style={{ textAlign: "left" }}>
@@ -474,9 +474,9 @@ This section describes the procedure to upload the registration transactions in 
   </Table>
 </Accordion>
 
-* Ensure that your bulk upload files are in the CSV format, as this is the only supported file type. 
-* The upload file size should not exceed 5 MB to ensure smooth processing. 
-* Each batch can contain up to 60,000 records (approximately), which is the maximum number of records processed in a single batch.
+- Ensure that your bulk upload files are in the CSV format, as this is the only supported file type. 
+- The upload file size should not exceed 5 MB to ensure smooth processing. 
+- Each batch can contain up to 60,000 records (approximately), which is the maximum number of records processed in a single batch.
 
 ## Procedure
 
@@ -485,26 +485,28 @@ This section describes the procedure to upload the registration transactions in 
 
 The _Subscriptions Overview_ page is displayed on the right-pane. 
 
-<Image align="center" border={true} src="https://files.readme.io/b6a07fd76749d355187ca08a22fdbba9ed1b34147b404b8584e1270e99886f6d-bulk_upload_button.png" className="border" />
+
+<Image src="https://files.readme.io/b6a07fd76749d355187ca08a22fdbba9ed1b34147b404b8584e1270e99886f6d-bulk_upload_button.png" align="center" border={true} />
+
 
 3. Click **Bulk Upload** at the top-right corner. 
 
 The _Bulk Upload_ pop-up page is displayed. 
 
-![](https://files.readme.io/16f626114a4d368f0a1b88113810cadf8875f013df740549c2d14af9f94a9cab-Screenshot_2024-09-16_at_11.03.44_AM.png) 
+![](https://files.readme.io/16f626114a4d368f0a1b88113810cadf8875f013df740549c2d14af9f94a9cab-Screenshot_2024-09-16_at_11.03.44_AM.png)
 
 4. Select **Registration** to upload the registration transactions. 
 5. Click **Continue.** 
 
 The **Bulk Upload Registration** screen is displayed. 
 
-![](https://files.readme.io/ff5c2bfc330bdfa1089bcc3897269318decb0d618e678222f2fb24a8051ae68c-bulk_upload_popup-page_details.png) 
+![](https://files.readme.io/ff5c2bfc330bdfa1089bcc3897269318decb0d618e678222f2fb24a8051ae68c-bulk_upload_popup-page_details.png)
 
 6. Enter a batch description in the **Batch Description** to identify this particular upload. 
 7. Select the following check boxes if you wish to notify the customer: 
 
-* Email 
-* SMS 
+- Email 
+- SMS 
 
 8. Click **Continue**. 
 
@@ -517,12 +519,16 @@ The **Bulk Upload Registration** screen is displayed. 
 
 After uploading the file, the system will automatically check for discrepancies. If there’s an issue, an error message is displayed on the screen.
 
-![](https://files.readme.io/51ee71e5b3f7b708604844bef0215f970da88238ae368f8da1af089ead9becdf-bulk_upload_popup-page_errors.png) 
+![](https://files.readme.io/51ee71e5b3f7b708604844bef0215f970da88238ae368f8da1af089ead9becdf-bulk_upload_popup-page_errors.png)
 
 After your file is successfully uploaded, a message similar to the following screenshot is displayed and then you will be redirected to the **Bulk Upload** listing screen. 
 
-![](https://files.readme.io/f13ff94f11a504ea8ac1b552c7aaa9674ea6bac69de20e37ab8788501492099c-bulk_upload_popup-page_sucess.png) 
+![](https://files.readme.io/f13ff94f11a504ea8ac1b552c7aaa9674ea6bac69de20e37ab8788501492099c-bulk_upload_popup-page_sucess.png)
 
 A record is added with the status as “Partially Processed” to the **Registration** tab sub-tab under the **Bulk Upload** tab similar to the following screenshot. 
 
-<Image align="center" border={true} src="https://files.readme.io/35cc9bc263042e23420dafde87d37f6b212ecce5fd7d6547a4c471e1c5aba69f-bulk_upload_listing.png" className="border" />
+
+<Image src="https://files.readme.io/35cc9bc263042e23420dafde87d37f6b212ecce5fd7d6547a4c471e1c5aba69f-bulk_upload_listing.png" align="center" border={true} />
+
+
+<br />
