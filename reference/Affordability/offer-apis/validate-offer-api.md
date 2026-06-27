@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-The **validate_offer** API validates the payment request against an offer key. This API doesn’t apply the offer and only validates the request.
+The **validate\_offer** API validates the payment request against an offer key. This API doesn’t apply the offer and only validates the request.
 
 **Endpoints**
 
@@ -85,9 +85,11 @@ public class HmacAuth {
 
 The sample header is similar to the following:
 
-> 📘 **Note**:
->
-> You need to include the current date and time in the **Date** field of the header.
+<Callout icon="📘" theme="info">
+  ### **Note**:
+
+  You need to include the current date and time in the **Date** field of the header.
+</Callout>
 
 ```plaintext
 'Date: Tue, 09 Aug 2022 12:14:51 GMT'
@@ -742,7 +744,7 @@ In addition to the request parameters listed in this section, the **skusDetail**
 
 ### Failure scenarios
 
-* Merchant ID does not exists
+- Merchant ID does not exists
 
 ```plaintext
 {
@@ -753,7 +755,7 @@ In addition to the request parameters listed in this section, the **skusDetail**
 }
 ```
 
-* Client ID does not exist or not matching with platform ID
+- Client ID does not exist or not matching with platform ID
 
 ```plaintext
 {
@@ -764,7 +766,7 @@ In addition to the request parameters listed in this section, the **skusDetail**
 }
 ```
 
-* Service Unavailable
+- Service Unavailable
 
 ```plaintext
 
@@ -1148,7 +1150,7 @@ In addition to the request parameters listed in this section, the **skusDetail**
 
 ### Failure scenarios
 
-* Merchant ID does not exists
+- Merchant ID does not exists
 
 ```plaintext
 {
@@ -1159,7 +1161,7 @@ In addition to the request parameters listed in this section, the **skusDetail**
 }
 ```
 
-* Client ID does not exist or not matching with platform ID
+- Client ID does not exist or not matching with platform ID
 
 ```plaintext
 {
@@ -1170,7 +1172,7 @@ In addition to the request parameters listed in this section, the **skusDetail**
 }
 ```
 
-* Service Unavailable
+- Service Unavailable
 
 ```plaintext
 
@@ -1182,7 +1184,7 @@ In addition to the request parameters listed in this section, the **skusDetail**
 }
 ```
 
-* Invalid request
+- Invalid request
 
 ```
 {
@@ -1193,7 +1195,7 @@ In addition to the request parameters listed in this section, the **skusDetail**
 }
 ```
 
-* Offer key is mandatory when autoApply=false
+- Offer key is mandatory when autoApply=false
 
 ```
 {
@@ -1423,6 +1425,7 @@ The **offerDiscount** field in the **result** JSON contains the offer discount d
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The field contains any of the following type of offer:  </p>
 <ul>
+
 <li>INSTANT </li>
 <li>CASHBACK</li>
 </ul>
@@ -1451,6 +1454,7 @@ The **offerDiscount** field in the **result** JSON contains the offer discount d
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains any of the following discount type that were defined:  </p>
 <ul>
+
 <li>ABSOLUTE </li>
 <li>PERCENTAGE</li>
 </ul>
@@ -1507,7 +1511,7 @@ The **offerDetail** field in the **result** JSON contains the offer details in a
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>anchorOfferKey</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Boolean</code> This field contains the flag to indicate if it an anchor offer key.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Boolean</code> This field contains the flag to indicate if it is an anchor offer key.</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"></td>
 </tr>
@@ -1663,7 +1667,7 @@ The **offerDetail** field in the **result** JSON contains the offer details in a
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>isBaseOffer</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Boolean</code>This field contains flag to indicate if  it a base offer.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Boolean</code>This field contains flag to indicate if  it is a base offer.</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>false</p>
 </td>
@@ -1862,3 +1866,5 @@ In addition to the request parameters listed in the [Fetch Offers API](ref:fetch
 </tbody>
 </table>
 `}</HTMLBlock>
+
+<br />
