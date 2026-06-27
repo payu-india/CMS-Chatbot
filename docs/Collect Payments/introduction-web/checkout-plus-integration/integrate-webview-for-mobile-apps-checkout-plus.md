@@ -12,8 +12,8 @@ next:
 ---
 You can collect payments from your mobile apps by opening the the PayU checkout form in a WebView. This allows you to reuse your PayU Hosted Checkout integration and get started quickly.
 
-* [Configure WebView for Android](#webview-integration-for-android)
-* [Configure WebView for iOS](#webview-integration-for-ios)
+- [Configure WebView for Android](#webview-integration-for-android)
+- [Configure WebView for iOS](#webview-integration-for-ios)
 
 ## WebView integration for Android
 
@@ -91,7 +91,7 @@ private class MyWebViewClient extends WebViewClient {
 }
 ```
 
-#### Step 2 Handling the retrun callback for Specific Intent
+#### Step 2 Handling the rerun callback for Specific Intent
 
 ```
 @Override
@@ -128,3 +128,5 @@ Please add the below line of code from the manifest file, outside of the applica
     <package android:name="in.gokiwi.kiwitpap" />
 </queries>
 ```
+
+<br />
