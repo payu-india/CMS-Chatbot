@@ -51,8 +51,7 @@ The **EMI Transaction** API is used to initiate an EMI transaction for transacti
 
     <tr>
       <td>
-        Device type \
-        `mandatory`
+        Device type <br />`mandatory`
       </td>
 
       <td>
@@ -66,12 +65,11 @@ The **EMI Transaction** API is used to initiate an EMI transaction for transacti
 
     <tr>
       <td>
-        Address \
-        `mandatory`
+        Address <br />`mandatory`
       </td>
 
       <td>
-        `string` The bluetooth address incase of MAC devices.
+        `string` The bluetooth address in case of MAC devices.
       </td>
 
       <td>
@@ -81,8 +79,7 @@ The **EMI Transaction** API is used to initiate an EMI transaction for transacti
 
     <tr>
       <td>
-        Amount\
-        `mandatory`
+        Amount<br />`mandatory`
       </td>
 
       <td>
@@ -96,8 +93,7 @@ The **EMI Transaction** API is used to initiate an EMI transaction for transacti
 
     <tr>
       <td>
-        Transaction type \
-        `mandatory`
+        Transaction type <br />`mandatory`
       </td>
 
       <td>
@@ -111,8 +107,7 @@ The **EMI Transaction** API is used to initiate an EMI transaction for transacti
 
     <tr>
       <td>
-        Payment Type \
-        `mandatory`
+        Payment Type <br />`mandatory`
       </td>
 
       <td>
@@ -126,8 +121,7 @@ The **EMI Transaction** API is used to initiate an EMI transaction for transacti
 
     <tr>
       <td>
-        Mobile Number\
-         `Optional`
+        Mobile Number<br /> `Optional`
       </td>
 
       <td>
@@ -141,8 +135,7 @@ The **EMI Transaction** API is used to initiate an EMI transaction for transacti
 
     <tr>
       <td>
-        Name\
-         Optional
+        Name<br /> Optional
       </td>
 
       <td>
@@ -156,8 +149,7 @@ The **EMI Transaction** API is used to initiate an EMI transaction for transacti
 
     <tr>
       <td>
-        Latitude\
-         `Optional`
+        Latitude<br /> `Optional`
       </td>
 
       <td>
@@ -171,8 +163,7 @@ The **EMI Transaction** API is used to initiate an EMI transaction for transacti
 
     <tr>
       <td>
-        Longitude\
-         `Optional`
+        Longitude<br /> `Optional`
       </td>
 
       <td>
@@ -186,12 +177,11 @@ The **EMI Transaction** API is used to initiate an EMI transaction for transacti
 
     <tr>
       <td>
-        Merchant reference number \
-        `mandatory`
+        Merchant reference number <br />`mandatory`
       </td>
 
       <td>
-        `string` Merchant Invoice Reference Number or pass current date time stamp. [Max upto 40 characters ]
+        `string` Merchant Invoice Reference Number or pass current date time stamp. \[Max upto 40 characters ]
       </td>
 
       <td>
@@ -201,13 +191,11 @@ The **EMI Transaction** API is used to initiate an EMI transaction for transacti
 
     <tr>
       <td>
-        Cash back amount \
-         `Optional`
+        Cash back amount <br /> `Optional`
       </td>
 
       <td>
-        * \*string\*\* Pass cash back amount only for SALE WITH CASH BACK\
-          transaction type otherwise pass null value.
+        - \*string\*\* Pass cash back amount only for SALE WITH CASH BACK<br />transaction type otherwise pass null value.
       </td>
 
       <td>
@@ -217,8 +205,7 @@ The **EMI Transaction** API is used to initiate an EMI transaction for transacti
 
     <tr>
       <td>
-        deviceCommMode \
-         `Optional`
+        deviceCommMode <br /> `Optional`
       </td>
 
       <td>
@@ -232,8 +219,7 @@ The **EMI Transaction** API is used to initiate an EMI transaction for transacti
 
     <tr>
       <td>
-        orderReferenceNo \
-         `Optional`
+        orderReferenceNo <br /> `Optional`
       </td>
 
       <td>
@@ -247,8 +233,7 @@ The **EMI Transaction** API is used to initiate an EMI transaction for transacti
 
     <tr>
       <td>
-        appName \
-         `Optional`
+        appName <br /> `Optional`
       </td>
 
       <td>
@@ -262,8 +247,7 @@ The **EMI Transaction** API is used to initiate an EMI transaction for transacti
 
     <tr>
       <td>
-        appVersion\
-         `Optional`
+        appVersion<br /> `Optional`
       </td>
 
       <td>
@@ -277,13 +261,11 @@ The **EMI Transaction** API is used to initiate an EMI transaction for transacti
 
     <tr>
       <td>
-        EMI\
-        `mandatory`
+        EMI<br />`mandatory`
       </td>
 
       <td>
-        `objectComplete` details about EMI\
-        transaction.
+        `objectComplete` details about EMI<br />transaction.
       </td>
 
       <td>
@@ -475,3 +457,5 @@ private final Handler handler = new Handler()
 						}
 					}
 ```
+
+<br />
