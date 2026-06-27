@@ -20,7 +20,7 @@ To update the application pass the parameters mentioned in the request parameter
   <thead>
     <tr>
       <th>
-        Parmeter
+        Parameter
       </th>
 
       <th>
@@ -37,32 +37,27 @@ To update the application pass the parameters mentioned in the request parameter
       </td>
 
       <td>
-        `handlers`\
-        Handlers are used to passing the data and receiving the data between the two classes.
+        `handlers`<br />Handlers are used to passing the data and receiving the data between the two classes.
       </td>
     </tr>
 
     <tr>
       <td>
-        Current activity\
-        `mandatory`
+        Current activity<br />`mandatory`
       </td>
 
       <td>
-        `string`\
-        Current class or activity
+        `string`<br />Current class or activity
       </td>
     </tr>
 
     <tr>
       <td>
-        DeviceType\
-        `mandatory`
+        DeviceType<br />`mandatory`
       </td>
 
       <td>
-        `string`\
-        Identifies the type of device Ex: N910
+        `string`<br />Identifies the type of device Ex: N910
       </td>
     </tr>
   </tbody>
@@ -77,6 +72,10 @@ if (paymentType.equalsIgnoreCase(APP_UPDATE)) {
 }
 ```
 
-> 🚧 Warning
->
-> Once the app is updated It will re-direct to the Intent of MTMS application.
+<Callout icon="🚧" theme="warn">
+  ### Warning
+
+  Once the app is updated It will re-direct to the Intent of MTMS application.
+</Callout>
+
+<br />
