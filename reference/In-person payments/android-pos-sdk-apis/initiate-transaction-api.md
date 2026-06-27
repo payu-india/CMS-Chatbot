@@ -14,15 +14,14 @@ Create a Payment Initialization class object and call initiate transaction metho
 
 PayU’s POS terminals support two types of transaction as follows:
 
-* **Sale**\
-  Customer can use debit or credit card in Sale mode and make transaction “N” number of times. For Sale Transaction, Amount should above Rs. 1000/- (check test cases) in UAT Environment. For production amount should be Minimum of Rs. 5/-.
-* **EMI**\
-  Customer can use credit card in EMI mode and make transaction “N” number of times. To support EMI\
-  transaction type please refer EMI Transaction APIs
+- **Sale**<br />Customer can use debit or credit card in Sale mode and make transaction “N” number of times. For Sale Transaction, Amount should above Rs. 1000/- (check test cases) in UAT Environment. For production amount should be Minimum of Rs. 5/-.
+- **EMI**<br />Customer can use credit card in EMI mode and make transaction “N” number of times. To support EMI<br />transaction type please refer EMI Transaction APIs
 
-> ❗️ Watch Out
->
-> Request parameters are consistent for all types of transaction . Only the `transactionType` parameter will be changed with the corresponding transaction type.
+<Callout icon="❗️" theme="error">
+  ### Watch Out
+
+  Request parameters are consistent for all types of transaction . Only the `transactionType` parameter will be changed with the corresponding transaction type.
+</Callout>
 
 **Method**: POST
 
@@ -63,8 +62,7 @@ PayU’s POS terminals support two types of transaction as follows:
 
     <tr>
       <td>
-        Device type \
-        `mandatory`
+        Device type <br />`mandatory`
       </td>
 
       <td>
@@ -78,12 +76,11 @@ PayU’s POS terminals support two types of transaction as follows:
 
     <tr>
       <td>
-        Address \
-        `mandatory`
+        Address <br />`mandatory`
       </td>
 
       <td>
-        `string` The bluetooth address incase of MAC devices.
+        `string` The bluetooth address in case of MAC devices.
       </td>
 
       <td>
@@ -93,8 +90,7 @@ PayU’s POS terminals support two types of transaction as follows:
 
     <tr>
       <td>
-        Amount\
-        `mandatory`
+        Amount<br />`mandatory`
       </td>
 
       <td>
@@ -108,8 +104,7 @@ PayU’s POS terminals support two types of transaction as follows:
 
     <tr>
       <td>
-        Transaction type \
-        `mandatory`
+        Transaction type <br />`mandatory`
       </td>
 
       <td>
@@ -123,8 +118,7 @@ PayU’s POS terminals support two types of transaction as follows:
 
     <tr>
       <td>
-        Payment Type \
-        `mandatory`
+        Payment Type <br />`mandatory`
       </td>
 
       <td>
@@ -138,8 +132,7 @@ PayU’s POS terminals support two types of transaction as follows:
 
     <tr>
       <td>
-        Mobile Number\
-         `Optional`
+        Mobile Number<br /> `Optional`
       </td>
 
       <td>
@@ -153,8 +146,7 @@ PayU’s POS terminals support two types of transaction as follows:
 
     <tr>
       <td>
-        Name\
-         `Optional`
+        Name<br /> `Optional`
       </td>
 
       <td>
@@ -168,8 +160,7 @@ PayU’s POS terminals support two types of transaction as follows:
 
     <tr>
       <td>
-        Latitude\
-         `Optional`
+        Latitude<br /> `Optional`
       </td>
 
       <td>
@@ -183,8 +174,7 @@ PayU’s POS terminals support two types of transaction as follows:
 
     <tr>
       <td>
-        Longitude\
-         `Optional`
+        Longitude<br /> `Optional`
       </td>
 
       <td>
@@ -198,12 +188,11 @@ PayU’s POS terminals support two types of transaction as follows:
 
     <tr>
       <td>
-        Merchant reference number \
-        `mandatory`
+        Merchant reference number <br />`mandatory`
       </td>
 
       <td>
-        `string` Merchant Invoice Reference Number or pass current date time stamp. [Max upto 40 characters].
+        `string` Merchant Invoice Reference Number or pass current date time stamp. \[Max upto 40 characters].
       </td>
 
       <td>
@@ -213,8 +202,7 @@ PayU’s POS terminals support two types of transaction as follows:
 
     <tr>
       <td>
-        Cash back amount \
-         `Optional`
+        Cash back amount <br /> `Optional`
       </td>
 
       <td>
@@ -228,8 +216,7 @@ PayU’s POS terminals support two types of transaction as follows:
 
     <tr>
       <td>
-        deviceCommMode \
-         `Optional`
+        deviceCommMode <br /> `Optional`
       </td>
 
       <td>
@@ -243,8 +230,7 @@ PayU’s POS terminals support two types of transaction as follows:
 
     <tr>
       <td>
-        orderReferenceNo \
-         `Optional`
+        orderReferenceNo <br /> `Optional`
       </td>
 
       <td>
@@ -258,8 +244,7 @@ PayU’s POS terminals support two types of transaction as follows:
 
     <tr>
       <td>
-        appName \
-         `Optional`
+        appName <br /> `Optional`
       </td>
 
       <td>
@@ -273,8 +258,7 @@ PayU’s POS terminals support two types of transaction as follows:
 
     <tr>
       <td>
-        appVersion\
-         `Optional`
+        appVersion<br /> `Optional`
       </td>
 
       <td>
@@ -447,3 +431,5 @@ private final Handler handler = new Handler() {
           }
         };
 ```
+
+<br />
