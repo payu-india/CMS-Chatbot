@@ -14,33 +14,6 @@ metadata:
 next:
   description: ''
 ---
----
-title: UPI Integration
-excerpt: ''
-deprecated: false
-hidden: false
-metadata:
-  title: Collect Payments with UPI - Merchant Hosted Checkout
-  description: >-
-    Merchant-hosted seamless UPI integration: UPI collect/intent on your checkout, VPA, hash, surl/furl, and UPI payment APIs for web.
-  keywords:
-    - payu merchant hosted seamless upi integration web india
-    - payment gateway upi payment integration merchant hosted payu
-    - integrate upi collect intent website custom checkout payu
-    - payu upi seamless integration merchant hosted checkout guide
-    - website upi payment integration payu api seamless checkout
-    - upi collect intent flow web integration payu merchant hosted
-    - payu collect payments upi seamless custom checkout integration
-    - server side upi payment integration payu website checkout
-    - payu upi hash vpa seamless payment integration web guide
-    - payment gateway india upi integration merchant website payu
-    - payu custom checkout upi api integration steps developer
-    - merchant hosted upi payment gateway integration payu web
-  robots: index
-
-next:
-  description: ''
----
 <NPCI_Mandate />
 
 <br />
@@ -50,7 +23,11 @@ PayU allows you to collect payments using UPI handles. For the list of UPI provi
 <br />
 
 <Callout icon="👍" theme="okay">
+  ###
+
   Experience the end-to-end **Merchant Hosted Checkout** > **UPI** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
+
+    
 
   <HTMLBlock>{`
                           <style>
@@ -92,7 +69,7 @@ PayU allows you to collect payments using UPI handles. For the list of UPI provi
 
 <Cards>
   <Card title="1. Validate the UPI handle" href="https://docs.payu.in/docs/collect-payments-with-upi-seamless#step-1-valiadate-the-upi-handle">
-    Validate the card type using the Validae VPA API
+    Validate the card type using the Validate VPA API.
   </Card>
 
   <Card title="2. Initiate the Payment to PayU" href="https://docs.payu.in/docs/collect-payments-with-upi-seamless#step-2-initiate-the-payment-to-payu">
@@ -111,26 +88,30 @@ PayU allows you to collect payments using UPI handles. For the list of UPI provi
 <RegisterMerchantPrerequiste />
 
 <Callout icon="📮" theme="default">
+  ###
+
   **Postman Collection**: Access the **Merchant Hosted Checkout > UPI APIs Postman Collection** from the following location:
 
   [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/394lrbp/upi-integration](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/394lrbp/upi-integration)
 </Callout>
 
 <Callout icon="⚠️" theme="warning">
+  ###
+
   **Important UPI Integration Changes as per NPCI Mandate on UPI Collect Disablement**:
 
-  * **Seamless Form Post Users**: Merchants using Seamless Form Post flow must migrate to `txn_s2s_flow` (UPI Intent S2S), as Intent is **not supported** in the seamless form post flow for Android and Desktop web. For migration guidance, refer to [UPI Intent S2S Integration](doc:upi-intent-server-to-server).
+  - **Seamless Form Post Users**: Merchants using Seamless Form Post flow must migrate to `txn_s2s_flow` (UPI Intent S2S), as Intent is **not supported** in the seamless form post flow for Android and Desktop web. For migration guidance, refer to [UPI Intent S2S Integration](doc:upi-intent-server-to-server).
 
-  * **For Android Apps**: Merchants must implement the Smart Intent implementation. Refer to [UPI Smart Intent - Non SDK Flow](doc:upi-smart-intent-non-sdk-flow) or use [PayU Android SDKs](doc:explore-android-sdks) which have Smart Intent built-in.
+  - **For Android Apps**: Merchants must implement the Smart Intent implementation. Refer to [UPI Smart Intent - Non SDK Flow](doc:upi-smart-intent-non-sdk-flow) or use [PayU Android SDKs](doc:explore-android-sdks) which have Smart Intent built-in.
 
-  * **For iOS Apps**: Merchants can implement the specific deeplink and continue using the UPI Collect flow as is.
+  - **For iOS Apps**: Merchants can implement the specific deeplink and continue using the UPI Collect flow as is.
 
-  * **For Web**: Merchants must use the deeplink created via [UPI Intent S2S Integration](doc:upi-intent-server-to-server) to generate a QR code of the deeplink, instead of the UPI Collect flow.
+  - **For Web**: Merchants must use the deeplink created via [UPI Intent S2S Integration](doc:upi-intent-server-to-server) to generate a QR code of the deeplink, instead of the UPI Collect flow.
 </Callout>
 
 ## Step 1: Validate the UPI handle
 
-You can validate your customer's Virtual Payment Address (VPA) using the <Anchor label="Validate VPA Handle" target="_blank" href="https://docs.payu.in/reference/validate_vpa_api">Validate VPA Handle</Anchor> API before initiating the transaction.
+You can validate your customer's Virtual Payment Address (VPA) using the <Anchor target="_blank" href="https://docs.payu.in/reference/validate_vpa_api">Validate VPA Handle</Anchor> API before initiating the transaction.
 
 <GENERALAPIsEnvironment />
 
@@ -198,8 +179,8 @@ You can validate your customer's Virtual Payment Address (VPA) using the <Anchor
       	// JavaScript example for VPA validation before payment submission
       // This should be run on your server, not client-side
 
-      async function validateVpa(vpa) {
-          try {
+      async function validateVpa(vpa) \{
+          try \{
               // Get hash from server endpoint
               const hashResponse = await fetch('/generate-vpa-hash', {
                   method: 'POST',
@@ -231,11 +212,11 @@ You can validate your customer's Virtual Payment Address (VPA) using the <Anchor
                   isValid: result.isVPAValid === 1,
                   message: result.msg
               };
-          } catch (error) {
+          \} catch (error) {
               console.error('VPA validation error:', error);
               return { isValid: false, message: 'Validation service error' };
           }
-      }
+      \}
 
   ```
   ```curl
@@ -516,8 +497,8 @@ You can validate your customer's Virtual Payment Address (VPA) using the <Anchor
   import java.util.Map;
   import java.util.stream.Collectors;
 
-  public class PayURequest {
-      public static void main(String[] args) throws IOException, InterruptedException {
+  public class PayURequest \{
+      public static void main(String[] args) throws IOException, InterruptedException \{
           String url = "https://test.payu.in/_payment";
           
           Map<String, String> parameters = new HashMap<>();
@@ -553,8 +534,8 @@ You can validate your customer's Virtual Payment Address (VPA) using the <Anchor
           
           System.out.println("Status Code: " + response.statusCode());
           System.out.println("Response: " + response.body());
-      }
-  }
+      \}
+  \}
   ```
   ```javascript
   const url = 'https://test.payu.in/merchant/postservice?form=2';
@@ -655,5 +636,7 @@ sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amo
 
 ## Recommended integrations for UPI
 
-* **Recurring Payments**: Enable recurring payments or subscriptions for wallets. For more information, refer to [Recurring Payments Integration](https://docs.payu.in/docs/introduction-recurring-payments-integration).
-  * **Offers**: Configure offers for cards on Dashboard and then collect payments with offers. For more information, refer to [Offers Dashboard](https://docs.payu.in/docs/offers-dashboard) and [Offers Integration APIs](https://docs.payu.in/docs/offers-integration)
+- **Recurring Payments**: Enable recurring payments or subscriptions for wallets. For more information, refer to [Recurring Payments Integration](https://docs.payu.in/docs/introduction-recurring-payments-integration).
+  - **Offers**: Configure offers for cards on Dashboard and then collect payments with offers. For more information, refer to [Offers Dashboard](https://docs.payu.in/docs/offers-dashboard) and [Offers Integration APIs](https://docs.payu.in/docs/offers-integration)
+
+<br />
