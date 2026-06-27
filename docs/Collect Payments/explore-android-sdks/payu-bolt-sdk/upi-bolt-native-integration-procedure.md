@@ -17,34 +17,6 @@ metadata:
 next:
   description: ''
 ---
----
-title: UPI Bolt UI SDK Integration
-excerpt: ''
-deprecated: false
-hidden: false
-metadata:
-  title: UPI Bolt UI SDK integration
-  description: >-
-    UPI Bolt UI SDK on Android: native UI components, UPI intent/collect setup, PayUBolt configuration, test apps, and production.
-  robots: index
-  keywords:
-    - payu upi bolt ui sdk android integration procedure
-    - upi bolt ui sdk integration android native payu
-    - payu upi bolt sdk android native integration guide india
-    - upi bolt native integration procedure android payment payu
-    - integrate upi bolt ui android app sdk payu gateway
-    - mobile upi ui sdk android bolt integration steps payu
-    - payment gateway android upi bolt ui sdk integration
-    - payu android upi bolt ui hash intent flow integration
-    - android upi bolt ui native payment sdk developer payu
-    - upi collect intent flow android bolt ui sdk payu
-    - payu bolt ui sdk android test sandbox integration
-    - android native upi payment bolt ui sdk india payu
-
-next:
-  description: ''
----
-
 UPI Bolt UI SDK allows you to manage the checkout options on their checkout screen. You use **PayU UPI Bolt UI SDK** for customer registration, payment and profile management. This integration involves the following steps:
 
 1. [Add permissions to Manifest file](#step-1-add-permissions-to-manifest-file)
@@ -57,9 +29,9 @@ For hash generation logic and Listener/Callback integration, the [Hash generatio
 
 ## Prerequisites
 
-* Minimum Android SDK Version - 23 and above.
-* Compile SDK Version - 31 and above.
-* The following .aar (Android archive) files provided by PayU during onboarding:
+- Minimum Android SDK Version - 23 and above.
+- Compile SDK Version - 31 and above.
+- The following .aar (Android archive) files provided by PayU during onboarding:
   1. NPCI Secure Component
   2. AXIS Olive
 
@@ -100,7 +72,9 @@ api(files("$projectDir/libs/SecureComponent-release-prod_05062024_9d3904ab.aar")
 
 The screenshot of libs directory is similar to the following:
 
-<Image align="center" width="360px" src="https://files.readme.io/1af3684beef4a3b10716b5fc7de478bc9a07ff6f82ae0cec8041bbb94d8c754c-bolt_native_flow_aar_directory_structure.png" />
+
+<Image src="https://files.readme.io/1af3684beef4a3b10716b5fc7de478bc9a07ff6f82ae0cec8041bbb94d8c754c-bolt_native_flow_aar_directory_structure.png" align="center" width="360px" />
+
 
 ## Step 3: Initialize the SDK
 
@@ -116,18 +90,18 @@ val bolt = PayUUPIBoltUI.getInstance(
 
 The following fields are needed as a request for this API:
 
-| Fields                              | Definition                                                         |
-| ----------------------------------- | ------------------------------------------------------------------ |
-| activity ` mandatory`               | `AppCompatActivity` Calling activity of the merchant App           |
-| config ` mandatory`                 | `PayUUPIBoltUIConfig` Config includes the below fields.            |
-| hashGenerationListener ` mandatory` | `PayUHashGenerationListener` Callback listener for hash generation |
-| merchantKey ` mandatory`            | `String`PayU Merchant Key                                          |
-| phone ` mandatory`                  | `String`Phone number for registration                              |
-| email ` mandatory`                  | `String`Customer Email Id                                          |
-| pluginType ` mandatory`             | `String Array`List of Supported Banks (“AXIS, HDFC”)               |
-| isProd ` optional`                  | `Boolean`Prod - ture, staging - false                              |
-| excludedBanksIINs ` optional`       | `String Array`List of Bank’s IIN to exclude                        |
-| requestId ` mandatory`              | `String`Unique reference ID                                        |
+| Fields                              | Definition                                                                       |
+| ----------------------------------- | -------------------------------------------------------------------------------- |
+| activity ` mandatory`               | `AppCompatActivity` Calling activity of the merchant App                         |
+| config ` mandatory`                 | `PayUUPIBoltUIConfig` Config includes the below fields.                          |
+| hashGenerationListener ` mandatory` | `PayUHashGenerationListener` Callback listener for hash generation               |
+| merchantKey ` mandatory`            | `String`PayU Merchant Key                                                        |
+| phone ` mandatory`                  | `String`Phone number for registration                                            |
+| email ` mandatory`                  | `String`Customer Email Id                                                        |
+| pluginType ` mandatory`             | `String Array`List of Supported Banks (“AXIS, HDFC”)                             |
+| isProd ` optional`                  | `Boolean`Production  environment - `true`, Test or Staging environment - `false` |
+| excludedBanksIINs ` optional`       | `String Array`List of Bank’s IIN to exclude                                      |
+| requestId ` mandatory`              | `String`Unique reference ID                                                      |
 
 <Accordion title="Response" icon="fa-reply">
   | Response Params | Definition                                 |
@@ -164,9 +138,11 @@ boltUI.registerAndPay(paymentParams PayUUPIBoltPaymentParams, callback: PayUUPIB
 
 ```
 
-> 📘 Callback reference:
->
-> For callback logic refer to [Listener or Callback logic](#listener-or-callback-logic) sub-section.
+<Callout icon="📘" theme="info">
+  ### Callback reference:
+
+  For callback logic refer to [Listener or Callback logic](#listener-or-callback-logic) sub-section.
+</Callout>
 
 <Table align={["left","left"]}>
   <thead>
@@ -188,18 +164,17 @@ boltUI.registerAndPay(paymentParams PayUUPIBoltPaymentParams, callback: PayUUPIB
       </td>
 
       <td>
-        * _Object_* This parameter includes the fields listed in [paymentParams object](#generate-payment-params).
+        - _Object_\* This parameter includes the fields listed in [paymentParams object](#generate-payment-params).
       </td>
     </tr>
 
     <tr>
       <td>
-        callback  
-        `mandatory`
+        callback<br />`mandatory`
       </td>
 
       <td>
-        * _PayUUPIBoltUICallBack_* This parameter contains the callback. For callback logic refer to [Listener or Callback logic](#listener-or-callback-logic)  sub-section.
+        - _PayUUPIBoltUICallBack_\* This parameter contains the callback. For callback logic refer to [Listener or Callback logic](#listener-or-callback-logic)  sub-section.
       </td>
     </tr>
   </tbody>
@@ -213,9 +188,11 @@ The **openUPIManagement** API allows you to manage UPI accounts and transaction 
 boltUI.openUPIManagement(enforceScreenType: EnforceScreenType, callback: PayUUPIBoltUICallBack)
 ```
 
-> 📘 Callback reference:
->
-> For callback logic refer to [Listener or Callback logic](#listener-or-callback-logic) sub-section.
+<Callout icon="📘" theme="info">
+  ### Callback reference:
+
+  For callback logic refer to [Listener or Callback logic](#listener-or-callback-logic) sub-section.
+</Callout>
 
 The following fields are needed as a request for this API:
 
@@ -273,7 +250,7 @@ The following fields are needed as a request for this API:
       </td>
 
       <td>
-        * _PayUUPIBoltUICallBack_* This parameter contains the callback. For callback logic refer to [Listener or Callback logic](#listener-or-callback-logic)   sub-section.
+        - _PayUUPIBoltUICallBack_\* This parameter contains the callback. For callback logic refer to [Listener or Callback logic](#listener-or-callback-logic)   sub-section.
       </td>
     </tr>
   </tbody>
@@ -300,19 +277,23 @@ val paymentParams = PayUUPIBoltPaymentParams.Builder()
 
 The following fields are needed as a request:
 
-<table>
+<Table>
   <thead>
     <tr>
-      <th>Parameter</th>
-      <th>Description</th>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Description
+      </th>
     </tr>
   </thead>
 
   <tbody>
     <tr>
       <td>
-        amount<br />
-        <code>mandatory</code>
+        amount<br /> <code>mandatory</code>
       </td>
 
       <td>
@@ -323,8 +304,7 @@ The following fields are needed as a request:
 
     <tr>
       <td>
-        productInfo<br />
-        <code>mandatory</code>
+        productInfo<br /> <code>mandatory</code>
       </td>
 
       <td>
@@ -335,8 +315,7 @@ The following fields are needed as a request:
 
     <tr>
       <td>
-        firstName<br />
-        <code>mandatory</code>
+        firstName<br /> <code>mandatory</code>
       </td>
 
       <td>
@@ -347,8 +326,7 @@ The following fields are needed as a request:
 
     <tr>
       <td>
-        surl<br />
-        <code>mandatory</code>
+        surl<br /> <code>mandatory</code>
       </td>
 
       <td>
@@ -359,8 +337,7 @@ The following fields are needed as a request:
 
     <tr>
       <td>
-        furl<br />
-        <code>mandatory</code>
+        furl<br /> <code>mandatory</code>
       </td>
 
       <td>
@@ -371,8 +348,7 @@ The following fields are needed as a request:
 
     <tr>
       <td>
-        ios\_surl<br />
-        <code>mandatory</code>
+        ios\_surl<br /> <code>mandatory</code>
       </td>
 
       <td>
@@ -383,8 +359,7 @@ The following fields are needed as a request:
 
     <tr>
       <td>
-        ios\_furl<br />
-        <code>mandatory</code>
+        ios\_furl<br /> <code>mandatory</code>
       </td>
 
       <td>
@@ -395,8 +370,7 @@ The following fields are needed as a request:
 
     <tr>
       <td>
-        initiationMode<br />
-        <code>mandatory</code>
+        initiationMode<br /> <code>mandatory</code>
       </td>
 
       <td>
@@ -407,8 +381,7 @@ The following fields are needed as a request:
 
     <tr>
       <td>
-        purpose<br />
-        <code>mandatory</code>
+        purpose<br /> <code>mandatory</code>
       </td>
 
       <td>
@@ -419,8 +392,7 @@ The following fields are needed as a request:
 
     <tr>
       <td>
-        txnId<br />
-        <code>mandatory</code>
+        txnId<br /> <code>mandatory</code>
       </td>
 
       <td>
@@ -431,8 +403,7 @@ The following fields are needed as a request:
 
     <tr>
       <td>
-        udf1 - udf6<br />
-        <code>optional</code>
+        udf1 - udf6<br /> <code>optional</code>
       </td>
 
       <td>
@@ -443,8 +414,7 @@ The following fields are needed as a request:
 
     <tr>
       <td>
-        isCCTxnEnabled<br />
-        <code>optional</code>
+        isCCTxnEnabled<br /> <code>optional</code>
       </td>
 
       <td>
@@ -453,13 +423,13 @@ The following fields are needed as a request:
       </td>
     </tr>
   </tbody>
-</table>
+</Table>
 
 <br />
 
 ## Listener or Callback logic
 
-Listerner/Callback contains 3 methods where the merchant app will get the API response and hash-related callbacks
+Listener/Callback contains 3 methods where the merchant app will get the API response and hash-related callbacks
 
 | S.No. | Listener                                                                                           | Description                                                                               |
 | ----- | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
@@ -506,3 +476,5 @@ fun generateHash(map: HashMap<String, String>, hashGenerationListener: PayUHashG
          hashGenerationListener.onHashGenerated(hashMap)     
 
 ```
+
+<br />
