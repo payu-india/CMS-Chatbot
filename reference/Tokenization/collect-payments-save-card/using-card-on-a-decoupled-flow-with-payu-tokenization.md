@@ -46,7 +46,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         <Glossary>key</Glossary>
-         `mandatory `
+        `mandatory `
       </td>
 
       <td>
@@ -60,8 +60,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        api\_version\
-        **optional**
+        api\_version<br />**optional**
       </td>
 
       <td>
@@ -75,8 +74,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        txnid\
-        `mandatory `
+        txnid<br />`mandatory `
       </td>
 
       <td>
@@ -90,8 +88,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        amount\
-         `mandatory `
+        amount<br />`mandatory `
       </td>
 
       <td>
@@ -105,12 +102,12 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        productinfo\
-         `mandatory `
+        productinfo<br />`mandatory `
       </td>
 
       <td>
         `String` It should be a string containing a brief description of the product.
+
         ```
         Character Limit-100
         ```
@@ -123,12 +120,12 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        firstname\
-        mandatory
+        firstname<br />mandatory
       </td>
 
       <td>
         `String` The first name of the customer.
+
         ```
         Character Limit-60
         ```
@@ -141,12 +138,12 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        email\
-         `mandatory `
+        email<br />`mandatory `
       </td>
 
       <td>
         `String` The email of the customer.
+
         ```
         Character Limit-50
         ```
@@ -159,14 +156,13 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        phone\
-         `mandatory `
+        phone<br />`mandatory `
       </td>
 
       <td>
         `String` The phone number of the customer.
 
-        * \*Note\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+        - \*Note\*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information.
       </td>
 
       <td>
@@ -176,12 +172,12 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        lastname\
-         `mandatory `
+        lastname<br />`mandatory `
       </td>
 
       <td>
         `String` The last name of the customer.
+
         ```
         Character Limit-60
         ```
@@ -194,12 +190,12 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        address1\
-         `optional `
+        address1<br />`optional `
       </td>
 
       <td>
         `String` The first line of the billing address.
+
         ```
         Character Limit-100
         ```
@@ -212,8 +208,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        address2\
-         `optional `
+        address2<br />`optional `
       </td>
 
       <td>
@@ -227,8 +222,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        city\
-         `optional `
+        city<br />`optional `
       </td>
 
       <td>
@@ -242,8 +236,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        state\
-         `optional `
+        state<br />`optional `
       </td>
 
       <td>
@@ -257,8 +250,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        country\
-         `optional `
+        country<br />`optional `
       </td>
 
       <td>
@@ -272,12 +264,12 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        zipcode\
-         `optional `
+        zipcode<br />`optional `
       </td>
 
       <td>
         `String` Billing address zip code is mandatory for the cardless EMI option.
+
         ```
         Character Limit-20
         ```
@@ -290,8 +282,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        surl\
-        `mandatory`
+        surl<br />`mandatory`
       </td>
 
       <td>
@@ -305,8 +296,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        furl\
-        `mandatory`
+        furl<br />`mandatory`
       </td>
 
       <td>
@@ -321,6 +311,7 @@ HTTP Method: **POST**
     <tr>
       <td>
         hash
+
         ```
         mandatory
         ```
@@ -337,8 +328,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        <Glossary>pg</Glossary>\
-        `mandatory`
+        <Glossary>pg</Glossary><br />`mandatory`
       </td>
 
       <td>
@@ -352,8 +342,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        <Glossary>bankcode</Glossary>\
-        `mandatory`
+        <Glossary>bankcode</Glossary><br />`mandatory`
       </td>
 
       <td>
@@ -367,13 +356,11 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        udf1 - udf5\
-        `optional`
+        udf1 - udf5<br />`optional`
       </td>
 
       <td>
-        `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.\
-        `Character Limit-255`
+        `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.<br />`Character Limit-255`
       </td>
 
       <td>
@@ -383,8 +370,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        ccvv\
-        `optional`
+        ccvv<br />`optional`
       </td>
 
       <td>
@@ -398,8 +384,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        storecard\_token\_type\
-        `mandatory`
+        storecard\_token\_type<br />`mandatory`
       </td>
 
       <td>
@@ -413,8 +398,7 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        store\_card\_token\
-        `mandatory`
+        store\_card\_token<br />`mandatory`
       </td>
 
       <td>
@@ -428,27 +412,27 @@ HTTP Method: **POST**
 
     <tr>
       <td>
-        additional\_info\
-        `mandatory`
+        additional\_info<br />`mandatory`
       </td>
 
       <td>
-        This parameter will contain the additional information in the following JSON format:\
-        \{"\{user.glossay:last4Digits}": "1234", "<Glossary>TAVV</Glossary>": "ABCDEFGH","<Glossary>trid</Glossary>":"1234567890", "<Glossary>tokenRefNo</Glossary>":"abcde123456"}
+        This parameter will contain the additional information in the following JSON format:<br />{"{user.glossay:last4Digits}": "1234", "<Glossary>TAVV</Glossary>": "ABCDEFGH","<Glossary>trid</Glossary>":"1234567890", "<Glossary>tokenRefNo</Glossary>":"abcde123456"}
       </td>
 
       <td>
-        \{"last4Digits": "1234", "tavv": "ABCDEFGH","trid":"1234567890", "tokenRefNo":"abcde123456"
+        {"last4Digits": "1234", "tavv": "ABCDEFGH","trid":"1234567890", "tokenRefNo":"abcde123456"
       </td>
     </tr>
   </tbody>
 </Table>
 
-> 📘 Notes for additional\_info:
->
-> * The last 4 digits of cards is mandatory for all transactions.
-> * Some payment gateways require the Token Requester ID (trid) and Token Reference Number (tokenRefNo) to be passed for processing the transaction. Not passing these values will restrict the number of payment gateways available for processing the transaction.
-> * Token Requester ID (trid) and Token Reference Number (tokenRefNo) are mandatory for Diners token transactions.
+<Callout icon="📘" theme="info">
+  ### Notes for additional\_info:
+
+  - The last 4 digits of cards is mandatory for all transactions.
+  - Some payment gateways require the Token Requester ID (trid) and Token Reference Number (tokenRefNo) to be passed for processing the transaction. Not passing these values will restrict the number of payment gateways available for processing the transaction.
+  - Token Requester ID (trid) and Token Reference Number (tokenRefNo) are mandatory for Diners token transactions.
+</Callout>
 
 ## Response
 
