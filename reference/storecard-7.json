@@ -289,8 +289,7 @@
               }
             }
           }
-        },
-        "deprecated": false
+        }
       },
       "parameters": []
     }
