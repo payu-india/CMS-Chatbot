@@ -31,7 +31,7 @@ PayU allows merchants to create offers for specific Products/SKUs in the cart. T
 - If the cart has an Smartwatch132, offer 2 (SKU ID is smartwatch) would show up for the user.
 - If the cart has both mobile and watch, both offer 1 and offer 2 would show up and user will be able to apply both the offers.
 
-The procedure to add SKU-based offer includes some extra steps when you provide the basic details about the offer. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer).
+The procedure to add SKU-based offer include some extra steps when you provide the basic details about the offer. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer).
 
 After you create a SKU-based offer, you can collect payments from your customers using PayU Hosted (Non-seamless) or Merchant Hosted (Seamless) Checkout integration. For more information, refer to [SKU-Based Offer using Merchant Hosted Checkout](doc:collect-payments-with-sku-based-offer-using-merchant-hosted-checkout-offers-integration).
 
@@ -56,9 +56,11 @@ The **SKU** and **Category** tabs are displayed.
 
    The sample Excel file contains the following columns and the values for the **Product ID** column is mandatory:
 
-   > 📘 Note:
-   >
-   > The **Product ID** in this Excel file and the **skuId** request parameter used in the PayU Hosted or Merchant Hosted Checkout Integration for SKU-based offer have the same function, Hence, after you create Product IDs on Dashboard, use them as values for the **skuId** parameter. For more information on Merchant Hosted Checkout Integration for SKU-based offer, refer to [Integrate with PayU Hosted Checkout](doc:payu-hosted-checkout-integration-with-offers) or [Instant Discount or Cashback using Merchant Hosted Checkout](doc:instant-discount-or-cashback-offers-integration-using-merchant-hosted-checkout).
+   <Callout icon="📘" theme="info">
+     ### Note:
+
+     The **Product ID** in this Excel file and the **skuId** request parameter used in the PayU Hosted or Merchant Hosted Checkout Integration for SKU-based offer have the same function, Hence, after you create Product IDs on Dashboard, use them as values for the **skuId** parameter. For more information on Merchant Hosted Checkout Integration for SKU-based offer, refer to [Integrate with PayU Hosted Checkout](doc:payu-hosted-checkout-integration-with-offers) or [Instant Discount or Cashback using Merchant Hosted Checkout](doc:instant-discount-or-cashback-offers-integration-using-merchant-hosted-checkout).
+   </Callout>
 
    - **Product ID**: The unique product identifier for the product that you wish to apply the SKU-based offer.
    - **Product Name**: The name of the product for which you wish to apply the SKU-based offer.
