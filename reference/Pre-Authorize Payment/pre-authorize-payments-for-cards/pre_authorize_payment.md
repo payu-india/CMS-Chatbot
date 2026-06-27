@@ -3,7 +3,6 @@ excerpt: ''
 api:
   file: payment-api-9.json
   operationId: PayUHostedCheckoutwithPre-AuthorizePayment
-deprecated: false
 hidden: false
 metadata:
   title: ''
@@ -12,7 +11,7 @@ metadata:
 next:
   description: ''
 ---
-The **pre_authorize** parameter is used to pre-authorize payments using the PayU Hosted Checkout integration.
+The **pre\_authorize** parameter is used to pre-authorize payments using the PayU Hosted Checkout integration.
 
 <PayU_Labs />
 
@@ -145,7 +144,9 @@ The **pre_authorize** parameter is used to pre-authorize payments using the PayU
 
   > 📘 Reference:
   >
-  > * Use the card details as follows: cccnum=5123456789012346, ccexpmon=11, ccexpyr=2025, ccvv=123 and OTP =123456 (displayed in Simulator page).
+  > * Use the card details as follows: ccnum=5123456789012346, ccexpmon=11, ccexpyr=2025, ccvv=123 and OTP =123456 (displayed in Simulator page).
   > * For the list of error codes, refer to [Error Codes - Pre-Authorize Payment](ref:error-codes-pre-authorize-payment).
   > * If you want to cancel or refund a pre-authorized transaction, refer to [Cancel a Pre-Authorized Payment](doc:cancel-a-pre-authorized-payment).
 </Accordion>
+
+<br />
