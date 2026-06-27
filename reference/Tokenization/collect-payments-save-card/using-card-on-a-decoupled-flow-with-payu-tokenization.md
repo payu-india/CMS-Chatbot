@@ -416,7 +416,7 @@ HTTP Method: **POST**
       </td>
 
       <td>
-        This parameter will contain the additional information in the following JSON format:<br />{"{user.glossay:last4Digits}": "1234", "<Glossary>TAVV</Glossary>": "ABCDEFGH","<Glossary>trid</Glossary>":"1234567890", "<Glossary>tokenRefNo</Glossary>":"abcde123456"}
+        This parameter will contain the additional information in the following JSON format:<br />{"{user.glossary:last4Digits}": "1234", "<Glossary>TAVV</Glossary>": "ABCDEFGH","<Glossary>trid</Glossary>":"1234567890", "<Glossary>tokenRefNo</Glossary>":"abcde123456"}
       </td>
 
       <td>
