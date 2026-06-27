@@ -129,7 +129,7 @@ metadata:
       </td>
 
       <td>
-        - Dynamic conversion fee emi changes
+        - Dynamic conversion fee EMI changes
         - Bug fixes
       </td>
     </tr>
