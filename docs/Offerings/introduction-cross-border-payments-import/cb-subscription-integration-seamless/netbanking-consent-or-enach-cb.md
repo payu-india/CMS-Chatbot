@@ -11,9 +11,9 @@ This section describes step-by-step procedure to implement ENACH (Electronic Nat
 
 Before starting the integration, ensure you have:
 
-* Active PayU merchant account with Net Banking recurring payments enabled
-* Merchant Key and Salt from PayU dashboard
-* Test environment access for development
+- Active PayU merchant account with Net Banking recurring payments enabled
+- Merchant Key and Salt from PayU dashboard
+- Test environment access for development
 
 **Payment consent flow**
 
@@ -50,6 +50,8 @@ Before starting the integration, ensure you have:
 Before implementing, familiarize yourself with the required parameters.
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Reference**:  For the ENACH Consent Transaction - Cross Border Payments API Reference, refer to[ ENACH Consent Transaction - CB](ref:enach-consent-transaction-cross-border).
 </Callout>
 
@@ -83,7 +85,7 @@ Before implementing, familiarize yourself with the required parameters.
   | si<br />`mandatory`                                                                        | `String`<br />Signifies successful consent taken from the user. Must be `1` for subscription setup.                                                                                                                                                                                                                                                                                                                                   | 1                                                                      |
   | si\_details<br />`mandatory`                                                               | `JSON String`<br />JSON object containing mandate details (billingAmount, billingCurrency, billingCycle, etc.). Refer to si\_details JSON Object below.                                                                                                                                                                                                                                                                               | See si\_details accordion                                              |
   | beneficiarydetail                                                                          |                                                                                                                                                                                                                                                                                                                                                                                                                                       |                                                                        |
-  | `mandatory for Net Banking`                                                                | `varchar` This object represents bank account details of the customer which involves account number, name on the account and account type and needs to be passed if the recurring transaction needs to be set up against Net Banking. It includes the fields as mentioned in the [beneficiarydetail fields description](https://docs.payu.in/docs/upi-collection-s2s?isFramePreview=true#beneficiarydetail-fields-description) table. | Refer to next sectoin                                                  |
+  | `mandatory for Net Banking`                                                                | `varchar` This object represents bank account details of the customer which involves account number, name on the account and account type and needs to be passed if the recurring transaction needs to be set up against Net Banking. It includes the fields as mentioned in the [beneficiarydetail fields description](https://docs.payu.in/docs/upi-collection-s2s?isFramePreview=true#beneficiarydetail-fields-description) table. | Refer to next section                                                  |
   | api\_version<br />`mandatory`                                                              | `String`<br />The API version. Must be `7` for SI transactions.                                                                                                                                                                                                                                                                                                                                                                       | 7                                                                      |
   | udf1<br />`optional but recommended for higher approval rate`                              | `String`<br />The Permanent Account Number (PAN) of the buyer must be collected in this field.                                                                                                                                                                                                                                                                                                                                        | AELPR\*\*\*\*E                                                         |
   | udf3<br />`optional but recommended for higher approval rate`                              | `String` Date of Birth (DOB) of buyer in DD-MM-YYYY                                                                                                                                                                                                                                                                                                                                                                                   | 02-02-1980                                                             |
@@ -97,7 +99,7 @@ Before implementing, familiarize yourself with the required parameters.
   | zipcode<br />`optional`                                                                    | `String`<br />Billing address zip code. Character Limit: 20                                                                                                                                                                                                                                                                                                                                                                           | 400004                                                                 |
   | free\_trial<br />`optional`                                                                | `String`<br />Set to `1` for free trial use cases. PayU adjusts the transaction amount as INR 2.00 for Net Banking.                                                                                                                                                                                                                                                                                                                   | 1                                                                      |
   | buyer\_type\_business<br />`optional in case of B2B transaction for cross-border payments` | `Binary` To be sent as "1" in case the buyer is a business. In case of individual buyers, it can be skipped. Default is "0".<br />**Note**: This will be included in hash if posted (covered in next section).                                                                                                                                                                                                                        | 1                                                                      |
-  | udf\_params<br />`optional`                                                                | `String JSON`<br /><br />UDF7 value to capture "Import or Export Code" of the buyer<br /><br />UDF8 value to capture Airway Bill Number / Consignment Number (in case of goods imports)                                                                                                                                                                                                                                               | \{"udf7":"0100000029",<br />"udf8":"99953729071"}                      |
+  | udf\_params<br />`optional`                                                                | `String JSON`<br /><br />UDF7 value to capture "Import or Export Code" of the buyer<br /><br />UDF8 value to capture Airway Bill Number / Consignment Number (in case of goods imports)                                                                                                                                                                                                                                               | \{"udf7":"0100000029",<br />"udf8":"99953729071"\}                      |
   | hash<br />`mandatory`                                                                      | `String` Crucial security parameter using SHA512 hash encryption. Formula incorporates key, txnid, amount, productinfo, firstname, email, udf fields, si\_details, and merchant salt.                                                                                                                                                                                                                                                 | \<Generated Hash>                                                      |
 
   <Accordion title="Hash Logic" icon="fa-info-circle">
@@ -453,9 +455,11 @@ Before implementing, familiarize yourself with the required parameters.
   ```
 </Accordion>
 
-> 📘 **Note**
->
-> Before you make payment request to PayU, ensure you have the correct bank code for the customer's bank. Refer to [Bank Code List](https://docs.payu.in/docs/net-banking-codes) for the list of supported banks and their codes.
+<Callout icon="📘" theme="info">
+  ### **Note**
+
+  Before you make payment request to PayU, ensure you have the correct bank code for the customer's bank. Refer to [Bank Code List](https://docs.payu.in/docs/net-banking-codes) for the list of supported banks and their codes.
+</Callout>
 
 ***
 
@@ -497,6 +501,8 @@ The API returns response structure for Net Banking flow.
 ***
 
 <Callout icon="📘" theme="info">
+  ###
+
   Redirect the customer using the result.acsTemplate(base64encoded) to their bank's page for authentication. The final response will be posted to surl/furl and the configured Webhook.
 </Callout>
 
@@ -584,7 +590,7 @@ Configure webhooks to receive real-time transaction status updates. PayU will se
 
 ***
 
-### Step 4: Update Invoice ID [Conditional]
+### Step 4: Update Invoice ID \[Conditional]
 
 If the Invoice ID value was unavailable when posting the transaction at [Step 1](#step-1-make-payment-using-web-checkout-integration), it can be updated using the **UDF Update** API by posting it in the UDF5 parameter.
 
@@ -697,6 +703,8 @@ If the Invoice ID value was unavailable when posting the transaction at [Step 1]
 ## Recurring Payments Flow
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Note**: **Pre debit Notification** API not required for Netbanking Recurring flow, but it will take upto T+2 days for the consent transaction to be registered. So, you must wait for this period before making a recurring payment on ENACH,
 </Callout>
 
@@ -737,6 +745,7 @@ Use the **Recurring Payment Transaction** API to execute recurring payment trans
 | invoiceDisplayNumber <br /> <code>mandatory for Cards SI</code> | <code>String</code> A unique display number by merchant for every subsequent invoice/recurring charge. This must be the same value passed during `pre_debit_si` API call. | 12345678910                                         |
 | udf5 <br /> <code>mandatory</code>                              | <code>String</code> Invoice ID for every merchant. This field is mandatory during or after the transaction.                                                               | INV789012                                           |
 </Accordion>
+
 <Accordion title="Sample Request" icon="fa-code">
   ```bash
   curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
@@ -766,171 +775,173 @@ Use the **Recurring Payment Transaction** API to execute recurring payment trans
   ```python
   import requests
 
-  url = "https://test.payu.in/merchant/postservice?form=2"
+url = "[https://test.payu.in/merchant/postservice?form=2](https://test.payu.in/merchant/postservice?form=2)"
 
-  payload = {
-      "key": "JPM7Fg",
-      "command": "si_transaction",
-      "var1": '{"authpayuid":"6611192557","amount":"100.00","txnid":"REC15113506209","phone":"9999999999","email":"customer@example.com","firstname":"John","lastname":"Doe","address1":"123 Main Street","city":"Mumbai","state":"Maharashtra","country":"IN","zipcode":"400001","invoiceDisplayNumber":"12345678910","udf1":"ABCDE1234F","udf2":"","udf3":"15-08-1990","udf4":"","udf5":"INV789012"}',
-      "hash": "jbUS07Og8BToVZ..."
-  }
+payload = {
+ "JPM7Fg",
+nd": "si_transaction",
+: '{"authpayuid":"6611192557","amount":"100.00","txnid":"REC15113506209","phone":"9999999999","email":"customer@example.com","firstname":"John","lastname":"Doe","address1":"123 Main Street","city":"Mumbai","state":"Maharashtra","country":"IN","zipcode":"400001","invoiceDisplayNumber":"12345678910","udf1":"ABCDE1234F","udf2":"","udf3":"15-08-1990","udf4":"","udf5":"INV789012"}',
+: "jbUS07Og8BToVZ..."
 
-  headers = {
-      "accept": "application/json",
-      "Content-Type": "application/x-www-form-urlencoded"
-  }
 
-  response = requests.post(url, data=payload, headers=headers)
-  print(response.json())
-  ```
-  ```csharp
-  using System;
-  using System.Net.Http;
-  using System.Collections.Generic;
-  using System.Threading.Tasks;
+headers = {
+t": "application/json",
+nt-Type": "application/x-www-form-urlencoded"
 
-  class Program
-  {
-      static async Task Main()
-      {
-          using var client = new HttpClient();
-          
-          var content = new FormUrlEncodedContent(new[]
-          {
-              new KeyValuePair<string, string>("key", "JPM7Fg"),
-              new KeyValuePair<string, string>("command", "si_transaction"),
-              new KeyValuePair<string, string>("var1", "{\"authpayuid\":\"6611192557\",\"amount\":\"100.00\",\"txnid\":\"REC15113506209\",\"phone\":\"9999999999\",\"email\":\"customer@example.com\",\"firstname\":\"John\",\"lastname\":\"Doe\",\"address1\":\"123 Main Street\",\"city\":\"Mumbai\",\"state\":\"Maharashtra\",\"country\":\"IN\",\"zipcode\":\"400001\",\"invoiceDisplayNumber\":\"12345678910\",\"udf1\":\"ABCDE1234F\",\"udf2\":\"\",\"udf3\":\"15-08-1990\",\"udf4\":\"\",\"udf5\":\"INV789012\"}"),
-              new KeyValuePair<string, string>("hash", "jbUS07Og8BToVZ...")
-          });
-          
-          var response = await client.PostAsync("https://test.payu.in/merchant/postservice?form=2", content);
-          var result = await response.Content.ReadAsStringAsync();
-          Console.WriteLine(result);
-      }
-  }
-  ```
-  ```javascript
-  const executeRecurringPayment = async () => {
-      const url = "https://test.payu.in/merchant/postservice?form=2";
-      
-      const params = new URLSearchParams();
-      params.append("key", "JPM7Fg");
-      params.append("command", "si_transaction");
-      params.append("var1", JSON.stringify({
-          authpayuid: "6611192557",
-          amount: "100.00",
-          txnid: "REC15113506209",
-          phone: "9999999999",
-          email: "customer@example.com",
-          firstname: "John",
-          lastname: "Doe",
-          address1: "123 Main Street",
-          city: "Mumbai",
-          state: "Maharashtra",
-          country: "IN",
-          zipcode: "400001",
-          invoiceDisplayNumber: "12345678910",
-          udf1: "ABCDE1234F",
-          udf2: "",
-          udf3: "15-08-1990",
-          udf4: "",
-          udf5: "INV789012"
-      }));
-      params.append("hash", "jbUS07Og8BToVZ...");
-      
-      const response = await fetch(url, {
-          method: "POST",
-          headers: {
-              "accept": "application/json",
-              "Content-Type": "application/x-www-form-urlencoded"
-          },
-          body: params
-      });
-      
-      const data = await response.json();
-      console.log(data);
-  };
 
-  executeRecurringPayment();
-  ```
-  ```java
-  import java.io.*;
-  import java.net.*;
-  import java.nio.charset.StandardCharsets;
+response = requests.post(url, data=payload, headers=headers)
+print(response.json())
 
-  public class RecurringPaymentTransaction {
-      public static void main(String[] args) throws Exception {
-          String url = "https://test.payu.in/merchant/postservice?form=2";
-          
-          String params = "key=JPM7Fg" +
-              "&command=si_transaction" +
-              "&var1=" + URLEncoder.encode("{\"authpayuid\":\"6611192557\",\"amount\":\"100.00\",\"txnid\":\"REC15113506209\",\"phone\":\"9999999999\",\"email\":\"customer@example.com\",\"firstname\":\"John\",\"lastname\":\"Doe\",\"address1\":\"123 Main Street\",\"city\":\"Mumbai\",\"state\":\"Maharashtra\",\"country\":\"IN\",\"zipcode\":\"400001\",\"invoiceDisplayNumber\":\"12345678910\",\"udf1\":\"ABCDE1234F\",\"udf2\":\"\",\"udf3\":\"15-08-1990\",\"udf4\":\"\",\"udf5\":\"INV789012\"}", StandardCharsets.UTF_8) +
-              "&hash=jbUS07Og8BToVZ...";
-          
-          HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
-          conn.setRequestMethod("POST");
-          conn.setRequestProperty("accept", "application/json");
-          conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-          conn.setDoOutput(true);
-          
-          try (OutputStream os = conn.getOutputStream()) {
-              os.write(params.getBytes(StandardCharsets.UTF_8));
-          }
-          
-          try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
-              String line;
-              while ((line = br.readLine()) != null) {
-                  System.out.println(line);
-              }
-          }
-      }
-  }
-  ```
-  ```php
-  <?php
-  $url = "https://test.payu.in/merchant/postservice?form=2";
+````
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-  $data = array(
-      "key" => "JPM7Fg",
-      "command" => "si_transaction",
-      "var1" => json_encode(array(
-          "authpayuid" => "6611192557",
-          "amount" => "100.00",
-          "txnid" => "REC15113506209",
-          "phone" => "9999999999",
-          "email" => "customer@example.com",
-          "firstname" => "John",
-          "lastname" => "Doe",
-          "address1" => "123 Main Street",
-          "city" => "Mumbai",
-          "state" => "Maharashtra",
-          "country" => "IN",
-          "zipcode" => "400001",
-          "invoiceDisplayNumber" => "12345678910",
-          "udf1" => "ABCDE1234F",
-          "udf2" => "",
-          "udf3" => "15-08-1990",
-          "udf4" => "",
-          "udf5" => "INV789012"
-      )),
-      "hash" => "jbUS07Og8BToVZ..."
-  );
+class Program
+{
+    static async Task Main()
+    {
+        using var client = new HttpClient();
+        
+        var content = new FormUrlEncodedContent(new[]
+        {
+            new KeyValuePair<string, string>("key", "JPM7Fg"),
+            new KeyValuePair<string, string>("command", "si_transaction"),
+            new KeyValuePair<string, string>("var1", "{\"authpayuid\":\"6611192557\",\"amount\":\"100.00\",\"txnid\":\"REC15113506209\",\"phone\":\"9999999999\",\"email\":\"customer@example.com\",\"firstname\":\"John\",\"lastname\":\"Doe\",\"address1\":\"123 Main Street\",\"city\":\"Mumbai\",\"state\":\"Maharashtra\",\"country\":\"IN\",\"zipcode\":\"400001\",\"invoiceDisplayNumber\":\"12345678910\",\"udf1\":\"ABCDE1234F\",\"udf2\":\"\",\"udf3\":\"15-08-1990\",\"udf4\":\"\",\"udf5\":\"INV789012\"}"),
+            new KeyValuePair<string, string>("hash", "jbUS07Og8BToVZ...")
+        });
+        
+        var response = await client.PostAsync("https://test.payu.in/merchant/postservice?form=2", content);
+        var result = await response.Content.ReadAsStringAsync();
+        Console.WriteLine(result);
+    }
+}
+````
+```javascript
+const executeRecurringPayment = async () => {
+    const url = "https://test.payu.in/merchant/postservice?form=2";
+    
+    const params = new URLSearchParams();
+    params.append("key", "JPM7Fg");
+    params.append("command", "si_transaction");
+    params.append("var1", JSON.stringify({
+        authpayuid: "6611192557",
+        amount: "100.00",
+        txnid: "REC15113506209",
+        phone: "9999999999",
+        email: "customer@example.com",
+        firstname: "John",
+        lastname: "Doe",
+        address1: "123 Main Street",
+        city: "Mumbai",
+        state: "Maharashtra",
+        country: "IN",
+        zipcode: "400001",
+        invoiceDisplayNumber: "12345678910",
+        udf1: "ABCDE1234F",
+        udf2: "",
+        udf3: "15-08-1990",
+        udf4: "",
+        udf5: "INV789012"
+    }));
+    params.append("hash", "jbUS07Og8BToVZ...");
+    
+    const response = await fetch(url, {
+        method: "POST",
+        headers: {
+            "accept": "application/json",
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: params
+    });
+    
+    const data = await response.json();
+    console.log(data);
+};
 
-  $ch = curl_init($url);
-  curl_setopt($ch, CURLOPT_POST, true);
-  curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-      "accept: application/json",
-      "Content-Type: application/x-www-form-urlencoded"
-  ));
+executeRecurringPayment();
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.nio.charset.StandardCharsets;
 
-  $response = curl_exec($ch);
-  curl_close($ch);
+public class RecurringPaymentTransaction {
+    public static void main(String[] args) throws Exception {
+        String url = "https://test.payu.in/merchant/postservice?form=2";
+        
+        String params = "key=JPM7Fg" +
+            "&command=si_transaction" +
+            "&var1=" + URLEncoder.encode("{\"authpayuid\":\"6611192557\",\"amount\":\"100.00\",\"txnid\":\"REC15113506209\",\"phone\":\"9999999999\",\"email\":\"customer@example.com\",\"firstname\":\"John\",\"lastname\":\"Doe\",\"address1\":\"123 Main Street\",\"city\":\"Mumbai\",\"state\":\"Maharashtra\",\"country\":\"IN\",\"zipcode\":\"400001\",\"invoiceDisplayNumber\":\"12345678910\",\"udf1\":\"ABCDE1234F\",\"udf2\":\"\",\"udf3\":\"15-08-1990\",\"udf4\":\"\",\"udf5\":\"INV789012\"}", StandardCharsets.UTF_8) +
+            "&hash=jbUS07Og8BToVZ...";
+        
+        HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
+        conn.setRequestMethod("POST");
+        conn.setRequestProperty("accept", "application/json");
+        conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+        conn.setDoOutput(true);
+        
+        try (OutputStream os = conn.getOutputStream()) {
+            os.write(params.getBytes(StandardCharsets.UTF_8));
+        }
+        
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+        }
+    }
+}
+```
+```php
+<?php
+$url = "https://test.payu.in/merchant/postservice?form=2";
 
-  echo $response;
-  ?>
-  ```
+$data = array(
+    "key" => "JPM7Fg",
+    "command" => "si_transaction",
+    "var1" => json_encode(array(
+        "authpayuid" => "6611192557",
+        "amount" => "100.00",
+        "txnid" => "REC15113506209",
+        "phone" => "9999999999",
+        "email" => "customer@example.com",
+        "firstname" => "John",
+        "lastname" => "Doe",
+        "address1" => "123 Main Street",
+        "city" => "Mumbai",
+        "state" => "Maharashtra",
+        "country" => "IN",
+        "zipcode" => "400001",
+        "invoiceDisplayNumber" => "12345678910",
+        "udf1" => "ABCDE1234F",
+        "udf2" => "",
+        "udf3" => "15-08-1990",
+        "udf4" => "",
+        "udf5" => "INV789012"
+    )),
+    "hash" => "jbUS07Og8BToVZ..."
+);
+
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    "accept: application/json",
+    "Content-Type: application/x-www-form-urlencoded"
+));
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+
 </Accordion>
 
 <Accordion title="Sample Response" icon="fa-check">
@@ -970,6 +981,8 @@ Use the **Recurring Payment Transaction** API to execute recurring payment trans
 </Accordion>
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Transaction Status Values**
 
   | Status      | Description                                                                  |
@@ -980,7 +993,7 @@ Use the **Recurring Payment Transaction** API to execute recurring payment trans
   | in-progress | Transaction is being processed                                               |
 </Callout>
 
-### Step 2: Update Invoice ID [Conditional]
+### Step 2: Update Invoice ID \[Conditional]
 
 If the Invoice ID value was unavailable when posting the transaction or you missed to include invoice ID, it can be updated using the **UDF Update** API by posting it in the UDF5 parameter.
 
@@ -1097,3 +1110,5 @@ If the Invoice ID value was unavailable when posting the transaction or you miss
   }
   ```
 </Accordion>
+
+<br />
