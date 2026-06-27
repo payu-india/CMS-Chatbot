@@ -15,32 +15,6 @@ metadata:
 next:
   description: ''
 ---
----
-title: Integration Steps
-deprecated: false
-hidden: false
-metadata:
-  title: Integration Steps - Android UPI SDK
-  description: >-
-    Integrate PayU Android UPI SDK: Gradle dependency, UPI intent/collect runtime flow, hash, callbacks, test UPI apps, go-live.
-  robots: index
-  keywords:
-    - payu android upi sdk integration steps india
-    - upi intent payment integration android native sdk payu
-    - upi collect intent flow android sdk integration payu
-    - android upi payment gateway sdk integration guide payu
-    - integrate upi payment android app native sdk payu
-    - mobile payment sdk android upi intent collect payu
-    - payment gateway android upi sdk gradle integration
-    - payu upi sdk android hash callback integration steps
-    - android upi apps phonepe gpay paytm sdk integration payu
-    - payu android upi sdk test sandbox go live checklist
-    - native upi payment android sdk integration developer payu
-    - razorpay cashfree alternative payu android upi sdk india
-
-next:
-  description: ''
----
 The Android UPI SDK integration involves the following steps:
 
 <Cards columns={3}>
@@ -66,6 +40,8 @@ The Android UPI SDK integration involves the following steps:
 ## SDK Integration
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Pre-requisites:** To start transacting through Google Pay, register yourself on Google Pay using the following [Google Onboarding](https://pay.google.com/about/business/) form. In this registration process, add the Merchant VPA Ids created by PayU for you. In case of multiple VPAs, all of them need to be registered. For any queries regarding the same, raise a [ticket with PayU](https://help.payu.in/query).
 </Callout>
 
@@ -82,13 +58,15 @@ implementation 'in.payu:upisdk:1.8.15'
 ```
 
 <Callout icon="🚧" theme="warn">
+  ###
+
   **Expand Manifest view for compilation error**: If you are getting the following compile error, expand the Merged Manifest view.
 
   `Android resource linking failed /Users/sample/AndroidStudioProjects/MyApp/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml:18: error: unexpected element found in <manifest>  
-                                              Manifest merger failed with multiple errors, see logs`
+                                                Manifest merger failed with multiple errors, see logs`
 </Callout>
 
-In the Merged Manifest view, the following additional error message is displayed. This indicates that you need to fix your Gradle plugin. For more information on the Gradle plugin, refer to the Google Andriod Documentation.
+In the Merged Manifest view, the following additional error message is displayed. This indicates that you need to fix your Gradle plugin. For more information on the Gradle plugin, refer to the Google Android Documentation.
 
 `Error: Missing 'package' key attribute on element package`
 
@@ -109,16 +87,20 @@ force "path of conflicting library 2"
 To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Tip**: Every transaction (payment or non-payment) needs a hash by you before sending the transaction details to PayU. Hash is required for PayU to validate the authenticity of the transaction. The hashing must be done on your server.
 </Callout>
 
 ### Step 4: Payment Request Post Data
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Ways to generate postdata:**
 
-  * By UPI SDK itself (recommended if you are using UPI SDK alone)
-  * By using the [PG SDK](doc:android-core-sdk) library.
+  - By UPI SDK itself (recommended if you are using UPI SDK alone)
+  - By using the [PG SDK](doc:android-core-sdk) library.
 </Callout>
 
 <Accordion title="Step 4.1: Build the payment parameters (mandatory step)" icon="fa-code">
@@ -274,52 +256,55 @@ To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-a
 <Accordion title="Step 4.5:Wealth Tech Payment" icon="fa-code">
   For Wealth Tech Payment, then generate the below payment params additionally
 
-  ```java
-  List<Products> productsList = new ArrayList<>();
-        Products products = new Products();
-        products.setType("mutual_fund");
-        products.setPlan("GD");
-        products.setFolio("9104927822");
-        products.setAmount("50000");
-        products.setOption("G");
-        products.setScheme("LT");
-        products.setReceipt("77407");
-        products.setMfMemberId("123445");
-        products.setMfUserId("77407");
-        products.setMfPartner("cams");
-        products.setMfInvestmentType("L");
-        products.setMfAmcCode("UTB");
-  productsList.add(products);
+```java
+List<Products> productsList = new ArrayList<>();
+      Products products = new Products();
+      products.setType("mutual_fund");
+      products.setPlan("GD");
+      products.setFolio("9104927822");
+      products.setAmount("50000");
+      products.setOption("G");
+      products.setScheme("LT");
+      products.setReceipt("77407");
+      products.setMfMemberId("123445");
+      products.setMfUserId("77407");
+      products.setMfPartner("cams");
+      products.setMfInvestmentType("L");
+      products.setMfAmcCode("UTB");
+productsList.add(products);
 
-  Sample JSON Object:- 
-  [{"type":"mutual_fund","plan":"GD","folio":"9104927822","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}
-  ```
+Sample JSON Object:- 
+[{"type":"mutual_fund","plan":"GD","folio":"9104927822","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}
+```
 
-  After creating the above `productsList` object, configure it in the `PayUPaymentParams` object. For Wealth Tech Payment, complete `PayUPaymentParams` similar to the following code block:
+After creating the above `productsList` object, configure it in the `PayUPaymentParams` object. For Wealth Tech Payment, complete `PayUPaymentParams` similar to the following code block:
 
-  ```java Java
-  mPaymentParamsUpiSdk.setProductsList(productsList);
-  ```
+```java Java
+mPaymentParamsUpiSdk.setProductsList(productsList);
+```
 
-  Here's the content with the **Hash Formula** and **Sample Hash Data** sections highlighted:
+Here's the content with the **Hash Formula** and **Sample Hash Data** sections highlighted:
 
   <Accordion title="Hash Generation" icon="fa-code">
     **✨ Hash Formula ✨**
 
-    ```
-    key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|beneficiarydetail|si_details|user_token|offer_key|offer_auto_apply|cart_details|products
-    ```
+````
+```
+key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|beneficiarydetail|si_details|user_token|offer_key|offer_auto_apply|cart_details|products
+```
 
-    **🔍 Sample Hash Data 🔍**
+**🔍 Sample Hash Data 🔍**
 
-    ```java
-    String hashData = "<Key>|1714544838994|10|productInfo|firstName|test@gmail.com|udf1|udf2|udf3|udf4|udf5||||||{\"beneficiaryAccountNumber\":\"002001600674\",\"ifscCode\":\"HDFC0000090\"}|{\"paymentStartDate\":\"2026-04-20\",\"paymentEndDate\":\"2026-06-20\",\"billingAmount\":\"10\",\"billingCurrency\":\"INR\",\"billingCycle\":\"ADHOC\",\"billingInterval\":\"1\"}|||||[{\"type\":\"mutual_fund\",\"plan\":\"GD\",\"folio\":\"9104927822\",\"amount\":\"50000\",\"option\":\"G\",\"scheme\":\"LT\",\"receipt\":\"77407\",\"mf_member_id\":\"123445\",\"mf_user_id\":\"77407\",\"mf_partner\":\"cams\",\"mf_investment_type\":\"L\",\"mf_amc_code\":\"UTB\"}]|<Salt>";
-    ```
+```java
+String hashData = "<Key>|1714544838994|10|productInfo|firstName|test@gmail.com|udf1|udf2|udf3|udf4|udf5||||||{\"beneficiaryAccountNumber\":\"002001600674\",\"ifscCode\":\"HDFC0000090\"}|{\"paymentStartDate\":\"2026-04-20\",\"paymentEndDate\":\"2026-06-20\",\"billingAmount\":\"10\",\"billingCurrency\":\"INR\",\"billingCycle\":\"ADHOC\",\"billingInterval\":\"1\"}|||||[{\"type\":\"mutual_fund\",\"plan\":\"GD\",\"folio\":\"9104927822\",\"amount\":\"50000\",\"option\":\"G\",\"scheme\":\"LT\",\"receipt\":\"77407\",\"mf_member_id\":\"123445\",\"mf_user_id\":\"77407\",\"mf_partner\":\"cams\",\"mf_investment_type\":\"L\",\"mf_amc_code\":\"UTB\"}]|<Salt>";
+```
 
-    The highlighted sections show:
+The highlighted sections show:
 
-    * **Hash Formula**: The pipe-separated structure defining the order of fields for hash generation
-    * **Sample Hash Data**: A concrete example showing how the actual values are concatenated using the formula structure
+* **Hash Formula**: The pipe-separated structure defining the order of fields for hash generation
+* **Sample Hash Data**: A concrete example showing how the actual values are concatenated using the formula structure
+````
+
   </Accordion>
 
   <Accordion title="Sample JSON Structure:" icon="fa-code">
@@ -344,7 +329,7 @@ To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-a
   </Accordion>
 
   <Accordion title="Wealth Tech Payment Param Description" icon="fa-cog">
-    These parameters are included within the `more_info` field as a JSON array under the fiedl `wtParams`:
+    These parameters are included within the `more_info` field as a JSON array under the field `wtParams`:
 
     <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -418,6 +403,7 @@ To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-a
     </tr>
   </tbody>
 </table>
+
 `}</HTMLBlock>
 
     <Accordion title="Validation Rules" icon="fa-code">
@@ -439,6 +425,7 @@ To generate the hash, refer to [Generate Static Hash](doc:generate-static-hash-a
       </Accordion>
     </Accordion>
   </Accordion>
+
 </Accordion>
 
 ### Step 5: Payment Options
@@ -581,7 +568,7 @@ To make the payment, you need to create UpiConfig and provide mandatory paramete
 <Accordion title="Make Payment" icon="fa-code">
   To make the payment, you need to create UpiConfig and provide mandatory parameters, merchant key, and postdata. For more information, refer to Payment Request Post Data.
 
-  Provide the PayUUPICallback instance and Upiconfig object to the UPI makepayment() method.
+  Provide the PayUUPICallback instance and Upiconfig object to the UPI makePayment() method.
 
   Get the singleton, then call `makePayment` with **Activity** context:
 
@@ -634,7 +621,7 @@ To make the payment, you need to create UpiConfig and provide mandatory paramete
 
   > 📘 Tip
   >
-  > For Device API Level 19, you must enable GMS provider service and set gmsProviderUpdatedStatus of UpiConfig similar to the following example. For more details, refer to the Andriod Documentation.
+  > For Device API Level 19, you must enable GMS provider service and set gmsProviderUpdatedStatus of UpiConfig similar to the following example. For more details, refer to the Android Documentation.
 
   ```java
   upiConfig.setGmsProviderUpdatedStatus(UpiConfig.DISABLE/UpiConfig.ENABLE);
@@ -651,12 +638,12 @@ You can validate a VPA of its own using the SDK. You need to create a hash throu
 
 Where:
 
-* key= "YOUR KEY"
-* command= \<"validateVPA">
-* salt= "YOUR SALT"
-* var1=  the VPA, you want to validate
+_key= "YOUR KEY"_ command= \<"validateVPA">
+_salt= "YOUR SALT"_ var1=  the VPA, you want to validate
 
 <Callout icon="❗️" theme="error">
+  ###
+
   **Works with UPI SDK v1.2.0 only**: This feature is only available from UPI SDK version 1.2.0 or later.
 </Callout>
 
@@ -1010,3 +997,5 @@ Ensure these steps before you deploy the integration in a live environment.
 
   During the integration, refer the [Generate Static Hash](doc:generate-static-hash-android-sdk-pro) for hash generation details.
 </Accordion>
+
+<br />
