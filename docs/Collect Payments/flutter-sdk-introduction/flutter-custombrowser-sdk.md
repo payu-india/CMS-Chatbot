@@ -19,27 +19,6 @@ metadata:
 next:
   description: ''
 ---
----
-title: Flutter Custom Browser SDK
-excerpt: ''
-deprecated: false
-hidden: false
-metadata:
-  title: Flutter Custom Browser SDK
-  description: >-
-    This document provides instructions for integrating the Custom Browser SDK
-    with Flutter, highlighting features like OTP assist and bank page
-    optimizations, and includes compatibility details for Android and iOS.
-  keywords:
-    - Flutter Custom Browser SDK
-    - ' Integrate Flutter Custom Browser'
-    - Flutter Custom Browser SDK Integration
-    - Integration of Flutter Custom Browser SDK
-    - Custom Browser SDK integration on Mobile Flutter SDK
-  robots: index
-next:
-  description: ''
----
 This document describes how to integrate Custom Browser SDK with Flutter.
 
 ## Features
@@ -51,20 +30,20 @@ This document describes how to integrate Custom Browser SDK with Flutter.
 
 ### Android
 
-* Min SDK Version: 21
-* Compile SDK Version: 31
-* Kotlin 1.6.10
+- Min SDK Version: 21
+- Compile SDK Version: 31
+- Kotlin 1.6.10
 
 ### iOS
 
-* iOS version 11
+- iOS version 11
 
 ## SDK Integration
 
 To integrate PayU CustomBrowser with flutter SDK, perform the following steps:
 
 <Accordion title="Step 1: Include the SDK in your app" icon="fa-code">
-  The CustomBrowser SDK for Flutter is offered through Fluter Pub.dev
+  The CustomBrowser SDK for Flutter is offered through Flutter Pub.dev
 
   To add the SDK plugin use the following dependency in your app: `$ flutter pub add payubiz_cb_flutter`:
 
@@ -165,7 +144,7 @@ To integrate PayU CustomBrowser with flutter SDK, perform the following steps:
   >
   > `sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||beneficiarydetail|SALT)`
   >
-  > The beneficiarydetail parameter value will be at last or the last value to be appended.\{"beneficiaryAccountNumber":,"ifscCode":}
+  > The beneficiarydetail parameter value will be at last or the last value to be appended.\{"beneficiaryAccountNumber":,"ifscCode":\}
 
   Here is a sample hash logic with sample value of the parameters for your reference:
 
@@ -299,6 +278,7 @@ To integrate PayU CustomBrowser with flutter SDK, perform the following steps:
     </tr>
   </tbody>
 </table>
+
 `}</HTMLBlock>
 
 <Accordion title="Credit / Debit Card" icon="fa-code">
@@ -426,6 +406,7 @@ To integrate PayU CustomBrowser with flutter SDK, perform the following steps:
 </Accordion>
 
 ## Test the Integration and Go-live
+
   <Accordion title="Test the integration" icon="fa-code">
 
 After the integration is complete, you must test the integration before you go live and start collecting payment. You can start accepting actual payments from your customers once the test is successful.
@@ -564,6 +545,7 @@ You can make test payments using one of the payment methods configured at the Ch
     </tr>
   </tbody>
 </table>
+
 `}</HTMLBlock>
   </Accordion>
 </Accordion>
