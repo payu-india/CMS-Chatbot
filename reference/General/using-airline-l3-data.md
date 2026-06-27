@@ -154,7 +154,7 @@ l3_details = {
     <tr>
       <td>CONJUNCTION_<br/>TICKET_<br/>INDICATOR</td>
       <td>1</td>
-      <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 1 characters. Can contain letters, numbers, and special characters.</td>
+      <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 1 character. Can contain letters, numbers, and special characters.</td>
     </tr>
     <tr>
       <td>RESERVED</td>
@@ -174,17 +174,17 @@ l3_details = {
     <tr>
       <td>ELECTRONIC_<br/>TICKET_<br/>INDICATOR</td>
       <td>1</td>
-      <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 1 characters. Can contain letters, numbers, and special characters.</td>
+      <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 1 character. Can contain letters, numbers, and special characters.</td>
     </tr>
     <tr>
       <td>TOTAL_NUMBER_OF_<br/>AIR_SEGMENTS</td>
       <td>1</td>
-      <td><code>Numeric</code> - Numeric field with maximum length of 1 characters. Can only contain digits.</td>
+      <td><code>Numeric</code> - Numeric field with maximum length of 1 character. Can only contain digits.</td>
     </tr>
     <tr>
       <td>STOPOVER_<br/>INDICATOR_1</td>
       <td>1</td>
-      <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 1 characters. Can contain letters, numbers, and special characters.</td>
+      <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 1 character. Can contain letters, numbers, and special characters.</td>
     </tr>
     <tr>
       <td>DEPARTURE_<br/>LOCATION_<br/>CODE_SEGMENT_1</td>
@@ -234,7 +234,7 @@ l3_details = {
     <tr>
       <td>STOPOVER_INDICATOR_2</td>
       <td>1</td>
-      <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 1 characters. Can contain letters, numbers, and special characters.</td>
+      <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 1 character. Can contain letters, numbers, and special characters.</td>
     </tr>
     <tr>
       <td>DEPARTURE_LOCATION_<br/>CODE_SEGMENT_2</td>
@@ -284,7 +284,7 @@ l3_details = {
     <tr>
       <td>STOPOVER_<br/>INDICATOR_3</td>
       <td>1</td>
-      <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 1 characters. Can contain letters, numbers, and special characters.</td>
+      <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 1 character. Can contain letters, numbers, and special characters.</td>
     </tr>
     <tr>
       <td>DEPARTURE_<br/>LOCATION_<br/>CODE_SEGMENT_3</td>
@@ -334,7 +334,7 @@ l3_details = {
     <tr>
       <td>STOPOVER_<br/>INDICATOR_4</td>
       <td>1</td>
-      <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 1 characters. Can contain letters, numbers, and special characters.</td>
+      <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 1 character. Can contain letters, numbers, and special characters.</td>
     </tr>
     <tr>
       <td>DEPARTURE_LOCATION_<br/>CODE_SEGMENT_4</td>
@@ -384,7 +384,7 @@ l3_details = {
     <tr>
       <td>STOPOVER_<br/>INDICATOR_5</td>
       <td>1</td>
-      <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 1 characters. Can contain letters, numbers, and special characters.</td>
+      <td><code>Alphanumeric</code> - Alphanumeric field with maximum length of 1 character. Can contain letters, numbers, and special characters.</td>
     </tr>
     <tr>
       <td>EXCHANGED/ORIGINAL_<br/>TICKET_NUMBER</td>
