@@ -270,9 +270,11 @@ PayU’s Merchant Hosted Checkout allows you to create a custom payment experien
 - **Direct Customer Relationship**: Maintain control over the customer experience from start to finish. 
 - **Flexible Integration**: Integrate with a wide range of payment methods, including cards, net banking, wallets, UPI, and more.
 
-> 👍
->
-> **Note**: Merchant Hosted Checkout is a specific PayU product with defined features. It’s distinct from simply hosting payment elements on your website. This guide specifically covers the PayU’s Merchant Hosted Checkout product and its associated APIs.
+<Callout icon="👍" theme="okay">
+  ###
+
+  **Note**: Merchant Hosted Checkout is a specific PayU product with defined features. It’s distinct from simply hosting payment elements on your website. This guide specifically covers the PayU’s Merchant Hosted Checkout product and its associated APIs.
+</Callout>
 
 ## Workflow and Experience
 
@@ -325,27 +327,31 @@ Merchant Hosted Checkout supports a wide range of payment methods: 
 - **EMI (Equated Monthly Installments)**: Offer customers the option to pay in instalments. For more information, refer to [EMI Integration](https://docs.payu.in/docs/collect-payments-with-emi-seamless).
 - **BNPL (Buy Now, Pay Later)**: Integrate with BNPL providers to allow customers to spread payments over time. For more information, refer to [BNPL Integration](doc:collect-payments-with-bnpl).
 - **PayPal**: Facilitate international payments through PayPal. If you’re using the PayU Hosted Checkout or Merchant Hosted integration, you need to activate PayPal from PayU Dashboard.  For more information on integration, refer to [PayPal Integration](doc:paypal-integration).
-- **Pluxee Card**: Integrate with Pluxee (formerly Sodexo) meal cards. For Sodexo payment option mode or PG is MC and Ibib&#x6F;_&#x63;ode or bankcodeis SODEXO. In case customer provides the consent to save the card details with merchant on their check-out page: Merchant should pass save\_sodexo\_card parameter value as 1 when initiating the transaction using_ payment API. Merchants are recommended to use the check\_balance API for checking the Sodexo card balance. For more information, refer to [Pluxee Card Integration](https://docs.payu.in/docs/integrate-with-merchant-hosted-checkout-for-pluxee-card)/
+- **Pluxee Card**: Integrate with Pluxee (formerly Sodexo) meal cards. For Sodexo payment option mode or PG is MC and Ibib&#x6F;_&#x63;ode or&#x20;_&#x62;ankcod&#x65;_&#x20;is&#x20;_**SODEXO**_. In case customer provides the consent to save the card details with merchant on their check-out page: Merchant should pass save\_sodexo\_card parameter value as 1 when initiating the transaction using_ payment API. Merchants are recommended to use the check\_balance API for checking the Sodexo card balance. For more information, refer to [Pluxee Card Integration](https://docs.payu.in/docs/integrate-with-merchant-hosted-checkout-for-pluxee-card)/
 - **EFT/NEFT**: Integrate with EFT/NEFT (National Electronics Fund Transfer), where **pg=NEFTRTGS** and bankcode parameter is based on the bank or institution. For more information, refer to [EFTNET (NEFT/RTGS) Integration](doc:collect-payments-with-eftnet-neftrtgs-seamless)
 - **QR Code**: Enable payments via QR codes. For more information, refer to [Dynamic Storefront QR](doc:integrated-dynamic-storefront).
 
-> 📘
->
-> **Note**: For each payment method, you may need to pass specific parameters in the **\_payment** API request. Refer to the PayU documentation for each payment method for details. For all the supported wallets, refer to Wallet Codes to understand exact value which needs to be passed against bankcode parameter.
+<Callout icon="📘" theme="info">
+  ###
 
-> ❗️
->
-> **Important UPI Integration Changes as per NPCI Mandate on UPI Collect Disablement**:
->
-> For Merchant Hosted integrations using `txn_s2s_flow = 2` or `txn_s2s_flow = 4`:
->
-> - **For Android Apps**: Merchants must implement the Smart Intent implementation in the app. Refer to [UPI Smart Intent - Non SDK Flow](doc:upi-smart-intent-non-sdk-flow) or use [PayU Android SDKs](doc:explore-android-sdks) which have Smart Intent built-in.
->
-> - **For iOS Apps**: Merchants can implement the specific deeplink and continue using the UPI Collect flow as is.
->
-> - **For Web**: Merchants must use the deeplink created via [UPI Intent S2S Integration](doc:upi-intent-server-to-server) to generate a QR code of the deeplink, instead of the UPI Collect flow.
->
-> - **Seamless Form Post**: Merchants must migrate to `txn_s2s_flow` (UPI Intent S2S), as Intent is not supported in the seamless form post flow for Android and Desktop web.
+  **Note**: For each payment method, you may need to pass specific parameters in the **\_payment** API request. Refer to the PayU documentation for each payment method for details. For all the supported wallets, refer to Wallet Codes to understand exact value which needs to be passed against bankcode parameter.
+</Callout>
+
+<Callout icon="❗️" theme="error">
+  ###
+
+  **Important UPI Integration Changes as per NPCI Mandate on UPI Collect Disablement**:
+
+  For Merchant Hosted integrations using `txn_s2s_flow = 2` or `txn_s2s_flow = 4`:
+
+  - **For Android Apps**: Merchants must implement the Smart Intent implementation in the app. Refer to [UPI Smart Intent - Non SDK Flow](doc:upi-smart-intent-non-sdk-flow) or use [PayU Android SDKs](doc:explore-android-sdks) which have Smart Intent built-in.
+
+  - **For iOS Apps**: Merchants can implement the specific deeplink and continue using the UPI Collect flow as is.
+
+  - **For Web**: Merchants must use the deeplink created via [UPI Intent S2S Integration](doc:upi-intent-server-to-server) to generate a QR code of the deeplink, instead of the UPI Collect flow.
+
+  - **Seamless Form Post**: Merchants must migrate to `txn_s2s_flow` (UPI Intent S2S), as Intent is not supported in the seamless form post flow for Android and Desktop web.
+</Callout>
 
 ### Supported Payment Methods: Details for API Integration
 
@@ -364,13 +370,15 @@ The following table summarizes the supported payment methods for PayU’s Mercha
 | EFTNET (NEFT/RTGS)   | NB     | EFTAXTPV                 | The api\_version "6" must be passed for this parameter for NEFT/RTGS. Merchants should always send both customer account no and customer IFSC Code in Request. For more information on integration, refer to [EFTNET (NEFT/RTGS) Integration](doc:collect-payments-with-eftnet-neftrtgs-seamless).                                                                                                                                                                                                                                         |
 | QR Code              | UPI    | N/A                      | The QR code format should be as per Bharat QR specifications. For more information on integration, refer to [Dynamic Storefront QR](doc:integrated-dynamic-storefront).                                                                                                                                                                                                                                                                                                                                                                    |
 
-> 📘 Important Notes: 
->
-> - Always refer to the official PayU documentation for the most up-to-date information on supported payment methods and their corresponding parameters. 
-> - The bankcode values are case-sensitive. 
-> - Ensure that the payment methods you intend to support are enabled in your PayU merchant account. 
-> - Test your integration thoroughly in the PayU sandbox environment before going live. 
-> - For NEFT/RTGS transactions, implement a reconciliation process to track transaction status and match payments with orders.
+<Callout icon="📘" theme="info">
+  ### Important Notes: 
+
+  - Always refer to the official PayU documentation for the most up-to-date information on supported payment methods and their corresponding parameters. 
+  - The bankcode values are case-sensitive. 
+  - Ensure that the payment methods you intend to support are enabled in your PayU merchant account. 
+  - Test your integration thoroughly in the PayU sandbox environment before going live. 
+  - For NEFT/RTGS transactions, implement a reconciliation process to track transaction status and match payments with orders.
+</Callout>
 
 ## Security and testing the Integration
 
@@ -436,9 +444,11 @@ Before you begin the integration process, ensure you have the following: 
 - **PCI DSS Compliance**: If you are storing, processing, or transmitting cardholder data, you must comply with the Payment Card Industry Data Security Standard (PCI DSS). This might involve filling the “Self-Assessment Questionnaire A-EP and Attestation of Compliance” form from PCI. If you are using Merchant Hosted Checkout, you will collect card details on your own website and therefore you must be PCI-DSS compliant. 
 - **Webhooks Implementation**: Set up webhooks to receive real-time updates on transaction statuses. Webhooks allow PayU to notify your server about successful payments, failures, and other important events. Confirmed the transaction status on the Server-side, if the callback fail. Use Webhooks for hearing callbacks. For more information, refer to Verify Payment API and Webhooks.
 
-> 🚧
->
-> **Remember**: If you are using only the UPI and Wallet payment modes with Merchant Hosted checkout, ensure that your website is secure.
+<Callout icon="🚧" theme="warn">
+  ###
+
+  **Remember**: If you are using only the UPI and Wallet payment modes with Merchant Hosted checkout, ensure that your website is secure.
+</Callout>
 
 - **Understanding of concepts and technical bandwidth**: You must have an understanding of the following concepts and take care of the technical bandwidth:
   - workflows
