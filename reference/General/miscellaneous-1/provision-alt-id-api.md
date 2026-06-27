@@ -117,14 +117,15 @@ The request header contains the following fields:
 ##### Authorization format
 
 <code>hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="CkGfgbho69uTMMOGU0mHWf+1CUAlIp3AjvsON9n9/E4="</code>
+
 Where the above format includes the following:
 
-* **username**: The merchant key of the merchant.
-* **algorithm**: This must have the value as **hmac-sha256** that is used for this API
-* **headers**: This must have the value as **date digest**
-* **signature**: This must contain the hmacsha256 of (signing_string, merchant_secret), where:
-  * **signing_string**: This is in the "**Date**"+"\n"+"**Digest**" format. Here, the Date and Digest is the same values in the fields listed in this table For example, "Thu, 17 Feb 2022 08:17:59 GMT""\n"+"vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0="
-  * **merchant_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to [Generate Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard)
+- **username**: The merchant key of the merchant.
+- **algorithm**: This must have the value as **hmac-sha256** that is used for this API
+- **headers**: This must have the value as **date digest**
+- **signature**: This must contain the hmacsha256 of (signing\_string, merchant\_secret), where:
+  - **signing\_string**: This is in the "**Date**"+"\n"+"**Digest**" format. Here, the Date and Digest is the same values in the fields listed in this table For example, "Thu, 17 Feb 2022 08:17:59 GMT""\n"+"vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0="
+  - **merchant\_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to [Generate Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard)
 
 The following sample Java code contains the logic used to encrypt as described in the above table:
 
@@ -579,6 +580,7 @@ if (curl_errno($ch)) {
 curl_close($ch);
 ?>
 ```
+
 ## Response Parameters
 
 | Parameter           | Value                                            |
@@ -618,9 +620,9 @@ curl_close($ch);
 }
 ```
 
-### Failure Ssenarios
+### Failure Scenarios
 
-* Invalid card number
+- Invalid card number
 
 ```json
 {
@@ -630,7 +632,7 @@ curl_close($ch);
 }
 ```
 
-* Invalid expiry month of card
+- Invalid expiry month of card
 
 ```json
 {
@@ -640,7 +642,7 @@ curl_close($ch);
 }
 ```
 
-* Invalid CVV specified for card
+- Invalid CVV specified for card
 
 ```json
 {
@@ -650,7 +652,7 @@ curl_close($ch);
 }
 ```
 
-* Internal error
+- Internal error
 
 ```json
 {
@@ -661,7 +663,7 @@ curl_close($ch);
 }
 ```
 
-* Invalid Acquired Merchant ID
+- Invalid Acquired Merchant ID
 
 ```json
 {
@@ -672,7 +674,7 @@ curl_close($ch);
 }
 ```
 
-* Card Network Failure
+- Card Network Failure
 
 ```json
 {
@@ -683,7 +685,7 @@ curl_close($ch);
 }
 ```
 
-* Invalid Authentication Code (RUPAY)
+- Invalid Authentication Code (RUPAY)
 
 ```json
 {
@@ -694,7 +696,7 @@ curl_close($ch);
 }
 ```
 
-* Invalid AcquirerInstance id Code (MASTER)
+- Invalid AcquirerInstance id Code (MASTER)
 
 ```json
 {
@@ -705,7 +707,7 @@ curl_close($ch);
 }
 ```
 
-* Merchant Not Onboarded(AMEX)
+- Merchant Not Onboarded(AMEX)
 
 ```json
 {
@@ -716,7 +718,7 @@ curl_close($ch);
 }
 ```
 
-* Merchant Invalid Or Merchant AltId is InActive
+- Merchant Invalid Or Merchant AltId is InActive
 
 ```json
 {
@@ -726,7 +728,7 @@ curl_close($ch);
 }
 ```
 
-* Mastercard DPA creation in progress
+- Mastercard DPA creation in progress
 
 ```json
 {
@@ -738,7 +740,7 @@ curl_close($ch);
 }
 ```
 
-* Invalid Acquired Merchant ID Code configuration
+- Invalid Acquired Merchant ID Code configuration
 
 ```json
 {
@@ -749,7 +751,7 @@ curl_close($ch);
 }
 ```
 
-* Invalid expiry month
+- Invalid expiry month
 
 ```json
  
@@ -759,3 +761,5 @@ curl_close($ch);
     "status": 0
 }
 ```
+
+<br />
