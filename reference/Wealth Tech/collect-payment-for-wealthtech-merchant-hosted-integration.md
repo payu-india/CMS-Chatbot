@@ -5,10 +5,10 @@ hidden: true
 metadata:
   robots: index
 ---
-This section provides API details for _payment  API used for collecting WealthTech payments, specifically designed for mutual fund transaction processing. The API introduces new parameters and validation rules to support wealth management payment flows.
+This section provides API details for \_payment  API used for collecting WealthTech payments, specifically designed for mutual fund transaction processing. The API introduces new parameters and validation rules to support wealth management payment flows.
 
-* **Method**: `POST`
-* **Content-Type**: `application/x-www-form-urlencoded`
+- **Method**: `POST`
+- **Content-Type**: `application/x-www-form-urlencoded`
 
 <PaymentAPIEnvironment />
 
@@ -24,12 +24,12 @@ This section provides API details for _payment  API used for collecting WealthTe
 | email<br />`mandatory`                          | `Varchar` This parameter must contain the email of the customer                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | [test@gmail.com](mailto:test@gmail.com)                                                                                                                                    |
 | phone<br />`mandatory`                          | `Integer` Merchant needs to take the customer's GPay registered phone number and pass in this field. This field will be used for further mapping the customer VPA and initiate a collect request.                                                                                                                                                                                                                                                                                                                                                                                                                                            | 9876543210                                                                                                                                                                 |
 | pg<br />`mandatory`                             | `String` This parameter contains the payment method to be enabled to collect payment from your customer. For Net Banking, use **NB** and **DC** or **CC** for cards.                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | NB                                                                                                                                                                         |
-| bankcode<br />`mandatory`                       | `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. For the list of bankcodes: <br /> * **Net Banking**: refer to [Net Banking Codes](doc:net-banking-codes)<br /> * **Cards**: refer to [Card Type Codes and Supported Banks for Cards](https://docs.payu.in/docs/card-type-codes-and-supported-banks-for-cards/).                                                                                                                                                                                                    | AXIB                                                                                                                                                                       |
+| bankcode<br />`mandatory`                       | `String` Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. For the list of bankcodes: <br /> \* **Net Banking**: refer to [Net Banking Codes](doc:net-banking-codes)<br /> \* **Cards**: refer to [Card Type Codes and Supported Banks for Cards](https://docs.payu.in/docs/card-type-codes-and-supported-banks-for-cards/).                                                                                                                                                                                           | AXIB                                                                                                                                                                       |
 | surl<br />`mandatory`                           | `string` The "surl" field is the success URL, which is the page PayU will redirect to if the transaction is successful. The merchant can handle the response at this URL after the customer is redirected there.                                                                                                                                                                                                                                                                                                                                                                                                                             | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)                                                                             |
 | furl<br />`mandatory`                           | `String` The "furl" field is the Failure URL, which is the page PayU will redirect to if the transaction is failed. The merchant can handle the response at this URL after the customer is redirected there.                                                                                                                                                                                                                                                                                                                                                                                                                                 | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)                                                                             |
-| api_version <br /> `mandatory`                  | API version must be posted as `21`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 21                                                                                                                                                                         |
+| api\_version <br /> `mandatory`                 | API version must be posted as `21`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 21                                                                                                                                                                         |
 | hash<br />`mandatory`                           | `String` The hash calculated by the merchant using the key and salt provided by PayU. The format for calculating the hash: sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|SALT) For more information, refer to [Generate Hash](doc:hashing-request-and-response).                                                                                                                                                                                                                                                                                                                         | a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0                                                                                                                                   |
-| more_info<br />`mandatory for Wealth Tech`      | `JSON` This parameter contains various fields including the Wealth Tech object (**wtParams**). For more information on wtParams object field, refer to [ Wealth Tech object (wtParams) fields Description](https://docs.payu.in/reference/collect-payment-for-wealthtech#wealth-tech-object-wtparams-fields-description).                                                                                                                                                                                                                                                                                                                    | Refer to [ Wealth Tech object (wtParams) fields Description](https://docs.payu.in/reference/collect-payment-for-wealthtech#wealth-tech-object-wtparams-fields-description) |
+| more\_info<br />`mandatory for Wealth Tech`     | `JSON` This parameter contains various fields including the Wealth Tech object (**wtParams**). For more information on wtParams object field, refer to [ Wealth Tech object (wtParams) fields Description](https://docs.payu.in/reference/collect-payment-for-wealthtech#wealth-tech-object-wtparams-fields-description).                                                                                                                                                                                                                                                                                                                    | Refer to [ Wealth Tech object (wtParams) fields Description](https://docs.payu.in/reference/collect-payment-for-wealthtech#wealth-tech-object-wtparams-fields-description) |
 | lastname<br />`optional`                        | `String` The last name of the customer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Sharma                                                                                                                                                                     |
 | address1<br />`optional`                        | `String` The first line of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | 123 Main Street                                                                                                                                                            |
 | address2<br />`optional`                        | `String` The second line of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Apartment 4B                                                                                                                                                               |
@@ -42,7 +42,7 @@ This section provides API details for _payment  API used for collecting WealthTe
 | udf3<br />`mandatory for Cross-Border Payments` | `String` This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | GSTIN123456                                                                                                                                                                |
 | udf4<br />`optional`                            | `String` This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Additional Info 2                                                                                                                                                          |
 | udf5<br />`optional`                            | `String` This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Additional Info 3                                                                                                                                                          |
-| additional_charges<br />`optional`              | `String` Collect additional charges for the transaction. For example, platform fee                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 10.00                                                                                                                                                                      |
+| additional\_charges<br />`optional`             | `String` Collect additional charges for the transaction. For example, platform fee                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 10.00                                                                                                                                                                      |
 
 <Accordion title="Hash Calculation" icon="fa-code">
   The hash is calculated using SHA-512 algorithm with the following field sequence:
@@ -85,7 +85,7 @@ This section provides API details for _payment  API used for collecting WealthTe
 
 #### Fields description
 
-These parameters are included within the `more_info` field as a JSON array under the fiedl `wtParams`:
+These parameters are included within the `more_info` field as a JSON array under the field, `wtParams`:
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -112,7 +112,7 @@ These parameters are included within the `more_info` field as a JSON array under
       </td>
 
       <td>
-        `string` - Transaction type, must be "mutual_fund"
+        `string` - Transaction type, must be "mutual\_fund"
       </td>
 
       <td>
@@ -152,7 +152,7 @@ These parameters are included within the `more_info` field as a JSON array under
 
     <tr>
       <td>
-        mf_member_id <br />
+        mf\_member\_id <br />
         `mandatory`
       </td>
 
@@ -167,7 +167,7 @@ These parameters are included within the `more_info` field as a JSON array under
 
     <tr>
       <td>
-        mf_user_id <br />
+        mf\_user\_id <br />
         `mandatory`
       </td>
 
@@ -182,7 +182,7 @@ These parameters are included within the `more_info` field as a JSON array under
 
     <tr>
       <td>
-        mf_partner <br />
+        mf\_partner <br />
         `mandatory`
       </td>
 
@@ -197,7 +197,7 @@ These parameters are included within the `more_info` field as a JSON array under
 
     <tr>
       <td>
-        mf_investment_type <br /> `mandatory`
+        mf\_investment\_type <br /> `mandatory`
       </td>
 
       <td>
@@ -271,7 +271,7 @@ These parameters are included within the `more_info` field as a JSON array under
 
     <tr>
       <td>
-        mf_amc_code <br />
+        mf\_amc\_code <br />
         `optional`
       </td>
 
@@ -389,12 +389,12 @@ Verify the response received above by recomputing SHA-512 using the reverse sequ
 sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
 ```
 
-* Compare the computed digest to hash from the POST payload (**case-sensitive**).
-* Trust the result only if t
+- Compare the computed digest to hash from the POST payload (**case-sensitive**).
+- Trust the result only if t
 
 ### Using Verify Payment API
 
-After you collect payment using **_payment** API, you get the response from PayU. You must use the txnid (transaction) parameter in the response with _Verify Payment_ API to get the payment status. For more information, refer to [Verify Payment API](verify_payment_api). You will get the following sample response for success/failure scenarios.
+After you collect payment using **\_payment** API, you get the response from PayU. You must use the txnid (transaction) parameter in the response with _Verify Payment_ API to get the payment status. For more information, refer to [Verify Payment API](verify_payment_api). You will get the following sample response for success/failure scenarios.
 
 #### Success scenario
 
@@ -431,22 +431,24 @@ After you collect payment using **_payment** API, you get the response from PayU
 
 ### Success scenario
 
-| Parameter                       | Description                                                                       | Example                                  |
-| ------------------------------- | --------------------------------------------------------------------------------- | ---------------------------------------- |
-| status **`mandatory`**          | `integer` - Response status (1 for success, 0 for failure)                        | `1`                                      |
-| message **`mandatory`**         | `string` - Response message describing the result                                 | `"Transaction Processed successfully"`   |
-| details **`mandatory`**         | `object` - Transaction details object containing specific transaction information | `{}`                                     |
-| authpayuid **`mandatory`**      | `string` - PayU authorization ID                                                  | `"999990000005920"`                      |
-| transactionid **`mandatory`**   | `string` - Unique transaction identifier                                          | `"48101c0c-5265-4c2a-b6d0-e6e73d42809e"` |
-| amount **`mandatory`**          | `string` - Transaction amount in decimal format                                   | `"500.00"`                               |
-| user_credentials **`optional`** | `string` - Encrypted user credentials for future transactions                     | `"o0dEBA:11b341595c..."`                 |
-| card_token **`optional`**       | `string` - Tokenized card information                                             | `"195748c0f4ec4b3093af"`                 |
-| payuid **`mandatory`**          | `string` - PayU transaction reference ID                                          | `"999990000006473"`                      |
-| field9 **`optional`**           | `string` - Additional transaction information                                     | `"Transaction is Successful"`            |
+| Parameter                    | Description                                                                       | Example                                  |
+| ---------------------------- | --------------------------------------------------------------------------------- | ---------------------------------------- |
+| status `mandatory`           | `integer` - Response status (1 for success, 0 for failure)                        | `1`                                      |
+| message `mandatory`          | `string` - Response message describing the result                                 | `"Transaction Processed successfully"`   |
+| details `mandatory`          | `object` - Transaction details object containing specific transaction information | `{}`                                     |
+| authpayuid `mandatory`       | `string` - PayU authorization ID                                                  | `"999990000005920"`                      |
+| transactionid `mandatory`    | `string` - Unique transaction identifier                                          | `"48101c0c-5265-4c2a-b6d0-e6e73d42809e"` |
+| amount `mandatory`           | `string` - Transaction amount in decimal format                                   | `"500.00"`                               |
+| user\_credentials `optional` | `string` - Encrypted user credentials for future transactions                     | `"o0dEBA:11b341595c..."`                 |
+| card\_token `optional`       | `string` - Tokenized card information                                             | `"195748c0f4ec4b3093af"`                 |
+| payuid `mandatory`           | `string` - PayU transaction reference ID                                          | `"999990000006473"`                      |
+| field9 `optional`            | `string` - Additional transaction information                                     | `"Transaction is Successful"`            |
 
 ### **Error Response Fields**
 
-| Parameter               | Description                                   | Example                                                                       |
-| ----------------------- | --------------------------------------------- | ----------------------------------------------------------------------------- |
-| status **`mandatory`**  | `integer` - Response status (0 for error)     | `0`                                                                           |
-| message **`mandatory`** | `string` - Error message describing the issue | `"Invalid Parameter: mf_partner must be less than or equal to 4 characters."` |
+| Parameter           | Description                                   | Example                                                                       |
+| ------------------- | --------------------------------------------- | ----------------------------------------------------------------------------- |
+| status `mandatory`  | `integer` - Response status (0 for error)     | `0`                                                                           |
+| message `mandatory` | `string` - Error message describing the issue | `"Invalid Parameter: mf_partner must be less than or equal to 4 characters."` |
+
+<br />
