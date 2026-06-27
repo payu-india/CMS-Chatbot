@@ -1,8 +1,8 @@
 ---
 title: EMI Codes
 excerpt: >-
-  The codesses listed in the section are used as value for the bankcode
-  parameter along with the pg parameter as EMI. 
+  The codes listed in the section are used as value for the bankcode parameter
+  along with the pg parameter as EMI. 
 deprecated: false
 hidden: false
 metadata:
