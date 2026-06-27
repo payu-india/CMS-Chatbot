@@ -3,7 +3,6 @@ excerpt: ''
 api:
   file: payment-api-10.json
   operationId: MerchantHostedPre-AuthorizePayment
-deprecated: false
 hidden: false
 metadata:
   title: ''
@@ -12,12 +11,16 @@ metadata:
 next:
   description: ''
 ---
-The **pre_authorize** parameter is used to pre-authorize payments using the Merchant Hosted Checkout integration along with the parameters to collect card details.
+The **pre\_authorize** parameter is used to pre-authorize payments using the Merchant Hosted Checkout integration along with the parameters to collect card details.
 
 <br />
 
 <Callout icon="👍" theme="okay">
+  ###
+
   Experience the end-to-end **Merchant Hosted Checkout** > **Cards** flow and instantly generate the complete code for seamless, zero-coding integration into your website. You need to select **Pre-Auth Payment API** on the left pane after you navigate to the PayU Labs using the following button:
+
+    
 
   <HTMLBlock>{`
                                             <style>
@@ -86,7 +89,6 @@ The **pre_authorize** parameter is used to pre-authorize payments using the Merc
   ```
 </Accordion>
 
-
 <Accordion title="Sample response" icon="fa-reply">
   The formatted sample response body is similar to the following, and you need to look for the following parameters:
 
@@ -152,6 +154,7 @@ The **pre_authorize** parameter is used to pre-authorize payments using the Merc
 </Accordion>
 
 ## Request parameters
+
 <Accordion title="Reference for request parameters" icon="fa-circle">
 
   ## Reference info for request parameters
@@ -199,7 +202,9 @@ The **pre_authorize** parameter is used to pre-authorize payments using the Merc
 
   > 📘 Reference:
   >
-  > * Use the card details as follows: cccnum=5123456789012346, ccexpmon=11, ccexpyr=2025, ccvv=123 and OTP =123456 (displayed in Simulator page).
+  > * Use the card details as follows: ccnum=5123456789012346, ccexpmon=11, ccexpyr=2025, ccvv=123 and OTP =123456 (displayed in Simulator page).
   > * For the list of error codes, refer to [Error Codes - Pre-Authorize Payment](ref:error-codes-pre-authorize-payment).
   > * If you want to cancel or refund a pre-authorized transaction, refer to [Cancel a Pre-Authorized Payment](doc:cancel-a-pre-authorized-payment).
 </Accordion>
+
+<br />
