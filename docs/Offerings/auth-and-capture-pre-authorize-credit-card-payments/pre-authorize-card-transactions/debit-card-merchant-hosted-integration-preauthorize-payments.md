@@ -5,9 +5,11 @@ hidden: false
 metadata:
   robots: index
 ---
-The **pre_authorize** parameter is used to pre-authorize Debit Card payments using the Merchant Hosted Checkout integration with the **_payment** API. This section describes the step-by-step procedure to integrate pre-authorize payments using debit cards.
+The **pre\_authorize** parameter is used to pre-authorize Debit Card payments using the Merchant Hosted Checkout integration with the **\_payment** API. This section describes the step-by-step procedure to integrate pre-authorize payments using debit cards.
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Note**: You need to activate the Pre-Authorize Payments before you start using this integration. Contact your PayU Key Account Manager (KAM) to activate Pre-Authorize Payments.
 </Callout>
 
@@ -37,12 +39,12 @@ Post the additional parameters for with the Pre-Authorization using the Merchant
 
 **Environment**
 
-|                            |                                                                    |
-| :------------------------- | :----------------------------------------------------------------- |
-| **Test Environment**       | [https://test.payu.in/_payment](https://test.payu.in/_payment)     |
-| **Production Environment** | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
+|                            |                                                                     |
+| :------------------------- | :------------------------------------------------------------------ |
+| **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
+| **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
-The **pre_authorize** parameter as specified is used to pre-authorize payments using the Merchant Hosted Checkout integration with the **_payment** API.
+The **pre\_authorize** parameter as specified is used to pre-authorize payments using the Merchant Hosted Checkout integration with the **\_payment** API.
 
 <Accordion title="Request parameters" icon="fa-code">
  | Parameter | Description | Example |
@@ -388,15 +390,19 @@ To capture a pre-authorized payment, use the following command. After the API co
 <br />
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Notes**:
 
-  * The **unamappedstatus** to **auth** can be checked using thje <Anchor label="Verify Payment API" target="_blank" href="ref:verify_payment_api">Verify Payment API</Anchor> and in callback response in the Transaction callback.
-  * To check the status of the Auth Request and then Capture Request sent, use the **check_action_status** API. For more information,  refer to  <Anchor label="Check Refund Status API with Request ID" target="_blank" href="ref:check_action_status_api_with_request_id">Check Refund Status API with Request ID</Anchor>.
-  * If you want to cancel or refund a pre-authorized payment, refer to [Cancel a Pre-Authorized Payment](doc:cancel-a-pre-authorized-payment).
+  - The **unamappedstatus** to **auth** can be checked using the <Anchor target="_blank" href="ref:verify_payment_api">Verify Payment API</Anchor> and in callback response in the Transaction callback.
+  - To check the status of the Auth Request and then Capture Request sent, use the **check\_action\_status** API. For more information,  refer to  <Anchor target="_blank" href="ref:check_action_status_api_with_request_id">Check Refund Status API with Request ID</Anchor>.
+  - If you want to cancel or refund a pre-authorized payment, refer to [Cancel a Pre-Authorized Payment](doc:cancel-a-pre-authorized-payment).
 </Callout>
 
 <Callout icon="👍" theme="okay">
-  **Reference**: For cancelling pre-auth payments, refer to <Anchor label="Cancel a Pre-Authorized Transaction API" target="_blank" href="ref:cancel-a-pre-authorized-transaction">Cancel a Pre-Authorized Transaction API</Anchor>.
+  ###
+
+  **Reference**: For cancelling pre-auth payments, refer to <Anchor target="_blank" href="ref:cancel-a-pre-authorized-transaction">Cancel a Pre-Authorized Transaction API</Anchor>.
 </Callout>
 
 ## Supported List of Banks
@@ -404,11 +410,15 @@ To capture a pre-authorized payment, use the following command. After the API co
 PayU tested Debit Card integration for pre-authorize payments with the following banks:
 
 <Callout icon="📘" theme="info">
-  **Note**: You can integrate with any other banks (which are not listed below) and if any discrepancies are observed, PayU will support it on a case-by-case basis. To contact PayU support, navigate to <Anchor label="PayU Support" target="_blank" href="https:help.payu.in">PayU Support</Anchor>.
+  ###
+
+  **Note**: You can integrate with any other banks (which are not listed below) and if any discrepancies are observed, PayU will support it on a case-by-case basis. To contact PayU support, navigate to <Anchor target="_blank" href="https:help.payu.in">PayU Support</Anchor>.
 </Callout>
 
-* HDFC Bank
-* AXIS Bank
-* ICICI Bank
-* KOTAK Bank
-* State Bank Of India
+- HDFC Bank
+- AXIS Bank
+- ICICI Bank
+- KOTAK Bank
+- State Bank Of India
+
+<br />
