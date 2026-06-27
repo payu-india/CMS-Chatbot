@@ -1,5 +1,5 @@
 ---
-title: Loyalty Edge Wokflow
+title: Loyalty Edge Workflow
 deprecated: false
 hidden: false
 metadata:
