@@ -12,7 +12,7 @@ next:
 ---
 The **Static QR Generation** API is used to generate Static UPI or Bharat QR. The QR generated through this API is interoperable and can be used by any UPI application like Google Pay, PhonePe, etc. These QR codes can be used for accepting multiple transactions where customers can select the exact amount by themselves before making the payment. Bharat QR can also be scanned using mobile banking and credit card applications like (iMobile, SBI cards, etc.) to make transactions using debit cards and credit cards.
 
-#### Enviroment
+#### Environment
 
 | Environments | URL                                                                                            |
 | :----------- | :--------------------------------------------------------------------------------------------- |
@@ -55,8 +55,7 @@ The **Static QR Generation** API is used to generate Static UPI or Bharat QR. Th
 
     <tr>
       <td>
-        command  
-        `mandatory`
+        command<br />`mandatory`
       </td>
 
       <td>
@@ -64,21 +63,19 @@ The **Static QR Generation** API is used to generate Static UPI or Bharat QR. Th
       </td>
 
       <td>
-        generate_integrated_static_qr
+        generate\_integrated\_static\_qr
       </td>
     </tr>
 
     <tr>
       <td>
-        hash  
-        `mandatory`
+        hash<br />`mandatory`
       </td>
 
       <td>
         `string` This parameter must contain the hash value to be calculated at your end. The string used for calculating the hash is mentioned below:
 
-        sha512(key|command|var1|salt)  
-        sha512 is the encryption method used here.
+        sha512(key|command|var1|salt)<br />sha512 is the encryption method used here.
       </td>
 
       <td>
@@ -88,8 +85,7 @@ The **Static QR Generation** API is used to generate Static UPI or Bharat QR. Th
 
     <tr>
       <td>
-        var1  
-        `mandatory`
+        var1<br />`mandatory`
       </td>
 
       <td>
@@ -140,23 +136,21 @@ The **Static QR Generation** API is used to generate Static UPI or Bharat QR. Th
 
     <tr>
       <td>
-        merchantVpa customerId  
-        `conditional`
+        merchantVpa customerId<br />`conditional`
       </td>
 
       <td>
-        `string` Merchant's VPA in which payment will be collected.VPA to be embedded in QR. Should be unique & alphanumeric special (less than or equal to 50 characters & Only "@", ".", "," are allowed). The variable part of the VPA series can only be numeric, for eg. if the series configured is _.payu@hdfc then the VPA can only be 123445.payu@hdfc and not a13s.payu@hdfc (_ part of the series will always be numeric)
+        `string` Merchant's VPA in which payment will be collected.VPA to be embedded in QR. Should be unique & alphanumeric special (less than or equal to 50 characters & Only "@", ".", "," are allowed). The variable part of the VPA series can only be numeric, for eg. if the series configured is _.payu\@hdfc then the VPA can only be 123445.payu\@hdfc and not a13s.payu\@hdfc (_ part of the series will always be numeric)
       </td>
 
       <td>
-        instadummy.001@hdfcbank
+        instadummy.001\@hdfcbank
       </td>
     </tr>
 
     <tr>
       <td>
-        name customerId  
-        `optional`
+        name customerId<br />`optional`
       </td>
 
       <td>
@@ -170,8 +164,7 @@ The **Static QR Generation** API is used to generate Static UPI or Bharat QR. Th
 
     <tr>
       <td>
-        city   
-        `optional`
+        city <br />`optional`
       </td>
 
       <td>
@@ -185,8 +178,7 @@ The **Static QR Generation** API is used to generate Static UPI or Bharat QR. Th
 
     <tr>
       <td>
-        pinCode   
-        `optional`
+        pinCode <br />`optional`
       </td>
 
       <td>
@@ -200,8 +192,7 @@ The **Static QR Generation** API is used to generate Static UPI or Bharat QR. Th
 
     <tr>
       <td>
-        instaProduct   
-        `mandatory`
+        instaProduct <br />`mandatory`
       </td>
 
       <td>
@@ -215,8 +206,7 @@ The **Static QR Generation** API is used to generate Static UPI or Bharat QR. Th
 
     <tr>
       <td>
-        address  
-        `optional`
+        address<br />`optional`
       </td>
 
       <td>
@@ -230,8 +220,7 @@ The **Static QR Generation** API is used to generate Static UPI or Bharat QR. Th
 
     <tr>
       <td>
-        udf1 - udf5   
-        `optional`
+        udf1 - udf5 <br />`optional`
       </td>
 
       <td>
@@ -245,8 +234,7 @@ The **Static QR Generation** API is used to generate Static UPI or Bharat QR. Th
 
     <tr>
       <td>
-        outputType  
-        `optional`
+        outputType<br />`optional`
       </td>
 
       <td>
@@ -260,8 +248,7 @@ The **Static QR Generation** API is used to generate Static UPI or Bharat QR. Th
 
     <tr>
       <td>
-        submerchantRegistration   
-        `optional`
+        submerchantRegistration <br />`optional`
       </td>
 
       <td>
@@ -275,15 +262,11 @@ The **Static QR Generation** API is used to generate Static UPI or Bharat QR. Th
 
     <tr>
       <td>
-        mebussname   
-        `optional`
+        mebussname <br />`optional`
       </td>
 
       <td>
-        `string` mebussname will be visible to the customers upon scanning this QR.  
-        For non-aggregator merchants, the mebussname will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.  
-        For aggregator-merchants, the mebussname passed in this key should largely match with the name on the PAN card of the details passed in the panNo key.  
-        This key is mandatory for the aggregator-merchants
+        `string` mebussname will be visible to the customers upon scanning this QR.<br />For non-aggregator merchants, the mebussname will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.<br />For aggregator-merchants, the mebussname passed in this key should largely match with the name on the PAN card of the details passed in the panNo key.<br />This key is mandatory for the aggregator-merchants
       </td>
 
       <td>
@@ -293,13 +276,11 @@ The **Static QR Generation** API is used to generate Static UPI or Bharat QR. Th
 
     <tr>
       <td>
-        strCntMobile   
-        `conditional`
+        strCntMobile <br />`conditional`
       </td>
 
       <td>
-        `string` This will be the phone number associated for the entity for whom VPA is being created.  
-        For non-aggregator merchants, it will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored. For aggregator-merchants, the strCntMobile is mandatory.
+        `string` This will be the phone number associated for the entity for whom VPA is being created.<br />For non-aggregator merchants, it will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored. For aggregator-merchants, the strCntMobile is mandatory.
       </td>
 
       <td>
@@ -309,14 +290,11 @@ The **Static QR Generation** API is used to generate Static UPI or Bharat QR. Th
 
     <tr>
       <td>
-        panNo   
-        `conditional`
+        panNo <br />`conditional`
       </td>
 
       <td>
-        `string` This will be the pan number associated for the entity for whom VPA is being created.  
-        For non-aggregator merchants, the panNo will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored  
-        For aggregator-merchants, the panNo of the actual beneficiary needs to be passed. This key is mandatory for the aggregator-merchants.
+        `string` This will be the pan number associated for the entity for whom VPA is being created.<br />For non-aggregator merchants, the panNo will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored<br />For aggregator-merchants, the panNo of the actual beneficiary needs to be passed. This key is mandatory for the aggregator-merchants.
       </td>
 
       <td>
@@ -326,14 +304,11 @@ The **Static QR Generation** API is used to generate Static UPI or Bharat QR. Th
 
     <tr>
       <td>
-        legalStrName   
-        `conditional`
+        legalStrName <br />`conditional`
       </td>
 
       <td>
-        `string` This will be the legal name associated for the entity for whom VPA is being created.  
-        For non-aggregator merchants, it will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.  
-        For aggregator-merchants, the legalStrName should largely match with the name on the PAN card of the details passed in the panNo key. This key is mandatory for the aggregator-merchants.
+        `string` This will be the legal name associated for the entity for whom VPA is being created.<br />For non-aggregator merchants, it will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.<br />For aggregator-merchants, the legalStrName should largely match with the name on the PAN card of the details passed in the panNo key. This key is mandatory for the aggregator-merchants.
       </td>
 
       <td>
@@ -343,15 +318,11 @@ The **Static QR Generation** API is used to generate Static UPI or Bharat QR. Th
 
     <tr>
       <td>
-        awlmcc   
-        `conditional`
+        awlmcc <br />`conditional`
       </td>
 
       <td>
-        `string` Merchant Category code is as per NPCI guidelines and is typically a numeric value of length = 4.  
-        For non-aggregator merchants, the merchant category code will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.  
-        For aggregator-merchants, the merchant category code of the actual beneficiary needs to be passed.  
-        This key is mandatory for the aggregator-merchants
+        `string` Merchant Category code is as per NPCI guidelines and is typically a numeric value of length = 4.<br />For non-aggregator merchants, the merchant category code will be picked up from the details registered with PayU. Any detail passed by the merchant would be ignored.<br />For aggregator-merchants, the merchant category code of the actual beneficiary needs to be passed.<br />This key is mandatory for the aggregator-merchants
       </td>
 
       <td>
@@ -382,23 +353,25 @@ The `var1` parameter is similar to the following JSON format and description of 
 | string    | QR String is plain text will be returned in response along with QR ID & VPA associated to the QR, the QR string can be converted into image and used for accepting transactions.                                                  |
 | base64    | Base 64 encoded string will be returned in response along with QR ID & VPA associated to the QR, the encoded string provides a layer of security which can be eventually converted into image and used for accepting transactions |
 
-> 🚧 Callout
->
-> * The QrName, qrCity and qrPincode parameters are optional. The following values for these parameters are embedded in the QR when these parameters is empty or not set, merchant details are used as follows:
->   * **qrName**: Merchant’s name registered during the onboarding process.
->   * **qrCity**: Merchant’s city registered during the onboarding process.
->   * **qrPinCode**: Merchant’s PIN code registered during the onboarding process.
-> * The customer details are optional. If not posted, the default value is null. The following rules are to be followed while sending customer details:
->   * Phone number and email address are to be sent in their respective formats.
->   * **customerAddress** can be up to 100 characters. The first 100 characters will be truncated if the value is more than 100 characters for this parameter.
-> * VendorKey should always be unique and different for every new QR generated. The parameter should be alphanumeric & less than or equal to 10 characters.
-> * The response sent for QR generation request is JSON encoded and will be a base64 encoded string of the actual QR image, so to obtain the actual QR image, first decode the json encoded response and then convert the base64 encoded string to actual QR image.
-> * For every QR generation request, in the response PayU will share back the unique identifier, qrId, embedded in the QR. This reference id is generated based on the vendor key shared in the QR generation request.
-> * Map the QR image to this qrId and with respective terminal at which you will use this QR. These details need to be sent to PayU during payment initiation request sent for a particular terminal.
+<Callout icon="🚧" theme="warn">
+  ### Callout
+
+  - The QrName, qrCity and qrPincode parameters are optional. The following values for these parameters are embedded in the QR when these parameters is empty or not set, merchant details are used as follows:
+    - **qrName**: Merchant’s name registered during the onboarding process.
+    - **qrCity**: Merchant’s city registered during the onboarding process.
+    - **qrPinCode**: Merchant’s PIN code registered during the onboarding process.
+  - The customer details are optional. If not posted, the default value is null. The following rules are to be followed while sending customer details:
+    - Phone number and email address are to be sent in their respective formats.
+    - **customerAddress** can be up to 100 characters. The first 100 characters will be truncated if the value is more than 100 characters for this parameter.
+  - VendorKey should always be unique and different for every new QR generated. The parameter should be alphanumeric & less than or equal to 10 characters.
+  - The response sent for QR generation request is JSON encoded and will be a base64 encoded string of the actual QR image, so to obtain the actual QR image, first decode the json encoded response and then convert the base64 encoded string to actual QR image.
+  - For every QR generation request, in the response PayU will share back the unique identifier, qrId, embedded in the QR. This reference id is generated based on the vendor key shared in the QR generation request.
+  - Map the QR image to this qrId and with respective terminal at which you will use this QR. These details need to be sent to PayU during payment initiation request sent for a particular terminal.
+</Callout>
 
 ## Sample request
 
-* **Static UPI QR**
+- **Static UPI QR**
 
 ```Text JAVA
 OkHttpClient client = new OkHttpClient().newBuilder()
@@ -484,7 +457,7 @@ puts response.read_body
 
 ## Sample response
 
-* Static UPI QR
+- Static UPI QR
 
 ```Text JSON
 {
@@ -492,10 +465,12 @@ puts response.read_body
 }
 ```
 
-* Static Bharat QR
+- Static Bharat QR
 
 ```Text JSON
 {
     "qrString": "000201010211021644038470007469080415522024070007469061661000307000746960825HDFC00006225020001855322626470010A0000005240129yellowqr.payutest.94@hdfcbank27370010A0000005240119STQ9y45z1cv3z5450925204569153033565802IN5910vendorName6010vendorCity610650017262350519STQ9y45z1cv3z545092070870007469630417EF",
 }
 ```
+
+<br />
