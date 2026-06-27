@@ -25,43 +25,43 @@ metadata:
 next:
   description: ''
 ---
-With the Merchant Hosted Checkout integration, the entire payment experience can be controlled by merchants and PayU provides APIs to power this checkout experience. This section provides the step-by-step procedure to integrate PayU's Offer Engine with Merchant Hosted Checkout integration, which enables you to display, validate, and apply various offers including instant discounts, cashback, and EMI options throughout your customer's journey.
-With this integration, you are not limited to showing offers only at checkout—you can surface them anywhere in your app or website where they make sense, whether that's on product pages, cart screens, or a dedicated offers section.
+With the Merchant Hosted Checkout integration, the entire payment experience can be controlled by merchants and PayU provides APIs to power this checkout experience. This section provides the step-by-step procedure to integrate PayU's Offer Engine with Merchant Hosted Checkout integration, which enables you to display, validate, and apply various offers including instant discounts, cashback, and EMI options throughout your customer's journey.<br />With this integration, you are not limited to showing offers only at checkout—you can surface them anywhere in your app or website where they make sense, whether that's on product pages, cart screens, or a dedicated offer section.
 
 ## Customer journey on Merchant Hosted Checkout
 
 The following video walks through the customer journey:
 
-<Embed typeOfEmbed="youtube" url="https://www.youtube.com/watch?v=tRRbSzk9Egg" html="%3Ciframe%20class%3D%22embedly-embed%22%20src%3D%22%2F%2Fcdn.embedly.com%2Fwidgets%2Fmedia.html%3Fsrc%3Dhttps%253A%252F%252Fwww.youtube.com%252Fembed%252FtRRbSzk9Egg%253Ffeature%253Doembed%26display_name%3DYouTube%26url%3Dhttps%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253DtRRbSzk9Egg%26image%3Dhttps%253A%252F%252Fi.ytimg.com%252Fvi%252FtRRbSzk9Egg%252Fhqdefault.jpg%26type%3Dtext%252Fhtml%26schema%3Dyoutube%22%20width%3D%22854%22%20height%3D%22480%22%20scrolling%3D%22no%22%20title%3D%22YouTube%20embed%22%20frameborder%3D%220%22%20allow%3D%22autoplay%3B%20fullscreen%3B%20encrypted-media%3B%20picture-in-picture%3B%22%20allowfullscreen%3D%22true%22%3E%3C%2Fiframe%3E" href="https://www.youtube.com/watch?v=tRRbSzk9Egg" providerUrl="https://www.youtube.com/" providerName="YouTube" />
+<Embed title="" typeOfEmbed="youtube" url="https://www.youtube.com/watch?v=tRRbSzk9Egg" href="https://www.youtube.com/watch?v=tRRbSzk9Egg" html="%3Ciframe%20class%3D%22embedly-embed%22%20src%3D%22%2F%2Fcdn.embedly.com%2Fwidgets%2Fmedia.html%3Fsrc%3Dhttps%253A%252F%252Fwww.youtube.com%252Fembed%252FtRRbSzk9Egg%253Ffeature%253Doembed%26display_name%3DYouTube%26url%3Dhttps%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253DtRRbSzk9Egg%26image%3Dhttps%253A%252F%252Fi.ytimg.com%252Fvi%252FtRRbSzk9Egg%252Fhqdefault.jpg%26type%3Dtext%252Fhtml%26schema%3Dyoutube%22%20width%3D%22854%22%20height%3D%22480%22%20scrolling%3D%22no%22%20title%3D%22YouTube%20embed%22%20frameborder%3D%220%22%20allow%3D%22autoplay%3B%20fullscreen%3B%20encrypted-media%3B%20picture-in-picture%3B%22%20allowfullscreen%3D%22true%22%3E%3C%2Fiframe%3E" providerName="YouTube" providerUrl="https://www.youtube.com/" />
 
 <br />
 
 The steps involved in the customer journey are:
 
-* **Step 1**: Login
+- **Step 1**: Login
   Your customer logs into your app or website. At this point, they're just browsing.
 
-* **Step 2**: Product Selection
+- **Step 2**: Product Selection
   The customer adds products or services to their cart. This is your first opportunity to show relevant offers using the **Fetch Offers** API, potentially influencing their purchase decision before they even reach checkout.
 
-* **Step 3**: Checkout and Offer Discovery
+- **Step 3**: Checkout and Offer Discovery
   When the customer lands on your checkout page, you'll call the Fetch Offers API to retrieve all applicable offers for their specific transaction. PayU returns everything you need to display the offer attractively, including the title, description, terms and conditions, applicable payment methods, and the actual discount or cashback value. Think of this API as your offer catalog for this particular transaction.
 
-* **Step 4**: Payment Method Selection and Validation
+- **Step 4**: Payment Method Selection and Validation
   After the customer chooses their preferred payment method and enters the required details, you must use the **Validate Offer** API to confirm whether the selected offer will actually apply to this transaction. This validation step is crucial because it prevents customer disappointment at the final stage.
 
   For EMI-specific flows, there's an additional step. When a customer selects EMI (whether credit card, debit card, or cardless EMI), you'll first call the **Calculate EMI** API. This API returns all available EMI plans along with applicable offers, letting you display complete pricing information upfront. You can call this API not just at checkout but anywhere you want to show EMI options, such as product detail pages. After the customer selects an EMI plan and completes their payment details, you'll then call the **Validate Offer** API to ensure the EMI offer will be honored.
 
-* **Step 5**: Payment Initiation
+- **Step 5**: Payment Initiation
   You initiate the actual payment using the payment API, passing along the validated offer. The behavior differs based on offer type. For instant discounts, the transaction amount is reduced immediately. For cashback, the full amount is charged but the customer receives credit later.
 
-* **Step 6**: Two-Factor Authentication
+- **Step 6**: Two-Factor Authentication
   The customer completes their bank's 2FA process on the adjusted amount (reduced amount for instant discount, original amount for cashback).
 
-* **Step 7**: Return to your Site.  
-  After successful payment, the customer is redirected back to your app or website.
+- **Step 7**: Return to your Site.<br />After successful payment, the customer is redirected back to your app or website.
 
 <Callout icon="👍" theme="okay">
+  ###
+
   **Tip**: You're not limited to showing offers only at checkout. Consider using the **Fetch Offers** API on product pages to highlight "Buy now and get 10% instant discount" messaging, on cart pages to encourage completion, or in a dedicated offers section to drive engagement.
 </Callout>
 
@@ -70,6 +70,8 @@ The steps involved in the customer journey are:
 To integrate offers using Merchant Hosted Checkout integration:
 
 <Callout icon="❗️" theme="error">
+  ###
+
   **Prerequisites**: Before starting, ensure you're familiar with the standard Merchant Hosted Checkout workflow. If you haven't implemented basic checkout yet, refer to the Merchant Hosted Checkout documentation first. For the Merchant Hosted Checkout workflow, refer [Merchant Hosted Checkout](doc:custom-checkout-merchant-hosted)
 </Callout>
 
@@ -91,7 +93,7 @@ Use the **Validate Offer** API to validate if the offer will be applied on this 
 
 ### Step 4: Make Payment
 
-Make the payment request using the **_payment** API using the following additional parameters for Offers. For more information on the complete list of parameters to be posted, refer to  <Anchor label="Collect Payment API - Merchant Hosted Checkout" target="_blank" href="ref:_payment_merchant_hosted">Collect Payment API - Merchant Hosted Checkout</Anchor>
+Make the payment request using the **\_payment** API using the following additional parameters for Offers. For more information on the complete list of parameters to be posted, refer to  <Anchor target="_blank" href="ref:_payment_merchant_hosted">Collect Payment API - Merchant Hosted Checkout</Anchor>
 
 <Accordion title="Request Parameters" icon="fa-table">
   <Table align={["left","left","left"]}>
@@ -361,13 +363,15 @@ Make the payment request using the **_payment** API using the following addition
   </Table>
 </Accordion>
 
-> 📘 Notes:
->
-> * The following order must be used for hashing:
->   `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|offer_key|offer_auto_apply|SALT`
->   For more information on hash generation process, refer to [Hashing Request and Response](ref:generate-hash-merchant-hosted).
-> * If any of the keys is null/not configured, "|" character must be concatenated.
-> * The above hash logic is for _payment API version 10 or later
+<Callout icon="📘" theme="info">
+  ### Notes:
+
+  - The following order must be used for hashing:
+    `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|offer_key|offer_auto_apply|SALT`
+    For more information on hash generation process, refer to [Hashing Request and Response](ref:generate-hash-merchant-hosted).
+  - If any of the keys is null/not configured, "|" character must be concatenated.
+  - The above hash logic is for \_payment API version 10 or later
+</Callout>
 
 <Accordion title="Sample Request" icon="fa-code">
   **Sample Request with cart\_details JSON object**
@@ -783,11 +787,11 @@ Check the following response parameters (for Offers) from PayU to handle the pay
 
 Similar to the payment response, same params can be handled as part of the **Verify Payment** API or webhooks. For more information, For more information, refer to following tabs.
 
-| Parameter          | Description                                                                                                                                                                                      | **Example** |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
-| transaction_amount | This parameter contains the total transaction amount before discount.                                                                                                                            | 50000.00    |
-| net_amount_debit   | This parameter contains the actual amount deducted from the customer’s payment instrument. In case of Instant discount this amount would be lesser than the amount passed by you in the request. | 47500.00    |
-| discount           | This parameter contains the offer value provided to the user. This value will specify the offer amount for both Instant discount and Cashback offers.                                            | 2500.00     |
+| Parameter           | Description                                                                                                                                                                                      | **Example** |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+| transaction\_amount | This parameter contains the total transaction amount before discount.                                                                                                                            | 50000.00    |
+| net\_amount\_debit  | This parameter contains the actual amount deducted from the customer’s payment instrument. In case of Instant discount this amount would be lesser than the amount passed by you in the request. | 47500.00    |
+| discount            | This parameter contains the offer value provided to the user. This value will specify the offer amount for both Instant discount and Cashback offers.                                            | 2500.00     |
 
 <Verify_Payment_Tabs />
 
@@ -796,5 +800,9 @@ Similar to the payment response, same params can be handled as part of the **Ver
 PayU would refund the exact amount passed by you in the Refund request. For more information, refer to [Refunds for Offers](doc:refunds-for-offers)
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Note**: You can enable the **Enforce Offer** flag by requesting your PayU Key Account Manager. If you enable the **Enforce Offer** flag, the best offer out of the all the offers passed will be applied for the customer.
 </Callout>
+
+<br />
