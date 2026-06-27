@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-This API is used to delink the BNPL Link & Pay that was done earlier using **_payment** API as in the [Collect Payment API - BNPL Link & Pay](ref:collect-payment-api-bnpl-link-pay). 
+This API is used to delink the BNPL Link & Pay that was done earlier using **\_payment** API as in the [Collect Payment API - BNPL Link & Pay](ref:collect-payment-api-bnpl-link-pay).
 
 ### Environment
 
@@ -59,6 +59,7 @@ The request header contains the following fields:
 <li><strong>username</strong>: The merchant key of the merchant.</li>
 <li><strong>algorithm</strong>: This must have the value as <strong>hmac-sha512</strong> that is used for this API</li>
 <li><strong>headers</strong>: This must have the value as <strong>date digest</strong></li>
+
 <li><strong>signature</strong>: This must contain the hmacsha512 of (signing_string, merchant_secret), where:<ul>
 <li><strong>signing_string</strong>: This is in the &quot;<strong>Date</strong>&quot;+&quot;\n&quot;+&quot;<strong>Digest</strong>&quot; format. Here, the Date and Digest is the same values in the fields listed in this table For example, &quot;Thu, 17 Feb 2022 08:17:59 GMT&quot;&quot;\n&quot;+“vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=“</li>
 <li><strong>merchant_secret</strong>: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to <a href="doc:generate-merchant-key-and-salt-on-payu-dashboard">Generate Merchant Key and Salt on PayU Dashboard</a></li>
@@ -72,7 +73,7 @@ The request header contains the following fields:
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>platformId<br><strong>mandatory</strong></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the platform ID and include the value as <strong>1</strong>.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>This field contains the platform ID and you must include the value as <strong>1</strong>.</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>1</p>
 </td>
@@ -83,10 +84,10 @@ The request header contains the following fields:
 
 **Required parameters for calculating authorization**
 
-* Date
-* Authorization
+- Date
+- Authorization
 
-The following sample Java code contains the logic used to encrypt as described in the above table:
+The following sample Java code contains the logic to be used to encrypt as described in the above table:
 
 ```java
 package com.payu.apilayer.util;
@@ -156,12 +157,14 @@ public class HmacAuth {
 
 ### Body parameters
 
-> 📘 Note:
->
-> You can use any of the following combination of the mandatory parameters apart from requestId and amount:
->
-> * pg+bankcode+user_credentials
-> * payuToken+user_credentials
+<Callout icon="📘" theme="info">
+  ### Note:
+
+  You can use any of the following combination of the mandatory parameters apart from requestId and amount:
+
+  - pg+bankcode+user\_credentials
+  - payuToken+user\_credentials
+</Callout>
 
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
@@ -247,7 +250,7 @@ public class HmacAuth {
 
 ## Sample request
 
-### With pg, bankcode and user_credentials
+### With pg, bankcode and user\_credentials
 
 ```
 curl --location 'https://test.payu.in/info/linkAndPay/delinkInstrument' \
@@ -264,7 +267,7 @@ curl --location 'https://test.payu.in/info/linkAndPay/delinkInstrument' \
 
 ```
 
-### With payuToken and user_credentials
+### With payuToken and user\_credentials
 
 ```
 curl --location 'https://test.payu.in/info/linkAndPay/delinkInstrument' \
@@ -320,3 +323,5 @@ curl --location 'https://test.payu.in/info/linkAndPay/delinkInstrument' \
 "status": “FAILURE”
 }
 ```
+
+<br />
