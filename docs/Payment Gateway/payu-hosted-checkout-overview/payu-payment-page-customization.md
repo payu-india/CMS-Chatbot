@@ -1167,6 +1167,19 @@ Refer to the <Anchor target="_blank" href="https://docs.payu.in/v3.0_pg-web-chec
 
 The categories passed in the `drop_category` parameter are hidden or not displayed in the checkout.
 
+### Errors and Troubleshooting
+
+<Accordion title="Method still visible" icon="fa-info-circle">
+**Possible causes:**
+- Invalid category
+
+- Drop parameter not passed
+
+- Conflicting rules
+
+- Merchant-level override
+</Accordion>
+
 ***
 
 ## Common Failures for Drop Configuration
