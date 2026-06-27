@@ -33,8 +33,11 @@ curl --location --request PATCH 'https://uatoneapi.payu.in/payout/v2/virtualAcco
 --header 'merchantId: 12345' \
 --header 'virtualAccountId: 987654'
 ```
+
 ## Sample Response
+
 ### Success scenario
+
 ```json
 {
   "status": 0,
@@ -54,6 +57,7 @@ curl --location --request PATCH 'https://uatoneapi.payu.in/payout/v2/virtualAcco
 ```
 
 ## Response Parameters
+
 <HTMLBlock>{`
           <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
             <thead>
@@ -92,7 +96,7 @@ curl --location --request PATCH 'https://uatoneapi.payu.in/payout/v2/virtualAcco
                 <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">data</td>
                 <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">This parameter contains the virtual account details in JSON format. For more information, refer to <a href="#data-json-fields-description">data JSON Fields Description</a>
 </td>
-                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">refer to <a href="data-json-fields-description">data JSON Fields Descriptiont></td>
+                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">refer to <a href="data-json-fields-description">data JSON Fields Description></td>
               </tr>
              
             </tbody>
@@ -101,22 +105,24 @@ curl --location --request PATCH 'https://uatoneapi.payu.in/payout/v2/virtualAcco
 
 ### data JSON Fields Description
 
-| Field           | Description                                                                                |
-| ------------------- | ------------------------------------------------------------------------------------------ |
+| Field                  | Description                                                                               |
+| ---------------------- | ----------------------------------------------------------------------------------------- |
 | `virtualAccountId`     | PayU-assigned VA identifier. Use this in get-details, deactivate, and list-deposits APIs. |
 | `merchantId`           | Sub-merchant MID the VA belongs to                                                        |
 | `virtualAccountName`   | Name supplied at creation                                                                 |
 | `virtualAccountNumber` | Account number the payer credits                                                          |
 | `ifsc`                 | IFSC for the VA (corporate VA IFSC for Axis-backed accounts)                              |
 | `merchantName`         | Registered merchant name                                                                  |
-| isActive    | `false` after successful deactivation                                                      |
-| noOfPages     | Total pages for the current `pageSize`                                                                                 |
-| totalElements   | Total VA records for the MID                                                                                           |
-| currentPage    | Current page number                                                                                                    |
-| virtualAccounts | Array of VA objects  |
+| isActive               | `false` after successful deactivation                                                     |
+| noOfPages              | Total pages for the current `pageSize`                                                    |
+| totalElements          | Total VA records for the MID                                                              |
+| currentPage            | Current page number                                                                       |
+| virtualAccounts        | Array of VA objects                                                                       |
 
 <Callout icon="📘" theme="info">
-**Note**:
+  ###
+
+  **Note**:
 
   Deactivation blocks **new** incoming transfers to the VA. Credits already received and linked PayU transactions are not removed. Contact your PayU Key Account Manager (KAM) if you need to reactivate a VA.
 </Callout>
