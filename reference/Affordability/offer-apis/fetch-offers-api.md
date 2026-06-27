@@ -10,10 +10,12 @@ metadata:
 next:
   description: ''
 ---
-The **fetch_offers** API fetches all active (with the **Live** status on Dashboard) offers for this Merchant ID.
+The **fetch\_offers** API fetches all active (with the **Live** status on Dashboard) offers for this Merchant ID.
 
 <Callout icon="📘" theme="info">
-  **Note**: If the amount are received in the request, the discount calculation for each offer is also sent as part of the response. If the amount is not received, the response does not contain the discount calculation fields.
+  ###
+
+  **Note**: If the amount is received in the request, the discount calculation for each offer is also sent as part of the response. If the amount is not received, the response does not contain the discount calculation fields.
 </Callout>
 
 **Endpoints**
@@ -80,7 +82,7 @@ The **fetch_offers** API fetches all active (with the **Live** status on Dashboa
       </td>
 
       <td>
-        This field is in the following format: hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="CkGfgbho69uTMMOGU0mHWf+1CUAlIp3AjvsON9n9/E4=" Where the above format includes the following: • username: The merchant key of the merchant. • algorithm: This must have the value as hmac-sha256 that is used for this API • headers: This must have the value as date digest • signature: This must contain the hmacsha256 of (signing_string, merchant_secret), where: • signing_string: This is in the "Date"+"\n"+"Digest" format. Here, the Date and Digest is the same values in the fields listed in this table For example, "Thu, 17 Feb 2022 08:17:59 GMT""\n"+"vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=" • merchant_secret: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to Generate Merchant Key and Salt on PayU Dashboard
+        This field is in the following format: hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="CkGfgbho69uTMMOGU0mHWf+1CUAlIp3AjvsON9n9/E4=" Where the above format includes the following: • username: The merchant key of the merchant. • algorithm: This must have the value as hmac-sha256 that is used for this API • headers: This must have the value as date digest • signature: This must contain the hmacsha256 of (signing\_string, merchant\_secret), where: • signing\_string: This is in the "Date"+"\n"+"Digest" format. Here, the Date and Digest is the same values in the fields listed in this table For example, "Thu, 17 Feb 2022 08:17:59 GMT""\n"+"vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=" • merchant\_secret: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to Generate Merchant Key and Salt on PayU Dashboard
       </td>
 
       <td>
@@ -95,7 +97,7 @@ The **fetch_offers** API fetches all active (with the **Live** status on Dashboa
       </td>
 
       <td>
-        This field contains the platform ID and include the value as 1.
+        This field contains the platform ID and must include the value as 1.
       </td>
 
       <td>
@@ -279,10 +281,12 @@ public class HmacAuth {
 
 <br />
 
-> 📘 Notes:
->
-> * If you had enable the **Enforce Offer** flag with PayU, the best offer out of the all the offers passed will be applied for the customer. While using this API,  the **autoApply** parameter must be set to true if the offer is automatically applied.
-> * All the parameters are optional, but the header is mandatory.
+<Callout icon="📘" theme="info">
+  ### Notes:
+
+  - If you had enable the **Enforce Offer** flag with PayU, the best offer out of the all the offers passed will be applied for the customer. While using this API,  the **autoApply** parameter must be set to true if the offer is automatically applied.
+  - All the parameters are optional, but the header is mandatory.
+</Callout>
 
 ### skusDetail Parameter Description
 
@@ -593,7 +597,7 @@ curl --location 'https://sandbox.payu.in/offers/transactions' \
 }
 ```
 
-* For Base No-Cost EMI  (NCE) with Instant Discount Offer
+- For Base No-Cost EMI  (NCE) with Instant Discount Offer
 
 ```json
 {
@@ -4088,7 +4092,7 @@ Response;
 
 ### With autoApply=false
 
-**Sample request **
+**Sample request**
 
 ```curl
 curl --location 'https://sandbox.payu.in/offers/transactions' \
@@ -4188,7 +4192,7 @@ curl --location 'https://sandbox.payu.in/offers/transactions' \
 
 ### Failure scenarios
 
-* Merchant ID does not exists
+- Merchant ID does not exists
 
 Merchant ID does not exists
 
@@ -4201,7 +4205,7 @@ Merchant ID does not exists
 }
 ```
 
-* The platform for client mismatch or does not exists
+- The platform for client mismatch or does not exists
 
 ```plaintext
 {
@@ -4212,7 +4216,7 @@ Merchant ID does not exists
 }
 ```
 
-* Service unavailable
+- Service unavailable
 
 ```plaintext
 {
@@ -4223,7 +4227,7 @@ Merchant ID does not exists
 }
 ```
 
-* Invalid request
+- Invalid request
 
 ```
 {
@@ -4603,7 +4607,7 @@ curl --location 'https://sandbox.payu.in/offers/transactions' \
 
 ### Failure scenarios
 
-* Merchant ID does not exists
+- Merchant ID does not exists
 
 Merchant ID does not exists
 
@@ -4616,7 +4620,7 @@ Merchant ID does not exists
 }
 ```
 
-* The platform for client mismatch or does not exists
+- The platform for client mismatch or does not exists
 
 ```plaintext
 {
@@ -4627,7 +4631,7 @@ Merchant ID does not exists
 }
 ```
 
-* Service unavailable
+- Service unavailable
 
 ```plaintext
 {
@@ -4638,7 +4642,7 @@ Merchant ID does not exists
 }
 ```
 
-* Invalid request
+- Invalid request
 
 ```
 {
@@ -4649,7 +4653,7 @@ Merchant ID does not exists
 }
 ```
 
-* Offer key is mandatory when autoApply=false
+- Offer key is mandatory when autoApply=false
 
 ```
 {
@@ -5178,3 +5182,5 @@ The sample value for **offers** field in a JSON is similar to the following:
             }
         ]
 ```
+
+<br />
