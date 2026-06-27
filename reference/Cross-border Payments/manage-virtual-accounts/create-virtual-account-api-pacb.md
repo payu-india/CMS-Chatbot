@@ -44,8 +44,11 @@ curl --location --request POST 'https://uatoneapi.payu.in/payout/v2/virtualAccou
   "externalRefId": "merchant-va-ref-001"
 }'
 ```
+
 ## Sample Response
+
 ### Success scenario
+
 ```json
 {
   "status": 0,
@@ -63,8 +66,11 @@ curl --location --request POST 'https://uatoneapi.payu.in/payout/v2/virtualAccou
   "code": null
 }
 ```
+
 ### Failure scenario
-**virtualAccountName parameter value is posted blank** 
+
+**virtualAccountName parameter value is posted blank**
+
 ```json
 {
   "status": 1,
@@ -73,7 +79,9 @@ curl --location --request POST 'https://uatoneapi.payu.in/payout/v2/virtualAccou
   "code": 100125
 }
 ```
+
 **Virtual Account Name is already present or unable to create**
+
 ```json
 {
   "status": 1,
@@ -123,7 +131,7 @@ curl --location --request POST 'https://uatoneapi.payu.in/payout/v2/virtualAccou
                 <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">data</td>
                 <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">This parameter contains the virtual account details in JSON format. For more information, refer to <a href="#data-json-fields-description">data JSON Fields Description</a>
 </td>
-                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">refer to <a href="data-json-fields-description">data JSON Fields Descriptiont></td>
+                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">refer to <a href="data-json-fields-description">data JSON Fields Description></td>
               </tr>
              
             </tbody>
