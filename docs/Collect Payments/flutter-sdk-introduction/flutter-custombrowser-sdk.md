@@ -83,7 +83,7 @@ To integrate PayU CustomBrowser with flutter SDK, perform the following steps:
 </Accordion>
 
 <Accordion title="Step 3: Callback/ Protocol implementation" icon="fa-code">
-  * Implement protocol at class level and override it’s methods to get hash generation and transaction callbacks.
+  * Implement protocol at class level and override its methods to get hash generation and transaction callbacks.
 
   ```d Dart
   class _MyAppState extends State<MyApp> implements PayUCustomBrowserProtocol
@@ -203,7 +203,7 @@ To integrate PayU CustomBrowser with flutter SDK, perform the following steps:
     <tr>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>amount <code>Mandatory</code></p></td>
       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Total transaction amount.</p></td>
-      <td style="border: 1px solid #ddd; padding: 8px;"><p>Cannot be null or empty and should be valid double stringified example: “100.0”</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>Cannot be null or empty and should be valid double string field example: “100.0”</p></td>
     </tr>
     <tr>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>product\_info <code>Mandatory</code></p></td>
