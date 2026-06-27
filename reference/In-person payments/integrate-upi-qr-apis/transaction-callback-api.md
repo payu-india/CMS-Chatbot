@@ -12,8 +12,8 @@ next:
 ---
 The **Transaction Callback** API is a sample of the response that is posted to ws callback url/webhook after the transaction has been processed.
 
-* All callbacks POST data on merchant’s callback URL.
-* Validation of final response happens on the basis of hash value being returned in the hash value of the response.
+- All callbacks POST data on merchant’s callback URL.
+- Validation of final response happens on the basis of hash value being returned in the hash value of the response.
 
 ## Reverse Hash Calculation
 
@@ -42,7 +42,7 @@ This is strictly recommended to avoid any tamper cases or MITM attacks. Hash str
 | udf4           | This parameter would contain the same value of udf4 which was sent or set in the QR generation request from merchant’s end to PayU                                                                                                                                                                                                                                                                                    |
 | udf5           | This parameter would contain the same value of udf5 which was sent or set in the QR generation request from merchant’s end to PayU                                                                                                                                                                                                                                                                                    |
 | field0         | QR ID will be replicated in this parameter, for eg: 'DYQ10588979405'                                                                                                                                                                                                                                                                                                                                                  |
-| field1         | In case of BQR if its a card transaction than this parameter will have the merchant 'Card no' and if it is s UPI transactions than it will have 'Customer name'                                                                                                                                                                                                                                                       |
+| field1         | In case of BQR if it is a card transaction than this parameter will have the merchant 'Card no' and if it is s UPI transactions than it will have 'Customer name'                                                                                                                                                                                                                                                     |
 | field3         | In case of UPI transaction this parameter will have 'Customer VPA'                                                                                                                                                                                                                                                                                                                                                    |
 | field5         | In case of UPI transaction this parameter will have 'Merchant VPA'                                                                                                                                                                                                                                                                                                                                                    |
 | field9         | This parameter would contain the status of the transaction                                                                                                                                                                                                                                                                                                                                                            |
@@ -172,3 +172,5 @@ This response is sent in a key or value pair separated by ‘&’ character. In 
 ```
 unmappedstatus=success&phone=9833207342&txnid=STQ1R1008701!3212446&hash=84e335094bbcb2ddaa0f9a488eb338e143b273765d89c9dfa502402562d0b6f3c7935e28194ca92f7380be7c84c3695415b106dcf52cb016a15fcf6adc98d724&status=success&card_no=519619XXXXXX5049&productinfo=StaticQR&mode=SBQR&amount=800.00&field4=smsplus.payu@indus&field3=9833208175@ybl&field9=SUCCESS&field0=test12423&bank_ref_no=121345432769&mihpayid=175477248&card_hash=9e88cb0573d4a826b61d808c0a870ed4a990682459b0ec9 e95ea421e8e47be8c&field1=42812key=smsplus
 ```
+
+<br />
