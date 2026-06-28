@@ -11,7 +11,7 @@ metadata:
     - Reserve Pay Merchant Hosted
   robots: index
 ---
-This section includes the API reference for UPI Reserve Paym OTM integration. For more information on UPI Reserve Pay, refer to [UPI Reserve Pay](doc:upi-reserve-pay).
+This section includes the API reference for UPI Reserve Pay OTM integration. For more information on UPI Reserve Pay, refer to [UPI Reserve Pay](doc:upi-reserve-pay).
 
 ## Request Parameters
 
