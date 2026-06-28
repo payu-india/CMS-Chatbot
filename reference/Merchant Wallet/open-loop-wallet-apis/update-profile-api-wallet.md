@@ -12,10 +12,10 @@ next:
 ---
 The **Update Profile** API will update a cardholder or wallet holder’ s profile basis the input details shared. Profile parameters that can be updated are:
 
-* KYC status (Ex. Simple CDD to Full CDD). Note: Although system allows down-grading of KYC Profile, the client must have a clear compliance policy around it .
-* Email ID
-* Mobile No. Although system allows upgrading of mobile number, the client must have a clear compliance policy around it.
-* Customer Name & Address
+- KYC status (Ex. Simple CDD to Full CDD). Note: Although system allows down-grading of KYC Profile, the client must have a clear compliance policy around it .
+- Email ID
+- Mobile No. Although system allows upgrading of mobile number, the client must have a clear compliance policy around it.
+- Customer Name & Address
 
 Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as customer identifier basis which Wallet-holder’s profile will be updated.
 
@@ -23,9 +23,11 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
 **HTTP Method: PATCH**
 
-> 📘 Note:
->
-> Domain will be shared once this move to respective environment).
+<Callout icon="📘" theme="info">
+  ### Note:
+
+  Domain will be shared once this move to respective environment).
+</Callout>
 
 ## Request parameters
 
@@ -67,8 +69,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        token\
-        **mandatory**
+        token<br />**mandatory**
       </td>
 
       <td>
@@ -76,13 +77,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
       </td>
 
       <td>
-         Pl8F5kDZcvADIi\
-        ursiAvvbHNuL9Wv\
-        5eaFdorGVFU6FKfIEn\
-        V/YskkzJlAov2ZHJW\
-        nqGNLOXfBq4SQqw8E\
-        p4sK0gCAAkRXATCb1\
-        nSY6s=
+         Pl8F5kDZcvADIi<br />ursiAvvbHNuL9Wv<br />5eaFdorGVFU6FKfIEn<br />V/YskkzJlAov2ZHJW<br />nqGNLOXfBq4SQqw8E<br />p4sK0gCAAkRXATCb1<br />nSY6s=
       </td>
     </tr>
 
@@ -102,8 +97,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        messageCode\
-        **mandatory**
+        messageCode<br />**mandatory**
       </td>
 
       <td>
@@ -117,8 +111,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        clientTxnId\
-        **mandatory**
+        clientTxnId<br />**mandatory**
       </td>
 
       <td>
@@ -132,8 +125,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        customerId\
-        **conditional**
+        customerId<br />**conditional**
       </td>
 
       <td>
@@ -147,8 +139,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        urn\
-        **conditional**
+        urn<br />**conditional**
       </td>
 
       <td>
@@ -162,8 +153,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        customerMobile\
-        **conditional**
+        customerMobile<br />**conditional**
       </td>
 
       <td>
@@ -177,8 +167,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        sorCustomerId\
-        **optional**
+        sorCustomerId<br />**optional**
       </td>
 
       <td>
@@ -192,16 +181,15 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        newcardprofileId\
-        **optional**
+        newcardprofileId<br />**optional**
       </td>
 
       <td>
-        `Numeric`New KYC Profile to be updated.  
+        `Numeric`New KYC Profile to be updated.
 
-        * 150-full CDD  
-        * 30-Simple CDD  
-        * 300- No CDD
+        - 150-full CDD
+        - 30-Simple CDD
+        - 300- No CDD
       </td>
 
       <td>
@@ -211,8 +199,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        ProfileIdchangedate\
-        **optional**
+        ProfileIdchangedate<br />**optional**
       </td>
 
       <td>
@@ -226,16 +213,15 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        cardProfileId\
-        **mandatory**
+        cardProfileId<br />**mandatory**
       </td>
 
       <td>
-        `Numeric` Present KYC Profile Id.  
+        `Numeric` Present KYC Profile Id.
 
-        * 150-full CDD  
-        * 30-Simple CDD  
-        * 300- No CDD
+        - 150-full CDD
+        - 30-Simple CDD
+        - 300- No CDD
       </td>
 
       <td>
@@ -245,8 +231,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        docType\
-        **optional**
+        docType<br />**optional**
       </td>
 
       <td>
@@ -260,8 +245,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        docCountry\
-        **optional**
+        docCountry<br />**optional**
       </td>
 
       <td>
@@ -275,8 +259,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        docExpiry\
-        **optional**
+        docExpiry<br />**optional**
       </td>
 
       <td>
@@ -290,8 +273,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        docNumber\
-        **optional**
+        docNumber<br />**optional**
       </td>
 
       <td>
@@ -305,8 +287,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        cKycDocNo\
-        **optional**
+        cKycDocNo<br />**optional**
       </td>
 
       <td>
@@ -320,8 +301,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        docConsent\
-        **optional**
+        docConsent<br />**optional**
       </td>
 
       <td>
@@ -335,8 +315,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        kycDateStamp\
-        **optional**
+        kycDateStamp<br />**optional**
       </td>
 
       <td>
@@ -350,8 +329,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        updateVectors\
-        **optional**
+        updateVectors<br />**optional**
       </td>
 
       <td>
@@ -365,8 +343,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        updateDate\
-        **optional**
+        updateDate<br />**optional**
       </td>
 
       <td>
@@ -380,8 +357,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        addressline1\
-        **optional**
+        addressline1<br />**optional**
       </td>
 
       <td>
@@ -395,8 +371,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        addressline2\
-        **optional**
+        addressline2<br />**optional**
       </td>
 
       <td>
@@ -410,8 +385,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        addressline3\
-        **optional**
+        addressline3<br />**optional**
       </td>
 
       <td>
@@ -425,8 +399,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        cardholderAddress\
-        **optional**
+        cardholderAddress<br />**optional**
       </td>
 
       <td>
@@ -440,8 +413,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        cardholderCity\
-        **optional**
+        cardholderCity<br />**optional**
       </td>
 
       <td>
@@ -455,8 +427,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        cardholderState\
-        **optional**
+        cardholderState<br />**optional**
       </td>
 
       <td>
@@ -470,8 +441,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        cardholderCountry\
-        **optional**
+        cardholderCountry<br />**optional**
       </td>
 
       <td>
@@ -485,8 +455,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        cardholderZipCode\
-        **optional**
+        cardholderZipCode<br />**optional**
       </td>
 
       <td>
@@ -500,8 +469,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        firstName\
-        **optional**
+        firstName<br />**optional**
       </td>
 
       <td>
@@ -515,8 +483,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        lastName\
-        **optional**
+        lastName<br />**optional**
       </td>
 
       <td>
@@ -530,8 +497,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        emailId\
-        **optional**
+        emailId<br />**optional**
       </td>
 
       <td>
@@ -545,8 +511,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        dateOfBirth\
-        **optional**
+        dateOfBirth<br />**optional**
       </td>
 
       <td>
@@ -560,8 +525,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        gender\
-        **optional**
+        gender<br />**optional**
       </td>
 
       <td>
@@ -575,8 +539,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        alternateEmailId\
-        **optional**
+        alternateEmailId<br />**optional**
       </td>
 
       <td>
@@ -590,12 +553,11 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 
     <tr>
       <td>
-        sorDisable\
-        **optional**
+        sorDisable<br />**optional**
       </td>
 
       <td>
-        `Boolean` If SOR is disabled SORr integration will not happen
+        `Boolean` If SOR is disabled, SOR integration will not happen
       </td>
 
       <td>
@@ -708,11 +670,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
       </td>
 
       <td>
-         Pl8F5kDZcvADIiursiAvv\
-        bHNuL9Wv5eaFdorGVFU6F\
-        KfIEnV/YskkzJlAov2ZHJ\
-        WnqGNLOXfBq4SQqw8Ep4\
-        sK0gCAAkRXATCb1nSY6s=
+         Pl8F5kDZcvADIiursiAvv<br />bHNuL9Wv5eaFdorGVFU6F<br />KfIEnV/YskkzJlAov2ZHJ<br />WnqGNLOXfBq4SQqw8Ep4<br />sK0gCAAkRXATCb1nSY6s=
       </td>
     </tr>
 
@@ -862,11 +820,11 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
       </td>
 
       <td>
-        Card profile ID can be any of the following:  
+        Card profile ID can be any of the following:
 
-        * 150 - Full CDD  
-        * 30 – Simple CDD  
-        * 300- No CDD 
+        - 150 - Full CDD
+        - 30 – Simple CDD
+        - 300- No CDD
       </td>
 
       <td>
@@ -974,3 +932,5 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
 "cardProfileId": 30
 }
 ```
+
+<br />
