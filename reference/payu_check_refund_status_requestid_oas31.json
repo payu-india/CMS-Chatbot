@@ -22,8 +22,8 @@
   "paths": {
     "/merchant/postservice.php": {
       "post": {
-        "summary": "Check Refund Status with Request ID",
-        "description": "Check the status of a specific refund request using the Request ID.\n\nThis API provides detailed information about:\n- Refund processing status\n- Settlement information  \n- Transaction details\n- Processing timestamps\n- Error messages if any\n\n**Request ID Source:** The Request ID is returned when the cancel_refund_transaction API is successfully executed.",
+        "summary": "Check Refund Status with Request ID API",
+        "description": "",
         "operationId": "checkRefundStatusWithRequestId",
         "tags": [
           "Refund Status"
