@@ -5,16 +5,17 @@ hidden: true
 metadata:
   robots: index
 ---
-An Account Funding Transaction (AFT) is a secure, electronic, "pull" payment method that moves money from a cardholder’s account (credit/debit) to a non-merchant account, such as a digital wallet, prepaid card, or investment account. It is primarily used to "load" or "top-up" funds, rather than for purchasing goods or services. This section describes the request parameters, sample request/response for _payment API using AFT with VISA Debit or Credit Cards.
+An Account Funding Transaction (AFT) is a secure, electronic, "pull" payment method that moves money from a cardholder’s account (credit/debit) to a non-merchant account, such as a digital wallet, prepaid card, or investment account. It is primarily used to "load" or "top-up" funds, rather than for purchasing goods or services. This section describes the request parameters, sample request/response for \_payment API using AFT with VISA Debit or Credit Cards.
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Note**: This integration must be used only with Merchant Category Code (MCC) of 6540 of VISA Debit or Credit Cards.
 </Callout>
 
 HTTP Method: **POST**
 
 <PaymentAPIEnvironment />
-
 
 <br />
 
@@ -121,7 +122,7 @@ HTTP Method: **POST**
       </tr>
       <tr>
         <td style="border: 1px solid #ddd; padding: 8px;"><p>address1<br><code>optional</code></p></td>
-        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The first line of the billing address. <strong>For Fraud Detection</strong>: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.</p></td>
+        <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The first line of the billing address. <strong>For Fraud Detection</strong>: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is required to provide the correct information.</p></td>
         <td style="border: 1px solid #ddd; padding: 8px;"><p></p></td>
       </tr>
       <tr>
@@ -331,3 +332,5 @@ HTTP Method: **POST**
   )
   ```
 </Accordion>
+
+<br />
