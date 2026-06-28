@@ -1182,19 +1182,6 @@ The categories passed in the `drop_category` parameter are hidden or not display
 
 ***
 
-## Common Failures for Drop Configuration
-
-### Method still visible
-
-Possible causes:
-
-- Invalid category
-- Drop parameter not passed
-- Conflicting rules
-- Merchant-level override
-
-***
-
 # Step 4: Set Checkout Display Language
 
 Use this to localize checkout.
