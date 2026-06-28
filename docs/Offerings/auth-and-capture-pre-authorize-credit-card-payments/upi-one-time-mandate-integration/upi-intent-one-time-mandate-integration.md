@@ -196,7 +196,7 @@ Post the additional parameters for with the Pre-Authorization using the Merchant
                        </td>
                        <td>
                          <code>varchar</code> Must contain the phone number of the customer.<br>
-                         This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.<br>
+                         This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is required to provide the correct information.<br>
                          <b>Character limit</b>: 50
                        </td>
                        <td>
