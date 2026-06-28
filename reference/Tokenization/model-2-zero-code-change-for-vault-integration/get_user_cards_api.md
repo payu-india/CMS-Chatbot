@@ -130,7 +130,7 @@ HTTP Method: **POST**
 
     ```plaintext
     {
-        "msg": "Cards fetched Succesfully",
+        "msg": "Cards fetched Successfully",
         "status": 1,
         "user_cards": {
             "9e299603hd4g7201b9cf6": {
