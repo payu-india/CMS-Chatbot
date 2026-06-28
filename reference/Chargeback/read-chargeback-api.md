@@ -21,6 +21,8 @@ The **Read Chargeback** API responds with the all the chargebacks corresponding 
 This must contain the header with token you get using the Chargeback Dashboard in the following format:
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Generate Token**: Use the Chargeback Dashboard to easily generate token in the Chargeback Dashboard. For more information, refer to [Generate Token on Chargeback Dashboard](ref:get_token_chargeback_dashboard).
 </Callout>
 
@@ -50,7 +52,7 @@ This must contain the header with token you get using the Chargeback Dashboard i
   <tbody>
     <tr>
       <td>
-        merchant_Id
+        merchant\_Id
         `mandatory`
       </td>
 
@@ -68,8 +70,8 @@ This must contain the header with token you get using the Chargeback Dashboard i
 <Callout icon="📘" theme="info">
   #### Notes:
 
-  * The maximum allowed chargebacks in a single request is 500 chargebacks.
-  * The maximum time period for which the chargebacks can be retrieved is 20 days.
+  - The maximum allowed chargebacks in a single request is 500 chargebacks.
+  - The maximum time period for which the chargebacks can be retrieved is 20 days.
 </Callout>
 
 ## With date
@@ -102,7 +104,7 @@ This must contain the header with token you get using the Get Token API in the f
   <tbody>
     <tr>
       <td>
-        merchant_Id
+        merchant\_Id
         `mandatory`
       </td>
 
@@ -117,7 +119,7 @@ This must contain the header with token you get using the Get Token API in the f
 
     <tr>
       <td>
-        from_date
+        from\_date
         `mandatory`
       </td>
 
@@ -132,7 +134,7 @@ This must contain the header with token you get using the Get Token API in the f
 
     <tr>
       <td>
-        to_date
+        to\_date
         `optional`
       </td>
 
@@ -174,7 +176,7 @@ curl --location 'https://bankportal.payu.in/api/v1/chargebacks?from_date=20-02-2
 
 ### data JSON field descriptions
 
-| Feild      | Description                                                                                                                                                                 |
+| Field      | Description                                                                                                                                                                 |
 | :--------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | id         | This parameter contains the  chargeback ID.                                                                                                                                 |
 | type       | The parameter contains the **chargebacks** as type.                                                                                                                         |
@@ -460,3 +462,5 @@ curl --location 'https://bankportal.payu.in/api/v1/chargebacks?from_date=20-02-2
     }
 }
 ```
+
+<br />
