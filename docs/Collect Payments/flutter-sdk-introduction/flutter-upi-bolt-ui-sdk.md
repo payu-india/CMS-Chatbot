@@ -80,7 +80,7 @@ PayU UPI Bolt UI SDK will provide a simpler and more efficient payment experienc
     1. **NPCI** - CommonLibrary.xcframework
     2. **AXIS** - OlivePayLibrary.xcframework
 
-    Add these framework in your project. The added framework is similar to the following screenshot:
+    Add the above frameworks in your project. The added framework is similar to the following screenshot:
 
     <br />
 
