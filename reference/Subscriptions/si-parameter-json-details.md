@@ -15,15 +15,15 @@ The description for the **si\_details** parameter (JSON format):
 <Table align={["left","left","left"]}>
   <thead>
     <tr>
-      <th style={{ textAlign: "left" }}>
+      <th>
         **JSON Field**
       </th>
 
-      <th style={{ textAlign: "left" }}>
+      <th>
         **Description**
       </th>
 
-      <th style={{ textAlign: "left" }}>
+      <th>
         **Example**
       </th>
     </tr>
@@ -31,162 +31,152 @@ The description for the **si\_details** parameter (JSON format):
 
   <tbody>
     <tr>
-      <td style={{ textAlign: "left" }}>
+      <td>
         billingCycle
         **mandatory**
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         Billing Cycle defines whether the customer needs to be charged over Daily, Weekly basis, Monthly or Yearly basis or one time.  
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         ONCE
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
+      <td>
         billingInterval
         **mandatory**
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         Billing Interval is closely coupled with the **billingCycle** field and denotes at what frequency, the subscription plan needs to be executed. For monthly subscriptions, parameter values need to be sent in the request are:
 
-        * billingCycle = MONTHLY
-        * billingInterval = 1
+        - billingCycle = MONTHLY
+        - billingInterval = 1
           Similarly, by keeping the following values, customer will be charged once in every 3 days:
-        * billingCycle = DAILY
-        * billingInterval = 3
+        - billingCycle = DAILY
+        - billingInterval = 3
       </td>
 
-      <td style={{ textAlign: "left" }}>
-        * billingCycle = MONTHLY
-        * billingInterval = 1 
+      <td>
+        - billingCycle = MONTHLY
+        - billingInterval = 1 
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        billingAmount\
-        **mandatory**
+      <td>
+        billingAmount<br />**mandatory**
       </td>
 
-      <td style={{ textAlign: "left" }}>
-        The billing amount is passed in XX. By default, the amount passed is treated as maximum amount which means the merchant is free to charge any amount for customer up to the amount specified in the defined subscription call.  \
-        **Note**: For UPI, **billingAmount** should not be more than INR 15000 as it is the maximum limit allowed for UPI currently.
+      <td>
+        The billing amount is passed in XX. By default, the amount passed is treated as maximum amount which means the merchant is free to charge any amount for customer up to the amount specified in the defined subscription call.  <br />**Note**: For UPI, **billingAmount** should not be more than INR 15000 as it is the maximum limit allowed for UPI currently.
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         INR 2000
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        billingCurrency\
-        **mandatory**
+      <td>
+        billingCurrency<br />**mandatory**
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         This field must be passed as “INR” .
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         INR
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        paymentStartDate\
-        **mandatory**
+      <td>
+        paymentStartDate<br />**mandatory**
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         The start date of the billing plan is specified in this field with the YYYY-MM-DD format.
 
-        * *Note*\*: All the subsequent recurring transactions will be processed from this date onwards as per**billingCycle**and**billingInterval**fields combination. This date acts as reference point for recurring payments.**Note**: In case of UPI, send the current date here and any other value will be ignored.
+        - _Note_\*: All the subsequent recurring transactions will be processed from this date onwards as per**billingCycle**and**billingInterval**fields combination. This date acts as reference point for recurring payments.**Note**: In case of UPI, send the current date here and any other value will be ignored.
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         2022-02-14
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        paymentEndDate\
-        **mandatory**
+      <td>
+        paymentEndDate<br />**mandatory**
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         The end date of the billing plan is specified in this field with the YYYY-MM-DD format.
 
-        * *Note*\*: Pass the correct end date to PayU. Depending upon start date and end date, number of payment iterations are internally calculated and same information is passed to acquirers or banks.
+        - _Note_\*: Pass the correct end date to PayU. Depending upon start date and end date, number of payment iterations are internally calculated and same information is passed to acquirers or banks.
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         2023-01-14
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        siTokenRequestor\
-        **mandatory for saved cards**
+      <td>
+        siTokenRequestor<br />**mandatory for saved cards**
       </td>
 
-      <td style={{ textAlign: "left" }}>
-        This is optional and is only needed before 30th September, 2022 to activate new mandate setups in a controlled manner than activating it completely on all users. This involves creating token at the time of susbcription set. You can include any of the following values::
+      <td>
+        This is optional and is only needed before 30th September, 2022 to activate new mandate setups in a controlled manner than activating it completely on all users. This involves creating token at the time of subscription set. You can include any of the following values::
 
-        * **1** : PayU will tokenise the card and share it in same subscription setup call with issuers for subscription setup.
-        * **2**: PayU will do the authorization on plain card. Later, the same response will be shared to merchant.
+        - **1** : PayU will tokenise the card and share it in same subscription setup call with issuers for subscription setup.
+        - **2**: PayU will do the authorization on plain card. Later, the same response will be shared to merchant.
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         1
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        remarks\
-        **optional**
+      <td>
+        remarks<br />**optional**
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         This field is used to provide remarks on PSP applications during the registration transaction of UPI.  For cards and Net Banking, this parameter has no significance.  Character limit = 50. 
 
-        * *Note*\*: This field is applicable only for UPI.
+        - _Note_\*: This field is applicable only for UPI.
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         Subscription for a year
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        billingLimit\
-        **optional**
+      <td>
+        billingLimit<br />**optional**
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         For UPI, this field is used to decide the period corresponding which the debit from the mandate recurring date can happen and this mandate registration date is confirmed during registration transaction of UPI.
 
-        * *Note*\*: This field is applicable only for UPI.\
-          The possible values are:
-        * **ON** = Use this parameter to deduct on a specific date
-        * **BEFORE** = Use this parameter to deduct before and on a specific date
-        * **AFTER** = Use this parameter to After and on the specific date
-        * *Note*\*: If no value is passed, ‘AFTER’ is considered by default.
+        - _Note_\*: This field is applicable only for UPI.<br />The possible values are:
+        - **ON** = Use this parameter to deduct on a specific date
+        - **BEFORE** = Use this parameter to deduct before and on a specific date
+        - **AFTER** = Use this parameter to After and on the specific date
+        - _Note_\*: If no value is passed, ‘AFTER’ is considered by default.
       </td>
 
-      <td style={{ textAlign: "left" }}>
-        ON=2022-02-20\
-        OR
+      <td>
+        ON=2022-02-20<br />OR
         BEFORE= 2022-02-20
         OR
         AFTER=2022-02-20
@@ -194,122 +184,113 @@ The description for the **si\_details** parameter (JSON format):
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        billingRule\
-        **optional**
+      <td>
+        billingRule<br />**optional**
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         For UPI, this field is used to decide the limitation on the amount of recurring debit against the mandate amount which is set during registration transaction of UPI.
 
-        * *Note*\*: This field is applicable only for UPI.\
-          The possible values are:
-        * **MAX** = This is the maximum amount that a merchant can debit, that is, merchant can debit lesser or equal to this amount for a recurring transaction.
-        * **EXACT**= This the exact amount that a merchant can debit in recurring debits.
+        - _Note_\*: This field is applicable only for UPI.<br />The possible values are:
+        - **MAX** = This is the maximum amount that a merchant can debit, that is, merchant can debit lesser or equal to this amount for a recurring transaction.
+        - **EXACT**= This the exact amount that a merchant can debit in recurring debits.
 
         Note: If no value is passed, ‘MAX’ is considered by default.
       </td>
 
-      <td style={{ textAlign: "left" }}>
-        MAX=5000\
-        OR
+      <td>
+        MAX=5000<br />OR
         EXACT=5000
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        billingDate\
-        **optional**
+      <td>
+        billingDate<br />**optional**
       </td>
 
-      <td style={{ textAlign: "left" }}>
-        * *Applicable for UPI only*\*: This field is used to decide the date/day, basis which the recurring debit should happen. This can be ignored and the debit will happen as per the start date in every cycle.
+      <td>
+        - _Applicable for UPI only_\*: This field is used to decide the date/day, basis which the recurring debit should happen. This can be ignored and the debit will happen as per the start date in every cycle.
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         billingDate=1
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        authpayuid\
-        **mandatory for modifying subscription with cards**
+      <td>
+        authpayuid<br />**mandatory for modifying subscription with cards**
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         This field is used only to modify an existing subscription/consent. Modification means modifying billing details like startDate, endDate, billing cycle, billing interval, billing amount.
       </td>
 
-      <td style={{ textAlign: "left" }}>
-         
+      <td>
+
       </td>
     </tr>
 
     <tr>
-      <td style={{ textAlign: "left" }}>
-        action\
-        **mandatory for cards**
+      <td>
+        action<br />**mandatory for cards**
       </td>
 
-      <td style={{ textAlign: "left" }}>
+      <td>
         This field is used to modify or delete an existing subscription.
       </td>
 
-      <td style={{ textAlign: "left" }}>
-        modify\
-        or
+      <td>
+        modify<br />or
         delete
       </td>
     </tr>
   </tbody>
 </Table>
 
-> 📘 Recurrence Rule for billingDate parameter
->
-> For WEEKLY
->
-> If the start date (day) = Monday, Rule\
-> Value = 1, for Tuesday it is 2.........for
-> Sunday it is 7.
->
-> For FORTNIGHTLY
->
-> For Start Date (1st – 15th) Rule Value\
-> \= Start Date
->
-> For Start Date (16th – 31th) Rule\
-> Value = Start Date – 15
->
-> For MONTHLY and greater than Monthly\
-> frequencies
->
-> Rule Value = Start Date
->
-> Possible values : Numeric values ( 1- 31)
->
-> For WEEKLY frequency: 
->
-> If the start date (day) = Monday, rule value = 1.
->
-> If the start date (day) = Tuesday, it is 2.
->
-> ...
->
-> ...
->
-> If the start date (day) = Sunday, it is 7.
->
-> For FORTNIGHTLY frequency
->
-> For Start Date (1st – 15th) Rule Value = Start Date
->
-> For Start Date (16th – 31th) Rule Value = Start Date – 15
->
-> For MONTHLY and greater than monthly frequency
->
-> Rule Value = Start Date, where the possible value is a numeric value between 1- 31
+<Callout icon="📘" theme="info">
+  ### Recurrence Rule for billingDate parameter
+
+  For WEEKLY
+
+  If the start date (day) = Monday, Rule<br />Value = 1, for Tuesday it is 2.........for
+  Sunday it is 7.
+
+  For FORTNIGHTLY
+
+  For Start Date (1st – 15th) Rule Value<br />= Start Date
+
+  For Start Date (16th – 31th) Rule<br />Value = Start Date – 15
+
+  For MONTHLY and greater than Monthly<br />frequencies
+
+  Rule Value = Start Date
+
+  Possible values : Numeric values ( 1- 31)
+
+  For WEEKLY frequency: 
+
+  If the start date (day) = Monday, rule value = 1.
+
+  If the start date (day) = Tuesday, it is 2.
+
+  ...
+
+  ...
+
+  If the start date (day) = Sunday, it is 7.
+
+  For FORTNIGHTLY frequency
+
+  For Start Date (1st – 15th) Rule Value = Start Date
+
+  For Start Date (16th – 31th) Rule Value = Start Date – 15
+
+  For MONTHLY and greater than monthly frequency
+
+  Rule Value = Start Date, where the possible value is a numeric value between 1- 31
+</Callout>
 
 ## si\_details Parameter Example Values
 
@@ -366,7 +347,7 @@ The description of the **billingCycle** parameter:
       <td>
         Used in use cases such as post-paid bills where there is no definite billing cycle and billing amount.
 
-        * **billingInterval** = Billing Interval is closely coupled with the value of “billingCycle” and denotes at what frequency, the subscription plan needs to be executed.
+        - **billingInterval** = Billing Interval is closely coupled with the value of “billingCycle” and denotes at what frequency, the subscription plan needs to be executed.
       </td>
     </tr>
 
@@ -378,8 +359,8 @@ The description of the **billingCycle** parameter:
       <td>
         Used for monthly subscriptions, parameter values that need to be sent in request are:
 
-        * billingCycle = MONTHLY 
-        * billingInterval = 1
+        - billingCycle = MONTHLY 
+        - billingInterval = 1
       </td>
     </tr>
 
@@ -391,8 +372,8 @@ The description of the **billingCycle** parameter:
       <td>
         Used for yearly subscriptions. parameter values that need to be sent in request are:
 
-        * billingCycle = YEARLY
-        * billingInterval = 1
+        - billingCycle = YEARLY
+        - billingInterval = 1
       </td>
     </tr>
 
@@ -404,8 +385,8 @@ The description of the **billingCycle** parameter:
       <td>
         Used for weekly subscriptions. Use the following values to charge the customer once every week:
 
-        * billingCycle = WEEKLY
-        * billingInterval = 1
+        - billingCycle = WEEKLY
+        - billingInterval = 1
       </td>
     </tr>
 
@@ -415,12 +396,13 @@ The description of the **billingCycle** parameter:
       </td>
 
       <td>
-        Used for daily subscriptions.\
-        Use the following values to charge the customer once in every 3 days:
+        Used for daily subscriptions.<br />Use the following values to charge the customer once in every 3 days:
 
-        * billingCycle = DAILY 
-        * billingInterval = 3
+        - billingCycle = DAILY 
+        - billingInterval = 3
       </td>
     </tr>
   </tbody>
 </Table>
+
+<br />
