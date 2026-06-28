@@ -305,7 +305,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
       </td>
 
       <td>
-        `Boolean` The consent of the card holder. In Case of Aadhaar validation of Full KYC user consent is required. This is not required for MGL.
+        `Boolean` The consent of the cardholder. In Case of Aadhaar validation of Full KYC user consent is required. This is not required for MGL.
       </td>
 
       <td>
