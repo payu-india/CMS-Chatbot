@@ -178,7 +178,7 @@ The following table describes the parameters for modifying the recurring payment
       <td>
         `varchar` Must contain the phone number of the customer.
 
-        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is required to provide the correct information Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.<br />Character limit: 50
+        This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is required to provide the correct information .Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions.<br />Character limit: 50
       </td>
 
       <td>
