@@ -69,15 +69,18 @@ The **Mandates** has a  **Details** sub-tab shows the amount, identifiers like t
 
 To filter and view a mandate details:
 
-1. Navigate to Subscriptions Dashboard and ensure that your are on **Mandates** tab.
+1. Navigate to Subscriptions Dashboard and ensure that you are on **Mandates** tab.
+
 2. Filter using any of the following fields on the top of the grid:
    - Subscription Created Date
    - Filter
    - Transaction ID
+
 3. Click the drop-down or expandable menu for a mandate to view the details.
 
 
    <Image src="https://files.readme.io/e72831e78642d5a775c768a8a8f3e1258624cb1a2701548bd9bff95c8daf9b0e-dashboard-subscriptions-mandate-details.png" align="center" border={true} />
+
 
 4. Select **View Details** from the **Actions** menu for the mandate that your wish to see the activity similar to the following screenshot:
 
