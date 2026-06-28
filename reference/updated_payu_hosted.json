@@ -19,7 +19,7 @@
           "Test",
           "TPV"
         ],
-        "summary": "MerchantHostedCheckout-Wallets",
+        "summary": "Collect Payment API - PayU Hosted Checkout",
         "description": "",
         "operationId": "MerchantHostedCheckout-Wallets",
         "parameters": [
