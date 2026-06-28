@@ -1,10 +1,8 @@
 ---
-title: Get User Cards API - Model 3
 excerpt: ''
 api:
   file: storecard-10.json
   operationId: GetUserCards
-deprecated: false
 hidden: false
 metadata:
   title: Get User Cards API - Model 3
@@ -45,7 +43,7 @@ HTTP Method: **POST**
   ```
     {
       "status": 1,
-      "msg": "Cards fetched Succesfully",
+      "msg": "Cards fetched Successfully",
       "user_cards": {
         "a52aa1c09e11ac56926005": {
           "one_click_status": "",
@@ -124,3 +122,5 @@ HTTP Method: **POST**
 <Accordion title="Reference info for request parameters" icon="fa-flask">
   <KeyHashForGeneralParametersDescription />
 </Accordion>
+
+<br />
