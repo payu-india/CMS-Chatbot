@@ -17,6 +17,8 @@ This API regenerates a wallet token using an existing token, ensuring continued 
 **Method:** `GET`
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Note:**
 
   This API uses the same endpoint as Token Generate API but with different parameters and method.
@@ -48,10 +50,11 @@ This API regenerates a wallet token using an existing token, ensuring continued 
 
 **Format:** `'amount''cell''merchantname''mid''msgcode''token''tokentype'`
 
-**Algorithm:** HMAC SHA256\
-**Secret Key:** Provided by Mobikwik during merchant onboarding
+**Algorithm:** HMAC SHA256<br />**Secret Key:** Provided by Mobikwik during merchant onboarding
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Note:**
 
   For merchant `MBK9006`, the secret key is `ju6tygh7u7tdg554k098ujd5468o`. Each merchant will receive their unique secret key.
@@ -164,8 +167,8 @@ GET https://test.mobikwik.com/tokengenerate?mid=MBK9006&cell=9311032820&msgcode=
 
       <td>
         `8feac7700a4efd1ef0  
-        8ea0ec5bf5921c3f1fc33
-        98944421978794b9ada1c2c47`
+                8ea0ec5bf5921c3f1fc33
+                98944421978794b9ada1c2c47`
       </td>
     </tr>
   </tbody>
@@ -274,7 +277,7 @@ The response checksum that will be returned to the users will have the following
                 155
             </td>
             <td style="border-color:#000000;border-width:1.0px;height:14.0px;padding:4.0px;width:285.0px;">
-                EIther OTP missing or Invalid OTP
+                Either OTP missing or Invalid OTP
             </td>
         </tr>
         <tr>
@@ -354,12 +357,14 @@ The response checksum that will be returned to the users will have the following
 ## Sample response
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Notes**:
 
-  * Always validate the response checksum for security
-  * The old token becomes invalid after successful regeneration
-  * Implement proper error handling for token regeneration failures
-  * Consider implementing automatic token refresh mechanisms
+  - Always validate the response checksum for security
+  - The old token becomes invalid after successful regeneration
+  - Implement proper error handling for token regeneration failures
+  - Consider implementing automatic token refresh mechanisms
 </Callout>
 
 ### Success response
@@ -377,7 +382,7 @@ The response checksum that will be returned to the users will have the following
 
 ### Failure scenarios
 
-* Failure Response - Invalid Token
+- Failure Response - Invalid Token
 
 ```json
 {
@@ -389,7 +394,7 @@ The response checksum that will be returned to the users will have the following
 }
 ```
 
-* Failure Response - Token Regeneration Limit Exceeded
+- Failure Response - Token Regeneration Limit Exceeded
 
 ```json
 {
@@ -400,3 +405,5 @@ The response checksum that will be returned to the users will have the following
   "checksum": "e35bc916fe4806591e16269fc912771456437b784fa144a77fa9842d154920dd"
 }
 ```
+
+<br />
