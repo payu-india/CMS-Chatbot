@@ -72,7 +72,7 @@ You need to activate the Pre-authorize payments before you start using the funct
 | productinfo<br/><code>mandatory</code> | <code>varchar</code> This parameter should contain a brief product description. It should be a string describing the product. <code>Character limit</code>: 100. | Time Magazine Subscription |
 | firstname<br/><code>mandatory</code> | <code>varchar</code> Must contain the first name of the customer. <code>Character limit</code>: 60. | Ashish |
 | email<br/><code>mandatory</code> | <code>varchar</code> Must contain the email of the customer. This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information. Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions. Character limit: 50. | Ashish@test.com |
-| phone<br/><code>mandatory</code> | <code>varchar</code> Must contain the phone number of the customer. This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information. Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions. Character limit: 50. | 9843176540 |
+| phone<br/><code>mandatory</code> | <code>varchar</code> Must contain the phone number of the customer. This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is required to provide the correct information. Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions. Character limit: 50. | 9843176540 |
 | surl<br/><code>mandatory</code> | surl is the acronym for Success URL. This parameter must contain the URL on which PayU will redirect the final response if the transaction is successful. | |
 | furl<br/><code>mandatory</code> | furl is the acronym for Failure URL. This parameter must contain the URL on which PayU will redirect the final response if the transaction is failed. | |
 | pg<br/><code>mandatory</code> | It defines the payment category for which you wish to perform UPI One-Time Mandate. For UPI, **pg= UPI**. | UPI |
@@ -141,7 +141,7 @@ When you initiate a pre-auth transaction request:
 
   For Intent, as part of response, Intent URL is returned. Now merchant needs to use data received in intentURIData parameter, JSON decode the response and use URL to invoke intent at their end
 
-  Once the transaction is authorised by the customer, PayU will receive confirmation. Same will be passed to the merchant as webhook
+  Once the transaction is authorised by the customer, PayU will receive confirmation. PayU will pass the confirmation to the merchant as webhook
 
   ```
   {
