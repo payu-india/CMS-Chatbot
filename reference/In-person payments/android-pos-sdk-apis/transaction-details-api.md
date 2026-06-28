@@ -53,8 +53,7 @@ Create a `PaymentInitialization` class object and call `initiateTransactionDetai
 
     <tr>
       <td>
-        `RefNO` \
-        mandatory
+        `RefNO` <br />mandatory
       </td>
 
       <td>
@@ -68,8 +67,7 @@ Create a `PaymentInitialization` class object and call `initiateTransactionDetai
 
     <tr>
       <td>
-        merchantRefNo \
-        `mandatory`
+        merchantRefNo <br />`mandatory`
       </td>
 
       <td>
@@ -83,8 +81,7 @@ Create a `PaymentInitialization` class object and call `initiateTransactionDetai
 
     <tr>
       <td>
-        appName \
-        `Optional`
+        appName <br />`Optional`
       </td>
 
       <td>
@@ -98,8 +95,7 @@ Create a `PaymentInitialization` class object and call `initiateTransactionDetai
 
     <tr>
       <td>
-        appVersion \
-        `Optional`
+        appVersion <br />`Optional`
       </td>
 
       <td>
@@ -113,8 +109,7 @@ Create a `PaymentInitialization` class object and call `initiateTransactionDetai
 
     <tr>
       <td>
-        Transaction Type \
-        `Optional`
+        Transaction Type <br />`Optional`
       </td>
 
       <td>
@@ -147,9 +142,9 @@ catch (RuntimeException e)
 
 ## Response parameters
 
-| Parameter                    | Description                                                                                                                  | Sample                                               |
-| :--------------------------- | :--------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------- |
-| `TransactionStatus Response` | objectTransactionStatusResponse returns the details of transaction such as card type, card holder name, reference number etc | Refer to {user.TransactionResponse} payload objects. |
+| Parameter                    | Description                                                                                                                 | Sample                                               |
+| :--------------------------- | :-------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------- |
+| `TransactionStatus Response` | objectTransactionStatusResponse returns the details of transaction such as card type, cardholder name, reference number etc | Refer to {user.TransactionResponse} payload objects. |
 
 ## Sample response
 
@@ -173,3 +168,5 @@ finish();
 };
 };
 ```
+
+<br />
