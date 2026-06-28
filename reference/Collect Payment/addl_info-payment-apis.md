@@ -11,7 +11,7 @@ next:
   description: ''
 ---
 ## Request parameters for \_payment API
-
+<HTMLBlock>{`
 <Table align={["left","left","left"]}>
   <thead>
     <tr>
@@ -608,6 +608,7 @@ next:
     </tr>
   </tbody>
 </Table>
+`}</HTMLBlock>
 
 <br />
 
@@ -1045,7 +1046,7 @@ The description of the fields in the additional\_info JSON.
 ## Response parameters
 
 ## General response parameters for all Web Checkout integrations
-
+<HTMLBlock>{`
 <Table>
   <thead>
     <tr>
@@ -1267,7 +1268,7 @@ The description of the fields in the additional\_info JSON.
     </tr>
   </tbody>
 </Table>
-
+`}</HTMLBlock>
 ## Response for initial Server-to-Server request
 
 | **Parameter**     | **Description**                                                                                                                                                                                                                                                              |
@@ -1296,7 +1297,7 @@ The description of the fields in the additional\_info JSON.
 | unmappedStatus | This field contains the unmapped status of the transaction. For more information, refer to [Payment State Explanations](ref:payment-state-explanations) |
 
 #### result JSON Fields Description
-
+<HTMLBlock>{`
 <Table align={["left","left"]}>
   <thead>
     <tr>
@@ -1566,7 +1567,7 @@ The description of the fields in the additional\_info JSON.
     </tr>
   </tbody>
 </Table>
-
+`}</HTMLBlock>
 ```
   {
   "mihpayid": "403993715531077182",
