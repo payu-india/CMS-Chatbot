@@ -1182,7 +1182,7 @@ The categories passed in the `drop_category` parameter are hidden or not display
 
 ***
 
-# Step 4: Set Checkout Display Language
+# Set Checkout Display Language
 
 Use this to localize checkout.
 
