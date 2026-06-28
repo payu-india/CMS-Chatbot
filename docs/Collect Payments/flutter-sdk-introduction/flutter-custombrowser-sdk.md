@@ -273,7 +273,7 @@ To integrate PayU CustomBrowser with flutter SDK, perform the following steps:
     </tr>
     <tr>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>merchant\_response\_timeout <code>Mandatory</code></p></td>
-      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>integer</code> If the SDK does not get response from bank it will give control to Merchant app when this timeout will exceed. PayU response will be send back to Merchant.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>integer</code> If the SDK does not get response from bank it will give control to Merchant app when this timeout will exceed. PayU response will be sent back to Merchant.</p></td>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>Should be a valid positive number</p></td>
     </tr>
   </tbody>
