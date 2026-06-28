@@ -1,5 +1,4 @@
 ---
-title: Check Refund Status with Request ID API
 api:
   file: payu_check_refund_status_requestid_oas31.json
   operationId: checkRefundStatusWithRequestId
@@ -17,13 +16,22 @@ metadata:
     - check_action_status API Command
     - Using Request ID to Check Refund Status API
 ---
-Check the status of a specific refund request using the Request ID.This API provides detailed information about:- Refund processing status- Settlement information  - Transaction details- Processing timestamps- Error messages if any**Request ID Source:** The Request ID is returned when the cancel_refund_transaction API is successfully executed.
+Check the status of a specific refund request using the Request ID.This API provides detailed information about:
 
-Whenever the **cancel_refund_transaction** API is executed successfully to cancel a transaction, a Request ID is returned in the output parameters for that particular request. For more information on the cancel_refund_transaction API, refer to Refund Transaction.
+- Refund processing status
+- Settlement information&#x20;
+- Transaction details
+- Processing timestamps
+- Error messages if any
+- **Request ID Source:** The Request ID is returned when the cancel\_refund\_transaction API is successfully executed.
 
-In **check_action_status** API, you need to input this Request ID to get the current status of the request. The return parameters are MIHPayID, Amount, Discount, Mode, and Status of transaction. The following are different payment states:
+Whenever the **cancel\_refund\_transaction** API is executed successfully to cancel a transaction, a Request ID is returned in the output parameters for that particular request. For more information on the cancel\_refund\_transaction API, refer to Refund Transaction.
+
+In **check\_action\_status** API, you need to input this Request ID to get the current status of the request. The return parameters are MIHPayID, Amount, Discount, Mode, and Status of transaction. The following are different payment states:
 
 <Callout icon="📮" theme="default">
+  ###
+
   **Postman Collection**: Access the **Check Refund Status with Request ID API Postman Collection** from the following location:
 
   [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/gfduuit/check-action-status-request-id](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/gfduuit/check-action-status-request-id)
@@ -160,3 +168,5 @@ In **check_action_status** API, you need to input this Request ID to get the cur
   3. The API returns detailed transaction information including current status and settlement details
   4. Error code 102 should be treated as success - all other error codes indicate failure
 </Accordion>
+
+<br />
