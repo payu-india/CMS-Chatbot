@@ -99,7 +99,7 @@ The concatenated string would be: 
 <Callout icon="🚧" theme="warn">
   ### Salt Security
 
-  Salt is a susceptible information. **Do not** pass Salt in the payment request. To know more about generating salt, see [Generate Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-copy#).
+  Salt is a suspectible information. **Do not** pass Salt in the payment request. To know more about generating salt, see [Generate Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-copy#).
 </Callout>
 
 For more information on the parameters (and their descriptions) listed in the above hash logic, refer to any of the following based on the merchant hosted integration you are integrating:
