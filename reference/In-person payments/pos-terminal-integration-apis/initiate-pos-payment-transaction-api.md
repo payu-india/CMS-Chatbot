@@ -14,10 +14,10 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
 
 #### Environments
 
-| Environment | URL                                                                |
-| :---------- | :----------------------------------------------------------------- |
-| Test        | [https://test.payu.in//_payment](https://test.payu.in//_payment)   |
-| Production  | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
+| Environment | URL                                                                 |
+| :---------- | :------------------------------------------------------------------ |
+| Test        | [https://test.payu.in//\_payment](https://test.payu.in//_payment)   |
+| Production  | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
 ## Request parameters
 
@@ -46,11 +46,10 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
       </td>
 
       <td>
-        `String` The merchant key is provided by PayU and acts as a unique identifier for a specific merchant account in PayU’s database.  
-        Reference: For more information on how to generate the Key and Salt, refer to any of the following:
+        `String` The merchant key is provided by PayU and acts as a unique identifier for a specific merchant account in PayU’s database.<br />Reference: For more information on how to generate the Key and Salt, refer to any of the following:
 
-        * *Production**: Generate Production Merchant Key and Sat.
-        * *Test**: Generate Test Merchant Key and Salt.
+        - _Production_\*: Generate Production Merchant Key and Sat.
+        - _Test_\*: Generate Test Merchant Key and Salt.
       </td>
 
       <td>
@@ -60,8 +59,7 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
 
     <tr>
       <td>
-        api_version  
-        `optional`
+        api\_version<br />`optional`
       </td>
 
       <td>
@@ -75,8 +73,7 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
 
     <tr>
       <td>
-        txnid  
-        `mandatory`
+        txnid<br />`mandatory`
       </td>
 
       <td>
@@ -90,8 +87,7 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
 
     <tr>
       <td>
-        amount  
-        `mandatory`
+        amount<br />`mandatory`
       </td>
 
       <td>
@@ -105,8 +101,7 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
 
     <tr>
       <td>
-        productinfo  
-        `mandatory`
+        productinfo<br />`mandatory`
       </td>
 
       <td>
@@ -120,8 +115,7 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
 
     <tr>
       <td>
-        email  
-        `mandatory`
+        email<br />`mandatory`
       </td>
 
       <td>
@@ -135,8 +129,7 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
 
     <tr>
       <td>
-        phone  
-        `mandatory`
+        phone<br />`mandatory`
       </td>
 
       <td>
@@ -150,12 +143,11 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
 
     <tr>
       <td>
-        surl  
-        `mandatory`
+        surl<br />`mandatory`
       </td>
 
       <td>
-        * *String** Success URL(surl) – It must contain the URL on which PayU will redirect the final response if the transaction is successful.
+        - _String_\* Success URL(surl) – It must contain the URL on which PayU will redirect the final response if the transaction is successful.
       </td>
 
       <td>
@@ -165,8 +157,7 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
 
     <tr>
       <td>
-        furl  
-        `mandatory`
+        furl<br />`mandatory`
       </td>
 
       <td>
@@ -180,8 +171,7 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
 
     <tr>
       <td>
-        pg  
-        `mandatory`
+        pg<br />`mandatory`
       </td>
 
       <td>
@@ -195,8 +185,7 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
 
     <tr>
       <td>
-        bankcode  
-        `mandatory`
+        bankcode<br />`mandatory`
       </td>
 
       <td>
@@ -210,7 +199,7 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
 
     <tr>
       <td>
-        txn_s2s_flow
+        txn\_s2s\_flow
       </td>
 
       <td>
@@ -224,8 +213,7 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
 
     <tr>
       <td>
-        firstname  
-        `mandatory`
+        firstname<br />`mandatory`
       </td>
 
       <td>
@@ -239,8 +227,7 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
 
     <tr>
       <td>
-        lastname  
-        `mandatory`
+        lastname<br />`mandatory`
       </td>
 
       <td>
@@ -254,8 +241,7 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
 
     <tr>
       <td>
-        address1  
-        `optional`
+        address1<br />`optional`
       </td>
 
       <td>
@@ -269,8 +255,7 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
 
     <tr>
       <td>
-        address2  
-        `optional`
+        address2<br />`optional`
       </td>
 
       <td>
@@ -284,8 +269,7 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
 
     <tr>
       <td>
-        city  
-        optional
+        city<br />optional
       </td>
 
       <td>
@@ -299,8 +283,7 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
 
     <tr>
       <td>
-        state  
-        `optional`
+        state<br />`optional`
       </td>
 
       <td>
@@ -314,8 +297,7 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
 
     <tr>
       <td>
-        country  
-        `optional`
+        country<br />`optional`
       </td>
 
       <td>
@@ -329,13 +311,11 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
 
     <tr>
       <td>
-        zipcode  
-        `optional`
+        zipcode<br />`optional`
       </td>
 
       <td>
-        `String` Billing address zip code is mandatory for the cardless EMI option.  
-        `Character Limit-20`
+        `String` Billing address zip code is mandatory for the cardless EMI option.<br />`Character Limit-20`
       </td>
 
       <td>
@@ -345,8 +325,7 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
 
     <tr>
       <td>
-        hash  
-        `mandatory`
+        hash<br />`mandatory`
       </td>
 
       <td>
@@ -360,8 +339,7 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
 
     <tr>
       <td>
-        udf1  
-        `optional`
+        udf1<br />`optional`
       </td>
 
       <td>
@@ -375,8 +353,7 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
 
     <tr>
       <td>
-        udf2  
-        `optional`
+        udf2<br />`optional`
       </td>
 
       <td>
@@ -390,8 +367,7 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
 
     <tr>
       <td>
-        udf3  
-        `optional`
+        udf3<br />`optional`
       </td>
 
       <td>
@@ -405,8 +381,7 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
 
     <tr>
       <td>
-        udf4  
-        `optional`
+        udf4<br />`optional`
       </td>
 
       <td>
@@ -420,8 +395,7 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
 
     <tr>
       <td>
-        udf5  
-        `optional`
+        udf5<br />`optional`
       </td>
 
       <td>
@@ -435,8 +409,7 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
 
     <tr>
       <td>
-        posdeviceid  
-        `mandatory`
+        posdeviceid<br />`mandatory`
       </td>
 
       <td>
@@ -450,8 +423,7 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
 
     <tr>
       <td>
-        posexpirytime  
-        `optional`
+        posexpirytime<br />`optional`
       </td>
 
       <td>
@@ -465,20 +437,18 @@ The **Initiate POS Payment Transaction** API is used to initiate a transaction o
 
     <tr>
       <td>
-        pospaymentmethod  
-        `optional`
+        pospaymentmethod<br />`optional`
       </td>
 
       <td>
-        String  
-        This parameter must include the payment option to be enforced in the device. All possible values are:
+        String<br />This parameter must include the payment option to be enforced in the device. All possible values are:
 
-        * *sale**: It represents card transactions.
-        * *qr**: It represent QR transactions.
-        * *wallet**: : It represent wallet transactions.
-        * *emi**: : It represent EMI transactions.
-        * *preauth**: : It represent pre-authorisation transactions.
-        * *Note**: If any value apart from the above-listed values is sent, all possible payment methods on the device will be visible.
+        - _sale_\*: It represents card transactions.
+        - _qr_\*: It represents QR transactions.
+        - _wallet_\*: : It represents wallet transactions.
+        - _emi_\*: : It represents EMI transactions.
+        - _preauth_\*: : It represents pre-authorisation transactions.
+        - _Note_\*: If any value apart from the above-listed values is sent, all possible payment methods on the device will be visible.
       </td>
 
       <td>
@@ -497,11 +467,13 @@ The hash string can be generated using the SHA512 algorithm on the below logic. 
 
 ```
 
-> 👍 Callouts
->
-> * Empty pipe values are deprecated values.
-> * Here, SALT (to be provided by PayU), key, txnid, amount, productinfo, firstname, and email are mandatory parameters and hence cannot be empty in the hash calculation above.
-> * udf1-udf5 are optional. For example, if you are not posting any/all of the udf parameters in the API request, then in the hash calculation, the respective udf field should be left empty.
+<Callout icon="👍" theme="okay">
+  ### Callouts
+
+  - Empty pipe values are deprecated values.
+  - Here, SALT (to be provided by PayU), key, txnid, amount, productinfo, firstname, and email are mandatory parameters and hence cannot be empty in the hash calculation above.
+  - udf1-udf5 are optional. For example, if you are not posting any/all of the udf parameters in the API request, then in the hash calculation, the respective udf field should be left empty.
+</Callout>
 
 ##
 
@@ -628,3 +600,5 @@ The metadata parameter in the response contains the following fields:
   "result": {}
 }
 ```
+
+<br />
