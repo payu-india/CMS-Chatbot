@@ -22,7 +22,7 @@
         "tags": [
           "Misc"
         ],
-        "summary": "GetUserCards",
+        "summary": "Get User Cards API - Model 3",
         "description": "",
         "operationId": "GetUserCards",
         "parameters": [
@@ -291,8 +291,7 @@
               }
             }
           }
-        },
-        "deprecated": false
+        }
       },
       "parameters": []
     }
