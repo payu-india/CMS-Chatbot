@@ -365,7 +365,7 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
       </td>
 
       <td>
-        # 2,Meena Nilaya
+        2,Meena Nilaya
       </td>
     </tr>
 
