@@ -235,11 +235,11 @@ Client can share Customer’s Customer ID (entityCIF) or Mobile Number or URN as
       </td>
 
       <td>
-        `String` Document Type Of the CardHolder. One Card Holder can have many Documents. This is not required for MGL.
+        `String` Document Type Of the cardholder. One cardholder can have many documents. This is not required for MGL.
       </td>
 
       <td>
-        Aadhar , Pancard, VoterId, Driverlicense, Passport, jobcard
+        Aadhar , PAN card, Voter ID, Driver license, Passport, jobcard
       </td>
     </tr>
 
