@@ -464,7 +464,7 @@ To initiate a payment, your app must send transactional information to the Check
   | Parameter | Required   | Description                                                                                                                                                                                            | Example                         |
   | --------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------- |
   | LastName  | ✓ Required | Customer's last name                                                                                                                                                                                   | Doe                             |
-  | Address1  | ✓ Required | The first line of the billing address. **Note:** This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information. | 34 Saikripa-Estate, Tilak Nagar |
+  | Address1  | ✓ Required | The first line of the billing address. **Note:** This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is required to provide the correct information. | 34 Saikripa-Estate, Tilak Nagar |
   | Address2  | ✓ Required | The second line of the billing address                                                                                                                                                                 | Near Metro Station              |
   | City      | ✓ Required | The city where your customer resides as part of the billing address                                                                                                                                    | Mumbai                          |
   | State     | ✓ Required | The state where your customer resides as part of the billing address                                                                                                                                   | Maharashtra                     |
@@ -721,7 +721,7 @@ paymentParams.setPayUWealthProducts(wealthProductsList)
     </tr>
     <tr>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>percentageAdditionalCharges</p></td>
-      <td style="border: 1px solid #ddd; padding: 8px;"><p>String This parameter is required if merchant want to take percentage of TDR as additional charge from user for this feature dynamicConvFeeMerchant flag must be enable</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>String This parameter is required if merchant want to take percentage of TDR as additional charge from user for this feature dynamicConvFeeMerchant flag must be enabled</p></td>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>should be string with PG:Amount or IBIBOCode:Amount Sample : CC:100,NB:50,SBIB:25</p><p><br /></p><p>Refer to Step 3.4: For Additional Charges (Optional)</p></td>
     </tr>
     <tr>
@@ -883,7 +883,7 @@ The CheckoutPro SDK uses hashes to ensure the security of the transaction and pr
   } 
   ```
 
-  The generateHash() method is called by the SDK each time it needs an individual hash. The CP\_HASH\_NAME will contain the name of the specific hash requested in that call, and the CP\_HASH\_STRING will contain the data/string that needs to be hashed.
+  The generateHash() method is called by the SDK each time it needs an individual hash.  `CP_HASH_NAME` will contain the name of the specific hash requested in that call, and `CP_HASH_STRING` will contain the data/string that needs to be hashed.
 </Accordion>
 
 <Accordion title="Step 4.3: Getting Hash data to calculate hash" icon="fa-code">
