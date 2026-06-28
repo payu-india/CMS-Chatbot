@@ -1,5 +1,4 @@
 ---
-title: Aadhaar XML Offline API
 api:
   file: Partner_Onboarding_APIs_with_Aadhaar_APIs.json
   operationId: post_api-v3-merchants-kyc-document-aadhaar-xml-offline
@@ -13,7 +12,7 @@ The **Aadhar XML Offline** API allows merchants to submit Aadhaar XML files (obt
 
 ### Authorization header
 
-Authorization Bearer token must be generated using \*\*Aadaar OTP Generation API \*\* with the scope as . For more information, refer to [Aadhaar OTP Generation API](ref:aadhaar-otp-generation-api).
+Authorization Bearer token must be generated using **Aaadaar OTP Generation API** with the scope as . For more information, refer to [Aadhaar OTP Generation API](ref:aadhaar-otp-generation-api).
 
 ### Body parameters
 
@@ -114,7 +113,7 @@ curl --location 'https://partner.payu.in/api/v3/merchants/kyc_document/aadhaar_x
 
 ### Failure scenarios
 
-* Invalid share code
+- Invalid share code
 
 ```
 {
@@ -126,7 +125,7 @@ curl --location 'https://partner.payu.in/api/v3/merchants/kyc_document/aadhaar_x
 
 ```
 
-* Invalid XML file
+- Invalid XML file
 
 ```
 {
@@ -138,7 +137,7 @@ curl --location 'https://partner.payu.in/api/v3/merchants/kyc_document/aadhaar_x
 
 ```
 
-* Unauthorized access
+- Unauthorized access
 
 ```
 {
@@ -149,3 +148,5 @@ curl --location 'https://partner.payu.in/api/v3/merchants/kyc_document/aadhaar_x
 }
 
 ```
+
+<br />
