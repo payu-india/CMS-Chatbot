@@ -110,11 +110,11 @@ To customize the Payment Button:
       </td>
 
       <td>
-        Select the any of Select the any of the following field types or controls that you would like add on your Check Out page:
+        Select any of the following field types or controls that you wish to add on your Checkout page:
 
         - Text
         - Calendar
-        - Drop-down the following field types or controls that you would like add on your Check Out page:
+        - Drop-down the following field types or controls that you wish to add on your Checkout page:
       </td>
     </tr>
 
