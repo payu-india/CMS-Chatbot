@@ -19,6 +19,8 @@ The **Read Reason** API lists all the reasons required for the merchant to provi
 This must contain the header with token you get using the Chargeback Dashboard in the following format:
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Generate Token**: Use the Chargeback Dashboard to easily generate token in the Chargeback Dashboard. For more information, refer to [Generate Token on Chargeback Dashboard](ref:get_token_chargeback_dashboard).
 </Callout>
 
@@ -39,42 +41,42 @@ curl --location 'https://bankportal.payu.in/api/v1/reasons' \
 | Parameter  | Description                                                                                                                                                                        |
 | :--------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | id         | This parameter contains the  merchant ID.                                                                                                                                          |
-| type       | The parameter contains the **reasons ** as type. The Reasons mapping table provides reason-type, reason-text and identifier as in the [Sample response](#sample-response).         |
+| type       | The parameter contains the **reasons** as type. The Reasons mapping table provides reason-type, reason-text and identifier as in the [Sample response](#sample-response).          |
 | attributes | This parameter contains the chargeback reason details in a JSON format. For more information, refer to  [attributes JSON field descriptions](#attributes-json-field-descriptions). |
 
 ### Reasons mapping
 
-|                  |                                                                                                                                            |                                      |                    |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------ | ------------------ |
-| **Reason Type**  | **Reason Text**                                                                                                                            | **Identifier**                       | **Reason Mapping** |
-| accept           | Customer cancelled the order                                                                                                               | 094fd3fe-4923-4819-becc-14d08054ff2d | Parent             |
-| accept           | Product out of stock                                                                                                                       | b74af116-4521-4ce2-9d91-4b3a0ea0a3fc | Parent             |
-| accept           | Product was returned by the customer                                                                                                       | 5989dee4-f764-4fcf-8e83-be53992c778e | Parent             |
-| accept           | Product lost in transit                                                                                                                    | f3b35551-462f-457d-b3c2-ae3db3ce0c04 | Parent             |
-| accept           | Product returned due to incorrect address                                                                                                  | fd5477bd-98a3-4a37-83da-903086a224b2 | Parent             |
-| accept           | Order/Booking not successfull                                                                                                              | 9b687337-beee-46d7-9ec0-60098121bbb5 | Parent             |
-| accept           | Others                                                                                                                                     | 96ad8e74-c417-4ea7-a6ab-f768078d2c5c | Parent             |
-| reject           | Product/Services delivered                                                                                                                 | 9c2c093c-648a-40b5-8b79-461466578b0c | Parent             |
-| reject           | Product/Services Partially delivered                                                                                                       | 6972b1c2-e3e8-49f6-8e15-3801bfa5a01f | Parent             |
-| reject           | Customer withdrawn the chargeback                                                                                                          | 3f67a066-b399-4070-9519-c34c357e9713 | Parent             |
-| reject           | Transaction already refunded                                                                                                               | 1a17831a-ef36-4cc3-bb91-5190466b7000 | Parent             |
-| reject           | Product is delivered. Option to upload delivered details of the courier company, shipping number, Invoice.                                 | 07b310c2-8c63-4b82-9b87-53a4b963adac | Child              |
-| reject           | Service is delivered. Option to upload details of the service, claiming service fulfillment details, Invoice.                              | 1d3dc863-a2c5-4bde-95ee-66f6be9f7848 | Child              |
-| reject           | Product is partially delivered. Option to upload partially delivered details of the courier company, shipping number, Invoice.             | 7e932855-5103-4610-8060-67258f48c1ef | Child              |
-| reject           | Service is partially delivered. Option to upload partially deivered details of the service, claiming service fulfillment details, Invoice. | 1740b9ab-614f-4ffc-9764-adf777915dfe | Child              |
-| reject           | Transaction refunded through PayU Panel (Status of the refund in PayU Panel)                                                               | 3ba427be-e1b7-44b1-84f1-95a48295bde8 | Child              |
-| reject           | Transaction refunded outside PayU Panel                                                                                                    | 37980bbf-fb5e-42d7-9780-c5a9079e115d | Child              |
-| reject           | Refund is in pending status.                                                                                                               | 2b4a6805-a2e1-4b8c-bf88-b8f52c68c6ce | Child              |
-| reject           | Refund is requested through bank channel.                                                                                                  | 7f1d2c03-b893-4d88-bbee-8171c4759dc9 | Child              |
-| reject           | Refund is successfully processed.                                                                                                          | 4d33236d-77ac-4d19-a257-8d63153ec10f | Child              |
-| partially_accept | Product/Services Partially delivered                                                                                                       | bb10e1bb-f128-4ace-ab0f-59881f11fa4d | Parent             |
-| partially_accept | Transaction partially refunded                                                                                                             | 20545060-e1e5-4718-b528-ea81436833ed | Parent             |
-| partially_accept | Transaction partially refunded outside PayU Panel                                                                                          | ae4b70b4-703e-41e8-bf70-3676b377ce9e | Parent             |
-| partially_accept | Product lost in transit                                                                                                                    | 084bd395-371c-4f76-9938-9e785e855ba1 | Parent             |
-| partially_accept | Product was returned by the customer                                                                                                       | 4bdfb55e-7a3e-4706-a653-072da2be7ebf | Parent             |
-| partially_accept | Customer cancelled the order                                                                                                               | 4e417a20-1cd3-47de-8bb7-34e2c002f126 | Parent             |
-| partially_accept | Full refund not due as per our T&C                                                                                                         | 0cc9cead-d01e-47d7-8fc2-64e4627e2f72 | Parent             |
-| partially_accept | Others                                                                                                                                     | 8d55dc20-a304-4a0f-885d-0b05705986a5 | Parent             |
+|                   |                                                                                                                                             |                                      |                    |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ | ------------------ |
+| **Reason Type**   | **Reason Text**                                                                                                                             | **Identifier**                       | **Reason Mapping** |
+| accept            | Customer cancelled the order                                                                                                                | 094fd3fe-4923-4819-becc-14d08054ff2d | Parent             |
+| accept            | Product out of stock                                                                                                                        | b74af116-4521-4ce2-9d91-4b3a0ea0a3fc | Parent             |
+| accept            | Product was returned by the customer                                                                                                        | 5989dee4-f764-4fcf-8e83-be53992c778e | Parent             |
+| accept            | Product lost in transit                                                                                                                     | f3b35551-462f-457d-b3c2-ae3db3ce0c04 | Parent             |
+| accept            | Product returned due to incorrect address                                                                                                   | fd5477bd-98a3-4a37-83da-903086a224b2 | Parent             |
+| accept            | Order/Booking not successful                                                                                                                | 9b687337-beee-46d7-9ec0-60098121bbb5 | Parent             |
+| accept            | Others                                                                                                                                      | 96ad8e74-c417-4ea7-a6ab-f768078d2c5c | Parent             |
+| reject            | Product/Services delivered                                                                                                                  | 9c2c093c-648a-40b5-8b79-461466578b0c | Parent             |
+| reject            | Product/Services Partially delivered                                                                                                        | 6972b1c2-e3e8-49f6-8e15-3801bfa5a01f | Parent             |
+| reject            | Customer withdrawn the chargeback                                                                                                           | 3f67a066-b399-4070-9519-c34c357e9713 | Parent             |
+| reject            | Transaction already refunded                                                                                                                | 1a17831a-ef36-4cc3-bb91-5190466b7000 | Parent             |
+| reject            | Product is delivered. Option to upload delivered details of the courier company, shipping number, Invoice.                                  | 07b310c2-8c63-4b82-9b87-53a4b963adac | Child              |
+| reject            | Service is delivered. Option to upload details of the service, claiming service fulfillment details, Invoice.                               | 1d3dc863-a2c5-4bde-95ee-66f6be9f7848 | Child              |
+| reject            | Product is partially delivered. Option to upload partially delivered details of the courier company, shipping number, Invoice.              | 7e932855-5103-4610-8060-67258f48c1ef | Child              |
+| reject            | Service is partially delivered. Option to upload partially delivered details of the service, claiming service fulfillment details, Invoice. | 1740b9ab-614f-4ffc-9764-adf777915dfe | Child              |
+| reject            | Transaction refunded through PayU Panel (Status of the refund in PayU Panel)                                                                | 3ba427be-e1b7-44b1-84f1-95a48295bde8 | Child              |
+| reject            | Transaction refunded outside PayU Panel                                                                                                     | 37980bbf-fb5e-42d7-9780-c5a9079e115d | Child              |
+| reject            | Refund is in pending status.                                                                                                                | 2b4a6805-a2e1-4b8c-bf88-b8f52c68c6ce | Child              |
+| reject            | Refund is requested through bank channel.                                                                                                   | 7f1d2c03-b893-4d88-bbee-8171c4759dc9 | Child              |
+| reject            | Refund is successfully processed.                                                                                                           | 4d33236d-77ac-4d19-a257-8d63153ec10f | Child              |
+| partially\_accept | Product/Services Partially delivered                                                                                                        | bb10e1bb-f128-4ace-ab0f-59881f11fa4d | Parent             |
+| partially\_accept | Transaction partially refunded                                                                                                              | 20545060-e1e5-4718-b528-ea81436833ed | Parent             |
+| partially\_accept | Transaction partially refunded outside PayU Panel                                                                                           | ae4b70b4-703e-41e8-bf70-3676b377ce9e | Parent             |
+| partially\_accept | Product lost in transit                                                                                                                     | 084bd395-371c-4f76-9938-9e785e855ba1 | Parent             |
+| partially\_accept | Product was returned by the customer                                                                                                        | 4bdfb55e-7a3e-4706-a653-072da2be7ebf | Parent             |
+| partially\_accept | Customer cancelled the order                                                                                                                | 4e417a20-1cd3-47de-8bb7-34e2c002f126 | Parent             |
+| partially\_accept | Full refund not due as per our T\&C                                                                                                         | 0cc9cead-d01e-47d7-8fc2-64e4627e2f72 | Parent             |
+| partially\_accept | Others                                                                                                                                      | 8d55dc20-a304-4a0f-885d-0b05705986a5 | Parent             |
 
 ### attributes JSON field descriptions
 
@@ -962,3 +964,5 @@ curl --location 'https://bankportal.payu.in/api/v1/reasons' \
     ]
 }
 ```
+
+<br />
