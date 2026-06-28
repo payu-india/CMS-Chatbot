@@ -14,9 +14,11 @@ This API allows partners to check refund status for any refund transaction. All 
 
 ## Request parameters
 
-> 📘 Note:
->
-> The header must include bearer token.
+<Callout icon="📘" theme="info">
+  ### Note:
+
+  The header must include bearer token.
+</Callout>
 
 <Table align={["left","left","left"]}>
   <thead>
@@ -39,7 +41,7 @@ This API allows partners to check refund status for any refund transaction. All 
     <tr>
       <td>
         merchant\_id`  
-        mandatory`
+                mandatory`
       </td>
 
       <td>
@@ -227,8 +229,8 @@ This API allows partners to check refund status for any refund transaction. All 
       <td>
         `String` This parameter contains any of the following status to show whether the API command was successful or failed to get response:
 
-        * **failure** - If the API command call failed.
-        * **success** - If the API command call succeeded.
+        - **failure** - If the API command call failed.
+        - **success** - If the API command call succeeded.
       </td>
 
       <td>
@@ -367,8 +369,8 @@ This API allows partners to check refund status for any refund transaction. All 
 
 ### Failure scenarios
 
-* Invalid partner
-* Error code=**400**
+- Invalid partner
+- Error code=**400**
 
 Status : BAD\_REQUEST(400)
 
@@ -378,8 +380,8 @@ Status : BAD\_REQUEST(400)
 }
 ```
 
-* Invalida auth token
-* Error code=**401**
+- Invalid auth token
+- Error code=**401**
 
 ```plaintext
 {
@@ -387,8 +389,8 @@ Status : BAD\_REQUEST(400)
 }
 ```
 
-* Invalid hash
-* Error code=**403**
+- Invalid hash
+- Error code=**403**
 
 ```plaintext
 {
@@ -396,8 +398,8 @@ Status : BAD\_REQUEST(400)
 }
 ```
 
-* Invalid PayU ID
-* Error code=**400**
+- Invalid PayU ID
+- Error code=**400**
 
 STATUS: BAD\_REQUEST(400)
 
@@ -412,7 +414,7 @@ STATUS: BAD\_REQUEST(400)
 }
 ```
 
-* Any other issues in middleware
+- Any other issues in middleware
 
 Response Status: INTERNAL\_SERVER\_ERROR(500)
 
@@ -421,3 +423,5 @@ Response Status: INTERNAL\_SERVER\_ERROR(500)
     "message": "PayU Internal Server Error"
 }
 ```
+
+<br />
