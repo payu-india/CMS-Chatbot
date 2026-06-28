@@ -25,6 +25,8 @@ next:
 The Tokenize a Card API is used for saving a card to the vault. After successfully storing a card, it returns the `cardToken`.
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Note** As per RBI guidelines, taking consent from the customer and doing an additional factor of authentication is mandatory to tokenize the card. You must ensure this is done before using this API.
 </Callout>
 
@@ -156,7 +158,7 @@ HTTP Method: **POST**
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>var10<br><code>optional</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter must be set to <strong>true</strong> if the transaction authentication has been done for the tokenisation.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter must be set to <strong>true</strong> if the transaction authentication has been done for the tokenization.</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>true</p>
 </td>
@@ -199,7 +201,7 @@ curl --request POST \
 
 ### Success scenarios
 
-* VISA
+- VISA
 
 ```plaintext
 {
@@ -213,7 +215,7 @@ issuer_token: QQ3LkzgZOnEjY428,
 }
 ```
 
-* Mastercard
+- Mastercard
 
 ```plaintext
 {
@@ -227,7 +229,7 @@ issuer_token: AQ3LkzgBNyEjY213,
 }
 ```
 
-* American Express
+- American Express
 
 ```plaintext
 {
@@ -241,7 +243,7 @@ issuer_token: Va3RaqBNyPnY673,
 }
 ```
 
-* Rupay
+- Rupay
 
 ```plaintext
 {
@@ -255,7 +257,7 @@ issuer_token: Ya4HawKgbLmr312,
 }
 ```
 
-* Diners
+- Diners
 
 ```plaintext
 {
@@ -271,7 +273,7 @@ card_label: "Diner_Card",
 
 ### Failure scenario
 
-* If card Number is invalid
+- If card Number is invalid
 
 ```plaintext
 {
@@ -285,7 +287,9 @@ card_label: "Diner_Card",
 The following table describes the parameters in the response:
 
 <Callout icon="📘" theme="info">
-  **Note**:  For every successful payment transactions, PayU returns the **mihpayuid** and **cardToken** parameters to the merchants, but networkToken and issuer_token are returned only if you are PCI-DSS compliant.
+  ###
+
+  **Note**:  For every successful payment transactions, PayU returns the **mihpayuid** and **cardToken** parameters to the merchants, but networkToken and issuer\_token are returned only if you are PCI-DSS compliant.
 </Callout>
 
 <HTMLBlock>{`
@@ -341,3 +345,5 @@ The following table describes the parameters in the response:
 </tbody>
 </table>
 `}</HTMLBlock>
+
+<br />
