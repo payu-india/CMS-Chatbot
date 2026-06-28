@@ -74,7 +74,7 @@ next:
 | Incomplete address proof uploaded                                                         | Please re-upload the complete copy of address proof                                                                                             |
 | Address proof copy not uploaded                                                           | Please upload the copy of address proof                                                                                                         |
 | Address proof copy uploaded is not clear                                                  | Please re-upload a readable copy of address proof with signature                                                                                |
-| Attached address proof is not valid                                                       | Re-upload valid address proof ( ex. Aadhar card/Voter Id/Passposrt/ DL etc. )                                                                   |
+| Attached address proof is not valid                                                       | Re-upload valid address proof ( ex. Aadhar card/Voter Id/Passport/ DL etc. )                                                                    |
 | Incomplete address written on your profile                                                | Update address details as per the attached address proof on your profile.                                                                       |
 | Entity ( Individual/proprietor/Pvt ltd etc ) written mismatch with the provided documents | Re-upload correct document as per the Entity.                                                                                                   |
 | <h3>PAN Card of Signing Authority Document</h3>                                           |                                                                                                                                                 |
@@ -84,3 +84,5 @@ next:
 | PAN card copy not upload                                                                  | Upload a copy of PAN card.                                                                                                                      |
 | Entity ( Individual/proprietor/Pvt ltd etc ) written mismatch with the provided documents | Re-upload the correct document as per the business Entity.                                                                                      |
 | Physically signed is missing on the uploaded PAN card                                     | Re-upload the copy of PAN card with physical signed.                                                                                            |
+
+<br />
