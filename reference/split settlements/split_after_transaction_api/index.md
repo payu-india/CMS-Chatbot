@@ -13,13 +13,17 @@ next:
 You must specify two decimal places for each split, but ensure the sum split amounts are equal to the transaction amount.
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Note**: You must specify two decimal places for each split, but ensure the sum of the percentage of all splits is equal to 100.
 </Callout>
 
 <Callout icon="📮" theme="default">
+  ###
+
   **Postman Collection**: Download the **Split After Transaction** APIs Postman Collection from the following location:
 
-  https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/bizsrua/split-after-transaction-api
+  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/bizsrua/split-after-transaction-api](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/bizsrua/split-after-transaction-api)
 </Callout>
 
 **Environment**
@@ -79,7 +83,7 @@ HTTP Method: **POST**
 </table>
 `}</HTMLBlock>
 
-## Request structure for var1 to be included in  payment_split API
+## Request structure for var1 to be included in  payment\_split API
 
 ```plaintext
 {  "type": "absolute",  
@@ -162,7 +166,7 @@ curl -X POST "https://info.payu.in/merchant/postservice?form=2"
 
 ## Sample response
 
-* Sample response for a successful split:
+- Sample response for a successful split:
 
 When split get saved & created
 
@@ -190,7 +194,7 @@ When split get saved & created
 }
 ```
 
-* Sample response when split gets saved but are not yet created:
+- Sample response when split gets saved but are not yet created:
 
 When split get saved but aren’t yet created)
 
@@ -202,9 +206,9 @@ When split get saved but aren’t yet created)
 }
 ```
 
-* Split creation is failed:
+- Split creation is failed:
 
-In this sample response, the **error_code** and **error_desc** parameters display based on the failure. For the list of error_codes, refer to [Error Codes & Error Messages](https://devguide.payu.in/split-apis/steps-to-create-the-split/payment_split-api/#Error).
+In this sample response, the **error\_code** and **error\_desc** parameters display based on the failure. For the list of error\_codes, refer to [Error Codes & Error Messages](https://devguide.payu.in/split-apis/steps-to-create-the-split/payment_split-api/#Error).
 
 ```plaintext
 {
@@ -228,35 +232,41 @@ In this sample response, the **error_code** and **error_desc** parameters displa
 }
 ```
 
-> 📘 Refunds for Split Transactions:
->
-> You must include the var8 parameter similar to the following JSON array format with the refund details of split where **child_merchant_key_x** must be substituted with the child merchant key. For more information, refer to  [Refund Transaction API > Other request parameters](ref:refund_transaction_api#other-request-parameters)
->
-> ```plaintext
-> {
->    "child_merchant_key_1":{
->       "amount":100,
->       "aggregatorRefundAmount":40
->    },
->    "child_merchant_key_2":{
->       "amount":20,
->       "aggregatorRefundAmount":0
->    }
-> }
-> ```
+<Callout icon="📘" theme="info">
+  ### Refunds for Split Transactions:
+
+  You must include the var8 parameter similar to the following JSON array format with the refund details of split where **child\_merchant\_key\_x** must be substituted with the child merchant key. For more information, refer to  [Refund Transaction API > Other request parameters](ref:refund_transaction_api#other-request-parameters)
+
+  ```plaintext
+  {
+     "child_merchant_key_1":{
+        "amount":100,
+        "aggregatorRefundAmount":40
+     },
+     "child_merchant_key_2":{
+        "amount":20,
+        "aggregatorRefundAmount":0
+     }
+  }
+  ```
+</Callout>
 
 ## Error codes & messages
 
-| **Condition**                                           | **error_code** | **error_message**                                                    |
-| ------------------------------------------------------- | -------------- | -------------------------------------------------------------------- |
-| Invalid request posted by merchant in var1              | AGG-107        | Invalid split payload in payment request                             |
-| Invalid parent payuId                                   | AGG-103        | This transaction is not a aggregator flow base transaction           |
-| Split already exists for requested PayUId               | AGG-104        | Split info already exists for this transaction                       |
-| Invalid Child merchant in split requeset                | AGG-102        | One or more child merchant-keys provided are invalid                 |
-| If sum amount won’t match wrt parent transaction amount | AGG-108        | Total amount provided in split doesn\'t match the transaction amount |
-| If merchant is not Aggregator flow merchant.            | AGG-101        | This merchant is not an Aggregator flow merchant.                    |
-| When transaction is locked in other process             | AGG-110        | Some exception occurred. Try after sometime.                         |
+| **Condition**                                           | **error\_code** | **error\_message**                                                  |
+| ------------------------------------------------------- | --------------- | ------------------------------------------------------------------- |
+| Invalid request posted by merchant in var1              | AGG-107         | Invalid split payload in payment request                            |
+| Invalid parent payuId                                   | AGG-103         | This transaction is not a aggregator flow base transaction          |
+| Split already exists for requested PayUId               | AGG-104         | Split info already exists for this transaction                      |
+| Invalid Child merchant in split request                 | AGG-102         | One or more child merchant-keys provided are invalid                |
+| If sum amount won’t match wrt parent transaction amount | AGG-108         | Total amount provided in split doesn't match the transaction amount |
+| If merchant is not Aggregator flow merchant.            | AGG-101         | This merchant is not an Aggregator flow merchant.                   |
+| When transaction is locked in other process             | AGG-110         | Some exception occurred. Try after sometime.                        |
 
-> 📘 Note:
->
-> API integration and authentication would be the same as that for general transaction flow.
+<Callout icon="📘" theme="info">
+  ### Note:
+
+  API integration and authentication would be the same as that for general transaction flow.
+</Callout>
+
+<br />
