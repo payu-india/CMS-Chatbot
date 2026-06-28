@@ -1,5 +1,4 @@
 ---
-title: Collect Payment API - PayU Hosted Checkout
 api:
   file: updated_payu_hosted.json
   operationId: MerchantHostedCheckout-Wallets
@@ -20,7 +19,11 @@ metadata:
     - _payment API simulation for Pre-built Checkout
     - _payment API simulation for PayU Hosted Checkout
 ---
-The Collect Payment API (**_payment** API) is used to collect payments for all the Web Checkout integration. This section provides the API Reference for PayU Hosted Checkout or Pre-Built Checkout.
+The Collect Payment API (**\_payment** API) is used to collect payments for all the Web Checkout integration. This section provides the API Reference for PayU Hosted Checkout or Pre-Built Checkout.
+
+<HTMLBlock>{`
+
+`}</HTMLBlock>
 
 <PayU_Labs />
 
@@ -32,10 +35,10 @@ The Collect Payment API (**_payment** API) is used to collect payments for all t
 
 ## Environment
 
-|                            |                                                                        |
-| :------------------------- | :--------------------------------------------------------------------- |
-| **Test Environment**       | \<[https://test.payu.in/_payment>](https://test.payu.in/_payment>)     |
-| **Production Environment** | \<[https://secure.payu.in/_payment>](https://secure.payu.in/_payment>) |
+|                            |                                                                         |
+| :------------------------- | :---------------------------------------------------------------------- |
+| **Test Environment**       | \<[https://test.payu.in/\_payment>](https://test.payu.in/_payment>)     |
+| **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
 <Recipe slug="payu-hosted-checkout-curl-request-walkthrough" title="PayU Hosted Checkout cURL Request Walkthrough" />
 
@@ -211,17 +214,23 @@ The Collect Payment API (**_payment** API) is used to collect payments for all t
 <AddionalCards_paymentRequestParametersInformation />
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Note**: Collecting the information for the following parameters from customers is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information:
 
-  * email
-  * phone
-  * address1
+  - email
+  - phone
+  - address1
 </Callout>
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Reference**: For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
 </Callout>
 
 <TransactionStages />
 
 <Recipe slug="payu-hosted-checkout-curl-request-walkthrough" title="PayU Hosted Checkout cURL Request Walkthrough" />
+
+<br />
