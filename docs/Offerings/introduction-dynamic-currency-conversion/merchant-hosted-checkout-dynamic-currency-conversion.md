@@ -29,13 +29,17 @@ next:
 This section describes how to integrate Dynamic Currency Conversion with Merchant Hosted Checkout Integration (Seamless Integration).
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Notes**:
 
-  * You need to contact your PayU Key Account Manager to enable international payments.
-  * For the list of supported currencies, <a href="https://docs.payu.in/docs/supported-currencies-for-international-payments/" target="_blank">Supported Currencies for International Payments</a>.
+  - You need to contact your PayU Key Account Manager to enable international payments.
+  - For the list of supported currencies, <a href="https://docs.payu.in/docs/supported-currencies-for-international-payments/" target="_blank">Supported Currencies for International Payments</a>.
 </Callout>
 
 <Callout icon="👍" theme="okay">
+  ###
+
   **Before you begin**: Register for a account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
 </Callout>
 
@@ -115,9 +119,11 @@ Check if the card number of the customer is international or domestic using the 
 
 ## Step 2: Post the parameters to PayU
 
-Make the transaction request with the payment details provided by the customer to PayU. For international payments, the _payment request remains the same and no extra parameters required. For Try-It experience, refer to <a href="_payment_merchant_hosted" target="_blank">Collect Payments API</a>.
+Make the transaction request with the payment details provided by the customer to PayU. For international payments, the \_payment request remains the same and no extra parameters required. For Try-It experience, refer to <a href="_payment_merchant_hosted" target="_blank">Collect Payments API</a>.
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Note**: It is recommended to collect the customer’s e-mail address, phone, address, city, state, and country and then post those details along with the payment request with PayU. This will help in checking the risk of the transaction based on these data.
 </Callout>
 
@@ -142,7 +148,7 @@ Make the transaction request with the payment details provided by the customer t
   | surl<br />`mandatory`                                                        | `String` The Failure URL, which is the page PayU will redirect to if the transaction is failed.                                                                                                                                                                                                                                    |                       |          |               |             |         |        |        |        |        |        |    |    |    |    |    |         |   |
   | hash<br />`mandatory`                                                        | `String` It is the hash calculated by the merchant. The hash calculation logic is:<br />\`sha512(key\\                                                                                                                                                                                                                             | txnid\\               | amount\\ | productinfo\\ | firstname\\ | email\\ | udf1\\ | udf2\\ | udf3\\ | udf4\\ | udf5\\ | \\ | \\ | \\ | \\ | \\ | SALT)\` |   |
   | transactionCurrency<br />`optional (mandatory for multi-currency merchants)` | `String` The payment currency for the transaction. Merchants initiating multi-currency payments must pass a valid 3-alpha currency code (ISO 4217 code) in this field. For more information, refer to [MCC Currency Codes](https://docs.payu.in/docs/mcc-currency-codes).                                                          | INR, USD, AED, OR GBP |          |               |             |         |        |        |        |        |        |    |    |    |    |    |         |   |
-  | address1<br />`optional`                                                     | `String` The first line of the billing address.<br />**For Fraud Detection**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.                                                                                                |                       |          |               |             |         |        |        |        |        |        |    |    |    |    |    |         |   |
+  | address1<br />`optional`                                                     | `String` The first line of the billing address.<br />**For Fraud Detection**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is required to provide the correct information.                                                                                                |                       |          |               |             |         |        |        |        |        |        |    |    |    |    |    |         |   |
   | address2<br />`optional`                                                     | `String` The second line of the billing address.                                                                                                                                                                                                                                                                                   |                       |          |               |             |         |        |        |        |        |        |    |    |    |    |    |         |   |
   | city<br />`optional`                                                         | `String` The city where your customer resides as part of the billing address.                                                                                                                                                                                                                                                      |                       |          |               |             |         |        |        |        |        |        |    |    |    |    |    |         |   |
   | state<br />`optional`                                                        | `String` The state where your customer resides as part of the billing address.                                                                                                                                                                                                                                                     |                       |          |               |             |         |        |        |        |        |        |    |    |    |    |    |         |   |
@@ -163,514 +169,498 @@ Make the transaction request with the payment details provided by the customer t
   # Replace placeholders with actual values
   # In production: Use environment variables for sensitive values
 
-  curl -X POST "https://test.payu.in/_payment" \
-    -H "Content-Type: application/x-www-form-urlencoded" \
-    -d "key=YOUR_MERCHANT_KEY" \
-    -d "txnid=TXN_12345" \
-    -d "amount=1000.00" \
-    -d "productinfo=Product+Description" \
-    -d "firstname=Customer+Name" \
-    -d "email=customer@example.com" \
-    -d "phone=9988776655" \
-    -d "pg=CC" \
-    -d "bankcode=CC" \
-    -d "ccnum=CARD_NUMBER" \
-    -d "ccexpmon=MM" \
-    -d "ccexpyr=YY" \
-    -d "ccvv=CVV" \
-    -d "ccname=NAME_ON_CARD" \
-    -d "surl=https://yourwebsite.com/success" \
-    -d "furl=https://yourwebsite.com/failure" \
-    -d "hash=HASH_GENERATED_ON_SERVER"
-  ```
-  ```python
-  import urllib.request
-  import urllib.parse
-  import json
-  import os
-  from typing import Dict, Any
+curl -X POST "[https://test.payu.in/\_payment](https://test.payu.in/_payment)" <br />-H "Content-Type: application/x-www-form-urlencoded" <br />-d "key=YOUR\_MERCHANT\_KEY" <br />-d "txnid=TXN\_12345" <br />-d "amount=1000.00" <br />-d "productinfo=Product+Description" <br />-d "firstname=Customer+Name" <br />-d "email=[customer@example.com](mailto:customer@example.com)" <br />-d "phone=9988776655" <br />-d "pg=CC" <br />-d "bankcode=CC" <br />-d "ccnum=CARD\_NUMBER" <br />-d "ccexpmon=MM" <br />-d "ccexpyr=YY" <br />-d "ccvv=CVV" <br />-d "ccname=NAME\_ON\_CARD" <br />-d "surl=[https://yourwebsite.com/success](https://yourwebsite.com/success)" <br />-d "furl=[https://yourwebsite.com/failure](https://yourwebsite.com/failure)" <br />-d "hash=HASH\_GENERATED\_ON\_SERVER"
 
-  def process_payment(payment_data: Dict[str, Any]) -> Dict[str, Any]:
-      """
-      Process payment using PayU's Merchant Hosted Checkout
-      
-      IMPORTANT: This is a server-side function. Never expose card details to client-side code.
-      This handles sensitive card data and requires PCI DSS compliance.
-      
-      Args:
-          payment_data: Dictionary containing payment information
-          
-      Returns:
-          Dictionary with response from PayU API
-      """
-      # API endpoint - Use different URLs for test/production environments
-      url = "https://test.payu.in/_payment"  # Test URL
-      # url = "https://secure.payu.in/_payment"  # Production URL
-      
-      # Prepare the form data with proper URL encoding
-      # In production: Get merchant_key and hash from secure environment variables
-      payload = {
-          "key": "YOUR_MERCHANT_KEY",           # Replace with actual merchant key
-          "txnid": "TXN_12345",                 # Generate unique transaction ID
-          "amount": "1000.00",                  # Amount to be charged
-          "productinfo": "Product Description", # Description of product/service
-          "firstname": "Customer Name",         # Customer's first name
-          "email": "customer@example.com",      # Customer's email
-          "phone": "9988776655",                # Customer's phone number
-          "pg": "CC",                           # Payment gateway (CC for credit card)
-          "bankcode": "CC",                     # Bank code (CC for credit card)
-          
-          # SENSITIVE DATA - Handle with care according to PCI DSS requirements
-          "ccnum": "CARD_NUMBER",               # Credit card number
-          "ccexpmon": "MM",                     # Expiry month (2 digits)
-          "ccexpyr": "YY",                      # Expiry year (2 digits)
-          "ccvv": "CVV",                        # Card verification value
-          "ccname": "NAME_ON_CARD",             # Name on the card
-          
-          # Success and failure URLs
-          "surl": "https://yourwebsite.com/success",  # Success callback URL
-          "furl": "https://yourwebsite.com/failure",  # Failure callback URL
-          
-          # Hash is generated on server using specific algorithm provided by PayU
-          # See PayU documentation for the exact hash generation logic
-          "hash": "HASH_GENERATED_ON_SERVER",   # Security hash
-      }
-      
-      # Convert dictionary to URL-encoded form data
-      data = urllib.parse.urlencode(payload).encode('utf-8')
-      
-      # Set headers
-      headers = {
-          "Content-Type": "application/x-www-form-urlencoded"
-      }
-      
-      # Create a request object
-      req = urllib.request.Request(url, data=data, headers=headers, method="POST")
-      
-      try:
-          # Send the request and get the response
-          with urllib.request.urlopen(req) as response:
-              response_data = response.read().decode('utf-8')
-              
-              # In production, implement proper response handling and logging
-              # (but never log full card details)
-              return {
-                  "status_code": response.getcode(),
-                  "response": response_data
-              }
-              
-      except urllib.error.HTTPError as e:
-          # Handle HTTP errors
-          error_data = e.read().decode('utf-8')
-          return {
-              "status_code": e.code,
-              "error": e.reason,
-              "response": error_data
-          }
-          
-      except Exception as e:
-          # Handle other exceptions
-          return {
-              "status_code": 500,
-              "error": str(e),
-              "response": "An error occurred during the payment process"
-          }
+````
+```python
+import urllib.request
+import urllib.parse
+import json
+import os
+from typing import Dict, Any
 
-  # Example usage:
-  # payment_result = process_payment(payment_data)
-  # print(f"Status: {payment_result['status_code']}")
-  # Process the response appropriately
+def process_payment(payment_data: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Process payment using PayU's Merchant Hosted Checkout
+    
+    IMPORTANT: This is a server-side function. Never expose card details to client-side code.
+    This handles sensitive card data and requires PCI DSS compliance.
+    
+    Args:
+        payment_data: Dictionary containing payment information
+        
+    Returns:
+        Dictionary with response from PayU API
+    """
+    # API endpoint - Use different URLs for test/production environments
+    url = "https://test.payu.in/_payment"  # Test URL
+    # url = "https://secure.payu.in/_payment"  # Production URL
+    
+    # Prepare the form data with proper URL encoding
+    # In production: Get merchant_key and hash from secure environment variables
+    payload = {
+        "key": "YOUR_MERCHANT_KEY",           # Replace with actual merchant key
+        "txnid": "TXN_12345",                 # Generate unique transaction ID
+        "amount": "1000.00",                  # Amount to be charged
+        "productinfo": "Product Description", # Description of product/service
+        "firstname": "Customer Name",         # Customer's first name
+        "email": "customer@example.com",      # Customer's email
+        "phone": "9988776655",                # Customer's phone number
+        "pg": "CC",                           # Payment gateway (CC for credit card)
+        "bankcode": "CC",                     # Bank code (CC for credit card)
+        
+        # SENSITIVE DATA - Handle with care according to PCI DSS requirements
+        "ccnum": "CARD_NUMBER",               # Credit card number
+        "ccexpmon": "MM",                     # Expiry month (2 digits)
+        "ccexpyr": "YY",                      # Expiry year (2 digits)
+        "ccvv": "CVV",                        # Card verification value
+        "ccname": "NAME_ON_CARD",             # Name on the card
+        
+        # Success and failure URLs
+        "surl": "https://yourwebsite.com/success",  # Success callback URL
+        "furl": "https://yourwebsite.com/failure",  # Failure callback URL
+        
+        # Hash is generated on server using specific algorithm provided by PayU
+        # See PayU documentation for the exact hash generation logic
+        "hash": "HASH_GENERATED_ON_SERVER",   # Security hash
+    }
+    
+    # Convert dictionary to URL-encoded form data
+    data = urllib.parse.urlencode(payload).encode('utf-8')
+    
+    # Set headers
+    headers = {
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    
+    # Create a request object
+    req = urllib.request.Request(url, data=data, headers=headers, method="POST")
+    
+    try:
+        # Send the request and get the response
+        with urllib.request.urlopen(req) as response:
+            response_data = response.read().decode('utf-8')
+            
+            # In production, implement proper response handling and logging
+            # (but never log full card details)
+            return {
+                "status_code": response.getcode(),
+                "response": response_data
+            }
+            
+    except urllib.error.HTTPError as e:
+        # Handle HTTP errors
+        error_data = e.read().decode('utf-8')
+        return {
+            "status_code": e.code,
+            "error": e.reason,
+            "response": error_data
+        }
+        
+    except Exception as e:
+        # Handle other exceptions
+        return {
+            "status_code": 500,
+            "error": str(e),
+            "response": "An error occurred during the payment process"
+        }
 
-  ```
-  ```php
-  <?php
-  /**
-   * Process payment using PayU's Merchant Hosted Checkout
-   * 
-   * IMPORTANT: This is a server-side function. Never expose card details to client-side code.
-   * This handles sensitive card data and requires PCI DSS compliance.
-   * 
-   * @param array $paymentData Payment information
-   * @return array Response from PayU API
-   */
-  function processPayment($paymentData = []) {
-      // API endpoint - Use different URLs for test/production environments
-      $url = "https://test.payu.in/_payment"; // Test URL
-      // $url = "https://secure.payu.in/_payment"; // Production URL
-      
-      // Prepare the form data
-      // In production: Get merchant_key and hash from secure environment variables
-      $payload = [
-          "key" => "YOUR_MERCHANT_KEY",           // Replace with actual merchant key
-          "txnid" => "TXN_12345",                 // Generate unique transaction ID
-          "amount" => "1000.00",                  // Amount to be charged
-          "productinfo" => "Product Description", // Description of product/service
-          "firstname" => "Customer Name",         // Customer's first name
-          "email" => "customer@example.com",      // Customer's email
-          "phone" => "9988776655",                // Customer's phone number
-          "pg" => "CC",                           // Payment gateway (CC for credit card)
-          "bankcode" => "CC",                     // Bank code (CC for credit card)
-          
-          // SENSITIVE DATA - Handle with care according to PCI DSS requirements
-          "ccnum" => "CARD_NUMBER",               // Credit card number
-          "ccexpmon" => "MM",                     // Expiry month (2 digits)
-          "ccexpyr" => "YY",                      // Expiry year (2 digits)
-          "ccvv" => "CVV",                        // Card verification value
-          "ccname" => "NAME_ON_CARD",             // Name on the card
-          
-          // Success and failure URLs
-          "surl" => "https://yourwebsite.com/success", // Success callback URL
-          "furl" => "https://yourwebsite.com/failure", // Failure callback URL
-          
-          // Hash is generated on server using specific algorithm provided by PayU
-          // See PayU documentation for the exact hash generation logic
-          "hash" => "HASH_GENERATED_ON_SERVER",   // Security hash
-      ];
-      
-      // Initialize cURL session
-      $ch = curl_init($url);
-      
-      // Set cURL options
-      curl_setopt($ch, CURLOPT_POST, true);
-      curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
-      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-      curl_setopt($ch, CURLOPT_HTTPHEADER, [
-          "Content-Type: application/x-www-form-urlencoded"
-      ]);
-      
-      // For additional security in production
-      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-      curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
-      
-      // Execute the request
-      $response = curl_exec($ch);
-      $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-      $error = curl_error($ch);
-      $errno = curl_errno($ch);
-      
-      // Close cURL session
-      curl_close($ch);
-      
-      // Handle response
-      if ($errno) {
-          return [
-              "status_code" => 500,
-              "error" => $error,
-              "response" => "cURL Error: " . $error
-          ];
-      }
-      
-      // In production, implement proper response handling and logging
-      // (but never log full card details)
-      return [
-          "status_code" => $status_code,
-          "response" => $response
-      ];
-  }
+# Example usage:
+# payment_result = process_payment(payment_data)
+# print(f"Status: {payment_result['status_code']}")
+# Process the response appropriately
 
-  // Example usage:
-  // $paymentResult = processPayment($paymentData);
-  // echo "Status: " . $paymentResult["status_code"];
-  // Process the response appropriately
-  ?>
+````
+```php
+<?php
+/**
+ * Process payment using PayU's Merchant Hosted Checkout
+ * 
+ * IMPORTANT: This is a server-side function. Never expose card details to client-side code.
+ * This handles sensitive card data and requires PCI DSS compliance.
+ * 
+ * @param array $paymentData Payment information
+ * @return array Response from PayU API
+ */
+function processPayment($paymentData = []) {
+    // API endpoint - Use different URLs for test/production environments
+    $url = "https://test.payu.in/_payment"; // Test URL
+    // $url = "https://secure.payu.in/_payment"; // Production URL
+    
+    // Prepare the form data
+    // In production: Get merchant_key and hash from secure environment variables
+    $payload = [
+        "key" => "YOUR_MERCHANT_KEY",           // Replace with actual merchant key
+        "txnid" => "TXN_12345",                 // Generate unique transaction ID
+        "amount" => "1000.00",                  // Amount to be charged
+        "productinfo" => "Product Description", // Description of product/service
+        "firstname" => "Customer Name",         // Customer's first name
+        "email" => "customer@example.com",      // Customer's email
+        "phone" => "9988776655",                // Customer's phone number
+        "pg" => "CC",                           // Payment gateway (CC for credit card)
+        "bankcode" => "CC",                     // Bank code (CC for credit card)
+        
+        // SENSITIVE DATA - Handle with care according to PCI DSS requirements
+        "ccnum" => "CARD_NUMBER",               // Credit card number
+        "ccexpmon" => "MM",                     // Expiry month (2 digits)
+        "ccexpyr" => "YY",                      // Expiry year (2 digits)
+        "ccvv" => "CVV",                        // Card verification value
+        "ccname" => "NAME_ON_CARD",             // Name on the card
+        
+        // Success and failure URLs
+        "surl" => "https://yourwebsite.com/success", // Success callback URL
+        "furl" => "https://yourwebsite.com/failure", // Failure callback URL
+        
+        // Hash is generated on server using specific algorithm provided by PayU
+        // See PayU documentation for the exact hash generation logic
+        "hash" => "HASH_GENERATED_ON_SERVER",   // Security hash
+    ];
+    
+    // Initialize cURL session
+    $ch = curl_init($url);
+    
+    // Set cURL options
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        "Content-Type: application/x-www-form-urlencoded"
+    ]);
+    
+    // For additional security in production
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+    
+    // Execute the request
+    $response = curl_exec($ch);
+    $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $error = curl_error($ch);
+    $errno = curl_errno($ch);
+    
+    // Close cURL session
+    curl_close($ch);
+    
+    // Handle response
+    if ($errno) {
+        return [
+            "status_code" => 500,
+            "error" => $error,
+            "response" => "cURL Error: " . $error
+        ];
+    }
+    
+    // In production, implement proper response handling and logging
+    // (but never log full card details)
+    return [
+        "status_code" => $status_code,
+        "response" => $response
+    ];
+}
 
-  ```
-  ```java
-  import java.io.BufferedReader;
-  import java.io.DataOutputStream;
-  import java.io.IOException;
-  import java.io.InputStreamReader;
-  import java.net.HttpURLConnection;
-  import java.net.URL;
-  import java.net.URLEncoder;
-  import java.nio.charset.StandardCharsets;
-  import java.util.HashMap;
-  import java.util.Map;
-  import java.util.StringJoiner;
+// Example usage:
+// $paymentResult = processPayment($paymentData);
+// echo "Status: " . $paymentResult["status_code"];
+// Process the response appropriately
+?>
 
-  /**
-   * PayU Payment Processor for Merchant Hosted Checkout
-   * 
-   * IMPORTANT: This is a server-side implementation. Never expose card details to client-side code.
-   * This handles sensitive card data and requires PCI DSS compliance.
-   */
-  public class PayUPaymentProcessor {
-      
-      // API endpoints - Use different URLs for test/production environments
-      private static final String TEST_URL = "https://test.payu.in/_payment";
-      private static final String PROD_URL = "https://secure.payu.in/_payment";
-      
-      /**
-       * Process payment using PayU Merchant Hosted Checkout
-       * 
-       * @return PaymentResponse containing status and response data
-       */
-      public PaymentResponse processPayment() {
-          try {
-              // Use test URL (change to PROD_URL in production)
-              URL url = new URL(TEST_URL);
-              
-              // Prepare form parameters
-              // In production: Get merchant_key and hash from secure environment variables
-              Map<String, String> params = new HashMap<>();
-              params.put("key", "YOUR_MERCHANT_KEY");           // Replace with actual merchant key
-              params.put("txnid", "TXN_12345");                 // Generate unique transaction ID
-              params.put("amount", "1000.00");                  // Amount to be charged
-              params.put("productinfo", "Product Description"); // Description of product/service
-              params.put("firstname", "Customer Name");         // Customer's first name
-              params.put("email", "customer@example.com");      // Customer's email
-              params.put("phone", "9988776655");                // Customer's phone number
-              params.put("pg", "CC");                           // Payment gateway (CC for credit card)
-              params.put("bankcode", "CC");                     // Bank code (CC for credit card)
-              
-              // SENSITIVE DATA - Handle with care according to PCI DSS requirements
-              params.put("ccnum", "CARD_NUMBER");               // Credit card number
-              params.put("ccexpmon", "MM");                     // Expiry month (2 digits)
-              params.put("ccexpyr", "YY");                      // Expiry year (2 digits)
-              params.put("ccvv", "CVV");                        // Card verification value
-              params.put("ccname", "NAME_ON_CARD");             // Name on the card
-              
-              // Success and failure URLs
-              params.put("surl", "https://yourwebsite.com/success"); // Success callback URL
-              params.put("furl", "https://yourwebsite.com/failure"); // Failure callback URL
-              
-              // Hash is generated on server using specific algorithm provided by PayU
-              // See PayU documentation for the exact hash generation logic
-              params.put("hash", "HASH_GENERATED_ON_SERVER");   // Security hash
-              
-              // Convert parameters to URL-encoded form data
-              StringJoiner formData = new StringJoiner("&");
-              for (Map.Entry<String, String> entry : params.entrySet()) {
-                  formData.add(URLEncoder.encode(entry.getKey(), "UTF-8") + "=" + 
-                               URLEncoder.encode(entry.getValue(), "UTF-8"));
-              }
-              byte[] postData = formData.toString().getBytes(StandardCharsets.UTF_8);
-              
-              // Configure connection
-              HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-              conn.setRequestMethod("POST");
-              conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-              conn.setRequestProperty("Content-Length", String.valueOf(postData.length));
-              conn.setDoOutput(true);
-              conn.setConnectTimeout(5000);
-              conn.setReadTimeout(15000);
-              
-              // Send request
-              try (DataOutputStream dos = new DataOutputStream(conn.getOutputStream())) {
-                  dos.write(postData);
-                  dos.flush();
-              }
-              
-              // Get response
-              int responseCode = conn.getResponseCode();
-              
-              // Read response data
-              StringBuilder response = new StringBuilder();
-              try (BufferedReader reader = new BufferedReader(
-                      new InputStreamReader(
-                          responseCode >= 400 ? conn.getErrorStream() : conn.getInputStream(), 
-                          StandardCharsets.UTF_8))) {
-                          
-                  String line;
-                  while ((line = reader.readLine()) != null) {
-                      response.append(line);
-                  }
-              }
-              
-              // In production, implement proper response handling and logging
-              // (but never log full card details)
-              return new PaymentResponse(responseCode, response.toString(), null);
-              
-          } catch (IOException e) {
-              // Handle exception
-              return new PaymentResponse(500, null, "Error: " + e.getMessage());
-          }
-      }
-      
-      /**
-       * Payment response wrapper class
-       */
-      public static class PaymentResponse {
-          private final int statusCode;
-          private final String response;
-          private final String error;
-          
-          public PaymentResponse(int statusCode, String response, String error) {
-              this.statusCode = statusCode;
-              this.response = response;
-              this.error = error;
-          }
-          
-          public int getStatusCode() {
-              return statusCode;
-          }
-          
-          public String getResponse() {
-              return response;
-          }
-          
-          public String getError() {
-              return error;
-          }
-          
-          public boolean isSuccess() {
-              return statusCode >= 200 && statusCode < 300;
-          }
-      }
-      
-      // Example usage:
-      public static void main(String[] args) {
-          PayUPaymentProcessor processor = new PayUPaymentProcessor();
-          PaymentResponse result = processor.processPayment();
-          
-          System.out.println("Status Code: " + result.getStatusCode());
-          if (result.isSuccess()) {
-              System.out.println("Response: " + result.getResponse());
-          } else {
-              System.out.println("Error: " + result.getError());
-          }
-      }
-  }
+```
+```java
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.StringJoiner;
 
-  ```
-  ```csharp
-  using System;
-  using System.Collections.Generic;
-  using System.Net.Http;
-  using System.Threading.Tasks;
-  using System.Text;
+/**
+ * PayU Payment Processor for Merchant Hosted Checkout
+ * 
+ * IMPORTANT: This is a server-side implementation. Never expose card details to client-side code.
+ * This handles sensitive card data and requires PCI DSS compliance.
+ */
+public class PayUPaymentProcessor {
+    
+    // API endpoints - Use different URLs for test/production environments
+    private static final String TEST_URL = "https://test.payu.in/_payment";
+    private static final String PROD_URL = "https://secure.payu.in/_payment";
+    
+    /**
+     * Process payment using PayU Merchant Hosted Checkout
+     * 
+     * @return PaymentResponse containing status and response data
+     */
+    public PaymentResponse processPayment() {
+        try {
+            // Use test URL (change to PROD_URL in production)
+            URL url = new URL(TEST_URL);
+            
+            // Prepare form parameters
+            // In production: Get merchant_key and hash from secure environment variables
+            Map<String, String> params = new HashMap<>();
+            params.put("key", "YOUR_MERCHANT_KEY");           // Replace with actual merchant key
+            params.put("txnid", "TXN_12345");                 // Generate unique transaction ID
+            params.put("amount", "1000.00");                  // Amount to be charged
+            params.put("productinfo", "Product Description"); // Description of product/service
+            params.put("firstname", "Customer Name");         // Customer's first name
+            params.put("email", "customer@example.com");      // Customer's email
+            params.put("phone", "9988776655");                // Customer's phone number
+            params.put("pg", "CC");                           // Payment gateway (CC for credit card)
+            params.put("bankcode", "CC");                     // Bank code (CC for credit card)
+            
+            // SENSITIVE DATA - Handle with care according to PCI DSS requirements
+            params.put("ccnum", "CARD_NUMBER");               // Credit card number
+            params.put("ccexpmon", "MM");                     // Expiry month (2 digits)
+            params.put("ccexpyr", "YY");                      // Expiry year (2 digits)
+            params.put("ccvv", "CVV");                        // Card verification value
+            params.put("ccname", "NAME_ON_CARD");             // Name on the card
+            
+            // Success and failure URLs
+            params.put("surl", "https://yourwebsite.com/success"); // Success callback URL
+            params.put("furl", "https://yourwebsite.com/failure"); // Failure callback URL
+            
+            // Hash is generated on server using specific algorithm provided by PayU
+            // See PayU documentation for the exact hash generation logic
+            params.put("hash", "HASH_GENERATED_ON_SERVER");   // Security hash
+            
+            // Convert parameters to URL-encoded form data
+            StringJoiner formData = new StringJoiner("&");
+            for (Map.Entry<String, String> entry : params.entrySet()) {
+                formData.add(URLEncoder.encode(entry.getKey(), "UTF-8") + "=" + 
+                             URLEncoder.encode(entry.getValue(), "UTF-8"));
+            }
+            byte[] postData = formData.toString().getBytes(StandardCharsets.UTF_8);
+            
+            // Configure connection
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            conn.setRequestProperty("Content-Length", String.valueOf(postData.length));
+            conn.setDoOutput(true);
+            conn.setConnectTimeout(5000);
+            conn.setReadTimeout(15000);
+            
+            // Send request
+            try (DataOutputStream dos = new DataOutputStream(conn.getOutputStream())) {
+                dos.write(postData);
+                dos.flush();
+            }
+            
+            // Get response
+            int responseCode = conn.getResponseCode();
+            
+            // Read response data
+            StringBuilder response = new StringBuilder();
+            try (BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(
+                        responseCode >= 400 ? conn.getErrorStream() : conn.getInputStream(), 
+                        StandardCharsets.UTF_8))) {
+                        
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+            }
+            
+            // In production, implement proper response handling and logging
+            // (but never log full card details)
+            return new PaymentResponse(responseCode, response.toString(), null);
+            
+        } catch (IOException e) {
+            // Handle exception
+            return new PaymentResponse(500, null, "Error: " + e.getMessage());
+        }
+    }
+    
+    /**
+     * Payment response wrapper class
+     */
+    public static class PaymentResponse {
+        private final int statusCode;
+        private final String response;
+        private final String error;
+        
+        public PaymentResponse(int statusCode, String response, String error) {
+            this.statusCode = statusCode;
+            this.response = response;
+            this.error = error;
+        }
+        
+        public int getStatusCode() {
+            return statusCode;
+        }
+        
+        public String getResponse() {
+            return response;
+        }
+        
+        public String getError() {
+            return error;
+        }
+        
+        public boolean isSuccess() {
+            return statusCode >= 200 && statusCode < 300;
+        }
+    }
+    
+    // Example usage:
+    public static void main(String[] args) {
+        PayUPaymentProcessor processor = new PayUPaymentProcessor();
+        PaymentResponse result = processor.processPayment();
+        
+        System.out.println("Status Code: " + result.getStatusCode());
+        if (result.isSuccess()) {
+            System.out.println("Response: " + result.getResponse());
+        } else {
+            System.out.println("Error: " + result.getError());
+        }
+    }
+}
 
-  namespace PayUIntegration
-  {
-      /// <summary>
-      /// PayU Payment Processor for Merchant Hosted Checkout
-      /// 
-      /// IMPORTANT: This is a server-side implementation. Never expose card details to client-side code.
-      /// This handles sensitive card data and requires PCI DSS compliance.
-      /// </summary>
-      public class PayUPaymentProcessor
-      {
-          // API endpoints - Use different URLs for test/production environments
-          private const string TestUrl = "https://test.payu.in/_payment";
-          private const string ProdUrl = "https://secure.payu.in/_payment";
-          
-          /// <summary>
-          /// Process payment using PayU Merchant Hosted Checkout
-          /// </summary>
-          /// <returns>PaymentResponse containing status and response data</returns>
-          public async Task<PaymentResponse> ProcessPaymentAsync()
-          {
-              try
-              {
-                  // Use test URL (change to ProdUrl in production)
-                  string url = TestUrl;
-                  
-                  // Prepare form parameters
-                  // In production: Get merchant_key and hash from secure environment variables
-                  var formData = new Dictionary<string, string>
-                  {
-                      { "key", "YOUR_MERCHANT_KEY" },           // Replace with actual merchant key
-                      { "txnid", "TXN_12345" },                 // Generate unique transaction ID
-                      { "amount", "1000.00" },                  // Amount to be charged
-                      { "productinfo", "Product Description" }, // Description of product/service
-                      { "firstname", "Customer Name" },         // Customer's first name
-                      { "email", "customer@example.com" },      // Customer's email
-                      { "phone", "9988776655" },                // Customer's phone number
-                      { "pg", "CC" },                           // Payment gateway (CC for credit card)
-                      { "bankcode", "CC" },                     // Bank code (CC for credit card)
-                      
-                      // SENSITIVE DATA - Handle with care according to PCI DSS requirements
-                      { "ccnum", "CARD_NUMBER" },               // Credit card number
-                      { "ccexpmon", "MM" },                     // Expiry month (2 digits)
-                      { "ccexpyr", "YY" },                      // Expiry year (2 digits)
-                      { "ccvv", "CVV" },                        // Card verification value
-                      { "ccname", "NAME_ON_CARD" },             // Name on the card
-                      
-                      // Success and failure URLs
-                      { "surl", "https://yourwebsite.com/success" }, // Success callback URL
-                      { "furl", "https://yourwebsite.com/failure" }, // Failure callback URL
-                      
-                      // Hash is generated on server using specific algorithm provided by PayU
-                      // See PayU documentation for the exact hash generation logic
-                      { "hash", "HASH_GENERATED_ON_SERVER" }    // Security hash
-                  };
-                  
-                  // Create HttpClient with timeout
-                  using (var httpClient = new HttpClient())
-                  {
-                      httpClient.Timeout = TimeSpan.FromSeconds(30);
-                      
-                      // Convert form data to content
-                      var content = new FormUrlEncodedContent(formData);
-                      
-                      // Send POST request
-                      var response = await httpClient.PostAsync(url, content);
-                      
-                      // Get response content
-                      var responseContent = await response.Content.ReadAsStringAsync();
-                      
-                      // In production, implement proper response handling and logging
-                      // (but never log full card details)
-                      return new PaymentResponse(
-                          (int)response.StatusCode,
-                          responseContent,
-                          null
-                      );
-                  }
-              }
-              catch (Exception ex)
-              {
-                  // Handle exception
-                  return new PaymentResponse(
-                      500,
-                      null,
-                      $"Error: {ex.Message}"
-                  );
-              }
-          }
-          
-          /// <summary>
-          /// Payment response wrapper class
-          /// </summary>
-          public class PaymentResponse
-          {
-              public int StatusCode { get; }
-              public string Response { get; }
-              public string Error { get; }
-              
-              public PaymentResponse(int statusCode, string response, string error)
-              {
-                  StatusCode = statusCode;
-                  Response = response;
-                  Error = error;
-              }
-              
-              public bool IsSuccess => StatusCode >= 200 && StatusCode < 300;
-          }
-      }
-      
-      // Example usage:
-      public class Program
-      {
-          public static async Task Main(string[] args)
-          {
-              var processor = new PayUPaymentProcessor();
-              var result = await processor.ProcessPaymentAsync();
-              
-              Console.WriteLine($"Status Code: {result.StatusCode}");
-              if (result.IsSuccess)
-              {
-                  Console.WriteLine($"Response: {result.Response}");
-              }
-              else
-              {
-                  Console.WriteLine($"Error: {result.Error}");
-              }
-          }
-      }
-  }
+```
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Text;
 
-  ```
+namespace PayUIntegration
+{
+    /// <summary>
+    /// PayU Payment Processor for Merchant Hosted Checkout
+    /// 
+    /// IMPORTANT: This is a server-side implementation. Never expose card details to client-side code.
+    /// This handles sensitive card data and requires PCI DSS compliance.
+    /// </summary>
+    public class PayUPaymentProcessor
+    {
+        // API endpoints - Use different URLs for test/production environments
+        private const string TestUrl = "https://test.payu.in/_payment";
+        private const string ProdUrl = "https://secure.payu.in/_payment";
+        
+        /// <summary>
+        /// Process payment using PayU Merchant Hosted Checkout
+        /// </summary>
+        /// <returns>PaymentResponse containing status and response data</returns>
+        public async Task<PaymentResponse> ProcessPaymentAsync()
+        {
+            try
+            {
+                // Use test URL (change to ProdUrl in production)
+                string url = TestUrl;
+                
+                // Prepare form parameters
+                // In production: Get merchant_key and hash from secure environment variables
+                var formData = new Dictionary<string, string>
+                {
+                    { "key", "YOUR_MERCHANT_KEY" },           // Replace with actual merchant key
+                    { "txnid", "TXN_12345" },                 // Generate unique transaction ID
+                    { "amount", "1000.00" },                  // Amount to be charged
+                    { "productinfo", "Product Description" }, // Description of product/service
+                    { "firstname", "Customer Name" },         // Customer's first name
+                    { "email", "customer@example.com" },      // Customer's email
+                    { "phone", "9988776655" },                // Customer's phone number
+                    { "pg", "CC" },                           // Payment gateway (CC for credit card)
+                    { "bankcode", "CC" },                     // Bank code (CC for credit card)
+                    
+                    // SENSITIVE DATA - Handle with care according to PCI DSS requirements
+                    { "ccnum", "CARD_NUMBER" },               // Credit card number
+                    { "ccexpmon", "MM" },                     // Expiry month (2 digits)
+                    { "ccexpyr", "YY" },                      // Expiry year (2 digits)
+                    { "ccvv", "CVV" },                        // Card verification value
+                    { "ccname", "NAME_ON_CARD" },             // Name on the card
+                    
+                    // Success and failure URLs
+                    { "surl", "https://yourwebsite.com/success" }, // Success callback URL
+                    { "furl", "https://yourwebsite.com/failure" }, // Failure callback URL
+                    
+                    // Hash is generated on server using specific algorithm provided by PayU
+                    // See PayU documentation for the exact hash generation logic
+                    { "hash", "HASH_GENERATED_ON_SERVER" }    // Security hash
+                };
+                
+                // Create HttpClient with timeout
+                using (var httpClient = new HttpClient())
+                {
+                    httpClient.Timeout = TimeSpan.FromSeconds(30);
+                    
+                    // Convert form data to content
+                    var content = new FormUrlEncodedContent(formData);
+                    
+                    // Send POST request
+                    var response = await httpClient.PostAsync(url, content);
+                    
+                    // Get response content
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    
+                    // In production, implement proper response handling and logging
+                    // (but never log full card details)
+                    return new PaymentResponse(
+                        (int)response.StatusCode,
+                        responseContent,
+                        null
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exception
+                return new PaymentResponse(
+                    500,
+                    null,
+                    $"Error: {ex.Message}"
+                );
+            }
+        }
+        
+        /// <summary>
+        /// Payment response wrapper class
+        /// </summary>
+        public class PaymentResponse
+        {
+            public int StatusCode { get; }
+            public string Response { get; }
+            public string Error { get; }
+            
+            public PaymentResponse(int statusCode, string response, string error)
+            {
+                StatusCode = statusCode;
+                Response = response;
+                Error = error;
+            }
+            
+            public bool IsSuccess => StatusCode >= 200 && StatusCode < 300;
+        }
+    }
+    
+    // Example usage:
+    public class Program
+    {
+        public static async Task Main(string[] args)
+        {
+            var processor = new PayUPaymentProcessor();
+            var result = await processor.ProcessPaymentAsync();
+            
+            Console.WriteLine($"Status Code: {result.StatusCode}");
+            if (result.IsSuccess)
+            {
+                Console.WriteLine($"Response: {result.Response}");
+            }
+            else
+            {
+                Console.WriteLine($"Error: {result.Error}");
+            }
+        }
+    }
+}
+
+```
+
 </Accordion>
 
 ## Step 3: Check the response from PayU
