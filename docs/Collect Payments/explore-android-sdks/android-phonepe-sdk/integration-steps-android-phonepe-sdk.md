@@ -249,7 +249,7 @@ Following are error messages concerning PhonePe initialization failure.
 <table style="width: 100%; border-collapse: collapse;">
   <thead>
     <tr>
-      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Error Code</strong></th>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>S. No.</strong></th>
       <th style="border: 1px solid #ddd; padding: 8px;"><strong>Error Code</strong></th>
       <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
     </tr>
