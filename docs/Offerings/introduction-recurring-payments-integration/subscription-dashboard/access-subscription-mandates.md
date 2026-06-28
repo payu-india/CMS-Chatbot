@@ -114,7 +114,7 @@ The **Activity** sub-tab allows you to review a chronological timeline of all ac
 
 To view a mandate activity:
 
-1. Navigate to Subscriptions Dashboard and ensure that your are on **Mandate** tab.
+1. Navigate to Subscriptions Dashboard and ensure that you are on **Mandate** tab.
 2. Select **View Details** from the **Actions** menu for the mandate that your wish to see the activity similar to the following screenshot:
 
 
@@ -143,7 +143,7 @@ The **Payments** sub-tab allows you to manage and review all recurring transacti
 
 To view payments received for a mandate:
 
-1. Navigate to Subscriptions Dashboard and ensure that your are on **Mandate** tab.
+1. Navigate to Subscriptions Dashboard and ensure that you are on **Mandate** tab.
 2. Select **View Details** from the **Actions** menu for the mandate that your wish to see the activity similar to the following screenshot:
 
 
@@ -168,7 +168,7 @@ For eNACH transactions that have failed, you can download a Bounce Memo.
 
 To download a memo for failed transaction:
 
-1. Navigate to Subscriptions Dashboard and ensure that your are on **Mandate** tab.
+1. Navigate to Subscriptions Dashboard and ensure that you are on **Mandate** tab.
 2. Select **View Details** from the **Action** menu for the eNACH mandate that your wish to download memo.
 
 The _Subscription Details_ page is displayed with the **Details** tab selected.
