@@ -12,10 +12,14 @@ next:
 ---
 The merchant initiates a call to PayU with the SI details, pg., bankcode, and pre-authorization amount. This amount is considered the Block Amount. Using these details, PayU will then relay the callback with the current status to the merchant.
 
-The **pre_authorize** parameter is used for pre-authorize payments using the seamless integration with the **_payment** API.
+The **pre\_authorize** parameter is used for pre-authorize payments using the seamless integration with the **\_payment** API.
 
 <Callout icon="👍" theme="okay">
+  ###
+
   Experience the end-to-end **Merchant Hosted Checkout**> **UPI** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
+
+    
 
   <HTMLBlock>{`
                       <style>
@@ -367,7 +371,7 @@ Post the additional parameters for with the Pre-Authorization using the Merchant
 </Accordion>
 
 <Accordion title="Failure scenarios" icon="fa-code">
-  After the transaction is authorised by the customer, PayU will receive confirmation. Same will be passed to the merchant as webhook.
+  After the transaction is authorised by the customer, PayU will receive confirmation. PAyU will pass the confirmation to the merchant as webhook.
 
   ```
   {
@@ -411,5 +415,9 @@ To capture a pre-authorized payment, use the following command. After the API co
 <Verify_Payment_Tabs />
 
 <Callout icon="👍" theme="okay">
+  ###
+
   **Reference**: For cancelling pre-auth payments, refer to [Cancel a Pre-Authorized Transaction API](ref:cancel-a-pre-authorized-transaction).
 </Callout>
+
+<br />
