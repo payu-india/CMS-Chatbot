@@ -128,7 +128,7 @@ Along with the mandatory parameters mentioned in <a href="https://docs.payu.in/r
       </td>
 
       <td>
-        `String` The merchant must post this parameter with the merchant's corresponding bank code value in it.**Note**: If you are integrating Closed Loop Wallet, you need get the bankcode from your Key Account Manager (KAM).
+        `String` The merchant must post this parameter with the merchant's corresponding bank code value in it.**Note**: If you are integrating Closed Loop Wallet, you need to get the bankcode from your Key Account Manager (KAM).
       </td>
 
       <td>
@@ -201,3 +201,5 @@ Array
     [splitInfo] => {"splitStatus":"splitNotReceived","splitSegments":\[]}  
 )
 ```
+
+<br />
