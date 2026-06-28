@@ -25,7 +25,7 @@ This API is retrieve detailed information about a specific transaction using the
 
   | Parameter                                         | Description                                                  | Example              |
   | ------------------------------------------------- | ------------------------------------------------------------ | -------------------- |
-  | merchantTransactionId<br /><code>mandatory</code> | <code>String</code> The tramnsaaction ID of the transaction. | ZTDUPI2602754D96F47B |
+  | merchantTransactionId<br /><code>mandatory</code> | <code>String</code> The transaction ID of the transaction. | ZTDUPI2602754D96F47B |
 
   ### Other Header Parameters
 
@@ -184,7 +184,7 @@ This API is retrieve detailed information about a specific transaction using the
   } 
   ```
 
-  * Request parameter not wthin character limit
+  * Request parameter not within the character limit
 
   ```json
   {
@@ -248,3 +248,5 @@ This API is retrieve detailed information about a specific transaction using the
   | chargeback         | Failure | Chargeback occurs when a customer disputes a transaction with their bank, leading to the amount being debited from the merchant and returned to the customer.  |
   | chargebackreversal | Success | Chargeback Reversal occurs when the merchant successfully contests a chargeback and the disputed amount is returned back to the merchant.                      |
 </Accordion>
+
+<br />
