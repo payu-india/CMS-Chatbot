@@ -19,34 +19,6 @@ metadata:
 next:
   description: ''
 ---
----
-title: Integration Steps
-excerpt: ''
-deprecated: false
-hidden: false
-metadata:
-  title: Integration Steps - Android Customer Browser
-  description: >-
-    Step-by-step PayU Custom Browser SDK for Android: Gradle setup, hash, payment request, surl/furl handling, test credentials, go-live.
-  robots: index
-  keywords:
-    - payu custom browser sdk android integration steps india
-    - android payment gateway sdk integration custom browser payu
-    - integrate payment gateway android app webview checkout payu
-    - mobile payment sdk android gradle integration guide payu
-    - upi card netbanking wallet android sdk integration payu
-    - android payment hash generation sdk integration payu gateway
-    - payment gateway android kotlin java sdk integration steps
-    - payu android sdk test environment sandbox integration guide
-    - android in app payment integration server side hash payu
-    - custom browser mobile sdk android payment integration payu
-    - payu android payment sdk integration
-    - android payment redirect surl furl sdk integration payu
-
-next:
-  description: ''
----
-
 The Android Customer Browser integration involves the following steps:
 
 <Cards columns={3}>
@@ -71,7 +43,7 @@ The Android Customer Browser integration involves the following steps:
 
 ## SDK Integration
 
-Before you start with the integration, enable the payment methods that you want to offer to your customers from **Dashboard** > **Settings** > **Payment methods**. PayU enable Cards, UPI, and other payment methods by default, and we recommend that you enable other payment methods that are relevant to you. For more information, refer to <Anchor label="Configure Checkout Payment Methods" target="_blank" href="https://docs.payu.in/docs/payu-payment-page-customization#configure-checkout-payment-methods-and-settings">Configure Checkout Payment Methods</Anchor>.
+Before you start with the integration, enable the payment methods that you want to offer to your customers from **Dashboard** > **Settings** > **Payment methods**. PayU enable Cards, UPI, and other payment methods by default, and we recommend that you enable other payment methods that are relevant to you. For more information, refer to <Anchor target="_blank" href="https://docs.payu.in/docs/payu-payment-page-customization#configure-checkout-payment-methods-and-settings">Configure Checkout Payment Methods</Anchor>.
 
 ### Step 1: Create a PayU account
 
@@ -395,6 +367,8 @@ First, create a PayU account. For more information, refer to [Register for a Mer
 Use the Core SDK library to generate payment post data
 
 <Callout icon="🚧" theme="warn">
+  ###
+
   **Payment Mode-Specific Parameters Required**: You **MUST** configure the `pg` (Payment Gateway) and `bankcode` parameters in your post data based on the payment method selected by the user. Each payment mode requires specific parameters.
 </Callout>
 
@@ -497,7 +471,7 @@ Use the Core SDK library to generate payment post data
   For complete list of bank codes and payment method codes, refer to:
 
   * **[Bank and Card Codes for Integration](https://docs.payu.in/docs/bank-and-card-codes-for-integration)** - Complete reference for all bank codes, card codes, and wallet codes
-  * **[Net Banking Codes](https://docs.payu.in/docs/net-banking-codes)** - Specific codes for net banking banks
+  * **[Net Banking Codes](https://docs.payu.in/docs/net-banking-codes)** - Specific codes for banks supporting Net Banking
   * **[Supported Payment Methods](https://docs.payu.in/docs/supported-payment-methods)** - All available payment methods and their codes
 
   <Callout icon="👍" theme="okay">
@@ -647,18 +621,20 @@ Use the Core SDK library to generate payment post data
 
 **Callback Methods Explanation:**
 
-* **onPaymentSuccess**: Called when payment completes successfully. Receives PayU response and merchant response from success URL (surl).
-* **onPaymentFailure**: Called when payment fails. Receives PayU response and merchant response from failure URL (furl).
-* **onPaymentTerminate**: Called when payment is terminated by user or system.
-* **onCBErrorReceived**: Called when CustomBrowser encounters an error. Use error code to handle specific errors.
-* **setCBProperties**: Customize WebView settings and behavior. Set WebChromeClient and WebViewClient for handling page navigation.
-* **onBackApprove**: Called when user confirms exit from payment screen via back button.
-* **onBackDismiss**: Called when user dismisses the exit confirmation dialog.
-* **onBackButton**: Customize the back button alert dialog appearance and behavior.
-* **isPaymentOptionAvailable** (v7.1.3+): Response callback for payment option availability check (e.g., Samsung Pay VPA).
-* **onVpaEntered** (v7.3.0+): Called when user enters VPA for Generic Intent flow. Calculate and verify VPA hash using this callback.
+- **onPaymentSuccess**: Called when payment completes successfully. Receives PayU response and merchant response from success URL (surl).
+- **onPaymentFailure**: Called when payment fails. Receives PayU response and merchant response from failure URL (furl).
+- **onPaymentTerminate**: Called when payment is terminated by user or system.
+- **onCBErrorReceived**: Called when CustomBrowser encounters an error. Use error code to handle specific errors.
+- **setCBProperties**: Customize WebView settings and behavior. Set WebChromeClient and WebViewClient for handling page navigation.
+- **onBackApprove**: Called when user confirms exit from payment screen via back button.
+- **onBackDismiss**: Called when user dismisses the exit confirmation dialog.
+- **onBackButton**: Customize the back button alert dialog appearance and behavior.
+- **isPaymentOptionAvailable** (v7.1.3+): Response callback for payment option availability check (e.g., Samsung Pay VPA).
+- **onVpaEntered** (v7.3.0+): Called when user enters VPA for Generic Intent flow. Calculate and verify VPA hash using this callback.
 
 <Callout icon="👍" theme="okay">
+  ###
+
   **Best Practice**: Always verify payment status on your server using the Verify Payment API, regardless of the callback received. This ensures accurate transaction status even in cases of network issues or callback failures.
 </Callout>
 
@@ -1071,12 +1047,12 @@ Ensure these steps before you deploy the integration in a live environment.
 
   ```xml
   <application>
-  <!-- REMOVE THESE LINES BEFORE PRODUCTION -->
+  {/* REMOVE THESE LINES BEFORE PRODUCTION -->
   <!--
   <meta-data android:name="payu_debug_mode_enabled" android:value="true" />
   <meta-data android:name="payu_web_service_url" android:value="https://test.payu.in" />
   <meta-data android:name="payu_post_url" android:value="https://test.payu.in"/>
-  -->
+  */}
   </application>
   ```
 </Accordion>
@@ -1187,3 +1163,5 @@ Ensure these steps before you deploy the integration in a live environment.
 </Accordion>
 
 ***
+
+<br />
