@@ -66,7 +66,7 @@ The request body parameters to create a subscription request are:
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>authRefId<br><strong>mandatory</strong></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>Auth Reference Id represents preferred payment instrument chosen by customer during Consent transaction. It is nothing but mihpayId returned in the response of successful Consent transaction along with payment source as “sist” or “sinst”.   So, merchants can call Define subscription API post successful Consent transaction and associate authRefId = mihpayIdto setup subscriptions. Also, it provides convenience for creating subscriptions of users for whom Consent<br>transaction is already taken in past.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>Auth Reference Id represents preferred payment instrument chosen by customer during Consent transaction. It is nothing but mihpayId returned in the response of successful Consent transaction along with payment source as “sist” or “sinst”.   So, merchants can call Define subscription API post successful Consent transaction and associate authRefId = mihpayIdto setup subscriptions. Also, it provides convenience for creating subscriptions of users for whom Consent<br>transaction is already taken in the past.</p>
 </td>
 </tr>
 <tr>
