@@ -1,1555 +1,1893 @@
 {
+  "openapi": "3.0.0",
   "info": {
-    "_postman_id": "ccb9972d-0181-432e-a1c1-add7096cee9a",
-    "name": "UAT - Refer merchant apis for partner",
-    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
-    "_exporter_id": "26476208",
-    "_collection_link": "https://solar-capsules.postman.co/workspace/Solar-Capsules~66e4a5a8-a429-422c-ab0e-8593686a98f0/collection/26476208-ccb9972d-0181-432e-a1c1-add7096cee9a?action=share&source=collection_link&creator=26476208"
+    "title": "UAT - Refer merchant apis for partner",
+    "version": "1.0.0"
   },
-  "item": [
+  "servers": [
     {
-      "name": "Send and verify",
-      "item": [
-        {
-          "name": "GetToken",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "client_id",
-                  "value": "56b16b8f4d16f61929d6596d3c9cfb3e9bfc526c9c906b09c916cc9ea591b66d",
-                  "description": "Unique identifier for your client application provided by PayU",
-                  "type": "text"
-                },
-                {
-                  "key": "client_secret",
-                  "value": "f5e0115d5b9f715ce0e8c4ef99d438aa4e7f0203f6e1d5e9be9e36f80a07716b",
-                  "description": "Secret key provided by PayU for authentication",
-                  "type": "text"
-                },
-                {
-                  "key": "grant_type",
-                  "value": "client_credentials",
-                  "type": "text",
-                  "description": "Type of grant being requested, usually 'client_credentials'"
-                },
-                {
-                  "key": "scope",
-                  "value": "send_sign_in_otp verify_sign_in_otp refer_merchant",
-                  "type": "text",
-                  "description": "Scope of access being requested"
-                }
-              ]
-            },
-            "url": "{{hub_uat}}/oauth/token"
-          },
-          "response": []
-        },
-        {
-          "name": "SendOtp",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer aa52f685ef29e8c86aabdccd965c3239cc4ce7bf4c5f98c68ca6fc2d8c641d8a"
-              }
-            ],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "otp[identity]",
-                  "value": "9916965982",
-                  "type": "text",
-                  "description": "Mobile number or email to which OTP will be sent"
-                },
-                {
-                  "key": "otp[scope]",
-                  "value": "user_profile create_bank_details update_bank_details create_payment_links update_payment_links read_payment_links ",
-                  "description": "Permissions/actions that will be allowed after OTP verification",
-                  "type": "text"
-                },
-                {
-                  "key": "otp[channels][]",
-                  "value": "sms",
-                  "description": "Channel through which OTP will be sent (sms, email)",
-                  "type": "text"
-                },
-                {
-                  "key": "otp[type]",
-                  "value": "SignIn",
-                  "description": "Type of action for which OTP is being requested",
-                  "type": "text"
-                }
-              ]
-            },
-            "url": "{{hub_uat}}/api/v1/otps/send_otp"
-          },
-          "response": []
-        },
-        {
-          "name": "VerifyOtp",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer a7db7d87343969e44c4d0b4b602d2738233f6efec0be1088316b70b15a77343c"
-              }
-            ],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "otp[identity]",
-                  "value": "7292033398",
-                  "type": "text",
-                  "description": "Mobile number or email to which OTP will be sent"
-                },
-                {
-                  "key": "otp[email]",
-                  "value": "test.ob021345@yomail.com",
-                  "type": "text"
-                },
-                {
-                  "key": "otp[code]",
-                  "value": "4722",
-                  "type": "text"
-                },
-                {
-                  "key": "otp[type]",
-                  "value": "SignIn",
-                  "type": "text",
-                  "description": "Type of action for which OTP is being requested"
-                }
-              ]
-            },
-            "url": "{{hub_uat}}/api/v1/otps/verify_otp"
-          },
-          "response": []
-        }
-      ]
+      "url": "https://uat-accounts.payu.in"
     },
     {
-      "name": "Create and Update a merchant",
-      "item": [
-        {
-          "name": "CreateMerchant",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer 3c775c77cffb80a5161aa9a0f31bce3eb3555572e1364f0b2439f6f80fddb2e6"
-              }
-            ],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "[merchant][display_name]",
-                  "value": "DIVY HARESHKUMAR SHAH",
-                  "type": "text",
-                  "description": "Name to be displayed for the merchant"
-                },
-                {
-                  "key": "merchant[email]",
-                  "value": "boro13@yomail.com",
-                  "type": "text",
-                  "description": "Email address of the merchant for communication"
-                },
-                {
-                  "key": "merchant[mobile]",
-                  "value": "9916965913",
-                  "type": "text",
-                  "description": "Mobile number of the merchant for communication"
-                },
-                {
-                  "key": "merchant[business_details][pan]",
-                  "value": "FANPS6362D",
-                  "type": "text",
-                  "disabled": true,
-                  "description": "PAN (Permanent Account Number) of the business"
-                },
-                {
-                  "key": "merchant[business_details][business_entity_type]",
-                  "value": "Sole Proprietorship",
-                  "type": "text",
-                  "description": "Legal structure of the business (e.g., Sole Proprietorship, Partnership, etc.)"
-                },
-                {
-                  "key": "merchant[product]",
-                  "value": "PayUbiz",
-                  "type": "text",
-                  "disabled": true,
-                  "description": "PayU product that the merchant wants to use (e.g., PayUbiz)"
-                },
-                {
-                  "key": "merchant[bank_details][account_no]",
-                  "value": "919010067278549",
-                  "type": "text",
-                  "disabled": true,
-                  "description": "Merchant's bank account number for settlements"
-                },
-                {
-                  "key": "merchant[bank_details][account_holder_name]",
-                  "value": "DIVY HARESHKUMAR SHAH",
-                  "type": "text",
-                  "disabled": true,
-                  "description": "Name of the account holder as per bank records"
-                },
-                {
-                  "key": "merchant[bank_details][ifsc_code]",
-                  "value": "UTIB0003557",
-                  "type": "text",
-                  "disabled": true,
-                  "description": "IFSC code of the bank branch"
-                },
-                {
-                  "key": "merchant[business_details][registered_name]",
-                  "value": "DIVY HARESHKUMAR SHAH",
-                  "type": "text",
-                  "disabled": true,
-                  "description": "Legal registered name of the business"
-                },
-                {
-                  "key": "merchant[business_details][business_category]",
-                  "value": "Arts, Gifts & Stationery",
-                  "type": "text",
-                  "disabled": true,
-                  "description": "Category of the merchant's business"
-                },
-                {
-                  "key": "merchant[business_details][business_sub_category]",
-                  "value": "Art Dealers and Galleries",
-                  "type": "text",
-                  "disabled": true,
-                  "description": "Sub-category of the merchant's business"
-                },
-                {
-                  "key": "merchant[website_details][website_url]",
-                  "value": "https://www.google.com",
-                  "type": "text",
-                  "disabled": true,
-                  "description": "URL of the merchant's website"
-                },
-                {
-                  "key": "merchant[monthly_expected_volume]",
-                  "value": "12000",
-                  "type": "text",
-                  "disabled": true,
-                  "description": "Expected monthly transaction volume in INR"
-                },
-                {
-                  "key": "merchant[signing_authority_details][name]",
-                  "value": "DIVY HARESHKUMAR SHAH",
-                  "type": "text",
-                  "disabled": true,
-                  "description": "Name of the person authorized to sign agreements"
-                },
-                {
-                  "key": "merchant[signing_authority_details][pancard_number]",
-                  "value": "FANPS6362D",
-                  "type": "text",
-                  "disabled": true,
-                  "description": "PAN card number of the signing authority"
-                },
-                {
-                  "key": "merchant[signing_authority_details][email]",
-                  "value": "email_test1213@yopmail.com",
-                  "type": "text",
-                  "disabled": true,
-                  "description": "Email address of the signing authority"
-                },
-                {
-                  "key": "merchant[business_details][pancard_name]",
-                  "value": "DIVY HARESHKUMAR SHAH",
-                  "type": "text",
-                  "disabled": true,
-                  "description": "Name as it appears on the PAN card"
-                },
-                {
-                  "key": "merchant[integration_type]",
-                  "value": "",
-                  "type": "text",
-                  "disabled": true,
-                  "description": "Type of integration (e.g., API, plugin, etc.)"
-                },
-                {
-                  "key": "merchant[gst_number]",
-                  "value": "24FANPS6362D1ZE",
-                  "type": "text",
-                  "description": "GST (Goods and Services Tax) registration number"
-                },
-                {
-                  "key": "merchant[udyam_number]",
-                  "value": "UDYAM-UP-19-0002053",
-                  "description": "Udyam registration number for small businesses (applicable for Sole Proprietorship)",
-                  "type": "text",
-                  "disabled": true
-                },
-                {
-                  "key": "merchant[gst_consent]",
-                  "value": "false",
-                  "type": "text",
-                  "disabled": true,
-                  "description": "Consent for GST verification (true/false)"
-                },
-                {
-                  "key": "merchant[pancard_number]",
-                  "value": "",
-                  "type": "text",
-                  "description": "PAN card number of the business"
-                },
-                {
-                  "key": "merchant[pancard_name]",
-                  "value": "",
-                  "type": "text",
-                  "description": "Name as it appears on the PAN card"
-                },
-                {
-                  "key": "merchant[business_entity]",
-                  "value": "Public Limited",
-                  "type": "text",
-                  "description": "Legal entity type of the business (e.g., Public Limited, Private Limited)"
-                },
-                {
-                  "key": "merchant[business_category]",
-                  "value": "Arts, Gifts & Stationery",
-                  "type": "text"
-                },
-                {
-                  "key": "merchant[business_sub_category]",
-                  "value": "Art Dealers and Galleries",
-                  "type": "text"
-                },
-                {
-                  "key": "merchant[business_name]",
-                  "value": "PAYU PAYMENTS PRIVATE LIMITED",
-                  "type": "text",
-                  "description": "Legal name of the business as registered"
-                },
-                {
-                  "key": "merchant[registration_address][address_line]",
-                  "value": "M1703, banashankari",
-                  "type": "text",
-                  "description": "Registered address line of the business"
-                },
-                {
-                  "key": "merchant[registration_address][state]",
-                  "value": "Karnataka",
-                  "type": "text",
-                  "description": "State of the registered address"
-                },
-                {
-                  "key": "merchant[registration_address][city]",
-                  "value": "Haryana",
-                  "type": "text",
-                  "description": "City of the registered address"
-                },
-                {
-                  "key": "merchant[registration_address][pincode]",
-                  "value": "122018",
-                  "type": "text",
-                  "description": "PIN code of the registered address"
-                },
-                {
-                  "key": "merchant[operating_address][city]",
-                  "value": "Bangalore",
-                  "type": "text",
-                  "description": "City of the operating address"
-                },
-                {
-                  "key": "merchant[operating_address][state]",
-                  "value": "Haryana",
-                  "type": "text",
-                  "description": "State of the operating address"
-                },
-                {
-                  "key": "merchant[operating_address][address_line]",
-                  "value": "M1703, Banashankari",
-                  "type": "text",
-                  "description": "Operating address line of the business"
-                },
-                {
-                  "key": "merchant[operating_address][pincode]",
-                  "value": "122018",
-                  "type": "text",
-                  "description": "PIN code of the operating address"
-                },
-                {
-                  "key": "merchant[signing_authority_details][cin_number]",
-                  "value": "",
-                  "type": "text",
-                  "description": "Corporate Identity Number (CIN) of the business"
-                },
-                {
-                  "key": "merchant[website_details][android_url]",
-                  "value": "www.borosil.com",
-                  "type": "text",
-                  "description": "URL of the Android app of the merchant"
-                },
-                {
-                  "key": "merchant[website_details][ios_url]",
-                  "value": "www.borosil.com",
-                  "type": "text",
-                  "description": "URL of the iOS app of the merchant"
-                }
-              ]
-            },
-            "url": "{{rp_uat}}/api/v3/merchants"
-          },
-          "response": []
-        },
-        {
-          "name": "UpdateMerchant",
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer 205830ed8ab358e2310bfcde8c3ee0860b74820b794d9b1d2d45819bd5adbff6",
-                "description": "Token received from VerifyOtp"
-              }
-            ],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "merchant[pancard_number]",
-                  "value": "",
-                  "type": "text"
-                },
-                {
-                  "key": "merchant[pancard_name]",
-                  "value": "",
-                  "type": "text"
-                },
-                {
-                  "key": "merchant[business_entity]",
-                  "value": "Public Limited",
-                  "type": "text"
-                },
-                {
-                  "key": "merchant[business_category]",
-                  "value": "Arts, Gifts & Stationery",
-                  "type": "text"
-                },
-                {
-                  "key": "merchant[business_sub_category]",
-                  "value": "Art Dealers and Galleries",
-                  "type": "text"
-                },
-                {
-                  "key": "merchant[business_name]",
-                  "value": "PAYU PAYMENTS PRIVATE LIMITED",
-                  "type": "text"
-                },
-                {
-                  "key": "merchant[monthly_expected_volume]",
-                  "value": "78658",
-                  "type": "text",
-                  "description": "Expected monthly transaction volume in INR"
-                },
-                {
-                  "key": "merchant[registration_address][address_line]",
-                  "value": "M1703, banashankari",
-                  "type": "text"
-                },
-                {
-                  "key": "merchant[registration_address][state]",
-                  "value": "Karnataka",
-                  "type": "text"
-                },
-                {
-                  "key": "merchant[registration_address][city]",
-                  "value": "Haryana",
-                  "type": "text"
-                },
-                {
-                  "key": "merchant[registration_address][pincode]",
-                  "value": "122018",
-                  "type": "text"
-                },
-                {
-                  "key": "merchant[operating_address][city]",
-                  "value": "Bangalore",
-                  "type": "text"
-                },
-                {
-                  "key": "merchant[operating_address][state]",
-                  "value": "Haryana",
-                  "type": "text"
-                },
-                {
-                  "key": "merchant[operating_address][address_line]",
-                  "value": "M1703, Banashankari",
-                  "type": "text"
-                },
-                {
-                  "key": "merchant[operating_address][pincode]",
-                  "value": "122018",
-                  "type": "text"
-                },
-                {
-                  "key": "merchant[gst_number]",
-                  "value": "",
-                  "type": "text",
-                  "description": "GST (Goods and Services Tax) registration number"
-                },
-                {
-                  "key": "merchant[integration_type]",
-                  "value": "ThirdParty",
-                  "type": "text",
-                  "description": "Type of integration (e.g., API, plugin, etc.)"
-                },
-                {
-                  "key": "merchant[signing_authority_details][name]",
-                  "value": "Spoorthi Naik",
-                  "type": "text",
-                  "description": "Name of the person authorized to sign agreements"
-                },
-                {
-                  "key": "merchant[signing_authority_details][email]",
-                  "value": "boro@yopmail.com",
-                  "type": "text",
-                  "description": "Email address of the signing authority"
-                },
-                {
-                  "key": "merchant[signing_authority_details][pancard_number]",
-                  "value": "",
-                  "type": "text",
-                  "description": "PAN card number of the signing authority"
-                },
-                {
-                  "key": "merchant[signing_authority_details][cin_number]",
-                  "value": "",
-                  "type": "text"
-                },
-                {
-                  "key": "merchant[website_details][website_url]",
-                  "value": "www.borosil.com",
-                  "type": "text",
-                  "description": "URL of the merchant's website"
-                },
-                {
-                  "key": "merchant[website_details][android_url]",
-                  "value": "www.borosil.com",
-                  "type": "text"
-                },
-                {
-                  "key": "merchant[website_details][ios_url]",
-                  "value": "www.borosil.com",
-                  "type": "text"
-                }
-              ]
-            },
-            "url": "{{rp_uat}}/api/v1/merchants/11ef-d968-6b042d6c-9b94-02975f21d323/update"
-          },
-          "response": []
-        },
-        {
-          "name": "GetMerchant",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "bearer aa52f685ef29e8c86aabdccd965c3239cc4ce7bf4c5f98c68ca6fc2d8c641d8a"
-              }
-            ],
-            "url": "{{rp_uat}}/api/v1/merchants/760068860"
-          },
-          "response": []
-        }
-      ]
+      "url": "http://{{rp_uat}}"
     },
     {
-      "name": "Bank Details API",
-      "item": [
-        {
-          "name": "Add/Update Bank Details",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer a0443a4da184acc528849e4836e03afc81d3a0f2b33fce91570aa5bab915e842"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/x-www-form-urlencoded"
-              }
-            ],
-            "body": {
-              "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "bank_detail[bank_account_number]",
-                  "value": "",
-                  "type": "text"
-                },
-                {
-                  "key": "bank_detail[ifsc_code]",
-                  "value": "",
-                  "type": "text",
-                  "description": "IFSC code of the bank branch"
-                },
-                {
-                  "key": "bank_detail[holder_name]",
-                  "value": "Mahi Srivastava",
-                  "type": "text"
-                }
-              ]
-            },
-            "url": "{{hub_uat}}/api/v1/merchants/11ef-586f-6bca3ef0-8ff1-021ec077a271/add_bank_detail"
-          },
-          "response": []
-        }
-      ]
+      "url": "http://{{rp_test}}"
     },
     {
-      "name": "Manage KYC documents",
-      "item": [
-        {
-          "name": "AadharApis",
-          "item": [
-            {
-              "name": "Aadhar XML Offline",
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer 1e3ca62936ab9565d88cca21ffa1a8f614340cb94f1b7f15bef62193931b916c",
-                    "type": "text"
-                  }
-                ],
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [
-                    {
-                      "key": "aadhaar_share_code",
-                      "value": "3456",
-                      "type": "text",
-                      "description": "The passcode/share code used during the generation of the Aadhaar XML file. This is a security measure to ensure only authorized access to the Aadhaar data"
-                    },
-                    {
-                      "key": "merchant_id",
-                      "value": "8390925",
-                      "type": "text",
-                      "description": "Unique identifier for the merchant in the PayU system for whom the Aadhaar verification is being performed"
-                    },
-                    {
-                      "key": "aadhaar_file",
-                      "type": "file",
-                      "src": "/Users/mahi.srivastava/Documents/1708429585_1093.zip",
-                      "description": "The Aadhaar XML file containing KYC information obtained from the UIDAI portal that needs to be uploaded for verification"
-                    }
-                  ]
-                },
-                "url": "{{rp_test}}/api/v3/merchants/kyc_document/aadhaar_xml_offline"
-              },
-              "response": []
-            },
-            {
-              "name": "Aadhar XML Consent",
-              "request": {
-                "auth": {
-                  "type": "noauth"
-                },
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer dummy",
-                    "type": "text"
-                  }
-                ],
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [
-                    {
-                      "key": "merchant_id",
-                      "value": "20997866",
-                      "type": "text",
-                      "description": "Unique identifier for the merchant in the PayU system for whom the Aadhaar verification is being performed"
-                    }
-                  ]
-                },
-                "url": "{{rp_test}}/api/v3/merchants/kyc_document/aadhaar_xml_consent"
-              },
-              "response": []
-            },
-            {
-              "name": "Aadhar OTP generation",
-              "request": {
-                "auth": {
-                  "type": "noauth"
-                },
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer dummy",
-                    "type": "text"
-                  }
-                ],
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [
-                    {
-                      "key": "merchant_id",
-                      "value": "20997866",
-                      "type": "text",
-                      "description": "Unique identifier for the merchant in the PayU system for whom the Aadhaar verification is being performed"
-                    },
-                    {
-                      "key": "aadhar_number",
-                      "value": "bbbbbbbbbbbb",
-                      "type": "text",
-                      "description": "The 12-digit Aadhaar number (UID) for which OTP will be generated. This is sent to the registered mobile number linked with Aadhaar"
-                    }
-                  ]
-                },
-                "url": "{{rp_test}}/api/v3/merchants/kyc_document/aadhaar_xml_consent"
-              },
-              "response": []
-            },
-            {
-              "name": "Aadhar XML Data",
-              "request": {
-                "auth": {
-                  "type": "noauth"
-                },
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer dummy",
-                    "type": "text"
-                  }
-                ],
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [
-                    {
-                      "key": "merchant_id",
-                      "value": "20997866",
-                      "type": "text",
-                      "description": "Unique identifier for the merchant in the PayU system for whom the Aadhaar verification is being performed"
-                    },
-                    {
-                      "key": "otp",
-                      "value": "",
-                      "type": "text",
-                      "description": "The One-Time Password received on the mobile number registered with Aadhaar. Required to verify the Aadhaar identity"
-                    }
-                  ]
-                },
-                "url": "{{rp_uat}}/api/v3/merchants/kyc_document/aadhaar_xml_data"
-              },
-              "response": []
-            }
-          ]
-        },
-        {
-          "name": "Esign apis",
-          "item": [
-            {
-              "name": "GenerateMergedDocumentForEsign",
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer 6b4e1b97c6ecb39fa7b13275f740766d32cc3676c1bc773c42b59c9a9270914b",
-                    "description": "Scope used - client_manage_agreement (generated from GetToken Api"
-                  }
-                ],
-                "url": "{{ob_uat}}/api/v3/product_accounts/11ef-11e2-162d9d26-af4b-02975f21d323/generate_merged_document_for_esign",
-                "description": "Generated from cURL: curl --location 'https://test10-onboarding.payu.in/api/v3/product_accounts/11ef-11e2-162d9d26-af4b-02975f21d323/generate_merged_document_for_esign' \\\n--header 'sec-ch-ua: \"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"' \\\n--header 'Source: Web' \\\n--header 'sec-ch-ua-mobile: ?0' \\\n--header 'Authorization: Bearer 6b4e1b97c6ecb39fa7b13275f740766d32cc3676c1bc773c42b59c9a9270914b' \\\n--header 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36' \\\n--header 'Accept: application/json' \\\n--header 'Referer: https://test10-onboarding.payu.in/' \\\n--header 'sec-ch-ua-platform: \"macOS\"' \\\n--header 'Cookie: Path=/'"
-              },
-              "response": []
-            },
-            {
-              "name": "SendSignatoryOtp",
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer 7ca663dddab977091645378870644147059bde0d1482e44de3096fcb4fa5f8a"
-                  }
-                ],
-                "url": "{{ob_uat}}/api/v3/product_accounts/{{product_account_uuid}}/kyc_documents/{{merged_document_uuid}}/send_signatory_otp",
-                "description": "Generated from cURL: curl --location -g --request POST '{{onboarding_base_url}}/api/v3/product_accounts/{{product_account_uuid}}/kyc_documents/{{merged_document_uuid}}/send_signatory_otp' \\\n--header 'Authorization: Bearer 7ca663dddab977091645378870644147059bde0d1482e44de3096fcb4fa5f8a'"
-              },
-              "response": []
-            },
-            {
-              "name": "EsignMergedDocument",
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer bba6ab3f402c4a616f688117ffa564b67fde531dfef4f5c037d3e1283c9549d6"
-                  }
-                ],
-                "body": {
-                  "mode": "urlencoded",
-                  "urlencoded": [
-                    {
-                      "key": "otp",
-                      "value": "0025",
-                      "type": "text",
-                      "description": "The One-Time Password received on the mobile number registered with Aadhaar. Required to verify the Aadhaar identity"
-                    }
-                  ]
-                },
-                "url": "{{ob_uat}}/api/v3/product_accounts/{{product_account_uuid}}/kyc_documents/{{merged_document_uuid}}/esign_merged_document",
-                "description": "Generated from cURL: curl --location -g '{{onboarding_base_url}}/api/v3/product_accounts/{{product_account_uuid}}/kyc_documents/{{merged_document_uuid}}/esign_merged_document' \\\n--header 'Authorization: Bearer bba6ab3f402c4a616f688117ffa564b67fde531dfef4f5c037d3e1283c9549d6' \\\n--data-urlencode 'otp=0025'"
-              },
-              "response": []
-            }
-          ]
-        },
-        {
-          "name": "KycApis",
-          "item": [
-            {
-              "name": "Info KYC document",
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer 7851df7f3555ac0b83ef94fdf71bd454f950200020359308ce60576f3144cd79"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/x-www-form-urlencoded"
-                  }
-                ],
-                "url": {
-                  "raw": "{{rp_uat}}/api/v3/merchants/kyc_document/info?merchant_id=8756833",
-                  "host": [
-                    "{{rp_uat}}"
-                  ],
-                  "path": [
-                    "api",
-                    "v3",
-                    "merchants",
-                    "kyc_document",
-                    "info"
-                  ],
-                  "query": [
-                    {
-                      "key": "merchant_id",
-                      "value": "8756833",
-                      "description": "Unique identifier for the merchant in the PayU system for whom the Aadhaar verification is being performed"
-                    }
-                  ]
-                }
-              },
-              "response": [
-                {
-                  "name": "Info KYC document",
-                  "originalRequest": {
-                    "method": "GET",
-                    "header": [
-                      {
-                        "key": "Authorization",
-                        "value": "Bearer ec1b0d6e5e9890950ddfc902c1c18aadc4053653995712300b6a644f82c56d02"
-                      },
-                      {
-                        "key": "Content-Type",
-                        "value": "application/x-www-form-urlencoded"
-                      }
-                    ],
-                    "url": {
-                      "raw": "https://uat-partner.payu.in/api/v3/merchants/kyc_document/info?merchant_id=8390925",
-                      "protocol": "https",
-                      "host": [
-                        "uat-partner",
-                        "payu",
-                        "in"
-                      ],
-                      "path": [
-                        "api",
-                        "v3",
-                        "merchants",
-                        "kyc_document",
-                        "info"
-                      ],
-                      "query": [
-                        {
-                          "key": "merchant_id",
-                          "value": "8390925"
-                        }
-                      ]
-                    }
-                  },
-                  "status": "OK",
-                  "code": 200,
-                  "_postman_previewlanguage": "json",
-                  "header": [
-                    {
-                      "key": "Date",
-                      "value": "Mon, 12 Aug 2024 07:34:13 GMT"
-                    },
-                    {
-                      "key": "Content-Type",
-                      "value": "application/json; charset=utf-8"
-                    },
-                    {
-                      "key": "Transfer-Encoding",
-                      "value": "chunked"
-                    },
-                    {
-                      "key": "Connection",
-                      "value": "keep-alive"
-                    },
-                    {
-                      "key": "Server",
-                      "value": "nginx"
-                    },
-                    {
-                      "key": "X-DNS-Prefetch-Control",
-                      "value": "on"
-                    },
-                    {
-                      "key": "x-download-options",
-                      "value": "noopen"
-                    },
-                    {
-                      "key": "x-content-type-options",
-                      "value": "nosniff"
-                    },
-                    {
-                      "key": "x-xss-protection",
-                      "value": "1mode=block"
-                    },
-                    {
-                      "key": "Access-Control-Allow-Origin",
-                      "value": "*"
-                    },
-                    {
-                      "key": "Access-Control-Allow-Methods",
-                      "value": "*"
-                    },
-                    {
-                      "key": "Access-Control-Allow-Headers",
-                      "value": "*"
-                    },
-                    {
-                      "key": "x-frame-options",
-                      "value": "DENY"
-                    },
-                    {
-                      "key": "Strict-Transport-Security",
-                      "value": "max-age=31536000; includeSubDomains; preload"
-                    },
-                    {
-                      "key": "Strict-Transport-Security",
-                      "value": "max-age=63072000; includeSubdomains;"
-                    },
-                    {
-                      "key": "ETag",
-                      "value": "W/\"e85c148364a0bd7dc1e035b816940c21\""
-                    },
-                    {
-                      "key": "Cache-Control",
-                      "value": "max-age=0, private, must-revalidate"
-                    },
-                    {
-                      "key": "X-Request-Id",
-                      "value": "5fad05f8-0409-47a0-a2b7-64ffead9e276"
-                    },
-                    {
-                      "key": "X-Runtime",
-                      "value": "0.113040"
-                    },
-                    {
-                      "key": "Vary",
-                      "value": "Origin"
-                    },
-                    {
-                      "key": "Content-Encoding",
-                      "value": "gzip"
-                    }
-                  ],
-                  "cookie": [],
-                  "body": "{\n    \"PAN Card of Signing Authority\": [\n        \"PAN Card\"\n    ],\n    \"Address Proof of Signing Authority\": [\n        \"Passport\",\n        \"Aadhar\",\n        \"Voter's ID\",\n        \"Driving Licence\",\n        \"Utilities Bill (electricity, water, landline, gas connection)\",\n        \"Address Verification Letter from Bank\"\n    ],\n    \"Bank Account Proof\": [\n        \"Cancelled Cheque\",\n        \"Bank Verification Letter\",\n        \"Bank Statement\",\n        \"Passbook\"\n    ],\n    \"Service Agreement\": [\n        \"Service Agreement\"\n    ]\n}"
-                }
-              ]
-            },
-            {
-              "name": "Documents required for KYC",
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer ec1b0d6e5e9890950ddfc902c1c18aadc4053653995712300b6a644f82c56d02"
-                  }
-                ],
-                "url": "{{rp_uat}}/api/v3/merchants/8390925/kyc_document/required_docs"
-              },
-              "response": [
-                {
-                  "name": "Documents required for KYC",
-                  "originalRequest": {
-                    "method": "GET",
-                    "header": [
-                      {
-                        "key": "Authorization",
-                        "value": "Bearer ec1b0d6e5e9890950ddfc902c1c18aadc4053653995712300b6a644f82c56d02"
-                      }
-                    ],
-                    "url": "https://uat-partner.payu.in/api/v3/merchants/8390925/kyc_document/required_docs"
-                  },
-                  "status": "OK",
-                  "code": 200,
-                  "_postman_previewlanguage": "json",
-                  "header": [
-                    {
-                      "key": "Date",
-                      "value": "Mon, 12 Aug 2024 07:34:33 GMT"
-                    },
-                    {
-                      "key": "Content-Type",
-                      "value": "application/json; charset=utf-8"
-                    },
-                    {
-                      "key": "Transfer-Encoding",
-                      "value": "chunked"
-                    },
-                    {
-                      "key": "Connection",
-                      "value": "keep-alive"
-                    },
-                    {
-                      "key": "Server",
-                      "value": "nginx"
-                    },
-                    {
-                      "key": "X-DNS-Prefetch-Control",
-                      "value": "on"
-                    },
-                    {
-                      "key": "x-download-options",
-                      "value": "noopen"
-                    },
-                    {
-                      "key": "x-content-type-options",
-                      "value": "nosniff"
-                    },
-                    {
-                      "key": "x-xss-protection",
-                      "value": "1mode=block"
-                    },
-                    {
-                      "key": "Access-Control-Allow-Origin",
-                      "value": "*"
-                    },
-                    {
-                      "key": "Access-Control-Allow-Methods",
-                      "value": "*"
-                    },
-                    {
-                      "key": "Access-Control-Allow-Headers",
-                      "value": "*"
-                    },
-                    {
-                      "key": "x-frame-options",
-                      "value": "DENY"
-                    },
-                    {
-                      "key": "Strict-Transport-Security",
-                      "value": "max-age=31536000; includeSubDomains; preload"
-                    },
-                    {
-                      "key": "Strict-Transport-Security",
-                      "value": "max-age=63072000; includeSubdomains;"
-                    },
-                    {
-                      "key": "ETag",
-                      "value": "W/\"986be36aec460334c1605d2b7cd11262\""
-                    },
-                    {
-                      "key": "Cache-Control",
-                      "value": "max-age=0, private, must-revalidate"
-                    },
-                    {
-                      "key": "X-Request-Id",
-                      "value": "e0ff30b8-62df-4e3d-8aa4-8d8f93e90be3"
-                    },
-                    {
-                      "key": "X-Runtime",
-                      "value": "0.140811"
-                    },
-                    {
-                      "key": "Vary",
-                      "value": "Origin"
-                    },
-                    {
-                      "key": "Content-Encoding",
-                      "value": "gzip"
-                    }
-                  ],
-                  "cookie": [],
-                  "body": "{\n    \"business_entity\": \"Individual\",\n    \"document_categories\": [\n        {\n            \"id\": 81,\n            \"name\": \"Bank Account Proof\",\n            \"uuid\": \"11e8-748f-297c6048-9081-020aca9875be\",\n            \"name_on_frontend\": \"BANK_PROOF\",\n            \"re_fetch\": false,\n            \"document_types\": [\n                {\n                    \"name\": \"Passbook\",\n                    \"id\": 92,\n                    \"uuid\": \"11eb-d01a-456b15f8-adc5-0242a53cdb42\",\n                    \"name_on_frontend\": \"PB\",\n                    \"issue_date_req\": false,\n                    \"expiry_date_req\": false\n                },\n                {\n                    \"name\": \"Bank Statement\",\n                    \"id\": 91,\n                    \"uuid\": \"11eb-d01a-8322997a-adc5-0242a53cdb42\",\n                    \"name_on_frontend\": \"BS\",\n                    \"issue_date_req\": false,\n                    \"expiry_date_req\": false\n                },\n                {\n                    \"name\": \"Cancelled Cheque\",\n                    \"id\": 48,\n                    \"uuid\": \"ca0a-9047-28d705a1-7e97-b530fbec4c41\",\n                    \"name_on_frontend\": \"CC\",\n                    \"issue_date_req\": false,\n                    \"expiry_date_req\": false\n                },\n                {\n                    \"name\": \"Bank Verification Letter \",\n                    \"id\": 49,\n                    \"uuid\": \"f912-b658-610ce46f-796b-14a515e41ad7\",\n                    \"name_on_frontend\": \"BC\",\n                    \"issue_date_req\": false,\n                    \"expiry_date_req\": false\n                }\n            ],\n            \"kyc_document\": null\n        },\n        {\n            \"id\": 82,\n            \"name\": \"PAN Card of Signing Authority\",\n            \"uuid\": \"11e8-748f-297824ce-9081-020aca9875be\",\n            \"name_on_frontend\": \"PANCARD_SIGNED_AUTHORITY\",\n            \"re_fetch\": false,\n            \"document_types\": [\n                {\n                    \"name\": \"PAN Card\",\n                    \"id\": 50,\n                    \"uuid\": \"11e8-748f-2946799c-9081-020aca9875be\",\n                    \"name_on_frontend\": \"PANCARD\",\n                    \"issue_date_req\": false,\n                    \"expiry_date_req\": false\n                }\n            ],\n            \"kyc_document\": null\n        },\n        {\n            \"id\": 89,\n            \"name\": \"Address Proof of Signing Authority\",\n            \"uuid\": \"11e8-748f-297a15b8-9081-020aca9875be\",\n            \"name_on_frontend\": \"ADDRESS_PROOF_SIGNED_AUTHORITY\",\n            \"re_fetch\": false,\n            \"document_types\": [\n                {\n                    \"name\": \"Passport\",\n                    \"id\": 51,\n                    \"uuid\": \"11e8-748f-2948a29e-9081-020aca9875be\",\n                    \"name_on_frontend\": \"PASSPORT\",\n                    \"issue_date_req\": true,\n                    \"expiry_date_req\": true\n                },\n                {\n                    \"name\": \"Aadhar\",\n                    \"id\": 52,\n                    \"uuid\": \"11e8-748f-294a800a-9081-020aca9875be\",\n                    \"name_on_frontend\": \"AADHAR\",\n                    \"issue_date_req\": false,\n                    \"expiry_date_req\": false\n                },\n                {\n                    \"name\": \"Voter's ID\",\n                    \"id\": 53,\n                    \"uuid\": \"11e8-748f-294c6ef6-9081-020aca9875be\",\n                    \"name_on_frontend\": \"VOTER\",\n                    \"issue_date_req\": false,\n                    \"expiry_date_req\": false\n                },\n                {\n                    \"name\": \"Driving Licence\",\n                    \"id\": 54,\n                    \"uuid\": \"11e8-748f-294e7dea-9081-020aca9875be\",\n                    \"name_on_frontend\": \"DL\",\n                    \"issue_date_req\": true,\n                    \"expiry_date_req\": true\n                },\n                {\n                    \"name\": \"Utilities Bill (electricity, water, landline, gas connection) \",\n                    \"id\": 55,\n                    \"uuid\": \"11e8-748f-29508112-9081-020aca9875be\",\n                    \"name_on_frontend\": \"BMTB\",\n                    \"issue_date_req\": false,\n                    \"expiry_date_req\": false\n                },\n                {\n                    \"name\": \"Address Verification Letter from Bank\",\n                    \"id\": 64,\n                    \"uuid\": \"24d8-a849-14f755a1-d49b-12ca65c5cd7a\",\n                    \"name_on_frontend\": \"AVFB\",\n                    \"issue_date_req\": false,\n                    \"expiry_date_req\": false\n                }\n            ],\n            \"kyc_document\": null\n        }\n    ]\n}"
-                }
-              ]
-            },
-            {
-              "name": "Create KYC Document",
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer 27a6389ec4d74fb8c3f2baf68b220a5780bf4cfc4cce004505d2c20ead6e1fba"
-                  }
-                ],
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [
-                    {
-                      "key": "merchant[document_category]",
-                      "value": "PAN Card of Signing Authority",
-                      "type": "text"
-                    },
-                    {
-                      "key": "merchant[document_type]",
-                      "value": "PAN Card",
-                      "type": "text"
-                    },
-                    {
-                      "key": "merchant[processed_document]",
-                      "type": "file",
-                      "src": []
-                    }
-                  ]
-                },
-                "url": "{{rp_uat}}/api/v3/merchants/8390925/kyc_document"
-              },
-              "response": [
-                {
-                  "name": "Create KYC Document",
-                  "originalRequest": {
-                    "method": "POST",
-                    "header": [
-                      {
-                        "key": "Authorization",
-                        "value": "Bearer ec1b0d6e5e9890950ddfc902c1c18aadc4053653995712300b6a644f82c56d02"
-                      }
-                    ],
-                    "body": {
-                      "mode": "formdata",
-                      "formdata": [
-                        {
-                          "key": "merchant[document_category]",
-                          "value": "PAN Card of Signing Authority",
-                          "type": "text"
-                        },
-                        {
-                          "key": "merchant[document_type]",
-                          "value": "PAN Card",
-                          "type": "text"
-                        },
-                        {
-                          "key": "merchant[processed_document]",
-                          "type": "file",
-                          "src": "/Users/Shared/Wallpaper2024/MandatoryComplianceTraining.jpg"
-                        }
-                      ]
-                    },
-                    "url": "https://uat-partner.payu.in/api/v3/merchants/8390925/kyc_document"
-                  },
-                  "status": "OK",
-                  "code": 200,
-                  "_postman_previewlanguage": "json",
-                  "header": [
-                    {
-                      "key": "Date",
-                      "value": "Mon, 12 Aug 2024 07:41:19 GMT"
-                    },
-                    {
-                      "key": "Content-Type",
-                      "value": "application/json; charset=utf-8"
-                    },
-                    {
-                      "key": "Transfer-Encoding",
-                      "value": "chunked"
-                    },
-                    {
-                      "key": "Connection",
-                      "value": "keep-alive"
-                    },
-                    {
-                      "key": "Server",
-                      "value": "nginx"
-                    },
-                    {
-                      "key": "X-DNS-Prefetch-Control",
-                      "value": "on"
-                    },
-                    {
-                      "key": "x-download-options",
-                      "value": "noopen"
-                    },
-                    {
-                      "key": "x-content-type-options",
-                      "value": "nosniff"
-                    },
-                    {
-                      "key": "x-xss-protection",
-                      "value": "1mode=block"
-                    },
-                    {
-                      "key": "Access-Control-Allow-Origin",
-                      "value": "*"
-                    },
-                    {
-                      "key": "Access-Control-Allow-Methods",
-                      "value": "*"
-                    },
-                    {
-                      "key": "Access-Control-Allow-Headers",
-                      "value": "*"
-                    },
-                    {
-                      "key": "x-frame-options",
-                      "value": "DENY"
-                    },
-                    {
-                      "key": "Strict-Transport-Security",
-                      "value": "max-age=31536000; includeSubDomains; preload"
-                    },
-                    {
-                      "key": "Strict-Transport-Security",
-                      "value": "max-age=63072000; includeSubdomains;"
-                    },
-                    {
-                      "key": "ETag",
-                      "value": "W/\"63a17dba8c14161dd7529859fc0f9394\""
-                    },
-                    {
-                      "key": "Cache-Control",
-                      "value": "max-age=0, private, must-revalidate"
-                    },
-                    {
-                      "key": "X-Request-Id",
-                      "value": "80cddb17-ff07-437f-9225-55823afac95d"
-                    },
-                    {
-                      "key": "X-Runtime",
-                      "value": "0.518505"
-                    },
-                    {
-                      "key": "Vary",
-                      "value": "Origin"
-                    },
-                    {
-                      "key": "Content-Encoding",
-                      "value": "gzip"
-                    }
-                  ],
-                  "cookie": [],
-                  "body": "{\n    \"merchant\": {\n        \"mid\": \"8390925\",\n        \"kyc_document_name\": \"PAN Card of Signing Authority\",\n        \"kyc_document_uuid\": \"11ef-587e-43837330-95b0-021ec077a271\",\n        \"kyc_document_status\": \"DOCUMENT_SUBMITTED\",\n        \"error_message\": null,\n        \"created_at\": \"2024-08-12T07:41:19.000Z\"\n    }\n}"
-                }
-              ]
-            },
-            {
-              "name": "Show KYC Document",
-              "protocolProfileBehavior": {
-                "disableBodyPruning": true
-              },
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer ec1b0d6e5e9890950ddfc902c1c18aadc4053653995712300b6a644f82c56d02"
-                  }
-                ],
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [
-                    {
-                      "key": "merchant[document_category]",
-                      "value": "PAN Card of Signing Authority",
-                      "type": "text"
-                    },
-                    {
-                      "key": "merchant[document_type]",
-                      "value": "PAN Card",
-                      "type": "text"
-                    },
-                    {
-                      "key": "merchant[processed_document]",
-                      "type": "file",
-                      "src": []
-                    }
-                  ]
-                },
-                "url": "{{rp_uat}}/api/v3/merchants/8390925/kyc_document"
-              },
-              "response": [
-                {
-                  "name": "Create KYC Document",
-                  "originalRequest": {
-                    "method": "POST",
-                    "header": [
-                      {
-                        "key": "Authorization",
-                        "value": "Bearer ec1b0d6e5e9890950ddfc902c1c18aadc4053653995712300b6a644f82c56d02"
-                      }
-                    ],
-                    "body": {
-                      "mode": "formdata",
-                      "formdata": [
-                        {
-                          "key": "merchant[document_category]",
-                          "value": "PAN Card of Signing Authority",
-                          "type": "text"
-                        },
-                        {
-                          "key": "merchant[document_type]",
-                          "value": "PAN Card",
-                          "type": "text"
-                        },
-                        {
-                          "key": "merchant[processed_document]",
-                          "type": "file",
-                          "src": "/Users/Shared/Wallpaper2024/MandatoryComplianceTraining.jpg"
-                        }
-                      ]
-                    },
-                    "url": "https://uat-partner.payu.in/api/v3/merchants/8390925/kyc_document"
-                  },
-                  "status": "OK",
-                  "code": 200,
-                  "_postman_previewlanguage": "json",
-                  "header": [
-                    {
-                      "key": "Date",
-                      "value": "Mon, 12 Aug 2024 07:41:19 GMT"
-                    },
-                    {
-                      "key": "Content-Type",
-                      "value": "application/json; charset=utf-8"
-                    },
-                    {
-                      "key": "Transfer-Encoding",
-                      "value": "chunked"
-                    },
-                    {
-                      "key": "Connection",
-                      "value": "keep-alive"
-                    },
-                    {
-                      "key": "Server",
-                      "value": "nginx"
-                    },
-                    {
-                      "key": "X-DNS-Prefetch-Control",
-                      "value": "on"
-                    },
-                    {
-                      "key": "x-download-options",
-                      "value": "noopen"
-                    },
-                    {
-                      "key": "x-content-type-options",
-                      "value": "nosniff"
-                    },
-                    {
-                      "key": "x-xss-protection",
-                      "value": "1mode=block"
-                    },
-                    {
-                      "key": "Access-Control-Allow-Origin",
-                      "value": "*"
-                    },
-                    {
-                      "key": "Access-Control-Allow-Methods",
-                      "value": "*"
-                    },
-                    {
-                      "key": "Access-Control-Allow-Headers",
-                      "value": "*"
-                    },
-                    {
-                      "key": "x-frame-options",
-                      "value": "DENY"
-                    },
-                    {
-                      "key": "Strict-Transport-Security",
-                      "value": "max-age=31536000; includeSubDomains; preload"
-                    },
-                    {
-                      "key": "Strict-Transport-Security",
-                      "value": "max-age=63072000; includeSubdomains;"
-                    },
-                    {
-                      "key": "ETag",
-                      "value": "W/\"63a17dba8c14161dd7529859fc0f9394\""
-                    },
-                    {
-                      "key": "Cache-Control",
-                      "value": "max-age=0, private, must-revalidate"
-                    },
-                    {
-                      "key": "X-Request-Id",
-                      "value": "80cddb17-ff07-437f-9225-55823afac95d"
-                    },
-                    {
-                      "key": "X-Runtime",
-                      "value": "0.518505"
-                    },
-                    {
-                      "key": "Vary",
-                      "value": "Origin"
-                    },
-                    {
-                      "key": "Content-Encoding",
-                      "value": "gzip"
-                    }
-                  ],
-                  "cookie": [],
-                  "body": "{\n    \"merchant\": {\n        \"mid\": \"8390925\",\n        \"kyc_document_name\": \"PAN Card of Signing Authority\",\n        \"kyc_document_uuid\": \"11ef-587e-43837330-95b0-021ec077a271\",\n        \"kyc_document_status\": \"DOCUMENT_SUBMITTED\",\n        \"error_message\": null,\n        \"created_at\": \"2024-08-12T07:41:19.000Z\"\n    }\n}"
-                }
-              ]
-            },
-            {
-              "name": "Delete KYC document",
-              "request": {
-                "method": "DELETE",
-                "header": [
-                  {
-                    "key": "Authorization",
-                    "value": "Bearer ec1b0d6e5e9890950ddfc902c1c18aadc4053653995712300b6a644f82c56d02"
-                  },
-                  {
-                    "key": "Content-Type",
-                    "value": "application/x-www-form-urlencoded"
-                  }
-                ],
-                "url": "{{rp_uat}}/api/v3/merchants/8390925/kyc_document/11ef-587e-43837330-95b0-021ec077a271"
-              },
-              "response": [
-                {
-                  "name": "Delete KYC document",
-                  "originalRequest": {
-                    "method": "DELETE",
-                    "header": [
-                      {
-                        "key": "Authorization",
-                        "value": "Bearer ec1b0d6e5e9890950ddfc902c1c18aadc4053653995712300b6a644f82c56d02"
-                      },
-                      {
-                        "key": "Content-Type",
-                        "value": "application/x-www-form-urlencoded"
-                      }
-                    ],
-                    "url": "https://uat-partner.payu.in/api/v3/merchants/8390925/kyc_document/11ef-587e-43837330-95b0-021ec077a271"
-                  },
-                  "status": "No Content",
-                  "code": 204,
-                  "_postman_previewlanguage": "plain",
-                  "header": [
-                    {
-                      "key": "Date",
-                      "value": "Mon, 12 Aug 2024 07:53:36 GMT"
-                    },
-                    {
-                      "key": "Connection",
-                      "value": "keep-alive"
-                    },
-                    {
-                      "key": "Server",
-                      "value": "nginx"
-                    },
-                    {
-                      "key": "X-DNS-Prefetch-Control",
-                      "value": "on"
-                    },
-                    {
-                      "key": "x-download-options",
-                      "value": "noopen"
-                    },
-                    {
-                      "key": "x-content-type-options",
-                      "value": "nosniff"
-                    },
-                    {
-                      "key": "x-xss-protection",
-                      "value": "1mode=block"
-                    },
-                    {
-                      "key": "Access-Control-Allow-Origin",
-                      "value": "*"
-                    },
-                    {
-                      "key": "Access-Control-Allow-Methods",
-                      "value": "*"
-                    },
-                    {
-                      "key": "Access-Control-Allow-Headers",
-                      "value": "*"
-                    },
-                    {
-                      "key": "x-frame-options",
-                      "value": "DENY"
-                    },
-                    {
-                      "key": "Strict-Transport-Security",
-                      "value": "max-age=31536000; includeSubDomains; preload"
-                    },
-                    {
-                      "key": "Strict-Transport-Security",
-                      "value": "max-age=63072000; includeSubdomains;"
-                    },
-                    {
-                      "key": "Cache-Control",
-                      "value": "no-cache"
-                    },
-                    {
-                      "key": "X-Request-Id",
-                      "value": "27bcf780-d10a-471b-a3a3-a6e7ee912f6a"
-                    },
-                    {
-                      "key": "X-Runtime",
-                      "value": "0.515174"
-                    },
-                    {
-                      "key": "Vary",
-                      "value": "Origin"
-                    }
-                  ],
-                  "cookie": [],
-                  "body": ""
-                }
-              ]
-            }
-          ]
-        }
-      ]
+      "url": "http://{{ob_uat}}"
     }
   ],
-  "variable": [
-    {
-      "key": "hub_uat",
-      "value": "https://uat-accounts.payu.in",
-      "type": "default"
+  "components": {
+    "securitySchemes": {
+      "noauthAuth": {
+        "type": "http",
+        "scheme": "noauth"
+      }
     }
-  ]
+  },
+  "tags": [
+    {
+      "name": "Send and verify"
+    },
+    {
+      "name": "Create and Update a merchant"
+    },
+    {
+      "name": "Bank Details API"
+    },
+    {
+      "name": "Manage KYC documents"
+    },
+    {
+      "name": "Manage KYC documents > AadharApis"
+    },
+    {
+      "name": "Manage KYC documents > Esign apis"
+    },
+    {
+      "name": "Manage KYC documents > KycApis"
+    }
+  ],
+  "paths": {
+    "/oauth/token": {
+      "post": {
+        "tags": [
+          "Send and verify"
+        ],
+        "summary": "GetToken",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "client_id": {
+                    "type": "string",
+                    "description": "Unique identifier for your client application provided by PayU",
+                    "example": "56b16b8f4d16f61929d6596d3c9cfb3e9bfc526c9c906b09c916cc9ea591b66d"
+                  },
+                  "client_secret": {
+                    "type": "string",
+                    "description": "Secret key provided by PayU for authentication",
+                    "example": "f5e0115d5b9f715ce0e8c4ef99d438aa4e7f0203f6e1d5e9be9e36f80a07716b"
+                  },
+                  "grant_type": {
+                    "type": "string",
+                    "description": "Type of grant being requested, usually 'client_credentials'",
+                    "example": "client_credentials"
+                  },
+                  "scope": {
+                    "type": "string",
+                    "description": "Scope of access being requested",
+                    "example": "send_sign_in_otp verify_sign_in_otp refer_merchant"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/otps/send_otp": {
+      "post": {
+        "tags": [
+          "Send and verify"
+        ],
+        "summary": "SendOtp",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "otp[identity]": {
+                    "type": "integer",
+                    "description": "Mobile number or email to which OTP will be sent",
+                    "example": "9916965982"
+                  },
+                  "otp[scope]": {
+                    "type": "string",
+                    "description": "Permissions/actions that will be allowed after OTP verification",
+                    "example": "user_profile create_bank_details update_bank_details create_payment_links update_payment_links read_payment_links "
+                  },
+                  "otp[channels][]": {
+                    "type": "string",
+                    "description": "Channel through which OTP will be sent (sms, email)",
+                    "example": "sms"
+                  },
+                  "otp[type]": {
+                    "type": "string",
+                    "description": "Type of action for which OTP is being requested",
+                    "example": "SignIn"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer aa52f685ef29e8c86aabdccd965c3239cc4ce7bf4c5f98c68ca6fc2d8c641d8a"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/otps/verify_otp": {
+      "post": {
+        "tags": [
+          "Send and verify"
+        ],
+        "summary": "VerifyOtp",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "otp[identity]": {
+                    "type": "integer",
+                    "description": "Mobile number or email to which OTP will be sent",
+                    "example": "7292033398"
+                  },
+                  "otp[email]": {
+                    "type": "string",
+                    "example": "test.ob021345@yomail.com"
+                  },
+                  "otp[code]": {
+                    "type": "integer",
+                    "example": "4722"
+                  },
+                  "otp[type]": {
+                    "type": "string",
+                    "description": "Type of action for which OTP is being requested",
+                    "example": "SignIn"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer a7db7d87343969e44c4d0b4b602d2738233f6efec0be1088316b70b15a77343c"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v3/merchants": {
+      "post": {
+        "tags": [
+          "Create and Update a merchant"
+        ],
+        "summary": "CreateMerchant",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "[merchant][display_name]": {
+                    "type": "string",
+                    "description": "Name to be displayed for the merchant",
+                    "example": "DIVY HARESHKUMAR SHAH"
+                  },
+                  "merchant[email]": {
+                    "type": "string",
+                    "description": "Email address of the merchant for communication",
+                    "example": "boro13@yomail.com"
+                  },
+                  "merchant[mobile]": {
+                    "type": "integer",
+                    "description": "Mobile number of the merchant for communication",
+                    "example": "9916965913"
+                  },
+                  "merchant[business_details][pan]": {
+                    "type": "string",
+                    "description": "PAN (Permanent Account Number) of the business",
+                    "example": "FANPS6362D"
+                  },
+                  "merchant[business_details][business_entity_type]": {
+                    "type": "string",
+                    "description": "Legal structure of the business (e.g., Sole Proprietorship, Partnership, etc.)",
+                    "example": "Sole Proprietorship"
+                  },
+                  "merchant[product]": {
+                    "type": "string",
+                    "description": "PayU product that the merchant wants to use (e.g., PayUbiz)",
+                    "example": "PayUbiz"
+                  },
+                  "merchant[bank_details][account_no]": {
+                    "type": "integer",
+                    "description": "Merchant's bank account number for settlements",
+                    "example": "919010067278549"
+                  },
+                  "merchant[bank_details][account_holder_name]": {
+                    "type": "string",
+                    "description": "Name of the account holder as per bank records",
+                    "example": "DIVY HARESHKUMAR SHAH"
+                  },
+                  "merchant[bank_details][ifsc_code]": {
+                    "type": "string",
+                    "description": "IFSC code of the bank branch",
+                    "example": "UTIB0003557"
+                  },
+                  "merchant[business_details][registered_name]": {
+                    "type": "string",
+                    "description": "Legal registered name of the business",
+                    "example": "DIVY HARESHKUMAR SHAH"
+                  },
+                  "merchant[business_details][business_category]": {
+                    "type": "string",
+                    "description": "Category of the merchant's business",
+                    "example": "Arts, Gifts & Stationery"
+                  },
+                  "merchant[business_details][business_sub_category]": {
+                    "type": "string",
+                    "description": "Sub-category of the merchant's business",
+                    "example": "Art Dealers and Galleries"
+                  },
+                  "merchant[website_details][website_url]": {
+                    "type": "string",
+                    "description": "URL of the merchant's website",
+                    "example": "https://www.google.com"
+                  },
+                  "merchant[monthly_expected_volume]": {
+                    "type": "integer",
+                    "description": "Expected monthly transaction volume in INR",
+                    "example": "12000"
+                  },
+                  "merchant[signing_authority_details][name]": {
+                    "type": "string",
+                    "description": "Name of the person authorized to sign agreements",
+                    "example": "DIVY HARESHKUMAR SHAH"
+                  },
+                  "merchant[signing_authority_details][pancard_number]": {
+                    "type": "string",
+                    "description": "PAN card number of the signing authority",
+                    "example": "FANPS6362D"
+                  },
+                  "merchant[signing_authority_details][email]": {
+                    "type": "string",
+                    "description": "Email address of the signing authority",
+                    "example": "email_test1213@yopmail.com"
+                  },
+                  "merchant[business_details][pancard_name]": {
+                    "type": "string",
+                    "description": "Name as it appears on the PAN card",
+                    "example": "DIVY HARESHKUMAR SHAH"
+                  },
+                  "merchant[integration_type]": {
+                    "type": "string",
+                    "description": "Type of integration (e.g., API, plugin, etc.)"
+                  },
+                  "merchant[gst_number]": {
+                    "type": "string",
+                    "description": "GST (Goods and Services Tax) registration number",
+                    "example": "24FANPS6362D1ZE"
+                  },
+                  "merchant[udyam_number]": {
+                    "type": "string",
+                    "description": "Udyam registration number for small businesses (applicable for Sole Proprietorship)",
+                    "example": "UDYAM-UP-19-0002053"
+                  },
+                  "merchant[gst_consent]": {
+                    "type": "boolean",
+                    "description": "Consent for GST verification (true/false)",
+                    "example": "false"
+                  },
+                  "merchant[pancard_number]": {
+                    "type": "string",
+                    "description": "PAN card number of the business"
+                  },
+                  "merchant[pancard_name]": {
+                    "type": "string",
+                    "description": "Name as it appears on the PAN card"
+                  },
+                  "merchant[business_entity]": {
+                    "type": "string",
+                    "description": "Legal entity type of the business (e.g., Public Limited, Private Limited)",
+                    "example": "Public Limited"
+                  },
+                  "merchant[business_category]": {
+                    "type": "string",
+                    "example": "Arts, Gifts & Stationery"
+                  },
+                  "merchant[business_sub_category]": {
+                    "type": "string",
+                    "example": "Art Dealers and Galleries"
+                  },
+                  "merchant[business_name]": {
+                    "type": "string",
+                    "description": "Legal name of the business as registered",
+                    "example": "PAYU PAYMENTS PRIVATE LIMITED"
+                  },
+                  "merchant[registration_address][address_line]": {
+                    "type": "string",
+                    "description": "Registered address line of the business",
+                    "example": "M1703, banashankari"
+                  },
+                  "merchant[registration_address][state]": {
+                    "type": "string",
+                    "description": "State of the registered address",
+                    "example": "Karnataka"
+                  },
+                  "merchant[registration_address][city]": {
+                    "type": "string",
+                    "description": "City of the registered address",
+                    "example": "Haryana"
+                  },
+                  "merchant[registration_address][pincode]": {
+                    "type": "integer",
+                    "description": "PIN code of the registered address",
+                    "example": "122018"
+                  },
+                  "merchant[operating_address][city]": {
+                    "type": "string",
+                    "description": "City of the operating address",
+                    "example": "Bangalore"
+                  },
+                  "merchant[operating_address][state]": {
+                    "type": "string",
+                    "description": "State of the operating address",
+                    "example": "Haryana"
+                  },
+                  "merchant[operating_address][address_line]": {
+                    "type": "string",
+                    "description": "Operating address line of the business",
+                    "example": "M1703, Banashankari"
+                  },
+                  "merchant[operating_address][pincode]": {
+                    "type": "integer",
+                    "description": "PIN code of the operating address",
+                    "example": "122018"
+                  },
+                  "merchant[signing_authority_details][cin_number]": {
+                    "type": "string",
+                    "description": "Corporate Identity Number (CIN) of the business"
+                  },
+                  "merchant[website_details][android_url]": {
+                    "type": "string",
+                    "description": "URL of the Android app of the merchant",
+                    "example": "www.borosil.com"
+                  },
+                  "merchant[website_details][ios_url]": {
+                    "type": "string",
+                    "description": "URL of the iOS app of the merchant",
+                    "example": "www.borosil.com"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer 3c775c77cffb80a5161aa9a0f31bce3eb3555572e1364f0b2439f6f80fddb2e6"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/merchants/11ef-d968-6b042d6c-9b94-02975f21d323/update": {
+      "put": {
+        "tags": [
+          "Create and Update a merchant"
+        ],
+        "summary": "UpdateMerchant",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "merchant[pancard_number]": {
+                    "type": "string"
+                  },
+                  "merchant[pancard_name]": {
+                    "type": "string"
+                  },
+                  "merchant[business_entity]": {
+                    "type": "string",
+                    "example": "Public Limited"
+                  },
+                  "merchant[business_category]": {
+                    "type": "string",
+                    "example": "Arts, Gifts & Stationery"
+                  },
+                  "merchant[business_sub_category]": {
+                    "type": "string",
+                    "example": "Art Dealers and Galleries"
+                  },
+                  "merchant[business_name]": {
+                    "type": "string",
+                    "example": "PAYU PAYMENTS PRIVATE LIMITED"
+                  },
+                  "merchant[monthly_expected_volume]": {
+                    "type": "integer",
+                    "description": "Expected monthly transaction volume in INR",
+                    "example": "78658"
+                  },
+                  "merchant[registration_address][address_line]": {
+                    "type": "string",
+                    "example": "M1703, banashankari"
+                  },
+                  "merchant[registration_address][state]": {
+                    "type": "string",
+                    "example": "Karnataka"
+                  },
+                  "merchant[registration_address][city]": {
+                    "type": "string",
+                    "example": "Haryana"
+                  },
+                  "merchant[registration_address][pincode]": {
+                    "type": "integer",
+                    "example": "122018"
+                  },
+                  "merchant[operating_address][city]": {
+                    "type": "string",
+                    "example": "Bangalore"
+                  },
+                  "merchant[operating_address][state]": {
+                    "type": "string",
+                    "example": "Haryana"
+                  },
+                  "merchant[operating_address][address_line]": {
+                    "type": "string",
+                    "example": "M1703, Banashankari"
+                  },
+                  "merchant[operating_address][pincode]": {
+                    "type": "integer",
+                    "example": "122018"
+                  },
+                  "merchant[gst_number]": {
+                    "type": "string",
+                    "description": "GST (Goods and Services Tax) registration number"
+                  },
+                  "merchant[integration_type]": {
+                    "type": "string",
+                    "description": "Type of integration (e.g., API, plugin, etc.)",
+                    "example": "ThirdParty"
+                  },
+                  "merchant[signing_authority_details][name]": {
+                    "type": "string",
+                    "description": "Name of the person authorized to sign agreements",
+                    "example": "Spoorthi Naik"
+                  },
+                  "merchant[signing_authority_details][email]": {
+                    "type": "string",
+                    "description": "Email address of the signing authority",
+                    "example": "boro@yopmail.com"
+                  },
+                  "merchant[signing_authority_details][pancard_number]": {
+                    "type": "string",
+                    "description": "PAN card number of the signing authority"
+                  },
+                  "merchant[signing_authority_details][cin_number]": {
+                    "type": "string"
+                  },
+                  "merchant[website_details][website_url]": {
+                    "type": "string",
+                    "description": "URL of the merchant's website",
+                    "example": "www.borosil.com"
+                  },
+                  "merchant[website_details][android_url]": {
+                    "type": "string",
+                    "example": "www.borosil.com"
+                  },
+                  "merchant[website_details][ios_url]": {
+                    "type": "string",
+                    "example": "www.borosil.com"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token received from VerifyOtp",
+            "example": "Bearer 205830ed8ab358e2310bfcde8c3ee0860b74820b794d9b1d2d45819bd5adbff6"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/merchants/760068860": {
+      "get": {
+        "tags": [
+          "Create and Update a merchant"
+        ],
+        "summary": "GetMerchant",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "bearer aa52f685ef29e8c86aabdccd965c3239cc4ce7bf4c5f98c68ca6fc2d8c641d8a"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/merchants/11ef-586f-6bca3ef0-8ff1-021ec077a271/add_bank_detail": {
+      "post": {
+        "tags": [
+          "Bank Details API"
+        ],
+        "summary": "Add/Update Bank Details",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "bank_detail[bank_account_number]": {
+                    "type": "string"
+                  },
+                  "bank_detail[ifsc_code]": {
+                    "type": "string",
+                    "description": "IFSC code of the bank branch"
+                  },
+                  "bank_detail[holder_name]": {
+                    "type": "string",
+                    "example": "Mahi Srivastava"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer a0443a4da184acc528849e4836e03afc81d3a0f2b33fce91570aa5bab915e842"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/x-www-form-urlencoded"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v3/merchants/kyc_document/aadhaar_xml_offline": {
+      "post": {
+        "tags": [
+          "Manage KYC documents > AadharApis"
+        ],
+        "summary": "Aadhaar XML Offline API",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "aadhaar_share_code": {
+                    "type": "integer",
+                    "description": "The passcode/share code used during the generation of the Aadhaar XML file. This is a security measure to ensure only authorized access to the Aadhaar data",
+                    "example": "3456"
+                  },
+                  "merchant_id": {
+                    "type": "integer",
+                    "description": "Unique identifier for the merchant in the PayU system for whom the Aadhaar verification is being performed",
+                    "example": "8390925"
+                  },
+                  "aadhaar_file": {
+                    "type": "string",
+                    "description": "The Aadhaar XML file containing KYC information obtained from the UIDAI portal that needs to be uploaded for verification",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer 1e3ca62936ab9565d88cca21ffa1a8f614340cb94f1b7f15bef62193931b916c"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v3/merchants/kyc_document/aadhaar_xml_consent": {
+      "post": {
+        "tags": [
+          "Manage KYC documents > AadharApis"
+        ],
+        "summary": "Aadhar OTP generation",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "merchant_id": {
+                    "type": "integer",
+                    "description": "Unique identifier for the merchant in the PayU system for whom the Aadhaar verification is being performed",
+                    "example": "20997866"
+                  },
+                  "aadhar_number": {
+                    "type": "string",
+                    "description": "The 12-digit Aadhaar number (UID) for which OTP will be generated. This is sent to the registered mobile number linked with Aadhaar",
+                    "example": "bbbbbbbbbbbb"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer dummy"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v3/merchants/kyc_document/aadhaar_xml_data": {
+      "post": {
+        "tags": [
+          "Manage KYC documents > AadharApis"
+        ],
+        "summary": "Aadhar XML Data",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "merchant_id": {
+                    "type": "integer",
+                    "description": "Unique identifier for the merchant in the PayU system for whom the Aadhaar verification is being performed",
+                    "example": "20997866"
+                  },
+                  "otp": {
+                    "type": "string",
+                    "description": "The One-Time Password received on the mobile number registered with Aadhaar. Required to verify the Aadhaar identity"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer dummy"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v3/product_accounts/11ef-11e2-162d9d26-af4b-02975f21d323/generate_merged_document_for_esign": {
+      "get": {
+        "tags": [
+          "Manage KYC documents > Esign apis"
+        ],
+        "summary": "GenerateMergedDocumentForEsign",
+        "description": "Generated from cURL: curl --location 'https://test10-onboarding.payu.in/api/v3/product_accounts/11ef-11e2-162d9d26-af4b-02975f21d323/generate_merged_document_for_esign' \\\n--header 'sec-ch-ua: \"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"' \\\n--header 'Source: Web' \\\n--header 'sec-ch-ua-mobile: ?0' \\\n--header 'Authorization: Bearer 6b4e1b97c6ecb39fa7b13275f740766d32cc3676c1bc773c42b59c9a9270914b' \\\n--header 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36' \\\n--header 'Accept: application/json' \\\n--header 'Referer: https://test10-onboarding.payu.in/' \\\n--header 'sec-ch-ua-platform: \"macOS\"' \\\n--header 'Cookie: Path=/'",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Scope used - client_manage_agreement (generated from GetToken Api",
+            "example": "Bearer 6b4e1b97c6ecb39fa7b13275f740766d32cc3676c1bc773c42b59c9a9270914b"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v3/product_accounts/{product_account_uuid}/kyc_documents/{merged_document_uuid}/send_signatory_otp": {
+      "post": {
+        "tags": [
+          "Manage KYC documents > Esign apis"
+        ],
+        "summary": "SendSignatoryOtp",
+        "description": "Generated from cURL: curl --location -g --request POST '{{onboarding_base_url}}/api/v3/product_accounts/{{product_account_uuid}}/kyc_documents/{{merged_document_uuid}}/send_signatory_otp' \\\n--header 'Authorization: Bearer 7ca663dddab977091645378870644147059bde0d1482e44de3096fcb4fa5f8a'",
+        "requestBody": {
+          "content": {}
+        },
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer 7ca663dddab977091645378870644147059bde0d1482e44de3096fcb4fa5f8a"
+          },
+          {
+            "name": "product_account_uuid",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "merged_document_uuid",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v3/product_accounts/{product_account_uuid}/kyc_documents/{merged_document_uuid}/esign_merged_document": {
+      "post": {
+        "tags": [
+          "Manage KYC documents > Esign apis"
+        ],
+        "summary": "EsignMergedDocument",
+        "description": "Generated from cURL: curl --location -g '{{onboarding_base_url}}/api/v3/product_accounts/{{product_account_uuid}}/kyc_documents/{{merged_document_uuid}}/esign_merged_document' \\\n--header 'Authorization: Bearer bba6ab3f402c4a616f688117ffa564b67fde531dfef4f5c037d3e1283c9549d6' \\\n--data-urlencode 'otp=0025'",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "otp": {
+                    "type": "integer",
+                    "description": "The One-Time Password received on the mobile number registered with Aadhaar. Required to verify the Aadhaar identity",
+                    "example": "0025"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer bba6ab3f402c4a616f688117ffa564b67fde531dfef4f5c037d3e1283c9549d6"
+          },
+          {
+            "name": "product_account_uuid",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "merged_document_uuid",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v3/merchants/kyc_document/info": {
+      "get": {
+        "tags": [
+          "Manage KYC documents > KycApis"
+        ],
+        "summary": "Info KYC document",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer 7851df7f3555ac0b83ef94fdf71bd454f950200020359308ce60576f3144cd79"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/x-www-form-urlencoded"
+          },
+          {
+            "name": "merchant_id",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Unique identifier for the merchant in the PayU system for whom the Aadhaar verification is being performed",
+            "example": "8756833"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Mon, 12 Aug 2024 07:34:13 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "chunked"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Server": {
+                "schema": {
+                  "type": "string",
+                  "example": "nginx"
+                }
+              },
+              "X-DNS-Prefetch-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "on"
+                }
+              },
+              "x-download-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "x-content-type-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "x-xss-protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1mode=block"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Access-Control-Allow-Methods": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Access-Control-Allow-Headers": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "x-frame-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "DENY"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=63072000; includeSubdomains;"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"e85c148364a0bd7dc1e035b816940c21\""
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=0, private, must-revalidate"
+                }
+              },
+              "X-Request-Id": {
+                "schema": {
+                  "type": "string",
+                  "example": "5fad05f8-0409-47a0-a2b7-64ffead9e276"
+                }
+              },
+              "X-Runtime": {
+                "schema": {
+                  "type": "number",
+                  "example": "0.113040"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Origin"
+                }
+              },
+              "Content-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "gzip"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "PAN Card of Signing Authority": [
+                    "PAN Card"
+                  ],
+                  "Address Proof of Signing Authority": [
+                    "Passport",
+                    "Aadhar",
+                    "Voter's ID",
+                    "Driving Licence",
+                    "Utilities Bill (electricity, water, landline, gas connection)",
+                    "Address Verification Letter from Bank"
+                  ],
+                  "Bank Account Proof": [
+                    "Cancelled Cheque",
+                    "Bank Verification Letter",
+                    "Bank Statement",
+                    "Passbook"
+                  ],
+                  "Service Agreement": [
+                    "Service Agreement"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v3/merchants/8390925/kyc_document/required_docs": {
+      "get": {
+        "tags": [
+          "Manage KYC documents > KycApis"
+        ],
+        "summary": "Documents required for KYC",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer ec1b0d6e5e9890950ddfc902c1c18aadc4053653995712300b6a644f82c56d02"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Mon, 12 Aug 2024 07:34:33 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "chunked"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Server": {
+                "schema": {
+                  "type": "string",
+                  "example": "nginx"
+                }
+              },
+              "X-DNS-Prefetch-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "on"
+                }
+              },
+              "x-download-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "x-content-type-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "x-xss-protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1mode=block"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Access-Control-Allow-Methods": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Access-Control-Allow-Headers": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "x-frame-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "DENY"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=63072000; includeSubdomains;"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"986be36aec460334c1605d2b7cd11262\""
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=0, private, must-revalidate"
+                }
+              },
+              "X-Request-Id": {
+                "schema": {
+                  "type": "string",
+                  "example": "e0ff30b8-62df-4e3d-8aa4-8d8f93e90be3"
+                }
+              },
+              "X-Runtime": {
+                "schema": {
+                  "type": "number",
+                  "example": "0.140811"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Origin"
+                }
+              },
+              "Content-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "gzip"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "business_entity": "Individual",
+                  "document_categories": [
+                    {
+                      "id": 81,
+                      "name": "Bank Account Proof",
+                      "uuid": "11e8-748f-297c6048-9081-020aca9875be",
+                      "name_on_frontend": "BANK_PROOF",
+                      "re_fetch": false,
+                      "document_types": [
+                        {
+                          "name": "Passbook",
+                          "id": 92,
+                          "uuid": "11eb-d01a-456b15f8-adc5-0242a53cdb42",
+                          "name_on_frontend": "PB",
+                          "issue_date_req": false,
+                          "expiry_date_req": false
+                        },
+                        {
+                          "name": "Bank Statement",
+                          "id": 91,
+                          "uuid": "11eb-d01a-8322997a-adc5-0242a53cdb42",
+                          "name_on_frontend": "BS",
+                          "issue_date_req": false,
+                          "expiry_date_req": false
+                        },
+                        {
+                          "name": "Cancelled Cheque",
+                          "id": 48,
+                          "uuid": "ca0a-9047-28d705a1-7e97-b530fbec4c41",
+                          "name_on_frontend": "CC",
+                          "issue_date_req": false,
+                          "expiry_date_req": false
+                        },
+                        {
+                          "name": "Bank Verification Letter ",
+                          "id": 49,
+                          "uuid": "f912-b658-610ce46f-796b-14a515e41ad7",
+                          "name_on_frontend": "BC",
+                          "issue_date_req": false,
+                          "expiry_date_req": false
+                        }
+                      ],
+                      "kyc_document": null
+                    },
+                    {
+                      "id": 82,
+                      "name": "PAN Card of Signing Authority",
+                      "uuid": "11e8-748f-297824ce-9081-020aca9875be",
+                      "name_on_frontend": "PANCARD_SIGNED_AUTHORITY",
+                      "re_fetch": false,
+                      "document_types": [
+                        {
+                          "name": "PAN Card",
+                          "id": 50,
+                          "uuid": "11e8-748f-2946799c-9081-020aca9875be",
+                          "name_on_frontend": "PANCARD",
+                          "issue_date_req": false,
+                          "expiry_date_req": false
+                        }
+                      ],
+                      "kyc_document": null
+                    },
+                    {
+                      "id": 89,
+                      "name": "Address Proof of Signing Authority",
+                      "uuid": "11e8-748f-297a15b8-9081-020aca9875be",
+                      "name_on_frontend": "ADDRESS_PROOF_SIGNED_AUTHORITY",
+                      "re_fetch": false,
+                      "document_types": [
+                        {
+                          "name": "Passport",
+                          "id": 51,
+                          "uuid": "11e8-748f-2948a29e-9081-020aca9875be",
+                          "name_on_frontend": "PASSPORT",
+                          "issue_date_req": true,
+                          "expiry_date_req": true
+                        },
+                        {
+                          "name": "Aadhar",
+                          "id": 52,
+                          "uuid": "11e8-748f-294a800a-9081-020aca9875be",
+                          "name_on_frontend": "AADHAR",
+                          "issue_date_req": false,
+                          "expiry_date_req": false
+                        },
+                        {
+                          "name": "Voter's ID",
+                          "id": 53,
+                          "uuid": "11e8-748f-294c6ef6-9081-020aca9875be",
+                          "name_on_frontend": "VOTER",
+                          "issue_date_req": false,
+                          "expiry_date_req": false
+                        },
+                        {
+                          "name": "Driving Licence",
+                          "id": 54,
+                          "uuid": "11e8-748f-294e7dea-9081-020aca9875be",
+                          "name_on_frontend": "DL",
+                          "issue_date_req": true,
+                          "expiry_date_req": true
+                        },
+                        {
+                          "name": "Utilities Bill (electricity, water, landline, gas connection) ",
+                          "id": 55,
+                          "uuid": "11e8-748f-29508112-9081-020aca9875be",
+                          "name_on_frontend": "BMTB",
+                          "issue_date_req": false,
+                          "expiry_date_req": false
+                        },
+                        {
+                          "name": "Address Verification Letter from Bank",
+                          "id": 64,
+                          "uuid": "24d8-a849-14f755a1-d49b-12ca65c5cd7a",
+                          "name_on_frontend": "AVFB",
+                          "issue_date_req": false,
+                          "expiry_date_req": false
+                        }
+                      ],
+                      "kyc_document": null
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v3/merchants/8390925/kyc_document": {
+      "post": {
+        "tags": [
+          "Manage KYC documents > KycApis"
+        ],
+        "summary": "Create KYC Document",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "merchant[document_category]": {
+                    "type": "string",
+                    "example": "PAN Card of Signing Authority"
+                  },
+                  "merchant[document_type]": {
+                    "type": "string",
+                    "example": "PAN Card"
+                  },
+                  "merchant[processed_document]": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer 27a6389ec4d74fb8c3f2baf68b220a5780bf4cfc4cce004505d2c20ead6e1fba"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Mon, 12 Aug 2024 07:41:19 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "chunked"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Server": {
+                "schema": {
+                  "type": "string",
+                  "example": "nginx"
+                }
+              },
+              "X-DNS-Prefetch-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "on"
+                }
+              },
+              "x-download-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "x-content-type-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "x-xss-protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1mode=block"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Access-Control-Allow-Methods": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Access-Control-Allow-Headers": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "x-frame-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "DENY"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=63072000; includeSubdomains;"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"63a17dba8c14161dd7529859fc0f9394\""
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=0, private, must-revalidate"
+                }
+              },
+              "X-Request-Id": {
+                "schema": {
+                  "type": "string",
+                  "example": "80cddb17-ff07-437f-9225-55823afac95d"
+                }
+              },
+              "X-Runtime": {
+                "schema": {
+                  "type": "number",
+                  "example": "0.518505"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Origin"
+                }
+              },
+              "Content-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "gzip"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "merchant": {
+                    "mid": "8390925",
+                    "kyc_document_name": "PAN Card of Signing Authority",
+                    "kyc_document_uuid": "11ef-587e-43837330-95b0-021ec077a271",
+                    "kyc_document_status": "DOCUMENT_SUBMITTED",
+                    "error_message": null,
+                    "created_at": "2024-08-12T07:41:19.000Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Manage KYC documents > KycApis"
+        ],
+        "summary": "Show KYC Document",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer ec1b0d6e5e9890950ddfc902c1c18aadc4053653995712300b6a644f82c56d02"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Mon, 12 Aug 2024 07:41:19 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "chunked"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Server": {
+                "schema": {
+                  "type": "string",
+                  "example": "nginx"
+                }
+              },
+              "X-DNS-Prefetch-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "on"
+                }
+              },
+              "x-download-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "x-content-type-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "x-xss-protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1mode=block"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Access-Control-Allow-Methods": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Access-Control-Allow-Headers": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "x-frame-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "DENY"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=63072000; includeSubdomains;"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"63a17dba8c14161dd7529859fc0f9394\""
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=0, private, must-revalidate"
+                }
+              },
+              "X-Request-Id": {
+                "schema": {
+                  "type": "string",
+                  "example": "80cddb17-ff07-437f-9225-55823afac95d"
+                }
+              },
+              "X-Runtime": {
+                "schema": {
+                  "type": "number",
+                  "example": "0.518505"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Origin"
+                }
+              },
+              "Content-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "gzip"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "merchant": {
+                    "mid": "8390925",
+                    "kyc_document_name": "PAN Card of Signing Authority",
+                    "kyc_document_uuid": "11ef-587e-43837330-95b0-021ec077a271",
+                    "kyc_document_status": "DOCUMENT_SUBMITTED",
+                    "error_message": null,
+                    "created_at": "2024-08-12T07:41:19.000Z"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v3/merchants/8390925/kyc_document/11ef-587e-43837330-95b0-021ec077a271": {
+      "delete": {
+        "tags": [
+          "Manage KYC documents > KycApis"
+        ],
+        "summary": "Delete KYC document",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer ec1b0d6e5e9890950ddfc902c1c18aadc4053653995712300b6a644f82c56d02"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/x-www-form-urlencoded"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Mon, 12 Aug 2024 07:53:36 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Server": {
+                "schema": {
+                  "type": "string",
+                  "example": "nginx"
+                }
+              },
+              "X-DNS-Prefetch-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "on"
+                }
+              },
+              "x-download-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "x-content-type-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "x-xss-protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1mode=block"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Access-Control-Allow-Methods": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Access-Control-Allow-Headers": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "x-frame-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "DENY"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=63072000; includeSubdomains;"
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "X-Request-Id": {
+                "schema": {
+                  "type": "string",
+                  "example": "27bcf780-d10a-471b-a3a3-a6e7ee912f6a"
+                }
+              },
+              "X-Runtime": {
+                "schema": {
+                  "type": "number",
+                  "example": "0.515174"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Origin"
+                }
+              }
+            },
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": ""
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
