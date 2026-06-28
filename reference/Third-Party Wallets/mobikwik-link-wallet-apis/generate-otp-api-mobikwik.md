@@ -30,15 +30,15 @@ HTTP Method: **POST**
 | aggregatedMerchantId<br /><code>optional</code> | <code>String</code> Unique ID for aggregateId merchants (For Aggregators Only) | `AGG123`          |
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Notes**:
 
-  * The `amount` parameter represents the maximum cap amount, not the actual transaction amount. The debit API will work for amounts less than or equal to this value.
-  * The mobile number must be numeric, have 10 digits, and start with 7, 8, or 9
-  * Always validate the response checksum for security
-  * Use test environment for integration testing before going live
-  * The generated OTP is required for the Token Generate API
-
-
+  - The `amount` parameter represents the maximum cap amount, not the actual transaction amount. The debit API will work for amounts less than or equal to this value.
+  - The mobile number must be numeric, have 10 digits, and start with 7, 8, or 9
+  - Always validate the response checksum for security
+  - Use test environment for integration testing before going live
+  - The generated OTP is required for the Token Generate API
 </Callout>
 
 ### Checksum generation
@@ -51,10 +51,11 @@ HTTP Method: **POST**
 
 **Format:** `'amount''cell''merchantname''mid''msgcode''tokentype'`
 
-**Algorithm:** HMAC SHA256\
-**Secret Key:** Provided by Mobikwik during merchant onboarding
+**Algorithm:** HMAC SHA256<br />**Secret Key:** Provided by Mobikwik during merchant onboarding
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Note**:
 
   For merchant `MBK9006`, the secret key is `ju6tygh7u7tdg554k098ujd5468o`. Each merchant will receive their unique secret key.
@@ -162,9 +163,9 @@ https://test.mobikwik.com/otpgenerate?mid=MBK9006&checksum=0750ff303400137018413
 
       <td>
         `8feac7700a4efd1ef0  
-                                        8ea0ec5bf5921c3f1fc3  
-                                        398944421978794b  
-                                        9ada1c2c47`
+                                                8ea0ec5bf5921c3f1fc3  
+                                                398944421978794b  
+                                                9ada1c2c47`
       </td>
     </tr>
   </tbody>
@@ -175,6 +176,8 @@ https://test.mobikwik.com/otpgenerate?mid=MBK9006&checksum=0750ff303400137018413
 The response checksum that will be returned to the users will have the following format:
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Note:**
 
   Always validate the response checksum to ensure data integrity and security.
@@ -279,7 +282,7 @@ The response checksum that will be returned to the users will have the following
                 422
             </td>
             <td style="border-color:#000000;border-width:1.0px;height:29.0px;padding:4.0px;width:278.0px;">
-                User not allowed to do Transaction. Please fle a support ticket
+                User not allowed to do Transaction. Contact your KAM or raise a support ticket on help.payu.in
             </td>
         </tr>
         <tr>
@@ -322,3 +325,5 @@ The response checksum that will be returned to the users will have the following
   "checksum": "f25ac916fe4806591e16269fc912771456437b784fa144a77fa9842d154920cc"
 }
 ```
+
+<br />
