@@ -1184,13 +1184,29 @@ The categories passed in the `drop_category` parameter are hidden or not display
 
 # Set Checkout Display Language
 
-Use this to localize checkout.
+The `display_lang` parameter allows you to change the display language of the PayU Hosted Checkout. These are the supported language values:
 
-Supported examples:
+- `English`
+- `Hindi`
+- `Kannada`
+- `Telugu`
+- `Tamil`
+- `Gujarati`
+- `Marathi`&#x20;
 
-- English
-- Hindi
-- Tamil
+### Video Tutorial
+
+Go through this video to know how vernacular support can improve your business:
+
+<Embed title="" typeOfEmbed="youtube" url="https://www.youtube.com/watch?v=7UCT0jFbB90" href="https://www.youtube.com/watch?v=7UCT0jFbB90" html="%3Ciframe%20class%3D%22embedly-embed%22%20src%3D%22%2F%2Fcdn.embedly.com%2Fwidgets%2Fmedia.html%3Fsrc%3Dhttps%253A%252F%252Fwww.youtube.com%252Fembed%252F7UCT0jFbB90%253Ffeature%253Doembed%26display_name%3DYouTube%26url%3Dhttps%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253D7UCT0jFbB90%26image%3Dhttps%253A%252F%252Fi.ytimg.com%252Fvi%252F7UCT0jFbB90%252Fhqdefault.jpg%26key%3D7788cb384c9f4d5dbbdbeffd9fe4b92f%26type%3Dtext%252Fhtml%26schema%3Dyoutube%22%20width%3D%22854%22%20height%3D%22480%22%20scrolling%3D%22no%22%20title%3D%22YouTube%20embed%22%20frameborder%3D%220%22%20allow%3D%22autoplay%3B%20fullscreen%3B%20encrypted-media%3B%20picture-in-picture%3B%22%20allowfullscreen%3D%22true%22%3E%3C%2Fiframe%3E" />
+
+### How it Works
+
+The PayU hosted checkout is displayed in the language specified in the request as shown below in the screenshot.
+
+
+<Image src="https://files.readme.io/3aae0ef-hindipage.png" align="center" caption="_PayU Hosted Checkout in Hindi_" framed={true} />
+
 
 ***
 
