@@ -8,66 +8,87 @@ metadata:
 ---
 title: Rewards Partner Integration
 deprecated: false
-hidden: true
+hidden: false
 metadata:
+  title: Rewards Partner Integration
+  description: >-
+    Integrate RewardX with PayU to let customers earn and burn TWID or Zillion
+    loyalty points at checkout, combined with Card or UPI via SPLITPAY.
   robots: index
 ---
 Rewards is a loyalty points integration solution that leverages India's largest reward points network and integrates seamlessly with the PayU payment platform. It connects merchants to over 300 million users and allows them to earn and redeem reward points from over 20 leading issuers in a unified, frictionless checkout experience.
 
-## Product Ecosystem
+> 👍 Before you begin:
+>
+> Register for a account with PayU before you start integration. Contact your PayU Key Account Manager to enable Rewards (RewardX) and obtain your merchant ID (`mid`) for loyalty APIs. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
 
-* **Network & Scale Coverage**:
-  * Over 300 million active users
-  * 20+ issuer partners (e.g., Flipkart SuperCoins, Zillion)
-* **Key Features**:
-  * Unified loyalty experience combining multiple programs into one interface
-  * Support for hybrid payments and zero technical overhead using PayU's pre-existing infrastructure
-* **Primary Use Cases**: eCommerce, digital marketplaces, quick commerce, and travel/entertainment sectors
+## Integration guides
 
-## Business Impact & Performance Metrics
+The following sections describe how to integrate Rewards (RewardX) with PayU:
 
-### For Merchants:
+* [Rewards Pay Redemption Integration](doc:rewards-pay-redemption-integration) — Burn TWID or Zillion points at checkout with Card or UPI
+* [Earn Rewards Integration](doc:earn-rewards-integration) — Accrue loyalty points on Card/UPI transactions
+* [RewardX Decoupled Flow Integration](doc:rewardx-decoupled-flow-integration) — Server-to-server decoupled card flow for RewardX payments
+* [Rewards Refund Integration](doc:rewards-refund-integration) — Refund split-payment transactions across payment legs
+* [APIs for Rewards Integration](doc:apis-for-rewards-integration) — API reference summary for balance, payment, and refund
 
-* **Incremental GMV**: Increases revenue through alternative payment options
-* **Conversion Optimization**: Reduces user drop-offs during the checkout process by offering flexible payment methods
-* **Cost Savings**: Enables merchants to save approximately 8-10% on orders by using reward point strategies
-* **Customer Retention**: Enhances customer lifetime value (LTV) through improved loyalty engagement
+## Product overview
 
-### For Customers:
+<Accordion title="Product ecosystem" icon="fa-network-wired">
+  * **Network and scale** — Over 300 million active users; 20+ issuer partners (for example, Flipkart SuperCoins, Zillion)
+  * **Key features** — Unified loyalty experience combining multiple programs; hybrid payments (rewards + Card/UPI) using PayU's existing infrastructure
+  * **Primary use cases** — eCommerce, digital marketplaces, quick commerce, and travel/entertainment
+</Accordion>
 
-* **Enhanced Value**: Provides better utility for reward points across multiple brands
-* **Simplified Experience**: Offers a consolidated interface for various loyalty programs
-* **Flexible Payments**: Allows a combination of reward points, promotional offers, and balance payments for greater transaction customization
+<Accordion title="Benefits for merchants" icon="fa-store">
+  * **Incremental GMV** — Increases revenue through alternative payment options
+  * **Conversion optimization** — Reduces checkout drop-offs with flexible payment methods
+  * **Cost savings** — Merchants can save approximately 8–10% on orders using reward point strategies
+  * **Customer retention** — Improves customer lifetime value through loyalty engagement
+  * **Unified integration** — Access the loyalty ecosystem without separate issuer integrations
+</Accordion>
 
-## Integration Benefits
+<Accordion title="Benefits for customers" icon="fa-user">
+  * **Enhanced value** — Better utility for reward points across multiple brands
+  * **Simplified experience** — Consolidated interface for various loyalty programs
+  * **Flexible payments** — Combine reward points, promotional offers, and balance payments in one checkout
+</Accordion>
 
-### For Merchants
+<Accordion title="Benefits for developers" icon="fa-code">
+  * Minimal implementation by leveraging PayU's existing payment framework
+  * Detailed documentation and developer support from PayU
+  * Reliable scalability for high transaction volumes
+  * Proven across 35,000+ active merchant integrations
+</Accordion>
 
-* Access to the loyalty ecosystem without requiring separate integrations
-* Strengthened customer relationships through integrated loyalty platforms
-* Higher transaction value using strategic reward point redemption
-* Reduced technical infrastructure complexity by utilizing PayU's unified payment systems
+<Accordion title="Use cases and applications" icon="fa-bullseye">
+  * **E-commerce platforms** — Seamless reward point redemption during online checkout
+  * **Digital marketplaces** — Cross-brand point utilisation across product categories
+  * **Quick commerce** — Instant reward point validation for time-sensitive transactions
+  * **Entertainment and travel** — Point redemption for bookings, tickets, and experiential purchases
+</Accordion>
 
-### For Developers
+<Accordion title="Integration workflow summary" icon="fa-diagram-project">
+  **Burn (redemption) or earn**
 
-* Minimal implementation due to leveraging PayU's existing integration framework
-* Access to detailed documentation and developer support from PayU
-* Reliable scalability designed to handle large transaction volumes
-* Proven solutions tested across 35,000+ active merchant integrations
+  1. **Fetch balance** — Call [Fetch Balance All API](ref:rewards-fetch-balance-all-api) with customer mobile and loyalty providers (`TWID`, `ZILLION`).
+  2. **Initiate payment** — POST to [Collect Payment with Rewards API](ref:_payment-merchant-hosted-rewards) with `pg=SPLITPAY`, provider `bankcode`, and `splitInfo` for Card/UPI and reward legs.
+  3. **Validate postback** — Verify reverse hash on the PayU response.
+  4. **Verify payment** — Reconcile status with [Verify Payment API](ref:verify_payment_api) or webhooks.
 
-## Use Cases & Applications 
+  **Refunds**
 
-* **E-commerce Platforms**: Seamless reward point redemption during online checkout processes 
-* **Digital Marketplaces**: Cross-brand point utilisation across diverse product categories 
-* **Quick Commerce**: Instant reward point validation for time-sensitive transactions 
-* **Entertainment & Travel**: Point redemption for bookings, tickets, and experiential purchases
+  For partial refunds, the primary instrument (UPI or Card) is refunded first, then the reward partner leg. See [Rewards Refund Integration](doc:rewards-refund-integration).
+</Accordion>
+## APIs used in Rewards Partner integration
 
-## Next Steps
+| API | Purpose |
+| --- | --- |
+| [Fetch Balance All API](ref:rewards-fetch-balance-all-api) | Retrieve usable TWID and Zillion reward balances for a customer before checkout. |
+| [Collect Payment with Rewards API](ref:_payment-merchant-hosted-rewards) | Initiate a SPLITPAY `_payment` request with `pg=SPLITPAY` and `splitInfo` to burn or earn reward points along with Card or UPI. |
+| [Verify Payment API](ref:verify_payment_api) | Server-side reconciliation of transaction status after payment.  |
+| [Cards Decoupled Flow API](ref:_payment_s2s_decoupled_flow) | Initiate a server-to-server decoupled card payment for RewardX transactions.|
+| [Submit OTP API](ref:submit-otp-to-payu) | Submit OTP during decoupled card authentication on the merchant page.|
+| [Refund Transaction API](ref:refund_transaction_api) | Initiate refunds for split-payment transactions; both child transactions (Card/UPI and rewards) are refunded.  |
+| [Refund Status API for Split Payments](ref:refund-status-api-for-split-payments) | Check refund status for split-payment child transactions.|
 
-Integrate Rewards using the step-by-step in each of the following integration:
-
-* [Rewards Pay Redemption Integration](doc:rewards-pay-redemption-integration)
-* [Earn Rewards Integration](doc:earn-rewards-integration)
-* [Rewards Refund Integration](doc:rewards-refund-integration)
-
-<br />
