@@ -10,34 +10,25 @@ metadata:
 next:
   description: ''
 ---
----
-title: No Code Solutions
-deprecated: false
-hidden: false
-metadata:
-  title: No Code Payments Integration
-  description: >-
-    Collect payments without custom checkout code using PayU Payment Links,
-    Payment Buttons, and Invoices on the Dashboard or via Payment Links APIs.
-  robots: index
----
 PayU no-code solutions let merchants collect payments quickly without building a custom checkout integration. Create payment links, embed payment buttons, or send invoices from the PayU Dashboard—or automate payment links through APIs for CRM, cart abandonment, and marketplace use cases.
 
 Customers can pay through their preferred methods, including UPI, Net Banking, debit cards, wallets, and credit cards.
 
-> 👍 Before you begin:
->
-> Register for a account with PayU before you start integration. Contact your PayU Key Account Manager to enable Payment Links, Payment Buttons, or Invoices on the PayU Dashboard. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
+<Callout icon="👍" theme="okay">
+  ### Before you begin:
+
+  Register for a account with PayU before you start integration. Contact your PayU Key Account Manager to enable Payment Links, Payment Buttons, or Invoices on the PayU Dashboard. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
+</Callout>
 
 ## Overview of no-code payment methods
 
 PayU offers three primary no-code ways to collect payments. Choose based on how you reach customers and whether you need API automation.
 
-| Method | What it is | How you create it | How you share or deploy | Best for |
-| --- | --- | --- | --- | --- |
-| [**Payment Links**](doc:payment-links-dashboard) | A shareable URL with amount, purpose, and optional custom fields | [PayU Dashboard](doc:create-a-new-payment-link) or [Payment Links APIs](doc:integration-api-for-payment-links) | SMS, email, WhatsApp, social media, CRM, or any channel | Merchants without a website, social commerce, utility bills, EMI/SIP collections, customized or partial payments |
-| [**Payment Buttons**](doc:payment-buttons-dashboard) | An embeddable Pay Now / Buy Now / Donate button for your site | PayU Dashboard only — PayU generates embed code | Paste HTML/JavaScript snippet on your website or blog | Blogs, landing pages, donations, fixed or customer-entered amounts |
-| [**Payment Invoices**](doc:invoices-dashboard) | A branded invoice emailed to customers with an online pay option | PayU Dashboard — create customers, items, and invoices | Email invoice to customer; customer pays from the invoice link | B2B billing, professional invoicing, itemized charges |
+| Method                                               | What it is?                                                      | How you share or deploy?                                       | Best for                                                                                                         |
+| ---------------------------------------------------- | ---------------------------------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| [**Payment Links**](doc:payment-links-dashboard)     | A shareable URL with amount, purpose, and optional custom fields | SMS, email, WhatsApp, social media, CRM, or any channel        | Merchants without a website, social commerce, utility bills, EMI/SIP collections, customized or partial payments |
+| [**Payment Buttons**](doc:payment-buttons-dashboard) | An embeddable Pay Now / Buy Now / Donate button for your site    | Paste HTML/JavaScript snippet on your website or blog          | Blogs, landing pages, donations, fixed or customer-entered amounts                                               |
+| [**Payment Invoices**](doc:invoices-dashboard)       | A branded invoice emailed to customers with an online pay option | Email invoice to customer; customer pays from the invoice link | B2B billing, professional invoicing, itemized charges                                                            |
 
 <Accordion title="Payment Links — dashboard vs API" icon="fa-link">
   **Dashboard** ([Payment Links](doc:payment-links-dashboard))
@@ -74,7 +65,6 @@ PayU offers three primary no-code ways to collect payments. Choose based on how 
   Customers receive the invoice by email and pay online through the linked checkout. For details, refer to [Payment Invoices](doc:invoices-dashboard).
 </Accordion>
 
-
 ## Use cases
 
 <Accordion title="Where no-code payments help" icon="fa-bullseye">
@@ -94,31 +84,34 @@ PayU offers three primary no-code ways to collect payments. Choose based on how 
 
   <Embed url="https://www.youtube.com/watch?v=rh_FQUMsaT0" title="PayU Payment Links - The easiest way to collect payments from customers or clients!" favicon="https://www.google.com/favicon.ico" image="https://i.ytimg.com/vi/rh_FQUMsaT0/hqdefault.jpg" provider="youtube.com" href="https://www.youtube.com/watch?v=rh_FQUMsaT0" typeOfEmbed="youtube" html="%3Ciframe%20class%3D%22embedly-embed%22%20src%3D%22%2F%2Fcdn.embedly.com%2Fwidgets%2Fmedia.html%3Fsrc%3Dhttps%253A%252F%252Fwww.youtube.com%252Fembed%252Frh_FQUMsaT0%253Ffeature%253Doembed%26display_name%3DYouTube%26url%3Dhttps%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253Drh_FQUMsaT0%26image%3Dhttps%253A%252F%252Fi.ytimg.com%252Fvi%252Frh_FQUMsaT0%252Fhqdefault.jpg%26key%3D7788cb384c9f4d5dbbdbeffd9fe4b92f%26type%3Dtext%252Fhtml%26schema%3Dyoutube%22%20width%3D%22854%22%20height%3D%22480%22%20scrolling%3D%22no%22%20title%3D%22YouTube%20embed%22%20frameborder%3D%220%22%20allow%3D%22autoplay%3B%20fullscreen%3B%20encrypted-media%3B%20picture-in-picture%3B%22%20allowfullscreen%3D%22true%22%3E%3C%2Fiframe%3E" />
 </Accordion>
+
 ## Integration guides
 
 The following sections describe how to use PayU no-code payment tools:
 
-* [Payment Links](doc:payment-links-dashboard)
-  * [Create a Payment Link](doc:create-a-new-payment-link)
-  * [Create Payment Links in Bulk](doc:bulk-upload-to-create-multiple-payments-links)
-  * [Customize the Calendar View for Payment Links](doc:customize-the-calendar-view-for-payment-links)
-  * [Categorize the Payment Links View](doc:categorize-the-payment-links-view)
-  * [Export the Payment Link History](doc:export-the-payment-link-history)
-  * [Integration APIs for Payment Links](doc:integration-api-for-payment-links)
-  * [Create Payment Links via Bulk Upload – APIs](doc:create-payment-link-via-bulk-upload-apis)
-* [Payment Buttons](doc:payment-buttons-dashboard)
-* [Payment Invoices](doc:invoices-dashboard)
-  * [Create an Invoice](doc:create-an-invoice)
-  * [Manage Invoice Items](doc:manage-invoice-items)
-  * [Create a New Customer](doc:create-a-new-customer)
+- [Payment Links](doc:payment-links-dashboard)
+  - [Create a Payment Link](doc:create-a-new-payment-link)
+  - [Create Payment Links in Bulk](doc:bulk-upload-to-create-multiple-payments-links)
+  - [Customize the Calendar View for Payment Links](doc:customize-the-calendar-view-for-payment-links)
+  - [Categorize the Payment Links View](doc:categorize-the-payment-links-view)
+  - [Export the Payment Link History](doc:export-the-payment-link-history)
+  - [Integration APIs for Payment Links](doc:integration-api-for-payment-links)
+  - [Create Payment Links via Bulk Upload – APIs](doc:create-payment-link-via-bulk-upload-apis)
+- [Payment Buttons](doc:payment-buttons-dashboard)
+- [Payment Invoices](doc:invoices-dashboard)
+  - [Create an Invoice](doc:create-an-invoice)
+  - [Manage Invoice Items](doc:manage-invoice-items)
+  - [Create a New Customer](doc:create-a-new-customer)
 
 ## APIs used in No Code Payments integration
 
-| API | Purpose |
-| --- | --- |
-| [Get Token API – Payment Links](ref:get-token-api-payment-links) | Obtain an OAuth bearer token (`create_payment_links`, `read_payment_links`, `update_payment_links` scopes) for Payment Links API calls.  |
-| [Revoke Token API – Payment Links](ref:revoke-token-api-payment-links) | Invalidate an access token when no longer needed. |
-| [Create Payment Link API](ref:create-payment-links) | Create a payment link with amount, description, customer details, and callback URL.  |
-| [Share Payment Link API](ref:share_payment_link_api) | Share a created payment link with customers via configured channels. |
-| [Get Single Payment Link API](ref:get-single-payment-link) | Retrieve details for one payment link.](doc:integration-api-for-payment-links). |
-| [Get All Payment Links API](ref:get-all-payment-links-api) | List payment links with filters and pagination. |
+| API                                                                    | Purpose                                                                                                                                 |
+| ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| [Get Token API – Payment Links](ref:get-token-api-payment-links)       | Obtain an OAuth bearer token (`create_payment_links`, `read_payment_links`, `update_payment_links` scopes) for Payment Links API calls. |
+| [Revoke Token API – Payment Links](ref:revoke-token-api-payment-links) | Invalidate an access token when no longer needed.                                                                                       |
+| [Create Payment Link API](ref:create-payment-links)                    | Create a payment link with amount, description, customer details, and callback URL.                                                     |
+| [Share Payment Link API](ref:share_payment_link_api)                   | Share a created payment link with customers via configured channels.                                                                    |
+| [Get Single Payment Link API](ref:get-single-payment-link)             | Retrieve details for one payment link.]\(doc:integration-api-for-payment-links).                                                        |
+| [Get All Payment Links API](ref:get-all-payment-links-api)             | List payment links with filters and pagination.                                                                                         |
+
+<br />
