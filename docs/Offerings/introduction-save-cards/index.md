@@ -70,7 +70,7 @@ The workflow for users with PayU Vault are:
   <tbody>
     <tr>
       <td>
-        ## Model 1
+        ### Model 1
       </td>
 
       <td>
@@ -90,7 +90,7 @@ The workflow for users with PayU Vault are:
 
     <tr>
       <td>
-        ## Model 2
+        ### Model 2
       </td>
 
       <td>
@@ -150,7 +150,7 @@ The workflow for users with PayU Vault are:
 
     <tr>
       <td>
-        ## Model 3
+        ### Model 3
       </td>
 
       <td>
@@ -174,7 +174,7 @@ The workflow for users with PayU Vault are:
       </td>
 
       <td>
-        Fetch TAVV/cryptogram for a PayU or network token before initiating payment.&#x20;
+        Fetch TAVV/cryptogram for a PayU or network token before initiating payment.
       </td>
     </tr>
 
@@ -184,7 +184,7 @@ The workflow for users with PayU Vault are:
       </td>
 
       <td>
-        Update a stored card token when the customer changes card details.&#x20;
+        Update a stored card token when the customer changes card details.
       </td>
     </tr>
 
@@ -194,13 +194,13 @@ The workflow for users with PayU Vault are:
       </td>
 
       <td>
-        Delete a stored card token for customer consent management.&#x20;
+        Delete a stored card token for customer consent management.
       </td>
     </tr>
 
     <tr>
       <td>
-        ## General
+        ### General
       </td>
 
       <td>
