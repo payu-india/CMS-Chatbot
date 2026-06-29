@@ -82,6 +82,32 @@ Use this decision matrix to choose the correct approach.
 
 ***
 
+## Configure Payment Methods and Settings
+
+The following payment methods are enabled for merchants on PayU Hosted Checkout by default:
+
+- NetBanking
+- Debit Card
+- Credit Card
+- UPI
+- Wallet
+
+You can enable the following methods if you are eligible using Dashboard:
+
+<Callout icon="📘" theme="info">
+  ### **Note:**
+
+  You can enable or activate any of the below payment methods if your are eligible or you have signed an agreement with PayU. If you are unable to raise a request using Dashboard, contact your PayU Key Account Manager.
+</Callout>
+
+- BNPL
+- EMI
+- International Payments
+
+To enable methods from the dashboard:
+
+1.
+
 # Restrict Checkout to Specific Payment Methods (`enforce_paymethod`)
 
 You can append the parameter names in your transaction request to restrict checkout to some of the payment modes.
