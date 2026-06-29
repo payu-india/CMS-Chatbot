@@ -123,7 +123,7 @@ Enhance your checkout and customer experience with PayU’s extended offerings:
 
 * [**International Payments**](https://docs.payu.in/docs/introduction-dynamic-currency-conversion)
 
-* [**Pre-Authorize Payments**](https://docs.payu.in/docs/auth-and-capture-pre-authorize-credit-card-payments)
+* [**Pre-Authorize Payments**](https://docs.payu.in/docs/auth-and-capture-pre-authorize-card-payments)
 
 * [**Cross-Border Payments**](https://docs.payu.in/docs/introduction-cross-border-payments-import)
 
