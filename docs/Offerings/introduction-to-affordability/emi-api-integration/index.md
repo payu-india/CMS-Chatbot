@@ -92,7 +92,7 @@ PayU supports EMI for the following banks or institutions with debit cards, cred
 
 <br />
 
-## APIs used in EMI integration
+## APIs used for Integration
 
 <Table>
   <thead>
@@ -175,6 +175,16 @@ PayU supports EMI for the following banks or institutions with debit cards, cred
 
       <td>
         Check cardless EMI eligibility from card or customer information in the S2S flow.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ### Verify the Payment
+      </td>
+
+      <td>
+
       </td>
     </tr>
 
