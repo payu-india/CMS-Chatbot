@@ -14,7 +14,7 @@ metadata:
 ---
 The Liberalised Remittance Scheme (LRS) is a framework established by the Reserve Bank of India (RBI) that enables Indian residents, to send money internationally up to USD 250,000 per financial year. These remittances can cover various purposes like education fees, travel expenses, investments, and more.
 
-Key features of LRS:
+## Key features of LRS:
 
 - Annual limit of USD 250,000 per person per financial year
 - Available only to individual residents (not businesses, HUFs, or trusts)
@@ -28,18 +28,6 @@ Key features of LRS:
 > 👍 Before you begin:
 >
 > Register for a account with PayU before you start integration. Contact your PayU Key Account Manager to enable Cross-Border Payments and LRS. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
-
-## Integration guides
-
-The following sections describe how to integrate LRS for travel and education with PayU:
-
-* [Customer Journey – PayU Hosted Checkout with LRS Integration](doc:customer-journey-payu-hosted-checkout-with-lrs-integration)
-* [Integrate PayU Hosted Checkout](doc:integrate-payu-hosted-checkout-cb-lrs)
-* [Merchant Hosted API Integration](doc:cb-lrs-merchant-hosted-api-integration)
-* Payment method integrations
-  * [Cards Integration for CB LRS](doc:cards-integration-for-cb-lrs)
-  * [UPI Integration for CB LRS](doc:upi-integration-for-cb-lrs)
-  * [NetBanking Integration for CB LRS](doc:netbanking-integration-for-cb-lrs)
 
 
 <Accordion title="Education" icon="fa-graduation-cap">
@@ -62,6 +50,19 @@ The following sections describe how to integrate LRS for travel and education wi
   | Online Education (MOOCs, degree certifications etc) | Only PACB-Import                       |
   | Foreign School / University fees Payment            | Both PACB - Import & LRS               |
 </Accordion>
+
+## Integration guides
+
+The following sections describe how to integrate LRS for travel and education with PayU:
+
+* [Customer Journey – PayU Hosted Checkout with LRS Integration](doc:customer-journey-payu-hosted-checkout-with-lrs-integration)
+* [Integrate PayU Hosted Checkout](doc:integrate-payu-hosted-checkout-cb-lrs)
+* [Merchant Hosted API Integration](doc:cb-lrs-merchant-hosted-api-integration)
+* Payment method integrations
+  * [Cards Integration for CB LRS](doc:cards-integration-for-cb-lrs)
+  * [UPI Integration for CB LRS](doc:upi-integration-for-cb-lrs)
+  * [NetBanking Integration for CB LRS](doc:netbanking-integration-for-cb-lrs)
+
 ## APIs used in LRS integration
 
 | API name | Purpose |
