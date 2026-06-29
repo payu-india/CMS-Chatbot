@@ -15,6 +15,23 @@ next:
 ---
 PayU provides a plugin to integrate with the following e-commerce enablers:
 
+<Callout icon="🚧" theme="warn">
+  ### Remove Browser Extensions:
+
+  PayU recommends you to disable the browser extensions, which are not in use. These browser extensions may conflict with the plugins.
+</Callout>
+
+<Accordion title="Prerequisites for integration" icon="fa-info-list">
+The prerequisites for integration with PayU:
+- Have a merchant account with PayU. To register as a merchant with PayU, refer to Register for a Merchant Account.
+- Know your PayU Salt & key to collect Payments through PayU. The PayU Salt and key are available on the Account Details tab in the PayU Dashboard. For more information, refer to Generate Merchant Key and Salt.
+- Clear the browser cache to increase the performance and background processes work faster.
+
+
+
+###
+</Accordion>
+
 ### Hosted SaaS storefronts
 
 - [Shopify](doc:shopify)
@@ -48,18 +65,6 @@ PayU provides a plugin to integrate with the following e-commerce enablers:
 
 - [Interakt for WhatsApp Business](doc:interakt-for-whatsapp-business)
 
-## Prerequisites for integration
-
-The prerequisites for integration with PayU:
-
-- Have a merchant account with PayU. To register as a merchant with PayU, refer to Register for a Merchant Account.
-- Know your PayU Salt & key to collect Payments through PayU. The PayU Salt and key are available on the Account Details tab in the PayU Dashboard. For more information, refer to Generate Merchant Key and Salt.
-- Clear the browser cache to increase the performance and background processes work faster.
-
-<Callout icon="🚧" theme="warn">
-  ### Remove Browser Extensions:
-
-  PayU recommends you to disable the browser extensions, which are not in use. These browser extensions may conflict with the plugins.
-</Callout>
+##
 
 <br />
