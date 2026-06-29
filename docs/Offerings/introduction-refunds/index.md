@@ -37,7 +37,8 @@ Order cancellations are an unfortunate reality for any business. Customers may c
 >
 > Register for a account with PayU before you start integration. Contact your PayU Key Account Manager to enable automatic refunds or instant refunds if required. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
 
-> 📘 **Publish refund policy on your website**: PayU recommends publishing the refund policy on your website, including the time taken to refund for failed transactions and the refund process.
+> 📘 **Publish refund policy on your website**: 
+PayU recommends publishing the refund policy on your website, including the time taken to refund for failed transactions and the refund process.
 
 ## Overview and Workflow
 
