@@ -13,8 +13,7 @@ The chargeback involves the following steps:
 <Image src="https://files.readme.io/37be493-untitled.png" align="center" width="550px" />
 
 
-## Chargeback Support
-
+<Accordion title="Supported Payment Methods" icon="fa-info-circle">
 The Chargeback is supported for the following:
 
 - Cards
@@ -39,6 +38,8 @@ The Chargeback is supported for the following:
   - MobiKwik
   - PhonePe
   - Apple Pay
+
+</Accordion>
 
 ## PayU Chargeback process
 
