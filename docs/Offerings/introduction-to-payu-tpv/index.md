@@ -50,8 +50,7 @@ Third-Party Verification (TPV) is a mandatory requirement as per Stock Exchange 
 
 ## Comparison of TPV with regular flow
 
-In a regular Net Banking or a UPI transaction, you don’t pass the customer account number from which you want the customer to transact, but in the case of TPV integration, you know the customer account number, and you want the customer only to transact with the same account number.\
-You also pass the customer account number in the payment request compared to regular retail banking or UPI.
+In a regular Net Banking or a UPI transaction, you don’t pass the customer account number from which you want the customer to transact, but in the case of TPV integration, you know the customer account number, and you want the customer only to transact with the same account number.<br />You also pass the customer account number in the payment request compared to regular retail banking or UPI.
 
 ## Why TPV?
 
@@ -73,9 +72,139 @@ Meet your compliance requirements and start transacting online with your custome
 
 PayU supports the PayU Hosted Checkout (non-seamless), Merchant Hosted Checkout (Seamless) and PayU Server-to-Server Integration are supported
 
-* [PayU Hosted or non-seamless integration](payu-hosted-checkout-tpv-workflow)
-* [Seamless Integration](https://docs.payu.in/docs/collect-payments-with-tpv-merchant-hosted-checkout)
-  * [Net Banking](/docs/net-banking-integration-for-tpv)
-  * [UPI](/docs/upi-integration-for-tpv)
-    * [UPI Intent Autopay](https://docs.payu.in/docs/upi-intent-autopay-tpv-integration)
-    * [UPI Collect Autopay](https://docs.payu.in/docs/upi-collect-autopay-tpv-integration)\ <br />
+- [PayU Hosted or non-seamless integration](payu-hosted-checkout-tpv-workflow)
+- [Seamless Integration](https://docs.payu.in/docs/collect-payments-with-tpv-merchant-hosted-checkout)
+  - [Net Banking](/docs/net-banking-integration-for-tpv)
+  - [UPI](/docs/upi-integration-for-tpv)
+    - [UPI Intent Autopay](https://docs.payu.in/docs/upi-intent-autopay-tpv-integration)
+    - [UPI Collect Autopay](https://docs.payu.in/docs/upi-collect-autopay-tpv-integration)\ <br />
+
+## APIs used in TPV integration
+
+<Table>
+  <thead>
+    <tr>
+      <th>
+        API name
+      </th>
+
+      <th>
+        Purpose
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        \### \_payment API for Collect Payment use cases
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        [Collect Payment API – PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)
+      </td>
+
+      <td>
+        Initiate TPV payments on PayU Hosted Checkout with `beneficiarydetail` to lock transactions to pre-registered bank accounts. **Used in:** [Net Banking TPV Integration – PayU Hosted](doc:collect-netbanking-payment-with-tpv-payu-hosted-checkout), [UPI TPV Integration – PayU Hosted](doc:collect-upi-payment-with-tpv-payu-hosted-checkout), [Subscription TPV Integration](doc:tpv-recurring-payments-integration-pay-hosted-checkout), [Integrate Payment Link TPV](doc:integrate-payment-link-tpv).
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        [Collect Payment API – Merchant Hosted Checkout](ref:_payment_merchant_hosted)
+      </td>
+
+      <td>
+        Submit merchant-hosted TPV payment requests with `beneficiarydetail` for NetBanking, UPI, and NEFT/RTGS. **Used in:** [Net Banking Integration for TPV](doc:net-banking-integration-for-tpv), [UPI Integration for TPV](doc:upi-integration-for-tpv), [UPI Intent and Collect Autopay – TPV Integration](doc:upi-intent-and-collect-autopay-tpv-integration), [NEFT/RTGS Integration for TPV](doc:neftrtgs-integration-for-tpv).
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ### Recurring Payment with TPV
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        [Recurring Payment Transaction API](ref:recurring_payment_api)
+      </td>
+
+      <td>
+        Execute recurring debits after a successful UPI Autopay mandate registration with TPV. **Used in:** [UPI Intent and Collect Autopay – TPV Integration](doc:upi-intent-and-collect-autopay-tpv-integration).
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ### Payment Links
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        [Create Payment Link API](ref:create-payment-links)
+      </td>
+
+      <td>
+        Create a payment link with beneficiary account details for TPV verification. **Used in:** [Integrate Payment Link TPV](doc:integrate-payment-link-tpv).
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        [Get Access Token API for Payment Links](ref:get-token-api-for-payment-links)
+      </td>
+
+      <td>
+        Generate an OAuth token with `create_payment_links` scope to authenticate Payment Link API requests. **Used in:** [Integrate Payment Link TPV](doc:integrate-payment-link-tpv).
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ### General
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        [Validate VPA API](ref:validate_vpa_api)
+      </td>
+
+      <td>
+        Validate the customer's UPI handle before initiating UPI TPV or UPI Autopay flows. **Used in:** [UPI Integration for TPV](doc:upi-integration-for-tpv), [UPI Intent and Collect Autopay – TPV Integration](doc:upi-intent-and-collect-autopay-tpv-integration).
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        [Verify Payment API](ref:verify_payment_api)
+      </td>
+
+      <td>
+        Server-side reconciliation of transaction status after payment. **Used in:** all TPV integration guides via `<Verify_Payment_Tabs />` or inline verification steps.
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+<br />
