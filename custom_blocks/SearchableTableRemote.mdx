@@ -7,7 +7,7 @@ name: SearchableTableRemote
 // JSON may include headers, codeColumns, and rows. Regenerate: npm run build:searchable-table:remote
 // Do not put curly braces inside line comments in this file.
 
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 
 export const SearchableTableRemote = (props) => {
   const {
@@ -32,6 +32,7 @@ export const SearchableTableRemote = (props) => {
   const [loadError, setLoadError] = useState('');
   const [remoteHeaders, setRemoteHeaders] = useState(null);
   const [remoteCodeColumns, setRemoteCodeColumns] = useState(null);
+  const scrollRef = useRef(null);
 
   const coerceRows = (input) => {
     if (input == null || input === '') return [];
@@ -194,6 +195,12 @@ export const SearchableTableRemote = (props) => {
   }, [codeColumns, codeColumnsJson, remoteCodeColumns]);
 
   const tableRows = remoteRows != null ? remoteRows : [];
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollLeft = 0;
+    }
+  }, [tableRows, loadState, resolvedHeaders.length]);
 
   const normalize = (str) =>
     str == null
@@ -391,7 +398,8 @@ export const SearchableTableRemote = (props) => {
     verticalAlign: 'middle',
     boxSizing: 'border-box',
     whiteSpace: 'normal',
-    overflow: 'hidden',
+    wordBreak: 'normal',
+    overflowWrap: 'break-word',
     ...colWidthStyle(colIndex),
   });
 
@@ -411,7 +419,8 @@ export const SearchableTableRemote = (props) => {
     verticalAlign: 'top',
     boxSizing: 'border-box',
     minWidth: 0,
-    overflow: 'hidden',
+    wordBreak: 'normal',
+    overflowWrap: 'break-word',
     ...colWidthStyle(colIndex),
   });
 
@@ -422,9 +431,10 @@ export const SearchableTableRemote = (props) => {
     isMessageCol(colIndex);
 
   const cellClampStyle = (colIndex) => ({
-    display: '-webkit-box',
-    WebkitBoxOrient: 'vertical',
-    WebkitLineClamp: 2,
+    display: 'block',
+    margin: 0,
+    padding: 0,
+    maxHeight: '3em',
     overflow: 'hidden',
     lineHeight: '1.5',
     minWidth: 0,
@@ -505,9 +515,8 @@ export const SearchableTableRemote = (props) => {
     <div
       className={className}
       style={{
-        display: 'inline-block',
-        width: 'max-content',
-        maxWidth: '100%',
+        width: '100%',
+        display: 'block',
         verticalAlign: 'top',
         fontFamily: fontSans,
         fontSize: '14px',
@@ -517,9 +526,7 @@ export const SearchableTableRemote = (props) => {
     >
       <div
         style={{
-          display: 'inline-block',
-          width: 'max-content',
-          maxWidth: '100%',
+          width: '100%',
           border: '1px solid ' + borderColor,
           borderRadius: '6px',
           overflow: 'hidden',
@@ -594,17 +601,21 @@ export const SearchableTableRemote = (props) => {
         </div>
 
         <div
+          ref={scrollRef}
           style={{
+            width: '100%',
+            minWidth: 0,
             overflowY: 'auto',
             overflowX: 'auto',
+            position: 'relative',
             maxHeight: showEmptyState ? 'none' : maxHeight,
-            maxWidth: '100%',
             boxSizing: 'border-box',
           }}
         >
           <table
             style={{
-              width: tablePixelWidth ? tablePixelWidth + 'px' : 'auto',
+              width: tablePixelWidth ? tablePixelWidth + 'px' : '100%',
+              minWidth: '100%',
               borderCollapse: 'collapse',
               borderSpacing: 0,
               margin: 0,
@@ -622,7 +633,16 @@ export const SearchableTableRemote = (props) => {
                       scope="col"
                       style={headerCellStyle(i, resolvedHeaders.length)}
                     >
-                      {formatHeaderLabel(header)}
+                      <span
+                        style={{
+                          display: 'block',
+                          margin: 0,
+                          padding: 0,
+                          lineHeight: '1.25',
+                        }}
+                      >
+                        {formatHeaderLabel(header)}
+                      </span>
                     </th>
                   ))}
                 </tr>
@@ -710,10 +730,3 @@ export const SearchableTableRemote = (props) => {
     </div>
   );
 };
-
-
-<SearchableTableRemote
-  dataUrl="https://cdn.jsdelivr.net/gh/palgunams21/payu-docs-assets@main/data/net-banking-codes.json"
-  placeholder="Search"
-  maxHeight="500px"
-/>
