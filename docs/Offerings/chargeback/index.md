@@ -9,34 +9,36 @@ A chargeback is a transaction reversal that occurs when a customer successfully 
 
 The chargeback involves the following steps:
 
-<Image align="center" border={false} width="550px" src="https://files.readme.io/37be493-untitled.png" />
+
+<Image src="https://files.readme.io/37be493-untitled.png" align="center" width="550px" />
+
 
 ## Chargeback Support
 
 The Chargeback is supported for the following:
 
-* Cards
-* Card-Not-Present (<Glossary>CNP</Glossary>) transactions
-* Net Banking
-* EMI
-  * Cards
-  * UPI
-* UPI
-* Cross-Border Payments (OPGSP)
-* Wallets
-  * PayTM
-  * Freecharge
-  * Amazon Pay
-  *  Airtel Money
-  * Oxigen
-  * Ola Money
-  * Jio Money
-  * ItzCash
-  * HDFC PayZapp
-  * Yes Bank
-  * MobiKwik
-  * PhonePe
-  * Apple Pay
+- Cards
+- Card-Not-Present (<Glossary>CNP</Glossary>) transactions
+- Net Banking
+- EMI
+  - Cards
+  - UPI
+- UPI
+- Cross-Border Payments (OPGSP)
+- Wallets
+  - PayTM
+  - Freecharge
+  - Amazon Pay
+  - Airtel Money
+  - Oxigen
+  - Ola Money
+  - Jio Money
+  - ItzCash
+  - HDFC PayZapp
+  - Yes Bank
+  - MobiKwik
+  - PhonePe
+  - Apple Pay
 
 ## PayU Chargeback process
 
@@ -47,13 +49,19 @@ The Chargeback is supported for the following:
 
 You can handle the chargebacks using Chargeback APIs or PayU Dashboard > Chargeback. This part of the document includes the following:
 
-* [Chargeback Dashboard](doc:chargeback-dashboard)
-* [Webhooks for Chargeback](doc:webhooks-for-chargeback)
+- [Chargeback Dashboard](doc:chargeback-dashboard)
+- [Webhooks for Chargeback](doc:webhooks-for-chargeback)
 
-For Chargeback APIs, refer to the following under API Reference:
+## Chargeback Integration APIs
 
-* [Read Chargeback API](https://docs.payu.in/reference/read-chargeback-api)
-* [Read Reasons API](https://docs.payu.in/reference/read-reasons-api)
-* [Accept Chargeback API](https://docs.payu.in/reference/accept-chargeback-api)
-* [Accept/Contest Chargeback API](https://docs.payu.in/reference/accept-contest-chargeback-api)
-* [Contest Chargeback API](https://docs.payu.in/reference/contest-chargeback-api)
+The following  APIs are used in chargeback:
+
+| API                                                                           | Purpose                                                                                                                           |
+| :---------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------- |
+| [Read Chargeback API](https://docs.payu.in/reference/read-chargeback-api)     | Responds with the all the chargebacks corresponding to the merchant.                                                              |
+| [Read Reasons API](https://docs.payu.in/reference/read-reasons-api)           | Lists all the reasons required for the merchant to provide in order to accept or contest the chargeback.                          |
+| [Accept Chargeback API](https://docs.payu.in/reference/accept-chargeback-api) | Accept the chargeback by providing the appropriate reasons in the request body against the chargeback and merchant ID.            |
+| [Accept/Contest Chargeback API](ref:accept-contest-chargeback-api)            | Accept or context a chargeback by providing appropriate reasons in the request body against the chargeback and merchant ID.       |
+| [Contest Chargeback API](ref:contest-chargeback-api)                          | Allows to contest the chargeback by providing the appropriate reasons in the request body against the chargeback and merchant ID. |
+
+<br />
