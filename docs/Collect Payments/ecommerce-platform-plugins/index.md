@@ -64,6 +64,6 @@ The prerequisites for integration with PayU:
 
 ### Cross-platform Add-ons
 
-[CommercePro Checkout](doc:commercepro-checkout)
+- [CommercePro Checkout](doc:commercepro-checkout)
 
 <br />
