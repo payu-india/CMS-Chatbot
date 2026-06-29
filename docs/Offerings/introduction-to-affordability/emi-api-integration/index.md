@@ -18,58 +18,36 @@ metadata:
 next:
   description: ''
 ---
----
-title: EMI
-excerpt: ''
-deprecated: false
-hidden: false
-metadata:
-  title: EMI Integration with PayU APIs
-  description: >-
-    Explore the process of collecting payments through EMI options using PayU's
-    Merchant Hosted Checkout integration. Discover how to determine customer
-    eligibility, calculate EMI details, and initiate transactions with EMI
-    conversion using EMI APIs. This guide covers various EMI integration flows,
-    including debit cards, credit cards, cardless EMI, and native OTP flow.
-  keywords:
-    - PayU EMI API Integration
-    - PayU EMI Conversion Process
-  robots: index
-next:
-  description: ''
----
 Equated Monthly Instalment (EMI) refers to the fixed amount of money you pay to a bank or a lender every month as part of the repayment of an outstanding loan. EMI as a payment option gives your customers the freedom and affordability to purchase expensive items without having to deal with banks or NBFCs as intermediaries.
 
-> 👍 Before you begin:
->
-> Register for a account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
+<Callout icon="👍" theme="okay">
+  ### Before you begin:
+
+  Register for a account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
+</Callout>
 
 The following sections describe the procedure to integrate cards with EMI:
 
-* [PayU Hosted Checkout Integration](doc:collect-payments-using-payu-hosted-checkout-integration-emi)
-* Merchant Hosted Checkout Integration
-  * [Debit Card](doc:collect-payments-with-emi-using-debit-card)
-  * [Credit Card](doc:collect-payments-with-emi-using-credit-card)
-  * [Cardless EMI](doc:collect-payments-with-cardless-emi-using-merchant-hosted-checkout)
-  * [Native OTP Flow Integration](doc:native-otp-flow-integration)
-    * [Debit Card](/docs/native-otp-flow-integration#collect-payments-with-debit-card)
-    * [Cardless EMI](/docs/native-otp-flow-integration#collect-payments-with-cardless-emi)
+- [PayU Hosted Checkout Integration](doc:collect-payments-using-payu-hosted-checkout-integration-emi)
+- Merchant Hosted Checkout Integration
+  - [Debit Card](doc:collect-payments-with-emi-using-debit-card)
+  - [Credit Card](doc:collect-payments-with-emi-using-credit-card)
+  - [Cardless EMI](doc:collect-payments-with-cardless-emi-using-merchant-hosted-checkout)
+  - [Native OTP Flow Integration](doc:native-otp-flow-integration)
+    - [Debit Card](/docs/native-otp-flow-integration#collect-payments-with-debit-card)
+    - [Cardless EMI](/docs/native-otp-flow-integration#collect-payments-with-cardless-emi)
 
 ## APIs used in EMI integration
 
 The following APIs are referenced across the integration guides in this section:
 
-| API name | Purpose |
-| --- | --- |
-| [Collect Payment API – PayU Hosted Checkout](ref:_payment_payu_hosted_checkout) | Initiate an EMI transaction on the PayU-hosted payment page (non-seamless checkout). Customer selects EMI, enters card details, and completes OTP on PayU’s page. **Used in:** [PayU Hosted Checkout Integration](doc:collect-payments-using-payu-hosted-checkout-integration-emi). |
-| [Get Checkout Details API](ref:get_checkout_details) | Check customer eligibility before payment — by mobile number for debit-card pre-EMI and cardless EMI. **Used in:** [Debit Card](doc:collect-payments-with-emi-using-debit-card), [Cardless EMI](doc:collect-payments-with-cardless-emi-using-merchant-hosted-checkout). |
-| [Get EMI According to Interest API](ref:get_emi_according_to_interest_api) | Calculate EMI details — interest rate, monthly instalment, processing fee, No-Cost EMI, tenure, and the corresponding `bankcode` for the chosen plan. **Used in:** [Debit Card](doc:collect-payments-with-emi-using-debit-card), [Credit Card](doc:collect-payments-with-emi-using-credit-card). |
-| [Eligible BINs for EMI API v1.0](ref:eligiblebinsforemi) | Check credit-card EMI eligibility from the card BIN; returns issuing bank and minimum eligible amount. **Used in:** [Credit Card](doc:collect-payments-with-emi-using-credit-card). |
-| [Eligible BINs for EMI API v2.0](ref:eligible-bins-for-emi-v20) | Check cardless EMI eligibility from card or customer information in the S2S flow. **Used in:** [Cardless EMI – S2S Integration](doc:cardless-emi-s2s-integration). |
-| [Collect Payment API – EMI (Merchant Hosted Checkout)](ref:_payment_merchant_hosted_emi) | Submit the EMI payment transaction with card or cardless EMI parameters for merchant-hosted (seamless) checkout. **Used in:** [Debit Card](doc:collect-payments-with-emi-using-debit-card), [Credit Card](doc:collect-payments-with-emi-using-credit-card), [Cardless EMI](doc:collect-payments-with-cardless-emi-using-merchant-hosted-checkout), [Cardless EMI – S2S Integration](doc:cardless-emi-s2s-integration). |
-| [Collect Payment API – Merchant Hosted Checkout](ref:_payment_merchant_hosted) | General merchant-hosted `_payment` API reference for validating PayU responses during production go-live. **Used in:** [Production Checklist](doc:integration-checklist-emi). |
-| [Classic Integration – S2S](ref:_payment_s2s_classic_integration) | Reference for S2S callback response parameters after cardless EMI S2S payment. **Used in:** [Cardless EMI – S2S Integration](doc:cardless-emi-s2s-integration). |
-| [Verify Payment API](ref:verify_payment_api) | Server-side reconciliation of transaction status when the callback fails or as a post-payment verification step. **Used in:** [Debit Card](doc:collect-payments-with-emi-using-debit-card), [Credit Card](doc:collect-payments-with-emi-using-credit-card), [Cardless EMI](doc:collect-payments-with-cardless-emi-using-merchant-hosted-checkout), [Production Checklist](doc:integration-checklist-emi). |
+| API name                                                                        | Purpose                                                                                                                                                            |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [Collect Payment API – PayU Hosted Checkout](ref:_payment_payu_hosted_checkout) | Initiate an EMI transaction on the PayU-hosted payment page (non-seamless checkout). Customer selects EMI, enters card details, and completes OTP on PayU’s page.  |
+| [Get Checkout Details API](ref:get_checkout_details)                            | Check customer eligibility before payment — by mobile number for debit-card pre-EMI and cardless EMI.                                                              |
+| [Get EMI According to Interest API](ref:get_emi_according_to_interest_api)      | Calculate EMI details — interest rate, monthly instalment, processing fee, No-Cost EMI, tenure, and the corresponding `bankcode` for the chosen plan.              |
+| [Eligible BINs for EMI API v1.0](ref:eligiblebinsforemi)                        | Check credit-card EMI eligibility from the card BIN; returns issuing bank and minimum eligible amount.                                                             |
+| [Eligible BINs for EMI API v2.0](ref:eligible-bins-for-emi-v20)                 | Check cardless EMI eligibility from card or customer information in the S2S flow.                                                                                  |
 
 <Accordion title="APIs mentioned without a linked reference page" icon="fa-info-circle">
   | Mention | Context | Purpose |
@@ -123,3 +101,5 @@ PayU supports EMI for the following banks or institutions with debit cards, cred
   * Zest Money
   * KreditBee
 </Accordion>
+
+<br />
