@@ -18,13 +18,13 @@ PayU supports multiple ways to accept payments on WhatsApp in partnership with M
 
 Meta defines three WhatsApp commerce payment flavours; EPL sits at the **lowest complexity** end (typically **1–2 weeks** to go live), with **no** PG-to-WhatsApp **OAuth** linking in Business Manager.
 
-|                                | EPL                                                | UPI Intent                            | PG Deep Integration                      |
-| :----------------------------- | :------------------------------------------------- | :------------------------------------ | :--------------------------------------- |
-| **Complexity**                 | Low                                                | Medium                                | High                                     |
-| **Typical engineering effort** | 1–2 weeks                                          | 4–5 weeks                             | 8–12 weeks                               |
-| **Payment methods**            | All (UPI, cards, net banking, wallets, EMI)        | UPI-primary (others extendable)       | UPI, cards, net banking, wallets         |
-| **Payment inside WhatsApp?**   | No — opens PG checkout in browser                  | Partial — UPI apps open from WhatsApp | Yes — native in-chat checkout            |
-| **Best for**                   | Collections, insurance, lending, EMI, fast go-live | Bill pay, utilities, BBPS, government | E-commerce, travel, quick commerce, food |
+|                                | UPI Intent                            | PG Deep Integration                      | EPL                                                |
+| :----------------------------- | :------------------------------------ | :--------------------------------------- | :------------------------------------------------- |
+| **Complexity**                 | Medium                                | High                                     | Low                                                |
+| **Typical engineering effort** | 4–5 weeks                             | 8–12 weeks                               | 1–2 weeks                                          |
+| **Payment methods**            | UPI-primary (others extendable)       | UPI, cards, net banking, wallets         | All (UPI, cards, net banking, wallets, EMI)        |
+| **Payment inside WhatsApp?**   | Partial — UPI apps open from WhatsApp | Yes — native in-chat checkout            | No — opens PG checkout in browser                  |
+| **Best for**                   | Bill pay, utilities, BBPS, government | E-commerce, travel, quick commerce, food | Collections, insurance, lending, EMI, fast go-live |
 
 ***
 
