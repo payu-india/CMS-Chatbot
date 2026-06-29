@@ -122,7 +122,7 @@ Implementing PayU Split Settlements is straightforward:
 | [Collect Payment API – PayU Hosted Checkout](ref:_payment_payu_hosted_checkout) | Initiate a PayU-hosted payment with `splitRequest` for split-during-transaction flows. |
 | [Absolute Split After Transaction](ref:absolute-split-after-transaction) | Split a completed transaction by fixed amount using the `payment_split` command.  |
 | [Split by Percentage after Transaction](ref:split-by-percentage-after-transaction) | Split a completed transaction by percentage using the `payment_split` command. |
-| ##Release Settlement APIs| |
+| ## Release Settlement APIs| |
 | [Release Settlement API](ref:release_settlement_api) | Release blocked settlement amounts for child merchants in the aggregator workflow. |
 | [Settlement Reconciliation API](ref:settlement-reconciliation-api) | Retrieve settlement details for a given date range.  |
 | ## Transaction  Info APIs| |
