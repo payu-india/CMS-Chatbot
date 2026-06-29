@@ -16,24 +16,6 @@ metadata:
 next:
   description: ''
 ---
----
-title: Offers API Integration
-excerpt: ''
-deprecated: false
-hidden: false
-metadata:
-  title: Offers integration APIs
-  description: >-
-    This page provides PayU's various API Integration for Offers that can be
-    created such as Instant Discounts, Cashback, No Cost EMI, and
-    Product/SKU-based Offers. It also includes details on the different payment
-    modes supported, such as Cards (credit and debit), Net banking, EMI (Credit
-    and Debit), Wallets, UPI, and No Cost EMI, along with explanations on how
-    each type of offer works.
-  robots: index
-next:
-  description: ''
----
 PayU Offers allows merchants to create a wide range of offers across different payments mode. The self-serve Dashboard portal allows merchants to add advanced configuration for offers and monitor offer associated performances and transactions.
 
 <Callout icon="👍" theme="okay">
@@ -52,18 +34,15 @@ The following offers can be created using APIs:
 
 ## APIs used in Offers integration
 
-The following APIs are referenced across the integration guides in this section:
+<br />
 
-| API name | Purpose |
-| --- | --- |
-| [Fetch Offers API](ref:fetch-offers-api) | Retrieve applicable offers for a transaction context to display on checkout, cart, product detail, or offers pages. **Used in:** [Instant Discount or Cashback (Merchant Hosted)](doc:instant-discount-or-cashback-offers-integration-using-merchant-hosted-checkout), [SKU-Based Offer (Merchant Hosted)](doc:collect-payments-with-sku-based-offer-using-merchant-hosted-checkout-offers-integration), [Multiple Offers (Merchant Hosted)](doc:multiple-offers-merchant-hosted), [Pre-Discounted Offer (Merchant Hosted)](doc:pre-discounted-offer-merchant-hosted-checkout). |
-| [EMI Calculator API](ref:emi-calculator-api) | Return EMI tenure plans with monthly instalments, interest rates, and applicable EMI offers when the customer selects EMI. |
-| [Validate Offer API](ref:validate-offer-api) | Confirm that the selected offer applies to the transaction before initiating payment. |
-| [Collect Payment API – Merchant Hosted Checkout](ref:_payment_merchant_hosted) | Submit the payment request with offer parameters (`offer_key`, `api_version`, `user_token`, and related fields) for merchant-hosted checkout.|
-| [Collect Payment API – PayU Hosted Checkout](ref:_payment_payu_hosted_checkout) | Initiate a PayU-hosted checkout payment with offer parameters for instant discount, cashback, or SKU-based offers. |
-| [Verify Payment API](ref:verify_payment_api) | Reconcile transaction and offer details server-side after payment.  |
-| [Refund APIs](ref:refund-apis) | Refund the payment amount passed in the refund request when reversing an offer transaction. |
-
+| API name                                                                        | Purpose                                                                                                                                       |
+| ------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Fetch Offers API](ref:fetch-offers-api)                                        | Retrieve applicable offers for a transaction context to display on checkout, cart, product detail, or offers pages.                           |
+| [EMI Calculator API](ref:emi-calculator-api)                                    | Return EMI tenure plans with monthly instalments, interest rates, and applicable EMI offers when the customer selects EMI.                    |
+| [Validate Offer API](ref:validate-offer-api)                                    | Confirm that the selected offer applies to the transaction before initiating payment.                                                         |
+| [Collect Payment API – PayU Hosted Checkout](ref:_payment_payu_hosted_checkout) | Initiate a PayU-hosted checkout payment with offer parameters for instant discount, cashback, or SKU-based offers.                            |
+| [Collect Payment API – Merchant Hosted Checkout](ref:_payment_merchant_hosted)  | Submit the payment request with offer parameters (`offer_key`, `api_version`, `user_token`, and related fields) for merchant-hosted checkout. |
 
 The following videos explain how to create an offer:
 
@@ -124,3 +103,5 @@ The following videos explain how to create an offer:
     - Cashbacks need to be processed by the merchants with the banks. Create Cashback Offers only if you have an agreement with them or reach out to Key Account Manager for additional support. The cashback time-period would be aligned basis the merchant requirement.
   </Callout>
 </Accordion>
+
+<br />
