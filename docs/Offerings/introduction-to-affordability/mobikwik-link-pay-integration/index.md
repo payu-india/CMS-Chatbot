@@ -5,13 +5,6 @@ hidden: false
 metadata:
   robots: index
 ---
----
-title: Mobikwik Link & Pay Integration
-deprecated: false
-hidden: false
-metadata:
-  robots: index
----
 This section describes step-by-step integration procedure for Mobikwik Link & Pay, designed to offer a seamless, one-click payment experience for users and merchants.
 
 It provides a **seamless, one-click payment experience** for Mobikwik wallet users on PayU’s S2S integration. This streamlined flow aims to simplify the checkout process and enhance the overall payment experience for all parties. By introducing Link & Pay, Mobikwik seeks to offer merchants an efficient and scalable solution that improves conversion rates and customer satisfaction, reinforcing PayU's leadership in payment innovation.
@@ -22,7 +15,6 @@ This integration is expected to deliver **measurable value** to merchants by red
 
 - [Steps to Integrate – Mobikwik Link & Pay](doc:steps-to-integrate-mobikwik-link-pay)
 - [Testing Checklist – Mobikwik Link & Pay](doc:testing-checklist-mobikwik-link-pay)
-
 
 ## Advantages
 
@@ -48,17 +40,120 @@ The integration utilizes the existing BNPL Link & Pay Generic API Stack, with cu
 
 ## Workflow
 
-<Image align="center" src="https://files.readme.io/2e908af4b1340e292d310830a7d84b277916ddf80a49d05c1def1e171f1b427e-mobikwik_workflow_diagram_2.png" />
 
-<Image align="center" src="https://files.readme.io/dfcb2bf925cd3a7dcc62d337dd3b8c9a27a489ac8f460361516999956c2da34b-mobikwik_workflow_diagram_3_1.png" />
+<Image src="https://files.readme.io/2e908af4b1340e292d310830a7d84b277916ddf80a49d05c1def1e171f1b427e-mobikwik_workflow_diagram_2.png" align="center" />
 
-## APIs used in Mobikwik Link & Pay integration
 
-| API name | Purpose |
-| --- | --- |
-| [Check User Balance and Link Status API](doc:steps-to-integrate-mobikwik-link-pay#step-1-check-user-balance-and-link-status) (`/userbalance`) | Check whether the customer's Mobikwik wallet is linked and retrieve the available balance before initiating payment. |
-| [Payment Initiation API](doc:steps-to-integrate-mobikwik-link-pay#step-2-payment-initiation-api) (`/v2/payments`) | Initiate a Mobikwik Link & Pay transaction on PayU; automatically routes linked users to auto-debit and unlinked users to the wallet-linking flow.|
-| [Token Generate API – Mobikwik](ref:token-generate-api-mobikwik) (`/tokengenerate`) | Submit the OTP and generate a wallet token for linked repeat transactions.  |
-| [Add Money to Wallet And Debit API – Mobikwik](ref:add-money-to-wallet-and-debit-api-mobikwik) | Load money into the wallet and debit in a single flow when the wallet balance is insufficient. |
-| [Check Status API – Mobikwik](ref:check-status-api-mobikwik) | Verify whether the payment is complete|
-| [Verify Payment API](ref:verify_payment_api) | Server-side reconciliation of transaction status after payment. |
+
+<Image src="https://files.readme.io/dfcb2bf925cd3a7dcc62d337dd3b8c9a27a489ac8f460361516999956c2da34b-mobikwik_workflow_diagram_3_1.png" align="center" />
+
+
+## APIs used in Integration
+
+<Table>
+  <thead>
+    <tr>
+      <th>
+        API&#x20;
+      </th>
+
+      <th>
+        Purpose
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        ### Check Balance and Pay
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        [Check User Balance and Link Status API](doc:steps-to-integrate-mobikwik-link-pay#step-1-check-user-balance-and-link-status) (`/userbalance`)
+      </td>
+
+      <td>
+        Check whether the customer's Mobikwik wallet is linked and retrieve the available balance before initiating payment.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        [Payment Initiation API](doc:steps-to-integrate-mobikwik-link-pay#step-2-payment-initiation-api) (`/v2/payments`)
+      </td>
+
+      <td>
+        Initiate a Mobikwik Link & Pay transaction on PayU; automatically routes linked users to auto-debit and unlinked users to the wallet-linking flow.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        [Token Generate API – Mobikwik](ref:token-generate-api-mobikwik) (`/tokengenerate`)
+      </td>
+
+      <td>
+        Submit the OTP and generate a wallet token for linked repeat transactions.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ### Manage Wallet
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        [Add Money to Wallet And Debit API – Mobikwik](ref:add-money-to-wallet-and-debit-api-mobikwik)
+      </td>
+
+      <td>
+        Load money into the wallet and debit in a single flow when the wallet balance is insufficient.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        [Check Status API – Mobikwik](ref:check-status-api-mobikwik)
+      </td>
+
+      <td>
+        Verify whether the payment is complete
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ### Verify the Payment
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        [Verify Payment API](ref:verify_payment_api)
+      </td>
+
+      <td>
+        Server-side reconciliation of transaction status after payment.
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+<br />
