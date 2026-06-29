@@ -104,7 +104,7 @@ You can enable the following methods if you are eligible using Dashboard:
 - EMI
 - International Payments
 
-To enable methods from the dashboard:
+To enable payment methods from the dashboard:
 
 1.
 
