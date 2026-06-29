@@ -94,7 +94,7 @@ The following videos explain how to create an offer:
 
 <br />
 
-## APIs used in Offers Integration
+## APIs used in Integration
 
 <Table>
   <thead>
@@ -182,7 +182,7 @@ The following videos explain how to create an offer:
 
     <tr>
       <td>
-        ### Verify Payment
+        ### Verify the Payment
       </td>
 
       <td>
