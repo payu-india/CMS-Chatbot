@@ -227,4 +227,4 @@ Start with one journey. According to <Anchor target="_blank" href="https://busin
 
 ***
 
-_PayU Agentic Commerce — discovery, checkout, and payments for the conversation economy. Built for D2C and SMB merchants who want to sell where customers already are._
+_PayU Agentic Commerce — discovery, checkout, and payments for the conversation economy. Built for merchants who want to sell where customers already are._
