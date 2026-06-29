@@ -60,4 +60,5 @@ The integration utilizes the existing BNPL Link & Pay Generic API Stack, with cu
 | [Payment Initiation API](doc:steps-to-integrate-mobikwik-link-pay#step-2-payment-initiation-api) (`/v2/payments`) | Initiate a Mobikwik Link & Pay transaction on PayU; automatically routes linked users to auto-debit and unlinked users to the wallet-linking flow.|
 | [Token Generate API – Mobikwik](ref:token-generate-api-mobikwik) (`/tokengenerate`) | Submit the OTP and generate a wallet token for linked repeat transactions.  |
 | [Add Money to Wallet And Debit API – Mobikwik](ref:add-money-to-wallet-and-debit-api-mobikwik) | Load money into the wallet and debit in a single flow when the wallet balance is insufficient. |
-| [Check Status API – Mobikwik](ref:check-status-api-mobikwik) | Verify whether a 
+| [Check Status API – Mobikwik](ref:check-status-api-mobikwik) | Verify whether the payment is complete|
+| [Verify Payment API](ref:verify_payment_api) | Server-side reconciliation of transaction status after payment. |
