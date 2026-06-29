@@ -61,3 +61,27 @@ The customers or end-users will be able to pay using their Indian debit cards an
 * Overseas merchants can easily offer services to Indian consumers.
 
 To get started with integration, refer to: [Integrate Import for PayUBiz](doc:integrate-cross-border-payments-for-payubiz). For Subscriptions with various payment methods, refer to [Subscriptions with Cross-Border Payments](doc:cb-subscription-integration-seamless).
+
+## APIs used in Cross-Border Payments – Import integration
+
+| API name | Purpose |
+| --- | --- |
+| [PayU Hosted Checkout – CB](ref:_payment_cross-border_payu_hosted_checkout) | Initiate cross-border payments on PayU Hosted Checkout with `buyer_type_business` and mandatory UDF fields.  |
+| [Collect Payment API – Cards (Cross-Border)](ref:_payment_cross-border_merchant_hosted_cards) | Submit merchant-hosted card payment requests for cross-border one-time transactions.|
+| [Collect Payment API – NetBanking (Cross-Border)](ref:_payment_cross-border_merchant_hosted_netbanking) | Initiate NetBanking payments for cross-border transactions. **Used in:** [NetBanking Integration](doc:netbanking-integration-merchant-hosted-integration-cb). |
+| [Collect Payment API – UPI (Cross-Border)](ref:_payment_cross-border_merchant_hosted_upi) | Initiate UPI Intent payments for cross-border transactions.|
+| [UDF Update API](ref:udf_update_api) | Update UDF1–UDF5 values (including invoice ID) on a completed transaction. **Used in:** [Integrate Cross-Border Payments with PayU](doc:integrate-cross-border-payments-for-payubiz), [Import Plugin Integration](doc:cross-border-payments-import-plugin-integration-1). |
+| [Invoice Upload API](ref:invoice_upload_api) | Upload invoice documents and AWB files required for bank processing and settlement. |
+| [Payment Consent Transaction – PayU Hosted](ref:payment-consent-transaction-payu-hosted) | Register a subscription mandate on PayU Hosted Checkout for cross-border recurring payments. |
+| [Registration Mandate for Cards – PACB](ref:registration-mandate-for-cards-pacb) | Register a card mandate for cross-border subscription consent transactions.|
+| [UPI Consent Transaction – CB](ref:upi-consent-transaction-cross-border) | Register a UPI mandate for cross-border subscription consent transactions. |
+| [Pre-Debit Notification API](ref:pre_debit_notification_api) | Notify the customer before executing a recurring debit (required at least 48 hours in advance).|
+| [Recurring Payment Transaction API – PACB](ref:recurring-payment-transaction-api-pacb) | Execute recurring debits against a registered cross-border mandate.|
+| [Get On-Hold Transactions API – CB](ref:get-on-hold-transactions-api) | Retrieve transactions held pending additional invoice or trade metadata. . |
+| [Update On-Hold Transactions API – CB](ref:update-on-hold-transactions-api) | Submit additional customer or trade information to release on-hold settlements.  |
+| [Settlement Detail Range API – CB](ref:settlement-detail-range-api-for-cross-border) | Retrieve paginated transaction-level settlement data for a date range or UTR.|
+| [Get Settlement Detail API – CB](ref:get-settlement-detail-api-cross-border-payments) | Retrieve settlement details for cross-border transactions. |
+| [Verify Payment API](ref:verify_payment_api) | Server-side reconciliation of transaction status after payment. |
+<Accordion title="LRS-specific APIs" icon="fa-globe">
+  Cross-border transactions under the Liberalised Remittance Scheme (LRS) use additional `_payment` parameters for PAN validation, TCS declarations, and `lrs_service_type`. For the full LRS API list and integration guides, refer to [Liberalised Remittance Scheme (LRS) for Travel & Education](doc:cb-lrs-integration).
+</Accordion>
