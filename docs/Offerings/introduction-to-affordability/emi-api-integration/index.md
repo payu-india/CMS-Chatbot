@@ -37,17 +37,6 @@ The following sections describe the procedure to integrate cards with EMI:
     - [Debit Card](/docs/native-otp-flow-integration#collect-payments-with-debit-card)
     - [Cardless EMI](/docs/native-otp-flow-integration#collect-payments-with-cardless-emi)
 
-## APIs used in EMI integration
-
-The following APIs are referenced across the integration guides in this section:
-
-| API name                                                                        | Purpose                                                                                                                                                            |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [Collect Payment API – PayU Hosted Checkout](ref:_payment_payu_hosted_checkout) | Initiate an EMI transaction on the PayU-hosted payment page (non-seamless checkout). Customer selects EMI, enters card details, and completes OTP on PayU’s page.  |
-| [Get Checkout Details API](ref:get_checkout_details)                            | Check customer eligibility before payment — by mobile number for debit-card pre-EMI and cardless EMI.                                                              |
-| [Get EMI According to Interest API](ref:get_emi_according_to_interest_api)      | Calculate EMI details — interest rate, monthly instalment, processing fee, No-Cost EMI, tenure, and the corresponding `bankcode` for the chosen plan.              |
-| [Eligible BINs for EMI API v1.0](ref:eligiblebinsforemi)                        | Check credit-card EMI eligibility from the card BIN; returns issuing bank and minimum eligible amount.                                                             |
-| [Eligible BINs for EMI API v2.0](ref:eligible-bins-for-emi-v20)                 | Check cardless EMI eligibility from card or customer information in the S2S flow.                                                                                  |
 
 <Accordion title="APIs mentioned without a linked reference page" icon="fa-info-circle">
   | Mention | Context | Purpose |
@@ -103,3 +92,13 @@ PayU supports EMI for the following banks or institutions with debit cards, cred
 </Accordion>
 
 <br />
+## APIs used in EMI integration
+
+| API name                                                                        | Purpose                                                                                                                                                            |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [Collect Payment API – PayU Hosted Checkout](ref:_payment_payu_hosted_checkout) | Initiate an EMI transaction on the PayU-hosted payment page (non-seamless checkout). Customer selects EMI, enters card details, and completes OTP on PayU’s page.  |
+| [Get Checkout Details API](ref:get_checkout_details)                            | Check customer eligibility before payment — by mobile number for debit-card pre-EMI and cardless EMI.                                                              |
+| [Get EMI According to Interest API](ref:get_emi_according_to_interest_api)      | Calculate EMI details — interest rate, monthly instalment, processing fee, No-Cost EMI, tenure, and the corresponding `bankcode` for the chosen plan.              |
+| [Eligible BINs for EMI API v1.0](ref:eligiblebinsforemi)                        | Check credit-card EMI eligibility from the card BIN; returns issuing bank and minimum eligible amount.                                                             |
+| [Eligible BINs for EMI API v2.0](ref:eligible-bins-for-emi-v20)                 | Check cardless EMI eligibility from card or customer information in the S2S flow.                                                                                  |
+| [Verify Payment API](ref:verify_payment_api) | Server-side reconciliation of transaction status after payment. |
