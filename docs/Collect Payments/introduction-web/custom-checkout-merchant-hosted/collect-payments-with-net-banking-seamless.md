@@ -10,38 +10,15 @@ metadata:
 next:
   description: ''
 ---
----
-title: Net Banking Integration
-excerpt: ''
-deprecated: false
-hidden: false
-metadata:
-  title: ''
-  description: >-
-    Merchant-hosted net banking seamless integration: bank selection, redirect flow, hash, transaction APIs, and net banking payment on your site.
-  keywords:
-    - payu merchant hosted net banking seamless integration web
-    - payment gateway net banking integration merchant hosted payu
-    - integrate net banking payment website custom checkout payu
-    - payu net banking seamless api integration steps india
-    - website net banking payment integration payu merchant hosted
-    - merchant hosted netbanking payment gateway integration guide payu
-    - payu collect payments net banking seamless checkout integration
-    - server side net banking integration payu custom checkout web
-    - payu net banking hash bank code seamless integration
-    - payment gateway india net banking integration payu website
-    - payu custom checkout netbanking api integration developer guide
-    - merchant hosted net banking payment integration payu web
-  robots: index
-
-next:
-  description: ''
----
 Collect payments using Net Banking with Merchant Hosted Checkout integration as described in this section. After collecting the details from the customer, make the transaction request with the payment details to PayU.
 
 <Callout icon="👍" theme="okay">
-  Experience the end-to-end **Merchant Hosted Checkout** > **Net Banking** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
-<br/>
+  ###
+
+  Experience the end-to-end **Merchant Hosted Checkout** > **Net Banking** flow and instantly generate the complete code for seamless, zero-coding integration into your website. <br />
+
+    
+
   <HTMLBlock>{`
                     <style>
                     .tooltip-btn {
@@ -101,6 +78,8 @@ Below are the integration steps:
 <RegisterMerchantPrerequiste />
 
 <Callout icon="📮" theme="default">
+  ###
+
   **Postman Collection**: Access the **Merchant Hosted Checkout >. Net Banking Postman Collection** from the following location:
 
   [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/6uqfq01/net-banking-integration](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/6uqfq01/net-banking-integration)
@@ -559,230 +538,231 @@ Below are the integration steps:
    * as it contains sensitive payment information.
    */
 
-  // Payment endpoint
-  const url = 'https://test.payu.in/_payment';
+// Payment endpoint
+const url = '[https://test.payu.in/\_payment](https://test.payu.in/_payment)';
 
-  // Form data parameters
-  const formData = new URLSearchParams();
-  formData.append('key', 'JP***g');
-  formData.append('txnid', 'ewP8oRopzdHEtC');
-  formData.append('amount', '10.00');
-  formData.append('firstname', 'Ashish');
-  formData.append('email', 'test@gmail.com');
-  formData.append('phone', '9876543210');
-  formData.append('productinfo', 'iPhone');
-  formData.append('pg', 'TESTPG');
-  formData.append('bankcode', 'TESTPGNB');
-  formData.append('surl', 'https://apiplayground-response.herokuapp.com/');
-  formData.append('furl', 'https://apiplayground-response.herokuapp.com/');
-  formData.append('hash', 'bff508ec0974b20fe4be6c86cceab8c8dde88c4061a2a70373ddd0bbd3d24b21ae13984915fad06f9802f56b01a30da4e367e4e749959a76c3b2e5f12eb43319');
+// Form data parameters
+const formData = new URLSearchParams();
+formData.append('key', 'JP\*\*\*g');
+formData.append('txnid', 'ewP8oRopzdHEtC');
+formData.append('amount', '10.00');
+formData.append('firstname', 'Ashish');
+formData.append('email', '[test@gmail.com](mailto:test@gmail.com)');
+formData.append('phone', '9876543210');
+formData.append('productinfo', 'iPhone');
+formData.append('pg', 'TESTPG');
+formData.append('bankcode', 'TESTPGNB');
+formData.append('surl', '[https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)');
+formData.append('furl', '[https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)');
+formData.append('hash', 'bff508ec0974b20fe4be6c86cceab8c8dde88c4061a2a70373ddd0bbd3d24b21ae13984915fad06f9802f56b01a30da4e367e4e749959a76c3b2e5f12eb43319');
 
-  // Request options
-  const requestOptions = {
-    method: 'POST',
-    headers: {
-      'accept': 'application/json',
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    body: formData
-  };
+// Request options
+const requestOptions = {
 
-  // Execute the request
-  fetch(url, requestOptions)
-    .then(response => {
-      console.log('Status Code:', response.status);
-      return response.text(); // or response.json() if you're sure it returns JSON
-    })
-    .then(data => {
-      console.log('Response:', data);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
 
-  ```
-  ```python
-  import urllib.request
-  import urllib.parse
+ion/json',
+plication/x-www-form-urlencoded'
 
-  url = "https://test.payu.in/_payment"
 
-  headers = {
-      "accept": "application/json",
-      "Content-Type": "application/x-www-form-urlencoded"
-  }
+;
 
-  payload = {
-      "key": "JP***g",
-      "txnid": "ewP8oRopzdHEtC",
-      "amount": "10.00",
-      "firstname": "Ashish",
-      "email": "test@gmail.com",
-      "phone": "9876543210",
-      "productinfo": "iPhone",
-      "pg": "TESTPG",
-      "bankcode": "TESTPGNB",
-      "surl": "https://apiplayground-response.herokuapp.com/",
-      "furl": "https://apiplayground-response.herokuapp.com/",
-      "hash": "bff508ec0974b20fe4be6c86cceab8c8dde88c4061a2a70373ddd0bbd3d24b21ae13984915fad06f9802f56b01a30da4e367e4e749959a76c3b2e5f12eb43319"
-  }
+// Execute the request
+fetch(url, requestOptions)
+.then(response => {
+tus Code:', response.status);
+text(); // or response.json() if you're sure it returns JSON
+)
+.then(data => {
+'Response:', data);
+)
+.catch(error => {
+'Error:', error);
+);
 
-  data = urllib.parse.urlencode(payload).encode('utf-8')
-  req = urllib.request.Request(url, data=data, headers=headers, method="POST")
+````
+```python
+import urllib.request
+import urllib.parse
 
-  try:
-      with urllib.request.urlopen(req) as response:
-          response_body = response.read().decode('utf-8')
-          print("Status Code:", response.getcode())
-          print("Response:")
-          print(response_body)
-  except urllib.error.HTTPError as e:
-      print("Error:", e.code, e.reason)
-      print(e.read().decode('utf-8'))
+url = "https://test.payu.in/_payment"
 
-  ```
-  ```php
-  <?php
-  // PayU Payment Gateway API Request
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
 
-  // Set the API endpoint
-  $url = "https://test.payu.in/_payment";
+payload = {
+    "key": "JP***g",
+    "txnid": "ewP8oRopzdHEtC",
+    "amount": "10.00",
+    "firstname": "Ashish",
+    "email": "test@gmail.com",
+    "phone": "9876543210",
+    "productinfo": "iPhone",
+    "pg": "TESTPG",
+    "bankcode": "TESTPGNB",
+    "surl": "https://apiplayground-response.herokuapp.com/",
+    "furl": "https://apiplayground-response.herokuapp.com/",
+    "hash": "bff508ec0974b20fe4be6c86cceab8c8dde88c4061a2a70373ddd0bbd3d24b21ae13984915fad06f9802f56b01a30da4e367e4e749959a76c3b2e5f12eb43319"
+}
 
-  // Prepare the form data
-  $postData = array(
-      'key' => 'JP***g',
-      'txnid' => 'ewP8oRopzdHEtC',
-      'amount' => '10.00',
-      'firstname' => 'Ashish',
-      'email' => 'test@gmail.com',
-      'phone' => '9876543210',
-      'productinfo' => 'iPhone',
-      'pg' => 'TESTPG',
-      'bankcode' => 'TESTPGNB',
-      'surl' => 'https://apiplayground-response.herokuapp.com/',
-      'furl' => 'https://apiplayground-response.herokuapp.com/',
-      'hash' => 'bff508ec0974b20fe4be6c86cceab8c8dde88c4061a2a70373ddd0bbd3d24b21ae13984915fad06f9802f56b01a30da4e367e4e749959a76c3b2e5f12eb43319'
-  );
+data = urllib.parse.urlencode(payload).encode('utf-8')
+req = urllib.request.Request(url, data=data, headers=headers, method="POST")
 
-  // Initialize cURL session
-  $ch = curl_init();
+try:
+    with urllib.request.urlopen(req) as response:
+        response_body = response.read().decode('utf-8')
+        print("Status Code:", response.getcode())
+        print("Response:")
+        print(response_body)
+except urllib.error.HTTPError as e:
+    print("Error:", e.code, e.reason)
+    print(e.read().decode('utf-8'))
 
-  // Set cURL options
-  curl_setopt($ch, CURLOPT_URL, $url);
-  curl_setopt($ch, CURLOPT_POST, true);
-  curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-      'Accept: application/json',
-      'Content-Type: application/x-www-form-urlencoded'
-  ));
+````
+```php
+<?php
+// PayU Payment Gateway API Request
 
-  // Optional: Disable SSL verification for testing (not recommended for production)
-  // curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-  // curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+// Set the API endpoint
+$url = "https://test.payu.in/_payment";
 
-  // Execute the request
-  $response = curl_exec($ch);
+// Prepare the form data
+$postData = array(
+    'key' => 'JP***g',
+    'txnid' => 'ewP8oRopzdHEtC',
+    'amount' => '10.00',
+    'firstname' => 'Ashish',
+    'email' => 'test@gmail.com',
+    'phone' => '9876543210',
+    'productinfo' => 'iPhone',
+    'pg' => 'TESTPG',
+    'bankcode' => 'TESTPGNB',
+    'surl' => 'https://apiplayground-response.herokuapp.com/',
+    'furl' => 'https://apiplayground-response.herokuapp.com/',
+    'hash' => 'bff508ec0974b20fe4be6c86cceab8c8dde88c4061a2a70373ddd0bbd3d24b21ae13984915fad06f9802f56b01a30da4e367e4e749959a76c3b2e5f12eb43319'
+);
 
-  // Check for cURL errors
-  if (curl_errno($ch)) {
-      echo 'cURL Error: ' . curl_error($ch);
-  } else {
-      // Get HTTP status code
-      $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-      echo "HTTP Status Code: " . $httpCode . "\n";
-      echo "Response: " . $response . "\n";
-  }
+// Initialize cURL session
+$ch = curl_init();
 
-  // Close cURL session
-  curl_close($ch);
+// Set cURL options
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    'Accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+));
 
-  // Optional: Parse JSON response if needed
-  $responseData = json_decode($response, true);
-  if ($responseData !== null) {
-      echo "Parsed Response:\n";
-      print_r($responseData);
-  }
-  ?>
+// Optional: Disable SSL verification for testing (not recommended for production)
+// curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+// curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 
-  ```
-  ```java
-  import java.io.BufferedReader;
-  import java.io.DataOutputStream;
-  import java.io.InputStreamReader;
-  import java.net.HttpURLConnection;
-  import java.net.URL;
-  import java.net.URLEncoder;
-  import java.nio.charset.StandardCharsets;
-  import java.util.HashMap;
-  import java.util.Map;
-  import java.util.StringJoiner;
+// Execute the request
+$response = curl_exec($ch);
 
-  public class PayUPaymentRequest {
+// Check for cURL errors
+if (curl_errno($ch)) {
+    echo 'cURL Error: ' . curl_error($ch);
+} else {
+    // Get HTTP status code
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    echo "HTTP Status Code: " . $httpCode . "\n";
+    echo "Response: " . $response . "\n";
+}
 
-      public static void main(String[] args) {
-          try {
-              // API endpoint
-              String url = "https://test.payu.in/_payment";
+// Close cURL session
+curl_close($ch);
 
-              // Form parameters
-              Map<String, String> params = new HashMap<>();
-              params.put("key", "JP***g");
-              params.put("txnid", "ewP8oRopzdHEtC");
-              params.put("amount", "10.00");
-              params.put("firstname", "Ashish");
-              params.put("email", "test@gmail.com");
-              params.put("phone", "9876543210");
-              params.put("productinfo", "iPhone");
-              params.put("pg", "TESTPG");
-              params.put("bankcode", "TESTPGNB");
-              params.put("surl", "https://apiplayground-response.herokuapp.com/");
-              params.put("furl", "https://apiplayground-response.herokuapp.com/");
-              params.put("hash", "bff508ec0974b20fe4be6c86cceab8c8dde88c4061a2a70373ddd0bbd3d24b21ae13984915fad06f9802f56b01a30da4e367e4e749959a76c3b2e5f12eb43319");
+// Optional: Parse JSON response if needed
+$responseData = json_decode($response, true);
+if ($responseData !== null) {
+    echo "Parsed Response:\n";
+    print_r($responseData);
+}
+?>
 
-              // Convert parameters to URL encoded form data
-              StringJoiner sj = new StringJoiner("&");
-              for (Map.Entry<String, String> entry : params.entrySet()) {
-                  sj.add(URLEncoder.encode(entry.getKey(), "UTF-8") + "="
-                       + URLEncoder.encode(entry.getValue(), "UTF-8"));
-              }
-              byte[] postData = sj.toString().getBytes(StandardCharsets.UTF_8);
+```
+```java
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.StringJoiner;
 
-              // Create connection
-              URL apiUrl = new URL(url);
-              HttpURLConnection conn = (HttpURLConnection) apiUrl.openConnection();
-              conn.setRequestMethod("POST");
-              conn.setRequestProperty("accept", "application/json");
-              conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-              conn.setRequestProperty("Content-Length", String.valueOf(postData.length));
-              conn.setDoOutput(true);
+public class PayUPaymentRequest {
 
-              // Send request
-              try (DataOutputStream dos = new DataOutputStream(conn.getOutputStream())) {
-                  dos.write(postData);
-              }
+    public static void main(String[] args) {
+        try {
+            // API endpoint
+            String url = "https://test.payu.in/_payment";
 
-              // Read response
-              int responseCode = conn.getResponseCode();
-              try (BufferedReader br = new BufferedReader(
-                      new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8))) {
-                  StringBuilder response = new StringBuilder();
-                  String responseLine;
-                  while ((responseLine = br.readLine()) != null) {
-                      response.append(responseLine.trim());
-                  }
+            // Form parameters
+            Map<String, String> params = new HashMap<>();
+            params.put("key", "JP***g");
+            params.put("txnid", "ewP8oRopzdHEtC");
+            params.put("amount", "10.00");
+            params.put("firstname", "Ashish");
+            params.put("email", "test@gmail.com");
+            params.put("phone", "9876543210");
+            params.put("productinfo", "iPhone");
+            params.put("pg", "TESTPG");
+            params.put("bankcode", "TESTPGNB");
+            params.put("surl", "https://apiplayground-response.herokuapp.com/");
+            params.put("furl", "https://apiplayground-response.herokuapp.com/");
+            params.put("hash", "bff508ec0974b20fe4be6c86cceab8c8dde88c4061a2a70373ddd0bbd3d24b21ae13984915fad06f9802f56b01a30da4e367e4e749959a76c3b2e5f12eb43319");
 
-                  System.out.println("Status Code: " + responseCode);
-                  System.out.println("Response: " + response.toString());
-              }
+            // Convert parameters to URL encoded form data
+            StringJoiner sj = new StringJoiner("&");
+            for (Map.Entry<String, String> entry : params.entrySet()) {
+                sj.add(URLEncoder.encode(entry.getKey(), "UTF-8") + "="
+                     + URLEncoder.encode(entry.getValue(), "UTF-8"));
+            }
+            byte[] postData = sj.toString().getBytes(StandardCharsets.UTF_8);
 
-          } catch (Exception e) {
-              e.printStackTrace();
-          }
-      }
-  }
+            // Create connection
+            URL apiUrl = new URL(url);
+            HttpURLConnection conn = (HttpURLConnection) apiUrl.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("accept", "application/json");
+            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            conn.setRequestProperty("Content-Length", String.valueOf(postData.length));
+            conn.setDoOutput(true);
 
-  ```
+            // Send request
+            try (DataOutputStream dos = new DataOutputStream(conn.getOutputStream())) {
+                dos.write(postData);
+            }
+
+            // Read response
+            int responseCode = conn.getResponseCode();
+            try (BufferedReader br = new BufferedReader(
+                    new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8))) {
+                StringBuilder response = new StringBuilder();
+                String responseLine;
+                while ((responseLine = br.readLine()) != null) {
+                    response.append(responseLine.trim());
+                }
+
+                System.out.println("Status Code: " + responseCode);
+                System.out.println("Response: " + response.toString());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+```
+
 </Accordion>
 
 ## Step 2: Check response from PayU
@@ -848,11 +828,13 @@ Below are the integration steps:
 
 <Verify_Payment_Tabs />
 
-## Check NetBanking health
+## Check Net Banking health
 
-You can check the netbanking server status using the **[Get Net Banking Status](https://docs.payu.in/reference/get_net_banking_status_api)** API.
+You can check whether the Net Banking server is up and running using the **getNetBankingStatus** API. If the Net Banking server is down for a bank, you can inform your customers that the Net Banking server is down. For more information on the **getNetBankingStatus** API, refer to [Get Net Banking Status API.](ref:get_net_banking_status_api)
 
-## Recommended integrations for NetBanking
+## Recommended integrations for Net Banking
 
-* **Recurring Payments**: Enable recurring payments or subscriptions for wallets. For more information, refer to [Recurring Payments Integration](doc:introduction-recurring-payments-integration).
-* **Offers**: Configure offers for cards on Dashboard and then collect payments with offers. For more information, refer to [Create a No-Cost EMI Offer](doc:create-a-no-cost-emi-offer) and [Create a SKU-Based Offer](doc:create-a-sku-based-offer).
+- **Recurring Payments**: Enable recurring payments or subscriptions for wallets. For more information, refer to [Recurring Payments Integration](doc:introduction-recurring-payments-integration).
+- **Offers**: Configure offers for cards on Dashboard and then collect payments with offers. For more information, refer to [Create a No-Cost EMI Offer](doc:create-a-no-cost-emi-offer) and [Create a SKU-Based Offer](doc:create-a-sku-based-offer).
+
+<br />
