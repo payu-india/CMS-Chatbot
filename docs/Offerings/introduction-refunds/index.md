@@ -39,7 +39,7 @@ Order cancellations are an unfortunate reality for any business. Customers may c
 
 > 📘 **Publish refund policy on your website**: PayU recommends publishing the refund policy on your website, including the time taken to refund for failed transactions and the refund process.
 
-## Refunds workflow
+## Overview and Workflow
 
 <Accordion title="End-to-end refund flow" icon="fa-diagram-project">
   ```mermaid
@@ -207,4 +207,3 @@ The following sections describe how to initiate, track, and manage refunds with 
 | [Check Refund Status API with Request ID](ref:check_action_status_api_with_request_id) | Poll refund status using the merchant request ID.|
 | [Get All Refunds from Transaction IDs](ref:get_all_refunds_from_transaction_ids_api) | Retrieve all refund requests associated with one or more transaction IDs. |
 | [Refund Status API for Split Payments](ref:refund-status-api-for-split-payments) | Check refund status for split-payment child transactions. |
-
