@@ -97,7 +97,7 @@ PayU supports the PayU Hosted Checkout (non-seamless), Merchant Hosted Checkout 
   <tbody>
     <tr>
       <td>
-        \### \_payment API for Collect Payment use cases
+        ### \_payment API for Collect Payment use cases
       </td>
 
       <td>
@@ -111,7 +111,7 @@ PayU supports the PayU Hosted Checkout (non-seamless), Merchant Hosted Checkout 
       </td>
 
       <td>
-        Initiate TPV payments on PayU Hosted Checkout with `beneficiarydetail` to lock transactions to pre-registered bank accounts. **Used in:** [Net Banking TPV Integration – PayU Hosted](doc:collect-netbanking-payment-with-tpv-payu-hosted-checkout), [UPI TPV Integration – PayU Hosted](doc:collect-upi-payment-with-tpv-payu-hosted-checkout), [Subscription TPV Integration](doc:tpv-recurring-payments-integration-pay-hosted-checkout), [Integrate Payment Link TPV](doc:integrate-payment-link-tpv).
+        Initiate TPV payments on PayU Hosted Checkout with `beneficiarydetail` to lock transactions to pre-registered bank accounts. 
       </td>
     </tr>
 
@@ -121,7 +121,7 @@ PayU supports the PayU Hosted Checkout (non-seamless), Merchant Hosted Checkout 
       </td>
 
       <td>
-        Submit merchant-hosted TPV payment requests with `beneficiarydetail` for NetBanking, UPI, and NEFT/RTGS. **Used in:** [Net Banking Integration for TPV](doc:net-banking-integration-for-tpv), [UPI Integration for TPV](doc:upi-integration-for-tpv), [UPI Intent and Collect Autopay – TPV Integration](doc:upi-intent-and-collect-autopay-tpv-integration), [NEFT/RTGS Integration for TPV](doc:neftrtgs-integration-for-tpv).
+        Submit merchant-hosted TPV payment requests with `beneficiarydetail` for NetBanking, UPI, and NEFT/RTGS.
       </td>
     </tr>
 
@@ -141,7 +141,7 @@ PayU supports the PayU Hosted Checkout (non-seamless), Merchant Hosted Checkout 
       </td>
 
       <td>
-        Execute recurring debits after a successful UPI Autopay mandate registration with TPV. **Used in:** [UPI Intent and Collect Autopay – TPV Integration](doc:upi-intent-and-collect-autopay-tpv-integration).
+        Execute recurring debits after a successful UPI Autopay mandate registration with TPV.
       </td>
     </tr>
 
@@ -161,7 +161,7 @@ PayU supports the PayU Hosted Checkout (non-seamless), Merchant Hosted Checkout 
       </td>
 
       <td>
-        Create a payment link with beneficiary account details for TPV verification. **Used in:** [Integrate Payment Link TPV](doc:integrate-payment-link-tpv).
+        Create a payment link with beneficiary account details for TPV verification.
       </td>
     </tr>
 
@@ -171,7 +171,7 @@ PayU supports the PayU Hosted Checkout (non-seamless), Merchant Hosted Checkout 
       </td>
 
       <td>
-        Generate an OAuth token with `create_payment_links` scope to authenticate Payment Link API requests. **Used in:** [Integrate Payment Link TPV](doc:integrate-payment-link-tpv).
+        Generate an OAuth token with `create_payment_links` scope to authenticate Payment Link API requests.
       </td>
     </tr>
 
@@ -191,7 +191,7 @@ PayU supports the PayU Hosted Checkout (non-seamless), Merchant Hosted Checkout 
       </td>
 
       <td>
-        Validate the customer's UPI handle before initiating UPI TPV or UPI Autopay flows. **Used in:** [UPI Integration for TPV](doc:upi-integration-for-tpv), [UPI Intent and Collect Autopay – TPV Integration](doc:upi-intent-and-collect-autopay-tpv-integration).
+        Validate the customer's UPI handle before initiating UPI TPV or UPI Autopay flows. 
       </td>
     </tr>
 
@@ -201,7 +201,7 @@ PayU supports the PayU Hosted Checkout (non-seamless), Merchant Hosted Checkout 
       </td>
 
       <td>
-        Server-side reconciliation of transaction status after payment. **Used in:** all TPV integration guides via `<Verify_Payment_Tabs />` or inline verification steps.
+        Server-side reconciliation of transaction status after payment.
       </td>
     </tr>
   </tbody>
