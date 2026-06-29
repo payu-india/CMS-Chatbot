@@ -209,7 +209,9 @@ Once your option and payment method are chosen, these are the kinds of experienc
 - **Scheduled buy** — _"Buy the Diwali sale items when the sale starts at midnight"_ → agent saves the basket, collects consent, executes with UPI OTM or Reserve at the right time.
 - **WhatsApp reorder** — customer messages your business number with something like _"Send me 2 kg atta and 1 litre olive oil — same as last time"_ → you confirm quantity and total in chat; customer taps a UPI link or pays through an embedded Payment Link.
 
-Start with one journey. According to <Anchor target="_blank" href="https://business.adobe.com/resources/digital-economy-index.html">Adobe Digital Insights (Q1 2026)</Anchor>, AI-referred shoppers now convert **42% better** than non-AI traffic — after AI assistants have already researched, compared, and personalised the recommendation in conversation. Measure conversion and repeat rate against your current baseline; expand when the numbers justify it.
+Start with one journey. According to <Anchor target="_blank" href="https://business.adobe.com/blog/ai-traffic-surge-retail-sites-not-machine-readable#:~:text=AI%20traffic%20converted%2042%25%20better%20(a%20new%20record%20high)">Adobe report: U.S. retailers see surge in AI traffic, but many websites are not entirely readable by machines.</Anchor>, AI-referred shoppers now convert **42% better** than non-AI traffic — after AI assistants have already researched, compared, and personalised the recommendation in conversation. Closer home in India, <Anchor target="_blank" href="https://www.linkedin.com/posts/vidit-aatrey-a3639120_meesho-voicecommerce-digitalindia-ugcPost-7442158175413309440-pqOw/">Meesho already reported a 22% higher conversions in the users who adopted it's agent Vaani to place orders.</Anchor>
+
+Measure conversion and repeat rate against your current baseline; expand when the numbers justify it.
 
 ***
 
