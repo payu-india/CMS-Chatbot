@@ -5,32 +5,13 @@ hidden: false
 metadata:
   robots: index
 ---
----
-title: Rewards Partner Integration
-deprecated: false
-hidden: false
-metadata:
-  title: Rewards Partner Integration
-  description: >-
-    Integrate RewardX with PayU to let customers earn and burn TWID or Zillion
-    loyalty points at checkout, combined with Card or UPI via SPLITPAY.
-  robots: index
----
 Rewards is a loyalty points integration solution that leverages India's largest reward points network and integrates seamlessly with the PayU payment platform. It connects merchants to over 300 million users and allows them to earn and redeem reward points from over 20 leading issuers in a unified, frictionless checkout experience.
 
-> 👍 Before you begin:
->
-> Register for a account with PayU before you start integration. Contact your PayU Key Account Manager to enable Rewards (RewardX) and obtain your merchant ID (`mid`) for loyalty APIs. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
+<Callout icon="👍" theme="okay">
+  ### Before you begin:
 
-## Integration guides
-
-The following sections describe how to integrate Rewards (RewardX) with PayU:
-
-* [Rewards Pay Redemption Integration](doc:rewards-pay-redemption-integration) — Burn TWID or Zillion points at checkout with Card or UPI
-* [Earn Rewards Integration](doc:earn-rewards-integration) — Accrue loyalty points on Card/UPI transactions
-* [RewardX Decoupled Flow Integration](doc:rewardx-decoupled-flow-integration) — Server-to-server decoupled card flow for RewardX payments
-* [Rewards Refund Integration](doc:rewards-refund-integration) — Refund split-payment transactions across payment legs
-* [APIs for Rewards Integration](doc:apis-for-rewards-integration) — API reference summary for balance, payment, and refund
+  Register for a account with PayU before you start integration. Contact your PayU Key Account Manager to enable Rewards (RewardX) and obtain your merchant ID (`mid`) for loyalty APIs. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
+</Callout>
 
 ## Product overview
 
@@ -80,15 +61,26 @@ The following sections describe how to integrate Rewards (RewardX) with PayU:
 
   For partial refunds, the primary instrument (UPI or Card) is refunded first, then the reward partner leg. See [Rewards Refund Integration](doc:rewards-refund-integration).
 </Accordion>
+
+## Integration guides
+
+The following sections describe how to integrate Rewards (RewardX) with PayU:
+
+- [Rewards Pay Redemption Integration](doc:rewards-pay-redemption-integration) — Burn TWID or Zillion points at checkout with Card or UPI
+- [Earn Rewards Integration](doc:earn-rewards-integration) — Accrue loyalty points on Card/UPI transactions
+- [RewardX Decoupled Flow Integration](doc:rewardx-decoupled-flow-integration) — Server-to-server decoupled card flow for RewardX payments
+- [Rewards Refund Integration](doc:rewards-refund-integration) — Refund split-payment transactions across payment legs
+
 ## APIs used in Rewards Partner integration
 
-| API | Purpose |
-| --- | --- |
-| [Fetch Balance All API](ref:rewards-fetch-balance-all-api) | Retrieve usable TWID and Zillion reward balances for a customer before checkout. |
-| [Collect Payment with Rewards API](ref:_payment-merchant-hosted-rewards) | Initiate a SPLITPAY `_payment` request with `pg=SPLITPAY` and `splitInfo` to burn or earn reward points along with Card or UPI. |
-| [Verify Payment API](ref:verify_payment_api) | Server-side reconciliation of transaction status after payment.  |
-| [Cards Decoupled Flow API](ref:_payment_s2s_decoupled_flow) | Initiate a server-to-server decoupled card payment for RewardX transactions.|
-| [Submit OTP API](ref:submit-otp-to-payu) | Submit OTP during decoupled card authentication on the merchant page.|
-| [Refund Transaction API](ref:refund_transaction_api) | Initiate refunds for split-payment transactions; both child transactions (Card/UPI and rewards) are refunded.  |
-| [Refund Status API for Split Payments](ref:refund-status-api-for-split-payments) | Check refund status for split-payment child transactions.|
+| API                                                                              | Purpose                                                                                                                         |
+| -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| [Fetch Balance All API](ref:rewards-fetch-balance-all-api)                       | Retrieve usable TWID and Zillion reward balances for a customer before checkout.                                                |
+| [Collect Payment with Rewards API](ref:_payment-merchant-hosted-rewards)         | Initiate a SPLITPAY `_payment` request with `pg=SPLITPAY` and `splitInfo` to burn or earn reward points along with Card or UPI. |
+| [Verify Payment API](ref:verify_payment_api)                                     | Server-side reconciliation of transaction status after payment.                                                                 |
+| [Cards Decoupled Flow API](ref:_payment_s2s_decoupled_flow)                      | Initiate a server-to-server decoupled card payment for RewardX transactions.                                                    |
+| [Submit OTP API](ref:submit-otp-to-payu)                                         | Submit OTP during decoupled card authentication on the merchant page.                                                           |
+| [Refund Transaction API](ref:refund_transaction_api)                             | Initiate refunds for split-payment transactions; both child transactions (Card/UPI and rewards) are refunded.                   |
+| [Refund Status API for Split Payments](ref:refund-status-api-for-split-payments) | Check refund status for split-payment child transactions.                                                                       |
 
+<br />
