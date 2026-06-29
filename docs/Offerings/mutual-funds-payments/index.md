@@ -69,7 +69,6 @@ The following sections describe how to integrate mutual fund payments and subscr
   - [ENACH Integration – Mutual Funds](doc:enach-mutual-fund-payments-integration) — e-NACH mandate registration and recurring SIP debits
   - [UPI Autopay Integration – Mutual Funds](doc:upi-autopay-integration-mutual-fund-payments) — UPI mandate consent, pre-debit notification, and recurring debits
 
-
 ## APIs used in Mutual Fund Payments integration
 
 <Table>
@@ -88,7 +87,7 @@ The following sections describe how to integrate mutual fund payments and subscr
   <tbody>
     <tr>
       <td>
-        ## \_payment APIs
+        ### \_payment APIs
       </td>
 
       <td>
@@ -118,7 +117,7 @@ The following sections describe how to integrate mutual fund payments and subscr
 
     <tr>
       <td>
-        ## Recurring Payment APIS
+        ### Recurring Payment APIs
       </td>
 
       <td>
@@ -163,6 +162,16 @@ The following sections describe how to integrate mutual fund payments and subscr
 
       <td>
         Send pre-debit notification before charging a UPI mandate (`command=pre_debit_si`).
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        ### General
+      </td>
+
+      <td>
+
       </td>
     </tr>
 
