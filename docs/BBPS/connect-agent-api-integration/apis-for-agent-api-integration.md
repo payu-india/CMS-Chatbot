@@ -1,5 +1,5 @@
 ---
-title: APIs for Agent API Integration
+title: APIs for BBPS Agent API Integration
 excerpt: ''
 deprecated: false
 hidden: false
