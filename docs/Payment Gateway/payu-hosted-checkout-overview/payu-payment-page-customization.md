@@ -110,7 +110,9 @@ To enable payment methods from the dashboard:
 
    <Image src="https://files.readme.io/6ed09250a9b9685d968d9b74d5d7ecb2b0e970b35ff889d495e63eee17670f5f-Screenshot_2026-06-29_at_11.24.51_AM.png" align="center" caption="_Click Payment Modes_" framed={true} />
 
-
+2. Go to the required payment method tab and click any of the following:
+   1. **Activate Now:&#x20;**&#x43;lick this if the payment method is enabled and you want to activate it.
+   2. **Raise Request:&#x20;**&#x43;lick this if the payment method is not enabled and you want to raise a request to enable it. You can activate it once it is enabled.
 
 # Restrict Checkout to Specific Payment Methods (`enforce_paymethod`)
 
