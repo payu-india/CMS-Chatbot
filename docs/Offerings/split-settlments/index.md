@@ -110,9 +110,11 @@ Implementing PayU Split Settlements is straightforward:
 ## APIs used in Split Settlements integration
 | API | Purpose |
 | --- | --- |
+| ##Child Merchant Onboarding |  |
 | [Get Client Token API](ref:get-client-token-api) | Generate a Hub OAuth token with `refer_child_merchant` or `fetch_child_merchants` scope for child-merchant onboarding and listing.  |
 | [Create Child Merchant API](ref:create-child-merchant-api) | Onboard child merchants (sub-accounts) and update their bank details.|
 | [Sub Account Listing API](ref:sub-account-listing-api) | Fetch all child merchant details linked to a parent merchant. **Used in:** [Fetch Child Merchants Details](doc:fetch-child-merchants-details-1), [Integration APIs for Split Settlements](doc:api-integration-for-split-settlements). |
+| ##_payment API for various use cases |  |
 | [Absolute Split During Transaction](ref:absolute-split-during-transaction) | Split a payment by fixed amount among child merchants at transaction time using the `_payment` API. **Used in:** [Absolute Split During Transaction Integration](doc:absolute-split-during-transaction-integration), [Create the Split](doc:create-the-split). |
 | [Split by Percentage During Transaction](ref:split-by-percentage-during-transaction) | Split a payment by percentage among child merchants at transaction time using the `_payment` API. **Used in:** [Split by Percentage During Transaction Integration](doc:split-by-percentage-during-transaction-integration), [Create the Split](doc:create-the-split). |
 | [Absolute Split During Transaction – PayU Hosted Checkout](ref:absolute-split-during-transaction-payu-hosted-checkout) | Split by fixed amount on PayU Hosted Checkout at transaction time. |
@@ -120,11 +122,14 @@ Implementing PayU Split Settlements is straightforward:
 | [Collect Payment API – PayU Hosted Checkout](ref:_payment_payu_hosted_checkout) | Initiate a PayU-hosted payment with `splitRequest` for split-during-transaction flows. |
 | [Absolute Split After Transaction](ref:absolute-split-after-transaction) | Split a completed transaction by fixed amount using the `payment_split` command.  |
 | [Split by Percentage after Transaction](ref:split-by-percentage-after-transaction) | Split a completed transaction by percentage using the `payment_split` command. |
+| ##Release Settlement APIs| |
 | [Release Settlement API](ref:release_settlement_api) | Release blocked settlement amounts for child merchants in the aggregator workflow. |
 | [Settlement Reconciliation API](ref:settlement-reconciliation-api) | Retrieve settlement details for a given date range.  |
+| ##Transaction  Info APIs| |
 | [Get Aggregator/Parent Transaction Info API](ref:get_aggregator_parent_transaction_info_api) | Retrieve split allocation details for a parent transaction.  |
 | [Get Child/Parent Split Transaction Info API](ref:get_child_parent_split_transactions_info_api) | Retrieve split transaction details for child or parent merchants.  |
 | [Get Split Info API](ref:get_split_info_api) | Fetch split information for a given transaction. **Used in:** [Integration APIs for Split Settlements](doc:api-integration-for-split-settlements), [Create the Split](doc:create-the-split). |
+| ##Refund  Info APIs| |
 | [Refund Transaction API](ref:refund_transaction_api) | Process refunds with `var8` JSON specifying per-child refund amounts. |
 | [Refund Status API for Split Payments](ref:refund-status-api-for-split-payments) | Check refund status for split-payment transactions. |
 | [Get All Refunds from Transaction IDs](ref:get_all_refunds_from_transaction_ids_api) | Retrieve all refunds associated with given transaction IDs. |
