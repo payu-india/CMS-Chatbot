@@ -27,9 +27,6 @@ The prerequisites for integration with PayU:
 - Know your PayU Salt & key to collect Payments through PayU. The PayU Salt and key are available on the Account Details tab in the PayU Dashboard. For more information, refer to Generate Merchant Key and Salt.
 - Clear the browser cache to increase the performance and background processes work faster.
 
-
-
-###
 </Accordion>
 
 ### Hosted SaaS storefronts
@@ -65,6 +62,8 @@ The prerequisites for integration with PayU:
 
 - [Interakt for WhatsApp Business](doc:interakt-for-whatsapp-business)
 
-##
+### Cross-platform Add-ons
+
+[CommercePro Checkout](doc:commercepro-checkout)
 
 <br />
