@@ -262,18 +262,38 @@ export const SearchableTableRemote = (props) => {
   const isShortDescriptionCol = (colIndex) =>
     /^description$/i.test(headerText(colIndex));
 
+  const isErrorDescriptionCol = (colIndex) =>
+    /error\s*description/i.test(headerText(colIndex));
+
   const isFieldCol = (colIndex) => /^field$/i.test(headerText(colIndex));
 
   const isLayerCol = (colIndex) => /layer$/i.test(headerText(colIndex));
 
+  const isProseCol = (colIndex) => {
+    if (isCodeCol(colIndex) || isFieldCol(colIndex)) return false;
+    if (
+      isExpandedDescriptionCol(colIndex) ||
+      isShortDescriptionCol(colIndex) ||
+      isErrorDescriptionCol(colIndex) ||
+      isMessageCol(colIndex) ||
+      isTitleCol(colIndex)
+    ) {
+      return true;
+    }
+    const h = headerText(colIndex).toLowerCase();
+    return /description|reason|message|title|details/i.test(h);
+  };
+
   const getColMaxWidth = (colIndex) => {
-    if (isTitleCol(colIndex)) return 240;
-    if (isExpandedDescriptionCol(colIndex)) return 420;
-    if (isShortDescriptionCol(colIndex)) return 220;
-    if (isMessageCol(colIndex)) return 200;
-    if (isFieldCol(colIndex) || isCodeCol(colIndex)) return 210;
-    if (isLayerCol(colIndex)) return 180;
-    return 280;
+    if (isTitleCol(colIndex)) return 300;
+    if (isExpandedDescriptionCol(colIndex) || isErrorDescriptionCol(colIndex)) {
+      return 520;
+    }
+    if (isShortDescriptionCol(colIndex)) return 320;
+    if (isMessageCol(colIndex)) return 300;
+    if (isFieldCol(colIndex) || isCodeCol(colIndex)) return 220;
+    if (isLayerCol(colIndex)) return 240;
+    return 360;
   };
 
   const measureCellLen = (colIndex, cell) => {
@@ -302,7 +322,6 @@ export const SearchableTableRemote = (props) => {
     const sampleSize = Math.min(rowsForMeasure.length, 150);
     const pxPerChar = 8;
     const pad = 36;
-    const oneLineCharCap = 26;
 
     resolvedHeaders.forEach((header, colIdx) => {
       let maxLen = formatHeaderLabel(header).length;
@@ -311,13 +330,37 @@ export const SearchableTableRemote = (props) => {
         maxLen = Math.max(maxLen, measureCellLen(colIdx, cell));
       }
 
-      const minW = isCodeCol(colIdx) || isFieldCol(colIdx) ? 96 : 88;
+      const minW = isCodeCol(colIdx) || isFieldCol(colIdx) ? 110 : 100;
       const maxW = getColMaxWidth(colIdx);
+
+      if (isExpandedDescriptionCol(colIdx) || isErrorDescriptionCol(colIdx)) {
+        widths[colIdx] = 420;
+        return;
+      }
+
+      if (isShortDescriptionCol(colIdx)) {
+        widths[colIdx] = Math.min(Math.max(240, maxLen * 7 + pad), maxW);
+        return;
+      }
+
+      if (isLayerCol(colIdx)) {
+        widths[colIdx] = Math.min(
+          Math.max(maxLen * pxPerChar + pad, 160),
+          maxW
+        );
+        return;
+      }
+
+      if (isProseCol(colIdx)) {
+        widths[colIdx] = Math.min(
+          Math.max(260, Math.min(maxLen * 6 + pad, maxW)),
+          maxW
+        );
+        return;
+      }
+
       const fitsOneLine =
-        isCodeCol(colIdx) ||
-        isFieldCol(colIdx) ||
-        isLayerCol(colIdx) ||
-        maxLen <= oneLineCharCap;
+        isCodeCol(colIdx) || isFieldCol(colIdx) || maxLen <= 26;
 
       if (fitsOneLine) {
         widths[colIdx] = Math.min(
@@ -327,12 +370,7 @@ export const SearchableTableRemote = (props) => {
         return;
       }
 
-      const cappedLen = Math.min(
-        maxLen,
-        isExpandedDescriptionCol(colIdx) ? 96 : 64
-      );
-      const twoLineWidth = Math.ceil(cappedLen / 2) * pxPerChar + pad;
-      widths[colIdx] = Math.min(Math.max(twoLineWidth, minW), maxW);
+      widths[colIdx] = Math.min(Math.max(220, maxLen * 5 + pad), maxW);
     });
 
     return widths;
@@ -424,42 +462,37 @@ export const SearchableTableRemote = (props) => {
     ...colWidthStyle(colIndex),
   });
 
-  const usesAnywhereWrap = (colIndex) =>
-    isCodeCol(colIndex) ||
-    isFieldCol(colIndex) ||
-    isTitleCol(colIndex) ||
-    isMessageCol(colIndex);
-
-  const cellClampStyle = (colIndex) => ({
+  const bodyTextStyle = {
     display: 'block',
     margin: 0,
     padding: 0,
-    maxHeight: '3em',
-    overflow: 'hidden',
+    fontFamily: fontSans,
+    fontSize: '14px',
+    fontWeight: '400',
     lineHeight: '1.5',
-    minWidth: 0,
-    maxWidth: '100%',
-    wordBreak: usesAnywhereWrap(colIndex) ? 'break-word' : 'normal',
-    overflowWrap: usesAnywhereWrap(colIndex) ? 'anywhere' : 'break-word',
-  });
+    color: '#111827',
+    whiteSpace: 'normal',
+    overflowWrap: 'break-word',
+    wordBreak: 'normal',
+  };
 
   const renderBodyCellInner = (cell, cellIndex) => {
     const content = renderCellContent(cell, cellIndex);
-    if (autoColWidths[cellIndex] != null) {
-      return (
-        <div style={cellClampStyle(cellIndex)} title={cellPlainText(cell)}>
-          {content}
-        </div>
-      );
-    }
+    const plain = cellPlainText(cell);
+
     if (clampStyle) {
       return (
-        <div style={clampStyle} title={cellPlainText(cell)}>
+        <div style={clampStyle} title={plain}>
           {content}
         </div>
       );
     }
-    return content;
+
+    if (isCodeCol(cellIndex) || isFieldCol(cellIndex)) {
+      return content;
+    }
+
+    return <span style={bodyTextStyle}>{content}</span>;
   };
 
   const messageCellStyle = {
