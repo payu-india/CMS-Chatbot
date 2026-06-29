@@ -106,7 +106,11 @@ You can enable the following methods if you are eligible using Dashboard:
 
 To enable payment methods from the dashboard:
 
-1. Log in to the <Anchor target="_blank" href="https://payu.in/">dashboard,</Anchor> expand **Subscriptions&#x20;**&#x63;lick **Plans&#x20;**&#x66;rom the left menu.
+1. Log in to the <Anchor target="_blank" href="https://payu.in/">dashboard,</Anchor> expand **Manage Checkout&#x20;**&#x63;lick **Payment Modes&#x20;**&#x66;rom the left menu.
+
+   <Image src="https://files.readme.io/6ed09250a9b9685d968d9b74d5d7ecb2b0e970b35ff889d495e63eee17670f5f-Screenshot_2026-06-29_at_11.24.51_AM.png" align="center" caption="_Click Payment Modes_" framed={true} />
+
+
 
 # Restrict Checkout to Specific Payment Methods (`enforce_paymethod`)
 
