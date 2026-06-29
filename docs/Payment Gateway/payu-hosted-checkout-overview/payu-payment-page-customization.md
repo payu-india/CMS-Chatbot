@@ -114,6 +114,38 @@ To enable payment methods from the dashboard:
    1. **Activate Now:&#x20;**&#x43;lick this if the payment method is enabled and you want to activate it.
    2. **Raise Request:&#x20;**&#x43;lick this if the payment method is not enabled and you want to raise a request to enable it. You can activate it once it is enabled and available.
 
+### Activate PayPal Wallet
+
+To activate PayPal wallet:
+
+1. Log in to the <Anchor target="_blank" href="https://payu.in/">dashboard,</Anchor> expand **Manage Checkout&#x20;**&#x63;lick **Payment Modes&#x20;**&#x66;rom the left menu.
+
+   <Image src="https://files.readme.io/f6f66e9f59d2fcf0d9dbd829600c54f7b6d397e2cb8b2a83cecb8273d5d3b55c-image.png" align="center" caption="_Click Payment Modes_" framed={true} />
+
+2. Click **Link PayPal account**.
+
+   You are redirected to the PayPal page similar to the following screenshot.
+
+   <Image src="https://files.readme.io/15f4290-Screenshot_2024-03-14_at_2.22.56_PM.png" alt="PayPal account linking page displayed after redirect from PayU Dashboard" align="center" width="320px" border={true} />
+
+3. Enter your email address that you want to use in future with PayPal.
+4. Select your country as **India**.
+5. Click **Next**.
+6. Enter the password to create the account.
+7. Select your nature of your business and PAN details, name to displayed on statement and website URL as required and click **Next**.
+8. Enter your name, date of birth and contact details.
+9. Scroll down and enter the business contact phone number and primary
+10. Click **Next**.
+    <Callout icon="📘" theme="info">
+      **Note:**
+
+      Contact your PayU Key Account Manager to remove a payment mode from the Checkout page.
+    </Callout>
+
+***
+
+<br />
+
 # Restrict Checkout to Specific Payment Methods (`enforce_paymethod`)
 
 You can append the parameter names in your transaction request to restrict checkout to some of the payment modes.
