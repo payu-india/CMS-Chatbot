@@ -1,5 +1,5 @@
 ---
-title: Connect Agent API Integration
+title: Connect BBPS Agent API Integration
 excerpt: ''
 deprecated: false
 hidden: false
