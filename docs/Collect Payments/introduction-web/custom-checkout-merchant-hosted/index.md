@@ -421,15 +421,6 @@ Before going live, thoroughly test your integration in the PayU sandbox environm
 - **Payment Method Not Enabled**: Ensure that the payment method you are trying to use is enabled in your PayU merchant account. 
 - **Webhook Issues**: Check your webhook logs to identify any errors in processing transaction updates.
 
-## Check Net Banking health
-
-You can check whether the Net Banking server is up and running using the **getNetBankingStatus** API. If the Net Banking server is down for a bank, you can inform your customers that the Net Banking server is down. For more information on the **getNetBankingStatus** API, refer to getNetBankingStatus.
-
-## Recommended integrations for Net Banking
-
-- **Recurring Payments**: Enable recurring payments or subscriptions for wallets. For more information, refer to [Recurring Payments Integration](doc:introduction-recurring-payments-integration).
-- **Offers**: Configure offers for cards on Dashboard and then collect payments with offers. For more information, refer to [Create a No-Cost EMI Offer](doc:create-a-no-cost-emi-offer) and [Create a SKU-Based Offer](doc:create-a-sku-based-offer).
-
 ## Before you Integrate
 
 ### Prerequisites and Setup
