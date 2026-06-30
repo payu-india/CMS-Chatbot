@@ -11,606 +11,56 @@ next:
   description: ''
 ---
 ## Request parameters for \_payment API
-<HTMLBlock>{`
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
 
-      <th>
-        Description
-      </th>
+### Common request parameters
+
+| Parameter | Description | Example |
+| --- | --- | --- |
+| key `mandatory` | `varchar` Unique Merchant Key provided by PayU for your merchant account. | Your Test Key |
+| txnid `mandatory` | `varchar` Transaction ID (or Order ID) generated at the merchant end. Must be unique for every new transaction. `Character limit`: 25.<br /><br />**Note:** Ensure the transaction ID has not been successful earlier. Reusing a successful transaction ID returns a duplicate Order ID error. | fd3e847h2 |
+| amount `mandatory` | `float` Payment amount for the transaction.<br /><br />**Note:** Type-cast the amount to float type. Depending on the merchant use case, this value will vary.<br /><br />- It can be either 0 INR (for Net Banking) or min 1 INR (for Cards and UPI) in penny transaction use cases.<br />- In first instalment use cases, this amount can equal the initiate setup amount. This is supported only for selected Net Banking (ICICI and HDFC), all Credit / Debit Cards, and UPI. | 1000 |
+| productinfo `mandatory` | `varchar` Brief product description. `Character limit`: 100 | Time Magazine Subscription |
+| firstname `mandatory` | `varchar` First name of the customer. `Character limit`: 60 | Ashish |
+| email `mandatory` | `varchar` Email of the customer. Required for fraud detection, chargebacks, and MIS reporting for SI transactions. `Character limit`: 50 | Ashish@test.com |
+| phone `mandatory` | `varchar` Phone number of the customer. Required for fraud detection, chargebacks, and MIS reporting for SI transactions. `Character limit`: 50 | 9843176540 |
+| surl `mandatory` | Success URL. PayU redirects the final response here when the transaction is successful. |  |
+| furl `mandatory` | Failure URL. PayU redirects the final response here when the transaction fails. |  |
+| api\_version `mandatory` | API version. Must be passed as **7**. | 7 |
+| hash `mandatory` | SHA-512 hash to ensure request data is not tampered while redirecting the customer to PayU. For registration transactions: `HASH = SHA512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|si_details\|SALT)`<br /><br />**Note:** For `_payment` API version 19, use: `key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|user_token\|offer_key\|offer_auto_apply\|cart_details\|extra_charges\|phone` |  |
+
+### Seamless integration parameters
+
+| Parameter | Description | Example |
+| --- | --- | --- |
+| pg `mandatory for seamless flow` | `String` Payment method. Defaults to **CC** if not specified.<br /><br />- Net Banking: **NB**<br />- Card: **DC** (Debit Card), **CC** (Credit Card)<br />- UPI: **UPI**<br />- Wallets: **CASH**<br />- EMI: **EMI**<br />- BNPL: **BNPL**<br />- EFTNET (NEFT/RTGS): **NEFTRTGS**<br />- QR: **QR** |  |
+| bankcode `mandatory for seamless flow` | Unique bank code for the payment option. Refer based on **pg**:<br /><br />- Net Banking: [Net Banking Codes](doc:net-banking-codes)<br />- Cards: [Card Number Formats](doc:card-number-formats) and [Card Type Codes and Supported Banks for Cards](doc:card-type-codes-and-supported-banks-for-cards)<br />- UPI: [UPI Handles](doc:upi-handles)<br />- Wallets: [Wallet Codes](doc:wallet-codes)<br />- EMI: [EMI Codes](doc:emi-codes)<br />- BNPL: [BNPL Codes](doc:bnpl-codes) |  |
+| udf1 `optional for seamless flow` | User-defined field for transaction-specific information. `Character limit`: 255 |  |
+| udf2 `optional for seamless flow` | User-defined field for transaction-specific information. `Character limit`: 255 |  |
+| udf3 `optional for seamless flow` | User-defined field for transaction-specific information. `Character limit`: 255 |  |
+| udf4 `optional for seamless flow` | User-defined field for transaction-specific information. `Character limit`: 255 |  |
+| udf5 `optional for seamless flow` | User-defined field for transaction-specific information. `Character limit`: 255 |  |
+| ccnum `mandatory for cards in seamless flow` | `String` 13–19 digit card number (15 digits for AMEX, 13–19 for Maestro). Validate with LUHN algorithm. Refer to [Card Number Formats](doc:card-number-formats). |  |
+| ccvv `mandatory for cards in seamless flow` | `String` CVV number of the card – as entered by the customer for the transaction. |  |
+| ccexpmon `mandatory for cards in seamless flow` | `String` Card expiry month in MM format (01–12). |  |
+| ccexpyr `mandatory for cards in seamless flow` | `String` Card expiry year in four digits. |  |
+| threeDS2RequestData `mandatory for cards in seamless flow` | `String` 3DS2 request data for card authentication. For more information, refer to [Request Parameter for 3DS Secure 2.0 Transaction](doc:collect-payments-with-cards-seamless#request-parameter-for-3ds-secure-20-transaction). |  |
+
+### Server-to-Server integration parameters
+
+| Parameter | Description | Example |
+| --- | --- | --- |
+| s2s\_client\_ip `mandatory for S2S` | `String` Source IP of the customer.<br /><br />**Note:** Required for fraud detection and chargeback handling. |  |
+| s2s\_device\_info `mandatory for S2S` | `String` Customer device user agent.<br /><br />**Note:** Required for fraud detection and chargeback handling. |  |
+| txn\_s2s\_flow `mandatory for S2S` | `String` S2S flow type:<br /><br />- **4** for S2S<br />- **3** for Direct Authorization |  |
+| authentication\_flow `mandatory for S2S` | Must be **REDIRECT** for classic S2S integration. | REDIRECT |
+
+### Webhook parameters
+
+| Parameter | Description | Example |
+| --- | --- | --- |
+| partner\_webhook\_success | Webhook URL for successful transaction responses. Multiple URLs can be comma-separated. Use HTTPS URLs only. Pass non-URL-encoded URLs. | https://test.payu.in/admin/test_response |
+| partner\_webhook\_failure | Webhook URL for failed transaction responses. Multiple URLs can be comma-separated. Use HTTPS URLs only. Pass non-URL-encoded URLs. | https://test.payu.in/admin/test_response |
 
-      <th>
-        Example
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        key<code>mandatory</code>
-      </td>
-
-      <td>
-        <code>varchar</code> This parameter is the unique Merchant Key provided by PayU for your merchant account.
-      </td>
-
-      <td>
-        Your Test Key
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        txnid<code>mandatory</code>
-      </td>
-
-      <td>
-        <code>varchar</code> This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant's) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction. <code>Character limit</code>: 25
-
-        - **Note**: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of 'duplicate Order ID.'
-      </td>
-
-      <td>
-        fd3e847h2
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        amount<code>mandatory</code>
-      </td>
-
-      <td>
-        <code>float</code> This parameter should contain the payment amount of the particular transaction.
-
-        - **Note**: Type-cast the amount to float type Depending upon the merchant use case, this value will vary.
-
-        - It can be either 0 INR (for Net Banking) or min 1 INR (for Cards & UPI) in penny transaction use case.
-
-        - In the case of first instalment use cases, this amount can be equal to initiate setup amount, but this use case will be supported only against selected Net Banking (ICICI and HDFC), all Credit / Debit Cards, and UPI
-      </td>
-
-      <td>
-        1000
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        productinfo
-
-
-
-        <code>mandatory</code>
-      </td>
-
-      <td>
-        <code>varchar</code> This parameter should contain a brief product description. It should be a string describing the product. <code>Character limit</code>: 100
-      </td>
-
-      <td>
-        Time Magazine Subscription
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        firstname
-
-
-
-        <code>mandatory</code>
-      </td>
-
-      <td>
-        <code>varchar</code> Must contain the first name of the customer. <code>Character limit</code>: 60
-      </td>
-
-      <td>
-        Ashish
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        email
-
-
-
-        <code>mandatory</code>
-      </td>
-
-      <td>
-        <code>varchar</code> Must contain the email of the customer. This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is a must to provide the correct information. Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions. Character limit: 50
-      </td>
-
-      <td>
-        [Ashish@test.com](mailto:Ashish@test.com)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        phone
-
-
-
-        <code>mandatory</code>
-      </td>
-
-      <td>
-        <code>varchar</code> Must contain the phone number of the customer.This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information Also, MIS reporting is shared with few issuing banks where email and mobile number is used to keep track of users using SI transactions. Character limit: 50
-      </td>
-
-      <td>
-        9843176540
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        surl
-
-
-
-        <code>mandatory</code>
-      </td>
-
-      <td>
-        surL is the acronym for Success URL. This parameter must contain the URL on which PayU will redirect the final response if the transaction is successful.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        furl
-
-
-
-        <code>mandatory</code>
-      </td>
-
-      <td>
-        furl is the acronym for for Failure URL. This parameter must contain the URL on which PayU will redirect the final response if the transaction is failed.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        api\_version
-
-
-
-        <code>mandatory</code>
-      </td>
-
-      <td>
-        This parameter must always needs to be passed as 7.
-      </td>
-
-      <td>
-        7
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        hash
-
-
-
-        <code>mandatory</code>
-      </td>
-
-      <td>
-        Hash is a crucial parameter used to ensure that any date is not tampered while redirecting customer from the merchant website to PayU's payment interface while registration transactions.It is SHA512 hash generated by encrypting values of merchant key, txnid, amount, productinfo, firstname, email, udf and si\_details by merchant salt.In the case of registration transaction, the formula is used to calculate this hash is similar to the following: <code>HASH = SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|SALT)</code>
-
-        - **Note:Hash logic fo&#x72;_&#x70;ayment API version 19: The following hash logic must be used for_ payment API with api\_version=19**: <code>key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|user_token|offer_key|offer_auto_apply|cart_details|extra_charges|phone</code>
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        <h3>Seamless integration</h3>
-      </td>
-
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        pg
-
-
-
-        <code>mandatory for seamless flow</code>
-      </td>
-
-      <td>
-        <code>String</code> The pg parameter must contain the payment method. If no value is specified for this parameter 'CC' will be takes as default value. Refer to the following sections for integration with various payment modes:
-
-        - Net Banking: **NB**
-        - Card:
-        - **DC**for Debit Card
-        - **CC** for Credit Card
-        - UPI: **UPI**
-        - Wallets: **CASH**
-        - EMI: **EMI**
-        - BNPL:**BNPL**
-        - EFTNET (NEFT/RTGS): **NEFTRTGS**
-        - QR: **QR**
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        bankcode
-
-
-
-        <code>mandatory for seamless flow</code>
-      </td>
-
-      <td>
-        Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option's bank code value in it. For more information, refer to any of the following based on the payment mode used in the **pg** parameter:
-
-        - For NetBanking: [Net Banking Codes](doc:net-banking-codes)
-        - For Cards: [Card Number Formats](doc:card-number-formats) and [Card Type Codes and Supported Banks for Cards](doc:card-type-codes-and-supported-banks-for-cards).
-        - For UPI: [UPI Handles](doc:upi-handles)
-        - For Wallets: [Wallet Codes](doc:wallet-codes)
-        - For EMI: [EMI Codes](doc:emi-codes)
-        - For BNPL: [BNPL Codes](doc:bnpl-codes)
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf1
-
-
-
-        <code>optional for seamless flow</code>
-      </td>
-
-      <td>
-        User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5. <code>Character Limit-255</code>
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf2
-
-
-
-        <code>optional for seamless flow</code>
-      </td>
-
-      <td>
-        User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5. <code>Character Limit-255</code>
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf3
-
-
-
-        <code>optional for seamless flow</code>
-      </td>
-
-      <td>
-        User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5. <code>Character Limit-255</code>
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf4
-
-
-
-        <code>optional for seamless flow</code>
-      </td>
-
-      <td>
-        User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5. <code>Character Limit-255</code>
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ud1f5
-
-
-
-        <code>optional for seamless flow</code>
-      </td>
-
-      <td>
-        User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5. <code>Character Limit-255</code>
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ccnum
-
-
-
-        <code>mandatory for cards in seamless flow</code>
-      </td>
-
-      <td>
-        <code>String</code> Use 13-19 digit card number for credit/debit cards (15 digits for AMEX, 13-19 for Maestro) and validate with LUHN algorithm. Refer to[Card Number Formats](doc:card-number-formats)and display.error message for an invalid input.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ccvv
-
-
-
-        <code>mandatory for cards in seamless flow</code>
-      </td>
-
-      <td>
-        <code>String</code> This parameter must contain the name on card – as entered by the customer for the transaction.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ccexpmon
-
-
-
-        <code>mandatory for cards in seamless flow</code>
-      </td>
-
-      <td>
-        <code>String</code> This parameter must contain the card's expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ccexpyr
-
-
-
-        <code>mandatory for cards in seamless flow</code>
-      </td>
-
-      <td>
-        <code>String</code> This parameter must contain the card's expiry year – as entered by the customer for the transaction. It must be of four digits.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        threeDS2RequestData
-
-
-
-        <code>mandatory for cards in seamless flow</code>
-      </td>
-
-      <td>
-        <code>String</code> This parameter must contain the card's expiry year – as entered by the customer for the transaction. It must be of four digits.. For more information, refer to Request Parameter for[3DS Secure 2.0 Transaction](doc:collect-payments-with-cards-seamless#request-parameter-for-3ds-secure-20-transaction).
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        <h3>Server-to-Server Integration</h3>
-      </td>
-
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        s2s\_client\_ip
-
-
-
-        <code>mandatory for S2S</code>
-      </td>
-
-      <td>
-        <code>String</code>This parameter must have the source IP of the customer.
-
-        - **Note**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        s2s\_device\_info
-
-
-
-        <code>mandatory for S2S</code>
-      </td>
-
-      <td>
-        <code>String</code>This parameter must have the customer agent's device. Note: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        txn\_s2s\_flow
-
-
-
-        <code>mandatory for S2S</code>
-      </td>
-
-      <td>
-        <code>String</code> This parameter must be passed with any of the following values:
-
-        - **4** for S2S
-        - **3** for Direct Authorization
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        authentication\_flow
-
-
-
-        <code>mandatory for S2S</code>
-      </td>
-
-      <td>
-        This parameter must be passed with the value as **REDIRECT** for classic S2S integration.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        <strong>Webhooks</strong>
-      </td>
-
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        partner\_webhook\_success
-      </td>
-
-      <td>
-        Parameter to pass the Webhook URL for Success transaction response, Multiple URLs can be passed by separating the URLs using (,) Comma. Use HTTP secure URLs. Pass the non URL encoded URL Only
-      </td>
-
-      <td>
-        <a href="https://test.payu.in/admin/test_response">[https://test.payu.in/admin/test_response](https://test.payu.in/admin/test_response)</a>
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        partner\_webhook\_failure
-      </td>
-
-      <td>
-        Parameter to pass the Webhook URL for failure transaction response,  Multiple URLs can be passed by separating the URLs using (,) Comma. Use HTTP secure URLs. Pass the non URL encoded URL Only
-      </td>
-
-      <td>
-        <a href="https://test.payu.in/admin/test_response">[https://test.payu.in/admin/test_response](https://test.payu.in/admin/test_response)</a>
-      </td>
-    </tr>
-  </tbody>
-</Table>
-`}</HTMLBlock>
-
-<br />
 
 ### Additional parameters for Guest Checkout
 
@@ -633,401 +83,79 @@ The description of the fields in the additional\_info JSON.
 
 #### Using Network tokens
 
-<HTMLBlock>{`
-<div style={{ maxWidth: "85%", overflowX: "auto" }}>
+| Parameter | Description | Example |
+| --- | --- | --- |
+| ccnum `optional` | `varchar` 13 to 19-digit card number for credit or debit cards. | 512***6789012346 |
+| ccname `optional` | `varchar` Customer name on card. | Ashish |
+| ccvv `optional` | `varchar` CVV number of the card. | 123 |
+| ccexpmon `mandatory` | `integer` Expiry month on card validity. | 10 |
+| ccexpyr `mandatory` | `integer` Expiry year on card validity. | 2022 |
+| store_card_token `mandatory` | `varchar` Network token generated at your end. | 1234 4567 2456 3566 |
+| storecard_token_type `mandatory` | `integer` Store card token type. For network tokens, use **1**. | 1 |
+| additional_info `mandatory` | JSON with `last4Digits`, `tavv`, `trid`, and `tokenRefNo`. | See sample JSON below. |
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        <strong>Parameter</strong>
-      </th>
-
-      <th>
-        <strong>Description</strong>
-      </th>
-
-      <th>
-        <strong>Example</strong>
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        ccnum
-        <br/>
-        <code>optional</code>
-      </td>
-
-      <td>
-        <code>varchar</code> This parameter must contain the 13 to 19-digit card number for credit or debit cards in general.
-      </td>
-
-      <td>
-        512***6789012346
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ccname
-        <br/>
-        <code>optional</code>
-      </td>
-
-      <td>
-        <code>varchar</code> It is the customer's name on card.
-      </td>
-
-      <td>
-        Ashish
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ccvv
-        <br/>
-        <code>optional</code>
-      </td>
-
-      <td>
-        <code>varchar</code> This parameter must contain the CVV number of the card – as entered by the customer for the transaction.
-      </td>
-
-      <td>
-        123
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ccexpmon
-        <br/>
-        <code>mandatory</code>
-      </td>
-
-      <td>
-        <code>integer</code> This parameter must contain the Expiry month that is mentioned under card validity.
-      </td>
-
-      <td>
-        10
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ccexpyr
-        <br/>
-        <code>mandatory</code>
-      </td>
-
-      <td>
-        <code>integer</code> This parameter must contain the Expiry year that is mentioned under card validity.
-      </td>
-
-      <td>
-        2022
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        store_card_token
-        <br/>
-        <code>mandatory</code>
-      </td>
-
-      <td>
-        <code>varchar</code> This must include the Network token generated at your end.
-      </td>
-
-      <td>
-        1234 4567 2456 3566
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        storecard_token_type
-        <br/>
-        <code>mandatory</code>
-      </td>
-
-      <td>
-        <code>integer</code> This parameter is used to specify the store card token type. For this scenario, you must include 1.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        additional_info
-        <br/>
-        <code>mandatory</code>
-      </td>
-
-      <td>
-        <code>varchar</code> This parameter will contain the additional information in the following JSON format:
-        {"last4Digits": "1234", "<Glossary>TAVV</Glossary>": "ABCDEFGH","<Glossary>trid</Glossary>":"1234567890", "<Glossary>tokenRefNo</Glossary>":"abcde123456"}
-      </td>
-
-      <td>
-        {"last4Digits": "1234", "tavv": "ABCDEFGH","trid":"1234567890", "tokenRefNo":"abcde123456"}
-      </td>
-    </tr>
-  </tbody>
-</Table>
-</div>
-`}</HTMLBlock>
+```json
+{"last4Digits": "1234", "tavv": "ABCDEFGH", "trid": "1234567890", "tokenRefNo": "abcde123456"}
+```
 
 #### Using Issuer tokens
 
-<HTMLBlock>{`
-<div style={{ maxWidth: "85%", overflowX: "auto" }}>
+| Parameter | Description | Example |
+| --- | --- | --- |
+| ccvv `optional` | `varchar` CVV number of the card. | 123 |
+| ccexpmon `mandatory` | `integer` Network token expiry month. | 10 |
+| ccexpyr `mandatory` | `integer` Network token expiry year. | 2024 |
+| store_card_token `mandatory` | `varchar` Token generated by PayU for the card. | 1234 4567 2456 3566 |
+| storecard_token_type `mandatory` | `integer` Store card token type. For issuer tokens, use **0**. | 0 |
+| additional_info `mandatory` | JSON with `trMerchantId`, `tokenReferenceId`, `tokenBank`, and `last4Digits`. | See sample JSON below. |
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        <strong>Parameter</strong>
-      </th>
-
-      <th>
-        <strong>Description</strong>
-      </th>
-
-      <th>
-        <strong>Example</strong>
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        ccvv
-        <br/>
-        <code>optional</code>
-      </td>
-
-      <td>
-        <code>varchar</code> This parameter must contain the CVV number of the card – as entered by the customer for the transaction.
-      </td>
-
-      <td>
-        123
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ccexpmon
-        <br/>
-        <code>mandatory</code>
-      </td>
-
-      <td>
-        <code>integer</code> This parameter must contain the network token expiry month.
-      </td>
-
-      <td>
-        10
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ccexpyr
-        <br/>
-        <code>mandatory</code>
-      </td>
-
-      <td>
-        <code>integer</code> This parameter must contain the network token expiry year.
-      </td>
-
-      <td>
-        2024
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        store_card_token
-        <br/>
-        <code>mandatory</code>
-      </td>
-
-      <td>
-        <code>varchar</code> This must include the token generated by PayU for the card.
-      </td>
-
-      <td>
-        1234 4567 2456 3566
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        storecard_token_type
-        <br/>
-        <code>mandatory</code>
-      </td>
-
-      <td>
-        <code>integer</code> This parameter is used to specify the store card token type. For this scenario, you must include 0.
-      </td>
-
-      <td>
-        0
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        additional_info
-        <br/>
-        <code>mandatory</code>
-      </td>
-
-      <td>
-        <code>varchar</code> This parameter will contain the additional information in the following JSON format:
-        {"trMerchantId":"INBANPAYUWIBPAY011","tokenReferenceId":"02ac786d-0081-4b1a-a2a6-b0755a83964c","tokenBank":"HDFC","last4Digits":"8179"}
-      </td>
-
-      <td>
-        {"trMerchantId":"INBANPAYUWIBPAY011","tokenReferenceId":"02ac786d-0081-4b1a-a2a6-b0755a83964c","tokenBank":"HDFC","last4Digits":"8179"}
-      </td>
-    </tr>
-  </tbody>
-</Table>
-</div>
-`}</HTMLBlock>
+```json
+{"trMerchantId":"INBANPAYUWIBPAY011","tokenReferenceId":"02ac786d-0081-4b1a-a2a6-b0755a83964c","tokenBank":"HDFC","last4Digits":"8179"}
+```
 
 <br />
 
 #### Using card tokenized with PayU
 
-<HTMLBlock>{`
-<div style={{ maxWidth: "85%", overflowX: "auto" }}>
-
-<Table>
-  <thead>
-    <tr>
-      <th>
-        <strong>Parameter</strong>
-      </th>
-
-      <th>
-        <strong>Description</strong>
-      </th>
-
-      <th>
-        <strong>Example</strong>
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        ccvv
-        <br/>
-        <code>optional</code>
-      </td>
-
-      <td>
-        <code>varchar</code> This parameter must contain the CVV number of the card – as entered by the customer for the transaction.
-      </td>
-
-      <td>
-        123
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        storecard_token_type
-        <br/>
-        <code>mandatory</code>
-      </td>
-
-      <td>
-        <code>integer</code> This parameter is used to specify the store card token type. For this scenario, you must include 0.
-      </td>
-
-      <td>
-        0
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        user_credentials
-        <br/>
-        <code>mandatory</code>
-      </td>
-
-      <td>
-        <code>varchar</code> This parameter must contain the user credentials.
-      </td>
-
-      <td>
-        a:b
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        store_card_token
-        <br/>
-        <code>mandatory</code>
-      </td>
-
-      <td>
-        <code>varchar</code> This must include the token generated by PayU for the card.
-      </td>
-
-      <td>
-        1234 4567 2456 3566
-      </td>
-    </tr>
-  </tbody>
-</Table>
-</div>
-`}</HTMLBlock>
+| Parameter | Description | Example |
+| --- | --- | --- |
+| ccvv `optional` | `varchar` CVV number of the card. | 123 |
+| storecard_token_type `mandatory` | `integer` Store card token type. For PayU tokenization, use **0**. | 0 |
+| user_credentials `mandatory` | `varchar` User credentials. | a:b |
+| store_card_token `mandatory` | `varchar` Token generated by PayU for the card. | 1234 4567 2456 3566 |
 
 <br />
 
 ## Using card on a decoupled Flow with Network token or other partner tokenization
 
-| **Parameter**                        | **Description**                                                                                                                                                                                                                                                 | **Example**                                                                                |
-| :----------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------- |
-| ccvv **optional**                    | `varchar` This parameter must contain the CVV number of the card – as entered by the customer for the transaction.                                                                                                                                              | 123                                                                                        |
-| storecard\_token\_type **mandatory** | `integer` This parameter is used to specify store card token type, that is, tokenization partner. For this scenario, you must include 1.                                                                                                                        | 1                                                                                          |
-| store\_card\_token **mandatory**     | `varchar` This must include the token generated by PayU for the card.                                                                                                                                                                                           | 1234 4567 2456 3566                                                                        |
-| additional\_info **mandatory**       | This parameter will contain the additional information in the following JSON format: {"{user.glossary:last4Digits}": "1234", "<Glossary>TAVV</Glossary>": "ABCDEFGH","<Glossary>trid</Glossary>":"1234567890", "<Glossary>tokenRefNo</Glossary>":"abcde123456"} | {“last4Digits": “1234", “tavv": “ABCDEFGH","trid":"1234567890", “tokenRefNo":"abcde123456" |
+| Parameter | Description | Example |
+| --- | --- | --- |
+| ccvv `optional` | `varchar` CVV number of the card as entered by the customer. | 123 |
+| storecard\_token\_type `mandatory` | `integer` Store card token type (tokenization partner). For network or partner tokenization, use **1**. | 1 |
+| store\_card\_token `mandatory` | `varchar` Token generated for the card. | 1234 4567 2456 3566 |
+| additional\_info `mandatory` | JSON with `last4Digits`, `tavv`, `trid`, and `tokenRefNo`. | See sample JSON below. |
+
+```json
+{"last4Digits": "1234", "tavv": "ABCDEFGH", "trid": "1234567890", "tokenRefNo": "abcde123456"}
+```
 
 #### Using Card on a decoupled flow with PayU tokenization
 
-| **Parameter**                        | **Description**                                                                                                                                                                                                                                                 | **Example**                                                                                |
-| :----------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------- |
-| ccvv **optional**                    | `varchar` This parameter must contain the CVV number of the card – as entered by the customer for the transaction.                                                                                                                                              | 123                                                                                        |
-| storecard\_token\_type **mandatory** | `integer` This parameter is used to specify store card token type, that is, tokenization partner. For this scenario, you must include 0.                                                                                                                        | 1                                                                                          |
-| store\_card\_token **mandatory**     | `varchar` This must include the token generated by PayU for the card.                                                                                                                                                                                           | 1234 4567 2456 3566                                                                        |
-| additional\_info **mandatory**       | This parameter will contain the additional information in the following JSON format: {"{user.glossary:last4Digits}": "1234", "<Glossary>TAVV</Glossary>": "ABCDEFGH","<Glossary>trid</Glossary>":"1234567890", "<Glossary>tokenRefNo</Glossary>":"abcde123456"} | {“last4Digits": “1234", “tavv": “ABCDEFGH","trid":"1234567890", “tokenRefNo":"abcde123456" |
+| Parameter | Description | Example |
+| --- | --- | --- |
+| ccvv `optional` | `varchar` CVV number of the card as entered by the customer. | 123 |
+| storecard\_token\_type `mandatory` | `integer` Store card token type (tokenization partner). For PayU tokenization, use **0**. | 0 |
+| store\_card\_token `mandatory` | `varchar` Token generated by PayU for the card. | 1234 4567 2456 3566 |
+| additional\_info `mandatory` | JSON with `last4Digits`, `tavv`, `trid`, and `tokenRefNo`. | See sample JSON below. |
+
+```json
+{"last4Digits": "1234", "tavv": "ABCDEFGH", "trid": "1234567890", "tokenRefNo": "abcde123456"}
+```
 
 ## Character Limit for Request Parameters
 
 | Parameter   | Production Environment | Test Environment |
-| ----------- | ---------------------- | :--------------- |
+| --- | --- | --- |
 | productinfo | 100                    | 100              |
 | firstname   | 60                     | 20               |
 | email       | 50                     | 50               |
@@ -1046,229 +174,29 @@ The description of the fields in the additional\_info JSON.
 ## Response parameters
 
 ## General response parameters for all Web Checkout integrations
-<HTMLBlock>{`
-<Table>
-  <thead>
-    <tr>
-      <th>
-        **Variable**
-      </th>
 
-      <th>
-        **Description**
-      </th>
-    </tr>
-  </thead>
+| Variable | Description |
+| --- | --- |
+| mihpayid | Transaction ID assigned by PayU for each transaction. Keep this for inquiry or refund. |
+| mode | Payment category for the completed or attempted transaction. For values, refer to [Payment Mode Codes](doc:payment-mode-codes). |
+| status | Transaction outcome: `success`, `failed`, or `pending`. Treat `failure` and `pending` as failed unless verified otherwise. |
+| key | Merchant PayU account key. Same as the key used in the transaction request. |
+| txnid | Transaction ID posted by the merchant in the request. |
+| amount | Original amount sent in the transaction request. |
+| productinfo | Product information echoed from the transaction request. |
+| firstname | First name echoed from the transaction request. |
+| lastname | Last name echoed from the transaction request. |
+| email | Email echoed from the transaction request. |
+| phone | Phone echoed from the transaction request. |
+| udf | User-defined fields echoed from the request (`udf1` to `udf5`). |
+| hash | PayU-calculated hash. Verify before marking the transaction success or failure. For more information, refer to [Generate Hash](doc:generate-hash-merchant-hosted). |
+| error | Failure reason for failed transactions.<br /><br />**Note:** Failure reasons vary by bank error codes. |
+| error\_message | Error message text. For the list of error messages, refer to [Error Codes](ref:error-codes). |
+| bankcode | Payment option code used in the transaction (for example, VISA, MAST). |
+| PG\_TYPE | Payment gateway used (for example, `CC-PG` for credit card). |
+| bank\_ref\_num | Bank reference number for successful transactions. |
+| unmappedstatus | Internal PayU transaction status. Possible values include `dropped`, `bounced`, `captured`, `auth`, `failed`, `usercancelled`, or `pending`. For more information, refer to [Payment State Explanations](ref:payment-state-explanations). |
 
-  <tbody>
-    <tr>
-      <td>
-        mihpayid
-      </td>
-
-      <td>
-        Transaction ID is a unique number assigned by PayU for each transaction. Keep note of it for future reference for inquiry or refund."
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        mode
-      </td>
-
-      <td>
-        This parameter describes the payment category by which the transaction was completed or attempted by the customer. For the payment categories, refer to
-
-        [Payment Mode Codes](doc:payment-mode-codes)
-
-        .
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        status
-      </td>
-
-      <td>
-        This parameter indicates the outcome of the transaction as 'success', 'failed' or 'pending'. A value of 'success' means the transaction was successful, 'failure' or 'pending' means the transaction failed.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        key
-      </td>
-
-      <td>
-        This parameter is used to identify the merchant's PayU account. It is the same key used during the transaction request.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        txnid
-      </td>
-
-      <td>
-        This parameter would contain the transaction ID value posted by the merchant during the transaction request.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        amount
-      </td>
-
-      <td>
-        This parameter would contain the original amount which was sent in the transaction request by the merchant.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        productinfo
-      </td>
-
-      <td>
-        This parameter would contain the same value of product information which was sent in the transaction request from the merchant’s end to PayU.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        firstname
-      </td>
-
-      <td>
-        This parameter would contain the same value of first name which was sent in the transaction request from the merchant’s end to PayU.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        lastname
-      </td>
-
-      <td>
-        This parameter would contain the same value of last name which was sent in the transaction request from the merchant’s end to PayU.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        email
-      </td>
-
-      <td>
-        This parameter would contain the same value of email which was sent.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        phone
-      </td>
-
-      <td>
-        This parameter would contain the same value of phone which was sent in the transaction request from the merchant’s end to PayU.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf
-      </td>
-
-      <td>
-        This parameter would contain the same value of udf values that were sent in the transaction request from the merchant’s end to PayU. It ranges from udf1 to udf5.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        hash
-      </td>
-
-      <td>
-        PayU calculates a hash using other parameters and returns it to the merchant. The merchant must verify it and then mark a transaction as success/failure. This is to ensure the integrity of the transaction. For more information, refer to
-
-        [Generate Hash](doc:generate-hash-merchant-hosted)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        error
-      </td>
-
-      <td>
-        This parameter provides the reason for failure for failed transactions.
-
-        - _Note_\* that failure reasons may vary depending on the error codes from different banks.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        error\_message
-      </td>
-
-      <td>
-        This parameter contains the error message. For the list of error message, refer to
-
-        [Error Codes](ref:error-codes)
-
-        .
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        bankcode
-      </td>
-
-      <td>
-        This parameter holds the code of the payment option used in the transaction, such as Visa Debit Card - VISA, Master Debit Card - MAST.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        PG\_TYPE
-      </td>
-
-      <td>
-        This parameter indicates the payment gateway used for the transaction, such as 'CC-PG' for credit card payment gateway.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        bank\_ref\_num
-      </td>
-
-      <td>
-        For each successful transaction – this parameter would contain the bank reference number generated by the bank.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        unmappedstatus
-      </td>
-
-      <td>
-        This parameter holds the status of a transaction in PayU's internal database, which can include intermediate states. Possible values include: dropped, bounced, captured, auth, failed, usercancelled, or pending. For information, refer to
-
-        [Payment State Explanations](ref:payment-state-explanations)
-
-        .
-      </td>
-    </tr>
-  </tbody>
-</Table>
-`}</HTMLBlock>
 ## Response for initial Server-to-Server request
 
 | **Parameter**     | **Description**                                                                                                                                                                                                                                                              |
@@ -1277,7 +205,7 @@ The description of the fields in the additional\_info JSON.
 | result.post\_uri  | This field contains the redirect URL.                                                                                                                                                                                                                                        |
 | result.post\_data | post\_data is a base64 encoded string. The merchant needs to decode post\_data, which is an HTML format with auto submit, which then needs to be shown on the customer’s browser. The HTML being auto submit, it will take the customer to the bank page for authentication. |
 | status            | This field contains the status for the transaction.                                                                                                                                                                                                                          |
-| error             | For the failed transactions, this parameter provides the reason for  failure.                                                                                                                                                                                                |
+| error             | For the failed transactions, this parameter provides the reason for failure.                                                                                                                                                                                               |
 | message           | This field contains any additional message about the transaction.                                                                                                                                                                                                            |
 
 <Callout icon="📘" theme="info">
@@ -1297,279 +225,42 @@ The description of the fields in the additional\_info JSON.
 | unmappedStatus | This field contains the unmapped status of the transaction. For more information, refer to [Payment State Explanations](ref:payment-state-explanations) |
 
 #### result JSON Fields Description
-<HTMLBlock>{`
-<Table align={["left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        **Field**
-      </th>
 
-      <th>
-        **Description**
-      </th>
-    </tr>
-  </thead>
+| Field | Description |
+| --- | --- |
+| mihpayid | Unique PayU transaction reference. Use for inquiry, refund, and future actions. |
+| mode | Payment category for the completed or attempted transaction. For values, refer to [Payment Mode Codes](doc:payment-mode-codes). |
+| status | Transaction status: `success`, `failure`, or `pending`. If `status` is `failure` or `pending`, treat as failed unless verified otherwise. |
+| key | Merchant key for the PayU account. Same as the key used in the request. |
+| txnid | Transaction ID posted by the merchant in the request. |
+| amount | Original amount sent in the transaction request. |
+| productinfo | Product information echoed from the request. |
+| firstname | First name echoed from the request. |
+| lastname | Last name echoed from the request. |
+| email | Email echoed from the request. |
+| phone | Phone echoed from the request. |
+| udf | User-defined fields echoed from the request (`udf1` to `udf5`). |
+| hash | PayU-calculated reverse hash. Verify before marking success or failure. Calculation: `sha512(SALT\|status\|\|\|\|\|\|udf5\|udf4\|udf3\|udf2\|udf1\|email\|firstname\|productinfo\|amount\|txnid\|key)`<br /><br />**Note:** Include only the `udf` fields that were posted in the request; leave others empty in the hash string. |
+| error | Failure reason for failed transactions.<br /><br />**Note:** Failure reasons vary by bank error codes. |
+| bankcode | Payment option code (for example, VISA, MAST). |
+| PG\_TYPE | Payment gateway used (for example, `CC-PG`). |
+| bank\_ref\_num | Bank reference number for successful transactions. |
+| unmappedstatus | Internal PayU status. For more information, refer to [Payment State Explanations](ref:payment-state-explanations). |
 
-  <tbody>
-    <tr>
-      <td>
-        mihpayid
-      </td>
-
-      <td>
-        It is a unique reference number created for each transaction at PayU’s end. You must note this transaction ID as this will be used as a reference for all the future actions on this transaction like Inquiry or Refund.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        mode
-      </td>
-
-      <td>
-        This parameter describes the payment category by which the transaction was completed or attempted by the customer. For the payment categories, refer to
-
-        [Payment Mode Codes](doc:payment-mode-codes)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        status
-      </td>
-
-      <td>
-        This parameter gives the status of the transaction as either success, failed or pending. Possible values: success, failure, pending If the value of the ‘status’ parameter is ’success’, the transaction is successful. If the value of ‘status’ is ‘failure’ or ‘pending’, must be treated as a failed transaction only.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        key
-      </td>
-
-      <td>
-        This parameter contains the merchant key for the merchant’s account at PayU. It would be the same as the key used while the transaction request is being posted from the merchant’s end to PayU.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        txnid
-      </td>
-
-      <td>
-        This parameter would contain the transaction ID value posted by the merchant during the transaction request.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        amount
-      </td>
-
-      <td>
-        This parameter would contain the original amount which was sent in the transaction request by the merchant.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        productinfo
-      </td>
-
-      <td>
-        This parameter would contain the same value of product information which was sent in the transaction request from the merchant’s end to PayU.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        firstname
-      </td>
-
-      <td>
-        This parameter would contain the same value of first name which was sent in the transaction request from the merchant’s end to PayU.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        lastname
-      </td>
-
-      <td>
-        This parameter would contain the same value of last name which was sent in the transaction request from the merchant’s end to PayU.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        email
-      </td>
-
-      <td>
-        This parameter would contain the same value of email which was sent.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        phone
-      </td>
-
-      <td>
-        This parameter would contain the same value of phone which was sent in the transaction request from the merchant’s end to PayU.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        udf
-      </td>
-
-      <td>
-        This parameter would contain the same value of udf values that were sent in the transaction request from the merchant’s end to PayU. It ranges from udf1 to udf5.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        hash
-      </td>
-
-      <td>
-        PayU calculates the hash using a string of other parameters and returns it to the merchant. The merchant must verify the hash, and only then mark a transaction as success/failure. This is to make sure that the transaction hasn’t been tampered with. The calculation is as follows:  sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
-
-        - _Note_\*: The handling of udf1 – udf5 parameters remains similar to the hash calculation when the merchant sends it in the transaction request to PayU. If any of the udf (udf1-udf5) was posted in the transaction request, it must be taken in hash calculation also. If none of the udf parameters were posted in the transaction request, they should be left empty in the hash calculation too.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        error
-      </td>
-
-      <td>
-        For the failed transactions, this parameter provides the reason for  failure. 
-
-        - _Note_\*: The reason for failure depends upon the error codes provided by different banks and hence the detailing of error reasons may differ from one transaction to another. The merchant can use this parameter to retrieve the reason for failure for a particular transaction.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        bankcode
-      </td>
-
-      <td>
-        This parameter contains the code indicating the payment option used for the transaction. For example, in the Debit Card mode, there are different options like Visa Debit Card, Mastercard, Maestro etc. For each option, a unique bank code exists. It would be returned in this bank code parameter. For example, Visa Debit Card – VISA, Master Debit Card – MAST.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        PG\_TYPE
-      </td>
-
-      <td>
-        This parameter gives information on the payment gateway used for the transaction. For example, if CC PG was used, it would contain the value CC-PG. Similarly, it would have a unique value for all different types of payment gateways.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        bank\_ref\_num
-      </td>
-
-      <td>
-        For each successful transaction – this parameter would contain the bank reference number generated by the bank.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        unmappedstatus
-      </td>
-
-      <td>
-        This parameter contains the status of a transaction as per the internal database of PayU. PayU’s system has several intermediate status which are used for tracking various activities internal to the system. For more information, refer to
-
-        [Payment State Explanations](ref:payment-state-explanations)
-
-        .
-      </td>
-    </tr>
-  </tbody>
-</Table>
 
 #### binData fields description (applicable for only for Cards)
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        **Field**
-      </th>
+| Field | Description |
+| --- | --- |
+| pureS2SSupported | Indicates whether the card supports S2S: **true** (supports S2S) or **false** (does not support S2S). |
+| issuingBank | The card issuing bank. |
+| cardType | The card type such as VISA, MasterCard, etc. |
+| isDomestic | Indicates whether the card is domestic or international: **true** (domestic) or **false** (international). |
 
-      <th>
-        **Description**
-      </th>
-    </tr>
-  </thead>
+#### Sample S2S response
 
-  <tbody>
-    <tr>
-      <td>
-        pureS2SSupported
-      </td>
-
-      <td>
-        This field contains contains any of the following to indicate whether the card supports S2S:
-
-        - **true**: Card supports S2S
-        - **false**: Card does not support S2S
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        issuingBank
-      </td>
-
-      <td>
-        This field contains the card issuing bank.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        cardType
-      </td>
-
-      <td>
-        This field contains the card type such as VISA, MasterCard, etc.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        isDomestic
-      </td>
-
-      <td>
-        This field contains contains any of the following to indicate whether the card is domestic or international:
-
-        - **true**: It is a domestic card
-        - **false**: It is an international card
-      </td>
-    </tr>
-  </tbody>
-</Table>
-`}</HTMLBlock>
-```
-  {
+```json
+{
   "mihpayid": "403993715531077182",
   "mode": "CC",
   "status": "success",
@@ -1735,8 +426,6 @@ Array
 
 ```curl
 curl -X POST "https://test.payu.in/_payment" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&txnid=xdB9G7qYpfqszo&amount=10&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=UPI&bankcode=UPI&vpa=VPA-anything@payu&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=649bc87e0e8ee7bbd1e930d43c99a9165eb9fa7a3f4542a33e8d66bd207a63d631708fd9781e56b133581f7dabeaa67baa5609d5e5c9990f986792d59e7d41cb"
-```
-```
 ```
 
 #### Sample response
