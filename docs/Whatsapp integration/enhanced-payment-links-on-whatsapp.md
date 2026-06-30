@@ -53,24 +53,26 @@ Meta defines three WhatsApp commerce payment flavours; **EPL** sits at the **low
 ## Prerequisites to go live
 
 <Callout icon="📌" theme="default">
-  ### Integrate with Meta&#x20;
-
+  ### Integrate with Meta
   Refer to the following to integrating with Meta before proceeding with PayU. For more information, refer to <Anchor target="_blank" href="https://developers.facebook.com/documentation/business-messaging/whatsapp/payments/payments-in/enhanced-payment-links">Meta > Enhanced Payment Links</Anchor>
 </Callout>
 
-<Accordion title="Prerequisites to Go Live on EPL="fa-info-list">
-The following table describes other prerequisites:
-| Requirement                          | Detail                                                                                                                         |
-| :----------------------------------- | :----------------------------------------------------------------------------------------------------------------------------- |
-| **WhatsApp Business Account (WABA)** | **Enterprise** WABA, **verified** with Meta.                                                                                   |
-| **Approved message template**        | Template with a **CTA button**; URL must follow Meta’s **PayU-specific link suffix** rules. Submitted and approved by Meta.    |
-| **PayU account**                     | Standard PayU merchant account.                                                                                                |
-| **EPL allowlisting**                 | WABA must be added to Meta’s **EPL gating list**, which will be done by PayU Key Account Manager (KAM). Contact your PayU KAM. |
-| **Webhooks**                         | Keep your **existing PayU webhook**; no new WhatsApp payment webhook is required for EPL.                                      |
+<Accordion title="Prerequisites to Go Live on EPL" icon="fa-list-check">
+  The following table describes other prerequisites:
 
-<Callout icon="✅" theme="okay">
-  ### Gating list or allowlist (also known as GK biglist) is Meta's authorization mechanism for WhatsApp.
-</Callout>
+  | Requirement                          | Detail                                                                                                                         |
+  | :----------------------------------- | :----------------------------------------------------------------------------------------------------------------------------- |
+  | **WhatsApp Business Account (WABA)** | **Enterprise** WABA, **verified** with Meta.                                                                                   |
+  | **Approved message template**        | Template with a **CTA button**; URL must follow Meta’s **PayU-specific link suffix** rules. Submitted and approved by Meta.    |
+  | **PayU account**                     | Standard PayU merchant account.                                                                                                |
+  | **EPL allowlisting**                 | WABA must be added to Meta’s **EPL gating list**, which will be done by PayU Key Account Manager (KAM). Contact your PayU KAM. |
+  | **Webhooks**                         | Keep your **existing PayU webhook**; no new WhatsApp payment webhook is required for EPL.                                      |
+
+  <Callout icon="✅" theme="okay">
+    ### Gating list or allowlist (also known as GK biglist)
+
+    GK biglist is Meta's authorization mechanism for WhatsApp EPL.
+  </Callout>
 </Accordion>
 <Callout icon="📘" theme="info">
     ### Contact PayU KAM
@@ -203,7 +205,7 @@ sequenceDiagram
 <Accordion title="Step 2: Customer taps Pay now" icon="fa-hand-pointer">
   Tapping **Pay now** follows the **dynamic URL** on the CTA (your PayU payment link with the Meta-required suffix). WhatsApp then opens the **next payment UI**, in other setups it can be **PayU checkout** in the in-app browser.
 
-  There is no separate still between frames **01** and **02**; the animated GIF under [Assets and publishing](#assets-and-publishing) shows the transition.
+  There is no separate still between frames **01** and **02**; the animated GIF below shows the transition.
 </Accordion>
 
 <Accordion title="Step 3: Choose payment method" icon="fa-list">
