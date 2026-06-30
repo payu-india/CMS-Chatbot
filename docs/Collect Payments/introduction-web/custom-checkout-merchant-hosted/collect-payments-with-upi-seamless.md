@@ -18,9 +18,7 @@ next:
 
 <br />
 
-PayU allows you to collect payments using UPI handles. For the list of UPI providers supported, refer to [UPI Handles](https://docs.payu.in/docs/doc:upi-handles).
-
-<br />
+This page explains how UPI Collect should be integrated on your checkout. As per NPCI's guidelines, UPI Collect payments are allowed only on MCC 6012 and 6211. You must&#x20;
 
 <Callout icon="👍" theme="okay">
   ###
