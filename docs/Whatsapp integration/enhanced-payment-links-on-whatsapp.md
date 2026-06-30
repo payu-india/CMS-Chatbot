@@ -79,7 +79,7 @@ WhatsApp Commerce is **not a full e-commerce website inside the chat**. It is us
 * Your system **creates the order or payable** in your OMS / billing stack, then calls PayU for a **payment link**, then sends an approved **template** with **Pay Now**.
 * **Login, address, and line-item UX** are **not** provided by EPL itself; if you need them at pay time, they appear on **PayU Hosted Checkout** (browser / in-app WebView) or were captured earlier in your journey.
 
-Use **UPI Intent** or **PG Deep Integration** when the customer must **review a structured order in chat** and pay with a **native order bubble** (utilities, multi-item retail, in-chat checkout). See [WhatsApp Payments Integration](doc:whatsapp-native-payments) for those journeys.
+Use **UPI Intent** or **PG Deep Integration** when the customer must **review a structured order in chat** and pay with a **native order bubble** (utilities, multi-item retail, in-chat checkout). For more information on those journeys, refer to [WhatsApp Payments Integration](doc:whatsapp-native-payments).
 
 ### Commerce capability by payment flavour
 
