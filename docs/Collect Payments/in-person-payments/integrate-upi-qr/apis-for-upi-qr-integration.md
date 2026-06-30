@@ -2,7 +2,7 @@
 title: APIs for UPI QR Integration
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 link:
   url: https://docs.payu.in/docs/integrate-upi-qr
 metadata:
