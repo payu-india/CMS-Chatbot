@@ -145,10 +145,15 @@ HTTP Method: **POST**
   <td style="border: 1px solid #ddd; padding: 8px;"><p>var9<br><code>mandatory for Rupay and AMEX cards</code></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter can be any of the following based on the Rupay or AMEX card used:  </p>
+<strong>Rupay Cards</strong>
 <ul>
-<li>The authorization reference number received during authorization call of Rupay card transactions.</li>
-<li>The &lt;&lt;glossary:AEVV&gt;&gt; received during authorization call of Amex card transactions.<br><strong>Notes</strong>:</li>
-<li>This parameter is mandatory for Rupay cards. Authentication reference number will be sent by the PG in the authorization response. Currently, this check is skipped by Rupay.</li>
+<li>Authentication Reference Number (AuthRefID) is required for Rupay BePG Flow.</li>
+<li>DS Transaction ID is required for Rupay SecureNxt Card Tokenization.</li>
+</ul>
+<strong>AMEX Cards</strong>
+<ul>
+<li>The authorization reference number received during authorization call of AMEX card transactions.</li>
+<li>The AEVV received during authorization call of AMEX card transactions.<br><strong>Notes</strong>:</li>
 <li>This parameter is mandatory for AMEX cards. American Express Verification Value will be sent by the PG in the authorization response.</li>
 </ul>
 </td>
