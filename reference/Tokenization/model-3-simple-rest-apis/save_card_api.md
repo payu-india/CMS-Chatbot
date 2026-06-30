@@ -157,7 +157,13 @@ HTTP Method: **POST**
 <li>This parameter is mandatory for AMEX cards. American Express Verification Value will be sent by the PG in the authorization response.</li>
 </ul>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>6381242223626382106105</p>
+  <td style="border: 1px solid #ddd; padding: 8px;">
+<ul>
+<li>Rupay BePG Transaction ID :
+authenticationCode : 100112026062200000001164999087</li>
+ <li>DSTransID :
+authenticationCode : a39d7f09-3891-44c9-bf22-ab3fcba46d8f</li>
+</ul>
 </td>
 </tr>
 <tr>
