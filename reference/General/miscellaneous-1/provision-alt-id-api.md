@@ -335,12 +335,11 @@ public class HmacAuth {
 
     <tr>
       <td>
-        authenticationCode<br /><code>conditional</code>
+        authenticationCode<br /><code>optional</code>
       </td>
 
       <td>
         The authentication code for the transaction.
-        **Note**: This parameter is required for RUPAY cards.
       </td>
 
       <td>
