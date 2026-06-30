@@ -154,7 +154,7 @@ HTTP Method: **POST**
 <ul>
 <li>The authorization reference number received during authorization call of AMEX card transactions.</li>
 <li>The AEVV received during authorization call of AMEX card transactions.<br><strong>Notes</strong>:</li>
-<li>This parameter is mandatory for AMEX cards. American Express Verification Value will be sent by the PG in the authorization response.</li>
+<li>This parameter is mandatory for Rupay and AMEX cards. American Express Verification Value will be sent by the PG in the authorization response.</li>
 </ul>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;">
