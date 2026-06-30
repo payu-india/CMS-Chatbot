@@ -248,14 +248,13 @@ Real-world examples cited in product materials include **PolicyBazaar** (reporte
 - You need **rich multi-line-item orders** and **real-time order status** purely in chat (for example food delivery or quick commerce) → **PG Deep Integration (P2M)** is usually required. See [Integrate WhatsApp Payments](doc:integrate-whatsapp-payments).
 
 ***
-
-<Accordion title="Prerequisites to Go Live on EPL="fa-info-list">
+## Prerequisites to go live
 <Callout icon="📌" theme="default">
   ### Integrate with Meta&#x20;
 
   Refer to the following to integrating with Meta before proceeding with PayU. For more information, refer to <Anchor target="_blank" href="https://developers.facebook.com/documentation/business-messaging/whatsapp/payments/payments-in/enhanced-payment-links">Meta > Enhanced Payment Links</Anchor>
 </Callout>
-
+<Accordion title="Prerequisites to Go Live on EPL="fa-info-list">
 The following table describes other prerequisites:
 
 | Requirement                          | Detail                                                                                                                          |
@@ -271,11 +270,12 @@ The following table describes other prerequisites:
 </Callout>
 
 <Callout icon="📘" theme="info">
+</Accordion>
   ### Contact PayU KAM
 
   For **WABA verification**, **EPL allowlisting**, and **commercial enablement**, work with your **PayU Key Account Manager (KAM)** or your **BSP** so the correct Meta and PayU steps complete in order.
 </Callout>
-</Accordion>
+
 
 ***
 
