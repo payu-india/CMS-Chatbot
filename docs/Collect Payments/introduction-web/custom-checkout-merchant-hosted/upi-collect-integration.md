@@ -18,7 +18,7 @@ next:
 
 <br />
 
-This page explains how UPI Collect should be integrated on your checkout. As per NPCI's guidelines, UPI Collect payments are allowed only on MCC 6012 and 6211. You must&#x20;
+This section describes how UPI Collect should be integrated on your checkout. As per **NPCI's guidelines**, UPI Collect payments are allowed only on **MCC 6012&#x20;**&#x61;nd **6211**.&#x20;
 
 <Callout icon="👍" theme="okay">
   ###
