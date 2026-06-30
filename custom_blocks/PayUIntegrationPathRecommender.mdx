@@ -1,0 +1,415 @@
+---
+name: PayUIntegrationPathRecommender
+---
+// PayUIntegrationPathRecommender - ReadMe CMS Custom Component
+// ReadMe parses this file as MDX: no top-level functions, no inline object literals in arrays.
+// Register as: PayUIntegrationPathRecommender
+// Doc page: <PayUIntegrationPathRecommender />
+
+import { useState } from 'react';
+
+export const PayUIntegrationPathRecommender = function PayUIntegrationPathRecommender() {
+  var PRODUCTS = JSON.parse(
+    '{"PayU Hosted Checkout":{"category":"checkout","description":"Redirect to PayU-hosted payment page. Minimal PCI burden, fastest go-live.","pros":["Lowest PCI scope","Fast integration (1-3 days)","All payment methods"],"cons":["Redirect flow","Limited UI customization"],"complexity":"low","goLiveDays":3,"docsUrl":"https://docs.payu.in/docs/hosted-checkout"},"PayU Seamless Checkout":{"category":"checkout","description":"Embed payment on your website; PayU secures card data.","pros":["Native checkout UX","Customer stays on site"],"cons":["More frontend work","Higher PCI scope than hosted"],"complexity":"medium","goLiveDays":10,"docsUrl":"https://docs.payu.in/docs/seamless-checkout"},"PayU Android SDK":{"category":"sdk","description":"Native Android in-app payments with UPI Intent and cards.","pros":["Native Android UX","UPI Intent support"],"cons":["Android only","Native dev skills"],"complexity":"medium","goLiveDays":14,"docsUrl":"https://docs.payu.in/docs/android-sdk"},"PayU iOS SDK":{"category":"sdk","description":"Native iOS in-app payments.","pros":["Native iOS UX","In-app flow"],"cons":["iOS only","Swift skills"],"complexity":"medium","goLiveDays":14,"docsUrl":"https://docs.payu.in/docs/ios-sdk"},"PayU Web SDK":{"category":"sdk","description":"JavaScript SDK for web embedded checkout.","pros":["Any web framework","Embedded checkout"],"cons":["Web only","Browser testing"],"complexity":"medium","goLiveDays":7,"docsUrl":"https://docs.payu.in/docs/web-sdk"},"UPI Intent":{"category":"upi","description":"Deep-link to UPI apps for one-tap mobile payments.","pros":["Best UPI conversion on mobile"],"cons":["Mobile only"],"complexity":"low","goLiveDays":5,"docsUrl":"https://docs.payu.in/docs/upi-intent"},"UPI Collect":{"category":"upi","description":"UPI via VPA entry or QR.","pros":["Desktop and mobile","QR support"],"cons":["Manual VPA entry"],"complexity":"low","goLiveDays":5,"docsUrl":"https://docs.payu.in/docs/upi-collect"},"Token Hub / Saved Cards":{"category":"tokenization","description":"One-click repeat payments with tokenized cards.","pros":["Higher repeat conversion","PCI-compliant tokens"],"cons":["Extra integration step"],"complexity":"medium","goLiveDays":10,"docsUrl":"https://docs.payu.in/docs/token-hub"},"Recurring Payments / Subscription":{"category":"subscription","description":"Automated recurring billing.","pros":["Subscription billing","SI on cards and UPI"],"cons":["Mandate flows","RBI compliance"],"complexity":"high","goLiveDays":21,"docsUrl":"https://docs.payu.in/docs/recurring-payments"},"Split Settlements":{"category":"marketplace","description":"Split payouts between marketplace and vendors.","pros":["Multi-vendor payouts"],"cons":["Vendor onboarding"],"complexity":"high","goLiveDays":21,"docsUrl":"https://docs.payu.in/docs/split-settlements"},"Payment Links":{"category":"links","description":"Shareable payment links with zero code.","pros":["No integration code","Share via SMS or email"],"cons":["Not for high-volume checkout"],"complexity":"low","goLiveDays":1,"docsUrl":"https://docs.payu.in/docs/payment-links"},"Dynamic QR":{"category":"qr","description":"Dynamic UPI QR for offline collection.","pros":["Offline UPI collection"],"cons":["Needs display and polling"],"complexity":"low","goLiveDays":5,"docsUrl":"https://docs.payu.in/docs/dynamic-qr"},"Webhooks":{"category":"api","description":"Real-time payment status notifications.","pros":["Reliable reconciliation"],"cons":["Public endpoint needed"],"complexity":"low","goLiveDays":2,"docsUrl":"https://docs.payu.in/docs/webhooks"},"Refund API":{"category":"api","description":"Programmatic refunds.","pros":["Automated refunds"],"cons":["Settlement timing"],"complexity":"low","goLiveDays":2,"docsUrl":"https://docs.payu.in/docs/refund-api"},"Transaction Status API":{"category":"api","description":"Query payment status for reconciliation.","pros":["Webhook fallback"],"cons":["Use with webhooks"],"complexity":"low","goLiveDays":1,"docsUrl":"https://docs.payu.in/docs/transaction-status-api"}}'
+  );
+
+  var OPT_CHANNEL = JSON.parse('[{"id":"website","label":"Website or web application","desc":"Checkout in a browser - e-commerce, SaaS, portal"},{"id":"mobile","label":"Mobile application","desc":"Native or hybrid iOS / Android app"},{"id":"both","label":"Website and mobile apps","desc":"Omnichannel - payments on web and in-app"},{"id":"nocode","label":"Without building checkout","desc":"Invoices, payment links, or QR - minimal code"}]');
+  var OPT_LAUNCH = JSON.parse('[{"id":"web_first","label":"Web checkout first","desc":"We ask about hosted vs embedded web flow next"},{"id":"mobile_first","label":"Mobile app payments first","desc":"We ask about Android/iOS and in-app UX next"},{"id":"together","label":"Both at the same time","desc":"Broader recommendation across web and mobile"}]');
+  var OPT_WEB = JSON.parse('[{"id":"hosted","label":"Redirect to PayU (Hosted Checkout)","desc":"Lowest PCI scope - live in days"},{"id":"embedded","label":"Embedded on my website (Seamless)","desc":"Payment form on your pages - richer UX"},{"id":"unsure","label":"Not sure - optimise for speed","desc":"We suggest Hosted Checkout"}]');
+  var OPT_MOBILE_PLAT = JSON.parse('[{"id":"android","label":"Android only","desc":"PayU Android SDK or hosted WebView"},{"id":"ios","label":"iOS only","desc":"PayU iOS SDK or hosted WebView"},{"id":"both_mobile","label":"Android and iOS","desc":"Separate SDK per platform"}]');
+  var OPT_MOBILE_UX = JSON.parse('[{"id":"native","label":"Native embedded checkout (SDK)","desc":"Best UX - UPI Intent, cards, wallets in-app"},{"id":"redirect","label":"Redirect to PayU payment page","desc":"Faster to ship - PayU in browser or WebView"},{"id":"unsure","label":"Not sure - recommend for me","desc":"We suggest the native SDK for your platform"}]');
+  var OPT_NOCODE = JSON.parse('[{"id":"links","label":"Payment links","desc":"Share URL via SMS, email, or WhatsApp"},{"id":"qr","label":"Dynamic QR codes","desc":"Display QR at counter, kiosk, or invoice"},{"id":"both_nocode","label":"Both links and QR","desc":"Flexible collection for field and online"}]');
+  var OPT_PAYMENTS = JSON.parse('[{"id":"cards","label":"Cards only","desc":"Credit and debit cards"},{"id":"upi","label":"UPI only","desc":"UPI intent or collect"},{"id":"cards_upi","label":"Cards + UPI","desc":"Most common for India - recommended"},{"id":"all","label":"All methods","desc":"Cards, UPI, net banking, wallets, EMI"}]');
+  var OPT_BUSINESS = JSON.parse('[{"id":"one_time","label":"One-time payments","desc":"Standard checkout - most merchants"},{"id":"recurring","label":"Subscriptions / recurring","desc":"Standing instructions, SI, auto-debit"},{"id":"saved","label":"Saved cards / one-click","desc":"Token Hub for returning customers"},{"id":"marketplace","label":"Marketplace / split settlement","desc":"Pay multiple vendors from one order"}]');
+  var OPT_BUSINESS_NOCODE = JSON.parse('[{"id":"one_time","label":"One-time collections only","desc":"Standard payment links or QR"},{"id":"recurring","label":"Recurring / subscription billing","desc":"May need APIs beyond links"},{"id":"marketplace","label":"Marketplace / split payouts","desc":"Split settlement between parties"}]');
+
+  var START = 'channel';
+  var FALLBACK = ['PayU Hosted Checkout', 'Webhooks', 'Refund API'];
+
+  function isMobileContext(a) {
+    return a.channel === 'mobile' || a.mobile_platform || a.launch_priority === 'mobile_first' || (a.mobile_ux && a.mobile_ux !== 'redirect');
+  }
+
+  function getNext(a, justAnswered) {
+    if (!a.channel) return START;
+    if (justAnswered === 'channel') {
+      if (a.channel === 'website') return 'web_checkout';
+      if (a.channel === 'mobile') return 'mobile_platform';
+      if (a.channel === 'both') return 'launch_priority';
+      if (a.channel === 'nocode') return 'nocode_type';
+    }
+    if (justAnswered === 'launch_priority') {
+      if (a.launch_priority === 'web_first') return 'web_checkout';
+      if (a.launch_priority === 'mobile_first') return 'mobile_platform';
+      return 'payment_focus';
+    }
+    if (justAnswered === 'web_checkout') return 'payment_focus';
+    if (justAnswered === 'mobile_platform') return 'mobile_ux';
+    if (justAnswered === 'mobile_ux') return 'payment_focus';
+    if (justAnswered === 'nocode_type') return 'business_model';
+    if (justAnswered === 'payment_focus') return 'business_model';
+    if (justAnswered === 'business_model') return null;
+    if (a.channel === 'nocode' && a.nocode_type && !a.business_model) return 'business_model';
+    if (a.channel === 'nocode' && !a.nocode_type) return 'nocode_type';
+    if (a.payment_focus && !a.business_model) return 'business_model';
+    if (a.mobile_ux && !a.payment_focus) return 'payment_focus';
+    if (a.mobile_platform && !a.mobile_ux) return 'mobile_ux';
+    if (a.web_checkout && !a.payment_focus) return 'payment_focus';
+    if (a.channel === 'both' && !a.launch_priority) return 'launch_priority';
+    if (a.channel === 'mobile' && !a.mobile_platform) return 'mobile_platform';
+    if (a.channel === 'website' && !a.web_checkout) return 'web_checkout';
+    return null;
+  }
+
+  function resolveQuestion(id, a) {
+    if (id === 'channel') {
+      return { id: 'channel', text: 'Where will your customers pay?', hint: 'This sets your integration workflow', options: OPT_CHANNEL };
+    }
+    if (id === 'launch_priority') {
+      return { id: 'launch_priority', text: 'What are you launching first?', hint: 'Based on your website + mobile apps answer', options: OPT_LAUNCH };
+    }
+    if (id === 'web_checkout') {
+      var webText = a.launch_priority === 'web_first' || a.channel === 'website' ? 'How should web checkout work?' : 'For your web channel, how should checkout work?';
+      return { id: 'web_checkout', text: webText, hint: 'Hosted is fastest; embedded keeps users on your site', options: OPT_WEB };
+    }
+    if (id === 'mobile_platform') {
+      var platHint = a.channel === 'both' ? 'You chose mobile-first launch' : 'Determines Android vs iOS SDK path';
+      return { id: 'mobile_platform', text: 'Which mobile platform(s)?', hint: platHint, options: OPT_MOBILE_PLAT };
+    }
+    if (id === 'mobile_ux') {
+      return { id: 'mobile_ux', text: 'What in-app payment experience do you want?', hint: 'Native SDK vs redirect affects UX and effort', options: OPT_MOBILE_UX };
+    }
+    if (id === 'nocode_type') {
+      return { id: 'nocode_type', text: 'How do you want to collect payments?', hint: 'No full checkout integration required', options: OPT_NOCODE };
+    }
+    if (id === 'payment_focus') {
+      var payText = isMobileContext(a) ? 'Which payment methods matter most in your app?' : 'Which payment methods do you need?';
+      return { id: 'payment_focus', text: payText, hint: 'UPI Intent is recommended for mobile UPI', options: OPT_PAYMENTS };
+    }
+    if (id === 'business_model') {
+      var bizText = a.channel === 'nocode' ? 'Any advanced payment capability needed?' : 'What is your business payment model?';
+      var bizOpts = a.channel === 'nocode' ? OPT_BUSINESS_NOCODE : OPT_BUSINESS;
+      return { id: 'business_model', text: bizText, hint: 'Tap one - your integration path appears next', options: bizOpts };
+    }
+    return null;
+  }
+
+  function estimateSteps(a) {
+    if (!a.channel) return 4;
+    if (a.channel === 'nocode') return 2;
+    if (a.channel === 'website') return 3;
+    if (a.channel === 'mobile') return 4;
+    if (a.channel === 'both') {
+      if (!a.launch_priority) return 4;
+      if (a.launch_priority === 'together') return 3;
+      return 4;
+    }
+    return 4;
+  }
+
+  function buildPathSummary(a) {
+    var parts = [];
+    if (a.channel === 'website') parts.push('Website');
+    if (a.channel === 'mobile') parts.push('Mobile app');
+    if (a.channel === 'both') parts.push('Web + mobile');
+    if (a.channel === 'nocode') parts.push('No-code collection');
+    if (a.web_checkout === 'hosted' || a.web_checkout === 'unsure') parts.push('Hosted checkout');
+    if (a.web_checkout === 'embedded') parts.push('Embedded checkout');
+    if (a.mobile_platform === 'android') parts.push('Android');
+    if (a.mobile_platform === 'ios') parts.push('iOS');
+    if (a.mobile_platform === 'both_mobile') parts.push('Android + iOS');
+    if (a.mobile_ux === 'native' || a.mobile_ux === 'unsure') parts.push('Native SDK');
+    if (a.mobile_ux === 'redirect') parts.push('Redirect checkout');
+    return parts.length ? parts.join(' · ') : 'Your workflow';
+  }
+
+  function addScore(scores, reasons, name, weight, reason) {
+    scores[name] = (scores[name] || 0) + weight;
+    if (!reasons[name]) reasons[name] = reason;
+  }
+
+  function recommend(a) {
+    var scores = {};
+    var reasons = {};
+    if (a.channel === 'nocode' && (a.nocode_type === 'links' || a.nocode_type === 'both_nocode')) {
+      addScore(scores, reasons, 'Payment Links', 98, 'Zero-code payment links match your collection workflow.');
+    }
+    if (a.channel === 'nocode' && (a.nocode_type === 'qr' || a.nocode_type === 'both_nocode')) {
+      addScore(scores, reasons, 'Dynamic QR', 95, 'Dynamic QR fits in-store and offline UPI collection.');
+    }
+    if ((a.web_checkout === 'hosted' || a.web_checkout === 'unsure') && a.channel !== 'nocode') {
+      addScore(scores, reasons, 'PayU Hosted Checkout', 96, 'Fastest web go-live with minimal PCI scope.');
+    }
+    if (a.web_checkout === 'embedded') {
+      addScore(scores, reasons, 'PayU Seamless Checkout', 92, 'Embedded web checkout keeps customers on your site.');
+      if (a.channel === 'website' || a.launch_priority === 'web_first' || a.launch_priority === 'together') {
+        addScore(scores, reasons, 'PayU Web SDK', 85, 'Web SDK for embedded JavaScript checkout.');
+      }
+    }
+    if ((a.mobile_ux === 'native' || a.mobile_ux === 'unsure') && (a.mobile_platform === 'android' || a.mobile_platform === 'both_mobile')) {
+      addScore(scores, reasons, 'PayU Android SDK', 97, 'Native Android SDK for embedded in-app payments.');
+    }
+    if ((a.mobile_ux === 'native' || a.mobile_ux === 'unsure') && (a.mobile_platform === 'ios' || a.mobile_platform === 'both_mobile')) {
+      addScore(scores, reasons, 'PayU iOS SDK', 97, 'Native iOS SDK for embedded in-app payments.');
+    }
+    if (a.mobile_ux === 'redirect') {
+      addScore(scores, reasons, 'PayU Hosted Checkout', 88, 'Hosted redirect works well inside mobile WebView.');
+    }
+    if (a.payment_focus !== 'cards' && isMobileContext(a) && a.mobile_ux !== 'redirect') {
+      addScore(scores, reasons, 'UPI Intent', 90, 'Best UPI conversion on mobile via intent flow.');
+    }
+    if (a.payment_focus !== 'cards' && (a.channel === 'website' || a.web_checkout)) {
+      addScore(scores, reasons, 'UPI Collect', 82, 'UPI on web via VPA entry or QR.');
+    }
+    if (a.payment_focus === 'upi' || a.payment_focus === 'cards_upi' || a.payment_focus === 'all') {
+      addScore(scores, reasons, 'UPI Collect', 68, 'Broad UPI support across channels.');
+    }
+    if (a.business_model === 'recurring') {
+      addScore(scores, reasons, 'Recurring Payments / Subscription', 96, 'Required for subscriptions and standing instructions.');
+    }
+    if (a.business_model === 'saved') {
+      addScore(scores, reasons, 'Token Hub / Saved Cards', 94, 'Enables one-click saved card checkout.');
+    }
+    if (a.business_model === 'marketplace') {
+      addScore(scores, reasons, 'Split Settlements', 96, 'Splits payouts across marketplace vendors.');
+    }
+    if (a.channel !== 'nocode' || a.business_model === 'recurring') {
+      addScore(scores, reasons, 'Webhooks', 72, 'Essential for production payment notifications.');
+    }
+    if (a.channel !== 'nocode') {
+      addScore(scores, reasons, 'Refund API', 52, 'Automate refunds from your backend.');
+      addScore(scores, reasons, 'Transaction Status API', 42, 'Reconcile payments and verify status.');
+    }
+    if (a.launch_priority === 'together') {
+      addScore(scores, reasons, 'PayU Hosted Checkout', 78, 'Solid default when launching web and mobile together.');
+    }
+    var max = 1;
+    var keys = Object.keys(scores);
+    for (var ki = 0; ki < keys.length; ki += 1) {
+      if (scores[keys[ki]] > max) max = scores[keys[ki]];
+    }
+    var recs = [];
+    for (var ri = 0; ri < keys.length; ri += 1) {
+      var nm = keys[ri];
+      if (PRODUCTS[nm]) {
+        recs.push({ name: nm, score: Math.round((scores[nm] / max) * 100), reason: reasons[nm], product: PRODUCTS[nm] });
+      }
+    }
+    recs.sort(function (x, y) { return y.score - x.score; });
+    recs = recs.slice(0, 5);
+    if (!recs.length) {
+      for (var fi = 0; fi < FALLBACK.length; fi += 1) {
+        var fn = FALLBACK[fi];
+        recs.push({ name: fn, score: 50, reason: 'A reliable starting point for most PayU integrations.', product: PRODUCTS[fn] });
+      }
+    }
+    return recs;
+  }
+
+  function explain(a, recs) {
+    var p = recs[0];
+    if (!p) return '';
+    var parts = ['Based on your workflow (' + buildPathSummary(a) + '), we recommend ' + p.name + '.'];
+    if (a.web_checkout === 'hosted' || a.web_checkout === 'unsure') parts.push('Hosted checkout minimises PCI burden.');
+    if (a.mobile_ux === 'native') parts.push('A native SDK delivers the best in-app payment UX.');
+    if (a.business_model === 'recurring') parts.push('Pair with Recurring Payments for subscription billing.');
+    if (a.business_model === 'saved') parts.push('Add Token Hub for returning customers.');
+    if (a.business_model === 'marketplace') parts.push('Split Settlements handles vendor payouts.');
+    parts.push(p.reason);
+    return parts.join(' ');
+  }
+
+  var shell = {
+    border: '1px solid #e5e7eb',
+    borderRadius: '12px',
+    background: '#ffffff',
+    padding: '20px',
+    margin: '16px 0',
+    boxShadow: '0 1px 3px rgba(0,0,0,.06)',
+    fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif',
+    fontSize: '14px',
+    lineHeight: 1.5,
+    color: '#111827',
+  };
+
+  var optionBtn = {
+    width: '100%',
+    textAlign: 'left',
+    padding: '12px 14px',
+    border: '2px solid #e5e7eb',
+    borderRadius: '10px',
+    background: '#fff',
+    cursor: 'pointer',
+    font: 'inherit',
+    color: 'inherit',
+  };
+
+  var _history = useState([START]);
+  var history = _history[0];
+  var setHistory = _history[1];
+  var _answers = useState({});
+  var answers = _answers[0];
+  var setAnswers = _answers[1];
+  var _done = useState(false);
+  var done = _done[0];
+  var setDone = _done[1];
+
+  var currentId = done ? null : history[history.length - 1];
+  var q = currentId ? resolveQuestion(currentId, answers) : null;
+  var stepNum = history.length;
+  var estTotal = estimateSteps(answers);
+  var pct = done ? 100 : Math.min(95, Math.round((stepNum / estTotal) * 100));
+
+  function onPick(oid) {
+    if (!currentId) return;
+    var nextAnswers = Object.assign({}, answers);
+    nextAnswers[currentId] = oid;
+    var nextId = getNext(nextAnswers, currentId);
+    setAnswers(nextAnswers);
+    if (nextId) {
+      setHistory(history.concat([nextId]));
+    } else {
+      setDone(true);
+    }
+  }
+
+  function goBack() {
+    if (done) {
+      setDone(false);
+      return;
+    }
+    if (history.length <= 1) return;
+    var prev = history.slice(0, -1);
+    var removedId = history[history.length - 1];
+    var nextAnswers = Object.assign({}, answers);
+    delete nextAnswers[removedId];
+    setHistory(prev);
+    setAnswers(nextAnswers);
+  }
+
+  function restart() {
+    setHistory([START]);
+    setAnswers({});
+    setDone(false);
+  }
+
+  var recs = done ? recommend(answers) : [];
+  var primary = recs[0];
+  var rest = recs.slice(1);
+
+  return (
+    <div style={shell} role="region" aria-label="PayU Integration Path Recommender">
+      <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#00A651', marginBottom: '6px' }}>
+        PayU DevEx
+      </div>
+      <h2 style={{ margin: '0 0 6px', fontSize: '1.25rem', fontWeight: 700, color: '#1e3a5f' }}>
+        Find your integration path
+      </h2>
+      <p style={{ margin: '0 0 16px', color: '#6b7280', fontSize: '13px' }}>
+        Tap to answer - each step adapts to your previous choice. No typing required.
+      </p>
+
+      {!done && history.length > 1 ? (
+        <div style={{ marginBottom: '10px', fontSize: '12px', color: '#00A651', fontWeight: 500 }}>
+          Your path: {buildPathSummary(answers)}
+        </div>
+      ) : null}
+
+      {!done ? (
+        <div style={{ marginBottom: '16px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: '#6b7280', marginBottom: '6px' }}>
+            <span>Step {stepNum}{estTotal ? ' - ~' + estTotal + ' questions' : ''}</span>
+            <span>{pct}%</span>
+          </div>
+          <div style={{ height: '6px', background: '#e5e7eb', borderRadius: '999px', overflow: 'hidden' }}>
+            <div style={{ height: '100%', width: pct + '%', background: '#00A651', borderRadius: '999px', transition: 'width 0.25s ease' }} />
+          </div>
+        </div>
+      ) : null}
+
+      {!done && q ? (
+        <div>
+          <h3 style={{ margin: '0 0 4px', fontSize: '1.05rem', fontWeight: 600, color: '#1e3a5f' }}>{q.text}</h3>
+          <p style={{ margin: '0 0 12px', fontSize: '12px', color: '#6b7280' }}>{q.hint}</p>
+          <div style={{ display: 'grid', gap: '8px' }}>
+            {q.options.map(function (opt) {
+              return (
+                <button key={opt.id} type="button" onClick={function () { onPick(opt.id); }} style={optionBtn}>
+                  <span style={{ fontWeight: 500 }}>{opt.label}</span>
+                  <span style={{ display: 'block', marginTop: '3px', fontSize: '12px', color: '#6b7280', fontWeight: 400 }}>{opt.desc}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      ) : null}
+
+      {done && primary && primary.product ? (
+        <div>
+          <div style={{ marginBottom: '16px', padding: '12px 14px', borderRadius: '10px', border: '1px solid rgba(0,166,81,.25)', background: 'rgba(0,166,81,.06)', fontSize: '13px', color: '#374151' }}>
+            {explain(answers, recs)}
+          </div>
+          <div style={{ border: '2px solid #00A651', borderRadius: '12px', overflow: 'hidden', marginBottom: '16px' }}>
+            <div style={{ background: '#00A651', color: '#fff', fontSize: '12px', fontWeight: 600, padding: '8px 14px' }}>Primary recommendation</div>
+            <div style={{ padding: '16px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px' }}>
+                <div>
+                  <h3 style={{ margin: 0, fontSize: '1.1rem', color: '#1e3a5f' }}>{primary.name}</h3>
+                  <p style={{ margin: '4px 0 0', fontSize: '12px', color: '#6b7280', textTransform: 'capitalize' }}>{primary.product.category}</p>
+                </div>
+                <span style={{ fontSize: '1.5rem', fontWeight: 700, color: '#00A651' }}>{primary.score}%</span>
+              </div>
+              <p style={{ margin: '10px 0', fontSize: '13px' }}>{primary.product.description}</p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', margin: '8px 0' }}>
+                <span style={{ fontSize: '11px', fontWeight: 600, padding: '3px 8px', borderRadius: '999px', background: primary.product.complexity === 'low' ? '#d1fae5' : primary.product.complexity === 'high' ? '#fee2e2' : '#fef3c7', color: primary.product.complexity === 'low' ? '#065f46' : primary.product.complexity === 'high' ? '#991b1b' : '#92400e', textTransform: 'capitalize' }}>
+                  {primary.product.complexity} complexity
+                </span>
+                <span style={{ fontSize: '11px', fontWeight: 600, padding: '3px 8px', borderRadius: '999px', background: '#f3f4f6', color: '#374151' }}>
+                  ~{primary.product.goLiveDays} days to go-live
+                </span>
+              </div>
+              <a href={primary.product.docsUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', marginTop: '10px', fontSize: '13px', fontWeight: 600, color: '#00A651' }}>
+                View documentation
+              </a>
+            </div>
+          </div>
+          {rest.length ? (
+            <div>
+              <p style={{ fontWeight: 600, color: '#1e3a5f', margin: '0 0 8px' }}>Also recommended</p>
+              <div style={{ display: 'grid', gap: '8px' }}>
+                {rest.map(function (r) {
+                  return (
+                    <div key={r.name} style={{ border: '1px solid #e5e7eb', borderRadius: '10px', padding: '12px', background: '#f9fafb' }}>
+                      <h4 style={{ margin: '0 0 4px', fontSize: '14px', color: '#1e3a5f' }}>
+                        {r.name} <span style={{ color: '#00A651', fontSize: '12px' }}>{r.score}%</span>
+                      </h4>
+                      <p style={{ margin: '0 0 6px', fontSize: '12px', color: '#6b7280' }}>{r.reason}</p>
+                      <a href={r.product.docsUrl} target="_blank" rel="noopener noreferrer" style={{ fontSize: '13px', fontWeight: 600, color: '#00A651' }}>Docs</a>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ) : null}
+        </div>
+      ) : null}
+
+      <div style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', marginTop: '16px', paddingTop: '12px', borderTop: '1px solid #e5e7eb' }}>
+        {history.length > 1 || done ? (
+          <button type="button" onClick={goBack} style={{ padding: '8px 14px', borderRadius: '8px', fontSize: '13px', fontWeight: 600, cursor: 'pointer', background: '#fff', border: '1px solid #e5e7eb', color: '#374151' }}>
+            Back
+          </button>
+        ) : (
+          <span />
+        )}
+        {done ? (
+          <button type="button" onClick={restart} style={{ padding: '8px 14px', borderRadius: '8px', fontSize: '13px', fontWeight: 600, cursor: 'pointer', background: '#00A651', border: 'none', color: '#fff' }}>
+            Start over
+          </button>
+        ) : null}
+      </div>
+    </div>
+  );
+};
+
+<PayUIntegrationPathRecommender />
