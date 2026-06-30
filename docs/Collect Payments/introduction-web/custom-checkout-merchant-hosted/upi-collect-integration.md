@@ -19,7 +19,7 @@ next:
 This section deescribes how UPI Collect should be integrated on your checkout. **As per NPCI's guidelines, UPI Collect payments are allowed only on MCC 6012 and 6211.** Rest all must use any of the following:
 
 - [UPI Intent Integration](https://docs.payu.in/docs/upi-intent-server-to-server)
-- [UPI QR Integration](https://docs.payu.in/docs/apis-for-upi-qr-integration)
+- [UPI QR Integration](doc:integrate-upi-qr)
 
 <Callout icon="👍" theme="okay">
   ###
