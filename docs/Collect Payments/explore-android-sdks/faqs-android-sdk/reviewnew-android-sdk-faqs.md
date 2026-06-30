@@ -12,6 +12,18 @@ hidden: true
 metadata:
   robots: index
 ---
+This page answers common questions about PayU Android SDK integration. For step-by-step guides, use the links below.
+
+## Related documentation
+
+| Topic | Guide |
+| --- | --- |
+| SDK overview and selection | [Explore Android SDKs](doc:explore-android-sdks) |
+| CheckoutPro integration | [Integration Steps](doc:integration-steps-android-checkout-pro) |
+| Hash generation | [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk) |
+| Callbacks and verification | [Handling Redirect URLs (surl/furl)](doc:handling-redirect-urls-surlfurl-with-android-sdk) |
+| Troubleshooting | [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors) |
+
 ## Getting Started
 
 <Accordion title="I am getting a build error after adding PayUCheckoutPro SDK gradle dependency. How do I fix it?" icon="fa-info-circle">
@@ -33,6 +45,12 @@ metadata:
 
   Upgrade to a newer version like `4.2.0` or higher. Also ensure your Java version is compatible with the Gradle version you're using.
 
+  **Related documentation**
+
+  * For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
+  * For version updates and release notes, refer to [Version History](doc:change-logs) and [Integration Steps](doc:integration-steps-android-checkout-pro).
+
+
 </Accordion>
 
 <Accordion title="I am getting a Java compiler exception when compiling my Android implementation. What should I do?" icon="fa-info-circle">
@@ -52,6 +70,12 @@ metadata:
 
   Upgrade to a newer version and ensure your Java Development Kit (JDK) version is compatible with the Gradle version.
 
+  **Related documentation**
+
+  * For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
+  * For version updates and release notes, refer to [Version History](doc:change-logs) and [Integration Steps](doc:integration-steps-android-checkout-pro).
+
+
 </Accordion>
 
 <Accordion title="What are the minimum requirements for integrating PayU Android SDK?" icon="fa-info-circle">
@@ -65,6 +89,12 @@ metadata:
 
   For specific version requirements, refer to the integration documentation for the SDK you're using.
 
+  **Related documentation**
+
+  * For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
+  * For integration prerequisites and setup, refer to [Integration Steps](doc:integration-steps-android-checkout-pro) and [Explore Android SDKs](doc:explore-android-sdks).
+
+
 </Accordion>
 
 <Accordion title="How do I get started with PayU Android SDK integration?" icon="fa-info-circle">
@@ -77,7 +107,14 @@ metadata:
   4. Configure the SDK with your credentials
   5. Test the integration using test credentials
 
-  For detailed steps, refer to the integration guide for your chosen SDK.
+  For detailed steps, refer to [Integration Steps](doc:integration-steps-android-checkout-pro) or choose your SDK from [Explore Android SDKs](doc:explore-android-sdks).
+
+  **Related documentation**
+
+  * For integration prerequisites and setup, refer to [Integration Steps](doc:integration-steps-android-checkout-pro) and [Explore Android SDKs](doc:explore-android-sdks).
+  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
+  * For test credentials and go-live steps, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) and the Go-live Checklist in [Integration Steps](doc:integration-steps-android-checkout-pro).
+
 
 </Accordion>
 
@@ -88,7 +125,9 @@ metadata:
 
   Value \<!DOCTYPE of type java.lang.String cannot be converted to JSONObject (Error code 5014)
 
-  If you are using Test Key & Test Salt, configure the **setIsProduction** parameter as false. Otherwise, if you are using Production Key and Salt, configure the **setIsProduction** parameter as true. For more information, refer to [CheckoutPro SDK go-live checklist](https://docs.payu.in/docs/android-checkoutpro-golive-checklist).
+  If you are using Test Key & Test Salt, configure the **setIsProduction** parameter as false. Otherwise, if you are using Production Key and Salt, configure the **setIsProduction** parameter as true. For more information, refer to [CheckoutPro SDK go-live checklist](doc:integration-steps-android-checkout-pro).
+
+  For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
 
 </Accordion>
 
@@ -101,6 +140,11 @@ metadata:
 
   Yes, PayU CheckoutPro for Mobile SDK is PCI-DSS compliant, ensuring secure payment processing for your mobile app users.
 
+  **Related documentation**
+
+  * For payment method details, refer to [Error Handling](doc:error-handling), [Card Number Formats](doc:card-number-formats), and [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+
+
 </Accordion>
 
 <Accordion title="PayU Android SDK has various SDKs and how do I choose them for my app?" icon="fa-info-circle">
@@ -108,7 +152,7 @@ metadata:
 
   The best SDK for you will depend on your specific needs and requirements.
 
-  The [Choose your SDK](https://docs.payu.in/docs/explore-android-sdks#choose-your-integration) table in the explore android SDK document outlines the process you need to follow and decide which SDK to use for your app, based on your specific needs and requirements.
+  The [Choose your SDK](doc:explore-android-sdks) table in the explore android SDK document outlines the process you need to follow and decide which SDK to use for your app, based on your specific needs and requirements.
 
 </Accordion>
 
@@ -130,33 +174,43 @@ metadata:
 
   Yes, you can customize the payment modes. For more information, refer to [Customize Your Integration](doc:android-checkoutpro-custom-integrations).
 
+  **Related documentation**
+
+  * For customisation options, refer to [Customize Your Integration](doc:android-checkoutpro-custom-integrations) and [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
+
+
 </Accordion>
 
 <Accordion title="How can I modify the color scheme in Android SDK integration?" icon="fa-info-circle">
 
 
-  You can modify the color scheme and theme used in the PayUCheckoutPro SDK by providing your own set of colors. For more information on how to change the color theme of the SDK, refer to [Modify Theme](https://docs.payu.in/docs/android-checkoutpro-custom-integrations#modify-theme).
+  You can modify the color scheme and theme used in the PayUCheckoutPro SDK by providing your own set of colors. For more information on how to change the color theme of the SDK, refer to [Modify Theme](doc:android-checkoutpro-custom-integrations).
+
+  **Related documentation**
+
+  * For customisation options, refer to [Customize Your Integration](doc:android-checkoutpro-custom-integrations) and [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
+
 
 </Accordion>
 
 <Accordion title="How can I customize the look and feel of the PayU payment page?" icon="fa-info-circle">
 
 
-  The PayU payment page’s look and feel can be customized using CSS stylesheets and JavaScript. You can customize the page’s layout, fonts, colors, and other visual elements to match their branding. For more information, refer to [Dynamic Configuration using Dashboard](https://docs.payu.in/docs/dynamic-configuration-using-dashboard-copy).
+  The PayU payment page’s look and feel can be customized using CSS stylesheets and JavaScript. You can customize the page’s layout, fonts, colors, and other visual elements to match their branding. For more information, refer to [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
 
 </Accordion>
 
 <Accordion title="Can I integrate PayU Checkout Pro SDK with my own payment gateway or payment service provider?" icon="fa-info-circle">
 
 
-  Yes, PayU Checkout Pro SDK can be integrated with any payment gateway or service provider. You can use the SDK to capture and process payment information and then send it to their own backend system for processing. For more information, refer to [Customize your Integration](https://docs.payu.in/docs/android-checkoutpro-custom-integrations).
+  Yes, PayU Checkout Pro SDK can be integrated with any payment gateway or service provider. You can use the SDK to capture and process payment information and then send it to their own backend system for processing. For more information, refer to [Customize your Integration](doc:android-checkoutpro-custom-integrations).
 
 </Accordion>
 
 <Accordion title="How can I implement custom payment methods or gateways not supported by PayU Checkout Pro SDK?" icon="fa-info-circle">
 
 
-  Custom payment methods or gateways can be implemented using the PayU Custom Checkout SDK. This SDK provides a flexible and extensible framework for integrating with any payment method or gateway. For more information, refer to [Customize Your Integration](https://docs.payu.in/docs/android-checkoutpro-custom-integrations).
+  Custom payment methods or gateways can be implemented using the PayU Custom Checkout SDK. This SDK provides a flexible and extensible framework for integrating with any payment method or gateway. For more information, refer to [Customize Your Integration](doc:android-checkoutpro-custom-integrations).
 
 </Accordion>
 
@@ -164,6 +218,11 @@ metadata:
 
 
   Yes, custom payment flows can be implemented using the SDK’s flexible API. You can use the API to implement complex payment flows, such as split payments, installment payments, or any other custom payment flow required for their business.
+
+  **Related documentation**
+
+  * For advanced CheckoutPro configuration, refer to [Customize Your Integration](doc:android-checkoutpro-custom-integrations).
+  * For split settlements and complex flows, refer to [Introduction to Split Settlements](doc:introduction-split-settlements).
 
 </Accordion>
 
@@ -178,12 +237,24 @@ metadata:
   * **Tokenization**: Both the Android and iOS SDKs support tokenization, which allows users to save their payment information for future transactions.
   * **Testing**: The Android SDK provides a test mode that allows developers to test the integration without making actual payments, while the iOS SDK provides a sandbox environment for testing.
 
+  **Related documentation**
+
+  * For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
+  * For UPI integration details, refer to [Integration Steps - Android UPI SDK](doc:integration-steps-android-upi-sdk), [Android Google Pay SDK](doc:android-google-pay-sdk), and [Android PhonePe SDK](doc:android-phonepe-sdk).
+  * For test credentials and go-live steps, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) and the Go-live Checklist in [Integration Steps](doc:integration-steps-android-checkout-pro).
+
+
 </Accordion>
 
 <Accordion title="What are the steps involved in integrating PayU CheckoutPro for Mobile SDK?" icon="fa-info-circle">
 
 
   The integration process involves registering your application on the PayU developer dashboard, downloading and integrating the PayU CheckoutPro Mobile SDK into your Android project, and then using the SDK to initiate and process payment requests from your mobile app.
+
+  **Related documentation**
+
+  * For step-by-step integration, refer to [Integration Steps](doc:integration-steps-android-checkout-pro).
+  * To choose the right SDK, refer to [Explore Android SDKs](doc:explore-android-sdks).
 
 </Accordion>
 
@@ -192,12 +263,21 @@ metadata:
 
   PayU CheckoutPro for Mobile SDK supports multiple payment methods including credit/debit cards, UPI, Wallets, and Net Banking.
 
+  **Related documentation**
+
+  * For UPI integration details, refer to [Integration Steps - Android UPI SDK](doc:integration-steps-android-upi-sdk), [Android Google Pay SDK](doc:android-google-pay-sdk), and [Android PhonePe SDK](doc:android-phonepe-sdk).
+
+
 </Accordion>
 
 <Accordion title="Does PayU SDK supports SSL Pinning?" icon="fa-info-circle">
 
 
   No, PayU SDKs does not support SSL Pinning due to business continuity.
+
+  **Related documentation**
+
+  * For security best practices during integration, refer to [Integration Steps](doc:integration-steps-android-checkout-pro) and [Hash Generation](doc:hash-generation).
 
 </Accordion>
 
@@ -206,22 +286,22 @@ metadata:
 
   Yes, you can change the order of payment modes displayed on the PayU Payment page by PayU either using SDK manually or using Dashboard. For more information, refer to:
 
-  * **Manually**: [Customize Your Integration](https://docs.payu.in/docs/android-checkoutpro-custom-integrations) > [Set Checkout Payment Modes Order](https://docs.payu.in/docs/android-checkoutpro-custom-integrations#set-checkout-payment-modes-order).
-  * **Dashboard**: [Dynamic Configuration using Dashboard](https://docs.payu.in/docs/dynamic-configuration-using-dashboard-copy).
+  * **Manually**: [Customize Your Integration](doc:android-checkoutpro-custom-integrations) > [Set Checkout Payment Modes Order](doc:android-checkoutpro-custom-integrations).
+  * **Dashboard**: [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
 
 </Accordion>
 
 <Accordion title="Can I customize the PayU CheckoutPro for Mobile SDK UI to match my app’s design?" icon="fa-info-circle">
 
 
-  Yes, PayU CheckoutPro for Mobile SDK provides a customizable UI that allows you to adjust the look and feel of the payment gateway to match your app’s design. For more information, refer to [Dynamic Configuration using Dashboard](https://docs.payu.in/docs/dynamic-configuration-using-dashboard-copy#/).
+  Yes, PayU CheckoutPro for Mobile SDK provides a customizable UI that allows you to adjust the look and feel of the payment gateway to match your app’s design. For more information, refer to [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
 
 </Accordion>
 
 <Accordion title="What is Dynamic configuration in PayU Checkout Pro SDK for Android?" icon="fa-info-circle">
 
 
-  Dynamic configuration allows you to update various payment-related settings in real-time using the PayU Dashboard. These settings can include payment methods, transaction limits, and other checkout-related parameters. For more information, refer to [Dynamic Configuration using Dashboard](https://docs.payu.in/docs/dynamic-configuration-using-dashboard-copy).
+  Dynamic configuration allows you to update various payment-related settings in real-time using the PayU Dashboard. These settings can include payment methods, transaction limits, and other checkout-related parameters. For more information, refer to [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
 
 </Accordion>
 
@@ -235,14 +315,14 @@ metadata:
   * Updating payment-related settings based on user feedback or analytics data.
   * Configuring payment-related settings for testing and debugging purposes.
 
-  For more information, refer to [Dynamic Configuration using Dashboard](https://docs.payu.in/docs/dynamic-configuration-using-dashboard-copy).
+  For more information, refer to [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
 
 </Accordion>
 
 <Accordion title="How can I use Dynamic Configuration in PayU Checkout Pro SDK for Android?" icon="fa-info-circle">
 
 
-  To use dynamic configuration, you can log in to the PayU Dashboard and update the relevant settings in the Checkout Pro section. The SDK will automatically fetch the updated settings and apply them to the payment flow. For more information, refer to [Dynamic Configuration using Dashboard](https://docs.payu.in/docs/dynamic-configuration-using-dashboard-copy#/).
+  To use dynamic configuration, you can log in to the PayU Dashboard and update the relevant settings in the Checkout Pro section. The SDK will automatically fetch the updated settings and apply them to the payment flow. For more information, refer to [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
 
 </Accordion>
 
@@ -250,21 +330,26 @@ metadata:
 
 
   ?
-  Yes, payment methods can be added or removed dynamically using the Dashboard. For more information, refer to [Dynamic Configuration using Dashboard](https://docs.payu.in/docs/dynamic-configuration-using-dashboard-copy).
+  Yes, payment methods can be added or removed dynamically using the Dashboard. For more information, refer to [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
+
+  **Related documentation**
+
+  * For customisation options, refer to [Customize Your Integration](doc:android-checkoutpro-custom-integrations) and [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
+
 
 </Accordion>
 
 <Accordion title="What other payment-related settings can be updated dynamically using the Dashboard?" icon="fa-info-circle">
 
 
-  Other payment-related settings that can be updated dynamically include transaction limits, payment fees, checkout flow settings, and more. These settings can be customized based on the your business requirements and market conditions. For more information, refer to [Dynamic Configuration using Dashboard](https://docs.payu.in/docs/dynamic-configuration-using-dashboard-copy).
+  Other payment-related settings that can be updated dynamically include transaction limits, payment fees, checkout flow settings, and more. These settings can be customized based on the your business requirements and market conditions. For more information, refer to [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
 
 </Accordion>
 
 <Accordion title="Can I customize the PayU CheckoutPro Mobile SDK without modifying the SDK code?" icon="fa-info-circle">
 
 
-  Yes, PayU CheckoutPro Mobile SDK allows customization without modifying the SDK code. This is achieved by using the SDK’s XML and resource files to override the default UI elements. For more information, refer to [Dynamic Configuration using Dashboard](https://docs.payu.in/docs/dynamic-configuration-using-dashboard-copy).
+  Yes, PayU CheckoutPro Mobile SDK allows customization without modifying the SDK code. This is achieved by using the SDK’s XML and resource files to override the default UI elements. For more information, refer to [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
 
 </Accordion>
 
@@ -273,12 +358,17 @@ metadata:
 
   To customize the PayU CheckoutPro Mobile SDK, you need to create an XML file that defines the custom styles and layouts, and then use the SDK’s resource files to override the default GUI elements. You can also customize the colors and images used in the payment screens.
 
+  **Related documentation**
+
+  * For customisation options, refer to [Customize Your Integration](doc:android-checkoutpro-custom-integrations) and [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
+
+
 </Accordion>
 
 <Accordion title="Can I customize the PayU CheckoutPro Mobile SDK to match my app’s branding?" icon="fa-info-circle">
 
 
-  Yes, you can customize the PayU CheckoutPro Mobile SDK to match your app’s branding by using your app’s color scheme, fonts, and logos in the payment screens. For more information, refer to [Dynamic Configuration using Dashboard](https://docs.payu.in/docs/dynamic-configuration-using-dashboard-copy).
+  Yes, you can customize the PayU CheckoutPro Mobile SDK to match your app’s branding by using your app’s color scheme, fonts, and logos in the payment screens. For more information, refer to [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
 
 </Accordion>
 
@@ -287,12 +377,23 @@ metadata:
 
   If you customize the PayU CheckoutPro Mobile SDK, future updates to the SDK may require you to update your customizations as well. You should carefully review the release notes before updating to a new version of the SDK.
 
+  **Related documentation**
+
+  * For customisation options, refer to [Customize Your Integration](doc:android-checkoutpro-custom-integrations) and [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
+  * For version updates and release notes, refer to [Version History](doc:change-logs) and [Integration Steps](doc:integration-steps-android-checkout-pro).
+
+
 </Accordion>
 
 <Accordion title="Is technical support available for customized integration with PayU CheckoutPro Mobile SDK?" icon="fa-info-circle">
 
 
-  Yes, PayU provides technical support for customized integration with PayU CheckoutPro Mobile SDK. You can reach out to [PayU Support] (https://help.payu.in) for assistance with any customization issues or questions.
+  Yes, PayU provides technical support for customized integration with PayU CheckoutPro Mobile SDK. You can reach out to [PayU Support](https://help.payu.in/) for assistance with any customization issues or questions.
+
+  **Related documentation**
+
+  * For customisation options, refer to [Customize Your Integration](doc:android-checkoutpro-custom-integrations) and [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
+
 
 </Accordion>
 
@@ -301,19 +402,24 @@ metadata:
 
   CustomBrowser Configuration is the process of configuring the PayU Mobile Android SDK to use a custom browser for payment processing.
 
+  **Related documentation**
+
+  * For callback handling and verification, refer to [Handling Redirect URLs (surl/furl) with Android SDK](doc:handling-redirect-urls-surlfurl-with-android-sdk), [Web Services for Android Core SDK](doc:web-services-for-android-core-sdk), and [Webhooks](doc:webhooks).
+
+
 </Accordion>
 
 <Accordion title="How can I configure the PayU Mobile Android SDK to use a CustomBrowser?" icon="fa-info-circle">
 
 
-  To configure the PayU Mobile Android SDK to use a custom browser, you need to implement the CustomBrowser class and configure the SDK to use this class for payment processing. For more information, refer to [Integration with CustomBrowser](https://docs.payu.in/docs/integration-steps-android-customer-browser).
+  To configure the PayU Mobile Android SDK to use a custom browser, you need to implement the CustomBrowser class and configure the SDK to use this class for payment processing. For more information, refer to [Integration with CustomBrowser](doc:integration-steps-android-customer-browser).
 
 </Accordion>
 
 <Accordion title="What are the advantages of using a CustomBrowser for payment processing?" icon="fa-info-circle">
 
 
-  Using a custom browser for payment processing provides a more seamless payment experience for the user, as the payment screens can be customized to match the look and feel of the app. For more information, refer to [Integration with CustomBrowser](https://docs.payu.in/docs/custom-browser-sdk/).
+  Using a custom browser for payment processing provides a more seamless payment experience for the user, as the payment screens can be customized to match the look and feel of the app. For more information, refer to [Integration with CustomBrowser](doc:custom-browser-sdk).
 
 </Accordion>
 
@@ -322,6 +428,11 @@ metadata:
 
   CustomBrowser does not affect the security of the payment processing, as the SDK still uses the same secure encryption and authentication mechanisms to process payment requests.
 
+  **Related documentation**
+
+  * For callback handling and verification, refer to [Handling Redirect URLs (surl/furl) with Android SDK](doc:handling-redirect-urls-surlfurl-with-android-sdk), [Web Services for Android Core SDK](doc:web-services-for-android-core-sdk), and [Webhooks](doc:webhooks).
+
+
 </Accordion>
 
 ### **Convenience Fee**
@@ -329,21 +440,21 @@ metadata:
 <Accordion title="What is a convenience fee in the context of payment processing?" icon="fa-info-circle">
 
 
-  A convenience fee is an additional fee charged to customers for the convenience of using a particular payment method. It is often used to cover the costs of processing credit card payments, which can be more expensive for merchants than other payment methods. For more information, refer to [Convenience Fee Integration for Android](https://docs.payu.in/docs/android-checkoutpro-setupconveniencefee#/).
+  A convenience fee is an additional fee charged to customers for the convenience of using a particular payment method. It is often used to cover the costs of processing credit card payments, which can be more expensive for merchants than other payment methods. For more information, refer to [Convenience Fee Integration for Android](doc:android-checkoutpro-setupconveniencefee).
 
 </Accordion>
 
 <Accordion title="How can I integrate a convenience fee using PayU Checkout Pro SDK for iOS?" icon="fa-info-circle">
 
 
-  To integrate a convenience fee, you can use the SDK’s Convenience Fee API to add an additional fee to the payment amount based on the selected payment method. For more information, refer to [Convenience Fee Integration for Android](https://docs.payu.in/docs/android-checkoutpro-setupconveniencefee).
+  To integrate a convenience fee, you can use the SDK’s Convenience Fee API to add an additional fee to the payment amount based on the selected payment method. For more information, refer to [Convenience Fee Integration for Android](doc:android-checkoutpro-setupconveniencefee).
 
 </Accordion>
 
 <Accordion title="Can I customize the convenience fee calculation logic using PayU Checkout Pro SDK for iOS?" icon="fa-info-circle">
 
 
-  Yes, you can customize the convenience fee calculation logic based on their business requirements. The SDK provides a flexible API that allows you to set the convenience fee amount based on various criteria, such as the payment method selected, transaction amount, or customer location. For more information, refer to [Convenience Fee Integration for Android](https://docs.payu.in/docs/android-checkoutpro-setupconveniencefee).
+  Yes, you can customize the convenience fee calculation logic based on their business requirements. The SDK provides a flexible API that allows you to set the convenience fee amount based on various criteria, such as the payment method selected, transaction amount, or customer location. For more information, refer to [Convenience Fee Integration for Android](doc:android-checkoutpro-setupconveniencefee).
 
 </Accordion>
 
@@ -356,7 +467,7 @@ metadata:
   * A fixed amount per transaction
   * A combination of both percentage and fixed-amount fees
 
-  For more information, refer to [Convenience Fee Integration for Android](https://docs.payu.in/docs/android-checkoutpro-setupconveniencefee).
+  For more information, refer to [Convenience Fee Integration for Android](doc:android-checkoutpro-setupconveniencefee).
 
 </Accordion>
 
@@ -364,6 +475,11 @@ metadata:
 
 
   The convenience fee amount can be displayed to customers on the payment page using the SDK’s convenience fee API. You can customize the display format and location of the convenience fee on the payment page to provide a transparent and seamless checkout experience for customers.
+
+  **Related documentation**
+
+  * For customisation options, refer to [Customize Your Integration](doc:android-checkoutpro-custom-integrations) and [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
+
 
 </Accordion>
 
@@ -374,12 +490,22 @@ metadata:
 
   Hashing is a process of converting a string of data into a fixed-length string of characters. Hashing is used to generate a secure hash key that is sent along with payment information to ensure the transaction’s integrity.
 
+  **Related documentation**
+
+  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
+
+
 </Accordion>
 
 <Accordion title="How is the hash key generated in PayU?" icon="fa-info-circle">
 
 
   The hash key is generated using a hashing algorithm called SHA-512, which is a secure one-way hash function. The SDK takes all the transaction details and a merchant salt key as input and computes the hash key using the SHA-512 algorithm.
+
+  **Related documentation**
+
+  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
+
 
 </Accordion>
 
@@ -388,6 +514,11 @@ metadata:
 
   The merchant Key and Salt is a secret key provided by PayU to merchants, which is used in conjunction with the transaction details to generate the hash key. The Key and Salt must be kept secret and is not shared with anyone else.
 
+  **Related documentation**
+
+  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
+
+
 </Accordion>
 
 <Accordion title="How is reverse hashing used in PayU Checkout Pro SDK?" icon="fa-info-circle">
@@ -395,12 +526,22 @@ metadata:
 
   Reverse hashing is used to verify the authenticity of the payment response received from PayU. The SDK computes the hash key using the same algorithm and merchant salt key used for generating the original hash key and compares it with the hash key received in the payment response. If they match, it confirms that the payment response is authentic.
 
+  **Related documentation**
+
+  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
+
+
 </Accordion>
 
 <Accordion title="What happens if the hash key generated by the SDK does not match the one received in the payment response?" icon="fa-info-circle">
 
 
   If the hash keys do not match, it indicates that the payment response has been tampered with or is not authentic. In such cases, the payment transaction should be rejected, and you should contact [PayU Support](https://help.payu.in/) for further assistance.
+
+  **Related documentation**
+
+  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
+
 
 </Accordion>
 
@@ -413,6 +554,11 @@ metadata:
   hash_key = SHA512(transaction_details + '|' + merchant_salt)
   ```
 
+  **Related documentation**
+
+  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
+
+
 </Accordion>
 
 <Accordion title="What does the Hash calculation formula consist of?" icon="fa-info-circle">
@@ -423,6 +569,11 @@ metadata:
   * **Transaction details**: This includes all the relevant transaction details, such as the transaction amount, payment mode, currency, etc. These details are concatenated together in a specific format and used as input for the hashing algorithm.
   * **Merchant Key and Salt**: This is a secret key provided by PayU to merchants, which is used to add an extra layer of security to the hashing process.
 
+  **Related documentation**
+
+  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
+
+
 </Accordion>
 
 <Accordion title="What is SHA512?" icon="fa-info-circle">
@@ -430,12 +581,22 @@ metadata:
 
   SHA512 is a hashing algorithm that generates a fixed-length, 512-bit hash value from input data. It is a one-way function, meaning that the input cannot be retrieved from the output hash value.
 
+  **Related documentation**
+
+  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
+
+
 </Accordion>
 
 <Accordion title="Why is the tilde symbol (‘|’) used in the Hash calculation formula?" icon="fa-info-circle">
 
 
   The ‘|’ character is used as a separator between the transaction_details and the merchant_salt in the formula. This helps to ensure that the hashing algorithm processes the input data correctly and generates a consistent hash value.
+
+  **Related documentation**
+
+  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
+
 
 </Accordion>
 
@@ -446,6 +607,12 @@ metadata:
 
   Native OTP is a feature provided by PayU that allows the user to enter the OTP directly in the app, instead of being redirected to a third-party website or app for OTP verification.
 
+  **Related documentation**
+
+  * For Native OTP setup and customisation, refer to [Integration Steps - Native OTP Assist SDK](doc:integration-steps-android-native-otp-assist) and [Native OTP Assist Customisations](doc:android-nativeotpassist-customisations).
+  * For callback handling and verification, refer to [Handling Redirect URLs (surl/furl) with Android SDK](doc:handling-redirect-urls-surlfurl-with-android-sdk), [Web Services for Android Core SDK](doc:web-services-for-android-core-sdk), and [Webhooks](doc:webhooks).
+
+
 </Accordion>
 
 <Accordion title="How can I integrate Native OTP with PayU Android SDK?" icon="fa-info-circle">
@@ -453,12 +620,23 @@ metadata:
 
   To integrate Native OTP with PayU Android SDK, you need to use the `setOtpFetchHandler` method provided by the SDK to fetch the OTP from the user and pass it to the SDK for verification.
 
+  **Related documentation**
+
+  * For Native OTP setup and customisation, refer to [Integration Steps - Native OTP Assist SDK](doc:integration-steps-android-native-otp-assist) and [Native OTP Assist Customisations](doc:android-nativeotpassist-customisations).
+
+
 </Accordion>
 
 <Accordion title="Can I customize the Native OTP user interface in my app?" icon="fa-info-circle">
 
 
   Yes, you can customize the Native OTP user interface in your app by using the PayU Mobile Android SDK’s customization options.
+
+  **Related documentation**
+
+  * For Native OTP setup and customisation, refer to [Integration Steps - Native OTP Assist SDK](doc:integration-steps-android-native-otp-assist) and [Native OTP Assist Customisations](doc:android-nativeotpassist-customisations).
+  * For customisation options, refer to [Customize Your Integration](doc:android-checkoutpro-custom-integrations) and [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
+
 
 </Accordion>
 
@@ -472,6 +650,12 @@ metadata:
   * EMI (Credit Card or Debit Card)
   * BNPL
 
+  **Related documentation**
+
+  * For Native OTP setup and customisation, refer to [Integration Steps - Native OTP Assist SDK](doc:integration-steps-android-native-otp-assist) and [Native OTP Assist Customisations](doc:android-nativeotpassist-customisations).
+  * For payment method details, refer to [Error Handling](doc:error-handling), [Card Number Formats](doc:card-number-formats), and [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+
+
 </Accordion>
 
 <Accordion title="Is there a limit to the number of attempts to enter OTP for verification?" icon="fa-info-circle">
@@ -479,12 +663,22 @@ metadata:
 
   Yes, there is a limit to the number of attempts to enter OTP for verification. After a certain number of failed attempts, the transaction is declined.
 
+  **Related documentation**
+
+  * For Native OTP integration and behaviour, refer to [Integration Steps - Native OTP Assist SDK](doc:integration-steps-android-native-otp-assist).
+
 </Accordion>
 
 <Accordion title="Can I test the Native OTP integration before going live?" icon="fa-info-circle">
 
 
   Yes, you can test the Native OTP integration in a test environment before going live. PayU provides a test environment for testing the Native OTP integration.
+
+  **Related documentation**
+
+  * For Native OTP setup and customisation, refer to [Integration Steps - Native OTP Assist SDK](doc:integration-steps-android-native-otp-assist) and [Native OTP Assist Customisations](doc:android-nativeotpassist-customisations).
+  * For test credentials and go-live steps, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) and the Go-live Checklist in [Integration Steps](doc:integration-steps-android-checkout-pro).
+
 
 </Accordion>
 
@@ -495,12 +689,22 @@ metadata:
 
   To integrate UPI with PayU Android SDK, you need to use the `setPaymentOption` method provided by the SDK to select UPI as the payment option and configure the UPI payment parameters.
 
+  **Related documentation**
+
+  * For UPI integration details, refer to [Integration Steps - Android UPI SDK](doc:integration-steps-android-upi-sdk), [Android Google Pay SDK](doc:android-google-pay-sdk), and [Android PhonePe SDK](doc:android-phonepe-sdk).
+
+
 </Accordion>
 
 <Accordion title="Which UPI apps are supported by PayU Android SDK?" icon="fa-info-circle">
 
 
   PayU Android SDK supports all UPI apps that are compatible with the UPI payment system.
+
+  **Related documentation**
+
+  * For UPI integration details, refer to [Integration Steps - Android UPI SDK](doc:integration-steps-android-upi-sdk), [Android Google Pay SDK](doc:android-google-pay-sdk), and [Android PhonePe SDK](doc:android-phonepe-sdk).
+
 
 </Accordion>
 
@@ -509,6 +713,12 @@ metadata:
 
   Yes, you can customize the UPI payment user interface in your app by using the PayU Mobile Android SDK’s customization options.
 
+  **Related documentation**
+
+  * For UPI integration details, refer to [Integration Steps - Android UPI SDK](doc:integration-steps-android-upi-sdk), [Android Google Pay SDK](doc:android-google-pay-sdk), and [Android PhonePe SDK](doc:android-phonepe-sdk).
+  * For customisation options, refer to [Customize Your Integration](doc:android-checkoutpro-custom-integrations) and [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
+
+
 </Accordion>
 
 <Accordion title="What are the different types of UPI transactions supported by PayU Android SDK?" icon="fa-info-circle">
@@ -516,12 +726,22 @@ metadata:
 
   PayU Android SDK supports UPI transactions for sending money, requesting money, and checking the balance in the user’s bank account.
 
+  **Related documentation**
+
+  * For UPI integration details, refer to [Integration Steps - Android UPI SDK](doc:integration-steps-android-upi-sdk), [Android Google Pay SDK](doc:android-google-pay-sdk), and [Android PhonePe SDK](doc:android-phonepe-sdk).
+
+
 </Accordion>
 
 <Accordion title="Is technical support available for UPI integration with PayU Android SDK?" icon="fa-info-circle">
 
 
-  Yes, PayU provides technical support for UPI integration with PayU Android SDK. You can reach out to the [PayU support team] (https://help.payu.in) for assistance with any integration issues or questions.
+  Yes, PayU provides technical support for UPI integration with PayU Android SDK. You can reach out to the [PayU support team](https://help.payu.in/) for assistance with any integration issues or questions.
+
+  **Related documentation**
+
+  * For UPI integration details, refer to [Integration Steps - Android UPI SDK](doc:integration-steps-android-upi-sdk), [Android Google Pay SDK](doc:android-google-pay-sdk), and [Android PhonePe SDK](doc:android-phonepe-sdk).
+
 
 </Accordion>
 
@@ -529,6 +749,12 @@ metadata:
 
 
   Yes, you can test the UPI integration in a test environment before going live. PayU provides a test environment for testing UPI integration.
+
+  **Related documentation**
+
+  * For UPI integration details, refer to [Integration Steps - Android UPI SDK](doc:integration-steps-android-upi-sdk), [Android Google Pay SDK](doc:android-google-pay-sdk), and [Android PhonePe SDK](doc:android-phonepe-sdk).
+  * For test credentials and go-live steps, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) and the Go-live Checklist in [Integration Steps](doc:integration-steps-android-checkout-pro).
+
 
 </Accordion>
 
@@ -539,12 +765,12 @@ metadata:
 
   **For Android:**
 
-  * In the case of UPI intent/InApp flow,  you will not receive a callback response in the`surl` or `furl`. In this case, the format of the PayU response received will be different from other payment options that you can handle accordingly. For handling `surl` or `furl`, refer to [Handling Redirect URLs](https://docs.payu.in/docs/handling-redirect-urls-surlfurl-with-android-sdk).
+  * In the case of UPI intent/InApp flow,  you will not receive a callback response in the`surl` or `furl`. In this case, the format of the PayU response received will be different from other payment options that you can handle accordingly. For handling `surl` or `furl`, refer to [Handling Redirect URLs](doc:handling-redirect-urls-surlfurl-with-android-sdk).
   * If you get **mihpayid** in the PayU response, consider it as a **PayU ID/ID**
 
   **For IOS**:
 
-  * In the case of UPI intent and Collect flow, you will not receive a callback response in SURL/FURL. In this case, the format of the PayU response received will be different from other payment options that you can handle accordingly. For handling `surl` or `furl`, refer to [Handling Redirect URLs](https://docs.payu.in/docs/handling-redirect-urls-surlfurl-with-android-sdk).
+  * In the case of UPI intent and Collect flow, you will not receive a callback response in SURL/FURL. In this case, the format of the PayU response received will be different from other payment options that you can handle accordingly. For handling `surl` or `furl`, refer to [Handling Redirect URLs](doc:handling-redirect-urls-surlfurl-with-android-sdk).
   * If you get **mihpayid** in the PayU response, consider it as a PayU ID/ ID.
 
 </Accordion>
@@ -556,12 +782,22 @@ metadata:
 
   To integrate PhonePe with PayU Android SDK, you need to use the `setPaymentOption` method provided by the SDK to select PhonePe as the payment option and configure the PhonePe payment parameters.
 
+  **Related documentation**
+
+  * For UPI integration details, refer to [Integration Steps - Android UPI SDK](doc:integration-steps-android-upi-sdk), [Android Google Pay SDK](doc:android-google-pay-sdk), and [Android PhonePe SDK](doc:android-phonepe-sdk).
+
+
 </Accordion>
 
 <Accordion title="Which countries are supported for PhonePe integration with PayU Android SDK?" icon="fa-info-circle">
 
 
   PhonePe integration with PayU Android SDK is currently available only in India.
+
+  **Related documentation**
+
+  * For UPI integration details, refer to [Integration Steps - Android UPI SDK](doc:integration-steps-android-upi-sdk), [Android Google Pay SDK](doc:android-google-pay-sdk), and [Android PhonePe SDK](doc:android-phonepe-sdk).
+
 
 </Accordion>
 
@@ -570,6 +806,12 @@ metadata:
 
   Yes, you can customize the PhonePe payment user interface in your app by using the PayU Mobile Android SDK’s customization options.
 
+  **Related documentation**
+
+  * For UPI integration details, refer to [Integration Steps - Android UPI SDK](doc:integration-steps-android-upi-sdk), [Android Google Pay SDK](doc:android-google-pay-sdk), and [Android PhonePe SDK](doc:android-phonepe-sdk).
+  * For customisation options, refer to [Customize Your Integration](doc:android-checkoutpro-custom-integrations) and [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
+
+
 </Accordion>
 
 <Accordion title="What are the different types of PhonePe transactions supported by PayU Android SDK?" icon="fa-info-circle">
@@ -577,12 +819,17 @@ metadata:
 
   PayU Android SDK supports PhonePe transactions for making payments, requesting payments, and checking the status of a payment.
 
+  **Related documentation**
+
+  * For UPI integration details, refer to [Integration Steps - Android UPI SDK](doc:integration-steps-android-upi-sdk), [Android Google Pay SDK](doc:android-google-pay-sdk), and [Android PhonePe SDK](doc:android-phonepe-sdk).
+
+
 </Accordion>
 
 <Accordion title="What is the difference between PayU CheckoutPro and Non-Seamless?" icon="fa-info-circle">
 
 
-  **PayU CheckoutPro** and **Non-Seamless** integration are the same. For more information, refer to the (Explore Android SDKs)[[https://docs.payu.in/docs/explore-android-sdks/](https://docs.payu.in/docs/explore-android-sdks/)]
+  **PayU CheckoutPro** and **Non-Seamless** integration are the same. For more information, refer to [Explore Android SDKs](doc:explore-android-sdks).
 
 </Accordion>
 
@@ -591,6 +838,11 @@ metadata:
 
   For security purposes, the hash is mandatory. Whenever you connect to the PayU server you need a hash. For every API, there is a separate hash because all APIs are public.
 
+  **Related documentation**
+
+  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
+
+
 </Accordion>
 
 <Accordion title="Do we need to calculate Reverse Hash?" icon="fa-info-circle">
@@ -598,7 +850,13 @@ metadata:
 
   It is mandatory to calculate the reverse hash on your surl/furl to validate a transaction at your end. Otherwise, the transaction may be hacked or tampered with.
 
-  For more information, refer to [Server Side Document](https://github.com/payu-intrepos/Documentations/wiki/Server-Side).
+  For more information, refer to [Handling Redirect URLs (surl/furl) with Android SDK](doc:handling-redirect-urls-surlfurl-with-android-sdk) and [Hash Generation](doc:hash-generation).
+
+  **Related documentation**
+
+  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
+  * For callback handling and verification, refer to [Handling Redirect URLs (surl/furl) with Android SDK](doc:handling-redirect-urls-surlfurl-with-android-sdk), [Web Services for Android Core SDK](doc:web-services-for-android-core-sdk), and [Webhooks](doc:webhooks).
+
 
 </Accordion>
 
@@ -606,6 +864,12 @@ metadata:
 
 
   When the merchant collects the customer’s card details on their website/server and posts them to PayU. The merchant must be PCI-DSS certified in this case. For further information on PCI-DSS certification please contact your Account Manager at PayU.
+
+  **Related documentation**
+
+  * For UPI integration details, refer to [Integration Steps - Android UPI SDK](doc:integration-steps-android-upi-sdk), [Android Google Pay SDK](doc:android-google-pay-sdk), and [Android PhonePe SDK](doc:android-phonepe-sdk).
+  * For payment method details, refer to [Error Handling](doc:error-handling), [Card Number Formats](doc:card-number-formats), and [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+
 
 </Accordion>
 
@@ -618,12 +882,22 @@ metadata:
   * [Google Pay](doc:android-google-pay-sdk)
   * PayTM
 
+  **Related documentation**
+
+  * For UPI integration details, refer to [Integration Steps - Android UPI SDK](doc:integration-steps-android-upi-sdk), [Android Google Pay SDK](doc:android-google-pay-sdk), and [Android PhonePe SDK](doc:android-phonepe-sdk).
+
+
 </Accordion>
 
 <Accordion title="Can merchants generate hash from PayU SDK?" icon="fa-info-circle">
 
 
   Yes, merchants can also generate a hash from PayU SDK but it’s not recommended because in this case key and salt will be hardcoded so anyone can use key and salt for making payment and it’s not secure.
+
+  **Related documentation**
+
+  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
+
 
 </Accordion>
 
@@ -632,8 +906,8 @@ metadata:
 
   You can use PayU CheckoutPro SDK or Non-seamless SDK (PayU UI) in PayU Android SDK integration. For more information, refer to the following:
 
-  * [Android SDK Integration Docs. > PayU CheckoutPro SDK](https://docs.payu.in/docs/android-checkoutpro-sdk)
-  * Sample App: [https://github.com/payu-intrepos/PayUCheckoutPro-Android/tree/JavaSampleApp](https://github.com/payu-intrepos/PayUCheckoutPro-Android/tree/JavaSampleApp)
+  * [Android Checkout Pro SDK](doc:android-checkoutpro-sdk)
+  * Sample App: [CheckoutPro Sample App](doc:sample-app)
 
 </Accordion>
 
@@ -644,6 +918,12 @@ metadata:
 
   The merchant can check if he is calculating hash correctly by entering the same parameters using the above tool and then test the hashes generated with the hashes he is getting from his code.
 
+  **Related documentation**
+
+  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
+  * For test credentials and go-live steps, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) and the Go-live Checklist in [Integration Steps](doc:integration-steps-android-checkout-pro).
+
+
 </Accordion>
 
 <Accordion title="Why do we need to use surl and furl in CustomBrowser?" icon="fa-info-circle">
@@ -651,7 +931,13 @@ metadata:
 
   When the transaction succeeds, PayU posts the response to the surl, and if the transaction fails PayU posts the response to the furl provided in post parameters while making a payment request.
 
-  For information on using surl and furl, refer [Server Side Document](https://github.com/payu-intrepos/Documentations/wiki/Server-Side).
+  For information on using surl and furl, refer to [Handling Redirect URLs (surl/furl) with Android SDK](doc:handling-redirect-urls-surlfurl-with-android-sdk).
+
+  **Related documentation**
+
+  * For callback handling and verification, refer to [Handling Redirect URLs (surl/furl) with Android SDK](doc:handling-redirect-urls-surlfurl-with-android-sdk), [Web Services for Android Core SDK](doc:web-services-for-android-core-sdk), and [Webhooks](doc:webhooks).
+  * For post data and SDK selection, refer to [Integration Steps - CustomBrowser](doc:integration-steps-android-customer-browser), [Android Core SDK](doc:android-core-sdk), and [Explore Android SDKs](doc:explore-android-sdks).
+
 
 </Accordion>
 
@@ -659,6 +945,10 @@ metadata:
 
 
   The PayU page will not expire, however, the PayU ID generated will be expired or bounce if the customer lands on the payment page for three hours and is left idle. Also, after three hours if the customer enters the card details, a new PayUid will be generated and the transaction will go through.
+
+  **Related documentation**
+
+  * For transaction timeout and timer behaviour in CheckoutPro 3.2.0+, refer to [Version History](doc:change-logs) and [Integration Steps](doc:integration-steps-android-checkout-pro).
 
 </Accordion>
 
@@ -672,12 +962,22 @@ metadata:
 
   Yes, the above-listed card types are accepted.
 
+  **Related documentation**
+
+  * For payment method details, refer to [Error Handling](doc:error-handling), [Card Number Formats](doc:card-number-formats), and [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+
+
 </Accordion>
 
 <Accordion title="What is the maximum character length for a card number?" icon="fa-info-circle">
 
 
-  For Maestro 19, 16 otherwise. For more information, refer to [Card Number Formats](https://docs.payu.in/docs/card-number-formats).
+  For Maestro 19, 16 otherwise. For more information, refer to [Card Number Formats](doc:card-number-formats).
+
+  **Related documentation**
+
+  * For payment method details, refer to [Error Handling](doc:error-handling), [Card Number Formats](doc:card-number-formats), and [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+
 
 </Accordion>
 
@@ -686,26 +986,38 @@ metadata:
 
   The maximum character length is 4 for Amex cardholders, and 3 otherwise.
 
+  **Related documentation**
+
+  * For payment method details, refer to [Error Handling](doc:error-handling), [Card Number Formats](doc:card-number-formats), and [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+
+
 </Accordion>
 
 <Accordion title="I am using CustomBrowser version\<7.4.0. How can I update the SDK to avail UPI payment modes?" icon="fa-info-circle">
 
 
-  With version 7.4.0, PayU has optimized the SDK Offerings for you. After you update this SDK, the UPI transaction offering will be removed. The UPI Transactions offering is added in another SDK that supports the complete UPI portfolio – UPI Collect transactions, UPI Intent transactions, Tez(GPay) (In-App, Intent & Collect) Flows and PhonePe Flows, and SamsungPay. For more information on UPI SDK to accept UPI payments, refer to [Android UPI integration](https://docs.payu.in/docs/card-number-formats).
+  With version 7.4.0, PayU has optimized the SDK Offerings for you. After you update this SDK, the UPI transaction offering will be removed. The UPI Transactions offering is added in another SDK that supports the complete UPI portfolio – UPI Collect transactions, UPI Intent transactions, Tez(GPay) (In-App, Intent & Collect) Flows and PhonePe Flows, and SamsungPay. For more information on UPI SDK to accept UPI payments, refer to [Android UPI integration](doc:card-number-formats).
 
 </Accordion>
 
 <Accordion title="I am a CustomBrowser Merchant version >=7.4.0. I have added UPI SDK for UPI offering(Generic Intent and UPI Collect). I would like to add Google, PhonePe, and Samsung Pay payment options. What should I do?" icon="fa-info-circle">
 
 
-  You just need to add PayU Gradle dependencies for [GooglePay](doc:android-google-pay-sdk), [Phonepe](https://docs.payu.in/docs/android-phonepe-sdk), and Samsung Pay. Generate _PostData_ according to the payment option you choose.
+  You just need to add PayU Gradle dependencies for [GooglePay](doc:android-google-pay-sdk), [Phonepe](doc:android-phonepe-sdk), and Samsung Pay. Generate _PostData_ according to the payment option you choose.
+
+  **Related documentation**
+
+  * For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
+  * For UPI integration details, refer to [Integration Steps - Android UPI SDK](doc:integration-steps-android-upi-sdk), [Android Google Pay SDK](doc:android-google-pay-sdk), and [Android PhonePe SDK](doc:android-phonepe-sdk).
+  * For callback handling and verification, refer to [Handling Redirect URLs (surl/furl) with Android SDK](doc:handling-redirect-urls-surlfurl-with-android-sdk), [Web Services for Android Core SDK](doc:web-services-for-android-core-sdk), and [Webhooks](doc:webhooks).
+
 
 </Accordion>
 
 <Accordion title="I am a UPI SDK merchant(Directly UPI SDK not through CustomBrowser), I would like to add GooglePay, PhonePe, or SamsungPay." icon="fa-info-circle">
 
 
-  You just need to add PayU Gradle dependencies for [Googlepay](doc:android-google-pay-sdk), [Phonepe](https://docs.payu.in/docs/android-phonepe-sdk), and Samsung Pay and generate `PostData` for the same reference [Postdata through UPI SDK](https://docs.payu.in/docs/android-upisdk-integration-steps#step-4-payment-request-post-data).
+  You just need to add PayU Gradle dependencies for [Googlepay](doc:android-google-pay-sdk), [Phonepe](doc:android-phonepe-sdk), and Samsung Pay and generate `PostData` for the same reference [Postdata through UPI SDK](doc:integration-steps-android-upi-sdk).
 
 </Accordion>
 
@@ -713,6 +1025,12 @@ metadata:
 
 
   PG SDK is not mandatory to make payments with CustomBrowser. You can create `PostData` of its own.
+
+  **Related documentation**
+
+  * For callback handling and verification, refer to [Handling Redirect URLs (surl/furl) with Android SDK](doc:handling-redirect-urls-surlfurl-with-android-sdk), [Web Services for Android Core SDK](doc:web-services-for-android-core-sdk), and [Webhooks](doc:webhooks).
+  * For post data and SDK selection, refer to [Integration Steps - CustomBrowser](doc:integration-steps-android-customer-browser), [Android Core SDK](doc:android-core-sdk), and [Explore Android SDKs](doc:explore-android-sdks).
+
 
 </Accordion>
 
@@ -738,6 +1056,11 @@ metadata:
    android:value="https://test.payu.in" />
   ```
 
+  **Related documentation**
+
+  * For test credentials and go-live steps, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) and the Go-live Checklist in [Integration Steps](doc:integration-steps-android-checkout-pro).
+
+
 </Accordion>
 
 <Accordion title="Why is enter OTP manually button not visible on CB when the Material theme is used?" icon="fa-info-circle">
@@ -753,6 +1076,12 @@ metadata:
   </style>
   ```
 
+  **Related documentation**
+
+  * For Native OTP setup and customisation, refer to [Integration Steps - Native OTP Assist SDK](doc:integration-steps-android-native-otp-assist) and [Native OTP Assist Customisations](doc:android-nativeotpassist-customisations).
+  * For customisation options, refer to [Customize Your Integration](doc:android-checkoutpro-custom-integrations) and [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
+
+
 </Accordion>
 
 <Accordion title="How to fix the build error after adding the PayUCheckoutPro SDK gradle dependency?" icon="fa-info-circle">
@@ -766,6 +1095,12 @@ metadata:
   ```plaintext
   tools:replace="android:theme"
   ```
+
+  **Related documentation**
+
+  * For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
+  * For customisation options, refer to [Customize Your Integration](doc:android-checkoutpro-custom-integrations) and [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
+
 
 </Accordion>
 
@@ -954,6 +1289,13 @@ metadata:
 
   Try to upgrade your gradle version, this line: classpath ‘com.android.tools.build:gradle:4.1.0’
 
+  **Related documentation**
+
+  * For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
+  * For version updates and release notes, refer to [Version History](doc:change-logs) and [Integration Steps](doc:integration-steps-android-checkout-pro).
+  * For test credentials and go-live steps, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) and the Go-live Checklist in [Integration Steps](doc:integration-steps-android-checkout-pro).
+
+
 </Accordion>
 
 <Accordion title="I want to use GPay for collecting payments and it requires the S2S (Server-to-Server integration) flag to be enabled. How do I enable Server-to-Server integration for my account?" icon="fa-info-circle">
@@ -961,12 +1303,22 @@ metadata:
 
   You need to contact your PayU Key Account Manager to enable Server-to-Server integration.
 
+  **Related documentation**
+
+  * For UPI integration details, refer to [Integration Steps - Android UPI SDK](doc:integration-steps-android-upi-sdk), [Android Google Pay SDK](doc:android-google-pay-sdk), and [Android PhonePe SDK](doc:android-phonepe-sdk).
+
+
 </Accordion>
 
 <Accordion title="Can I generate hashes on my app?" icon="fa-info-circle">
 
 
   PayU recommends you generate the hashes on your server. Do not generate the hashes locally in your app as it will compromise the security of the transactions.
+
+  **Related documentation**
+
+  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
+
 
 </Accordion>
 
@@ -976,11 +1328,20 @@ metadata:
 
   [https://github.com/payu-intrepos/payu-checkoutpro-cordova-ionic-sample/tree/main/PayUCheckoutProIonicSample/www/js](https://github.com/payu-intrepos/payu-checkoutpro-cordova-ionic-sample/tree/main/PayUCheckoutProIonicSample/www/js)
 
+  **Related documentation**
+
+  * For wrapper SDK guides, refer to [Flutter CheckoutPro SDK](doc:flutter-checkoutprosdk-integration-steps), [React Native CheckoutPro Android Integration](doc:reactnative-checkoutpro-android-integration), and [Explore React Native SDKs](doc:explore-reactnative-sdks).
+
+
 </Accordion>
 
 <Accordion title="Should I make a payment request using the Payment (_payment) API for Android?" icon="fa-info-circle">
 
   You need not use the Payment API if you are using PayU Mobile SDK, as PayU Mobile SDK will call all the APIs internally.
+
+  **Related documentation**
+
+  * For mobile SDK integration (recommended over direct Payment API), refer to [Integration Steps](doc:integration-steps-android-checkout-pro) and [Android Core SDK](doc:android-core-sdk).
 
 </Accordion>
 
@@ -989,12 +1350,21 @@ metadata:
 
   If you want to use collect flow, it is mandatory to enter VPA, otherwise, it is not required.
 
+  **Related documentation**
+
+  * For UPI integration details, refer to [Integration Steps - Android UPI SDK](doc:integration-steps-android-upi-sdk), [Android Google Pay SDK](doc:android-google-pay-sdk), and [Android PhonePe SDK](doc:android-phonepe-sdk).
+
+
 </Accordion>
 
 <Accordion title="What is the amount data format in PayU SDK?" icon="fa-info-circle">
 
 
   In PayU SDK, always pass String value in amount field for iOS and Android.
+
+  **Related documentation**
+
+  * For request parameter formats and limits, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis) and [Integration Steps](doc:integration-steps-android-checkout-pro).
 
 </Accordion>
 
@@ -1008,7 +1378,7 @@ metadata:
   4. Test various payment methods (cards, UPI, net banking, etc.)
   5. Verify the payment callbacks and responses
 
-  For more information, refer to [Test Cards, UPI ID and Wallets](https://docs.payu.in/docs/test-cards-upi-id-and-wallets).
+  For more information, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets).
 
 </Accordion>
 
@@ -1023,6 +1393,13 @@ metadata:
   5. Check the logs for any error messages
   6. Ensure your app has the necessary network security configuration
 
+  **Related documentation**
+
+  * For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
+  * For integration prerequisites and setup, refer to [Integration Steps](doc:integration-steps-android-checkout-pro) and [Explore Android SDKs](doc:explore-android-sdks).
+  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
+
+
 </Accordion>
 
 <Accordion title="How do I handle payment failures in Android SDK?" icon="fa-info-circle">
@@ -1034,7 +1411,9 @@ metadata:
   3. **User feedback**: Display appropriate error messages to users based on the error code
   4. **Retry mechanism**: Allow users to retry the payment if the failure is due to network or temporary issues
 
-  For detailed error handling, refer to [Error Handling](https://docs.payu.in/docs/error-handling).
+  For detailed error handling, refer to [Error Handling](doc:error-handling).
+
+  For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
 
 </Accordion>
 
@@ -1042,6 +1421,11 @@ metadata:
 
 
   PayU Android SDK operations should be performed on the main/UI thread. Payment UI components require the Android main thread to function properly. However, hash generation and network calls can be performed on background threads, but ensure you switch back to the main thread before calling SDK methods that display UI.
+
+  **Related documentation**
+
+  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
+
 
 </Accordion>
 
@@ -1053,6 +1437,11 @@ metadata:
   2. You should implement proper callback handling to receive the payment response when the app is reopened
   3. Use `surl` and `furl` to receive payment responses even if the app is closed
   4. Implement proper state management to handle such scenarios
+
+  **Related documentation**
+
+  * For callback handling and verification, refer to [Handling Redirect URLs (surl/furl) with Android SDK](doc:handling-redirect-urls-surlfurl-with-android-sdk), [Web Services for Android Core SDK](doc:web-services-for-android-core-sdk), and [Webhooks](doc:webhooks).
+
 
 </Accordion>
 
@@ -1067,6 +1456,12 @@ metadata:
   3. Remove test metadata from AndroidManifest.xml when going to production
   4. Ensure you're using the correct API endpoints for each environment
 
+  **Related documentation**
+
+  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
+  * For test credentials and go-live steps, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) and the Go-live Checklist in [Integration Steps](doc:integration-steps-android-checkout-pro).
+
+
 </Accordion>
 
 <Accordion title="What payment methods require additional setup or configuration?" icon="fa-info-circle">
@@ -1080,6 +1475,12 @@ metadata:
   - **BNPL**: Requires merchant approval and configuration
 
   Contact your PayU Key Account Manager for enabling specific payment methods.
+
+  **Related documentation**
+
+  * For UPI integration details, refer to [Integration Steps - Android UPI SDK](doc:integration-steps-android-upi-sdk), [Android Google Pay SDK](doc:android-google-pay-sdk), and [Android PhonePe SDK](doc:android-phonepe-sdk).
+  * For payment method details, refer to [Error Handling](doc:error-handling), [Card Number Formats](doc:card-number-formats), and [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+
 
 </Accordion>
 
@@ -1096,6 +1497,12 @@ metadata:
   7. Review the integration documentation for common issues
   8. Contact PayU Support with specific error codes and logs
 
+  **Related documentation**
+
+  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
+  * For test credentials and go-live steps, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) and the Go-live Checklist in [Integration Steps](doc:integration-steps-android-checkout-pro).
+
+
 </Accordion>
 
 <Accordion title="Can I use multiple PayU SDKs together in the same Android app?" icon="fa-info-circle">
@@ -1108,6 +1515,11 @@ metadata:
 
   Ensure you follow the integration steps for each SDK and handle conflicts in dependencies if any. Refer to the specific SDK documentation for compatibility information.
 
+  **Related documentation**
+
+  * For UPI integration details, refer to [Integration Steps - Android UPI SDK](doc:integration-steps-android-upi-sdk), [Android Google Pay SDK](doc:android-google-pay-sdk), and [Android PhonePe SDK](doc:android-phonepe-sdk).
+
+
 </Accordion>
 
 <Accordion title="What is the difference between static hash and dynamic hash in Android SDK?" icon="fa-info-circle">
@@ -1116,7 +1528,7 @@ metadata:
   - **Static Hash**: Generated once and can be reused for multiple transactions. Used for certain payment flows but less secure.
   - **Dynamic Hash**: Generated fresh for each transaction with transaction-specific parameters. More secure and recommended for production use.
 
-  PayU recommends using dynamic hash for better security. For more information, refer to [Generate Dynamic Hash](https://docs.payu.in/docs/android-checkoutpro-generate-dynamic-hash) or [Generate Static Hash](https://docs.payu.in/docs/generate-static-hash-android-sdk-pro).
+  PayU recommends using dynamic hash for better security. For more information, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk) or [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
 
 </Accordion>
 
@@ -1129,7 +1541,7 @@ metadata:
   3. **Intent filters**: Configure AndroidManifest.xml to handle payment callbacks
   4. **Activity result**: Use Activity result callbacks for SDK-based flows
 
-  For detailed implementation, refer to [Handling Redirect URLs](https://docs.payu.in/docs/handling-redirect-urls-surlfurl-with-android-sdk).
+  For detailed implementation, refer to [Handling Redirect URLs](doc:handling-redirect-urls-surlfurl-with-android-sdk).
 
 </Accordion>
 
@@ -1144,6 +1556,13 @@ metadata:
   5. Use PayU's hash generation tool to test your hash calculation
   6. Ensure there are no extra spaces or encoding issues in parameters
 
+  **Related documentation**
+
+  * For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
+  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
+  * For test credentials and go-live steps, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) and the Go-live Checklist in [Integration Steps](doc:integration-steps-android-checkout-pro).
+
+
 </Accordion>
 
 <Accordion title="Can I customize the payment success/failure messages in Android SDK?" icon="fa-info-circle">
@@ -1156,6 +1575,12 @@ metadata:
   4. Implement your own error handling and user feedback
 
   The SDK provides callbacks that you can use to show custom messages to users.
+
+  **Related documentation**
+
+  * For callback handling and verification, refer to [Handling Redirect URLs (surl/furl) with Android SDK](doc:handling-redirect-urls-surlfurl-with-android-sdk), [Web Services for Android Core SDK](doc:web-services-for-android-core-sdk), and [Webhooks](doc:webhooks).
+  * For customisation options, refer to [Customize Your Integration](doc:android-checkoutpro-custom-integrations) and [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
+
 
 </Accordion>
 
@@ -1172,7 +1597,9 @@ metadata:
   - Use `setIsProduction(false)` with Test Key & Test Salt
   - Use `setIsProduction(true)` with Production Key and Salt
 
-  For more information, refer to [CheckoutPro SDK go-live checklist](https://docs.payu.in/docs/android-checkoutpro-golive-checklist).
+  For more information, refer to [CheckoutPro SDK go-live checklist](doc:integration-steps-android-checkout-pro).
+
+  For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
 
 </Accordion>
 
@@ -1188,6 +1615,13 @@ metadata:
   <item name="backgroundTint">@color/cb_otpColor</item>
   </style>
   ```
+
+  **Related documentation**
+
+  * For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
+  * For Native OTP setup and customisation, refer to [Integration Steps - Native OTP Assist SDK](doc:integration-steps-android-native-otp-assist) and [Native OTP Assist Customisations](doc:android-nativeotpassist-customisations).
+  * For callback handling and verification, refer to [Handling Redirect URLs (surl/furl) with Android SDK](doc:handling-redirect-urls-surlfurl-with-android-sdk), [Web Services for Android Core SDK](doc:web-services-for-android-core-sdk), and [Webhooks](doc:webhooks).
+
 
 </Accordion>
 
@@ -1205,6 +1639,12 @@ metadata:
   xmlns:tools="http://schemas.android.com/tools"
   ```
 
+  **Related documentation**
+
+  * For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
+  * For customisation options, refer to [Customize Your Integration](doc:android-checkoutpro-custom-integrations) and [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
+
+
 </Accordion>
 
 <Accordion title="What should I do if the SDK is not responding or payment page is blank?" icon="fa-info-circle">
@@ -1219,6 +1659,13 @@ metadata:
   6. Try clearing app cache and data
   7. Ensure you're using a supported Android version
 
+  **Related documentation**
+
+  * For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
+  * For integration prerequisites and setup, refer to [Integration Steps](doc:integration-steps-android-checkout-pro) and [Explore Android SDKs](doc:explore-android-sdks).
+  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
+
+
 </Accordion>
 
 <Accordion title="Why am I not receiving payment callbacks (surl/furl) in my Android app?" icon="fa-info-circle">
@@ -1232,7 +1679,7 @@ metadata:
   5. For UPI Intent flow, note that callbacks may be handled differently
   6. Check if the app was closed during payment - implement proper state handling
 
-  For more information, refer to [Handling Redirect URLs](https://docs.payu.in/docs/handling-redirect-urls-surlfurl-with-android-sdk).
+  For more information, refer to [Handling Redirect URLs](doc:handling-redirect-urls-surlfurl-with-android-sdk).
 
 </Accordion>
 
@@ -1247,6 +1694,11 @@ metadata:
   5. Use `./gradlew dependencies` to identify conflict sources
   6. Contact PayU Support if conflicts persist
 
+  **Related documentation**
+
+  * For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
+
+
 </Accordion>
 
 <Accordion title="What should I do if payment transactions are failing with authentication errors?" icon="fa-info-circle">
@@ -1259,6 +1711,13 @@ metadata:
   4. Verify all required authentication parameters are included
   5. Ensure your account is activated and in good standing
   6. Check if there are any account-level restrictions
+
+  **Related documentation**
+
+  * For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
+  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
+  * For test credentials and go-live steps, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) and the Go-live Checklist in [Integration Steps](doc:integration-steps-android-checkout-pro).
+
 
 </Accordion>
 
@@ -1273,7 +1732,9 @@ metadata:
   5. Check device compatibility and Android version
   6. Review UPI integration documentation for specific requirements
 
-  For more information, refer to [Android UPI SDK Integration](https://docs.payu.in/docs/android-upisdk-integration-steps).
+  For more information, refer to [Android UPI SDK Integration](doc:integration-steps-android-upi-sdk).
+
+  For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
 
 </Accordion>
 
@@ -1282,7 +1743,13 @@ metadata:
 <Accordion title="How much time does it take to update the SDK in code to upgrade to the latest version of SDK?" icon="fa-info-circle">
 
 
-  To update the SDK it takes only 5 – 10 mins. If you are facing any issues in updating the SDK, you can contact [PayU Support] (https://help.payu.in/).
+  To update the SDK it takes only 5 – 10 mins. If you are facing any issues in updating the SDK, you can contact [PayU Support](https://help.payu.in/).
+
+  **Related documentation**
+
+  * For version updates and release notes, refer to [Version History](doc:change-logs) and [Integration Steps](doc:integration-steps-android-checkout-pro).
+  * For test credentials and go-live steps, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) and the Go-live Checklist in [Integration Steps](doc:integration-steps-android-checkout-pro).
+
 
 </Accordion>
 
@@ -1299,6 +1766,13 @@ metadata:
 
   Check the SDK's version history or changelog for specific upgrade instructions.
 
+  **Related documentation**
+
+  * For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
+  * For customisation options, refer to [Customize Your Integration](doc:android-checkoutpro-custom-integrations) and [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
+  * For version updates and release notes, refer to [Version History](doc:change-logs) and [Integration Steps](doc:integration-steps-android-checkout-pro).
+
+
 </Accordion>
 
 <Accordion title="What should I check before upgrading the PayU Android SDK?" icon="fa-info-circle">
@@ -1313,6 +1787,13 @@ metadata:
   6. Check if any customizations need to be updated
   7. Review migration guides if available
 
+  **Related documentation**
+
+  * For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
+  * For customisation options, refer to [Customize Your Integration](doc:android-checkoutpro-custom-integrations) and [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
+  * For version updates and release notes, refer to [Version History](doc:change-logs) and [Integration Steps](doc:integration-steps-android-checkout-pro).
+
+
 </Accordion>
 
 <Accordion title="Will upgrading the SDK affect my existing integrations?" icon="fa-info-circle">
@@ -1325,6 +1806,13 @@ metadata:
   4. Dependencies have been updated
 
   Always review the release notes and test thoroughly before deploying to production. Most minor version updates are backward compatible, but major version updates may require code changes.
+
+  **Related documentation**
+
+  * For callback handling and verification, refer to [Handling Redirect URLs (surl/furl) with Android SDK](doc:handling-redirect-urls-surlfurl-with-android-sdk), [Web Services for Android Core SDK](doc:web-services-for-android-core-sdk), and [Webhooks](doc:webhooks).
+  * For version updates and release notes, refer to [Version History](doc:change-logs) and [Integration Steps](doc:integration-steps-android-checkout-pro).
+  * For test credentials and go-live steps, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) and the Go-live Checklist in [Integration Steps](doc:integration-steps-android-checkout-pro).
+
 
 </Accordion>
 
@@ -1341,12 +1829,24 @@ metadata:
 
   Refer to the specific SDK integration documentation for exact requirements.
 
+  **Related documentation**
+
+  * For integration prerequisites and setup, refer to [Integration Steps](doc:integration-steps-android-checkout-pro) and [Explore Android SDKs](doc:explore-android-sdks).
+  * For UPI integration details, refer to [Integration Steps - Android UPI SDK](doc:integration-steps-android-upi-sdk), [Android Google Pay SDK](doc:android-google-pay-sdk), and [Android PhonePe SDK](doc:android-phonepe-sdk).
+  * For callback handling and verification, refer to [Handling Redirect URLs (surl/furl) with Android SDK](doc:handling-redirect-urls-surlfurl-with-android-sdk), [Web Services for Android Core SDK](doc:web-services-for-android-core-sdk), and [Webhooks](doc:webhooks).
+
+
 </Accordion>
 
 <Accordion title="Is PayU Android SDK compatible with Kotlin?" icon="fa-info-circle">
 
 
   Yes, PayU Android SDK is compatible with Kotlin. You can use the SDK in both Java and Kotlin projects. The SDK provides Java APIs that work seamlessly with Kotlin through interoperability.
+
+  **Related documentation**
+
+  * For integration prerequisites and setup, refer to [Integration Steps](doc:integration-steps-android-checkout-pro) and [Explore Android SDKs](doc:explore-android-sdks).
+
 
 </Accordion>
 
@@ -1355,12 +1855,23 @@ metadata:
 
   PayU Android SDK is built using traditional Android Views. While you can use it in a Jetpack Compose project, you'll need to use `AndroidView` composable to embed the SDK's UI components. The SDK's payment flows will still use the traditional View system.
 
+  **Related documentation**
+
+  * For integration prerequisites and setup, refer to [Integration Steps](doc:integration-steps-android-checkout-pro) and [Explore Android SDKs](doc:explore-android-sdks).
+
+
 </Accordion>
 
 <Accordion title="Does PayU Android SDK support ProGuard/R8 code obfuscation?" icon="fa-info-circle">
 
 
   Yes, PayU Android SDK supports ProGuard and R8. However, you may need to add specific ProGuard rules to prevent the SDK from being obfuscated. Check the SDK documentation for required ProGuard rules, or contact PayU Support for the latest rules.
+
+  **Related documentation**
+
+  * For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
+  * For test credentials and go-live steps, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) and the Go-live Checklist in [Integration Steps](doc:integration-steps-android-checkout-pro).
+
 
 </Accordion>
 
@@ -1377,6 +1888,12 @@ metadata:
 
   Add these permissions in your `AndroidManifest.xml` file.
 
+  **Related documentation**
+
+  * For integration prerequisites and setup, refer to [Integration Steps](doc:integration-steps-android-checkout-pro) and [Explore Android SDKs](doc:explore-android-sdks).
+  * For UPI integration details, refer to [Integration Steps - Android UPI SDK](doc:integration-steps-android-upi-sdk), [Android Google Pay SDK](doc:android-google-pay-sdk), and [Android PhonePe SDK](doc:android-phonepe-sdk).
+
+
 </Accordion>
 
 <Accordion title="Can I use PayU Android SDK in a multi-module Android project?" icon="fa-info-circle">
@@ -1384,12 +1901,22 @@ metadata:
 
   Yes, you can use PayU Android SDK in a multi-module project. Add the SDK dependency to the module where you'll be using it, or add it to a shared module if multiple modules need access. Ensure proper dependency management across modules.
 
+  **Related documentation**
+
+  * For integration prerequisites and setup, refer to [Integration Steps](doc:integration-steps-android-checkout-pro) and [Explore Android SDKs](doc:explore-android-sdks).
+
+
 </Accordion>
 
 <Accordion title="Is PayU Android SDK compatible with Android App Bundle (AAB) format?" icon="fa-info-circle">
 
 
   Yes, PayU Android SDK is compatible with Android App Bundle (AAB) format. You can build and publish your app using AAB without any special configuration for the PayU SDK.
+
+  **Related documentation**
+
+  * For integration prerequisites and setup, refer to [Integration Steps](doc:integration-steps-android-checkout-pro) and [Explore Android SDKs](doc:explore-android-sdks).
+
 
 </Accordion>
 
@@ -1399,6 +1926,11 @@ metadata:
 
 
   No, it is not safe to store Merchant Key and Salt in your Android app. These credentials should be kept on your server. Always generate hashes on your server and pass them to the Android app. Storing credentials in the app makes them vulnerable to reverse engineering.
+
+  **Related documentation**
+
+  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
+
 
 </Accordion>
 
@@ -1415,12 +1947,25 @@ metadata:
   7. Keep the SDK updated to the latest version
   8. Follow Android security best practices
 
+  **Related documentation**
+
+  * For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
+  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
+  * For version updates and release notes, refer to [Version History](doc:change-logs) and [Integration Steps](doc:integration-steps-android-checkout-pro).
+
+
 </Accordion>
 
 <Accordion title="Does PayU Android SDK handle PCI-DSS compliance?" icon="fa-info-circle">
 
 
   Yes, PayU CheckoutPro SDK is PCI-DSS compliant. When using CheckoutPro SDK, card details are handled by PayU's secure payment pages, so you don't need PCI-DSS certification. However, if you collect card details directly in your app, you'll need PCI-DSS certification.
+
+  **Related documentation**
+
+  * For UPI integration details, refer to [Integration Steps - Android UPI SDK](doc:integration-steps-android-upi-sdk), [Android Google Pay SDK](doc:android-google-pay-sdk), and [Android PhonePe SDK](doc:android-phonepe-sdk).
+  * For payment method details, refer to [Error Handling](doc:error-handling), [Card Number Formats](doc:card-number-formats), and [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+
 
 </Accordion>
 
@@ -1434,6 +1979,11 @@ metadata:
   4. Implementing secure hash-based authentication
   5. Following industry-standard security practices
 
+  **Related documentation**
+
+  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
+
+
 </Accordion>
 
 <Accordion title="Can I implement additional security measures on top of PayU Android SDK?" icon="fa-info-circle">
@@ -1446,6 +1996,10 @@ metadata:
   4. Use secure storage for any app-specific data
   5. Implement proper session management
   6. Add logging and monitoring for security events
+
+  **Related documentation**
+
+  * For hash generation and server-side security, refer to [Hash Generation](doc:hash-generation) and [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk).
 
 </Accordion>
 
@@ -1461,7 +2015,7 @@ metadata:
   4. **Test Wallets**: Use test wallet credentials
   5. **Sandbox Mode**: Set `setIsProduction(false)` in your code
 
-  For test credentials, refer to [Test Cards, UPI ID and Wallets](https://docs.payu.in/docs/test-cards-upi-id-and-wallets).
+  For test credentials, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets).
 
 </Accordion>
 
@@ -1473,6 +2027,12 @@ metadata:
   2. Network-related testing should work fine
   3. For UPI and wallet testing, you may need a physical device
   4. Ensure the emulator has proper network configuration
+
+  **Related documentation**
+
+  * For UPI integration details, refer to [Integration Steps - Android UPI SDK](doc:integration-steps-android-upi-sdk), [Android Google Pay SDK](doc:android-google-pay-sdk), and [Android PhonePe SDK](doc:android-phonepe-sdk).
+  * For test credentials and go-live steps, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) and the Go-live Checklist in [Integration Steps](doc:integration-steps-android-checkout-pro).
+
 
 </Accordion>
 
@@ -1486,6 +2046,11 @@ metadata:
   4. Using PayU's debugging tools if available
 
   Note: Disable verbose logging in production builds for security and performance.
+
+  **Related documentation**
+
+  * For test credentials and go-live steps, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) and the Go-live Checklist in [Integration Steps](doc:integration-steps-android-checkout-pro).
+
 
 </Accordion>
 
@@ -1504,6 +2069,13 @@ metadata:
   9. Different Android versions and devices
   10. Edge cases and error conditions
 
+  **Related documentation**
+
+  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
+  * For UPI integration details, refer to [Integration Steps - Android UPI SDK](doc:integration-steps-android-upi-sdk), [Android Google Pay SDK](doc:android-google-pay-sdk), and [Android PhonePe SDK](doc:android-phonepe-sdk).
+  * For callback handling and verification, refer to [Handling Redirect URLs (surl/furl) with Android SDK](doc:handling-redirect-urls-surlfurl-with-android-sdk), [Web Services for Android Core SDK](doc:web-services-for-android-core-sdk), and [Webhooks](doc:webhooks).
+
+
 </Accordion>
 
 ## Payment Response and Verification
@@ -1513,7 +2085,7 @@ metadata:
 
   Yes. Depending on the SDK version and payment flow, the PayU transaction identifier may appear as `mihpayid` or `id` in the response. Treat either field as the **PayU ID** for reconciliation, status checks, and refunds.
 
-  If you receive `id` instead of `mihpayid`, use `id` as the PayU transaction reference. For UPI Intent and In-App flows, the response format may also differ from card or net banking flows. For more information, refer to [Handling Redirect URLs](https://docs.payu.in/docs/handling-redirect-urls-surlfurl-with-android-sdk).
+  If you receive `id` instead of `mihpayid`, use `id` as the PayU transaction reference. For UPI Intent and In-App flows, the response format may also differ from card or net banking flows. For more information, refer to [Handling Redirect URLs](doc:handling-redirect-urls-surlfurl-with-android-sdk).
 
 </Accordion>
 
@@ -1522,7 +2094,7 @@ metadata:
 
   Yes. PayU recommends verifying every transaction on your server using the Verify Payment API, even when you receive a success or failure callback from the SDK. Network issues, app backgrounding, or UPI Intent flows can cause callbacks to be missed or delayed.
 
-  For CheckoutPro, UPI SDK, and Core SDK integrations, call the Verify Payment API from your backend after the SDK callback. For more information, refer to [Verify Payment API](https://docs.payu.in/docs/web-services-for-android-core-sdk#verify-payment-api).
+  For CheckoutPro, UPI SDK, and Core SDK integrations, call the Verify Payment API from your backend after the SDK callback. For more information, refer to [Verify Payment API](doc:web-services-for-android-core-sdk).
 
 </Accordion>
 
@@ -1537,7 +2109,7 @@ metadata:
   2. Use webhooks on your server for reliable, asynchronous transaction reconciliation.
   3. Whitelist PayU webhook IP addresses on your server if your firewall blocks incoming requests.
 
-  For more information, refer to [Transaction Callback API](https://docs.payu.in/reference/transaction-callback-api).
+  For more information, refer to [Transaction Callback API](ref:transaction-callback-api).
 
 </Accordion>
 
@@ -1565,9 +2137,9 @@ metadata:
 
   PayU provides Flutter wrapper SDKs that use the native Android SDK under the hood. For integration steps, refer to:
 
-  * [Flutter CheckoutPro SDK](https://docs.payu.in/docs/flutter-checkoutprosdk-integration-steps)
-  * [Flutter UPI SDK](https://docs.payu.in/docs/flutter-upi-sdk)
-  * [Generate Dynamic Hash for Flutter](https://docs.payu.in/docs/generate-dynamic-hash-flutter)
+  * [Flutter CheckoutPro SDK](doc:flutter-checkoutprosdk-integration-steps)
+  * [Flutter UPI SDK](doc:flutter-upi-sdk)
+  * [Generate Dynamic Hash for Flutter](doc:generate-dynamic-hash-flutter)
 
 </Accordion>
 
@@ -1576,8 +2148,14 @@ metadata:
 
   For React Native integrations that wrap the native Android SDK, refer to:
 
-  * [React Native CheckoutPro Android Integration](https://docs.payu.in/docs/reactnative-checkoutpro-android-integration)
-  * [React Native UPI SDK](https://docs.payu.in/docs/react-native-upi-sdk)
+  * [React Native CheckoutPro Android Integration](doc:reactnative-checkoutpro-android-integration)
+  * [React Native UPI SDK](doc:react-native-upi-sdk)
+
+  **Related documentation**
+
+  * For UPI integration details, refer to [Integration Steps - Android UPI SDK](doc:integration-steps-android-upi-sdk), [Android Google Pay SDK](doc:android-google-pay-sdk), and [Android PhonePe SDK](doc:android-phonepe-sdk).
+  * For wrapper SDK guides, refer to [Flutter CheckoutPro SDK](doc:flutter-checkoutprosdk-integration-steps), [React Native CheckoutPro Android Integration](doc:reactnative-checkoutpro-android-integration), and [Explore React Native SDKs](doc:explore-reactnative-sdks).
+
 
 </Accordion>
 
@@ -1587,6 +2165,11 @@ metadata:
   The JS integration code for Ionic Cordova is available in the PayU sample repository:
 
   [https://github.com/payu-intrepos/payu-checkoutpro-cordova-ionic-sample/tree/main/PayUCheckoutProIonicSample/www/js](https://github.com/payu-intrepos/payu-checkoutpro-cordova-ionic-sample/tree/main/PayUCheckoutProIonicSample/www/js)
+
+  **Related documentation**
+
+  * For wrapper SDK guides, refer to [Flutter CheckoutPro SDK](doc:flutter-checkoutprosdk-integration-steps), [React Native CheckoutPro Android Integration](doc:reactnative-checkoutpro-android-integration), and [Explore React Native SDKs](doc:explore-reactnative-sdks).
+
 
 </Accordion>
 
@@ -1598,7 +2181,7 @@ metadata:
   * **Android (native)**: Pass `offerKey` as a **String** (comma-separated for multiple offers).
   * **iOS (native)**: Pass `offerKey` as an **Array** of strings.
 
-  If you use a cross-platform wrapper, apply conditional handling per platform. For native Android CheckoutPro, refer to [Create SKU-based Offers](https://docs.payu.in/docs/create-sku-based-offers-for-android-checkout-pro) and [Integration Steps](https://docs.payu.in/docs/integration-steps-android-checkout-pro).
+  If you use a cross-platform wrapper, apply conditional handling per platform. For native Android CheckoutPro, refer to [Create SKU-based Offers](doc:create-sku-based-offers-for-android-checkout-pro) and [Integration Steps](doc:integration-steps-android-checkout-pro).
 
 </Accordion>
 
@@ -1611,6 +2194,12 @@ metadata:
 
   If you have a specific business requirement, contact your PayU Key Account Manager (KAM) to discuss available options.
 
+  **Related documentation**
+
+  * For UPI integration details, refer to [Integration Steps - Android UPI SDK](doc:integration-steps-android-upi-sdk), [Android Google Pay SDK](doc:android-google-pay-sdk), and [Android PhonePe SDK](doc:android-phonepe-sdk).
+  * For payment method details, refer to [Error Handling](doc:error-handling), [Card Number Formats](doc:card-number-formats), and [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+
+
 </Accordion>
 
 <Accordion title="How do I pass `offerKey` in PayU CheckoutPro for Android?" icon="fa-info-circle">
@@ -1620,8 +2209,8 @@ metadata:
 
   For more information, refer to:
 
-  * [Create SKU-based Offers for Android CheckoutPro](https://docs.payu.in/docs/create-sku-based-offers-for-android-checkout-pro)
-  * [Integration Steps – Offers](https://docs.payu.in/docs/integration-steps-android-checkout-pro)
+  * [Create SKU-based Offers for Android CheckoutPro](doc:create-sku-based-offers-for-android-checkout-pro)
+  * [Integration Steps – Offers](doc:integration-steps-android-checkout-pro)
 
 </Accordion>
 
@@ -1630,7 +2219,7 @@ metadata:
 
   Use the **enforcement list** to open a specific payment mode directly (for example, only UPI, only Net Banking, or a particular bank). Create an `enforceList` with `CP_PAYMENT_TYPE` and optional `ENFORCED_IBIBOCODE` or `CP_CARD_TYPE` values.
 
-  For more information, refer to [Customize Your Integration – Enforced Payment Modes](https://docs.payu.in/docs/android-checkoutpro-custom-integrations#enforced-payment-modes).
+  For more information, refer to [Customize Your Integration – Enforced Payment Modes](doc:android-checkoutpro-custom-integrations).
 
 </Accordion>
 
@@ -1657,7 +2246,9 @@ metadata:
   upiConfig.setIsProduction(false); // true for production
   ```
 
-  Also ensure you generate `postData` for the selected payment option. For more information, refer to [Android UPI SDK Integration Steps](https://docs.payu.in/docs/android-upisdk-integration-steps).
+  Also ensure you generate `postData` for the selected payment option. For more information, refer to [Android UPI SDK Integration Steps](doc:integration-steps-android-upi-sdk).
+
+  For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
 
 </Accordion>
 
@@ -1666,7 +2257,7 @@ metadata:
 
   PayU UPI SDK supports Intent and Collect flows. For Google Pay, PhonePe, and Samsung Pay, you can integrate dedicated SDKs and generate `postData` for the chosen payment option. However, card OTP, 3DS, and bank authentication steps may still require PayU-hosted or bank-hosted screens for PCI and regulatory compliance.
 
-  For UPI Intent, the customer is redirected to their UPI app to approve the payment; the approval screen is controlled by the UPI app, not your app. For a fully custom card checkout, consider [Custom Checkout](https://docs.payu.in/docs/custom-checkout-merchant-hosted) with appropriate PCI-DSS certification.
+  For UPI Intent, the customer is redirected to their UPI app to approve the payment; the approval screen is controlled by the UPI app, not your app. For a fully custom card checkout, consider [Custom Checkout](doc:custom-checkout-merchant-hosted) with appropriate PCI-DSS certification.
 
 </Accordion>
 
@@ -1675,7 +2266,7 @@ metadata:
 
   UPI Autopay uses standing instruction (SI) parameters in the payment request along with UPI SDK or CheckoutPro. Your backend must handle mandate registration, pre-debit notifications, and recurring debit APIs.
 
-  Contact your PayU Key Account Manager (KAM) to enable UPI Autopay for your account. For integration steps, refer to [Integrate Parallel Sequencing for UPI Autopay](https://docs.payu.in/docs/integrate-parallel-sequencing-for-upi-autopay) and [Recurring Payments FAQs](https://docs.payu.in/docs/faqs-recurring-payments).
+  Contact your PayU Key Account Manager (KAM) to enable UPI Autopay for your account. For integration steps, refer to [Integrate Parallel Sequencing for UPI Autopay](doc:integrate-parallel-sequencing-for-upi-autopay) and [Recurring Payments FAQs](doc:faqs-recurring-payments).
 
 </Accordion>
 
@@ -1689,10 +2280,12 @@ metadata:
   1. **Hash generation**: Ensure your server returns a valid hash for every `generateHash()` callback from the SDK, including configuration hashes (for example, `get_sdk_configuration`). An "Invalid Command Name" error often indicates a missing or incorrect hash for a new SDK command.
   2. **Environment mismatch**: Confirm Test Key/Salt with `setIsProduction(false)`, or Production Key/Salt with `setIsProduction(true)`.
   3. **Network**: Verify internet permission and that the device can reach PayU endpoints.
-  4. **SDK version**: Upgrade to the latest CheckoutPro SDK version and review [Version History](https://docs.payu.in/docs/change-logs) for breaking changes.
+  4. **SDK version**: Upgrade to the latest CheckoutPro SDK version and review [Version History](doc:change-logs) for breaking changes.
   5. **Logs**: Check Android logcat for hash or API errors before the screen hangs.
 
-  For more information, refer to [Generate Dynamic Hash](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk).
+  For more information, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk).
+
+  For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
 
 </Accordion>
 
@@ -1707,7 +2300,9 @@ metadata:
   SHA-512(key|command|var1|salt)
   ```
 
-  Return the computed hash in `onHashGenerated()` with the same hash name. Upgrade to the latest CheckoutPro version (3.2.0 or later) for timer and configuration support. For more information, refer to [Generate Dynamic Hash](https://docs.payu.in/docs/hash-generation-for-checkoutpro-sdk) and [Version History](https://docs.payu.in/docs/change-logs).
+  Return the computed hash in `onHashGenerated()` with the same hash name. Upgrade to the latest CheckoutPro version (3.2.0 or later) for timer and configuration support. For more information, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk) and [Version History](doc:change-logs).
+
+  For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
 
 </Accordion>
 
@@ -1722,6 +2317,13 @@ metadata:
   2. Test the payment flow on tablets and foldables after upgrading.
   3. If the warning persists after upgrading, contact [PayU Support](https://help.payu.in/) with your SDK version and Play Console warning details.
 
+  **Related documentation**
+
+  * For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
+  * For version updates and release notes, refer to [Version History](doc:change-logs) and [Integration Steps](doc:integration-steps-android-checkout-pro).
+  * For test credentials and go-live steps, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) and the Go-live Checklist in [Integration Steps](doc:integration-steps-android-checkout-pro).
+
+
 </Accordion>
 
 <Accordion title="I am seeing ANR (Application Not Responding) reports related to PayU crash logger in Firebase. How do I resolve this?" icon="fa-info-circle">
@@ -1734,6 +2336,13 @@ metadata:
   3. Exclude conflicting Material Design dependencies if advised (for example, when using Native OTP Assist).
   4. If ANRs persist, share Firebase ANR traces and your `build.gradle` dependencies with [PayU Support](https://help.payu.in/).
 
+  **Related documentation**
+
+  * For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
+  * For Native OTP setup and customisation, refer to [Integration Steps - Native OTP Assist SDK](doc:integration-steps-android-native-otp-assist) and [Native OTP Assist Customisations](doc:android-nativeotpassist-customisations).
+  * For callback handling and verification, refer to [Handling Redirect URLs (surl/furl) with Android SDK](doc:handling-redirect-urls-surlfurl-with-android-sdk), [Web Services for Android Core SDK](doc:web-services-for-android-core-sdk), and [Webhooks](doc:webhooks).
+
+
 </Accordion>
 
 <Accordion title="Why are my UPI Intent payments not returning surl/furl callbacks?" icon="fa-info-circle">
@@ -1741,7 +2350,7 @@ metadata:
 
   For UPI Intent and In-App flows on Android, you typically **do not** receive a callback on `surl` or `furl`. The SDK returns the payment result through its callback listener with a different response format.
 
-  Handle the SDK callback directly and use the Verify Payment API on your server to confirm the final status. If you receive `mihpayid` or `id` in the response, treat it as the PayU transaction ID. For more information, refer to [Handling Redirect URLs](https://docs.payu.in/docs/handling-redirect-urls-surlfurl-with-android-sdk).
+  Handle the SDK callback directly and use the Verify Payment API on your server to confirm the final status. If you receive `mihpayid` or `id` in the response, treat it as the PayU transaction ID. For more information, refer to [Handling Redirect URLs](doc:handling-redirect-urls-surlfurl-with-android-sdk).
 
 </Accordion>
 
@@ -1754,7 +2363,7 @@ metadata:
 
   To use the timer feature:
 
-  1. Upgrade to CheckoutPro `3.2.0` or later (check [Version History](https://docs.payu.in/docs/change-logs) for the latest version).
+  1. Upgrade to CheckoutPro `3.2.0` or later (check [Version History](doc:change-logs) for the latest version).
   2. Update your server-side hash logic to handle all hash commands requested by the SDK.
   3. Test in the PayU test environment before going live.
 
