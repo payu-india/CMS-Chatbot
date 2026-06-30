@@ -10,6 +10,49 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Additional Info for Payment APIs
+excerpt: >-
+  Supplemental _payment API request and response parameter reference for PayU
+  Web Checkout—seamless, S2S, webhooks, tokenization, character limits, and
+  sample payloads.
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: >-
+    Exhaustive _payment API parameter and response field reference for PayU Web
+    Checkout integrations, including seamless, Server-to-Server, webhooks,
+    saved cards, guest checkout, and Merchant Hosted samples.
+  robots: index
+next:
+  description: ''
+---
+This section provides supplemental information on **\_payment** API parameters and response fields for PayU Web Checkout integrations. Use it alongside the _payment APIs reference and product integration guide when you need exhaustive field definitions—optional parameters, flow-specific fields (seamless, Server-to-Server, webhooks), saved-card and guest-checkout add-ons, character limits, and sample requests by payment mode.
+
+Integration guides describe step-by-step flows; this page is the field-level reference when a parameter is not listed on your product-specific guide or when you need response field meanings and sample payloads.
+
+> 📘 **Related references**
+>
+> - [Collect Payments API – PayU Hosted Checkout](ref:_payment_payu_hosted_checkout) — primary `_payment` API reference and simulator
+> - [Generate Hash](doc:generate-hash-merchant-hosted) — hash calculation for `_payment` requests and responses
+> - [Error Codes](ref:error-codes) — `error` and `error_message` values in payment responses
+> - [Payment State Explanations](ref:payment-state-explanations) — `unmappedstatus` and transaction state details
+
+## On this page
+
+**Request parameters**
+
+- [Request parameters for \_payment API](#request-parameters-for-_payment-api)
+  - [Common request parameters](#common-request-parameters)
+  - [Seamless integration parameters](#seamless-integration-parameters)
+  - [Server-to-Server integration parameters](#server-to-server-integration-parameters)
+  - [Webhook parameters](#webhook-parameters)
+  - [Additional parameters for Guest Checkout](#additional-parameters-for-guest-checkout)
+  - [Additional parameters for Saved Card](#additional-parameters-for-saved-card)
+- [Using card on a decoupled Flow with Network token or other partner tokenization](#using-card-on-a-decoupled-flow-with-network-token-or-other-partner-tokenization)
+- [Character Limit for Request Parameters](#character-limit-for-request-parameters)
+
 ## Request parameters for \_payment API
 
 ### Common request parameters
