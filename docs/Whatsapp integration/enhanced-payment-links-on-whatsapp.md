@@ -240,7 +240,11 @@ Real-world examples cited in product materials include **PolicyBazaar** (reporte
 
 ### When to consider another flavour instead?
 
-\- You need the customer to **stay inside WhatsApp** for the full payment UX → look at **PG Deep Integration** (or **UPI Intent** if UPI-only is acceptable). For more information, refer to [Integrate WhatsApp Payments.](doc:integrate-whatsapp-payments)<br />- You need **rich multi-line-item orders** and real-time **order status** purely in chat (for example food delivery) → **PG Deep Integration** is usually more appropriate. For more information, refer to&#x20;
+- **EPL can still offer a native payment experience** for some customers (for example **UPI** via WhatsApp’s in-app payment surface), but EPL is **link-first**: you send a template with **Pay Now** after the amount and purpose are already fixed. It does not, by itself, run a full **browse → cart → address → pay** journey in chat.
+
+- You want a **conversational commerce flow**—not only dropping a **payment link** in WhatsApp, but walking the customer through **catalogue, cart, address, and order placement in the conversation** → a **complete commerce experience on WhatsApp** typically needs **PG Deep Integration (P2M)**. Use **UPI Intent** if a structured **order bubble** with **UPI-only** pay is enough. See [WhatsApp Payments Integration](doc:whatsapp-native-payments).
+
+- You need **rich multi-line-item orders** and **real-time order status** purely in chat (for example food delivery or quick commerce) → **PG Deep Integration (P2M)** is usually required. See [Integrate WhatsApp Payments](doc:integrate-whatsapp-payments).
 
 ***
 
