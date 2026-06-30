@@ -1,6 +1,7 @@
 - collect-payments-with-net-banking-seamless
 - collect-payments-with-cards-seamless
 - collect-payments-with-emi-seamless
+- upi-intent-integration
 - collect-payments-with-upi-seamless
 - collect-payments-with-wallets-seamless
 - collect-payments-with-bnpl
@@ -10,4 +11,3 @@
 - net-banking-tpv-integration
 - test-integration
 - integration-checklist-merchant-hosted-checkout
-- upi-intent-integration
