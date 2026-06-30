@@ -1,5 +1,5 @@
 ---
-title: Bank Verification
+title: Bank Verification APIs
 deprecated: false
 hidden: false
 metadata:
