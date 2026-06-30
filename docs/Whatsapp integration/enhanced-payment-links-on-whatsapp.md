@@ -29,6 +29,11 @@ PayU supports multiple ways to accept payments on WhatsApp in partnership with M
     What EPL is and how it fits alongside other WhatsApp payment options.
   </Card>
 
+  <Card title="Prerequisites to go live" href="#prerequisites-to-go-live-on-epl" icon="fa-list-check">
+    WABA, template approval, allowlisting, and PayU account needs.
+  </Card>
+</Cards>
+
   <Card title="How commerce works on WhatsApp" href="#how-commerce-works-on-whatsapp" icon="fa-store">
     Catalog, cart, identity, address, and order placement before payment.
   </Card>
@@ -45,10 +50,6 @@ PayU supports multiple ways to accept payments on WhatsApp in partnership with M
     Why EPL is often the best starting point and typical industries.
   </Card>
 
-  <Card title="Prerequisites to go live" href="#prerequisites-to-go-live-on-epl" icon="fa-list-check">
-    WABA, template approval, allowlisting, and PayU account needs.
-  </Card>
-</Cards>
 
 ## Overview
 
@@ -248,8 +249,7 @@ Real-world examples cited in product materials include **PolicyBazaar** (reporte
 
 ***
 
-## Prerequisites to Go Live on EPL
-
+<Accordion title="Prerequisites to Go Live on EPL="fa-info-list">
 <Callout icon="📌" theme="default">
   ### Integrate with Meta&#x20;
 
@@ -275,6 +275,7 @@ The following table describes other prerequisites:
 
   For **WABA verification**, **EPL allowlisting**, and **commercial enablement**, work with your **PayU Key Account Manager (KAM)** or your **BSP** so the correct Meta and PayU steps complete in order.
 </Callout>
+</Accordion>
 
 ***
 
