@@ -59,13 +59,7 @@ This section contains **new FAQs** proposed for the live [FAQs - Android SDK](do
   classpath 'com.android.tools.build:gradle:4.1.0'
   ```
 
-  Upgrade to a newer version and ensure your Java Development Kit (JDK) version is compatible with the Gradle version.
-
-  **Related documentation**
-
-  * For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
-  * For version updates and release notes, refer to [Version History](doc:change-logs) and [Integration Steps](doc:integration-steps-android-checkout-pro).
-
+  Upgrade to a newer version and ensure your Java Development Kit (JDK) version is compatible with the Gradle version. For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
 
 </Accordion>
 
@@ -77,14 +71,6 @@ This section contains **new FAQs** proposed for the live [FAQs - Android SDK](do
   - Minimum Android SDK version (API level) as specified in the SDK documentation
   - Java Development Kit (JDK) compatible with your Gradle version
   - Internet permission in your AndroidManifest.xml
-
-  For specific version requirements, refer to the integration documentation for the SDK you're using.
-
-  **Related documentation**
-
-  * For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
-  * For integration prerequisites and setup, refer to [Integration Steps](doc:integration-steps-android-checkout-pro) and [Explore Android SDKs](doc:explore-android-sdks).
-
 
 </Accordion>
 
@@ -99,13 +85,6 @@ This section contains **new FAQs** proposed for the live [FAQs - Android SDK](do
   5. Test the integration using test credentials
 
   For detailed steps, refer to [Integration Steps](doc:integration-steps-android-checkout-pro) or choose your SDK from [Explore Android SDKs](doc:explore-android-sdks).
-
-  **Related documentation**
-
-  * For integration prerequisites and setup, refer to [Integration Steps](doc:integration-steps-android-checkout-pro) and [Explore Android SDKs](doc:explore-android-sdks).
-  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
-  * For test credentials and go-live steps, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) and the Go-live Checklist in [Integration Steps](doc:integration-steps-android-checkout-pro).
-
 
 </Accordion>
 
@@ -123,11 +102,7 @@ This section contains **new FAQs** proposed for the live [FAQs - Android SDK](do
   xmlns:tools="http://schemas.android.com/tools"
   ```
 
-  **Related documentation**
-
-  * For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
-  * For customisation options, refer to [Customize Your Integration](doc:android-checkoutpro-custom-integrations) and [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
-
+For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
 
 </Accordion>
 
@@ -158,18 +133,10 @@ This section contains **new FAQs** proposed for the live [FAQs - Android SDK](do
   5. Check the logs for any error messages
   6. Ensure your app has the necessary network security configuration
 
-  **Related documentation**
-
-  * For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
-  * For integration prerequisites and setup, refer to [Integration Steps](doc:integration-steps-android-checkout-pro) and [Explore Android SDKs](doc:explore-android-sdks).
-  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
-
-
+For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
 </Accordion>
 
 <Accordion title="How do I handle payment failures in Android SDK?" icon="fa-info-circle">
-
-
   Payment failures can be handled through:
   1. **Callback methods**: Implement the payment result callbacks to receive success/failure responses
   2. **Error codes**: Check the error codes in the response to identify the specific failure reason
@@ -178,24 +145,16 @@ This section contains **new FAQs** proposed for the live [FAQs - Android SDK](do
 
   For detailed error handling, refer to [Error Handling](doc:error-handling).
 
-  For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
-
 </Accordion>
 
 <Accordion title="Can I use PayU Android SDK in a background service or worker thread?" icon="fa-info-circle">
-
-
   PayU Android SDK operations should be performed on the main/UI thread. Payment UI components require the Android main thread to function properly. However, hash generation and network calls can be performed on background threads, but ensure you switch back to the main thread before calling SDK methods that display UI.
 
-  **Related documentation**
-
-  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
-
+For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
 
 </Accordion>
 
 <Accordion title="What happens if the user closes the app during a payment transaction?" icon="fa-info-circle">
-
 
   If the user closes the app during a payment transaction:
   1. The transaction may still be processing on PayU's servers
@@ -203,16 +162,10 @@ This section contains **new FAQs** proposed for the live [FAQs - Android SDK](do
   3. Use `surl` and `furl` to receive payment responses even if the app is closed
   4. Implement proper state management to handle such scenarios
 
-  **Related documentation**
-
-  * For callback handling and verification, refer to [Handling Redirect URLs (surl/furl) with Android SDK](doc:handling-redirect-urls-surlfurl-with-android-sdk), [Web Services for Android Core SDK](doc:web-services-for-android-core-sdk), and [Webhooks](doc:webhooks).
-
-
+For callback handling and verification, refer to [Handling Redirect URLs (surl/furl) with Android SDK](doc:handling-redirect-urls-surlfurl-with-android-sdk), [Web Services for Android Core SDK](doc:web-services-for-android-core-sdk), and [Webhooks](doc:webhooks).
 </Accordion>
 
 <Accordion title="How do I switch between test and production environments in Android SDK?" icon="fa-info-circle">
-
-
   To switch between test and production environments:
   1. Use Test Key and Test Salt for testing, and Production Key and Salt for production
   2. Set the `setIsProduction` parameter accordingly:
@@ -221,10 +174,10 @@ This section contains **new FAQs** proposed for the live [FAQs - Android SDK](do
   3. Remove test metadata from AndroidManifest.xml when going to production
   4. Ensure you're using the correct API endpoints for each environment
 
-  **Related documentation**
+For more information, refer to the following:
 
-  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
-  * For test credentials and go-live steps, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) and the Go-live Checklist in [Integration Steps](doc:integration-steps-android-checkout-pro).
+  *[Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
+  * [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) and the Go-live Checklist in [Integration Steps](doc:integration-steps-android-checkout-pro).
 
 
 </Accordion>
@@ -241,12 +194,6 @@ This section contains **new FAQs** proposed for the live [FAQs - Android SDK](do
 
   Contact your PayU Key Account Manager for enabling specific payment methods.
 
-  **Related documentation**
-
-  * For UPI integration details, refer to [Integration Steps - Android UPI SDK](doc:integration-steps-android-upi-sdk), [Android Google Pay SDK](doc:android-google-pay-sdk), and [Android PhonePe SDK](doc:android-phonepe-sdk).
-  * For payment method details, refer to [Error Handling](doc:error-handling), [Card Number Formats](doc:card-number-formats), and [Additional Info for Payment APIs](ref:addl_info-payment-apis).
-
-
 </Accordion>
 
 <Accordion title="How do I debug issues with PayU Android SDK integration?" icon="fa-info-circle">
@@ -262,16 +209,11 @@ This section contains **new FAQs** proposed for the live [FAQs - Android SDK](do
   7. Review the integration documentation for common issues
   8. Contact PayU Support with specific error codes and logs
 
-  **Related documentation**
-
-  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
-  * For test credentials and go-live steps, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) and the Go-live Checklist in [Integration Steps](doc:integration-steps-android-checkout-pro).
-
+For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
 
 </Accordion>
 
 <Accordion title="Can I use multiple PayU SDKs together in the same Android app?" icon="fa-info-circle">
-
 
   Yes, you can use multiple PayU SDKs together, such as:
   - CheckoutPro SDK with UPI SDK
@@ -280,15 +222,11 @@ This section contains **new FAQs** proposed for the live [FAQs - Android SDK](do
 
   Ensure you follow the integration steps for each SDK and handle conflicts in dependencies if any. Refer to the specific SDK documentation for compatibility information.
 
-  **Related documentation**
-
-  * For UPI integration details, refer to [Integration Steps - Android UPI SDK](doc:integration-steps-android-upi-sdk), [Android Google Pay SDK](doc:android-google-pay-sdk), and [Android PhonePe SDK](doc:android-phonepe-sdk).
-
+For UPI integration details, refer to [Integration Steps - Android UPI SDK](doc:integration-steps-android-upi-sdk), [Android Google Pay SDK](doc:android-google-pay-sdk), and [Android PhonePe SDK](doc:android-phonepe-sdk).
 
 </Accordion>
 
 <Accordion title="What is the difference between static hash and dynamic hash in Android SDK?" icon="fa-info-circle">
-
 
   - **Static Hash**: Generated once and can be reused for multiple transactions. Used for certain payment flows but less secure.
   - **Dynamic Hash**: Generated fresh for each transaction with transaction-specific parameters. More secure and recommended for production use.
@@ -298,8 +236,6 @@ This section contains **new FAQs** proposed for the live [FAQs - Android SDK](do
 </Accordion>
 
 <Accordion title="How do I handle deep links or redirects after payment in Android SDK?" icon="fa-info-circle">
-
-
   Deep links and redirects are handled through:
   1. **surl (Success URL)**: Called when payment is successful
   2. **furl (Failure URL)**: Called when payment fails
@@ -321,17 +257,10 @@ This section contains **new FAQs** proposed for the live [FAQs - Android SDK](do
   5. Use PayU's hash generation tool to test your hash calculation
   6. Ensure there are no extra spaces or encoding issues in parameters
 
-  **Related documentation**
-
-  * For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
-  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
-  * For test credentials and go-live steps, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) and the Go-live Checklist in [Integration Steps](doc:integration-steps-android-checkout-pro).
-
-
+For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
 </Accordion>
 
 <Accordion title="Can I customize the payment success/failure messages in Android SDK?" icon="fa-info-circle">
-
 
   Yes, you can customize payment success/failure messages:
   1. Handle the payment callbacks in your app
@@ -341,18 +270,13 @@ This section contains **new FAQs** proposed for the live [FAQs - Android SDK](do
 
   The SDK provides callbacks that you can use to show custom messages to users.
 
-  **Related documentation**
-
-  * For callback handling and verification, refer to [Handling Redirect URLs (surl/furl) with Android SDK](doc:handling-redirect-urls-surlfurl-with-android-sdk), [Web Services for Android Core SDK](doc:web-services-for-android-core-sdk), and [Webhooks](doc:webhooks).
-  * For customisation options, refer to [Customize Your Integration](doc:android-checkoutpro-custom-integrations) and [Dynamic Configuration using Dashboard](doc:dynamic-configuration-using-dashboard-copy).
-
+For callback handling and verification, refer to [Handling Redirect URLs (surl/furl) with Android SDK](doc:handling-redirect-urls-surlfurl-with-android-sdk), [Web Services for Android Core SDK](doc:web-services-for-android-core-sdk), and [Webhooks](doc:webhooks).
 
 </Accordion>
 
 ## Troubleshooting
 
 <Accordion title="Why is the &quot;Enter OTP manually&quot; button not visible when using Material theme in CustomBrowser?" icon="fa-info-circle">
-
 
   This issue occurs due to theme conflicts. To fix it, add the following code block in your `styles.xml` file:
 
@@ -374,8 +298,6 @@ This section contains **new FAQs** proposed for the live [FAQs - Android SDK](do
 </Accordion>
 
 <Accordion title="What should I do if the SDK is not responding or payment page is blank?" icon="fa-info-circle">
-
-
   If the SDK is not responding or showing a blank page:
   1. Check your internet connection and network permissions
   2. Verify that all required parameters are being passed correctly
@@ -396,7 +318,6 @@ This section contains **new FAQs** proposed for the live [FAQs - Android SDK](do
 
 <Accordion title="Why am I not receiving payment callbacks (surl/furl) in my Android app?" icon="fa-info-circle">
 
-
   If you're not receiving payment callbacks:
   1. Verify that `surl` and `furl` are correctly configured in your payment request
   2. Ensure your app can handle deep links or URL schemes
@@ -411,7 +332,6 @@ This section contains **new FAQs** proposed for the live [FAQs - Android SDK](do
 
 <Accordion title="How do I resolve dependency conflicts when integrating PayU Android SDK?" icon="fa-info-circle">
 
-
   If you encounter dependency conflicts:
   1. Check the SDK documentation for required dependency versions
   2. Use Gradle's dependency resolution strategies
@@ -420,16 +340,12 @@ This section contains **new FAQs** proposed for the live [FAQs - Android SDK](do
   5. Use `./gradlew dependencies` to identify conflict sources
   6. Contact PayU Support if conflicts persist
 
-  **Related documentation**
-
-  * For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
+ For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
 
 
 </Accordion>
 
 <Accordion title="What should I do if payment transactions are failing with authentication errors?" icon="fa-info-circle">
-
-
   If you're getting authentication errors:
   1. Verify your Merchant Key and Salt are correct
   2. Ensure the hash is generated correctly on your server
@@ -438,18 +354,10 @@ This section contains **new FAQs** proposed for the live [FAQs - Android SDK](do
   5. Ensure your account is activated and in good standing
   6. Check if there are any account-level restrictions
 
-  **Related documentation**
-
-  * For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
-  * For hash implementation details, refer to [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk), [Generate Static Hash](doc:generate-static-hash-android-sdk-pro), and [Hash Generation](doc:hash-generation).
-  * For test credentials and go-live steps, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) and the Go-live Checklist in [Integration Steps](doc:integration-steps-android-checkout-pro).
-
-
+For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
 </Accordion>
 
 <Accordion title="Why are UPI payments not working in my Android app?" icon="fa-info-circle">
-
-
   If UPI payments are not working:
   1. Verify UPI SDK is properly integrated
   2. Check if UPI apps are installed on the device
@@ -460,12 +368,10 @@ This section contains **new FAQs** proposed for the live [FAQs - Android SDK](do
 
   For more information, refer to [Android UPI SDK Integration](doc:integration-steps-android-upi-sdk).
 
-  For detailed troubleshooting steps, refer to [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors).
 
 </Accordion>
 
 <Accordion title="Does `offerKey` format differ between Android and iOS in wrapper SDKs?" icon="fa-info-circle">
-
 
   Yes. In hybrid or wrapper SDKs (React Native, Flutter), platform-specific handling may be required:
 
