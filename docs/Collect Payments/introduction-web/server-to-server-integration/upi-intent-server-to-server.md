@@ -1,5 +1,5 @@
 ---
-title: UPI Intent with S2S Integration
+title: UPI Intent Integration
 excerpt: ''
 deprecated: false
 hidden: false
