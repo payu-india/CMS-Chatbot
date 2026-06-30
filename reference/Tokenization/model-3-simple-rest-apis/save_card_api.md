@@ -144,7 +144,7 @@ HTTP Method: **POST**
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>var9<br><code>mandatory for Rupay and AMEX cards</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter can be any of the following based on the Rupay or AMEX card used:  </p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Integer</code>This parameter can be any of the following based on the Rupay or AMEX card used:  </p>
 <strong>Rupay Cards</strong>
 <ul>
 <li>Authentication Reference Number (AuthRefID) is required for Rupay BePG Flow.</li>
