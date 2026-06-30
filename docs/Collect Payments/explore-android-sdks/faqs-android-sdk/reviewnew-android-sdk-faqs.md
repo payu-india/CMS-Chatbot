@@ -12,18 +12,8 @@ hidden: true
 metadata:
   robots: index
 ---
-This page contains **new FAQs** proposed for the live [FAQs - Android SDK](doc:faqs-android-sdk) page. Content already published in the live page has been removed from this review draft.
+This section contains **new FAQs** proposed for the live [FAQs - Android SDK](doc:faqs-android-sdk) page. Content already published in the live page has been removed from this review draft.
 
-## Related documentation
-
-| Topic | Guide |
-| --- | --- |
-| Live FAQs | [FAQs - Android SDK](doc:faqs-android-sdk) |
-| SDK overview and selection | [Explore Android SDKs](doc:explore-android-sdks) |
-| CheckoutPro integration | [Integration Steps](doc:integration-steps-android-checkout-pro) |
-| Hash generation | [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk) |
-| Callbacks and verification | [Handling Redirect URLs (surl/furl)](doc:handling-redirect-urls-surlfurl-with-android-sdk) |
-| Troubleshooting | [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors) |
 
 ## Getting Started
 
