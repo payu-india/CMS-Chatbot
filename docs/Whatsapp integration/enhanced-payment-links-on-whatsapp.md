@@ -60,7 +60,6 @@ Meta defines three WhatsApp commerce payment flavours; **EPL** sits at the **low
 
 <Accordion title="Prerequisites to Go Live on EPL="fa-info-list">
 The following table describes other prerequisites:
-
 | Requirement                          | Detail                                                                                                                         |
 | :----------------------------------- | :----------------------------------------------------------------------------------------------------------------------------- |
 | **WhatsApp Business Account (WABA)** | **Enterprise** WABA, **verified** with Meta.                                                                                   |
@@ -72,11 +71,8 @@ The following table describes other prerequisites:
 <Callout icon="✅" theme="okay">
   ### Gating list or allowlist (also known as GK biglist) is Meta's authorization mechanism for WhatsApp.
 </Callout>
-
-<Callout icon="📘" theme="info">
-  ###
-
 </Accordion>
+<Callout icon="📘" theme="info">
     ### Contact PayU KAM
 
   For **WABA verification**, **EPL allowlisting**, and **commercial enablement**, work with your **PayU Key Account Manager (KAM)** or your **BSP** so the correct Meta and PayU steps complete in order.
