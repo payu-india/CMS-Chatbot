@@ -323,7 +323,7 @@ Merchant Hosted Checkout supports a wide range of payment methods: 
 - **Credit Cards and Debit Cards**: Visa, Mastercard, American Express, etc. For more information, refer to [Cards Integration](https://docs.payu.in/docs/collect-payments-with-cards-seamless`).
 - **Net Banking**: Collect payments through Net Banking using PayU’s Merchant Hosted Checkout integration. Merchants should always send both customer account no and customer IFSC Code in Request. For more information, refer to [Net Banking Integration](doc:collect-payments-with-net-banking-seamless)
 - **Wallets**: Integrate with popular wallets like Paytm, PhonePe, and others.   For more information, refer to [Wallets Integration](doc:collect-payments-with-wallets-seamless).
-- **UPI**: Collect payments via UPI using the customer’s UPI ID.  For more information, [UPI Integration](https://docs.payu.in/docs/collect-payments-with-upi-seamless).
+- **UPI**: Collect payments via UPI using the customer’s UPI ID.  For more information, [UPI Integration](doc:upi-intent-server-to-server).
 - **EMI (Equated Monthly Installments)**: Offer customers the option to pay in instalments. For more information, refer to [EMI Integration](https://docs.payu.in/docs/collect-payments-with-emi-seamless).
 - **BNPL (Buy Now, Pay Later)**: Integrate with BNPL providers to allow customers to spread payments over time. For more information, refer to [BNPL Integration](doc:collect-payments-with-bnpl).
 - **PayPal**: Facilitate international payments through PayPal. If you’re using the PayU Hosted Checkout or Merchant Hosted integration, you need to activate PayPal from PayU Dashboard.  For more information on integration, refer to [PayPal Integration](doc:paypal-integration).
