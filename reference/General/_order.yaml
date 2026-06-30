@@ -5,6 +5,7 @@
 - emi-apis
 - health-check-apis
 - get_checkout_details
+- bank-verification
 - miscellaneous-1
 - addl-info-general-apis
 - payment-state-explanations
@@ -14,4 +15,3 @@
 - issuer-decline-error-codes
 - ald-id-error-page
 - transaction-stages-error-references-field7-field8
-- bank-verification
