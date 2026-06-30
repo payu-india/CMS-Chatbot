@@ -5,13 +5,6 @@ hidden: false
 metadata:
   robots: index
 ---
----
-title: Enhanced Payment Links on WhatsApp
-deprecated: false
-hidden: false
-metadata:
-  robots: index
----
 PayU supports multiple ways to accept payments on WhatsApp in partnership with Meta. Merchants integrate with PayU; PayU handles the Meta side—you do not need a separate commercial or technical integration with Meta for these flows.
 
 **Enhanced Payment Links (EPL)** is the simplest option: you send an approved WhatsApp **template** message with a **Pay Now** call-to-action, the customer taps it, and completes payment on PayU’s **Hosted Checkout** page on the browser (outside WhatsApp) and on WhatsApp app itself for UPI payments. If you already use PayU **payment links**, link generation and **webhooks** work the same as today. For more information, refer to [Payment Links.](doc:payment-links-dashboard)
@@ -57,40 +50,75 @@ EPL uses Meta’s **Enhanced Payment Links** pattern: PayU generates a **payment
 
 Meta defines three WhatsApp commerce payment flavours; **EPL** sits at the **lowest complexity** end (typically **1–2 weeks** to go live), with **no** PG-to-WhatsApp **OAuth** linking in Business Manager.
 
+## Prerequisites to go live
+
+<Callout icon="📌" theme="default">
+  ### Integrate with Meta&#x20;
+
+  Refer to the following to integrating with Meta before proceeding with PayU. For more information, refer to <Anchor target="_blank" href="https://developers.facebook.com/documentation/business-messaging/whatsapp/payments/payments-in/enhanced-payment-links">Meta > Enhanced Payment Links</Anchor>
+</Callout>
+
+<Accordion title="Prerequisites to Go Live on EPL="fa-info-list">
+The following table describes other prerequisites:
+
+| Requirement                          | Detail                                                                                                                         |
+| :----------------------------------- | :----------------------------------------------------------------------------------------------------------------------------- |
+| **WhatsApp Business Account (WABA)** | **Enterprise** WABA, **verified** with Meta.                                                                                   |
+| **Approved message template**        | Template with a **CTA button**; URL must follow Meta’s **PayU-specific link suffix** rules. Submitted and approved by Meta.    |
+| **PayU account**                     | Standard PayU merchant account.                                                                                                |
+| **EPL allowlisting**                 | WABA must be added to Meta’s **EPL gating list**, which will be done by PayU Key Account Manager (KAM). Contact your PayU KAM. |
+| **Webhooks**                         | Keep your **existing PayU webhook**; no new WhatsApp payment webhook is required for EPL.                                      |
+
+<Callout icon="✅" theme="okay">
+  ### Gating list or allowlist (also known as GK biglist) is Meta's authorization mechanism for WhatsApp.
+</Callout>
+
+<Callout icon="📘" theme="info">
+  ###
+
+</Accordion>
+    ### Contact PayU KAM
+
+  For **WABA verification**, **EPL allowlisting**, and **commercial enablement**, work with your **PayU Key Account Manager (KAM)** or your **BSP** so the correct Meta and PayU steps complete in order.
+</Callout>
+
+***
+
+
 ## How commerce works on WhatsApp
 
 WhatsApp Commerce is **not a full e-commerce website inside the chat**. It is usually a **conversation-led** journey: the customer talks to the business (or a bot), the business helps them choose what to buy, then **payment** is triggered using one of Meta’s flavours—**EPL**, **UPI Intent**, or **PG Deep Integration (P2M)**. PayU integrates at the **payment** step; **catalogue, cart, login, and address** are handled by **Meta’s messaging features** plus **your** website, app, CRM, or order system.
 
 ### What happens before payment
 
-| Commerce step | What typically happens on WhatsApp | Who builds it |
-| :--- | :--- | :--- |
-| **Discovery & chat** | Customer opens a thread with the business; agent or chatbot answers questions. | Merchant / BSP (Cloud API, flows, CRM) |
-| **Login / identity** | There is **no separate “sign up”** in most native flows—the customer is already on WhatsApp; the **phone number** and chat thread identify them. Your backend maps that number to a customer record if needed. | Merchant CRM / OMS |
-| **Browse & catalog** | Business shares a **WhatsApp Catalog**, **product** messages, or links to the **website / app**. | Meta Catalog + merchant systems |
-| **Add to cart / build order** | For **retail**: items are added via catalog UX or your bot records line items. For **collections / BFSI**: the “order” is often **already created** in your core system (policy, EMI, invoice) before any WhatsApp pay message. | Merchant OMS / billing |
-| **Address & delivery** | Shipping or billing address may be collected **in chat**, in an **`order_details`** payload (UPI Intent / P2M), or on **PayU Hosted Checkout** / your site when the customer pays (common for **EPL**). | Merchant + flavour chosen |
-| **Order placement** | You confirm the order in your system, then send the right **WhatsApp message** (template with pay link, or native **order** message). | Merchant backend + Cloud API |
+| Commerce step                 | What typically happens on WhatsApp                                                                                                                                                                                              | Who builds it                          |
+| :---------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------------------------------------- |
+| **Discovery & chat**          | Customer opens a thread with the business; agent or chatbot answers questions.                                                                                                                                                  | Merchant / BSP (Cloud API, flows, CRM) |
+| **Login / identity**          | There is **no separate “sign up”** in most native flows—the customer is already on WhatsApp; the **phone number** and chat thread identify them. Your backend maps that number to a customer record if needed.                  | Merchant CRM / OMS                     |
+| **Browse & catalog**          | Business shares a **WhatsApp Catalog**, **product** messages, or links to the **website / app**.                                                                                                                                | Meta Catalog + merchant systems        |
+| **Add to cart / build order** | For **retail**: items are added via catalog UX or your bot records line items. For **collections / BFSI**: the “order” is often **already created** in your core system (policy, EMI, invoice) before any WhatsApp pay message. | Merchant OMS / billing                 |
+| **Address & delivery**        | Shipping or billing address may be collected **in chat**, in an `order_details` payload (UPI Intent / P2M), or on **PayU Hosted Checkout** / your site when the customer pays (common for **EPL**).                             | Merchant + flavour chosen              |
+| **Order placement**           | You confirm the order in your system, then send the right **WhatsApp message** (template with pay link, or native **order** message).                                                                                           | Merchant backend + Cloud API           |
 
 ### Where EPL fits in the commerce journey
 
 **EPL is a payment channel**, not a full in-chat storefront:
 
-* **Commerce before pay** usually happens **outside** the pay template—on your **website**, **app**, **call centre**, or **agent chat**—or the payable amount is **system-generated** (renewal, EMI, invoice).
-* Your system **creates the order or payable** in your OMS / billing stack, then calls PayU for a **payment link**, then sends an approved **template** with **Pay Now**.
-* **Login, address, and line-item UX** are **not** provided by EPL itself; if you need them at pay time, they appear on **PayU Hosted Checkout** (browser / in-app WebView) or were captured earlier in your journey.
+- **Commerce before pay** usually happens **outside** the pay template—on your **website**, **app**, **call centre**, or **agent chat**—or the payable amount is **system-generated** (renewal, EMI, invoice).
+- Your system **creates the order or payable** in your OMS / billing stack, then calls PayU for a **payment link**, then sends an approved **template** with **Pay Now**.
+- **Login, address, and line-item UX** are **not** provided by EPL itself; if you need them at pay time, they appear on **PayU Hosted Checkout** (browser / in-app WebView) or were captured earlier in your journey.
 
 Use **UPI Intent** or **PG Deep Integration** when the customer must **review a structured order in chat** and pay with a **native order bubble** (utilities, multi-item retail, in-chat checkout). For more information on those journeys, refer to [WhatsApp Payments Integration](doc:whatsapp-native-payments).
 
 ### Commerce capability by payment flavour
 
-| Commerce need | EPL | UPI Intent | PG Deep Integration (P2M) |
-| :--- | :--- | :--- | :--- |
-| **Pay an invoice / renewal / EMI link** | Yes — primary use case | Possible | Overkill |
-| **WhatsApp Catalog → pay in chat** | Pay link after order is built elsewhere | Order bubble + UPI | Full catalog → **Review & Pay** in chat |
-| **Multi-item cart with shipping in chat** | Limited — checkout on PayU page | Partial — order bubble, UPI-first | Yes — native sheet, order status |
-| **Address at checkout** | On **PayU Hosted Checkout** or pre-collected | In **order_details** or prior chat | In **order_details** + in-chat pay |
-| **Real-time order status in WhatsApp** | No | Limited | Yes |
+| Commerce need                             | EPL                                          | UPI Intent                          | PG Deep Integration (P2M)               |
+| :---------------------------------------- | :------------------------------------------- | :---------------------------------- | :-------------------------------------- |
+| **Pay an invoice / renewal / EMI link**   | Yes — primary use case                       | Possible                            | Overkill                                |
+| **WhatsApp Catalog → pay in chat**        | Pay link after order is built elsewhere      | Order bubble + UPI                  | Full catalog → **Review & Pay** in chat |
+| **Multi-item cart with shipping in chat** | Limited — checkout on PayU page              | Partial — order bubble, UPI-first   | Yes — native sheet, order status        |
+| **Address at checkout**                   | On **PayU Hosted Checkout** or pre-collected | In **order\_details** or prior chat | In **order\_details** + in-chat pay     |
+| **Real-time order status in WhatsApp**    | No                                           | Limited                             | Yes                                     |
 
 ***
 
@@ -170,8 +198,6 @@ sequenceDiagram
 
 ***
 
-<br />
-
 ## Customer journey
 
 <Accordion title="Step 1: Payment request appears in the chat" icon="fa-comment-dollar">
@@ -248,35 +274,6 @@ Real-world examples cited in product materials include **PolicyBazaar** (reporte
 - You need **rich multi-line-item orders** and **real-time order status** purely in chat (for example food delivery or quick commerce) → **PG Deep Integration (P2M)** is usually required. See [Integrate WhatsApp Payments](doc:integrate-whatsapp-payments).
 
 ***
-## Prerequisites to go live
-<Callout icon="📌" theme="default">
-  ### Integrate with Meta&#x20;
 
-  Refer to the following to integrating with Meta before proceeding with PayU. For more information, refer to <Anchor target="_blank" href="https://developers.facebook.com/documentation/business-messaging/whatsapp/payments/payments-in/enhanced-payment-links">Meta > Enhanced Payment Links</Anchor>
-</Callout>
-<Accordion title="Prerequisites to Go Live on EPL="fa-info-list">
-The following table describes other prerequisites:
-
-| Requirement                          | Detail                                                                                                                          |
-| :----------------------------------- | :------------------------------------------------------------------------------------------------------------------------------ |
-| **WhatsApp Business Account (WABA)** | **Enterprise** WABA, **verified** with Meta.                                                                                    |
-| **Approved message template**        | Template with a **CTA button**; URL must follow Meta’s **PayU-specific link suffix** rules. Submitted and approved by Meta.     |
-| **PayU account**                     | Standard PayU merchant account.                                                                                                 |
-| **EPL allowlisting**                 | WABA must be added to Meta’s **EPL gating list**, which will be done by PayU Key Account Manager (KAM). Contact your PayU KAM.  |
-| **Webhooks**                         | Keep your **existing PayU webhook**; no new WhatsApp payment webhook is required for EPL.                                       |
-
-<Callout icon="✅" theme="okay">
-  ### Gating list or allowlist (also known as GK biglist) is Meta's authorization mechanism for WhatsApp.
-</Callout>
-
-<Callout icon="📘" theme="info">
-</Accordion>
-  ### Contact PayU KAM
-
-  For **WABA verification**, **EPL allowlisting**, and **commercial enablement**, work with your **PayU Key Account Manager (KAM)** or your **BSP** so the correct Meta and PayU steps complete in order.
-</Callout>
-
-
-***
 
 <br />
