@@ -215,7 +215,7 @@ This section includes the workflow and steps to integrate UPI Intent with Server
     </tr>
     <tr>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>bankcode<br/><code>mandatory for seamless/s2s flow</code></p></td>
-      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Each payment option is identified with a unique bank code at PayU. For UPI Autopay, post <strong>UPI</strong>.</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Each payment option is identified with a unique bank code at PayU. For UPI Autopay, post <strong>INTENT</strong>.</p></td>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>UPI</p></td>
     </tr>
     <tr>
