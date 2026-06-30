@@ -1,5 +1,5 @@
 ---
-title: UPI Integration
+title: UPI Collect Integration
 excerpt: ''
 deprecated: false
 hidden: false
