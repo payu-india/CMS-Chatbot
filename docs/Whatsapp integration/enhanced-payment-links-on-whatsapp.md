@@ -32,7 +32,7 @@ PayU supports multiple ways to accept payments on WhatsApp in partnership with M
   <Card title="Prerequisites to go live" href="#prerequisites-to-go-live-on-epl" icon="fa-list-check">
     WABA, template approval, allowlisting, and PayU account needs.
   </Card>
-</Cards>
+
 
   <Card title="How commerce works on WhatsApp" href="#how-commerce-works-on-whatsapp" icon="fa-store">
     Catalog, cart, identity, address, and order placement before payment.
@@ -49,7 +49,7 @@ PayU supports multiple ways to accept payments on WhatsApp in partnership with M
   <Card title="Benefits and fit" href="#benefits-for-your-business" icon="fa-briefcase">
     Why EPL is often the best starting point and typical industries.
   </Card>
-
+</Cards>
 
 ## Overview
 
