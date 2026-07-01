@@ -12,14 +12,17 @@ For the full VA management set, refer to [PACB Virtual Account APIs](ref:pacb-vi
 
 ## Environment
 
-| Environment | URL                                                                 | Method |
-| ----------- | ------------------------------------------------------------------- | ------ |
-| Test        | `https://uatoneapi.payu.in/payout/v2/virtualAccounts/deactivate`    | PATCH  |
-| Production  | `https://oneapi.payu.in/payout/v2/virtualAccounts/deactivate` | PATCH  |
+| Environment | URL                                                              | Method |
+| ----------- | ---------------------------------------------------------------- | ------ |
+| Test        | `https://uatoneapi.payu.in/payout/v2/virtualAccounts/deactivate` | PATCH  |
+| Production  | `https://oneapi.payu.in/payout/v2/virtualAccounts/deactivate`    | PATCH  |
 
-## Requeust Parameters
+## Request Parameters
+
 ### Authentication Logic
+
 <HeaderAuthentication />
+
 ### Request Header
 
 | Parameter                         | Description                                                | Example                                                                                     |
