@@ -10,20 +10,22 @@ Retrieve a **paginated list** of Virtual Accounts provisioned for a Cross-Border
 
 ## Environment
 
-| Environment | URL                                                      | Method |
-| ----------- | -------------------------------------------------------- | ------ |
-| Test        | `https://uatoneapi.payu.in/payout/v2/virtualAccounts`    | GET    |
-| Production  | `https://oneapi.payu.in/payout/v2/virtualAccounts` | GET    |
+| Environment | URL                                                   | Method |
+| ----------- | ----------------------------------------------------- | ------ |
+| Test        | `https://uatoneapi.payu.in/payout/v2/virtualAccounts` | GET    |
+| Production  | `https://oneapi.payu.in/payout/v2/virtualAccounts`    | GET    |
 
 ## Requeust Parameters
+
 ### Authentication Logic
+
 <HeaderAuthentication />
+
 ### Request Header
 
-| Parameter                      | Description                                                | Example                                                                 |
-| ------------------------------ | ---------------------------------------------------------- | ----------------------------------------------------------------------- |
-| Authorization<br />`mandatory` | `String` - Bearer access token from Payouts authentication | Bearer aab9dc927c4a68af7eb95ef694f0b48bb731c5a1a7111786d6658d774db14188 |
-| merchantId<br />`mandatory`    | `Integer` - PayU MID of the sub-merchant                   | 12345                                                                   |
+| Parameter                   | Description                              | Example |
+| --------------------------- | ---------------------------------------- | ------- |
+| merchantId<br />`mandatory` | `Integer` - PayU MID of the sub-merchant | 12345   |
 
 ## Request parameters
 
