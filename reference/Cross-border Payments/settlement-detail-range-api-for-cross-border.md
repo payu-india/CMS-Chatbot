@@ -30,33 +30,8 @@ Settlement Details APIs are build on top of settlement data that provides transa
 
 ### Authorization header
 
-- Date: date time when request was triggerd (`Wed, 28 Jun 2023 11:25:19 GMT`)
+<HeaderAuthentication />
 
-```
-var date = new Date().toUTCString()
-```
-
-- Authorisation: a `SHA512` token generated from the current date time, key and salt for the MID. Below is JS function to get the same.
-
-```
-var merchant_key = '<key>';
-var merchant_secret = '<salt or secret>';
-// date
-var date = new Date();
-// var date = "Wed, 28 Jun 2023 11:25:19 GMT";
-date = new Date().toUTCString();
-// authorization
-var authorization = getAuthHeader(date);
-function getAuthHeader(date) {
-  var AUTH_TYPE = 'sha512';
-  var data = isEmpty(request['data'])?"":request['data'];
-  var hash_string = data + '|' + date + '|' + merchant_secret;
-  console.log("Hash String is ", hash_string);
-  var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
-  var authHeader = 'hmac username="' + merchant_key + '", ' + 'algorithm="' + AUTH_TYPE + '", headers="date", signature="' + hash + '"'
-  return authHeader;
-}
-```
 
 ### Query parameters
 
