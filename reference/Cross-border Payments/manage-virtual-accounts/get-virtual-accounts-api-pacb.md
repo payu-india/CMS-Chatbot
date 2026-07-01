@@ -15,7 +15,7 @@ Retrieve a **paginated list** of Virtual Accounts provisioned for a Cross-Border
 | Test        | `https://uatoneapi.payu.in/payout/v2/virtualAccounts` | GET    |
 | Production  | `https://oneapi.payu.in/payout/v2/virtualAccounts`    | GET    |
 
-## Requeust Parameters
+## Request Parameters
 
 ### Authentication Logic
 
