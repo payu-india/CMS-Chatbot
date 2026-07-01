@@ -144,8 +144,6 @@ To activate PayPal wallet:
 
 ***
 
-<br />
-
 # Restrict Checkout to Specific Payment Methods (`enforce_paymethod`)
 
 You can append the parameter names in your transaction request to restrict checkout to some of the payment modes.
