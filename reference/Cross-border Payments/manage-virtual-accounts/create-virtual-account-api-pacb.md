@@ -17,13 +17,16 @@ Provision a **Virtual Account (VA)** for a Cross-Border Payments sub-merchant. P
 
 ## Request Parameters
 
+Authorization Logic for Header
+
+<HeaderAuthentication />
+
 ### Request Header
 
-| Parameter                      | Description                                                                                                           | Example                                                                                         |
-| ------------------------------ | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| Authorization<br />`mandatory` | `String` - Bearer access token from Payouts authentication. For more information on generating Bearer token, refer to | Bearer aab9dc927<br />c4a68af7eb95ef69<br />4f0b48bb731c5a1a<br />7111786d6658d774<br />db14188 |
-| merchantId<br />`mandatory`    | `Integer` - PayU MID of the sub-merchant                                                                              | 12345                                                                                           |
-| Content-Type<br />`mandatory`  | `String` - Request body format. Set to `application/json`                                                             | application/json                                                                                |
+| Parameter                     | Description                                               | Example          |
+| ----------------------------- | --------------------------------------------------------- | ---------------- |
+| merchantId<br />`mandatory`   | `Integer` - PayU MID of the sub-merchant                  | 12345            |
+| Content-Type<br />`mandatory` | `String` - Request body format. Set to `application/json` | application/json |
 
 ### Body Parameters
 
@@ -36,7 +39,7 @@ Provision a **Virtual Account (VA)** for a Cross-Border Payments sub-merchant. P
 
 ```curl
 curl --location --request POST 'https://uatoneapi.payu.in/payout/v2/virtualAccounts' \
---header 'Authorization: Bearer <access_token>' \
+--header 'Authorization: {{authorization}}'
 --header 'merchantId: 12345' \
 --header 'Content-Type: application/json' \
 --data '{
