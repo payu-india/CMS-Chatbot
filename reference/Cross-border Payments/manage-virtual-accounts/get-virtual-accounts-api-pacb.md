@@ -13,9 +13,12 @@ Retrieve a **paginated list** of Virtual Accounts provisioned for a Cross-Border
 | Environment | URL                                                      | Method |
 | ----------- | -------------------------------------------------------- | ------ |
 | Test        | `https://uatoneapi.payu.in/payout/v2/virtualAccounts`    | GET    |
-| Production  | `https://payout.payumoney.com/payout/v2/virtualAccounts` | GET    |
+| Production  | `https://oneapi.payu.in/payout/v2/virtualAccounts` | GET    |
 
-## Request Headers
+## Requeust Parameters
+### Authentication Logic
+<HeaderAuthentication />
+### Request Header
 
 | Parameter                      | Description                                                | Example                                                                 |
 | ------------------------------ | ---------------------------------------------------------- | ----------------------------------------------------------------------- |
@@ -33,7 +36,7 @@ Retrieve a **paginated list** of Virtual Accounts provisioned for a Cross-Border
 
 ```curl
 curl --location --request GET 'https://uatoneapi.payu.in/payout/v2/virtualAccounts?pageOffset=1&pageSize=10' \
---header 'Authorization: Bearer <access_token>' \
+--header 'Authorization: {{authorization}}' \
 --header 'merchantId: 12345'
 ```
 
