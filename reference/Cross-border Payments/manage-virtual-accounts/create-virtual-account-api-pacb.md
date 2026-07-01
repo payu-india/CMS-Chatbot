@@ -136,7 +136,7 @@ curl --location --request POST 'https://uatoneapi.payu.in/payout/v2/virtualAccou
                 <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">data</td>
                 <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">This parameter contains the virtual account details in JSON format. For more information, refer to <a href="#data-json-fields-description">data JSON Fields Description</a>
 </td>
-                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">refer to <a href="data-json-fields-description">data JSON Fields Description></td>
+                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">refer to <a href="#data-json-fields-description">data JSON Fields Description></td>
               </tr>
              
             </tbody>
