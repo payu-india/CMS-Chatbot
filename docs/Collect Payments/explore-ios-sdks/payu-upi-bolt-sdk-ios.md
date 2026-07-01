@@ -22,6 +22,18 @@ metadata:
 next:
   description: ''
 ---
+---
+title: iOS UPI Bolt SDK
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
 
 PayU UPI Bolt SDK will provide a simpler and more efficient payment experience to the merchants. It will eliminate any third-party redirection and higher success rate. Profile management including accounts and balances for users. Enhancing the overall customer experience and decreasing customer drop-offs. This section describes the advantages and user journeys. For steps to integrate UPI Bolt UI, refer to [UPI Bolt UI Integration](doc:upi-bolt-ui-integration-ios-bolt-sdk).
 
@@ -124,142 +136,62 @@ PayU UPI Bolt SDK will provide a simpler and more efficient payment experience t
 
   The following fields are needed as a request for this API:
 
-  <Table>
-    <thead>
-      <tr>
-        <th>
-          Fields
-        </th>
-
-        <th>
-          Description
-        </th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr>
-        <td>
-          parentVC
-          `mandatory`
-        </td>
-
-        <td>
-          `UIViewController` Calling VC of the merchant App 
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          delegate
-          `mandatory`
-        </td>
-
-        <td>
-          `PayUUPIBoltUIDelegate` Delegates to receive response
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          config
-          `mandatory`
-        </td>
-
-        <td>
-          `PayUUPIBoltUIConfig` PayUUPIBoltUIConfig includes the below fields. 
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          merchantName
-          `mandatory`
-        </td>
-
-        <td>
-          `String` Merchant Name
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          merchantKey
-          `mandatory`
-        </td>
-
-        <td>
-          `String` PayU Merchant Key
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          phone
-          `mandatory`
-        </td>
-
-        <td>
-          `String` Phone number for registration
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          email
-          `mandatory`
-        </td>
-
-        <td>
-          `String` Customer Email Id
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          pluginTypes
-          `mandatory`
-        </td>
-
-        <td>
-          `Array <String>` List of Supported Plugin (Values - AXIS or HDFC)
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          isProduction
-          `mandatory`
-        </td>
-
-        <td>
-          `Boolean` This parameter must contain any of the following: true - Production environment, false - Test or Staging environment
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          excludedBanksIINs
-          `mandatory`
-        </td>
-
-        <td>
-          `Array <String>` List of Bank’s IIN to exclude
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          refId
-          `optional`
-        </td>
-
-        <td>
-          `String` Unique reference ID
-        </td>
-      </tr>
-    </tbody>
-  </Table>
+  <HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Fields</strong></th>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>parentVC<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>UIViewController</code> Calling VC of the merchant App</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>delegate<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>PayUUPIBoltUIDelegate</code> Delegates to receive response</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>config<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>PayUUPIBoltUIConfig</code> PayUUPIBoltUIConfig includes the below fields.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>merchantName<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Merchant Name</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>merchantKey<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> PayU Merchant Key</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>phone<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Phone number for registration</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>email<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Customer Email Id</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>pluginTypes<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Array&lt;String&gt;</code> List of Supported Plugin (Values - AXIS or HDFC)</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>isProduction<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Boolean</code> This parameter must contain any of the following: true - Production environment, false - Test or Staging environment</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>excludedBanksIINs<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Array&lt;String&gt;</code> List of Bank's IIN to exclude</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>refId<br><code>optional</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Unique reference ID</p></td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
 </Accordion>
 
 <Accordion title="Step 2: Check if UPI Bolt SDK is available" icon="fa-info-circle">
@@ -273,32 +205,22 @@ PayU UPI Bolt SDK will provide a simpler and more efficient payment experience t
 
   The following fields are needed as a request for this API:
 
-  <Table>
-    <thead>
-      <tr>
-        <th>
-          Fields
-        </th>
-
-        <th>
-          Definition
-        </th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr>
-        <td>
-          callback
-          `mandatory`
-        </td>
-
-        <td>
-          `PayUUPIBoltUI `Callback Ref. 6
-        </td>
-      </tr>
-    </tbody>
-  </Table>
+  <HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Fields</strong></th>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Definition</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>callback<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>PayUUPIBoltUI</code> Callback Ref. 6</p></td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
 </Accordion>
 
 <Accordion title="Step 3: Register and pay" icon="fa-info-circle">
@@ -312,32 +234,22 @@ PayU UPI Bolt SDK will provide a simpler and more efficient payment experience t
 
   The following fields are needed as a request for this API:
 
-  <Table>
-    <thead>
-      <tr>
-        <th>
-          Fields
-        </th>
-
-        <th>
-          Definition
-        </th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr>
-        <td>
-          paymentParams
-          `mandatory`
-        </td>
-
-        <td>
-          `PayUUPIBoltPaymentParams` Ref. 5
-        </td>
-      </tr>
-    </tbody>
-  </Table>
+  <HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Fields</strong></th>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Definition</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentParams<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>PayUUPIBoltPaymentParams</code> Ref. 5</p></td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
 </Accordion>
 
 <Accordion title="Step 4: Open UPI Management" icon="fa-info-circle">
@@ -351,32 +263,22 @@ PayU UPI Bolt SDK will provide a simpler and more efficient payment experience t
 
   The following fields are needed as a request for this API:
 
-  <Table>
-    <thead>
-      <tr>
-        <th>
-          Fields
-        </th>
-
-        <th>
-          Definition
-        </th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr>
-        <td>
-          screenType
-          `mandatory`
-        </td>
-
-        <td>
-          `PayUUPIBoltUIScreenType` To enforce the management screen
-        </td>
-      </tr>
-    </tbody>
-  </Table>
+  <HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Fields</strong></th>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Definition</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>screenType<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>PayUUPIBoltUIScreenType</code> To enforce the management screen</p></td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
 </Accordion>
 
 <Accordion title="Step 5: Generate PayU payment params" icon="fa-info-circle">
@@ -407,152 +309,91 @@ PayU UPI Bolt SDK will provide a simpler and more efficient payment experience t
 
   The following fields are needed as a request:
 
-  <Table>
-    <thead>
-      <tr>
-        <th>
-          Fields
-        </th>
-
-        <th>
-          Definition
-        </th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr>
-        <td>
-          amount
-          `mandatory`
-        </td>
-
-        <td>
-          `String` Amount to make payment
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          txnId
-          `mandatory`
-        </td>
-
-        <td>
-          `String`  Unique transaction ID
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          productInfo
-          `mandatory`
-        </td>
-
-        <td>
-          `String` Product description.
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          firstName
-          `mandatory`
-        </td>
-
-        <td>
-          `String`  First name of the user
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          furl
-          `optional`
-        </td>
-
-        <td>
-          `String` Failure callback URL
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          surl
-          `optional`
-        </td>
-
-        <td>
-          `String` Success callback URL 
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          udf1
-          `optional`
-        </td>
-
-        <td>
-          `String` User-defined fields 1
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          udf2
-          `optional`
-        </td>
-
-        <td>
-          `String` User-defined fields 2
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          udf3
-          `optional`
-        </td>
-
-        <td>
-          `String` User-defined fields 3
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          udf4
-          `optional`
-        </td>
-
-        <td>
-          `String` User-defined fields 4
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          udf5
-          `optional`
-        </td>
-
-        <td>
-          `String` User-defined fields 5
-        </td>
-      </tr>
-    </tbody>
-  </Table>
+  <HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Fields</strong></th>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Definition</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>amount<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Amount to make payment</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>txnId<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Unique transaction ID</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>productInfo<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Product description.</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>firstName<br><code>mandatory</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> First name of the user</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>furl<br><code>optional</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Failure callback URL</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>surl<br><code>optional</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Success callback URL</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>udf1<br><code>optional</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> User-defined fields 1</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>udf2<br><code>optional</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> User-defined fields 2</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>udf3<br><code>optional</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> User-defined fields 3</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>udf4<br><code>optional</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> User-defined fields 4</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>udf5<br><code>optional</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> User-defined fields 5</p></td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
 </Accordion>
 
 <Accordion title="Step 6: Check PayU UPI Response" icon="fa-info-circle">
   The **PayUUPIResponse** API is used to check the response.
 
-  | Fields  | Definition                        |
-  | ------- | --------------------------------- |
-  | code    | `Integer` Error or success code   |
-  | message | `String` Error or success message |
-  | result  | `Object` Response data            |
+  <HTMLBlock>{`
+<table style="width: 100%; border-collapse: collapse;">
+  <thead>
+    <tr>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Fields</strong></th>
+      <th style="border: 1px solid #ddd; padding: 8px;"><strong>Definition</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>code</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Integer</code> Error or success code</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>message</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Error or success message</p></td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>result</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Response data</p></td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
 </Accordion>
 
 <Accordion title="Hash generation logic" icon="fa-info-circle">
