@@ -921,20 +921,27 @@ Potential methods (verify in your SDK):
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Back To Top — preview</title>
   <style>
-    body {
+    /* ReadMe-like: page scrolls inside main column, not window */
+    html, body {
       margin: 0;
+      height: 100%;
+      overflow: hidden;
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
       line-height: 1.6;
       color: #111827;
-      background: #f9fafb;
+      background: #f3f4f6;
+    }
+    .rm-GuidesMain {
+      height: 100vh;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
     .preview-shell {
       max-width: 720px;
       margin: 0 auto;
       padding: 2rem 1.5rem 6rem;
       background: #fff;
-      min-height: 200vh;
-      box-shadow: 0 0 0 1px #e5e7eb;
+      min-height: 220vh;
     }
     h1 { margin-top: 0; color: #1e3a5f; }
     p { color: #374151; }
@@ -948,30 +955,26 @@ Potential methods (verify in your SDK):
   </style>
 </head>
 <body>
-  <div class="preview-shell">
-    <h1>Back To Top preview</h1>
-    <p class="hint">Scroll down — the button appears after ~320px. Click it to return here.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <p>Repeat content to enable scrolling…</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <p>End of preview content.</p>
+  <div class="rm-GuidesMain">
+    <div class="preview-shell markdown-body">
+      <h1>Back To Top preview</h1>
+      <p class="hint">Scroll inside the main column (like ReadMe). The button appears after ~320px. Click it to jump back here.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p>Repeat content to enable scrolling…</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p>End of preview content.</p>
+    </div>
   </div>
 
-  <!-- embed starts -->
-  <div id="payu-btt" aria-hidden="true">
-    <button
-      type="button"
-      class="payu-btt__btn"
-      id="payu-btt-btn"
-      aria-label="Back to top"
-      onclick="(function(){try{window.scrollTo({top:0,behavior:'smooth'})}catch(e){window.scrollTo(0,0)}})()"
-    >
+  <!-- embed starts (same as back-to-top-embed.html) -->
+  <div id="payu-btt">
+    <button type="button" class="payu-btt__btn" id="payu-btt-btn" aria-label="Back to top">
       <span class="payu-btt__icon" aria-hidden="true">
         <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="11" cy="11" r="11" fill="#528FF0"/>
@@ -984,98 +987,101 @@ Potential methods (verify in your SDK):
 
   <style>
     #payu-btt, #payu-btt * { box-sizing: border-box; }
-
     #payu-btt .payu-btt__btn {
-      position: fixed;
-      bottom: 28px;
-      right: 28px;
-      z-index: 9999;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
+      position: fixed; bottom: 28px; right: 28px; z-index: 9999;
+      display: inline-flex; align-items: center; gap: 10px;
       padding: 10px 16px 10px 12px;
-      border: 1.5px solid #1e3a5f;
-      border-radius: 8px;
-      background: #fff;
-      color: #1e3a5f;
+      border: 1.5px solid #1e3a5f; border-radius: 8px;
+      background: #fff; color: #1e3a5f;
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 1;
-      cursor: pointer;
+      font-size: 14px; font-weight: 500; line-height: 1; cursor: pointer;
       box-shadow: 0 2px 8px rgba(30, 58, 95, 0.12);
-      transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+      opacity: 1; transform: translateY(0);
+      transition: opacity 0.2s ease, transform 0.2s ease, border-color 0.15s ease, box-shadow 0.15s ease;
     }
-
-    #payu-btt .payu-btt__btn:hover {
-      border-color: #528FF0;
-      box-shadow: 0 4px 14px rgba(82, 143, 240, 0.22);
-    }
-
-    #payu-btt .payu-btt__btn:active {
-      transform: translateY(1px);
-    }
-
-    #payu-btt .payu-btt__btn:focus-visible {
-      outline: 2px solid #528FF0;
-      outline-offset: 2px;
-    }
-
-    #payu-btt .payu-btt__icon {
-      display: flex;
-      flex-shrink: 0;
-      line-height: 0;
-    }
-
-    #payu-btt .payu-btt__label {
-      white-space: nowrap;
-    }
-
-    #payu-btt.payu-btt--hidden .payu-btt__btn {
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(8px);
-    }
-
-    #payu-btt .payu-btt__btn {
-      opacity: 1;
-      transform: translateY(0);
-      transition:
-        opacity 0.2s ease,
-        transform 0.2s ease,
-        border-color 0.15s ease,
-        box-shadow 0.15s ease;
-    }
-
+    #payu-btt .payu-btt__btn:hover { border-color: #528FF0; box-shadow: 0 4px 14px rgba(82, 143, 240, 0.22); }
+    #payu-btt .payu-btt__btn:active { transform: translateY(1px); }
+    #payu-btt .payu-btt__btn:focus-visible { outline: 2px solid #528FF0; outline-offset: 2px; }
+    #payu-btt .payu-btt__icon { display: flex; flex-shrink: 0; line-height: 0; }
+    #payu-btt .payu-btt__label { white-space: nowrap; }
+    #payu-btt.payu-btt--hidden .payu-btt__btn { opacity: 0; pointer-events: none; transform: translateY(8px); }
     @media (max-width: 640px) {
-      #payu-btt .payu-btt__btn {
-        bottom: 20px;
-        right: 16px;
-        padding: 9px 14px 9px 10px;
-        font-size: 13px;
-      }
+      #payu-btt .payu-btt__btn { bottom: 20px; right: 16px; padding: 9px 14px 9px 10px; font-size: 13px; }
     }
   </style>
 
   <script>
   (function () {
     var root = document.getElementById('payu-btt');
-    if (!root) return;
-    root.removeAttribute('aria-hidden');
+    var btn = document.getElementById('payu-btt-btn');
+    if (!root || !btn) return;
 
-    var threshold = 320;
-    root.classList.add('payu-btt--hidden');
+    var THRESHOLD = 320;
 
-    function onScroll() {
-      if (window.scrollY > threshold) {
-        root.classList.remove('payu-btt--hidden');
-      } else {
-        root.classList.add('payu-btt--hidden');
+    function isScrollable(el) {
+      if (!el || el === document.body || el === document.documentElement) return false;
+      var style = window.getComputedStyle(el);
+      var oy = style.overflowY;
+      return (oy === 'auto' || oy === 'scroll' || oy === 'overlay') && el.scrollHeight > el.clientHeight + 1;
+    }
+
+    function findScrollable(start) {
+      var node = start;
+      while (node && node !== document.documentElement) {
+        if (isScrollable(node)) return node;
+        node = node.parentElement;
+      }
+      return document.scrollingElement || document.documentElement;
+    }
+
+    function scrollTargets() {
+      var seen = [];
+      var add = function (el) { if (el && seen.indexOf(el) === -1) seen.push(el); };
+      add(findScrollable(root));
+      ['.rm-GuidesMain', '.rm-ReferenceMain', '.rm-Article', '.rm-ContainerMain', 'main', '#content-body', '.markdown-body'].forEach(function (sel) {
+         document.querySelectorAll(sel).forEach(function (el) { if (isScrollable(el)) add(el); });
+      });
+      add(document.scrollingElement);
+      add(document.documentElement);
+      add(document.body);
+      return seen;
+    }
+
+    function scrollElTop(el) {
+      try { el.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); }
+      catch (e) { el.scrollTop = 0; el.scrollLeft = 0; }
+    }
+
+    function scrollToTop() {
+      scrollTargets().forEach(scrollElTop);
+      try { window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); } catch (e) { window.scrollTo(0, 0); }
+      var heading = document.querySelector('.markdown-body h1, .rm-Article h1, article h1, main h1, h1');
+      if (heading) {
+        try { heading.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        catch (e) { heading.scrollIntoView(true); }
       }
     }
 
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
+    function readScrollTop() {
+      var max = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      scrollTargets().forEach(function (el) { if (el.scrollTop > max) max = el.scrollTop; });
+      return max;
+    }
+
+    function updateVisibility() {
+      root.classList.toggle('payu-btt--hidden', readScrollTop() <= THRESHOLD);
+    }
+
+    btn.addEventListener('click', function (e) { e.preventDefault(); scrollToTop(); });
+    root.classList.add('payu-btt--hidden');
+    updateVisibility();
+    var listened = [];
+    scrollTargets().concat([window]).forEach(function (target) {
+      if (target && listened.indexOf(target) === -1) {
+        listened.push(target);
+        target.addEventListener('scroll', updateVisibility, { passive: true });
+      }
+    });
   })();
   </script>
   <!-- embed ends -->
