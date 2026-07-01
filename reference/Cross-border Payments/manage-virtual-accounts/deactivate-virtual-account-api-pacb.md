@@ -15,9 +15,12 @@ For the full VA management set, refer to [PACB Virtual Account APIs](ref:pacb-vi
 | Environment | URL                                                                 | Method |
 | ----------- | ------------------------------------------------------------------- | ------ |
 | Test        | `https://uatoneapi.payu.in/payout/v2/virtualAccounts/deactivate`    | PATCH  |
-| Production  | `https://payout.payumoney.com/payout/v2/virtualAccounts/deactivate` | PATCH  |
+| Production  | `https://oneapi.payu.in/payout/v2/virtualAccounts/deactivate` | PATCH  |
 
-## Request Header
+## Requeust Parameters
+### Authentication Logic
+<HeaderAuthentication />
+### Request Header
 
 | Parameter                         | Description                                                | Example                                                                                     |
 | --------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
@@ -29,7 +32,7 @@ For the full VA management set, refer to [PACB Virtual Account APIs](ref:pacb-vi
 
 ```curl
 curl --location --request PATCH 'https://uatoneapi.payu.in/payout/v2/virtualAccounts/deactivate' \
---header 'Authorization: Bearer <access_token>' \
+--header 'Authorization: {{authorization}}' \
 --header 'merchantId: 12345' \
 --header 'virtualAccountId: 987654'
 ```
