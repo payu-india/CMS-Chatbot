@@ -913,59 +913,174 @@ Potential methods (verify in your SDK):
 4. **Monitor first transactions** closely
 5. **Check settlements** match your records
 
-***
+<HTMLBlock>{`
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Back To Top — preview</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      color: #111827;
+      background: #f9fafb;
+    }
+    .preview-shell {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 6rem;
+      background: #fff;
+      min-height: 200vh;
+      box-shadow: 0 0 0 1px #e5e7eb;
+    }
+    h1 { margin-top: 0; color: #1e3a5f; }
+    p { color: #374151; }
+    .hint {
+      padding: 1rem;
+      border-radius: 8px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="preview-shell">
+    <h1>Back To Top preview</h1>
+    <p class="hint">Scroll down — the button appears after ~320px. Click it to return here.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Repeat content to enable scrolling…</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>End of preview content.</p>
+  </div>
 
-## Changelog
+  <!-- embed starts -->
+  <div id="payu-btt" aria-hidden="true">
+    <button
+      type="button"
+      class="payu-btt__btn"
+      id="payu-btt-btn"
+      aria-label="Back to top"
+      onclick="(function(){try{window.scrollTo({top:0,behavior:'smooth'})}catch(e){window.scrollTo(0,0)}})()"
+    >
+      <span class="payu-btt__icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="11" cy="11" r="11" fill="#528FF0"/>
+          <path d="M11 7.5V14.5M7.75 10.75L11 7.5L14.25 10.75" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="payu-btt__label">Back To Top</span>
+    </button>
+  </div>
 
-### Version 4.0 (Final Release)
+  <style>
+    #payu-btt, #payu-btt * { box-sizing: border-box; }
 
-**Critical Updates:**
+    #payu-btt .payu-btt__btn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 9999;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px 10px 12px;
+      border: 1.5px solid #1e3a5f;
+      border-radius: 8px;
+      background: #fff;
+      color: #1e3a5f;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(30, 58, 95, 0.12);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+    }
 
-- Added disclaimer about SDK method verification
-- Removed unsupported confidence metrics
-- Made code examples clearly pseudo-code where unverified
-- Added payment lifecycle & reconciliation section
-- Removed fabricated performance claims
-- Added explicit hash validation warnings
-- Emphasized verification requirements before going live
+    #payu-btt .payu-btt__btn:hover {
+      border-color: #528FF0;
+      box-shadow: 0 4px 14px rgba(82, 143, 240, 0.22);
+    }
 
-### Version 3.0
+    #payu-btt .payu-btt__btn:active {
+      transform: translateY(1px);
+    }
 
-- Semantic heading improvements
-- Comprehensive troubleshooting
-- Production readiness checklist
-- FAQ section
+    #payu-btt .payu-btt__btn:focus-visible {
+      outline: 2px solid #528FF0;
+      outline-offset: 2px;
+    }
 
-### Version 2.0
+    #payu-btt .payu-btt__icon {
+      display: flex;
+      flex-shrink: 0;
+      line-height: 0;
+    }
 
-- Workflow-centric restructuring
-- Payment integration examples
-- Webhook documentation
+    #payu-btt .payu-btt__label {
+      white-space: nowrap;
+    }
 
-### Version 1.0
+    #payu-btt.payu-btt--hidden .payu-btt__btn {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+    }
 
-- Original SDK documentation
+    #payu-btt .payu-btt__btn {
+      opacity: 1;
+      transform: translateY(0);
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+    }
 
-***
+    @media (max-width: 640px) {
+      #payu-btt .payu-btt__btn {
+        bottom: 20px;
+        right: 16px;
+        padding: 9px 14px 9px 10px;
+        font-size: 13px;
+      }
+    }
+  </style>
 
-**End of Documentation**
+  <script>
+  (function () {
+    var root = document.getElementById('payu-btt');
+    if (!root) return;
+    root.removeAttribute('aria-hidden');
 
-***
+    var threshold = 320;
+    root.classList.add('payu-btt--hidden');
 
-## Important Reminders
+    function onScroll() {
+      if (window.scrollY > threshold) {
+        root.classList.remove('payu-btt--hidden');
+      } else {
+        root.classList.add('payu-btt--hidden');
+      }
+    }
 
-### Before Implementation
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+  </script>
+  <!-- embed ends -->
+</body>
+</html>
+`}</HTMLBlock>
 
-✅ Verify SDK methods exist in your version<br />✅ Test hash calculation with PayU<br />✅ Validate code examples in your environment<br />✅ Never hardcode credentials<br />✅ Always implement response hash verification
-
-### Before Production
-
-✅ Code review completed<br />✅ All scenarios tested (success, failure, pending)<br />✅ Reconciliation strategy implemented<br />✅ Error handling in place<br />✅ Monitoring configured
-
-### Ongoing
-
-✅ Monitor payment success rates<br />✅ Reconcile settlements daily<br />✅ Log all payment events<br />✅ Update documentation with learnings
-
-***
-
-_This guide provides workflow guidance and conceptual examples. Always verify technical details with official PayU documentation and your SDK's source code._
+<br />
