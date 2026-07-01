@@ -29,8 +29,9 @@ PayU partners with an AD-1 category bank for outward settlement. Funds move to t
 | ----------------------------------- | ----------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | **Sub-merchant onboarding**         | Create sub-merchant                       | [Create Merchant API (International)](https://docs.payu.in/reference/create-merchant-api-pacb)            |
 |                                     | Update sub-merchant profile               | [Update Merchant API (International)](https://docs.payu.in/reference/update-merchant-details-api-pacb)    |
-| **Virtual Account (VA) Management** | Create & Update VA                        |                                                                                                           |
-|                                     | Get List of VA per merchant               |                                                                                                           |
+| **Virtual Account (VA) Management** | Create Virtual Account                    | [Create Virtual Account](https://docs.payu.in/reference/create-virtual-account-api-pacb)                  |
+|                                     | Disable Virtual Account                   | [Deactivate Virtual Account](https://docs.payu.in/reference/deactivate-virtual-account-api-pacb)          |
+|                                     | Get List of VA per merchant               | [Get Virtual Accounts per MID](https://docs.payu.in/reference/get-virtual-accounts-api-pacb)              |
 | **Payments**                        | Payment webhooks &                        | [Payment Webhooks](https://docs.payu.in/docs/webhook-events-and-sample-payloads)                          |
 |                                     | Transaction Status Check API              | [Verify Payment API](https://docs.payu.in/reference/verify_payment_api)                                   |
 |                                     | Get all transactions (per MID)            | [Get Transactions API](https://docs.payu.in/reference/get_transaction_details_api)                        |
