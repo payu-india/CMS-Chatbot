@@ -424,7 +424,11 @@ export const SearchableTableRemote = (props) => {
       while (widths.length < n) {
         widths.push('auto');
       }
-      return widths;
+      return {
+        compact: false,
+        widths: widths,
+        tableWidthPx: null,
+      };
     }
 
     const rowsForMeasure =
@@ -456,8 +460,49 @@ export const SearchableTableRemote = (props) => {
       return Math.min(maxLen, 36) + 14;
     });
 
-    const total = weights.reduce((sum, w) => sum + w, 0) || 1;
-    return weights.map((w) => ((w / total) * 100).toFixed(2) + '%');
+    let needsFullWidth = resolvedHeaders.length >= 5;
+    if (!needsFullWidth) {
+      for (let i = 0; i < resolvedHeaders.length; i += 1) {
+        if (
+          isExpandedDescriptionCol(i) ||
+          isErrorDescriptionCol(i) ||
+          isProseCol(i)
+        ) {
+          needsFullWidth = true;
+          break;
+        }
+      }
+    }
+
+    if (needsFullWidth) {
+      const total = weights.reduce((sum, w) => sum + w, 0) || 1;
+      return {
+        compact: false,
+        widths: weights.map((w) => ((w / total) * 100).toFixed(2) + '%'),
+        tableWidthPx: null,
+      };
+    }
+
+    const pad = 36;
+    const pxPerChar = 8;
+    const pixelWidths = resolvedHeaders.map((header, colIdx) => {
+      let maxLen = formatHeaderLabel(header).length;
+      for (let r = 0; r < sampleSize; r += 1) {
+        const cell = rowsForMeasure[r] && rowsForMeasure[r][colIdx];
+        maxLen = Math.max(maxLen, measureCellLen(colIdx, cell));
+      }
+      const minW = isCodeCol(colIdx) || isFieldCol(colIdx) ? 100 : 160;
+      const maxW = isCodeCol(colIdx) || isFieldCol(colIdx) ? 220 : 560;
+      return Math.min(Math.max(maxLen * pxPerChar + pad, minW), maxW);
+    });
+
+    const tableWidthPx = pixelWidths.reduce((sum, w) => sum + w, 0);
+
+    return {
+      compact: true,
+      widths: pixelWidths,
+      tableWidthPx: tableWidthPx,
+    };
   }, [
     columnWidths,
     resolvedHeaders,
@@ -493,9 +538,20 @@ export const SearchableTableRemote = (props) => {
     );
   };
 
+  const isCompactLayout = autoColWidths && autoColWidths.compact === true;
+  const layoutWidths = autoColWidths ? autoColWidths.widths : null;
+  const compactTableWidthPx = autoColWidths ? autoColWidths.tableWidthPx : null;
+
   const colWidthStyle = (colIndex) => {
-    const w = autoColWidths && autoColWidths[colIndex];
-    if (!w) return { minWidth: 0 };
+    const w = layoutWidths && layoutWidths[colIndex];
+    if (w == null) return { minWidth: 0 };
+    if (isCompactLayout) {
+      return {
+        width: w + 'px',
+        minWidth: w + 'px',
+        maxWidth: w + 'px',
+      };
+    }
     return {
       width: w,
       minWidth: 0,
@@ -592,15 +648,20 @@ export const SearchableTableRemote = (props) => {
 
   const renderColgroup = () => {
     if (resolvedHeaders.length === 0) return null;
-    if (!autoColWidths || autoColWidths.length === 0) return null;
+    if (!layoutWidths || layoutWidths.length === 0) return null;
     return (
       <colgroup>
         {resolvedHeaders.map((_, i) => (
           <col
             key={i}
             style={
-              autoColWidths[i] != null
-                ? { width: autoColWidths[i] }
+              layoutWidths[i] != null
+                ? isCompactLayout
+                  ? {
+                      width: layoutWidths[i] + 'px',
+                      minWidth: layoutWidths[i] + 'px',
+                    }
+                  : { width: layoutWidths[i] }
                 : undefined
             }
           />
@@ -632,7 +693,8 @@ export const SearchableTableRemote = (props) => {
     >
       <div
         style={{
-          width: '100%',
+          width: isCompactLayout ? 'fit-content' : '100%',
+          maxWidth: '100%',
           border: '1px solid ' + borderColor,
           borderRadius: '6px',
           overflow: 'hidden',
@@ -709,7 +771,7 @@ export const SearchableTableRemote = (props) => {
         <div
           ref={scrollRef}
           style={{
-            width: '100%',
+            width: isCompactLayout ? 'auto' : '100%',
             minWidth: 0,
             overflowY: 'auto',
             overflowX: 'hidden',
@@ -720,7 +782,9 @@ export const SearchableTableRemote = (props) => {
         >
           <table
             style={{
-              width: '100%',
+              width: isCompactLayout && compactTableWidthPx
+                ? compactTableWidthPx + 'px'
+                : '100%',
               borderCollapse: 'collapse',
               borderSpacing: 0,
               margin: 0,
