@@ -17,7 +17,7 @@ The PayU Go SDK supports the complete payment lifecycle—from payment initiatio
 Start collecting payments from customers by creating a payment form.
 </Accordion>
 
-<Accordion title="My Accordion Title" icon="fa-circle-check">
+<Accordion title="2. Verify Payment Status" icon="fa-circle-check">
 After payment completion, verify whether the transaction was successful or check its current status.
 </Accordion>
 
