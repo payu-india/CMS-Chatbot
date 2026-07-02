@@ -29,6 +29,12 @@ Manage payment-related operations after a transaction is completed.
 Track settlements and ensure payments are settled correctly to your account.
 </Accordion>
 
+<Accordion title="5. Optimize Payment Experience" icon="fa-info-circle">
+  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
+  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
+  occaecat cupidatat non proident!
+</Accordion>
+
 ### When to Use This SDK
 
 ✅ Backend is Go<br />✅ You want PayU-hosted payment form<br />✅ You need server-side payment verification
