@@ -106,8 +106,8 @@ curl --location --request GET 'https://uatoneapi.payu.in/payout/v2/virtualAccoun
                 <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">
                   This parameter returns the status of web service call. The status can be any of the following: 
                   <ul style="padding-left: 20px; margin-top: 5px;">
-                    <li>0 - If web service call failed.</li>
-                    <li>1 - If web service call succeeded</li>
+                    <li>1 - If web service call failed.</li>
+                    <li>0 - If web service call succeeded</li>
                   </ul>
                 </td>
                 <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">0</td>
