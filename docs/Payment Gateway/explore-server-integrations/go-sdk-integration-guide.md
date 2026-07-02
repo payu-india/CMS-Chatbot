@@ -21,6 +21,14 @@ Start collecting payments from customers by creating a payment form.
 After payment completion, verify whether the transaction was successful or check its current status.
 </Accordion>
 
+<Accordion title="3. Handle Post-Payment Operations" icon="fa-receipt">
+Manage payment-related operations after a transaction is completed.
+</Accordion>
+
+<Accordion title="4. Reconcile Payments" icon="fa-scale-balanced">
+Track settlements and ensure payments are settled correctly to your account.
+</Accordion>
+
 ### When to Use This SDK
 
 ✅ Backend is Go<br />✅ You want PayU-hosted payment form<br />✅ You need server-side payment verification
