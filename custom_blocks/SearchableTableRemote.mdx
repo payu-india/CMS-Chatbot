@@ -466,17 +466,6 @@ export const SearchableTableRemote = (props) => {
     codeColIndexes,
   ]);
 
-  const tableMinWidthPx = useMemo(() => {
-    if (resolvedHeaders.length < 6) return null;
-    const mins = resolvedHeaders.map((_, colIdx) => {
-      if (isCodeCol(colIdx) || isFieldCol(colIdx)) return 100;
-      if (isProseCol(colIdx)) return 180;
-      if (isLayerCol(colIdx)) return 140;
-      return 90;
-    });
-    return mins.reduce((sum, m) => sum + m, 0);
-  }, [resolvedHeaders, codeColIndexes]);
-
   const fontSans =
     '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
   const fontMono =
@@ -731,7 +720,7 @@ export const SearchableTableRemote = (props) => {
             width: '100%',
             minWidth: 0,
             overflowY: 'auto',
-            overflowX: 'auto',
+            overflowX: 'hidden',
             position: 'relative',
             maxHeight: showEmptyState ? 'none' : maxHeight,
             boxSizing: 'border-box',
@@ -740,7 +729,6 @@ export const SearchableTableRemote = (props) => {
           <table
             style={{
               width: '100%',
-              minWidth: tableMinWidthPx ? tableMinWidthPx + 'px' : undefined,
               borderCollapse: 'collapse',
               borderSpacing: 0,
               margin: 0,
