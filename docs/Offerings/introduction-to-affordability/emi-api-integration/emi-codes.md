@@ -23,7 +23,7 @@ next:
 ## Debit Card EMI Codes
 
 <SearchableTableRemote
-  dataUrl="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/debit-card-emi-codes.json"
+  tableKey="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/debit-card-emi-codes.json"
   placeholder="Search"
   maxHeight="500px"
 />
@@ -31,7 +31,7 @@ next:
 ## Cardless EMI Codes
 
 <SearchableTableRemote
-  dataUrl="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/cardless-emi-codes.json"
+  tableKey="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/cardless-emi-codes.json"
   placeholder="Search"
   maxHeight="500px"
 />
@@ -39,7 +39,7 @@ next:
 ## UPI CC EMI Codes
 
 <SearchableTableRemote
-  dataUrl="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/upi-cc-emi-codes.json"
+  tableKey="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/upi-cc-emi-codes.json"
   placeholder="Search"
   maxHeight="500px"
 />
@@ -47,7 +47,7 @@ next:
 ## Other EMI Codes
 
 <SearchableTableRemote
-  dataUrl="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/other-emi-codes.json"
+  tableKey="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/other-emi-codes.json"
   placeholder="Search"
   maxHeight="500px"
 />
