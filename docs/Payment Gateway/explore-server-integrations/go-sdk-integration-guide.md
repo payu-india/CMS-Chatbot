@@ -5,64 +5,21 @@ hidden: true
 metadata:
   robots: index
 ---
-## ⚠️ Critical: Code Verification Required
-
-**Before implementing any code examples in this guide:**
-
-1. **Verify SDK methods exist** — Check your installed SDK version for method signatures
-2. **Test hash implementation** — Validate against PayU's official payment specification
-3. **Compile and test all examples** — Never copy-paste without testing in your environment
-4. **Validate security-critical code** — Hash generation and verification must match PayU's spec exactly
-
-**Resources for verification:**
-
-- PayU Go SDK source: [https://github.com/payu-india/web-sdk-go](https://github.com/payu-india/web-sdk-go)
-- PayU API documentation: [https://docs.payu.in](https://docs.payu.in)
-- Your SDK: `go doc github.com/payu-india/web-sdk-go`
-
-**This guide provides workflow patterns and conceptual examples. You are responsible for verifying all technical implementation details.**
+Use the PayU Go SDK to integrate PayU payments into your website built using Go. The PayU Go SDK handles low-level API integration details, enabling you to start collecting payments with just a few lines of code and a function call.
 
 ***
 
-## Quick Navigation
+## Payment Workflow with PayU Go SDK
 
-- **Getting started?** → [Quick Start](#quick-start)
-- **Need help?** → [Troubleshooting](#troubleshooting)
-- **Going live?** → [Production Checklist](#production-readiness-checklist)
+The PayU Go SDK supports the complete payment lifecycle—from payment initiation to post-payment operations.
 
-***
+<Accordion title="1. Accept Payments" icon="fa-money-check-dollar">
+Start collecting payments from customers by creating a payment form.
+</Accordion>
 
-## Table of Contents
-
-1. [Overview](#overview)
-2. [Prerequisites](#prerequisites--setup)
-3. [Quick Start](#quick-start)
-4. [Installation](#installation--verification)
-5. [SDK Initialization](#sdk-initialization-with-merchant-credentials)
-6. [Payment Integration](#payment-integration-workflow)
-7. [Handling Payments](#handling-payment-responses)
-8. [Webhooks](#webhook-integration)
-9. [Testing](#testing-guide)
-10. [Payment Reconciliation](#payment-lifecycle--reconciliation)
-11. [Troubleshooting](#troubleshooting)
-12. [Production Checklist](#production-readiness-checklist)
-13. [API Reference](#api-methods-reference)
-14. [FAQ](#faq)
-
-***
-
-## Overview
-
-### What the SDK Does
-
-The PayU Go SDK integrates PayU payment processing into Go applications. It provides:
-
-- Payment request creation and redirect
-- Response verification via hash validation
-- Payment status queries
-- Refund and settlement management
-
-**Verify supported features in your SDK version before implementing.**
+<Accordion title="My Accordion Title" icon="fa-circle-check">
+After payment completion, verify whether the transaction was successful or check its current status.
+</Accordion>
 
 ### When to Use This SDK
 
