@@ -19,18 +19,15 @@ next:
   description: ''
 ---
 <Callout icon="👍" theme="okay">
-  ###
+  \<FreshTag heading
 
-  <Callout icon="👍" theme="okay">
-    <FreshTag heading
-
-    <ul><li><Anchor label="RuPay Debit and Credit Cards" target="_blank" href="https://docs.payu.in/reference/credit-card-recurring-payment-consent-transaction">RuPay Debit and Credit Cards</Anchor> are supported for Subscriptions.</li></ul>
+     <ul><li><Anchor label="RuPay Debit and Credit Cards" target="_blank" href="https://docs.payu.in/reference/credit-card-recurring-payment-consent-transaction">RuPay Debit and Credit Cards</Anchor> are supported for Subscriptions.</li></ul>
 </Callout>
 
 The Subscriptions, Recurring Payments or Standing Instruction (SI) from PayU to set up and manage recurring payments. These recurring payments:
 
-- Can be charged as per a cycle defined
-- Do not require any customer intervention
+\- Can be charged as per a cycle defined
+\- Do not require any customer intervention
 
 The customer can instruct banks for regular funds transfers through standing instructions to automatically make payments. Recurring Payments is an easy and automated method to reduce the administrative burden for periodical payments. Based on the specified pay modes, the customer gives a mandate to the bank to debit a fixed amount from the customer’s account and pay to the merchant.
 
@@ -48,17 +45,17 @@ To enable subscription for your customer using various payment modes, it involve
   **Before you begin**: Register for a account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
 </Callout>
 
-- Cards
-  1. [Cards Recurring Payment Consent Transaction](ref:credit-card-recurring-payment-consent-transaction)
-  2. [Pre-Debit Notification API](ref:pre_debit_notification_api)
-  3. [Recurring Payment Transaction API](ref:recurring_payment_api)
-- Net Banking
-  1. [Net Banking Recurring Payment Consent Transaction](ref:netbanking-recurring-payment-consent-transaction)
-  2. [Recurring Payment Transaction API](ref:recurring_payment_api)
-- UPI
-  1. [UPI Recurring Payment Consent Transaction](ref:upi-recurring-payment-consent-transaction)
-  2. [Pre-Debit Notification API](ref:pre_debit_notification_api)
-  3. [Recurring Payment Transaction API](ref:recurring_payment_api)
+\- Cards
+1\. [Cards Recurring Payment Consent Transaction](ref:credit-card-recurring-payment-consent-transaction)
+2\. [Pre-Debit Notification API](ref:pre_debit_notification_api)
+3\. [Recurring Payment Transaction API](ref:recurring_payment_api)
+\- Net Banking
+1\. [Net Banking Recurring Payment Consent Transaction](ref:netbanking-recurring-payment-consent-transaction)
+2\. [Recurring Payment Transaction API](ref:recurring_payment_api)
+\- UPI
+1\. [UPI Recurring Payment Consent Transaction](ref:upi-recurring-payment-consent-transaction)
+2\. [Pre-Debit Notification API](ref:pre_debit_notification_api)
+3\. [Recurring Payment Transaction API](ref:recurring_payment_api)
 
 <NPCI_Mandate />
 
@@ -66,8 +63,8 @@ To enable subscription for your customer using various payment modes, it involve
 
 PayU offers the following methods to implement subscriptions for your customers:
 
-- [Using API Integration](doc:using-api-integration-recurring-payments)
-- [Using Zion Subscription Automation](doc:using-zion-subscription-automation-platform)
+\- [Using API Integration](doc:using-api-integration-recurring-payments)
+\- [Using Zion Subscription Automation](doc:using-zion-subscription-automation-platform)
 
 <Callout icon="📘" theme="info">
   ###
@@ -85,11 +82,11 @@ This integration is possible with a few code changes, and you can start acceptin
 
 PayU provides Seamless integration (Merchant Hosted Checkout) and Non-seamless integration (PayU Hosted Checkout) using APIs. The same set of APIs is used for the various payment modes in the case of Seamless or Non-seamless integration. The following APIs are used to enable Subscription:
 
-- **\_payment** API and integration for each payment mode are:
-  - [Cards Recurring Payment Consent Transaction](ref:credit-card-recurring-payment-consent-transaction)
-  - [Net Banking Recurring Payment Consent Transaction](ref:netbanking-recurring-payment-consent-transaction)
-  - [UPI Recurring Payment Consent Transaction](ref:upi-recurring-payment-consent-transaction)
-- [Recurring Payment Transaction API](ref:recurring_payment_api)
+\- **\_payment** API and integration for each payment mode are:
+\- [Cards Recurring Payment Consent Transaction](ref:credit-card-recurring-payment-consent-transaction)
+\- [Net Banking Recurring Payment Consent Transaction](ref:netbanking-recurring-payment-consent-transaction)
+\- [UPI Recurring Payment Consent Transaction](ref:upi-recurring-payment-consent-transaction)
+\- [Recurring Payment Transaction API](ref:recurring_payment_api)
 
 The PayU Recurring Payment APIs are suitable where you want complete control of the Subscription and can invest in technical bandwidth for integration.
 
@@ -97,9 +94,9 @@ The PayU Recurring Payment APIs are suitable where you want complete control of 
 
 PayU provides PayUBiz Dashboard to cater to all your payment integration without the knowledge of coding or zero code change. PayUBiz Dashboard allows you to:
 
-- [Create a Payment Link with SI](doc:create-a-payment-link-with-si)
-- [Bulk Upload of Payment Links with SI Registration](doc:bulk-upload-of-payment-links-with-si-registration)
-- [Bulk Upload of Payment Links for Recurring Payments + Pre-Debit Notification](doc:bulk-upload-of-payment-links-for-recurring-payments-pre-debit-notication)
+\- [Create a Payment Link with SI](doc:create-a-payment-link-with-si)
+\- [Bulk Upload of Payment Links with SI Registration](doc:bulk-upload-of-payment-links-with-si-registration)
+\- [Bulk Upload of Payment Links for Recurring Payments + Pre-Debit Notification](doc:bulk-upload-of-payment-links-for-recurring-payments-pre-debit-notication)
 
 The PayUBiz Dashboard is suitable for integrating without investing in any technical integration. You can set up recurring through payment links or charge subsequent debits through bulk upload.
 
