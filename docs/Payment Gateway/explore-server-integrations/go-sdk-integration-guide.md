@@ -5,156 +5,131 @@ hidden: true
 metadata:
   robots: index
 ---
-This guide covers the PayU Go SDK integration workflow. Before implementing:
+## ⚠️ Critical: Code Verification Required
 
-1. **Verify all SDK methods** against your installed SDK version
-2. **Test hash calculation** with PayU's official payment specification
-3. **Consult the official PayU documentation** at [https://docs.payu.in](https://docs.payu.in)
-4. **Test all code examples** in your environment before production use
+**Before implementing any code examples in this guide:**
 
-This guide provides workflow guidance and conceptual examples. Always verify technical implementation details with:
+1. **Verify SDK methods exist** — Check your installed SDK version for method signatures
+2. **Test hash implementation** — Validate against PayU's official payment specification
+3. **Compile and test all examples** — Never copy-paste without testing in your environment
+4. **Validate security-critical code** — Hash generation and verification must match PayU's spec exactly
 
-- Official PayU SDK source: [https://github.com/payu-india/web-sdk-go](https://github.com/payu-india/web-sdk-go)
+**Resources for verification:**
+
+- PayU Go SDK source: [https://github.com/payu-india/web-sdk-go](https://github.com/payu-india/web-sdk-go)
 - PayU API documentation: [https://docs.payu.in](https://docs.payu.in)
-- Your SDK version's changelog and method signatures
+- Your SDK: `go doc github.com/payu-india/web-sdk-go`
+
+**This guide provides workflow patterns and conceptual examples. You are responsible for verifying all technical implementation details.**
 
 ***
 
 ## Quick Navigation
 
-**First time?** → [Quick Start (5 Minutes)](#quick-start-5-minutes)<br />**Need troubleshooting?** → [Troubleshooting](#troubleshooting)<br />**Ready to go live?** → [Production Readiness](#production-readiness-checklist)
+- **Getting started?** → [Quick Start](#quick-start)
+- **Need help?** → [Troubleshooting](#troubleshooting)
+- **Going live?** → [Production Checklist](#production-readiness-checklist)
 
 ***
 
 ## Table of Contents
 
 1. [Overview](#overview)
-2. [Prerequisites & Setup](#prerequisites--setup)
-3. [Quick Start (5 Minutes)](#quick-start-5-minutes)
-4. [Installation & Verification](#installation--verification)
-5. [SDK Initialization with Merchant Credentials](#sdk-initialization-with-merchant-credentials)
-6. [Payment Integration Workflow](#payment-integration-workflow)
-7. [Handling Payment Responses](#handling-payment-responses)
-8. [Webhook Integration](#webhook-integration)
-9. [Testing Guide](#testing-guide)
-10. [Payment Lifecycle & Reconciliation](#payment-lifecycle--reconciliation)
-11. [Production Readiness](#production-readiness-checklist)
-12. [Troubleshooting](#troubleshooting)
-13. [API Methods Reference](#api-methods-reference)
+2. [Prerequisites](#prerequisites--setup)
+3. [Quick Start](#quick-start)
+4. [Installation](#installation--verification)
+5. [SDK Initialization](#sdk-initialization-with-merchant-credentials)
+6. [Payment Integration](#payment-integration-workflow)
+7. [Handling Payments](#handling-payment-responses)
+8. [Webhooks](#webhook-integration)
+9. [Testing](#testing-guide)
+10. [Payment Reconciliation](#payment-lifecycle--reconciliation)
+11. [Troubleshooting](#troubleshooting)
+12. [Production Checklist](#production-readiness-checklist)
+13. [API Reference](#api-methods-reference)
 14. [FAQ](#faq)
 
 ***
 
 ## Overview
 
-### What the PayU Go SDK Does
+### What the SDK Does
 
-The PayU Go SDK is a server-side library that integrates PayU's payment processing into Go applications.
+The PayU Go SDK integrates PayU payment processing into Go applications. It provides:
 
-**Core Capabilities:**
+- Payment request creation and redirect
+- Response verification via hash validation
+- Payment status queries
+- Refund and settlement management
 
-- Redirect customers to PayU's hosted checkout
-- Process payment responses from PayU
-- Verify payment authenticity via hash validation
-- Query payment status
-- Manage refunds and settlements
-- Check payment method availability
-
-**Important:** Verify your SDK version supports each feature before implementing.
+**Verify supported features in your SDK version before implementing.**
 
 ### When to Use This SDK
 
-✅ **Use this SDK if:**
+✅ Backend is Go<br />✅ You want PayU-hosted payment form<br />✅ You need server-side payment verification
 
-- Your backend is written in Go
-- You want PayU to host the payment form (reduces PCI compliance burden)
-- You need server-side payment verification
-
-❌ **Don't use this SDK if:**
-
-- Your frontend is JavaScript/React and you want client-side integration → Use Web SDK
-- Your app is Android → Use Android SDK
-- Your app is iOS → Use iOS SDK
-
-### Supported Payment Methods
-
-The SDK works with any payment method enabled in your PayU Dashboard:
-
-- Cards (Debit, Credit, Co-branded)
-- UPI
-- Net Banking
-- Digital Wallets
-- EMI/Installments
-- BNPL options
-
-Verify which methods are actually configured in your PayU account.
+❌ Frontend JavaScript integration → Use Web SDK<br />❌ Mobile app → Use Android/iOS SDK
 
 ***
 
 ## Prerequisites & Setup
 
-### 1. PayU Merchant Account
+### 1. PayU Account
 
-- [ ] **PayU Merchant Account** — [Create here](https://docs.payu.in/docs/register-for-a-merchant-account-on-dashboard)
-- [ ] **Test Credentials** — Available from Dashboard (Test Mode)
-- [ ] **Live Credentials** — Only after account approval
+- [ ] Create PayU merchant account
+- [ ] Get test credentials (Test Mode)
+- [ ] Get live credentials (Live Mode, after approval)
 
-### 2. Get Your Credentials
+### 2. Credentials
 
-**For Testing:**
+**Get test credentials:**
 
-1. Log in to PayU Dashboard
-2. Switch to **Test Mode**
-3. Go to **Developers** → **API Keys**
-4. Copy **Merchant Key** and **Merchant Salt**
+1. PayU Dashboard → Test Mode
+2. Developers → API Keys
+3. Copy Merchant Key and Merchant Salt
 
-**For Production:**
+**Get live credentials:**
 
-1. Switch to **Live Mode**
-2. Go to **Developers** → **API Keys**
-3. Copy **Merchant Key** and **Merchant Salt**
-
-**CRITICAL:** Never hardcode credentials. Use environment variables.
+1. PayU Dashboard → Live Mode
+2. Developers → API Keys
+3. Copy Live Merchant Key and Salt
 
 ### 3. Technical Requirements
 
-- Go 1.18 or higher
+- Go 1.18+
 - go.mod initialized
-- Outbound HTTPS access to PayU servers
-- Publicly accessible callback/webhook URLs (HTTPS only)
+- HTTPS URLs for callbacks/webhooks
+- Internet access to PayU servers
 
 ### 4. Environment Setup
 
 ```bash
-# For testing
+# Test environment
 export PAYU_MERCHANT_KEY="your_test_key"
 export PAYU_MERCHANT_SALT="your_test_salt"
 export PAYU_ENV="test"
-
-# For production (use a secrets manager in real environments)
-# export PAYU_MERCHANT_KEY="your_live_key"
-# export PAYU_MERCHANT_SALT="your_live_salt"
-# export PAYU_ENV="production"
 ```
+
+**Never hardcode credentials.**
 
 ***
 
-## Quick Start (5 Minutes)
+## Quick Start
 
-### Goal
-
-Verify the SDK is installed and your client can be initialized.
-
-### Step 1: Install the SDK
+### Install SDK
 
 ```bash
 go get github.com/payu-india/web-sdk-go
 go mod tidy
 ```
 
-### Step 2: Initialize the Client
+### Verify Installation
 
-Create `main.go`:
+```bash
+go list -m github.com/payu-india/web-sdk-go
+```
+
+### Initialize Client
 
 ```go
 package main
@@ -167,71 +142,66 @@ import (
 )
 
 func main() {
-	// Load credentials from environment
-	merchantKey := os.Getenv("PAYU_MERCHANT_KEY")
-	merchantSalt := os.Getenv("PAYU_MERCHANT_SALT")
-	environment := os.Getenv("PAYU_ENV")
+	// Load credentials
+	key := os.Getenv("PAYU_MERCHANT_KEY")
+	salt := os.Getenv("PAYU_MERCHANT_SALT")
+	env := os.Getenv("PAYU_ENV")
 
-	if merchantKey == "" || merchantSalt == "" {
-		log.Fatal("❌ PAYU_MERCHANT_KEY and PAYU_MERCHANT_SALT must be set")
+	if key == "" || salt == "" {
+		log.Fatal("PAYU credentials not set")
 	}
 
-	if environment == "" {
-		environment = "test"
+	if env == "" {
+		env = "test"
 	}
 
-	// Initialize PayU client
-	client, err := payu.NewClient(merchantKey, merchantSalt, environment)
+	// Initialize client
+	client, err := payu.NewClient(key, salt, env)
 	if err != nil {
-		log.Fatalf("❌ Failed to initialize: %v", err)
+		log.Fatalf("Failed to initialize: %v", err)
 	}
 
-	log.Println("✅ PayU client initialized successfully")
+	log.Println("✅ PayU client ready")
 }
 ```
 
-### Step 3: Run It
+**Run:**
 
 ```bash
-export PAYU_MERCHANT_KEY="your_test_key"
-export PAYU_MERCHANT_SALT="your_test_salt"
-export PAYU_ENV="test"
-
 go run main.go
 ```
 
-**Expected:** ✅ `PayU client initialized successfully`
+**Expected:** ✅ `PayU client ready`
 
 ***
 
 ## Installation & Verification
 
-### Step 1: Download the Module
+### Download Module
 
 ```bash
 go get github.com/payu-india/web-sdk-go
-```
-
-### Step 2: Update Dependencies
-
-```bash
 go mod tidy
 go mod verify
 ```
 
-### Step 3: Verify Installation
+### Check Installation
 
 ```bash
 go list -m github.com/payu-india/web-sdk-go
+```
+
+### Import in Code
+
+```go
+import payu "github.com/payu-india/web-sdk-go"
 ```
 
 ***
 
 ## SDK Initialization with Merchant Credentials
 
-### Initialize the Client
-
-Initialize the client **once** when your application starts:
+### Pattern: Initialize Once at Startup
 
 ```go
 package main
@@ -247,156 +217,176 @@ var payuClient *payu.Client
 
 func init() {
 	var err error
+	
+	key := os.Getenv("PAYU_MERCHANT_KEY")
+	salt := os.Getenv("PAYU_MERCHANT_SALT")
+	env := os.Getenv("PAYU_ENV")
 
-	merchantKey := os.Getenv("PAYU_MERCHANT_KEY")
-	merchantSalt := os.Getenv("PAYU_MERCHANT_SALT")
-	environment := os.Getenv("PAYU_ENV")
-
-	if environment == "" {
-		environment = "test" // Default to sandbox
+	if env == "" {
+		env = "test"
 	}
 
-	payuClient, err = payu.NewClient(merchantKey, merchantSalt, environment)
+	payuClient, err = payu.NewClient(key, salt, env)
 	if err != nil {
-		log.Fatalf("❌ Failed to initialize PayU: %v", err)
+		log.Fatalf("PayU init failed: %v", err)
 	}
 
-	log.Printf("✅ PayU client initialized (%s)", environment)
+	log.Printf("✅ PayU initialized (%s)", env)
 }
 
 func main() {
-	log.Println("Application running with PayU ready")
+	// payuClient is ready to use
 }
 ```
 
-### Environment Parameter
+### Environment Values
 
-| Value          | Purpose                   | Server       |
-| -------------- | ------------------------- | ------------ |
-| `"test"`       | Sandbox (no real charges) | test.payu.in |
-| `"production"` | Live (real payments)      | payu.in      |
+| Value          | Purpose | Server       |
+| -------------- | ------- | ------------ |
+| `"test"`       | Sandbox | test.payu.in |
+| `"production"` | Live    | payu.in      |
 
-**Always test thoroughly with "test" before using "production".**
+**Always test thoroughly before switching to production.**
 
 ***
 
 ## Payment Integration Workflow
 
-### Understanding the Payment Flow
+### Payment Flow Pattern
 
 ```
-1. Customer clicks "Pay Now"
+1. Customer initiates payment
 2. Your app creates payment request
-3. Your app generates security hash
+3. Your app generates hash (security verification)
 4. Your app redirects to PayU checkout
-5. Customer enters payment details on PayU
-6. PayU processes payment
-7. PayU redirects to your success/failure URL
-8. Your app verifies response hash
-9. Your app updates order database
+5. Customer completes payment at PayU
+6. PayU redirects to your callback URL
+7. Your app verifies response hash
+8. Your app updates order status
 ```
 
-### Step 1: Create a Payment Request
+### Step 1: Build Payment Request
 
-Build payment request with order and customer information:
+**Pattern:** Create a struct with required payment data
 
 ```go
-package main
-
-import (
-	"fmt"
-	"time"
-)
-
 type PaymentRequest struct {
-	MerchantKey string
 	Key         string // Merchant key
 	Txnid       string // Unique order ID
-	Amount      string // Amount as string (e.g., "999.99")
+	Amount      string // "999.99" (string with 2 decimals)
 	ProductInfo string // What's being purchased
 	FirstName   string // Customer name
 	Email       string // Customer email
-	Phone       string // Customer phone (10 digits)
+	Phone       string // Customer phone
 	Surl        string // Success URL (HTTPS)
 	Furl        string // Failure URL (HTTPS)
-	Curl        string // Callback/webhook URL (optional)
-	Hash        string // Will be set after hash generation
+	Curl        string // Callback URL (HTTPS)
+	Hash        string // Generated hash
 }
 
-func CreatePaymentRequest(merchantKey string) *PaymentRequest {
+// Example:
+func createPaymentRequest(merchantKey string) *PaymentRequest {
 	return &PaymentRequest{
 		Key:         merchantKey,
-		Txnid:       fmt.Sprintf("ORD-%d", time.Now().Unix()), // Unique ID
-		Amount:      "100.00", // Must be string with 2 decimals
-		ProductInfo: "Test Product",
+		Txnid:       generateUniqueID(), // Must be unique per payment
+		Amount:      "999.99",
+		ProductInfo: "Order #123",
 		FirstName:   "John",
 		Email:       "john@example.com",
 		Phone:       "9876543210",
-		Surl:        "https://yoursite.com/payment/success",
-		Furl:        "https://yoursite.com/payment/failure",
-		Curl:        "https://yoursite.com/webhook/payu",
+		Surl:        "https://yoursite.com/success",
+		Furl:        "https://yoursite.com/failure",
+		Curl:        "https://yoursite.com/webhook",
 	}
+}
+
+func generateUniqueID() string {
+	// Implement: Use timestamp, UUID, or order ID
+	// Each payment must have unique txnid
+	return "ORD-" + fmt.Sprintf("%d", time.Now().Unix())
 }
 ```
 
-### Step 2: Generate Security Hash
+### Step 2: Generate Hash
 
-**CRITICAL:** The hash implementation is security-sensitive.
+**⚠️ CRITICAL: Hash is security-sensitive**
 
 **Before implementing:**
 
-1. Consult PayU's official payment specification for hash field order
-2. Verify your SDK documentation for hash method details
-3. Test hash generation with PayU's test environment
+1. Check PayU's hash specification for field order
+2. Verify your SDK provides hash method (if yes, use it)
+3. If implementing manually, validate against official spec
+4. Test with PayU test credentials
 
-**Pseudo-code for hash generation:**
-
-```
-Hash input fields (verify exact order with PayU spec):
-key|txnid|amount|productinfo|firstname|email|udf1|salt
-
-Generate: SHA512 hash of above string
-Result: Hex-encoded hash string
-```
-
-**Important:** Never hardcode hash logic without verifying against:
-
-- Official PayU API specification
-- Your SDK's hash method (if provided)
-- PayU's test credentials
-
-### Step 3: Redirect to PayU Checkout
-
-After hash generation, redirect the customer to PayU's checkout:
+**Pattern for hash generation:**
 
 ```go
-func redirectToCheckout(paymentRequest *PaymentRequest) string {
-	// Pseudo-code: refer to your SDK's documentation
-	// This should be replaced with actual SDK method
+import "crypto/sha512"
+import "fmt"
+
+// Pattern: hash = SHA512(field1|field2|...|fieldN|salt)
+// 
+// Field order matters. Before implementing:
+// 1. Check PayU documentation for correct order
+// 2. Verify with your SDK's hash method
+// 3. Test with test credentials
+
+func generateHash(request *PaymentRequest, salt string) (string, error) {
+	// IMPORTANT: Verify field order with PayU spec
+	// Example order (verify this is correct):
+	// key|txnid|amount|productinfo|firstname|email|udf1|salt
 	
-	environment := "test" // or "production"
-	baseURL := "https://test.payu.in"
-	
-	if environment == "production" {
-		baseURL = "https://payu.in"
-	}
-	
-	checkoutURL := fmt.Sprintf(
-		"%s/?key=%s&hash=%s&txnid=%s&amount=%s&productinfo=%s&firstname=%s&email=%s&phone=%s&surl=%s&furl=%s",
-		baseURL,
-		paymentRequest.Key,
-		paymentRequest.Hash,
-		paymentRequest.Txnid,
-		paymentRequest.Amount,
-		paymentRequest.ProductInfo,
-		paymentRequest.FirstName,
-		paymentRequest.Email,
-		paymentRequest.Phone,
-		paymentRequest.Surl,
-		paymentRequest.Furl,
+	hashInput := fmt.Sprintf("%s|%s|%s|%s|%s|%s|%s|%s",
+		request.Key,
+		request.Txnid,
+		request.Amount,
+		request.ProductInfo,
+		request.FirstName,
+		request.Email,
+		"", // udf1 (empty if not used)
+		salt,
 	)
+
+	// CRITICAL: Use SHA512 (not SHA256 or MD5)
+	hash := sha512.Sum512([]byte(hashInput))
+	return fmt.Sprintf("%x", hash), nil
+}
+```
+
+**Must verify:**
+
+- [ ] Field order matches PayU spec
+- [ ] Hash algorithm is SHA512 (not other algorithms)
+- [ ] All required fields included
+- [ ] Works with test credentials
+
+### Step 3: Redirect to Checkout
+
+**Pattern:** Get checkout URL and redirect customer
+
+```go
+func redirectToCheckout(w http.ResponseWriter, request *PaymentRequest) error {
+	// Your SDK may provide a method like:
+	// checkoutURL := payuClient.GetPaymentURL(request)
+	//
+	// If not, construct URL following PayU pattern:
 	
-	return checkoutURL
+	baseURL := "https://test.payu.in"
+	if os.Getenv("PAYU_ENV") == "production" {
+		baseURL = "https://payu.in" // Use only in production
+	}
+
+	checkoutURL := fmt.Sprintf(
+		"%s/?key=%s&hash=%s&txnid=%s&amount=%s&...",
+		baseURL,
+		request.Key,
+		request.Hash,
+		request.Txnid,
+		request.Amount,
+	)
+
+	http.Redirect(w, request, checkoutURL, http.StatusSeeOther)
+	return nil
 }
 ```
 
@@ -404,78 +394,60 @@ func redirectToCheckout(paymentRequest *PaymentRequest) string {
 
 ## Handling Payment Responses
 
-### Step 1: Receive the Response
+### Pattern: Verify Then Process
 
-After payment, PayU redirects to your success or failure URL with a response.
-
-**CRITICAL STEP:** You must verify the response hash to prevent fraud.
+**CRITICAL: Always verify hash before trusting response**
 
 ```go
-package main
-
-import (
-	"encoding/json"
-	"fmt"
-	"log"
-	"net/http"
-)
-
-func PaymentSuccessHandler(w http.ResponseWriter, r *http.Request) {
+func handlePaymentResponse(w http.ResponseWriter, r *http.Request) {
+	// Step 1: Get response from PayU
 	responseJSON := r.FormValue("response")
 
-	// STEP 1: Parse response
+	// Step 2: Verify hash (prevents fraud)
+	if !verifyResponseHash(responseJSON) {
+		log.Printf("❌ Hash verification failed")
+		http.Error(w, "Invalid response", http.StatusUnauthorized)
+		return
+	}
+
+	// Step 3: Parse response
 	var response map[string]interface{}
-	err := json.Unmarshal([]byte(responseJSON), &response)
-	if err != nil {
-		log.Printf("❌ Failed to parse response: %v", err)
-		http.Error(w, "Invalid response", http.StatusBadRequest)
-		return
-	}
+	json.Unmarshal([]byte(responseJSON), &response)
 
-	// STEP 2: Verify hash (prevent fraud)
-	if !verifyResponseHash(response) {
-		log.Printf("❌ Hash verification failed - rejecting response")
-		http.Error(w, "Hash verification failed", http.StatusUnauthorized)
-		return
-	}
-
-	log.Printf("✅ Hash verified - response is authentic")
-
-	// STEP 3: Check payment status
+	// Step 4: Check status
 	status, ok := response["status"].(string)
 	if !ok || status != "success" {
-		log.Printf("❌ Payment failed or pending")
-		http.Redirect(w, r, "/payment/failed", http.StatusSeeOther)
+		log.Printf("Payment failed or pending")
+		handleFailure(w, response)
 		return
 	}
 
-	// STEP 4: Update database
+	// Step 5: Update order
 	txnid, _ := response["txnid"].(string)
 	log.Printf("✅ Payment successful: %s", txnid)
 	
-	// TODO: updateOrderStatus(txnid, "PAID")
-	// TODO: sendConfirmationEmail(email)
-
-	http.Redirect(w, r, "/payment/success", http.StatusSeeOther)
+	// TODO: Update order status in database
+	
+	http.Redirect(w, r, "/success", http.StatusSeeOther)
 }
 
-func verifyResponseHash(response map[string]interface{}) bool {
-	// Hash verification is CRITICAL and security-sensitive
+func verifyResponseHash(responseJSON string) bool {
+	// CRITICAL: Hash verification prevents fraud
 	// 
 	// Before implementing:
-	// 1. Verify expected field order with PayU spec
-	// 2. Check your SDK's hash verification method
-	// 3. Test with PayU's test environment
+	// 1. Understand hash field order
+	// 2. Validate against PayU spec
+	// 3. Test with PayU test credentials
+	// 4. Never skip this step
 	//
-	// Pseudo-code:
+	// Pattern:
 	// 1. Extract hash from response
 	// 2. Rebuild hash from fields in correct order
 	// 3. Compare hashes
-	//
-	// Return true only if hashes match exactly
-
+	// 4. Return true only if match
+	
 	// TODO: Implement hash verification
-	return true // Placeholder
+	return true
 }
 ```
 
@@ -483,90 +455,63 @@ func verifyResponseHash(response map[string]interface{}) bool {
 
 ## Webhook Integration
 
-### Why Webhooks Matter
+### Pattern: Receive Async Notifications
 
-Webhooks are automatic notifications from PayU when payment status changes. They're more reliable than redirect URLs because they don't depend on the user's browser.
+**Why webhooks:** More reliable than redirect URLs (don't depend on user's browser)
 
-### Enable Webhook in PayU Dashboard
+**Setup in PayU Dashboard:**
 
-1. Go to **Settings → Webhooks**
-2. Enter your endpoint: `https://yoursite.com/webhook/payu`
-3. Must be HTTPS (not HTTP)
-4. Must be publicly accessible
+1. Settings → Webhooks
+2. Enter endpoint: `https://yoursite.com/webhook`
+3. Must be HTTPS
 
-### Create Webhook Handler
+**Handler pattern:**
 
 ```go
-package main
-
-import (
-	"encoding/json"
-	"io/ioutil"
-	"log"
-	"net/http"
-)
-
-func WebhookHandler(w http.ResponseWriter, r *http.Request) {
+func webhookHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		http.Error(w, "POST only", http.StatusMethodNotAllowed)
 		return
 	}
 
-	// Read webhook body
-	body, err := ioutil.ReadAll(r.Body)
-	if err != nil {
-		log.Printf("❌ Failed to read webhook: %v", err)
-		w.WriteHeader(http.StatusBadRequest)
-		return
-	}
+	// Step 1: Read webhook body
+	body, _ := ioutil.ReadAll(r.Body)
 	defer r.Body.Close()
 
-	// Parse webhook
+	// Step 2: Parse webhook
 	var payload map[string]interface{}
-	err = json.Unmarshal(body, &payload)
-	if err != nil {
-		log.Printf("❌ Invalid webhook JSON: %v", err)
-		w.WriteHeader(http.StatusBadRequest)
-		return
-	}
+	json.Unmarshal(body, &payload)
 
-	log.Printf("📬 Webhook received: %v", payload["txnid"])
+	log.Printf("📬 Webhook: %v", payload["txnid"])
 
-	// CRITICAL: Verify webhook hash (same as response hash)
+	// Step 3: Verify hash
 	if !verifyWebhookHash(payload) {
-		log.Printf("❌ Webhook hash verification failed")
-		w.WriteHeader(http.StatusUnauthorized)
+		http.Error(w, "Unauthorized", http.StatusUnauthorized)
 		return
 	}
 
-	// Handle payment status
+	// Step 4: Process payment
 	status, _ := payload["status"].(string)
 	txnid, _ := payload["txnid"].(string)
 
 	switch status {
 	case "success":
 		log.Printf("✅ Payment successful: %s", txnid)
-		// TODO: updateOrderStatus(txnid, "PAID")
-
+		// TODO: updateOrder(txnid, "PAID")
 	case "failed":
 		log.Printf("❌ Payment failed: %s", txnid)
-		// TODO: updateOrderStatus(txnid, "FAILED")
-
-	case "pending":
-		log.Printf("⏳ Payment pending: %s", txnid)
-		// TODO: updateOrderStatus(txnid, "PENDING")
+		// TODO: updateOrder(txnid, "FAILED")
 	}
 
-	// Always return 200 OK
-	w.Header().Set("Content-Type", "application/json")
+	// Step 5: Always return 200 OK
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(map[string]string{"status": "received"})
 }
 
 func verifyWebhookHash(payload map[string]interface{}) bool {
 	// Same hash verification as payment response
-	// Verify against PayU specification before implementing
-	return true // Placeholder
+	// Must verify before trusting webhook
+	return true
 }
 ```
 
@@ -574,59 +519,62 @@ func verifyWebhookHash(payload map[string]interface{}) bool {
 
 ## Testing Guide
 
-### Understand Test Environment
+### Test Environment
 
-- No real money charged
-- Instant transaction processing
-- Use test credentials only
-- Use test card numbers only
+- No real charges
+- Instant processing
+- Test credentials only
+- Test card numbers only
 
 ### Get Test Credentials
 
-1. Log in to PayU Dashboard
-2. Switch to **Test Mode**
-3. Go to **Developers → API Keys**
-4. Copy credentials
+1. PayU Dashboard → Test Mode
+2. Developers → API Keys
+3. Copy Merchant Key and Salt
 
 ### Test Credentials
 
-**Net Banking (Works in test mode):**
+**Net Banking:**
 
 ```
-Username: payu
+User: payu
 Password: payu
 OTP: 123456
 ```
 
 **Test Cards (EMI):**
 
-- Kotak DC EMI: 4706-1378-0509-9594
-- AXIS DC EMI: 4011-5100-0000-0007
-- HDFC CC EMI: 4453-3410-65876437
-- ICICI CC EMI: 4453-3410-65876437
+```
+4706-1378-0509-9594  (Kotak DC)
+4011-5100-0000-0007  (AXIS DC)
+4453-3410-65876437   (HDFC CC, ICICI CC)
 
-(For all: Expiry = any future date, CVV = 123, OTP = 111111)
+For all:
+Expiry: Any future date
+CVV: 123
+OTP: 111111
+Mobile: 9123412345 (for EMI)
+```
 
 **Test Wallets:**
 
-- PayTM: 7777777777 / 888888
-- PhonePe: Use their pre-prod app
-- Amazon Pay: Use real account
+```
+PayTM: 7777777777 / 888888
+PhonePe: Use pre-prod app
+Amazon: Use real account
+```
 
-**Note:** UPI in-app and intent flows NOT available in test mode. Use Net Banking instead.
+### Test Workflow
 
-### Test Payment Flow
+Before going live:
 
-Before going live, verify:
-
-- [ ] Payment request created successfully
-- [ ] Hash generated without errors
-- [ ] Checkout URL contains "test.payu.in" (not "payu.in")
-- [ ] Payment completed successfully
-- [ ] Success/failure URL was called
-- [ ] Response hash was verified
-- [ ] Order status updated in database
-- [ ] Webhook received (if enabled)
+- [ ] Payment request created
+- [ ] Hash generated
+- [ ] Checkout URL works (contains test.payu.in)
+- [ ] Payment succeeded
+- [ ] Response/webhook received
+- [ ] Hash verified
+- [ ] Order updated in database
 
 ***
 
@@ -634,120 +582,88 @@ Before going live, verify:
 
 ### Payment States
 
-Payments move through these states:
-
 ```
-initiated
+INITIATED (order created)
     ↓
-pending (waiting for bank)
+PENDING (awaiting bank/processor)
     ↓
-success (payment complete)
+SUCCESS (payment complete)
   OR
-failed (payment rejected)
-  OR
-cancelled (user cancelled)
+FAILED (rejected)
     ↓
-(optional) refunded
+(optional) REFUNDED
 ```
 
-### Critical: Handling Asynchronous Payments
+### Critical: Async Payment Handling
 
 Payments are asynchronous. Customer may:
 
-1. Close browser before success URL is called
-2. Internet connection drops
-3. Webhook delivery delayed
+- Close browser before response received
+- Internet drops
+- Webhook delayed
 
-**Solution:** Implement **reconciliation strategy**
+**Solution: Reconciliation strategy**
 
 ```go
-// Reconciliation approach:
-// 1. When order is created, mark as "PENDING_PAYMENT"
-// 2. When callback/webhook received, update to PAID/FAILED
-// 3. Periodically (every hour), verify pending payments:
+// Periodic reconciliation (every 1 hour):
+func reconcilePayments() {
+	// Get all orders still marked PENDING_PAYMENT
+	pending := getAllPendingOrders()
 
-func ReconcilePayments() {
-	// Pseudo-code
-	pendingOrders := getAllOrdersWithStatus("PENDING_PAYMENT")
-	
-	for _, order := range pendingOrders {
-		// Check if payment was actually successful
-		// Use SDK's verify payment method (if available)
-		// or PayU's status API
+	for _, order := range pending {
+		// Query actual payment status
+		// Pattern: Use SDK's verify payment method, or PayU API
 		
 		actualStatus := queryPaymentStatus(order.TransactionID)
-		
+
 		if actualStatus == "success" {
-			updateOrderStatus(order.ID, "PAID")
+			updateOrder(order.ID, "PAID")
 		} else if time.Since(order.CreatedAt) > 24*time.Hour {
-			updateOrderStatus(order.ID, "FAILED")
+			updateOrder(order.ID, "FAILED")
 		}
 	}
 }
+
+// Pattern: Query payment status
+func queryPaymentStatus(txnid string) string {
+	// Your SDK may provide: client.VerifyPayment(txnid)
+	// If not, use PayU's status API
+	
+	// TODO: Implement using SDK or PayU API
+	return "success" // placeholder
+}
 ```
 
-### Idempotency: Handling Duplicate Notifications
-
-PayU may send the same webhook multiple times.
-
-**Solution:** Track processed transactions
+### Idempotency: Handle Duplicate Webhooks
 
 ```go
-// Check if already processed
-if isTransactionProcessed(txnid) {
-	log.Printf("Already processed: %s, ignoring duplicate", txnid)
-	return
+func handleWebhookIdempotent(payload map[string]interface{}) {
+	txnid, _ := payload["txnid"].(string)
+
+	// Check if already processed
+	if alreadyProcessed(txnid) {
+		log.Printf("Already processed: %s", txnid)
+		return
+	}
+
+	// Mark as processed
+	markProcessed(txnid)
+
+	// Now process
+	updateOrder(txnid, "PAID")
 }
 
-// Mark as processed
-markTransactionProcessed(txnid)
+func alreadyProcessed(txnid string) bool {
+	// Check database: has this txnid been processed?
+	// Return true if already processed
+	return false // placeholder
+}
 
-// Now handle the transaction
-updateOrderStatus(txnid, "PAID")
+func markProcessed(txnid string) {
+	// Record in database that we processed this txnid
+	// Prevents duplicate processing
+}
 ```
-
-***
-
-## Production Readiness Checklist
-
-### Phase 1: Verification
-
-- [ ] All SDK methods verified in actual SDK code
-- [ ] Hash implementation validated against PayU specification
-- [ ] Code examples tested in your environment
-- [ ] All errors handled properly (no ignored errors)
-- [ ] Credentials stored in environment variables (not hardcoded)
-
-### Phase 2: Security
-
-- [ ] Response hash verification implemented
-- [ ] Webhook hash verification implemented
-- [ ] No sensitive data logged
-- [ ] Credentials in secrets manager (not in code)
-- [ ] HTTPS enforced for all payment URLs
-
-### Phase 3: Operational
-
-- [ ] Reconciliation strategy implemented
-- [ ] Duplicate detection implemented
-- [ ] Timeout handling implemented (>24 hrs pending)
-- [ ] All payment states handled (success, failed, pending, cancelled)
-- [ ] Error messages don't expose sensitive data
-
-### Phase 4: Testing
-
-- [ ] End-to-end test with live credentials
-- [ ] Payment succeeded and order updated
-- [ ] Webhook received
-- [ ] Response hash verified correctly
-
-### Phase 5: Go-Live
-
-- [ ] Code reviewed by team
-- [ ] Switch to production credentials
-- [ ] Change environment from "test" to "production"
-- [ ] Monitor first 100 transactions
-- [ ] Check settlement reports
 
 ***
 
@@ -755,29 +671,26 @@ updateOrderStatus(txnid, "PAID")
 
 ### Initialization Fails
 
-**Error:** `Failed to initialize PayU client`
-
 **Check:**
 
-1. Is `PAYU_MERCHANT_KEY` set? `echo $PAYU_MERCHANT_KEY`
-2. Is `PAYU_MERCHANT_SALT` set? `echo $PAYU_MERCHANT_SALT`
-3. Are values non-empty? `[ -z "$PAYU_MERCHANT_KEY" ] && echo "EMPTY"`
-4. Do they match your PayU account? (Test vs Live)
+- [ ] `PAYU_MERCHANT_KEY` set? `echo $PAYU_MERCHANT_KEY`
+- [ ] `PAYU_MERCHANT_SALT` set? `echo $PAYU_MERCHANT_SALT`
+- [ ] Both non-empty?
+- [ ] Match your PayU account (test vs live)?
 
 ***
 
 ### Hash Verification Fails
 
-**Error:** `Hash verification failed`
-
 **Check:**
 
-1. Verify hash field order matches PayU specification
-2. Verify amount has exactly 2 decimal places (999.99, not 999.9)
-3. Verify salt is correct
-4. Verify all fields are included in hash (even empty ones)
+- [ ] Field order correct (verify against PayU spec)
+- [ ] Amount has 2 decimals (999.99 not 999.9)
+- [ ] Salt is correct
+- [ ] All fields included (even empty ones)
+- [ ] Using SHA512 (not other algorithms)
 
-**Before going live:** Validate hash implementation with PayU support.
+**Test:** Generate hash manually, compare with PayU's hash.
 
 ***
 
@@ -785,65 +698,94 @@ updateOrderStatus(txnid, "PAID")
 
 **Check:**
 
-1. Is your URL publicly accessible? `curl -I https://yoursite.com/webhook/payu`
-2. Does it return 200 or 405? (Not 404 or 500)
-3. Is webhook enabled in PayU Dashboard?
-4. Is URL HTTPS (not HTTP)?
+- [ ] URL is HTTPS (not HTTP)
+- [ ] URL is publicly accessible: `curl -I https://yoursite.com/webhook`
+- [ ] URL returns 200 or 405 (not 404/500)
+- [ ] Webhook enabled in PayU Dashboard
 
 ***
 
-### Payment Stuck in Pending State
+### Payment Stuck Pending
 
-**Check:**
+**Pattern:** Query payment status using reconciliation
 
-1. Use reconciliation to query actual payment status
-2. Check PayU Dashboard → Reports → Transactions
-3. Verify settlement details
-4. If payment succeeded but order not updated, manually reconcile
+```go
+// Use reconciliation to verify actual status
+status := queryPaymentStatus(txnid)
+
+if status == "success" {
+	// Update order (payment succeeded, webhook failed)
+	updateOrder(txnid, "PAID")
+}
+```
 
 ***
 
-### Duplicate Orders Created
+## Production Readiness Checklist
 
-**Check:**
+### Before Going Live
 
-1. Use unique transaction ID for each payment
-2. Check for duplicate txnid submissions
-3. Implement idempotency (detect duplicate webhooks)
+**Code Verification:**
+
+- [ ] Verified all SDK methods exist in your version
+- [ ] Tested hash generation with PayU test credentials
+- [ ] Tested all code examples in your environment
+- [ ] Compile-tested all snippets
+- [ ] Verified error handling (no ignored errors)
+
+**Security:**
+
+- [ ] Response hash verification implemented
+- [ ] Webhook hash verification implemented
+- [ ] No sensitive data logged
+- [ ] Credentials in environment variables (not hardcoded)
+- [ ] HTTPS enforced for all URLs
+
+**Operational:**
+
+- [ ] Reconciliation strategy implemented
+- [ ] Idempotency handling implemented
+- [ ] Timeout handling (mark pending as failed after 24hrs)
+- [ ] All payment states handled (success, failed, pending)
+
+**Testing:**
+
+- [ ] Complete test cycle passed
+- [ ] Webhook received and processed
+- [ ] Order updated in database
+- [ ] Settlement verified
+
+**Go-Live:**
+
+- [ ] Code reviewed
+- [ ] Switch to production credentials
+- [ ] Change environment to "production"
+- [ ] Monitor first 100 transactions
 
 ***
 
 ## API Methods Reference
 
-### Initialization
+**Verify these methods exist in your SDK version before using:**
 
 ```go
-// Initialize PayU client
-client, err := payu.NewClient(
-    merchantKey string,
-    merchantSalt string,
-    environment string, // "test" or "production"
-) (*payu.Client, error)
+// Initialization
+client, err := payu.NewClient(key, salt, env)
+
+// Potential payment methods (verify before use):
+// GetPaymentURL(request) → checkout URL
+// VerifyPaymentHash(response) → true/false
+// VerifyPayment(txnid) → payment status
+// CreateRefund(txnid, amount) → refund ID
+// GetRefundStatus(refundID) → refund status
+// GetSettlements(from, to) → settlement details
 ```
 
-**Verify all available methods in your SDK version before use.**
+**To verify available methods:**
 
-Potential methods (verify in your SDK):
-
-- NewClient()
-- GetPaymentURL()
-- VerifyPaymentHash()
-- ParsePaymentResponse()
-- VerifyPayment()
-- CreateRefund()
-- GetRefundStatus()
-- GetSettlements()
-
-**Important:** Before using any method, verify it exists in your SDK version by:
-
-1. Checking SDK source code
-2. Running `go doc` on the SDK
-3. Checking official documentation
+```bash
+go doc github.com/payu-india/web-sdk-go
+```
 
 ***
 
@@ -851,66 +793,84 @@ Potential methods (verify in your SDK):
 
 ### Q: Do I need PCI compliance?
 
-**A:** No. The hosted checkout means you never handle raw credit card data.
+**A:** No. Hosted checkout means no raw credit card data on your servers.
 
 ***
 
-### Q: Can I test with real card numbers?
+### Q: Can I test with real cards?
 
-**A:** No. Test mode only accepts the test credentials provided.
-
-***
-
-### Q: What if webhook delivery fails?
-
-**A:** Use reconciliation strategy (query payment status periodically).
+**A:** No. Test mode only accepts test credentials.
 
 ***
 
-### Q: How long does payment take?
+### Q: What if I don't get the webhook?
 
-**A:** Usually seconds to minutes, but can take longer for some banks.
-
-***
-
-### Q: When do I receive the funds?
-
-**A:** Check PayU Dashboard → Reports → Settlements. Usually T+1 or T+2 business days.
+**A:** Implement reconciliation (query payment status periodically).
 
 ***
 
-### Q: What should I do if payment response is not received?
+### Q: How long until payment appears?
 
-**A:**
-
-1. Don't update order status immediately based only on callback
-2. Use reconciliation (verify status periodically)
-3. Implement timeout handling (mark as failed if pending >24hrs)
+**A:** Usually seconds to minutes. Check Dashboard → Settlements for bank timing.
 
 ***
 
-## Support & Next Steps
+### Q: What if response hash is wrong?
 
-### Official Resources
+**A:** Don't trust the response. Verify against PayU's spec. Check salt is correct.
 
-- PayU Documentation: [https://docs.payu.in](https://docs.payu.in)
-- PayU Dashboard: [https://payumoney.com](https://payumoney.com)
-- SDK Repository: [https://github.com/payu-india/web-sdk-go](https://github.com/payu-india/web-sdk-go)
+***
+
+## Getting Help
+
+**Official Resources:**
+
+- PayU Docs: [https://docs.payu.in](https://docs.payu.in)
+- Dashboard: [https://payumoney.com](https://payumoney.com)
+- SDK: [https://github.com/payu-india/web-sdk-go](https://github.com/payu-india/web-sdk-go)
 - Support: [support@payu.in](mailto:support@payu.in)
 
-### Before Implementing
+**Before Implementing:**
 
-1. **Verify all SDK methods** exist in your version
-2. **Test hash calculation** with PayU's test environment
-3. **Read PayU's official documentation** for payment specification
-4. **Consult with PayU support** before going live
+1. Verify SDK methods in your version
+2. Validate hash implementation with PayU spec
+3. Test all examples in your environment
 
-### Before Going Live
+**Before Going Live:**
 
-1. **Code review** by another engineer
-2. **Test all payment scenarios** (success, failure, pending, timeout)
-3. **Verify reconciliation** works correctly
-4. **Monitor first transactions** closely
-5. **Check settlements** match your records
+1. Code review completed
+2. All payment scenarios tested
+3. Reconciliation working
+4. Monitoring configured
 
-<br />
+***
+
+## Important Reminders
+
+### Code is Patterns, Not Gospel
+
+The code examples in this guide show **patterns and workflows**, not exact implementations.
+
+**You must:**
+
+- Verify all SDK methods exist in your version
+- Validate hash implementation against PayU spec
+- Test all code in your environment before production
+- Validate security-critical logic (hash, webhook verification)
+
+### This is Not Magic
+
+SDK integration is technical work requiring:
+
+- Understanding payment flows
+- Testing before production
+- Monitoring after go-live
+- Reconciliation for async operations
+
+**Do not skip verification steps.**
+
+***
+
+**End of Documentation**
+
+_This guide provides workflow patterns and examples. Technical implementation details must be verified against official PayU documentation and your SDK version before production use._
