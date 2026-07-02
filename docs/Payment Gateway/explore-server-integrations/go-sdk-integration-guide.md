@@ -39,7 +39,11 @@ Improve payment success rates by checking payment availability and offering elig
 
 ### When to Use This SDK
 
-✅ Backend is Go<br />✅ You want PayU-hosted payment form<br />✅ You need server-side payment verification
+You can use this SDK when:
+
+✅ Your Backend is Go<br />✅ You want PayU-hosted payment form<br />✅ You need server-side payment verification
+
+<br />
 
 ❌ Frontend JavaScript integration → Use Web SDK<br />❌ Mobile app → Use Android/iOS SDK
 
