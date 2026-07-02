@@ -3,6 +3,7 @@ name: SearchableTableRemote
 ---
 // SearchableTableRemote - Readme CMS Custom Component
 // Register in Readme as component name: SearchableTableRemote
+// Required Readme prop: dataUrl (string) — add it in Settings → Custom Components → Props
 // Use for large tables (50+ rows). Host JSON on a public GitHub repo and pass dataUrl.
 // JSON may include headers, codeColumns, and rows. Regenerate: npm run build:searchable-table:remote
 // Do not put curly braces inside line comments in this file.
@@ -26,9 +27,22 @@ export const SearchableTableRemote = (props) => {
     codeColumns = null,
   } = props;
 
+  const resolveDataUrl = () => {
+    const candidates = [dataUrl, props.dataURL, props.url, props.jsonUrl];
+    for (let i = 0; i < candidates.length; i += 1) {
+      const value = candidates[i];
+      if (value != null && String(value).trim()) {
+        return String(value).trim();
+      }
+    }
+    return '';
+  };
+
+  const resolvedDataUrl = resolveDataUrl();
+
   const [searchQuery, setSearchQuery] = useState('');
   const [remoteRows, setRemoteRows] = useState(null);
-  const [loadState, setLoadState] = useState(dataUrl ? 'loading' : 'idle');
+  const [loadState, setLoadState] = useState(resolvedDataUrl ? 'loading' : 'idle');
   const [loadError, setLoadError] = useState('');
   const [remoteHeaders, setRemoteHeaders] = useState(null);
   const [remoteCodeColumns, setRemoteCodeColumns] = useState(null);
@@ -78,7 +92,7 @@ export const SearchableTableRemote = (props) => {
   };
 
   useEffect(() => {
-    const url = dataUrl && String(dataUrl).trim();
+    const url = resolvedDataUrl;
     if (!url) {
       setRemoteRows(null);
       setRemoteHeaders(null);
@@ -93,23 +107,80 @@ export const SearchableTableRemote = (props) => {
     setLoadError('');
     setRemoteRows(null);
 
-    const primary = String(url).trim();
-    const rawToJsDelivr = (rawUrl) => {
-      const m = rawUrl.match(
+    const buildFetchUrls = (inputUrl) => {
+      const trimmed = String(inputUrl).trim();
+      const out = [];
+
+      const push = (candidate) => {
+        if (candidate && out.indexOf(candidate) < 0) {
+          out.push(candidate);
+        }
+      };
+
+      const refsMatch = trimmed.match(
+        /^https:\/\/raw\.githubusercontent\.com\/([^/]+)\/([^/]+)\/refs\/heads\/([^/]+)\/(.+)$/
+      );
+      if (refsMatch) {
+        const owner = refsMatch[1];
+        const repo = refsMatch[2];
+        const branch = refsMatch[3];
+        const path = refsMatch[4];
+        push(
+          'https://cdn.jsdelivr.net/gh/' +
+            owner +
+            '/' +
+            repo +
+            '@' +
+            branch +
+            '/' +
+            path
+        );
+        push(
+          'https://raw.githubusercontent.com/' +
+            owner +
+            '/' +
+            repo +
+            '/' +
+            branch +
+            '/' +
+            path
+        );
+        push(trimmed);
+        return out;
+      }
+
+      const rawMatch = trimmed.match(
         /^https:\/\/raw\.githubusercontent\.com\/([^/]+)\/([^/]+)\/([^/]+)\/(.+)$/
       );
-      if (!m) return null;
-      return (
-        'https://cdn.jsdelivr.net/gh/' +
-        m[1] +
-        '/' +
-        m[2] +
-        '@' +
-        m[3] +
-        '/' +
-        m[4]
-      );
+      if (rawMatch) {
+        const owner = rawMatch[1];
+        const repo = rawMatch[2];
+        const branch = rawMatch[3];
+        const path = rawMatch[4];
+        push(
+          'https://cdn.jsdelivr.net/gh/' +
+            owner +
+            '/' +
+            repo +
+            '@' +
+            branch +
+            '/' +
+            path
+        );
+        push(trimmed);
+        return out;
+      }
+
+      if (trimmed.indexOf('cdn.jsdelivr.net/gh/') >= 0) {
+        push(trimmed);
+        return out;
+      }
+
+      push(trimmed);
+      return out;
     };
+
+    const urls = buildFetchUrls(url);
 
     const parsePayload = (json) => {
       const loaded =
@@ -132,10 +203,6 @@ export const SearchableTableRemote = (props) => {
       fetch(fetchUrl).then((res) =>
         res.ok ? res.json() : Promise.reject(new Error('HTTP ' + res.status))
       );
-
-    const urls = [primary];
-    const cdn = rawToJsDelivr(primary);
-    if (cdn && cdn !== primary) urls.push(cdn);
 
     const loadSequential = (index, lastErr) => {
       if (index >= urls.length) {
@@ -170,7 +237,7 @@ export const SearchableTableRemote = (props) => {
     return () => {
       cancelled = true;
     };
-  }, [dataUrl]);
+  }, [resolvedDataUrl]);
 
   const resolvedHeaders = useMemo(() => {
     const fromJson = parseJsonProp(headersJson, null);
@@ -284,18 +351,6 @@ export const SearchableTableRemote = (props) => {
     return /description|reason|message|title|details/i.test(h);
   };
 
-  const getColMaxWidth = (colIndex) => {
-    if (isTitleCol(colIndex)) return 300;
-    if (isExpandedDescriptionCol(colIndex) || isErrorDescriptionCol(colIndex)) {
-      return 520;
-    }
-    if (isShortDescriptionCol(colIndex)) return 320;
-    if (isMessageCol(colIndex)) return 300;
-    if (isFieldCol(colIndex) || isCodeCol(colIndex)) return 220;
-    if (isLayerCol(colIndex)) return 240;
-    return 360;
-  };
-
   const measureCellLen = (colIndex, cell) => {
     if (cell == null) return 0;
     const text = String(cell).trim();
@@ -316,71 +371,66 @@ export const SearchableTableRemote = (props) => {
   };
 
   const autoColWidths = useMemo(() => {
-    const widths = {};
+    const n = resolvedHeaders.length;
+    if (n === 0) return null;
+
+    if (Array.isArray(columnWidths) && columnWidths.length > 0) {
+      const widths = columnWidths.slice(0, n).map((w) => String(w));
+      while (widths.length < n) {
+        widths.push('auto');
+      }
+      return widths;
+    }
+
     const rowsForMeasure =
       filteredRows.length > 0 ? filteredRows : tableRows;
     const sampleSize = Math.min(rowsForMeasure.length, 150);
-    const pxPerChar = 8;
-    const pad = 36;
 
-    resolvedHeaders.forEach((header, colIdx) => {
+    const weights = resolvedHeaders.map((header, colIdx) => {
       let maxLen = formatHeaderLabel(header).length;
       for (let r = 0; r < sampleSize; r += 1) {
         const cell = rowsForMeasure[r] && rowsForMeasure[r][colIdx];
         maxLen = Math.max(maxLen, measureCellLen(colIdx, cell));
       }
 
-      const minW = isCodeCol(colIdx) || isFieldCol(colIdx) ? 110 : 100;
-      const maxW = getColMaxWidth(colIdx);
-
+      if (isCodeCol(colIdx) || isFieldCol(colIdx)) {
+        return Math.min(Math.max(maxLen, 6), 20) + 10;
+      }
       if (isExpandedDescriptionCol(colIdx) || isErrorDescriptionCol(colIdx)) {
-        widths[colIdx] = 420;
-        return;
+        return Math.min(maxLen, 220) + 48;
       }
-
       if (isShortDescriptionCol(colIdx)) {
-        widths[colIdx] = Math.min(Math.max(240, maxLen * 7 + pad), maxW);
-        return;
+        return Math.min(maxLen, 80) + 20;
       }
-
-      if (isLayerCol(colIdx)) {
-        widths[colIdx] = Math.min(
-          Math.max(maxLen * pxPerChar + pad, 160),
-          maxW
-        );
-        return;
-      }
-
       if (isProseCol(colIdx)) {
-        widths[colIdx] = Math.min(
-          Math.max(260, Math.min(maxLen * 6 + pad, maxW)),
-          maxW
-        );
-        return;
+        return Math.min(maxLen, 180) + 28;
       }
-
-      const fitsOneLine =
-        isCodeCol(colIdx) || isFieldCol(colIdx) || maxLen <= 26;
-
-      if (fitsOneLine) {
-        widths[colIdx] = Math.min(
-          Math.max(maxLen * pxPerChar + pad, minW),
-          maxW
-        );
-        return;
+      if (isLayerCol(colIdx)) {
+        return Math.min(maxLen, 48) + 16;
       }
-
-      widths[colIdx] = Math.min(Math.max(220, maxLen * 5 + pad), maxW);
+      return Math.min(maxLen, 36) + 14;
     });
 
-    return widths;
-  }, [resolvedHeaders, filteredRows, tableRows, codeColIndexes]);
+    const total = weights.reduce((sum, w) => sum + w, 0) || 1;
+    return weights.map((w) => ((w / total) * 100).toFixed(2) + '%');
+  }, [
+    columnWidths,
+    resolvedHeaders,
+    filteredRows,
+    tableRows,
+    codeColIndexes,
+  ]);
 
-  const tablePixelWidth = useMemo(() => {
-    const vals = Object.keys(autoColWidths).map((k) => autoColWidths[k]);
-    if (vals.length === 0) return null;
-    return vals.reduce((sum, w) => sum + w, 0);
-  }, [autoColWidths]);
+  const tableMinWidthPx = useMemo(() => {
+    if (resolvedHeaders.length < 6) return null;
+    const mins = resolvedHeaders.map((_, colIdx) => {
+      if (isCodeCol(colIdx) || isFieldCol(colIdx)) return 100;
+      if (isProseCol(colIdx)) return 180;
+      if (isLayerCol(colIdx)) return 140;
+      return 90;
+    });
+    return mins.reduce((sum, m) => sum + m, 0);
+  }, [resolvedHeaders, codeColIndexes]);
 
   const fontSans =
     '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
@@ -410,12 +460,11 @@ export const SearchableTableRemote = (props) => {
   };
 
   const colWidthStyle = (colIndex) => {
-    const w = autoColWidths[colIndex];
+    const w = autoColWidths && autoColWidths[colIndex];
     if (!w) return { minWidth: 0 };
     return {
+      width: w,
       minWidth: 0,
-      width: w + 'px',
-      maxWidth: w + 'px',
     };
   };
 
@@ -517,7 +566,7 @@ export const SearchableTableRemote = (props) => {
 
   const renderColgroup = () => {
     if (resolvedHeaders.length === 0) return null;
-    if (Object.keys(autoColWidths).length === 0) return null;
+    if (!autoColWidths || autoColWidths.length === 0) return null;
     return (
       <colgroup>
         {resolvedHeaders.map((_, i) => (
@@ -525,11 +574,7 @@ export const SearchableTableRemote = (props) => {
             key={i}
             style={
               autoColWidths[i] != null
-                ? {
-                    width: autoColWidths[i] + 'px',
-                    minWidth: autoColWidths[i] + 'px',
-                    maxWidth: autoColWidths[i] + 'px',
-                  }
+                ? { width: autoColWidths[i] }
                 : undefined
             }
           />
@@ -541,8 +586,10 @@ export const SearchableTableRemote = (props) => {
   const cellPlainText = (value) =>
     value == null ? '' : String(value).replace(/`/g, '');
 
-  const showNoRows =
-    !isLoading && !hasLoadError && tableRows.length === 0;
+  const showMissingUrl = loadState === 'idle' && !resolvedDataUrl;
+  const showEmptyRows =
+    loadState === 'ready' && !hasLoadError && tableRows.length === 0;
+  const showNoRows = showMissingUrl || showEmptyRows;
 
   return (
     <div
@@ -647,12 +694,12 @@ export const SearchableTableRemote = (props) => {
         >
           <table
             style={{
-              width: tablePixelWidth ? tablePixelWidth + 'px' : '100%',
-              minWidth: '100%',
+              width: '100%',
+              minWidth: tableMinWidthPx ? tableMinWidthPx + 'px' : undefined,
               borderCollapse: 'collapse',
               borderSpacing: 0,
               margin: 0,
-              tableLayout: tablePixelWidth ? 'fixed' : 'auto',
+              tableLayout: 'fixed',
               fontFamily: fontSans,
             }}
           >
@@ -685,7 +732,9 @@ export const SearchableTableRemote = (props) => {
               {showNoRows ? (
                 <tr>
                   <td colSpan={colCount || 1} style={messageCellStyle}>
-                    No rows loaded. Set dataUrl to a public JSON file on GitHub (jsDelivr URL). See GITHUB_HOSTING.md.
+                    {showMissingUrl
+                      ? 'Missing dataUrl prop. In Readme Custom Components, add a string prop named dataUrl to SearchableTableRemote, then set it on the page (jsDelivr URL recommended). See GITHUB_HOSTING.md.'
+                      : 'JSON loaded but contains no rows. Check the file on GitHub has a rows array.'}
                   </td>
                 </tr>
               ) : isLoading ? (
