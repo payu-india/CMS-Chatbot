@@ -22,17 +22,19 @@ After payment completion, verify whether the transaction was successful or check
 </Accordion>
 
 <Accordion title="3. Handle Post-Payment Operations" icon="fa-receipt">
-Manage payment-related operations after a transaction is completed.
+Manage these payment-related operations after a transaction is completed.
+- **Handle Refunds:** Initiate or cancel refunds and check refund status.
+- **Manage Invoices:** Create or expire invoice links through SDK functions.
 </Accordion>
 
 <Accordion title="4. Reconcile Payments" icon="fa-scale-balanced">
 Track settlements and ensure payments are settled correctly to your account.
 </Accordion>
 
-<Accordion title="5. Optimize Payment Experience" icon="fa-info-circle">
-  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
-  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
-  occaecat cupidatat non proident!
+<Accordion title="5. Optimize Payment Experience" icon="fa-gauge-high">
+Improve payment success rates by checking payment availability and offering eligible payment options.
+- **Check Bank Downtime Status:** Get information on eligible payment options and PG/bank downtime details.
+- **Check Eligibility:** Check customer eligibility for EMI and get the amount according to EMI interest.
 </Accordion>
 
 ### When to Use This SDK
