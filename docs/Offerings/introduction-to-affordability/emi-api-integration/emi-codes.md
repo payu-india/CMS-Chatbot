@@ -15,7 +15,7 @@ next:
 ## Credit Card EMI Codes
 
 <SearchableTableRemote
-  dataUrl="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/emi-bank-codes.json"
+  tableKey="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/emi-bank-codes.json"
   placeholder="Search"
   maxHeight="500px"
 />
