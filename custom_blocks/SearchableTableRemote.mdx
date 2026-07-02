@@ -3,15 +3,49 @@ name: SearchableTableRemote
 ---
 // SearchableTableRemote - Readme CMS Custom Component
 // Register in Readme as component name: SearchableTableRemote
-// Required Readme prop: dataUrl (string) — add it in Settings → Custom Components → Props
-// Use for large tables (50+ rows). Host JSON on a public GitHub repo and pass dataUrl.
+// Recommended Readme prop: tableKey (string)
+//   - Short name: tableKey="emiBankCodes" (built-in map below)
+//   - Or full jsDelivr URL: tableKey="https://cdn.jsdelivr.net/gh/.../data/my-table.json"
+// Use for large tables (50+ rows). JSON is loaded from payu-docs-assets on GitHub.
 // JSON may include headers, codeColumns, and rows. Regenerate: npm run build:searchable-table:remote
-// Do not put curly braces inside line comments in this file.
+// Keep import and export only at file top level — Readme MDX cannot parse other top-level code.
 
 import { useState, useMemo, useEffect, useRef } from 'react';
 
 export const SearchableTableRemote = (props) => {
+  const CDN_BASE =
+    'https://cdn.jsdelivr.net/gh/palgunams21/payu-docs-assets@main/data';
+
+  const urlForTableKey = (key) => {
+    const lower = String(key || '').trim().toLowerCase();
+    if (!lower) return '';
+    if (lower === 'paymenterrors') return CDN_BASE + '/payment-error-codes.json';
+    if (lower === 'othererrors') return CDN_BASE + '/other-error-codes.json';
+    if (lower === 'authnerrors') return CDN_BASE + '/auth-n-error-codes.json';
+    if (lower === 'authzerrors') return CDN_BASE + '/auth-z-error-codes.json';
+    if (lower === 'altiderrorcodes') return CDN_BASE + '/alt-id-error-codes.json';
+    if (lower === 'upierrorcodes') return CDN_BASE + '/upi-error-codes.json';
+    if (lower === 'upibankhandles') return CDN_BASE + '/upi-bank-handles.json';
+    if (lower === 'field7cardpayments') return CDN_BASE + '/field7-card-payments.json';
+    if (lower === 'field7netbanking') return CDN_BASE + '/field7-net-banking.json';
+    if (lower === 'authflowfields') return CDN_BASE + '/auth-flow-fields.json';
+    if (lower === 'netbankingcodes') return CDN_BASE + '/net-banking-codes.json';
+    if (lower === 'netbankingtpvcodes') return CDN_BASE + '/netbanking-tpv-codes.json';
+    if (lower === 'responsecodes') return CDN_BASE + '/response-codes.json';
+    if (lower === 'emibankcodes') return CDN_BASE + '/emi-bank-codes.json';
+    if (lower === 'emidebitbankcodes') return CDN_BASE + '/emi-debit-bank-codes.json';
+    if (lower === 'debitcardemicodes') return CDN_BASE + '/debit-card-emi-codes.json';
+    if (lower === 'cardlessemicodes') return CDN_BASE + '/cardless-emi-codes.json';
+    if (lower === 'bankinstitutionemicodes') return CDN_BASE + '/bank-institution-emi-codes.json';
+    if (lower === 'upiccemicodes') return CDN_BASE + '/upi-cc-emi-codes.json';
+    if (lower === 'bajajfinservemicodes') return CDN_BASE + '/bajaj-finserv-emi-codes.json';
+    if (lower === 'otheremicodes') return CDN_BASE + '/other-emi-codes.json';
+    if (lower === 'issuerdeclineerrorcodes') return CDN_BASE + '/issuer-decline-error-codes.json';
+    return '';
+  };
+
   const {
+    tableKey = '',
     headers = [],
     headersJson = '',
     dataUrl = '',
@@ -28,6 +62,17 @@ export const SearchableTableRemote = (props) => {
   } = props;
 
   const resolveDataUrl = () => {
+    const key = String(tableKey || props.tablekey || '').trim();
+    if (key) {
+      if (/^https?:\/\//i.test(key)) {
+        return key;
+      }
+      const mapped = urlForTableKey(key);
+      if (mapped) {
+        return mapped;
+      }
+    }
+
     const candidates = [dataUrl, props.dataURL, props.url, props.jsonUrl];
     for (let i = 0; i < candidates.length; i += 1) {
       const value = candidates[i];
@@ -733,7 +778,7 @@ export const SearchableTableRemote = (props) => {
                 <tr>
                   <td colSpan={colCount || 1} style={messageCellStyle}>
                     {showMissingUrl
-                      ? 'Missing dataUrl prop. In Readme Custom Components, add a string prop named dataUrl to SearchableTableRemote, then set it on the page (jsDelivr URL recommended). See GITHUB_HOSTING.md.'
+                      ? 'Missing tableKey or dataUrl. On the doc page use tableKey="emiBankCodes" (recommended). In Readme Custom Components, add a string prop named tableKey. See snippets/emi-bank-codes-remote-readme.mdx.'
                       : 'JSON loaded but contains no rows. Check the file on GitHub has a rows array.'}
                   </td>
                 </tr>
