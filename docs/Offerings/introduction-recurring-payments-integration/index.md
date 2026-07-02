@@ -18,12 +18,6 @@ metadata:
 next:
   description: ''
 ---
-<Callout icon="👍" theme="okay">
-  \<FreshTag heading
-
-     <ul><li><Anchor label="RuPay Debit and Credit Cards" target="_blank" href="https://docs.payu.in/reference/credit-card-recurring-payment-consent-transaction">RuPay Debit and Credit Cards</Anchor> are supported for Subscriptions.</li></ul>
-</Callout>
-
 The Subscriptions, Recurring Payments or Standing Instruction (SI) from PayU to set up and manage recurring payments. These recurring payments:
 
 \- Can be charged as per a cycle defined
