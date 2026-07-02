@@ -43,7 +43,11 @@ You can use this SDK when:
 
 ✅ Your Backend is Go<br />✅ You want PayU-hosted payment form<br />✅ You need server-side payment verification
 
-<br />
+These are some of the use cases:
+
+<Accordion title="E-commerce Order Fulfillment Gated on Verified Payment (UrbanCart)" icon="fa-info-circle">
+
+</Accordion>
 
 ❌ Frontend JavaScript integration → Use Web SDK<br />❌ Mobile app → Use Android/iOS SDK
 
