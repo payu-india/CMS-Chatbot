@@ -15,20 +15,26 @@ The following are possible errors and error codes for a transaction. You need t
 - The **PayU Error Code** column in the following table corresponds to the value returned in the **error** parameter of the payment response
 - The **error\_message / message** column in the following table corresponds to the value returned in the **error\_message / message** parameter of the payment response
 
-> 📘 **Note:**&#x20;
->
-> The reason for failure depends upon the error codes provided by different banks and hence the detailing of error reasons may differ from one transaction to another.
+<Callout icon="📘" theme="info">
+  ### **Note:**&#x20;
 
-> ❗️ **Transaction Stages Error handling**:&#x20;
->
-> For error references on during various transaction stages in Net Banking, Cards and Wallets, refer to [Transaction Stages - Error References on Field7 & Field8](#transaction-stages-error-references-field7-field8).
+  The reason for failure depends upon the error codes provided by different banks and hence the detailing of error reasons may differ from one transaction to another.
+</Callout>
 
-> 📘 **Reference:**
->
-> Refer to the **[Cards](https://docs.payu.in/reference/error-codes#cards)** section for AuthN and AuthZ errors
+<Callout icon="❗️" theme="error">
+  ### **Transaction Stages Error handling**:&#x20;
+
+  For error references on during various transaction stages in Net Banking, Cards and Wallets, refer to [Transaction Stages - Error References on Field7 & Field8](#transaction-stages-error-references-field7-field8).
+</Callout>
+
+<Callout icon="📘" theme="info">
+  ### **Reference:**
+
+  Refer to the **[Cards](https://docs.payu.in/reference/error-codes#cards)** section for AuthN and AuthZ errors
+</Callout>
 
 <SearchableTableRemote
-  dataUrl="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/payment-error-codes.json"
+  tableKey="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/payment-error-codes.json"
   placeholder="Search"
   maxHeight="500px"
 />
@@ -36,7 +42,7 @@ The following are possible errors and error codes for a transaction. You need t
 ## Other Error Codes from PayU
 
 <SearchableTableRemote
-  dataUrl="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/other-error-codes.json"
+  tableKey="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/other-error-codes.json"
   placeholder="Search"
   maxHeight="500px"
 />
@@ -78,7 +84,7 @@ To understand the error codes, you need to read the Error Code Object sent in th
 The following table helps you identify specific reasons for payment failures and provides standardized error codes and messages. This will facilitate troubleshooting and communicate your customers when transactions are declined.
 
 <SearchableTableRemote
-  dataUrl="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/issuer-decline-error-codes.json"
+  tableKey="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/issuer-decline-error-codes.json"
   placeholder="Search"
   maxHeight="500px"
 />
@@ -90,7 +96,7 @@ The following are the errors associated with cards along with their reasons and 
 ### Field7 for Card payments
 
 <SearchableTableRemote
-  dataUrl="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/field7-card-payments.json"
+  tableKey="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/field7-card-payments.json"
   placeholder="Search"
   maxHeight="500px"
 />
@@ -98,31 +104,35 @@ The following are the errors associated with cards along with their reasons and 
 ### AuthN Errors
 
 <SearchableTableRemote
-  dataUrl="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/auth-n-error-codes.json"
+  tableKey="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/auth-n-error-codes.json"
   placeholder="Search"
   maxHeight="500px"
 />
 
-> ⬇️ **Download Template**
->
-> **[Download AuthN Errors in the CSV Template](https://github.com/palgunams21/payu-docs-assets/releases/download/AuthN-AuthZ-errors/AuthN_error_list.csv)**
+<Callout icon="⬇️" theme="default">
+  ### **Download Template**
+
+  **[Download AuthN Errors in the CSV Template](https://github.com/palgunams21/payu-docs-assets/releases/download/AuthN-AuthZ-errors/AuthN_error_list.csv)**
+</Callout>
 
 ### AuthZ Errors
 
 <SearchableTableRemote
-  dataUrl="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/auth-z-error-codes.json"
+  tableKey="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/auth-z-error-codes.json"
   placeholder="Search"
   maxHeight="500px"
 />
 
-> ⬇️ **Download Template**
->
-> **[Download AuthZ Errors in the CSV Template](https://github.com/palgunams21/payu-docs-assets/releases/download/AuthN-AuthZ-errors/AuthZ_error_list.csv)**
+<Callout icon="⬇️" theme="default">
+  ### **Download Template**
+
+  **[Download AuthZ Errors in the CSV Template](https://github.com/palgunams21/payu-docs-assets/releases/download/AuthN-AuthZ-errors/AuthZ_error_list.csv)**
+</Callout>
 
 ### Alt ID Errors
 
 <SearchableTableRemote
-  dataUrl="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/alt-id-error-codes.json"
+  tableKey="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/alt-id-error-codes.json"
   placeholder="Search"
   maxHeight="500px"
 />
@@ -132,7 +142,7 @@ The following are the errors associated with cards along with their reasons and 
 The following are the errors associated with NetBanking and wallets along with their reasons and descriptions.
 
 <SearchableTableRemote
-  dataUrl="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/netbanking-wallets.json"
+  tableKey="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/netbanking-wallets.json"
   placeholder="Search"
   maxHeight="500px"
 />
@@ -140,7 +150,7 @@ The following are the errors associated with NetBanking and wallets along with t
 ## UPI Error Codes
 
 <SearchableTableRemote
-  dataUrl="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/upi-error-codes.json"
+  tableKey="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/upi-error-codes.json"
   placeholder="Search"
   maxHeight="500px"
 />
