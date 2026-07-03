@@ -1,7 +1,7 @@
 ---
 api:
   file: pdn-rp-api.yaml
-  operationId: post_merchant-webservice-service-php
+  operationId: post_merchant-postservice-php-form-2
 hidden: false
 ---
 <Cards>
