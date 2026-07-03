@@ -29,7 +29,7 @@ The Liberalised Remittance Scheme (LRS) is a framework established by the Reserv
 >
 > Register for a account with PayU before you start integration. Contact your PayU Key Account Manager to enable Cross-Border Payments and LRS. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
 
-<Accordion title="Travel" icon="fa-info-list">
+<Accordion title="Travel" icon="fa-info-a-plane">
 #### International Travel Bookings
 
 Indian travellers can seamlessly book and pay for international flights, hotels, and vacation packages using their preferred payment methods. The LRS framework ensures regulatory compliance while providing a smooth payment experience.
