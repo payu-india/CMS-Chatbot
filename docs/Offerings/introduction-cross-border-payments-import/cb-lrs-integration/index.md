@@ -5,13 +5,6 @@ hidden: false
 metadata:
   robots: index
 ---
----
-title: Liberalised Remittance Scheme (LRS) for Travel & Education
-deprecated: false
-hidden: false
-metadata:
-  robots: index
----
 The Liberalised Remittance Scheme (LRS) is a framework established by the Reserve Bank of India (RBI) that enables Indian residents, to send money internationally up to USD 250,000 per financial year. These remittances can cover various purposes like education fees, travel expenses, investments, and more.
 
 ## Key features of LRS:
@@ -21,15 +14,19 @@ The Liberalised Remittance Scheme (LRS) is a framework established by the Reserv
 - Requires collection & validation of PAN (Permanent Account Number)
 - Involves Tax Collected at Source (TCS) based on purpose & transaction amount as per applicable government regulations
 
-> 📘
->
-> **Note**: All transactions under LRS require PAN verification and proper declarations regarding the annual limit of USD 250,000. PayU automates these compliance requirements, making international payments simple for both merchants and customers.
+<Callout icon="📘" theme="info">
+  ###
 
-> 👍 Before you begin:
->
-> Register for a account with PayU before you start integration. Contact your PayU Key Account Manager to enable Cross-Border Payments and LRS. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
+  **Note**: All transactions under LRS require PAN verification and proper declarations regarding the annual limit of USD 250,000. PayU automates these compliance requirements, making international payments simple for both merchants and customers.
+</Callout>
 
-<Accordion title="Travel" icon="fa-info-a-plane">
+<Callout icon="👍" theme="okay">
+  ### Before you begin:
+
+  Register for a account with PayU before you start integration. Contact your PayU Key Account Manager to enable Cross-Border Payments and LRS. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
+</Callout>
+
+<Accordion title="Travel" icon="fa-map">
 #### International Travel Bookings
 
 Indian travellers can seamlessly book and pay for international flights, hotels, and vacation packages using their preferred payment methods. The LRS framework ensures regulatory compliance while providing a smooth payment experience.
@@ -62,6 +59,7 @@ Here's the cleaned-up table. I fixed: duplicate link text in the last column, th
 | Others Services (Cabs, Airport transfers, Tours & Attraction Tickets etc.) | Located in India | Only PACB-Import | PAN collection & validation is not required. |
 
 </Accordion>
+
 <Accordion title="Education" icon="fa-graduation-cap">
   #### International University Fees
 
@@ -87,21 +85,23 @@ Here's the cleaned-up table. I fixed: duplicate link text in the last column, th
 
 The following sections describe how to integrate LRS for travel and education with PayU:
 
-* [Customer Journey – PayU Hosted Checkout with LRS Integration](doc:customer-journey-payu-hosted-checkout-with-lrs-integration)
-* [Integrate PayU Hosted Checkout](doc:integrate-payu-hosted-checkout-cb-lrs)
-* [Merchant Hosted API Integration](doc:cb-lrs-merchant-hosted-api-integration)
-* Payment method integrations
-  * [Cards Integration for CB LRS](doc:cards-integration-for-cb-lrs)
-  * [UPI Integration for CB LRS](doc:upi-integration-for-cb-lrs)
-  * [NetBanking Integration for CB LRS](doc:netbanking-integration-for-cb-lrs)
+- [Customer Journey – PayU Hosted Checkout with LRS Integration](doc:customer-journey-payu-hosted-checkout-with-lrs-integration)
+- [Integrate PayU Hosted Checkout](doc:integrate-payu-hosted-checkout-cb-lrs)
+- [Merchant Hosted API Integration](doc:cb-lrs-merchant-hosted-api-integration)
+- Payment method integrations
+  - [Cards Integration for CB LRS](doc:cards-integration-for-cb-lrs)
+  - [UPI Integration for CB LRS](doc:upi-integration-for-cb-lrs)
+  - [NetBanking Integration for CB LRS](doc:netbanking-integration-for-cb-lrs)
 
 ## APIs used in LRS integration
 
-| API name | Purpose |
-| --- | --- |
-| [PayU Hosted Checkout – CB LRS](ref:_payment_payu_hosted_checkout_cb_lrs) | Initiate LRS transactions on PayU Hosted Checkout with `lrs_service_type` and buyer PAN details. |
-| [Merchant Hosted Checkout – CB LRS](ref:_payment_merchant_hosted_cb_lrs) | Submit merchant-hosted S2S payment requests with mandatory LRS parameters (`lrs_service_type`, TCS declarations, PAN in UDF fields). |
-| [Collect Payment API – UPI (Cross-Border)](ref:_payment_cross-border_merchant_hosted_upi) | Initiate UPI Intent payments for cross-border LRS transactions. |
-| [Collect Payment API – NetBanking (Cross-Border)](ref:_payment_cross-border_merchant_hosted_netbanking) | Initiate NetBanking payments for cross-border LRS transactions. |
-| [Get Token API – Partner Integration](ref:get_token_api) | Generate a bearer token with `get_pan_details` scope for PAN Card Status Check API authentication.  |
-| [Verify Payment API](ref:verify_payment_api) | Server-side reconciliation of transaction status after payment. |
+| API name                                                                                                | Purpose                                                                                                                              |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| [PayU Hosted Checkout – CB LRS](ref:_payment_payu_hosted_checkout_cb_lrs)                               | Initiate LRS transactions on PayU Hosted Checkout with `lrs_service_type` and buyer PAN details.                                     |
+| [Merchant Hosted Checkout – CB LRS](ref:_payment_merchant_hosted_cb_lrs)                                | Submit merchant-hosted S2S payment requests with mandatory LRS parameters (`lrs_service_type`, TCS declarations, PAN in UDF fields). |
+| [Collect Payment API – UPI (Cross-Border)](ref:_payment_cross-border_merchant_hosted_upi)               | Initiate UPI Intent payments for cross-border LRS transactions.                                                                      |
+| [Collect Payment API – NetBanking (Cross-Border)](ref:_payment_cross-border_merchant_hosted_netbanking) | Initiate NetBanking payments for cross-border LRS transactions.                                                                      |
+| [Get Token API – Partner Integration](ref:get_token_api)                                                | Generate a bearer token with `get_pan_details` scope for PAN Card Status Check API authentication.                                   |
+| [Verify Payment API](ref:verify_payment_api)                                                            | Server-side reconciliation of transaction status after payment.                                                                      |
+
+<br />
