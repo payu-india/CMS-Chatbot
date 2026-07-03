@@ -244,6 +244,17 @@ paths:
                                 mf_amc_code:
                                   type: string
                                   description: The AMC (Asset Management Company) code.
+                              required:
+                                - type
+                                - amount
+                                - receipt
+                                - mf_user_id
+                                - mf_member_id
+                                - mf_partner
+                                - mf_investment_type
+                            description: >-
+                              This object should be passed only by Mutual Fund
+                              merchants
             examples:
               request:
                 summary: SI Transaction Request
