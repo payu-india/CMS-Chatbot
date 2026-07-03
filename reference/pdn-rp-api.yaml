@@ -244,6 +244,8 @@ paths:
                                 mf_amc_code:
                                   type: string
                                   description: The AMC (Asset Management Company) code.
+                                  enum:
+                                    - UTB
                               required:
                                 - type
                                 - amount
