@@ -841,104 +841,101 @@ This section describes the customer workflow with an SKU-based offer on the PayU
   ```javascript
   async function makePayURequest() {
       const url = "https://test.payu.in/_payment";
-
-```
-  // Define cart details object
-  const cartDetails = {
-      amount: 55000,
-      items: 2,
-      surcharges: 10,
-      pre_discount: 5,
-      sku_details: [
-          {
-              sku_id: "smartphone234",
-              sku_name: "Smartphone",
-              amount_per_sku: "45000",
-              quantity: 1,
-              offer_key: null,
-              offer_auto_apply: true
-          },
-          {
-              sku_id: "smartwatch132",
-              sku_name: "Smartwatch",
-              amount_per_sku: "10000",
-              quantity: 1,
-              offer_key: ["flat500@2022"],
-              offer_auto_apply: false
-          }
-      ]
-  };
-
-  // Define form data
-  const formData = new URLSearchParams({
-      'key': 'JF****g',
-      'txnid': 'jYhbOYH9o4',
-      'amount': '10',
-      'productinfo': 'Product_info',
-      'firstname': 'Ashish',
-      'lastname': 'Test',
-      'email': 'test@example.com',
-      'phone': '9876543210',
-      'furl': 'http://pp30admin.payu.in/test_response',
-      'surl': 'http://pp30admin.payu.in/test_response',
-      'api_version': '19',
-      'hash': 'e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184',
-      'cart_details': JSON.stringify(cartDetails)
-  });
-
-  try {
-      console.log('Making request to:', url);
-      console.log('Cart details:', cartDetails);
       
-      const response = await fetch(url, {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-              'Cookie': 'PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e'
-          },
-          body: formData
+      // Define cart details object
+      const cartDetails = {
+          amount: 55000,
+          items: 2,
+          surcharges: 10,
+          pre_discount: 5,
+          sku_details: [
+              {
+                  sku_id: "smartphone234",
+                  sku_name: "Smartphone",
+                  amount_per_sku: "45000",
+                  quantity: 1,
+                  offer_key: null,
+                  offer_auto_apply: true
+              },
+              {
+                  sku_id: "smartwatch132",
+                  sku_name: "Smartwatch",
+                  amount_per_sku: "10000",
+                  quantity: 1,
+                  offer_key: ["flat500@2022"],
+                  offer_auto_apply: false
+              }
+          ]
+      };
+
+      // Define form data
+      const formData = new URLSearchParams({
+          'key': 'JF****g',
+          'txnid': 'jYhbOYH9o4',
+          'amount': '10',
+          'productinfo': 'Product_info',
+          'firstname': 'Ashish',
+          'lastname': 'Test',
+          'email': 'test@example.com',
+          'phone': '9876543210',
+          'furl': 'http://pp30admin.payu.in/test_response',
+          'surl': 'http://pp30admin.payu.in/test_response',
+          'api_version': '19',
+          'hash': 'e5b286a9c8545038de9d4e4ee4d8a2fd02e821015aff7e0323807ba174997d8643f9aa174981385e3e4dfe60b918650806ccb97b3e8e3471e1985ecadefd0184',
+          'cart_details': JSON.stringify(cartDetails)
       });
 
-      console.log('Response status:', response.status);
-      console.log('Response headers:', response.headers);
+      try {
+          console.log('Making request to:', url);
+          console.log('Cart details:', cartDetails);
+          
+          const response = await fetch(url, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded',
+                  'Cookie': 'PHPSESSID=nbn8otc350bsv6u5fqvhcbo73b; PHPSESSID=63a0499eaf13e'
+              },
+              body: formData
+          });
 
-      // Check if response is successful
-      if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}, statusText: ${response.statusText}`);
+          console.log('Response status:', response.status);
+          console.log('Response headers:', response.headers);
+
+          // Check if response is successful
+          if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}, statusText: ${response.statusText}`);
+          }
+
+          const data = await response.text();
+          console.log('Success! Response data:', data);
+          
+          return {
+              success: true,
+              status: response.status,
+              data: data
+          };
+
+      } catch (error) {
+          console.error('Request failed:', error);
+          
+          return {
+              success: false,
+              error: error.message
+          };
       }
-
-      const data = await response.text();
-      console.log('Success! Response data:', data);
-      
-      return {
-          success: true,
-          status: response.status,
-          data: data
-      };
-
-  } catch (error) {
-      console.error('Request failed:', error);
-      
-      return {
-          success: false,
-          error: error.message
-      };
   }
-```
 
-}
+  // Call the function
+  makePayURequest()
+      .then(result => {
+          if (result.success) {
+              console.log('Payment request completed successfully');
+          } else {
+              console.log('Payment request failed:', result.error);
+          }
+      });
 
-// Call the function
-makePayURequest()
-.then(result => {
-uccess) {
-log('Payment request completed successfully');
-
-log('Payment request failed:', result.error);
-
-);
-
-````
+  ```
 ```python
 import requests
 import json
