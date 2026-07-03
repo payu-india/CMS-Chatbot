@@ -511,155 +511,20 @@ This section describes the customer workflow with an SKU-based offer on the PayU
 
   The following request parameters are posted along with request parameters posted for a PayU Hosted Checkout transaction. For the checkout flow and list of request parameters required for the Offer integration, refer to  [Collect Payment API - PayU Hosted Checkout](ref:_payment_payu_hosted_checkout).
 
-  <Table>
-    <thead>
-      <tr>
-        <th>
-          **Field**
-        </th>
-
-        <th>
-          **Description**
-        </th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr>
-        <td>
-          cart\_details
-          `mandatory for SKU`
-        </td>
-
-        <td>
-          `JSON Object `The card details is specified in this parameter in a JSON format.
-          **Note**: If given null, no cart will be created for the transaction.
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          cart\_details.amount
-          `mandatory`
-        </td>
-
-        <td>
-          `String` The amount for the SKU-based offer.
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          cart\_details.surcharges
-          `conditional`
-        </td>
-
-        <td>
-          `String` Total txn amount is now increased, but the cart\_details.amount is lesser, to handle the difference, the additional amount added by the merchant should be passed in surcharges field
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          cart\_details.pre\_discount
-          `conditional`
-        </td>
-
-        <td>
-          * String\_ If there are any pre discount given by merchant on their checkout page. Total txn amount is now reduced, but the cart\_details.amount is higher, to handle the difference, the discount given by the merchant should be passed in pre\_discount field
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          cart\_details.items
-          `mandatory`
-        </td>
-
-        <td>
-          * String\_ The number of the items for the SKU-based offer.
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          cart\_details.sku\_details
-          `mandatory`
-        </td>
-
-        <td>
-          * JSON Object\_ The SKU details is specified in this parameter in a JSON format.
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          cart\_details.sku\_details.sku\_id
-          `mandatory`
-        </td>
-
-        <td>
-          * String\_ This parameter contains the unique identifier for SKU.
-          * *Note*\*: The Product ID in the Excel file as described in the[Create a SKU-Based Offer](doc:create-a-sku-based-offer) section and the **skuId** request parameter used in the Merchant Hosted Checkout Integration for SKU-based offer have the same function, Hence, after you create Product IDs on Dashboard, use them as values for the skuId parameter.
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          sku\_details.sku\_name
-          `mandatory`
-        </td>
-
-        <td>
-          `String`  This parameter contains the SKU name.
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          sku\_details.quantity
-          `mandatory`
-        </td>
-
-        <td>
-          `String`  The parameter must contain the quantity of SKU added in cart.
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          sku\_details.amount\_per\_sku
-          `mandatory`
-        </td>
-
-        <td>
-          `String`  The parameter must contain the per SKU amount.
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          sku\_details.offer\_key
-          `mandatory`
-        </td>
-
-        <td>
-          `String` This parameter must contain the Offer Key(s) which can be used for this transaction. |
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          sku\_details.offer\_auto\_apply
-          `mandatory`
-        </td>
-
-        <td>
-          `String` This parameter contains the flag for when to enable auto application of best offer on this SKU.
-        </td>
-      </tr>
-    </tbody>
-  </Table>
+  | **Field** | **Description** |
+  | --- | --- |
+  | cart\_details `mandatory for SKU` | `JSON Object` The card details is specified in this parameter in a JSON format.<br />**Note**: If given null, no cart will be created for the transaction. |
+  | cart\_details.amount `mandatory` | `String` The amount for the SKU-based offer. |
+  | cart\_details.surcharges `conditional` | `String` Total txn amount is now increased, but the cart\_details.amount is lesser, to handle the difference, the additional amount added by the merchant should be passed in surcharges field |
+  | cart\_details.pre\_discount `conditional` | `String` If there are any pre discount given by merchant on their checkout page. Total txn amount is now reduced, but the cart\_details.amount is higher, to handle the difference, the discount given by the merchant should be passed in pre\_discount field |
+  | cart\_details.items `mandatory` | `String` The number of the items for the SKU-based offer. |
+  | cart\_details.sku\_details `mandatory` | `JSON Object` The SKU details is specified in this parameter in a JSON format. |
+  | cart\_details.sku\_details.sku\_id `mandatory` | `String` This parameter contains the unique identifier for SKU.<br /><br />- *Note*: The Product ID in the Excel file as described in the [Create a SKU-Based Offer](doc:create-a-sku-based-offer) section and the **skuId** request parameter used in the Merchant Hosted Checkout Integration for SKU-based offer have the same function. Hence, after you create Product IDs on Dashboard, use them as values for the skuId parameter. |
+  | sku\_details.sku\_name `mandatory` | `String` This parameter contains the SKU name. |
+  | sku\_details.quantity `mandatory` | `String` The parameter must contain the quantity of SKU added in cart. |
+  | sku\_details.amount\_per\_sku `mandatory` | `String` The parameter must contain the per SKU amount. |
+  | sku\_details.offer\_key `mandatory` | `String` This parameter must contain the Offer Key(s) which can be used for this transaction. |
+  | sku\_details.offer\_auto\_apply `mandatory` | `String` This parameter contains the flag for when to enable auto application of best offer on this SKU. |
 </Accordion>
 
 <Accordion title="Sample request" icon="fa-server">
