@@ -2,7 +2,7 @@
 api:
   file: pdn-rp-api.yaml
   operationId: post_merchant-webservice-service-php
-hidden: true
+hidden: false
 ---
 <Cards>
   <Card title="Method">
