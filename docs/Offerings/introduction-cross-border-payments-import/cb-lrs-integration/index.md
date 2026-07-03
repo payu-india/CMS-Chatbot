@@ -29,7 +29,39 @@ The Liberalised Remittance Scheme (LRS) is a framework established by the Reserv
 >
 > Register for a account with PayU before you start integration. Contact your PayU Key Account Manager to enable Cross-Border Payments and LRS. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
 
+<Accordion title="Travel" icon="fa-info-list">
+#### International Travel Bookings
 
+Indian travellers can seamlessly book and pay for international flights, hotels, and vacation packages using their preferred payment methods. The LRS framework ensures regulatory compliance while providing a smooth payment experience.
+
+**Example:** An Indian customer books a hotel in Thailand for a family vacation. Instead of complicated wire transfers, they can complete the payment using UPI or Net Banking through your platform, with PayU handling all compliance requirements.
+
+#### Foreign Travel Services
+
+Travel agencies and Online Travel Aggregators (OTAs) can accept payments for international services like guided tours, transportation, and experience packages without payment friction.
+
+**Example:** Your travel platform sells European tour packages to Indian customers. With PayU's LRS solution, customers can pay directly using familiar payment methods, while PayU manages PAN verification and TCS collection.
+
+#### Applicability of PACB-Import & LRS Guidelines for Travel Sector
+
+For merchants belonging to the following categories, a view of applicable regulations based on the type of service being sold:
+
+* International OTA & Travel aggregators
+* International Airlines
+* International Hotel Chains
+Here's the cleaned-up table. I fixed: duplicate link text in the last column, the broken empty link in the first Travel row, the malformed header separator, inconsistent bold on the last column header, and "Located Outside **in** India" → "Located Outside India."
+
+| **Type of Service** | **Sub-type of Service** | **Applicability of PACB-Import & LRS** | **Implication on Payment Journey** |
+| :--- | :--- | :--- | :--- |
+| Travel | Domestic Flight Booking | Only PACB-Import | PAN collection & validation is not required. |
+| Travel | International Flight Booking (all legs outside India) | Both PACB-Import & LRS | Payer's PAN details need to be collected and validated. Governed by [`lrs_service_type`](https://docs.payu.in/?isFramePreview=true#request-parameters) parameter in the payment request. |
+| Travel | Mixed Flight Booking (One or more legs in India as well as International destinations) | Both PACB-Import & LRS | Payer's PAN details need to be collected and validated. Governed by [`lrs_service_type`](https://docs.payu.in/?isFramePreview=true#request-parameters) parameter in the payment request. |
+| Hospitality | International Hotel Booking | Both PACB-Import & LRS | Payer's PAN details need to be collected and validated. Governed by [`lrs_service_type`](https://docs.payu.in/?isFramePreview=true#request-parameters) parameter in the payment request. |
+| Hospitality | Indian Hotel Booking | Only PACB-Import | PAN collection & validation is not required. |
+| Others Services (Cabs, Airport transfers, Tours & Attraction Tickets etc.) | Located Outside India | Both PACB-Import & LRS | Payer's PAN details need to be collected and validated. Governed by [`lrs_service_type`](https://docs.payu.in/?isFramePreview=true#request-parameters) parameter in the payment request. |
+| Others Services (Cabs, Airport transfers, Tours & Attraction Tickets etc.) | Located in India | Only PACB-Import | PAN collection & validation is not required. |
+
+</Accordion>
 <Accordion title="Education" icon="fa-graduation-cap">
   #### International University Fees
 
