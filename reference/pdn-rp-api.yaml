@@ -11,7 +11,7 @@ servers:
   - url: https://test.payu.in
     description: Test Environment
 paths:
-  /merchant/webservice/service.php:
+  /merchant/postservice.php?form=2:
     post:
       summary: Create a Pre-debit Notification and Recurring Payments Transaction
       description: >-
@@ -518,3 +518,4 @@ paths:
                     message: debitDate is mandatory
                     errorCode: SIR004
                     action: SI_RECURRING
+      operationId: post_merchant-postservice-php-form-2
