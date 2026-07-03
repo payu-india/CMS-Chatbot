@@ -121,73 +121,11 @@ To integrate offers using PayU Hosted Checkout integration:
    You need to send an additional parameter (**user token)**, **api\_version** as 14, and hash as described in the following table. This user token would be used to identify the customer for applying velocity rules.
 
 <Accordion title="Request parameters" icon="fa-database">
-  <Table align={["left","left","left"]}>
-    <thead>
-      <tr>
-        <th style={{ textAlign: "left" }}>
-          **Parameter**
-        </th>
-
-        <th style={{ textAlign: "left" }}>
-          **Description**
-        </th>
-
-        <th style={{ textAlign: "left" }}>
-          **Example**
-        </th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          api\_version
-          `mandatory`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          The API version of the \_payment API must be specified as **14**.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          14
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          user\_token
-          `mandatory for UPI, NB, Wallet`
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          The use for this param is to allow the offer engine to apply velocity rules at a user level.
-
-          * **Card Based Offers (CC, DC, EMI)**: In case of card payment mode offers, if this parameter is passed the velocity rules would be applied on this token, if not passed the same would be applied on the card number.
-          * **UPI, NB, Wallet**: It is mandatory for UPI, NB, and Wallet payment modes. If not passed the validation rules would not apply.
-        </td>
-
-        <td style={{ textAlign: "left" }}></td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          hash
-          for UPI, NB, Wallet
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          It is used to avoid the possibility of transaction tampering.
-
-          * *Note*\*: The following order must be used for hashing:
-            `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|offer_key|offer_auto_apply|SALT`
-            For more information on hash generation process, refer to [Generate Hash](doc:generate-hash-payu-hosted) .
-        </td>
-
-        <td style={{ textAlign: "left" }}></td>
-      </tr>
-    </tbody>
-  </Table>
+  | **Parameter** | **Description** | **Example** |
+  | --- | --- | --- |
+  | api\_version `mandatory` | The API version of the \_payment API must be specified as **14**. | 14 |
+  | user\_token `mandatory for UPI, NB, Wallet` | The use for this param is to allow the offer engine to apply velocity rules at a user level.<br /><br />- **Card Based Offers (CC, DC, EMI)**: In case of card payment mode offers, if this parameter is passed the velocity rules would be applied on this token, if not passed the same would be applied on the card number.<br />- **UPI, NB, Wallet**: It is mandatory for UPI, NB, and Wallet payment modes. If not passed the validation rules would not apply. | |
+  | hash for UPI, NB, Wallet | It is used to avoid the possibility of transaction tampering.<br /><br />- *Note*: The following order must be used for hashing:<br />`key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|udf6\|udf7\|udf8\|udf9\|udf10\|offer_key\|offer_auto_apply\|SALT`<br />For more information on hash generation process, refer to [Generate Hash](doc:generate-hash-payu-hosted). | |
 </Accordion>
 
 <Accordion title="Sample request" icon="fa-server">
