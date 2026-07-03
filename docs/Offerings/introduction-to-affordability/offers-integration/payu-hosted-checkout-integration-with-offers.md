@@ -423,84 +423,12 @@ To integrate offers using PayU Hosted Checkout integration:
    You need to understand the following parameters to handle the payment response as the net amount debit may be different from the amount sent by you in the request.
 
 <Accordion title="Response parameters" icon="fa-database">
-  <Table align={["left","left","left"]}>
-    <thead>
-      <tr>
-        <th style={{ textAlign: "left" }}>
-          **Parameter**
-        </th>
-
-        <th style={{ textAlign: "left" }}>
-          **Description**
-        </th>
-
-        <th style={{ textAlign: "left" }}>
-          **Example**
-        </th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          discount
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This will specify the offer value provided to the user.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          10.00
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          net\_amount\_debit
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This will specify the actual amount deducted from the customer’s payment instrument. In case of Instant discount this amount would be lesser than the amount passed by you in the request.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          100.00
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          offer
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter is used to post the offer key.
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          newoffer1\@5686
-        </td>
-      </tr>
-
-      <tr>
-        <td style={{ textAlign: "left" }}>
-          offer\_type
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          This parameter is used to post any of the following offer\_type:
-
-          * instant
-          * cashback
-        </td>
-
-        <td style={{ textAlign: "left" }}>
-          instant
-        </td>
-      </tr>
-    </tbody>
-  </Table>
+  | **Parameter** | **Description** | **Example** |
+  | --- | --- | --- |
+  | discount | This will specify the offer value provided to the user. | 10.00 |
+  | net\_amount\_debit | This will specify the actual amount deducted from the customer's payment instrument. In case of Instant discount this amount would be lesser than the amount passed by you in the request. | 100.00 |
+  | offer | This parameter is used to post the offer key. | newoffer1\@5686 |
+  | offer\_type | This parameter is used to post any of the following offer\_type:<br /><br />- instant<br />- cashback | instant |
 </Accordion>
 
 3. Verify the payment.
