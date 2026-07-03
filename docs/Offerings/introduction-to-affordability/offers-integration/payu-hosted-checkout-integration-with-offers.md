@@ -932,60 +932,62 @@ This section describes the customer workflow with an SKU-based offer on the PayU
 
   The **cart\_details** JSON Object in the response (sample):
 
-  ```
-  {"cart_details": {
-      "id": "18",
-      "payu_id": "999000000000983",
-      "total_items": "2",
-      "total_cart_amount": "55000",
-      "offer_applied": null,
-      "offer_availed": null,
-      "instant_discount": "1000",
-      "cashback_discount": "500",
-      "total_discount": "1500",
-      "net_cart_amount": "54000",
-      "created_at": null,
-      "updated_at": null,
-      "sku_details": [
-        {
-          "id": "35",
-          "cart_id": "18",
-          "payu_id": "999000000000983",
-          "mid": "180012",
-          "sku_id": "smartphone234",
-          "sku_name": "Smartphone",
-          "amount_per_sku": "45000.00",
-          "quantity": "1",
-          "amount_before_discount": "45000",
-          "discount": "1000",
-          "amount_after_discount": "44000",
-          "offer_key": null,
-          "offer_status": null,
-          "offer_type": null,
-          "created_at": null,
-          "updated_at": null
-        },
-        {
-          "id": "36",
-          "cart_id": "18",
-          "payu_id": "999000000000983",
-          "mid": "180012",
-          "sku_id": "smartwatch132",
-          "sku_name": "Smartwatch",
-          "amount_per_sku": "10000.00",
-          "quantity": "1",
-          "amount_before_discount": "10000.00",
-          "discount": "500",
-          "amount_after_discount": "10000.00",
-          "offer_key": null,
-          "offer_status": null,
-          "offer_type": null,
-          "created_at": null,
-          "updated_at": null
-        }
-      ]
-    }}
-  ```
+  ```json
+{
+  "cart_details":{
+    "id":"18",
+    "payu_id":"999000000000983",
+    "total_items":"2",
+    "total_cart_amount":"55000",
+    "offer_applied":null,
+    "offer_availed":null,
+    "instant_discount":"1000",
+    "cashback_discount":"500",
+    "total_discount":"1500",
+    "net_cart_amount":"54000",
+    "created_at":null,
+    "updated_at":null,
+    "sku_details":[
+      {
+        "id":"35",
+        "cart_id":"18",
+        "payu_id":"999000000000983",
+        "mid":"180012",
+        "sku_id":"smartphone234",
+        "sku_name":"Smartphone",
+        "amount_per_sku":"45000.00",
+        "quantity":"1",
+        "amount_before_discount":"45000",
+        "discount":"1000",
+        "amount_after_discount":"44000",
+        "offer_key":null,
+        "offer_status":null,
+        "offer_type":null,
+        "created_at":null,
+        "updated_at":null
+      },
+      {
+        "id":"36",
+        "cart_id":"18",
+        "payu_id":"999000000000983",
+        "mid":"180012",
+        "sku_id":"smartwatch132",
+        "sku_name":"Smartwatch",
+        "amount_per_sku":"10000.00",
+        "quantity":"1",
+        "amount_before_discount":"10000.00",
+        "discount":"500",
+        "amount_after_discount":"10000.00",
+        "offer_key":null,
+        "offer_status":null,
+        "offer_type":null,
+        "created_at":null,
+        "updated_at":null
+      }
+    ]
+  }
+}
+```
 
   **Failure scenarios**
 
