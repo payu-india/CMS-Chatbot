@@ -46,7 +46,12 @@ You can use this SDK when:
 These are some of the use cases:
 
 <Accordion title="E-commerce Order Fulfillment Gated on Verified Payment (UrbanCart)" icon="fa-info-circle">
+UrbanCart, a D2C e-commerce marketplace processing 50,000 orders a day through Go microservices, needs to confirm that a customer's payment has been verified server-side before it reserves inventory permanently and triggers shipment. This happens at the boundary between checkout completion and order fulfillment, and it matters because releasing inventory or shipping against an unconfirmed or reversible payment creates direct financial loss and inventory discrepancies at scale.
 
+Using PayU Go SDK UrbanCart can:
+- Generate the request hash and build hosted checkout payment requests to securely collect payments at high volume.
+- Independently verify transaction status and validate the reverse hash on every callback, rather than trusting the browser redirect alone to confirm a payment before fulfilling an order.
+- If you want to support returns and cancellations, use the PayU Go SDK's refund initiation and refund status check.
 </Accordion>
 
 ❌ Frontend JavaScript integration → Use Web SDK<br />❌ Mobile app → Use Android/iOS SDK
