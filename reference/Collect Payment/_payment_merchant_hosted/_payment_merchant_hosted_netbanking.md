@@ -33,7 +33,11 @@ next:
 Collect payments using Net Banking with Merchant Hosted Checkout integration as described in this section. After collecting the details from the customer, make the transaction request with the payment details to PayU.
 
 <Callout icon="👍" theme="okay">
+  ###
+
   Experience the end-to-end **Merchant Hosted Checkout** > **Net Banking** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
+
+    
 
   <HTMLBlock>{`
                           <style>
@@ -83,16 +87,18 @@ You can check whether the Net Banking server is up and running using the **getNe
 
 ## Recommended integrations for Net Banking
 
-* **Recurring Payments**: Enable recurring payments or subscriptions for wallets. For more information, refer to [Recurring Payments Integration](doc:introduction-recurring-payments-integration).
-* **Offers**: Configure offers for cards on Dashboard and then collect payments with offers. For more information, refer to [Create a No-Cost EMI Offer](doc:create-a-no-cost-emi-offer) and [Create a SKU-Based Offer](doc:create-a-sku-based-offer).
+- **Recurring Payments**: Enable recurring payments or subscriptions for wallets. For more information, refer to [Recurring Payments Integration](doc:introduction-recurring-payments-integration).
+- **Offers**: Configure offers for cards on Dashboard and then collect payments with offers. For more information, refer to [Create a No-Cost EMI Offer](doc:create-a-no-cost-emi-offer) and [Create a SKU-Based Offer](doc:create-a-sku-based-offer).
 
 <PaymentAPIEnvironment />
 
 ## Request parameters
 
-> 📘 Reference:
->
-> For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+<Callout icon="📘" theme="info">
+  ### Reference:
+
+  For the character limit of each parameter and detailed description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+</Callout>
 
 <br />
 
@@ -123,11 +129,11 @@ You can check whether the Net Banking server is up and running using the **getNe
 | udf4<br />`optional`                            | `string` This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Additional Info 2                                                                              |
 | udf5<br />`optional`                            | `string` This parameter has been made for you to keep any information corresponding to the transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Additional Info 3                                                                              |
 
-Perfect! ✨ Now each parameter name is on its own line, followed by the mandatory/optional status on the next line, making the table much more readable and organized.
+<Callout icon="🚧" theme="warn">
+  ### Values to be used in Test environment
 
-> 🚧 Values to be used in Test environment
->
-> You can test NetBanking only with pg=TESTPG and bankcode=TESTPGNB only.
+  You can test NetBanking only with pg=TESTPG and bankcode=TESTPGNB only.
+</Callout>
 
 ## Sample request
 
@@ -139,9 +145,11 @@ curl -X \
 
 ## Response parameters
 
-> 📘 Reference
->
-> For the response parameters description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis#response-parameters).
+<Callout icon="📘" theme="info">
+  ### Reference
+
+  For the response parameters description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis#response-parameters).
+</Callout>
 
 ## Sample response
 
@@ -209,3 +217,5 @@ Array
     [error_Message] => No Error
 )
 ```
+
+<br />
