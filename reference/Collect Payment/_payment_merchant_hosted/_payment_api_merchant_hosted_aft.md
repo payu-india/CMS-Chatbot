@@ -221,8 +221,6 @@ HTTP Method: **POST**
     ```
 
     <Accordion title="Fields Description" icon="fa-table">
-      Perfect! I found the PayU documentation examples. Here's the updated table with examples from PayU's official documentation:
-
       | Field                    | Description                                                                                                | Example                         |
       | ------------------------ | ---------------------------------------------------------------------------------------------------------- | ------------------------------- |
       | **senderInformation**    |                                                                                                            |                                 |
