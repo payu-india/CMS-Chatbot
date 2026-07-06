@@ -6,6 +6,14 @@ metadata:
   title: Get Virtual Accounts API - PACB
   robots: index
 ---
+---
+title: Get Virtual Accounts API
+deprecated: false
+hidden: true
+metadata:
+  title: Get Virtual Accounts API - PACB
+  robots: index
+---
 Retrieve a **paginated list** of Virtual Accounts provisioned for a Cross-Border Payments sub-merchant MID.
 
 ## Environment
@@ -17,17 +25,13 @@ Retrieve a **paginated list** of Virtual Accounts provisioned for a Cross-Border
 
 ## Request Parameters
 
-### Authentication Logic
+### Authorization Logic in Header
 
 <HeaderAuthentication />
 
-### Request Header
+<br />
 
-| Parameter                   | Description                              | Example |
-| --------------------------- | ---------------------------------------- | ------- |
-| merchantId<br />`mandatory` | `Integer` - PayU MID of the sub-merchant | 12345   |
-
-## Request parameters
+### Query Parameters
 
 | Parameter                  | Description                                            | Example |
 | -------------------------- | ------------------------------------------------------ | ------- |
@@ -38,8 +42,7 @@ Retrieve a **paginated list** of Virtual Accounts provisioned for a Cross-Border
 
 ```curl
 curl --location --request GET 'https://uatoneapi.payu.in/payout/v2/virtualAccounts?pageOffset=1&pageSize=10' \
---header 'Authorization: {{authorization}}' \
---header 'merchantId: 12345'
+--header 'Authorization: {{authorization}}'
 ```
 
 ## Sample Response
@@ -115,21 +118,13 @@ curl --location --request GET 'https://uatoneapi.payu.in/payout/v2/virtualAccoun
               <tr>
                 <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">msg</td>
                 <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">This parameter returns the reason string.</td>
-                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">
-                  For example, any of the following messages are displayed:
-                  <ul style="padding-left: 20px; margin-top: 5px;">
-                    <li>Parameter missing</li>
-                    <li>Token is empty</li>
-                    <li>Amount is empty</li>
-                    <li>Transaction not exists</li>
-                  </ul>
-                </td>
+                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">null</td>
               </tr>
               <tr>
                 <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">data</td>
                 <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">This parameter contains the virtual account details in JSON format. For more information, refer to <a href="#data-json-fields-description">data JSON Fields Description</a>
 </td>
-                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">refer to <a href="data-json-fields-description">#data JSON Fields Description></td>
+                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">refer to <a href="#data-json-fields-description">data JSON Fields Description</a></td>
               </tr>
              
             </tbody>
@@ -143,6 +138,6 @@ curl --location --request GET 'https://uatoneapi.payu.in/payout/v2/virtualAccoun
 | `noOfPages`       | Total pages for the current `pageSize` |
 | `totalElements`   | Total VA records for the MID           |
 | `currentPage`     | Current page number                    |
-| `virtualAccounts` | Array of VA objects                    |
+| `virtualAccounts` | Array of VA objects (same fields as [Create Virtual Account API](ref:create-virtual-account-api-pacb) response) |
 
 <br />
