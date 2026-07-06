@@ -46,7 +46,6 @@ For merchants belonging to the following categories, a view of applicable regula
 * International OTA & Travel aggregators
 * International Airlines
 * International Hotel Chains
-Here's the cleaned-up table. I fixed: duplicate link text in the last column, the broken empty link in the first Travel row, the malformed header separator, inconsistent bold on the last column header, and "Located Outside **in** India" → "Located Outside India."
 
 | **Type of Service** | **Sub-type of Service** | **Applicability of PACB-Import & LRS** | **Implication on Payment Journey** |
 | :--- | :--- | :--- | :--- |
