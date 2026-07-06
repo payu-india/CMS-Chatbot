@@ -1,5 +1,5 @@
 ---
-title: Go SDK - Integration Guide
+title: Go SDK - Overview
 deprecated: false
 hidden: true
 metadata:
@@ -64,9 +64,30 @@ Using PayU Go SDK LearnSphere can:<br/>
 - Honor cooling-off-period refund policies by using Go SDK's refund initiation.
 </Accordion>
 
-❌ Frontend JavaScript integration → Use Web SDK<br />❌ Mobile app → Use Android/iOS SDK
+<Accordion title="Travel Booking Confirmation Synchronized with Payment and Supplier Hold (TripWing)" icon="fa-plane-departure">
+TripWing, an online travel aggregator booking flights and hotels through a Go orchestration service, needs to confirm payment within a supplier's time-boxed inventory hold window and only then confirm the booking with the airline or hotel. This happens between the inventory hold and supplier confirmation, and it matters because travel inventory is finite and time-sensitive — a slow or unverified payment can mean a customer is charged without a seat or room, or vice versa.<br/>
+
+Using PayU Go SDK TripWing can:<br/>
+- Generate the hash and create a checkout request with expiry aligned to that window to collect payment within a supplier hold window.
+- Validate the reverse hash and check transaction status before calling the supplier's confirm-booking API to confirm a booking only on verified payments.
+- Automatically compensate the customer if a supplier confirmation later fails.
+- Check bank/PG downtime status and route customers accordingly to reduce failed payments during peak booking periods.
+</Accordion>
 
 ***
+
+## Other Options
+
+If you want:
+
+- Frontend JavaScript integration → You can choose Web SDK.
+- Mobile app → You can choose Android/iOS SDK.
+
+***
+
+## Supported Payment Methods
+
+_Need Content Here._
 
 ## Prerequisites & Setup
 
