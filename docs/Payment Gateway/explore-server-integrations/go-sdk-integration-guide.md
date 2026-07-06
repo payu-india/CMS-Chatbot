@@ -54,6 +54,16 @@ Using PayU Go SDK UrbanCart can:<br/>
 - Use the PayU Go SDK's refund initiation and refund status check to support returns and cancellations.
 </Accordion>
 
+<Accordion title="EdTech Enrollment Activation Gated on Confirmed Payment (LearnSphere)" icon="fa-user-graduate">
+earnSphere, an EdTech platform selling certification courses priced between ₹15,000–₹1,20,000, needs to activate a learner's enrollment and unlock course content only once payment — including EMI-based payment — is confirmed. This happens between checkout and content access, and it matters because EMI transactions can confirm with a delay, and premature activation risks granting access without settled payment or regulatory-compliant refund handling.<br/>
+
+Using PayU Go SDK LearnSphere can:<br/>
+- Check EMI eligibility for the customer's card/bank before checkout to offer EMI as a payment option.
+- Generate the hash and create the checkout request for the selected plan to collect payment for a course
+- Validate the reverse hash and verify transaction status before touching enrollment state to activate enrollment only on confirmed payment.
+- Honor cooling-off-period refund policies by using Go SDK's refund initiation.
+</Accordion>
+
 ❌ Frontend JavaScript integration → Use Web SDK<br />❌ Mobile app → Use Android/iOS SDK
 
 ***
