@@ -5,9 +5,11 @@ hidden: true
 metadata:
   robots: index
 ---
-An Account Funding Transaction (AFT) is a secure, electronic, "pull" payment method that moves money from a cardholder’s account (credit/debit) to a non-merchant account, such as a digital wallet, prepaid card, or investment account. It is primarily used to "load" or "top-up" funds, rather than for purchasing goods or services. This section describes the request parameters, sample request/response for _payment API using AFT with VISA Debit or Credit Cards.
+An Account Funding Transaction (AFT) is a secure, electronic, "pull" payment method that moves money from a cardholder’s account (credit/debit) to a non-merchant account, such as a digital wallet, prepaid card, or investment account. It is primarily used to "load" or "top-up" funds, rather than for purchasing goods or services. This section describes the request parameters, sample request/response for \_payment API using AFT with VISA Debit or Credit Cards.
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Note**: This integration must be used only with Merchant Category Code (MCC) of 6540 of VISA Debit or Credit Cards.
 </Callout>
 
@@ -94,7 +96,6 @@ HTTP Method: **POST**
     ```
 
     <Accordion title="Fields Description" icon="fa-table">
-      Perfect! I found the PayU documentation examples. Here's the updated table with examples from PayU's official documentation:
 
       | Field                    | Description                                                                                                | Example                         |
       | ------------------------ | ---------------------------------------------------------------------------------------------------------- | ------------------------------- |
@@ -205,3 +206,5 @@ HTTP Method: **POST**
   )
   ```
 </Accordion>
+
+<br />
