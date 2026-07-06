@@ -1,43 +1,93 @@
 ---
-title: ' Deactivate Virtual Account API'
+title: ' Update Virtual Account API'
 deprecated: false
 hidden: true
 metadata:
-  title: ' Deactivate Virtual Account API - PACB'
+  title: ' Update Virtual Account API - PACB'
   robots: index
 ---
-Deactivate a **Virtual Account** so it no longer accepts new bank credits. Historic VA details and deposit records remain available through list and transaction APIs.
+---
+title: Update Virtual Account API
+deprecated: false
+hidden: true
+metadata:
+  title: Update Virtual Account API - PACB
+  robots: index
+---
+Update a **Virtual Account** display name or active status. Set `isActive` to `false` to deactivate the VA and block new bank credits. Historic VA details and deposit records remain available through list and transaction APIs.
 
-For the full VA management set, refer to [PACB Virtual Account APIs](ref:pacb-virtual-account-apis).
+## Environment
 
-## Environmentx
-
-| Environment | URL                                                              | Method |
-| ----------- | ---------------------------------------------------------------- | ------ |
-| Test        | `https://uatoneapi.payu.in/payout/v2/virtualAccounts/deactivate` | PATCH  |
-| Production  | `https://oneapi.payu.in/payout/v2/virtualAccounts/deactivate`    | PATCH  |
+| Environment | URL                                                   | Method |
+| ----------- | ----------------------------------------------------- | ------ |
+| Test        | `https://uatoneapi.payu.in/payout/v2/virtualAccounts` | PATCH  |
+| Production  | `https://oneapi.payu.in/payout/v2/virtualAccounts`    | PATCH  |
 
 ## Request Parameters
 
-### Authentication Logic
+### Authorization Logic in Header
 
 <HeaderAuthentication />
 
+<br />
+
 ### Request Header
 
-| Parameter                         | Description                                                | Example                                                                                     |
-| --------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| Authorization<br />`mandatory`    | `String` - Bearer access token from Payouts authentication | Bearer aab9dc927c4a<br />68af7eb95ef694f0b4<br />8bb731c5a1a7111786d<br />\|6658d774db14188 |
-| merchantId<br />`mandatory`       | `Integer` - PayU MID of the sub-merchant                   | 12345                                                                                       |
-| virtualAccountId<br />`mandatory` | `Integer` - PayU-assigned VA identifier to deactivate      | 987654                                                                                      |
+| Parameter                     | Description                                              | Example          |
+| ----------------------------- | -------------------------------------------------------- | ---------------- |
+| Content-Type<br />`mandatory` | `String` - Request body format. Set to `application/json` | application/json |
+
+### Query Parameters
+
+| Parameter                         | Description                                                                                                                                  | Example     |
+| --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| virtualAccountId<br />`mandatory` | `String` - PayU-assigned VA identifier (`virtualAccountId`) or virtual account number (for example `PURW2231266`)                            | 2231266     |
+
+### Body Parameters
+
+At least one of `virtualAccountName` or `isActive` is required.
+
+| Parameter                           | Description                                                                                                      | Example                   |
+| ----------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------- |
+| virtualAccountName<br />`optional`*  | `String` - Updated display name for the VA. Maximum 255 characters                                               | Storefront collections Q2 |
+| isActive<br />`optional`*           | `Boolean` - Set to `false` to deactivate the VA. New deposits are rejected at validation when `isActive` is `false` | false                     |
+
+\*At least one body field is required.
 
 ## Sample Request
 
+### Rename virtual account
+
 ```curl
-curl --location --request PATCH 'https://uatoneapi.payu.in/payout/v2/virtualAccounts/deactivate' \
+curl --location --request PATCH 'https://uatoneapi.payu.in/payout/v2/virtualAccounts?virtualAccountId=2231266' \
 --header 'Authorization: {{authorization}}' \
---header 'merchantId: 12345' \
---header 'virtualAccountId: 987654'
+--header 'Content-Type: application/json' \
+--data '{
+  "virtualAccountName": "Storefront collections Q2"
+}'
+```
+
+### Deactivate virtual account
+
+```curl
+curl --location --request PATCH 'https://uatoneapi.payu.in/payout/v2/virtualAccounts?virtualAccountId=2231266' \
+--header 'Authorization: {{authorization}}' \
+--header 'Content-Type: application/json' \
+--data '{
+  "isActive": false
+}'
+```
+
+### Rename and deactivate
+
+```curl
+curl --location --request PATCH 'https://uatoneapi.payu.in/payout/v2/virtualAccounts?virtualAccountId=PURW2231266' \
+--header 'Authorization: {{authorization}}' \
+--header 'Content-Type: application/json' \
+--data '{
+  "virtualAccountName": "Storefront collections Q2",
+  "isActive": false
+}'
 ```
 
 ## Sample Response
@@ -48,87 +98,48 @@ curl --location --request PATCH 'https://uatoneapi.payu.in/payout/v2/virtualAcco
 {
   "status": 0,
   "data": {
-    "virtualAccountId": 987654,
-    "merchantId": 12345,
-    "virtualAccountName": "Storefront collections Q1",
-    "virtualAccountNumber": "PUIN987654",
+    "virtualAccountId": 2231266,
+    "merchantId": 5014182,
+    "virtualAccountNumber": "PURW2231266",
     "ifsc": "UTIB0CCH274",
     "merchantName": "Acme Pvt Ltd",
+    "virtualAccountName": "Storefront collections Q2",
     "isActive": false,
     "externalRefId": "merchant-va-ref-001"
   },
-  "msg": "Virtual account deactivated",
+  "msg": "Virtual account updated",
+  "code": null
+}
+```
+
+### Failure scenario
+
+```json
+{
+  "status": 1,
+  "data": "Error while updating virtual account.",
+  "msg": null,
   "code": null
 }
 ```
 
 ## Response Parameters
 
-<HTMLBlock>{`
-          <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-            <thead>
-              <tr style="background-color: #f5f5f5;">
-                <th style="padding: 10px; border: 1px solid #ddd; font-weight: bold; text-align: left;">Parameter</th>
-                <th style="padding: 10px; border: 1px solid #ddd; font-weight: bold; text-align: left;">Description</th>
-                <th style="padding: 10px; border: 1px solid #ddd; font-weight: bold; text-align: left;">Example</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">status</td>
-                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">
-                  This parameter returns the status of web service call. The status can be any of the following: 
-                  <ul style="padding-left: 20px; margin-top: 5px;">
-                    <li>1 - If web service call failed.</li>
-                    <li>0 - If web service call succeeded</li>
-                  </ul>
-                </td>
-                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">0</td>
-              </tr>
-              <tr>
-                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">msg</td>
-                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">This parameter returns the reason string.</td>
-                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">
-                  For example, any of the following messages are displayed:
-                  <ul style="padding-left: 20px; margin-top: 5px;">
-                    <li>Parameter missing</li>
-                    <li>Token is empty</li>
-                    <li>Amount is empty</li>
-                    <li>Transaction not exists</li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">data</td>
-                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">This parameter contains the virtual account details in JSON format. For more information, refer to <a href="#data-json-fields-description">data JSON Fields Description</a>
-</td>
-                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">refer to <a href="data-json-fields-description">#data JSON Fields Description></td>
-              </tr>
-             
-            </tbody>
-          </table>
-`}</HTMLBlock>
-
 ### data JSON Fields Description
 
-| Field                  | Description                                                                               |
-| ---------------------- | ----------------------------------------------------------------------------------------- |
-| `virtualAccountId`     | PayU-assigned VA identifier. Use this in get-details, deactivate, and list-deposits APIs. |
-| `merchantId`           | Sub-merchant MID the VA belongs to                                                        |
-| `virtualAccountName`   | Name supplied at creation                                                                 |
-| `virtualAccountNumber` | Account number the payer credits                                                          |
-| `ifsc`                 | IFSC for the VA (corporate VA IFSC for Axis-backed accounts)                              |
-| `merchantName`         | Registered merchant name                                                                  |
-| isActive               | `false` after successful deactivation                                                     |
-| noOfPages              | Total pages for the current `pageSize`                                                    |
-| totalElements          | Total VA records for the MID                                                              |
-| currentPage            | Current page number                                                                       |
-| virtualAccounts        | Array of VA objects                                                                       |
+| Parameter              | Description                                                                 |
+| ---------------------- | --------------------------------------------------------------------------- |
+| `virtualAccountId`     | PayU-assigned VA identifier                                                 |
+| `merchantId`           | Sub-merchant MID                                                            |
+| `virtualAccountName`   | Updated display name for the VA                                             |
+| `virtualAccountNumber` | Account number shared with payers                                           |
+| `ifsc`                 | IFSC for bank transfers to this VA                                          |
+| `merchantName`         | Registered merchant name                                                    |
+| `isActive`             | `false` after deactivation; `true` when the VA accepts new credits          |
+| `externalRefId`        | Merchant reference ID, if provided at creation                              |
 
 <Callout icon="📘" theme="info">
-  ###
-
-  **Note**:
+  ### Note:
 
   Deactivation blocks **new** incoming transfers to the VA. Credits already received and linked PayU transactions are not removed. Contact your PayU Key Account Manager (KAM) if you need to reactivate a VA.
 </Callout>
