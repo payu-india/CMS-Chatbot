@@ -6,6 +6,14 @@ metadata:
   title: Create Virtual Account API - PACB
   robots: index
 ---
+---
+title: Create Virtual Account API
+deprecated: false
+hidden: true
+metadata:
+  title: Create Virtual Account API - PACB
+  robots: index
+---
 Provision a **Virtual Account (VA)** for a Cross-Border Payments sub-merchant. PayU returns the VA number and IFSC that the payer uses for NEFT, RTGS, or IMPS transfers.
 
 ## Environment
@@ -25,10 +33,9 @@ Provision a **Virtual Account (VA)** for a Cross-Border Payments sub-merchant. P
 
 ### Request Header
 
-| Parameter                      | Description                                                                                                           | Example                                                                                         |
-| ------------------------------ | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| merchantId<br />`mandatory`    | `Integer` - PayU MID of the sub-merchant                                                                              | 12345                                                                                           |
-| Content-Type<br />`mandatory`  | `String` - Request body format. Set to `application/json`                                                             | application/json                                                                                |
+| Parameter                     | Description                                              | Example          |
+| ----------------------------- | -------------------------------------------------------- | ---------------- |
+| Content-Type<br />`mandatory` | `String` - Request body format. Set to `application/json` | application/json |
 
 ### Body Parameters
 
@@ -42,7 +49,6 @@ Provision a **Virtual Account (VA)** for a Cross-Border Payments sub-merchant. P
 ```curl
 curl --location --request POST 'https://uatoneapi.payu.in/payout/v2/virtualAccounts' \
 --header 'Authorization: {{authorization}}' \
---header 'merchantId: 12345' \
 --header 'Content-Type: application/json' \
 --data '{
   "virtualAccountName": "Storefront collections Q1",
@@ -81,7 +87,7 @@ curl --location --request POST 'https://uatoneapi.payu.in/payout/v2/virtualAccou
   "status": 1,
   "data": "virtualAccountName is required",
   "msg": null,
-  "code": 100125
+  "code": 1001
 }
 ```
 
@@ -122,21 +128,13 @@ curl --location --request POST 'https://uatoneapi.payu.in/payout/v2/virtualAccou
               <tr>
                 <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">msg</td>
                 <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">This parameter returns the reason string.</td>
-                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">
-                  For example, any of the following messages are displayed:
-                  <ul style="padding-left: 20px; margin-top: 5px;">
-                    <li>Parameter missing</li>
-                    <li>Token is empty</li>
-                    <li>Amount is empty</li>
-                    <li>Transaction not exists</li>
-                  </ul>
-                </td>
+                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">Virtual account created</td>
               </tr>
               <tr>
                 <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">data</td>
                 <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">This parameter contains the virtual account details in JSON format. For more information, refer to <a href="#data-json-fields-description">data JSON Fields Description</a>
 </td>
-                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">refer to <a href="#data-json-fields-description">data JSON Fields Description></td>
+                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">refer to <a href="#data-json-fields-description">data JSON Fields Description</a></td>
               </tr>
              
             </tbody>
@@ -147,7 +145,7 @@ curl --location --request POST 'https://uatoneapi.payu.in/payout/v2/virtualAccou
 
 | Parameter              | Description                                                                               |
 | ---------------------- | ----------------------------------------------------------------------------------------- |
-| `virtualAccountId`     | PayU-assigned VA identifier. Use this in get-details, deactivate, and list-deposits APIs. |
+| `virtualAccountId`     | PayU-assigned VA identifier. Use this in the update API.                                   |
 | `merchantId`           | Sub-merchant MID the VA belongs to                                                        |
 | `virtualAccountName`   | Name supplied at creation                                                                 |
 | `virtualAccountNumber` | Account number the payer credits                                                          |
