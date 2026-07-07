@@ -120,6 +120,42 @@ curl --location --request PATCH 'https://uatoneapi.payu.in/payout/v2/virtualAcco
 ```
 
 ## Response Parameters
+<HTMLBlock>{`
+          <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+            <thead>
+              <tr style="background-color: #f5f5f5;">
+                <th style="padding: 10px; border: 1px solid #ddd; font-weight: bold; text-align: left;">Parameter</th>
+                <th style="padding: 10px; border: 1px solid #ddd; font-weight: bold; text-align: left;">Description</th>
+                <th style="padding: 10px; border: 1px solid #ddd; font-weight: bold; text-align: left;">Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">status</td>
+                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">
+                  This parameter returns the status of web service call. The status can be any of the following: 
+                  <ul style="padding-left: 20px; margin-top: 5px;">
+                    <li>1 - If web service call failed.</li>
+                    <li>0 - If web service call succeeded</li>
+                  </ul>
+                </td>
+                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">0</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">msg</td>
+                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">This parameter returns the reason string.</td>
+                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">null</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">data</td>
+                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">This parameter contains the virtual account details in JSON format. For more information, refer to <a href="#data-json-fields-description">data JSON Fields Description</a>
+</td>
+                <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top;">Refer to <a href="#data-json-fields-description">data JSON Fields Description</a></td>
+              </tr>
+             
+            </tbody>
+          </table>
+`}</HTMLBlock>
 
 ### data JSON Fields Description
 
