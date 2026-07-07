@@ -1,0 +1,558 @@
+---
+name: PayUHostedIntegrationWizard
+---
+// PayUHostedIntegrationWizard - ReadMe CMS Custom Component
+// Hosted Checkout integration lab: edit fields, compute SHA-512, POST to PayU test.
+// MDX-safe: all logic inside export; defaults via JSON.parse; inline styles only.
+// Doc page: <PayUHostedIntegrationWizard />
+
+import { useState } from 'react';
+
+export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard() {
+  var TEST_PAYMENT = 'https://test.payu.in/_payment';
+  var PROD_PAYMENT = 'https://secure.payu.in/_payment';
+
+  var STEPS = JSON.parse(
+    '[{"id":"overview","title":"Flow overview"},{"id":"prereq","title":"Prerequisites"},{"id":"params","title":"Payment request"},{"id":"hash","title":"Request hash"},{"id":"post","title":"Test checkout"},{"id":"return","title":"Return payload"},{"id":"verify","title":"Verify response"},{"id":"test","title":"Test checklist"},{"id":"golive","title":"Go live"}]'
+  );
+
+  var DEFAULT_FORM = JSON.parse(
+    '{"key":"JPM7Fg","txnid":"TXN_DEMO_01","amount":"1499.00","productinfo":"Demo Store Order","firstname":"Aditi","email":"aditi@example.com","phone":"9999999999","surl":"https://merchant.example.com/payu/success","furl":"https://merchant.example.com/payu/failure","salt":"","udf1":"","udf2":"","udf3":"","udf4":"","udf5":""}'
+  );
+
+  var PREREQ = JSON.parse(
+    '[{"id":"acct","label":"PayU test merchant key and salt from the dashboard"},{"id":"https","label":"Public HTTPS surl and furl URLs reachable from the internet"},{"id":"hash","label":"Production hashing runs on your server, not in the browser"},{"id":"uniq","label":"Unique txnid per payment attempt"}]'
+  );
+
+  var FIELD_ROWS = JSON.parse(
+    '[{"k":"key","l":"key","t":"text"},{"k":"txnid","l":"txnid","t":"text"},{"k":"amount","l":"amount","t":"text"},{"k":"productinfo","l":"productinfo","t":"text"},{"k":"firstname","l":"firstname","t":"text"},{"k":"email","l":"email","t":"email"},{"k":"phone","l":"phone","t":"text"},{"k":"surl","l":"surl","t":"url"},{"k":"furl","l":"furl","t":"url"},{"k":"salt","l":"salt (test lab only)","t":"password"},{"k":"udf1","l":"udf1","t":"text"},{"k":"udf2","l":"udf2","t":"text"},{"k":"udf3","l":"udf3","t":"text"},{"k":"udf4","l":"udf4","t":"text"},{"k":"udf5","l":"udf5","t":"text"}]'
+  );
+
+  var TEST_CHECKS = JSON.parse(
+    '["Land on PayU test page with correct amount and productinfo","surl receives POST with expected txnid on success","furl receives POST with status failure when declined","Logged pre-hash string matches PayU docs field order","Reverse hash verified on response payload"]'
+  );
+
+  var GO_LIVE = JSON.parse(
+    '["Switch endpoint to https://secure.payu.in/_payment","Use production key and salt only on production servers","Enable webhooks and monitor surl or furl error rates","Run a small live transaction before full traffic"]'
+  );
+
+  var shell = {
+    border: '1px solid #223330',
+    borderRadius: '14px',
+    background: '#0A0E0D',
+    padding: '20px',
+    margin: '20px 0',
+    fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif',
+    fontSize: '14px',
+    lineHeight: 1.55,
+    color: '#EAF2EE',
+  };
+
+  var mint = '#6CFFB8';
+  var muted = '#8FA39B';
+  var line = '#223330';
+  var surface = '#121817';
+
+  var _step = useState(0);
+  var step = _step[0];
+  var setStep = _step[1];
+  var _form = useState(DEFAULT_FORM);
+  var form = _form[0];
+  var setForm = _form[1];
+  var _hash = useState('');
+  var hashHex = _hash[0];
+  var setHashHex = _hash[1];
+  var _hashStage = useState(0);
+  var hashStage = _hashStage[0];
+  var setHashStage = _hashStage[1];
+  var _busy = useState(false);
+  var busy = _busy[0];
+  var setBusy = _busy[1];
+  var _err = useState('');
+  var err = _err[0];
+  var setErr = _err[1];
+  var _prereq = useState({});
+  var prereq = _prereq[0];
+  var setPrereq = _prereq[1];
+  var _labAck = useState(false);
+  var labAck = _labAck[0];
+  var setLabAck = _labAck[1];
+  var _verified = useState(false);
+  var verified = _verified[0];
+  var setVerified = _verified[1];
+  var _testDone = useState({});
+  var testDone = _testDone[0];
+  var setTestDone = _testDone[1];
+  var _goDone = useState({});
+  var goDone = _goDone[0];
+  var setGoDone = _goDone[1];
+  var _liveTested = useState(false);
+  var liveTested = _liveTested[0];
+  var setLiveTested = _liveTested[1];
+
+  function patchForm(key, val) {
+    var n = Object.assign({}, form);
+    n[key] = val;
+    setForm(n);
+    setHashHex('');
+    setHashStage(0);
+  }
+
+  function buildHashString(f) {
+    return (
+      f.key +
+      '|' +
+      f.txnid +
+      '|' +
+      f.amount +
+      '|' +
+      f.productinfo +
+      '|' +
+      f.firstname +
+      '|' +
+      f.email +
+      '|' +
+      (f.udf1 || '') +
+      '|' +
+      (f.udf2 || '') +
+      '|' +
+      (f.udf3 || '') +
+      '|' +
+      (f.udf4 || '') +
+      '|' +
+      (f.udf5 || '') +
+      '||||||' +
+      f.salt
+    );
+  }
+
+  function sha512Hex(msg) {
+    var enc = new TextEncoder();
+    return crypto.subtle.digest('SHA-512', enc.encode(msg)).then(function (buf) {
+      return Array.from(new Uint8Array(buf))
+        .map(function (b) {
+          return b.toString(16).padStart(2, '0');
+        })
+        .join('');
+    });
+  }
+
+  function escapeAttr(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/"/g, '&quot;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  function openPayuTest() {
+    if (!hashHex || hashHex.length !== 128) {
+      setErr('Compute the request hash before opening PayU test checkout.');
+      return;
+    }
+    var pairs = [
+      ['key', form.key],
+      ['txnid', form.txnid],
+      ['amount', form.amount],
+      ['productinfo', form.productinfo],
+      ['firstname', form.firstname],
+      ['email', form.email],
+      ['phone', form.phone],
+      ['surl', form.surl],
+      ['furl', form.furl],
+      ['udf1', form.udf1 || ''],
+      ['udf2', form.udf2 || ''],
+      ['udf3', form.udf3 || ''],
+      ['udf4', form.udf4 || ''],
+      ['udf5', form.udf5 || ''],
+      ['hash', hashHex],
+    ];
+    var inputs = '';
+    for (var i = 0; i < pairs.length; i += 1) {
+      inputs +=
+        '<input type="hidden" name="' +
+        escapeAttr(pairs[i][0]) +
+        '" value="' +
+        escapeAttr(pairs[i][1]) +
+        '" />';
+    }
+    var html =
+      '<!DOCTYPE html><html><body onload="document.forms[0].submit()"><form method="post" action="' +
+      escapeAttr(TEST_PAYMENT) +
+      '">' +
+      inputs +
+      '</form><p>Redirecting to PayU test...</p></body></html>';
+    var w = window.open('', '_blank', 'noopener,noreferrer');
+    if (!w) {
+      setErr('Pop-up blocked. Allow pop-ups to open PayU test checkout.');
+      return;
+    }
+    w.document.open();
+    w.document.write(html);
+    w.document.close();
+    setLiveTested(true);
+    setErr('');
+  }
+
+  function newTxnid() {
+    var id =
+      'TXN' +
+      Date.now().toString(36).toUpperCase() +
+      Math.random().toString(36).slice(2, 6).toUpperCase();
+    patchForm('txnid', id.slice(0, 25));
+  }
+
+  function formValid() {
+    var keys = ['key', 'txnid', 'amount', 'productinfo', 'firstname', 'email', 'phone', 'surl', 'furl', 'salt'];
+    for (var i = 0; i < keys.length; i += 1) {
+      if (!String(form[keys[i]] || '').trim()) return false;
+    }
+    return labAck;
+  }
+
+  function prereqDone() {
+    for (var i = 0; i < PREREQ.length; i += 1) {
+      if (!prereq[PREREQ[i].id]) return false;
+    }
+    return true;
+  }
+
+  function allChecked(map, list) {
+    for (var i = 0; i < list.length; i += 1) {
+      if (!map[i]) return false;
+    }
+    return true;
+  }
+
+  function canAdvance() {
+    if (step === 1) return prereqDone();
+    if (step === 2) return formValid();
+    if (step === 3) return hashHex.length === 128;
+    if (step === 4) return liveTested;
+    if (step === 6) return verified;
+    if (step === 7) return allChecked(testDone, TEST_CHECKS);
+    return true;
+  }
+
+  function showHashString() {
+    setErr('');
+    if (!form.salt.trim()) {
+      setErr('Enter your test salt on the Payment request step.');
+      return;
+    }
+    setHashStage(1);
+  }
+
+  function computeHash() {
+    setErr('');
+    if (!form.salt.trim()) {
+      setErr('Salt is required.');
+      return;
+    }
+    setBusy(true);
+    sha512Hex(buildHashString(form))
+      .then(function (h) {
+        setHashHex(h);
+        setHashStage(2);
+        setBusy(false);
+      })
+      .catch(function () {
+        setErr('SHA-512 unavailable in this browser context.');
+        setBusy(false);
+      });
+  }
+
+  function restart() {
+    setStep(0);
+    setForm(DEFAULT_FORM);
+    setHashHex('');
+    setHashStage(0);
+    setErr('');
+    setPrereq({});
+    setLabAck(false);
+    setVerified(false);
+    setTestDone({});
+    setGoDone({});
+    setLiveTested(false);
+  }
+
+  var pct = Math.round(((step + 1) / STEPS.length) * 100);
+  var current = STEPS[step];
+
+  var inputStyle = {
+    width: '100%',
+    boxSizing: 'border-box',
+    background: '#0D1413',
+    border: '1px solid ' + line,
+    borderRadius: '8px',
+    padding: '8px 10px',
+    color: '#EAF2EE',
+    fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
+    fontSize: '12px',
+  };
+
+  var btnPrimary = {
+    padding: '10px 16px',
+    borderRadius: '10px',
+    border: 'none',
+    background: mint,
+    color: '#06120D',
+    fontWeight: 600,
+    fontSize: '13px',
+    cursor: 'pointer',
+  };
+
+  var btnGhost = {
+    padding: '10px 16px',
+    borderRadius: '10px',
+    border: '1px solid ' + line,
+    background: 'transparent',
+    color: '#EAF2EE',
+    fontWeight: 600,
+    fontSize: '13px',
+    cursor: 'pointer',
+  };
+
+  return (
+    <div style={shell} role="region" aria-label="PayU Hosted Checkout integration wizard">
+      <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.12em', color: mint, marginBottom: '8px' }}>
+        PayU Hosted Checkout · Integration lab
+      </div>
+      <h2 style={{ margin: '0 0 6px', fontSize: '1.35rem', fontWeight: 700, color: '#EAF2EE' }}>{current.title}</h2>
+      <p style={{ margin: '0 0 14px', fontSize: '13px', color: muted }}>
+        Step {step + 1} of {STEPS.length} · Edit values, compute hash, test on PayU sandbox
+      </p>
+
+      <div style={{ marginBottom: '16px' }}>
+        <div style={{ height: '4px', background: surface, borderRadius: '4px', overflow: 'hidden' }}>
+          <div style={{ height: '100%', width: pct + '%', background: mint, transition: 'width 0.25s ease' }} />
+        </div>
+      </div>
+
+      {err ? (
+        <p style={{ margin: '0 0 12px', padding: '10px 12px', borderRadius: '8px', background: 'rgba(255,100,100,.12)', color: '#ffb4b4', fontSize: '13px' }} role="alert">
+          {err}
+        </p>
+      ) : null}
+
+      {step === 0 ? (
+        <div>
+          <p style={{ margin: '0 0 12px', color: muted, fontSize: '13px' }}>
+            Server builds a signed POST to PayU, customer pays on the hosted page, PayU POSTs the result to your surl or furl. This lab lets you enter test fields, compute the request hash, and open real PayU test checkout.
+          </p>
+          <ol style={{ margin: '0 0 12px', paddingLeft: '18px', color: '#C9D6D0', fontSize: '13px' }}>
+            <li>Enter payment request fields and test salt</li>
+            <li>Compute SHA-512 request hash in the browser</li>
+            <li>POST to {TEST_PAYMENT}</li>
+            <li>Verify response hash on your server</li>
+          </ol>
+          <p style={{ margin: 0, fontSize: '12px', color: muted }}>
+            Production: hash only on your server. Salt must never ship to customer browsers.
+          </p>
+        </div>
+      ) : null}
+
+      {step === 1 ? (
+        <div style={{ display: 'grid', gap: '8px' }}>
+          {PREREQ.map(function (item) {
+            return (
+              <label
+                key={item.id}
+                style={{ display: 'flex', gap: '10px', alignItems: 'flex-start', padding: '12px', borderRadius: '10px', border: '1px solid ' + line, background: surface, cursor: 'pointer' }}
+              >
+                <input
+                  type="checkbox"
+                  checked={!!prereq[item.id]}
+                  onChange={function (e) {
+                    var n = Object.assign({}, prereq);
+                    n[item.id] = e.target.checked;
+                    setPrereq(n);
+                  }}
+                  style={{ marginTop: '3px' }}
+                />
+                <span style={{ fontSize: '13px' }}>{item.label}</span>
+              </label>
+            );
+          })}
+        </div>
+      ) : null}
+
+      {step === 2 ? (
+        <div>
+          <button type="button" onClick={newTxnid} style={Object.assign({}, btnGhost, { marginBottom: '12px' })}>
+            New random txnid
+          </button>
+          <div style={{ display: 'grid', gap: '10px', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))' }}>
+            {FIELD_ROWS.map(function (row) {
+              return (
+                <div key={row.k}>
+                  <label style={{ display: 'block', fontSize: '11px', fontWeight: 600, color: muted, marginBottom: '4px', textTransform: 'uppercase' }}>
+                    {row.l}
+                  </label>
+                  <input
+                    type={row.t}
+                    value={form[row.k]}
+                    onChange={function (e) {
+                      patchForm(row.k, e.target.value);
+                    }}
+                    style={inputStyle}
+                    autoComplete="off"
+                  />
+                </div>
+              );
+            })}
+          </div>
+          <label style={{ display: 'flex', gap: '10px', marginTop: '14px', alignItems: 'flex-start', fontSize: '13px', color: muted, cursor: 'pointer' }}>
+            <input type="checkbox" checked={labAck} onChange={function (e) { setLabAck(e.target.checked); }} style={{ marginTop: '3px' }} />
+            I am using test-only credentials in this lab.
+          </label>
+        </div>
+      ) : null}
+
+      {step === 3 ? (
+        <div>
+          <p style={{ margin: '0 0 10px', fontFamily: 'ui-monospace, monospace', fontSize: '11px', color: muted, wordBreak: 'break-all' }}>
+            sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '12px' }}>
+            <button type="button" onClick={showHashString} disabled={hashStage >= 1} style={btnGhost}>
+              1) Show pre-image string
+            </button>
+            <button type="button" onClick={computeHash} disabled={hashStage < 1 || busy} style={btnPrimary}>
+              {busy ? 'Computing...' : '2) Compute SHA-512'}
+            </button>
+          </div>
+          {hashStage >= 1 ? (
+            <pre style={{ margin: '0 0 12px', padding: '12px', borderRadius: '8px', background: '#0D1413', border: '1px solid ' + line, fontSize: '11px', overflow: 'auto', color: '#C9D6D0', whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}>
+              {buildHashString(form)}
+            </pre>
+          ) : null}
+          {hashStage >= 2 && hashHex ? (
+            <div style={{ padding: '12px', borderRadius: '8px', border: '1px solid ' + mint, background: 'rgba(108,255,184,.08)' }}>
+              <p style={{ margin: '0 0 6px', fontSize: '11px', fontWeight: 600, color: mint }}>hash</p>
+              <p style={{ margin: 0, fontFamily: 'ui-monospace, monospace', fontSize: '11px', wordBreak: 'break-all', color: mint }}>{hashHex}</p>
+            </div>
+          ) : null}
+        </div>
+      ) : null}
+
+      {step === 4 ? (
+        <div>
+          <p style={{ margin: '0 0 12px', fontSize: '13px', color: muted }}>
+            Opens PayU test checkout in a new tab with your fields and computed hash. surl and furl must be reachable for the return journey.
+          </p>
+          <button type="button" onClick={openPayuTest} disabled={hashHex.length !== 128} style={btnPrimary}>
+            Open PayU test checkout (new tab)
+          </button>
+          {liveTested ? (
+            <p style={{ margin: '12px 0 0', fontSize: '13px', color: mint }}>Test checkout launched. Complete payment on PayU or close the tab and continue.</p>
+          ) : null}
+          <pre style={{ marginTop: '14px', padding: '12px', borderRadius: '8px', background: '#0D1413', border: '1px solid ' + line, fontSize: '11px', color: '#C9D6D0', overflow: 'auto' }}>
+            {'POST ' + TEST_PAYMENT + '\nkey=' + form.key + '&txnid=' + form.txnid + '&amount=' + form.amount + '&hash=' + (hashHex || '<compute first>')}
+          </pre>
+        </div>
+      ) : null}
+
+      {step === 5 ? (
+        <div>
+          <p style={{ margin: '0 0 10px', fontSize: '13px', color: muted }}>PayU POSTs to surl or furl with fields like these (success example):</p>
+          <pre style={{ margin: 0, padding: '12px', borderRadius: '8px', background: '#0D1413', border: '1px solid ' + line, fontSize: '11px', color: '#C9D6D0', whiteSpace: 'pre-wrap' }}>
+            {'status=success\nkey=' + form.key + '\ntxnid=' + form.txnid + '\namount=' + form.amount + '\nproductinfo=' + form.productinfo + '\nemail=' + form.email + '\nhash=<response_hash>'}
+          </pre>
+        </div>
+      ) : null}
+
+      {step === 6 ? (
+        <div>
+          <p style={{ margin: '0 0 10px', fontFamily: 'ui-monospace, monospace', fontSize: '11px', color: muted, wordBreak: 'break-all' }}>
+            sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
+          </p>
+          <button
+            type="button"
+            disabled={verified}
+            onClick={function () { setVerified(true); }}
+            style={btnGhost}
+          >
+            Run mock reverse-hash check
+          </button>
+          {verified ? (
+            <p style={{ margin: '12px 0 0', fontSize: '13px', color: mint }}>Mock verification passed. On your server, recompute and compare case-sensitively before updating orders.</p>
+          ) : null}
+        </div>
+      ) : null}
+
+      {step === 7 ? (
+        <div style={{ display: 'grid', gap: '8px' }}>
+          {TEST_CHECKS.map(function (label, idx) {
+            return (
+              <label key={label} style={{ display: 'flex', gap: '10px', padding: '10px 12px', borderRadius: '8px', border: '1px solid ' + line, background: surface, cursor: 'pointer', fontSize: '13px' }}>
+                <input
+                  type="checkbox"
+                  checked={!!testDone[idx]}
+                  onChange={function (e) {
+                    var n = Object.assign({}, testDone);
+                    n[idx] = e.target.checked;
+                    setTestDone(n);
+                  }}
+                />
+                <span>{label}</span>
+              </label>
+            );
+          })}
+        </div>
+      ) : null}
+
+      {step === 8 ? (
+        <div>
+          <div style={{ display: 'grid', gap: '8px', marginBottom: '14px' }}>
+            {GO_LIVE.map(function (label, idx) {
+              return (
+                <label key={label} style={{ display: 'flex', gap: '10px', padding: '10px 12px', borderRadius: '8px', border: '1px solid ' + line, background: surface, cursor: 'pointer', fontSize: '13px' }}>
+                  <input
+                    type="checkbox"
+                    checked={!!goDone[idx]}
+                    onChange={function (e) {
+                      var n = Object.assign({}, goDone);
+                      n[idx] = e.target.checked;
+                      setGoDone(n);
+                    }}
+                  />
+                  <span>{label}</span>
+                </label>
+              );
+            })}
+          </div>
+          <button type="button" onClick={restart} style={btnPrimary}>
+            Restart wizard
+          </button>
+        </div>
+      ) : null}
+
+      <div style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', marginTop: '18px', paddingTop: '14px', borderTop: '1px solid ' + line }}>
+        {step > 0 ? (
+          <button type="button" onClick={function () { setStep(step - 1); setErr(''); }} style={btnGhost}>
+            Back
+          </button>
+        ) : (
+          <span />
+        )}
+        {step < STEPS.length - 1 ? (
+          <button
+            type="button"
+            disabled={!canAdvance()}
+            onClick={function () {
+              if (!canAdvance()) return;
+              setErr('');
+              setStep(step + 1);
+            }}
+            style={Object.assign({}, btnPrimary, { opacity: canAdvance() ? 1 : 0.45 })}
+          >
+            Continue
+          </button>
+        ) : null}
+      </div>
+    </div>
+  );
+};
+
+<PayUHostedIntegrationWizard />
