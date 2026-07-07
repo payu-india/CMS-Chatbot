@@ -29,8 +29,6 @@ Provision a **Virtual Account (VA)** for a Cross-Border Payments sub-merchant. P
 
 <HeaderAuthentication />
 
-<br />
-
 ### Request Header
 
 | Parameter                     | Description                                              | Example          |
