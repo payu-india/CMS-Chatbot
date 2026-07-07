@@ -8,3 +8,12 @@ metadata:
 <PayUIntegrationPathRecommender />
 
 <br />
+
+<br />
+
+<br />
+
+<PayUHostedIntegrationWizard />
+
+
+<br />
