@@ -139,5 +139,3 @@ curl --location --request GET 'https://uatoneapi.payu.in/payout/v2/virtualAccoun
 | `totalElements`   | Total VA records for the MID           |
 | `currentPage`     | Current page number                    |
 | `virtualAccounts` | Array of VA objects (same fields as [Create Virtual Account API](ref:create-virtual-account-api-pacb) response) |
-
-<br />
