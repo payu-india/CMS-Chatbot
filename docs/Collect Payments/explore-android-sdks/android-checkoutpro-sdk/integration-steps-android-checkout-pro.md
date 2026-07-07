@@ -17,6 +17,39 @@ next:
   description: ''
 ---
 Before you start with the integration, enable the payment methods that you want to offer to your customers from **Dashboard > Settings > Payment methods**.  For more information, refer. to [Checkout Payment Modes](doc:payu-payment-page-customization#configure-checkout-payment-methods-and-settings). By default, Cards, UPI, and other payment methods are enabled, and PayU recommends that you to enable other payment methods that are relevant to you.
+**Steps to Integrate**
+<Cards columns={3}>
+  <Card title="Step 1: Create a PayU account" href="#step-1-create-a-payu-account">
+    Register for a merchant account on the PayU Dashboard and enable the payment methods you want to offer.
+  </Card>
+  <Card title="Step 2: Include the SDK in your app build.gradle" href="#step-2-include-the-sdk-in-your-app-buildgradle">
+    Add the CheckoutPro Maven Central dependency, configure Java 8 compatibility, and resolve common manifest or compileSdk conflicts.
+  </Card>
+  <Card title="Step 3: Build the payment parameters (mandatory step)" href="#step-3-build-the-payment-parameters-mandatory-step">
+    Create the `PayUPaymentParams` object with key, amount, txnId, surl, furl, and optional flows such as SI, TPV, or split payments.
+  </Card>
+  <Card title="Step 4: Secure the payment request using Hash" href="#step-4-secure-the-payment-request-using-hash">
+    Generate hashes on your server and return them to the SDK via `generateHash()` and `PayUHashGenerationListener`.
+  </Card>
+  <Card title="Step 5: Initiate the Payment" href="#step-5-initiate-the-payment">
+    Launch the CheckoutPro UI by calling `PayUCheckoutPro.open()` with your payment params and listener.
+  </Card>
+  <Card title="Step 6: Handle the Payment Callback" href="#step-6-handle-the-payment-callback">
+    Implement `PayUCheckoutProListener` to handle success, failure, cancel, error, and hash-generation callbacks.
+  </Card>
+</Cards>
+**Additional integrations, Test & Go Live**
+<Cards columns={3}>
+  <Card title="Additional Integrations" href="#additional-integrations">
+    Configure offers, MCP, custom notes, and add-on SDKs such as Native OTP, GPay InApp, PhonePe, and Ola Money.
+  </Card>
+  <Card title="Test the Integration" href="#test-the-integration">
+    Run end-to-end test transactions using sandbox credentials, test cards, net banking logins, and UPI VPAs.
+  </Card>
+  <Card title="Go-live Checklist" href="#go-live-checklist">
+    Switch to production keys, set `setIsProduction(true)`, configure your own surl/furl, and complete the pre-launch verification steps.
+  </Card>
+</Cards>
 
 ## SDK Integration
 
