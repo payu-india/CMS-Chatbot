@@ -29,8 +29,6 @@ Update a **Virtual Account** display name or active status. Set `isActive` to `f
 
 <HeaderAuthentication />
 
-<br />
-
 ### Request Header
 
 | Parameter                     | Description                                              | Example          |
@@ -44,20 +42,21 @@ Update a **Virtual Account** display name or active status. Set `isActive` to `f
 | virtualAccountId<br />`mandatory` | `String` - PayU-assigned VA identifier (`virtualAccountId`) or virtual account number (for example `PURW2231266`)                            | 2231266     |
 
 ### Body Parameters
+<Callout icon="📘" theme="info">
+  **Note:**
 
 At least one of `virtualAccountName` or `isActive` is required.
+</Callout>
 
 | Parameter                           | Description                                                                                                      | Example                   |
 | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------- |
-| virtualAccountName<br />`optional`*  | `String` - Updated display name for the VA. Maximum 255 characters                                               | Storefront collections Q2 |
-| isActive<br />`optional`*           | `Boolean` - Set to `false` to deactivate the VA. New deposits are rejected at validation when `isActive` is `false` | false                     |
+| virtualAccountName<br />`optional` | `String` - Updated display name for the VA. Maximum 255 characters                                               | Storefront collections Q2 |
+| isActive<br />`optional`           | `Boolean` - Set to `false` to deactivate the VA. New deposits are rejected at validation when `isActive` is `false` | false                     |
 
-\*At least one body field is required.
 
 ## Sample Request
 
 ### Rename virtual account
-
 ```curl
 curl --location --request PATCH 'https://uatoneapi.payu.in/payout/v2/virtualAccounts?virtualAccountId=2231266' \
 --header 'Authorization: {{authorization}}' \
@@ -66,9 +65,7 @@ curl --location --request PATCH 'https://uatoneapi.payu.in/payout/v2/virtualAcco
   "virtualAccountName": "Storefront collections Q2"
 }'
 ```
-
 ### Deactivate virtual account
-
 ```curl
 curl --location --request PATCH 'https://uatoneapi.payu.in/payout/v2/virtualAccounts?virtualAccountId=2231266' \
 --header 'Authorization: {{authorization}}' \
@@ -79,7 +76,6 @@ curl --location --request PATCH 'https://uatoneapi.payu.in/payout/v2/virtualAcco
 ```
 
 ### Rename and deactivate
-
 ```curl
 curl --location --request PATCH 'https://uatoneapi.payu.in/payout/v2/virtualAccounts?virtualAccountId=PURW2231266' \
 --header 'Authorization: {{authorization}}' \
@@ -143,5 +139,3 @@ curl --location --request PATCH 'https://uatoneapi.payu.in/payout/v2/virtualAcco
 
   Deactivation blocks **new** incoming transfers to the VA. Credits already received and linked PayU transactions are not removed. Contact your PayU Key Account Manager (KAM) if you need to reactivate a VA.
 </Callout>
-
-<br />
