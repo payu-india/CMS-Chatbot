@@ -17,19 +17,44 @@ next:
 ---
 Before you start with the integration, enable the payment methods that you want to offer to your customers from **Dashboard** > **Settings** > **Payment methods**. PayU enable Cards, UPI, and other payment methods by default, and it is recommended that you enable other payment methods that are relevant to you.
 
+### Steps to integrate
+
+<Cards columns={3}>
+  <Card title="Step 1: Create a PayU account" href="#step-1-create-a-payu-account">
+    Register for a merchant account on the PayU Dashboard and enable the payment methods you want to offer.
+  </Card>
+  <Card title="Step 2: Include the SDK in your app build.gradle" href="#step-2-include-the-sdk-in-your-app-buildgradle">
+    Add the PayU Core SDK Maven Central dependency (`in.payu:payu-sdk`) to your app’s `build.gradle`.
+  </Card>
+  <Card title="Step 3: Build the Payment Parameters" href="#step-3-build-the-payment-parameters">
+    Create a `PaymentParams` object with key, txnId, amount, surl, furl, udf fields, and other transaction details.
+  </Card>
+  <Card title="Step 4: Hash generation" href="#step-4-hash-generation">
+    Generate payment hashes on your server and populate `PayuHashes` before launching the SDK UI.
+  </Card>
+  <Card title="Step 5: Generate request for payment" href="#step-5-generate-request-for-payment">
+    Set payment-mode-specific fields (card, UPI, net banking, EMI, etc.) and build the request with `PaymentPostParams`.
+  </Card>
+  <Card title="Test the Integration and Go-Live" href="#test-the-integration-and-go-live">
+    Run sandbox test transactions, then switch to production keys and complete the go-live checklist.
+  </Card>
+</Cards>
+
 ## Step 1: Create a PayU account
 
 First, create a PayU account. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
 
 ## Step 2: Include the SDK in your app build.gradle
 
-> ❗️ Move to Maven Central
->
-> PayU has moved to Maven Central, Please update your existing dependency using the following configuration:
->
-> ```Text build.gradle
-> api 'in.payu:payu-sdk:7.12.3'
-> ```
+<Callout icon="❗️" theme="error">
+  ### Move to Maven Central
+
+  PayU has moved to Maven Central, Please update your existing dependency using the following configuration:
+
+  ```Text build.gradle
+  api 'in.payu:payu-sdk:7.12.3'
+  ```
+</Callout>
 
 ## Step 3: Build the Payment Parameters
 
@@ -72,9 +97,11 @@ Create an object of PaymentParams, put all the obtained parameters in it by usin
 
 ## Step 4: Hash generation
 
-> 📘 Generate Hash from Server
->
-> It is recommended to generate hash from server only. Keep your key and salt in server side hash generation code. For more information, refer to [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
+<Callout icon="📘" theme="info">
+  ### Generate Hash from Server
+
+  It is recommended to generate hash from server only. Keep your key and salt in server side hash generation code. For more information, refer to [Generate Static Hash](doc:generate-static-hash-android-sdk-pro).
+</Callout>
 
 The following approach for generating hash is not recommended. However, this approach can be used to test in PRODUCTION\_ENV
 
