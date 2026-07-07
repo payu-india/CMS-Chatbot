@@ -17,7 +17,7 @@ next:
   description: ''
 ---
 Before you start with the integration, enable the payment methods that you want to offer to your customers from **Dashboard > Settings > Payment methods**.  For more information, refer. to [Checkout Payment Modes](doc:payu-payment-page-customization#configure-checkout-payment-methods-and-settings). By default, Cards, UPI, and other payment methods are enabled, and PayU recommends that you to enable other payment methods that are relevant to you.
-**Steps to Integrate**
+####Steps to Integrate
 <Cards columns={3}>
   <Card title="Step 1: Create a PayU account" href="#step-1-create-a-payu-account">
     Register for a merchant account on the PayU Dashboard and enable the payment methods you want to offer.
@@ -38,7 +38,7 @@ Before you start with the integration, enable the payment methods that you want 
     Implement `PayUCheckoutProListener` to handle success, failure, cancel, error, and hash-generation callbacks.
   </Card>
 </Cards>
-**Additional integrations, Test & Go Live**
+#### Additional integrations, Test & Go Live
 <Cards columns={3}>
   <Card title="Additional Integrations" href="#additional-integrations">
     Configure offers, MCP, custom notes, and add-on SDKs such as Native OTP, GPay InApp, PhonePe, and Ola Money.
