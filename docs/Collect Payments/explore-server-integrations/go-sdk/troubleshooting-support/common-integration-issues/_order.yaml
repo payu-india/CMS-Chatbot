@@ -1,0 +1,6 @@
+- initialization-failures
+- payment-request-errors
+- hash-verification-failures
+- response-webhook-issues
+- callback-not-received
+- duplicate-transactions

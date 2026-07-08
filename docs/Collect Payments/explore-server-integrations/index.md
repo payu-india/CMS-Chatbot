@@ -28,7 +28,7 @@ next:
 ---
 By using PayU Payment Gateway, you can integrate your server using the below listed languages:
 
-1. [Go](https://docs.payu.in/docs/go-sdk)
+1. [Go SDK](doc:go-sdk) — workflow-centric integration guide with quick start, testing, and production checklists
 2. [Java](https://docs.payu.in/docs/java-sdk)
 3. [PHP](https://docs.payu.in/docs/php-sdk)
 4. [Python](https://docs.payu.in/docs/python-sdk)
