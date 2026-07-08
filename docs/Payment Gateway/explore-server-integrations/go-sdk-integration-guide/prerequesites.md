@@ -31,7 +31,14 @@ Always follow these best practices while creating a PayU account:
 
 Merchant key and salt are unique identifiers that authenticates your server with PayU. These are required for hash generation and verification.
 
-<br />
+<ToggleList>
+  <ToggleListItem title="How do i get Test Credentials?">
+    Hoooo-dunnits 🔎
+  </ToggleListItem>
+  <ToggleListItem title="What’s an owl’s favorite drink?">
+    Hoot beer 🥤
+  </ToggleListItem>
+</ToggleList>
 
 ## Get Test Credentials
 
