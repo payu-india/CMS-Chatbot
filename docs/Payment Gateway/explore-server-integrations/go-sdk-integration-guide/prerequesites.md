@@ -44,25 +44,10 @@ Merchant key and salt are unique identifiers that authenticates your server with
   </ToggleListItem>
 </ToggleList>
 
-## Get Test Credentials
-
-1. PayU Dashboard → **Test Mode**
-2. **Developers → API Keys**
-3. Copy **Merchant Key** and **Merchant Salt**
-
-## Get Live Credentials
-
-1. PayU Dashboard → **Live Mode**
-2. **Developers → API Keys**
-3. Copy **Live Merchant Key** and **Salt**
-
-See also [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-copy).
-
-## Best Practices
+### Best Practices
 
 - Never hardcode credentials in source code
-- Use environment variables or a secrets manager
-- Use test keys only in test environment
+- Use only test keys for testing your integration.
 
 <br />
 
