@@ -82,16 +82,17 @@ import (
 )
 
 func main() {
-	payuClient, err := payu.NewClient(
-		"YOUR_TEST_MERCHANT_KEY",
-		"YOUR_TEST_MERCHANT_SALT",
-		"TEST",
-	)
+	// Replace with your PayU test credentials
+	key := "YOUR_TEST_MERCHANT_KEY"
+	salt := "YOUR_TEST_MERCHANT_SALT"
+
+	payuClient, err := payu.NewClient(key, salt, "TEST")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Println("PayU client created:", payuClient != nil)
+	fmt.Println("PayU client created successfully")
+	_ = payuClient
 }
 ```
 
