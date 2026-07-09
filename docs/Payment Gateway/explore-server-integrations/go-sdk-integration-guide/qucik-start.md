@@ -40,18 +40,26 @@ If not installed, execute the following command in the terminal to install Go in
 `}</Terminal>
 </Accordion>
 
-### Step 2 Install the PayU Go SDK
+### Step 2 Create a Module and Install the PayU SDK
 
-After you install Go in your system, you should now install the PayU Go SDK to create a module.
+After you install Go in your system, you should now create a project module and install the PayU Go SDK.
 
-<Accordion title="PayU Go SDK Installation Steps" icon="fa-info-circle">
-1. Download the PayU Go SDK from GitHub.
+<Accordion title="Steps to Create a Module and Install the PayU Go SDK" icon="fa-steps">
+1. Run the follwing command to create a project module.
+
+<Terminal>{`
+mkdir payu-go-integration
+`}</Terminal>
 2. Navigate to the the folder that contains the downloaded PayU Go SDK in the terminal and run the follwing command to install the SDK
 
 <Terminal>{`
  go install
 `}</Terminal>
 </Accordion>
+
+<Terminal>{`
+mkdir payu-go-integration
+`}</Terminal>
 
 ### Step 3 Build the PayU Client
 
