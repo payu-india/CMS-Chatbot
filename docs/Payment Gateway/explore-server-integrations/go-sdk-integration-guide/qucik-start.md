@@ -1,5 +1,5 @@
 ---
-title: Qucik Start
+title: Qucik Start Guide
 deprecated: false
 hidden: true
 metadata:
