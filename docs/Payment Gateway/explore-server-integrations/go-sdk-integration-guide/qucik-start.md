@@ -69,15 +69,27 @@ The next step after installing the PayU Go SDK is to build the PayU client.
 Use the following code to build the client.
 
 ```go
+package main
+
 import (
- payu "github.com/payu-india/web-sdk-go"
+	"fmt"
+	"log"
+
+	payu "github.com/payu-india/web-sdk-go"
 )
 
-payuClient, err := payu.NewClient(
-  <YOUR_MERCHANT_KEY>,
-  <YOUR_MERCHANT_SALT>,
-  <ENVIRONMENT>,                
-) 
+func main() {
+	payuClient, err := payu.NewClient(
+		"YOUR_TEST_MERCHANT_KEY",
+		"YOUR_TEST_MERCHANT_SALT",
+		"TEST",
+	)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println("PayU client created:", payuClient != nil)
+}
 ```
 
 | **Parameter**        | **Description**                                                                         |
