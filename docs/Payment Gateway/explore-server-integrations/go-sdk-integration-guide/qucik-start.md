@@ -39,13 +39,8 @@ Execute the below command to install the GO module.
 2. Navigate to the the folder that contains the downloaded PayU Go SDK in the terminal and run the follwing command to install the SDK
 
 <Terminal>{`
-  $ go install
+ go install
 `}</Terminal>
-
 </Accordion>
-
-<Terminal>{`
-  $ go install
-`}</Terminal>
 
 <br />
