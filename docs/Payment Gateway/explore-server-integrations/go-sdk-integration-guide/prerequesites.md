@@ -49,7 +49,9 @@ Merchant key and salt are unique identifiers that authenticates your server with
 - Never hardcode credentials in source code
 - Use only test keys for testing your integration.
 
-<br />
+***
+
+##
 
 ## Next Steps
 
