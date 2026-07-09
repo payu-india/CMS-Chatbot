@@ -31,7 +31,7 @@ go version
 `}</Terminal>
 
 <Accordion title="Installation Steps" icon="fa-download">
-Execute the below command to install the GO module.
+Execute the below command to install the Go in your system.
 
 <Terminal>{`
   brew install go
@@ -39,6 +39,8 @@ Execute the below command to install the GO module.
 </Accordion>
 
 ### Step 2 Install the PayU Go SDK
+
+After you install Go in your system, you should now install the PayU Go SDK to create a module.
 
 <Accordion title="PayU Go SDK Installation Steps" icon="fa-info-circle">
 1. Download the PayU Go SDK from GitHub.
