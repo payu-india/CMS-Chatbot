@@ -61,10 +61,6 @@ mkdir payu-go-integration
 `}</Terminal>
 </Accordion>
 
-<Terminal>{`
-mkdir payu-go-integration
-`}</Terminal>
-
 ### Step 3 Build the PayU Client
 
 The next step after installing the PayU Go SDK is to build the PayU client.
