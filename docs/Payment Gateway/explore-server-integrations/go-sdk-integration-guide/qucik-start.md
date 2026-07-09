@@ -51,4 +51,30 @@ After you install Go in your system, you should now install the PayU Go SDK to c
 `}</Terminal>
 </Accordion>
 
+### Step 3 Build the PayU Client
+
+The next step after installing the PayU Go SDK is to build the PayU client.
+
+<Accordion title="Steps to Build the Client" icon="fa-info-circle">
+Use the following code to build the client.
+
+```go
+import (
+ payu "github.com/payu-india/web-sdk-go"
+)
+
+payuClient, err := payu.NewClient(
+  <YOUR_MERCHANT_KEY>,
+  <YOUR_MERCHANT_SALT>,
+  <ENVIRONMENT>,                
+) 
+```
+
+| **Parameter**        | **Description**                                                                         |
+| -------------------- | --------------------------------------------------------------------------------------- |
+| `YOUR_MERCHANT_KEY`  | Your merchant key retrieved from the dashboard. We recommend you to use the test key.   |
+| `YOUR_MERCHANT_SALT` | Your merchant salt retrieved from the dashboard. We recommend you to use the test salt. |
+| `ENVIRONMENT`        | The environment used. We recommend to use the test environment.                         |
+</Accordion>
+
 <br />
