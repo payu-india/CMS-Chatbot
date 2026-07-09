@@ -25,9 +25,4 @@ Execute the below command to install the GO module.
 `}</Terminal>
 </Accordion>
 
-<Terminal>{`
-  go get github.com/payu-india/web-sdk-go
-  go mod tidy
-`}</Terminal>
-
 <br />
