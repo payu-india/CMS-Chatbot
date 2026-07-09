@@ -18,16 +18,17 @@ Test your Go SDK integrations within minutes by performing these steps:
 
 ***
 
-## Make Your First Payment
+## Make Your Test Payment
 
-<br />
+Follow the below steps to integrate Go SDK and make your first test payment.
 
-<Accordion title="GO Module Installation Steps" icon="fa-download">
+### Step 1 Install Go and Create a Module
+
+<Accordion title="Installation Steps" icon="fa-download">
 Execute the below command to install the GO module.
 
 <Terminal>{`
-  go get github.com/payu-india/web-sdk-go
-  go mod tidy
+  brew install go
 `}</Terminal>
 </Accordion>
 
