@@ -56,7 +56,7 @@ mkdir payu-go-integration
 <Terminal>{`
  cd payu-go-integration // Navigates to the project folder.
 
- go mod init payu-go-integration // Creates a new Go module in the project folder.
+ go mod init payu-go-integration // Creates a new Go module.
 
  go get github.com/payu-india/web-sdk-go // Adds the PayU SDK.
 
@@ -101,12 +101,5 @@ func main() {
 | `YOUR_MERCHANT_SALT` | Your merchant salt retrieved from the dashboard. We recommend you to use the test salt. |
 | `ENVIRONMENT`        | The environment used. We recommend to use the test environment.                     |
 </Accordion>
-
-```text
-cd payu-go-integration // Navigates to the project folder.
-go mod init payu-go-integration // Creates a new Go module in the project folder.
-go get github.com/payu-india/web-sdk-go // Adds the PayU SDK.
-go mod tidy // cleans up your project's dependencies in go.mod and go.sum.
-```
 
 <br />
