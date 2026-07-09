@@ -102,18 +102,11 @@ func main() {
 | `ENVIRONMENT`        | The environment used. We recommend to use the test environment.                     |
 </Accordion>
 
-<Columns layout="auto">
-  <Column>
-    Neque porro quisquam est qui dolorem ipsum quia
-  </Column>
-
-  <Column>
-    *Lorem ipsum dolor sit amet, consectetur adipiscing elit*
-  </Column>
-
-  <Column>
-    > Ut enim ad minim veniam, quis nostrud ullamco
-  </Column>
-</Columns>
+```text
+cd payu-go-integration // Navigates to the project folder.
+go mod init payu-go-integration // Creates a new Go module in the project folder.
+go get github.com/payu-india/web-sdk-go // Adds the PayU SDK.
+go mod tidy // cleans up your project's dependencies in go.mod and go.sum.
+```
 
 <br />
