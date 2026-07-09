@@ -26,9 +26,13 @@ Follow the below steps to integrate Go SDK and make your first test payment.
 
 You should first install Go (if not installed) to proceed withe the integration. Additionally run the following command to check whether Go is installed in your system.
 
+<Accordion title="Check If Go is Installed" icon="fa-info-circle">
 <Terminal>{`
 go version
 `}</Terminal>
+</Accordion>
+
+
 
 If not installed, execute the following command in the terminal to install Go in your system.
 
