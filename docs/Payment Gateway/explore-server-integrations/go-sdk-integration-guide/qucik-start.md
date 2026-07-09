@@ -74,7 +74,7 @@ payuClient, err := payu.NewClient(
 | -------------------- | --------------------------------------------------------------------------------------- |
 | `YOUR_MERCHANT_KEY`  | Your merchant key retrieved from the dashboard. We recommend you to use the test key.   |
 | `YOUR_MERCHANT_SALT` | Your merchant salt retrieved from the dashboard. We recommend you to use the test salt. |
-| `ENVIRONMENT`        | The environment used. We recommend to use the test environment.                         |
+| `ENVIRONMENT`        | The environment used. We recommend to use the test environment.                     |
 </Accordion>
 
 <br />
