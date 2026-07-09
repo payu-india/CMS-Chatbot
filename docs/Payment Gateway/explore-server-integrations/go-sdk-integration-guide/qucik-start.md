@@ -54,9 +54,9 @@ mkdir payu-go-integration
 2. Navigate to the the project module folder and run the following command to install the PayU Go SDK.
 
 <Terminal>{`
- cd payu-go-integration // Navigates to the project folder.
- go mod init payu-go-integration // Creates a new Go module in the project folder.
- go get github.com/payu-india/web-sdk-go // Adds the PayU SDK.
+ cd payu-go-integration // Navigates to the project folder.<br/>
+ go mod init payu-go-integration // Creates a new Go module in the project folder.<br/>
+ go get github.com/payu-india/web-sdk-go // Adds the PayU SDK.<br/>
  go mod tidy // cleans up your project's dependencies in go.mod and go.sum.
 `}</Terminal>
 </Accordion>
