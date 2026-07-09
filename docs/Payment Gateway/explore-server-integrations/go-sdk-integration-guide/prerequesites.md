@@ -51,11 +51,37 @@ Merchant key and salt are unique identifiers that authenticates your server with
 
 ***
 
-##
+## Technical Requirements
+
+These are the technical prerequisites or requirements for PayU Go SDK integration.
+
+- **Go 1.18+**
+- `go.mod` initialized in your project
+- **HTTPS URLs** for success, failure, and webhook callbacks
+- Internet access to PayU servers (`test.payu.in` / `payu.in`)
+
+***
+
+## Environment Setup Guide
+
+Configure environment variables for local and deployed environments.
+
+```bash
+# Test environment
+export PAYU_MERCHANT_KEY="your_test_key"
+export PAYU_MERCHANT_SALT="your_test_salt"
+export PAYU_ENV="test"
+```
+
+### Best Practices
+
+We recommend not to hardcode credentials. Use environment variables, `.env` files (not committed), or your platform's secret store.
+
+***
 
 ## Next Steps
 
-- [Understand Merchant Key Salt](doc:understand-merchant-key-salt)
+- Quick Start
 
 <br />
 
