@@ -18,11 +18,17 @@ Test your Go SDK integrations within minutes by performing these steps:
 
 ***
 
-## Make Your Test Payment
+## Integrate and Make Your Test Payment
 
 Follow the below steps to integrate Go SDK and make your first test payment.
 
 ### Step 1 Install Go
+
+You should first install Go (if not installed) to proceed withe the integration. Additionally run the following command to check the whether Go is installed in your system.
+
+<Terminal>{`
+go version
+`}</Terminal>
 
 <Accordion title="Installation Steps" icon="fa-download">
 Execute the below command to install the GO module.
