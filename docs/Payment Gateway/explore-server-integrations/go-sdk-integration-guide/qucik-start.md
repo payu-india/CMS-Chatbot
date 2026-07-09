@@ -22,7 +22,7 @@ Test your Go SDK integrations within minutes by performing these steps:
 
 Follow the below steps to integrate Go SDK and make your first test payment.
 
-### Step 1 Install Go and Create a Module
+### Step 1 Install Go
 
 <Accordion title="Installation Steps" icon="fa-download">
 Execute the below command to install the GO module.
