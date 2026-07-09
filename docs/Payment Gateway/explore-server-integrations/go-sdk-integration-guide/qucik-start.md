@@ -44,7 +44,7 @@ If not installed, execute the following command in the terminal to install Go in
 
 After you install Go in your system, you should now create a project module and install the PayU Go SDK.
 
-<Accordion title="Steps to Create a Module and Install the PayU Go SDK" icon="fa-steps">
+<Accordion title="Steps to Create a Module and Install the PayU Go SDK" icon="fa-list">
 1. Run the follwing command to create a project module.
 
 <Terminal>{`
