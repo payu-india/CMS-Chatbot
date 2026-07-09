@@ -32,8 +32,6 @@ go version
 `}</Terminal>
 </Accordion>
 
-
-
 If not installed, execute the following command in the terminal to install Go in your system.
 
 <Accordion title="Go Installation Code" icon="fa-code">
