@@ -303,23 +303,31 @@ export const PayUForwardHashGenerator = function PayUForwardHashGenerator(props)
   var isCompact = variantRaw !== 'full';
 
   var saltField = null;
-  var fieldsWithoutSalt = [];
   for (var sf = 0; sf < sortedFields.length; sf += 1) {
     if (sortedFields[sf].key === 'salt') saltField = sortedFields[sf];
-    else fieldsWithoutSalt.push(sortedFields[sf]);
   }
 
   var saltPrefilled = empty(form.salt) !== '';
   var showSaltInput = isCompact && saltField && !saltPrefilled;
 
   var inputClass =
-    'w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-mono text-gray-900 shadow-sm focus:border-teal-600 focus:outline-none focus:ring-1 focus:ring-teal-600 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100';
+    'w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-mono text-gray-900 focus:border-teal-600 focus:outline-none focus:ring-1 focus:ring-teal-600 dark:border-gray-600 dark:bg-gray-900/30 dark:text-gray-100';
 
   var btnPrimaryClass =
     'cursor-pointer rounded-md border-0 bg-teal-700 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-800 disabled:opacity-50 dark:bg-teal-600 dark:hover:bg-teal-500';
 
   var btnGhostClass =
-    'cursor-pointer rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100 disabled:opacity-40 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700';
+    'cursor-pointer rounded-md border border-gray-300 bg-transparent px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 disabled:opacity-40 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-800/50';
+
+  var shellClass = 'my-6';
+
+  var codeBlockClass =
+    'block break-all rounded bg-gray-100 px-3 py-2 text-xs font-mono text-gray-800 dark:bg-gray-800/50 dark:text-gray-100';
+
+  var codeBlockMutedClass =
+    'min-w-[280px] flex-1 break-all rounded bg-gray-100 px-3 py-2 text-xs font-mono text-gray-600 dark:bg-gray-800/50 dark:text-gray-300';
+
+  var editPanelClass = 'mb-3 mt-4 border-t border-gray-100 pt-4 dark:border-gray-800';
 
   function renderField(field) {
     var val = form[field.key] != null ? form[field.key] : '';
@@ -355,13 +363,10 @@ export const PayUForwardHashGenerator = function PayUForwardHashGenerator(props)
   }
 
   return (
-    <div className="my-5 rounded-lg border border-gray-200 bg-gray-50 p-5 shadow-sm dark:border-gray-700 dark:bg-gray-900" role="region" aria-label="PayU Forward Hash Generator">
+    <div className={shellClass} role="region" aria-label="PayU Forward Hash Generator">
       {isCompact ? (
         <div>
-          <div className="mb-1 text-xs font-semibold uppercase tracking-wider text-teal-700 dark:text-teal-400">
-            PayU · {profile.product}
-          </div>
-          <h2 className="!mt-0 mb-2 text-lg font-semibold text-gray-900 dark:text-gray-100">{profile.title}</h2>
+          <h3 className="!mt-0 mb-2 text-base font-semibold text-gray-900 dark:text-gray-100">{profile.title}</h3>
           <p className="mb-3 text-sm text-gray-600 dark:text-gray-300">
             Uses example values from this guide. {saltPrefilled ? 'Click generate to compute the hash.' : 'Enter your test salt, then generate.'}
           </p>
@@ -388,7 +393,7 @@ export const PayUForwardHashGenerator = function PayUForwardHashGenerator(props)
           {copyMsg ? <p className="mb-2 text-sm text-teal-700 dark:text-teal-400">{copyMsg}</p> : null}
 
           {hashHex ? (
-            <code className="mb-3 block break-all rounded-md border border-gray-200 bg-white p-3 text-xs font-mono text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100">
+            <code className={'mb-3 ' + codeBlockClass}>
               {hashHex}
             </code>
           ) : null}
@@ -422,13 +427,11 @@ export const PayUForwardHashGenerator = function PayUForwardHashGenerator(props)
           </div>
 
           {showFormulaPanel && showFormula ? (
-            <div className="mb-3 rounded-md border border-gray-200 bg-white px-3 py-2 dark:border-gray-700 dark:bg-gray-800">
-              <code className="break-all text-xs font-mono text-gray-800 dark:text-gray-200">{profile.formulaDisplay}</code>
-            </div>
+            <code className={'mb-3 ' + codeBlockClass}>{profile.formulaDisplay}</code>
           ) : null}
 
           {showEditFields ? (
-            <div className="mb-3 rounded-md border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800">
+            <div className={editPanelClass}>
               <div className="mb-3 grid grid-cols-1 gap-x-4 sm:grid-cols-2">
                 {sortedFields.map(renderField)}
               </div>
@@ -440,7 +443,7 @@ export const PayUForwardHashGenerator = function PayUForwardHashGenerator(props)
 
           {showPipe && pipeString ? (
             <div className="mb-3 flex flex-wrap items-start gap-2">
-              <code className="min-w-[280px] flex-1 break-all rounded-md border border-gray-200 bg-white p-3 text-xs font-mono text-gray-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300">
+              <code className={codeBlockMutedClass}>
                 {pipeString}
               </code>
               <button type="button" onClick={function () { copyText(pipeString, 'Pipe string'); }} className={btnGhostClass}>
@@ -449,24 +452,19 @@ export const PayUForwardHashGenerator = function PayUForwardHashGenerator(props)
             </div>
           ) : null}
 
-          <p className="text-xs text-amber-800 dark:text-amber-200">{bannerText}</p>
+          <p className="mt-3 text-xs text-gray-500 dark:text-gray-400">{bannerText}</p>
         </div>
       ) : (
         <div>
-          <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-teal-700 dark:text-teal-400">
-            PayU · {profile.product} · Forward hash lab
-          </div>
-          <h2 className="!mt-0 mb-1 text-xl font-semibold text-gray-900 dark:text-gray-100">{profile.title}</h2>
+          <h3 className="!mt-0 mb-1 text-base font-semibold text-gray-900 dark:text-gray-100">{profile.title}</h3>
           <p className="mb-4 text-sm text-gray-600 dark:text-gray-300">{profile.description}</p>
 
-          <div className="mb-4 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-900 dark:border-amber-800 dark:bg-amber-950 dark:text-amber-200">
-            {bannerText}
-          </div>
+          <p className="mb-4 text-xs text-gray-500 dark:text-gray-400">{bannerText}</p>
 
           {showFormula ? (
-            <div className="mb-4 rounded-md border border-gray-200 bg-white px-3 py-2 dark:border-gray-700 dark:bg-gray-800">
+            <div className="mb-4">
               <div className="mb-1 text-xs font-semibold text-gray-500 dark:text-gray-400">Formula</div>
-              <code className="break-all text-xs font-mono text-gray-800 dark:text-gray-200">{profile.formulaDisplay}</code>
+              <code className={codeBlockClass}>{profile.formulaDisplay}</code>
             </div>
           ) : null}
 
@@ -513,7 +511,7 @@ export const PayUForwardHashGenerator = function PayUForwardHashGenerator(props)
             <div className="mb-3">
               <div className="mb-2 text-xs font-semibold text-gray-500 dark:text-gray-400">Generated hash (SHA-512)</div>
               <div className="flex flex-wrap items-start gap-2">
-                <code className="min-w-[280px] flex-1 break-all rounded-md border border-gray-200 bg-white p-3 text-xs font-mono text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100">
+                <code className={codeBlockClass}>
                   {hashHex}
                 </code>
                 <button type="button" onClick={function () { copyText(hashHex, 'Hash'); }} className={btnGhostClass}>
@@ -528,13 +526,13 @@ export const PayUForwardHashGenerator = function PayUForwardHashGenerator(props)
               <button
                 type="button"
                 onClick={function () { setShowPipe(!showPipe); }}
-                className="mb-2 cursor-pointer rounded-md border border-gray-300 bg-white px-3 py-1.5 text-xs font-semibold text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-200"
+                className="mb-2 cursor-pointer rounded-md border border-gray-300 bg-transparent px-3 py-1.5 text-xs font-semibold text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-800/50"
               >
                 {showPipe ? 'Hide pipe-separated string' : 'Show pipe-separated string'}
               </button>
               {showPipe ? (
                 <div className="flex flex-wrap items-start gap-2">
-                  <code className="min-w-[280px] flex-1 break-all rounded-md border border-gray-200 bg-white p-3 text-xs font-mono text-gray-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300">
+                  <code className={codeBlockMutedClass}>
                     {pipeString}
                   </code>
                   <button type="button" onClick={function () { copyText(pipeString, 'Pipe string'); }} className={btnGhostClass}>
