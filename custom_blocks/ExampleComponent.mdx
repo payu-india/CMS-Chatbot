@@ -1,0 +1,503 @@
+---
+name: ExampleComponent
+---
+export const ExampleComponent = ({ header }) => {
+  return (
+    <div className="flex justify-center">
+      <div className="rounded-md p-6 m-4 max-w-lg shadow-md border border-gray-300 dark:bg-gray-800 dark:border-gray-600">
+        <p className="text-lg font-bold">{header}</p>
+        <p>// PayUForwardHashGenerator - ReadMe CMS Custom Component
+// Inline forward hash lab: edit fields, compute SHA-512, copy hash / pipe string.
+// MDX-safe: all logic inside export; profiles via JSON.parse; inline styles only.
+// Regenerate after profile changes: node scripts/build-payu-forward-hash-generator.mjs
+// Doc page: <PayUForwardHashGenerator hashProfile="hosted-checkout-v1" />
+
+import { useState, useEffect } from 'react';
+
+export const PayUForwardHashGenerator = function PayUForwardHashGenerator(props) {
+  var BUILTIN_PROFILES = JSON.parse('{"hosted-checkout-v1":{"id":"hosted-checkout-v1","version":"1.0.0","buildMode":"forward-udf","direction":"forward","product":"Hosted Checkout","category":"payment-request","title":"Generate Forward Hash","description":"SHA-512 hash for PayU Hosted Checkout payment request (_payment POST). Test credentials only.","algorithm":"sha512","formulaDisplay":"sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||salt)","docsUrl":"https://docs.payu.in/docs/generate-hash-payu-hosted","fields":[{"key":"key","label":"key","type":"text","required":true,"group":"core","order":1},{"key":"txnid","label":"txnid","type":"text","required":true,"group":"core","order":2,"placeholder":"TXN_DEMO_01"},{"key":"amount","label":"amount","type":"amount","required":true,"group":"core","order":3,"placeholder":"1499.00"},{"key":"productinfo","label":"productinfo","type":"text","required":true,"group":"core","order":4},{"key":"firstname","label":"firstname","type":"text","required":true,"group":"core","order":5},{"key":"email","label":"email","type":"email","required":true,"group":"core","order":6},{"key":"udf1","label":"udf1","type":"text","required":false,"group":"udf","order":7,"advanced":false},{"key":"udf2","label":"udf2","type":"text","required":false,"group":"udf","order":8,"advanced":false},{"key":"udf3","label":"udf3","type":"text","required":false,"group":"udf","order":9,"advanced":true},{"key":"udf4","label":"udf4","type":"text","required":false,"group":"udf","order":10,"advanced":true},{"key":"udf5","label":"udf5","type":"text","required":false,"group":"udf","order":11,"advanced":true},{"key":"salt","label":"salt (test only)","type":"password","required":true,"group":"salt","order":12,"sensitive":true}],"defaults":{"key":"gtKFFx","txnid":"TXN_DEMO_01","amount":"1499.00","productinfo":"Demo Store Order","firstname":"Aditi","email":"aditi@example.com","udf1":"","udf2":"","udf3":"","udf4":"","udf5":"","salt":""},"validation":{"requiredFields":["key","txnid","amount","productinfo","firstname","email","salt"]},"testVectors":[{"id":"hosted-basic","input":{"key":"gtKFFx","txnid":"123456","amount":"100.00","productinfo":"Test Product","firstname":"Ashish","email":"test@example.com","udf1":"","udf2":"","udf3":"","udf4":"","udf5":"","salt":"eCwWELxi"},"expectedHash":"50a5673a464fb4951792681a4dbbfe500ae93e68baaf5596bcc0f8e4b6c9039a08b5124a9e032fc48207763b386ccd97e51f37d7ddaef6e679766fdf871c8741"}],"ux":{"primaryAction":"Generate Forward Hash","showFormula":true,"showPipeString":true,"relatedLinks":[{"label":"Verify callback hash","url":"https://payu-hashverificationtool.onrender.com/"}]},"security":{"bannerText":"Test credentials only. Production hashes must be generated on your server."}},"subscription-si-forward-v1":{"id":"subscription-si-forward-v1","version":"1.0.0","buildMode":"forward-si-details","direction":"forward","product":"Subscriptions / SI","category":"payment-request","title":"Generate Forward Hash (SI Registration)","description":"SHA-512 hash for subscription / standing instruction registration with si_details JSON.","algorithm":"sha512","formulaDisplay":"sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|salt)","docsUrl":"https://docs.payu.in/docs/authentication-with-payu-apis","fields":[{"key":"key","label":"key","type":"text","required":true,"group":"core","order":1},{"key":"txnid","label":"txnid","type":"text","required":true,"group":"core","order":2},{"key":"amount","label":"amount","type":"amount","required":true,"group":"core","order":3},{"key":"productinfo","label":"productinfo","type":"text","required":true,"group":"core","order":4},{"key":"firstname","label":"firstname","type":"text","required":true,"group":"core","order":5},{"key":"email","label":"email","type":"email","required":true,"group":"core","order":6},{"key":"udf1","label":"udf1","type":"text","required":false,"group":"udf","order":7},{"key":"udf2","label":"udf2","type":"text","required":false,"group":"udf","order":8},{"key":"udf3","label":"udf3","type":"text","required":false,"group":"udf","order":9,"advanced":true},{"key":"udf4","label":"udf4","type":"text","required":false,"group":"udf","order":10,"advanced":true},{"key":"udf5","label":"udf5","type":"text","required":false,"group":"udf","order":11,"advanced":true},{"key":"si_details","label":"si_details (JSON)","type":"json","required":true,"group":"json","order":12,"help":"Standing instruction JSON as posted to PayU."},{"key":"salt","label":"salt (test only)","type":"password","required":true,"group":"salt","order":13,"sensitive":true}],"defaults":{"key":"gtKFFx","txnid":"SI_DEMO_01","amount":"10.00","productinfo":"Monthly Subscription","firstname":"Aditi","email":"aditi@example.com","udf1":"","udf2":"","udf3":"","udf4":"","udf5":"","si_details":"{\\"billingAmount\\":\\"10.00\\",\\"billingCurrency\\":\\"INR\\",\\"billingCycle\\":\\"MONTHLY\\",\\"billingInterval\\":1}","salt":""},"validation":{"requiredFields":["key","txnid","amount","productinfo","firstname","email","si_details","salt"]},"testVectors":[],"ux":{"primaryAction":"Generate Forward Hash","showFormula":true,"showPipeString":true},"security":{"bannerText":"Test credentials only. Production hashes must be generated on your server."}},"tpv-beneficiary-forward-v1":{"id":"tpv-beneficiary-forward-v1","version":"1.0.0","buildMode":"forward-beneficiary-tpv","direction":"forward","product":"TPV","category":"payment-request","title":"Generate Forward Hash (TPV)","description":"SHA-512 hash for Third-Party Validation flows with beneficiarydetail JSON.","algorithm":"sha512","formulaDisplay":"sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||beneficiarydetail|salt)","docsUrl":"https://docs.payu.in/docs/authentication-with-payu-apis","fields":[{"key":"key","label":"key","type":"text","required":true,"group":"core","order":1},{"key":"txnid","label":"txnid","type":"text","required":true,"group":"core","order":2},{"key":"amount","label":"amount","type":"amount","required":true,"group":"core","order":3},{"key":"productinfo","label":"productinfo","type":"text","required":true,"group":"core","order":4},{"key":"firstname","label":"firstname","type":"text","required":true,"group":"core","order":5},{"key":"email","label":"email","type":"email","required":true,"group":"core","order":6},{"key":"udf1","label":"udf1","type":"text","required":false,"group":"udf","order":7},{"key":"udf2","label":"udf2","type":"text","required":false,"group":"udf","order":8},{"key":"udf3","label":"udf3","type":"text","required":false,"group":"udf","order":9,"advanced":true},{"key":"udf4","label":"udf4","type":"text","required":false,"group":"udf","order":10,"advanced":true},{"key":"udf5","label":"udf5","type":"text","required":false,"group":"udf","order":11,"advanced":true},{"key":"beneficiarydetail","label":"beneficiarydetail (JSON)","type":"json","required":true,"group":"json","order":12},{"key":"salt","label":"salt (test only)","type":"password","required":true,"group":"salt","order":13,"sensitive":true}],"defaults":{"key":"gtKFFx","txnid":"TPV_DEMO_01","amount":"500.00","productinfo":"TPV Payment","firstname":"Aditi","email":"aditi@example.com","udf1":"","udf2":"","udf3":"","udf4":"","udf5":"","beneficiarydetail":"{\\"beneficiaryAccountNumber\\":\\"123456789012\\"}","salt":""},"validation":{"requiredFields":["key","txnid","amount","productinfo","firstname","email","beneficiarydetail","salt"]},"testVectors":[],"ux":{"primaryAction":"Generate Forward Hash","showFormula":true,"showPipeString":true},"security":{"bannerText":"Test credentials only. Production hashes must be generated on your server."}},"split-settlement-forward-v1":{"id":"split-settlement-forward-v1","version":"1.0.0","buildMode":"forward-split-request","direction":"forward","product":"Split Settlements","category":"payment-request","title":"Generate Forward Hash (Split Request)","description":"SHA-512 hash for split settlement payment requests with splitRequest JSON appended after salt.","algorithm":"sha512","formulaDisplay":"sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||salt|splitRequest)","docsUrl":"https://docs.payu.in/docs/authentication-with-payu-apis","fields":[{"key":"key","label":"key","type":"text","required":true,"group":"core","order":1},{"key":"txnid","label":"txnid","type":"text","required":true,"group":"core","order":2},{"key":"amount","label":"amount","type":"amount","required":true,"group":"core","order":3},{"key":"productinfo","label":"productinfo","type":"text","required":true,"group":"core","order":4},{"key":"firstname","label":"firstname","type":"text","required":true,"group":"core","order":5},{"key":"email","label":"email","type":"email","required":true,"group":"core","order":6},{"key":"udf1","label":"udf1","type":"text","required":false,"group":"udf","order":7},{"key":"udf2","label":"udf2","type":"text","required":false,"group":"udf","order":8},{"key":"udf3","label":"udf3","type":"text","required":false,"group":"udf","order":9,"advanced":true},{"key":"udf4","label":"udf4","type":"text","required":false,"group":"udf","order":10,"advanced":true},{"key":"udf5","label":"udf5","type":"text","required":false,"group":"udf","order":11,"advanced":true},{"key":"salt","label":"salt (test only)","type":"password","required":true,"group":"salt","order":12,"sensitive":true},{"key":"splitRequest","label":"splitRequest (JSON)","type":"json","required":true,"group":"json","order":13}],"defaults":{"key":"gtKFFx","txnid":"SPLIT_DEMO_01","amount":"1000.00","productinfo":"Marketplace Order","firstname":"Aditi","email":"aditi@example.com","udf1":"","udf2":"","udf3":"","udf4":"","udf5":"","salt":"","splitRequest":"{\\"splitInfo\\":\\"{\\\\\\"v1\\\\\\":[{\\\\\\"aggregatorSubTxnId\\\\\\":\\\\\\"S1\\\\\\",\\\\\\"aggregatorSubAmt\\\\\\":\\\\\\"500.00\\\\\\"}]}\\"}"},"validation":{"requiredFields":["key","txnid","amount","productinfo","firstname","email","salt","splitRequest"]},"testVectors":[],"ux":{"primaryAction":"Generate Forward Hash","showFormula":true,"showPipeString":true},"security":{"bannerText":"Test credentials only. Production hashes must be generated on your server."}},"api-command-v1":{"id":"api-command-v1","version":"1.0.0","buildMode":"forward-api-command","direction":"forward","product":"PayU APIs","category":"command-api","title":"Generate API Command Hash","description":"SHA-512 hash for PayU command APIs such as verify_payment and refund_transaction.","algorithm":"sha512","formulaDisplay":"sha512(key|command|var1|salt)","docsUrl":"https://docs.payu.in/docs/authentication-with-payu-apis","fields":[{"key":"key","label":"key","type":"text","required":true,"group":"core","order":1},{"key":"command","label":"command","type":"text","required":true,"group":"core","order":2,"placeholder":"verify_payment"},{"key":"var1","label":"var1","type":"text","required":true,"group":"core","order":3,"help":"Usually txnid or pipe-separated values per API."},{"key":"salt","label":"salt (test only)","type":"password","required":true,"group":"salt","order":4,"sensitive":true}],"defaults":{"key":"gtKFFx","command":"verify_payment","var1":"TXN_DEMO_01","salt":""},"validation":{"requiredFields":["key","command","var1","salt"]},"testVectors":[],"ux":{"primaryAction":"Generate Hash","showFormula":true,"showPipeString":true},"security":{"bannerText":"Test credentials only. Production hashes must be generated on your server."}},"payment-api-v19-v1":{"id":"payment-api-v19-v1","version":"1.0.0","buildMode":"forward-v19","direction":"forward","product":"Payment API v19","category":"payment-request","title":"Generate Forward Hash (API v19)","description":"Extended SHA-512 hash for _payment API with api_version=19.","algorithm":"sha512","formulaDisplay":"sha512(key|txnid|amount|productinfo|firstname|email|udf1|…|udf10|user_token|offer_key|offer_auto_apply|cart_details|extra_charges|phone||||||salt)","docsUrl":"https://docs.payu.in/docs/authentication-with-payu-apis","fields":[{"key":"key","label":"key","type":"text","required":true,"group":"core","order":1},{"key":"txnid","label":"txnid","type":"text","required":true,"group":"core","order":2},{"key":"amount","label":"amount","type":"amount","required":true,"group":"core","order":3},{"key":"productinfo","label":"productinfo","type":"text","required":true,"group":"core","order":4},{"key":"firstname","label":"firstname","type":"text","required":true,"group":"core","order":5},{"key":"email","label":"email","type":"email","required":true,"group":"core","order":6},{"key":"udf1","label":"udf1","type":"text","required":false,"group":"udf","order":7},{"key":"udf2","label":"udf2","type":"text","required":false,"group":"udf","order":8},{"key":"udf3","label":"udf3","type":"text","required":false,"group":"udf","order":9,"advanced":true},{"key":"udf4","label":"udf4","type":"text","required":false,"group":"udf","order":10,"advanced":true},{"key":"udf5","label":"udf5","type":"text","required":false,"group":"udf","order":11,"advanced":true},{"key":"udf6","label":"udf6","type":"text","required":false,"group":"udf","order":12,"advanced":true},{"key":"udf7","label":"udf7","type":"text","required":false,"group":"udf","order":13,"advanced":true},{"key":"udf8","label":"udf8","type":"text","required":false,"group":"udf","order":14,"advanced":true},{"key":"udf9","label":"udf9","type":"text","required":false,"group":"udf","order":15,"advanced":true},{"key":"udf10","label":"udf10","type":"text","required":false,"group":"udf","order":16,"advanced":true},{"key":"user_token","label":"user_token","type":"text","required":false,"group":"core","order":17,"advanced":true},{"key":"offer_key","label":"offer_key","type":"text","required":false,"group":"core","order":18,"advanced":true},{"key":"offer_auto_apply","label":"offer_auto_apply","type":"text","required":false,"group":"core","order":19,"advanced":true},{"key":"cart_details","label":"cart_details","type":"json","required":false,"group":"json","order":20,"advanced":true},{"key":"extra_charges","label":"extra_charges","type":"text","required":false,"group":"core","order":21,"advanced":true},{"key":"phone","label":"phone","type":"text","required":false,"group":"core","order":22,"advanced":true},{"key":"salt","label":"salt (test only)","type":"password","required":true,"group":"salt","order":23,"sensitive":true}],"defaults":{"key":"gtKFFx","txnid":"V19_DEMO_01","amount":"999.00","productinfo":"API v19 Order","firstname":"Aditi","email":"aditi@example.com","udf1":"","udf2":"","udf3":"","udf4":"","udf5":"","udf6":"","udf7":"","udf8":"","udf9":"","udf10":"","user_token":"","offer_key":"","offer_auto_apply":"","cart_details":"","extra_charges":"","phone":"","salt":""},"validation":{"requiredFields":["key","txnid","amount","productinfo","firstname","email","salt"]},"testVectors":[],"ux":{"primaryAction":"Generate Forward Hash","showFormula":true,"showPipeString":true},"security":{"bannerText":"Test credentials only. Production hashes must be generated on your server."}}}');
+
+  var DEFAULT_CDN =
+    'https://cdn.jsdelivr.net/gh/palgunams21/payu-docs-assets@main/data/hash-profiles.json';
+
+  var mint = '#6CFFB8';
+  var muted = '#8FA39B';
+  var line = '#223330';
+  var danger = '#FF8A80';
+
+  var shell = {
+    border: '1px solid ' + line,
+    borderRadius: '14px',
+    background: '#0A0E0D',
+    padding: '20px',
+    margin: '20px 0',
+    fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif',
+    fontSize: '14px',
+    lineHeight: 1.55,
+    color: '#EAF2EE',
+  };
+
+  var inputStyle = {
+    width: '100%',
+    boxSizing: 'border-box',
+    background: '#0D1413',
+    border: '1px solid ' + line,
+    borderRadius: '8px',
+    padding: '8px 10px',
+    color: '#EAF2EE',
+    fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
+    fontSize: '12px',
+  };
+
+  var btnPrimary = {
+    padding: '10px 16px',
+    borderRadius: '10px',
+    border: 'none',
+    background: mint,
+    color: '#06120D',
+    fontWeight: 600,
+    fontSize: '13px',
+    cursor: 'pointer',
+  };
+
+  var btnGhost = {
+    padding: '10px 16px',
+    borderRadius: '10px',
+    border: '1px solid ' + line,
+    background: 'transparent',
+    color: '#EAF2EE',
+    fontWeight: 600,
+    fontSize: '13px',
+    cursor: 'pointer',
+  };
+
+  var hashProfileProp = props.hashProfile || props.profile || 'hosted-checkout-v1';
+  var profilesUrlProp = props.profilesUrl || props.profilesURL || '';
+
+  var _profiles = useState(BUILTIN_PROFILES);
+  var profiles = _profiles[0];
+  var setProfiles = _profiles[1];
+
+  var _profileId = useState(hashProfileProp);
+  var profileId = _profileId[0];
+  var setProfileId = _profileId[1];
+
+  var profile = profiles[profileId] || profiles['hosted-checkout-v1'] || null;
+
+  function mergeDefaults(base, overrideJson) {
+    var out = Object.assign({}, base || {});
+    if (!overrideJson) return out;
+    try {
+      var parsed = JSON.parse(overrideJson);
+      for (var k in parsed) {
+        if (Object.prototype.hasOwnProperty.call(parsed, k)) {
+          out[k] = parsed[k];
+        }
+      }
+    } catch (e) {
+      /* ignore invalid defaultsJson on page */
+    }
+    return out;
+  }
+
+  var initialForm = profile ? mergeDefaults(profile.defaults, props.defaultsJson) : {};
+
+  var _form = useState(initialForm);
+  var form = _form[0];
+  var setForm = _form[1];
+
+  var _hashHex = useState('');
+  var hashHex = _hashHex[0];
+  var setHashHex = _hashHex[1];
+
+  var _pipeString = useState('');
+  var pipeString = _pipeString[0];
+  var setPipeString = _pipeString[1];
+
+  var _err = useState('');
+  var err = _err[0];
+  var setErr = _err[1];
+
+  var _busy = useState(false);
+  var busy = _busy[0];
+  var setBusy = _busy[1];
+
+  var _showAdvanced = useState(false);
+  var showAdvanced = _showAdvanced[0];
+  var setShowAdvanced = _showAdvanced[1];
+
+  var _showPipe = useState(false);
+  var showPipe = _showPipe[0];
+  var setShowPipe = _showPipe[1];
+
+  var _copyMsg = useState('');
+  var copyMsg = _copyMsg[0];
+  var setCopyMsg = _copyMsg[1];
+
+  var _loadNote = useState('');
+  var loadNote = _loadNote[0];
+  var setLoadNote = _loadNote[1];
+
+  useEffect(function () {
+    var url = String(profilesUrlProp || '').trim();
+    if (!url && props.useCdn === true) {
+      url = DEFAULT_CDN;
+    }
+    if (!url) return;
+    fetch(url)
+      .then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        var next = data && data.profiles ? data.profiles : data;
+        if (next && typeof next === 'object') {
+          setProfiles(Object.assign({}, BUILTIN_PROFILES, next));
+          setLoadNote('Profiles loaded from CDN.');
+        }
+      })
+      .catch(function () {
+        setLoadNote('Using built-in profiles (CDN fetch failed).');
+      });
+  }, [profilesUrlProp, props.useCdn]);
+
+  useEffect(function () {
+    var nextId = props.hashProfile || props.profile || 'hosted-checkout-v1';
+    setProfileId(nextId);
+  }, [props.hashProfile, props.profile]);
+
+  useEffect(function () {
+    var p = profiles[profileId] || profiles['hosted-checkout-v1'];
+    if (!p) return;
+    setForm(mergeDefaults(p.defaults, props.defaultsJson));
+    setHashHex('');
+    setPipeString('');
+    setErr('');
+  }, [profileId, profiles, props.defaultsJson]);
+
+  function empty(s) {
+    return s == null ? '' : String(s).trim();
+  }
+
+  function buildHashString(mode, f) {
+    var e = empty;
+    if (mode === 'forward-udf') {
+      return (
+        e(f.key) + '|' + e(f.txnid) + '|' + e(f.amount) + '|' + e(f.productinfo) + '|' + e(f.firstname) + '|' + e(f.email) + '|' +
+        e(f.udf1) + '|' + e(f.udf2) + '|' + e(f.udf3) + '|' + e(f.udf4) + '|' + e(f.udf5) + '||||||' + e(f.salt)
+      );
+    }
+    if (mode === 'forward-v19') {
+      return (
+        e(f.key) + '|' + e(f.txnid) + '|' + e(f.amount) + '|' + e(f.productinfo) + '|' + e(f.firstname) + '|' + e(f.email) + '|' +
+        e(f.udf1) + '|' + e(f.udf2) + '|' + e(f.udf3) + '|' + e(f.udf4) + '|' + e(f.udf5) + '|' +
+        e(f.udf6) + '|' + e(f.udf7) + '|' + e(f.udf8) + '|' + e(f.udf9) + '|' + e(f.udf10) + '|' +
+        e(f.user_token) + '|' + e(f.offer_key) + '|' + e(f.offer_auto_apply) + '|' + e(f.cart_details) + '|' +
+        e(f.extra_charges) + '|' + e(f.phone) + '||||||' + e(f.salt)
+      );
+    }
+    if (mode === 'forward-si-details') {
+      return (
+        e(f.key) + '|' + e(f.txnid) + '|' + e(f.amount) + '|' + e(f.productinfo) + '|' + e(f.firstname) + '|' + e(f.email) + '|' +
+        e(f.udf1) + '|' + e(f.udf2) + '|' + e(f.udf3) + '|' + e(f.udf4) + '|' + e(f.udf5) + '||||||' + e(f.si_details) + '|' + e(f.salt)
+      );
+    }
+    if (mode === 'forward-beneficiary-tpv') {
+      return (
+        e(f.key) + '|' + e(f.txnid) + '|' + e(f.amount) + '|' + e(f.productinfo) + '|' + e(f.firstname) + '|' + e(f.email) + '|' +
+        e(f.udf1) + '|' + e(f.udf2) + '|' + e(f.udf3) + '|' + e(f.udf4) + '|' + e(f.udf5) + '||||||' + e(f.beneficiarydetail) + '|' + e(f.salt)
+      );
+    }
+    if (mode === 'forward-split-request') {
+      return (
+        e(f.key) + '|' + e(f.txnid) + '|' + e(f.amount) + '|' + e(f.productinfo) + '|' + e(f.firstname) + '|' + e(f.email) + '|' +
+        e(f.udf1) + '|' + e(f.udf2) + '|' + e(f.udf3) + '|' + e(f.udf4) + '|' + e(f.udf5) + '||||||' + e(f.salt) + '|' + e(f.splitRequest)
+      );
+    }
+    if (mode === 'forward-api-command') {
+      return e(f.key) + '|' + e(f.command) + '|' + e(f.var1) + '|' + e(f.salt);
+    }
+    return '';
+  }
+
+  function sha512Hex(msg) {
+    var enc = new TextEncoder();
+    return crypto.subtle.digest('SHA-512', enc.encode(msg)).then(function (buf) {
+      return Array.from(new Uint8Array(buf))
+        .map(function (b) {
+          return b.toString(16).padStart(2, '0');
+        })
+        .join('');
+    });
+  }
+
+  function patchField(key, val) {
+    var n = Object.assign({}, form);
+    n[key] = val;
+    setForm(n);
+    setHashHex('');
+    setPipeString('');
+    setErr('');
+  }
+
+  function validateForm(p, f) {
+    var req = (p.validation && p.validation.requiredFields) || [];
+    for (var i = 0; i < req.length; i += 1) {
+      if (!empty(f[req[i]])) continue;
+      return 'Missing required field: ' + req[i];
+    }
+    if (empty(f.amount) === false && p.fields.some(function (fld) { return fld.key === 'amount'; })) {
+      if (!/^\d+(\.\d{1,2})?$/.test(empty(f.amount))) {
+        return 'Amount must be a decimal string (e.g. 1499.00).';
+      }
+    }
+    if (empty(f.email) === false) {
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(empty(f.email))) {
+        return 'Enter a valid email address.';
+      }
+    }
+    for (var j = 0; j < p.fields.length; j += 1) {
+      var field = p.fields[j];
+      if (field.type !== 'json') continue;
+      var raw = empty(f[field.key]);
+      if (!raw) continue;
+      try {
+        JSON.parse(raw);
+      } catch (e2) {
+        return field.label + ' must be valid JSON.';
+      }
+    }
+    return '';
+  }
+
+  function resetForm() {
+    if (!profile) return;
+    setForm(mergeDefaults(profile.defaults, props.defaultsJson));
+    setHashHex('');
+    setPipeString('');
+    setErr('');
+    setCopyMsg('');
+  }
+
+  function generateHash() {
+    if (!profile) {
+      setErr('Unknown hash profile.');
+      return;
+    }
+    var validationErr = validateForm(profile, form);
+    if (validationErr) {
+      setErr(validationErr);
+      return;
+    }
+    var chain = buildHashString(profile.buildMode || 'forward-udf', form);
+    if (!chain) {
+      setErr('Could not build hash string for this profile.');
+      return;
+    }
+    setBusy(true);
+    setErr('');
+    sha512Hex(chain)
+      .then(function (h) {
+        setHashHex(h);
+        setPipeString(chain);
+        setBusy(false);
+      })
+      .catch(function () {
+        setErr('SHA-512 unavailable in this browser context.');
+        setBusy(false);
+      });
+  }
+
+  function copyText(text, label) {
+    var value = String(text || '');
+    if (!value) return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(value).then(function () {
+        setCopyMsg(label + ' copied.');
+        setTimeout(function () { setCopyMsg(''); }, 2000);
+      });
+      return;
+    }
+    setCopyMsg('Copy not supported in this browser.');
+  }
+
+  if (!profile) {
+    return (
+      <div style={shell} role="alert">
+        <strong>PayU Forward Hash Generator</strong>
+        <p style={{ margin: '8px 0 0', color: danger }}>Unknown profile: {profileId}</p>
+      </div>
+    );
+  }
+
+  var sortedFields = (profile.fields || []).slice().sort(function (a, b) {
+    return (a.order || 0) - (b.order || 0);
+  });
+
+  var basicFields = [];
+  var advancedFields = [];
+  for (var fi = 0; fi < sortedFields.length; fi += 1) {
+    if (sortedFields[fi].advanced) advancedFields.push(sortedFields[fi]);
+    else basicFields.push(sortedFields[fi]);
+  }
+
+  var primaryLabel = (profile.ux && profile.ux.primaryAction) || 'Generate Forward Hash';
+  var bannerText = (profile.security && profile.security.bannerText) || 'Test credentials only. Production hashes must be generated on your server.';
+  var showFormula = !profile.ux || profile.ux.showFormula !== false;
+  var showPipeString = !profile.ux || profile.ux.showPipeString !== false;
+  var relatedLinks = (profile.ux && profile.ux.relatedLinks) || [];
+
+  function renderField(field) {
+    var val = form[field.key] != null ? form[field.key] : '';
+    var isJson = field.type === 'json';
+    var inputType = field.type === 'password' ? 'password' : field.type === 'email' ? 'email' : 'text';
+    return (
+      <div key={field.key} style={{ marginBottom: '12px' }}>
+        <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, marginBottom: '4px', color: '#CFE0DA' }}>
+          {field.label}
+          {field.required ? <span style={{ color: danger }}> *</span> : null}
+        </label>
+        {isJson ? (
+          <textarea
+            rows={3}
+            value={val}
+            onChange={function (ev) { patchField(field.key, ev.target.value); }}
+            placeholder={field.placeholder || ''}
+            style={Object.assign({}, inputStyle, { minHeight: '72px', resize: 'vertical' })}
+          />
+        ) : (
+          <input
+            type={inputType}
+            value={val}
+            onChange={function (ev) { patchField(field.key, ev.target.value); }}
+            placeholder={field.placeholder || ''}
+            style={inputStyle}
+            autoComplete={field.type === 'password' ? 'off' : 'on'}
+          />
+        )}
+        {field.help ? <p style={{ margin: '4px 0 0', fontSize: '11px', color: muted }}>{field.help}</p> : null}
+      </div>
+    );
+  }
+
+  return (
+    <div style={shell} role="region" aria-label="PayU Forward Hash Generator">
+      <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.12em', color: mint, marginBottom: '8px' }}>
+        PayU · {profile.product} · Forward hash lab
+      </div>
+      <h2 style={{ margin: '0 0 6px', fontSize: '1.25rem', fontWeight: 700, color: '#EAF2EE' }}>{profile.title}</h2>
+      <p style={{ margin: '0 0 12px', fontSize: '13px', color: muted }}>{profile.description}</p>
+
+      <div style={{ padding: '10px 12px', borderRadius: '10px', border: '1px solid #3d2f1a', background: '#1a1408', marginBottom: '16px', fontSize: '12px', color: '#FFD59A' }}>
+        {bannerText}
+      </div>
+
+      {showFormula ? (
+        <div style={{ marginBottom: '16px', padding: '10px 12px', borderRadius: '10px', background: '#121817', border: '1px solid ' + line }}>
+          <div style={{ fontSize: '11px', fontWeight: 600, color: muted, marginBottom: '4px' }}>Formula</div>
+          <code style={{ fontSize: '11px', wordBreak: 'break-all', color: mint }}>{profile.formulaDisplay}</code>
+        </div>
+      ) : null}
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '0 16px' }}>
+        {basicFields.map(renderField)}
+      </div>
+
+      {advancedFields.length > 0 ? (
+        <div style={{ marginTop: '4px', marginBottom: '12px' }}>
+          <button type="button" onClick={function () { setShowAdvanced(!showAdvanced); }} style={btnGhost}>
+            {showAdvanced ? 'Hide advanced fields' : 'Show advanced fields (' + advancedFields.length + ')'}
+          </button>
+          {showAdvanced ? (
+            <div style={{ marginTop: '12px', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '0 16px' }}>
+              {advancedFields.map(renderField)}
+            </div>
+          ) : null}
+        </div>
+      ) : null}
+
+      {err ? <p style={{ color: danger, fontSize: '13px', margin: '0 0 12px' }} role="alert">{err}</p> : null}
+      {loadNote ? <p style={{ color: muted, fontSize: '11px', margin: '0 0 12px' }}>{loadNote}</p> : null}
+      {copyMsg ? <p style={{ color: mint, fontSize: '12px', margin: '0 0 12px' }}>{copyMsg}</p> : null}
+
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '16px' }}>
+        <button type="button" onClick={generateHash} disabled={busy} style={btnPrimary}>
+          {busy ? 'Generating…' : primaryLabel}
+        </button>
+        <button type="button" onClick={resetForm} style={btnGhost}>Reset to examples</button>
+        {profile.docsUrl ? (
+          <a href={profile.docsUrl} target="_blank" rel="noopener noreferrer" style={{ alignSelf: 'center', fontSize: '12px', color: mint }}>
+            View docs
+          </a>
+        ) : null}
+      </div>
+
+      {hashHex ? (
+        <div style={{ marginBottom: '12px' }}>
+          <div style={{ fontSize: '11px', fontWeight: 600, color: muted, marginBottom: '6px' }}>Generated hash (SHA-512)</div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'flex-start' }}>
+            <code style={{ flex: '1 1 280px', fontSize: '11px', wordBreak: 'break-all', padding: '10px', borderRadius: '8px', background: '#121817', border: '1px solid ' + line, color: '#EAF2EE' }}>
+              {hashHex}
+            </code>
+            <button type="button" onClick={function () { copyText(hashHex, 'Hash'); }} style={btnGhost}>Copy hash</button>
+          </div>
+        </div>
+      ) : null}
+
+      {showPipeString && pipeString ? (
+        <div style={{ marginBottom: '12px' }}>
+          <button type="button" onClick={function () { setShowPipe(!showPipe); }} style={Object.assign({}, btnGhost, { marginBottom: '8px', padding: '6px 12px', fontSize: '12px' })}>
+            {showPipe ? 'Hide pipe-separated string' : 'Show pipe-separated string'}
+          </button>
+          {showPipe ? (
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'flex-start' }}>
+              <code style={{ flex: '1 1 280px', fontSize: '11px', wordBreak: 'break-all', padding: '10px', borderRadius: '8px', background: '#121817', border: '1px solid ' + line, color: muted }}>
+                {pipeString}
+              </code>
+              <button type="button" onClick={function () { copyText(pipeString, 'Pipe string'); }} style={btnGhost}>Copy string</button>
+            </div>
+          ) : null}
+        </div>
+      ) : null}
+
+      {relatedLinks.length > 0 ? (
+        <div style={{ marginTop: '8px', fontSize: '12px', color: muted }}>
+          Related:{' '}
+          {relatedLinks.map(function (link, idx) {
+            var href = link.url || '';
+            return (
+              <span key={idx}>
+                {idx > 0 ? ' · ' : ''}
+                {href ? (
+                  <a href={href} target="_blank" rel="noopener noreferrer" style={{ color: mint }}>{link.label}</a>
+                ) : (
+                  link.label
+                )}
+              </span>
+            );
+          })}
+        </div>
+      ) : null}
+    </div>
+  );
+};
+
+<PayUForwardHashGenerator hashProfile="hosted-checkout-v1" />
+
+          <i className="fa-solid fa-code mr-2" />
+          Write <a className="text-blue-500! dark:text-blue-300!" href="https://docs.readme.com/main/v3.0/docs/building-custom-mdx-components" target="_blank">MDX</a> to render interactive content
+        </p>
+        <p>
+          <i className="fa-solid fa-pen mr-3" />
+          Style elements with <a className="text-blue-500! dark:text-blue-300!" href="https://tailwindcss.com" target="_blank">Tailwind CSS</a>
+        </p>
+        <p>
+          <i className="fa-solid fa-lightbulb mr-4" />
+          Need inspiration? Check out our <a className="text-blue-500! dark:text-blue-300!" href="https://github.com/readmeio/marketplace" target="_blank">Marketplace</a>!
+        </p>
+      </div>
+    </div>
+  );
+};
+
+<ExampleComponent header="Getting Started with Custom Components" />

@@ -1,0 +1,12 @@
+- collect-payments-errors
+- issuer-decline-errors
+- transaction-stage-errors
+- s2s-link-and-pay-errors
+- refund-payment-errors
+- payouts-and-smart-send-errors
+- alt-id-errors
+- bnpl-payment-errors
+- upi-qr-api-payment-errors
+- checkoutpro-sdk-payment-errors
+- kyc-and-partner-payment-errors
+- ecommerce-plugin-payment-errors

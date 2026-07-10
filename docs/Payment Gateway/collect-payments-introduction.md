@@ -1,5 +1,5 @@
 ---
-title: Overview
+title: Collect Payments with PayU
 deprecated: false
 hidden: false
 metadata:
@@ -13,8 +13,24 @@ next:
     - slug: payu-payment-gateway-workflow
       title: PayU Payment Gateway Workflow
       type: basic
+    - slug: choose-your-checkout-integration
+      title: Start Here - Choose Your Integration
+      type: basic
 ---
-A **payment gateway** enables businesses to securely accept payments from customers through their website or mobile application. The **PayU Payment Gateway** acts as a secure bridge between your customer, your application, and the banking networks to process transactions safely and reliably.
+A enables businesses to securely accept payments from customers through their website or mobile application. Accept payments securely on your website, mobile app, or e-commerce store using PayU Payment Gateway.
+
+PayU enables businesses to collect payments through:
+
+- UPI
+- Credit & Debit Cards
+- Net Banking
+- Wallets
+- EMI / Buy Now Pay Later (BNPL)
+- Recurring Payments
+
+PayU offers multiple integration methods depending on your business requirements, technical architecture, and checkout experience goals.
+
+## Why Use PayU?
 
 <Accordion title="Benefits" icon="fa-lightbulb">
   * **Secure and Reliable Transactions**: The PayU Payment Gateway ensures that every transaction is securely processed using encryption and industry-standard safeguards, helping protect customers from fraud and unauthorized access.
@@ -29,208 +45,49 @@ A **payment gateway** enables businesses to securely accept payments from custom
   * **Operational Efficiency**: PayU simplifies payment management with centralized tracking and reporting, reducing manual effort and improving operational workflows.
 </Accordion>
 
-## Types of Checkout
+## Choose Your Integration Path
 
-PayU offers the following checkout types:
+Not sure which PayU integration to use? Start by choosing what best describes your needs.
+
+You can decide based on:
+
+- What you want to build (goal-based solution)
+- What business you run (industry-based solution)
+
+This helps you quickly identify the most suitable payment solution for your use case.
 
 <Tabs>
-  <Tab title="PayU Hosted">
-    * Quick and easy integration
-    * No PCI compliance required
-    * PayU handles UI, security, and payment flow<br />
-
-    Know more about <a href="/docs/prebuilt-checkout-payu-hosted" target="_blank">PayU Hosted Checkout</a>.
+  <Tab title="Choose by Goal">
+    Use this table if you already know what you want to build.<br/>
+    | **Goal** | **You Can Choose** | **Benefits** | **Workflow** |
+    | ----------------- | -------------------- | --------------- | --------------- |
+    | I’m a startup and want to go live fast | PayU Hosted Checkout | Accept payments quickly with minimal engineering effort | Create Account → Get Credentials → Create Payment Request → Redirect Customer → Receive Callback → Go Live |
+    | I want full control over checkout UX | Merchant Hosted Checkout | Build your own branded checkout experience | Build Checkout UI → Collect Payment Details → Call PayU APIs → Handle Response → Verify Payment |
+    | I need backend-only payment orchestration | Server-to-Server (S2S) | Process payments entirely using backend APIs | Customer Initiates Payment → Merchant Backend Calls PayU APIs → Process Authentication → Receive Payment Status → Update Order |
+    | I’m building a mobile app | Mobile SDKs | Native and optimized payment experience for mobile users | Install SDK → Initialize Payment → Launch Checkout → Receive Callback → Verify Transaction |
+    | I need subscription billing | Recurring Payments / AutoPay | Automates recurring charges and reduces churn | Create Subscription Plan → Enable AutoPay → Collect Mandate → Charge Recurring Payments |
+    | I want faster UPI payments with better success rates | UPI Intent / Collect | Faster UPI flows and better success rates | Customer Selects UPI → Launch UPI App / Collect Request → Customer Authorizes Payment → Receive Confirmation |
+    | I want to offer EMI or Pay Later options | EMI / BNPL Integration | Helps increase conversion for high-value transactions | Customer Selects EMI / BNPL → Choose Tenure / Provider → Complete Eligibility Check → Payment Approved |
+    | I run an e-commerce store on Shopify or WooCommerce | E-commerce Plugins | Quick setup for popular e-commerce platforms | Install Plugin → Configure Credentials → Enable Payment Methods → Start Accepting Payments |
   </Tab>
 
-  <Tab title="Merchant Hosted (Custom)">
-    * Full control over UI/UX
-    * Better branding and customization
-    * Seamless user experience<br />
-
-    Know more about <a href="/docs/custom-checkout-merchant-hosted" target="_blank">Merchant Hosted Checkout</a>.
-  </Tab>
-
-  <Tab title="S2S">
-    * Eliminates intermediate browser hops
-    * Reduces latency and failure points
-    * Higher control over payment flow
-    * Better success rates due to fewer redirects<br />
-
-    Know more about <a href="/docs/server-to-server-integration" target="_blank">Server-to-Server (S2S)</a>.
-  </Tab>
-
-  <Tab title="CommercePro">
-    * Faster checkout with minimal form filling
-    * Higher conversions through personalization
-    * Reduced drop-offs using recommendation engine
-    * Lower RTO with intelligent COD controls<br />
-
-    Know more about <a href="/docs/checkout-express" target="_blank">CommercePro (checkout Express)</a>.
-  </Tab>
-
-  <Tab title="Checkout Plus">
-    * Reduced drop-offs
-    * Faster checkout experience
-    * Improved conversion rates<br />
-
-    Know more about <a href="/docs/checkout-plus-integration" target="_blank">Checkout Plus</a>.
+  <Tab title="Choose by Industry">
+    Choose your integration based on your industry:<br/>
+    | **If You Are In:** | **Common Challenges** | **You Can Choose** |
+    | ---------------- | ------------------ | --------------------- |
+    | E-commerce, Retail, or D2C | Cart abandonment, multiple payment preferences | Hosted Checkout, UPI, Cards, BNPL |
+    | Travel & Ticketing | Time-sensitive bookings, payment failures | Hosted Checkout, UPI Intent, International Cards |
+    | EdTech | High ticket sizes, EMI requirements, recurring fees | Hosted Checkout, EMI, Payment Links, Recurring Payments |
+    | Gaming & Digital Services | Microtransactions, instant confirmations | Merchant Hosted, S2S, Tokenized Cards, SDKs |
+    | Subscription Businesses (SaaS / OTT) | Recurring billing, failed renewals, churn | Recurring Payments, Saved Cards, AutoPay |
+    | Financial Services (Lending / NBFCs) | EMI collections, repayments, compliance | Payment Links, eMandates, UPI Collect |
+    | Marketplaces & Aggregators | Multi-seller transactions, split settlements | Hosted Checkout, Merchant Hosted, Split Payments |
   </Tab>
 </Tabs>
 
-<Callout icon="📘" theme="info">
-  **No-code Solutions**
-
-  PayU also provides <Anchor label="No-code options" target="_blank" href="https://docs.payu.in/docs/introduction-no-code-payments-integration">No-code options</Anchor> to collect payments based on your business needs without integration.
-</Callout>
-
-## Payment Gateway Solutions by Industry
-
-<Accordion title="E-commerce (Retail and D2C)" icon="fa-cart-shopping">
-  **Challenges**
-
-  * High drop-offs during checkout
-  * Diverse payment preferences (UPI, cards, wallets and BNPL)
-
-  **Recommended Checkout Solutions**
-
-  * <a href="docs/prebuilt-checkout-payu-hosted" target="_blank">PayU Hosted Checkout</a>
-  * <a href="docs/custom-checkout-merchant-hosted" target="_blank">Merchant Hosted</a> or <a href="docs/server-to-server-integration" target="_blank">S2S</a> Checkout
-  * <a href="docs/upi-intent-and-collect-autopay-tpv-integration" target="_blank">UPI Intent and Collect</a>
-  * <a href="docs/emi-api-integration" target="_blank">EMI</a> or <a href="docs/payu-bnpl-integration-introduction" target="_blank">BNPL</a>
-
-  **Benefits**
-
-  * **Merchants:** Higher conversion rates, easy integration
-  * **Users:** Faster, flexible, secure checkout
-</Accordion>
-
-<br />
-
-<Accordion title="Travel and Ticketing" icon="fa-plane-departure">
-  **Challenges**
-
-  * Time-critical bookings
-  * High cost of payment failures
-
-  **Recommended Checkout Solutions**
-
-  * <a href="docs/prebuilt-checkout-payu-hosted" target="_blank">PayU Hosted Checkout</a>
-  * <a href="docs/upi-intent-and-collect-autopay-tpv-integration" target="_blank">UPI Intent</a>
-  * <a href="docs/introduction-dynamic-currency-conversion" target="_blank">International Cards</a>
-
-  **Benefits**
-
-  * **Merchants:** Reduced booking drop-offs
-  * **Users:** Faster confirmations, smoother refunds
-</Accordion>
-
-<br />
-
-<Accordion title="Educational Technology (EdTech)" icon="fa-laptop-file">
-  **Challenges**
-
-  * High ticket-size transactions
-  * Installments and recurring payments
-
-  **Recommended Checkout Solutions**
-
-  * <a href="docs/prebuilt-checkout-payu-hosted" target="_blank">PayU Hosted Checkout</a>
-  * <a href="docs/introduction-recurring-payments-integration" target="_blank">Recurring Payments (Subscriptions)</a>
-  * <a href="docs/emi-api-integration" target="_blank">EMI</a>
-  * <a href="docs/payment-links-dashboard" target="_blank">Payment Links</a>
-
-  **Benefits**
-
-  * **Merchants:** Consistent revenue collection
-  * **Users:** Flexible and manageable payments
-</Accordion>
-
-<br />
-
-<Accordion title="Gaming and Digital Services" icon="fa-gamepad">
-  **Challenges**
-
-  * Frequent microtransactions
-  * Real-time payment confirmation required
-
-  **Recommended Checkout Solutions**
-
-  * <a href="docs/custom-checkout-merchant-hosted" target="_blank">Merchant Hosted</a> or <a href="docs/server-to-server-integration" target="_blank">S2S</a> Checkout
-  * <a href="docs/upi-intent-and-collect-autopay-tpv-integration" target="_blank">UPI Intent and Collect</a>
-  * <a href="docs/emi-api-integration" target="_blank">EMI</a>
-  * <a href="docs/collect-payments-using-a-saved-card" target="_blank">Tokenized Cards</a>
-  * <a href="docs/explore-android-sdks" target="_blank">Mobile SDKs</a>
-
-  **Benefits**
-
-  * **Merchants:** Higher success rates and better engagement
-  * **Users:** Fast and uninterrupted experience
-</Accordion>
-
-<br />
-
-<Accordion title="Subscription Services (SaaS and OTT)" icon="fa-square-rss">
-  **Challenges**
-
-  * Recurring billing cycles
-  * Payment failures leading to churn
-
-  **Recommended Checkout Solutions**
-
-  * <a href="docs/introduction-recurring-payments-integration" target="_blank">Recurring Payments (Subscriptions)</a>
-  * <a href="docs/collect-payments-using-a-saved-card" target="_blank">Tokenized Cards</a>
-  * <a href="docs/prebuilt-checkout-payu-hosted" target="_blank">PayU Hosted Checkout (for mandate setup)</a>
-
-  **Benefits**
-
-  * **Merchants:** Reduced churn and predictable revenue
-  * **Users:** Hassle-free renewals and billing transparency
-</Accordion>
-
-<br />
-
-<Accordion title="Financial Services (Lending and NBFCs)" icon="fa-money-bill">
-  **Challenges**
-
-  * EMI collections and repayments
-  * Compliance and trust requirements
-
-  **Recommended Checkout Solutions**
-
-  * <a href="docs/payment-links-dashboard" target="_blank">Payment Links</a>
-  * <a href="docs/introduction-recurring-payments-integration" target="_blank">Recurring Payments (eMandates)</a>
-  * <a href="docs/upi-intent-and-collect-autopay-tpv-integration" target="_blank">UPI Collect</a>
-
-  **Benefits**
-
-  * **Merchants:** Improved recovery rates
-  * **Users:** Convenient repayment options
-</Accordion>
-
-<br />
-
-<Accordion title="Marketplaces and Aggregators" icon="fa-shop">
-  **Challenges**
-
-  * Multiple sellers in one transaction
-  * Complex settlement flows
-
-  **Recommended Checkout Solutions**
-
-  * <a href="docs/prebuilt-checkout-payu-hosted" target="_blank">PayU Hosted Checkout</a> or <a href="docs/custom-checkout-merchant-hosted" target="_blank">Merchant Hosted</a> Checkout
-  * <a href="docs/split-settlments" target="_blank">Split Payments</a>
-
-  **Benefits**
-
-  * **Merchants:** Operational efficiency and scalability
-  * **Users:** Unified checkout experience
-</Accordion>
-
-<Callout icon="📘" theme="info">
-  **Implementation Tips**
-
-  Combine Hosted or Seamless Checkout + UPI + Cards + Recurring Payments based on your business model to optimize success rates and user experience.
-</Callout>
+> 📘 **Implementation Tips**
+>
+> Combine Hosted or Seamless Checkout + UPI + Cards + Recurring Payments based on your business model to optimize success rates and user experience.
 
 ## Payment Gateway for Web, Mobile and E-commerce
 
@@ -275,7 +132,7 @@ PayU offers the following various integrations:
                   style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}
                 >
                   <span style={{ width: "20px", display: "inline-flex", justifyContent: "center" }}>
-                    <i className={`${item.icon} fa-lg`} />
+                    <i className={`${item.icon} fa-lg`}></i>
                   </span>
                   <a
                     href={item.link}
@@ -321,7 +178,7 @@ PayU offers the following various integrations:
                   style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}
                 >
                   <span style={{ width: "20px", display: "inline-flex", justifyContent: "center" }}>
-                    <i className={`${item.icon} fa-lg`} />
+                    <i className={`${item.icon} fa-lg`}></i>
                   </span>
                   <a
                     href={item.link}
@@ -361,7 +218,7 @@ PayU offers the following various integrations:
                   style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}
                 >
                   <span style={{ width: "20px", display: "inline-flex", justifyContent: "center" }}>
-                    <i className={`${item.icon} fa-lg`} />
+                    <i className={`${item.icon} fa-lg`}></i>
                   </span>
                   <a
                     href={item.link}
@@ -380,5 +237,15 @@ PayU offers the following various integrations:
     />
   </Tab>
 </Tabs>
+
+## Next Steps
+
+Now that you have chosen your integration path, continue to the corresponding implementation guide:
+
+- PayU Hosted Checkout Integration
+- Merchant Hosted Checkout
+- Server-to-Server Integration
+- Mobile SDK Integration
+- Plugin Setup Guide
 
 <br />

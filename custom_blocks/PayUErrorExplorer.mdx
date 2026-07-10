@@ -1,0 +1,816 @@
+---
+name: PayUErrorExplorer
+---
+import { useEffect, useMemo, useState } from 'react';
+
+export const FIX_TEMPLATES = {
+  retryNewTxn:
+    'Use a new txnid for each retry, check final status via verify API, and show alternate payment options.',
+  webhookAuth:
+    'Remove unsupported endpoint auth, validate webhook signatures, and return a 2xx acknowledgement quickly.',
+  contactBank:
+    'Ask customer to retry with another payment method or contact issuing bank; do not auto-loop retries.',
+  validateRequest:
+    'Validate all required fields and enums before request submission; sanitize payload formatting.',
+  transientRetry:
+    'Retry with exponential backoff, preserve idempotency, and log correlation IDs for support escalation.',
+  authConfig:
+    'Recheck merchant key/salt/environment mapping and rotate credentials if compromise is suspected.',
+  eligibilityCheck:
+    'Run pre-check eligibility APIs and show fallback instruments before initiating payment.',
+  endpointConfig:
+    'Correct endpoint URL/method/content type according to PayU integration docs and environment.',
+};
+
+export const ERRORS = [
+  {
+    code: '401',
+    message: 'Unauthorized',
+    category: 'HTTP',
+    description: 'Merchant endpoint rejected authentication for callback delivery.',
+    causes: ['Endpoint enforces auth flow incompatible with PayU callback', 'Credentials missing for callback path'],
+    fixTemplate: 'webhookAuth',
+    retrySafe: false,
+    severity: 'Medium',
+    commonIn: ['Webhooks'],
+  },
+  {
+    code: '403',
+    message: 'Forbidden',
+    category: 'HTTP',
+    description: 'Endpoint denied callback access due to permissions or allow-list policy.',
+    causes: ['IP allow-list excludes PayU source', 'Route permission misconfiguration'],
+    fixTemplate: 'webhookAuth',
+    retrySafe: false,
+    severity: 'Medium',
+    commonIn: ['Webhooks'],
+  },
+  {
+    code: '404',
+    message: 'Not Found',
+    category: 'HTTP',
+    description: 'Callback URL path is invalid or missing in merchant service.',
+    causes: ['Incorrect callback path in dashboard', 'Route removed during deployment'],
+    fixTemplate: 'endpointConfig',
+    retrySafe: false,
+    severity: 'Medium',
+    commonIn: ['Webhooks'],
+  },
+  {
+    code: '405',
+    message: 'Method Not Allowed',
+    category: 'HTTP',
+    description: 'Merchant endpoint does not accept callback HTTP method.',
+    causes: ['Server accepts GET but callback sends POST', 'Method restrictions in reverse proxy'],
+    fixTemplate: 'endpointConfig',
+    retrySafe: false,
+    severity: 'Low',
+    commonIn: ['Webhooks'],
+  },
+  {
+    code: '408',
+    message: 'Request Timeout',
+    category: 'HTTP',
+    description: 'Merchant endpoint did not respond within expected timeout window.',
+    causes: ['Slow DB query or downstream call', 'Cold start latency'],
+    fixTemplate: 'transientRetry',
+    retrySafe: true,
+    severity: 'Medium',
+    commonIn: ['Webhooks', 'System'],
+  },
+  {
+    code: '415',
+    message: 'Unsupported Media Type',
+    category: 'HTTP',
+    description: 'Merchant endpoint rejected request content type.',
+    causes: ['Endpoint expects form-encoded payload', 'Strict JSON-only parser with incompatible headers'],
+    fixTemplate: 'endpointConfig',
+    retrySafe: false,
+    severity: 'Low',
+    commonIn: ['Webhooks'],
+  },
+  {
+    code: '500',
+    message: 'Internal Server Error',
+    category: 'HTTP',
+    description: 'Merchant endpoint failed while processing callback.',
+    causes: ['Unhandled exception', 'Null object in callback parser'],
+    fixTemplate: 'transientRetry',
+    retrySafe: true,
+    severity: 'High',
+    commonIn: ['Webhooks', 'System'],
+  },
+  {
+    code: '502',
+    message: 'Bad Gateway',
+    category: 'HTTP',
+    description: 'Upstream service failed while gateway handled callback.',
+    causes: ['Gateway could not reach backend', 'Upstream crash'],
+    fixTemplate: 'transientRetry',
+    retrySafe: true,
+    severity: 'High',
+    commonIn: ['Webhooks', 'Network'],
+  },
+  {
+    code: '503',
+    message: 'Service Unavailable',
+    category: 'HTTP',
+    description: 'Endpoint unavailable due to maintenance or overload.',
+    causes: ['Deployment window', 'Autoscaling lag'],
+    fixTemplate: 'transientRetry',
+    retrySafe: true,
+    severity: 'High',
+    commonIn: ['System'],
+  },
+  {
+    code: '504',
+    message: 'Gateway Timeout',
+    category: 'HTTP',
+    description: 'Timeout occurred at gateway before upstream response.',
+    causes: ['Long-running sync operation', 'Network congestion'],
+    fixTemplate: 'transientRetry',
+    retrySafe: true,
+    severity: 'High',
+    commonIn: ['Network', 'System'],
+  },
+  {
+    code: '94',
+    message: 'Duplicate Transaction',
+    category: 'Duplicate',
+    description: 'Transaction already exists for merchant txnid.',
+    causes: ['Retried with same txnid', 'Double-click checkout action'],
+    fixTemplate: 'retryNewTxn',
+    retrySafe: false,
+    severity: 'Medium',
+    commonIn: ['Cards', 'UPI'],
+  },
+  {
+    code: 'E202',
+    message: 'Duplicate Request',
+    category: 'Duplicate',
+    description: 'Request hash and payload match previously accepted attempt.',
+    causes: ['Client retried without regenerating txnid', 'Queue replay without idempotency key'],
+    fixTemplate: 'retryNewTxn',
+    retrySafe: false,
+    severity: 'Medium',
+    commonIn: ['Cards', 'UPI', 'Webhooks'],
+  },
+  {
+    code: 'E4150',
+    message: 'Transaction Already Processed',
+    category: 'Duplicate',
+    description: 'Payment already processed and cannot be re-initiated.',
+    causes: ['Webhook processed but UI retried', 'Race condition in client state'],
+    fixTemplate: 'retryNewTxn',
+    retrySafe: false,
+    severity: 'Medium',
+    commonIn: ['Cards', 'BNPL'],
+  },
+  {
+    code: 'E2150',
+    message: 'Duplicate UPI Collect',
+    category: 'Duplicate',
+    description: 'Duplicate UPI collect request submitted for same reference.',
+    causes: ['Retry before terminal status', 'Client generated same reference'],
+    fixTemplate: 'retryNewTxn',
+    retrySafe: false,
+    severity: 'Medium',
+    commonIn: ['UPI'],
+  },
+  {
+    code: '91',
+    message: 'Issuer or Switch Inoperative',
+    category: 'Network',
+    description: 'Temporary outage between network switch and issuer.',
+    causes: ['Issuer downtime', 'Network path instability'],
+    fixTemplate: 'transientRetry',
+    retrySafe: true,
+    severity: 'High',
+    commonIn: ['Cards', 'UPI'],
+  },
+  {
+    code: 'E214',
+    message: 'Network Timeout',
+    category: 'Network',
+    description: 'Connection timed out while processing payment request.',
+    causes: ['Packet loss', 'Slow acquirer response'],
+    fixTemplate: 'transientRetry',
+    retrySafe: true,
+    severity: 'High',
+    commonIn: ['UPI', 'Cards'],
+  },
+  {
+    code: 'E216',
+    message: 'Acquirer Host Unreachable',
+    category: 'Network',
+    description: 'Acquirer endpoint could not be reached.',
+    causes: ['DNS issue', 'Acquirer network outage'],
+    fixTemplate: 'transientRetry',
+    retrySafe: true,
+    severity: 'High',
+    commonIn: ['Cards'],
+  },
+  {
+    code: 'E310',
+    message: 'Bank Declined Transaction',
+    category: 'Bank Declines',
+    description: 'Issuer bank declined authorization request.',
+    causes: ['Risk controls triggered', 'Insufficient account state or constraints'],
+    fixTemplate: 'contactBank',
+    retrySafe: false,
+    severity: 'Medium',
+    commonIn: ['Cards', 'UPI'],
+  },
+  {
+    code: 'AUTHNEGATIVE',
+    message: 'Authorization Negative',
+    category: 'Bank Declines',
+    description: 'Authorization response from bank was negative.',
+    causes: ['Card blocked or disabled', 'Issuer fraud policy decline'],
+    fixTemplate: 'contactBank',
+    retrySafe: false,
+    severity: 'Medium',
+    commonIn: ['Cards'],
+  },
+  {
+    code: 'E306',
+    message: 'Do Not Honor',
+    category: 'Bank Declines',
+    description: 'Issuer returned generic decline code.',
+    causes: ['Issuer policy block', 'Card controls at issuer end'],
+    fixTemplate: 'contactBank',
+    retrySafe: false,
+    severity: 'Medium',
+    commonIn: ['Cards'],
+  },
+  {
+    code: 'E308',
+    message: 'Insufficient Funds',
+    category: 'Bank Declines',
+    description: 'Issuer reports insufficient balance for transaction.',
+    causes: ['Low account balance', 'Hold amount exceeds available funds'],
+    fixTemplate: 'contactBank',
+    retrySafe: false,
+    severity: 'Low',
+    commonIn: ['UPI', 'Cards'],
+  },
+  {
+    code: 'E205',
+    message: 'Missing Mandatory Field',
+    category: 'Validation',
+    description: 'One or more required request fields are absent.',
+    causes: ['field omitted in payload', 'invalid field mapping'],
+    fixTemplate: 'validateRequest',
+    retrySafe: false,
+    severity: 'Low',
+    commonIn: ['Cards', 'UPI', 'BNPL'],
+  },
+  {
+    code: 'E4047',
+    message: 'Invalid Amount',
+    category: 'Validation',
+    description: 'Amount is malformed or outside allowed range.',
+    causes: ['Amount has invalid precision', 'Amount outside product limits'],
+    fixTemplate: 'validateRequest',
+    retrySafe: false,
+    severity: 'Low',
+    commonIn: ['UPI', 'BNPL'],
+  },
+  {
+    code: 'E4051',
+    message: 'Invalid Currency',
+    category: 'Validation',
+    description: 'Unsupported or mismatched currency passed in request.',
+    causes: ['Currency not enabled for merchant', 'Unsupported currency code'],
+    fixTemplate: 'validateRequest',
+    retrySafe: false,
+    severity: 'Low',
+    commonIn: ['Cards'],
+  },
+  {
+    code: 'E4060',
+    message: 'Invalid VPA',
+    category: 'Validation',
+    description: 'UPI VPA format is invalid or not routable.',
+    causes: ['Malformed VPA string', 'Customer entered inactive handle'],
+    fixTemplate: 'validateRequest',
+    retrySafe: false,
+    severity: 'Low',
+    commonIn: ['UPI'],
+  },
+  {
+    code: 'E000',
+    message: 'Invalid Merchant Credentials',
+    category: 'Auth',
+    description: 'Merchant key or hash validation failed.',
+    causes: ['Wrong key-salt pair', 'Environment mismatch between key and endpoint'],
+    fixTemplate: 'authConfig',
+    retrySafe: false,
+    severity: 'High',
+    commonIn: ['System', 'Cards', 'UPI'],
+  },
+  {
+    code: 'E1903',
+    message: 'Hash Mismatch',
+    category: 'Auth',
+    description: 'Computed request hash does not match expected signature.',
+    causes: ['Wrong hash sequence', 'Salt mismatch', 'Character encoding mismatch'],
+    fixTemplate: 'authConfig',
+    retrySafe: false,
+    severity: 'High',
+    commonIn: ['Cards', 'UPI', 'Webhooks'],
+  },
+  {
+    code: 'E1908',
+    message: 'Unauthorized Merchant Action',
+    category: 'Auth',
+    description: 'Merchant attempted operation without required privilege.',
+    causes: ['Feature not enabled', 'Permission mismatch in account'],
+    fixTemplate: 'authConfig',
+    retrySafe: false,
+    severity: 'Medium',
+    commonIn: ['System'],
+  },
+  {
+    code: 'E2401',
+    message: 'Customer Not Eligible',
+    category: 'Eligibility',
+    description: 'User does not satisfy eligibility rules for selected instrument.',
+    causes: ['Credit score threshold not met', 'Policy filters not satisfied'],
+    fixTemplate: 'eligibilityCheck',
+    retrySafe: false,
+    severity: 'Low',
+    commonIn: ['BNPL'],
+  },
+  {
+    code: 'E2403',
+    message: 'Offer Not Available',
+    category: 'Eligibility',
+    description: 'Requested offer is unavailable for this merchant or user.',
+    causes: ['Offer expired', 'Segment mismatch'],
+    fixTemplate: 'eligibilityCheck',
+    retrySafe: false,
+    severity: 'Low',
+    commonIn: ['BNPL'],
+  },
+  {
+    code: 'E2410',
+    message: 'Bank Not Enabled for BNPL',
+    category: 'Eligibility',
+    description: 'Selected bank is not enabled for BNPL flow.',
+    causes: ['Configuration not active for bank', 'Partial rollout restrictions'],
+    fixTemplate: 'eligibilityCheck',
+    retrySafe: false,
+    severity: 'Low',
+    commonIn: ['BNPL'],
+  },
+  {
+    code: 'SYSTEM_ERROR',
+    message: 'System Error',
+    category: 'System',
+    description: 'Unexpected backend exception occurred in payment flow.',
+    causes: ['Unhandled service failure', 'Intermittent infra issue'],
+    fixTemplate: 'transientRetry',
+    retrySafe: true,
+    severity: 'High',
+    commonIn: ['System', 'Cards', 'UPI'],
+  },
+  {
+    code: 'E5001',
+    message: 'Internal Processing Failure',
+    category: 'System',
+    description: 'Payment orchestration failed before terminal response.',
+    causes: ['Queue processing exception', 'Rules engine timeout'],
+    fixTemplate: 'transientRetry',
+    retrySafe: true,
+    severity: 'High',
+    commonIn: ['System'],
+  },
+  {
+    code: 'E5030',
+    message: 'Downstream Service Unavailable',
+    category: 'System',
+    description: 'Dependent service unavailable during transaction processing.',
+    causes: ['Service maintenance', 'High traffic throttling'],
+    fixTemplate: 'transientRetry',
+    retrySafe: true,
+    severity: 'High',
+    commonIn: ['System', 'Network'],
+  },
+  {
+    code: 'E5041',
+    message: 'Processor Timeout',
+    category: 'System',
+    description: 'Processor response timed out before status resolution.',
+    causes: ['Processor latency spike', 'Slow reconciliation pipeline'],
+    fixTemplate: 'transientRetry',
+    retrySafe: true,
+    severity: 'High',
+    commonIn: ['System', 'Cards'],
+  },
+  {
+    code: 'E1201',
+    message: 'Webhook Signature Invalid',
+    category: 'Webhooks',
+    description: 'Webhook signature validation failed at merchant endpoint.',
+    causes: ['Incorrect secret rotation', 'Raw body altered before signature verification'],
+    fixTemplate: 'webhookAuth',
+    retrySafe: false,
+    severity: 'Medium',
+    commonIn: ['Webhooks'],
+  },
+  {
+    code: 'E1204',
+    message: 'Webhook Acknowledgement Missing',
+    category: 'Webhooks',
+    description: 'Merchant endpoint did not return valid acknowledgement.',
+    causes: ['Non-2xx status sent', 'Response body generation failed'],
+    fixTemplate: 'webhookAuth',
+    retrySafe: true,
+    severity: 'Medium',
+    commonIn: ['Webhooks'],
+  },
+  {
+    code: 'E1210',
+    message: 'Webhook Endpoint SSL Error',
+    category: 'Webhooks',
+    description: 'TLS certificate validation failed for endpoint.',
+    causes: ['Expired certificate', 'Missing intermediate CA chain'],
+    fixTemplate: 'endpointConfig',
+    retrySafe: false,
+    severity: 'High',
+    commonIn: ['Webhooks'],
+  },
+  {
+    code: 'E1302',
+    message: 'UPI Intent Expired',
+    category: 'UPI',
+    description: 'UPI intent expired before customer authorization.',
+    causes: ['User delayed app approval', 'Intent TTL too short'],
+    fixTemplate: 'retryNewTxn',
+    retrySafe: true,
+    severity: 'Low',
+    commonIn: ['UPI'],
+  },
+  {
+    code: 'E1311',
+    message: 'UPI Collect Pending Timeout',
+    category: 'UPI',
+    description: 'Collect request remained pending and timed out.',
+    causes: ['No customer action on collect mandate', 'Bank app network issues'],
+    fixTemplate: 'retryNewTxn',
+    retrySafe: true,
+    severity: 'Medium',
+    commonIn: ['UPI'],
+  },
+  {
+    code: 'E1701',
+    message: 'Card BIN Not Supported',
+    category: 'Cards',
+    description: 'Card BIN is not enabled in current routing configuration.',
+    causes: ['Unsupported card type', 'Acquirer not configured for BIN range'],
+    fixTemplate: 'eligibilityCheck',
+    retrySafe: false,
+    severity: 'Low',
+    commonIn: ['Cards'],
+  },
+  {
+    code: 'E1804',
+    message: '3DS Authentication Failed',
+    category: 'Cards',
+    description: '3DS authentication did not complete successfully.',
+    causes: ['Incorrect OTP', 'Issuer ACS timeout'],
+    fixTemplate: 'contactBank',
+    retrySafe: true,
+    severity: 'Medium',
+    commonIn: ['Cards'],
+  },
+  {
+    code: 'E2602',
+    message: 'BNPL Session Expired',
+    category: 'BNPL',
+    description: 'BNPL session expired before completion.',
+    causes: ['Long inactivity', 'Session invalidated after redirect'],
+    fixTemplate: 'retryNewTxn',
+    retrySafe: true,
+    severity: 'Low',
+    commonIn: ['BNPL'],
+  },
+];
+
+export const FILTERS = [
+  'All',
+  'Webhooks',
+  'HTTP',
+  'Duplicate',
+  'Network',
+  'Bank Declines',
+  'Validation',
+  'Auth',
+  'Eligibility',
+  'System',
+];
+
+export const severityStyles = {
+  Low: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+  Medium: 'bg-amber-50 text-amber-700 border-amber-200',
+  High: 'bg-rose-50 text-rose-700 border-rose-200',
+};
+
+export const retryStyles = {
+  yes: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+  no: 'bg-zinc-100 text-zinc-700 border-zinc-200',
+};
+
+export function classifyToFilter(error) {
+  if (FILTERS.includes(error.category)) return error.category;
+  if (error.commonIn.includes('Webhooks')) return 'Webhooks';
+  return 'System';
+}
+
+export function normalizeSearchText(error) {
+  return `${error.code} ${error.message} ${error.description}`.toLowerCase();
+}
+
+export function getCategoryCount(errors, filter) {
+  if (filter === 'All') return errors.length;
+  return errors.filter((item) => classifyToFilter(item) === filter).length;
+}
+
+export const PayUErrorExplorer = () => {
+  const normalizedErrors = useMemo(
+    () =>
+      ERRORS.map((item) => ({
+        ...item,
+        fix: FIX_TEMPLATES[item.fixTemplate] || item.fixTemplate,
+        searchBlob: normalizeSearchText(item),
+        groupKey: item.category === 'Duplicate' ? 'Duplicate' : item.fixTemplate,
+      })),
+    []
+  );
+
+  const [query, setQuery] = useState('');
+  const [activeFilter, setActiveFilter] = useState('All');
+
+  const initialCode = (() => {
+    if (typeof window === 'undefined') return null;
+    const value = new URLSearchParams(window.location.search).get('error');
+    return value ? value.toUpperCase() : null;
+  })();
+
+  const initialMatch = normalizedErrors.find(
+    (item) => item.code.toUpperCase() === initialCode
+  );
+  const initialSelectedCode = (initialMatch && initialMatch.code) || normalizedErrors[0].code;
+
+  const [selectedCode, setSelectedCode] = useState(initialSelectedCode);
+
+  const filteredErrors = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return normalizedErrors.filter((item) => {
+      const matchesFilter =
+        activeFilter === 'All' || classifyToFilter(item) === activeFilter;
+      const matchesQuery = q.length === 0 || item.searchBlob.includes(q);
+      return matchesFilter && matchesQuery;
+    });
+  }, [activeFilter, normalizedErrors, query]);
+
+  useEffect(() => {
+    if (!filteredErrors.length) return;
+    if (!filteredErrors.some((item) => item.code === selectedCode)) {
+      setSelectedCode(filteredErrors[0].code);
+    }
+  }, [filteredErrors, selectedCode]);
+
+  const selectedError = useMemo(
+    () => normalizedErrors.find((item) => item.code === selectedCode) || filteredErrors[0] || null,
+    [filteredErrors, normalizedErrors, selectedCode]
+  );
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (!filteredErrors.length) return;
+      if (event.key !== 'ArrowUp' && event.key !== 'ArrowDown') return;
+      event.preventDefault();
+      const currentIndex = filteredErrors.findIndex((item) => item.code === selectedCode);
+      const safeIndex = currentIndex >= 0 ? currentIndex : 0;
+      const delta = event.key === 'ArrowDown' ? 1 : -1;
+      const nextIndex = (safeIndex + delta + filteredErrors.length) % filteredErrors.length;
+      setSelectedCode(filteredErrors[nextIndex].code);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [filteredErrors, selectedCode]);
+
+  const relatedErrors = useMemo(() => {
+    if (!selectedError) return [];
+    return normalizedErrors
+      .filter((item) => item.code !== selectedError.code)
+      .filter(
+        (item) =>
+          item.category === selectedError.category ||
+          item.fixTemplate === selectedError.fixTemplate ||
+          item.groupKey === selectedError.groupKey
+      )
+      .slice(0, 6);
+  }, [normalizedErrors, selectedError]);
+
+  const copyText = async (text) => {
+    if (!text) return;
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (_error) {
+      // Best-effort copy for docs embeds where clipboard API may be blocked.
+    }
+  };
+
+  return (
+    <div className="w-full bg-zinc-50 text-zinc-900">
+      <div className="mx-auto w-full max-w-none px-2 py-3 sm:px-3">
+        <div className="rounded-2xl border border-zinc-200 bg-white shadow-sm">
+          <div className="grid grid-cols-1 xl:grid-cols-10">
+            <aside className="border-b border-zinc-200 p-4 xl:col-span-3 xl:max-h-[82vh] xl:overflow-y-auto xl:border-b-0 xl:border-r">
+              <div className="sticky top-0 z-10 -mx-4 -mt-4 border-b border-zinc-200 bg-white px-4 pb-4 pt-4">
+                <h1 className="text-lg font-semibold tracking-tight">PayU Error Explorer</h1>
+                <p className="mt-1 text-sm text-zinc-600">
+                  Searchable error intelligence for faster integration debugging.
+                </p>
+                <input
+                  type="text"
+                  value={query}
+                  onChange={(event) => setQuery(event.target.value)}
+                  placeholder="Search code, message, description..."
+                  className="mt-3 w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm outline-none ring-indigo-500 focus:ring-2"
+                />
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {FILTERS.map((filter) => {
+                    const active = activeFilter === filter;
+                    return (
+                      <button
+                        key={filter}
+                        type="button"
+                        onClick={() => setActiveFilter(filter)}
+                        className={`rounded-full border px-3 py-1 text-xs font-medium transition ${
+                          active
+                            ? 'border-indigo-200 bg-indigo-50 text-indigo-700'
+                            : 'border-zinc-200 bg-white text-zinc-600 hover:bg-zinc-100'
+                        }`}
+                      >
+                        {filter} ({getCategoryCount(normalizedErrors, filter)})
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="mt-4 space-y-2">
+                {filteredErrors.length === 0 && (
+                  <div className="rounded-xl border border-dashed border-zinc-300 bg-zinc-50 p-4 text-sm text-zinc-600">
+                    No errors found. Try a different keyword or category.
+                  </div>
+                )}
+
+                {filteredErrors.map((error) => {
+                  const selected = selectedError && selectedError.code === error.code;
+                  return (
+                    <button
+                      key={error.code}
+                      type="button"
+                      onClick={() => setSelectedCode(error.code)}
+                      className={`w-full rounded-xl border p-3 text-left transition ${
+                        selected
+                          ? 'border-indigo-200 bg-indigo-50 shadow-sm'
+                          : 'border-zinc-200 bg-white hover:bg-zinc-50'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="font-mono text-sm font-semibold text-zinc-900">{error.code}</span>
+                        <span className="rounded-full border border-zinc-200 bg-zinc-100 px-2 py-0.5 text-[11px] text-zinc-700">
+                          {error.category}
+                        </span>
+                      </div>
+                      <p className="mt-1 text-sm text-zinc-700">{error.message}</p>
+                    </button>
+                  );
+                })}
+              </div>
+            </aside>
+
+            <section className="p-4 sm:p-5 xl:col-span-7">
+              {!selectedError ? (
+                <div className="rounded-xl border border-dashed border-zinc-300 bg-zinc-50 p-6 text-sm text-zinc-600">
+                  Select an error to view debugging details.
+                </div>
+              ) : (
+                <div className="space-y-6">
+                  <header className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="rounded-md border border-zinc-200 bg-zinc-100 px-2.5 py-1 font-mono text-sm font-semibold">
+                          {selectedError.code}
+                        </span>
+                        <span className="rounded-full border border-indigo-200 bg-indigo-50 px-2.5 py-1 text-xs font-medium text-indigo-700">
+                          {selectedError.category}
+                        </span>
+                      </div>
+                      <h2 className="mt-2 text-xl font-semibold tracking-tight">{selectedError.message}</h2>
+                    </div>
+                    <div className="flex gap-2">
+                      <button
+                        type="button"
+                        onClick={() => copyText(selectedError.code)}
+                        className="rounded-lg border border-zinc-200 bg-white px-3 py-2 text-xs font-medium text-zinc-700 hover:bg-zinc-100"
+                      >
+                        Copy error code
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => copyText(selectedError.fix)}
+                        className="rounded-lg border border-zinc-200 bg-white px-3 py-2 text-xs font-medium text-zinc-700 hover:bg-zinc-100"
+                      >
+                        Copy fix
+                      </button>
+                    </div>
+                  </header>
+
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+                    <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-3">
+                      <p className="text-xs text-zinc-500">Retry safe?</p>
+                      <span
+                        className={`mt-1 inline-flex rounded-full border px-2 py-0.5 text-xs font-medium ${
+                          selectedError.retrySafe ? retryStyles.yes : retryStyles.no
+                        }`}
+                      >
+                        {selectedError.retrySafe ? 'Yes' : 'No'}
+                      </span>
+                    </div>
+                    <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-3">
+                      <p className="text-xs text-zinc-500">Severity</p>
+                      <span
+                        className={`mt-1 inline-flex rounded-full border px-2 py-0.5 text-xs font-medium ${
+                          severityStyles[selectedError.severity]
+                        }`}
+                      >
+                        {selectedError.severity}
+                      </span>
+                    </div>
+                    <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-3">
+                      <p className="text-xs text-zinc-500">Common in</p>
+                      <p className="mt-1 text-sm font-medium text-zinc-800">
+                        {selectedError.commonIn.join(', ')}
+                      </p>
+                    </div>
+                  </div>
+
+                  <article className="space-y-4">
+                    <div>
+                      <h3 className="text-sm font-semibold text-zinc-800">Error Message</h3>
+                      <p className="mt-1 text-sm text-zinc-700">{selectedError.message}</p>
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-semibold text-zinc-800">Description</h3>
+                      <p className="mt-1 text-sm text-zinc-700">{selectedError.description}</p>
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-semibold text-zinc-800">Possible Causes</h3>
+                      <ul className="mt-1 list-disc space-y-1 pl-5 text-sm text-zinc-700">
+                        {selectedError.causes.map((cause) => (
+                          <li key={cause}>{cause}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4">
+                      <h3 className="text-sm font-semibold text-emerald-800">Recommended Fix</h3>
+                      <p className="mt-1 text-sm text-emerald-900">{selectedError.fix}</p>
+                    </div>
+                  </article>
+
+                  <section>
+                    <h3 className="text-sm font-semibold text-zinc-800">Related Errors</h3>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {relatedErrors.length === 0 && (
+                        <span className="text-sm text-zinc-500">No related errors available.</span>
+                      )}
+                      {relatedErrors.map((error) => (
+                        <button
+                          key={error.code}
+                          type="button"
+                          onClick={() => setSelectedCode(error.code)}
+                          className="rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-xs font-medium text-zinc-700 hover:bg-zinc-100"
+                        >
+                          <span className="font-mono">{error.code}</span> - {error.message}
+                        </button>
+                      ))}
+                    </div>
+                  </section>
+                </div>
+              )}
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+<PayUErrorExplorer />

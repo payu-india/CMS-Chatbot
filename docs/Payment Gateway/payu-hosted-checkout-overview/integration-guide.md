@@ -1,0 +1,1737 @@
+---
+title: Accept Payments using PayU Hosted Checkout
+deprecated: false
+hidden: false
+metadata:
+  robots: index
+---
+PayU Hosted Checkout enables merchants to securely accept online payments by redirecting customers to a PayU-hosted payment page.&#x20;
+
+Follow these steps to integrate the PayU Hosted Checkout on your website and accept live payments.<br />
+
+<Callout icon="👍" theme="okay">
+  ### **Payment Flow**
+
+  Before you start integrating, it’s important to understand how <Anchor target="_blank" href="https://docs.payu.in/docs/payu-hosted-checkout-overview#how-payment-flow-works">PayU Hosted Checkout payment flow</Anchor> and <Anchor target="_blank" href="https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/payu-hosted-checkout-overview#customer-journey">customer journey works</Anchor>.
+</Callout>
+
+<HoverCardGrid
+  columns={2}
+  items={[
+    {
+      title: "1. Build Integration",
+      href: "https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#1-build-integration",
+      icon: "fa-code",
+      target: "_self",
+      text: "Build your test integration for PayU Hosted Checkout.",
+    },
+    {
+      title: "2. Test Integration",
+      href: "https://docs.payu.in/docs/integration-guide2#2-test-integration",
+      icon: "fa-flask",
+      target: "_self",
+      text: "Validate your PayU Hosted Checkout integration by testing transactions in the sandbox environment.",
+    },
+    {
+      title: "3. Production Checklist",
+      href: "https://docs.payu.in/docs/integration-guide2#3-go-live-checklist",
+      icon: "fa-check-circle",
+      target: "_self",
+      text: "Follow this checklist to ensure your integration is ready before going live.",
+    },
+  ]}
+/>
+
+***
+
+## Prerequisites
+
+Go through the <Anchor target="_blank" href="https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/payu-hosted-checkout-quick-start#prerequisites">prerequisites</Anchor> before you proceed with the integration.
+
+***
+
+## Supported Payment Methods
+
+These payment methods are available by default for PayU hosted checkout.
+
+- NetBanking
+- Credit Cards
+- Debit Cards
+- UPI
+- Wallets
+
+***
+
+## 1. Build Integration&#x20;
+
+Below are the steps to build an integration:
+
+1. To start with, you should [prepare payment request parameters](https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#step-11-prepare-payment-request-parameters) before passing them in the code.
+2. After knowing parameters, you should [generate a secure hash](https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#step-12-generate-secure-hash) using a logic and a certain parameters.
+3. Now that you have both required parameters and the hash value, you should [create a payment request](https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#step-13-create-a-payment-request) by posting a HTML form.
+   1. Additionally, you can [customize your PayU payment page](https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#step-131-customize-payu-payment-page-optional). This is an optional step.
+4. After you receive a response, you should [verify it via reverse hashing](https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#step-14-verify-response-via-reverse-hashing). This is a critical step to verify the authenticity of the payment.
+   1. You should [create a reverse hash](https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#step-141-reverse-hashing) using a hash logic mentioned in this step.
+5. After the transaction is done, should [verify the payment](https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#step-15-verify-the-payment) status as a final step.
+
+***
+
+### Step 1.1 Prepare Payment Request Parameters
+
+Collect and structure the below parameters before initiating a transaction. This section has two parts, mandatory parameters required to test the integration and optional advanced parameters you can pass to collect additional  information.
+
+<Accordion title="Mandatory Parameters and Description" icon="fa-table">
+These are minimum mandatory paramerters required to create a transaction.
+
+| Parameter     | Description                                                                                                                                                                                                        |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `key`         | `string` Merchant key provided by PayU during onboarding. For example, `JPG****k`.                                                                                                                                 |
+| `txnid`       | `string` The transaction ID is a reference number for a specific order generated by the merchant. For example `tran_1234`.                                                                                         |
+| `amount`      | `string` The payment amount of the transaction. For example, `10.00`.                                                                                                                                              |
+| `productinfo` | `string` A brief description of the product. For example, `iPhone`.                                                                                                                                                |
+| `firstname`   | `string` The first name of the customer. For example, `Aarav`.                                                                                                                                                     |
+| `email`       | `string` The email address of the customer. For example, `aarav@example.com`.                                                                                                                                      |
+| `phone`       | `string` The phone number of the customer. For example, `1234567890`.                                                                                                                                              |
+| `surl`        | `string` The success URL, PayU redirects to if the transaction is successful. For example, [https://test-payment-middleware.payu.in/simulatorResponse](https://test-payment-middleware.payu.in/simulatorResponse). |
+| `furl`        | `string` The failure URL, PayU redirects to if the transaction fails. For example, [https://test-payment-middleware.payu.in/simulatorResponse](https://test-payment-middleware.payu.in/simulatorResponse).         |
+| `hash`        | `string` The generated hash value using the mandatory parameters. Know more about generating hash.                                                                                                                 |
+</Accordion>
+
+<Accordion title="Optional Advanced Paramters and Description" icon="fa-table">
+Send these optional parameters in the request as required.
+
+| Parameter          | Description                                                                                                                                                                                                                                                                                                                                                                                         |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `lastname`         | `string` The last name of the customer. For example, `kumar`.                                                                                                                                                                                                                                                                                                                                       |
+| `curl`             | `string` The cancel URL, PayU redirects to if the transaction is cancelled. For example, [https://test-payment-middleware.payu.in/simulatorResponse](https://test-payment-middleware.payu.in/simulatorResponse).                                                                                                                                                                                    |
+| `address1`         | `string` The first line of the billing address. **Note:** The address information is helpful in fraud detection and chargebacks.                                                                                                                                                                                                                                                                    |
+| `address2`         | `string` The second line of the billing address. For example, `34 Saikripa-Estate, Tilak Nagar`.                                                                                                                                                                                                                                                                                                    |
+| `city`             | `string` The city where the customer resides as part of the billing address. For example, `Mumbai`.                                                                                                                                                                                                                                                                                                 |
+| `state`            | `string` The state where the customer resides as part of the billing address. For example, `Maharashtra`.                                                                                                                                                                                                                                                                                           |
+| `country`          | `string` The country where the customer resides. For example, `India`.                                                                                                                                                                                                                                                                                                                              |
+| `zipcode`          | `string` The billing address zip code. is mandatory for the cardless EMI option. The value can be of 20 characters. For example, `400004`. **Note:** This value is mandatory if the payment method is cardless EMI.                                                                                                                                                                                 |
+| `enforced_payment` | `string` Use this parameter to customise payment options for each transaction. You can enforce specific payment modes, card schemes, and specific banks under Net Banking using this parameter. For example,<br />- `creditcard`<br />- `debitcard`                                                                                                                                                 |
+| `drop_category`    | `string` Use this parameter if you want to hide one or multiple payment options. For example, if you consider the payment options such as credit card, debit card, and net banking, you can hide the credit card mode of payment.                                                                                                                                                                   |
+| `udf1 - udf5`      | `string` udf1 to udf 5 are user-defined fields used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5. **Note:** You should leave these values as blank pipes in the hash logic while generating a hash value.                                                                                 |
+| `custom_note`      | `string` Use this parameter to display a message on the PayU Payment page. This can be useful if you want to provide additional information to your customers, such as an extra charge for a particular product. The message specified in the custom\_note parameter will be displayed below the payment options. For example, `You will be charged an extra amount of Rs 100 on this transaction.` |
+| `note_category`    | `string` Use this parameter to specify which payment options the custom note message should be displayed for. This parameter should contain a comma-separated list of the payment options that you want the custom note to be displayed for. Example: `CC, NB` This will show the custom\_note for Credit Card and Net banking.                                                                     |
+</Accordion>
+
+***
+
+### Step 1.2: Generate Secure Hash
+
+To ensure the payment request is secure, you should generate a hash using your transaction details and merchant credentials. Hash protects the request from tampering.
+
+<Accordion title="Steps to Generate Hash" icon="fa-key">
+  The hash is created by concatenating the following parameters in a specific order. Refer to the Step 1.1 Prepare Payment Request Parameters for the parameter description and example values.
+
+  * `key`
+  * `txnid`
+  * `amount`
+  * `productinfo`
+  * `firstname`
+  * `email`
+  * `salt`
+
+  ```Text Logic
+  key|txnid|amount|productinfo|firstname|email|||||||||||salt
+  ```
+  ```Text Example Values
+  YOUR_KEY|txn_123456|10.00|TestProduct|Test|test@example.com|||||||||||salt_value
+  ```
+  ```php
+  <?php
+  function generateHash($params, $salt) {
+    // Extract parameters or use empty string if not provided
+    $key = $params['key'];
+    $txnid = $params['txnid'];
+    $amount = $params['amount'];
+    $productinfo = $params['productinfo'];
+    $firstname = $params['firstname'];
+    $email = $params['email'];
+    $udf1 = isset($params['udf1']) ? $params['udf1'] : '';
+    $udf2 = isset($params['udf2']) ? $params['udf2'] : '';
+    $udf3 = isset($params['udf3']) ? $params['udf3'] : '';
+    $udf4 = isset($params['udf4']) ? $params['udf4'] : '';
+    $udf5 = isset($params['udf5']) ? $params['udf5'] : '';
+    
+    // Construct hash string with exact parameter sequence
+    $hashString = $key . '|' . $txnid . '|' . $amount . '|' . $productinfo . '|' . 
+                  $firstname . '|' . $email . '|' . $udf1 . '|' . $udf2 . '|' . 
+                  $udf3 . '|' . $udf4 . '|' . $udf5 . '||||||' . $salt;
+    
+    // Generate hash and convert to lowercase
+    return strtolower(hash('sha512', $hashString));
+  }
+
+  // Example usage
+  $params = [
+    'key' => 'yourKey',
+    'txnid' => 'yourTxnId',
+    'amount' => 'yourAmount',
+    'productinfo' => 'yourProductInfo',
+    'firstname' => 'yourFirstName',
+    'email' => 'yourEmail',
+    'udf1' => 'optional_value1'
+    // udf2, udf3, udf4, udf5 not provided - will be empty strings
+  ];
+  $salt = 'yourSalt';
+
+  $hash = generateHash($params, $salt);
+  echo 'Generated Hash: ' . $hash;
+  ?>
+  ```
+  ```java
+  import java.nio.charset.StandardCharsets;
+  import java.security.MessageDigest;
+  import java.security.NoSuchAlgorithmException;
+  import java.util.HashMap;
+  import java.util.Map;
+
+  public class ImprovedHashGenerator {
+
+    public static String generateHash(Map<String, String> params, String salt) {
+        // Extract parameters or use empty string if not provided
+        String key = params.get("key");
+        String txnid = params.get("txnid");
+        String amount = params.get("amount");
+        String productinfo = params.get("productinfo");
+        String firstname = params.get("firstname");
+        String email = params.get("email");
+        String udf1 = params.getOrDefault("udf1", "");
+        String udf2 = params.getOrDefault("udf2", "");
+        String udf3 = params.getOrDefault("udf3", "");
+        String udf4 = params.getOrDefault("udf4", "");
+        String udf5 = params.getOrDefault("udf5", "");
+        
+        // Construct hash string with exact parameter sequence
+        String hashString = key + "|" + txnid + "|" + amount + "|" + productinfo + "|" + 
+                         firstname + "|" + email + "|" + udf1 + "|" + udf2 + "|" + 
+                         udf3 + "|" + udf4 + "|" + udf5 + "||||||" + salt;
+        
+        return sha512(hashString);
+    }
+
+    private static String sha512(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-512");
+            byte[] hashBytes = md.digest(input.getBytes(StandardCharsets.UTF_8));
+            StringBuilder sb = new StringBuilder();
+            for (byte b : hashBytes) {
+                sb.append(String.format("%02x", b));
+            }
+            return sb.toString().toLowerCase();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void main(String[] args) {
+        // Example usage with parameters map
+        Map<String, String> params = new HashMap<>();
+        params.put("key", "yourKey");
+        params.put("txnid", "yourTxnId");
+        params.put("amount", "yourAmount");
+        params.put("productinfo", "yourProductInfo");
+        params.put("firstname", "yourFirstName");
+        params.put("email", "yourEmail");
+        params.put("udf1", "optional_value1");
+        // udf2, udf3, udf4, udf5 not provided - will be empty strings
+        
+        String salt = "yourSalt";
+
+        String hash = generateHash(params, salt);
+        System.out.println("Generated Hash: " + hash);
+    }
+  }
+  ```
+  ```C#
+  using System;
+  using System.Collections.Generic;
+  using System.Security.Cryptography;
+  using System.Text;
+
+  public class ImprovedHashGenerator
+  {
+    public static string GenerateHash(Dictionary<string, string> parameters, string salt)
+    {
+        // Extract parameters or use empty string if not provided
+        string key = parameters["key"];
+        string txnid = parameters["txnid"];
+        string amount = parameters["amount"];
+        string productinfo = parameters["productinfo"];
+        string firstname = parameters["firstname"];
+        string email = parameters["email"];
+        
+        // Get UDF values if present, otherwise use empty string
+        string udf1 = parameters.ContainsKey("udf1") ? parameters["udf1"] : "";
+        string udf2 = parameters.ContainsKey("udf2") ? parameters["udf2"] : "";
+        string udf3 = parameters.ContainsKey("udf3") ? parameters["udf3"] : "";
+        string udf4 = parameters.ContainsKey("udf4") ? parameters["udf4"] : "";
+        string udf5 = parameters.ContainsKey("udf5") ? parameters["udf5"] : "";
+        
+        // Construct hash string with exact parameter sequence
+        string hashString = $"{key}|{txnid}|{amount}|{productinfo}|{firstname}|{email}|{udf1}|{udf2}|{udf3}|{udf4}|{udf5}||||||{salt}";
+        
+        return Sha512(hashString);
+    }
+
+    private static string Sha512(string input)
+    {
+        using (SHA512 sha512 = SHA512.Create())
+        {
+            byte[] bytes = sha512.ComputeHash(Encoding.UTF8.GetBytes(input));
+            StringBuilder sb = new StringBuilder();
+            foreach (byte b in bytes)
+            {
+                sb.Append(b.ToString("x2"));
+            }
+            return sb.ToString().ToLower();
+        }
+    }
+
+    public static void Main(string[] args)
+    {
+        // Example usage with parameters dictionary
+        Dictionary<string, string> parameters = new Dictionary<string, string>
+        {
+            ["key"] = "yourKey",
+            ["txnid"] = "yourTxnId",
+            ["amount"] = "yourAmount",
+            ["productinfo"] = "yourProductInfo",
+            ["firstname"] = "yourFirstName",
+            ["email"] = "yourEmail",
+            ["udf1"] = "optional_value1"
+            // udf2, udf3, udf4, udf5 not provided - will be empty strings
+        };
+        
+        string salt = "yourSalt";
+
+        string hash = GenerateHash(parameters, salt);
+        Console.WriteLine("Generated Hash: " + hash);
+    }
+  }
+  ```
+  ```Python
+  import hashlib
+
+  def generate_hash(params, salt):
+    # Extract parameters or use empty string if not provided
+    key = params['key']
+    txnid = params['txnid']
+    amount = params['amount']
+    productinfo = params['productinfo']
+    firstname = params['firstname']
+    email = params['email']
+    udf1 = params.get('udf1', '')
+    udf2 = params.get('udf2', '')
+    udf3 = params.get('udf3', '')
+    udf4 = params.get('udf4', '')
+    udf5 = params.get('udf5', '')
+    
+    # Construct hash string with exact parameter sequence
+    hash_string = f"{key}|{txnid}|{amount}|{productinfo}|{firstname}|{email}|{udf1}|{udf2}|{udf3}|{udf4}|{udf5}||||||{salt}"
+    
+    # Generate SHA-512 hash
+    return hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
+
+  # Example usage
+  params = {
+    'key': 'yourKey',
+    'txnid': 'yourTxnId',
+    'amount': 'yourAmount',
+    'productinfo': 'yourProductInfo',
+    'firstname': 'yourFirstName',
+    'email': 'yourEmail',
+    'udf1': 'optional_value1'
+    # udf2, udf3, udf4, udf5 not provided - will default to empty strings
+  }
+  salt = 'yourSalt'
+
+  hash_value = generate_hash(params, salt)
+  print("Generated Hash:", hash_value)
+  ```JavaScript
+  const crypto = require('crypto');
+
+  function generateHash(params, salt) \{
+    // Extract parameters or use empty string if not provided
+    const key = params.key;
+    const txnid = params.txnid;
+    const amount = params.amount;
+    const productinfo = params.productinfo;
+    const firstname = params.firstname;
+    const email = params.email;
+    const udf1 = params.udf1 || '';
+    const udf2 = params.udf2 || '';
+    const udf3 = params.udf3 || '';
+    const udf4 = params.udf4 || '';
+    const udf5 = params.udf5 || '';
+    
+    // Construct hash string with exact parameter sequence
+    const hashString = `${key}|${txnid}|${amount}|${productinfo}|${firstname}|${email}|${udf1}|${udf2}|${udf3}|${udf4}|${udf5}||||||${salt}`;
+    
+    // Generate SHA-512 hash
+    return crypto.createHash('sha512').update(hashString).digest('hex');
+  \}
+
+  // Example usage
+  const params = {
+    key: 'yourKey',
+    txnid: 'yourTxnId',
+    amount: 'yourAmount',
+    productinfo: 'yourProductInfo',
+    firstname: 'yourFirstName',
+    email: 'yourEmail',
+    udf1: 'optional_value1'
+    // udf2, udf3, udf4, udf5 not provided - will default to empty strings
+  };
+  const salt = 'yourSalt';
+
+  const hash = generateHash(params, salt);
+  console.log("Generated Hash:", hash);
+  ```
+
+  <Callout icon="🚧" theme="warn">
+    **Watch Out!**
+
+    Replace the key and salt values with your test values obtained from the dashboard. Know more about generating test values.
+  </Callout>
+
+  #### Points to Remember
+
+  These are the points to remember while concatenating params in the hash logic.
+
+  * Maintain exact parameter order
+  * Keep empty pipes for missing UDFs
+  * Generate hash on backend only
+  * Never expose salt
+  
+  #### Expected Output
+  You get the hash value similar to the example below. You should pass this value along with other mandatory parameters in the next step.<br/>
+
+  ```text Example Hash Value
+1be625350f785a208a737f05151f8fee378aa332be1a5f361546f3bbe6fa42f000ea985765b686e11dce4e3ad934dac763bd755624996f82bb01cf7b4f2b468b
+  ```
+
+  <Callout icon="🚧" theme="warn">
+    **Common Causes of Invalid Hash:**
+
+    * Wrong parameter order.
+    * Missing pipe separators
+    * Wrong salt
+    * Extra spaces
+  </Callout>
+
+</Accordion>
+
+***
+
+### Step 1.3 Redirect Customers to PayU Checkout
+
+Now that you have created the hash value, combine the below to submit a payment request using POST in a HTML form.
+
+- Payment parameters _(step 1.1)_
+- Generated hash _(step 1.2)_
+
+<Accordion title="POST the HTML Form (server renders)" icon="fa-paper-plane">
+  <Cards>
+  <Card title="Method">
+    POST
+  </Card>
+
+  <Card title="Endpoint">
+    /_payment
+  </Card>
+  </Cards>
+  
+  #### Environment
+
+  |                |                                   |
+  | -------------- | --------------------------------- |
+  | **Test**       | `https://test.payu.in/_payment`   |
+  | **Production** | `https://secure.payu.in/_payment` |
+
+  **Sample Payloads in HTML and Other Language Bindings**<br />
+
+  ```html
+  <!doctype html>
+  <html>
+    <body onload="document.forms.payu.submit()">
+      <form name="payu" method="post" action="https://test.payu.in/_payment">
+        <input type="hidden" name="key" value="JP***g">
+        <input type="hidden" name="txnid" value="t6svtqtjRdl4ws">
+        <input type="hidden" name="amount" value="499.00">
+        <input type="hidden" name="productinfo" value="Pro Plan">
+        <input type="hidden" name="firstname" value="Aditi">
+        <input type="hidden" name="email" value="test@example.com">
+        <input type="hidden" name="phone" value="9999999999">
+        <input type="hidden" name="surl" value="https://yourapp.com/payu/success">
+        <input type="hidden" name="furl" value="https://yourapp.com/payu/failure">
+        <input type="hidden" name="hash" value="sha512(...hash sequence...)">
+        <input type="submit" value="Submit" />
+      </form>
+    </body>
+  </html>
+  ```
+  ```curl
+  curl -X POST "https://test.payu.in/_payment" \
+    -H "accept: application/json" \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -d "key=JP***g" \
+    -d "txnid=PQI6MqpYrjEefU" \
+    -d "amount=10.00" \
+    -d "firstname=PayU User" \
+    -d "email=test@gmail.com" \
+    -d "phone=9876543210" \
+    -d "productinfo=iPhone" \
+    -d "surl=https://apiplayground-response.herokuapp.com/" \
+    -d "furl=https://apiplayground-response.herokuapp.com/" \
+    -d "hash=YOUR_HASH_VALUE"
+  ```
+  ```python
+  import requests
+
+  def make_payu_request():
+  try:
+      url = "https://test.payu.in/_payment"
+      
+      headers = {
+          'accept': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded'
+      }
+      
+      data = {
+          'key': 'JP***g',
+          'txnid': 'PQI6MqpYrjEefU',
+          'amount': '10.00',
+          'firstname': 'PayU User',
+          'email': 'test@gmail.com',
+          'phone': '9876543210',
+          'productinfo': 'iPhone',
+          'surl': 'https://apiplayground-response.herokuapp.com/',
+          'furl': 'https://apiplayground-response.herokuapp.com/',
+          'hash': '05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072'
+      }
+      
+      response = requests.post(url, headers=headers, data=data)
+      
+      print(f"Status Code: {response.status_code}")
+      print(f"Response: {response.text}")
+      
+      return {
+          'status_code': response.status_code,
+          'response': response.text
+      }
+      
+  except requests.exceptions.RequestException as e:
+      print(f"Error occurred: {e}")
+      return None
+
+  # Execute the request
+  result = make_payu_request()
+  ```
+  ```JavaScript
+  async function makePayURequest() \{
+  try \{
+    const url = "https://test.payu.in/_payment";
+
+    const formData = new URLSearchParams({
+      key: "JP***g",
+      txnid: "PQI6MqpYrjEefU",
+      amount: "10.00",
+      firstname: "PayU User",
+      email: "test@gmail.com",
+      phone: "9876543210",
+      productinfo: "iPhone",
+      surl: "https://apiplayground-response.herokuapp.com/",
+      furl: "https://apiplayground-response.herokuapp.com/",
+      hash: "05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072"
+    });
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: formData
+    });
+
+    const responseText = await response.text();
+
+    console.log(`Status Code: ${response.status}`);
+    console.log(`Response: ${responseText}`);
+
+    return {
+      status_code: response.status,
+      response: responseText
+    };
+
+  \} catch (error) {
+    console.error(`Error occurred: ${error.message}`);
+    return null;
+  }
+  \}
+
+  // Execute the request
+  makePayURequest()
+  .then(result => {
+    if (result) {
+      console.log("Request completed successfully");
+    }
+  })
+  .catch(error => {
+    console.error("Request failed:", error);
+  });
+  ```
+  ```Java
+  import java.io.*;
+  import java.net.*;
+  import java.nio.charset.StandardCharsets;
+
+  public class PayURequest \{
+
+  public static void main(String[] args) {
+    makePayURequest();
+  }
+
+  public static void makePayURequest() \{
+    try \{
+      URL url = new URL("https://test.payu.in/_payment");
+      HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+      connection.setRequestMethod("POST");
+      connection.setRequestProperty("accept", "application/json");
+      connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+      connection.setDoOutput(true);
+
+      String formData =
+          "key=" + URLEncoder.encode("JP***g", StandardCharsets.UTF_8) +
+          "&txnid=" + URLEncoder.encode("PQI6MqpYrjEefU", StandardCharsets.UTF_8) +
+          "&amount=" + URLEncoder.encode("10.00", StandardCharsets.UTF_8) +
+          "&firstname=" + URLEncoder.encode("PayU User", StandardCharsets.UTF_8) +
+          "&email=" + URLEncoder.encode("test@gmail.com", StandardCharsets.UTF_8) +
+          "&phone=" + URLEncoder.encode("9876543210", StandardCharsets.UTF_8) +
+          "&productinfo=" + URLEncoder.encode("iPhone", StandardCharsets.UTF_8) +
+          "&surl=" + URLEncoder.encode("https://apiplayground-response.herokuapp.com/", StandardCharsets.UTF_8) +
+          "&furl=" + URLEncoder.encode("https://apiplayground-response.herokuapp.com/", StandardCharsets.UTF_8) +
+          "&hash=" + URLEncoder.encode(
+              "05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072",
+              StandardCharsets.UTF_8
+          );
+
+      try (OutputStream os = connection.getOutputStream()) {
+        byte[] input = formData.getBytes(StandardCharsets.UTF_8);
+        os.write(input, 0, input.length);
+      }
+
+      int statusCode = connection.getResponseCode();
+      System.out.println("Status Code: " + statusCode);
+
+      InputStream responseStream =
+          (statusCode >= 200 && statusCode < 300)
+              ? connection.getInputStream()
+              : connection.getErrorStream();
+
+      try (BufferedReader br = new BufferedReader(
+          new InputStreamReader(responseStream, StandardCharsets.UTF_8))) \{
+
+        StringBuilder response = new StringBuilder();
+        String responseLine;
+
+        while ((responseLine = br.readLine()) != null) {
+          response.append(responseLine.trim());
+        }
+
+        System.out.println("Response: " + response.toString());
+      \}
+
+      connection.disconnect();
+
+    \} catch (IOException e) {
+      System.err.println("Error occurred: " + e.getMessage());
+      e.printStackTrace();
+    }
+  \}
+  \}        
+  ```
+  ```PHP
+  <?php
+  function makePayURequest() \{
+  try \{
+    $url = "https://test.payu.in/_payment";
+
+    $postData = array(
+      'key' => 'JP***g',
+      'txnid' => 'PQI6MqpYrjEefU',
+      'amount' => '10.00',
+      'firstname' => 'PayU User',
+      'email' => 'test@gmail.com',
+      'phone' => '9876543210',
+      'productinfo' => 'iPhone',
+      'surl' => 'https://apiplayground-response.herokuapp.com/',
+      'furl' => 'https://apiplayground-response.herokuapp.com/',
+      'hash' => '05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072'
+    );
+
+    $ch = curl_init();
+
+    curl_setopt_array($ch, array(
+      CURLOPT_URL => $url,
+      CURLOPT_POST => true,
+      CURLOPT_POSTFIELDS => http_build_query($postData),
+      CURLOPT_HTTPHEADER => array(
+        'accept: application/json',
+        'Content-Type: application/x-www-form-urlencoded'
+      ),
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_TIMEOUT => 30,
+      CURLOPT_SSL_VERIFYPEER => true,
+      CURLOPT_SSL_VERIFYHOST => 2
+    ));
+
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $error = curl_error($ch);
+
+    curl_close($ch);
+
+    if ($error) {
+      echo "cURL Error: " . $error . "\n";
+      return array(
+        'status_code' => 0,
+        'response' => 'Error: ' . $error
+      );
+    }
+
+    echo "Status Code: " . $httpCode . "\n";
+    echo "Response: " . $response . "\n";
+
+    return array(
+      'status_code' => $httpCode,
+      'response' => $response
+    );
+
+  \} catch (Exception $e) {
+    echo "Error occurred: " . $e->getMessage() . "\n";
+    return null;
+  }
+  \}
+
+  // Execute the request
+  $result = makePayURequest();
+  ?>
+  ```
+  ```Perl
+  #!/usr/bin/perl
+  use strict;
+  use warnings;
+  use LWP::UserAgent;
+  use HTTP::Request::Common qw(POST);
+  use URI::Escape;
+
+  sub make_payu_request \{
+      my $ua = LWP::UserAgent->new;
+      $ua->timeout(30);
+      
+      my $url = "https://test.payu.in/_payment";
+      
+      my %form_data = (
+          'key' => 'JP***g',
+          'txnid' => 'PQI6MqpYrjEefU',
+          'amount' => '10.00',
+          'firstname' => 'PayU User',
+          'email' => 'test@gmail.com',
+          'phone' => '9876543210',
+          'productinfo' => 'iPhone',
+          'surl' => 'https://apiplayground-response.herokuapp.com/',
+          'furl' => 'https://apiplayground-response.herokuapp.com/',
+          'hash' => '05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072'
+      );
+      
+      my $request = POST $url, 
+          'accept' => 'application/json',
+          'Content-Type' => 'application/x-www-form-urlencoded',
+          Content => \%form_data;
+      
+      my $response = $ua->request($request);
+      
+      if ($response->is_success) \{
+          print "Status Code: " . $response->code . "
+  ";
+          print "Response: " . $response->decoded_content . "
+  ";
+          
+          return {
+              'status_code' => $response->code,
+              'response' => $response->decoded_content
+          };
+      \} else {
+          print "Error occurred: " . $response->status_line . "
+  ";
+          print "Status Code: " . $response->code . "
+  ";
+          print "Error Response: " . $response->decoded_content . "
+  " if $response->decoded_content;
+          return undef;
+      }
+  \}
+
+  # Execute the request
+  my $result = make_payu_request();
+  if ($result) {
+      print "Request completed successfully
+  ";
+  } else {
+      print "Request failed
+  ";
+  }          
+  ```
+  ```C#
+  using System;
+  using System.Collections.Generic;
+  using System.Net.Http;
+  using System.Threading.Tasks;
+
+  class Program
+  \{
+      static async Task Main(string[] args)
+      {
+          await MakePayURequest();
+      }
+      
+      static async Task MakePayURequest()
+      \{
+          try
+          \{
+              using (var client = new HttpClient())
+              \{
+                  var url = "https://test.payu.in/_payment";
+                  
+                  client.DefaultRequestHeaders.Add("accept", "application/json");
+                  
+                  var formParams = new List<KeyValuePair<string, string>>
+                  {
+                      new KeyValuePair<string, string>("key", "JP***g"),
+                      new KeyValuePair<string, string>("txnid", "PQI6MqpYrjEefU"),
+                      new KeyValuePair<string, string>("amount", "10.00"),
+                      new KeyValuePair<string, string>("firstname", "PayU User"),
+                      new KeyValuePair<string, string>("email", "test@gmail.com"),
+                      new KeyValuePair<string, string>("phone", "9876543210"),
+                      new KeyValuePair<string, string>("productinfo", "iPhone"),
+                      new KeyValuePair<string, string>("surl", "https://apiplayground-response.herokuapp.com/"),
+                      new KeyValuePair<string, string>("furl", "https://apiplayground-response.herokuapp.com/"),
+                      new KeyValuePair<string, string>("hash", "05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072")
+                  };
+                  
+                  var formContent = new FormUrlEncodedContent(formParams);
+                  
+                  var response = await client.PostAsync(url, formContent);
+                  var responseContent = await response.Content.ReadAsStringAsync();
+                  
+                  Console.WriteLine($"Status Code: {(int)response.StatusCode}");
+                  Console.WriteLine($"Response: {responseContent}");
+              \}
+          \}
+          catch (HttpRequestException e)
+          {
+              Console.WriteLine($"Error occurred: {e.Message}");
+          }
+      \}
+  \}          
+  ```
+
+  #### Expected Output:
+  Customers are redirected to the PayU checkout page and the passed information are displayed as shown in the screenshot below.
+  
+  <Image   src="https://files.readme.io/3ed5132991aabc924f10d0b5e4c5dbd1ef396f2966b4330af3451ed9b417d435-payu-hosted-checkout-exp-output.png" align="center" caption="_PayU Hosted Checkout_" border={true} />
+
+  <Callout icon="🚧" theme="warn">
+    **Request Parameters**
+
+    * Refer to the Prepare Payment Request Parameters section for parameters description.
+    * Replace the value attributes with your actual data and the generated hash. You can add more parameters to the request as required.
+  </Callout>
+
+  <Callout icon="✅" theme="success">
+    **Best Practices:**
+
+    * Generate a unique `txnid` for every transaction..
+    * Store the transaction ID in your database before redirecting the customer.
+    * Keep customer identifiers consistent for reconciliation.
+  </Callout>
+
+</Accordion>
+
+<Accordion title="Success and Error Response" icon="fa-circle-check">
+Below are the payment method wise success and error responses received.<br/>
+
+**NetBanking**<br/>
+
+```json Success Response
+mihpayid=403993715537565049
+mode=NB
+status=success
+unmappedstatus=captured
+key=PRiQvJ
+txnid=756609e32e92add4b5f2
+amount=10.00
+discount=0.00
+net_amount_debit=10
+addedon=2026-05-29 18:49:30
+productinfo=Product Info
+firstname=Payu-Admin
+lastname=
+address1=
+address2=
+city=
+state=
+country=
+zipcode=
+email=test@example.com
+phone=1234567890
+udf1=
+udf2=
+udf3=
+udf4=
+udf5=
+udf6=
+udf7=
+udf8=
+udf9=
+udf10=
+hash=79d14afc4a3998a627d8fb431b2ee648b16fd6e31252397109ad5f44d77f7630daaaeedf0bbd5b3e7a81342c96bc087beb43125c0619cac1e5408243fdc29a04
+field1=
+field2=
+field3=
+field4=
+field5=
+field6=
+field7=
+field8=
+field9=Transaction Completed Successfully
+payment_source=payu
+PG_TYPE=NB-PG
+bank_ref_num=ddb199f9-5f43-4441-8648-ce2bcb244568
+bankcode=TESTPGNB
+error=E000
+error_Message=No Error
+```
+**Credit Cards**<br/>
+
+```json Success Response
+mihpayid=403993715537573401
+mode=CC
+status=success
+unmappedstatus=captured
+key=a4vGC2
+txnid=TXN_NS_1780294871_5566
+amount=1500.00
+discount=0.00
+net_amount_debit=1500
+addedon=2026-06-01 11:51:47
+productinfo=Subscription
+firstname=Sunit
+lastname=Kumar
+address1=FIRST FLOOR
+address2=NEW ASHOK NAGAR
+city=Delhi
+state=Delhi
+country=INDIA
+zipcode=201303
+email=sunit.kumar@mail.com
+phone=9876543210
+udf1=Testing UDF 1
+udf2=Testing UDF2
+udf3=
+udf4=
+udf5=Sample_Invoice_11
+udf6=
+udf7=
+udf8=
+udf9=
+udf10=
+hash=6ee1e1f743089ce38c79473f19af24371fe80e6249968f1bcbc6d31935afa79c0325d649fa7610a642e694475b33d65011b51b5d7d2a6a46e2b38895e4c27a28
+field1=888758893639
+field2=599738
+field3=1500.00
+field4=
+field5=00
+field6=02
+field7=AUTHPOSITIVE
+field8=AUTHORIZED
+field9=Transaction is Successful
+payment_source=payu
+PG_TYPE=CC-PG
+bank_ref_num=920539478106419300
+bankcode=CC
+error=E000
+error_Message=No Error
+cardCategory=domestic
+cardnum=XXXXXXXXXXXX2346
+cardhash=This field is no longer supported in postback params.
+splitInfo={"splitStatus":"splitNotReceived","splitSegments":[]}
+```
+```json Error Response - 3DS challenge is negative
+mihpayid=403993715537573353
+mode=CC
+status=failure
+unmappedstatus=failed
+key=a4vGC2
+txnid=TXN_NS_1780294680_1316
+amount=15000.00
+discount=0.00
+net_amount_debit=0.00
+addedon=2026-06-01 11:48:38
+productinfo=DESKTOP
+firstname=Sunit
+lastname=Kumar
+address1=FIRST FLOOR
+address2=NEW ASHOK NAGAR
+city=Delhi
+state=Delhi
+country=INDIA
+zipcode=201303
+email=sunit.kumar@mail.com
+phone=9876543210
+udf1=Testing UDF 1
+udf2=Testing UDF2
+udf3=
+udf4=
+udf5=Sample_Invoice_11
+udf6=
+udf7=
+udf8=
+udf9=
+udf10=
+hash=9ae9baa17a0ca25fd1f860f49022606d1d9d3d9650a639a8656f843a02acc3282157e7997e03734547027789599832e9ac8366dc7c21815e0e226ce6ebe216d4
+field1=677160001457370800
+field2=
+field3=
+field4=
+field5=
+field6=00
+field7=3DS_CHALLENGE_NEGATIVE
+field8=Transaction failed in Authorization
+field9=Transaction Failed at bank end.
+payment_source=payu
+PG_TYPE=CC-PG
+bank_ref_num=
+bankcode=CC
+error=E308
+error_Message=Transaction Failed at bank end.
+cardCategory=domestic
+cardnum=XXXXXXXXXXXX2346
+cardhash=This field is no longer supported in postback params.
+splitInfo={"splitStatus":"","splitSegments":[]}
+```
+**UPI**<br/>
+
+```json Success Response
+mihpayid=403993715537577186
+mode=UPI
+status=success
+key=ISgdHG
+txnid=cb278c37e5982039ffa0
+amount=10.00
+addedon=2026-06-01 16:30:23
+productinfo=Product Info
+firstname=CARDHOLDERXXXXXXXXNAME-Admin
+lastname=
+address1=
+address2=
+city=
+state=
+country=
+zipcode=
+email=test@example.com
+phone=1234567890
+udf1=
+udf2=
+udf3=
+udf4=
+udf5=
+udf6=
+udf7=
+udf8=
+udf9=
+udf10=
+card_token=
+card_no=
+field0=
+field1=_mobilenum_@upi
+field2=cb278c37e5982039ffa0
+field3=
+field4=Payu-Admin
+field5=AXIuo5ge4DYgb1spEEp038EuZkdbcm229hR
+field6=
+field7=Transaction completed successfully
+field8=generic
+field9=Transaction completed successfully
+payment_source=payu
+cardToken=
+authenticationMethod=
+PG_TYPE=UPI-PG
+error=E000
+error_Message=No Error
+net_amount_debit=10
+discount=0.00
+offer_key=
+offer_availed=
+splitInfo={"splitStatus":"splitNotReceived","splitSegments":[]}
+unmappedstatus=captured
+hash=0981fbaf891fdf6384f35b_mobilenum_a91ec205beeb259f65ec45974c1010039efb1d2e3d4a420c1b75121eb88ecbafbb4d9496071dda27f7ffe1ded0af34a1
+bank_ref_no=cb278c37e5982039ffa0
+bank_ref_num=cb278c37e5982039ffa0
+bankcode=UPI-Intent
+surl=https://test.payu.in/admin/test_response
+curl=https://test.payu.in/admin/test_response
+furl=https://test.payu.in/admin/test_response
+```
+```json Error Response - Transaction Cancelled or Dropped
+mihpayid=403993715537573890
+mode=UPI
+status=failure
+unmappedstatus=userCancelled
+key=a4vGC2
+txnid=TXN_NS_1780296905_7692
+amount=15000.00
+discount=0.00
+net_amount_debit=0.00
+addedon=2026-06-01 12:25:18
+productinfo=DESKTOP
+firstname=Sunit
+lastname=Kumar
+address1=FIRST FLOOR
+address2=NEW ASHOK NAGAR
+city=Delhi
+state=Delhi
+country=INDIA
+zipcode=201303
+email=sunit.kumar@mail.com
+phone=9876543210
+udf1=Testing UDF 1
+udf2=Testing UDF2
+udf3=
+udf4=
+udf5=Sample_Invoice_11
+udf6=
+udf7=
+udf8=
+udf9=
+udf10=
+hash=fd3149767139dfda1146aef578cdfef38da79bffe81db64ab8a046de3d349014eb95e9848a003616b79aa6ee61b9c46e5f47403463ae4434ede19e7b6caa71f3
+field1=anything@payu
+field2=
+field3=
+field4=
+field5=
+field6=
+field7=
+field8=generic
+field9=User interrupted by pressing back button
+payment_source=payu
+PG_TYPE=UPI-PG
+bank_ref_num=
+bankcode=UPI-Intent
+error=E1206
+error_Message=Transaction interrupted by pressing back button
+splitInfo={"splitStatus":"","splitSegments":[]}
+```
+**Wallet**<br/>
+
+```json Success Response
+mihpayid=403993715537573912
+mode=CASH
+status=success
+unmappedstatus=captured
+key=a4vGC2
+txnid=TXN_NS_1780296990_7590
+amount=15000.00
+discount=0.00
+net_amount_debit=15000
+addedon=2026-06-01 12:26:38
+productinfo=DESKTOP
+firstname=Aarav
+lastname=Raj
+address1=Banglore
+address2=Banglore
+city=Banglore
+state=Banglore
+country=INDIA
+zipcode=201303
+email=aarav.raj@testmail.com
+phone=9876543210
+udf1=Testing UDF 1
+udf2=Testing UDF2
+udf3=
+udf4=
+udf5=Sample_Invoice_11
+udf6=
+udf7=
+udf8=
+udf9=
+udf10=
+hash=db7052bf227001b9f02aa675b1a161e633eac2b5712f85c0d466d9b1023e739b0a57e8e61926f047c2efcb19279caf834951e3ff3c9cab99353043af1db2a71f
+field1=
+field2=
+field3=
+field4=
+field5=
+field6=
+field7=
+field8=
+field9=Transaction Completed Successfully
+payment_source=payu
+PG_TYPE=CASH-PG
+bank_ref_num=a92fe2c9-4fc8-4f73-8740-9b292fe4a634
+bankcode=FREC
+error=E000
+error_Message=No Error
+splitInfo={"splitStatus":"splitNotReceived","splitSegments":[]}
+```
+**BNPL**<br/>
+
+```json Success Response
+mihpayid=403993715537577231
+mode=BNPL
+status=success
+key=ISgdHG
+txnid=6decc0fffa5c60c7cbce
+amount=10.00
+addedon=2026-06-01 16:34:20
+productinfo=Product Info
+firstname=Payu-Admin
+lastname=
+address1=
+address2=
+city=
+state=
+country=
+zipcode=
+email=test@example.com
+phone=1234567890
+udf1=
+udf2=
+udf3=
+udf4=
+udf5=
+udf6=
+udf7=
+udf8=
+udf9=
+udf10=
+card_token=
+card_no=
+field0=
+field1=7715995865
+field2=EMI1072289140999791193
+field3=Transaction is successful
+field4=
+field5=iMUvX5VOqXMzv5Nq
+field6=TXN558633373
+field7=PAYMENT_SUCCESSFUL
+field8=SUCCESS
+field9=Transaction is successful
+payment_source=payu
+cardToken=
+authenticationMethod=
+PG_TYPE=BNPL-PG
+error=E000
+error_Message=No Error
+net_amount_debit=10
+discount=0.00
+offer_key=
+offer_availed=
+splitInfo={"splitStatus":"splitNotReceived","splitSegments":[]}
+unmappedstatus=captured
+hash=caa5b6398fe72ae9a07bc5e2d140fb2872db8f95bfe997de214f7f4cbc14e0933c153db986f029f76b69c12a37589d59ce9fe4c56d1bc713ac9851593563425e
+bank_ref_no=TXN558633373
+bank_ref_num=TXN558633373
+bankcode=LAZYPAY
+surl=https://test.payu.in/admin/test_response
+curl=https://test.payu.in/admin/test_response
+furl=https://test.payu.in/admin/test_response
+```
+```json Error Response - Transaction Cancelled During OTP Flow
+mihpayid=403993715537573947
+mode=BNPL
+status=failure
+unmappedstatus=userCancelled
+key=a4vGC2
+txnid=TXN_NS_1780297112_4289
+amount=1500.00
+discount=0.00
+net_amount_debit=0.00
+addedon=2026-06-01 12:28:44
+productinfo=Test
+firstname=Sunit
+lastname=Kumar
+address1=FIRST FLOOR
+address2=NEW ASHOK NAGAR
+city=Delhi
+state=Delhi
+country=INDIA
+zipcode=201303
+email=sunit.kumar@mail.com
+phone=9876543210
+udf1=Testing UDF 1
+udf2=Testing UDF2
+udf3=
+udf4=
+udf5=Sample_Invoice_11
+udf6=
+udf7=
+udf8=
+udf9=
+udf10=
+hash=79c624327255af38af22d10005f43a6afaaa9cf212ddb2998becd56d1dd9c1f5eae1d587ab82543f53ed005eb3d752f67b445a8523153f4bea969cb3e765b5dd
+field1=9876543210
+field2=EMI775701587506297063
+field3=Hola!! Avail LazyPay Credit with just an OTP
+field4=
+field5=zA0oORMOEt3RrWHg
+field6=TXN983658033
+field7=OTP_GENERATION_SUCCESSFUL
+field8=LP_ELIGIBLE
+field9=cancelled by user
+payment_source=payu
+PG_TYPE=BNPL-PG
+bank_ref_num=TXN983658033
+bankcode=LAZYPAY
+error=
+error_Message=
+splitInfo={"splitStatus":"","splitSegments":[]}
+```
+
+**NEFT/RTGS**<br/>
+
+For security reasons, the success response sample or URL is not included here. Only the error response is recorded.<br/>
+
+```json Error Response
+mihpayid=403993715537574750
+mode=NEFTRTGS
+status=pending
+unmappedstatus=pending
+key=a4vGC2
+txnid=TXN_NS_1780300270_2797
+amount=10.00
+discount=0.00
+net_amount_debit=0.00
+addedon=2026-06-01 13:21:24
+productinfo=DESKTOP
+firstname=Sunit
+lastname=Kumar
+address1=FIRST FLOOR
+address2=NEW ASHOK NAGAR
+city=Delhi
+state=Delhi
+country=INDIA
+zipcode=201303
+email=sunit.kumar@mail.com
+phone=9876543210
+udf1=Testing UDF 1
+udf2=Testing UDF2
+udf3=
+udf4=
+udf5=Sample_Invoice_11
+udf6=
+udf7=
+udf8=
+udf9=
+udf10=
+hash=ed4dbb911f9bfee507362e2e053c16c07063a55302ea58cf3f026f5daeefbd52da8f316d51911c891a13a1bb648a26b24b8005a84af30904d78c13a54b4d35bf
+field1=
+field2=
+field3=
+field4=
+field5=
+field6=
+field7=
+field8=02
+field9=Transaction is pending
+payment_source=payu
+PG_TYPE=NEFTRTGS-PG
+bank_ref_num=
+bankcode=EFTAXIS
+error=E227
+error_Message=Transaction is Pending
+splitInfo={"splitStatus":"","splitSegments":[]}
+```
+Refer to the Errors section for the parameters and description.
+
+
+</Accordion>
+
+#### What Next - Customer Journey
+
+Customer selects a payment method and completes the payment. PayU then sends the transaction response parameters.
+
+<Accordion title="Customer Journey Outcome" icon="fa-route">
+**Expected Output**
+
+These are the expected outcomes of the transaction.
+
+- Success
+- Failure
+- Pending
+- Cancelled
+
+PayU then redirects to:
+
+- `surl` for success
+- `furl` for failure
+</Accordion>
+
+#### Step 1.3.1 Customize PayU Payment Page _(Optional)_
+
+<Accordion title="Customize Checkout" icon="fa-gear">
+You can customize the following in the Checkout page:<br/>
+
+* Enforce Pay Method or Remove Category
+* Change the Language
+* Configure Payment Method and Checkout Settings
+
+Refer to the <a href="https://docs.payu.in/docs/payu-payment-page-customization" target="_blank">Customize PayU Payment Page</a> for more information about cutomizing the PayU payment page.
+</Accordion>
+
+***
+
+### Step 1.4 Verify Response via Reverse Hashing
+
+Response verification ensures that the response originated from PayU and has not been modified. It protects against:
+
+- Tampered responses
+- Spoofed requests
+- Fraudulent status updates
+
+After the payment is successful or failed, PayU POSTs back to your `surl` or `furl` respectively with URL-encoded fields (form post). This payload includes the transaction status, `txnid`, `mihpayid`, and a hash you must verify (reverse hashing) for verification. Below is how the reverse hashing works.
+
+
+<Image src="https://files.readme.io/7acf9d72438a6a00b637ef4c70c13b8a4871c3aa6055d7c985bbef5f980fa502-reverse_hashing_flow.png" align="center" caption="_Reverse Hashing Flow_" border={true} framed={true} />
+
+
+<Callout icon="✅" theme="okay">
+  ### **Validation Rules:**
+
+  - Generated hash must match response hash
+  - Amount must match original order
+  - Transaction ID must exist
+  - Order should not already be paid
+</Callout>
+
+<Accordion title="Reverse Hashing Logic" icon="fa-arrow-rotate-left">
+Create a hash using the following logic.<br/>
+```json Reverse Hash Logic
+sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
+```
+<br/>
+
+You should compare the hash value you got from the above logic with the hash value you received in the response. The payment is verified if the hash values match and update the order state.
+</Accordion>
+
+<Callout icon="⚠️" theme="warn">
+  ### **Watch Out!**
+
+  If hash mismatches:
+
+  - Reject callback
+  - Log security event
+  - Do not mark payment successful
+</Callout>
+
+You can also use the <Anchor target="_blank" href="https://payu-hashverificationtool.onrender.com/">PayU's Hash Verification System</Anchor> to generate a hash (reverse hash) for payment verification.
+
+***
+
+### Step 1.5 Verify the Payment
+
+After the transaction is complete, you should check the payment status. Use PayU verification mechanisms for reconciliation. This is the recommended verification order:
+
+1. Reverse hash validation (_step 1.4)_
+2. Webhooks
+3. Verify Payment API
+4. PayU Dashboard
+
+<Accordion title="Verify Payment Methods" icon="fa-check-double">
+  <Tabs>
+  <Tab title="1. Verify using Webhooks">
+    Configure the webhooks to monitor the status of payments.<br/>
+    
+    Webhooks enable a server to communicate with another server by sending an HTTP callback or message.<br/>
+
+    These callbacks are triggered by specific events or instances and operate at the server-to-server (S2S) level.<br/>
+
+    Know how to <a href="https://docs.payu.in/docs/webhook-events-and-sample-payloads" target="_blank">manage Webhooks</a> for Payments.<br/>
+  </Tab>
+
+  <Tab title="2. Verify using APIs">
+    You can poll the <a href="https://docs.payu.in/reference/verify_payment_api" target="_blank">Verify Payment API</a> to verify the payment.
+  </Tab>
+
+  <Tab title="3. Verify from Dashboard">
+    To verify the payment from the PayU Dashboard:<br/>
+    1. Log in to the <a href="https://onboarding.payu.in/app/account/signin" target="_blank">PayU Dashboard</a> and click **Transactions** from the left menu.
+    2. Check if a **Payu ID (Transaction ID)** is created for the recent transaction and if the payment is successful, the status is marked as **Success**.<br/>
+    <Image       src="https://files.readme.io/30840455deadfe76c808f4954f9d18dcdb2a949d9e6851ee8566e9f58094bd3d-varify_payment_dashboard.png" align="center" caption="_Verify the Payment from Dashboard_" border={true} framed={false} />
+  </Tab>
+</Tabs>
+</Accordion>
+
+***
+
+## 2. Test Integration
+
+After you build the integration, you should test it thoroughly before going live.<br />
+
+<Callout icon="⚠️" theme="warn">
+  ### **Watch out!**
+
+  This is a test page. Before making the payment:
+
+  - **Verify API Credentials:** Double-check that you are using the correct key and salt for the test environment.
+
+  - **Validate Hash Calculation:** The most common point of failure is an incorrect hash.
+    - Temporarily print the string that you are passing into the hash function on your server.
+    - Ensure the order of the parameters exactly matches the format specified in the documentation.
+    - Verify that there are no empty or null values for mandatory parameters in the hash string.
+</Callout>
+
+***
+
+### Step 2.1 Simulate a Successful Transaction
+
+<Accordion title="Successful Transaction Steps" icon="fa-circle-check">
+After you post a form and save the html file and perform the following steps:
+1. Open the file to initiate the transaction.
+2. Select the payment method and make a test transaction to ensure the integration is working as expected.
+</Accordion>
+
+#### Supported Payment Methods
+
+You can use the following default payment methods and their test details to make the payment.
+
+<Accordion title="NetBanking" icon="fa-building-columns">
+  Use the following credentials if you choose NetBanking as a payment method:<br/>
+  
+  **user name:** payu
+  **password:** payu
+  **OTP:** 123456
+</Accordion>
+
+<Accordion title="Debit Card" icon="fa-credit-card">
+  | Card Number         | Network    | Expiry | CVV | OTP    |
+  | :------------------ | :--------- | :----- | :-- | :----- |
+  | 5118-7000-0000-0003 | Mastercard | 05/30  | 123 | 123456 |
+  | 4594-5380-5063-9999 | VISA       | 05/30  | 123 | 123456 |
+</Accordion>
+
+<Accordion title="Credit Card" icon="fa-credit-card">
+  | **Payment Flow**              | **Card Number**  | **Network** | **Expiry** | **CVV** | **OTP** |
+  | ----------------------------- | ---------------- | ----------- | ---------- | ------- | ------- |
+  | PayU/Merchant Hosted Checkout | 5123456789012346 | Mastercard  | 05/30      | 123     | 123456  |
+  | PayU/Merchant Hosted Checkout | 4012001037141112 | VISA        | 05/30      | 123     | 123456  |
+  | Server-to-Server              | 5497774415170603 | Mastercard  | 05/30      | 412     | 123456  |
+  | PayU/Merchant Hosted Checkout | 6082015309577308 | RUPAY       | 05/30      | 123     | 123456  |
+  | PayU/Merchant Hosted Checkout | 370295061673669  | AMEX        | 03/30      | 1234    | 725356  |
+</Accordion>
+
+<Accordion title="UPI" icon="fa-mobile-screen-button">
+  You can use `anything@payu` or `999999999@payu` as VPA to test your integration.<br/>
+
+  > 📘 Notes:
+  >
+  > - The **anything\@payu** VPA can be used in the sandbox or [Merchant Hosted > Collect Payment - UPI](ref:_payment_merchant_hosted_upi) API reference page and any other VPA will not work for the **_payment** only.
+  > - For the [Validate VPA Handle API](ref:validate_vpa_api), you can use any valid VPA.
+</Accordion>
+
+<Accordion title="Wallet" icon="fa-wallet">
+  | Vendor | Mobile Number                                                     | OTP    |
+  | ------ | ----------------------------------------------------------------- | ------ |
+  | PayTM  | 7777777777 or use card mentioned under [Test Cards](#test-cards). | 888888 |
+  | Amazon | You can test using your original Amazon account details.          |        |
+  | Airtel | You can use your mobile number.                                   |        |
+</Accordion>
+
+<Callout icon="📘" theme="info">
+  ### **Handy Tips**
+
+  Apart from the above default payment methods, you can <Anchor target="_blank" href="https://docs.payu.in/docs/payu-payment-page-customization#configure-checkout-payment-methods-and-settings">enable the following payment methods</Anchor> in the checkout:
+
+  - BNPL
+  - EMI
+  - International Payments
+</Callout>
+
+***
+
+### Step 2.2 Simulate a Failed Transaction
+
+It is equally important to test the failed transaction. Perform the following steps to simulate the failed transaction.
+
+<Accordion title="Failed Transaction Steps" icon="fa-vial">
+1. Open the HTML file to initiate the transaction.
+2. Select any payment method and simulate a failed transaction by providing a invalid test credentials.
+</Accordion>
+
+<Callout icon="✅" theme="okay">
+  ### **Verify**
+
+  Verify the following during a failed transaction:
+
+  - [x] Failure URL is triggered
+
+  - [x] Customer receives appropriate messaging
+
+  - [x] Order remains unpaid
+</Callout>
+
+***
+
+## 3. Go-live Checklist
+
+Now that you successfully tested the integration, check the go-live checklist for PayU hosted checkout integration. Consider these steps before taking the integration live.
+
+<Accordion title="Production Credentials" icon="fa-user-lock">
+Replace test merchant key and salt with live credentials. Know how to <a href="https://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard" target="_blank">create live merchant key and salt</a>
+</Accordion>
+
+<Accordion title="Production Environment" icon="fa-link">
+Make sure you update the test environment with the production environment.
+</Accordion>
+
+<Accordion title="Security Checklist" icon="fa-shield-check">
+- [x] Hash generation occurs server-side
+
+- [x] Salt is never exposed
+
+- [x] HTTPS is enforced
+
+- [x] Sensitive information is not logged
+</Accordion>
+
+<Accordion title="Webhooks" icon="fa-info-circle">
+Make sure the <a href="https://docs.payu.in/docs/webhook-events-and-sample-payloads" target="_blank">webhook is configured</a>.
+</Accordion>
+
+<Accordion title="Production Readiness" icon="fa-clipboard-check">
+- [x] Hash validation implemented
+
+- [x] Reverse hash validation implemented
+
+- [x] Callback retries handled
+
+- [x] Duplicate processing prevented
+
+- [x] Failure URL is triggered
+
+- [x] Alerting configured
+
+- [x] Failure URL is triggered
+</Accordion>
+
+***
+
+## Errors and Troubleshooting
+
+<Accordion title="Invalid Hash" icon="fa-fingerprint">
+**Error Causes**
+
+* Wrong parameter order
+* Missing pipe (`|`) separators
+* Incorrect salt
+* Missing empty UDF placeholders
+* Extra spaces in input values
+
+**Recommended Fix**
+
+* Verify hash sequence exactly matches PayU documentation.
+* Ensure all empty UDF fields still include separators (`|||||||||||`).
+* Confirm merchant key and salt are correct.
+* Remove leading/trailing spaces from all parameters.
+* Generate hash using SHA-512 only.
+* Generate hash on backend, never frontend.
+</Accordion>
+
+<Accordion title="Payment Page Not Loading" icon="fa-circle-xmark">
+**Error Causes**
+
+* Wrong endpoint URL
+* Request sent using GET instead of POST
+* Missing mandatory parameters
+* Browser JavaScript error
+* Firewall/network issue
+
+**Recommended Fix**
+
+* Ensure to use the correct environment endpoint.
+* Ensure the form method is POST
+* Validate all mandatory parameters.
+* Remove leading/trailing spaces from all parameters.
+* Check browser developer console.
+* Inspect browser network requests.
+</Accordion>
+
+<Accordion title="Callback Not Triggered (surl / furl)" icon="fa-link-slash">
+**Error Causes**
+
+* Invalid callback URL
+* Localhost used
+* Firewall restriction
+* SSL/TLS issue
+* Callback endpoint inaccessible
+
+**Recommended Fix**
+
+* Ensure callback URL is publicly accessible
+* Use HTTPS only
+* Do not use localhost
+* Verify endpoint accepts POST requests
+* Return HTTP 200 after processing callback
+</Accordion>
+
+<Accordion title="Reverse Hash Mismatch" icon="fa-fingerprint">
+**Error Causes**
+
+* Wrong reverse hash sequence
+* Missing UDF placeholders
+* Wrong salt
+* Using request hash logic instead of reverse hash logic
+
+**Recommended Fix**
+
+* Use reverse hash sequence exactly as documented
+* Ensure UDF fields are included in reverse order
+* Verify status field is included
+* Confirm salt matches merchant configuration
+</Accordion>
+
+<Accordion title="Duplicate Order Processing" icon="fa-copy">
+**Error Causes**
+
+* Callback retries
+* No idempotency checks
+* Order state not verified before processing
+
+**Recommended Fix**
+
+* Implement idempotency checks before processing
+</Accordion>
+
+<Accordion title="Amount Mismatch" icon="fa-fingerprint">
+**Error Causes**
+
+* Order modified after checkout started
+* Incorrect amount formatting
+* Wrong order fetched from database
+
+**Recommended Fix**
+
+* Compare callback amount with original transaction amount
+* Normalize decimal precision
+* Reject mismatched callbacks
+* Log mismatch for investigation
+</Accordion>
+
+<br />

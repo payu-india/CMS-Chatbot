@@ -1,5 +1,5 @@
 ---
-title: Checkout Solutions
+title: Checkout Integration
 excerpt: ''
 deprecated: false
 hidden: false
