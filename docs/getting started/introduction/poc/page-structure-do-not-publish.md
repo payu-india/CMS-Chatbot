@@ -5,4 +5,6 @@ hidden: true
 metadata:
   robots: index
 ---
+<PayUForwardHashGenerator hashProfile="hosted-checkout-v1" />
+
 <br />
