@@ -157,7 +157,7 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
   }
 
   var sandboxOuterClass =
-    'my-6 w-full min-w-0 max-w-full box-border overflow-hidden rounded-xl border-2 border-dashed border-teal-600 bg-teal-50/40 dark:border-teal-500 dark:bg-teal-950/20';
+    'my-6 w-full min-w-0 max-w-full box-border overflow-hidden rounded-xl bg-teal-50/50 dark:bg-teal-950/20';
 
   function SandboxAccordion(props) {
     var _open = useState(false);
@@ -296,6 +296,7 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
       {saved ? <p className="mt-2 text-xs text-gray-500">Step 1.1 complete — parameters stored for Steps 1.2 and 1.3.</p> : null}
       </div>
     </SandboxAccordion>
-  );};
+  );
+};
 
 <PayUHostedCheckoutSandboxStep11 />
