@@ -120,7 +120,7 @@ Send these optional parameters in the request as required.
 <Banner
   isInline={true}
   message="Sandbox - Add Parameters and Save!"
-  color="#118cfd"
+  color="#118970"
   textColor="#ffffff"
   fontSize="14px"
   fontWeight="bold"
