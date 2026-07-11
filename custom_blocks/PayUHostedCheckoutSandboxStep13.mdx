@@ -1,0 +1,289 @@
+---
+name: PayUHostedCheckoutSandboxStep13
+---
+// PayUHostedCheckoutSandboxStep13 - Sandbox dashed box + accordion + lab (single paste)
+// Regenerate: node scripts/build-payu-hosted-checkout-steps.mjs
+
+import { useState, useEffect } from 'react';
+
+export const PayUHostedCheckoutSandboxStep13 = function PayUHostedCheckoutSandboxStep13(props) {
+
+  var LAB_CONFIG = JSON.parse('{"storageKey":"payu-hosted-checkout-lab-v1","testPaymentUrl":"https://test.payu.in/_payment","simulatorUrl":"https://test-payment-middleware.payu.in/simulatorResponse","hashVerifyToolUrl":"https://payu-hashverificationtool.onrender.com/","defaults":{"key":"","txnid":"tran_1234","amount":"10.00","productinfo":"iPhone","firstname":"Aarav","email":"aarav@example.com","phone":"1234567890","surl":"https://test-payment-middleware.payu.in/simulatorResponse","furl":"https://test-payment-middleware.payu.in/simulatorResponse","udf1":"","udf2":"","udf3":"","udf4":"","udf5":""},"sampleReverseResponse":{"status":"success","key":"","txnid":"tran_1234","amount":"10.00","productinfo":"iPhone","firstname":"Aarav","email":"aarav@example.com","udf1":"","udf2":"","udf3":"","udf4":"","udf5":""}}');
+  var LAB_KEY = LAB_CONFIG.storageKey;
+  var TEST_PAYMENT = LAB_CONFIG.testPaymentUrl;
+  var DEFAULT_PARAMS = LAB_CONFIG.defaults;
+
+  var shellClass = 'min-w-0';
+  var fieldStackClass = 'space-y-3';
+  var inputClass =
+    'box-border w-full min-w-0 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-teal-600 focus:outline-none focus:ring-1 focus:ring-teal-600 dark:border-gray-600 dark:bg-gray-900/30 dark:text-gray-100';
+  var btnPrimaryClass =
+    'cursor-pointer rounded-md border-0 bg-teal-700 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-800 disabled:opacity-50 dark:bg-teal-600 dark:hover:bg-teal-500';
+  var btnGhostClass =
+    'cursor-pointer rounded-md border border-gray-300 bg-transparent px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 disabled:opacity-40 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-800/50';
+  var codeBlockClass =
+    'block break-all rounded bg-gray-100 px-3 py-2 text-xs font-mono text-gray-800 dark:bg-gray-800/50 dark:text-gray-100';
+  var linkClass =
+    'cursor-pointer border-0 bg-transparent p-0 text-sm font-medium text-teal-700 underline hover:text-teal-800 dark:text-teal-400';
+
+  function empty(s) {
+    return s == null ? '' : String(s).trim();
+  }
+
+  function labRead() {
+    try {
+      if (typeof window === 'undefined' || !window.sessionStorage) return null;
+      var raw = window.sessionStorage.getItem(LAB_KEY);
+      if (!raw) return null;
+      return JSON.parse(raw);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function labWrite(data) {
+    try {
+      if (typeof window === 'undefined' || !window.sessionStorage) return false;
+      data.updatedAt = Date.now();
+      window.sessionStorage.setItem(LAB_KEY, JSON.stringify(data));
+      return true;
+    } catch (e2) {
+      return false;
+    }
+  }
+
+  function labEnsure() {
+    var existing = labRead();
+    if (existing && existing.params) return existing;
+    return { params: Object.assign({}, DEFAULT_PARAMS), salt: '', hashHex: '', pipeString: '', step11Done: false, step12Done: false };
+  }
+
+  function buildForwardHashString(params, salt) {
+    var p = params;
+    return (
+      empty(p.key) + '|' + empty(p.txnid) + '|' + empty(p.amount) + '|' + empty(p.productinfo) + '|' +
+      empty(p.firstname) + '|' + empty(p.email) + '|' + empty(p.udf1) + '|' + empty(p.udf2) + '|' +
+      empty(p.udf3) + '|' + empty(p.udf4) + '|' + empty(p.udf5) + '||||||' + empty(salt)
+    );
+  }
+
+  function buildReverseHashString(salt, resp) {
+    return (
+      empty(salt) + '|' + empty(resp.status) + '||||||' + empty(resp.udf5) + '|' + empty(resp.udf4) + '|' +
+      empty(resp.udf3) + '|' + empty(resp.udf2) + '|' + empty(resp.udf1) + '|' + empty(resp.email) + '|' +
+      empty(resp.firstname) + '|' + empty(resp.productinfo) + '|' + empty(resp.amount) + '|' +
+      empty(resp.txnid) + '|' + empty(resp.key)
+    );
+  }
+
+  function sha512Hex(msg) {
+    var enc = new TextEncoder();
+    return crypto.subtle.digest('SHA-512', enc.encode(msg)).then(function (buf) {
+      return Array.from(new Uint8Array(buf))
+        .map(function (b) { return b.toString(16).padStart(2, '0'); })
+        .join('');
+    });
+  }
+
+  function escapeAttr(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/"/g, '&quot;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  function copyText(text, setCopyMsg) {
+    var value = String(text || '');
+    if (!value) return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(value).then(function () {
+        setCopyMsg('Copied.');
+        setTimeout(function () { setCopyMsg(''); }, 2000);
+      });
+    }
+  }
+
+  function LabInteractiveBanner() {
+    return (
+      <div
+        className="mb-4 flex items-start gap-3 rounded-md border border-teal-200 bg-white/90 px-3 py-2.5 dark:border-teal-800 dark:bg-gray-900/50"
+        role="note"
+      >
+        <span className="mt-0.5 shrink-0 rounded bg-teal-700 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white dark:bg-teal-600">
+          Try it
+        </span>
+        <p className="mb-0 min-w-0 text-sm leading-snug text-gray-700 dark:text-gray-200">
+          <span className="font-semibold text-gray-900 dark:text-gray-100">Interactive lab — </span>
+          edit the fields below and use the buttons. This is a live widget, not static text. Values stay in your browser for the next step.
+        </p>
+      </div>
+    );
+  }
+
+  function LabHeader(props) {
+    return (
+      <div className="mb-3 pb-1">
+        <div className="mb-1 text-xs font-semibold uppercase tracking-wider text-teal-700 dark:text-teal-400">
+          Step {props.step} Redirect Customers to PayU Checkout
+        </div>
+        <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{props.title}</p>
+        {props.hint ? <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">{props.hint}</p> : null}
+      </div>
+    );
+  }
+
+  function LabStatus(props) {
+    var items = props.items || [];
+    return (
+      <div className="mb-3 flex flex-wrap gap-2 text-xs">
+        {items.map(function (it, idx) {
+          var ok = it.ok;
+          return (
+            <span
+              key={idx}
+              className={
+                ok
+                  ? 'rounded-full bg-teal-50 px-2 py-1 text-teal-800 dark:bg-teal-950 dark:text-teal-200'
+                  : 'rounded-full bg-gray-100 px-2 py-1 text-gray-600 dark:bg-gray-800 dark:text-gray-300'
+              }
+            >
+              {ok ? '✓ ' : '○ '}{it.label}
+            </span>
+          );
+        })}
+      </div>
+    );
+  }
+
+  var sandboxOuterClass =
+    'my-6 w-full min-w-0 max-w-full box-border overflow-hidden rounded-xl border-2 border-dashed border-teal-500 bg-teal-50/40 dark:border-teal-400 dark:bg-teal-950/20';
+
+  function SandboxAccordion(props) {
+    var _open = useState(false);
+    var open = _open[0];
+    var setOpen = _open[1];
+    return (
+      <div className={sandboxOuterClass} role="region" aria-label={props.ariaLabel || 'PayU integration sandbox'}>
+        <button
+          type="button"
+          onClick={function () { setOpen(!open); }}
+          className="flex w-full cursor-pointer items-center gap-3 border-0 bg-transparent px-4 py-3 text-left hover:bg-teal-50/80 dark:hover:bg-teal-950/40"
+          aria-expanded={open}
+        >
+          <span className="shrink-0 rounded bg-teal-700 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white dark:bg-teal-600">SANDBOX</span>
+          <span className="min-w-0 flex-1 text-sm font-semibold text-gray-900 dark:text-gray-100">{props.title}</span>
+          <span className="shrink-0 text-teal-700 dark:text-teal-400">{open ? '▼' : '▶'}</span>
+        </button>
+        {open ? (
+          <div className="bg-white px-4 py-4 dark:bg-gray-900/30">
+            <p className="mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300">{props.intro}</p>
+            {props.children}
+          </div>
+        ) : null}
+      </div>
+    );
+  }
+
+  var _lab = useState(null);
+  var lab = _lab[0];
+  var setLab = _lab[1];
+  var _err = useState('');
+  var err = _err[0];
+  var setErr = _err[1];
+  var _copyMsg = useState('');
+  var copyMsg = _copyMsg[0];
+  var setCopyMsg = _copyMsg[1];
+  var _showCurl = useState(false);
+  var showCurl = _showCurl[0];
+  var setShowCurl = _showCurl[1];
+
+  useEffect(function () {
+    setLab(labEnsure());
+  }, []);
+
+  function refreshLab() {
+    setLab(labEnsure());
+  }
+
+  function openPayuTest() {
+    var data = labEnsure();
+    if (!data.step11Done || !data.step12Done || !data.hashHex || data.hashHex.length !== 128) {
+      setErr('Complete Step 1.1 and Step 1.2 (generate hash) first.');
+      return;
+    }
+    var p = data.params;
+    var pairs = [
+      ['key', p.key], ['txnid', p.txnid], ['amount', p.amount], ['productinfo', p.productinfo],
+      ['firstname', p.firstname], ['email', p.email], ['phone', p.phone],
+      ['surl', p.surl], ['furl', p.furl],
+      ['udf1', p.udf1 || ''], ['udf2', p.udf2 || ''], ['udf3', p.udf3 || ''],
+      ['udf4', p.udf4 || ''], ['udf5', p.udf5 || ''], ['hash', data.hashHex]
+    ];
+    var inputs = '';
+    for (var i = 0; i < pairs.length; i += 1) {
+      inputs += '<input type="hidden" name="' + escapeAttr(pairs[i][0]) + '" value="' + escapeAttr(pairs[i][1]) + '" />';
+    }
+    var html = '<!DOCTYPE html><html><body onload="document.forms[0].submit()"><form method="post" action="' +
+      escapeAttr(TEST_PAYMENT) + '">' + inputs + '</form><p>Redirecting to PayU test checkout…</p></body></html>';
+    var w = window.open('', '_blank', 'noopener,noreferrer');
+    if (!w) {
+      setErr('Pop-up blocked. Allow pop-ups for this site.');
+      return;
+    }
+    w.document.open();
+    w.document.write(html);
+    w.document.close();
+    setErr('');
+  }
+
+  function buildCurl(data) {
+    var p = data.params;
+    return 'curl -X POST "' + TEST_PAYMENT + '" \n' +
+      '  -H "Content-Type: application/x-www-form-urlencoded" \n' +
+      '  -d "key=' + p.key + '" \n' +
+      '  -d "txnid=' + p.txnid + '" \n' +
+      '  -d "amount=' + p.amount + '" \n' +
+      '  -d "productinfo=' + p.productinfo + '" \n' +
+      '  -d "firstname=' + p.firstname + '" \n' +
+      '  -d "email=' + p.email + '" \n' +
+      '  -d "phone=' + p.phone + '" \n' +
+      '  -d "surl=' + p.surl + '" \n' +
+      '  -d "furl=' + p.furl + '" \n' +
+      '  -d "hash=' + data.hashHex + '"';
+  }
+
+  var ready = lab && lab.step11Done && lab.step12Done && lab.hashHex && lab.hashHex.length === 128;
+  var amountLabel = lab && lab.params ? lab.params.amount : '10.00';
+
+  return (
+    <SandboxAccordion title="Try Out! · Pay on test checkout" intro="This is a live tool — For Testing. Opens test.payu.in with your saved parameters and hash. Use PayU test cards to complete payment." ariaLabel="Step 1.3 sandbox">
+      <div className={shellClass}>
+      <LabHeader step="1.3" hint="Opens test.payu.in with your lab parameters and hash. Use test cards from Section 2 below." />
+      <LabStatus items={[
+        { label: 'Step 1.1 parameters', ok: lab && lab.step11Done },
+        { label: 'Step 1.2 hash', ok: lab && lab.step12Done },
+        { label: 'Ready to pay', ok: ready }
+      ]} />
+      <div className="mb-3 flex flex-wrap gap-2">
+        <button type="button" onClick={openPayuTest} disabled={!ready} className={btnPrimaryClass}>
+          {'Pay ₹' + amountLabel + ' on PayU Test Checkout'}
+        </button>
+        <button type="button" onClick={refreshLab} className={btnGhostClass}>Refresh lab status</button>
+        <button type="button" onClick={function () { setShowCurl(!showCurl); }} disabled={!ready} className={btnGhostClass}>
+          {showCurl ? 'Hide curl' : 'Show curl'}
+        </button>
+        {ready ? (
+          <button type="button" onClick={function () { copyText(buildCurl(lab), setCopyMsg); }} className={btnGhostClass}>Copy curl</button>
+        ) : null}
+      </div>
+      {err ? <p className="mb-2 text-sm text-red-600" role="alert">{err}</p> : null}
+      {copyMsg ? <p className="mb-2 text-sm text-teal-700">{copyMsg}</p> : null}
+      {showCurl && ready ? <code className={'mb-2 whitespace-pre-wrap ' + codeBlockClass}>{buildCurl(lab)}</code> : null}
+      <p className="text-xs text-gray-500">Test checkout: Card 5123456789012346 · OTP 123456 · UPI anything@payu</p>
+      </div>
+    </SandboxAccordion>
+  );
+};
+
+<PayUHostedCheckoutSandboxStep13 />
