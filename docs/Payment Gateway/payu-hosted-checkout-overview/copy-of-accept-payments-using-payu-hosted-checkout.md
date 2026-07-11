@@ -1400,7 +1400,7 @@ You can customize the following in the Checkout page:<br/>
 Refer to the <a href="https://docs.payu.in/docs/payu-payment-page-customization" target="_blank">Customize PayU Payment Page</a> for more information about cutomizing the PayU payment page.
 </Accordion>
 
-<PayUHostedCheckoutStep13 />
+<PayUHostedCheckoutSandboxStep13 />
 
 ***
 
