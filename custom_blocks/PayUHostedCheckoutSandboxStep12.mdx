@@ -14,7 +14,12 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
   var DEFAULT_PARAMS = LAB_CONFIG.defaults;
 
   var shellClass = 'min-w-0';
-  var fieldStackClass = 'space-y-3';
+  var fieldStackClass = 'space-y-1';
+  var fieldWrapClass = 'mb-4';
+  var labelClass = 'mb-2 block text-sm font-bold text-gray-900 dark:text-gray-100';
+  var btnRowClass = 'mt-5 flex flex-wrap gap-2';
+  var hintClass = 'mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300';
+  var noteClass = 'mb-4 text-sm leading-relaxed text-amber-800 dark:text-amber-200';
   var inputClass =
     'box-border w-full min-w-0 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-teal-600 focus:outline-none focus:ring-1 focus:ring-teal-600 dark:border-gray-600 dark:bg-gray-900/30 dark:text-gray-100';
   var btnPrimaryClass =
@@ -93,6 +98,23 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
       .replace(/>/g, '&gt;');
   }
 
+  function labClick(fn) {
+    return function (e) {
+      if (e && e.preventDefault) e.preventDefault();
+      if (e && e.stopPropagation) e.stopPropagation();
+      fn(e);
+    };
+  }
+
+  function FieldLabel(props) {
+    return (
+      <label className={labelClass}>
+        {props.name}
+        {props.required ? <span className="font-bold text-red-600"> *</span> : null}
+      </label>
+    );
+  }
+
   function copyText(text, setCopyMsg) {
     var value = String(text || '');
     if (!value) return;
@@ -125,7 +147,7 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
     return (
       <div className="mb-3 pb-1">
         <div className="mb-1 text-xs font-semibold uppercase tracking-wider text-teal-700 dark:text-teal-400">
-          Step {props.step} Generate Secure Hash
+          Integration lab · Step {props.step}
         </div>
         <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{props.title}</p>
         {props.hint ? <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">{props.hint}</p> : null}
@@ -136,7 +158,7 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
   function LabStatus(props) {
     var items = props.items || [];
     return (
-      <div className="mb-3 flex flex-wrap gap-2 text-xs">
+      <div className="mb-4 flex flex-wrap gap-2 text-xs">
         {items.map(function (it, idx) {
           var ok = it.ok;
           return (
@@ -167,7 +189,7 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
       <div className={sandboxOuterClass} role="region" aria-label={props.ariaLabel || 'PayU integration sandbox'}>
         <button
           type="button"
-          onClick={function () { setOpen(!open); }}
+          onClick={function (e) { e.preventDefault(); e.stopPropagation(); setOpen(!open); }}
           className="flex w-full cursor-pointer items-center gap-3 border-0 bg-transparent px-4 py-3 text-left hover:bg-teal-50/80 dark:hover:bg-teal-950/40"
           aria-expanded={open}
         >
@@ -176,9 +198,13 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
           <span className="shrink-0 text-teal-700 dark:text-teal-400">{open ? '▼' : '▶'}</span>
         </button>
         {open ? (
-          <div className="bg-white px-4 py-4 dark:bg-gray-900/30">
-            <p className="mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300">{props.intro}</p>
-            {props.children}
+          <div
+            className="bg-white px-4 py-4 dark:bg-gray-900/30"
+            onClick={function (e) { e.stopPropagation(); }}
+            onMouseDown={function (e) { e.stopPropagation(); }}
+          >
+            <p className="mb-5 text-sm leading-relaxed text-gray-600 dark:text-gray-300">{props.intro}</p>
+            <div className="space-y-4">{props.children}</div>
           </div>
         ) : null}
       </div>
@@ -249,32 +275,31 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
   }
 
   return (
-    <SandboxAccordion title="Try Out! · Generate forward hash" intro="This is a live tool — For Testing. Enter your test salt and generate the SHA-512 hash using parameters from Step 1.1." ariaLabel="Step 1.2 sandbox">
+    <SandboxAccordion title="Try Out! · Generate forward hash" intro="Enter your test salt and generate the SHA-512 hash using parameters from Step 1.1." ariaLabel="Step 1.2 sandbox">
       <div className={shellClass}>
-      <LabHeader step="1.2" hint="Uses parameters saved in Step 1.1. Test salt only — generate production hashes on your server." />
       <LabStatus items={[
         { label: 'Step 1.1 parameters', ok: paramsOk },
         { label: 'Hash generated', ok: hashHex.length === 128 }
       ]} />
-      {!paramsOk ? <p className="mb-3 text-sm text-amber-800 dark:text-amber-200">Go to Step 1.1 above and click Save parameters to lab.</p> : null}
-      <div className="mb-3 max-w-md">
-        <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-200">salt (test only) <span className="text-red-500">*</span></label>
+      {!paramsOk ? <p className={noteClass}>Go to Step 1.1 above and click Save parameters to lab.</p> : null}
+      <div className={fieldWrapClass + ' max-w-md'}>
+        <FieldLabel name="salt" required={true} />
         <input type="password" value={salt} onChange={function (e) { setSalt(e.target.value); setHashHex(''); setErr(''); }} className={inputClass} autoComplete="off" />
       </div>
-      <div className="mb-3 flex flex-wrap gap-2">
-        <button type="button" onClick={generateHash} disabled={busy || !paramsOk} className={btnPrimaryClass}>
+      <div className={btnRowClass}>
+        <button type="button" onClick={labClick(generateHash)} disabled={busy || !paramsOk} className={btnPrimaryClass}>
           {busy ? 'Generating…' : 'Generate Forward Hash'}
         </button>
-        <button type="button" onClick={function () { copyText(hashHex, setCopyMsg); }} disabled={!hashHex} className={btnGhostClass}>Copy hash</button>
-        <button type="button" onClick={function () { setShowPipe(!showPipe); }} disabled={!pipeString} className={btnGhostClass}>
+        <button type="button" onClick={labClick(function () { copyText(hashHex, setCopyMsg); })} disabled={!hashHex} className={btnGhostClass}>Copy hash</button>
+        <button type="button" onClick={labClick(function () { setShowPipe(!showPipe); })} disabled={!pipeString} className={btnGhostClass}>
           {showPipe ? 'Hide pipe string' : 'Show pipe string'}
         </button>
       </div>
-      {err ? <p className="mb-2 text-sm text-red-600" role="alert">{err}</p> : null}
-      {copyMsg ? <p className="mb-2 text-sm text-teal-700">{copyMsg}</p> : null}
-      {hashHex ? <code className={'mb-2 ' + codeBlockClass}>{hashHex}</code> : null}
-      {showPipe && pipeString ? <code className={'mb-2 ' + codeBlockClass}>{pipeString}</code> : null}
-      {hashHex ? <p className="text-xs text-gray-500">Step 1.2 complete — continue to Step 1.3 to open PayU test checkout.</p> : null}
+      {err ? <p className="mb-3 text-sm text-red-600" role="alert">{err}</p> : null}
+      {copyMsg ? <p className="mb-3 text-sm text-teal-700">{copyMsg}</p> : null}
+      {hashHex ? <code className={'mb-3 ' + codeBlockClass}>{hashHex}</code> : null}
+      {showPipe && pipeString ? <code className={'mb-3 ' + codeBlockClass}>{pipeString}</code> : null}
+      {hashHex ? <p className="mt-4 text-xs leading-relaxed text-gray-500">Step 1.2 complete — continue to Step 1.3 to open PayU test checkout.</p> : null}
       </div>
     </SandboxAccordion>
   );
