@@ -425,8 +425,6 @@ To ensure the payment request is secure, you should generate a hash using your t
 
 </Accordion>
 
-<PayUHostedCheckoutStep12 />
-
 ***
 
 ### Step 1.3 Redirect Customers to PayU Checkout
