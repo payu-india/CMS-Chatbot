@@ -125,7 +125,7 @@ Send these optional parameters in the request as required.
   Enter your **test key** and values below, then click **Save parameters to lab**. Data stays in your browser for Step 1.2.
 </Callout>
 
-<Accordion title="Try Out! - Add Request Parameter Values to Test" icon="fa-info-circle">
+<Accordion title="Try Out! - Add Request Parameter Values" icon="fa-play-circle">
 <PayUHostedCheckoutStep11 />
 </Accordion>
 
