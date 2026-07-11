@@ -117,26 +117,7 @@ Send these optional parameters in the request as required.
 | `note_category`    | `string` Use this parameter to specify which payment options the custom note message should be displayed for. This parameter should contain a comma-separated list of the payment options that you want the custom note to be displayed for. Example: `CC, NB` This will show the custom\_note for Credit Card and Net banking.                                                                     |
 </Accordion>
 
-<br />
-
-<HTMLBlock>{`
-<div style="border:2px dashed #0d9488;border-radius:12px;background:#f0fdfa;margin:24px 0;overflow:hidden;">
-  <div style="padding:16px 18px;border-bottom:1px dashed #99f6e4;">
-    <div style="margin-bottom:8px;">
-      <span style="background:#0d9488;color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:4px;letter-spacing:0.06em;margin-right:10px;">SANDBOX</span>
-      <span style="font-weight:600;color:#134e4a;font-size:16px;">Interactive — try it yourself</span>
-    </div>
-    <p style="margin:0;color:#475569;font-size:14px;line-height:1.6;">
-      This is a <strong>live tool</strong>, not documentation text. Enter your <strong>test key</strong> and values, then click <strong>Save parameters to lab</strong>. Values stay in your browser for Step 1.2.
-    </p>
-  </div>
-  <div style="padding:12px 18px;background:#ffffff;">
-    <p style="margin:0;font-size:13px;color:#64748b;line-height:1.5;">
-      ↓ Expand <strong>Try Out!</strong> below to add your test payment parameters.
-    </p>
-  </div>
-</div>
-`}</HTMLBlock>
+<PayUHostedCheckoutSandboxStep11 />
 
 ***
 
