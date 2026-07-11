@@ -427,7 +427,7 @@ To ensure the payment request is secure, you should generate a hash using your t
 
 </Accordion>
 
-<PayUHostedCheckoutSandboxStep11 />
+<PayUHostedCheckoutSandboxStep12 />
 
 ***
 
