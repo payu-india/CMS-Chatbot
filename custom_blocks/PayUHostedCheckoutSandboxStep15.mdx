@@ -194,17 +194,17 @@ export const PayUHostedCheckoutSandboxStep15 = function PayUHostedCheckoutSandbo
     );
   }
 
-  var SANDBOX_OPEN_KEY = 'payu-hosted-checkout-sandbox-open-v1';
+  var SANDBOX_OPEN_KEY = 'payu-hosted-checkout-sandbox-open-v2';
 
   function sandboxOpenRead(id) {
     try {
-      if (typeof window === 'undefined' || !window.sessionStorage) return true;
+      if (typeof window === 'undefined' || !window.sessionStorage) return false;
       var raw = window.sessionStorage.getItem(SANDBOX_OPEN_KEY);
-      if (!raw) return true;
+      if (!raw) return false;
       var map = JSON.parse(raw);
-      return map[id] !== false;
+      return map[id] === true;
     } catch (e) {
-      return true;
+      return false;
     }
   }
 
