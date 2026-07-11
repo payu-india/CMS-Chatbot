@@ -137,7 +137,7 @@ Send these optional parameters in the request as required.
 </Accordion>
 
 <HTMLBlock>{\`
-<div style="border:2px dashed #0d9488;border-top:1px dashed #99f6e4;border-radius:0 0 12px 12px;height:8px;margin-bottom:24px;background:#f0fdfa;"></div>
+<div style="border:2px dashed #0d9488;border-top:none;border-radius:0 0 12px 12px;height:12px;margin-bottom:24px;background:#f0fdfa;"></div>
 \`}</HTMLBlock>
 `}</HTMLBlock>
 
