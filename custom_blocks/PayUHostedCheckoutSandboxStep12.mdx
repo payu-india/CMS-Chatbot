@@ -14,10 +14,10 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
   var DEFAULT_PARAMS = LAB_CONFIG.defaults;
 
   var shellClass = 'min-w-0';
-  var fieldStackClass = 'space-y-1';
-  var fieldWrapClass = 'mb-4';
-  var labelClass = 'mb-2 block text-sm font-bold text-gray-900 dark:text-gray-100';
-  var btnRowClass = 'mt-5 flex flex-wrap gap-2';
+  var fieldStackClass = 'space-y-4';
+  var fieldWrapClass = '';
+  var labelClass = 'mb-2 block text-sm font-bold text-teal-700 dark:text-teal-300';
+  var btnRowClass = 'mt-5 flex flex-wrap items-center gap-2';
   var hintClass = 'mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300';
   var noteClass = 'mb-4 text-sm leading-relaxed text-amber-800 dark:text-amber-200';
   var inputClass =
@@ -25,7 +25,11 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
   var btnPrimaryClass =
     'cursor-pointer rounded-md border-0 bg-teal-700 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-800 disabled:opacity-50 dark:bg-teal-600 dark:hover:bg-teal-500';
   var btnGhostClass =
-    'cursor-pointer rounded-md border border-gray-300 bg-transparent px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 disabled:opacity-40 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-800/50';
+    'cursor-pointer rounded-md border border-teal-600 bg-teal-50 px-4 py-2 text-sm font-semibold text-teal-800 hover:bg-teal-100 disabled:opacity-40 dark:border-teal-500 dark:bg-teal-950/40 dark:text-teal-200 dark:hover:bg-teal-900/50';
+  var linkBtnClass =
+    btnGhostClass + ' inline-flex items-center no-underline';
+  var detailsSummaryClass =
+    btnGhostClass + ' mb-0 list-none [&::-webkit-details-marker]:hidden';
   var codeBlockClass =
     'block break-all rounded bg-gray-100 px-3 py-2 text-xs font-mono text-gray-800 dark:bg-gray-800/50 dark:text-gray-100';
   var linkClass =
@@ -98,10 +102,22 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
       .replace(/>/g, '&gt;');
   }
 
+  function labStopBubble(e) {
+    if (!e) return;
+    if (e.stopPropagation) e.stopPropagation();
+    if (e.nativeEvent && e.nativeEvent.stopImmediatePropagation) {
+      e.nativeEvent.stopImmediatePropagation();
+    }
+  }
+
+  function labStopEvent(e) {
+    labStopBubble(e);
+    if (e.preventDefault) e.preventDefault();
+  }
+
   function labClick(fn) {
     return function (e) {
-      if (e && e.preventDefault) e.preventDefault();
-      if (e && e.stopPropagation) e.stopPropagation();
+      labStopEvent(e);
       fn(e);
     };
   }
@@ -178,18 +194,57 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
     );
   }
 
+  var SANDBOX_OPEN_KEY = 'payu-hosted-checkout-sandbox-open-v1';
+
+  function sandboxOpenRead(id) {
+    try {
+      if (typeof window === 'undefined' || !window.sessionStorage) return true;
+      var raw = window.sessionStorage.getItem(SANDBOX_OPEN_KEY);
+      if (!raw) return true;
+      var map = JSON.parse(raw);
+      return map[id] !== false;
+    } catch (e) {
+      return true;
+    }
+  }
+
+  function sandboxOpenWrite(id, isOpen) {
+    try {
+      if (typeof window === 'undefined' || !window.sessionStorage) return;
+      var raw = window.sessionStorage.getItem(SANDBOX_OPEN_KEY);
+      var map = raw ? JSON.parse(raw) : {};
+      map[id] = !!isOpen;
+      window.sessionStorage.setItem(SANDBOX_OPEN_KEY, JSON.stringify(map));
+    } catch (e2) {}
+  }
+
   var sandboxOuterClass =
     'my-6 w-full min-w-0 max-w-full box-border overflow-hidden rounded-xl border-2 border-dashed border-teal-500 bg-teal-50/40 dark:border-teal-400 dark:bg-teal-950/20';
 
   function SandboxAccordion(props) {
-    var _open = useState(false);
+    var sandboxId = props.ariaLabel || props.title || 'sandbox';
+    var _open = useState(function () { return sandboxOpenRead(sandboxId); });
     var open = _open[0];
     var setOpen = _open[1];
+    function toggleOpen(e) {
+      labStopEvent(e);
+      var next = !open;
+      setOpen(next);
+      sandboxOpenWrite(sandboxId, next);
+    }
     return (
-      <div className={sandboxOuterClass} role="region" aria-label={props.ariaLabel || 'PayU integration sandbox'}>
+      <div
+        className={sandboxOuterClass}
+        role="region"
+        aria-label={props.ariaLabel || 'PayU integration sandbox'}
+        onClick={labStopBubble}
+        onMouseDown={labStopBubble}
+        onPointerDown={labStopBubble}
+      >
         <button
           type="button"
-          onClick={function (e) { e.preventDefault(); e.stopPropagation(); setOpen(!open); }}
+          onClick={toggleOpen}
+          onMouseDown={labStopEvent}
           className="flex w-full cursor-pointer items-center gap-3 border-0 bg-transparent px-4 py-3 text-left hover:bg-teal-50/80 dark:hover:bg-teal-950/40"
           aria-expanded={open}
         >
@@ -200,8 +255,9 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
         {open ? (
           <div
             className="bg-white px-4 py-4 dark:bg-gray-900/30"
-            onClick={function (e) { e.stopPropagation(); }}
-            onMouseDown={function (e) { e.stopPropagation(); }}
+            onClick={labStopBubble}
+            onMouseDown={labStopBubble}
+            onPointerDown={labStopBubble}
           >
             <p className="mb-5 text-sm leading-relaxed text-gray-600 dark:text-gray-300">{props.intro}</p>
             <div className="space-y-4">{props.children}</div>
@@ -282,9 +338,11 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
         { label: 'Hash generated', ok: hashHex.length === 128 }
       ]} />
       {!paramsOk ? <p className={noteClass}>Go to Step 1.1 above and click Save parameters to lab.</p> : null}
-      <div className={fieldWrapClass + ' max-w-md'}>
-        <FieldLabel name="salt" required={true} />
-        <input type="password" value={salt} onChange={function (e) { setSalt(e.target.value); setHashHex(''); setErr(''); }} className={inputClass} autoComplete="off" />
+      <div className={fieldStackClass + ' max-w-md'}>
+        <div>
+          <FieldLabel name="salt" required={true} />
+          <input type="password" value={salt} onChange={function (e) { setSalt(e.target.value); setHashHex(''); setErr(''); }} className={inputClass} autoComplete="off" />
+        </div>
       </div>
       <div className={btnRowClass}>
         <button type="button" onClick={labClick(generateHash)} disabled={busy || !paramsOk} className={btnPrimaryClass}>
