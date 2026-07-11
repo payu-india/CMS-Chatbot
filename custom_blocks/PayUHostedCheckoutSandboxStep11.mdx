@@ -123,7 +123,7 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
 
   function LabHeader(props) {
     return (
-      <div className="mb-3 border-b border-teal-100 pb-3 dark:border-teal-900/60">
+      <div className="mb-3 pb-1">
         <div className="mb-1 text-xs font-semibold uppercase tracking-wider text-teal-700 dark:text-teal-400">
           Integration lab · Step {props.step}
         </div>
@@ -157,7 +157,7 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
   }
 
   var sandboxOuterClass =
-    'my-6 w-full min-w-0 max-w-full box-border overflow-hidden rounded-xl bg-teal-50/50 dark:bg-teal-950/20';
+    'my-6 w-full min-w-0 max-w-full box-border overflow-hidden rounded-xl border-2 border-dashed border-teal-500 bg-teal-50/40 dark:border-teal-400 dark:bg-teal-950/20';
 
   function SandboxAccordion(props) {
     var _open = useState(false);
@@ -176,7 +176,7 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
           <span className="shrink-0 text-teal-700 dark:text-teal-400">{open ? '▼' : '▶'}</span>
         </button>
         {open ? (
-          <div className="border-t border-dashed border-teal-300 bg-white px-4 py-4 dark:border-teal-700 dark:bg-gray-900/30">
+          <div className="bg-white px-4 py-4 dark:bg-gray-900/30">
             <p className="mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300">{props.intro}</p>
             {props.children}
           </div>
