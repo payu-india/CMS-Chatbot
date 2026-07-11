@@ -1,0 +1,256 @@
+---
+name: PayUHostedCheckoutStep11
+---
+// PayUHostedCheckoutStep11 - ReadMe CMS hybrid lab widget
+// Regenerate: node scripts/build-payu-hosted-checkout-steps.mjs
+// Place under Step 1.1 on the integration guide page (after existing accordions).
+
+import { useState, useEffect } from 'react';
+
+export const PayUHostedCheckoutStep11 = function PayUHostedCheckoutStep11(props) {
+
+  var LAB_CONFIG = JSON.parse('{"storageKey":"payu-hosted-checkout-lab-v1","testPaymentUrl":"https://test.payu.in/_payment","simulatorUrl":"https://test-payment-middleware.payu.in/simulatorResponse","hashVerifyToolUrl":"https://payu-hashverificationtool.onrender.com/","defaults":{"key":"","txnid":"tran_1234","amount":"10.00","productinfo":"iPhone","firstname":"Aarav","email":"aarav@example.com","phone":"1234567890","surl":"https://test-payment-middleware.payu.in/simulatorResponse","furl":"https://test-payment-middleware.payu.in/simulatorResponse","udf1":"","udf2":"","udf3":"","udf4":"","udf5":""},"sampleReverseResponse":{"status":"success","key":"","txnid":"tran_1234","amount":"10.00","productinfo":"iPhone","firstname":"Aarav","email":"aarav@example.com","udf1":"","udf2":"","udf3":"","udf4":"","udf5":""}}');
+  var LAB_KEY = LAB_CONFIG.storageKey;
+  var TEST_PAYMENT = LAB_CONFIG.testPaymentUrl;
+  var DEFAULT_PARAMS = LAB_CONFIG.defaults;
+
+  var shellClass = 'my-4';
+  var inputClass =
+    'w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-mono text-gray-900 focus:border-teal-600 focus:outline-none focus:ring-1 focus:ring-teal-600 dark:border-gray-600 dark:bg-gray-900/30 dark:text-gray-100';
+  var btnPrimaryClass =
+    'cursor-pointer rounded-md border-0 bg-teal-700 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-800 disabled:opacity-50 dark:bg-teal-600 dark:hover:bg-teal-500';
+  var btnGhostClass =
+    'cursor-pointer rounded-md border border-gray-300 bg-transparent px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 disabled:opacity-40 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-800/50';
+  var codeBlockClass =
+    'block break-all rounded bg-gray-100 px-3 py-2 text-xs font-mono text-gray-800 dark:bg-gray-800/50 dark:text-gray-100';
+  var linkClass =
+    'cursor-pointer border-0 bg-transparent p-0 text-sm font-medium text-teal-700 underline hover:text-teal-800 dark:text-teal-400';
+
+  function empty(s) {
+    return s == null ? '' : String(s).trim();
+  }
+
+  function labRead() {
+    try {
+      if (typeof window === 'undefined' || !window.sessionStorage) return null;
+      var raw = window.sessionStorage.getItem(LAB_KEY);
+      if (!raw) return null;
+      return JSON.parse(raw);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function labWrite(data) {
+    try {
+      if (typeof window === 'undefined' || !window.sessionStorage) return false;
+      data.updatedAt = Date.now();
+      window.sessionStorage.setItem(LAB_KEY, JSON.stringify(data));
+      return true;
+    } catch (e2) {
+      return false;
+    }
+  }
+
+  function labEnsure() {
+    var existing = labRead();
+    if (existing && existing.params) return existing;
+    return { params: Object.assign({}, DEFAULT_PARAMS), salt: '', hashHex: '', pipeString: '', step11Done: false, step12Done: false };
+  }
+
+  function buildForwardHashString(params, salt) {
+    var p = params;
+    return (
+      empty(p.key) + '|' + empty(p.txnid) + '|' + empty(p.amount) + '|' + empty(p.productinfo) + '|' +
+      empty(p.firstname) + '|' + empty(p.email) + '|' + empty(p.udf1) + '|' + empty(p.udf2) + '|' +
+      empty(p.udf3) + '|' + empty(p.udf4) + '|' + empty(p.udf5) + '||||||' + empty(salt)
+    );
+  }
+
+  function buildReverseHashString(salt, resp) {
+    return (
+      empty(salt) + '|' + empty(resp.status) + '||||||' + empty(resp.udf5) + '|' + empty(resp.udf4) + '|' +
+      empty(resp.udf3) + '|' + empty(resp.udf2) + '|' + empty(resp.udf1) + '|' + empty(resp.email) + '|' +
+      empty(resp.firstname) + '|' + empty(resp.productinfo) + '|' + empty(resp.amount) + '|' +
+      empty(resp.txnid) + '|' + empty(resp.key)
+    );
+  }
+
+  function sha512Hex(msg) {
+    var enc = new TextEncoder();
+    return crypto.subtle.digest('SHA-512', enc.encode(msg)).then(function (buf) {
+      return Array.from(new Uint8Array(buf))
+        .map(function (b) { return b.toString(16).padStart(2, '0'); })
+        .join('');
+    });
+  }
+
+  function escapeAttr(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/"/g, '&quot;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  function copyText(text, setCopyMsg) {
+    var value = String(text || '');
+    if (!value) return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(value).then(function () {
+        setCopyMsg('Copied.');
+        setTimeout(function () { setCopyMsg(''); }, 2000);
+      });
+    }
+  }
+
+  function LabHeader(props) {
+    return (
+      <div className="mb-3">
+        <div className="mb-1 text-xs font-semibold uppercase tracking-wider text-teal-700 dark:text-teal-400">
+          Step {props.step} Prepare Payment Request Parameters
+        </div>
+        <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{props.title}</p>
+        {props.hint ? <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">{props.hint}</p> : null}
+      </div>
+    );
+  }
+
+  function LabStatus(props) {
+    var items = props.items || [];
+    return (
+      <div className="mb-3 flex flex-wrap gap-2 text-xs">
+        {items.map(function (it, idx) {
+          var ok = it.ok;
+          return (
+            <span
+              key={idx}
+              className={
+                ok
+                  ? 'rounded-full bg-teal-50 px-2 py-1 text-teal-800 dark:bg-teal-950 dark:text-teal-200'
+                  : 'rounded-full bg-gray-100 px-2 py-1 text-gray-600 dark:bg-gray-800 dark:text-gray-300'
+              }
+            >
+              {ok ? '✓ ' : '○ '}{it.label}
+            </span>
+          );
+        })}
+      </div>
+    );
+  }
+
+
+  var MANDATORY = JSON.parse('[{"k":"key","l":"key"},{"k":"txnid","l":"txnid"},{"k":"amount","l":"amount"},{"k":"productinfo","l":"productinfo"},{"k":"firstname","l":"firstname"},{"k":"email","l":"email","t":"email"},{"k":"phone","l":"phone"},{"k":"surl","l":"surl"},{"k":"furl","l":"furl"}]');
+  var OPTIONAL = JSON.parse('[{"k":"udf1","l":"udf1"},{"k":"udf2","l":"udf2"},{"k":"udf3","l":"udf3"},{"k":"udf4","l":"udf4"},{"k":"udf5","l":"udf5"}]');
+
+  var _form = useState(Object.assign({}, DEFAULT_PARAMS));
+  var form = _form[0];
+  var setForm = _form[1];
+  var _showUdf = useState(false);
+  var showUdf = _showUdf[0];
+  var setShowUdf = _showUdf[1];
+  var _msg = useState('');
+  var msg = _msg[0];
+  var setMsg = _msg[1];
+  var _err = useState('');
+  var err = _err[0];
+  var setErr = _err[1];
+  var _saved = useState(false);
+  var saved = _saved[0];
+  var setSaved = _saved[1];
+
+  useEffect(function () {
+    var lab = labEnsure();
+    if (lab.params) setForm(Object.assign({}, DEFAULT_PARAMS, lab.params));
+    setSaved(!!lab.step11Done);
+  }, []);
+
+  function patch(k, v) {
+    var n = Object.assign({}, form);
+    n[k] = v;
+    setForm(n);
+    setSaved(false);
+    setErr('');
+  }
+
+  function newTxnid() {
+    var id = 'tran_' + Date.now().toString(36);
+    patch('txnid', id.slice(0, 20));
+  }
+
+  function validateParams() {
+    for (var i = 0; i < MANDATORY.length; i += 1) {
+      if (!empty(form[MANDATORY[i].k])) continue;
+      return 'Missing required field: ' + MANDATORY[i].l;
+    }
+    if (!/^\d+(\.\d{1,2})?$/.test(empty(form.amount))) {
+      return 'Amount must be a decimal string (e.g. 10.00).';
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(empty(form.email))) {
+      return 'Enter a valid email address.';
+    }
+    return '';
+  }
+
+  function saveToLab() {
+    var ve = validateParams();
+    if (ve) { setErr(ve); return; }
+    var lab = labEnsure();
+    lab.params = Object.assign({}, form);
+    lab.step11Done = true;
+    lab.hashHex = '';
+    lab.pipeString = '';
+    lab.step12Done = false;
+    labWrite(lab);
+    setSaved(true);
+    setMsg('Saved to integration lab. Continue to Step 1.2 to generate the hash.');
+    setErr('');
+  }
+
+  function renderField(row) {
+    var type = row.t === 'email' ? 'email' : 'text';
+    return (
+      <div key={row.k} className="mb-3">
+        <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-200">
+          {row.l} <span className="text-red-500">*</span>
+        </label>
+        <input type={type} value={form[row.k] || ''} onChange={function (e) { patch(row.k, e.target.value); }} className={inputClass} />
+      </div>
+    );
+  }
+
+  return (
+    <div className={shellClass} role="region" aria-label="Step 1.1 payment parameters lab">
+      <LabHeader step="1.1" hint="Add Key and Salt and edit other values as per requirement. Save them for next step." />
+      <div className="grid grid-cols-1 gap-x-4 sm:grid-cols-2">
+        {MANDATORY.map(renderField)}
+      </div>
+      <button type="button" onClick={function () { setShowUdf(!showUdf); }} className={linkClass + ' mb-2'}>
+        {showUdf ? 'Hide optional UDF fields' : 'Show optional UDF fields (udf1–udf5)'}
+      </button>
+      {showUdf ? (
+        <div className="mb-3 grid grid-cols-1 gap-x-4 sm:grid-cols-2">
+          {OPTIONAL.map(function (row) {
+            return (
+              <div key={row.k} className="mb-3">
+                <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-200">{row.l}</label>
+                <input type="text" value={form[row.k] || ''} onChange={function (e) { patch(row.k, e.target.value); }} className={inputClass} />
+              </div>
+            );
+          })}
+        </div>
+      ) : null}
+      {err ? <p className="mb-2 text-sm text-red-600" role="alert">{err}</p> : null}
+      {msg ? <p className="mb-2 text-sm text-teal-700">{msg}</p> : null}
+      <div className="flex flex-wrap gap-2">
+        <button type="button" onClick={saveToLab} className={btnPrimaryClass}>Save parameters to lab</button>
+        <button type="button" onClick={newTxnid} className={btnGhostClass}>New txnid</button>
+        <button type="button" onClick={function () { setForm(Object.assign({}, DEFAULT_PARAMS)); setSaved(false); setMsg(''); setErr(''); }} className={btnGhostClass}>Reset examples</button>
+      </div>
+      {saved ? <p className="mt-2 text-xs text-gray-500">Step 1.1 complete — parameters stored for Steps 1.2 and 1.3.</p> : null}
+    </div>
+  );
+
+};
+
+<PayUHostedCheckoutStep11 />
