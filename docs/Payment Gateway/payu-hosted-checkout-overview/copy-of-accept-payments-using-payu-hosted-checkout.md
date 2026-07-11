@@ -1414,10 +1414,6 @@ Response verification ensures that the response originated from PayU and has not
 
 After the payment is successful or failed, PayU POSTs back to your `surl` or `furl` respectively with URL-encoded fields (form post). This payload includes the transaction status, `txnid`, `mihpayid`, and a hash you must verify (reverse hashing) for verification. Below is how the reverse hashing works.
 
-
-<Image src="https://files.readme.io/7acf9d72438a6a00b637ef4c70c13b8a4871c3aa6055d7c985bbef5f980fa502-reverse_hashing_flow.png" align="center" caption="_Reverse Hashing Flow_" border={true} framed={true} />
-
-
 <Callout icon="✅" theme="okay">
   ### **Validation Rules:**
 
@@ -1449,7 +1445,7 @@ You should compare the hash value you got from the above logic with the hash val
 
 You can also use the <Anchor target="_blank" href="https://payu-hashverificationtool.onrender.com/">PayU's Hash Verification System</Anchor> to generate a hash (reverse hash) for payment verification.
 
-<PayUHostedCheckoutStep14 />
+<PayUHostedCheckoutSandboxStep14 />
 
 ***
 
