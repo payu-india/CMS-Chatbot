@@ -1487,6 +1487,8 @@ After the transaction is complete, you should check the payment status. Use PayU
 </Tabs>
 </Accordion>
 
+<PayUHostedCheckoutStep15 />
+
 ***
 
 ## 2. Test Integration
