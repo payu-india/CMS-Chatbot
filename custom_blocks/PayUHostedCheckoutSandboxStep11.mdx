@@ -4,7 +4,7 @@ name: PayUHostedCheckoutSandboxStep11
 // PayUHostedCheckoutSandboxStep11 - Sandbox dashed box + accordion + lab (single paste)
 // Regenerate: node scripts/build-payu-hosted-checkout-steps.mjs
 
-import { useState, useEffect, useLayoutEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandboxStep11(props) {
 
@@ -145,34 +145,6 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
     };
   }
 
-  var SANDBOX_UI_GLOBAL = '__payuHostedCheckoutSandboxUi';
-
-  function sandboxUiStore() {
-    if (typeof window !== 'undefined') {
-      if (!window[SANDBOX_UI_GLOBAL]) window[SANDBOX_UI_GLOBAL] = {};
-      return window[SANDBOX_UI_GLOBAL];
-    }
-    return {};
-  }
-
-  function sandboxUiRead(id) {
-    return sandboxUiStore()[id] === true;
-  }
-
-  function sandboxUiWrite(id, isOpen) {
-    sandboxUiStore()[id] = !!isOpen;
-  }
-
-  function sandboxUiMarkOpen(id) {
-    sandboxUiWrite(id, true);
-  }
-
-  function syncSandboxDetails(details, id) {
-    if (!details) return;
-    if (sandboxUiRead(id) && !details.open) details.open = true;
-    sandboxSyncChevron(details);
-  }
-
   function FieldLabel(props) {
     return (
       <label style={labelStyle}>
@@ -270,8 +242,6 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
 
   function onSandboxToggle(e) {
     var details = e.currentTarget;
-    var id = details.getAttribute('data-sandbox-id') || 'sandbox';
-    sandboxUiWrite(id, details.open);
     sandboxSyncChevron(details);
   }
 
@@ -281,30 +251,21 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
     if (!details || details.tagName !== 'DETAILS') return;
     labStopEvent(e);
     details.open = !details.open;
-    var id = details.getAttribute('data-sandbox-id') || 'sandbox';
-    sandboxUiWrite(id, details.open);
     sandboxSyncChevron(details);
   }
 
-  function onSandboxPanelInteract(id) {
-    return function (e) {
-      labStopBubble(e);
-      var panel = e.currentTarget;
-      var details = panel && panel.parentNode;
-      if (details && details.open) sandboxUiMarkOpen(id);
-    };
-  }
-
   function SandboxAccordion(props) {
-    var sandboxId = props.ariaLabel || props.title || 'sandbox';
     var detailsRef = useRef(null);
-    useLayoutEffect(function () {
-      syncSandboxDetails(detailsRef.current, sandboxId);
-    });
+    useEffect(function () {
+      var details = detailsRef.current;
+      if (!details) return;
+      details.open = false;
+      sandboxSyncChevron(details);
+    }, []);
     return (
       <details
         ref={detailsRef}
-        data-sandbox-id={sandboxId}
+        data-sandbox-id={props.ariaLabel || props.title || 'sandbox'}
         style={sandboxOuterStyle}
         onToggle={onSandboxToggle}
         aria-label={props.ariaLabel || 'PayU integration sandbox'}
@@ -316,8 +277,6 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
         </summary>
         <div
           style={sandboxBodyStyle}
-          onFocus={onSandboxPanelInteract(sandboxId)}
-          onInput={onSandboxPanelInteract(sandboxId)}
           onClick={labStopBubble}
           onMouseDown={labStopBubble}
           onPointerDown={labStopBubble}
@@ -331,10 +290,53 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
 
   var MANDATORY = JSON.parse('[{"k":"key","l":"key"},{"k":"txnid","l":"txnid"},{"k":"amount","l":"amount"},{"k":"productinfo","l":"productinfo"},{"k":"firstname","l":"firstname"},{"k":"email","l":"email","t":"email"},{"k":"phone","l":"phone"},{"k":"surl","l":"surl"},{"k":"furl","l":"furl"}]');
   var OPTIONAL = JSON.parse('[{"k":"udf1","l":"udf1"},{"k":"udf2","l":"udf2"},{"k":"udf3","l":"udf3"},{"k":"udf4","l":"udf4"},{"k":"udf5","l":"udf5"}]');
+  var FORM_UI_GLOBAL = '__payuHostedCheckoutStep11Form';
 
-  var _form = useState(Object.assign({}, DEFAULT_PARAMS));
-  var form = _form[0];
-  var setForm = _form[1];
+  function formStore() {
+    if (typeof window !== 'undefined') {
+      if (!window[FORM_UI_GLOBAL]) {
+        var lab = labRead();
+        var base = Object.assign({}, DEFAULT_PARAMS);
+        if (lab && lab.params) Object.assign(base, lab.params);
+        window[FORM_UI_GLOBAL] = base;
+      }
+      return window[FORM_UI_GLOBAL];
+    }
+    return Object.assign({}, DEFAULT_PARAMS);
+  }
+
+  function collectFormFromDom() {
+    var store = formStore();
+    if (typeof document === 'undefined') return store;
+    var fields = document.querySelectorAll('[data-payu-step11-field]');
+    for (var i = 0; i < fields.length; i += 1) {
+      var el = fields[i];
+      var k = el.getAttribute('data-payu-step11-field');
+      if (k) store[k] = el.value;
+    }
+    return store;
+  }
+
+  function syncFieldToDom(k, v) {
+    if (typeof document === 'undefined') return;
+    var el = document.querySelector('[data-payu-step11-field="' + k + '"]');
+    if (el) el.value = v == null ? '' : String(v);
+  }
+
+  function syncAllFieldsToDom(values) {
+    var keys = Object.keys(values || {});
+    for (var i = 0; i < keys.length; i += 1) {
+      syncFieldToDom(keys[i], values[keys[i]]);
+    }
+  }
+
+  function onFieldInput(k) {
+    return function (e) {
+      formStore()[k] = e.target.value;
+    };
+  }
+
+  var form = formStore();
   var _msg = useState('');
   var msg = _msg[0];
   var setMsg = _msg[1];
@@ -362,7 +364,6 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
   }
 
   function toggleUdfPanel() {
-    sandboxUiMarkOpen('Step 1.1 sandbox');
     try {
       var panel = udfPanelRef.current;
       var btn = udfBtnRef.current;
@@ -378,37 +379,33 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
 
   useEffect(function () {
     var lab = labEnsure();
-    if (lab.params) setForm(Object.assign({}, DEFAULT_PARAMS, lab.params));
+    if (lab.params) {
+      Object.assign(formStore(), DEFAULT_PARAMS, lab.params);
+      syncAllFieldsToDom(formStore());
+    }
     setSaved(!!lab.step11Done);
-  }, []);
-
-  useEffect(function () {
     syncUdfPanel();
-  });
-
-  function patch(k, v) {
-    var n = Object.assign({}, form);
-    n[k] = v;
-    setForm(n);
-    setSaved(false);
-    setErr('');
-    sandboxUiMarkOpen('Step 1.1 sandbox');
-  }
+  }, []);
 
   function newTxnid() {
     var id = 'tran_' + Date.now().toString(36);
-    patch('txnid', id.slice(0, 20));
+    var txnid = id.slice(0, 20);
+    formStore().txnid = txnid;
+    syncFieldToDom('txnid', txnid);
+    setSaved(false);
+    setErr('');
   }
 
   function validateParams() {
+    var data = collectFormFromDom();
     for (var i = 0; i < MANDATORY.length; i += 1) {
-      if (!empty(form[MANDATORY[i].k])) continue;
+      if (!empty(data[MANDATORY[i].k])) continue;
       return 'Missing required field: ' + MANDATORY[i].l;
     }
-    if (!/^\d+(\.\d{1,2})?$/.test(empty(form.amount))) {
+    if (!/^\d+(\.\d{1,2})?$/.test(empty(data.amount))) {
       return 'Amount must be a decimal string (e.g. 10.00).';
     }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(empty(form.email))) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(empty(data.email))) {
       return 'Enter a valid email address.';
     }
     return '';
@@ -418,7 +415,7 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
     var ve = validateParams();
     if (ve) { setErr(ve); return; }
     var lab = labEnsure();
-    lab.params = Object.assign({}, form);
+    lab.params = Object.assign({}, collectFormFromDom());
     lab.step11Done = true;
     lab.hashHex = '';
     lab.pipeString = '';
@@ -429,12 +426,26 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
     setErr('');
   }
 
+  function resetExamples() {
+    Object.assign(formStore(), DEFAULT_PARAMS);
+    syncAllFieldsToDom(formStore());
+    setSaved(false);
+    setMsg('');
+    setErr('');
+  }
+
   function renderField(row) {
     var type = row.t === 'email' ? 'email' : 'text';
     return (
       <div key={row.k}>
         <FieldLabel name={row.k} required={true} />
-        <input type={type} value={form[row.k] || ''} onChange={function (e) { patch(row.k, e.target.value); }} style={inputStyle} />
+        <input
+          type={type}
+          data-payu-step11-field={row.k}
+          defaultValue={form[row.k] || ''}
+          onInput={onFieldInput(row.k)}
+          style={inputStyle}
+        />
       </div>
     );
   }
@@ -455,7 +466,13 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
             return (
               <div key={row.k}>
                 <FieldLabel name={row.k} required={false} />
-                <input type="text" value={form[row.k] || ''} onChange={function (e) { patch(row.k, e.target.value); }} style={inputStyle} />
+                <input
+                  type="text"
+                  data-payu-step11-field={row.k}
+                  defaultValue={form[row.k] || ''}
+                  onInput={onFieldInput(row.k)}
+                  style={inputStyle}
+                />
               </div>
             );
           })}
@@ -464,7 +481,7 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
       <div style={btnRowStyle}>
         <button type="button" onClick={labClick(saveToLab)} style={btnPrimaryStyle}>Save parameters to lab</button>
         <button type="button" onClick={labClick(newTxnid)} style={btnSecondaryStyle}>New txnid</button>
-        <button type="button" onClick={labClick(function () { setForm(Object.assign({}, DEFAULT_PARAMS)); setSaved(false); setMsg(''); setErr(''); })} style={btnSecondaryStyle}>Reset examples</button>
+        <button type="button" onClick={labClick(resetExamples)} style={btnSecondaryStyle}>Reset examples</button>
       </div>
       {err ? <p className="mb-3 text-sm text-red-600" role="alert">{err}</p> : null}
       {msg ? <p className="mb-3 text-sm text-teal-700">{msg}</p> : null}
