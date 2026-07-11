@@ -120,7 +120,6 @@ Send these optional parameters in the request as required.
 <br />
 
 <HTMLBlock>{`
-<HTMLBlock>{\`
 <div style="border:2px dashed #0d9488;border-radius:12px;background:#f0fdfa;margin:24px 0;overflow:hidden;">
   <div style="padding:16px 18px;border-bottom:1px dashed #99f6e4;">
     <div style="margin-bottom:8px;">
@@ -137,7 +136,6 @@ Send these optional parameters in the request as required.
     </p>
   </div>
 </div>
-\`}</HTMLBlock>
 `}</HTMLBlock>
 
 ***
