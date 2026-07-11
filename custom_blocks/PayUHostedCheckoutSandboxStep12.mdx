@@ -145,41 +145,6 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
     };
   }
 
-  var SANDBOX_UI_KEY = 'payu-hosted-checkout-sandbox-ui-v1';
-
-  function sandboxUiRead(id) {
-    try {
-      if (typeof window === 'undefined' || !window.sessionStorage) return false;
-      var raw = window.sessionStorage.getItem(SANDBOX_UI_KEY);
-      if (!raw) return false;
-      var map = JSON.parse(raw);
-      return map[id] === true;
-    } catch (e) {
-      return false;
-    }
-  }
-
-  function sandboxUiWrite(id, isOpen) {
-    try {
-      if (typeof window === 'undefined' || !window.sessionStorage) return;
-      var raw = window.sessionStorage.getItem(SANDBOX_UI_KEY);
-      var map = raw ? JSON.parse(raw) : {};
-      map[id] = !!isOpen;
-      window.sessionStorage.setItem(SANDBOX_UI_KEY, JSON.stringify(map));
-    } catch (e2) {}
-  }
-
-  function sandboxUiMarkOpen(id) {
-    sandboxUiWrite(id, true);
-  }
-
-  function syncSandboxDetails(details, id) {
-    if (!details) return;
-    if (sandboxUiRead(id) && !details.open) details.open = true;
-    var chevron = details.querySelector('[data-sandbox-chevron]');
-    if (chevron) chevron.textContent = details.open ? '▼' : '▶';
-  }
-
   function FieldLabel(props) {
     return (
       <label style={labelStyle}>
@@ -269,52 +234,49 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
     background: '#fff', padding: '16px', borderTop: '1px solid rgba(15, 118, 110, 0.15)'
   };
 
-  function onSandboxToggle(e) {
-    labStopBubble(e);
-    var details = e.currentTarget;
-    var id = details.getAttribute('data-sandbox-id') || 'sandbox';
-    sandboxUiWrite(id, details.open);
+  function sandboxSyncChevron(details) {
+    if (!details) return;
     var chevron = details.querySelector('[data-sandbox-chevron]');
     if (chevron) chevron.textContent = details.open ? '▼' : '▶';
   }
 
-  function onSandboxPanelInteract(id) {
-    return function (e) {
-      labStopBubble(e);
-      sandboxUiMarkOpen(id);
-    };
+  function onSandboxToggle(e) {
+    var details = e.currentTarget;
+    sandboxSyncChevron(details);
+  }
+
+  function onSandboxSummaryClick(e) {
+    var summary = e.currentTarget;
+    var details = summary.parentNode;
+    if (!details || details.tagName !== 'DETAILS') return;
+    labStopEvent(e);
+    details.open = !details.open;
+    sandboxSyncChevron(details);
   }
 
   function SandboxAccordion(props) {
-    var sandboxId = props.ariaLabel || props.title || 'sandbox';
     var detailsRef = useRef(null);
     useEffect(function () {
-      syncSandboxDetails(detailsRef.current, sandboxId);
-    });
+      var details = detailsRef.current;
+      if (!details) return;
+      details.open = false;
+      sandboxSyncChevron(details);
+    }, []);
     return (
       <details
         ref={detailsRef}
-        data-sandbox-id={sandboxId}
+        data-sandbox-id={props.ariaLabel || props.title || 'sandbox'}
         style={sandboxOuterStyle}
         onToggle={onSandboxToggle}
-        onClick={labStopBubble}
-        onMouseDown={labStopBubble}
-        onPointerDown={labStopBubble}
         aria-label={props.ariaLabel || 'PayU integration sandbox'}
       >
-        <summary
-          style={sandboxSummaryStyle}
-          onClick={labStopBubble}
-          onMouseDown={labStopBubble}
-        >
+        <summary style={sandboxSummaryStyle} onClick={onSandboxSummaryClick}>
           <span style={sandboxBadgeStyle}>SANDBOX</span>
           <span style={{ minWidth: 0, flex: 1, fontSize: '14px', fontWeight: 600, color: '#111827' }}>{props.title}</span>
           <span data-sandbox-chevron={true} style={{ flexShrink: 0, color: PAYU_GREEN }}>▶</span>
         </summary>
         <div
           style={sandboxBodyStyle}
-          onFocus={onSandboxPanelInteract(sandboxId)}
-          onInput={onSandboxPanelInteract(sandboxId)}
           onClick={labStopBubble}
           onMouseDown={labStopBubble}
           onPointerDown={labStopBubble}
@@ -326,9 +288,38 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
     );
   }
 
-  var _salt = useState('');
-  var salt = _salt[0];
-  var setSalt = _salt[1];
+  var SALT_UI_GLOBAL = '__payuHostedCheckoutStep12Form';
+
+  function saltStore() {
+    if (typeof window !== 'undefined') {
+      if (!window[SALT_UI_GLOBAL]) {
+        var lab = labRead();
+        window[SALT_UI_GLOBAL] = { salt: lab && lab.salt ? lab.salt : '' };
+      }
+      return window[SALT_UI_GLOBAL];
+    }
+    return { salt: '' };
+  }
+
+  function readSaltFromDom() {
+    var store = saltStore();
+    if (typeof document === 'undefined') return store.salt || '';
+    var el = document.querySelector('[data-payu-step12-field="salt"]');
+    if (el) store.salt = el.value;
+    return store.salt || '';
+  }
+
+  function syncSaltToDom(v) {
+    if (typeof document === 'undefined') return;
+    var el = document.querySelector('[data-payu-step12-field="salt"]');
+    if (el) el.value = v == null ? '' : String(v);
+  }
+
+  function onSaltInput(e) {
+    saltStore().salt = e.target.value;
+  }
+
+  var salt = saltStore().salt || '';
   var _hashHex = useState('');
   var hashHex = _hashHex[0];
   var setHashHex = _hashHex[1];
@@ -354,7 +345,10 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
   useEffect(function () {
     var lab = labEnsure();
     setParamsOk(!!lab.step11Done);
-    if (lab.salt) setSalt(lab.salt);
+    if (lab.salt) {
+      saltStore().salt = lab.salt;
+      syncSaltToDom(lab.salt);
+    }
     if (lab.hashHex) setHashHex(lab.hashHex);
     if (lab.pipeString) setPipeString(lab.pipeString);
   }, []);
@@ -365,16 +359,17 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
       setErr('Complete Step 1.1 and save parameters first.');
       return;
     }
-    if (!empty(salt) === false) {
+    var saltVal = readSaltFromDom();
+    if (!empty(saltVal) === false) {
       setErr('Enter your test salt from the PayU dashboard.');
       return;
     }
     setBusy(true);
     setErr('');
-    var chain = buildForwardHashString(lab.params, salt);
+    var chain = buildForwardHashString(lab.params, saltVal);
     sha512Hex(chain)
       .then(function (h) {
-        lab.salt = salt;
+        lab.salt = saltVal;
         lab.hashHex = h;
         lab.pipeString = chain;
         lab.step12Done = true;
@@ -400,7 +395,14 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
       <div style={Object.assign({}, fieldStackStyle, { maxWidth: '28rem' })}>
         <div>
           <FieldLabel name="salt" required={true} />
-          <input type="password" value={salt} onChange={function (e) { setSalt(e.target.value); setHashHex(''); setErr(''); }} style={inputStyle} autoComplete="off" />
+          <input
+            type="password"
+            data-payu-step12-field="salt"
+            defaultValue={salt}
+            onInput={onSaltInput}
+            style={inputStyle}
+            autoComplete="off"
+          />
         </div>
       </div>
       <div style={btnRowStyle}>
