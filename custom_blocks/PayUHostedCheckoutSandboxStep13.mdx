@@ -13,23 +13,46 @@ export const PayUHostedCheckoutSandboxStep13 = function PayUHostedCheckoutSandbo
   var TEST_PAYMENT = LAB_CONFIG.testPaymentUrl;
   var DEFAULT_PARAMS = LAB_CONFIG.defaults;
 
+  var PAYU_GREEN = '#0f766e';
+  var PAYU_GREEN_LIGHT = '#ecfdf5';
+  var RED_REQ = '#dc2626';
+
   var shellClass = 'min-w-0';
-  var fieldStackClass = 'space-y-4';
-  var fieldWrapClass = '';
-  var labelClass = 'mb-2 block text-sm font-bold text-teal-700 dark:text-teal-300';
-  var btnRowClass = 'mt-5 flex flex-wrap items-center gap-2';
+  var fieldStackStyle = { display: 'flex', flexDirection: 'column', gap: '16px' };
+  var fieldStackInnerStyle = { display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '16px' };
+  var btnRowStyle = { display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '20px', alignItems: 'center' };
+  var labelStyle = { display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: 700, color: PAYU_GREEN };
+  var reqStarStyle = { color: RED_REQ, fontWeight: 700 };
   var hintClass = 'mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300';
   var noteClass = 'mb-4 text-sm leading-relaxed text-amber-800 dark:text-amber-200';
-  var inputClass =
-    'box-border w-full min-w-0 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-teal-600 focus:outline-none focus:ring-1 focus:ring-teal-600 dark:border-gray-600 dark:bg-gray-900/30 dark:text-gray-100';
-  var btnPrimaryClass =
-    'cursor-pointer rounded-md border-0 bg-teal-700 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-800 disabled:opacity-50 dark:bg-teal-600 dark:hover:bg-teal-500';
-  var btnGhostClass =
-    'cursor-pointer rounded-md border border-teal-600 bg-teal-50 px-4 py-2 text-sm font-semibold text-teal-800 hover:bg-teal-100 disabled:opacity-40 dark:border-teal-500 dark:bg-teal-950/40 dark:text-teal-200 dark:hover:bg-teal-900/50';
-  var linkBtnClass =
-    btnGhostClass + ' inline-flex items-center no-underline';
-  var detailsSummaryClass =
-    btnGhostClass + ' mb-0 list-none [&::-webkit-details-marker]:hidden';
+  var inputStyle = {
+    boxSizing: 'border-box', width: '100%', minWidth: 0, borderRadius: '6px',
+    border: '1px solid #d1d5db', background: '#fff', padding: '8px 12px',
+    fontSize: '14px', color: '#111827'
+  };
+  var btnPrimaryStyle = {
+    cursor: 'pointer', borderRadius: '6px', border: 'none', background: PAYU_GREEN,
+    color: '#fff', padding: '8px 16px', fontSize: '14px', fontWeight: 600
+  };
+  var btnSecondaryStyle = {
+    cursor: 'pointer', borderRadius: '6px', border: '1px solid ' + PAYU_GREEN,
+    background: PAYU_GREEN_LIGHT, color: PAYU_GREEN, padding: '8px 16px',
+    fontSize: '14px', fontWeight: 600
+  };
+  var summaryStyle = {
+    cursor: 'pointer', borderRadius: '6px', border: '1px solid ' + PAYU_GREEN,
+    background: PAYU_GREEN_LIGHT, color: PAYU_GREEN, padding: '8px 16px',
+    fontSize: '14px', fontWeight: 600, listStyle: 'none'
+  };
+  var linkBtnStyle = {
+    cursor: 'pointer', borderRadius: '6px', border: '1px solid ' + PAYU_GREEN,
+    background: PAYU_GREEN_LIGHT, color: PAYU_GREEN, padding: '8px 16px',
+    fontSize: '14px', fontWeight: 600, textDecoration: 'none', display: 'inline-flex', alignItems: 'center'
+  };
+  var checklistLabelStyle = {
+    display: 'flex', cursor: 'pointer', alignItems: 'flex-start', gap: '8px',
+    fontSize: '14px', fontWeight: 600, lineHeight: 1.5, color: PAYU_GREEN
+  };
   var codeBlockClass =
     'block break-all rounded bg-gray-100 px-3 py-2 text-xs font-mono text-gray-800 dark:bg-gray-800/50 dark:text-gray-100';
   var linkClass =
@@ -124,9 +147,9 @@ export const PayUHostedCheckoutSandboxStep13 = function PayUHostedCheckoutSandbo
 
   function FieldLabel(props) {
     return (
-      <label className={labelClass}>
+      <label style={labelStyle}>
         {props.name}
-        {props.required ? <span className="font-bold text-red-600"> *</span> : null}
+        {props.required ? <span style={reqStarStyle}> *</span> : null}
       </label>
     );
   }
@@ -194,76 +217,59 @@ export const PayUHostedCheckoutSandboxStep13 = function PayUHostedCheckoutSandbo
     );
   }
 
-  var SANDBOX_OPEN_KEY = 'payu-hosted-checkout-sandbox-open-v2';
+  var sandboxOuterStyle = {
+    margin: '24px 0', width: '100%', minWidth: 0, maxWidth: '100%', boxSizing: 'border-box',
+    overflow: 'hidden', borderRadius: '12px', border: '2px dashed ' + PAYU_GREEN,
+    background: 'rgba(240, 253, 250, 0.4)'
+  };
+  var sandboxSummaryStyle = {
+    display: 'flex', alignItems: 'center', gap: '12px', cursor: 'pointer',
+    padding: '12px 16px', listStyle: 'none', background: 'transparent', border: 'none'
+  };
+  var sandboxBadgeStyle = {
+    flexShrink: 0, borderRadius: '4px', background: PAYU_GREEN, color: '#fff',
+    padding: '2px 8px', fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em'
+  };
+  var sandboxBodyStyle = {
+    background: '#fff', padding: '16px', borderTop: '1px solid rgba(15, 118, 110, 0.15)'
+  };
 
-  function sandboxOpenRead(id) {
-    try {
-      if (typeof window === 'undefined' || !window.sessionStorage) return false;
-      var raw = window.sessionStorage.getItem(SANDBOX_OPEN_KEY);
-      if (!raw) return false;
-      var map = JSON.parse(raw);
-      return map[id] === true;
-    } catch (e) {
-      return false;
-    }
+  function onSandboxToggle(e) {
+    labStopBubble(e);
+    var details = e.currentTarget;
+    var chevron = details.querySelector('[data-sandbox-chevron]');
+    if (chevron) chevron.textContent = details.open ? '▼' : '▶';
   }
-
-  function sandboxOpenWrite(id, isOpen) {
-    try {
-      if (typeof window === 'undefined' || !window.sessionStorage) return;
-      var raw = window.sessionStorage.getItem(SANDBOX_OPEN_KEY);
-      var map = raw ? JSON.parse(raw) : {};
-      map[id] = !!isOpen;
-      window.sessionStorage.setItem(SANDBOX_OPEN_KEY, JSON.stringify(map));
-    } catch (e2) {}
-  }
-
-  var sandboxOuterClass =
-    'my-6 w-full min-w-0 max-w-full box-border overflow-hidden rounded-xl border-2 border-dashed border-teal-500 bg-teal-50/40 dark:border-teal-400 dark:bg-teal-950/20';
 
   function SandboxAccordion(props) {
-    var sandboxId = props.ariaLabel || props.title || 'sandbox';
-    var _open = useState(function () { return sandboxOpenRead(sandboxId); });
-    var open = _open[0];
-    var setOpen = _open[1];
-    function toggleOpen(e) {
-      labStopEvent(e);
-      var next = !open;
-      setOpen(next);
-      sandboxOpenWrite(sandboxId, next);
-    }
     return (
-      <div
-        className={sandboxOuterClass}
-        role="region"
-        aria-label={props.ariaLabel || 'PayU integration sandbox'}
+      <details
+        style={sandboxOuterStyle}
+        onToggle={onSandboxToggle}
         onClick={labStopBubble}
         onMouseDown={labStopBubble}
         onPointerDown={labStopBubble}
+        aria-label={props.ariaLabel || 'PayU integration sandbox'}
       >
-        <button
-          type="button"
-          onClick={toggleOpen}
-          onMouseDown={labStopEvent}
-          className="flex w-full cursor-pointer items-center gap-3 border-0 bg-transparent px-4 py-3 text-left hover:bg-teal-50/80 dark:hover:bg-teal-950/40"
-          aria-expanded={open}
+        <summary
+          style={sandboxSummaryStyle}
+          onClick={labStopBubble}
+          onMouseDown={labStopBubble}
         >
-          <span className="shrink-0 rounded bg-teal-700 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white dark:bg-teal-600">SANDBOX</span>
-          <span className="min-w-0 flex-1 text-sm font-semibold text-gray-900 dark:text-gray-100">{props.title}</span>
-          <span className="shrink-0 text-teal-700 dark:text-teal-400">{open ? '▼' : '▶'}</span>
-        </button>
-        {open ? (
-          <div
-            className="bg-white px-4 py-4 dark:bg-gray-900/30"
-            onClick={labStopBubble}
-            onMouseDown={labStopBubble}
-            onPointerDown={labStopBubble}
-          >
-            <p className="mb-5 text-sm leading-relaxed text-gray-600 dark:text-gray-300">{props.intro}</p>
-            <div className="space-y-4">{props.children}</div>
-          </div>
-        ) : null}
-      </div>
+          <span style={sandboxBadgeStyle}>SANDBOX</span>
+          <span style={{ minWidth: 0, flex: 1, fontSize: '14px', fontWeight: 600, color: '#111827' }}>{props.title}</span>
+          <span data-sandbox-chevron={true} style={{ flexShrink: 0, color: PAYU_GREEN }}>▶</span>
+        </summary>
+        <div
+          style={sandboxBodyStyle}
+          onClick={labStopBubble}
+          onMouseDown={labStopBubble}
+          onPointerDown={labStopBubble}
+        >
+          <p style={{ margin: '0 0 20px', fontSize: '14px', lineHeight: 1.6, color: '#4b5563' }}>{props.intro}</p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>{props.children}</div>
+        </div>
+      </details>
     );
   }
 
@@ -346,16 +352,16 @@ export const PayUHostedCheckoutSandboxStep13 = function PayUHostedCheckoutSandbo
         { label: 'Step 1.2 hash', ok: lab && lab.step12Done },
         { label: 'Ready to pay', ok: ready }
       ]} />
-      <div className={btnRowClass}>
-        <button type="button" onClick={labClick(openPayuTest)} disabled={!ready} className={btnPrimaryClass}>
+      <div style={btnRowStyle}>
+        <button type="button" onClick={labClick(openPayuTest)} disabled={!ready} style={btnPrimaryStyle}>
           {'Pay ₹' + amountLabel + ' on PayU Test Checkout'}
         </button>
-        <button type="button" onClick={labClick(refreshLab)} className={btnGhostClass}>Refresh lab status</button>
-        <button type="button" onClick={labClick(function () { setShowCurl(!showCurl); })} disabled={!ready} className={btnGhostClass}>
+        <button type="button" onClick={labClick(refreshLab)} style={btnSecondaryStyle}>Refresh lab status</button>
+        <button type="button" onClick={labClick(function () { setShowCurl(!showCurl); })} disabled={!ready} style={btnSecondaryStyle}>
           {showCurl ? 'Hide curl' : 'Show curl'}
         </button>
         {ready ? (
-          <button type="button" onClick={labClick(function () { copyText(buildCurl(lab), setCopyMsg); })} className={btnGhostClass}>Copy curl</button>
+          <button type="button" onClick={labClick(function () { copyText(buildCurl(lab), setCopyMsg); })} style={btnSecondaryStyle}>Copy curl</button>
         ) : null}
       </div>
       {err ? <p className="mb-3 text-sm text-red-600" role="alert">{err}</p> : null}
