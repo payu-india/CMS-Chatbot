@@ -1,0 +1,249 @@
+---
+name: PayUHostedCheckoutStep14
+---
+// PayUHostedCheckoutStep14 - ReadMe CMS hybrid lab widget
+// Regenerate: node scripts/build-payu-hosted-checkout-steps.mjs
+// Place under Step 1.4 on the integration guide page (after existing accordions).
+
+import { useState, useEffect } from 'react';
+
+export const PayUHostedCheckoutStep14 = function PayUHostedCheckoutStep14(props) {
+
+  var LAB_CONFIG = JSON.parse('{"storageKey":"payu-hosted-checkout-lab-v1","testPaymentUrl":"https://test.payu.in/_payment","simulatorUrl":"https://test-payment-middleware.payu.in/simulatorResponse","hashVerifyToolUrl":"https://payu-hashverificationtool.onrender.com/","defaults":{"key":"","txnid":"tran_1234","amount":"10.00","productinfo":"iPhone","firstname":"Aarav","email":"aarav@example.com","phone":"1234567890","surl":"https://test-payment-middleware.payu.in/simulatorResponse","furl":"https://test-payment-middleware.payu.in/simulatorResponse","udf1":"","udf2":"","udf3":"","udf4":"","udf5":""},"sampleReverseResponse":{"status":"success","key":"","txnid":"tran_1234","amount":"10.00","productinfo":"iPhone","firstname":"Aarav","email":"aarav@example.com","udf1":"","udf2":"","udf3":"","udf4":"","udf5":""}}');
+  var LAB_KEY = LAB_CONFIG.storageKey;
+  var TEST_PAYMENT = LAB_CONFIG.testPaymentUrl;
+  var DEFAULT_PARAMS = LAB_CONFIG.defaults;
+
+  var shellClass = 'my-4';
+  var inputClass =
+    'w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm font-mono text-gray-900 focus:border-teal-600 focus:outline-none focus:ring-1 focus:ring-teal-600 dark:border-gray-600 dark:bg-gray-900/30 dark:text-gray-100';
+  var btnPrimaryClass =
+    'cursor-pointer rounded-md border-0 bg-teal-700 px-4 py-2 text-sm font-semibold text-white hover:bg-teal-800 disabled:opacity-50 dark:bg-teal-600 dark:hover:bg-teal-500';
+  var btnGhostClass =
+    'cursor-pointer rounded-md border border-gray-300 bg-transparent px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 disabled:opacity-40 dark:border-gray-600 dark:text-gray-200 dark:hover:bg-gray-800/50';
+  var codeBlockClass =
+    'block break-all rounded bg-gray-100 px-3 py-2 text-xs font-mono text-gray-800 dark:bg-gray-800/50 dark:text-gray-100';
+  var linkClass =
+    'cursor-pointer border-0 bg-transparent p-0 text-sm font-medium text-teal-700 underline hover:text-teal-800 dark:text-teal-400';
+
+  function empty(s) {
+    return s == null ? '' : String(s).trim();
+  }
+
+  function labRead() {
+    try {
+      if (typeof window === 'undefined' || !window.sessionStorage) return null;
+      var raw = window.sessionStorage.getItem(LAB_KEY);
+      if (!raw) return null;
+      return JSON.parse(raw);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function labWrite(data) {
+    try {
+      if (typeof window === 'undefined' || !window.sessionStorage) return false;
+      data.updatedAt = Date.now();
+      window.sessionStorage.setItem(LAB_KEY, JSON.stringify(data));
+      return true;
+    } catch (e2) {
+      return false;
+    }
+  }
+
+  function labEnsure() {
+    var existing = labRead();
+    if (existing && existing.params) return existing;
+    return { params: Object.assign({}, DEFAULT_PARAMS), salt: '', hashHex: '', pipeString: '', step11Done: false, step12Done: false };
+  }
+
+  function buildForwardHashString(params, salt) {
+    var p = params;
+    return (
+      empty(p.key) + '|' + empty(p.txnid) + '|' + empty(p.amount) + '|' + empty(p.productinfo) + '|' +
+      empty(p.firstname) + '|' + empty(p.email) + '|' + empty(p.udf1) + '|' + empty(p.udf2) + '|' +
+      empty(p.udf3) + '|' + empty(p.udf4) + '|' + empty(p.udf5) + '||||||' + empty(salt)
+    );
+  }
+
+  function buildReverseHashString(salt, resp) {
+    return (
+      empty(salt) + '|' + empty(resp.status) + '||||||' + empty(resp.udf5) + '|' + empty(resp.udf4) + '|' +
+      empty(resp.udf3) + '|' + empty(resp.udf2) + '|' + empty(resp.udf1) + '|' + empty(resp.email) + '|' +
+      empty(resp.firstname) + '|' + empty(resp.productinfo) + '|' + empty(resp.amount) + '|' +
+      empty(resp.txnid) + '|' + empty(resp.key)
+    );
+  }
+
+  function sha512Hex(msg) {
+    var enc = new TextEncoder();
+    return crypto.subtle.digest('SHA-512', enc.encode(msg)).then(function (buf) {
+      return Array.from(new Uint8Array(buf))
+        .map(function (b) { return b.toString(16).padStart(2, '0'); })
+        .join('');
+    });
+  }
+
+  function escapeAttr(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/"/g, '&quot;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  function copyText(text, setCopyMsg) {
+    var value = String(text || '');
+    if (!value) return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(value).then(function () {
+        setCopyMsg('Copied.');
+        setTimeout(function () { setCopyMsg(''); }, 2000);
+      });
+    }
+  }
+
+  function LabHeader(props) {
+    return (
+      <div className="mb-3">
+        <div className="mb-1 text-xs font-semibold uppercase tracking-wider text-teal-700 dark:text-teal-400">
+          Step {props.step} Verify Response via Reverse Hashing
+        </div>
+        <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{props.title}</p>
+        {props.hint ? <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">{props.hint}</p> : null}
+      </div>
+    );
+  }
+
+  function LabStatus(props) {
+    var items = props.items || [];
+    return (
+      <div className="mb-3 flex flex-wrap gap-2 text-xs">
+        {items.map(function (it, idx) {
+          var ok = it.ok;
+          return (
+            <span
+              key={idx}
+              className={
+                ok
+                  ? 'rounded-full bg-teal-50 px-2 py-1 text-teal-800 dark:bg-teal-950 dark:text-teal-200'
+                  : 'rounded-full bg-gray-100 px-2 py-1 text-gray-600 dark:bg-gray-800 dark:text-gray-300'
+              }
+            >
+              {ok ? '✓ ' : '○ '}{it.label}
+            </span>
+          );
+        })}
+      </div>
+    );
+  }
+
+
+  var SAMPLE = LAB_CONFIG.sampleReverseResponse;
+
+  var _salt = useState('');
+  var salt = _salt[0];
+  var setSalt = _salt[1];
+  var _resp = useState(Object.assign({}, SAMPLE));
+  var resp = _resp[0];
+  var setResp = _resp[1];
+  var _responseHash = useState('');
+  var responseHash = _responseHash[0];
+  var setResponseHash = _responseHash[1];
+  var _computed = useState('');
+  var computed = _computed[0];
+  var setComputed = _computed[1];
+  var _busy = useState(false);
+  var busy = _busy[0];
+  var setBusy = _busy[1];
+  var _err = useState('');
+  var err = _err[0];
+  var setErr = _err[1];
+  var _match = useState(null);
+  var match = _match[0];
+  var setMatch = _match[1];
+
+  var REV_FIELDS = JSON.parse('[{"k":"status","l":"status"},{"k":"txnid","l":"txnid"},{"k":"amount","l":"amount"},{"k":"productinfo","l":"productinfo"},{"k":"firstname","l":"firstname"},{"k":"email","l":"email"},{"k":"key","l":"key"},{"k":"udf1","l":"udf1"},{"k":"udf2","l":"udf2"},{"k":"udf3","l":"udf3"},{"k":"udf4","l":"udf4"},{"k":"udf5","l":"udf5"}]');
+
+  useEffect(function () {
+    var lab = labEnsure();
+    if (lab.salt) setSalt(lab.salt);
+    if (lab.params) {
+      var merged = Object.assign({}, SAMPLE, lab.params);
+      merged.status = 'success';
+      setResp(merged);
+    }
+  }, []);
+
+  function patchResp(k, v) {
+    var n = Object.assign({}, resp);
+    n[k] = v;
+    setResp(n);
+    setMatch(null);
+    setComputed('');
+  }
+
+  function verifyReverseHash() {
+    if (!empty(salt) === false) {
+      setErr('Enter test salt (same as Step 1.2).');
+      return;
+    }
+    if (!empty(responseHash) === false) {
+      setErr('Paste the hash from PayU response.');
+      return;
+    }
+    setBusy(true);
+    setErr('');
+    var chain = buildReverseHashString(salt, resp);
+    sha512Hex(chain)
+      .then(function (h) {
+        setComputed(h);
+        setMatch(h.toLowerCase() === empty(responseHash).toLowerCase());
+        setBusy(false);
+      })
+      .catch(function () {
+        setErr('SHA-512 unavailable.');
+        setBusy(false);
+      });
+  }
+
+  return (
+    <div className={shellClass} role="region" aria-label="Step 1.4 reverse hash lab">
+      <LabHeader step="1.4" hint="Paste values from the PayU surl/furl POST. You should run the production verification on your server." />
+      <div className="mb-3 max-w-md">
+        <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-200">salt (test only)</label>
+        <input type="password" value={salt} onChange={function (e) { setSalt(e.target.value); setMatch(null); }} className={inputClass} autoComplete="off" />
+      </div>
+      <div className="mb-3 grid grid-cols-1 gap-x-4 sm:grid-cols-2">
+        {REV_FIELDS.map(function (row) {
+          return (
+            <div key={row.k} className="mb-3">
+              <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-200">{row.l}</label>
+              <input type="text" value={resp[row.k] || ''} onChange={function (e) { patchResp(row.k, e.target.value); }} className={inputClass} />
+            </div>
+          );
+        })}
+      </div>
+      <div className="mb-3 max-w-full">
+        <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-200">hash (from PayU response)</label>
+        <input type="text" value={responseHash} onChange={function (e) { setResponseHash(e.target.value); setMatch(null); }} className={inputClass} placeholder="Paste hash from callback" />
+      </div>
+      <div className="mb-3 flex flex-wrap gap-2">
+        <button type="button" onClick={verifyReverseHash} disabled={busy} className={btnPrimaryClass}>
+          {busy ? 'Verifying…' : 'Verify reverse hash'}
+        </button>
+        <a href={LAB_CONFIG.hashVerifyToolUrl} target="_blank" rel="noopener noreferrer" className={'self-center ' + linkClass}>
+          Open Hash Verification Tool
+        </a>
+      </div>
+      {err ? <p className="mb-2 text-sm text-red-600" role="alert">{err}</p> : null}
+      {match === true ? <p className="mb-2 text-sm text-teal-700">Hash matches — response verified for this lab.</p> : null}
+      {match === false ? <p className="mb-2 text-sm text-red-600">Hash mismatch — check field order, salt, and status.</p> : null}
+      {computed ? <code className={'mb-2 ' + codeBlockClass}>{computed}</code> : null}
+    </div>
+  );
+
+};
+
+<PayUHostedCheckoutStep14 />
