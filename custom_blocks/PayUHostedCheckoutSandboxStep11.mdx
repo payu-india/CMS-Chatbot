@@ -194,17 +194,17 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
     );
   }
 
-  var SANDBOX_OPEN_KEY = 'payu-hosted-checkout-sandbox-open-v1';
+  var SANDBOX_OPEN_KEY = 'payu-hosted-checkout-sandbox-open-v2';
 
   function sandboxOpenRead(id) {
     try {
-      if (typeof window === 'undefined' || !window.sessionStorage) return true;
+      if (typeof window === 'undefined' || !window.sessionStorage) return false;
       var raw = window.sessionStorage.getItem(SANDBOX_OPEN_KEY);
-      if (!raw) return true;
+      if (!raw) return false;
       var map = JSON.parse(raw);
-      return map[id] !== false;
+      return map[id] === true;
     } catch (e) {
-      return true;
+      return false;
     }
   }
 
@@ -282,6 +282,9 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
   var _saved = useState(false);
   var saved = _saved[0];
   var setSaved = _saved[1];
+  var _udfOpen = useState(false);
+  var udfOpen = _udfOpen[0];
+  var setUdfOpen = _udfOpen[1];
 
   useEffect(function () {
     var lab = labEnsure();
@@ -347,13 +350,16 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
       <div className={fieldStackClass}>
         {MANDATORY.map(renderField)}
       <details
-        onToggle={labStopBubble}
+        onToggle={function (e) {
+          labStopBubble(e);
+          setUdfOpen(!!(e.currentTarget && e.currentTarget.open));
+        }}
         onClick={labStopBubble}
         onMouseDown={labStopBubble}
         onPointerDown={labStopBubble}
       >
         <summary className={detailsSummaryClass}>
-          Show optional fields (udf1, udf2, udf3, udf4, udf5)
+          {udfOpen ? 'Hide optional fields (udf1, udf2, udf3, udf4, udf5)' : 'Show optional fields (udf1, udf2, udf3, udf4, udf5)'}
         </summary>
         <div
           className={fieldStackClass + ' mt-4'}
