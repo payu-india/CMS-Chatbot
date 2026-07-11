@@ -4,7 +4,7 @@ name: PayUHostedCheckoutSandboxStep15
 // PayUHostedCheckoutSandboxStep15 - Sandbox dashed box + accordion + lab (single paste)
 // Regenerate: node scripts/build-payu-hosted-checkout-steps.mjs
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export const PayUHostedCheckoutSandboxStep15 = function PayUHostedCheckoutSandboxStep15(props) {
 
@@ -145,6 +145,41 @@ export const PayUHostedCheckoutSandboxStep15 = function PayUHostedCheckoutSandbo
     };
   }
 
+  var SANDBOX_UI_KEY = 'payu-hosted-checkout-sandbox-ui-v1';
+
+  function sandboxUiRead(id) {
+    try {
+      if (typeof window === 'undefined' || !window.sessionStorage) return false;
+      var raw = window.sessionStorage.getItem(SANDBOX_UI_KEY);
+      if (!raw) return false;
+      var map = JSON.parse(raw);
+      return map[id] === true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function sandboxUiWrite(id, isOpen) {
+    try {
+      if (typeof window === 'undefined' || !window.sessionStorage) return;
+      var raw = window.sessionStorage.getItem(SANDBOX_UI_KEY);
+      var map = raw ? JSON.parse(raw) : {};
+      map[id] = !!isOpen;
+      window.sessionStorage.setItem(SANDBOX_UI_KEY, JSON.stringify(map));
+    } catch (e2) {}
+  }
+
+  function sandboxUiMarkOpen(id) {
+    sandboxUiWrite(id, true);
+  }
+
+  function syncSandboxDetails(details, id) {
+    if (!details) return;
+    if (sandboxUiRead(id) && !details.open) details.open = true;
+    var chevron = details.querySelector('[data-sandbox-chevron]');
+    if (chevron) chevron.textContent = details.open ? '▼' : '▶';
+  }
+
   function FieldLabel(props) {
     return (
       <label style={labelStyle}>
@@ -237,13 +272,29 @@ export const PayUHostedCheckoutSandboxStep15 = function PayUHostedCheckoutSandbo
   function onSandboxToggle(e) {
     labStopBubble(e);
     var details = e.currentTarget;
+    var id = details.getAttribute('data-sandbox-id') || 'sandbox';
+    sandboxUiWrite(id, details.open);
     var chevron = details.querySelector('[data-sandbox-chevron]');
     if (chevron) chevron.textContent = details.open ? '▼' : '▶';
   }
 
+  function onSandboxPanelInteract(id) {
+    return function (e) {
+      labStopBubble(e);
+      sandboxUiMarkOpen(id);
+    };
+  }
+
   function SandboxAccordion(props) {
+    var sandboxId = props.ariaLabel || props.title || 'sandbox';
+    var detailsRef = useRef(null);
+    useEffect(function () {
+      syncSandboxDetails(detailsRef.current, sandboxId);
+    });
     return (
       <details
+        ref={detailsRef}
+        data-sandbox-id={sandboxId}
         style={sandboxOuterStyle}
         onToggle={onSandboxToggle}
         onClick={labStopBubble}
@@ -262,6 +313,8 @@ export const PayUHostedCheckoutSandboxStep15 = function PayUHostedCheckoutSandbo
         </summary>
         <div
           style={sandboxBodyStyle}
+          onFocus={onSandboxPanelInteract(sandboxId)}
+          onInput={onSandboxPanelInteract(sandboxId)}
           onClick={labStopBubble}
           onMouseDown={labStopBubble}
           onPointerDown={labStopBubble}
