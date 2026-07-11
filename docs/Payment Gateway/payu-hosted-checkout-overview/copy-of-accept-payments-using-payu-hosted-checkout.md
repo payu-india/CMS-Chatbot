@@ -121,23 +121,22 @@ Send these optional parameters in the request as required.
 
 <HTMLBlock>{`
 <HTMLBlock>{\`
-<div style="border:2px dashed #0d9488;border-bottom:none;border-radius:12px 12px 0 0;background:#f0fdfa;padding:14px 18px;margin-top:24px;">
-  <div style="margin-bottom:6px;">
-    <span style="background:#0d9488;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.06em;margin-right:8px;">SANDBOX</span>
-    <span style="font-weight:600;color:#134e4a;font-size:15px;">Interactive — try it yourself</span>
+<div style="border:2px dashed #0d9488;border-radius:12px;background:#f0fdfa;margin:24px 0;overflow:hidden;">
+  <div style="padding:16px 18px;border-bottom:1px dashed #99f6e4;">
+    <div style="margin-bottom:8px;">
+      <span style="background:#0d9488;color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:4px;letter-spacing:0.06em;margin-right:10px;">SANDBOX</span>
+      <span style="font-weight:600;color:#134e4a;font-size:16px;">Interactive — try it yourself</span>
+    </div>
+    <p style="margin:0;color:#475569;font-size:14px;line-height:1.6;">
+      This is a <strong>live tool</strong>, not documentation text. Enter your <strong>test key</strong> and values, then click <strong>Save parameters to lab</strong>. Values stay in your browser for Step 1.2.
+    </p>
   </div>
-  <p style="margin:0;color:#475569;font-size:14px;line-height:1.5;">
-    Expand below, enter test values, and click <strong>Save parameters to lab</strong>. Values stay in your browser for Step 1.2.
-  </p>
+  <div style="padding:12px 18px;background:#ffffff;">
+    <p style="margin:0;font-size:13px;color:#64748b;line-height:1.5;">
+      ↓ Expand <strong>Try Out!</strong> below to add your test payment parameters.
+    </p>
+  </div>
 </div>
-\`}</HTMLBlock>
-
-<Accordion title="Try Out! · Add request parameter values to test" icon="fa-play-circle">
-  <PayUHostedCheckoutStep11 />
-</Accordion>
-
-<HTMLBlock>{\`
-<div style="border:2px dashed #0d9488;border-top:none;border-radius:0 0 12px 12px;height:12px;margin-bottom:24px;background:#f0fdfa;"></div>
 \`}</HTMLBlock>
 `}</HTMLBlock>
 
