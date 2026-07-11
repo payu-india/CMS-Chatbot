@@ -14,7 +14,12 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
   var DEFAULT_PARAMS = LAB_CONFIG.defaults;
 
   var shellClass = 'min-w-0';
-  var fieldStackClass = 'space-y-3';
+  var fieldStackClass = 'space-y-1';
+  var fieldWrapClass = 'mb-4';
+  var labelClass = 'mb-2 block text-sm font-bold text-gray-900 dark:text-gray-100';
+  var btnRowClass = 'mt-5 flex flex-wrap gap-2';
+  var hintClass = 'mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300';
+  var noteClass = 'mb-4 text-sm leading-relaxed text-amber-800 dark:text-amber-200';
   var inputClass =
     'box-border w-full min-w-0 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-teal-600 focus:outline-none focus:ring-1 focus:ring-teal-600 dark:border-gray-600 dark:bg-gray-900/30 dark:text-gray-100';
   var btnPrimaryClass =
@@ -93,6 +98,23 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
       .replace(/>/g, '&gt;');
   }
 
+  function labClick(fn) {
+    return function (e) {
+      if (e && e.preventDefault) e.preventDefault();
+      if (e && e.stopPropagation) e.stopPropagation();
+      fn(e);
+    };
+  }
+
+  function FieldLabel(props) {
+    return (
+      <label className={labelClass}>
+        {props.name}
+        {props.required ? <span className="font-bold text-red-600"> *</span> : null}
+      </label>
+    );
+  }
+
   function copyText(text, setCopyMsg) {
     var value = String(text || '');
     if (!value) return;
@@ -125,7 +147,7 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
     return (
       <div className="mb-3 pb-1">
         <div className="mb-1 text-xs font-semibold uppercase tracking-wider text-teal-700 dark:text-teal-400">
-          Step {props.step} Prepare Payment Request Parameters
+          Integration lab · Step {props.step}
         </div>
         <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{props.title}</p>
         {props.hint ? <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">{props.hint}</p> : null}
@@ -136,7 +158,7 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
   function LabStatus(props) {
     var items = props.items || [];
     return (
-      <div className="mb-3 flex flex-wrap gap-2 text-xs">
+      <div className="mb-4 flex flex-wrap gap-2 text-xs">
         {items.map(function (it, idx) {
           var ok = it.ok;
           return (
@@ -167,7 +189,7 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
       <div className={sandboxOuterClass} role="region" aria-label={props.ariaLabel || 'PayU integration sandbox'}>
         <button
           type="button"
-          onClick={function () { setOpen(!open); }}
+          onClick={function (e) { e.preventDefault(); e.stopPropagation(); setOpen(!open); }}
           className="flex w-full cursor-pointer items-center gap-3 border-0 bg-transparent px-4 py-3 text-left hover:bg-teal-50/80 dark:hover:bg-teal-950/40"
           aria-expanded={open}
         >
@@ -176,9 +198,13 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
           <span className="shrink-0 text-teal-700 dark:text-teal-400">{open ? '▼' : '▶'}</span>
         </button>
         {open ? (
-          <div className="bg-white px-4 py-4 dark:bg-gray-900/30">
-            <p className="mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300">{props.intro}</p>
-            {props.children}
+          <div
+            className="bg-white px-4 py-4 dark:bg-gray-900/30"
+            onClick={function (e) { e.stopPropagation(); }}
+            onMouseDown={function (e) { e.stopPropagation(); }}
+          >
+            <p className="mb-5 text-sm leading-relaxed text-gray-600 dark:text-gray-300">{props.intro}</p>
+            <div className="space-y-4">{props.children}</div>
           </div>
         ) : null}
       </div>
@@ -255,45 +281,47 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
   function renderField(row) {
     var type = row.t === 'email' ? 'email' : 'text';
     return (
-      <div key={row.k} className="mb-3">
-        <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-200">
-          {row.l} <span className="text-red-500">*</span>
-        </label>
+      <div key={row.k} className={fieldWrapClass}>
+        <FieldLabel name={row.k} required={true} />
         <input type={type} value={form[row.k] || ''} onChange={function (e) { patch(row.k, e.target.value); }} className={inputClass} />
       </div>
     );
   }
 
   return (
-    <SandboxAccordion title="Try Out! · Add request parameter values to test" intro="This is a live tool — not documentation. Enter your test key, edit values, and click Save parameters to lab. Values stay in your browser for Step 1.2." ariaLabel="Step 1.1 sandbox">
+    <SandboxAccordion title="Try Out! · Add request parameter values to test" intro="This is a live tool — For Testing. Enter your test key, edit values, and click Save parameters to lab. Values stay in your browser for Step 1.2." ariaLabel="Step 1.1 sandbox">
       <div className={shellClass}>
-      <LabHeader step="1.1" hint="Edit the example values below, then save them for the next steps." />
       <div className={fieldStackClass}>
         {MANDATORY.map(renderField)}
       </div>
-      <button type="button" onClick={function () { setShowUdf(!showUdf); }} className={linkClass + ' mb-2'}>
-        {showUdf ? 'Hide optional UDF fields' : 'Show optional UDF fields (udf1–udf5)'}
+      <button
+        type="button"
+        onMouseDown={function (e) { e.preventDefault(); e.stopPropagation(); }}
+        onClick={labClick(function () { setShowUdf(!showUdf); })}
+        className={btnGhostClass + ' mb-4'}
+      >
+        {showUdf ? 'Hide optional fields (udf1, udf2, udf3, udf4, udf5)' : 'Show optional fields (udf1, udf2, udf3, udf4, udf5)'}
       </button>
       {showUdf ? (
-        <div className={fieldStackClass + ' mb-3'}>
+        <div className={fieldStackClass + ' mb-4'}>
           {OPTIONAL.map(function (row) {
             return (
-              <div key={row.k} className="mb-3">
-                <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-200">{row.l}</label>
+              <div key={row.k} className={fieldWrapClass}>
+                <FieldLabel name={row.k} required={false} />
                 <input type="text" value={form[row.k] || ''} onChange={function (e) { patch(row.k, e.target.value); }} className={inputClass} />
               </div>
             );
           })}
         </div>
       ) : null}
-      {err ? <p className="mb-2 text-sm text-red-600" role="alert">{err}</p> : null}
-      {msg ? <p className="mb-2 text-sm text-teal-700">{msg}</p> : null}
-      <div className="flex flex-wrap gap-2">
-        <button type="button" onClick={saveToLab} className={btnPrimaryClass}>Save parameters to lab</button>
-        <button type="button" onClick={newTxnid} className={btnGhostClass}>New txnid</button>
-        <button type="button" onClick={function () { setForm(Object.assign({}, DEFAULT_PARAMS)); setSaved(false); setMsg(''); setErr(''); }} className={btnGhostClass}>Reset examples</button>
+      {err ? <p className="mb-3 text-sm text-red-600" role="alert">{err}</p> : null}
+      {msg ? <p className="mb-3 text-sm text-teal-700">{msg}</p> : null}
+      <div className={btnRowClass}>
+        <button type="button" onClick={labClick(saveToLab)} className={btnPrimaryClass}>Save parameters to lab</button>
+        <button type="button" onClick={labClick(newTxnid)} className={btnGhostClass}>New txnid</button>
+        <button type="button" onClick={labClick(function () { setForm(Object.assign({}, DEFAULT_PARAMS)); setSaved(false); setMsg(''); setErr(''); })} className={btnGhostClass}>Reset examples</button>
       </div>
-      {saved ? <p className="mt-2 text-xs text-gray-500">Step 1.1 complete — parameters stored for Steps 1.2 and 1.3.</p> : null}
+      {saved ? <p className="mt-4 text-xs leading-relaxed text-gray-500">Step 1.1 complete — parameters stored for Steps 1.2 and 1.3.</p> : null}
       </div>
     </SandboxAccordion>
   );
