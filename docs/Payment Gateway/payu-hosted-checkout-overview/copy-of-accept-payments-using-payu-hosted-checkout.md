@@ -1,7 +1,7 @@
 ---
 title: Copy of Accept Payments using PayU Hosted Checkout
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
