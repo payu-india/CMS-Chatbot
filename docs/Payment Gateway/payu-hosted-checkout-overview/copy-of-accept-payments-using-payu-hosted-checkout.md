@@ -117,17 +117,29 @@ Send these optional parameters in the request as required.
 | `note_category`    | `string` Use this parameter to specify which payment options the custom note message should be displayed for. This parameter should contain a comma-separated list of the payment options that you want the custom note to be displayed for. Example: `CC, NB` This will show the custom\_note for Credit Card and Net banking.                                                                     |
 </Accordion>
 
+<br />
 
+<HTMLBlock>{`
+<HTMLBlock>{\`
+<div style="border:2px dashed #0d9488;border-bottom:none;border-radius:12px 12px 0 0;background:#f0fdfa;padding:14px 18px;margin-top:24px;">
+  <div style="margin-bottom:6px;">
+    <span style="background:#0d9488;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.06em;margin-right:8px;">SANDBOX</span>
+    <span style="font-weight:600;color:#134e4a;font-size:15px;">Interactive — try it yourself</span>
+  </div>
+  <p style="margin:0;color:#475569;font-size:14px;line-height:1.5;">
+    Expand below, enter test values, and click <strong>Save parameters to lab</strong>. Values stay in your browser for Step 1.2.
+  </p>
+</div>
+\`}</HTMLBlock>
 
-<Callout icon="✋" theme="okay">
-  ### **Stop —This is Hands-on**
-
-  Enter your **test key** and values below, then click **Save parameters to lab**. Data stays in your browser for Step 1.2.
-</Callout>
-
-<Accordion title="Try Out! - Add Request Parameter Values" icon="fa-play-circle">
-<PayUHostedCheckoutStep11 />
+<Accordion title="Try Out! · Add request parameter values to test" icon="fa-play-circle">
+  <PayUHostedCheckoutStep11 />
 </Accordion>
+
+<HTMLBlock>{\`
+<div style="border:2px dashed #0d9488;border-top:1px dashed #99f6e4;border-radius:0 0 12px 12px;height:8px;margin-bottom:24px;background:#f0fdfa;"></div>
+\`}</HTMLBlock>
+`}</HTMLBlock>
 
 ***
 
