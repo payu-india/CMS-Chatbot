@@ -176,8 +176,7 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
   function syncSandboxDetails(details, id) {
     if (!details) return;
     if (sandboxUiRead(id) && !details.open) details.open = true;
-    var chevron = details.querySelector('[data-sandbox-chevron]');
-    if (chevron) chevron.textContent = details.open ? '▼' : '▶';
+    sandboxSyncChevron(details);
   }
 
   function FieldLabel(props) {
@@ -269,13 +268,28 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
     background: '#fff', padding: '16px', borderTop: '1px solid rgba(15, 118, 110, 0.15)'
   };
 
+  function sandboxSyncChevron(details) {
+    if (!details) return;
+    var chevron = details.querySelector('[data-sandbox-chevron]');
+    if (chevron) chevron.textContent = details.open ? '▼' : '▶';
+  }
+
   function onSandboxToggle(e) {
-    labStopBubble(e);
     var details = e.currentTarget;
     var id = details.getAttribute('data-sandbox-id') || 'sandbox';
     sandboxUiWrite(id, details.open);
-    var chevron = details.querySelector('[data-sandbox-chevron]');
-    if (chevron) chevron.textContent = details.open ? '▼' : '▶';
+    sandboxSyncChevron(details);
+  }
+
+  function onSandboxSummaryClick(e) {
+    var summary = e.currentTarget;
+    var details = summary.parentNode;
+    if (!details || details.tagName !== 'DETAILS') return;
+    labStopEvent(e);
+    details.open = !details.open;
+    var id = details.getAttribute('data-sandbox-id') || 'sandbox';
+    sandboxUiWrite(id, details.open);
+    sandboxSyncChevron(details);
   }
 
   function onSandboxPanelInteract(id) {
@@ -297,16 +311,9 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
         data-sandbox-id={sandboxId}
         style={sandboxOuterStyle}
         onToggle={onSandboxToggle}
-        onClick={labStopBubble}
-        onMouseDown={labStopBubble}
-        onPointerDown={labStopBubble}
         aria-label={props.ariaLabel || 'PayU integration sandbox'}
       >
-        <summary
-          style={sandboxSummaryStyle}
-          onClick={labStopBubble}
-          onMouseDown={labStopBubble}
-        >
+        <summary style={sandboxSummaryStyle} onClick={onSandboxSummaryClick}>
           <span style={sandboxBadgeStyle}>SANDBOX</span>
           <span style={{ minWidth: 0, flex: 1, fontSize: '14px', fontWeight: 600, color: '#111827' }}>{props.title}</span>
           <span data-sandbox-chevron={true} style={{ flexShrink: 0, color: PAYU_GREEN }}>▶</span>
@@ -344,50 +351,43 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
   var UDF_SHOW = 'Show optional fields (udf1, udf2, udf3, udf4, udf5)';
   var UDF_HIDE = 'Hide optional fields (udf1, udf2, udf3, udf4, udf5)';
   var UDF_UI_KEY = 'payu-hosted-checkout-step11-udf-open-v1';
-  var udfDetailsRef = useRef(null);
+  var udfBtnRef = useRef(null);
+  var udfPanelRef = useRef(null);
 
-  function syncUdfDetails() {
+  function syncUdfPanel() {
     try {
-      var details = udfDetailsRef.current;
-      if (!details || typeof window === 'undefined' || !window.sessionStorage) return;
-      if (window.sessionStorage.getItem(UDF_UI_KEY) !== '1') return;
-      if (!details.open) details.open = true;
-      var label = details.querySelector('[data-udf-label]');
-      if (label) label.textContent = UDF_HIDE;
+      var panel = udfPanelRef.current;
+      var btn = udfBtnRef.current;
+      if (!panel || !btn || typeof window === 'undefined' || !window.sessionStorage) return;
+      var open = window.sessionStorage.getItem(UDF_UI_KEY) === '1';
+      panel.style.display = open ? 'block' : 'none';
+      btn.textContent = open ? UDF_HIDE : UDF_SHOW;
     } catch (e0) {}
   }
 
-  function onUdfToggle(e) {
-    labStopBubble(e);
-    var details = e.currentTarget;
-    var label = details.querySelector('[data-udf-label]');
-    if (label) label.textContent = details.open ? UDF_HIDE : UDF_SHOW;
-    try {
-      if (typeof window !== 'undefined' && window.sessionStorage) {
-        window.sessionStorage.setItem(UDF_UI_KEY, details.open ? '1' : '0');
-      }
-    } catch (e1) {}
-  }
-
-  function onUdfPanelInteract(e) {
-    labStopBubble(e);
+  function toggleUdfPanel() {
     sandboxUiMarkOpen('Step 1.1 sandbox');
     try {
+      var panel = udfPanelRef.current;
+      var btn = udfBtnRef.current;
+      if (!panel || !btn) return;
+      var open = panel.style.display !== 'block';
+      panel.style.display = open ? 'block' : 'none';
+      btn.textContent = open ? UDF_HIDE : UDF_SHOW;
       if (typeof window !== 'undefined' && window.sessionStorage) {
-        window.sessionStorage.setItem(UDF_UI_KEY, '1');
+        window.sessionStorage.setItem(UDF_UI_KEY, open ? '1' : '0');
       }
-    } catch (e2) {}
+    } catch (e1) {}
   }
 
   useEffect(function () {
     var lab = labEnsure();
     if (lab.params) setForm(Object.assign({}, DEFAULT_PARAMS, lab.params));
     setSaved(!!lab.step11Done);
-    syncUdfDetails();
-  });
+  }, []);
 
   useEffect(function () {
-    syncUdfDetails();
+    syncUdfPanel();
   });
 
   function patch(k, v) {
@@ -448,24 +448,15 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
       <div className={shellClass}>
       <div style={fieldStackStyle}>
         {MANDATORY.map(renderField)}
-      <details
-        ref={udfDetailsRef}
-        onToggle={onUdfToggle}
-        onClick={labStopBubble}
-        onMouseDown={labStopBubble}
-        onPointerDown={labStopBubble}
+      <button type="button" ref={udfBtnRef} onClick={labClick(toggleUdfPanel)} style={summaryStyle}>
+        {UDF_SHOW}
+      </button>
+      <div
+        ref={udfPanelRef}
+        style={Object.assign({}, fieldStackInnerStyle, { display: 'none' })}
+        onFocus={function () { sandboxUiMarkOpen('Step 1.1 sandbox'); }}
+        onInput={function () { sandboxUiMarkOpen('Step 1.1 sandbox'); }}
       >
-        <summary style={summaryStyle}>
-          <span data-udf-label>{UDF_SHOW}</span>
-        </summary>
-        <div
-          style={fieldStackInnerStyle}
-          onFocus={onUdfPanelInteract}
-          onInput={onUdfPanelInteract}
-          onClick={labStopBubble}
-          onMouseDown={labStopBubble}
-          onPointerDown={labStopBubble}
-        >
           {OPTIONAL.map(function (row) {
             return (
               <div key={row.k}>
@@ -474,8 +465,7 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
               </div>
             );
           })}
-        </div>
-      </details>
+      </div>
       </div>
       <div style={btnRowStyle}>
         <button type="button" onClick={labClick(saveToLab)} style={btnPrimaryStyle}>Save parameters to lab</button>
