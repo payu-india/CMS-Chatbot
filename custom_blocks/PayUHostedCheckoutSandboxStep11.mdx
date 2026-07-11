@@ -4,7 +4,7 @@ name: PayUHostedCheckoutSandboxStep11
 // PayUHostedCheckoutSandboxStep11 - Sandbox dashed box + accordion + lab (single paste)
 // Regenerate: node scripts/build-payu-hosted-checkout-steps.mjs
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 
 export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandboxStep11(props) {
 
@@ -145,28 +145,22 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
     };
   }
 
-  var SANDBOX_UI_KEY = 'payu-hosted-checkout-sandbox-ui-v1';
+  var SANDBOX_UI_GLOBAL = '__payuHostedCheckoutSandboxUi';
+
+  function sandboxUiStore() {
+    if (typeof window !== 'undefined') {
+      if (!window[SANDBOX_UI_GLOBAL]) window[SANDBOX_UI_GLOBAL] = {};
+      return window[SANDBOX_UI_GLOBAL];
+    }
+    return {};
+  }
 
   function sandboxUiRead(id) {
-    try {
-      if (typeof window === 'undefined' || !window.sessionStorage) return false;
-      var raw = window.sessionStorage.getItem(SANDBOX_UI_KEY);
-      if (!raw) return false;
-      var map = JSON.parse(raw);
-      return map[id] === true;
-    } catch (e) {
-      return false;
-    }
+    return sandboxUiStore()[id] === true;
   }
 
   function sandboxUiWrite(id, isOpen) {
-    try {
-      if (typeof window === 'undefined' || !window.sessionStorage) return;
-      var raw = window.sessionStorage.getItem(SANDBOX_UI_KEY);
-      var map = raw ? JSON.parse(raw) : {};
-      map[id] = !!isOpen;
-      window.sessionStorage.setItem(SANDBOX_UI_KEY, JSON.stringify(map));
-    } catch (e2) {}
+    sandboxUiStore()[id] = !!isOpen;
   }
 
   function sandboxUiMarkOpen(id) {
@@ -295,14 +289,16 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
   function onSandboxPanelInteract(id) {
     return function (e) {
       labStopBubble(e);
-      sandboxUiMarkOpen(id);
+      var panel = e.currentTarget;
+      var details = panel && panel.parentNode;
+      if (details && details.open) sandboxUiMarkOpen(id);
     };
   }
 
   function SandboxAccordion(props) {
     var sandboxId = props.ariaLabel || props.title || 'sandbox';
     var detailsRef = useRef(null);
-    useEffect(function () {
+    useLayoutEffect(function () {
       syncSandboxDetails(detailsRef.current, sandboxId);
     });
     return (
@@ -454,8 +450,6 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
       <div
         ref={udfPanelRef}
         style={Object.assign({}, fieldStackInnerStyle, { display: 'none' })}
-        onFocus={function () { sandboxUiMarkOpen('Step 1.1 sandbox'); }}
-        onInput={function () { sandboxUiMarkOpen('Step 1.1 sandbox'); }}
       >
           {OPTIONAL.map(function (row) {
             return (
