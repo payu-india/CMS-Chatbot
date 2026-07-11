@@ -119,8 +119,6 @@ Send these optional parameters in the request as required.
 
 <PayUHostedCheckoutStep11 />
 
-<PayUHostedCheckoutStep11 />
-
 ***
 
 ### Step 1.2: Generate Secure Hash
