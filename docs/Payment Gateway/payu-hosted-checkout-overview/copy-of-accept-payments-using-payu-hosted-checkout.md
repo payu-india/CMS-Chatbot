@@ -117,7 +117,20 @@ Send these optional parameters in the request as required.
 | `note_category`    | `string` Use this parameter to specify which payment options the custom note message should be displayed for. This parameter should contain a comma-separated list of the payment options that you want the custom note to be displayed for. Example: `CC, NB` This will show the custom\_note for Credit Card and Net banking.                                                                     |
 </Accordion>
 
+<Banner
+  isInline={true}
+  message="Sandbox - Add Parameters and Save!"
+  color="#118cfd"
+  textColor="#ffffff"
+  fontSize="14px"
+  fontWeight="bold"
+ />
+
+<Accordion title="Try Out! - Add Request Parameter Values to Test" icon="fa-info-circle">
 <PayUHostedCheckoutStep11 />
+</Accordion>
+
+
 
 ***
 
