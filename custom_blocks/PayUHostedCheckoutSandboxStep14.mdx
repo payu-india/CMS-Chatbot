@@ -153,10 +153,11 @@ export const PayUHostedCheckoutSandboxStep14 = function PayUHostedCheckoutSandbo
   }
 
   function FieldLabel(props) {
+    var isReq = props.required === true;
     return (
       <label style={labelStyle}>
-        {props.name}
-        {props.required ? <span style={reqStarStyle}> *</span> : null}
+        <span>{props.name}</span>
+        {isReq ? <span style={reqStarStyle} aria-hidden="true"> *</span> : null}
       </label>
     );
   }
@@ -412,6 +413,10 @@ export const PayUHostedCheckoutSandboxStep14 = function PayUHostedCheckoutSandbo
 
   var REV_FIELDS = JSON.parse('[{"k":"status","l":"status"},{"k":"txnid","l":"txnid"},{"k":"amount","l":"amount"},{"k":"productinfo","l":"productinfo"},{"k":"firstname","l":"firstname"},{"k":"email","l":"email"},{"k":"key","l":"key"},{"k":"udf1","l":"udf1"},{"k":"udf2","l":"udf2"},{"k":"udf3","l":"udf3"},{"k":"udf4","l":"udf4"},{"k":"udf5","l":"udf5"}]');
 
+  function isRevFieldRequired(k) {
+    return k.indexOf('udf') !== 0;
+  }
+
   useEffect(function () {
     var lab = labEnsure();
     var data = step14Store();
@@ -455,7 +460,7 @@ export const PayUHostedCheckoutSandboxStep14 = function PayUHostedCheckoutSandbo
       <div className={shellClass}>
       <div style={fieldStackStyle}>
         <div>
-          <FieldLabel name="salt" required={false} />
+          <FieldLabel name="salt" required={true} />
           <input
             type="password"
             data-payu-step14-kind="salt"
@@ -468,7 +473,7 @@ export const PayUHostedCheckoutSandboxStep14 = function PayUHostedCheckoutSandbo
         {REV_FIELDS.map(function (row) {
           return (
             <div key={row.k}>
-              <FieldLabel name={row.k} required={false} />
+              <FieldLabel name={row.k} required={isRevFieldRequired(row.k)} />
               <input
                 type="text"
                 data-payu-step14-field={row.k}
@@ -481,7 +486,7 @@ export const PayUHostedCheckoutSandboxStep14 = function PayUHostedCheckoutSandbo
           );
         })}
         <div>
-          <FieldLabel name="hash" required={false} />
+          <FieldLabel name="hash" required={true} />
           <input
             type="text"
             data-payu-step14-kind="hash"
