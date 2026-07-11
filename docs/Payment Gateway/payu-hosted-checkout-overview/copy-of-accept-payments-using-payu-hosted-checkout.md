@@ -1449,6 +1449,8 @@ You should compare the hash value you got from the above logic with the hash val
 
 You can also use the <Anchor target="_blank" href="https://payu-hashverificationtool.onrender.com/">PayU's Hash Verification System</Anchor> to generate a hash (reverse hash) for payment verification.
 
+<PayUHostedCheckoutStep14 />
+
 ***
 
 ### Step 1.5 Verify the Payment
