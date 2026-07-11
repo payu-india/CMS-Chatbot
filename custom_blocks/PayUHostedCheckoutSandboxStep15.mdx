@@ -21,10 +21,17 @@ export const PayUHostedCheckoutSandboxStep15 = function PayUHostedCheckoutSandbo
   var fieldStackStyle = { display: 'flex', flexDirection: 'column', gap: '16px' };
   var fieldStackInnerStyle = { display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '16px' };
   var btnRowStyle = { display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '20px', alignItems: 'center' };
+  var btnRowOnlyStyle = { display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'center' };
+  var btnRowSpacedStyle = { display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'center', marginTop: '16px' };
   var labelStyle = { display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: 700, color: PAYU_GREEN };
   var reqStarStyle = { color: RED_REQ, fontWeight: 700 };
   var hintClass = 'mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300';
   var noteClass = 'mb-4 text-sm leading-relaxed text-amber-800 dark:text-amber-200';
+  var bodyTextStyle = { margin: 0, fontSize: '14px', lineHeight: 1.6, color: '#4b5563' };
+  var footerNoteStyle = {
+    display: 'block', margin: 0, paddingTop: '8px', fontSize: '14px',
+    lineHeight: 1.6, color: '#374151'
+  };
   var inputStyle = {
     boxSizing: 'border-box', width: '100%', minWidth: 0, borderRadius: '6px',
     border: '1px solid #d1d5db', background: '#fff', padding: '8px 12px',
@@ -145,46 +152,12 @@ export const PayUHostedCheckoutSandboxStep15 = function PayUHostedCheckoutSandbo
     };
   }
 
-  var SANDBOX_UI_KEY = 'payu-hosted-checkout-sandbox-ui-v1';
-
-  function sandboxUiRead(id) {
-    try {
-      if (typeof window === 'undefined' || !window.sessionStorage) return false;
-      var raw = window.sessionStorage.getItem(SANDBOX_UI_KEY);
-      if (!raw) return false;
-      var map = JSON.parse(raw);
-      return map[id] === true;
-    } catch (e) {
-      return false;
-    }
-  }
-
-  function sandboxUiWrite(id, isOpen) {
-    try {
-      if (typeof window === 'undefined' || !window.sessionStorage) return;
-      var raw = window.sessionStorage.getItem(SANDBOX_UI_KEY);
-      var map = raw ? JSON.parse(raw) : {};
-      map[id] = !!isOpen;
-      window.sessionStorage.setItem(SANDBOX_UI_KEY, JSON.stringify(map));
-    } catch (e2) {}
-  }
-
-  function sandboxUiMarkOpen(id) {
-    sandboxUiWrite(id, true);
-  }
-
-  function syncSandboxDetails(details, id) {
-    if (!details) return;
-    if (sandboxUiRead(id) && !details.open) details.open = true;
-    var chevron = details.querySelector('[data-sandbox-chevron]');
-    if (chevron) chevron.textContent = details.open ? '▼' : '▶';
-  }
-
   function FieldLabel(props) {
+    var isReq = props.required === true;
     return (
       <label style={labelStyle}>
-        {props.name}
-        {props.required ? <span style={reqStarStyle}> *</span> : null}
+        <span>{props.name}</span>
+        {isReq ? <span style={reqStarStyle} aria-hidden="true"> *</span> : null}
       </label>
     );
   }
@@ -229,21 +202,25 @@ export const PayUHostedCheckoutSandboxStep15 = function PayUHostedCheckoutSandbo
     );
   }
 
+  var statusRowStyle = { display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '20px' };
+  var statusOkStyle = {
+    borderRadius: '9999px', background: '#f0fdfa', color: '#115e59',
+    padding: '4px 10px', fontSize: '12px', lineHeight: 1.4, fontWeight: 600
+  };
+  var statusPendingStyle = {
+    borderRadius: '9999px', background: '#f3f4f6', color: '#4b5563',
+    padding: '4px 10px', fontSize: '12px', lineHeight: 1.4, fontWeight: 600
+  };
+
   function LabStatus(props) {
     var items = props.items || [];
+    var wrapStyle = props.compact ? { display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: 0 } : statusRowStyle;
     return (
-      <div className="mb-4 flex flex-wrap gap-2 text-xs">
+      <div style={wrapStyle}>
         {items.map(function (it, idx) {
           var ok = it.ok;
           return (
-            <span
-              key={idx}
-              className={
-                ok
-                  ? 'rounded-full bg-teal-50 px-2 py-1 text-teal-800 dark:bg-teal-950 dark:text-teal-200'
-                  : 'rounded-full bg-gray-100 px-2 py-1 text-gray-600 dark:bg-gray-800 dark:text-gray-300'
-              }
-            >
+            <span key={idx} style={ok ? statusOkStyle : statusPendingStyle}>
               {ok ? '✓ ' : '○ '}{it.label}
             </span>
           );
@@ -254,7 +231,7 @@ export const PayUHostedCheckoutSandboxStep15 = function PayUHostedCheckoutSandbo
 
   var sandboxOuterStyle = {
     margin: '24px 0', width: '100%', minWidth: 0, maxWidth: '100%', boxSizing: 'border-box',
-    overflow: 'hidden', borderRadius: '12px', border: '2px dashed ' + PAYU_GREEN,
+    overflow: 'visible', borderRadius: '12px', border: '2px dashed ' + PAYU_GREEN,
     background: 'rgba(240, 253, 250, 0.4)'
   };
   var sandboxSummaryStyle = {
@@ -269,52 +246,74 @@ export const PayUHostedCheckoutSandboxStep15 = function PayUHostedCheckoutSandbo
     background: '#fff', padding: '16px', borderTop: '1px solid rgba(15, 118, 110, 0.15)'
   };
 
-  function onSandboxToggle(e) {
-    labStopBubble(e);
-    var details = e.currentTarget;
-    var id = details.getAttribute('data-sandbox-id') || 'sandbox';
-    sandboxUiWrite(id, details.open);
+  var SANDBOX_OPEN_GLOBAL = '__payuHostedCheckoutSandboxOpen';
+
+  function sandboxOpenStore() {
+    if (typeof window !== 'undefined') {
+      if (!window[SANDBOX_OPEN_GLOBAL]) window[SANDBOX_OPEN_GLOBAL] = {};
+      return window[SANDBOX_OPEN_GLOBAL];
+    }
+    return {};
+  }
+
+  function sandboxOpenRead(id) {
+    return sandboxOpenStore()[id] === true;
+  }
+
+  function sandboxOpenWrite(id, isOpen) {
+    sandboxOpenStore()[id] = !!isOpen;
+  }
+
+  function sandboxSyncChevron(details) {
+    if (!details) return;
     var chevron = details.querySelector('[data-sandbox-chevron]');
     if (chevron) chevron.textContent = details.open ? '▼' : '▶';
   }
 
-  function onSandboxPanelInteract(id) {
-    return function (e) {
-      labStopBubble(e);
-      sandboxUiMarkOpen(id);
-    };
+  function onSandboxToggle(e) {
+    var details = e.currentTarget;
+    var id = details.getAttribute('data-sandbox-id') || 'sandbox';
+    sandboxOpenWrite(id, details.open);
+    sandboxSyncChevron(details);
+  }
+
+  function onSandboxSummaryClick(e) {
+    var summary = e.currentTarget;
+    var details = summary.parentNode;
+    if (!details || details.tagName !== 'DETAILS') return;
+    labStopEvent(e);
+    details.open = !details.open;
+    var id = details.getAttribute('data-sandbox-id') || 'sandbox';
+    sandboxOpenWrite(id, details.open);
+    sandboxSyncChevron(details);
   }
 
   function SandboxAccordion(props) {
     var sandboxId = props.ariaLabel || props.title || 'sandbox';
     var detailsRef = useRef(null);
     useEffect(function () {
-      syncSandboxDetails(detailsRef.current, sandboxId);
-    });
+      var details = detailsRef.current;
+      if (!details) return;
+      if (sandboxOpenRead(sandboxId)) details.open = true;
+      sandboxSyncChevron(details);
+    }, []);
     return (
       <details
         ref={detailsRef}
         data-sandbox-id={sandboxId}
         style={sandboxOuterStyle}
         onToggle={onSandboxToggle}
-        onClick={labStopBubble}
-        onMouseDown={labStopBubble}
-        onPointerDown={labStopBubble}
         aria-label={props.ariaLabel || 'PayU integration sandbox'}
       >
-        <summary
-          style={sandboxSummaryStyle}
-          onClick={labStopBubble}
-          onMouseDown={labStopBubble}
-        >
+        <summary style={sandboxSummaryStyle} onClick={onSandboxSummaryClick}>
           <span style={sandboxBadgeStyle}>SANDBOX</span>
           <span style={{ minWidth: 0, flex: 1, fontSize: '14px', fontWeight: 600, color: '#111827' }}>{props.title}</span>
           <span data-sandbox-chevron={true} style={{ flexShrink: 0, color: PAYU_GREEN }}>▶</span>
         </summary>
         <div
           style={sandboxBodyStyle}
-          onFocus={onSandboxPanelInteract(sandboxId)}
-          onInput={onSandboxPanelInteract(sandboxId)}
+          onFocus={function () { sandboxOpenWrite(sandboxId, true); }}
+          onInput={function () { sandboxOpenWrite(sandboxId, true); }}
           onClick={labStopBubble}
           onMouseDown={labStopBubble}
           onPointerDown={labStopBubble}
