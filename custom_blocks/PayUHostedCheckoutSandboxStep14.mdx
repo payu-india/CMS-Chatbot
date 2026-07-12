@@ -26,8 +26,16 @@ export const PayUHostedCheckoutSandboxStep14 = function PayUHostedCheckoutSandbo
   var labelStyle = { display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: 700, color: PAYU_GREEN };
   var reqStarStyle = { color: RED_REQ, fontWeight: 700 };
   var hintClass = 'mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300';
-  var noteClass = 'mb-4 text-sm leading-relaxed text-amber-800 dark:text-amber-200';
+  var errTextStyle = { margin: '0 0 12px', fontSize: '14px', lineHeight: 1.5, color: RED_REQ };
+  var okTextStyle = { margin: '0 0 12px', fontSize: '14px', lineHeight: 1.5, color: PAYU_GREEN };
+  var hintTextStyle = { margin: '0 0 16px', fontSize: '14px', lineHeight: 1.5, color: '#b45309' };
+  var mutedTextStyle = { margin: '16px 0 0', fontSize: '12px', lineHeight: 1.5, color: '#6b7280' };
   var bodyTextStyle = { margin: 0, fontSize: '14px', lineHeight: 1.6, color: '#4b5563' };
+  var codeBlockStyle = {
+    display: 'block', wordBreak: 'break-all', borderRadius: '6px', background: '#f3f4f6',
+    padding: '8px 12px', fontSize: '12px', fontFamily: 'monospace', color: '#1f2937', marginBottom: '12px'
+  };
+  var codeBlockPreStyle = Object.assign({}, codeBlockStyle, { whiteSpace: 'pre-wrap' });
   var footerNoteStyle = {
     display: 'block', margin: 0, paddingTop: '8px', fontSize: '14px',
     lineHeight: 1.6, color: '#374151'
@@ -147,7 +155,7 @@ export const PayUHostedCheckoutSandboxStep14 = function PayUHostedCheckoutSandbo
 
   function labClick(fn) {
     return function (e) {
-      labStopEvent(e);
+      labStopBubble(e);
       fn(e);
     };
   }
@@ -430,11 +438,11 @@ export const PayUHostedCheckoutSandboxStep14 = function PayUHostedCheckoutSandbo
 
   function verifyReverseHash() {
     var data = collectStep14FromDom();
-    if (!empty(data.salt) === false) {
+    if (empty(data.salt)) {
       setErr('Enter test salt (same as Step 1.2).');
       return;
     }
-    if (!empty(data.responseHash) === false) {
+    if (empty(data.responseHash)) {
       setErr('Paste the hash from PayU response.');
       return;
     }
@@ -505,10 +513,10 @@ export const PayUHostedCheckoutSandboxStep14 = function PayUHostedCheckoutSandbo
           Open Hash Verification Tool
         </a>
       </div>
-      {err ? <p className="mb-3 text-sm text-red-600" role="alert">{err}</p> : null}
-      {match === true ? <p className="mb-3 text-sm text-teal-700">Hash matches — response verified for this lab.</p> : null}
-      {match === false ? <p className="mb-3 text-sm text-red-600">Hash mismatch — check field order, salt, and status.</p> : null}
-      {computed ? <code className={'mb-3 ' + codeBlockClass}>{computed}</code> : null}
+      {err ? <p style={errTextStyle} role="alert">{err}</p> : null}
+      {match === true ? <p style={okTextStyle}>Hash matches — response verified for this lab.</p> : null}
+      {match === false ? <p style={errTextStyle}>Hash mismatch — check field order, salt, and status.</p> : null}
+      {computed ? <code style={codeBlockStyle}>{computed}</code> : null}
       </div>
     </SandboxAccordion>
   );
