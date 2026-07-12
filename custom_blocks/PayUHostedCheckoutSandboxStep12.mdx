@@ -77,6 +77,8 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
     return s == null ? '' : String(s).trim();
   }
 
+  var LAB_UPDATE_EVENT = 'payu-hosted-checkout-lab-update';
+
   function labRead() {
     try {
       if (typeof window === 'undefined' || !window.sessionStorage) return null;
@@ -93,6 +95,9 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
       if (typeof window === 'undefined' || !window.sessionStorage) return false;
       data.updatedAt = Date.now();
       window.sessionStorage.setItem(LAB_KEY, JSON.stringify(data));
+      try {
+        window.dispatchEvent(new CustomEvent(LAB_UPDATE_EVENT, { detail: data }));
+      } catch (e3) {}
       return true;
     } catch (e2) {
       return false;
@@ -101,8 +106,35 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
 
   function labEnsure() {
     var existing = labRead();
-    if (existing && existing.params) return existing;
+    if (existing) {
+      if (!existing.params) existing.params = Object.assign({}, DEFAULT_PARAMS);
+      return existing;
+    }
     return { params: Object.assign({}, DEFAULT_PARAMS), salt: '', hashHex: '', pipeString: '', step11Done: false, step12Done: false };
+  }
+
+  function useLabWatcher(onUpdate) {
+    useEffect(function () {
+      if (typeof window === 'undefined') return;
+      function handle() {
+        try { onUpdate(); } catch (e) {}
+      }
+      function onStorage(ev) {
+        if (!ev || ev.key === LAB_KEY || ev.key === null) handle();
+      }
+      window.addEventListener(LAB_UPDATE_EVENT, handle);
+      window.addEventListener('storage', onStorage);
+      function onVis() {
+        if (document.visibilityState === 'visible') handle();
+      }
+      document.addEventListener('visibilitychange', onVis);
+      handle();
+      return function () {
+        window.removeEventListener(LAB_UPDATE_EVENT, handle);
+        window.removeEventListener('storage', onStorage);
+        document.removeEventListener('visibilitychange', onVis);
+      };
+    }, []);
   }
 
   function buildForwardHashString(params, salt) {
@@ -346,17 +378,18 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
     return { salt: '' };
   }
 
-  function readSaltFromDom() {
+  function readSalt() {
     var store = saltStore();
-    if (typeof document === 'undefined') return store.salt || '';
-    var el = document.querySelector('[data-payu-step12-field="salt"]');
-    if (el) store.salt = el.value;
+    if (rootRef.current) {
+      var el = rootRef.current.querySelector('[data-payu-step12-field="salt"]');
+      if (el) store.salt = el.value;
+    }
     return store.salt || '';
   }
 
   function syncSaltToDom(v) {
-    if (typeof document === 'undefined') return;
-    var el = document.querySelector('[data-payu-step12-field="salt"]');
+    if (!rootRef.current) return;
+    var el = rootRef.current.querySelector('[data-payu-step12-field="salt"]');
     if (el) el.value = v == null ? '' : String(v);
   }
 
@@ -365,6 +398,7 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
   }
 
   var salt = saltStore().salt || '';
+  var rootRef = useRef(null);
   var _hashHex = useState('');
   var hashHex = _hashHex[0];
   var setHashHex = _hashHex[1];
@@ -398,18 +432,16 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
     if (lab.pipeString) setPipeString(lab.pipeString);
   }
 
-  useEffect(function () {
-    refreshLabStatus();
-  }, []);
+  useLabWatcher(refreshLabStatus);
 
   function generateHash() {
     var lab = labEnsure();
     setParamsOk(!!lab.step11Done);
-    if (!lab.step11Done || !lab.params) {
+    if (!lab.step11Done || !lab.params || empty(lab.params.key)) {
       setErr('Complete Step 1.1 and save parameters first.');
       return;
     }
-    var saltVal = readSaltFromDom();
+    var saltVal = readSalt();
     if (empty(saltVal)) {
       setErr('Enter your test salt from the PayU dashboard.');
       return;
@@ -436,12 +468,12 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
 
   return (
     <SandboxAccordion title="Try Out! · Generate forward hash" intro="Enter your test salt and generate the SHA-512 hash using parameters from Step 1.1." ariaLabel="Step 1.2 sandbox">
-      <div className={shellClass}>
+      <div ref={rootRef} className={shellClass}>
       <LabStatus items={[
         { label: 'Step 1.1 parameters', ok: paramsOk },
         { label: 'Hash generated', ok: hashHex.length === 128 }
       ]} />
-      {!paramsOk ? <p style={hintTextStyle}>Go to Step 1.1 above and click Save parameters to lab, then click Refresh lab status here.</p> : null}
+      {!paramsOk ? <p style={hintTextStyle}>Complete Step 1.1 above and click Save parameters to lab.</p> : null}
       <div style={Object.assign({}, fieldStackStyle, { maxWidth: '28rem' })}>
         <div>
           <FieldLabel name="salt" required={true} />
@@ -450,6 +482,7 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
             data-payu-step12-field="salt"
             defaultValue={salt}
             onInput={onSaltInput}
+            onChange={onSaltInput}
             style={inputStyle}
             autoComplete="off"
           />
