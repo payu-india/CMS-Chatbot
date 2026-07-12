@@ -21,10 +21,25 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
   var fieldStackStyle = { display: 'flex', flexDirection: 'column', gap: '16px' };
   var fieldStackInnerStyle = { display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '16px' };
   var btnRowStyle = { display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '20px', alignItems: 'center' };
+  var btnRowOnlyStyle = { display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'center' };
+  var btnRowSpacedStyle = { display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'center', marginTop: '16px' };
   var labelStyle = { display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: 700, color: PAYU_GREEN };
   var reqStarStyle = { color: RED_REQ, fontWeight: 700 };
   var hintClass = 'mb-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300';
-  var noteClass = 'mb-4 text-sm leading-relaxed text-amber-800 dark:text-amber-200';
+  var errTextStyle = { margin: '0 0 12px', fontSize: '14px', lineHeight: 1.5, color: RED_REQ };
+  var okTextStyle = { margin: '0 0 12px', fontSize: '14px', lineHeight: 1.5, color: PAYU_GREEN };
+  var hintTextStyle = { margin: '0 0 16px', fontSize: '14px', lineHeight: 1.5, color: '#b45309' };
+  var mutedTextStyle = { margin: '16px 0 0', fontSize: '12px', lineHeight: 1.5, color: '#6b7280' };
+  var bodyTextStyle = { margin: 0, fontSize: '14px', lineHeight: 1.6, color: '#4b5563' };
+  var codeBlockStyle = {
+    display: 'block', wordBreak: 'break-all', borderRadius: '6px', background: '#f3f4f6',
+    padding: '8px 12px', fontSize: '12px', fontFamily: 'monospace', color: '#1f2937', marginBottom: '12px'
+  };
+  var codeBlockPreStyle = Object.assign({}, codeBlockStyle, { whiteSpace: 'pre-wrap' });
+  var footerNoteStyle = {
+    display: 'block', margin: 0, paddingTop: '8px', fontSize: '14px',
+    lineHeight: 1.6, color: '#374151'
+  };
   var inputStyle = {
     boxSizing: 'border-box', width: '100%', minWidth: 0, borderRadius: '6px',
     border: '1px solid #d1d5db', background: '#fff', padding: '8px 12px',
@@ -140,16 +155,17 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
 
   function labClick(fn) {
     return function (e) {
-      labStopEvent(e);
+      labStopBubble(e);
       fn(e);
     };
   }
 
   function FieldLabel(props) {
+    var isReq = props.required === true;
     return (
       <label style={labelStyle}>
-        {props.name}
-        {props.required ? <span style={reqStarStyle}> *</span> : null}
+        <span>{props.name}</span>
+        {isReq ? <span style={reqStarStyle} aria-hidden="true"> *</span> : null}
       </label>
     );
   }
@@ -194,21 +210,25 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
     );
   }
 
+  var statusRowStyle = { display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '20px' };
+  var statusOkStyle = {
+    borderRadius: '9999px', background: '#f0fdfa', color: '#115e59',
+    padding: '4px 10px', fontSize: '12px', lineHeight: 1.4, fontWeight: 600
+  };
+  var statusPendingStyle = {
+    borderRadius: '9999px', background: '#f3f4f6', color: '#4b5563',
+    padding: '4px 10px', fontSize: '12px', lineHeight: 1.4, fontWeight: 600
+  };
+
   function LabStatus(props) {
     var items = props.items || [];
+    var wrapStyle = props.compact ? { display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: 0 } : statusRowStyle;
     return (
-      <div className="mb-4 flex flex-wrap gap-2 text-xs">
+      <div style={wrapStyle}>
         {items.map(function (it, idx) {
           var ok = it.ok;
           return (
-            <span
-              key={idx}
-              className={
-                ok
-                  ? 'rounded-full bg-teal-50 px-2 py-1 text-teal-800 dark:bg-teal-950 dark:text-teal-200'
-                  : 'rounded-full bg-gray-100 px-2 py-1 text-gray-600 dark:bg-gray-800 dark:text-gray-300'
-              }
-            >
+            <span key={idx} style={ok ? statusOkStyle : statusPendingStyle}>
               {ok ? '✓ ' : '○ '}{it.label}
             </span>
           );
@@ -219,7 +239,7 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
 
   var sandboxOuterStyle = {
     margin: '24px 0', width: '100%', minWidth: 0, maxWidth: '100%', boxSizing: 'border-box',
-    overflow: 'hidden', borderRadius: '12px', border: '2px dashed ' + PAYU_GREEN,
+    overflow: 'visible', borderRadius: '12px', border: '2px dashed ' + PAYU_GREEN,
     background: 'rgba(240, 253, 250, 0.4)'
   };
   var sandboxSummaryStyle = {
@@ -234,6 +254,24 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
     background: '#fff', padding: '16px', borderTop: '1px solid rgba(15, 118, 110, 0.15)'
   };
 
+  var SANDBOX_OPEN_GLOBAL = '__payuHostedCheckoutSandboxOpen';
+
+  function sandboxOpenStore() {
+    if (typeof window !== 'undefined') {
+      if (!window[SANDBOX_OPEN_GLOBAL]) window[SANDBOX_OPEN_GLOBAL] = {};
+      return window[SANDBOX_OPEN_GLOBAL];
+    }
+    return {};
+  }
+
+  function sandboxOpenRead(id) {
+    return sandboxOpenStore()[id] === true;
+  }
+
+  function sandboxOpenWrite(id, isOpen) {
+    sandboxOpenStore()[id] = !!isOpen;
+  }
+
   function sandboxSyncChevron(details) {
     if (!details) return;
     var chevron = details.querySelector('[data-sandbox-chevron]');
@@ -242,6 +280,8 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
 
   function onSandboxToggle(e) {
     var details = e.currentTarget;
+    var id = details.getAttribute('data-sandbox-id') || 'sandbox';
+    sandboxOpenWrite(id, details.open);
     sandboxSyncChevron(details);
   }
 
@@ -251,21 +291,24 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
     if (!details || details.tagName !== 'DETAILS') return;
     labStopEvent(e);
     details.open = !details.open;
+    var id = details.getAttribute('data-sandbox-id') || 'sandbox';
+    sandboxOpenWrite(id, details.open);
     sandboxSyncChevron(details);
   }
 
   function SandboxAccordion(props) {
+    var sandboxId = props.ariaLabel || props.title || 'sandbox';
     var detailsRef = useRef(null);
     useEffect(function () {
       var details = detailsRef.current;
       if (!details) return;
-      details.open = false;
+      if (sandboxOpenRead(sandboxId)) details.open = true;
       sandboxSyncChevron(details);
     }, []);
     return (
       <details
         ref={detailsRef}
-        data-sandbox-id={props.ariaLabel || props.title || 'sandbox'}
+        data-sandbox-id={sandboxId}
         style={sandboxOuterStyle}
         onToggle={onSandboxToggle}
         aria-label={props.ariaLabel || 'PayU integration sandbox'}
@@ -277,6 +320,8 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
         </summary>
         <div
           style={sandboxBodyStyle}
+          onFocus={function () { sandboxOpenWrite(sandboxId, true); }}
+          onInput={function () { sandboxOpenWrite(sandboxId, true); }}
           onClick={labStopBubble}
           onMouseDown={labStopBubble}
           onPointerDown={labStopBubble}
@@ -399,8 +444,9 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
   function validateParams() {
     var data = collectFormFromDom();
     for (var i = 0; i < MANDATORY.length; i += 1) {
-      if (!empty(data[MANDATORY[i].k])) continue;
-      return 'Missing required field: ' + MANDATORY[i].l;
+      if (empty(data[MANDATORY[i].k])) {
+        return 'Missing required field: ' + MANDATORY[i].l;
+      }
     }
     if (!/^\d+(\.\d{1,2})?$/.test(empty(data.amount))) {
       return 'Amount must be a decimal string (e.g. 10.00).';
@@ -483,9 +529,9 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
         <button type="button" onClick={labClick(newTxnid)} style={btnSecondaryStyle}>New txnid</button>
         <button type="button" onClick={labClick(resetExamples)} style={btnSecondaryStyle}>Reset examples</button>
       </div>
-      {err ? <p className="mb-3 text-sm text-red-600" role="alert">{err}</p> : null}
-      {msg ? <p className="mb-3 text-sm text-teal-700">{msg}</p> : null}
-      {saved ? <p className="mt-4 text-xs leading-relaxed text-gray-500">Step 1.1 complete — parameters stored for Steps 1.2 and 1.3.</p> : null}
+      {err ? <p style={errTextStyle} role="alert">{err}</p> : null}
+      {msg ? <p style={okTextStyle}>{msg}</p> : null}
+      {saved ? <p style={mutedTextStyle}>Step 1.1 complete — parameters stored for Steps 1.2 and 1.3.</p> : null}
       </div>
     </SandboxAccordion>
   );
