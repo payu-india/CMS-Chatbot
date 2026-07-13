@@ -78,26 +78,54 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
   }
 
   var LAB_UPDATE_EVENT = 'payu-hosted-checkout-lab-update';
+  var LAB_GLOBAL_STATE = '__payuHostedCheckoutLabState';
+
+  function labWindow() {
+    if (typeof window === 'undefined') return null;
+    try {
+      if (window.top && window.top !== window) return window.top;
+    } catch (e) {}
+    return window;
+  }
 
   function labRead() {
     try {
-      if (typeof window === 'undefined' || !window.sessionStorage) return null;
-      var raw = window.sessionStorage.getItem(LAB_KEY);
-      if (!raw) return null;
-      return JSON.parse(raw);
+      var lw = labWindow();
+      if (!lw) return null;
+      if (lw[LAB_GLOBAL_STATE]) return Object.assign({}, lw[LAB_GLOBAL_STATE]);
+      if (lw.localStorage) {
+        var raw = lw.localStorage.getItem(LAB_KEY);
+        if (raw) return JSON.parse(raw);
+      }
+      if (typeof window !== 'undefined' && window.sessionStorage) {
+        var raw2 = window.sessionStorage.getItem(LAB_KEY);
+        if (raw2) return JSON.parse(raw2);
+      }
+      return null;
     } catch (e) {
       return null;
     }
   }
 
+  function labBroadcast(data) {
+    try {
+      var evt = new CustomEvent(LAB_UPDATE_EVENT, { detail: data });
+      if (typeof window !== 'undefined') window.dispatchEvent(evt);
+      var lw = labWindow();
+      if (lw && typeof window !== 'undefined' && lw !== window) lw.dispatchEvent(evt);
+    } catch (e3) {}
+  }
+
   function labWrite(data) {
     try {
-      if (typeof window === 'undefined' || !window.sessionStorage) return false;
+      if (typeof window === 'undefined') return false;
       data.updatedAt = Date.now();
-      window.sessionStorage.setItem(LAB_KEY, JSON.stringify(data));
-      try {
-        window.dispatchEvent(new CustomEvent(LAB_UPDATE_EVENT, { detail: data }));
-      } catch (e3) {}
+      var payload = JSON.stringify(data);
+      var lw = labWindow();
+      if (lw) lw[LAB_GLOBAL_STATE] = data;
+      if (lw && lw.localStorage) lw.localStorage.setItem(LAB_KEY, payload);
+      if (window.sessionStorage) window.sessionStorage.setItem(LAB_KEY, payload);
+      labBroadcast(data);
       return true;
     } catch (e2) {
       return false;
@@ -124,6 +152,11 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
       }
       window.addEventListener(LAB_UPDATE_EVENT, handle);
       window.addEventListener('storage', onStorage);
+      var lw = labWindow();
+      if (lw && lw !== window) {
+        lw.addEventListener(LAB_UPDATE_EVENT, handle);
+        lw.addEventListener('storage', onStorage);
+      }
       function onVis() {
         if (document.visibilityState === 'visible') handle();
       }
@@ -132,6 +165,10 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
       return function () {
         window.removeEventListener(LAB_UPDATE_EVENT, handle);
         window.removeEventListener('storage', onStorage);
+        if (lw && lw !== window) {
+          lw.removeEventListener(LAB_UPDATE_EVENT, handle);
+          lw.removeEventListener('storage', onStorage);
+        }
         document.removeEventListener('visibilitychange', onVis);
       };
     }, []);
@@ -370,34 +407,46 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
   var FORM_UI_GLOBAL = '__payuHostedCheckoutStep11Form';
 
   function formStore() {
-    if (typeof window !== 'undefined') {
-      if (!window[FORM_UI_GLOBAL]) {
-        var lab = labRead();
-        var base = Object.assign({}, DEFAULT_PARAMS);
-        if (lab && lab.params) Object.assign(base, lab.params);
-        window[FORM_UI_GLOBAL] = base;
-      }
-      return window[FORM_UI_GLOBAL];
+    var fw = labWindow();
+    if (typeof fw === 'undefined') return Object.assign({}, DEFAULT_PARAMS);
+    if (!fw[FORM_UI_GLOBAL]) {
+      var lab = labRead();
+      var base = Object.assign({}, DEFAULT_PARAMS);
+      if (lab && lab.params) Object.assign(base, lab.params);
+      fw[FORM_UI_GLOBAL] = base;
     }
-    return Object.assign({}, DEFAULT_PARAMS);
+    return fw[FORM_UI_GLOBAL];
   }
 
-  function syncFormFromRoot(root) {
-    var store = formStore();
-    if (!root || typeof root.querySelectorAll !== 'function') return store;
-    var fields = root.querySelectorAll('[data-payu-step11-field]');
-    for (var i = 0; i < fields.length; i += 1) {
-      var el = fields[i];
-      var k = el.getAttribute('data-payu-step11-field');
-      if (k) store[k] = el.value;
+  function readFormValues() {
+    var data = Object.assign({}, DEFAULT_PARAMS);
+    var i;
+    for (i = 0; i < MANDATORY.length; i += 1) {
+      var mk = MANDATORY[i].k;
+      var mel = fieldRefs.current[mk];
+      data[mk] = mel ? mel.value : (formStore()[mk] || '');
     }
-    return store;
+    for (i = 0; i < OPTIONAL.length; i += 1) {
+      var ok = OPTIONAL[i].k;
+      var oel = fieldRefs.current[ok];
+      data[ok] = oel ? oel.value : (formStore()[ok] || '');
+    }
+    Object.assign(formStore(), data);
+    return data;
+  }
+
+  function setFieldRef(k) {
+    return function (el) {
+      if (el) fieldRefs.current[k] = el;
+      else delete fieldRefs.current[k];
+    };
   }
 
   function syncFieldToDom(k, v) {
-    if (!rootRef.current) return;
-    var el = rootRef.current.querySelector('[data-payu-step11-field="' + k + '"]');
-    if (el) el.value = v == null ? '' : String(v);
+    var val = v == null ? '' : String(v);
+    var el = fieldRefs.current[k];
+    if (el) el.value = val;
+    formStore()[k] = val;
   }
 
   function syncAllFieldsToDom(values) {
@@ -414,6 +463,7 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
   }
 
   var form = formStore();
+  var fieldRefs = useRef({});
   var rootRef = useRef(null);
   var _msg = useState('');
   var msg = _msg[0];
@@ -434,8 +484,9 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
     try {
       var panel = udfPanelRef.current;
       var btn = udfBtnRef.current;
-      if (!panel || !btn || typeof window === 'undefined' || !window.sessionStorage) return;
-      var open = window.sessionStorage.getItem(UDF_UI_KEY) === '1';
+      if (!panel || !btn || typeof window === 'undefined') return;
+      var lw = labWindow();
+      var open = lw && lw.localStorage ? lw.localStorage.getItem(UDF_UI_KEY) === '1' : false;
       panel.style.display = open ? 'block' : 'none';
       btn.textContent = open ? UDF_HIDE : UDF_SHOW;
     } catch (e0) {}
@@ -449,8 +500,9 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
       var open = panel.style.display !== 'block';
       panel.style.display = open ? 'block' : 'none';
       btn.textContent = open ? UDF_HIDE : UDF_SHOW;
-      if (typeof window !== 'undefined' && window.sessionStorage) {
-        window.sessionStorage.setItem(UDF_UI_KEY, open ? '1' : '0');
+      if (typeof window !== 'undefined') {
+        var lw2 = labWindow();
+        if (lw2 && lw2.localStorage) lw2.localStorage.setItem(UDF_UI_KEY, open ? '1' : '0');
       }
     } catch (e1) {}
   }
@@ -475,8 +527,7 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
   }
 
   function validateParams() {
-    syncFormFromRoot(rootRef.current);
-    var data = formStore();
+    var data = readFormValues();
     for (var i = 0; i < MANDATORY.length; i += 1) {
       if (empty(data[MANDATORY[i].k])) {
         return 'Missing required field: ' + MANDATORY[i].l;
@@ -492,11 +543,11 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
   }
 
   function saveToLab() {
-    syncFormFromRoot(rootRef.current);
+    var data = readFormValues();
     var ve = validateParams();
     if (ve) { setErr(ve); return; }
     var lab = labEnsure();
-    lab.params = Object.assign({}, formStore());
+    lab.params = Object.assign({}, data);
     lab.step11Done = true;
     lab.hashHex = '';
     lab.pipeString = '';
@@ -525,7 +576,8 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
         <FieldLabel name={row.k} required={true} />
         <input
           type={type}
-          data-payu-step11-field={row.k}
+          ref={setFieldRef(row.k)}
+          name={row.k}
           defaultValue={form[row.k] || ''}
           onInput={onFieldInput(row.k)}
           onChange={onFieldInput(row.k)}
@@ -553,7 +605,8 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
                 <FieldLabel name={row.k} required={false} />
                 <input
                   type="text"
-                  data-payu-step11-field={row.k}
+                  ref={setFieldRef(row.k)}
+                  name={row.k}
                   defaultValue={form[row.k] || ''}
                   onInput={onFieldInput(row.k)}
                   onChange={onFieldInput(row.k)}
