@@ -1,3 +1,4 @@
+- step-00-authentication
 - step-01-create-merchant
 - step-03-ckyc-verification
 - step-09-digilocker-verification
@@ -9,4 +10,3 @@
 - step-15-upload-kyc-documents
 - step-16-e-sign-agreement
 - utilities
-- step-00-authentication
