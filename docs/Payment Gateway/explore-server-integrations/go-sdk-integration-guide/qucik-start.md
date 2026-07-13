@@ -105,8 +105,7 @@ func main() {
 ### Step 4 Create a Payment Request
 
 <Accordion title="Steps to Create a Payment Request" icon="fa-info-circle">
-1. Save this code in the `payu-go-integration` project folder.
-</Accordion>
+1. Save this code in the `payu-go-integration` project folder as `pay.go`.
 
 ```go
 package main
@@ -146,5 +145,16 @@ func initiatePayment(client *payu.PayuStruct) (string, error) {
 	return txnid, nil
 }
 ```
+2. Navigate to the `payu-go-integration` folder and run the following code to create the `pay.html` file.
+
+<Terminal>{`
+go run .
+`}</Terminal>
+
+</Accordion>
+
+<Terminal>{`
+go run .
+`}</Terminal>
 
 <br />
