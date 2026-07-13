@@ -140,10 +140,48 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
   function labEnsure() {
     var existing = labRead();
     if (existing) {
-      if (!existing.params) existing.params = Object.assign({}, DEFAULT_PARAMS);
+      existing.params = mergeStep11Params(existing.params);
       return existing;
     }
     return { params: Object.assign({}, DEFAULT_PARAMS), salt: '', hashHex: '', pipeString: '', step11Done: false, step12Done: false };
+  }
+
+  var STEP11_FORM_GLOBAL = '__payuHostedCheckoutStep11Form';
+
+  function mergeStep11Params(params) {
+    var merged = Object.assign({}, DEFAULT_PARAMS, params || {});
+    try {
+      var fw = labWindow();
+      if (fw && fw[STEP11_FORM_GLOBAL]) {
+        var form = fw[STEP11_FORM_GLOBAL];
+        var k;
+        for (k in form) {
+          if (Object.prototype.hasOwnProperty.call(form, k) && !isBlank(form[k])) {
+            merged[k] = form[k];
+          }
+        }
+      }
+    } catch (e4) {}
+    return merged;
+  }
+
+  function step11Ready(lab) {
+    if (!lab || !lab.step11Done) return false;
+    var params = mergeStep11Params(lab.params);
+    return !isBlank(params.key) && !isBlank(params.txnid) && !isBlank(params.amount);
+  }
+
+  function step11BlockMessage(lab, params) {
+    if (!lab || !lab.step11Done) {
+      return 'Complete Step 1.1 and save parameters first.';
+    }
+    if (isBlank(params.key)) {
+      return 'Merchant key missing in saved parameters — return to Step 1.1 and click Save again.';
+    }
+    if (isBlank(params.txnid) || isBlank(params.amount)) {
+      return 'Step 1.1 parameters incomplete — return to Step 1.1 and click Save again.';
+    }
+    return 'Complete Step 1.1 and save parameters first.';
   }
 
   function useLabWatcher(onUpdate) {
@@ -409,7 +447,7 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
 
   var MANDATORY = JSON.parse('[{"k":"txnid","l":"txnid"},{"k":"amount","l":"amount"},{"k":"productinfo","l":"productinfo"},{"k":"firstname","l":"firstname"},{"k":"email","l":"email","t":"email"},{"k":"phone","l":"phone"},{"k":"surl","l":"surl"},{"k":"furl","l":"furl"}]');
   var OPTIONAL = JSON.parse('[{"k":"udf1","l":"udf1"},{"k":"udf2","l":"udf2"},{"k":"udf3","l":"udf3"},{"k":"udf4","l":"udf4"},{"k":"udf5","l":"udf5"}]');
-  var FORM_UI_GLOBAL = '__payuHostedCheckoutStep11Form';
+  var FORM_UI_GLOBAL = STEP11_FORM_GLOBAL;
   var MERCHANT_KEY = 'key';
 
   function initFormValues() {
