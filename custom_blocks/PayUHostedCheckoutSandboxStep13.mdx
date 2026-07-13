@@ -2,6 +2,7 @@
 name: PayUHostedCheckoutSandboxStep13
 ---
 // PayUHostedCheckoutSandboxStep13 - Sandbox dashed box + accordion + lab (single paste)
+// Lab v12 — search file for "Integration lab v12" before pasting.
 // Regenerate: node scripts/build-payu-hosted-checkout-steps.mjs
 
 import { useState, useEffect, useRef } from 'react';
@@ -77,22 +78,59 @@ export const PayUHostedCheckoutSandboxStep13 = function PayUHostedCheckoutSandbo
     return s == null ? '' : String(s).trim();
   }
 
+  function isBlank(s) {
+    return empty(s) === '';
+  }
+
+  var LAB_UPDATE_EVENT = 'payu-hosted-checkout-lab-update';
+  var LAB_GLOBAL_STATE = '__payuHostedCheckoutLabState';
+
+  function labWindow() {
+    if (typeof window === 'undefined') return null;
+    try {
+      if (window.top && window.top !== window) return window.top;
+    } catch (e) {}
+    return window;
+  }
+
   function labRead() {
     try {
-      if (typeof window === 'undefined' || !window.sessionStorage) return null;
-      var raw = window.sessionStorage.getItem(LAB_KEY);
-      if (!raw) return null;
-      return JSON.parse(raw);
+      var lw = labWindow();
+      if (!lw) return null;
+      if (lw[LAB_GLOBAL_STATE]) return Object.assign({}, lw[LAB_GLOBAL_STATE]);
+      if (lw.localStorage) {
+        var raw = lw.localStorage.getItem(LAB_KEY);
+        if (raw) return JSON.parse(raw);
+      }
+      if (typeof window !== 'undefined' && window.sessionStorage) {
+        var raw2 = window.sessionStorage.getItem(LAB_KEY);
+        if (raw2) return JSON.parse(raw2);
+      }
+      return null;
     } catch (e) {
       return null;
     }
   }
 
+  function labBroadcast(data) {
+    try {
+      var evt = new CustomEvent(LAB_UPDATE_EVENT, { detail: data });
+      if (typeof window !== 'undefined') window.dispatchEvent(evt);
+      var lw = labWindow();
+      if (lw && typeof window !== 'undefined' && lw !== window) lw.dispatchEvent(evt);
+    } catch (e3) {}
+  }
+
   function labWrite(data) {
     try {
-      if (typeof window === 'undefined' || !window.sessionStorage) return false;
+      if (typeof window === 'undefined') return false;
       data.updatedAt = Date.now();
-      window.sessionStorage.setItem(LAB_KEY, JSON.stringify(data));
+      var payload = JSON.stringify(data);
+      var lw = labWindow();
+      if (lw) lw[LAB_GLOBAL_STATE] = data;
+      if (lw && lw.localStorage) lw.localStorage.setItem(LAB_KEY, payload);
+      if (window.sessionStorage) window.sessionStorage.setItem(LAB_KEY, payload);
+      labBroadcast(data);
       return true;
     } catch (e2) {
       return false;
@@ -101,8 +139,82 @@ export const PayUHostedCheckoutSandboxStep13 = function PayUHostedCheckoutSandbo
 
   function labEnsure() {
     var existing = labRead();
-    if (existing && existing.params) return existing;
+    if (existing) {
+      existing.params = mergeStep11Params(existing.params);
+      return existing;
+    }
     return { params: Object.assign({}, DEFAULT_PARAMS), salt: '', hashHex: '', pipeString: '', step11Done: false, step12Done: false };
+  }
+
+  var STEP11_FORM_GLOBAL = '__payuHostedCheckoutStep11Form';
+
+  function mergeStep11Params(params) {
+    var merged = Object.assign({}, DEFAULT_PARAMS, params || {});
+    try {
+      var fw = labWindow();
+      if (fw && fw[STEP11_FORM_GLOBAL]) {
+        var form = fw[STEP11_FORM_GLOBAL];
+        var k;
+        for (k in form) {
+          if (Object.prototype.hasOwnProperty.call(form, k) && !isBlank(form[k])) {
+            merged[k] = form[k];
+          }
+        }
+      }
+    } catch (e4) {}
+    return merged;
+  }
+
+  function step11Ready(lab) {
+    if (!lab || !lab.step11Done) return false;
+    var params = mergeStep11Params(lab.params);
+    return !isBlank(params.key) && !isBlank(params.txnid) && !isBlank(params.amount);
+  }
+
+  function step11BlockMessage(lab, params) {
+    if (!lab || !lab.step11Done) {
+      return 'Complete Step 1.1 and save parameters first.';
+    }
+    if (isBlank(params.key)) {
+      return 'Merchant key missing in saved parameters — return to Step 1.1 and click Save again.';
+    }
+    if (isBlank(params.txnid) || isBlank(params.amount)) {
+      return 'Step 1.1 parameters incomplete — return to Step 1.1 and click Save again.';
+    }
+    return 'Complete Step 1.1 and save parameters first.';
+  }
+
+  function useLabWatcher(onUpdate) {
+    useEffect(function () {
+      if (typeof window === 'undefined') return;
+      function handle() {
+        try { onUpdate(); } catch (e) {}
+      }
+      function onStorage(ev) {
+        if (!ev || ev.key === LAB_KEY || ev.key === null) handle();
+      }
+      window.addEventListener(LAB_UPDATE_EVENT, handle);
+      window.addEventListener('storage', onStorage);
+      var lw = labWindow();
+      if (lw && lw !== window) {
+        lw.addEventListener(LAB_UPDATE_EVENT, handle);
+        lw.addEventListener('storage', onStorage);
+      }
+      function onVis() {
+        if (document.visibilityState === 'visible') handle();
+      }
+      document.addEventListener('visibilitychange', onVis);
+      handle();
+      return function () {
+        window.removeEventListener(LAB_UPDATE_EVENT, handle);
+        window.removeEventListener('storage', onStorage);
+        if (lw && lw !== window) {
+          lw.removeEventListener(LAB_UPDATE_EVENT, handle);
+          lw.removeEventListener('storage', onStorage);
+        }
+        document.removeEventListener('visibilitychange', onVis);
+      };
+    }, []);
   }
 
   function buildForwardHashString(params, salt) {
@@ -345,45 +457,87 @@ export const PayUHostedCheckoutSandboxStep13 = function PayUHostedCheckoutSandbo
   var _showCurl = useState(false);
   var showCurl = _showCurl[0];
   var setShowCurl = _showCurl[1];
-
-  useEffect(function () {
-    setLab(labEnsure());
-  }, []);
+  var _msg = useState('');
+  var msg = _msg[0];
+  var setMsg = _msg[1];
+  var payFormRef = useRef(null);
 
   function refreshLab() {
     setLab(labEnsure());
   }
 
-  function openPayuTest() {
-    setLab(labEnsure());
+  useLabWatcher(refreshLab);
+
+  function paymentReady(data) {
+    if (!data) return false;
+    return step11Ready(data) && data.step12Done && data.hashHex && data.hashHex.length === 128;
+  }
+
+  function syncPayForm(data) {
+    var form = payFormRef.current;
+    if (!form) return false;
+    var p = mergeStep11Params(data.params);
+    var fields = {
+      key: p.key,
+      txnid: p.txnid,
+      amount: p.amount,
+      productinfo: p.productinfo,
+      firstname: p.firstname,
+      email: p.email,
+      phone: p.phone,
+      surl: p.surl,
+      furl: p.furl,
+      udf1: p.udf1 || '',
+      udf2: p.udf2 || '',
+      udf3: p.udf3 || '',
+      udf4: p.udf4 || '',
+      udf5: p.udf5 || '',
+      hash: data.hashHex
+    };
+    var name;
+    for (name in fields) {
+      if (!Object.prototype.hasOwnProperty.call(fields, name)) continue;
+      var existing = form.elements[name];
+      if (!existing) {
+        existing = document.createElement('input');
+        existing.type = 'hidden';
+        existing.name = name;
+        form.appendChild(existing);
+      }
+      existing.value = fields[name];
+    }
+    return true;
+  }
+
+  function submitPayuCheckout(target) {
     var data = labEnsure();
-    if (!data.step11Done || !data.step12Done || !data.hashHex || data.hashHex.length !== 128) {
+    if (!paymentReady(data)) {
       setErr('Complete Step 1.1 and Step 1.2 (generate hash) first.');
+      setMsg('');
       return;
     }
-    var p = data.params;
-    var pairs = [
-      ['key', p.key], ['txnid', p.txnid], ['amount', p.amount], ['productinfo', p.productinfo],
-      ['firstname', p.firstname], ['email', p.email], ['phone', p.phone],
-      ['surl', p.surl], ['furl', p.furl],
-      ['udf1', p.udf1 || ''], ['udf2', p.udf2 || ''], ['udf3', p.udf3 || ''],
-      ['udf4', p.udf4 || ''], ['udf5', p.udf5 || ''], ['hash', data.hashHex]
-    ];
-    var inputs = '';
-    for (var i = 0; i < pairs.length; i += 1) {
-      inputs += '<input type="hidden" name="' + escapeAttr(pairs[i][0]) + '" value="' + escapeAttr(pairs[i][1]) + '" />';
-    }
-    var html = '<!DOCTYPE html><html><body onload="document.forms[0].submit()"><form method="post" action="' +
-      escapeAttr(TEST_PAYMENT) + '">' + inputs + '</form><p>Redirecting to PayU test checkout…</p></body></html>';
-    var w = window.open('', '_blank', 'noopener,noreferrer');
-    if (!w) {
-      setErr('Pop-up blocked. Allow pop-ups for this site.');
+    if (!syncPayForm(data)) {
+      setErr('Could not prepare checkout form. Refresh the page and try again.');
+      setMsg('');
       return;
     }
-    w.document.open();
-    w.document.write(html);
-    w.document.close();
+    var form = payFormRef.current;
+    form.target = target || '_blank';
+    form.submit();
     setErr('');
+    if (target === '_top' || target === '_self') {
+      setMsg('Redirecting to PayU test checkout…');
+    } else {
+      setMsg('Opening PayU test checkout in a new tab…');
+    }
+  }
+
+  function openPayuTest() {
+    submitPayuCheckout('_blank');
+  }
+
+  function openPayuTestSameTab() {
+    submitPayuCheckout('_top');
   }
 
   function buildCurl(data) {
@@ -402,20 +556,24 @@ export const PayUHostedCheckoutSandboxStep13 = function PayUHostedCheckoutSandbo
       '  -d "hash=' + data.hashHex + '"';
   }
 
-  var ready = lab && lab.step11Done && lab.step12Done && lab.hashHex && lab.hashHex.length === 128;
-  var amountLabel = lab && lab.params ? lab.params.amount : '10.00';
+  var ready = paymentReady(lab);
+  var amountLabel = lab && lab.params ? mergeStep11Params(lab.params).amount : '10.00';
 
   return (
-    <SandboxAccordion title="Try Out! · Pay on test checkout" intro="Opens test.payu.in with your saved parameters and hash. Use PayU test cards to complete payment." ariaLabel="Step 1.3 sandbox">
+    <SandboxAccordion title="Try Out! · Pay on test checkout (Lab v12)" intro="Opens test.payu.in with your saved parameters and hash. Use PayU test cards to complete payment." ariaLabel="Step 1.3 sandbox">
       <div className={shellClass}>
+      <form ref={payFormRef} method="post" action={TEST_PAYMENT} style={{ display: 'none' }} aria-hidden="true" />
       <LabStatus compact={true} items={[
-        { label: 'Step 1.1 parameters', ok: lab && lab.step11Done },
+        { label: 'Step 1.1 parameters', ok: lab && step11Ready(lab) },
         { label: 'Step 1.2 hash', ok: lab && lab.step12Done },
         { label: 'Ready to pay', ok: ready }
       ]} />
       <div style={btnRowSpacedStyle}>
         <button type="button" onClick={labClick(openPayuTest)} style={btnPrimaryStyle}>
           {'Pay ₹' + amountLabel + ' on PayU Test Checkout'}
+        </button>
+        <button type="button" onClick={labClick(openPayuTestSameTab)} disabled={!ready} style={btnSecondaryStyle}>
+          Open in this tab
         </button>
         <button type="button" onClick={labClick(refreshLab)} style={btnSecondaryStyle}>Refresh lab status</button>
         <button type="button" onClick={labClick(function () { setShowCurl(!showCurl); })} disabled={!ready} style={btnSecondaryStyle}>
@@ -426,9 +584,11 @@ export const PayUHostedCheckoutSandboxStep13 = function PayUHostedCheckoutSandbo
         ) : null}
       </div>
       {err ? <p style={errTextStyle} role="alert">{err}</p> : null}
+      {msg ? <p style={okTextStyle}>{msg}</p> : null}
       {copyMsg ? <p style={okTextStyle}>{copyMsg}</p> : null}
       {showCurl && ready ? <code style={codeBlockPreStyle}>{buildCurl(lab)}</code> : null}
       <div style={footerNoteStyle} role="note">{'Test checkout: Card 5123456789012346 · OTP 123456 · UPI anything' + '@' + 'payu'}</div>
+      <p style={{ margin: '8px 0 0', fontSize: '11px', color: '#9ca3af' }}>Lab v12 · Step 1.3</p>
       </div>
     </SandboxAccordion>
   );
