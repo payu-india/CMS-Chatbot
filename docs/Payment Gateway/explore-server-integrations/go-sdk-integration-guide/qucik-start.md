@@ -9,7 +9,7 @@ metadata:
 
 Go through the requirements and dependencies to make your first payment.
 
-## Integration Steps Overview
+## Quick Start Steps
 
 Test your Go SDK integrations within minutes by performing these steps:
 
