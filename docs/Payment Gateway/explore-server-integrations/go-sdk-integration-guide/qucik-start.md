@@ -153,8 +153,4 @@ go run .
 
 </Accordion>
 
-<Terminal>{`
-go run .
-`}</Terminal>
-
 <br />
