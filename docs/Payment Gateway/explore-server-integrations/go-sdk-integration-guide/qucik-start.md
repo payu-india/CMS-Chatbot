@@ -149,7 +149,7 @@ func initiatePayment(client *payu.PayuStruct) (string, error) {
 
 <Terminal>{`
 go run .
-`}</Terminal>
+`}</Terminal><br/>
 
 This will create the `pay.html` file.
 3. You can go to the folder and open the file manually or run the following command to open the checkout.
