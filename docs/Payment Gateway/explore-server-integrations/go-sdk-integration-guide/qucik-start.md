@@ -152,10 +152,14 @@ go run .
 `}</Terminal><br/>
 
 This will create the `pay.html` file.
-3. You can go to the folder and open the file manually or run the following command to open the checkout.
-<Terminal>{`
-open pay.html
-`}</Terminal>
+</Accordion>
+
+### Step 5 Complete the Test Payment
+
+<Accordion title="Steps to Complete the Test Payment" icon="fa-info-circle">
+  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
+  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
+  occaecat cupidatat non proident!
 </Accordion>
 
 <br />
