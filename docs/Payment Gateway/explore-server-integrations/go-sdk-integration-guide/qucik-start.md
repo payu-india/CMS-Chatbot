@@ -163,10 +163,8 @@ This will create the `pay.html` file.
   open pay.html
 `}</Terminal>
 
-</Accordion>
+2. 
 
-<Terminal>{`
-  open pay.html
-`}</Terminal>
+</Accordion>
 
 <br />
