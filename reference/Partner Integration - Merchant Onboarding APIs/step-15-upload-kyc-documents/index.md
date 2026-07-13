@@ -1,4 +1,4 @@
 ---
 title: Step 15 — Upload KYC Documents
-hidden: true
+hidden: false
 ---
