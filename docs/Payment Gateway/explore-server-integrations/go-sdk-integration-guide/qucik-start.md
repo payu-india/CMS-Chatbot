@@ -167,4 +167,10 @@ This will create the `pay.html` file.
 3. Complete the payment.
 </Accordion>
 
+## Errors and Troubleshooting
+
+<Accordion title="Errors and Fixes" icon="fa-info-circle">
+*Need Content*
+</Accordion>
+
 <br />
