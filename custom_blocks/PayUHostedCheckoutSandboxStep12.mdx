@@ -414,10 +414,25 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
     return fw[SALT_UI_GLOBAL];
   }
 
-  function readSalt() {
-    if (saltRef.current) {
-      saltStore().salt = saltRef.current.value;
-      return saltRef.current.value || '';
+  var SALT_FIELD_ID = 'payu-s12-salt';
+
+  function readSalt(formEl) {
+    if (formEl && typeof FormData !== 'undefined') {
+      try {
+        var fd = new FormData(formEl);
+        var s = fd.get('salt');
+        if (s != null) {
+          saltStore().salt = String(s);
+          return String(s);
+        }
+      } catch (e0) {}
+    }
+    if (typeof document !== 'undefined') {
+      var el = document.getElementById(SALT_FIELD_ID);
+      if (el) {
+        saltStore().salt = el.value;
+        return el.value || '';
+      }
     }
     return saltStore().salt || '';
   }
@@ -425,7 +440,10 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
   function syncSaltToDom(v) {
     var val = v == null ? '' : String(v);
     saltStore().salt = val;
-    if (saltRef.current) saltRef.current.value = val;
+    if (typeof document !== 'undefined') {
+      var el = document.getElementById(SALT_FIELD_ID);
+      if (el) el.value = val;
+    }
   }
 
   function onSaltInput(e) {
@@ -433,7 +451,7 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
   }
 
   var salt = saltStore().salt || '';
-  var saltRef = useRef(null);
+  var hashFormRef = useRef(null);
   var rootRef = useRef(null);
   var _hashHex = useState('');
   var hashHex = _hashHex[0];
@@ -470,14 +488,16 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
 
   useLabWatcher(refreshLabStatus);
 
-  function generateHash() {
+  function generateHash(e) {
+    if (e && e.preventDefault) e.preventDefault();
     var lab = labEnsure();
     setParamsOk(!!lab.step11Done);
     if (!lab.step11Done || !lab.params || empty(lab.params.key)) {
       setErr('Complete Step 1.1 and save parameters first.');
       return;
     }
-    var saltVal = readSalt();
+    var formEl = e && e.currentTarget ? e.currentTarget : hashFormRef.current;
+    var saltVal = readSalt(formEl);
     if (empty(saltVal)) {
       setErr('Enter your test salt from the PayU dashboard.');
       return;
@@ -510,12 +530,13 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
         { label: 'Hash generated', ok: hashHex.length === 128 }
       ]} />
       {!paramsOk ? <p style={hintTextStyle}>Complete Step 1.1 above and click Save parameters to lab.</p> : null}
+      <form ref={hashFormRef} onSubmit={labClick(generateHash)} noValidate>
       <div style={Object.assign({}, fieldStackStyle, { maxWidth: '28rem' })}>
         <div>
           <FieldLabel name="salt" required={true} />
           <input
             type="password"
-            ref={saltRef}
+            id={SALT_FIELD_ID}
             name="salt"
             defaultValue={salt}
             onInput={onSaltInput}
@@ -526,7 +547,7 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
         </div>
       </div>
       <div style={btnRowStyle}>
-        <button type="button" onClick={labClick(generateHash)} disabled={busy} style={btnPrimaryStyle}>
+        <button type="submit" disabled={busy} style={btnPrimaryStyle}>
           {busy ? 'Generating…' : 'Generate Forward Hash'}
         </button>
         <button type="button" onClick={labClick(refreshLabStatus)} style={btnSecondaryStyle}>Refresh lab status</button>
@@ -535,6 +556,7 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
           {showPipe ? 'Hide pipe string' : 'Show pipe string'}
         </button>
       </div>
+      </form>
       {err ? <p style={errTextStyle} role="alert">{err}</p> : null}
       {copyMsg ? <p style={okTextStyle}>{copyMsg}</p> : null}
       {hashHex ? <code style={codeBlockStyle}>{hashHex}</code> : null}
