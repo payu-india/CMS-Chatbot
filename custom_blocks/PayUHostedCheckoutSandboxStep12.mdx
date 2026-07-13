@@ -78,26 +78,54 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
   }
 
   var LAB_UPDATE_EVENT = 'payu-hosted-checkout-lab-update';
+  var LAB_GLOBAL_STATE = '__payuHostedCheckoutLabState';
+
+  function labWindow() {
+    if (typeof window === 'undefined') return null;
+    try {
+      if (window.top && window.top !== window) return window.top;
+    } catch (e) {}
+    return window;
+  }
 
   function labRead() {
     try {
-      if (typeof window === 'undefined' || !window.sessionStorage) return null;
-      var raw = window.sessionStorage.getItem(LAB_KEY);
-      if (!raw) return null;
-      return JSON.parse(raw);
+      var lw = labWindow();
+      if (!lw) return null;
+      if (lw[LAB_GLOBAL_STATE]) return Object.assign({}, lw[LAB_GLOBAL_STATE]);
+      if (lw.localStorage) {
+        var raw = lw.localStorage.getItem(LAB_KEY);
+        if (raw) return JSON.parse(raw);
+      }
+      if (typeof window !== 'undefined' && window.sessionStorage) {
+        var raw2 = window.sessionStorage.getItem(LAB_KEY);
+        if (raw2) return JSON.parse(raw2);
+      }
+      return null;
     } catch (e) {
       return null;
     }
   }
 
+  function labBroadcast(data) {
+    try {
+      var evt = new CustomEvent(LAB_UPDATE_EVENT, { detail: data });
+      if (typeof window !== 'undefined') window.dispatchEvent(evt);
+      var lw = labWindow();
+      if (lw && typeof window !== 'undefined' && lw !== window) lw.dispatchEvent(evt);
+    } catch (e3) {}
+  }
+
   function labWrite(data) {
     try {
-      if (typeof window === 'undefined' || !window.sessionStorage) return false;
+      if (typeof window === 'undefined') return false;
       data.updatedAt = Date.now();
-      window.sessionStorage.setItem(LAB_KEY, JSON.stringify(data));
-      try {
-        window.dispatchEvent(new CustomEvent(LAB_UPDATE_EVENT, { detail: data }));
-      } catch (e3) {}
+      var payload = JSON.stringify(data);
+      var lw = labWindow();
+      if (lw) lw[LAB_GLOBAL_STATE] = data;
+      if (lw && lw.localStorage) lw.localStorage.setItem(LAB_KEY, payload);
+      if (window.sessionStorage) window.sessionStorage.setItem(LAB_KEY, payload);
+      labBroadcast(data);
       return true;
     } catch (e2) {
       return false;
@@ -124,6 +152,11 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
       }
       window.addEventListener(LAB_UPDATE_EVENT, handle);
       window.addEventListener('storage', onStorage);
+      var lw = labWindow();
+      if (lw && lw !== window) {
+        lw.addEventListener(LAB_UPDATE_EVENT, handle);
+        lw.addEventListener('storage', onStorage);
+      }
       function onVis() {
         if (document.visibilityState === 'visible') handle();
       }
@@ -132,6 +165,10 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
       return function () {
         window.removeEventListener(LAB_UPDATE_EVENT, handle);
         window.removeEventListener('storage', onStorage);
+        if (lw && lw !== window) {
+          lw.removeEventListener(LAB_UPDATE_EVENT, handle);
+          lw.removeEventListener('storage', onStorage);
+        }
         document.removeEventListener('visibilitychange', onVis);
       };
     }, []);
@@ -368,29 +405,27 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
   var SALT_UI_GLOBAL = '__payuHostedCheckoutStep12Form';
 
   function saltStore() {
-    if (typeof window !== 'undefined') {
-      if (!window[SALT_UI_GLOBAL]) {
-        var lab = labRead();
-        window[SALT_UI_GLOBAL] = { salt: lab && lab.salt ? lab.salt : '' };
-      }
-      return window[SALT_UI_GLOBAL];
+    var fw = labWindow();
+    if (typeof fw === 'undefined') return { salt: '' };
+    if (!fw[SALT_UI_GLOBAL]) {
+      var lab = labRead();
+      fw[SALT_UI_GLOBAL] = { salt: lab && lab.salt ? lab.salt : '' };
     }
-    return { salt: '' };
+    return fw[SALT_UI_GLOBAL];
   }
 
   function readSalt() {
-    var store = saltStore();
-    if (rootRef.current) {
-      var el = rootRef.current.querySelector('[data-payu-step12-field="salt"]');
-      if (el) store.salt = el.value;
+    if (saltRef.current) {
+      saltStore().salt = saltRef.current.value;
+      return saltRef.current.value || '';
     }
-    return store.salt || '';
+    return saltStore().salt || '';
   }
 
   function syncSaltToDom(v) {
-    if (!rootRef.current) return;
-    var el = rootRef.current.querySelector('[data-payu-step12-field="salt"]');
-    if (el) el.value = v == null ? '' : String(v);
+    var val = v == null ? '' : String(v);
+    saltStore().salt = val;
+    if (saltRef.current) saltRef.current.value = val;
   }
 
   function onSaltInput(e) {
@@ -398,6 +433,7 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
   }
 
   var salt = saltStore().salt || '';
+  var saltRef = useRef(null);
   var rootRef = useRef(null);
   var _hashHex = useState('');
   var hashHex = _hashHex[0];
@@ -479,7 +515,8 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
           <FieldLabel name="salt" required={true} />
           <input
             type="password"
-            data-payu-step12-field="salt"
+            ref={saltRef}
+            name="salt"
             defaultValue={salt}
             onInput={onSaltInput}
             onChange={onSaltInput}
