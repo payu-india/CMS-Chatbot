@@ -416,41 +416,15 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
 
   var SALT_FIELD_ID = 'payu-s12-salt';
 
-  function readSalt(formEl) {
-    if (formEl && typeof FormData !== 'undefined') {
-      try {
-        var fd = new FormData(formEl);
-        var s = fd.get('salt');
-        if (s != null) {
-          saltStore().salt = String(s);
-          return String(s);
-        }
-      } catch (e0) {}
-    }
-    if (typeof document !== 'undefined') {
-      var el = document.getElementById(SALT_FIELD_ID);
-      if (el) {
-        saltStore().salt = el.value;
-        return el.value || '';
-      }
-    }
+  function initSaltValue() {
+    var lab = labRead();
+    if (lab && lab.salt) return lab.salt;
     return saltStore().salt || '';
   }
 
-  function syncSaltToDom(v) {
-    var val = v == null ? '' : String(v);
-    saltStore().salt = val;
-    if (typeof document !== 'undefined') {
-      var el = document.getElementById(SALT_FIELD_ID);
-      if (el) el.value = val;
-    }
-  }
-
-  function onSaltInput(e) {
-    saltStore().salt = e.target.value;
-  }
-
-  var salt = saltStore().salt || '';
+  var _saltVal = useState(initSaltValue);
+  var saltVal = _saltVal[0];
+  var setSaltVal = _saltVal[1];
   var hashFormRef = useRef(null);
   var rootRef = useRef(null);
   var _hashHex = useState('');
@@ -480,13 +454,19 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
     setParamsOk(!!lab.step11Done);
     if (lab.salt) {
       saltStore().salt = lab.salt;
-      syncSaltToDom(lab.salt);
+      setSaltVal(lab.salt);
     }
     if (lab.hashHex) setHashHex(lab.hashHex);
     if (lab.pipeString) setPipeString(lab.pipeString);
   }
 
   useLabWatcher(refreshLabStatus);
+
+  function onSaltChange(e) {
+    var v = e.target.value;
+    setSaltVal(v);
+    saltStore().salt = v;
+  }
 
   function generateHash(e) {
     if (e && e.preventDefault) e.preventDefault();
@@ -496,18 +476,17 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
       setErr('Complete Step 1.1 and save parameters first.');
       return;
     }
-    var formEl = e && e.currentTarget ? e.currentTarget : hashFormRef.current;
-    var saltVal = readSalt(formEl);
-    if (empty(saltVal)) {
+    var saltInput = saltVal;
+    if (empty(saltInput)) {
       setErr('Enter your test salt from the PayU dashboard.');
       return;
     }
     setBusy(true);
     setErr('');
-    var chain = buildForwardHashString(lab.params, saltVal);
+    var chain = buildForwardHashString(lab.params, saltInput);
     sha512Hex(chain)
       .then(function (h) {
-        lab.salt = saltVal;
+        lab.salt = saltInput;
         lab.hashHex = h;
         lab.pipeString = chain;
         lab.step12Done = true;
@@ -530,24 +509,21 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
         { label: 'Hash generated', ok: hashHex.length === 128 }
       ]} />
       {!paramsOk ? <p style={hintTextStyle}>Complete Step 1.1 above and click Save parameters to lab.</p> : null}
-      <form ref={hashFormRef} onSubmit={labClick(generateHash)} noValidate>
       <div style={Object.assign({}, fieldStackStyle, { maxWidth: '28rem' })}>
         <div>
           <FieldLabel name="salt" required={true} />
           <input
             type="password"
-            id={SALT_FIELD_ID}
             name="salt"
-            defaultValue={salt}
-            onInput={onSaltInput}
-            onChange={onSaltInput}
+            value={saltVal}
+            onChange={onSaltChange}
             style={inputStyle}
             autoComplete="off"
           />
         </div>
       </div>
       <div style={btnRowStyle}>
-        <button type="submit" disabled={busy} style={btnPrimaryStyle}>
+        <button type="button" onClick={labClick(generateHash)} disabled={busy} style={btnPrimaryStyle}>
           {busy ? 'Generating…' : 'Generate Forward Hash'}
         </button>
         <button type="button" onClick={labClick(refreshLabStatus)} style={btnSecondaryStyle}>Refresh lab status</button>
@@ -556,7 +532,6 @@ export const PayUHostedCheckoutSandboxStep12 = function PayUHostedCheckoutSandbo
           {showPipe ? 'Hide pipe string' : 'Show pipe string'}
         </button>
       </div>
-      </form>
       {err ? <p style={errTextStyle} role="alert">{err}</p> : null}
       {copyMsg ? <p style={okTextStyle}>{copyMsg}</p> : null}
       {hashHex ? <code style={codeBlockStyle}>{hashHex}</code> : null}
