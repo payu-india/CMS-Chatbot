@@ -181,4 +181,10 @@ After you complete the test payment:
 - Verify transaction status
 - Move to production
 
+## Next Steps
+
+Now that you have created your first test payment go to the
+
+- Integration Guide for the detailed steps.
+
 <br />
