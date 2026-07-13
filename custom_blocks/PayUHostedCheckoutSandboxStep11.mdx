@@ -2,7 +2,7 @@
 name: PayUHostedCheckoutSandboxStep11
 ---
 // PayUHostedCheckoutSandboxStep11 - Sandbox dashed box + accordion + lab (single paste)
-// Lab v11 — search file for "Integration lab v11" before pasting.
+// Lab v12 — search file for "Integration lab v12" before pasting.
 // Regenerate: node scripts/build-payu-hosted-checkout-steps.mjs
 
 import { useState, useEffect, useRef } from 'react';
@@ -76,6 +76,10 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
 
   function empty(s) {
     return s == null ? '' : String(s).trim();
+  }
+
+  function isBlank(s) {
+    return empty(s) === '';
   }
 
   var LAB_UPDATE_EVENT = 'payu-hosted-checkout-lab-update';
@@ -551,12 +555,12 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
     if (root && root.querySelectorAll) {
       var scoped = root.querySelectorAll('[name="' + domName + '"]');
       for (var si = 0; si < scoped.length; si += 1) {
-        if (scoped[si] && scoped[si].value != null && !empty(scoped[si].value)) return scoped[si].value;
+        if (scoped[si] && scoped[si].value != null && !isBlank(scoped[si].value)) return scoped[si].value;
       }
     }
     var inputs = document.getElementsByName(domName);
     for (var di = 0; di < inputs.length; di += 1) {
-      if (inputs[di] && inputs[di].value != null && !empty(inputs[di].value)) return inputs[di].value;
+      if (inputs[di] && inputs[di].value != null && !isBlank(inputs[di].value)) return inputs[di].value;
     }
     return '';
   }
@@ -577,7 +581,7 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
       var name = inp.getAttribute('name');
       if (!name) continue;
       var key = name === 'merchantKey' ? 'key' : name;
-      if (inp.value != null && !empty(inp.value)) data[key] = inp.value;
+      if (inp.value != null && !isBlank(inp.value)) data[key] = inp.value;
     }
     return data;
   }
@@ -585,25 +589,25 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
   function readFieldValue(k) {
     if (k === 'key') return readMerchantKeyValue();
     var v = readFieldFromDom(k);
-    if (!empty(v)) return v;
+    if (!isBlank(v)) return v;
     v = readFieldVal(formValuesRef.current, k);
-    if (!empty(v)) return v;
+    if (!isBlank(v)) return v;
     v = readPersistedField(k);
-    if (!empty(v)) return v;
+    if (!isBlank(v)) return v;
     v = formValues[k];
-    if (!empty(v)) return v;
+    if (!isBlank(v)) return v;
     return '';
   }
 
   function readMerchantKeyValue() {
     var fromDom = readFieldFromDom('key');
-    if (!empty(fromDom)) return fromDom;
-    if (!empty(merchantKey)) return merchantKey;
-    if (!empty(merchantKeyRef.current)) return merchantKeyRef.current;
+    if (!isBlank(fromDom)) return fromDom;
+    if (!isBlank(merchantKey)) return merchantKey;
+    if (!isBlank(merchantKeyRef.current)) return merchantKeyRef.current;
     var fromStore = readFieldVal(formValuesRef.current, 'key');
-    if (!empty(fromStore)) return fromStore;
+    if (!isBlank(fromStore)) return fromStore;
     fromStore = readPersistedField('key');
-    if (!empty(fromStore)) return fromStore;
+    if (!isBlank(fromStore)) return fromStore;
     return readFieldVal(formValues, 'key');
   }
 
@@ -617,20 +621,20 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
     data['key'] = readMerchantKeyValue();
     var i;
     for (i = 0; i < MANDATORY.length; i += 1) {
-      if (empty(data[MANDATORY[i].k])) data[MANDATORY[i].k] = readFieldValue(MANDATORY[i].k);
+      if (isBlank(data[MANDATORY[i].k])) data[MANDATORY[i].k] = readFieldValue(MANDATORY[i].k);
     }
     for (i = 0; i < OPTIONAL.length; i += 1) {
-      if (empty(data[OPTIONAL[i].k])) data[OPTIONAL[i].k] = readFieldValue(OPTIONAL[i].k);
+      if (isBlank(data[OPTIONAL[i].k])) data[OPTIONAL[i].k] = readFieldValue(OPTIONAL[i].k);
     }
     return data;
   }
 
   function validateParams(data) {
-    if (empty(data['key'])) {
+    if (isBlank(data['key'])) {
       return 'Missing required field: key';
     }
     for (var i = 0; i < MANDATORY.length; i += 1) {
-      if (empty(data[MANDATORY[i].k])) {
+      if (isBlank(data[MANDATORY[i].k])) {
         return 'Missing required field: ' + MANDATORY[i].l;
       }
     }
@@ -693,9 +697,9 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
   }
 
   return (
-    <SandboxAccordion title="Try Out! · Step 1.1 parameters (Lab v11)" intro="This is a live tool — not documentation. Enter your test key, edit values, and click Save parameters to lab. Values stay in your browser for Step 1.2." ariaLabel="Step 1.1 sandbox">
+    <SandboxAccordion title="Try Out! · Step 1.1 parameters (Lab v12)" intro="This is a live tool — not documentation. Enter your test key, edit values, and click Save parameters to lab. Values stay in your browser for Step 1.2." ariaLabel="Step 1.1 sandbox">
       <div className={shellClass}>
-      <p style={{ margin: '0 0 12px', fontSize: '12px', fontWeight: 600, color: PAYU_GREEN }}>Integration lab v11</p>
+      <p style={{ margin: '0 0 12px', fontSize: '12px', fontWeight: 600, color: PAYU_GREEN }}>Integration lab v12</p>
       <div ref={formRootRef} style={fieldStackStyle}>
         <div>
           <FieldLabel name="key" required={true} />
@@ -739,7 +743,7 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
       {err ? <p style={errTextStyle} role="alert">{err}</p> : null}
       {msg ? <p style={okTextStyle}>{msg}</p> : null}
       {saved ? <p style={mutedTextStyle}>Step 1.1 complete — parameters stored for Steps 1.2 and 1.3.</p> : null}
-      <p style={{ margin: '8px 0 0', fontSize: '11px', color: '#9ca3af' }}>Lab v11</p>
+      <p style={{ margin: '8px 0 0', fontSize: '11px', color: '#9ca3af' }}>Lab v12</p>
       </div>
     </SandboxAccordion>
   );
