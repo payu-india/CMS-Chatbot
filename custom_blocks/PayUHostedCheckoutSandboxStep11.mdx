@@ -2,7 +2,7 @@
 name: PayUHostedCheckoutSandboxStep11
 ---
 // PayUHostedCheckoutSandboxStep11 - Sandbox dashed box + accordion + lab (single paste)
-// Lab v8 — file must be ~675 lines. Search for "Integration lab v8" before pasting.
+// Lab v9 — search file for "Integration lab v9" before pasting.
 // Regenerate: node scripts/build-payu-hosted-checkout-steps.mjs
 
 import { useState, useEffect, useRef } from 'react';
@@ -543,10 +543,25 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
     return '';
   }
 
+  function readMerchantKeyValue() {
+    if (!empty(merchantKey)) return merchantKey;
+    if (!empty(merchantKeyRef.current)) return merchantKeyRef.current;
+    var current = formValuesRef.current || formValues;
+    var fromStore = readFieldVal(current, 'key');
+    if (!empty(fromStore)) return fromStore;
+    if (typeof document !== 'undefined') {
+      var inputs = document.getElementsByName('merchantKey');
+      for (var di = 0; di < inputs.length; di += 1) {
+        if (inputs[di] && !empty(inputs[di].value)) return inputs[di].value;
+      }
+    }
+    return '';
+  }
+
   function buildParamsFromState() {
     var current = formValuesRef.current || formValues;
     var data = Object.assign({}, DEFAULT_PARAMS);
-    data[MERCHANT_KEY] = merchantKeyRef.current != null ? merchantKeyRef.current : merchantKey;
+    data['key'] = readMerchantKeyValue();
     var i;
     for (i = 0; i < MANDATORY.length; i += 1) {
       data[MANDATORY[i].k] = readFieldVal(current, MANDATORY[i].k);
@@ -558,7 +573,7 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
   }
 
   function validateParams(data) {
-    if (empty(data[MERCHANT_KEY])) {
+    if (empty(data['key'])) {
       return 'Missing required field: key';
     }
     for (var i = 0; i < MANDATORY.length; i += 1) {
@@ -598,6 +613,8 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
 
   function resetExamples() {
     var next = Object.assign({}, DEFAULT_PARAMS);
+    setMerchantKey('');
+    merchantKeyRef.current = '';
     setFormValues(next);
     persistFormValues(next);
     formValuesRef.current = next;
@@ -623,9 +640,9 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
   }
 
   return (
-    <SandboxAccordion title="Try Out! · Step 1.1 parameters (Lab v8)" intro="This is a live tool — not documentation. Enter your test key, edit values, and click Save parameters to lab. Values stay in your browser for Step 1.2." ariaLabel="Step 1.1 sandbox">
+    <SandboxAccordion title="Try Out! · Step 1.1 parameters (Lab v9)" intro="This is a live tool — not documentation. Enter your test key, edit values, and click Save parameters to lab. Values stay in your browser for Step 1.2." ariaLabel="Step 1.1 sandbox">
       <div className={shellClass}>
-      <p style={{ margin: '0 0 12px', fontSize: '12px', fontWeight: 600, color: PAYU_GREEN }}>Integration lab v8</p>
+      <p style={{ margin: '0 0 12px', fontSize: '12px', fontWeight: 600, color: PAYU_GREEN }}>Integration lab v9</p>
       <div style={fieldStackStyle}>
         <div>
           <FieldLabel name="key" required={true} />
@@ -669,7 +686,7 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
       {err ? <p style={errTextStyle} role="alert">{err}</p> : null}
       {msg ? <p style={okTextStyle}>{msg}</p> : null}
       {saved ? <p style={mutedTextStyle}>Step 1.1 complete — parameters stored for Steps 1.2 and 1.3.</p> : null}
-      <p style={{ margin: '8px 0 0', fontSize: '11px', color: '#9ca3af' }}>Lab v8</p>
+      <p style={{ margin: '8px 0 0', fontSize: '11px', color: '#9ca3af' }}>Lab v9</p>
       </div>
     </SandboxAccordion>
   );
