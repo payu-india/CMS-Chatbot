@@ -157,9 +157,16 @@ This will create the `pay.html` file.
 ### Step 5 Complete the Test Payment
 
 <Accordion title="Steps to Complete the Test Payment" icon="fa-info-circle">
-  Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** Ut enim
-  ad minim veniam, quis nostrud exercitation ullamco. Excepteur sint
-  occaecat cupidatat non proident!
+1. Open the `payu.html` file or run the following command to open the checkout.
+
+<Terminal>{`
+  open pay.html
+`}</Terminal>
+
 </Accordion>
+
+<Terminal>{`
+  open pay.html
+`}</Terminal>
 
 <br />
