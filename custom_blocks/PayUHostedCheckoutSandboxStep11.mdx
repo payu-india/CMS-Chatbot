@@ -418,35 +418,56 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
     return fw[FORM_UI_GLOBAL];
   }
 
-  function readFormValues() {
-    var data = Object.assign({}, DEFAULT_PARAMS);
-    var i;
-    for (i = 0; i < MANDATORY.length; i += 1) {
-      var mk = MANDATORY[i].k;
-      var mel = fieldRefs.current[mk];
-      data[mk] = mel ? mel.value : (formStore()[mk] || '');
-    }
-    for (i = 0; i < OPTIONAL.length; i += 1) {
-      var ok = OPTIONAL[i].k;
-      var oel = fieldRefs.current[ok];
-      data[ok] = oel ? oel.value : (formStore()[ok] || '');
+  function readFormValues(formEl) {
+    var data = Object.assign({}, DEFAULT_PARAMS, formStore());
+    if (formEl) {
+      if (typeof FormData !== 'undefined') {
+        try {
+          var fd = new FormData(formEl);
+          fd.forEach(function (value, key) {
+            data[key] = String(value);
+          });
+        } catch (e1) {}
+      }
+      var all = MANDATORY.concat(OPTIONAL);
+      for (var i = 0; i < all.length; i += 1) {
+        var k = all[i].k;
+        var el = findFieldEl(k, formEl);
+        if (el) data[k] = el.value;
+      }
     }
     Object.assign(formStore(), data);
     return data;
   }
 
-  function setFieldRef(k) {
-    return function (el) {
-      if (el) fieldRefs.current[k] = el;
-      else delete fieldRefs.current[k];
-    };
+  function findFieldEl(k, formEl) {
+    if (typeof document !== 'undefined') {
+      var byId = document.getElementById(fieldDomId(k));
+      if (byId) return byId;
+    }
+    if (formEl) {
+      try {
+        var named = formEl.elements.namedItem(k);
+        if (named && named.tagName === 'INPUT') return named;
+        if (named && named.length && named[0]) return named[0];
+      } catch (e0) {}
+      if (formEl.querySelector) {
+        var q = formEl.querySelector('input[name="' + k + '"]');
+        if (q) return q;
+      }
+    }
+    return null;
+  }
+
+  function fieldDomId(k) {
+    return formInstanceId.current + '-' + k;
   }
 
   function syncFieldToDom(k, v) {
     var val = v == null ? '' : String(v);
-    var el = fieldRefs.current[k];
-    if (el) el.value = val;
     formStore()[k] = val;
+    var el = findFieldEl(k, formRef.current);
+    if (el) el.value = val;
   }
 
   function syncAllFieldsToDom(values) {
@@ -463,7 +484,8 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
   }
 
   var form = formStore();
-  var fieldRefs = useRef({});
+  var formInstanceId = useRef('payu-s11-' + String(Date.now()));
+  var formRef = useRef(null);
   var rootRef = useRef(null);
   var _msg = useState('');
   var msg = _msg[0];
@@ -526,8 +548,8 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
     setErr('');
   }
 
-  function validateParams() {
-    var data = readFormValues();
+  function validateParams(data) {
+    if (!data) data = readFormValues(formRef.current);
     for (var i = 0; i < MANDATORY.length; i += 1) {
       if (empty(data[MANDATORY[i].k])) {
         return 'Missing required field: ' + MANDATORY[i].l;
@@ -542,9 +564,11 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
     return '';
   }
 
-  function saveToLab() {
-    var data = readFormValues();
-    var ve = validateParams();
+  function handleFormSubmit(e) {
+    labStopEvent(e);
+    var formEl = e && e.currentTarget ? e.currentTarget : formRef.current;
+    var data = readFormValues(formEl);
+    var ve = validateParams(data);
     if (ve) { setErr(ve); return; }
     var lab = labEnsure();
     lab.params = Object.assign({}, data);
@@ -576,7 +600,7 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
         <FieldLabel name={row.k} required={true} />
         <input
           type={type}
-          ref={setFieldRef(row.k)}
+          id={fieldDomId(row.k)}
           name={row.k}
           defaultValue={form[row.k] || ''}
           onInput={onFieldInput(row.k)}
@@ -590,6 +614,7 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
   return (
     <SandboxAccordion title="Try Out! · Add request parameter values to test" intro="This is a live tool — not documentation. Enter your test key, edit values, and click Save parameters to lab. Values stay in your browser for Step 1.2." ariaLabel="Step 1.1 sandbox">
       <div ref={rootRef} className={shellClass}>
+      <form ref={formRef} onSubmit={labClick(handleFormSubmit)} noValidate>
       <div style={fieldStackStyle}>
         {MANDATORY.map(renderField)}
       <button type="button" ref={udfBtnRef} onClick={labClick(toggleUdfPanel)} style={summaryStyle}>
@@ -605,7 +630,7 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
                 <FieldLabel name={row.k} required={false} />
                 <input
                   type="text"
-                  ref={setFieldRef(row.k)}
+                  id={fieldDomId(row.k)}
                   name={row.k}
                   defaultValue={form[row.k] || ''}
                   onInput={onFieldInput(row.k)}
@@ -618,10 +643,11 @@ export const PayUHostedCheckoutSandboxStep11 = function PayUHostedCheckoutSandbo
       </div>
       </div>
       <div style={btnRowStyle}>
-        <button type="button" onClick={labClick(saveToLab)} style={btnPrimaryStyle}>Save parameters to lab</button>
+        <button type="submit" style={btnPrimaryStyle}>Save parameters to lab</button>
         <button type="button" onClick={labClick(newTxnid)} style={btnSecondaryStyle}>New txnid</button>
         <button type="button" onClick={labClick(resetExamples)} style={btnSecondaryStyle}>Reset examples</button>
       </div>
+      </form>
       {err ? <p style={errTextStyle} role="alert">{err}</p> : null}
       {msg ? <p style={okTextStyle}>{msg}</p> : null}
       {saved ? <p style={mutedTextStyle}>Step 1.1 complete — parameters stored for Steps 1.2 and 1.3.</p> : null}
