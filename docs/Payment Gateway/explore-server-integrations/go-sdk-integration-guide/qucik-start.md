@@ -13,12 +13,10 @@ Go through the requirements and dependencies to make your first payment.
 
 Test your Go SDK integrations within minutes by performing these steps:
 
-1. Install Go & create module — go mod init
-2. Install SDK — go get or download from GitHub
-3. Build client — NewClient(key, salt, "TEST")
-4. Initiate payment — GeneratePaymentForm() with mandatory params: txnid, amount, productinfo, firstname, email, phone, surl, furl
-5. Handle callbacks — CheckReversehash() on surl/furl
-6. Verify payment — VerifyPayment(txnid)
+1. Check whether Go is installed.
+2. After you install Go, you should create a module and install the PayU SDK.
+3. Now that you have installed the PayU SDK, let us build client
+4. The final step is to create a payment request.
 
 ***
 
