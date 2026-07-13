@@ -37,15 +37,15 @@ Use this approach if you want to:
 
 Know More about PayU Hosted Checkout and how the payment flow works.
 
-> 📘
->
-> **Other Integration Options:**
->
-> Consider other integrations if you need:
->
-> - Full control over payment UI
-> - In-page checkout experience
-> - Backend-only payment processing
+<Callout icon="📘" theme="info">
+  ### **Other Integration Options:**
+
+  Consider other integrations if you need:
+
+  - Full control over payment UI
+  - In-page checkout experience
+  - Backend-only payment processing
+</Callout>
 
 ## Prerequisites
 
