@@ -5,6 +5,10 @@ hidden: true
 metadata:
   robots: index
 ---
+## Prerequisites
+
+Go through the requirements and dependencies to make your first payment.
+
 ## Integration Steps Overview
 
 Test your Go SDK integrations within minutes by performing these steps:
