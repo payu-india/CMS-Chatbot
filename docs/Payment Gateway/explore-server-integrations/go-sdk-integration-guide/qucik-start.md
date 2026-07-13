@@ -173,4 +173,12 @@ This will create the `pay.html` file.
 *Need Content*
 </Accordion>
 
+## What is Next?
+
+After you complete the test payment:
+
+- Handle payment response
+- Verify transaction status
+- Move to production
+
 <br />
