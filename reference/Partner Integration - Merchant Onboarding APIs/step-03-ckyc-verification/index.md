@@ -1,4 +1,4 @@
 ---
 title: Step 03 — CKYC Verification
-hidden: true
+hidden: false
 ---
