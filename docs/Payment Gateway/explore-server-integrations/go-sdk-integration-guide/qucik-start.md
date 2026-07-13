@@ -102,4 +102,49 @@ func main() {
 | `YOUR_TEST_MERCHANT_SALT` | Your merchant salt retrieved from the dashboard. We recommend you to use the test salt. |
 </Accordion>
 
+### Step 4 Create a Payment Request
+
+<Accordion title="Steps to Create a Payment Request" icon="fa-info-circle">
+1. Save this code in the `payu-go-integration` project folder.
+</Accordion>
+
+```go
+package main
+
+import (
+	"fmt"
+	"os"
+	"time"
+
+	payu "github.com/payu-india/web-sdk-go"
+)
+
+func initiatePayment(client *payu.PayuStruct) (string, error) {
+	txnid := fmt.Sprintf("TXN%d", time.Now().Unix())
+
+	params := map[string]interface{}{
+		"txnid":       tran_1234,
+		"amount":      "10.00",
+		"productinfo": "Test product",
+		"firstname":   "Test",
+		"email":       "test@example.com",
+		"phone":       "9876543210",
+		"surl":        "https://test.payu.in/test_response",
+		"furl":        "https://test.payu.in/test_response",
+	}
+
+	htmlForm, err := client.GeneratePaymentForm(params)
+	if err != nil {
+		return "", err
+	}
+
+	if err := os.WriteFile("pay.html", []byte(htmlForm), 0644); err != nil {
+		return "", err
+	}
+
+	fmt.Println("Payment form saved to pay.html")
+	return txnid, nil
+}
+```
+
 <br />
