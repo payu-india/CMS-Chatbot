@@ -1,4 +1,4 @@
 ---
-title: Utilities
-hidden: true
+title: Get Merchant Detail
+hidden: false
 ---
