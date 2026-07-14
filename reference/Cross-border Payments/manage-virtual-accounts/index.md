@@ -11,11 +11,12 @@ Authenticate every request with a salt-based **Authorization** header. For the h
 
 ## APIs
 
-| API                                                               | Method | Endpoint              | Purpose                                     |
-| ----------------------------------------------------------------- | ------ | --------------------- | ------------------------------------------- |
-| [Create Virtual Account API](ref:create-virtual-account-api-pacb) | POST   | `/v2/virtualAccounts` | Provision a VA for a sub-merchant MID       |
-| [Get Virtual Accounts API](ref:get-virtual-accounts-api-pacb)     | GET    | `/v2/virtualAccounts` | List VAs for a sub-merchant MID (paginated) |
-| [Update Virtual Account API](ref:update-virtual-account-api-pacb) | PATCH  | `/v2/virtualAccounts` | Rename a VA or set `isActive` to deactivate |
+| API                                                                        | Method | Endpoint              | Purpose                                     |
+| -------------------------------------------------------------------------- | ------ | --------------------- | ------------------------------------------- |
+| [Create Virtual Account API](ref:create-virtual-account-api-pacb)          | POST   | `/v2/virtualAccounts` | Provision a VA for a sub-merchant MID       |
+| [Get Virtual Accounts API](ref:get-virtual-accounts-api-pacb)              | GET    | `/v2/virtualAccounts` | List VAs for a sub-merchant MID (paginated) |
+| [Update Virtual Account API](ref:update-virtual-account-api-pacb)          | PATCH  | `/v2/virtualAccounts` | Rename a VA or set `isActive` to deactivate |
+| [List Virtual Account Deposits API](ref:list-virtual-account-deposits-api) | GET    | `/v2/virtualAccounts` | List the VA deposits                        |
 
 ## Environment
 
