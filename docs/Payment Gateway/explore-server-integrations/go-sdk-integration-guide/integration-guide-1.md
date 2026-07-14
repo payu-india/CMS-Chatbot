@@ -16,9 +16,13 @@ Download the <Anchor target="_blank" href="https://github.com/payu-india/web-sdk
 |          |             |
 |          |             |
 
+***
+
 ## Prerequisites
 
 Go through these prerequisites and dependencies before starting the integration.
+
+***
 
 ## Integration Steps
 
@@ -57,4 +61,6 @@ Follow these steps to integrate PayU Go SDK and accept payments.
   ]}
 />
 
-<br />
+## 1. Build Integration
+
+Below are the steps to build an integration:
