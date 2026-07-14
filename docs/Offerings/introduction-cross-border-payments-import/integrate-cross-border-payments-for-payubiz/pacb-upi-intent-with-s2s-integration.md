@@ -44,18 +44,20 @@ The following steps allow you to integrate the server-to-server UPI (United Paym
 <RegisterMerchantPrerequiste />
 
 <Callout icon="❗️" theme="error">
+  ###
+
   **Important UPI Integration Changes as per NPCI Mandate on UPI Collect Disablement**:
 
-  * **For Android Apps**: Merchants must implement the Smart Intent implementation. Refer to [UPI Smart Intent - Non SDK Flow](doc:upi-smart-intent-non-sdk-flow) for non-SDK implementation, or use [PayU Android SDKs](doc:explore-android-sdks) which have Smart Intent built-in.
+  - **For Android Apps**: Merchants must implement the Smart Intent implementation. Refer to [UPI Smart Intent - Non SDK Flow](doc:upi-smart-intent-non-sdk-flow) for non-SDK implementation, or use [PayU Android SDKs](doc:explore-android-sdks) which have Smart Intent built-in.
 
-  * **For iOS Apps**: Merchants can implement the specific deeplink handling and continue using the UPI flow as is. Refer to [iOS UPI SDK](doc:ios-upi-sdk) for SDK-based implementation.
+  - **For iOS Apps**: Merchants can implement the specific deeplink handling and continue using the UPI flow as is. Refer to [iOS UPI SDK](doc:ios-upi-sdk) for SDK-based implementation.
 
-  * **For Web**: Use the deeplink returned in the API response to generate a QR code that customers can scan with their UPI app.
+  - **For Web**: Use the deeplink returned in the API response to generate a QR code that customers can scan with their UPI app.
 
   For easier integration with built-in Smart Intent support, use PayU SDKs:
 
-  * [Android Mobile SDKs](doc:explore-android-sdks)
-  * [iOS Mobile SDKs](doc:explore-ios-sdks)
+  - [Android Mobile SDKs](doc:explore-android-sdks)
+  - [iOS Mobile SDKs](doc:explore-ios-sdks)
 </Callout>
 
 <Accordion title="Intent Flow Diagram" icon="fa-code">
@@ -72,19 +74,21 @@ The following steps allow you to integrate the server-to-server UPI (United Paym
 
 <PaymentAPIEnvironment />
 
-The **_payment** API needs to be called with all the required parameters.
+The **\_payment** API needs to be called with all the required parameters.
 
 This needs to be a server-to-server cURL request. This API is used for both Cards and UPI for generating a new transaction.
 
 If specific intent has to be opened instead of Generic Intent, then the **bankcode** values will change accordingly:
 
-* For Generic Intent, **bankcode** = INTENT
+- For Generic Intent, **bankcode** = INTENT
 
-> 📘 Notes:
->
-> * If you are using this for their application, then the Generic Intent, and Specific Intent, can be invoked.
-> * If you are using this for your Mobile Web, then only Generic Intent can be invoked. To invoke App specific intents on the mobile web, the libraries have to be added separately. PayU offers the same for GPay Intent through the Mobile web. Refer to the GPay Seamless Integration Document for the same.
-> * User VPA is not required for this flow.
+<Callout icon="📘" theme="info">
+  ### Notes:
+
+  - If you are using this for their application, then the Generic Intent, and Specific Intent, can be invoked.
+  - If you are using this for your Mobile Web, then only Generic Intent can be invoked. To invoke App specific intents on the mobile web, the libraries have to be added separately. PayU offers the same for GPay Intent through the Mobile web. Refer to the GPay Seamless Integration Document for the same.
+  - User VPA is not required for this flow.
+</Callout>
 
 <Accordion title="Request parameters" icon="fa-database">
   For the complete list of parameters, refer to <a href="https://docs.payu.in/reference/_payment_s2s_upi_collection" target="_blank"> UPI Collection - S2S</a>.
@@ -109,7 +113,7 @@ If specific intent has to be opened instead of Generic Intent, then the **bankco
   | country<br />`optional but recommended for higher approval rate`                                                                                                       | `String` This parameter must contain the customer's country that is part of the address (max. 50 characters).                                                                                                                                                                                                                                                      | India                                                                                          |
   | state<br />`optional but recommended for higher approval rate`                                                                                                         | `String` This parameter must contain the customer state that is part of the address (max 50 characters).                                                                                                                                                                                                                                                           | Haryana                                                                                        |
   | zipcode<br />`mandatory`                                                                                                       | `Numeric` This parameter must contain the customer's PIN code (6 digits).                                                                                                                                                                                                                                                                                          | 122018                                                                                         |
-  | udf1<br />`conditional`                                                                                                        | `String` User-defined field 1. For PACB: Buyer's PAN number.                                                                                                                                                                                                                                                                                                       | AELPR\*\*\*\*E                                                                                 |
+  | udf1<br />`optional but recommended for higher approval rate`                                                                                                        | `String` The Permanent Account Number (PAN primary taxation ID in India) of the buyer must be collected in this field. Character limit: 10 character alphanumeric..                                                                                                                                                                                                                                                                                                       | AELPR\*\*\*\*E                                                                                 |
   | udf2<br />`optional`                                                                                                           | `String` This parameter can include any custom information in request (up to 255 characters.).                                                                                                                                                                                                                                                                     |                                                                                                |
   | udf3<br /> `optional but` <br /> `recommended` <br /> `for higher` <br /> `approval rate`                                      | `String` Date of Birth (DOB) of buyer in DD-MM-YYYY. (up to 255 characters.) **Note**: Recommended for higher approval rate.                                                                                                                                                                                                                                       |                                                                                                |
   | udf4<br /> `mandatory for` <br /> `payment aggregators`                                                                        | `String` End merchant legal entity name. For UPI, this field should not be passed. (up to 255 characters.) **Note**: Mandatory for payment aggregators.                                                                                                                                                                                                            |                                                                                                |
@@ -300,7 +304,7 @@ If specific intent has to be opened instead of Generic Intent, then the **bankco
 
 ## Step 3: Check UPI transaction status
 
-Check the UPI transaction status using the **Verify Payment API** (verify_payment) API. For more information, refer to  <a href="verify_payment_api" target="_blank"> Verify Payment API</a>.
+Check the UPI transaction status using the **Verify Payment API** (verify\_payment) API. For more information, refer to  <a href="verify_payment_api" target="_blank"> Verify Payment API</a>.
 
 ***
 
@@ -405,12 +409,14 @@ Use the webhooks to verify the payment. The following is the sample webhook payl
 
 ***
 
-## Step 6: Update Invoice ID [Conditional]
+## Step 6: Update Invoice ID \[Conditional]
 
 <Update_Invoice_ID />
 
 ***
 
-## Step 7: Upload the Invoices [Optional]
+## Step 7: Upload the Invoices \[Optional]
 
 <Upload_Invoices />
+
+<br />
