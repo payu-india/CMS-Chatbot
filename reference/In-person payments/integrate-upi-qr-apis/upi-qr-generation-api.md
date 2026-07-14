@@ -304,317 +304,8 @@ The `sendqrimage` parameter must be enabled in your merchant_param configuration
 
 ***
 
-## Response Parameters
 
-### S2S Flow Response (txn\_s2s\_flow = 4)
-
-<div>
-  
-
-<table>
-  <thead>
-    <tr>
-      <th style="width: 20%;">Parameter</th>
-      <th style="width: 60%; white-space: normal; word-break: break-word;">Type & Description</th>
-      <th style="width: 20%;">Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        metaData<br>
-        <code>object</code>
-      </td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>Object</code> Contains transaction metadata including status and identifiers.
-      </td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td>
-        metaData.message<br>
-        <code>nullable</code>
-      </td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>String</code> Error or status message. Null on success.
-      </td>
-      <td>null</td>
-    </tr>
-    <tr>
-      <td>
-        metaData.referenceId<br>
-        <code>string</code>
-      </td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>String</code> PayU reference ID for the transaction.
-      </td>
-      <td>6d36c537...</td>
-    </tr>
-    <tr>
-      <td>
-        metaData.statusCode<br>
-        <code>nullable</code>
-      </td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>String</code> Status code for the transaction. Null on pending.
-      </td>
-      <td>null</td>
-    </tr>
-    <tr>
-      <td>
-        metaData.txnId<br>
-        <code>string</code>
-      </td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>String</code> Unique transaction ID.
-      </td>
-      <td>3d30aff0...</td>
-    </tr>
-    <tr>
-      <td>
-        metaData.txnStatus<br>
-        <code>string</code>
-      </td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>String</code> Current status of the transaction. Possible values: <code>pending</code>, <code>success</code>, <code>failed</code>.
-      </td>
-      <td>pending</td>
-    </tr>
-    <tr>
-      <td>
-        metaData.unmappedStatus<br>
-        <code>string</code>
-      </td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>String</code> Raw unmapped transaction status from the payment gateway.
-      </td>
-      <td>pending</td>
-    </tr>
-    <tr>
-      <td>
-        result<br>
-        <code>object</code>
-      </td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>Object</code> Contains transaction result details and QR data.
-      </td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td>
-        result.paymentId<br>
-        <code>string</code>
-      </td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>String</code> PayU payment ID for this transaction.
-      </td>
-      <td>28579212177</td>
-    </tr>
-    <tr>
-      <td>
-        result.merchantName<br>
-        <code>string</code>
-      </td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>String</code> Merchant display name as registered with PayU.
-      </td>
-      <td>ESAFSMALLFINANCEBANKLIMITED</td>
-    </tr>
-    <tr>
-      <td>
-        result.merchantVpa<br>
-        <code>string</code>
-      </td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>String</code> Merchant UPI VPA (Virtual Payment Address).
-      </td>
-      <td>ESAFSMALLdbqr.payu@icici</td>
-    </tr>
-    <tr>
-      <td>
-        result.amount<br>
-        <code>string</code>
-      </td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>Decimal</code> Transaction amount in INR.
-      </td>
-      <td>10.00</td>
-    </tr>
-    <tr>
-      <td>
-        result.qrString<br>
-        <code>string</code>
-      </td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>String</code> UPI payment intent string in standard UPI URI format. This is the raw string used to generate the QR code.
-      </td>
-      <td>upi://pay?pa=ESAFSMALLdbqr.payu@icici&pn=ESAF SMALL...</td>
-    </tr>
-    <tr>
-      <td>
-        result.intentURIData<br>
-        <code>string</code>
-      </td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>String</code> For online Intent QR, contains the UPI intent parameters (without the <code>upi://pay?</code> prefix). Used for generating Intent-based QR codes.
-      </td>
-      <td>pa=goodscore.payu@axisbank&pn=ARTHVIT...</td>
-    </tr>
-    <tr>
-      <td>
-        result.otpPostUrl<br>
-        <code>string</code>
-      </td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>String</code> Callback URL for transaction response handling.
-      </td>
-      <td>https://secure.payu.in/ResponseHandler.php</td>
-    </tr>
-    <tr>
-      <td>
-        result.qrImage<br>
-        <code>object</code>
-      </td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>Object</code> QR image data. Present only when <code>sendqrimage</code> is set to <code>base64</code> or <code>url</code>.
-      </td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td>
-        result.qrImage.base64.value<br>
-        <code>string</code>
-      </td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>String</code> Base64-encoded PNG image of the QR code. Present when <code>sendqrimage=base64</code>.
-      </td>
-      <td>iVBORw0KGgoAAAANSUhEUg...</td>
-    </tr>
-    <tr>
-      <td>
-        result.qrImage.url.value<br>
-        <code>string</code>
-      </td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>String</code> Publicly accessible URL to the QR code image. Valid for 5 minutes. Present when <code>sendqrimage=url</code>.
-      </td>
-      <td>https://secure.payu.in/7b17b5d3.../ShowQrImage</td>
-    </tr>
-  </tbody>
-</table>
-
-
-</div>
-
-### Non-S2S Response (Standard Flow)
-
-For non-S2S flows (mobile web, txn\_s2s\_flow not set), the response structure is different:
-
-<div>
-  
-
-<table>
-  <thead>
-    <tr>
-      <th style="width: 20%;">Parameter</th>
-      <th style="width: 60%; white-space: normal; word-break: break-word;">Type & Description</th>
-      <th style="width: 20%;">Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>status<br><code>integer</code></td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>Integer</code> Response status. <code>1</code> = success, <code>0</code> = failure.
-      </td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <td>token<br><code>string</code></td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>String</code> Session token for the transaction.
-      </td>
-      <td>63CFBD0E-F551-03E0...</td>
-    </tr>
-    <tr>
-      <td>referenceId<br><code>string</code></td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>String</code> PayU reference ID (mihpayid).
-      </td>
-      <td>29483752703</td>
-    </tr>
-    <tr>
-      <td>merchantName<br><code>string</code></td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>String</code> Merchant display name.
-      </td>
-      <td>ARTHVIT 1809 TECH PRIVATE LIMITED</td>
-    </tr>
-    <tr>
-      <td>merchantVpa<br><code>string</code></td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>String</code> Merchant UPI VPA.
-      </td>
-      <td>goodscore.payu@axisbank</td>
-    </tr>
-    <tr>
-      <td>amount<br><code>string</code></td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>Decimal</code> Transaction amount.
-      </td>
-      <td>1360.00</td>
-    </tr>
-    <tr>
-      <td>txnId<br><code>string</code></td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>String</code> Transaction ID.
-      </td>
-      <td>fM8KPzqvyWZ1KUeAf5OC</td>
-    </tr>
-    <tr>
-      <td>intentURIData<br><code>string</code></td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>String</code> UPI intent parameters for QR generation.
-      </td>
-      <td>pa=goodscore.payu@axisbank&pn=ARTHVIT...</td>
-    </tr>
-    <tr>
-      <td>qrImage<br><code>object</code></td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>Object</code> QR image data (if sendqrimage is set).
-      </td>
-      <td>—</td>
-    </tr>
-    <tr>
-      <td>pushServiceUrl<br><code>string</code></td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>String</code> URL for polling transaction status.
-      </td>
-      <td>https://nimble.payu.in/upi/secureVerify?encId=...</td>
-    </tr>
-    <tr>
-      <td>sdkUpiPushExpiry<br><code>string</code></td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>Integer</code> QR code expiry duration in seconds.
-      </td>
-      <td>300</td>
-    </tr>
-    <tr>
-      <td>upiServicePollInterval<br><code>string</code></td>
-      <td style="white-space: normal; word-break: break-word;">
-        <code>Integer</code> Recommended polling interval in seconds for checking transaction status.
-      </td>
-      <td>5</td>
-    </tr>
-  </tbody>
-</table>
-
-
-</div>
-
-***
-
-## Code Examples
+## Sample Request
 
 ### Request with base64 QR (S2S Flow)
 
@@ -642,7 +333,8 @@ curl --location 'https://secure.payu.in/_payment' \
 
 > **Note:** Replace all placeholder values (key, hash, URLs, etc.) before making the request.
 
-### Sample Response (base64 QR)
+## Sample Response
+### base64 QR
 
 ```json
 {
@@ -670,7 +362,7 @@ curl --location 'https://secure.payu.in/_payment' \
 }
 ```
 
-### Sample Response (URL QR)
+### URL QR
 
 ```json
 {
@@ -698,7 +390,7 @@ curl --location 'https://secure.payu.in/_payment' \
 }
 ```
 
-### Sample Response (Offline DBQR)
+### Offline DBQR
 
 ```json
 {
@@ -771,5 +463,3 @@ curl --location 'https://secure.payu.in/_payment' \
 </div>
 
 ***
-
-<br />
