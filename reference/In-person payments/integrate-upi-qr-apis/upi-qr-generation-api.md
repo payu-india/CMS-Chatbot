@@ -1,7 +1,7 @@
 ---
 title: 'UPI QR Generation API '
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
