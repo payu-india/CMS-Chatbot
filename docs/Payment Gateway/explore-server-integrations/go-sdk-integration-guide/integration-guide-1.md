@@ -9,10 +9,23 @@ The PayU Go SDK enables you to integrate PayU's Payment Gateway into application
 
 ## PayU Go Web SDK
 
-Download the <Anchor target="_blank" href="https://github.com/payu-india/web-sdk-go/archive/refs/heads/main.zip">PayU Go web SDK</Anchor> to go through the below project folder structure.
+Download the <Anchor target="_blank" href="https://github.com/payu-india/web-sdk-go/archive/refs/heads/main.zip">PayU Go</Anchor> sample app and go through the below folder structure.
 
-<br />
+| **File** | **Content** |
+| -------- | ----------- |
+|          |             |
+|          |             |
 
-<br />
+## Prerequisites
+
+Go through these prerequisites and dependencies before starting the integration.
+
+## Integration Steps
+
+<Callout icon="✋" theme="info">
+  ### **Payment Flow**
+
+  Before you start integrating, it’s important to understand how payment flow works in <Anchor target="_blank" href="https://docs.payu.in/docs/payu-hosted-checkout-overview#how-payment-flow-works">PayU Payment Gateway</Anchor>.
+</Callout>
 
 <br />
