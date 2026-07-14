@@ -82,7 +82,7 @@ export const HoverCardGrid = (props) => {
   // Inline layout beats ReadMe global `a` / list styles that were shifting titles.
   const cardLayoutStyle = {
     display: 'grid',
-    gridTemplateRows: '40px auto',
+    gridTemplateRows: 'auto auto',
     alignContent: 'start',
     alignItems: 'stretch',
     justifyItems: 'stretch',
@@ -97,18 +97,17 @@ export const HoverCardGrid = (props) => {
     textDecorationLine: 'none',
   };
 
+  // Tops align across cards; height grows so titles can wrap (no ellipsis clamp).
   const headerStyle = {
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'flex-start',
     gap: '10px',
-    height: '40px',
-    maxHeight: '40px',
     minHeight: '40px',
     margin: 0,
     padding: 0,
-    overflow: 'hidden',
+    overflow: 'visible',
     boxSizing: 'border-box',
   };
 
@@ -146,17 +145,21 @@ export const HoverCardGrid = (props) => {
   const titleStyle = {
     display: 'block',
     margin: 0,
-    padding: 0,
+    // Optical vertical center with the 40px icon on the first line
+    paddingTop: '8px',
+    paddingBottom: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
     border: 0,
     minWidth: 0,
     flex: '1 1 auto',
     fontSize: '16px',
     fontWeight: 600,
-    lineHeight: '40px',
-    height: '40px',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
+    lineHeight: '24px',
+    height: 'auto',
+    overflow: 'visible',
+    whiteSpace: 'normal',
+    wordBreak: 'break-word',
     color: '#0f172a',
     textDecoration: 'none',
   };
@@ -276,8 +279,7 @@ export const HoverCardGrid = (props) => {
             return <>{content}</>;
           };
 
-          // Image cards: image on row 1, title+body stacked in row 2.
-          // Icon cards: fixed 40px header row, body in row 2 — titles share the same Y.
+          // Icon cards: header + body rows. Titles wrap; tops stay aligned across cards.
           const hasHeader = Boolean(title || (!imageSrc && icon));
 
           const header = hasHeader ? (
@@ -311,9 +313,7 @@ export const HoverCardGrid = (props) => {
                 </span>
               ) : null}
             </div>
-          ) : (
-            <div style={{ height: '40px', margin: 0, padding: 0 }} aria-hidden="true" />
-          );
+          ) : null;
 
           const body = hasContent ? (
             <div
@@ -350,7 +350,7 @@ export const HoverCardGrid = (props) => {
                 {title ? (
                   <span
                     className={'!no-underline ' + (href ? hoverLinkUnderline : '')}
-                    style={{ ...titleStyle, height: 'auto', lineHeight: '24px', whiteSpace: 'normal' }}
+                    style={titleStyle}
                   >
                     {title}
                   </span>
