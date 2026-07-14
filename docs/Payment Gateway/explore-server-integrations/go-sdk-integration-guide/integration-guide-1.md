@@ -9,7 +9,7 @@ The PayU Go SDK enables you to integrate PayU's Payment Gateway into application
 
 ## PayU Go Web SDK
 
-Download the PayU Go web SDK to go through the below project folder structure.
+Download the <Anchor target="_blank" href="https://github.com/payu-india/web-sdk-go/archive/refs/heads/main.zip">PayU Go web SDK</Anchor> to go through the below project folder structure.
 
 <br />
 
