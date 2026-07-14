@@ -120,11 +120,11 @@ curl --location --request GET 'https://uatoneapi.payu.in/payout/v2/virtualAccoun
 
 | Parameter                      | Description                                                              |
 | ------------------------------ | ------------------------------------------------------------------------ |
-| `data[].utr`                   | Bank UTR / reference number for the credit                               |
-| `data[].depositDateTime`       | Timestamp when the deposit was recorded (ISO-8601)                       |
-| `data[].amount`                | Credited amount in INR                                                   |
-| `data[].remitterAccountNumber` | Payer bank account number, when provided by the remitter bank            |
-| `data[].ifsc`                  | Remitter bank IFSC, when provided by the remitter bank                   |
+| `utr`                   | Bank UTR / reference number for the credit                               |
+| `depositDateTime`       | Timestamp when the deposit was recorded (ISO-8601)                       |
+| `amount`                | Credited amount in INR                                                   |
+| `remitterAccountNumber` | Payer bank account number, when provided by the remitter bank            |
+| `ifsc`                  | Remitter bank IFSC, when provided by the remitter bank                   |
 
 <Callout icon="📘" theme="info">
   ### Note:
