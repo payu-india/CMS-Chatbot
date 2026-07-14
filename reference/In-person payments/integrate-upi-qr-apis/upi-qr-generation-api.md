@@ -170,7 +170,7 @@ Include your merchant key and authorization token in the request headers.
       </tr>
       <tr>
         <td>
-          mode<br>
+          pg<br>
           <code>mandatory</code>
         </td>
         <td style="white-space: normal; word-break: break-word;">
@@ -180,7 +180,7 @@ Include your merchant key and authorization token in the request headers.
       </tr>
       <tr>
         <td>
-          ibibo-code<br>
+          bankcode<br>
           <code>mandatory</code>
         </td>
         <td style="white-space: normal; word-break: break-word;">
