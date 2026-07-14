@@ -4,8 +4,8 @@ name: HoverCardGrid
 /**
  * HoverCardGrid - ReadMe CMS Custom Component
  *
- * Responsive card grid with cycling pastel backgrounds, soft floating shadows,
- * and lift on hover (Razorpay-style step cards).
+ * Responsive card grid with unique pastel backgrounds, soft floating shadows,
+ * and lift on hover. Titles share a fixed header row so they align across cards.
  *
  * ReadMe: Settings → Custom Components → paste this file. One registration; pass `items`.
  *
@@ -34,40 +34,45 @@ export const HoverCardGrid = (props) => {
           ? 'grid-cols-1 sm:grid-cols-2 xl:grid-cols-4'
           : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3';
 
-  // Soft pastel fills with a light vertical wash for subtle texture (not flat solids).
-  const pastelStyles = [
+  // PayU-distinct pastels (teal / butter / blush / fog) — not Razorpay blue/peach/mint.
+  const themes = [
     {
-      background:
-        'linear-gradient(165deg, #eef3ff 0%, #e4ecff 48%, #dce6fb 100%)',
+      background: 'linear-gradient(160deg, #e4f6f1 0%, #d5efe8 52%, #c8e8df 100%)',
+      icon: '#0f766e',
+      iconBox: 'rgba(15, 118, 110, 0.12)',
     },
     {
-      background:
-        'linear-gradient(165deg, #fff6ec 0%, #ffefdf 48%, #ffe8d4 100%)',
+      background: 'linear-gradient(160deg, #faf3dd 0%, #f4e9c8 52%, #eee0b5 100%)',
+      icon: '#a16207',
+      iconBox: 'rgba(161, 98, 7, 0.12)',
     },
     {
-      background:
-        'linear-gradient(165deg, #eefbf3 0%, #e4f7eb 48%, #daf2e3 100%)',
+      background: 'linear-gradient(160deg, #f8e8ec 0%, #f1d9e0 52%, #e9ccd6 100%)',
+      icon: '#9f1239',
+      iconBox: 'rgba(159, 18, 57, 0.12)',
     },
     {
-      background:
-        'linear-gradient(165deg, #f5f0ff 0%, #eee6ff 48%, #e6dcfa 100%)',
+      background: 'linear-gradient(160deg, #e8eef4 0%, #dce5ee 52%, #d0dce7 100%)',
+      icon: '#334155',
+      iconBox: 'rgba(51, 65, 85, 0.12)',
     },
   ];
 
-  // Resting float + deeper lift on hover (matches soft bottom-heavy drop shadows).
   const cardShadow =
     'shadow-[0_10px_28px_-8px_rgba(15,23,42,0.14),0_4px_10px_-4px_rgba(15,23,42,0.08)]';
   const cardShadowHover =
     'hover:shadow-[0_22px_44px_-12px_rgba(15,23,42,0.2),0_10px_20px_-8px_rgba(15,23,42,0.12)]';
 
+  // items-stretch + justify-start keeps every card's header pinned to the same top edge
+  // even when body copy lengths differ and grid cells stretch to equal height.
   const cardBase =
-    'group flex h-full flex-col rounded-xl p-5 text-left !no-underline hover:!no-underline ' +
+    'group flex h-full flex-col items-stretch justify-start gap-3 rounded-2xl p-5 text-left !no-underline hover:!no-underline ' +
     cardShadow +
     ' ' +
     cardShadowHover +
     ' transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ' +
     'hover:-translate-y-1.5 ' +
-    'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500';
+    'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600';
 
   const mediaTransition =
     'transition-[box-shadow,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]';
@@ -78,7 +83,7 @@ export const HoverCardGrid = (props) => {
 
   return (
     <div className={`my-6 ${className}`.trim()}>
-      <ul className={`grid gap-5 list-none p-0 m-0 ${gridClass}`}>
+      <ul className={`grid list-none items-stretch gap-5 p-0 m-0 ${gridClass}`}>
         {items.map((item, index) => {
           const title = item?.title != null ? String(item.title) : '';
           const href = item?.href != null ? String(item.href) : '';
@@ -102,24 +107,21 @@ export const HoverCardGrid = (props) => {
             item?.imageAlt != null && String(item.imageAlt).trim() !== ''
               ? String(item.imageAlt).trim()
               : title || 'Card illustration';
-          // Default to opening links in a new tab.
-          // If you want same-tab navigation, pass `target="_self"` explicitly.
           const target =
             item?.target != null && String(item.target).trim() !== ''
               ? String(item.target).trim()
               : '_blank';
           const key = item?.key != null ? String(item.key) : `card-${index}-${title}`;
 
+          const theme = themes[index % themes.length];
           const customBg = item?.bg != null ? String(item.bg).trim() : '';
           const usesTailwindBg = customBg.indexOf('bg-') === 0;
-          const pastel = pastelStyles[index % pastelStyles.length];
           const cardStyle = customBg
             ? usesTailwindBg
               ? undefined
               : { background: customBg }
-            : pastel;
-          const cardClass =
-            cardBase + (usesTailwindBg ? ' ' + customBg : '');
+            : { background: theme.background };
+          const cardClass = cardBase + (usesTailwindBg ? ' ' + customBg : '');
 
           const renderContentNode = () => {
             if (content == null) return null;
@@ -130,7 +132,7 @@ export const HoverCardGrid = (props) => {
                 .map((v) => String(v).trim());
               if (listItems.length < 1) return null;
               return (
-                <ul className={'list-disc pl-5 space-y-1' + (href ? ' ' + hoverLinkUnderline : '')}>
+                <ul className={'m-0 list-disc space-y-1 pl-5' + (href ? ' ' + hoverLinkUnderline : '')}>
                   {listItems.map((li, liIndex) => (
                     <li key={`${liIndex}-${li}`}>{li}</li>
                   ))}
@@ -160,7 +162,7 @@ export const HoverCardGrid = (props) => {
                 if (listItems.length < 1) return null;
 
                 return (
-                  <ul className={'list-disc pl-5 space-y-1' + (href ? ' ' + hoverLinkUnderline : '')}>
+                  <ul className={'m-0 list-disc space-y-1 pl-5' + (href ? ' ' + hoverLinkUnderline : '')}>
                     {listItems.map((li, liIndex) => (
                       <li key={`${liIndex}-${li}`}>{li}</li>
                     ))}
@@ -174,20 +176,31 @@ export const HoverCardGrid = (props) => {
             return <>{content}</>;
           };
 
+          // Fixed min-height + items-start keeps the first title line on the same baseline
+          // across cards (avoids items-center shifting when a title wraps).
+          const headerClass = 'flex min-h-10 w-full shrink-0 items-start gap-2.5';
+
           const titleClass =
-            'min-w-0 flex-1 text-base font-semibold leading-snug text-slate-900 !no-underline ' +
+            'min-w-0 flex-1 pt-2 text-base font-semibold leading-5 text-slate-900 !no-underline ' +
             (href ? hoverLinkUnderline : '');
 
           const iconBoxClass =
-            'inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-md bg-white/75 text-[15px] text-slate-700 shadow-sm ring-1 ring-slate-900/5 ' +
+            'inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-[15px] shadow-sm ring-1 ring-black/5 ' +
             mediaTransition +
             ' group-hover:scale-105 group-hover:shadow-md';
+
+          const bodyClass =
+            'm-0 min-w-0 text-sm leading-6 text-slate-600 ' +
+            (href
+              ? hoverLinkUnderline +
+                ' [&_a]:!no-underline group-hover:[&_a]:underline group-hover:[&_a]:decoration-[#00b058] group-hover:[&_a]:underline-offset-[3px]'
+              : '[&_a]:underline [&_a]:decoration-[#00b058] [&_a]:underline-offset-[3px] hover:[&_a]:underline');
 
           const inner = (
             <>
               {imageSrc ? (
                 <span
-                  className={`mb-3 block overflow-hidden rounded-md bg-white/60 shadow-sm ring-1 ring-slate-900/5 ${mediaTransition} group-hover:shadow-md group-hover:ring-slate-900/10`}
+                  className={`mb-0 block shrink-0 overflow-hidden rounded-xl bg-white/50 shadow-sm ring-1 ring-black/5 ${mediaTransition} group-hover:shadow-md`}
                 >
                   <img
                     src={imageSrc}
@@ -198,43 +211,34 @@ export const HoverCardGrid = (props) => {
                   />
                 </span>
               ) : null}
-              {imageSrc && title ? (
-                <span className={'mb-2 block ' + titleClass}>{title}</span>
-              ) : null}
-              {!imageSrc && (icon || title) ? (
-                <div className={'flex items-center gap-2 ' + (hasContent ? 'mb-2' : '')}>
-                  {icon ? (
-                    <span className={iconBoxClass} aria-hidden="true">
-                      <i className={`fa ${icon} text-[#00b386]`} aria-hidden="true" />
+
+              {(imageSrc && title) || (!imageSrc && (icon || title)) ? (
+                <div className={headerClass}>
+                  {!imageSrc && icon ? (
+                    <span
+                      className={iconBoxClass}
+                      style={{ backgroundColor: theme.iconBox, color: theme.icon }}
+                      aria-hidden="true"
+                    >
+                      <i className={`fa ${icon}`} style={{ color: theme.icon }} aria-hidden="true" />
                     </span>
                   ) : null}
                   {title ? <span className={titleClass}>{title}</span> : null}
                 </div>
               ) : null}
-              {hasContent ? (
-                <div
-                  className={
-                    'mt-2 prose prose-sm max-w-none text-slate-600 ' +
-                    (href
-                      ? hoverLinkUnderline +
-                        ' [&_a]:!no-underline group-hover:[&_a]:underline group-hover:[&_a]:decoration-[#00b058] group-hover:[&_a]:underline-offset-[3px]'
-                      : ' [&_a]:underline [&_a]:decoration-[#00b058] [&_a]:underline-offset-[3px] hover:[&_a]:underline')
-                  }
-                >
-                  {renderContentNode()}
-                </div>
-              ) : null}
+
+              {hasContent ? <div className={bodyClass}>{renderContentNode()}</div> : null}
             </>
           );
 
           return (
-            <li key={key} className="m-0 list-none p-0">
+            <li key={key} className="m-0 flex list-none p-0">
               {href ? (
                 <a
                   href={href}
                   target={target}
                   rel={target === '_blank' ? 'noopener noreferrer' : undefined}
-                  className={cardClass}
+                  className={cardClass + ' w-full'}
                   style={{
                     textDecoration: 'none',
                     textDecorationLine: 'none',
@@ -244,7 +248,7 @@ export const HoverCardGrid = (props) => {
                   {inner}
                 </a>
               ) : (
-                <div className={cardClass} style={cardStyle}>
+                <div className={cardClass + ' w-full'} style={cardStyle}>
                   {inner}
                 </div>
               )}
@@ -257,8 +261,6 @@ export const HoverCardGrid = (props) => {
 };
 
 // Default preview for ReadMe CMS (component must appear after exports).
-// If the ReadMe editor ever complains, you can collapse this back to one line,
-// but the multiline form below is easier to read and copy.
 
 <HoverCardGrid
   columns={3}
