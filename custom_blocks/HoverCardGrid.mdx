@@ -4,14 +4,14 @@ name: HoverCardGrid
 /**
  * HoverCardGrid - ReadMe CMS Custom Component
  *
- * Responsive card grid with unique pastel backgrounds, soft floating shadows,
- * and lift on hover. Titles share a fixed header row so they align across cards.
+ * Responsive card grid with soft pastel backgrounds, floating shadows, and hover lift.
+ * Card headers use a fixed-height row (inline styles) so titles align across cards
+ * even when ReadMe global CSS fights Tailwind utilities.
  *
  * ReadMe: Settings → Custom Components → paste this file. One registration; pass `items`.
  *
  * Usage: pass columns and items. Each item: title, href, optional text, icon, image,
  * imageAlt, target, bg (optional CSS color / Tailwind bg-* class override).
- * If `image` (URL) is set, it shows above the title; otherwise `icon` (Font Awesome class) is used.
  *
  * ReadMe Refactored (MDX): use plain strings only in items — do not pass JSX in `text`.
  * See README_HOVER_CARD_GRID.md for a working 3-card example.
@@ -34,27 +34,27 @@ export const HoverCardGrid = (props) => {
           ? 'grid-cols-1 sm:grid-cols-2 xl:grid-cols-4'
           : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3';
 
-  // PayU-distinct pastels (teal / butter / blush / fog) — not Razorpay blue/peach/mint.
+  // Soft pastels (muted blue / peach / mint / lavender) — not vibrant fills.
   const themes = [
     {
-      background: 'linear-gradient(160deg, #e4f6f1 0%, #d5efe8 52%, #c8e8df 100%)',
-      icon: '#0f766e',
-      iconBox: 'rgba(15, 118, 110, 0.12)',
+      background: 'linear-gradient(165deg, #eef3ff 0%, #e8effc 50%, #e3ebf8 100%)',
+      icon: '#3b5bdb',
+      iconBox: 'rgba(255,255,255,0.72)',
     },
     {
-      background: 'linear-gradient(160deg, #faf3dd 0%, #f4e9c8 52%, #eee0b5 100%)',
-      icon: '#a16207',
-      iconBox: 'rgba(161, 98, 7, 0.12)',
+      background: 'linear-gradient(165deg, #fff6ec 0%, #fff2e4 50%, #ffedd9 100%)',
+      icon: '#c2410c',
+      iconBox: 'rgba(255,255,255,0.72)',
     },
     {
-      background: 'linear-gradient(160deg, #f8e8ec 0%, #f1d9e0 52%, #e9ccd6 100%)',
-      icon: '#9f1239',
-      iconBox: 'rgba(159, 18, 57, 0.12)',
+      background: 'linear-gradient(165deg, #eefbf3 0%, #e8f7ee 50%, #e3f3e9 100%)',
+      icon: '#00b386',
+      iconBox: 'rgba(255,255,255,0.72)',
     },
     {
-      background: 'linear-gradient(160deg, #e8eef4 0%, #dce5ee 52%, #d0dce7 100%)',
-      icon: '#334155',
-      iconBox: 'rgba(51, 65, 85, 0.12)',
+      background: 'linear-gradient(165deg, #f5f0ff 0%, #f0eafc 50%, #ebe5f8 100%)',
+      icon: '#5b21b6',
+      iconBox: 'rgba(255,255,255,0.72)',
     },
   ];
 
@@ -63,16 +63,14 @@ export const HoverCardGrid = (props) => {
   const cardShadowHover =
     'hover:shadow-[0_22px_44px_-12px_rgba(15,23,42,0.2),0_10px_20px_-8px_rgba(15,23,42,0.12)]';
 
-  // items-stretch + justify-start keeps every card's header pinned to the same top edge
-  // even when body copy lengths differ and grid cells stretch to equal height.
-  const cardBase =
-    'group flex h-full flex-col items-stretch justify-start gap-3 rounded-2xl p-5 text-left !no-underline hover:!no-underline ' +
+  const cardClass =
+    'group rounded-xl text-left !no-underline hover:!no-underline ' +
     cardShadow +
     ' ' +
     cardShadowHover +
     ' transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ' +
     'hover:-translate-y-1.5 ' +
-    'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600';
+    'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500';
 
   const mediaTransition =
     'transition-[box-shadow,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]';
@@ -81,9 +79,102 @@ export const HoverCardGrid = (props) => {
     'transition-[text-decoration,text-decoration-color] duration-300 ' +
     'group-hover:underline group-hover:decoration-[#00b058] group-hover:underline-offset-[3px]';
 
+  // Inline layout beats ReadMe global `a` / list styles that were shifting titles.
+  const cardLayoutStyle = {
+    display: 'grid',
+    gridTemplateRows: '40px auto',
+    alignContent: 'start',
+    alignItems: 'stretch',
+    justifyItems: 'stretch',
+    gap: '12px',
+    padding: '20px',
+    height: '100%',
+    width: '100%',
+    boxSizing: 'border-box',
+    margin: 0,
+    lineHeight: 'normal',
+    textDecoration: 'none',
+    textDecorationLine: 'none',
+  };
+
+  const headerStyle = {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    gap: '10px',
+    height: '40px',
+    maxHeight: '40px',
+    minHeight: '40px',
+    margin: 0,
+    padding: 0,
+    overflow: 'hidden',
+    boxSizing: 'border-box',
+  };
+
+  const iconBoxStyle = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '40px',
+    height: '40px',
+    minWidth: '40px',
+    minHeight: '40px',
+    maxWidth: '40px',
+    maxHeight: '40px',
+    margin: 0,
+    padding: 0,
+    borderRadius: '8px',
+    overflow: 'hidden',
+    lineHeight: 1,
+    flexShrink: 0,
+    boxSizing: 'border-box',
+    boxShadow: '0 1px 2px rgba(15,23,42,0.06)',
+  };
+
+  const iconGlyphStyle = {
+    display: 'block',
+    lineHeight: 1,
+    fontSize: '15px',
+    width: '15px',
+    height: '15px',
+    margin: 0,
+    padding: 0,
+    textAlign: 'center',
+  };
+
+  const titleStyle = {
+    display: 'block',
+    margin: 0,
+    padding: 0,
+    border: 0,
+    minWidth: 0,
+    flex: '1 1 auto',
+    fontSize: '16px',
+    fontWeight: 600,
+    lineHeight: '40px',
+    height: '40px',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    color: '#0f172a',
+    textDecoration: 'none',
+  };
+
+  const bodyStyle = {
+    margin: 0,
+    padding: 0,
+    fontSize: '14px',
+    lineHeight: '22px',
+    color: '#475569',
+  };
+
   return (
     <div className={`my-6 ${className}`.trim()}>
-      <ul className={`grid list-none items-stretch gap-5 p-0 m-0 ${gridClass}`}>
+      <ul
+        className={`m-0 grid list-none gap-5 p-0 ${gridClass}`}
+        style={{ alignItems: 'stretch', margin: 0, padding: 0 }}
+      >
         {items.map((item, index) => {
           const title = item?.title != null ? String(item.title) : '';
           const href = item?.href != null ? String(item.href) : '';
@@ -116,12 +207,7 @@ export const HoverCardGrid = (props) => {
           const theme = themes[index % themes.length];
           const customBg = item?.bg != null ? String(item.bg).trim() : '';
           const usesTailwindBg = customBg.indexOf('bg-') === 0;
-          const cardStyle = customBg
-            ? usesTailwindBg
-              ? undefined
-              : { background: customBg }
-            : { background: theme.background };
-          const cardClass = cardBase + (usesTailwindBg ? ' ' + customBg : '');
+          const background = customBg && !usesTailwindBg ? customBg : theme.background;
 
           const renderContentNode = () => {
             if (content == null) return null;
@@ -132,9 +218,14 @@ export const HoverCardGrid = (props) => {
                 .map((v) => String(v).trim());
               if (listItems.length < 1) return null;
               return (
-                <ul className={'m-0 list-disc space-y-1 pl-5' + (href ? ' ' + hoverLinkUnderline : '')}>
+                <ul
+                  className={href ? hoverLinkUnderline : ''}
+                  style={{ margin: 0, paddingLeft: '20px', listStyleType: 'disc' }}
+                >
                   {listItems.map((li, liIndex) => (
-                    <li key={`${liIndex}-${li}`}>{li}</li>
+                    <li key={`${liIndex}-${li}`} style={{ margin: 0 }}>
+                      {li}
+                    </li>
                   ))}
                 </ul>
               );
@@ -162,93 +253,164 @@ export const HoverCardGrid = (props) => {
                 if (listItems.length < 1) return null;
 
                 return (
-                  <ul className={'m-0 list-disc space-y-1 pl-5' + (href ? ' ' + hoverLinkUnderline : '')}>
+                  <ul
+                    className={href ? hoverLinkUnderline : ''}
+                    style={{ margin: 0, paddingLeft: '20px', listStyleType: 'disc' }}
+                  >
                     {listItems.map((li, liIndex) => (
-                      <li key={`${liIndex}-${li}`}>{li}</li>
+                      <li key={`${liIndex}-${li}`} style={{ margin: 0 }}>
+                        {li}
+                      </li>
                     ))}
                   </ul>
                 );
               }
 
-              return <span className={href ? hoverLinkUnderline : ''}>{content}</span>;
+              return (
+                <span className={href ? hoverLinkUnderline : ''} style={{ margin: 0, padding: 0 }}>
+                  {content}
+                </span>
+              );
             }
 
             return <>{content}</>;
           };
 
-          // Fixed min-height + items-start keeps the first title line on the same baseline
-          // across cards (avoids items-center shifting when a title wraps).
-          const headerClass = 'flex min-h-10 w-full shrink-0 items-start gap-2.5';
+          // Image cards: image on row 1, title+body stacked in row 2.
+          // Icon cards: fixed 40px header row, body in row 2 — titles share the same Y.
+          const hasHeader = Boolean(title || (!imageSrc && icon));
 
-          const titleClass =
-            'min-w-0 flex-1 pt-2 text-base font-semibold leading-5 text-slate-900 !no-underline ' +
-            (href ? hoverLinkUnderline : '');
-
-          const iconBoxClass =
-            'inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-[15px] shadow-sm ring-1 ring-black/5 ' +
-            mediaTransition +
-            ' group-hover:scale-105 group-hover:shadow-md';
-
-          const bodyClass =
-            'm-0 min-w-0 text-sm leading-6 text-slate-600 ' +
-            (href
-              ? hoverLinkUnderline +
-                ' [&_a]:!no-underline group-hover:[&_a]:underline group-hover:[&_a]:decoration-[#00b058] group-hover:[&_a]:underline-offset-[3px]'
-              : '[&_a]:underline [&_a]:decoration-[#00b058] [&_a]:underline-offset-[3px] hover:[&_a]:underline');
-
-          const inner = (
-            <>
-              {imageSrc ? (
+          const header = hasHeader ? (
+            <div style={headerStyle}>
+              {!imageSrc && icon ? (
                 <span
-                  className={`mb-0 block shrink-0 overflow-hidden rounded-xl bg-white/50 shadow-sm ring-1 ring-black/5 ${mediaTransition} group-hover:shadow-md`}
+                  className={mediaTransition + ' group-hover:scale-105'}
+                  style={{
+                    ...iconBoxStyle,
+                    backgroundColor: theme.iconBox,
+                    color: theme.icon,
+                  }}
+                  aria-hidden="true"
                 >
-                  <img
-                    src={imageSrc}
-                    alt={imageAlt}
-                    className={`h-32 w-full object-cover ${mediaTransition} group-hover:scale-[1.03]`}
-                    loading="lazy"
-                    decoding="async"
+                  <i
+                    className={`fa ${icon}`}
+                    style={{ ...iconGlyphStyle, color: theme.icon }}
+                    aria-hidden="true"
                   />
                 </span>
               ) : null}
-
-              {(imageSrc && title) || (!imageSrc && (icon || title)) ? (
-                <div className={headerClass}>
-                  {!imageSrc && icon ? (
-                    <span
-                      className={iconBoxClass}
-                      style={{ backgroundColor: theme.iconBox, color: theme.icon }}
-                      aria-hidden="true"
-                    >
-                      <i className={`fa ${icon}`} style={{ color: theme.icon }} aria-hidden="true" />
-                    </span>
-                  ) : null}
-                  {title ? <span className={titleClass}>{title}</span> : null}
-                </div>
+              {title ? (
+                <span
+                  className={
+                    '!no-underline ' + (href ? hoverLinkUnderline : '')
+                  }
+                  style={titleStyle}
+                  title={title}
+                >
+                  {title}
+                </span>
               ) : null}
+            </div>
+          ) : (
+            <div style={{ height: '40px', margin: 0, padding: 0 }} aria-hidden="true" />
+          );
 
-              {hasContent ? <div className={bodyClass}>{renderContentNode()}</div> : null}
+          const body = hasContent ? (
+            <div
+              className={
+                href
+                  ? hoverLinkUnderline +
+                    ' [&_a]:!no-underline group-hover:[&_a]:underline group-hover:[&_a]:decoration-[#00b058] group-hover:[&_a]:underline-offset-[3px]'
+                  : '[&_a]:underline [&_a]:decoration-[#00b058] [&_a]:underline-offset-[3px]'
+              }
+              style={bodyStyle}
+            >
+              {renderContentNode()}
+            </div>
+          ) : (
+            <div style={{ margin: 0, padding: 0 }} />
+          );
+
+          const inner = imageSrc ? (
+            <>
+              <span
+                className={`block overflow-hidden rounded-md bg-white/60 shadow-sm ring-1 ring-slate-900/5 ${mediaTransition} group-hover:shadow-md`}
+                style={{ margin: 0, height: '128px' }}
+              >
+                <img
+                  src={imageSrc}
+                  alt={imageAlt}
+                  className={`${mediaTransition} group-hover:scale-[1.03]`}
+                  style={{ display: 'block', width: '100%', height: '128px', objectFit: 'cover', margin: 0 }}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </span>
+              <div style={{ display: 'grid', gap: '12px', margin: 0, padding: 0, alignContent: 'start' }}>
+                {title ? (
+                  <span
+                    className={'!no-underline ' + (href ? hoverLinkUnderline : '')}
+                    style={{ ...titleStyle, height: 'auto', lineHeight: '24px', whiteSpace: 'normal' }}
+                  >
+                    {title}
+                  </span>
+                ) : null}
+                {body}
+              </div>
+            </>
+          ) : (
+            <>
+              {header}
+              {body}
             </>
           );
 
+          const mergedCardStyle = {
+            ...cardLayoutStyle,
+            ...(usesTailwindBg ? {} : { background }),
+            ...(imageSrc
+              ? {
+                  gridTemplateRows: '128px auto',
+                }
+              : {}),
+          };
+
           return (
-            <li key={key} className="m-0 flex list-none p-0">
+            <li
+              key={key}
+              className="m-0 list-none p-0"
+              style={{
+                display: 'flex',
+                margin: 0,
+                padding: 0,
+                listStyle: 'none',
+                height: '100%',
+                minHeight: 0,
+              }}
+            >
               {href ? (
                 <a
                   href={href}
                   target={target}
                   rel={target === '_blank' ? 'noopener noreferrer' : undefined}
-                  className={cardClass + ' w-full'}
-                  style={{
-                    textDecoration: 'none',
-                    textDecorationLine: 'none',
-                    ...(cardStyle || {}),
-                  }}
+                  className={
+                    cardClass +
+                    ' w-full' +
+                    (usesTailwindBg ? ' ' + customBg : '')
+                  }
+                  style={mergedCardStyle}
                 >
                   {inner}
                 </a>
               ) : (
-                <div className={cardClass + ' w-full'} style={cardStyle}>
+                <div
+                  className={
+                    cardClass +
+                    ' w-full' +
+                    (usesTailwindBg ? ' ' + customBg : '')
+                  }
+                  style={mergedCardStyle}
+                >
                   {inner}
                 </div>
               )}
