@@ -25,7 +25,7 @@ Go through these prerequisites and dependencies before starting the integration.
 <Callout icon="✋" theme="info">
   ### **Payment Flow**
 
-  Before you start integrating, it’s important to understand how payment flow works in <Anchor target="_blank" href="https://docs.payu.in/docs/payu-hosted-checkout-overview#how-payment-flow-works">PayU Payment Gateway</Anchor>.
+  Before you start integrating, it’s important to understand how payment flow works in <Anchor target="_blank" href="https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/payu-payment-gateway-workflow">PayU Payment Gateway</Anchor>.
 </Callout>
 
 <br />
