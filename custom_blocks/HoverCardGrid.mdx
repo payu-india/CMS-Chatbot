@@ -5,8 +5,8 @@ name: HoverCardGrid
  * HoverCardGrid - ReadMe CMS Custom Component
  *
  * Responsive card grid with soft pastel backgrounds, floating shadows, and hover lift.
- * Card headers use a fixed-height row (inline styles) so titles align across cards
- * even when ReadMe global CSS fights Tailwind utilities.
+ * Titles stay on one line; the grid wraps cards to the next row when the
+ * content width cannot fit the requested column count at a readable card size.
  *
  * ReadMe: Settings → Custom Components → paste this file. One registration; pass `items`.
  *
@@ -22,17 +22,17 @@ name: HoverCardGrid
  */
 
 export const HoverCardGrid = (props) => {
-  const { items = [], columns = 3, className = '' } = props;
+  const { items = [], columns = 2, className = '' } = props;
 
-  const safeCols = [1, 2, 3, 4].includes(Number(columns)) ? Number(columns) : 3;
-  const gridClass =
+  const safeCols = [1, 2, 3, 4].includes(Number(columns)) ? Number(columns) : 2;
+  const gapPx = 20;
+  const minCardPx = 280;
+  // Prefer `columns` across when wide; wrap to fewer columns (extra cards on next row)
+  // when each card would otherwise be too narrow for a one-line title.
+  const gridTemplateColumns =
     safeCols === 1
-      ? 'grid-cols-1'
-      : safeCols === 2
-        ? 'grid-cols-1 sm:grid-cols-2'
-        : safeCols === 4
-          ? 'grid-cols-1 sm:grid-cols-2 xl:grid-cols-4'
-          : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3';
+      ? '1fr'
+      : `repeat(auto-fit, minmax(max(${minCardPx}px, calc((100% - ${(safeCols - 1) * gapPx}px) / ${safeCols})), 1fr))`;
 
   // Soft pastels (muted blue / peach / mint / lavender) — not vibrant fills.
   const themes = [
@@ -97,13 +97,14 @@ export const HoverCardGrid = (props) => {
     textDecorationLine: 'none',
   };
 
-  // Tops align across cards; height grows so titles can wrap (no ellipsis clamp).
+  // Single-line titles; tops stay aligned. Cards wrap to the next grid row instead of truncating.
   const headerStyle = {
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     justifyContent: 'flex-start',
     gap: '10px',
+    height: '40px',
     minHeight: '40px',
     margin: 0,
     padding: 0,
@@ -145,11 +146,7 @@ export const HoverCardGrid = (props) => {
   const titleStyle = {
     display: 'block',
     margin: 0,
-    // Optical vertical center with the 40px icon on the first line
-    paddingTop: '8px',
-    paddingBottom: 0,
-    paddingLeft: 0,
-    paddingRight: 0,
+    padding: 0,
     border: 0,
     minWidth: 0,
     flex: '1 1 auto',
@@ -158,8 +155,7 @@ export const HoverCardGrid = (props) => {
     lineHeight: '24px',
     height: 'auto',
     overflow: 'visible',
-    whiteSpace: 'normal',
-    wordBreak: 'break-word',
+    whiteSpace: 'nowrap',
     color: '#0f172a',
     textDecoration: 'none',
   };
@@ -175,8 +171,16 @@ export const HoverCardGrid = (props) => {
   return (
     <div className={`my-6 ${className}`.trim()}>
       <ul
-        className={`m-0 grid list-none gap-5 p-0 ${gridClass}`}
-        style={{ alignItems: 'stretch', margin: 0, padding: 0 }}
+        className="m-0 grid list-none p-0"
+        style={{
+          display: 'grid',
+          gridTemplateColumns,
+          gap: `${gapPx}px`,
+          alignItems: 'stretch',
+          margin: 0,
+          padding: 0,
+          listStyle: 'none',
+        }}
       >
         {items.map((item, index) => {
           const title = item?.title != null ? String(item.title) : '';
@@ -307,7 +311,6 @@ export const HoverCardGrid = (props) => {
                     '!no-underline ' + (href ? hoverLinkUnderline : '')
                   }
                   style={titleStyle}
-                  title={title}
                 >
                   {title}
                 </span>
@@ -425,7 +428,7 @@ export const HoverCardGrid = (props) => {
 // Default preview for ReadMe CMS (component must appear after exports).
 
 <HoverCardGrid
-  columns={3}
+  columns={2}
   items={[
     {
       title: '1. Build Integration',
