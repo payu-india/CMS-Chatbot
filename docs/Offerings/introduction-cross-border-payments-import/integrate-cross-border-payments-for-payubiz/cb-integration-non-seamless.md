@@ -53,7 +53,7 @@ This section describes how to integrate Cross-Border Subscriptions with PayU Hos
 | email<br/><code>mandatory</code> | <code>varchar</code> Contains the email of the customer; highly recommended accuracy as fraud detection relies on this. Character limit: 50. | Ashish@test.com |
 | firstname<br/><code>mandatory</code> | <code>varchar</code> The customer's first name. Character limit is 60. | John |
 | lastname<br/><code>mandatory</code> | <code>varchar</code> The customer's middle & last name (wherever applicable). Character limit is 60. | Doe |
-| phone<br/><code>optional</code> | <code>varchar</code> Customer phone number for fraud detection and user tracking. Character limit: 50. | 9843176540 |
+| phone<br/><code>mandator</code> | <code>varchar</code> Customer phone number for fraud detection and user tracking. Character limit: 50. | 9843176540 |
 | address1<br/><code>optional but recommended for higher approval rate</code> | <code>varchar</code> The customer's primary billing address line. This field is required for billing and fraud prevention purposes. Character limit: 255. | 123 Main Street |
 | address2<br/><code>optional</code> | <code>varchar</code> The customer's secondary billing address line. Character limit: 255. | Anytown |
 | city<br/><code>optional but recommended for higher approval rate</code> | <code>varchar</code> The customer's billing city. This field is required for billing and fraud prevention purposes. Character limit: 50. | New Delhi |
