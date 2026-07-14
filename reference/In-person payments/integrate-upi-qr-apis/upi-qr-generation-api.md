@@ -16,20 +16,14 @@ This API supports both online (Intent-based) and offline (DBQR) QR modes for sea
 
 ---
 
-## Base URLs
+## Environment
 
-| Environment | URL |
-|-------------|-----|
-| **Production** | `https://secure.payu.in` |
-| **Sandbox** | `https://nimble.payu.in` |
+| Environment | URL |Methor|
+|-------------|-----|-----|
+| **Production** | `https://secure.payu.in/_payment` |POST|
+| **Sandbox** | `https://test.payu.in/_payment` |POST|
 
----
 
-## Endpoint
-
-```
-POST /_payment
-```
 
 ## Authentication
 
@@ -749,4 +743,3 @@ curl --location 'https://secure.payu.in/_payment' \
 </div>
 
 ---
-
