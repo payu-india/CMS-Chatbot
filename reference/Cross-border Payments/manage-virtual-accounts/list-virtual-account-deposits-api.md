@@ -1,7 +1,7 @@
 ---
 title: List Virtual Account Deposits API
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
