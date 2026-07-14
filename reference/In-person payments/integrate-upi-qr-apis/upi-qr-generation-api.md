@@ -224,7 +224,7 @@ Include your merchant key and authorization token in the request headers.
           <code>optional</code>
         </td>
         <td style="white-space: normal; word-break: break-word;">
-          <code>Integer</code> QR mode preference. <code>1</code> = Offline DBQR primary; <code>2</code> = Online Intent primary; <code>0</code> = Disable QR. If passed in the request, this takes precedence over the merchant_param configuration.
+          <code>Integer</code> QR mode preference. <code>1</code> = Offline DBQR primary; <code>2</code> = Online Intent primary; <code>0</code> = Disable QR.
         </td>
         <td>2</td>
       </tr>
