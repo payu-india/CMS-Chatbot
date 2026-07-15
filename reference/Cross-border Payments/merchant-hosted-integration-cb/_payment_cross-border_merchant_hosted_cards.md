@@ -2,7 +2,7 @@
 api:
   file: cb_merchant_hosted_cards.json
   operationId: merchantHostedCheckoutCards
-hidden: true
+hidden: false
 ---
 ---
 title: Cards - CB
