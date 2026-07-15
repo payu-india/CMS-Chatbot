@@ -14,34 +14,7 @@ metadata:
 next:
   description: ''
 ---
----
-title: Wallets Integration
-excerpt: ''
-deprecated: false
-hidden: false
-metadata:
-  title: Collect Payments with Wallets - Merchant Hosted Checkout
-  description: >-
-    Merchant-hosted wallet seamless integration: Paytm, PhonePe, Amazon Pay wallets, wallet codes, hash, and wallet payments on your checkout.
-  keywords:
-    - payu merchant hosted wallet seamless integration web india
-    - payment gateway wallet payment integration merchant hosted payu
-    - integrate wallet payments website custom checkout payu guide
-    - payu wallet seamless api integration steps merchant hosted
-    - website wallet payment integration paytm phonepe payu checkout
-    - merchant hosted wallet payment gateway integration payu web
-    - payu collect payments wallet seamless custom checkout integration
-    - server side wallet payment integration payu website checkout
-    - payu wallet hash wallet code seamless integration developer
-    - payment gateway india wallet integration merchant hosted payu
-    - payu custom checkout wallet api integration web guide
-    - merchant hosted wallet payment integration payu website india
-  robots: index
-
-next:
-  description: ''
----
-You can collect payments from customers with leading wallets using the Merchant Hosted integration. You need to ensure that **CASH** for the **pg** parameter and wallet code based on the desired wallet for the **bankcode** parameter is posted as mentioned in <Anchor label="Collect Payment API - Merchant Hosted Checkout" target="_blank" href="https://docs.payu.in/reference/_payment_merchant_hosted">Collect Payment API - Merchant Hosted Checkout</Anchor>.
+You can collect payments from customers with leading wallets using the Merchant Hosted integration. You need to ensure that **CASH** for the **pg** parameter and wallet code based on the desired wallet for the **bankcode** parameter is posted as mentioned in <Anchor target="_blank" href="https://docs.payu.in/reference/_payment_merchant_hosted">Collect Payment API - Merchant Hosted Checkout</Anchor>.
 
 **Steps to Integrate**
 
@@ -68,6 +41,8 @@ You can collect payments from customers with leading wallets using the Merchant 
 <RegisterMerchantPrerequiste />
 
 <Callout icon="📮" theme="default">
+  ###
+
   **Postman Collection**: Download the **Merchant Hosted Checkout > Wallets API Postman Collection** from the following location:
 
   [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/iu0g7es/wallets-integration](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/folder/iu0g7es/wallets-integration)
@@ -385,8 +360,15 @@ You can collect payments from customers with leading wallets using the Merchant 
   ```
 
 ### Advantage Club
+<Callout icon="📘" theme="info">
+  ### No test environment for Advantage Club:
+
+  There are no test credentials or Test Environment for the Advantage Club wallet. You need to test your Advantage Club integration directly on Production Environment.
+</Callout>
+
+<br />
 ```curl
-curl -X POST "https://test.payu.in/_payment" \
+curl -X POST "https://secure.payu.in/_payment" \
   -H "accept: application/json" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "key=YOUR_MERCHANT_KEY" \
@@ -405,7 +387,7 @@ curl -X POST "https://test.payu.in/_payment" \
 ```python
 import requests
 
-url = "https://test.payu.in/_payment"
+url = "https://secure.payu.in/_payment"
 
 headers = {
     "accept": "application/json",
@@ -433,7 +415,7 @@ print(f"Response: {response.text}")
 ```
 ```js 
 async function payWithAdvantageClub() {
-  const url = "https://test.payu.in/_payment";
+  const url = "https://secure.payu.in/_payment";
 
   const formData = new URLSearchParams({
     key: "YOUR_MERCHANT_KEY",
@@ -530,7 +512,7 @@ class AdvantageClubPayment
 
     static async Task Main()
     {
-        string url = "https://test.payu.in/_payment";
+        string url = "https://secure.payu.in/_payment";
 
         client.DefaultRequestHeaders.Add("accept", "application/json");
 
@@ -561,7 +543,7 @@ class AdvantageClubPayment
 ```
 ```php
 <?php
-$url = "https://test.payu.in/_payment";
+$url = "https://secure.payu.in/_payment";
 
 $headers = [
     "accept: application/json",
@@ -666,13 +648,16 @@ echo "Response: $response\n";
 
 ## Recommended integrations for Wallets
 
-* **Recurring Payments**: Enable recurring payments or subscriptions for wallets. For more information, refer to [Recurring Payments Integration](doc:introduction-recurring-payments-integration).
-* **Offers**: Configure offers for cards on Dashboard and then collect payments with offers. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer) and [Offers](doc:offers-integration).
+- **Recurring Payments**: Enable recurring payments or subscriptions for wallets. For more information, refer to [Recurring Payments Integration](doc:introduction-recurring-payments-integration).
+- **Offers**: Configure offers for cards on Dashboard and then collect payments with offers. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer) and [Offers](doc:offers-integration).
 
 ### Test the Integration
+
 Use any of the following values based on Wallet provider for testing:
+
 | **Wallet** | **Test details**                        |
 | ---------- | --------------------------------------- |
 | Paytm      | Mobile: `7777777777`, OTP: `888888`     |
 | Amazon     | Use your real Amazon account in sandbox |
 | Airtel     | Use your mobile number                  |
+
