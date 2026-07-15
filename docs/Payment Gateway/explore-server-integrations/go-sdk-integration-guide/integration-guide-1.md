@@ -115,6 +115,8 @@ mkdir payu-go-integration
 
 #### Expected Outcome
 
-<br />
+A new Go module is created and the PayU web SDK is added in the module.
+
+***
 
 <br />
