@@ -22,7 +22,7 @@
         "tags": [
           "Cross-Border UPI"
         ],
-        "summary": "Merchant-hosted UPI payment (Cross-Border)",
+        "summary": "CB UPI",
         "description": "Merchant-hosted UPI payment for Cross-Border integrations. Collect the customer VPA on your site and post to `/_payment`.",
         "operationId": "merchantHostedCheckoutUpi",
         "requestBody": {
