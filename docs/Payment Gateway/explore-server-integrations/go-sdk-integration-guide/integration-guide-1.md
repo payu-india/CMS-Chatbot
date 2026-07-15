@@ -65,6 +65,24 @@ Follow these steps to integrate PayU Go SDK and accept payments.
 
 Below are the steps to build the integration:
 
-### Step 1.1&#x20;
+### Step 1.1 Install Go in Your System
 
-<br />
+You should check whether Go is installed in your system by running the following command.
+
+<Accordion title="Check If Go is Installed" icon="fa-info-circle">
+<Terminal>{`
+go version
+`}</Terminal>
+</Accordion>
+
+If not installed, run the following command in the terminal to install Go in your system.
+
+<Accordion title="Go Installation Code" icon="fa-code">
+<Terminal>{`
+  brew install go
+`}</Terminal>
+</Accordion>
+
+#### Expected Outcome
+
+You should see the latest version of the Go installed in your system.
