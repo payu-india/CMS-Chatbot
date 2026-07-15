@@ -22,7 +22,7 @@
         "tags": [
           "Cross-Border Cards"
         ],
-        "summary": "Merchant-hosted card payment (Cross-Border S2S)",
+        "summary": "CB - Cards",
         "description": "Merchant-hosted card payment via the Cross-Border Cards S2S flow. This operation documents the complete-card request schema.",
         "operationId": "merchantHostedCheckoutCards",
         "requestBody": {
