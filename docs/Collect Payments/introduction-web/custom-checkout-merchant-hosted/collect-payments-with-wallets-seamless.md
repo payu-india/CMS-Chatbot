@@ -141,6 +141,7 @@ You can collect payments from customers with leading wallets using the Merchant 
 </Accordion>
 
 <Accordion title="Sample request" icon="fa-table">
+### PayTm
   ```curl
   curl -X POST "https://test.payu.in/_payment"  -H "accept: application/json"  -H "Content-Type: application/x-www-form-urlencoded"  -d "key=J****g&txnid=aI1UM19ONxLgPz&amount=10.00&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=cash&bankcode=paytm&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=6840ba0d1a14554f7ee5d20966dfbac6b221718e72dd823f05b6da01420286315b4956c28325898b66520b111604020ea2c547608606674766eb7e4164dc0baa"
   ```
@@ -382,6 +383,221 @@ You can collect payments from customers with leading wallets using the Merchant 
   curl_close($ch);
   ?>
   ```
+
+### Advantage Club
+```curl
+curl -X POST "https://test.payu.in/_payment" \
+  -H "accept: application/json" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "key=YOUR_MERCHANT_KEY" \
+  -d "txnid=ADVCLUB_TXN_001" \
+  -d "amount=10.00" \
+  -d "productinfo=iPhone" \
+  -d "firstname=Ashish" \
+  -d "email=test@gmail.com" \
+  -d "phone=9876543210" \
+  -d "pg=RD" \
+  -d "bankcode=ADVCLUB" \
+  -d "surl=https://yourwebsite.com/success" \
+  -d "furl=https://yourwebsite.com/failure" \
+  -d "hash=YOUR_CALCULATED_HASH"
+```
+```python
+import requests
+
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+data = {
+    "key": "YOUR_MERCHANT_KEY",
+    "txnid": "ADVCLUB_TXN_001",
+    "amount": "10.00",
+    "firstname": "Ashish",
+    "email": "test@gmail.com",
+    "phone": "9876543210",
+    "productinfo": "iPhone",
+    "pg": "RD",
+    "bankcode": "ADVCLUB",
+    "surl": "https://yourwebsite.com/success",
+    "furl": "https://yourwebsite.com/failure",
+    "hash": "YOUR_CALCULATED_HASH"
+}
+
+response = requests.post(url, headers=headers, data=data)
+print(f"Status Code: {response.status_code}")
+print(f"Response: {response.text}")
+```
+```js 
+async function payWithAdvantageClub() {
+  const url = "https://test.payu.in/_payment";
+
+  const formData = new URLSearchParams({
+    key: "YOUR_MERCHANT_KEY",
+    txnid: "ADVCLUB_TXN_001",
+    amount: "10.00",
+    firstname: "Ashish",
+    email: "test@gmail.com",
+    phone: "9876543210",
+    productinfo: "iPhone",
+    pg: "RD",
+    bankcode: "ADVCLUB",
+    surl: "https://yourwebsite.com/success",
+    furl: "https://yourwebsite.com/failure",
+    hash: "YOUR_CALCULATED_HASH"
+  });
+
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      accept: "application/json",
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    body: formData
+  });
+
+  const responseText = await response.text();
+  console.log(`Status: ${response.status}`);
+  console.log(`Response: ${responseText}`);
+}
+
+payWithAdvantageClub();
+```
+```java
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+
+public class AdvantageClubPayment {
+    public static void main(String[] args) throws Exception {
+        String url = "https://test.payu.in/_payment";
+        URL obj = new URL(url);
+        HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
+
+        conn.setRequestMethod("POST");
+        conn.setRequestProperty("accept", "application/json");
+        conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+        conn.setDoOutput(true);
+
+        String formData =
+            "key=" + URLEncoder.encode("YOUR_MERCHANT_KEY", StandardCharsets.UTF_8) +
+            "&txnid=" + URLEncoder.encode("ADVCLUB_TXN_001", StandardCharsets.UTF_8) +
+            "&amount=" + URLEncoder.encode("10.00", StandardCharsets.UTF_8) +
+            "&firstname=" + URLEncoder.encode("Ashish", StandardCharsets.UTF_8) +
+            "&email=" + URLEncoder.encode("test@gmail.com", StandardCharsets.UTF_8) +
+            "&phone=" + URLEncoder.encode("9876543210", StandardCharsets.UTF_8) +
+            "&productinfo=" + URLEncoder.encode("iPhone", StandardCharsets.UTF_8) +
+            "&pg=" + URLEncoder.encode("RD", StandardCharsets.UTF_8) +
+            "&bankcode=" + URLEncoder.encode("ADVCLUB", StandardCharsets.UTF_8) +
+            "&surl=" + URLEncoder.encode("https://yourwebsite.com/success", StandardCharsets.UTF_8) +
+            "&furl=" + URLEncoder.encode("https://yourwebsite.com/failure", StandardCharsets.UTF_8) +
+            "&hash=" + URLEncoder.encode("YOUR_CALCULATED_HASH", StandardCharsets.UTF_8);
+
+        try (OutputStream os = conn.getOutputStream()) {
+            os.write(formData.getBytes(StandardCharsets.UTF_8));
+        }
+
+        int code = conn.getResponseCode();
+        System.out.println("Response Code: " + code);
+
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(
+                code >= 200 && code < 300 ? conn.getInputStream() : conn.getErrorStream(),
+                StandardCharsets.UTF_8))) {
+            String line;
+            StringBuilder response = new StringBuilder();
+            while ((line = br.readLine()) != null) {
+                response.append(line);
+            }
+            System.out.println("Response: " + response);
+        }
+    }
+}
+```
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+class AdvantageClubPayment
+{
+    private static readonly HttpClient client = new HttpClient();
+
+    static async Task Main()
+    {
+        string url = "https://test.payu.in/_payment";
+
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+
+        var formData = new List<KeyValuePair<string, string>>
+        {
+            new("key", "YOUR_MERCHANT_KEY"),
+            new("txnid", "ADVCLUB_TXN_001"),
+            new("amount", "10.00"),
+            new("firstname", "Ashish"),
+            new("email", "test@gmail.com"),
+            new("phone", "9876543210"),
+            new("productinfo", "iPhone"),
+            new("pg", "RD"),
+            new("bankcode", "ADVCLUB"),
+            new("surl", "https://yourwebsite.com/success"),
+            new("furl", "https://yourwebsite.com/failure"),
+            new("hash", "YOUR_CALCULATED_HASH")
+        };
+
+        var content = new FormUrlEncodedContent(formData);
+        HttpResponseMessage response = await client.PostAsync(url, content);
+        string body = await response.Content.ReadAsStringAsync();
+
+        Console.WriteLine($"Status Code: {response.StatusCode}");
+        Console.WriteLine($"Response: {body}");
+    }
+}
+```
+```php
+<?php
+$url = "https://test.payu.in/_payment";
+
+$headers = [
+    "accept: application/json",
+    "Content-Type: application/x-www-form-urlencoded"
+];
+
+$data = [
+    "key" => "YOUR_MERCHANT_KEY",
+    "txnid" => "ADVCLUB_TXN_001",
+    "amount" => "10.00",
+    "firstname" => "Ashish",
+    "email" => "test@gmail.com",
+    "phone" => "9876543210",
+    "productinfo" => "iPhone",
+    "pg" => "RD",
+    "bankcode" => "ADVCLUB",
+    "surl" => "https://yourwebsite.com/success",
+    "furl" => "https://yourwebsite.com/failure",
+    "hash" => "YOUR_CALCULATED_HASH"
+];
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+
+echo "Status Code: $httpCode\n";
+echo "Response: $response\n";
+?>
+```
 </Accordion>
 
 ## Step 2: Check response from PayU
