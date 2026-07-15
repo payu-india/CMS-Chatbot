@@ -89,6 +89,28 @@ You should see the latest version of the Go installed in your system.
 
 ***
 
-### Step 1.2&#x20;
+### Step 1.2 Create a Module and Install the PayU SDK
+
+After you install Go in your system, you should now create a project module and install the PayU Go SDK.
+
+<Accordion title="Steps to Create a Module and Install the PayU Go SDK" icon="fa-list">
+1. Run the follwing command to create a project module.
+
+<Terminal>{`
+mkdir payu-go-integration
+`}</Terminal>
+
+2. Navigate to the the project module folder and run the following command to install the PayU Go SDK.
+
+<Terminal>{`
+ cd payu-go-integration // Navigates to the project folder.
+
+ go mod init payu-go-integration // Creates a new Go module.
+
+ go get github.com/payu-india/web-sdk-go // Adds the PayU SDK.
+
+ go mod tidy // cleans up your project's dependencies in go.mod and go.sum.
+`}</Terminal>
+</Accordion>
 
 <br />
