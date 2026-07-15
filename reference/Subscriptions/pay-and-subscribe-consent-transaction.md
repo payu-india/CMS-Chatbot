@@ -27,13 +27,15 @@ next:
       slug: customer-experience-and-workflow-recurring-payments
       title: Customer Experience and Workflow
 ---
-To make an Pay and Subscribe consent transaction, you must post the **SI=4** instead of **SI=1** in case of payment consent transaction. You will share the billing details such as billing amount, start date, end date, billing interval, billing currency, billing cycle, etc. using the **_payment** API. After your user is redirected to the PayU Checkout page, all the eligible autopay payment modes will have **Register AutoDebit** option in specific section along with the enabled payment modes.
+To make an Pay and Subscribe consent transaction, you must post the **SI=4** instead of **SI=1** in case of payment consent transaction. You will share the billing details such as billing amount, start date, end date, billing interval, billing currency, billing cycle, etc. using the **\_payment** API. After your user is redirected to the PayU Checkout page, all the eligible autopay payment modes will have **Register AutoDebit** option in specific section along with the enabled payment modes.
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Notes**:
 
-  * You need to enable the Pay and Subscribe on PayU Dashboard as per your requirements. For example, you want only UPI and cards instead of ENACH to be listed for the register auto-debit feature.
-  * The request parameters includes **SI=4**, but rest of the parameters and response remains the same as in Payment Consent Transaction. For more information, refer to [Payment Consent Transaction using PayU Hosted Checkout](ref:payment-consent-transaction-payu-hosted).
+  - You need to enable the Pay and Subscribe on PayU Dashboard as per your requirements. For example, you want only UPI and cards instead of ENACH to be listed for the register auto-debit feature.
+  - The request parameters includes **SI=4**, but rest of the parameters and response remains the same as in Payment Consent Transaction. For more information, refer to [Payment Consent Transaction using PayU Hosted Checkout](ref:payment-consent-transaction-payu-hosted).
 </Callout>
 
 ## Request Parameters
@@ -123,3 +125,18 @@ Array
     [cardnum] => XXXXXXXXXXXX4879
 )
 ```
+
+<Callout icon="📘" theme="info">
+  ### **Note:**
+
+  The combination of `unmappedstatus`, `status`, and `payment_source` determines the mandate and transaction outcome in the above response.
+
+  | Mandate Status | Transaction Status | unmappedstatus | status  | payment_source |
+  | -------------- | ------------------ | -------------- | ------- | -------------- |
+  | Successful     | Successful         | captured       | success | sist           |
+  | Failed         | Successful         | captured       | success | payu           |
+  | Failed         | Failed             | failed         | failure | payu           |
+  | Successful     | Failed             | Not possible   | N/A     | N/A            |
+</Callout>
+
+<br />
