@@ -33,21 +33,12 @@ next:
       slug: customer-experience-and-workflow-recurring-payments
       title: Customer Experience and Workflow
 ---
-<Callout icon="👍" theme="okay">
-  ###
-
-  <Callout icon="👍" theme="okay">
-    <FreshTag heading
-
-    <ul><li>RuPay Debit and Credit Cards are supported for Subscriptions.</li></ul>
-</Callout>
-
 This section provides the request parameters, sample request and response for a Cards Recurring Payment.
 
 <Callout icon="📘" theme="info">
-  ###
+  ### **Note:**
 
-  **Note**: During integration with PayU, first integrate with the Test Server environment. PayU will provide you the necessary Merchant Key for the test serve. After testing is done, you are ready to move to the Production server.
+  During integration with PayU, first integrate with the Test Server environment. PayU will provide you the necessary Merchant Key for the test serve. After testing is done, you are ready to move to the Production server.
 </Callout>
 
 HTTP Method: **POST**
@@ -123,13 +114,13 @@ Characters allowed for parameters
 
 For parameters address1, address2, city, state, country, product info, email, and phone following characters are allowed:
 
-- Characters: A to Z, a to z, 0 to 9
-- – (Minus)
-- \_ (Underscore)
-- @ ()
-- / (Slash)
-- (Space)
-- . (Dot)
+\- Characters: A to Z, a to z, 0 to 9
+\- – (Minus)
+\- \_ (Underscore)
+\- @ ()
+\- / (Slash)
+\- (Space)
+\- . (Dot)
 
 ## Sample request
 
