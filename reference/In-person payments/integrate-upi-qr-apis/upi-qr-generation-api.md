@@ -42,6 +42,8 @@ Include your merchant key and authorization token in the request headers.
 <div>
   
 
+
+
 <table>
   <thead>
     <tr>
@@ -72,6 +74,8 @@ Include your merchant key and authorization token in the request headers.
 </table>
 
 
+
+
 </div>
 
 ***
@@ -80,6 +84,8 @@ Include your merchant key and authorization token in the request headers.
 
 <div>
   
+
+
 
 <table>
   <thead>
@@ -264,27 +270,9 @@ Include your merchant key and authorization token in the request headers.
 </table>
 
 
+
+
 </div>
-
-***
-
-## QR Mode Configuration
-
-The QR mode (Online Intent vs Offline DBQR) is determined by the `isMobileUPIQR` parameter, which can be configured at the merchant level or passed in the `_payment` request:
-
-**Online QR (isMobileUPIQR = 2):**
-
-- **Mobile Web:** `mode=UPI`, `ibibo-code=INTENT`, `upiAppName=MQR`
-- **SDK:** `mode=UPI`, `ibibo-code=INTENT`, `upiAppName=MQR`, `txn_s2s_flow=4`
-
-**Offline DBQR (isMobileUPIQR = 1):**
-
-- **Mobile Web:** `mode=QR`, `ibibo-code=UPIQR`, `upiAppName=MQR`
-- **SDK:** `mode=DBQR`, `ibibo-code=UPIDBQR`, `upiAppName=MQR`, `txn_s2s_flow=4`
-
-<Note>
-If `isMobileUPIQR` is passed in the `_payment` request, it takes **precedence** over the merchant_param configuration, provided the requested mode is valid and enabled for your merchant account.
-</Note>
 
 ***
 
@@ -303,7 +291,6 @@ The `sendqrimage` parameter must be enabled in your merchant_param configuration
 </Warning>
 
 ***
-
 
 ## Sample Request
 
@@ -334,6 +321,7 @@ curl --location 'https://secure.payu.in/_payment' \
 > **Note:** Replace all placeholder values (key, hash, URLs, etc.) before making the request.
 
 ## Sample Response
+
 ### base64 QR
 
 ```json
@@ -390,35 +378,12 @@ curl --location 'https://secure.payu.in/_payment' \
 }
 ```
 
-### Offline DBQR
-
-```json
-{
-  "metaData": {
-    "message": null,
-    "referenceId": "6d36c537a8ff8e3dced4bc5f698df91c",
-    "statusCode": null,
-    "txnId": "3d30aff07ecf1f5357fa",
-    "txnStatus": "pending",
-    "unmappedStatus": "pending"
-  },
-  "result": {
-    "paymentId": "28579212177",
-    "merchantName": "ESAFSMALLFINANCEBANKLIMITED",
-    "merchantVpa": "ESAFSMALLdbqr.payu@icici",
-    "amount": "10.00",
-    "qrString": "upi://pay?pa=ESAFSMALLdbqr.payu@icici&pn=ESAF SMALL FINANCE BANKLIMITED&tr=EZV2026051317273063952330&tid=PPPL285792121771305261727306a04672a&am=10.00&cu=INR&tn=UPI Transaction",
-    "otpPostUrl": "https://secure.payu.in/ResponseHandler.php"
-  }
-}
-```
-
-***
-
 ## Error Codes
 
 <div>
   
+
+
 
 <table>
   <thead>
@@ -460,6 +425,10 @@ curl --location 'https://secure.payu.in/_payment' \
 </table>
 
 
+
+
 </div>
 
 ***
+
+<br />
