@@ -85,7 +85,7 @@ If not installed, run the following command in the terminal to install Go in you
 
 #### Expected Outcome
 
-You should see the latest version of the Go installed in your system.
+You should see the latest version of the Go installed in your system when you run the `go version` command.
 
 ***
 
@@ -112,5 +112,9 @@ mkdir payu-go-integration
  go mod tidy // cleans up your project's dependencies in go.mod and go.sum.
 `}</Terminal>
 </Accordion>
+
+#### Expected Outcome
+
+<br />
 
 <br />
