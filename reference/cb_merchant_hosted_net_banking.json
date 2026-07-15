@@ -22,7 +22,7 @@
         "tags": [
           "Cross-Border Net Banking"
         ],
-        "summary": "Merchant-hosted net banking payment (Cross-Border)",
+        "summary": "CB - Net Banking",
         "description": "Merchant-hosted net banking payment for Cross-Border integrations. The customer selects a bank on your site and is redirected to complete authentication.",
         "operationId": "merchantHostedCheckoutNetBanking",
         "requestBody": {
