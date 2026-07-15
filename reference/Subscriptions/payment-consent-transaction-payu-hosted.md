@@ -34,9 +34,11 @@ next:
       title: Introduction
       type: basic
 ---
-This section describes how to set up a Payment Consent or Registration transaction using PayU Hosted Checkout integration with **_payment** API.
+This section describes how to set up a Payment Consent or Registration transaction using PayU Hosted Checkout integration with **\_payment** API.
 
 <Callout icon="👍" theme="okay">
+  ###
+
   Experience the end-to-end **Subscriptions** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 
   <HTMLBlock>{`
@@ -79,10 +81,10 @@ HTTP Method: **POST**
 
 **Environment**
 
-|                            |                                                                    |
-| :------------------------- | :----------------------------------------------------------------- |
-| **Production Environment** | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
-| **Test Environment**       | [https://test.payu.in/_payment](https://test.payu.in/_payment)     |
+|                            |                                                                     |
+| :------------------------- | :------------------------------------------------------------------ |
+| **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
+| **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
 
 ## Request parameters
 
@@ -101,6 +103,9 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
   white-space: nowrap;
 }
 </style>
+
+
+
 <Table align={["left","left","left"]}>
   <thead>
     <tr>
@@ -335,6 +340,8 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
     </tr>
   </tbody>
 </Table>
+
+
 `}</HTMLBlock>
 
 ## Sample request
@@ -554,13 +561,13 @@ Characters allowed for parameters
 
 For parameters address1, address2, city, state, country, product info, email, and phone following characters are allowed:
 
-* Characters: A to Z, a to z, 0 to 9
-* – (Minus)
-* _ (Underscore)
-* @ ()
-* / (Slash)
-* (Space)
-* . (Dot)
+- Characters: A to Z, a to z, 0 to 9
+- – (Minus)
+- \_ (Underscore)
+- @ ()
+- / (Slash)
+- (Space)
+- . (Dot)
 
 ## Sample response
 
@@ -625,5 +632,18 @@ Array
     [cardnum] => XXXXXXXXXXXX4879
 )
 ```
+
+<Callout icon="📘" theme="info">
+  ### **Note:**
+
+  The combination of `unmappedstatus`, `status`, and `payment_source` determines the mandate and transaction outcome in the above response.
+
+  | Mandate Status | Transaction Status | unmappedstatus | status  | payment_source |
+  | -------------- | ------------------ | -------------- | ------- | -------------- |
+  | Successful     | Successful         | captured       | success | sist           |
+  | Failed         | Successful         | captured       | success | payu           |
+  | Failed         | Failed             | failed         | failure | payu           |
+  | Successful     | Failed             | Not possible   | N/A     | N/A            |
+</Callout>
 
 <br />
