@@ -668,3 +668,11 @@ echo "Response: $response\n";
 
 * **Recurring Payments**: Enable recurring payments or subscriptions for wallets. For more information, refer to [Recurring Payments Integration](doc:introduction-recurring-payments-integration).
 * **Offers**: Configure offers for cards on Dashboard and then collect payments with offers. For more information, refer to [Create an Instant Discount or Cashback Offer](doc:create-an-offer) and [Offers](doc:offers-integration).
+
+## Step 4: Test the Integration
+Use any of the following values based on Wallet provider for testing:
+| **Wallet** | **Test details**                        |
+| ---------- | --------------------------------------- |
+| Paytm      | Mobile: `7777777777`, OTP: `888888`     |
+| Amazon     | Use your real Amazon account in sandbox |
+| Airtel     | Use your mobile number                  |
