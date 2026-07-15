@@ -22,7 +22,7 @@
         "tags": [
           "Cross-Border UPI"
         ],
-        "summary": "CB UPI",
+        "summary": "Merchant-hosted UPI payment (Cross-Border)",
         "description": "Merchant-hosted UPI payment for Cross-Border integrations. Collect the customer VPA on your site and post to `/_payment`.",
         "operationId": "merchantHostedCheckoutUpi",
         "requestBody": {
@@ -44,8 +44,7 @@
                   "pg",
                   "bankcode",
                   "vpa",
-                  "hash",
-                  "udf3"
+                  "hash"
                 ],
                 "properties": {
                   "key": {
@@ -135,7 +134,7 @@
                   },
                   "udf3": {
                     "type": "string",
-                    "description": "Date of birth (DOB) of the buyer in DD-MM-YYYY format. Mandatory for Cross-Border UPI; recommended for higher approval rate.",
+                    "description": "This parameter is optional but recommended for a higher approval rate. Date of birth (DOB) of the buyer in DD-MM-YYYY format.",
                     "example": "15-07-1990"
                   },
                   "udf4": {
