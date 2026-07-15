@@ -22,7 +22,7 @@
         "tags": [
           "Cross-Border Net Banking"
         ],
-        "summary": "CB - Net Banking",
+        "summary": "Merchant-hosted net banking payment (Cross-Border)",
         "description": "Merchant-hosted net banking payment for Cross-Border integrations. The customer selects a bank on your site and is redirected to complete authentication.",
         "operationId": "merchantHostedCheckoutNetBanking",
         "requestBody": {
@@ -132,7 +132,7 @@
                   },
                   "udf3": {
                     "type": "string",
-                    "description": "Buyer date of birth (DOB) in DD-MM-YYYY format. Recommended for Cross-Border flows.",
+                    "description": "This parameter is optional but recommended for a higher approval rate. Buyer date of birth (DOB) in DD-MM-YYYY format.",
                     "example": "02-02-1980"
                   },
                   "udf4": {
@@ -146,7 +146,7 @@
                   },
                   "address1": {
                     "type": "string",
-                    "description": "The customer's primary billing address line. Optional but recommended for a higher approval rate.",
+                    "description": "This parameter is optional but recommended for a higher approval rate. The customer's primary billing address line (up to 100 characters).",
                     "example": "123 Main Street"
                   },
                   "address2": {
@@ -155,17 +155,17 @@
                   },
                   "city": {
                     "type": "string",
-                    "description": "The customer's billing city. Optional but recommended for a higher approval rate.",
+                    "description": "This parameter is optional but recommended for a higher approval rate. The customer's billing city (maximum 50 characters).",
                     "example": "New York"
                   },
                   "state": {
                     "type": "string",
-                    "description": "The customer's billing state or province. Optional but recommended for a higher approval rate.",
+                    "description": "This parameter is optional but recommended for a higher approval rate. The customer's billing state or province (maximum 50 characters).",
                     "example": "NY"
                   },
                   "country": {
                     "type": "string",
-                    "description": "The customer's billing country code. Optional but recommended for a higher approval rate. Use ISO 3166-1 alpha-2 country codes.",
+                    "description": "This parameter is optional but recommended for a higher approval rate. The customer's billing country (maximum 50 characters).",
                     "example": "US"
                   },
                   "zipcode": {
