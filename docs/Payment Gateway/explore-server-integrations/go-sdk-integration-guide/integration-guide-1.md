@@ -64,3 +64,7 @@ Follow these steps to integrate PayU Go SDK and accept payments.
 ## 1. Build Integration
 
 Below are the steps to build the integration:
+
+### Step 1.1&#x20;
+
+<br />
