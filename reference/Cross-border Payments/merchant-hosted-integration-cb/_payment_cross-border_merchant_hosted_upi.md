@@ -1,9 +1,8 @@
 ---
-title: CB-UPI
 api:
   file: cb_s2s_upi.json
   operationId: MerchantHostedCheckout-UPI
-hidden: false
+hidden: true
 ---
 PayU allows you to collect payments using UPI handles. For the list of UPI providers supported, refer to [UPI Handles](doc:upi-handles). The **buyer_type_business** parameter is used for Cross Border payment transactions to indicate the type of business of the buyer.
 
