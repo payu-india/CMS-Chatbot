@@ -86,3 +86,9 @@ If not installed, run the following command in the terminal to install Go in you
 #### Expected Outcome
 
 You should see the latest version of the Go installed in your system.
+
+***
+
+### Step 1.2&#x20;
+
+<br />
