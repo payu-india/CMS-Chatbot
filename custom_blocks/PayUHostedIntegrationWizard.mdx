@@ -10,15 +10,43 @@ import { useState, useEffect, useRef } from 'react';
 
 export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard() {
 
-  var LAB_CONFIG = JSON.parse('{"storageKey":"payu-hosted-integration-wizard-v1","testPaymentUrl":"https://test.payu.in/_payment","simulatorUrl":"https://test-payment-middleware.payu.in/simulatorResponse","hashVerifyToolUrl":"https://payu-hashverificationtool.onrender.com/","defaults":{"key":"","txnid":"","amount":"","productinfo":"","firstname":"","email":"","phone":"","surl":"","furl":"","udf1":"","udf2":"","udf3":"","udf4":"","udf5":""}}');
+  var LAB_CONFIG = JSON.parse('{"storageKey":"payu-hosted-integration-wizard-v1","testPaymentUrl":"https://test.payu.in/_payment","simulatorUrl":"https://test-payment-middleware.payu.in/simulatorResponse","hashVerifyToolUrl":"https://payu-hashverificationtool.onrender.com/","defaults":{"key":"","txnid":"tran_1234","amount":"10.00","productinfo":"iPhone","firstname":"Aarav","email":"aarav@example.com","phone":"1234567890","surl":"https://test-payment-middleware.payu.in/simulatorResponse","furl":"https://test-payment-middleware.payu.in/simulatorResponse","udf1":"","udf2":"","udf3":"","udf4":"","udf5":""}}');
   var LAB_KEY = LAB_CONFIG.storageKey;
   var TEST_PAYMENT = LAB_CONFIG.testPaymentUrl;
   var SIMULATOR_URL = LAB_CONFIG.simulatorUrl;
   var PROD_PAYMENT = 'https://secure.payu.in/_payment';
   var HASH_TOOL = LAB_CONFIG.hashVerifyToolUrl;
   var DEFAULT_PARAMS = LAB_CONFIG.defaults;
-  var BLANK_REV = JSON.parse('{"status":"","key":"","txnid":"","amount":"","productinfo":"","firstname":"","email":"","udf1":"","udf2":"","udf3":"","udf4":"","udf5":""}');
-  var FIELD_PLACEHOLDERS = JSON.parse('{"key":"Test merchant key from PayU dashboard","txnid":"Unique ID per attempt e.g. txn_001","amount":"10.00","productinfo":"Product or order description","firstname":"Customer first name","email":"customer@example.com","phone":"10-digit mobile number","surl":"Success callback URL (HTTPS)","furl":"Failure callback URL (HTTPS)","salt":"Test salt from dashboard","status":"success or failure","hash":"Response hash from PayU POST"}');
+
+  function exampleReturnPreview(params) {
+    var p = params || DEFAULT_PARAMS;
+    return {
+      status: 'success',
+      key: '',
+      txnid: p.txnid || '',
+      amount: p.amount || '',
+      productinfo: p.productinfo || '',
+      email: p.email || '',
+      hash: ''
+    };
+  }
+
+  function exampleRevResp(params) {
+    var p = params || DEFAULT_PARAMS;
+    return {
+      status: 'success',
+      key: '',
+      txnid: p.txnid || '',
+      amount: p.amount || '',
+      productinfo: p.productinfo || '',
+      firstname: p.firstname || '',
+      email: p.email || '',
+      udf1: '', udf2: '', udf3: '', udf4: '', udf5: ''
+    };
+  }
+
+  var BLANK_REV = exampleRevResp();
+  var FIELD_PLACEHOLDERS = JSON.parse('{"key":"Your test merchant key","salt":"Your test salt","hash":"Paste response hash from PayU POST","status":"success or failure"}');
 
   var STEPS = JSON.parse('[{"id":"overview","title":"Flow overview","subtitle":"How Hosted Checkout works end-to-end"},{"id":"prereq","title":"Prerequisites","subtitle":"What you need before integrating"},{"id":"params","title":"Payment request","subtitle":"Build and save your POST parameters"},{"id":"hash","title":"Request hash","subtitle":"SHA-512 forward hash for the payment request"},{"id":"post","title":"Test checkout","subtitle":"POST to PayU test environment"},{"id":"return","title":"Return payload","subtitle":"What PayU sends to surl and furl"},{"id":"verify","title":"Verify response","subtitle":"Reverse hash on callback data"},{"id":"test","title":"Test checklist","subtitle":"Sandbox validation before go-live"},{"id":"golive","title":"Go live","subtitle":"Production readiness checklist"}]');
 
@@ -520,10 +548,10 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   var _responseHash = useState('');
   var responseHash = _responseHash[0];
   var setResponseHash = _responseHash[1];
-  var _revResp = useState(Object.assign({}, BLANK_REV));
+  var _revResp = useState(exampleRevResp());
   var revResp = _revResp[0];
   var setRevResp = _revResp[1];
-  var _returnPreview = useState({ status: '', key: '', txnid: '', amount: '', productinfo: '', email: '', hash: '' });
+  var _returnPreview = useState(exampleReturnPreview());
   var returnPreview = _returnPreview[0];
   var setReturnPreview = _returnPreview[1];
   var _testDone = useState({});
@@ -698,7 +726,9 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     if (!labWrite(labData)) { setErr('Could not save lab state. Allow storage and try again.'); return; }
     setLab(labData);
     clearHashUi();
-    setMsg('Parameters saved. Continue to the hash step — you will enter salt and generate SHA-512 there.');
+    setReturnPreview(exampleReturnPreview(data));
+    setRevResp(exampleRevResp(data));
+    setMsg('Parameters saved. Continue to the hash step — enter your test salt and generate SHA-512.');
     setErr('');
   }
 
@@ -843,36 +873,22 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
       return;
     }
     var p = mergeParams(lab.params);
-    setReturnPreview({
-      status: 'success',
-      key: p.key || '',
-      txnid: p.txnid || '',
-      amount: p.amount || '',
-      productinfo: p.productinfo || '',
-      email: p.email || '',
-      hash: ''
-    });
+    setReturnPreview(exampleReturnPreview(p));
     setMsg('Callback preview filled from your saved parameters. Paste the hash after payment.');
     setErr('');
   }
 
   function loadVerifyFromReturn() {
-    setRevResp({
-      status: returnPreview.status || '',
-      key: returnPreview.key || '',
-      txnid: returnPreview.txnid || '',
-      amount: returnPreview.amount || '',
-      productinfo: returnPreview.productinfo || '',
-      firstname: readFieldValue('firstname') || '',
-      email: returnPreview.email || '',
-      udf1: readFieldValue('udf1') || '',
-      udf2: readFieldValue('udf2') || '',
-      udf3: readFieldValue('udf3') || '',
-      udf4: readFieldValue('udf4') || '',
-      udf5: readFieldValue('udf5') || ''
-    });
+    setRevResp(exampleRevResp({
+      txnid: returnPreview.txnid,
+      amount: returnPreview.amount,
+      productinfo: returnPreview.productinfo,
+      firstname: readFieldValue('firstname'),
+      email: returnPreview.email,
+      status: returnPreview.status || 'success'
+    }));
     setResponseHash(returnPreview.hash || '');
-    setMsg('Verify fields loaded from return preview. Add salt and click Verify.');
+    setMsg('Non-secret callback fields loaded. Enter salt and paste the response hash, then click Verify.');
     setErr('');
   }
 
@@ -950,8 +966,8 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     setResponseHash('');
     setComputedRev('');
     setMatch(null);
-    setReturnPreview({ status: '', key: '', txnid: '', amount: '', productinfo: '', email: '', hash: '' });
-    setRevResp(Object.assign({}, BLANK_REV));
+    setReturnPreview(exampleReturnPreview());
+    setRevResp(exampleRevResp());
     setErr('');
     setMsg('');
     var labData = wizardFresh();
@@ -999,7 +1015,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     return (
       <div>
         <p style={bodyTextStyle}>
-          Confirm you have everything below before building the payment request. Fields start blank — enter your own test values or use the simulator URL helper on the next step.
+          Confirm you have everything below before building the payment request. Example payment fields are pre-filled on the next step — you enter your test <strong>key</strong> and <strong>salt</strong> yourself.
         </p>
         <div style={{ display: 'grid', gap: '8px' }}>
           {PREREQ.map(function (item) {
@@ -1028,7 +1044,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     return (
       <div>
         <p style={bodyTextStyle}>
-          Fill in each mandatory field for <code style={{ fontSize: '12px' }}>POST /_payment</code>. All fields start empty — enter your test merchant key, payment details, and callback URLs. Use a unique <strong>txnid</strong> for every attempt.
+          Example payment fields are pre-filled (txnid, amount, customer details, PayU simulator URLs). Enter your test <strong>merchant key</strong> — the only secret on this step — then edit any value and click Save.
         </p>
         <div ref={formRootRef} style={fieldStackStyle}>
           <div>
@@ -1198,7 +1214,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     return (
       <div>
         <p style={bodyTextStyle}>
-          PayU POSTs to <strong>surl</strong> or <strong>furl</strong> with fields like these on success. Edit each field below to match what your endpoint receives, or load from your saved parameters after payment.
+          PayU POSTs to <strong>surl</strong> or <strong>furl</strong> with fields like these on success. Example values are shown below — <strong>key</strong> and <strong>hash</strong> stay blank for you to fill after payment.
         </p>
         <div style={btnRowSpacedStyle}>
           <button type="button" onClick={labClick(loadReturnFromSaved)} style={btnSecondaryStyle}>Load from saved parameters</button>
@@ -1239,7 +1255,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     return (
       <div>
         <p style={bodyTextStyle}>
-          Recompute the reverse hash on your server and compare to the <strong>hash</strong> field from the callback. All fields start blank — paste values from your surl/furl POST or load from the return preview step.
+          Recompute the reverse hash on your server and compare to the <strong>hash</strong> from the callback. Example txn/amount fields are pre-filled — enter your <strong>salt</strong>, paste the response <strong>hash</strong>, and click Verify.
         </p>
         <div style={btnRowSpacedStyle}>
           <button type="button" onClick={labClick(loadVerifyFromReturn)} style={btnSecondaryStyle}>Load from return preview</button>
@@ -1362,7 +1378,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   return (
     <SandboxAccordion
       title="Try out · Hosted Checkout integration wizard"
-      intro="Nine-step guided lab. Each step unlocks only after you complete an action — save parameters, enter salt, generate hash, open checkout, then verify. Fields start blank."
+      intro="Nine-step guided lab. Example payment fields are pre-filled; you enter test key and salt, generate hash, open checkout, and verify. Each step unlocks only after you complete the required action."
       ariaLabel="PayU Hosted Checkout integration wizard"
     >
       <div className={shellClass} role="region" aria-label="PayU Hosted Checkout integration wizard">
