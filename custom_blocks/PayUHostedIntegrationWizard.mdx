@@ -2,15 +2,15 @@
 name: PayUHostedIntegrationWizard
 ---
 // PayUHostedIntegrationWizard — ReadMe Custom Component (Integration Guide)
-// 9-step guided wizard with explanations + interactive lab (params, hash, pay, verify).
-// ReadMe teal theme. Shares lab storage with SandboxStep11–15.
+// 9-step guided wizard: each step unlocks only after an explicit action in this session.
+// Uses isolated storage (payu-hosted-integration-wizard-v1) — no auto-fill from other lab widgets.
 // Doc page: <PayUHostedIntegrationWizard />
 
 import { useState, useEffect, useRef } from 'react';
 
 export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard() {
 
-  var LAB_CONFIG = JSON.parse('{"storageKey":"payu-hosted-checkout-lab-v1","testPaymentUrl":"https://test.payu.in/_payment","simulatorUrl":"https://test-payment-middleware.payu.in/simulatorResponse","hashVerifyToolUrl":"https://payu-hashverificationtool.onrender.com/","defaults":{"key":"","txnid":"","amount":"","productinfo":"","firstname":"","email":"","phone":"","surl":"","furl":"","udf1":"","udf2":"","udf3":"","udf4":"","udf5":""}}');
+  var LAB_CONFIG = JSON.parse('{"storageKey":"payu-hosted-integration-wizard-v1","testPaymentUrl":"https://test.payu.in/_payment","simulatorUrl":"https://test-payment-middleware.payu.in/simulatorResponse","hashVerifyToolUrl":"https://payu-hashverificationtool.onrender.com/","defaults":{"key":"","txnid":"","amount":"","productinfo":"","firstname":"","email":"","phone":"","surl":"","furl":"","udf1":"","udf2":"","udf3":"","udf4":"","udf5":""}}');
   var LAB_KEY = LAB_CONFIG.storageKey;
   var TEST_PAYMENT = LAB_CONFIG.testPaymentUrl;
   var SIMULATOR_URL = LAB_CONFIG.simulatorUrl;
@@ -110,10 +110,9 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   function empty(s) { return s == null ? '' : String(s).trim(); }
   function isBlank(s) { return empty(s) === ''; }
 
-  var LAB_UPDATE_EVENT = 'payu-hosted-checkout-lab-update';
-  var LAB_GLOBAL_STATE = '__payuHostedCheckoutLabState';
+  var LAB_UPDATE_EVENT = 'payu-hosted-integration-wizard-update';
+  var LAB_GLOBAL_STATE = '__payuHostedIntegrationWizardState';
   var WIZARD_FORM_GLOBAL = '__payuHostedIntegrationWizardForm';
-  var WIZARD_STEP_GLOBAL = '__payuHostedIntegrationWizardStep';
   var SANDBOX_OPEN_GLOBAL = '__payuHostedCheckoutSandboxOpen';
 
   function labWindow() {
@@ -167,28 +166,40 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     if (lw) lw[WIZARD_FORM_GLOBAL] = Object.assign({}, data);
   }
 
-  function labEnsure() {
-    var existing = labRead();
-    if (existing) { existing.params = mergeParams(existing.params); return existing; }
+  function defaultProgress() {
     return {
-      params: Object.assign({}, DEFAULT_PARAMS), salt: '', hashHex: '', pipeString: '',
-      step11Done: false, step12Done: false, step13Launched: false, step14Done: false
+      paramsSaved: false,
+      pipeShown: false,
+      hashGenerated: false,
+      checkoutOpened: false,
+      returnReviewed: false,
+      verifyDone: false
     };
   }
 
+  function wizardFresh() {
+    return {
+      params: Object.assign({}, DEFAULT_PARAMS),
+      salt: '',
+      hashHex: '',
+      pipeString: '',
+      progress: defaultProgress(),
+      wizardStep: 0
+    };
+  }
+
+  function labEnsure() {
+    var existing = labRead();
+    if (existing) {
+      if (!existing.progress) return wizardFresh();
+      if (!existing.params) existing.params = Object.assign({}, DEFAULT_PARAMS);
+      return existing;
+    }
+    return wizardFresh();
+  }
+
   function mergeParams(params) {
-    var merged = Object.assign({}, DEFAULT_PARAMS, params || {});
-    try {
-      var fw = labWindow();
-      if (fw && fw[WIZARD_FORM_GLOBAL]) {
-        var form = fw[WIZARD_FORM_GLOBAL];
-        var k;
-        for (k in form) {
-          if (Object.prototype.hasOwnProperty.call(form, k) && !isBlank(form[k])) merged[k] = form[k];
-        }
-      }
-    } catch (e4) {}
-    return merged;
+    return Object.assign({}, DEFAULT_PARAMS, params || {});
   }
 
   function buildForwardHashString(params, saltVal) {
@@ -364,15 +375,78 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   }
 
   function readSavedStep() {
-    try {
-      var lw = labWindow();
-      if (lw && typeof lw[WIZARD_STEP_GLOBAL] === 'number') return lw[WIZARD_STEP_GLOBAL];
-    } catch (e) {}
+    var data = labRead();
+    if (data && typeof data.wizardStep === 'number') return data.wizardStep;
     return 0;
   }
 
   function writeSavedStep(n) {
-    try { var lw = labWindow(); if (lw) lw[WIZARD_STEP_GLOBAL] = n; } catch (e) {}
+    var data = labEnsure();
+    data.wizardStep = n;
+    labWrite(data);
+  }
+
+  function clampStepToProgress(s, prog) {
+    if (s >= 3 && !prog.paramsSaved) return 2;
+    if (s >= 4 && !prog.hashGenerated) return 3;
+    if (s >= 5 && !prog.checkoutOpened) return 4;
+    if (s >= 6 && !prog.returnReviewed) return 5;
+    if (s >= 7 && !prog.verifyDone) return 6;
+    return s;
+  }
+
+  function applyWizardSession(data) {
+    if (!data) return;
+    var params = mergeParams(data.params);
+    setLab(data);
+    setFormValues(params);
+    formValuesRef.current = params;
+    setMerchantKey(params.key || '');
+    merchantKeyRef.current = params.key || '';
+    if (data.progress && data.progress.hashGenerated && data.hashHex) {
+      setSalt(data.salt || '');
+      setPipeString(data.pipeString || '');
+      setHashHex(data.hashHex);
+      setHashStage(2);
+    } else if (data.progress && data.progress.pipeShown && data.pipeString) {
+      setSalt(data.salt || '');
+      setPipeString(data.pipeString);
+      setHashHex('');
+      setHashStage(1);
+    } else {
+      setSalt('');
+      setPipeString('');
+      setHashHex('');
+      setHashStage(0);
+    }
+  }
+
+  function clearHashUi() {
+    setSalt('');
+    setHashHex('');
+    setPipeString('');
+    setHashStage(0);
+  }
+
+  function resetDownstreamProgress(data, fromStep) {
+    if (!data.progress) data.progress = defaultProgress();
+    if (fromStep <= 2) {
+      data.progress.pipeShown = false;
+      data.progress.hashGenerated = false;
+      data.salt = '';
+      data.hashHex = '';
+      data.pipeString = '';
+    }
+    if (fromStep <= 3) {
+      data.progress.checkoutOpened = false;
+    }
+    if (fromStep <= 4) {
+      data.progress.returnReviewed = false;
+    }
+    if (fromStep <= 5) {
+      data.progress.verifyDone = false;
+    }
+    return data;
   }
 
   function prereqDone(map) {
@@ -464,65 +538,76 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   var formValuesRef = useRef(Object.assign({}, DEFAULT_PARAMS));
   var payFormRef = useRef(null);
 
-  function refreshFromLab() {
-    var data = labEnsure();
-    setLab(data);
-    var params = mergeParams(data.params);
-    setFormValues(params);
-    formValuesRef.current = params;
-    if (!isBlank(params.key)) { setMerchantKey(params.key); merchantKeyRef.current = params.key; }
-    if (data.salt) setSalt(data.salt);
-    if (data.pipeString) { setPipeString(data.pipeString); setHashStage(1); }
-    if (data.hashHex) { setHashHex(data.hashHex); setHashStage(2); }
-  }
-
   useEffect(function () {
-    refreshFromLab();
-    var saved = readSavedStep();
+    var data = labEnsure();
+    applyWizardSession(data);
+    var prog = data.progress || defaultProgress();
+    var saved = clampStepToProgress(readSavedStep(), prog);
     if (saved > 0 && saved < STEPS.length) setStep(saved);
   }, []);
 
   useEffect(function () {
     if (typeof window === 'undefined') return;
-    function handle() { try { refreshFromLab(); } catch (e) {} }
-    function onStorage(ev) { if (!ev || ev.key === LAB_KEY || ev.key === null) handle(); }
-    window.addEventListener(LAB_UPDATE_EVENT, handle);
-    window.addEventListener('storage', onStorage);
-    var lw = labWindow();
-    if (lw && lw !== window) {
-      lw.addEventListener(LAB_UPDATE_EVENT, handle);
-      lw.addEventListener('storage', onStorage);
-    }
-    document.addEventListener('visibilitychange', function () {
-      if (document.visibilityState === 'visible') handle();
-    });
-    return function () {
-      window.removeEventListener(LAB_UPDATE_EVENT, handle);
-      window.removeEventListener('storage', onStorage);
-      if (lw && lw !== window) {
-        lw.removeEventListener(LAB_UPDATE_EVENT, handle);
-        lw.removeEventListener('storage', onStorage);
+    function onStorage(ev) {
+      if (!ev || ev.key === LAB_KEY) {
+        try {
+          var data = labEnsure();
+          setLab(data);
+        } catch (e) {}
       }
+    }
+    window.addEventListener('storage', onStorage);
+    return function () {
+      window.removeEventListener('storage', onStorage);
     };
   }, []);
 
   function goToStep(n) {
+    if (n > step && !canAdvance()) return;
+    var data = labEnsure();
+    if (n < step) {
+      data = resetDownstreamProgress(data, n);
+      if (n <= 2) clearHashUi();
+      labWrite(data);
+      setLab(data);
+    }
+    if (n === 3 && !(data.progress && data.progress.hashGenerated)) {
+      clearHashUi();
+    }
     setStep(n);
     writeSavedStep(n);
     setErr('');
     setMsg('');
   }
 
+  function wizardProgress() {
+    if (lab && lab.progress) return lab.progress;
+    return defaultProgress();
+  }
+
   function canAdvance() {
+    var p = wizardProgress();
     if (step === 0) return true;
     if (step === 1) return prereqDone(prereq);
-    if (step === 2) return lab && lab.step11Done && labAck;
-    if (step === 3) return hashHex.length === 128 && lab && lab.step12Done;
-    if (step === 4) return lab && lab.step13Launched;
-    if (step === 5) return true;
-    if (step === 6) return match === true || (lab && lab.step14Done);
+    if (step === 2) return p.paramsSaved && labAck;
+    if (step === 3) return p.hashGenerated && hashHex.length === 128;
+    if (step === 4) return p.checkoutOpened;
+    if (step === 5) return p.returnReviewed;
+    if (step === 6) return p.verifyDone && match === true;
     if (step === 7) return allChecked(testDone, TEST_CHECKS);
     return true;
+  }
+
+  function continueHint() {
+    if (canAdvance()) return '';
+    if (step === 1) return 'Check all four prerequisites above to unlock Continue.';
+    if (step === 2) return 'Fill every field, confirm test credentials, then click Save parameters to lab.';
+    if (step === 3) return 'Enter salt → Show pre-hash string → Compute SHA-512. Each action is required.';
+    if (step === 4) return 'Click Open PayU test checkout to launch a real sandbox payment.';
+    if (step === 5) return 'Review callback fields, then click Mark return step complete.';
+    if (step === 6) return 'Enter salt and callback values, then click Verify reverse hash.';
+    if (step === 7) return 'Check every sandbox test item to continue.';
+    return '';
   }
 
   function fieldValue(k) {
@@ -560,15 +645,12 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
 
   function invalidateLabAfterEdit() {
     var data = labEnsure();
-    data.step11Done = false;
-    data.step12Done = false;
-    data.hashHex = '';
-    data.pipeString = '';
+    data = resetDownstreamProgress(data, 2);
+    data.progress.paramsSaved = false;
+    data.params = buildParamsFromState();
     labWrite(data);
     setLab(data);
-    setHashHex('');
-    setPipeString('');
-    setHashStage(0);
+    clearHashUi();
   }
 
   function readMerchantKeyValue() {
@@ -611,13 +693,12 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     if (!labAck) { setErr('Confirm you are using test-only credentials in this lab.'); return; }
     var labData = labEnsure();
     labData.params = data;
-    labData.step11Done = true;
-    labData.hashHex = '';
-    labData.pipeString = '';
-    labData.step12Done = false;
+    labData = resetDownstreamProgress(labData, 2);
+    labData.progress.paramsSaved = true;
     if (!labWrite(labData)) { setErr('Could not save lab state. Allow storage and try again.'); return; }
     setLab(labData);
-    setMsg('Parameters saved. Continue to generate the request hash.');
+    clearHashUi();
+    setMsg('Parameters saved. Continue to the hash step — you will enter salt and generate SHA-512 there.');
     setErr('');
   }
 
@@ -637,18 +718,27 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
 
   function showPipeString() {
     setErr('');
-    if (!lab || !lab.step11Done) { setErr('Save payment parameters first.'); return; }
-    if (isBlank(salt)) { setErr('Enter your test salt on this step.'); return; }
+    var p = wizardProgress();
+    if (!p.paramsSaved) { setErr('Save payment parameters first (previous step).'); return; }
+    if (isBlank(salt)) { setErr('Enter your test salt before showing the pre-hash string.'); return; }
     var params = mergeParams(lab.params);
     var pipe = buildForwardHashString(params, salt);
+    var labData = labEnsure();
+    labData.salt = salt;
+    labData.pipeString = pipe;
+    labData.progress.pipeShown = true;
+    labWrite(labData);
+    setLab(labData);
     setPipeString(pipe);
     setHashStage(1);
-    setMsg('Review the pre-hash string below, then compute SHA-512.');
+    setMsg('Step 1 of 2 done — review the string below, then click Compute SHA-512.');
   }
 
   function generateHash() {
     setErr('');
-    if (!lab || !lab.step11Done) { setErr('Save payment parameters first.'); return; }
+    var p = wizardProgress();
+    if (!p.paramsSaved) { setErr('Save payment parameters first.'); return; }
+    if (!p.pipeShown || hashStage < 1) { setErr('Click Show pre-hash string before computing the hash.'); return; }
     if (isBlank(salt)) { setErr('Salt is required.'); return; }
     var params = mergeParams(lab.params);
     var pipe = buildForwardHashString(params, salt);
@@ -658,13 +748,13 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
       labData.salt = salt;
       labData.pipeString = pipe;
       labData.hashHex = h;
-      labData.step12Done = true;
+      labData.progress.hashGenerated = true;
       labWrite(labData);
       setLab(labData);
       setPipeString(pipe);
       setHashHex(h);
       setHashStage(2);
-      setMsg('Hash generated. Continue to open PayU test checkout.');
+      setMsg('Hash generated. You can now continue to test checkout.');
       setBusy(false);
       setErr('');
     }).catch(function () {
@@ -674,7 +764,8 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   }
 
   function paymentReady(data) {
-    return data && data.step11Done && data.step12Done && data.hashHex && data.hashHex.length === 128;
+    var p = data && data.progress ? data.progress : defaultProgress();
+    return p.paramsSaved && p.hashGenerated && data.hashHex && data.hashHex.length === 128;
   }
 
   function syncPayForm(data) {
@@ -708,7 +799,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     if (!syncPayForm(data)) { setErr('Could not prepare checkout form. Refresh and try again.'); return; }
     payFormRef.current.target = target || '_blank';
     payFormRef.current.submit();
-    data.step13Launched = true;
+    data.progress.checkoutOpened = true;
     labWrite(data);
     setLab(data);
     setErr('');
@@ -746,7 +837,8 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   }
 
   function loadReturnFromSaved() {
-    if (!lab || !lab.step11Done) {
+    var p = wizardProgress();
+    if (!p.paramsSaved) {
       setErr('Save payment parameters first (Step 3).');
       return;
     }
@@ -806,6 +898,15 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     };
   }
 
+  function markReturnReviewed() {
+    var labData = labEnsure();
+    labData.progress.returnReviewed = true;
+    labWrite(labData);
+    setLab(labData);
+    setMsg('Return step complete. Continue to verify the reverse hash.');
+    setErr('');
+  }
+
   function verifyReverseHash() {
     if (isBlank(salt)) { setErr('Enter test salt (same as hash step).'); return; }
     if (isBlank(responseHash)) { setErr('Paste the hash from PayU response.'); return; }
@@ -819,7 +920,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
       setMatch(ok);
       if (ok) {
         var labData = labEnsure();
-        labData.step14Done = true;
+        labData.progress.verifyDone = true;
         labWrite(labData);
         setLab(labData);
         setMsg('Reverse hash verified. On your server, recompute and compare case-sensitively before updating orders.');
@@ -853,22 +954,15 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     setRevResp(Object.assign({}, BLANK_REV));
     setErr('');
     setMsg('');
-    var labData = labEnsure();
-    labData.params = next;
-    labData.salt = '';
-    labData.hashHex = '';
-    labData.pipeString = '';
-    labData.step11Done = false;
-    labData.step12Done = false;
-    labData.step13Launched = false;
-    labData.step14Done = false;
+    var labData = wizardFresh();
     labWrite(labData);
     setLab(labData);
     goToStep(0);
   }
 
   var readyPay = paymentReady(lab);
-  var savedParams = lab && lab.params ? mergeParams(lab.params) : DEFAULT_PARAMS;
+  var prog = wizardProgress();
+  var savedParams = prog.paramsSaved && lab && lab.params ? mergeParams(lab.params) : DEFAULT_PARAMS;
   var amountLabel = !isBlank(savedParams.amount) ? savedParams.amount : '—';
   var current = STEPS[step];
   var pct = Math.round(((step + 1) / STEPS.length) * 100);
@@ -981,7 +1075,9 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
           <button type="button" onClick={labClick(newTxnid)} style={btnSecondaryStyle}>New txnid</button>
           <button type="button" onClick={labClick(fillSimulatorUrls)} style={btnSecondaryStyle}>Fill PayU simulator URLs</button>
         </div>
-        {lab && lab.step11Done ? <p style={okTextStyle}>Step complete — parameters stored for hash and checkout steps.</p> : null}
+        {wizardProgress().paramsSaved ? <p style={okTextStyle}>Step complete — parameters saved. Continue to enter salt and generate hash.</p> : (
+          <p style={hintTextStyle}>Continue is locked until you click Save parameters to lab.</p>
+        )}
       </div>
     );
   }
@@ -990,8 +1086,16 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     return (
       <div>
         <p style={bodyTextStyle}>
-          Compute the forward hash on your server in production. In this lab you can preview the canonical pipe string and generate SHA-512 in the browser using your <strong>test salt</strong>.
+          Follow the sequence below — each button unlocks the next. Salt and hash are never pre-filled; you must enter salt and generate the hash yourself.
         </p>
+        <div style={infoBoxStyle}>
+          <strong>Sequence</strong>
+          <ol style={{ margin: '8px 0 0', paddingLeft: '20px', lineHeight: 1.7 }}>
+            <li>{wizardProgress().pipeShown ? '✓' : '○'} Enter test salt</li>
+            <li>{wizardProgress().pipeShown ? '✓' : '○'} Show pre-hash string</li>
+            <li>{wizardProgress().hashGenerated ? '✓' : '○'} Compute SHA-512</li>
+          </ol>
+        </div>
         <code style={codeBlockStyle}>
           sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
         </code>
@@ -1007,8 +1111,11 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
                 setPipeString('');
                 setHashStage(0);
                 var labData = labEnsure();
-                labData.step12Done = false;
+                labData.salt = e.target.value;
+                labData.progress.pipeShown = false;
+                labData.progress.hashGenerated = false;
                 labData.hashHex = '';
+                labData.pipeString = '';
                 labWrite(labData);
                 setLab(labData);
               }}
@@ -1019,24 +1126,29 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
           </div>
         </div>
         <div style={btnRowSpacedStyle}>
-          <button type="button" onClick={labClick(showPipeString)} disabled={hashStage >= 1 && !!pipeString} style={btnSecondaryStyle}>
+          <button type="button" onClick={labClick(showPipeString)} disabled={isBlank(salt) || busy} style={btnSecondaryStyle}>
             1) Show pre-hash string
           </button>
-          <button type="button" onClick={labClick(generateHash)} disabled={hashStage < 1 || busy} style={btnPrimaryStyle}>
+          <button type="button" onClick={labClick(generateHash)} disabled={hashStage < 1 || busy || isBlank(salt)} style={btnPrimaryStyle}>
             {busy ? 'Computing…' : '2) Compute SHA-512'}
           </button>
           {hashHex ? (
             <button type="button" onClick={labClick(function () { copyText(hashHex, setCopyMsg); })} style={btnSecondaryStyle}>Copy hash</button>
           ) : null}
         </div>
-        {pipeString ? <pre style={codeBlockPreStyle}>{pipeString}</pre> : null}
-        {hashHex ? (
+        {pipeString && hashStage >= 1 ? <pre style={codeBlockPreStyle}>{pipeString}</pre> : null}
+        {hashHex && wizardProgress().hashGenerated ? (
           <div style={Object.assign({}, infoBoxStyle, { border: '1px solid ' + PAYU_GREEN })}>
             <p style={{ margin: '0 0 6px', fontSize: '12px', fontWeight: 700, color: PAYU_GREEN }}>hash</p>
             <code style={{ fontSize: '11px', wordBreak: 'break-all' }}>{hashHex}</code>
           </div>
         ) : null}
         <a href={HASH_TOOL} target="_blank" rel="noopener noreferrer" style={linkBtnStyle}>Open Hash Verification Tool</a>
+        {wizardProgress().hashGenerated ? (
+          <p style={okTextStyle}>Hash ready. Continue to open test checkout.</p>
+        ) : (
+          <p style={hintTextStyle}>Complete all three hash steps above to unlock Continue.</p>
+        )}
       </div>
     );
   }
@@ -1073,6 +1185,11 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
         ) : (
           <p style={mutedTextStyle}>Save parameters and generate hash to preview the POST body.</p>
         )}
+        {wizardProgress().checkoutOpened ? (
+          <p style={okTextStyle}>Checkout opened. Continue to review the return payload.</p>
+        ) : (
+          <p style={hintTextStyle}>Continue is locked until you open PayU test checkout.</p>
+        )}
       </div>
     );
   }
@@ -1103,6 +1220,14 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
             );
           })}
         </div>
+        <div style={btnRowStyle}>
+          <button type="button" onClick={labClick(markReturnReviewed)} style={btnPrimaryStyle}>Mark return step complete</button>
+        </div>
+        {wizardProgress().returnReviewed ? (
+          <p style={okTextStyle}>Return step complete. Continue to verify the reverse hash.</p>
+        ) : (
+          <p style={hintTextStyle}>Continue is locked until you mark this step complete.</p>
+        )}
         <p style={bodyTextStyle}>
           On failure, set <strong>status</strong> to <code>failure</code> — PayU POSTs to <strong>furl</strong>. Always verify the hash before updating orders.
         </p>
@@ -1169,6 +1294,9 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
         {match === true ? <p style={okTextStyle}>Hash matches — response verified for this lab.</p> : null}
         {match === false ? <p style={errTextStyle}>Hash mismatch — check salt, status, and field order.</p> : null}
         {computedRev ? <code style={codeBlockStyle}>{computedRev}</code> : null}
+        {!wizardProgress().verifyDone ? (
+          <p style={hintTextStyle}>Continue is locked until reverse hash verification succeeds.</p>
+        ) : null}
       </div>
     );
   }
@@ -1234,7 +1362,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   return (
     <SandboxAccordion
       title="Try out · Hosted Checkout integration wizard"
-      intro="Nine-step guided lab with explanations. Fields start blank — enter your test key, payment details, and callbacks, then generate hash, pay on sandbox, and verify the response."
+      intro="Nine-step guided lab. Each step unlocks only after you complete an action — save parameters, enter salt, generate hash, open checkout, then verify. Fields start blank."
       ariaLabel="PayU Hosted Checkout integration wizard"
     >
       <div className={shellClass} role="region" aria-label="PayU Hosted Checkout integration wizard">
@@ -1253,10 +1381,10 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
         {step >= 2 && step <= 6 ? <LabInteractiveBanner /> : null}
 
         <LabStatus items={[
-          { label: 'Parameters', ok: lab && lab.step11Done },
-          { label: 'Hash', ok: lab && lab.step12Done },
-          { label: 'Test checkout', ok: lab && lab.step13Launched },
-          { label: 'Verified', ok: lab && (lab.step14Done || match === true) }
+          { label: 'Parameters saved', ok: prog.paramsSaved },
+          { label: 'Hash generated', ok: prog.hashGenerated },
+          { label: 'Checkout opened', ok: prog.checkoutOpened },
+          { label: 'Response verified', ok: prog.verifyDone && match === true }
         ]} />
 
         {err ? <p style={errTextStyle} role="alert">{err}</p> : null}
@@ -1293,8 +1421,9 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
             </button>
           ) : null}
         </div>
+        {continueHint() ? <p style={hintTextStyle}>{continueHint()}</p> : null}
 
-        <p style={mutedTextStyle}>Shared lab storage · compatible with Step 1.1–1.5 widgets on this page</p>
+        <p style={mutedTextStyle}>Wizard session only · fields and progress are not shared with other page widgets</p>
       </div>
     </SandboxAccordion>
   );
