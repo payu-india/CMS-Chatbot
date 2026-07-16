@@ -1740,4 +1740,6 @@ Make sure the <a href="https://docs.payu.in/docs/webhook-events-and-sample-paylo
 * Log mismatch for investigation
 </Accordion>
 
+<PayUHostedIntegrationWizard />
+
 <br />
