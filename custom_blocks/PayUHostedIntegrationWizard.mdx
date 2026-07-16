@@ -44,7 +44,6 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     };
   }
 
-  var BLANK_REV = exampleRevResp();
   var FIELD_PLACEHOLDERS = JSON.parse('{"key":"Your test merchant key","salt":"Your test salt","hash":"Paste response hash from PayU POST","status":"success or failure"}');
 
   var STEPS = JSON.parse('[{"id":"welcome","title":"Hosted Checkout integration lab","tagline":"","stepLabel":"Start"},{"id":"prereq","title":"Prerequisites","tagline":"Confirm you have test credentials and HTTPS callback URLs before integrating.","stepLabel":"1"},{"id":"params","title":"Payment request","tagline":"Build the POST body your server sends to PayU — enter your test key and save.","stepLabel":"2"},{"id":"hash","title":"Request hash","tagline":"Generate the SHA-512 forward hash from your pipe string and test salt.","stepLabel":"3"},{"id":"post","title":"Test checkout","tagline":"Launch a real payment on test.payu.in with your saved parameters and hash.","stepLabel":"4"},{"id":"return","title":"Return payload","tagline":"See what PayU POSTs to your surl or furl after the customer pays.","stepLabel":"5"},{"id":"verify","title":"Verify response","tagline":"Recompute the reverse hash and confirm the callback is authentic.","stepLabel":"6"},{"id":"test","title":"Test checklist","tagline":"Validate sandbox behaviour before you ship to production.","stepLabel":"7"},{"id":"golive","title":"Go live","tagline":"Final checks before switching to the production endpoint.","stepLabel":"8"}]');
@@ -69,6 +68,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     boxShadow: '0 1px 3px rgba(15,118,110,0.08)'
   };
   var modalOverlayStyle = {
+    // Spot-check z-index against production docs.payu.in chrome (nav, cookie banners, chat) before shipping.
     position: 'fixed', inset: 0, zIndex: 99999, background: 'rgba(15,23,42,0.55)',
     display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px',
     boxSizing: 'border-box'
@@ -113,6 +113,8 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   var labelStyle = { display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: 700, color: PAYU_GREEN };
   var reqStarStyle = { color: RED_REQ, fontWeight: 700 };
   var errTextStyle = { margin: '0 0 12px', fontSize: '14px', lineHeight: 1.5, color: RED_REQ };
+  var fieldInlineErrStyle = { margin: '4px 0 0', fontSize: '12px', lineHeight: 1.4, color: RED_REQ, minHeight: '18px' };
+  var hashDiffMismatchStyle = { fontWeight: 700, textDecoration: 'underline', background: '#fef3c7', color: '#92400e' };
   var okTextStyle = { margin: '0 0 12px', fontSize: '14px', lineHeight: 1.5, color: PAYU_GREEN };
   var hintTextStyle = { margin: '0 0 16px', fontSize: '14px', lineHeight: 1.5, color: '#b45309' };
   var mutedTextStyle = { margin: '12px 0 0', fontSize: '12px', lineHeight: 1.5, color: '#6b7280' };
@@ -124,8 +126,10 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   };
   var cardCheckStyle = {
     display: 'flex', gap: '10px', alignItems: 'flex-start', padding: '12px 14px',
-    borderRadius: '8px', border: '1px solid #e5e7eb', background: '#f9fafb', cursor: 'pointer', fontSize: '14px'
+    borderRadius: '8px', border: '1px solid #e5e7eb', background: '#f9fafb', cursor: 'pointer', fontSize: '14px',
+    minHeight: '44px', boxSizing: 'border-box'
   };
+  var checkboxInputStyle = { width: '20px', height: '20px', marginTop: '2px', flexShrink: 0, cursor: 'pointer' };
   var codeBlockStyle = {
     display: 'block', wordBreak: 'break-all', borderRadius: '6px', background: '#f3f4f6',
     padding: '8px 12px', fontSize: '12px', fontFamily: 'monospace', color: '#1f2937', marginBottom: '12px'
@@ -138,22 +142,24 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   };
   var btnPrimaryStyle = {
     cursor: 'pointer', borderRadius: '6px', border: 'none', background: PAYU_GREEN,
-    color: '#fff', padding: '10px 16px', fontSize: '14px', fontWeight: 600
+    color: '#fff', padding: '10px 16px', fontSize: '14px', fontWeight: 600, minHeight: '44px', boxSizing: 'border-box'
   };
   var btnSecondaryStyle = {
     cursor: 'pointer', borderRadius: '6px', border: '1px solid ' + PAYU_GREEN,
     background: PAYU_GREEN_LIGHT, color: PAYU_GREEN, padding: '10px 16px',
-    fontSize: '14px', fontWeight: 600
+    fontSize: '14px', fontWeight: 600, minHeight: '44px', boxSizing: 'border-box'
   };
   var summaryStyle = {
     cursor: 'pointer', borderRadius: '6px', border: '1px solid ' + PAYU_GREEN,
     background: PAYU_GREEN_LIGHT, color: PAYU_GREEN, padding: '8px 16px',
-    fontSize: '14px', fontWeight: 600, listStyle: 'none', width: '100%', textAlign: 'left'
+    fontSize: '14px', fontWeight: 600, listStyle: 'none', width: '100%', textAlign: 'left',
+    minHeight: '44px', boxSizing: 'border-box'
   };
   var linkBtnStyle = {
     cursor: 'pointer', borderRadius: '6px', border: '1px solid ' + PAYU_GREEN,
     background: PAYU_GREEN_LIGHT, color: PAYU_GREEN, padding: '8px 16px',
-    fontSize: '14px', fontWeight: 600, textDecoration: 'none', display: 'inline-flex', alignItems: 'center'
+    fontSize: '14px', fontWeight: 600, textDecoration: 'none', display: 'inline-flex', alignItems: 'center',
+    minHeight: '44px', boxSizing: 'border-box'
   };
   var checklistLabelStyle = {
     display: 'flex', cursor: 'pointer', alignItems: 'flex-start', gap: '8px',
@@ -302,6 +308,135 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     return crypto.subtle.digest('SHA-512', enc.encode(msg)).then(function (buf) {
       return Array.from(new Uint8Array(buf)).map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
     });
+  }
+
+  // Refcounted body scroll lock — avoids nested-lock bugs; cannot fully guard against ReadMe
+  // mutating document.body.style.overflow while this modal is open (accepted embed trade-off).
+  var BODY_SCROLL_LOCK_ATTR = 'data-payu-wizard-scroll-lock-count';
+  function lockDocumentBodyScroll() {
+    if (typeof document === 'undefined') return;
+    var count = parseInt(document.body.getAttribute(BODY_SCROLL_LOCK_ATTR) || '0', 10) + 1;
+    document.body.setAttribute(BODY_SCROLL_LOCK_ATTR, String(count));
+    if (count === 1) document.body.style.overflow = 'hidden';
+  }
+  function unlockDocumentBodyScroll() {
+    if (typeof document === 'undefined') return;
+    var count = parseInt(document.body.getAttribute(BODY_SCROLL_LOCK_ATTR) || '0', 10);
+    if (count <= 1) {
+      document.body.removeAttribute(BODY_SCROLL_LOCK_ATTR);
+      document.body.style.overflow = '';
+    } else {
+      document.body.setAttribute(BODY_SCROLL_LOCK_ATTR, String(count - 1));
+    }
+  }
+
+  var FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+  function getFocusableElements(container) {
+    if (!container) return [];
+    return Array.prototype.filter.call(container.querySelectorAll(FOCUSABLE_SELECTOR), function (el) {
+      return el.getAttribute('aria-hidden') !== 'true';
+    });
+  }
+
+  function validateFieldErrors(data) {
+    var errors = {};
+    var p = data || {};
+    if (isBlank(p.key)) errors.key = 'Enter your test merchant key from the PayU dashboard.';
+    var i;
+    for (i = 0; i < MANDATORY.length; i += 1) {
+      if (isBlank(p[MANDATORY[i].k])) errors[MANDATORY[i].k] = 'Required: ' + MANDATORY[i].l;
+    }
+    if (!isBlank(p.amount) && !/^\d+(\.\d{1,2})?$/.test(empty(p.amount))) {
+      errors.amount = 'Amount must be a decimal string (e.g. 10.00).';
+    }
+    if (!isBlank(p.email) && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(empty(p.email))) {
+      errors.email = 'Enter a valid email address.';
+    }
+    if (!isBlank(p.phone) && !/^\d{10}$/.test(empty(p.phone).replace(/\s/g, ''))) {
+      errors.phone = 'Phone must be exactly 10 digits.';
+    }
+    if (!isBlank(p.txnid) && empty(p.txnid).length > 20) {
+      errors.txnid = 'txnid must be 20 characters or fewer.';
+    }
+    return errors;
+  }
+
+  function diffHexStrings(computed, pasted) {
+    var c = empty(computed).toLowerCase();
+    var p = empty(pasted).toLowerCase();
+    if (!/^[0-9a-f]{128}$/.test(p)) {
+      return { kind: 'invalid_pasted', pastedLen: p.length };
+    }
+    if (c.length !== p.length) return { kind: 'length_mismatch', pastedLen: p.length, computedLen: c.length };
+    for (var i = 0; i < c.length; i += 1) {
+      if (c[i] !== p[i]) return { kind: 'mismatch', index: i, computed: c, pasted: p };
+    }
+    return { kind: 'match' };
+  }
+
+  function escapeJsString(s) {
+    return String(s || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+  }
+
+  function buildNodeSnippet(data) {
+    var p = mergeParams(data.params);
+    return [
+      "const crypto = require('crypto');",
+      '',
+      '// Never hardcode secrets — load from environment variables on your server.',
+      'const key = process.env.PAYU_KEY;',
+      'const salt = process.env.PAYU_SALT;',
+      '',
+      'const pipeString = [',
+      "  key,",
+      "  '" + escapeJsString(p.txnid) + "',",
+      "  '" + escapeJsString(p.amount) + "',",
+      "  '" + escapeJsString(p.productinfo) + "',",
+      "  '" + escapeJsString(p.firstname) + "',",
+      "  '" + escapeJsString(p.email) + "',",
+      "  '" + escapeJsString(p.udf1 || '') + "',",
+      "  '" + escapeJsString(p.udf2 || '') + "',",
+      "  '" + escapeJsString(p.udf3 || '') + "',",
+      "  '" + escapeJsString(p.udf4 || '') + "',",
+      "  '" + escapeJsString(p.udf5 || '') + "',",
+      "].join('|') + '||||||' + salt;",
+      '',
+      "const hash = crypto.createHash('sha512').update(pipeString).digest('hex');",
+      '',
+      'const body = new URLSearchParams({',
+      '  key,',
+      "  txnid: '" + escapeJsString(p.txnid) + "',",
+      "  amount: '" + escapeJsString(p.amount) + "',",
+      "  productinfo: '" + escapeJsString(p.productinfo) + "',",
+      "  firstname: '" + escapeJsString(p.firstname) + "',",
+      "  email: '" + escapeJsString(p.email) + "',",
+      "  phone: '" + escapeJsString(p.phone) + "',",
+      "  surl: '" + escapeJsString(p.surl) + "',",
+      "  furl: '" + escapeJsString(p.furl) + "',",
+      "  udf1: '" + escapeJsString(p.udf1 || '') + "',",
+      "  udf2: '" + escapeJsString(p.udf2 || '') + "',",
+      "  udf3: '" + escapeJsString(p.udf3 || '') + "',",
+      "  udf4: '" + escapeJsString(p.udf4 || '') + "',",
+      "  udf5: '" + escapeJsString(p.udf5 || '') + "',",
+      '  hash,',
+      '});',
+      '',
+      "fetch('" + TEST_PAYMENT + "', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body });"
+    ].join('\n');
+  }
+
+  function makeRecordFieldUpdater(setState, onAfter) {
+    return function (key) {
+      return function (e) {
+        var v = e.target.value;
+        setState(function (prev) {
+          var next = Object.assign({}, prev);
+          next[key] = v;
+          return next;
+        });
+        if (onAfter) onAfter();
+      };
+    };
   }
 
   function labStopBubble(e) {
@@ -502,6 +637,24 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   var _showCurl = useState(false);
   var showCurl = _showCurl[0];
   var setShowCurl = _showCurl[1];
+  var _showNode = useState(false);
+  var showNode = _showNode[0];
+  var setShowNode = _showNode[1];
+  var _fieldErrors = useState({});
+  var fieldErrors = _fieldErrors[0];
+  var setFieldErrors = _fieldErrors[1];
+  var _fieldTouched = useState({});
+  var fieldTouched = _fieldTouched[0];
+  var setFieldTouched = _fieldTouched[1];
+  var _saveAttempted = useState(false);
+  var saveAttempted = _saveAttempted[0];
+  var setSaveAttempted = _saveAttempted[1];
+  var _hashTrimNote = useState(false);
+  var hashTrimNote = _hashTrimNote[0];
+  var setHashTrimNote = _hashTrimNote[1];
+  var _hashDiff = useState(null);
+  var hashDiff = _hashDiff[0];
+  var setHashDiff = _hashDiff[1];
   var _showUdf = useState(false);
   var showUdf = _showUdf[0];
   var setShowUdf = _showUdf[1];
@@ -558,18 +711,47 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   var merchantKeyRef = useRef('');
   var formValuesRef = useRef(initialFormValues());
   var payFormRef = useRef(null);
+  var launcherBtnRef = useRef(null);
+  var closeBtnRef = useRef(null);
+  var modalPanelRef = useRef(null);
 
   useEffect(function () {
     if (!modalOpen || typeof document === 'undefined') return;
+    var focusRaf = 0;
+
+    // Single keydown handler: Escape closes modal; Tab cycles focus inside the panel only.
     function onKey(e) {
-      if (e.key === 'Escape') closeModal();
+      if (e.key === 'Escape') {
+        closeModal();
+        return;
+      }
+      if (e.key !== 'Tab' || !modalPanelRef.current) return;
+      var focusables = getFocusableElements(modalPanelRef.current);
+      if (!focusables.length) return;
+      var first = focusables[0];
+      var last = focusables[focusables.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first || !modalPanelRef.current.contains(document.activeElement)) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else if (document.activeElement === last || !modalPanelRef.current.contains(document.activeElement)) {
+        e.preventDefault();
+        first.focus();
+      }
     }
-    var prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
+
+    lockDocumentBodyScroll();
     document.addEventListener('keydown', onKey);
+    focusRaf = requestAnimationFrame(function () {
+      if (closeBtnRef.current) closeBtnRef.current.focus();
+    });
+
     return function () {
+      cancelAnimationFrame(focusRaf);
       document.removeEventListener('keydown', onKey);
-      document.body.style.overflow = prevOverflow;
+      unlockDocumentBodyScroll();
+      if (launcherBtnRef.current) launcherBtnRef.current.focus();
     };
   }, [modalOpen]);
 
@@ -673,7 +855,34 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
         return next;
       });
       invalidateLabAfterEdit();
+      if (fieldTouched[k] || saveAttempted) {
+        var data = buildParamsFromState();
+        data[k] = v;
+        var all = validateFieldErrors(data);
+        setFieldErrors(function (prev) {
+          var next = Object.assign({}, prev);
+          if (all[k]) next[k] = all[k];
+          else delete next[k];
+          return next;
+        });
+      }
     };
+  }
+
+  function onParamFieldBlur(k) {
+    setFieldTouched(function (prev) {
+      var next = Object.assign({}, prev);
+      next[k] = true;
+      return next;
+    });
+    var data = buildParamsFromState();
+    var all = validateFieldErrors(data);
+    setFieldErrors(function (prev) {
+      var next = Object.assign({}, prev);
+      if (all[k]) next[k] = all[k];
+      else delete next[k];
+      return next;
+    });
   }
 
   function updateMerchantKey(e) {
@@ -688,7 +897,25 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
       return next;
     });
     invalidateLabAfterEdit();
+    if (fieldTouched.key || saveAttempted) {
+      var data = buildParamsFromState();
+      data.key = v;
+      var all = validateFieldErrors(data);
+      setFieldErrors(function (prev) {
+        var next = Object.assign({}, prev);
+        if (all.key) next.key = all.key;
+        else delete next.key;
+        return next;
+      });
+    }
   }
+
+  function onMerchantKeyBlur() {
+    onParamFieldBlur('key');
+  }
+
+  var updateReturnField = makeRecordFieldUpdater(setReturnPreview);
+  var updateRevField = makeRecordFieldUpdater(setRevResp);
 
   function invalidateLabAfterEdit() {
     var data = labEnsure();
@@ -721,22 +948,31 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     return data;
   }
 
-  function validateParams(data) {
-    if (isBlank(data.key)) return 'Enter your test merchant key from the PayU dashboard.';
-    for (var i = 0; i < MANDATORY.length; i += 1) {
-      if (isBlank(data[MANDATORY[i].k])) return 'Missing required field: ' + MANDATORY[i].l;
-    }
-    if (!/^\d+(\.\d{1,2})?$/.test(empty(data.amount))) return 'Amount must be a decimal string (e.g. 10.00).';
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(empty(data.email))) return 'Enter a valid email address.';
-    return '';
+  function showFieldError(k) {
+    return (fieldTouched[k] || saveAttempted) && fieldErrors[k];
+  }
+
+  function renderFieldError(k) {
+    var text = showFieldError(k) ? fieldErrors[k] : '';
+    return (
+      <p id={'field-error-' + k} style={fieldInlineErrStyle} role={text ? 'alert' : undefined}>
+        {text || '\u00a0'}
+      </p>
+    );
   }
 
   function saveParams() {
     var data = buildParamsFromState();
     persistFormValues(data);
     formValuesRef.current = data;
-    var ve = validateParams(data);
-    if (ve) { setErr(ve); setMsg(''); return; }
+    var errors = validateFieldErrors(data);
+    if (Object.keys(errors).length) {
+      setFieldErrors(errors);
+      setSaveAttempted(true);
+      setMsg('');
+      setErr('');
+      return;
+    }
     if (!labAck) { setErr('Confirm you are using test-only credentials in this lab.'); return; }
     var labData = labEnsure();
     labData.params = data;
@@ -745,6 +981,8 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     if (!labWrite(labData)) { setErr('Could not save lab state. Allow storage and try again.'); return; }
     setLab(labData);
     clearHashUi();
+    setFieldErrors({});
+    setSaveAttempted(false);
     setReturnPreview(exampleReturnPreview(data));
     setRevResp(exampleRevResp(data));
     setMsg('Parameters saved. Continue to the hash step — enter your test salt and generate SHA-512.');
@@ -855,6 +1093,8 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     setMsg('Test checkout launched. Complete payment on PayU or close the tab and continue.');
   }
 
+  var POPUP_BLOCKED_HINT = 'If nothing opened, your browser may have blocked the pop-up — check the address bar or use Open in this tab instead.';
+
   function buildCurl(data) {
     var p = mergeParams(data.params);
     return 'curl -X POST "' + TEST_PAYMENT + '" \n' +
@@ -881,21 +1121,9 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     invalidateLabAfterEdit();
     setReturnPreview(exampleReturnPreview(next));
     setRevResp(exampleRevResp(next));
+    setFieldErrors({});
+    setSaveAttempted(false);
     setMsg('Example values restored. Enter your test key and click Save parameters.');
-    setErr('');
-  }
-
-  function fillSimulatorUrls() {
-    setFormValues(function (prev) {
-      var next = Object.assign({}, prev);
-      next.surl = SIMULATOR_URL;
-      next.furl = SIMULATOR_URL;
-      persistFormValues(next);
-      formValuesRef.current = next;
-      return next;
-    });
-    invalidateLabAfterEdit();
-    setMsg('PayU simulator URLs filled for surl and furl. Edit or save when ready.');
     setErr('');
   }
 
@@ -925,28 +1153,6 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     setErr('');
   }
 
-  function updateReturnField(k) {
-    return function (e) {
-      var v = e.target.value;
-      setReturnPreview(function (prev) {
-        var next = Object.assign({}, prev);
-        next[k] = v;
-        return next;
-      });
-    };
-  }
-
-  function updateRevField(k) {
-    return function (e) {
-      var v = e.target.value;
-      setRevResp(function (prev) {
-        var next = Object.assign({}, prev);
-        next[k] = v;
-        return next;
-      });
-    };
-  }
-
   function markReturnReviewed() {
     var labData = labEnsure();
     labData.progress.returnReviewed = true;
@@ -963,9 +1169,17 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     setErr('');
     setMatch(null);
     setComputedRev('');
+    setHashDiff(null);
+    setHashTrimNote(false);
+    var pastedRaw = String(responseHash || '');
+    var pastedTrimmed = empty(responseHash);
+    var wasTrimmed = pastedTrimmed !== pastedRaw.trim();
     sha512Hex(buildReverseHashString(salt, revResp)).then(function (h) {
       setComputedRev(h);
-      var ok = h.toLowerCase() === empty(responseHash).toLowerCase();
+      var diff = diffHexStrings(h, pastedTrimmed);
+      setHashDiff(diff);
+      setHashTrimNote(wasTrimmed);
+      var ok = diff.kind === 'match';
       setMatch(ok);
       if (ok) {
         var labData = labEnsure();
@@ -975,7 +1189,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
         setMsg('Reverse hash verified. On your server, recompute and compare case-sensitively before updating orders.');
       } else {
         setMsg('');
-        setErr('Hash mismatch — check field order, salt, and status.');
+        setErr('Hash mismatch — see diagnosis below.');
       }
       setBusy(false);
     }).catch(function () { setErr('SHA-512 unavailable.'); setBusy(false); });
@@ -999,6 +1213,11 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     setResponseHash('');
     setComputedRev('');
     setMatch(null);
+    setHashDiff(null);
+    setHashTrimNote(false);
+    setFieldErrors({});
+    setFieldTouched({});
+    setSaveAttempted(false);
     setReturnPreview(exampleReturnPreview());
     setRevResp(exampleRevResp());
     setErr('');
@@ -1018,6 +1237,54 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
 
   function displayVal(v, fallback) {
     return isBlank(v) ? (fallback || '—') : v;
+  }
+
+  function renderHexSegment(str, highlightIndex) {
+    if (!str) return null;
+    if (highlightIndex < 0 || highlightIndex >= str.length) return <span>{str}</span>;
+    return (
+      <span>
+        {str.slice(0, highlightIndex)}
+        <span style={hashDiffMismatchStyle}>{str.charAt(highlightIndex)}</span>
+        {str.slice(highlightIndex + 1)}
+      </span>
+    );
+  }
+
+  function renderHashDiffDiagnosis() {
+    if (!hashDiff || hashDiff.kind === 'match') return null;
+    if (hashDiff.kind === 'invalid_pasted') {
+      return (
+        <div style={infoBoxStyle} role="alert">
+          <p style={{ margin: 0, fontSize: '14px', lineHeight: 1.6 }}>
+            Pasted hash is not a valid SHA-512 — expected 128 hex characters, got {hashDiff.pastedLen}.
+          </p>
+        </div>
+      );
+    }
+    if (hashDiff.kind === 'length_mismatch') {
+      return (
+        <div style={infoBoxStyle} role="alert">
+          <p style={{ margin: 0, fontSize: '14px', lineHeight: 1.6 }}>
+            Length mismatch — computed {hashDiff.computedLen} characters, pasted {hashDiff.pastedLen}.
+          </p>
+        </div>
+      );
+    }
+    return (
+      <div style={infoBoxStyle} role="alert">
+        {hashTrimNote ? (
+          <p style={{ margin: '0 0 8px', fontSize: '13px', color: '#b45309' }}>
+            Leading/trailing whitespace was ignored when comparing hashes.
+          </p>
+        ) : null}
+        <p style={{ margin: '0 0 8px', fontSize: '14px', fontWeight: 600 }}>First difference at character {hashDiff.index + 1}:</p>
+        <p style={{ margin: '0 0 4px', fontSize: '12px', fontWeight: 700 }}>Computed</p>
+        <code style={codeBlockStyle}>{renderHexSegment(hashDiff.computed, hashDiff.index)}</code>
+        <p style={{ margin: '0 0 4px', fontSize: '12px', fontWeight: 700 }}>Pasted</p>
+        <code style={codeBlockStyle}>{renderHexSegment(hashDiff.pasted, hashDiff.index)}</code>
+      </div>
+    );
   }
 
   function renderWelcome() {
@@ -1091,9 +1358,11 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
             { label: 'Response verified', ok: prog.verifyDone && match === true }
           ]} />
         ) : null}
-        {err ? <p style={errTextStyle} role="alert">{err}</p> : null}
-        {msg ? <p style={okTextStyle}>{msg}</p> : null}
-        {copyMsg ? <p style={okTextStyle}>{copyMsg}</p> : null}
+        <div aria-live="polite" aria-atomic="true">
+          {err ? <p style={errTextStyle}>{err}</p> : null}
+          {msg ? <p style={okTextStyle}>{msg}</p> : null}
+          {copyMsg ? <p style={okTextStyle}>{copyMsg}</p> : null}
+        </div>
         <div style={step === 0 ? { marginTop: '4px' } : contentCardStyle}>{inner}</div>
       </div>
     );
@@ -1141,7 +1410,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
                     n[item.id] = e.target.checked;
                     setPrereq(n);
                   }}
-                  style={{ marginTop: '3px' }}
+                  style={checkboxInputStyle}
                 />
                 <span>{item.label}</span>
               </label>
@@ -1158,7 +1427,18 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
         <div ref={formRootRef} style={fieldStackStyle}>
           <div>
             <FieldLabel name="key" required={true} />
-            <input type="text" name="merchantKey" value={merchantKey} onChange={updateMerchantKey} style={inputStyle} placeholder={placeholderFor('key')} />
+            <input
+              type="text"
+              name="merchantKey"
+              value={merchantKey}
+              onChange={updateMerchantKey}
+              onBlur={onMerchantKeyBlur}
+              style={inputStyle}
+              placeholder={placeholderFor('key')}
+              aria-invalid={showFieldError('key') ? 'true' : undefined}
+              aria-describedby="field-error-key"
+            />
+            {renderFieldError('key')}
           </div>
           {MANDATORY.map(function (row) {
             return (
@@ -1169,9 +1449,13 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
                   name={row.k}
                   value={fieldValue(row.k)}
                   onChange={updateField(row.k)}
+                  onBlur={function () { onParamFieldBlur(row.k); }}
                   style={inputStyle}
                   placeholder={placeholderFor(row.k)}
+                  aria-invalid={showFieldError(row.k) ? 'true' : undefined}
+                  aria-describedby={'field-error-' + row.k}
                 />
+                {renderFieldError(row.k)}
               </div>
             );
           })}
@@ -1192,7 +1476,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
           ) : null}
         </div>
         <label style={Object.assign({}, cardCheckStyle, { marginTop: '12px' })}>
-          <input type="checkbox" checked={labAck} onChange={function (e) { setLabAck(e.target.checked); }} style={{ marginTop: '3px' }} />
+          <input type="checkbox" checked={labAck} onChange={function (e) { setLabAck(e.target.checked); }} style={checkboxInputStyle} />
           <span>I am using test-only credentials in this lab.</span>
         </label>
         <div style={btnRowStyle}>
@@ -1224,6 +1508,9 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
         <code style={codeBlockStyle}>
           sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
         </code>
+        <p style={mutedTextStyle}>
+          The six empty segments between udf5 and SALT are reserved fields PayU expects in this exact position — leave them blank.
+        </p>
         <div style={fieldStackStyle}>
           <div>
             <FieldLabel name="salt (test lab only)" required={true} />
@@ -1295,11 +1582,18 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
           <button type="button" onClick={labClick(function () { setShowCurl(!showCurl); })} disabled={!readyPay} style={btnSecondaryStyle}>
             {showCurl ? 'Hide curl' : 'Show curl'}
           </button>
+          <button type="button" onClick={labClick(function () { setShowNode(!showNode); })} disabled={!readyPay} style={btnSecondaryStyle}>
+            {showNode ? 'Hide Node.js code' : 'Show Node.js code'}
+          </button>
           {readyPay ? (
             <button type="button" onClick={labClick(function () { copyText(buildCurl(lab), setCopyMsg); })} style={btnSecondaryStyle}>Copy curl</button>
           ) : null}
+          {readyPay ? (
+            <button type="button" onClick={labClick(function () { copyText(buildNodeSnippet(lab), setCopyMsg); })} style={btnSecondaryStyle}>Copy Node.js code</button>
+          ) : null}
         </div>
         {showCurl && readyPay ? <pre style={codeBlockPreStyle}>{buildCurl(lab)}</pre> : null}
+        {showNode && readyPay ? <pre style={codeBlockPreStyle}>{buildNodeSnippet(lab)}</pre> : null}
         <p style={mutedTextStyle} role="note">
           {'Test card: 5123456789012346 · OTP 123456 · UPI: anything' + '@' + 'payu'}
         </p>
@@ -1311,7 +1605,10 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
           <p style={mutedTextStyle}>Save parameters and generate hash to preview the POST body.</p>
         )}
         {wizardProgress().checkoutOpened ? (
-          <p style={okTextStyle}>Checkout opened. Continue to review the return payload.</p>
+          <div>
+            <p style={okTextStyle}>Checkout opened. Continue to review the return payload.</p>
+            <p style={mutedTextStyle} role="note">{POPUP_BLOCKED_HINT}</p>
+          </div>
         ) : (
           <p style={hintTextStyle}>Continue is locked until you open PayU test checkout.</p>
         )}
@@ -1372,6 +1669,9 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
         <code style={codeBlockStyle}>
           sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
         </code>
+        <p style={mutedTextStyle}>
+          The six empty segments after status are reserved fields PayU expects in this exact position — leave them blank.
+        </p>
         <div style={fieldStackStyle}>
           <div>
             <FieldLabel name="salt" required={true} />
@@ -1417,8 +1717,8 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
           <a href={HASH_TOOL} target="_blank" rel="noopener noreferrer" style={linkBtnStyle}>Open Hash Verification Tool</a>
         </div>
         {match === true ? <p style={okTextStyle}>Hash matches — response verified for this lab.</p> : null}
-        {match === false ? <p style={errTextStyle}>Hash mismatch — check salt, status, and field order.</p> : null}
-        {computedRev ? <code style={codeBlockStyle}>{computedRev}</code> : null}
+        {match === false ? renderHashDiffDiagnosis() : null}
+        {match === true && computedRev ? <code style={codeBlockStyle}>{computedRev}</code> : null}
         {!wizardProgress().verifyDone ? (
           <p style={hintTextStyle}>Continue is locked until reverse hash verification succeeds.</p>
         ) : null}
@@ -1444,6 +1744,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
                     n[idx] = e.target.checked;
                     setTestDone(n);
                   }}
+                  style={checkboxInputStyle}
                 />
                 <span>{label}</span>
               </label>
@@ -1463,7 +1764,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
         <div style={{ display: 'grid', gap: '8px', marginBottom: '16px' }}>
           {GO_LIVE.map(function (label, idx) {
             return (
-              <label key={label} style={checklistLabelStyle}>
+              <label key={label} style={Object.assign({}, checklistLabelStyle, { minHeight: '44px', padding: '8px 0', boxSizing: 'border-box' })}>
                 <input
                   type="checkbox"
                   checked={!!goDone[idx]}
@@ -1472,7 +1773,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
                     n[idx] = e.target.checked;
                     setGoDone(n);
                   }}
-                  style={{ marginTop: '3px' }}
+                  style={checkboxInputStyle}
                 />
                 <span>{label}</span>
               </label>
@@ -1505,7 +1806,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
             </ul>
           </div>
           <div style={{ flexShrink: 0, alignSelf: 'center' }}>
-            <button type="button" onClick={labClick(openModal)} style={Object.assign({}, btnPrimaryStyle, { padding: '12px 24px', fontSize: '15px' })}>
+            <button type="button" ref={launcherBtnRef} onClick={labClick(openModal)} style={Object.assign({}, btnPrimaryStyle, { padding: '12px 24px', fontSize: '15px' })}>
               Open integration wizard
             </button>
           </div>
@@ -1514,7 +1815,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
 
       {modalOpen ? (
         <div style={modalOverlayStyle} onClick={onOverlayClick} role="dialog" aria-modal="true" aria-label="PayU Hosted Checkout integration wizard">
-          <div style={modalPanelStyle} onClick={labStopBubble}>
+          <div ref={modalPanelRef} style={modalPanelStyle} onClick={labStopBubble}>
             <div style={modalHeaderStyle}>
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px' }}>
                 <div style={{ minWidth: 0 }}>
@@ -1528,9 +1829,10 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
                 </div>
                 <button
                   type="button"
+                  ref={closeBtnRef}
                   onClick={labClick(closeModal)}
                   aria-label="Close wizard"
-                  style={{ flexShrink: 0, cursor: 'pointer', border: 'none', background: 'rgba(255,255,255,0.2)', color: '#fff', borderRadius: '8px', width: '36px', height: '36px', fontSize: '18px', lineHeight: 1 }}
+                  style={{ flexShrink: 0, cursor: 'pointer', border: 'none', background: 'rgba(255,255,255,0.2)', color: '#fff', borderRadius: '8px', width: '44px', height: '44px', fontSize: '18px', lineHeight: 1 }}
                 >
                   ×
                 </button>
