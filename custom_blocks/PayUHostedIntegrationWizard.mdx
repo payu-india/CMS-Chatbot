@@ -2,8 +2,7 @@
 name: PayUHostedIntegrationWizard
 ---
 // PayUHostedIntegrationWizard — ReadMe Custom Component (Integration Guide)
-// 9-step guided wizard: each step unlocks only after an explicit action in this session.
-// Uses isolated storage (payu-hosted-integration-wizard-v1) — no auto-fill from other lab widgets.
+// Popup wizard: launcher card + modal lab. Welcome screen, step taglines, gated interactive flow.
 // Doc page: <PayUHostedIntegrationWizard />
 
 import { useState, useEffect, useRef } from 'react';
@@ -48,7 +47,8 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   var BLANK_REV = exampleRevResp();
   var FIELD_PLACEHOLDERS = JSON.parse('{"key":"Your test merchant key","salt":"Your test salt","hash":"Paste response hash from PayU POST","status":"success or failure"}');
 
-  var STEPS = JSON.parse('[{"id":"overview","title":"Flow overview","subtitle":"How Hosted Checkout works end-to-end"},{"id":"prereq","title":"Prerequisites","subtitle":"What you need before integrating"},{"id":"params","title":"Payment request","subtitle":"Build and save your POST parameters"},{"id":"hash","title":"Request hash","subtitle":"SHA-512 forward hash for the payment request"},{"id":"post","title":"Test checkout","subtitle":"POST to PayU test environment"},{"id":"return","title":"Return payload","subtitle":"What PayU sends to surl and furl"},{"id":"verify","title":"Verify response","subtitle":"Reverse hash on callback data"},{"id":"test","title":"Test checklist","subtitle":"Sandbox validation before go-live"},{"id":"golive","title":"Go live","subtitle":"Production readiness checklist"}]');
+  var STEPS = JSON.parse('[{"id":"welcome","title":"Hosted Checkout integration lab","tagline":"","stepLabel":"Start"},{"id":"prereq","title":"Prerequisites","tagline":"Confirm you have test credentials and HTTPS callback URLs before integrating.","stepLabel":"1"},{"id":"params","title":"Payment request","tagline":"Build the POST body your server sends to PayU — enter your test key and save.","stepLabel":"2"},{"id":"hash","title":"Request hash","tagline":"Generate the SHA-512 forward hash from your pipe string and test salt.","stepLabel":"3"},{"id":"post","title":"Test checkout","tagline":"Launch a real payment on test.payu.in with your saved parameters and hash.","stepLabel":"4"},{"id":"return","title":"Return payload","tagline":"See what PayU POSTs to your surl or furl after the customer pays.","stepLabel":"5"},{"id":"verify","title":"Verify response","tagline":"Recompute the reverse hash and confirm the callback is authentic.","stepLabel":"6"},{"id":"test","title":"Test checklist","tagline":"Validate sandbox behaviour before you ship to production.","stepLabel":"7"},{"id":"golive","title":"Go live","tagline":"Final checks before switching to the production endpoint.","stepLabel":"8"}]');
+  var WELCOME_OUTCOMES = JSON.parse('["Build a signed payment request with real field names and hash order","Generate SHA-512 and open PayU test checkout in one flow","Inspect surl/furl callback fields and verify the reverse hash","Leave with a sandbox-tested mental model of Hosted Checkout"]');
 
   var PREREQ = JSON.parse('[{"id":"acct","label":"PayU test merchant key and salt from the dashboard"},{"id":"https","label":"Public HTTPS surl and furl URLs reachable from the internet"},{"id":"hash","label":"Production hashing runs on your server, not in the browser"},{"id":"uniq","label":"Unique txnid per payment attempt"}]');
   var MANDATORY = JSON.parse('[{"k":"txnid","l":"txnid"},{"k":"amount","l":"amount"},{"k":"productinfo","l":"productinfo"},{"k":"firstname","l":"firstname"},{"k":"email","l":"email"},{"k":"phone","l":"phone"},{"k":"surl","l":"surl"},{"k":"furl","l":"furl"}]');
@@ -59,25 +59,51 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   var GO_LIVE = JSON.parse('["Switch endpoint to https://secure.payu.in/_payment","Use production key and salt only on production servers","Enable webhooks and monitor surl or furl error rates","Run a small live transaction before full traffic"]');
 
   var PAYU_GREEN = '#0f766e';
+  var PAYU_GREEN_DARK = '#115e59';
   var PAYU_GREEN_LIGHT = '#ecfdf5';
   var RED_REQ = '#dc2626';
 
-  var shellClass = 'min-w-0';
-  var sandboxOuterStyle = {
-    margin: '24px 0', width: '100%', minWidth: 0, maxWidth: '100%', boxSizing: 'border-box',
-    overflow: 'visible', borderRadius: '12px', border: '2px dashed ' + PAYU_GREEN,
-    background: 'rgba(240, 253, 250, 0.4)'
+  var launcherCardStyle = {
+    margin: '24px 0', padding: '20px 24px', borderRadius: '12px',
+    border: '1px solid #99f6e4', background: 'linear-gradient(135deg, #f0fdfa 0%, #fff 50%)',
+    boxShadow: '0 1px 3px rgba(15,118,110,0.08)'
   };
-  var sandboxSummaryStyle = {
-    display: 'flex', alignItems: 'center', gap: '12px', cursor: 'pointer',
-    padding: '12px 16px', listStyle: 'none', background: 'transparent', border: 'none'
+  var modalOverlayStyle = {
+    position: 'fixed', inset: 0, zIndex: 99999, background: 'rgba(15,23,42,0.55)',
+    display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px',
+    boxSizing: 'border-box'
   };
-  var sandboxBadgeStyle = {
-    flexShrink: 0, borderRadius: '4px', background: PAYU_GREEN, color: '#fff',
-    padding: '2px 8px', fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em'
+  var modalPanelStyle = {
+    width: '100%', maxWidth: '720px', maxHeight: 'min(92vh, 900px)', overflow: 'hidden',
+    display: 'flex', flexDirection: 'column', borderRadius: '14px',
+    background: '#fff', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.35)',
+    fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif'
   };
-  var sandboxBodyStyle = {
-    background: '#fff', padding: '16px', borderTop: '1px solid rgba(15, 118, 110, 0.15)'
+  var modalHeaderStyle = {
+    flexShrink: 0, padding: '16px 20px', background: 'linear-gradient(135deg, #0f766e 0%, #115e59 100%)',
+    color: '#fff', borderRadius: '14px 14px 0 0'
+  };
+  var modalBodyStyle = {
+    flex: 1, overflow: 'auto', padding: '20px', minHeight: 0, background: '#fafafa'
+  };
+  var modalFooterStyle = {
+    flexShrink: 0, padding: '14px 20px', borderTop: '1px solid #e5e7eb', background: '#fff',
+    borderRadius: '0 0 14px 14px'
+  };
+  var taglineStyle = {
+    margin: '0 0 16px', padding: '10px 14px', borderLeft: '4px solid ' + PAYU_GREEN,
+    background: '#fff', borderRadius: '0 8px 8px 0', fontSize: '15px', fontWeight: 600,
+    lineHeight: 1.45, color: '#1f2937'
+  };
+  var stepPillRowStyle = { display: 'flex', flexWrap: 'wrap', gap: '6px', marginTop: '10px' };
+  var stepPillStyle = {
+    borderRadius: '9999px', padding: '4px 10px', fontSize: '11px', fontWeight: 600,
+    background: 'rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.85)'
+  };
+  var stepPillActiveStyle = Object.assign({}, stepPillStyle, { background: '#fff', color: PAYU_GREEN_DARK });
+  var contentCardStyle = {
+    background: '#fff', borderRadius: '10px', border: '1px solid #e5e7eb',
+    padding: '16px', marginTop: '4px'
   };
   var fieldStackStyle = { display: 'flex', flexDirection: 'column', gap: '16px' };
   var fieldStackInnerStyle = { display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '16px' };
@@ -141,7 +167,6 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   var LAB_UPDATE_EVENT = 'payu-hosted-integration-wizard-update';
   var LAB_GLOBAL_STATE = '__payuHostedIntegrationWizardState';
   var WIZARD_FORM_GLOBAL = '__payuHostedIntegrationWizardForm';
-  var SANDBOX_OPEN_GLOBAL = '__payuHostedCheckoutSandboxOpen';
 
   function labWindow() {
     if (typeof window === 'undefined') return null;
@@ -297,83 +322,6 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   function placeholderFor(k) {
     if (FIELD_PLACEHOLDERS[k]) return FIELD_PLACEHOLDERS[k];
     return '';
-  }
-
-  function sandboxOpenStore() {
-    if (typeof window !== 'undefined') {
-      if (!window[SANDBOX_OPEN_GLOBAL]) window[SANDBOX_OPEN_GLOBAL] = {};
-      return window[SANDBOX_OPEN_GLOBAL];
-    }
-    return {};
-  }
-
-  function sandboxOpenRead(id) {
-    return sandboxOpenStore()[id] === true;
-  }
-
-  function sandboxOpenWrite(id, isOpen) {
-    sandboxOpenStore()[id] = !!isOpen;
-  }
-
-  function sandboxSyncChevron(details) {
-    if (!details) return;
-    var chevron = details.querySelector('[data-sandbox-chevron]');
-    if (chevron) chevron.textContent = details.open ? '▼' : '▶';
-  }
-
-  function onSandboxToggle(e) {
-    var details = e.currentTarget;
-    var id = details.getAttribute('data-sandbox-id') || 'sandbox';
-    sandboxOpenWrite(id, details.open);
-    sandboxSyncChevron(details);
-  }
-
-  function onSandboxSummaryClick(e) {
-    var summary = e.currentTarget;
-    var details = summary.parentNode;
-    if (!details || details.tagName !== 'DETAILS') return;
-    labStopEvent(e);
-    details.open = !details.open;
-    var id = details.getAttribute('data-sandbox-id') || 'sandbox';
-    sandboxOpenWrite(id, details.open);
-    sandboxSyncChevron(details);
-  }
-
-  function SandboxAccordion(props) {
-    var sandboxId = props.ariaLabel || props.title || 'sandbox';
-    var detailsRef = useRef(null);
-    useEffect(function () {
-      var details = detailsRef.current;
-      if (!details) return;
-      if (sandboxOpenRead(sandboxId)) details.open = true;
-      sandboxSyncChevron(details);
-    }, []);
-    return (
-      <details
-        ref={detailsRef}
-        data-sandbox-id={sandboxId}
-        style={sandboxOuterStyle}
-        onToggle={onSandboxToggle}
-        aria-label={props.ariaLabel || 'PayU integration sandbox'}
-      >
-        <summary style={sandboxSummaryStyle} onClick={onSandboxSummaryClick}>
-          <span style={sandboxBadgeStyle}>SANDBOX</span>
-          <span style={{ minWidth: 0, flex: 1, fontSize: '14px', fontWeight: 600, color: '#111827' }}>{props.title}</span>
-          <span data-sandbox-chevron={true} style={{ flexShrink: 0, color: PAYU_GREEN }}>▶</span>
-        </summary>
-        <div
-          style={sandboxBodyStyle}
-          onFocus={function () { sandboxOpenWrite(sandboxId, true); }}
-          onInput={function () { sandboxOpenWrite(sandboxId, true); }}
-          onClick={labStopBubble}
-          onMouseDown={labStopBubble}
-          onPointerDown={labStopBubble}
-        >
-          <p style={{ margin: '0 0 20px', fontSize: '14px', lineHeight: 1.6, color: '#4b5563' }}>{props.intro}</p>
-          {props.children}
-        </div>
-      </details>
-    );
   }
 
   function copyText(text, setCopyMsg) {
@@ -584,11 +532,46 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   var _goDone = useState({});
   var goDone = _goDone[0];
   var setGoDone = _goDone[1];
+  var _modalOpen = useState(false);
+  var modalOpen = _modalOpen[0];
+  var setModalOpen = _modalOpen[1];
+
+  function openModal() {
+    setModalOpen(true);
+    setErr('');
+    setMsg('');
+    var data = labEnsure();
+    var p = data.progress || defaultProgress();
+    var saved = clampStepToProgress(typeof data.wizardStep === 'number' ? data.wizardStep : 0, p);
+    setStep(saved);
+  }
+
+  function closeModal() {
+    setModalOpen(false);
+  }
+
+  function onOverlayClick(e) {
+    if (e.target === e.currentTarget) closeModal();
+  }
 
   var formRootRef = useRef(null);
   var merchantKeyRef = useRef('');
   var formValuesRef = useRef(initialFormValues());
   var payFormRef = useRef(null);
+
+  useEffect(function () {
+    if (!modalOpen || typeof document === 'undefined') return;
+    function onKey(e) {
+      if (e.key === 'Escape') closeModal();
+    }
+    var prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', onKey);
+    return function () {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [modalOpen]);
 
   useEffect(function () {
     var data = labEnsure();
@@ -1037,36 +1020,115 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     return isBlank(v) ? (fallback || '—') : v;
   }
 
-  function renderOverview() {
+  function renderWelcome() {
     return (
       <div>
-        <p style={bodyTextStyle}>
-          Your server builds a signed POST to PayU, the customer pays on the hosted page, and PayU POSTs the result to your <strong>surl</strong> (success) or <strong>furl</strong> (failure). This wizard walks through each step and lets you try a real test payment.
+        <p style={{ fontSize: '16px', lineHeight: 1.65, color: '#374151', margin: '0 0 20px' }}>
+          This lab runs a full Hosted Checkout loop on PayU test — build a payment request, generate a hash, pay on sandbox, and verify the callback. Example fields are pre-filled; you supply your test <strong>key</strong> and <strong>salt</strong>.
         </p>
         <div style={infoBoxStyle}>
-          <strong>End-to-end flow</strong>
-          <ol style={{ margin: '8px 0 0', paddingLeft: '20px', lineHeight: 1.7 }}>
-            <li>Customer clicks Pay on your site</li>
-            <li>Your server builds the request and computes the forward hash</li>
-            <li>Browser POSTs to <code style={{ fontSize: '12px' }}>{TEST_PAYMENT}</code></li>
-            <li>Customer completes payment on PayU hosted page</li>
-            <li>PayU POSTs result to surl or furl</li>
-            <li>Your server verifies the reverse hash before updating the order</li>
+          <strong style={{ display: 'block', marginBottom: '10px', color: PAYU_GREEN_DARK }}>What you will achieve</strong>
+          <ul style={{ margin: 0, paddingLeft: '20px', lineHeight: 1.85 }}>
+            {WELCOME_OUTCOMES.map(function (item) {
+              return <li key={item}>{item}</li>;
+            })}
+          </ul>
+        </div>
+        <div style={infoBoxStyle}>
+          <strong style={{ display: 'block', marginBottom: '10px', color: PAYU_GREEN_DARK }}>End-to-end flow</strong>
+          <ol style={{ margin: 0, paddingLeft: '20px', lineHeight: 1.85 }}>
+            <li>Your server builds a signed POST to PayU</li>
+            <li>Customer pays on the hosted checkout page</li>
+            <li>PayU POSTs the result to your surl or furl</li>
+            <li>You verify the reverse hash before updating the order</li>
           </ol>
         </div>
         <p style={hintTextStyle} role="note">
-          Production: hash only on your server. Salt must never ship to customer browsers.
+          Click <strong>Next</strong> to begin — each step unlocks only after you complete the required action.
         </p>
       </div>
     );
   }
 
+  function renderStepPills() {
+    return (
+      <div style={stepPillRowStyle} aria-hidden="true">
+        {STEPS.map(function (s, idx) {
+          var active = idx === step;
+          var done = idx < step;
+          var style = active ? stepPillActiveStyle : stepPillStyle;
+          return (
+            <span key={s.id} style={style}>
+              {s.stepLabel}{done && !active ? ' ✓' : ''}
+            </span>
+          );
+        })}
+      </div>
+    );
+  }
+
+  function renderWizardBody() {
+    var inner = null;
+    if (step === 0) inner = renderWelcome();
+    else if (step === 1) inner = renderPrereq();
+    else if (step === 2) inner = renderParams();
+    else if (step === 3) inner = renderHash();
+    else if (step === 4) inner = renderPost();
+    else if (step === 5) inner = renderReturn();
+    else if (step === 6) inner = renderVerify();
+    else if (step === 7) inner = renderTest();
+    else if (step === 8) inner = renderGolive();
+
+    return (
+      <div>
+        {step > 0 && current.tagline ? <p style={taglineStyle}>{current.tagline}</p> : null}
+        {step >= 2 && step <= 6 ? <LabInteractiveBanner /> : null}
+        {step > 0 ? (
+          <LabStatus items={[
+            { label: 'Parameters saved', ok: prog.paramsSaved },
+            { label: 'Hash generated', ok: prog.hashGenerated },
+            { label: 'Checkout opened', ok: prog.checkoutOpened },
+            { label: 'Response verified', ok: prog.verifyDone && match === true }
+          ]} />
+        ) : null}
+        {err ? <p style={errTextStyle} role="alert">{err}</p> : null}
+        {msg ? <p style={okTextStyle}>{msg}</p> : null}
+        {copyMsg ? <p style={okTextStyle}>{copyMsg}</p> : null}
+        <div style={step === 0 ? { marginTop: '4px' } : contentCardStyle}>{inner}</div>
+      </div>
+    );
+  }
+
+  function renderWizardFooter() {
+    return (
+      <div>
+        <div style={navRowStyle}>
+          {step > 0 ? (
+            <button type="button" onClick={labClick(function () { goToStep(step - 1); })} style={btnSecondaryStyle}>Back</button>
+          ) : (
+            <span />
+          )}
+          {step < STEPS.length - 1 ? (
+            <button
+              type="button"
+              disabled={!canAdvance()}
+              onClick={labClick(function () {
+                if (!canAdvance()) return;
+                goToStep(step + 1);
+              })}
+              style={Object.assign({}, btnPrimaryStyle, { opacity: canAdvance() ? 1 : 0.45 })}
+            >
+              {step === 0 ? 'Next' : 'Continue'}
+            </button>
+          ) : null}
+        </div>
+        {continueHint() ? <p style={hintTextStyle}>{continueHint()}</p> : null}
+      </div>
+    );
+  }
   function renderPrereq() {
     return (
       <div>
-        <p style={bodyTextStyle}>
-          Confirm you have everything below before building the payment request. Example payment fields are pre-filled on the next step — you enter your test <strong>key</strong> and <strong>salt</strong> yourself.
-        </p>
         <div style={{ display: 'grid', gap: '8px' }}>
           {PREREQ.map(function (item) {
             return (
@@ -1093,9 +1155,6 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   function renderParams() {
     return (
       <div>
-        <p style={bodyTextStyle}>
-          Example payment fields are pre-filled (txnid, amount, customer details, PayU simulator URLs). Enter your test <strong>merchant key</strong> — the only secret on this step — then edit any value and click Save.
-        </p>
         <div ref={formRootRef} style={fieldStackStyle}>
           <div>
             <FieldLabel name="key" required={true} />
@@ -1426,72 +1485,72 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   }
 
   return (
-    <SandboxAccordion
-      title="Try out · Hosted Checkout integration wizard"
-      intro="Nine-step guided lab. Example payment fields are pre-filled; you enter test key and salt, generate hash, open checkout, and verify. Each step unlocks only after you complete the required action."
-      ariaLabel="PayU Hosted Checkout integration wizard"
-    >
-      <div className={shellClass} role="region" aria-label="PayU Hosted Checkout integration wizard">
-        <div className="mb-1 text-xs font-semibold uppercase tracking-wider text-teal-700 dark:text-teal-400">
-          PayU Hosted Checkout · Integration lab
-        </div>
-        <h2 style={{ margin: '0 0 6px', fontSize: '1.35rem', fontWeight: 700, color: '#111827' }}>{current.title}</h2>
-        <p style={{ margin: '0 0 14px', fontSize: '13px', color: '#6b7280' }}>
-          Step {step + 1} of {STEPS.length} · {current.subtitle}
-        </p>
-
-        <div style={progressTrackStyle}>
-          <div style={{ height: '100%', width: pct + '%', background: PAYU_GREEN, transition: 'width 0.25s ease' }} />
-        </div>
-
-        {step >= 2 && step <= 6 ? <LabInteractiveBanner /> : null}
-
-        <LabStatus items={[
-          { label: 'Parameters saved', ok: prog.paramsSaved },
-          { label: 'Hash generated', ok: prog.hashGenerated },
-          { label: 'Checkout opened', ok: prog.checkoutOpened },
-          { label: 'Response verified', ok: prog.verifyDone && match === true }
-        ]} />
-
-        {err ? <p style={errTextStyle} role="alert">{err}</p> : null}
-        {msg ? <p style={okTextStyle}>{msg}</p> : null}
-        {copyMsg ? <p style={okTextStyle}>{copyMsg}</p> : null}
-
-        {step === 0 ? renderOverview() : null}
-        {step === 1 ? renderPrereq() : null}
-        {step === 2 ? renderParams() : null}
-        {step === 3 ? renderHash() : null}
-        {step === 4 ? renderPost() : null}
-        {step === 5 ? renderReturn() : null}
-        {step === 6 ? renderVerify() : null}
-        {step === 7 ? renderTest() : null}
-        {step === 8 ? renderGolive() : null}
-
-        <div style={navRowStyle}>
-          {step > 0 ? (
-            <button type="button" onClick={labClick(function () { goToStep(step - 1); })} style={btnSecondaryStyle}>Back</button>
-          ) : (
-            <span />
-          )}
-          {step < STEPS.length - 1 ? (
-            <button
-              type="button"
-              disabled={!canAdvance()}
-              onClick={labClick(function () {
-                if (!canAdvance()) return;
-                goToStep(step + 1);
-              })}
-              style={Object.assign({}, btnPrimaryStyle, { opacity: canAdvance() ? 1 : 0.45 })}
-            >
-              Continue
+    <div className="min-w-0" style={{ fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif' }}>
+      <div style={launcherCardStyle} role="region" aria-label="PayU Hosted Checkout integration wizard launcher">
+        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-start', gap: '16px', justifyContent: 'space-between' }}>
+          <div style={{ flex: '1 1 280px', minWidth: 0 }}>
+            <div style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: PAYU_GREEN, marginBottom: '6px' }}>
+              Interactive lab
+            </div>
+            <h3 style={{ margin: '0 0 8px', fontSize: '1.25rem', fontWeight: 700, color: '#111827' }}>
+              Hosted Checkout integration wizard
+            </h3>
+            <p style={{ margin: '0 0 12px', fontSize: '14px', lineHeight: 1.6, color: '#4b5563' }}>
+              Run a full test payment on PayU sandbox — build a request, generate a hash, pay, and verify the callback. Opens in a focused popup so you can follow along without leaving the docs.
+            </p>
+            <ul style={{ margin: 0, paddingLeft: '18px', fontSize: '13px', lineHeight: 1.7, color: '#374151' }}>
+              <li>Example fields pre-filled — you enter test key and salt</li>
+              <li>Real SHA-512 and live test checkout</li>
+              <li>~10 minutes · test credentials only</li>
+            </ul>
+          </div>
+          <div style={{ flexShrink: 0, alignSelf: 'center' }}>
+            <button type="button" onClick={labClick(openModal)} style={Object.assign({}, btnPrimaryStyle, { padding: '12px 24px', fontSize: '15px' })}>
+              Open integration wizard
             </button>
-          ) : null}
+          </div>
         </div>
-        {continueHint() ? <p style={hintTextStyle}>{continueHint()}</p> : null}
-
-        <p style={mutedTextStyle}>Wizard session only · fields and progress are not shared with other page widgets</p>
       </div>
-    </SandboxAccordion>
+
+      {modalOpen ? (
+        <div style={modalOverlayStyle} onClick={onOverlayClick} role="dialog" aria-modal="true" aria-label="PayU Hosted Checkout integration wizard">
+          <div style={modalPanelStyle} onClick={labStopBubble}>
+            <div style={modalHeaderStyle}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px' }}>
+                <div style={{ minWidth: 0 }}>
+                  <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', opacity: 0.85, marginBottom: '4px' }}>
+                    PayU Hosted Checkout
+                  </div>
+                  <h2 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 700, lineHeight: 1.3 }}>{current.title}</h2>
+                  {step > 0 ? (
+                    <p style={{ margin: '6px 0 0', fontSize: '13px', opacity: 0.9 }}>Step {current.stepLabel} of 8</p>
+                  ) : null}
+                </div>
+                <button
+                  type="button"
+                  onClick={labClick(closeModal)}
+                  aria-label="Close wizard"
+                  style={{ flexShrink: 0, cursor: 'pointer', border: 'none', background: 'rgba(255,255,255,0.2)', color: '#fff', borderRadius: '8px', width: '36px', height: '36px', fontSize: '18px', lineHeight: 1 }}
+                >
+                  ×
+                </button>
+              </div>
+              {renderStepPills()}
+              <div style={{ marginTop: '12px', height: '4px', background: 'rgba(255,255,255,0.25)', borderRadius: '4px', overflow: 'hidden' }}>
+                <div style={{ height: '100%', width: pct + '%', background: '#fff', transition: 'width 0.25s ease' }} />
+              </div>
+            </div>
+            <div style={modalBodyStyle}>
+              {renderWizardBody()}
+            </div>
+            <div style={modalFooterStyle}>
+              {renderWizardFooter()}
+              <p style={Object.assign({}, mutedTextStyle, { marginTop: '8px', marginBottom: 0 })}>Session saved in this browser · Esc to close</p>
+            </div>
+          </div>
+        </div>
+      ) : null}
+    </div>
   );
 };
 
