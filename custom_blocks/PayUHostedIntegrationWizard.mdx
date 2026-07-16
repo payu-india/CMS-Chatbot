@@ -219,15 +219,39 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   function labEnsure() {
     var existing = labRead();
     if (existing) {
-      if (!existing.progress) return wizardFresh();
-      if (!existing.params) existing.params = Object.assign({}, DEFAULT_PARAMS);
+      if (!existing.progress) {
+        var reset = wizardFresh();
+        labWrite(reset);
+        return reset;
+      }
+      var prevJson = JSON.stringify(existing.params || {});
+      var merged = mergeParams(existing.params);
+      existing.params = merged;
+      if (JSON.stringify(merged) !== prevJson) labWrite(existing);
       return existing;
     }
     return wizardFresh();
   }
 
   function mergeParams(params) {
-    return Object.assign({}, DEFAULT_PARAMS, params || {});
+    var merged = Object.assign({}, DEFAULT_PARAMS);
+    var p = params || {};
+    var k;
+    for (k in merged) {
+      if (!Object.prototype.hasOwnProperty.call(merged, k)) continue;
+      if (k === 'key') {
+        merged.key = isBlank(p.key) ? '' : String(p.key);
+        continue;
+      }
+      if (!isBlank(p[k])) merged[k] = String(p[k]);
+    }
+    return merged;
+  }
+
+  function initialFormValues() {
+    var data = labRead();
+    if (data && data.params) return mergeParams(data.params);
+    return Object.assign({}, DEFAULT_PARAMS);
   }
 
   function buildForwardHashString(params, saltVal) {
@@ -500,7 +524,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   var _merchantKey = useState('');
   var merchantKey = _merchantKey[0];
   var setMerchantKey = _merchantKey[1];
-  var _formValues = useState(Object.assign({}, DEFAULT_PARAMS));
+  var _formValues = useState(initialFormValues);
   var formValues = _formValues[0];
   var setFormValues = _formValues[1];
   var _salt = useState('');
@@ -563,12 +587,18 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
 
   var formRootRef = useRef(null);
   var merchantKeyRef = useRef('');
-  var formValuesRef = useRef(Object.assign({}, DEFAULT_PARAMS));
+  var formValuesRef = useRef(initialFormValues());
   var payFormRef = useRef(null);
 
   useEffect(function () {
     var data = labEnsure();
+    var params = mergeParams(data.params);
+    data.params = params;
+    labWrite(data);
     applyWizardSession(data);
+    setReturnPreview(exampleReturnPreview(params));
+    setRevResp(exampleRevResp(params));
+    persistFormValues(params);
     var prog = data.progress || defaultProgress();
     var saved = clampStepToProgress(readSavedStep(), prog);
     if (saved > 0 && saved < STEPS.length) setStep(saved);
@@ -598,6 +628,12 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
       if (n <= 2) clearHashUi();
       labWrite(data);
       setLab(data);
+    }
+    if (n === 2) {
+      var params = mergeParams(data.params);
+      setFormValues(params);
+      formValuesRef.current = params;
+      persistFormValues(params);
     }
     if (n === 3 && !(data.progress && data.progress.hashGenerated)) {
       clearHashUi();
@@ -852,6 +888,20 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
       '  -d "hash=' + data.hashHex + '"';
   }
 
+  function resetToExamples() {
+    var next = mergeParams({});
+    setMerchantKey('');
+    merchantKeyRef.current = '';
+    setFormValues(next);
+    persistFormValues(next);
+    formValuesRef.current = next;
+    invalidateLabAfterEdit();
+    setReturnPreview(exampleReturnPreview(next));
+    setRevResp(exampleRevResp(next));
+    setMsg('Example values restored. Enter your test key and click Save parameters.');
+    setErr('');
+  }
+
   function fillSimulatorUrls() {
     setFormValues(function (prev) {
       var next = Object.assign({}, prev);
@@ -867,8 +917,8 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   }
 
   function loadReturnFromSaved() {
-    var p = wizardProgress();
-    if (!p.paramsSaved) {
+    var prog = wizardProgress();
+    if (!prog.paramsSaved) {
       setErr('Save payment parameters first (Step 3).');
       return;
     }
@@ -1089,7 +1139,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
         <div style={btnRowStyle}>
           <button type="button" onClick={labClick(saveParams)} style={btnPrimaryStyle}>Save parameters to lab</button>
           <button type="button" onClick={labClick(newTxnid)} style={btnSecondaryStyle}>New txnid</button>
-          <button type="button" onClick={labClick(fillSimulatorUrls)} style={btnSecondaryStyle}>Fill PayU simulator URLs</button>
+          <button type="button" onClick={labClick(resetToExamples)} style={btnSecondaryStyle}>Reset to examples</button>
         </div>
         {wizardProgress().paramsSaved ? <p style={okTextStyle}>Step complete — parameters saved. Continue to enter salt and generate hash.</p> : (
           <p style={hintTextStyle}>Continue is locked until you click Save parameters to lab.</p>
