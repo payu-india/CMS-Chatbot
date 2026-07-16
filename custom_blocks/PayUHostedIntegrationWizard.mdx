@@ -1,128 +1,213 @@
 ---
 name: PayUHostedIntegrationWizard
 ---
-// PayUHostedIntegrationWizard - ReadMe CMS Custom Component
-// Hosted Checkout integration lab: edit fields, compute SHA-512, POST to PayU test.
-// MDX-safe: all logic inside export; defaults via JSON.parse; inline styles only.
+// PayUHostedIntegrationWizard — ReadMe Custom Component (Integration Guide)
+// All-in-one Hosted Checkout lab: params → hash → pay → verify. ReadMe teal theme.
+// Shares sessionStorage with PayUHostedCheckoutSandboxStep11–15 (payu-hosted-checkout-lab-v1).
 // Doc page: <PayUHostedIntegrationWizard />
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard() {
-  var TEST_PAYMENT = 'https://test.payu.in/_payment';
-  var PROD_PAYMENT = 'https://secure.payu.in/_payment';
 
-  var STEPS = JSON.parse(
-    '[{"id":"overview","title":"Flow overview"},{"id":"prereq","title":"Prerequisites"},{"id":"params","title":"Payment request"},{"id":"hash","title":"Request hash"},{"id":"post","title":"Test checkout"},{"id":"return","title":"Return payload"},{"id":"verify","title":"Verify response"},{"id":"test","title":"Test checklist"},{"id":"golive","title":"Go live"}]'
-  );
+  var LAB_CONFIG = JSON.parse('{"storageKey":"payu-hosted-checkout-lab-v1","testPaymentUrl":"https://test.payu.in/_payment","simulatorUrl":"https://test-payment-middleware.payu.in/simulatorResponse","hashVerifyToolUrl":"https://payu-hashverificationtool.onrender.com/","defaults":{"key":"","txnid":"tran_1234","amount":"10.00","productinfo":"iPhone","firstname":"Aarav","email":"aarav@example.com","phone":"1234567890","surl":"https://test-payment-middleware.payu.in/simulatorResponse","furl":"https://test-payment-middleware.payu.in/simulatorResponse","udf1":"","udf2":"","udf3":"","udf4":"","udf5":""},"sampleReverseResponse":{"status":"success","key":"","txnid":"tran_1234","amount":"10.00","productinfo":"iPhone","firstname":"Aarav","email":"aarav@example.com","udf1":"","udf2":"","udf3":"","udf4":"","udf5":""}}');
+  var LAB_KEY = LAB_CONFIG.storageKey;
+  var TEST_PAYMENT = LAB_CONFIG.testPaymentUrl;
+  var HASH_TOOL = LAB_CONFIG.hashVerifyToolUrl;
+  var SAMPLE = LAB_CONFIG.sampleReverseResponse;
+  var DEFAULT_PARAMS = LAB_CONFIG.defaults;
 
-  var DEFAULT_FORM = JSON.parse(
-    '{"key":"JPM7Fg","txnid":"TXN_DEMO_01","amount":"1499.00","productinfo":"Demo Store Order","firstname":"Aditi","email":"aditi@example.com","phone":"9999999999","surl":"https://merchant.example.com/payu/success","furl":"https://merchant.example.com/payu/failure","salt":"","udf1":"","udf2":"","udf3":"","udf4":"","udf5":""}'
-  );
+  var WIZARD_STEPS = JSON.parse('[{"id":"welcome","title":"How it works","hint":"Walk through a real test payment on PayU sandbox."},{"id":"params","title":"Build your payment request","hint":"Enter your test merchant key and payment fields. Defaults use PayU simulator URLs so you can try without a backend."},{"id":"hash","title":"Generate request hash","hint":"Compute SHA-512 on the pipe string. In production this runs on your server only."},{"id":"pay","title":"Pay on test checkout","hint":"Opens test.payu.in with your saved parameters and hash."},{"id":"verify","title":"Verify the response","hint":"After payment, PayU POSTs to surl/furl. Verify the reverse hash before updating orders."},{"id":"done","title":"Integration checklist","hint":"Confirm you have tested the full flow before going live."}]');
 
-  var PREREQ = JSON.parse(
-    '[{"id":"acct","label":"PayU test merchant key and salt from the dashboard"},{"id":"https","label":"Public HTTPS surl and furl URLs reachable from the internet"},{"id":"hash","label":"Production hashing runs on your server, not in the browser"},{"id":"uniq","label":"Unique txnid per payment attempt"}]'
-  );
+  var MANDATORY = JSON.parse('[{"k":"txnid","l":"txnid"},{"k":"amount","l":"amount"},{"k":"productinfo","l":"productinfo"},{"k":"firstname","l":"firstname"},{"k":"email","l":"email"},{"k":"phone","l":"phone"},{"k":"surl","l":"surl"},{"k":"furl","l":"furl"}]');
+  var OPTIONAL = JSON.parse('[{"k":"udf1","l":"udf1"},{"k":"udf2","l":"udf2"},{"k":"udf3","l":"udf3"},{"k":"udf4","l":"udf4"},{"k":"udf5","l":"udf5"}]');
+  var REV_FIELDS = JSON.parse('[{"k":"status","l":"status"},{"k":"txnid","l":"txnid"},{"k":"amount","l":"amount"},{"k":"productinfo","l":"productinfo"},{"k":"firstname","l":"firstname"},{"k":"email","l":"email"},{"k":"key","l":"key"},{"k":"udf1","l":"udf1"},{"k":"udf2","l":"udf2"},{"k":"udf3","l":"udf3"},{"k":"udf4","l":"udf4"},{"k":"udf5","l":"udf5"}]');
+  var DONE_CHECKS = JSON.parse('["Saved payment parameters with a unique txnid","Generated forward hash matching PayU field order","Completed a test payment on test.payu.in","Verified reverse hash on callback payload","Production hashing will run only on my server"]');
 
-  var FIELD_ROWS = JSON.parse(
-    '[{"k":"key","l":"key","t":"text"},{"k":"txnid","l":"txnid","t":"text"},{"k":"amount","l":"amount","t":"text"},{"k":"productinfo","l":"productinfo","t":"text"},{"k":"firstname","l":"firstname","t":"text"},{"k":"email","l":"email","t":"email"},{"k":"phone","l":"phone","t":"text"},{"k":"surl","l":"surl","t":"url"},{"k":"furl","l":"furl","t":"url"},{"k":"salt","l":"salt (test lab only)","t":"password"},{"k":"udf1","l":"udf1","t":"text"},{"k":"udf2","l":"udf2","t":"text"},{"k":"udf3","l":"udf3","t":"text"},{"k":"udf4","l":"udf4","t":"text"},{"k":"udf5","l":"udf5","t":"text"}]'
-  );
+  var PAYU_GREEN = '#0f766e';
+  var PAYU_GREEN_LIGHT = '#ecfdf5';
+  var RED_REQ = '#dc2626';
 
-  var TEST_CHECKS = JSON.parse(
-    '["Land on PayU test page with correct amount and productinfo","surl receives POST with expected txnid on success","furl receives POST with status failure when declined","Logged pre-hash string matches PayU docs field order","Reverse hash verified on response payload"]'
-  );
-
-  var GO_LIVE = JSON.parse(
-    '["Switch endpoint to https://secure.payu.in/_payment","Use production key and salt only on production servers","Enable webhooks and monitor surl or furl error rates","Run a small live transaction before full traffic"]'
-  );
-
-  var shell = {
-    border: '1px solid #223330',
-    borderRadius: '14px',
-    background: '#0A0E0D',
-    padding: '20px',
-    margin: '20px 0',
-    fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif',
-    fontSize: '14px',
-    lineHeight: 1.55,
-    color: '#EAF2EE',
+  var shellClass = 'min-w-0';
+  var fieldStackStyle = { display: 'flex', flexDirection: 'column', gap: '16px' };
+  var fieldStackInnerStyle = { display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '16px' };
+  var btnRowStyle = { display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '20px', alignItems: 'center' };
+  var btnRowSpacedStyle = { display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'center', marginTop: '16px' };
+  var labelStyle = { display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: 700, color: PAYU_GREEN };
+  var reqStarStyle = { color: RED_REQ, fontWeight: 700 };
+  var errTextStyle = { margin: '0 0 12px', fontSize: '14px', lineHeight: 1.5, color: RED_REQ };
+  var okTextStyle = { margin: '0 0 12px', fontSize: '14px', lineHeight: 1.5, color: PAYU_GREEN };
+  var hintTextStyle = { margin: '0 0 16px', fontSize: '14px', lineHeight: 1.5, color: '#b45309' };
+  var mutedTextStyle = { margin: '12px 0 0', fontSize: '12px', lineHeight: 1.5, color: '#6b7280' };
+  var bodyTextStyle = { margin: '0 0 12px', fontSize: '14px', lineHeight: 1.6, color: '#4b5563' };
+  var codeBlockStyle = {
+    display: 'block', wordBreak: 'break-all', borderRadius: '6px', background: '#f3f4f6',
+    padding: '8px 12px', fontSize: '12px', fontFamily: 'monospace', color: '#1f2937', marginBottom: '12px'
   };
+  var codeBlockPreStyle = Object.assign({}, codeBlockStyle, { whiteSpace: 'pre-wrap' });
+  var inputStyle = {
+    boxSizing: 'border-box', width: '100%', minWidth: 0, borderRadius: '6px',
+    border: '1px solid #d1d5db', background: '#fff', padding: '8px 12px',
+    fontSize: '14px', color: '#111827'
+  };
+  var btnPrimaryStyle = {
+    cursor: 'pointer', borderRadius: '6px', border: 'none', background: PAYU_GREEN,
+    color: '#fff', padding: '8px 16px', fontSize: '14px', fontWeight: 600
+  };
+  var btnSecondaryStyle = {
+    cursor: 'pointer', borderRadius: '6px', border: '1px solid ' + PAYU_GREEN,
+    background: PAYU_GREEN_LIGHT, color: PAYU_GREEN, padding: '8px 16px',
+    fontSize: '14px', fontWeight: 600
+  };
+  var summaryStyle = {
+    cursor: 'pointer', borderRadius: '6px', border: '1px solid ' + PAYU_GREEN,
+    background: PAYU_GREEN_LIGHT, color: PAYU_GREEN, padding: '8px 16px',
+    fontSize: '14px', fontWeight: 600, listStyle: 'none', width: '100%', textAlign: 'left'
+  };
+  var linkBtnStyle = {
+    cursor: 'pointer', borderRadius: '6px', border: '1px solid ' + PAYU_GREEN,
+    background: PAYU_GREEN_LIGHT, color: PAYU_GREEN, padding: '8px 16px',
+    fontSize: '14px', fontWeight: 600, textDecoration: 'none', display: 'inline-flex', alignItems: 'center'
+  };
+  var checklistLabelStyle = {
+    display: 'flex', cursor: 'pointer', alignItems: 'flex-start', gap: '8px',
+    fontSize: '14px', fontWeight: 600, lineHeight: 1.5, color: PAYU_GREEN
+  };
+  var stepRailStyle = {
+    display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '20px', padding: 0, listStyle: 'none'
+  };
+  var stepPillBase = {
+    borderRadius: '9999px', padding: '6px 12px', fontSize: '12px', fontWeight: 600,
+    lineHeight: 1.4, border: '1px solid #d1d5db', background: '#fff', color: '#4b5563', cursor: 'default'
+  };
+  var stepPillActive = Object.assign({}, stepPillBase, {
+    border: '1px solid ' + PAYU_GREEN, background: PAYU_GREEN_LIGHT, color: PAYU_GREEN, cursor: 'default'
+  });
+  var stepPillDone = Object.assign({}, stepPillBase, {
+    border: '1px solid ' + PAYU_GREEN, background: '#f0fdfa', color: '#115e59', cursor: 'pointer'
+  });
 
-  var mint = '#6CFFB8';
-  var muted = '#8FA39B';
-  var line = '#223330';
-  var surface = '#121817';
-
-  var _step = useState(0);
-  var step = _step[0];
-  var setStep = _step[1];
-  var _form = useState(DEFAULT_FORM);
-  var form = _form[0];
-  var setForm = _form[1];
-  var _hash = useState('');
-  var hashHex = _hash[0];
-  var setHashHex = _hash[1];
-  var _hashStage = useState(0);
-  var hashStage = _hashStage[0];
-  var setHashStage = _hashStage[1];
-  var _busy = useState(false);
-  var busy = _busy[0];
-  var setBusy = _busy[1];
-  var _err = useState('');
-  var err = _err[0];
-  var setErr = _err[1];
-  var _prereq = useState({});
-  var prereq = _prereq[0];
-  var setPrereq = _prereq[1];
-  var _labAck = useState(false);
-  var labAck = _labAck[0];
-  var setLabAck = _labAck[1];
-  var _verified = useState(false);
-  var verified = _verified[0];
-  var setVerified = _verified[1];
-  var _testDone = useState({});
-  var testDone = _testDone[0];
-  var setTestDone = _testDone[1];
-  var _goDone = useState({});
-  var goDone = _goDone[0];
-  var setGoDone = _goDone[1];
-  var _liveTested = useState(false);
-  var liveTested = _liveTested[0];
-  var setLiveTested = _liveTested[1];
-
-  function patchForm(key, val) {
-    var n = Object.assign({}, form);
-    n[key] = val;
-    setForm(n);
-    setHashHex('');
-    setHashStage(0);
+  function empty(s) {
+    return s == null ? '' : String(s).trim();
   }
 
-  function buildHashString(f) {
+  function isBlank(s) {
+    return empty(s) === '';
+  }
+
+  var LAB_UPDATE_EVENT = 'payu-hosted-checkout-lab-update';
+  var LAB_GLOBAL_STATE = '__payuHostedCheckoutLabState';
+  var WIZARD_FORM_GLOBAL = '__payuHostedIntegrationWizardForm';
+  var WIZARD_STEP_GLOBAL = '__payuHostedIntegrationWizardStep';
+  var SANDBOX_OPEN_GLOBAL = '__payuHostedCheckoutSandboxOpen';
+
+  function labWindow() {
+    if (typeof window === 'undefined') return null;
+    try {
+      if (window.top && window.top !== window) return window.top;
+    } catch (e) {}
+    return window;
+  }
+
+  function labRead() {
+    try {
+      var lw = labWindow();
+      if (!lw) return null;
+      if (lw[LAB_GLOBAL_STATE]) return Object.assign({}, lw[LAB_GLOBAL_STATE]);
+      if (lw.localStorage) {
+        var raw = lw.localStorage.getItem(LAB_KEY);
+        if (raw) return JSON.parse(raw);
+      }
+      if (typeof window !== 'undefined' && window.sessionStorage) {
+        var raw2 = window.sessionStorage.getItem(LAB_KEY);
+        if (raw2) return JSON.parse(raw2);
+      }
+      return null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function labBroadcast(data) {
+    try {
+      var evt = new CustomEvent(LAB_UPDATE_EVENT, { detail: data });
+      if (typeof window !== 'undefined') window.dispatchEvent(evt);
+      var lw = labWindow();
+      if (lw && typeof window !== 'undefined' && lw !== window) lw.dispatchEvent(evt);
+    } catch (e3) {}
+  }
+
+  function labWrite(data) {
+    try {
+      if (typeof window === 'undefined') return false;
+      data.updatedAt = Date.now();
+      var payload = JSON.stringify(data);
+      var lw = labWindow();
+      if (lw) lw[LAB_GLOBAL_STATE] = data;
+      if (lw && lw.localStorage) lw.localStorage.setItem(LAB_KEY, payload);
+      if (window.sessionStorage) window.sessionStorage.setItem(LAB_KEY, payload);
+      labBroadcast(data);
+      return true;
+    } catch (e2) {
+      return false;
+    }
+  }
+
+  function persistFormValues(data) {
+    var lw = labWindow();
+    if (lw) lw[WIZARD_FORM_GLOBAL] = Object.assign({}, data);
+  }
+
+  function labEnsure() {
+    var existing = labRead();
+    if (existing) {
+      existing.params = mergeParams(existing.params);
+      return existing;
+    }
+    return {
+      params: Object.assign({}, DEFAULT_PARAMS),
+      salt: '',
+      hashHex: '',
+      pipeString: '',
+      step11Done: false,
+      step12Done: false,
+      step13Launched: false,
+      step14Done: false
+    };
+  }
+
+  function mergeParams(params) {
+    var merged = Object.assign({}, DEFAULT_PARAMS, params || {});
+    try {
+      var fw = labWindow();
+      if (fw && fw[WIZARD_FORM_GLOBAL]) {
+        var form = fw[WIZARD_FORM_GLOBAL];
+        var k;
+        for (k in form) {
+          if (Object.prototype.hasOwnProperty.call(form, k) && !isBlank(form[k])) {
+            merged[k] = form[k];
+          }
+        }
+      }
+    } catch (e4) {}
+    return merged;
+  }
+
+  function buildForwardHashString(params, salt) {
+    var p = params;
     return (
-      f.key +
-      '|' +
-      f.txnid +
-      '|' +
-      f.amount +
-      '|' +
-      f.productinfo +
-      '|' +
-      f.firstname +
-      '|' +
-      f.email +
-      '|' +
-      (f.udf1 || '') +
-      '|' +
-      (f.udf2 || '') +
-      '|' +
-      (f.udf3 || '') +
-      '|' +
-      (f.udf4 || '') +
-      '|' +
-      (f.udf5 || '') +
-      '||||||' +
-      f.salt
+      empty(p.key) + '|' + empty(p.txnid) + '|' + empty(p.amount) + '|' + empty(p.productinfo) + '|' +
+      empty(p.firstname) + '|' + empty(p.email) + '|' + empty(p.udf1) + '|' + empty(p.udf2) + '|' +
+      empty(p.udf3) + '|' + empty(p.udf4) + '|' + empty(p.udf5) + '||||||' + empty(salt)
+    );
+  }
+
+  function buildReverseHashString(salt, resp) {
+    return (
+      empty(salt) + '|' + empty(resp.status) + '||||||' + empty(resp.udf5) + '|' + empty(resp.udf4) + '|' +
+      empty(resp.udf3) + '|' + empty(resp.udf2) + '|' + empty(resp.udf1) + '|' + empty(resp.email) + '|' +
+      empty(resp.firstname) + '|' + empty(resp.productinfo) + '|' + empty(resp.amount) + '|' +
+      empty(resp.txnid) + '|' + empty(resp.key)
     );
   }
 
@@ -130,131 +215,555 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     var enc = new TextEncoder();
     return crypto.subtle.digest('SHA-512', enc.encode(msg)).then(function (buf) {
       return Array.from(new Uint8Array(buf))
-        .map(function (b) {
-          return b.toString(16).padStart(2, '0');
-        })
+        .map(function (b) { return b.toString(16).padStart(2, '0'); })
         .join('');
     });
   }
 
-  function escapeAttr(s) {
-    return String(s)
-      .replace(/&/g, '&amp;')
-      .replace(/"/g, '&quot;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
+  function labStopBubble(e) {
+    if (!e) return;
+    if (e.stopPropagation) e.stopPropagation();
+    if (e.nativeEvent && e.nativeEvent.stopImmediatePropagation) {
+      e.nativeEvent.stopImmediatePropagation();
+    }
   }
 
-  function openPayuTest() {
-    if (!hashHex || hashHex.length !== 128) {
-      setErr('Compute the request hash before opening PayU test checkout.');
+  function labStopEvent(e) {
+    labStopBubble(e);
+    if (e.preventDefault) e.preventDefault();
+  }
+
+  function labClick(fn) {
+    return function (e) {
+      labStopBubble(e);
+      fn(e);
+    };
+  }
+
+  function copyText(text, setCopyMsg) {
+    var value = String(text || '');
+    if (!value) return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(value).then(function () {
+        setCopyMsg('Copied.');
+        setTimeout(function () { setCopyMsg(''); }, 2000);
+      });
+    }
+  }
+
+  function FieldLabel(props) {
+    var isReq = props.required === true;
+    return (
+      <label style={labelStyle}>
+        <span>{props.name}</span>
+        {isReq ? <span style={reqStarStyle} aria-hidden="true"> *</span> : null}
+      </label>
+    );
+  }
+
+  function LabInteractiveBanner() {
+    return (
+      <div
+        className="mb-4 flex items-start gap-3 rounded-md border border-teal-200 bg-white/90 px-3 py-2.5 dark:border-teal-800 dark:bg-gray-900/50"
+        role="note"
+      >
+        <span className="mt-0.5 shrink-0 rounded bg-teal-700 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white dark:bg-teal-600">
+          Try it
+        </span>
+        <p className="mb-0 min-w-0 text-sm leading-snug text-gray-700 dark:text-gray-200">
+          <span className="font-semibold text-gray-900 dark:text-gray-100">Interactive lab — </span>
+          edit fields, generate a real hash, and pay on PayU test checkout. Values stay in your browser for this session.
+        </p>
+      </div>
+    );
+  }
+
+  function LabHeader(props) {
+    return (
+      <div className="mb-3 pb-1">
+        <div className="mb-1 text-xs font-semibold uppercase tracking-wider text-teal-700 dark:text-teal-400">
+          Integration lab · Step {props.stepNum} of {WIZARD_STEPS.length - 1}
+        </div>
+        <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{props.title}</p>
+        {props.hint ? <p className="mt-1 text-sm text-gray-600 dark:text-gray-300">{props.hint}</p> : null}
+      </div>
+    );
+  }
+
+  var statusRowStyle = { display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '16px' };
+  var statusOkStyle = {
+    borderRadius: '9999px', background: '#f0fdfa', color: '#115e59',
+    padding: '4px 10px', fontSize: '12px', lineHeight: 1.4, fontWeight: 600
+  };
+  var statusPendingStyle = {
+    borderRadius: '9999px', background: '#f3f4f6', color: '#4b5563',
+    padding: '4px 10px', fontSize: '12px', lineHeight: 1.4, fontWeight: 600
+  };
+
+  function LabStatus(props) {
+    var items = props.items || [];
+    return (
+      <div style={statusRowStyle}>
+        {items.map(function (it, idx) {
+          return (
+            <span key={idx} style={it.ok ? statusOkStyle : statusPendingStyle}>
+              {it.ok ? '✓ ' : '○ '}{it.label}
+            </span>
+          );
+        })}
+      </div>
+    );
+  }
+
+  var sandboxOuterStyle = {
+    margin: '24px 0', width: '100%', minWidth: 0, maxWidth: '100%', boxSizing: 'border-box',
+    overflow: 'visible', borderRadius: '12px', border: '2px dashed ' + PAYU_GREEN,
+    background: 'rgba(240, 253, 250, 0.4)'
+  };
+  var sandboxSummaryStyle = {
+    display: 'flex', alignItems: 'center', gap: '12px', cursor: 'pointer',
+    padding: '12px 16px', listStyle: 'none', background: 'transparent', border: 'none'
+  };
+  var sandboxBadgeStyle = {
+    flexShrink: 0, borderRadius: '4px', background: PAYU_GREEN, color: '#fff',
+    padding: '2px 8px', fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em'
+  };
+  var sandboxBodyStyle = {
+    background: '#fff', padding: '16px', borderTop: '1px solid rgba(15, 118, 110, 0.15)'
+  };
+
+  function sandboxOpenStore() {
+    if (typeof window !== 'undefined') {
+      if (!window[SANDBOX_OPEN_GLOBAL]) window[SANDBOX_OPEN_GLOBAL] = {};
+      return window[SANDBOX_OPEN_GLOBAL];
+    }
+    return {};
+  }
+
+  function sandboxOpenRead(id) {
+    return sandboxOpenStore()[id] === true;
+  }
+
+  function sandboxOpenWrite(id, isOpen) {
+    sandboxOpenStore()[id] = !!isOpen;
+  }
+
+  function sandboxSyncChevron(details) {
+    if (!details) return;
+    var chevron = details.querySelector('[data-sandbox-chevron]');
+    if (chevron) chevron.textContent = details.open ? '▼' : '▶';
+  }
+
+  function onSandboxToggle(e) {
+    var details = e.currentTarget;
+    var id = details.getAttribute('data-sandbox-id') || 'sandbox';
+    sandboxOpenWrite(id, details.open);
+    sandboxSyncChevron(details);
+  }
+
+  function onSandboxSummaryClick(e) {
+    var summary = e.currentTarget;
+    var details = summary.parentNode;
+    if (!details || details.tagName !== 'DETAILS') return;
+    labStopEvent(e);
+    details.open = !details.open;
+    var id = details.getAttribute('data-sandbox-id') || 'sandbox';
+    sandboxOpenWrite(id, details.open);
+    sandboxSyncChevron(details);
+  }
+
+  function SandboxAccordion(props) {
+    var sandboxId = props.ariaLabel || props.title || 'sandbox';
+    var detailsRef = useRef(null);
+    useEffect(function () {
+      var details = detailsRef.current;
+      if (!details) return;
+      if (sandboxOpenRead(sandboxId)) details.open = true;
+      sandboxSyncChevron(details);
+    }, []);
+    return (
+      <details
+        ref={detailsRef}
+        data-sandbox-id={sandboxId}
+        style={sandboxOuterStyle}
+        onToggle={onSandboxToggle}
+        aria-label={props.ariaLabel || 'PayU integration sandbox'}
+      >
+        <summary style={sandboxSummaryStyle} onClick={onSandboxSummaryClick}>
+          <span style={sandboxBadgeStyle}>SANDBOX</span>
+          <span style={{ minWidth: 0, flex: 1, fontSize: '14px', fontWeight: 600, color: '#111827' }}>{props.title}</span>
+          <span data-sandbox-chevron={true} style={{ flexShrink: 0, color: PAYU_GREEN }}>▶</span>
+        </summary>
+        <div
+          style={sandboxBodyStyle}
+          onFocus={function () { sandboxOpenWrite(sandboxId, true); }}
+          onInput={function () { sandboxOpenWrite(sandboxId, true); }}
+          onClick={labStopBubble}
+          onMouseDown={labStopBubble}
+          onPointerDown={labStopBubble}
+        >
+          <p style={{ margin: '0 0 20px', fontSize: '14px', lineHeight: 1.6, color: '#4b5563' }}>{props.intro}</p>
+          {props.children}
+        </div>
+      </details>
+    );
+  }
+
+  function readSavedStep() {
+    try {
+      var lw = labWindow();
+      if (lw && typeof lw[WIZARD_STEP_GLOBAL] === 'number') return lw[WIZARD_STEP_GLOBAL];
+    } catch (e) {}
+    return 0;
+  }
+
+  function writeSavedStep(n) {
+    try {
+      var lw = labWindow();
+      if (lw) lw[WIZARD_STEP_GLOBAL] = n;
+    } catch (e) {}
+  }
+
+  var _step = useState(0);
+  var step = _step[0];
+  var setStep = _step[1];
+  var _lab = useState(labEnsure());
+  var lab = _lab[0];
+  var setLab = _lab[1];
+  var _merchantKey = useState('');
+  var merchantKey = _merchantKey[0];
+  var setMerchantKey = _merchantKey[1];
+  var _formValues = useState(Object.assign({}, DEFAULT_PARAMS));
+  var formValues = _formValues[0];
+  var setFormValues = _formValues[1];
+  var _salt = useState('');
+  var salt = _salt[0];
+  var setSalt = _salt[1];
+  var _pipeString = useState('');
+  var pipeString = _pipeString[0];
+  var setPipeString = _pipeString[1];
+  var _hashHex = useState('');
+  var hashHex = _hashHex[0];
+  var setHashHex = _hashHex[1];
+  var _busy = useState(false);
+  var busy = _busy[0];
+  var setBusy = _busy[1];
+  var _err = useState('');
+  var err = _err[0];
+  var setErr = _err[1];
+  var _msg = useState('');
+  var msg = _msg[0];
+  var setMsg = _msg[1];
+  var _copyMsg = useState('');
+  var copyMsg = _copyMsg[0];
+  var setCopyMsg = _copyMsg[1];
+  var _showCurl = useState(false);
+  var showCurl = _showCurl[0];
+  var setShowCurl = _showCurl[1];
+  var _showUdf = useState(false);
+  var showUdf = _showUdf[0];
+  var setShowUdf = _showUdf[1];
+  var _computedRev = useState('');
+  var computedRev = _computedRev[0];
+  var setComputedRev = _computedRev[1];
+  var _match = useState(null);
+  var match = _match[0];
+  var setMatch = _match[1];
+  var _responseHash = useState('');
+  var responseHash = _responseHash[0];
+  var setResponseHash = _responseHash[1];
+  var _revResp = useState(Object.assign({}, SAMPLE));
+  var revResp = _revResp[0];
+  var setRevResp = _revResp[1];
+  var _doneMap = useState({});
+  var doneMap = _doneMap[0];
+  var setDoneMap = _doneMap[1];
+
+  var formRootRef = useRef(null);
+  var merchantKeyRef = useRef('');
+  var formValuesRef = useRef(Object.assign({}, DEFAULT_PARAMS));
+  var payFormRef = useRef(null);
+
+  function refreshFromLab() {
+    var data = labEnsure();
+    setLab(data);
+    var params = mergeParams(data.params);
+    setFormValues(params);
+    formValuesRef.current = params;
+    if (!isBlank(params.key)) {
+      setMerchantKey(params.key);
+      merchantKeyRef.current = params.key;
+    }
+    if (data.salt) setSalt(data.salt);
+    if (data.pipeString) setPipeString(data.pipeString);
+    if (data.hashHex) setHashHex(data.hashHex);
+    if (data.params) {
+      var resp = Object.assign({}, SAMPLE, data.params);
+      resp.status = 'success';
+      setRevResp(resp);
+    }
+  }
+
+  useEffect(function () {
+    refreshFromLab();
+    var saved = readSavedStep();
+    if (saved > 0 && saved < WIZARD_STEPS.length) setStep(saved);
+  }, []);
+
+  useEffect(function () {
+    if (typeof window === 'undefined') return;
+    function handle() {
+      try { refreshFromLab(); } catch (e) {}
+    }
+    function onStorage(ev) {
+      if (!ev || ev.key === LAB_KEY || ev.key === null) handle();
+    }
+    window.addEventListener(LAB_UPDATE_EVENT, handle);
+    window.addEventListener('storage', onStorage);
+    var lw = labWindow();
+    if (lw && lw !== window) {
+      lw.addEventListener(LAB_UPDATE_EVENT, handle);
+      lw.addEventListener('storage', onStorage);
+    }
+    function onVis() {
+      if (document.visibilityState === 'visible') handle();
+    }
+    document.addEventListener('visibilitychange', onVis);
+    return function () {
+      window.removeEventListener(LAB_UPDATE_EVENT, handle);
+      window.removeEventListener('storage', onStorage);
+      if (lw && lw !== window) {
+        lw.removeEventListener(LAB_UPDATE_EVENT, handle);
+        lw.removeEventListener('storage', onStorage);
+      }
+      document.removeEventListener('visibilitychange', onVis);
+    };
+  }, []);
+
+  function goToStep(n) {
+    setStep(n);
+    writeSavedStep(n);
+    setErr('');
+    setMsg('');
+  }
+
+  function stepDone(idx) {
+    if (idx === 0) return true;
+    if (idx === 1) return lab && lab.step11Done;
+    if (idx === 2) return lab && lab.step12Done && hashHex.length === 128;
+    if (idx === 3) return lab && lab.step13Launched;
+    if (idx === 4) return lab && (lab.step14Done || match === true);
+    if (idx === 5) {
+      for (var i = 0; i < DONE_CHECKS.length; i += 1) {
+        if (!doneMap[i]) return false;
+      }
+      return true;
+    }
+    return false;
+  }
+
+  function canAdvance() {
+    if (step === 0) return true;
+    if (step === 1) return lab && lab.step11Done;
+    if (step === 2) return lab && lab.step12Done;
+    if (step === 3) return lab && lab.step13Launched;
+    if (step === 4) return match === true || (lab && lab.step14Done);
+    if (step === 5) return stepDone(5);
+    return true;
+  }
+
+  function fieldValue(k) {
+    if (k === 'key') return merchantKey;
+    return formValues[k] == null ? '' : formValues[k];
+  }
+
+  function updateField(k) {
+    return function (e) {
+      var v = e.target.value;
+      setFormValues(function (prev) {
+        var next = Object.assign({}, prev);
+        next[k] = v;
+        persistFormValues(next);
+        formValuesRef.current = next;
+        return next;
+      });
+      setSavedFlagsOff();
+    };
+  }
+
+  function updateMerchantKey(e) {
+    var v = e.target.value;
+    setMerchantKey(v);
+    merchantKeyRef.current = v;
+    setFormValues(function (prev) {
+      var next = Object.assign({}, prev);
+      next.key = v;
+      persistFormValues(next);
+      formValuesRef.current = next;
+      return next;
+    });
+    setSavedFlagsOff();
+  }
+
+  function setSavedFlagsOff() {
+    var data = labEnsure();
+    data.step11Done = false;
+    data.step12Done = false;
+    data.hashHex = '';
+    data.pipeString = '';
+    labWrite(data);
+    setLab(data);
+    setHashHex('');
+    setPipeString('');
+  }
+
+  function readMerchantKeyValue() {
+    if (!isBlank(merchantKey)) return merchantKey;
+    if (!isBlank(merchantKeyRef.current)) return merchantKeyRef.current;
+    return readFieldValue('key');
+  }
+
+  function readFieldValue(k) {
+    var v = formValuesRef.current[k];
+    if (!isBlank(v)) return v;
+    v = formValues[k];
+    return isBlank(v) ? '' : v;
+  }
+
+  function buildParamsFromState() {
+    var data = Object.assign({}, DEFAULT_PARAMS);
+    data.key = readMerchantKeyValue();
+    var i;
+    for (i = 0; i < MANDATORY.length; i += 1) {
+      data[MANDATORY[i].k] = readFieldValue(MANDATORY[i].k);
+    }
+    for (i = 0; i < OPTIONAL.length; i += 1) {
+      data[OPTIONAL[i].k] = readFieldValue(OPTIONAL[i].k);
+    }
+    return data;
+  }
+
+  function validateParams(data) {
+    if (isBlank(data.key)) return 'Enter your test merchant key from the PayU dashboard.';
+    for (var i = 0; i < MANDATORY.length; i += 1) {
+      if (isBlank(data[MANDATORY[i].k])) {
+        return 'Missing required field: ' + MANDATORY[i].l;
+      }
+    }
+    if (!/^\d+(\.\d{1,2})?$/.test(empty(data.amount))) {
+      return 'Amount must be a decimal string (e.g. 10.00).';
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(empty(data.email))) {
+      return 'Enter a valid email address.';
+    }
+    return '';
+  }
+
+  function saveParams() {
+    var data = buildParamsFromState();
+    persistFormValues(data);
+    formValuesRef.current = data;
+    var ve = validateParams(data);
+    if (ve) { setErr(ve); setMsg(''); return; }
+    var labData = labEnsure();
+    labData.params = data;
+    labData.step11Done = true;
+    labData.hashHex = '';
+    labData.pipeString = '';
+    labData.step12Done = false;
+    if (!labWrite(labData)) {
+      setErr('Could not save lab state. Allow storage for this site and try again.');
       return;
     }
-    var pairs = [
-      ['key', form.key],
-      ['txnid', form.txnid],
-      ['amount', form.amount],
-      ['productinfo', form.productinfo],
-      ['firstname', form.firstname],
-      ['email', form.email],
-      ['phone', form.phone],
-      ['surl', form.surl],
-      ['furl', form.furl],
-      ['udf1', form.udf1 || ''],
-      ['udf2', form.udf2 || ''],
-      ['udf3', form.udf3 || ''],
-      ['udf4', form.udf4 || ''],
-      ['udf5', form.udf5 || ''],
-      ['hash', hashHex],
-    ];
-    var inputs = '';
-    for (var i = 0; i < pairs.length; i += 1) {
-      inputs +=
-        '<input type="hidden" name="' +
-        escapeAttr(pairs[i][0]) +
-        '" value="' +
-        escapeAttr(pairs[i][1]) +
-        '" />';
-    }
-    var html =
-      '<!DOCTYPE html><html><body onload="document.forms[0].submit()"><form method="post" action="' +
-      escapeAttr(TEST_PAYMENT) +
-      '">' +
-      inputs +
-      '</form><p>Redirecting to PayU test...</p></body></html>';
-    var w = window.open('', '_blank', 'noopener,noreferrer');
-    if (!w) {
-      setErr('Pop-up blocked. Allow pop-ups to open PayU test checkout.');
-      return;
-    }
-    w.document.open();
-    w.document.write(html);
-    w.document.close();
-    setLiveTested(true);
+    setLab(labData);
+    setMsg('Parameters saved. Continue to generate the request hash.');
     setErr('');
   }
 
   function newTxnid() {
-    var id =
-      'TXN' +
-      Date.now().toString(36).toUpperCase() +
-      Math.random().toString(36).slice(2, 6).toUpperCase();
-    patchForm('txnid', id.slice(0, 25));
-  }
-
-  function formValid() {
-    var keys = ['key', 'txnid', 'amount', 'productinfo', 'firstname', 'email', 'phone', 'surl', 'furl', 'salt'];
-    for (var i = 0; i < keys.length; i += 1) {
-      if (!String(form[keys[i]] || '').trim()) return false;
-    }
-    return labAck;
-  }
-
-  function prereqDone() {
-    for (var i = 0; i < PREREQ.length; i += 1) {
-      if (!prereq[PREREQ[i].id]) return false;
-    }
-    return true;
-  }
-
-  function allChecked(map, list) {
-    for (var i = 0; i < list.length; i += 1) {
-      if (!map[i]) return false;
-    }
-    return true;
-  }
-
-  function canAdvance() {
-    if (step === 1) return prereqDone();
-    if (step === 2) return formValid();
-    if (step === 3) return hashHex.length === 128;
-    if (step === 4) return liveTested;
-    if (step === 6) return verified;
-    if (step === 7) return allChecked(testDone, TEST_CHECKS);
-    return true;
-  }
-
-  function showHashString() {
+    var id = 'tran_' + Date.now().toString(36);
+    var txnid = id.slice(0, 20);
+    setFormValues(function (prev) {
+      var next = Object.assign({}, prev);
+      next.txnid = txnid;
+      persistFormValues(next);
+      formValuesRef.current = next;
+      return next;
+    });
+    setSavedFlagsOff();
+    setMsg('');
     setErr('');
-    if (!form.salt.trim()) {
-      setErr('Enter your test salt on the Payment request step.');
+  }
+
+  function resetExamples() {
+    var next = Object.assign({}, DEFAULT_PARAMS);
+    setMerchantKey('');
+    merchantKeyRef.current = '';
+    setFormValues(next);
+    persistFormValues(next);
+    formValuesRef.current = next;
+    setSalt('');
+    setHashHex('');
+    setPipeString('');
+    setErr('');
+    setMsg('');
+    var labData = labEnsure();
+    labData.params = next;
+    labData.salt = '';
+    labData.hashHex = '';
+    labData.pipeString = '';
+    labData.step11Done = false;
+    labData.step12Done = false;
+    labData.step13Launched = false;
+    labData.step14Done = false;
+    labWrite(labData);
+    setLab(labData);
+  }
+
+  function showPipeString() {
+    setErr('');
+    if (!lab || !lab.step11Done) {
+      setErr('Save payment parameters first.');
       return;
     }
-    setHashStage(1);
-  }
-
-  function computeHash() {
-    setErr('');
-    if (!form.salt.trim()) {
-      setErr('Salt is required.');
+    if (isBlank(salt)) {
+      setErr('Enter your test salt (dashboard → API keys). Never use production salt in the browser.');
       return;
     }
+    var params = mergeParams(lab.params);
+    var pipe = buildForwardHashString(params, salt);
+    setPipeString(pipe);
+    setMsg('Pre-hash string shown below. Review field order, then compute SHA-512.');
+    setErr('');
+  }
+
+  function generateHash() {
+    setErr('');
+    if (!lab || !lab.step11Done) {
+      setErr('Save payment parameters first.');
+      return;
+    }
+    if (isBlank(salt)) {
+      setErr('Enter test salt before generating hash.');
+      return;
+    }
+    var params = mergeParams(lab.params);
+    var pipe = buildForwardHashString(params, salt);
     setBusy(true);
-    sha512Hex(buildHashString(form))
+    sha512Hex(pipe)
       .then(function (h) {
+        var labData = labEnsure();
+        labData.salt = salt;
+        labData.pipeString = pipe;
+        labData.hashHex = h;
+        labData.step12Done = true;
+        labWrite(labData);
+        setLab(labData);
+        setPipeString(pipe);
         setHashHex(h);
-        setHashStage(2);
+        setMsg('Hash generated. Continue to pay on test checkout.');
         setBusy(false);
+        setErr('');
       })
       .catch(function () {
         setErr('SHA-512 unavailable in this browser context.');
@@ -262,296 +771,440 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
       });
   }
 
-  function restart() {
-    setStep(0);
-    setForm(DEFAULT_FORM);
-    setHashHex('');
-    setHashStage(0);
-    setErr('');
-    setPrereq({});
-    setLabAck(false);
-    setVerified(false);
-    setTestDone({});
-    setGoDone({});
-    setLiveTested(false);
+  function paymentReady(data) {
+    if (!data) return false;
+    return data.step11Done && data.step12Done && data.hashHex && data.hashHex.length === 128;
   }
 
-  var pct = Math.round(((step + 1) / STEPS.length) * 100);
-  var current = STEPS[step];
+  function syncPayForm(data) {
+    var form = payFormRef.current;
+    if (!form) return false;
+    var p = mergeParams(data.params);
+    var fields = {
+      key: p.key,
+      txnid: p.txnid,
+      amount: p.amount,
+      productinfo: p.productinfo,
+      firstname: p.firstname,
+      email: p.email,
+      phone: p.phone,
+      surl: p.surl,
+      furl: p.furl,
+      udf1: p.udf1 || '',
+      udf2: p.udf2 || '',
+      udf3: p.udf3 || '',
+      udf4: p.udf4 || '',
+      udf5: p.udf5 || '',
+      hash: data.hashHex
+    };
+    var name;
+    for (name in fields) {
+      if (!Object.prototype.hasOwnProperty.call(fields, name)) continue;
+      var existing = form.elements[name];
+      if (!existing) {
+        existing = document.createElement('input');
+        existing.type = 'hidden';
+        existing.name = name;
+        form.appendChild(existing);
+      }
+      existing.value = fields[name];
+    }
+    return true;
+  }
 
-  var inputStyle = {
-    width: '100%',
-    boxSizing: 'border-box',
-    background: '#0D1413',
-    border: '1px solid ' + line,
-    borderRadius: '8px',
-    padding: '8px 10px',
-    color: '#EAF2EE',
-    fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
-    fontSize: '12px',
-  };
+  function submitPayuCheckout(target) {
+    var data = labEnsure();
+    if (!paymentReady(data)) {
+      setErr('Save parameters and generate hash first.');
+      setMsg('');
+      return;
+    }
+    if (!syncPayForm(data)) {
+      setErr('Could not prepare checkout form. Refresh and try again.');
+      return;
+    }
+    payFormRef.current.target = target || '_blank';
+    payFormRef.current.submit();
+    data.step13Launched = true;
+    labWrite(data);
+    setLab(data);
+    setErr('');
+    setMsg(target === '_top' ? 'Redirecting to PayU test checkout…' : 'Opening PayU test checkout in a new tab…');
+  }
 
-  var btnPrimary = {
-    padding: '10px 16px',
-    borderRadius: '10px',
-    border: 'none',
-    background: mint,
-    color: '#06120D',
-    fontWeight: 600,
-    fontSize: '13px',
-    cursor: 'pointer',
-  };
+  function buildCurl(data) {
+    var p = mergeParams(data.params);
+    return 'curl -X POST "' + TEST_PAYMENT + '" \n' +
+      '  -H "Content-Type: application/x-www-form-urlencoded" \n' +
+      '  -d "key=' + p.key + '" \n' +
+      '  -d "txnid=' + p.txnid + '" \n' +
+      '  -d "amount=' + p.amount + '" \n' +
+      '  -d "productinfo=' + p.productinfo + '" \n' +
+      '  -d "firstname=' + p.firstname + '" \n' +
+      '  -d "email=' + p.email + '" \n' +
+      '  -d "phone=' + p.phone + '" \n' +
+      '  -d "surl=' + p.surl + '" \n' +
+      '  -d "furl=' + p.furl + '" \n' +
+      '  -d "hash=' + data.hashHex + '"';
+  }
 
-  var btnGhost = {
-    padding: '10px 16px',
-    borderRadius: '10px',
-    border: '1px solid ' + line,
-    background: 'transparent',
-    color: '#EAF2EE',
-    fontWeight: 600,
-    fontSize: '13px',
-    cursor: 'pointer',
-  };
+  function updateRevField(k) {
+    return function (e) {
+      var v = e.target.value;
+      setRevResp(function (prev) {
+        var next = Object.assign({}, prev);
+        next[k] = v;
+        return next;
+      });
+    };
+  }
 
-  return (
-    <div style={shell} role="region" aria-label="PayU Hosted Checkout integration wizard">
-      <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.12em', color: mint, marginBottom: '8px' }}>
-        PayU Hosted Checkout · Integration lab
-      </div>
-      <h2 style={{ margin: '0 0 6px', fontSize: '1.35rem', fontWeight: 700, color: '#EAF2EE' }}>{current.title}</h2>
-      <p style={{ margin: '0 0 14px', fontSize: '13px', color: muted }}>
-        Step {step + 1} of {STEPS.length} · Edit values, compute hash, test on PayU sandbox
-      </p>
+  function verifyReverseHash() {
+    if (isBlank(salt)) {
+      setErr('Enter test salt (same as hash step).');
+      return;
+    }
+    if (isBlank(responseHash)) {
+      setErr('Paste the hash from PayU callback (surl/furl POST).');
+      return;
+    }
+    setBusy(true);
+    setErr('');
+    setMatch(null);
+    setComputedRev('');
+    var chain = buildReverseHashString(salt, revResp);
+    sha512Hex(chain)
+      .then(function (h) {
+        setComputedRev(h);
+        var ok = h.toLowerCase() === empty(responseHash).toLowerCase();
+        setMatch(ok);
+        if (ok) {
+          var labData = labEnsure();
+          labData.step14Done = true;
+          labWrite(labData);
+          setLab(labData);
+          setMsg('Reverse hash verified. Continue to the checklist.');
+        } else {
+          setMsg('');
+          setErr('Hash mismatch — check salt, status, and field order.');
+        }
+        setBusy(false);
+      })
+      .catch(function () {
+        setErr('SHA-512 unavailable.');
+        setBusy(false);
+      });
+  }
 
-      <div style={{ marginBottom: '16px' }}>
-        <div style={{ height: '4px', background: surface, borderRadius: '4px', overflow: 'hidden' }}>
-          <div style={{ height: '100%', width: pct + '%', background: mint, transition: 'width 0.25s ease' }} />
-        </div>
-      </div>
+  function restartLab() {
+    resetExamples();
+    setResponseHash('');
+    setComputedRev('');
+    setMatch(null);
+    setDoneMap({});
+    goToStep(0);
+  }
 
-      {err ? (
-        <p style={{ margin: '0 0 12px', padding: '10px 12px', borderRadius: '8px', background: 'rgba(255,100,100,.12)', color: '#ffb4b4', fontSize: '13px' }} role="alert">
-          {err}
-        </p>
-      ) : null}
+  var readyPay = paymentReady(lab);
+  var amountLabel = lab && lab.params ? mergeParams(lab.params).amount : '10.00';
+  var current = WIZARD_STEPS[step];
+  var stepNum = step === 0 ? '0' : String(step);
 
-      {step === 0 ? (
-        <div>
-          <p style={{ margin: '0 0 12px', color: muted, fontSize: '13px' }}>
-            Server builds a signed POST to PayU, customer pays on the hosted page, PayU POSTs the result to your surl or furl. This lab lets you enter test fields, compute the request hash, and open real PayU test checkout.
-          </p>
-          <ol style={{ margin: '0 0 12px', paddingLeft: '18px', color: '#C9D6D0', fontSize: '13px' }}>
-            <li>Enter payment request fields and test salt</li>
-            <li>Compute SHA-512 request hash in the browser</li>
-            <li>POST to {TEST_PAYMENT}</li>
-            <li>Verify response hash on your server</li>
-          </ol>
-          <p style={{ margin: 0, fontSize: '12px', color: muted }}>
-            Production: hash only on your server. Salt must never ship to customer browsers.
-          </p>
-        </div>
-      ) : null}
-
-      {step === 1 ? (
-        <div style={{ display: 'grid', gap: '8px' }}>
-          {PREREQ.map(function (item) {
-            return (
-              <label
-                key={item.id}
-                style={{ display: 'flex', gap: '10px', alignItems: 'flex-start', padding: '12px', borderRadius: '10px', border: '1px solid ' + line, background: surface, cursor: 'pointer' }}
+  function renderStepRail() {
+    return (
+      <ol style={stepRailStyle} aria-label="Integration steps">
+        {WIZARD_STEPS.map(function (s, idx) {
+          var done = idx < step || (idx !== step && stepDone(idx));
+          var active = idx === step;
+          var style = active ? stepPillActive : done ? stepPillDone : stepPillBase;
+          var label = idx === 0 ? 'Start' : String(idx);
+          return (
+            <li key={s.id}>
+              <button
+                type="button"
+                style={style}
+                disabled={!done && idx !== step}
+                onClick={labClick(function () {
+                  if (done || idx === step) goToStep(idx);
+                })}
+                aria-current={active ? 'step' : undefined}
               >
-                <input
-                  type="checkbox"
-                  checked={!!prereq[item.id]}
-                  onChange={function (e) {
-                    var n = Object.assign({}, prereq);
-                    n[item.id] = e.target.checked;
-                    setPrereq(n);
-                  }}
-                  style={{ marginTop: '3px' }}
-                />
-                <span style={{ fontSize: '13px' }}>{item.label}</span>
-              </label>
+                {idx === WIZARD_STEPS.length - 1 && stepDone(5) ? '✓ Done' : label + '. ' + s.title.split(' ')[0]}
+              </button>
+            </li>
+          );
+        })}
+      </ol>
+    );
+  }
+
+  function renderWelcome() {
+    return (
+      <div>
+        <LabHeader stepNum="0" title={current.title} hint={current.hint} />
+        <p style={bodyTextStyle}>
+          Your server builds a signed POST to PayU → customer pays on the hosted page → PayU POSTs the result to your <strong>surl</strong> or <strong>furl</strong>.
+          This lab lets you try the full loop on PayU test without writing backend code first.
+        </p>
+        <ol style={{ margin: '0 0 16px', paddingLeft: '20px', fontSize: '14px', lineHeight: 1.7, color: '#374151' }}>
+          <li>Enter test key and payment fields (simulator URLs included)</li>
+          <li>Generate SHA-512 request hash</li>
+          <li>Pay on <code style={{ fontSize: '12px' }}>test.payu.in</code></li>
+          <li>Verify reverse hash on the callback</li>
+        </ol>
+        <p style={hintTextStyle} role="note">
+          Test credentials only. Production hashing must run on your server — never expose production salt in the browser.
+        </p>
+        <button type="button" onClick={labClick(function () { goToStep(1); })} style={btnPrimaryStyle}>
+          Start integration lab
+        </button>
+      </div>
+    );
+  }
+
+  function renderParams() {
+    return (
+      <div>
+        <LabHeader stepNum="1" title={current.title} hint={current.hint} />
+        <div ref={formRootRef} style={fieldStackStyle}>
+          <div>
+            <FieldLabel name="key" required={true} />
+            <input type="text" name="merchantKey" value={merchantKey} onChange={updateMerchantKey} style={inputStyle} placeholder="Test merchant key" />
+          </div>
+          {MANDATORY.map(function (row) {
+            return (
+              <div key={row.k}>
+                <FieldLabel name={row.l} required={true} />
+                <input type={row.k === 'email' ? 'email' : 'text'} name={row.k} value={fieldValue(row.k)} onChange={updateField(row.k)} style={inputStyle} />
+              </div>
             );
           })}
-        </div>
-      ) : null}
-
-      {step === 2 ? (
-        <div>
-          <button type="button" onClick={newTxnid} style={Object.assign({}, btnGhost, { marginBottom: '12px' })}>
-            New random txnid
+          <button type="button" onClick={labClick(function () { setShowUdf(!showUdf); })} style={summaryStyle}>
+            {showUdf ? 'Hide optional UDF fields' : 'Show optional UDF fields (udf1–udf5)'}
           </button>
-          <div style={{ display: 'grid', gap: '10px', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))' }}>
-            {FIELD_ROWS.map(function (row) {
-              return (
-                <div key={row.k}>
-                  <label style={{ display: 'block', fontSize: '11px', fontWeight: 600, color: muted, marginBottom: '4px', textTransform: 'uppercase' }}>
-                    {row.l}
-                  </label>
-                  <input
-                    type={row.t}
-                    value={form[row.k]}
-                    onChange={function (e) {
-                      patchForm(row.k, e.target.value);
-                    }}
-                    style={inputStyle}
-                    autoComplete="off"
-                  />
-                </div>
-              );
-            })}
-          </div>
-          <label style={{ display: 'flex', gap: '10px', marginTop: '14px', alignItems: 'flex-start', fontSize: '13px', color: muted, cursor: 'pointer' }}>
-            <input type="checkbox" checked={labAck} onChange={function (e) { setLabAck(e.target.checked); }} style={{ marginTop: '3px' }} />
-            I am using test-only credentials in this lab.
-          </label>
-        </div>
-      ) : null}
-
-      {step === 3 ? (
-        <div>
-          <p style={{ margin: '0 0 10px', fontFamily: 'ui-monospace, monospace', fontSize: '11px', color: muted, wordBreak: 'break-all' }}>
-            sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
-          </p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '12px' }}>
-            <button type="button" onClick={showHashString} disabled={hashStage >= 1} style={btnGhost}>
-              1) Show pre-image string
-            </button>
-            <button type="button" onClick={computeHash} disabled={hashStage < 1 || busy} style={btnPrimary}>
-              {busy ? 'Computing...' : '2) Compute SHA-512'}
-            </button>
-          </div>
-          {hashStage >= 1 ? (
-            <pre style={{ margin: '0 0 12px', padding: '12px', borderRadius: '8px', background: '#0D1413', border: '1px solid ' + line, fontSize: '11px', overflow: 'auto', color: '#C9D6D0', whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}>
-              {buildHashString(form)}
-            </pre>
-          ) : null}
-          {hashStage >= 2 && hashHex ? (
-            <div style={{ padding: '12px', borderRadius: '8px', border: '1px solid ' + mint, background: 'rgba(108,255,184,.08)' }}>
-              <p style={{ margin: '0 0 6px', fontSize: '11px', fontWeight: 600, color: mint }}>hash</p>
-              <p style={{ margin: 0, fontFamily: 'ui-monospace, monospace', fontSize: '11px', wordBreak: 'break-all', color: mint }}>{hashHex}</p>
+          {showUdf ? (
+            <div style={fieldStackInnerStyle}>
+              {OPTIONAL.map(function (row) {
+                return (
+                  <div key={row.k}>
+                    <FieldLabel name={row.l} required={false} />
+                    <input type="text" name={row.k} value={fieldValue(row.k)} onChange={updateField(row.k)} style={inputStyle} />
+                  </div>
+                );
+              })}
             </div>
           ) : null}
         </div>
-      ) : null}
+        <div style={btnRowStyle}>
+          <button type="button" onClick={labClick(saveParams)} style={btnPrimaryStyle}>Save parameters</button>
+          <button type="button" onClick={labClick(newTxnid)} style={btnSecondaryStyle}>New txnid</button>
+          <button type="button" onClick={labClick(resetExamples)} style={btnSecondaryStyle}>Reset examples</button>
+        </div>
+      </div>
+    );
+  }
 
-      {step === 4 ? (
+  function renderHash() {
+    if (!lab || !lab.step11Done) {
+      return (
         <div>
-          <p style={{ margin: '0 0 12px', fontSize: '13px', color: muted }}>
-            Opens PayU test checkout in a new tab with your fields and computed hash. surl and furl must be reachable for the return journey.
-          </p>
-          <button type="button" onClick={openPayuTest} disabled={hashHex.length !== 128} style={btnPrimary}>
-            Open PayU test checkout (new tab)
+          <LabHeader stepNum="2" title={current.title} hint={current.hint} />
+          <p style={errTextStyle}>Save payment parameters in Step 1 first.</p>
+          <button type="button" onClick={labClick(function () { goToStep(1); })} style={btnSecondaryStyle}>Go to Step 1</button>
+        </div>
+      );
+    }
+    var params = mergeParams(lab.params);
+    return (
+      <div>
+        <LabHeader stepNum="2" title={current.title} hint={current.hint} />
+        <p style={bodyTextStyle}>
+          Forward hash formula: <code className="text-xs">sha512(key|txnid|amount|…|udf5||||||SALT)</code>
+        </p>
+        <div style={fieldStackStyle}>
+          <div>
+            <FieldLabel name="salt" required={true} />
+            <input
+              type="password"
+              value={salt}
+              onChange={function (e) {
+                setSalt(e.target.value);
+                setHashHex('');
+                setPipeString('');
+                var labData = labEnsure();
+                labData.step12Done = false;
+                labData.hashHex = '';
+                labWrite(labData);
+                setLab(labData);
+              }}
+              style={inputStyle}
+              autoComplete="off"
+              placeholder="Test salt from dashboard"
+            />
+          </div>
+        </div>
+        <div style={btnRowSpacedStyle}>
+          <button type="button" onClick={labClick(showPipeString)} style={btnSecondaryStyle}>Show pre-hash string</button>
+          <button type="button" onClick={labClick(generateHash)} disabled={busy} style={btnPrimaryStyle}>
+            {busy ? 'Computing…' : 'Generate SHA-512 hash'}
           </button>
-          {liveTested ? (
-            <p style={{ margin: '12px 0 0', fontSize: '13px', color: mint }}>Test checkout launched. Complete payment on PayU or close the tab and continue.</p>
+          {hashHex ? (
+            <button type="button" onClick={labClick(function () { copyText(hashHex, setCopyMsg); })} style={btnSecondaryStyle}>Copy hash</button>
           ) : null}
-          <pre style={{ marginTop: '14px', padding: '12px', borderRadius: '8px', background: '#0D1413', border: '1px solid ' + line, fontSize: '11px', color: '#C9D6D0', overflow: 'auto' }}>
-            {'POST ' + TEST_PAYMENT + '\nkey=' + form.key + '&txnid=' + form.txnid + '&amount=' + form.amount + '&hash=' + (hashHex || '<compute first>')}
-          </pre>
         </div>
-      ) : null}
+        {pipeString ? <code style={codeBlockPreStyle}>{pipeString}</code> : null}
+        {hashHex ? <code style={codeBlockStyle}>{hashHex}</code> : null}
+        <a href={HASH_TOOL} target="_blank" rel="noopener noreferrer" style={linkBtnStyle}>Open Hash Verification Tool</a>
+      </div>
+    );
+  }
 
-      {step === 5 ? (
-        <div>
-          <p style={{ margin: '0 0 10px', fontSize: '13px', color: muted }}>PayU POSTs to surl or furl with fields like these (success example):</p>
-          <pre style={{ margin: 0, padding: '12px', borderRadius: '8px', background: '#0D1413', border: '1px solid ' + line, fontSize: '11px', color: '#C9D6D0', whiteSpace: 'pre-wrap' }}>
-            {'status=success\nkey=' + form.key + '\ntxnid=' + form.txnid + '\namount=' + form.amount + '\nproductinfo=' + form.productinfo + '\nemail=' + form.email + '\nhash=<response_hash>'}
-          </pre>
-        </div>
-      ) : null}
-
-      {step === 6 ? (
-        <div>
-          <p style={{ margin: '0 0 10px', fontFamily: 'ui-monospace, monospace', fontSize: '11px', color: muted, wordBreak: 'break-all' }}>
-            sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
-          </p>
-          <button
-            type="button"
-            disabled={verified}
-            onClick={function () { setVerified(true); }}
-            style={btnGhost}
-          >
-            Run mock reverse-hash check
+  function renderPay() {
+    return (
+      <div>
+        <LabHeader stepNum="3" title={current.title} hint={current.hint} />
+        <form ref={payFormRef} method="post" action={TEST_PAYMENT} style={{ display: 'none' }} aria-hidden="true" />
+        <div style={btnRowSpacedStyle}>
+          <button type="button" onClick={labClick(function () { submitPayuCheckout('_blank'); })} disabled={!readyPay} style={btnPrimaryStyle}>
+            {'Pay ₹' + amountLabel + ' on PayU Test Checkout'}
           </button>
-          {verified ? (
-            <p style={{ margin: '12px 0 0', fontSize: '13px', color: mint }}>Mock verification passed. On your server, recompute and compare case-sensitively before updating orders.</p>
+          <button type="button" onClick={labClick(function () { submitPayuCheckout('_top'); })} disabled={!readyPay} style={btnSecondaryStyle}>
+            Open in this tab
+          </button>
+          <button type="button" onClick={labClick(function () { setShowCurl(!showCurl); })} disabled={!readyPay} style={btnSecondaryStyle}>
+            {showCurl ? 'Hide curl' : 'Show curl'}
+          </button>
+          {readyPay ? (
+            <button type="button" onClick={labClick(function () { copyText(buildCurl(lab), setCopyMsg); })} style={btnSecondaryStyle}>Copy curl</button>
           ) : null}
         </div>
-      ) : null}
+        {showCurl && readyPay ? <code style={codeBlockPreStyle}>{buildCurl(lab)}</code> : null}
+        <p style={mutedTextStyle} role="note">
+          {'Test card: 5123456789012346 · OTP 123456 · UPI: anything' + '@' + 'payu'}
+        </p>
+        <p style={bodyTextStyle}>
+          Default <strong>surl</strong> / <strong>furl</strong> point to the PayU simulator — no backend needed for this try-out.
+        </p>
+      </div>
+    );
+  }
 
-      {step === 7 ? (
-        <div style={{ display: 'grid', gap: '8px' }}>
-          {TEST_CHECKS.map(function (label, idx) {
+  function renderVerify() {
+    return (
+      <div>
+        <LabHeader stepNum="4" title={current.title} hint={current.hint} />
+        <p style={bodyTextStyle}>
+          After payment, PayU POSTs fields to your callback URL. Recompute the reverse hash on your server before updating order status.
+        </p>
+        <div style={fieldStackStyle}>
+          {REV_FIELDS.map(function (row) {
+            var req = row.k.indexOf('udf') !== 0;
             return (
-              <label key={label} style={{ display: 'flex', gap: '10px', padding: '10px 12px', borderRadius: '8px', border: '1px solid ' + line, background: surface, cursor: 'pointer', fontSize: '13px' }}>
+              <div key={row.k}>
+                <FieldLabel name={row.l} required={req} />
+                <input type="text" value={revResp[row.k] || ''} onChange={updateRevField(row.k)} style={inputStyle} />
+              </div>
+            );
+          })}
+          <div>
+            <FieldLabel name="hash (from callback)" required={true} />
+            <input
+              type="text"
+              value={responseHash}
+              onChange={function (e) { setResponseHash(e.target.value); }}
+              style={inputStyle}
+              placeholder="Paste hash from surl/furl POST"
+            />
+          </div>
+        </div>
+        <div style={btnRowStyle}>
+          <button type="button" onClick={labClick(verifyReverseHash)} disabled={busy} style={btnPrimaryStyle}>
+            {busy ? 'Verifying…' : 'Verify reverse hash'}
+          </button>
+          <a href={HASH_TOOL} target="_blank" rel="noopener noreferrer" style={linkBtnStyle}>Open Hash Verification Tool</a>
+        </div>
+        {match === true ? <p style={okTextStyle}>Hash matches — response verified for this lab.</p> : null}
+        {computedRev ? <code style={codeBlockStyle}>{computedRev}</code> : null}
+      </div>
+    );
+  }
+
+  function renderDone() {
+    return (
+      <div>
+        <LabHeader stepNum="5" title={current.title} hint={current.hint} />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          {DONE_CHECKS.map(function (label, idx) {
+            return (
+              <label key={label} style={checklistLabelStyle}>
                 <input
                   type="checkbox"
-                  checked={!!testDone[idx]}
+                  checked={!!doneMap[idx]}
                   onChange={function (e) {
-                    var n = Object.assign({}, testDone);
+                    var n = Object.assign({}, doneMap);
                     n[idx] = e.target.checked;
-                    setTestDone(n);
+                    setDoneMap(n);
                   }}
+                  style={{ marginTop: '3px' }}
                 />
                 <span>{label}</span>
               </label>
             );
           })}
         </div>
-      ) : null}
-
-      {step === 8 ? (
-        <div>
-          <div style={{ display: 'grid', gap: '8px', marginBottom: '14px' }}>
-            {GO_LIVE.map(function (label, idx) {
-              return (
-                <label key={label} style={{ display: 'flex', gap: '10px', padding: '10px 12px', borderRadius: '8px', border: '1px solid ' + line, background: surface, cursor: 'pointer', fontSize: '13px' }}>
-                  <input
-                    type="checkbox"
-                    checked={!!goDone[idx]}
-                    onChange={function (e) {
-                      var n = Object.assign({}, goDone);
-                      n[idx] = e.target.checked;
-                      setGoDone(n);
-                    }}
-                  />
-                  <span>{label}</span>
-                </label>
-              );
-            })}
-          </div>
-          <button type="button" onClick={restart} style={btnPrimary}>
-            Restart wizard
-          </button>
+        <div style={btnRowStyle}>
+          <button type="button" onClick={labClick(restartLab)} style={btnSecondaryStyle}>Restart lab</button>
         </div>
-      ) : null}
-
-      <div style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', marginTop: '18px', paddingTop: '14px', borderTop: '1px solid ' + line }}>
-        {step > 0 ? (
-          <button type="button" onClick={function () { setStep(step - 1); setErr(''); }} style={btnGhost}>
-            Back
-          </button>
-        ) : (
-          <span />
-        )}
-        {step < STEPS.length - 1 ? (
-          <button
-            type="button"
-            disabled={!canAdvance()}
-            onClick={function () {
-              if (!canAdvance()) return;
-              setErr('');
-              setStep(step + 1);
-            }}
-            style={Object.assign({}, btnPrimary, { opacity: canAdvance() ? 1 : 0.45 })}
-          >
-            Continue
-          </button>
-        ) : null}
+        <p style={mutedTextStyle}>
+          Going live: switch endpoint to <code>https://secure.payu.in/_payment</code>, use production key/salt on server only, and monitor surl/furl.
+        </p>
       </div>
-    </div>
+    );
+  }
+
+  return (
+    <SandboxAccordion
+      title="Try out · Hosted Checkout integration lab"
+      intro="Walk through a real test payment: save parameters, generate hash, pay on PayU sandbox, and verify the callback. Matches the Integration Guide steps 1.1–1.5."
+      ariaLabel="PayU Hosted Checkout integration wizard"
+    >
+      <div className={shellClass} role="region" aria-label="PayU Hosted Checkout integration wizard">
+        <LabInteractiveBanner />
+        <LabStatus items={[
+          { label: 'Parameters saved', ok: lab && lab.step11Done },
+          { label: 'Hash ready', ok: lab && lab.step12Done },
+          { label: 'Test checkout opened', ok: lab && lab.step13Launched },
+          { label: 'Response verified', ok: lab && (lab.step14Done || match === true) }
+        ]} />
+        {renderStepRail()}
+        {err ? <p style={errTextStyle} role="alert">{err}</p> : null}
+        {msg ? <p style={okTextStyle}>{msg}</p> : null}
+        {copyMsg ? <p style={okTextStyle}>{copyMsg}</p> : null}
+        {step === 0 ? renderWelcome() : null}
+        {step === 1 ? renderParams() : null}
+        {step === 2 ? renderHash() : null}
+        {step === 3 ? renderPay() : null}
+        {step === 4 ? renderVerify() : null}
+        {step === 5 ? renderDone() : null}
+        {step > 0 && step < WIZARD_STEPS.length - 1 ? (
+          <div style={btnRowStyle}>
+            <button type="button" onClick={labClick(function () { goToStep(step - 1); })} style={btnSecondaryStyle}>Back</button>
+            <button
+              type="button"
+              disabled={!canAdvance()}
+              onClick={labClick(function () {
+                if (!canAdvance()) return;
+                goToStep(step + 1);
+              })}
+              style={Object.assign({}, btnPrimaryStyle, { opacity: canAdvance() ? 1 : 0.5 })}
+            >
+              Continue
+            </button>
+          </div>
+        ) : null}
+        <p style={mutedTextStyle}>Shared lab storage · works with Step 1.1–1.5 widgets on this page</p>
+      </div>
+    </SandboxAccordion>
   );
 };
 
