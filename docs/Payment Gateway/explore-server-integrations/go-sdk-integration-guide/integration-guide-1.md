@@ -119,4 +119,6 @@ A new Go module is created and the PayU web SDK is added in the module.
 
 ***
 
+### Step 1.3&#x20;
+
 <br />
