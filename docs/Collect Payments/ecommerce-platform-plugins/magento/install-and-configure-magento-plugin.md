@@ -164,14 +164,9 @@ To configure the Magento v2.4 environment for PayU:
       <td>
         Select any of the following gateway environments from the drop-down list to which customer payment details will be redirected.
 
-        - - **Sandbox**: This is the Test environment and no actual fund transfer will take place.
+        - **Sandbox**: This is the Test environment and no actual fund transfer will take place.
 
-        - - **Production**: This is the Live environment. Use this value only
-            If you select Sandbox in Transaction Mode, then use the following credentials:\\
-
-        - Merchant id: oZ7oo9
-
-        - Salt: UkojH5TS |
+        - **Production**: This is the Live environment. Use this value only
       </td>
     </tr>
 
