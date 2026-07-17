@@ -10,46 +10,21 @@ metadata:
 next:
   description: ''
 ---
----
-title: Cards Integration with Merchant Hosted Checkout or Seamless integration
-excerpt: ''
-deprecated: false
-hidden: false
-metadata:
-  title: ''
-  description: >-
-    Merchant-hosted seamless cards integration: capture card details on your site, PayU APIs, hash, 3DS flow, and PCI-DSS compliant card payments.
-  keywords:
-    - payu merchant hosted seamless cards integration web
-    - payment gateway card payment integration merchant hosted payu
-    - integrate card payments website seamless checkout payu india
-    - payu custom checkout cards api integration steps web
-    - merchant hosted card payment seamless integration guide payu
-    - website credit debit card payment integration payu gateway
-    - payu collect payments cards seamless merchant hosted checkout
-    - server side card payment integration payu custom checkout
-    - payu card payment hash 3ds seamless integration web
-    - payment gateway india card integration merchant hosted payu
-    - payu web checkout card capture seamless integration developer
-    - custom checkout card payment api integration payu website
-  robots: index
-
-next:
-  description: ''
----
 PayU supports the following debit cards and credit cards:
 
-* American Express (AMEX)
-* Visa
-* Mastercard
-* Diners
-* Rupay
+- American Express (AMEX)
+- Visa
+- Mastercard
+- Diners
+- Rupay
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Notes**:
 
-  * PayU accepts domestic and international transactions, but international transactions need to be enabled by writing to PayU Integration Team (<Anchor label="integration@pay.in" target="_blank" href="mailto:integration@pay.in">integration@pay.in</Anchor>).
-  * If you are storing or transmitting cardholder data, you must fill the “<Anchor label="Self-Assessment Questionnaire A-EP and Attestation of Compliance" target="_blank" href="https://www.pcisecuritystandards.org/documents/PCI-DSS-v3_2-SAQ-A_EP-rev1_1.pdf">Self-Assessment Questionnaire A-EP and Attestation of Compliance</Anchor>” form. For more information on Save Cards API integration, refer to PayU Save Cards API Integration docs.
+  - PayU accepts domestic and international transactions, but international transactions need to be enabled by writing to PayU Integration Team (<Anchor target="_blank" href="mailto:integration@pay.in">integration@pay.in</Anchor>).
+  - If you are storing or transmitting cardholder data, you must fill the “<Anchor target="_blank" href="https://www.pcisecuritystandards.org/documents/PCI-DSS-v3_2-SAQ-A_EP-rev1_1.pdf">Self-Assessment Questionnaire A-EP and Attestation of Compliance</Anchor>” form. For more information on Save Cards API integration, refer to PayU Save Cards API Integration docs.
 </Callout>
 
 <br />
@@ -93,6 +68,8 @@ PayU supports the following debit cards and credit cards:
 </Cards>
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Postman Collection**
 
   <Postman_collection />
@@ -100,7 +77,7 @@ PayU supports the following debit cards and credit cards:
 
 ## Step 1: Validate the card type
 
-When customers use debit cards or credit cards on your website, you can validate the card type with the first six digits. Use the **getBinInfo** API (known as BIN API) to validate the type of card. For more information, refer to  <Anchor label="BIN APIs" target="_blank" href="https://docs.payu.in/reference/get_bin_info_api">BIN APIs</Anchor>.
+When customers use debit cards or credit cards on your website, you can validate the card type with the first six digits. Use the **getBinInfo** API (known as BIN API) to validate the type of card. For more information, refer to  <Anchor target="_blank" href="https://docs.payu.in/reference/get_bin_info_api">BIN APIs</Anchor>.
 
 | Environment            | URL                                                                                                  |
 | :--------------------- | :--------------------------------------------------------------------------------------------------- |
@@ -442,7 +419,7 @@ When customers use debit cards or credit cards on your website, you can validate
           `String`The failure URL, which is the page PayU will redirect to if the transaction is failure.
         </td>
 
-        <td />
+        <td></td>
       </tr>
 
       <tr>
@@ -455,7 +432,7 @@ When customers use debit cards or credit cards on your website, you can validate
           `String`The success URL, which is the page PayU will redirect to if the transaction is successful.
         </td>
 
-        <td />
+        <td></td>
       </tr>
 
       <tr>
@@ -469,7 +446,7 @@ When customers use debit cards or credit cards on your website, you can validate
           `sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)`
         </td>
 
-        <td />
+        <td></td>
       </tr>
 
       <tr>
@@ -484,7 +461,7 @@ When customers use debit cards or credit cards on your website, you can validate
           * *For Fraud Detection*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
         </td>
 
-        <td />
+        <td></td>
       </tr>
 
       <tr>
@@ -497,7 +474,7 @@ When customers use debit cards or credit cards on your website, you can validate
           `String` The second line of the billing address.
         </td>
 
-        <td />
+        <td></td>
       </tr>
 
       <tr>
@@ -510,7 +487,7 @@ When customers use debit cards or credit cards on your website, you can validate
           `String` The city where your customer resides as part of the billing address.
         </td>
 
-        <td />
+        <td></td>
       </tr>
 
       <tr>
@@ -523,7 +500,7 @@ When customers use debit cards or credit cards on your website, you can validate
           `String` The state where your customer resides as part of the billing address,
         </td>
 
-        <td />
+        <td></td>
       </tr>
 
       <tr>
@@ -536,7 +513,7 @@ When customers use debit cards or credit cards on your website, you can validate
           `String` The country where your customer resides.
         </td>
 
-        <td />
+        <td></td>
       </tr>
 
       <tr>
@@ -550,7 +527,7 @@ When customers use debit cards or credit cards on your website, you can validate
           `Character Limit`-20
         </td>
 
-        <td />
+        <td></td>
       </tr>
 
       <tr>
@@ -563,7 +540,7 @@ When customers use debit cards or credit cards on your website, you can validate
           `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.
         </td>
 
-        <td />
+        <td></td>
       </tr>
 
       <tr>
@@ -576,7 +553,7 @@ When customers use debit cards or credit cards on your website, you can validate
           `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.
         </td>
 
-        <td />
+        <td></td>
       </tr>
 
       <tr>
@@ -589,7 +566,7 @@ When customers use debit cards or credit cards on your website, you can validate
           `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction.
         </td>
 
-        <td />
+        <td></td>
       </tr>
 
       <tr>
@@ -602,7 +579,7 @@ When customers use debit cards or credit cards on your website, you can validate
           `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction.
         </td>
 
-        <td />
+        <td></td>
       </tr>
 
       <tr>
@@ -615,7 +592,7 @@ When customers use debit cards or credit cards on your website, you can validate
           `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction.
         </td>
 
-        <td />
+        <td></td>
       </tr>
     </tbody>
   </Table>
@@ -1806,6 +1783,8 @@ When customers use debit cards or credit cards on your website, you can validate
 Guest Checkout is a valuable feature that can provided be enabled for your e-commerce websites. It allows your customers to make purchases without the need to sign in or create a user account. This streamlined process benefits one-time or occasional shoppers, as it eliminates the registration step, leading to faster transactions and enhanced customer satisfaction.
 
 <Callout icon="📘" theme="info">
+  ###
+
   **Enable Guest Checkout**: To enable this feature, contact your PayU Key Account Manager or PayU Integration Support.
 </Callout>
 
@@ -1813,7 +1792,9 @@ As per RBI compliances, acquirers are also not allowed to store card details aft
 
 There are three scenarios with Alternative ID:
 
-<Image align="center" width="900px" src="https://files.readme.io/f84108124634526cf547dac1d59ff3272600f8cfd26f486baba8425033ddf5c8-Guest-checkout-alt-id-implementation-methods.png" />
+
+<Image src="https://files.readme.io/f84108124634526cf547dac1d59ff3272600f8cfd26f486baba8425033ddf5c8-Guest-checkout-alt-id-implementation-methods.png" align="center" width="900px" />
+
 
 <Accordion title="Scenario 1: Provision & processes guest transaction with PayU" icon="fa-code">
   No changes required in the **\_payment** request used to collect payments.
@@ -2122,7 +2103,7 @@ PayU supports 3DS Secure 2.0 transaction with Merchant Hosted Checkout integrati
   You must include the `threeDS2RequestData` parameter along with the regular Collect Payment API for cards.
 
   <Callout icon="📘" theme="info">
-    **Reference**: For the **Try It** experience, refer to  [Collect Payment API - Cards (Merchant Hosted Checkout)](/docs.payu.in/reference/_payment_merchant_hosted_cards),
+    **Reference**: For the **Try It** experience, refer to  [Collect Payment API - Cards (Merchant Hosted Checkout)](https://docs.payu.in/reference/_payment_merchant_hosted_cards),
   </Callout>
 
   <HTMLBlock>{`
@@ -2313,3 +2294,5 @@ PayU supports 3DS Secure 2.0 transaction with Merchant Hosted Checkout integrati
   }'
   ```
 </Accordion>
+
+<br />
