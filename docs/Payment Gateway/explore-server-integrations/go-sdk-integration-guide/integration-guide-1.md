@@ -220,9 +220,9 @@ go run .
 
 This will create the `pay.html` file.
 
-<br />
+***
 
-<br />
+### Step 1.5&#x20;
 
 <br />
 
