@@ -38,7 +38,7 @@ This section describes how to install configure PayU Plugin on the OpenCart plat
       </td>
 
       <td>
-        [GitHub Location](https://github.com/payu-india/PayUbiz_Opencart/releases/tag/ver3.0.2)
+        <Anchor target="_blank" href="https://github.com/payu-india/PayUbiz_Opencart/releases/tag/ver3.0.2">GitHub Location</Anchor>
       </td>
     </tr>
 
@@ -48,7 +48,7 @@ This section describes how to install configure PayU Plugin on the OpenCart plat
       </td>
 
       <td>
-        [GitHub Location](https://github.com/payu-india/PayUbiz_Opencart/releases/tag/ver_3.0)
+        <Anchor target="_blank" href="https://github.com/payu-india/PayUbiz_Opencart/releases/tag/ver_3.0">GitHub Location</Anchor>
       </td>
     </tr>
 
@@ -58,7 +58,7 @@ This section describes how to install configure PayU Plugin on the OpenCart plat
       </td>
 
       <td>
-        [GitHub Location](https://github.com/payu-india/PayUbiz_Opencart/releases/tag/ver_2.3)
+        <Anchor target="_blank" href="https://github.com/payu-india/PayUbiz_Opencart/releases/tag/ver_2.3">GitHub Location</Anchor>
       </td>
     </tr>
 
@@ -68,7 +68,7 @@ This section describes how to install configure PayU Plugin on the OpenCart plat
       </td>
 
       <td>
-        [GitHub Location](https://github.com/payu-india/PayUbiz_Opencart/releases/tag/ver_2.2)
+        <Anchor target="_blank" href="https://github.com/payu-india/PayUbiz_Opencart/releases/tag/ver_2.2">GitHub Location</Anchor>
       </td>
     </tr>
 
@@ -78,7 +78,7 @@ This section describes how to install configure PayU Plugin on the OpenCart plat
       </td>
 
       <td>
-        [GitHub Location](https://github.com/payu-india/PayUbiz_Opencart/releases/tag/ver_2.0)
+        <Anchor target="_blank" href="https://github.com/payu-india/PayUbiz_Opencart/releases/tag/ver_2.0">GitHub Location</Anchor>
       </td>
     </tr>
   </tbody>
@@ -90,11 +90,13 @@ To download and install the PayU archive for the OpenCart plugin:
 
 1. Ensure that the OpenCart plugin is installed.
 2. Download the PayU OpenCard integration archive for the OpenCart version you are using as listed in the [Download the PayU Plugin ](#download-the-payu-plugin)section:
-3. Install the downloaded archive using **Extensions** > **Extension Installer**. For more information, refer to the [OpenCart Documentation](http://docs.opencart.com/en-gb/extension/installer/).
+3. Install the downloaded archive using **Extensions** > **Extension Installer**. For more information, refer to the <Anchor target="_blank" href="http://docs.opencart.com/en-gb/extension/installer/">OpenCart Documentation</Anchor>.
 
-> 👍 Before you begin:
->
-> Register for a account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
+<Callout icon="👍" theme="okay">
+  ### Before you begin:
+
+  Register for a account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
+</Callout>
 
 ## Configure OpenCart
 
@@ -103,7 +105,7 @@ To configure OpenCart after installing the PayU plugin:
 1. Enable **PayU** in **Payment setting**s section from OpenCart admin panel.
 2. Navigate to the **Payments** page.
 
-   The *Payments* page is displayed.
+   The _Payments_ page is displayed.
 
 ![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/06/word-image-28.png)
 
@@ -157,8 +159,8 @@ To configure OpenCart after installing the PayU plugin:
       <td>
         Select any of the following gateway environments from the Mode drop-down list to which customer payment details will be redirected to.
 
-        * Test: This is the Test environment and no actual fund transfer will take place.
-        * Production: This is the Live environment. Use this value only for your website in production. Payments sent in the production environment will get processed. For more information, refer to [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard).
+        - Test: This is the Test environment and no actual fund transfer will take place.
+        - Production: This is the Live environment. Use this value only for your website in production. Payments sent in the production environment will get processed. For more information, refer to [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard).
       </td>
     </tr>
 
@@ -196,8 +198,8 @@ To configure OpenCart after installing the PayU plugin:
 
 > **Reference**: For more information on how to access the Key and Salt, refer to any of the following:
 
-* **Production**:  [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
-* **Test**: [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
+- **Production**:  [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
+- **Test**: [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
 
 5. Map all the possible states of a transaction from PayU with the corresponding OpenCart status.
 
@@ -208,12 +210,18 @@ To configure OpenCart after installing the PayU plugin:
 
 > **Note**: After configuring the Test environment, use the test card details to test the payment. For more information, refer to  [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets).
 
-<Image align="center" width="612px" src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/09/Screenshot-2021-09-01-at-6.44.03-PM-1024x984.jpg" />
+
+<Image src="https://devguide.payu.in/wordpress/wp-content/uploads/2021/09/Screenshot-2021-09-01-at-6.44.03-PM-1024x984.jpg" align="center" width="612px" />
+
 
 The successful payment confirmation message is displayed if the payment is successful.
 
 ![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/06/word-image-34.png)
 
-> 📘 Note:
->
-> PayU recommends this step to reconcile with PayU’s database after you receive the response. Verify the transaction details using the **Verification Payment**API. For API reference, refer to <a href="https://docs.payu.in/reference/verify_payment_api" target="_blank">Verify Payment API</a>.
+<Callout icon="📘" theme="info">
+  ### Note:
+
+  PayU recommends this step to reconcile with PayU’s database after you receive the response. Verify the transaction details using the **Verification Payment**API. For API reference, refer to <a href="https://docs.payu.in/reference/verify_payment_api" target="_blank">Verify Payment API</a>.
+</Callout>
+
+<br />
