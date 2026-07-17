@@ -241,7 +241,7 @@ You will complete the test payment and receives the response.
 
 ***
 
-<br />
+### Step 1.6&#x20;
 
 <br />
 
