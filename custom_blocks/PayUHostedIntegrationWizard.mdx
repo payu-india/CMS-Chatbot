@@ -472,7 +472,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
 // PAYU_LAB_BUNDLE_END
 
 
-  var LAB_CONFIG = JSON.parse('{"storageKey":"payu-hosted-integration-wizard-v1","testPaymentUrl":"https://test.payu.in/_payment","simulatorUrl":"https://test-payment-middleware.payu.in/simulatorResponse","hashVerifyToolUrl":"https://payu-hashverificationtool.onrender.com/","defaults":{"key":"","txnid":"tran_1234","amount":"10.00","productinfo":"iPhone","firstname":"Aarav","email":"aarav@example.com","phone":"1234567890","surl":"https://test-payment-middleware.payu.in/simulatorResponse","furl":"https://test-payment-middleware.payu.in/simulatorResponse","udf1":"","udf2":"","udf3":"","udf4":"","udf5":""}}');
+  var LAB_CONFIG = JSON.parse('{"storageKey":"payu-hosted-integration-wizard-v2","testPaymentUrl":"https://test.payu.in/_payment","simulatorUrl":"https://test-payment-middleware.payu.in/simulatorResponse","hashVerifyToolUrl":"https://payu-hashverificationtool.onrender.com/","defaults":{"key":"","txnid":"tran_1234","amount":"10.00","productinfo":"iPhone","firstname":"Aarav","email":"aarav@example.com","phone":"1234567890","surl":"https://test-payment-middleware.payu.in/simulatorResponse","furl":"https://test-payment-middleware.payu.in/simulatorResponse","udf1":"","udf2":"","udf3":"","udf4":"","udf5":""}}');
   var LAB_KEY = LAB_CONFIG.storageKey;
   var TEST_PAYMENT = LAB_CONFIG.testPaymentUrl;
   var SIMULATOR_URL = LAB_CONFIG.simulatorUrl;
@@ -655,6 +655,20 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     return window;
   }
 
+  function hydrateStoredLab(raw) {
+    if (!raw || typeof raw !== 'object') return null;
+    var params = mergeParams(raw.params || {});
+    params.key = '';
+    return {
+      params: params,
+      salt: '',
+      hashHex: '',
+      pipeString: '',
+      progress: defaultProgress(),
+      wizardStep: 0
+    };
+  }
+
   function labRead() {
     try {
       var lw = labWindow();
@@ -662,11 +676,11 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
       if (lw[LAB_GLOBAL_STATE]) return Object.assign({}, lw[LAB_GLOBAL_STATE]);
       if (lw.localStorage) {
         var raw = lw.localStorage.getItem(LAB_KEY);
-        if (raw) return JSON.parse(raw);
+        if (raw) return hydrateStoredLab(JSON.parse(raw));
       }
       if (typeof window !== 'undefined' && window.sessionStorage) {
         var raw2 = window.sessionStorage.getItem(LAB_KEY);
-        if (raw2) return JSON.parse(raw2);
+        if (raw2) return hydrateStoredLab(JSON.parse(raw2));
       }
       return null;
     } catch (e) { return null; }
@@ -684,20 +698,29 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   function labWrite(data) {
     try {
       if (typeof window === 'undefined') return false;
-      data.updatedAt = Date.now();
-      var payload = JSON.stringify(data);
+      var snapshot = Object.assign({}, data, { updatedAt: Date.now() });
       var lw = labWindow();
-      if (lw) lw[LAB_GLOBAL_STATE] = data;
+      if (lw) lw[LAB_GLOBAL_STATE] = snapshot;
+      var persisted = {
+        params: mergeParams(snapshot.params),
+        updatedAt: snapshot.updatedAt
+      };
+      persisted.params.key = '';
+      var payload = JSON.stringify(persisted);
       if (lw && lw.localStorage) lw.localStorage.setItem(LAB_KEY, payload);
       if (window.sessionStorage) window.sessionStorage.setItem(LAB_KEY, payload);
-      labBroadcast(data);
+      labBroadcast(snapshot);
       return true;
     } catch (e2) { return false; }
   }
 
   function persistFormValues(data) {
     var lw = labWindow();
-    if (lw) lw[WIZARD_FORM_GLOBAL] = Object.assign({}, data);
+    if (lw) {
+      var copy = Object.assign({}, data);
+      copy.key = '';
+      lw[WIZARD_FORM_GLOBAL] = copy;
+    }
   }
 
   function defaultProgress() {
@@ -1008,11 +1031,12 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   function applyWizardSession(data) {
     if (!data) return;
     var params = mergeParams(data.params);
+    params.key = '';
     setLab(data);
     setFormValues(params);
     formValuesRef.current = params;
-    setMerchantKey(params.key || '');
-    merchantKeyRef.current = params.key || '';
+    setMerchantKey('');
+    merchantKeyRef.current = '';
     if (data.progress && data.progress.hashGenerated && data.hashHex) {
       setSalt(data.salt || '');
       setPipeString(data.pipeString || '');
@@ -1203,10 +1227,26 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     setModalTab('lab');
     setErr('');
     setMsg('');
-    var data = labEnsure();
-    var p = data.progress || defaultProgress();
-    var saved = clampStepToProgress(typeof data.wizardStep === 'number' ? data.wizardStep : 0, p);
-    setStep(saved);
+    setCopyMsg('');
+    var fresh = wizardFresh();
+    labWrite(fresh);
+    setLab(fresh);
+    applyWizardSession(fresh);
+    setPrereq({});
+    setLabAck(false);
+    setTestDone({});
+    setGoDone({});
+    setResponseHash('');
+    setComputedRev('');
+    setMatch(null);
+    setHashDiff(null);
+    setHashTrimNote(false);
+    setFieldErrors({});
+    setFieldTouched({});
+    setSaveAttempted(false);
+    setReturnPreview(exampleReturnPreview());
+    setRevResp(exampleRevResp());
+    setStep(0);
   }
 
   function closeModal() {
@@ -1274,15 +1314,12 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   useEffect(function () {
     var data = labEnsure();
     var params = mergeParams(data.params);
+    params.key = '';
     data.params = params;
-    labWrite(data);
     applyWizardSession(data);
     setReturnPreview(exampleReturnPreview(params));
     setRevResp(exampleRevResp(params));
     persistFormValues(params);
-    var prog = data.progress || defaultProgress();
-    var saved = clampStepToProgress(readSavedStep(), prog);
-    if (saved > 0 && saved < STEPS.length) setStep(saved);
   }, []);
 
   useEffect(function () {
