@@ -42,7 +42,7 @@ This section describes the procedure to install and configure the PayU Magento p
       </td>
 
       <td>
-        General
+        \-
       </td>
 
       <td>
