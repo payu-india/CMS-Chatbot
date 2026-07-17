@@ -29,11 +29,11 @@ You can install the PayU WooCommerce plugin by either using the WordPress Plugin
   <thead>
     <tr>
       <th>
-        PayU Plugin Version
+        PayU Plugin&#x20;
       </th>
 
       <th>
-        Supported WooCommerce Versions
+        Supported WooCommerce Versions or Feature
       </th>
 
       <th>
@@ -56,6 +56,20 @@ You can install the PayU WooCommerce plugin by either using the WordPress Plugin
 
       <td>
         [GitHub Location](https://github.com/payu-india/Woocommerce/blob/main/WooCommerce_CommercePro_plugin.zip)
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        WooCommerce Multi-Currency
+      </td>
+
+      <td>
+        Multi-Currency
+      </td>
+
+      <td>
+        [GitHub Location](https://github.com/payu-india/Woocommerce/blob/main/WooCommerce_MultiCurrency_PayUBiz.zip)
       </td>
     </tr>
   </tbody>
@@ -85,7 +99,6 @@ To install the PayU plugin using the WordPress installer:
    The contents of the PayU plugin zip are extracted to the  folder and folder name is based on the plugin version:
 
 - Version 5.5.2: _WooCommerce_v552_MultiCurrency_PayUBiz_ folder.
-- Version 3.8.1: _WooCommerce_v381_MultiCurrency_PayUBiz_ folder.
 
 2. Copy the folder created in Step 1 to the clipboard and paste or upload it to _\<wordpress root>\wp-content\plugins_ folder, where _\<wordpress root>_ is the location where WordPress is installed.
 3. Log in to the WordPress Admin panel.
