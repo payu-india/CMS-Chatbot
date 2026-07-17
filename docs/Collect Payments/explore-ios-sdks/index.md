@@ -31,7 +31,7 @@ PayU offers various iOS SDKs that each serve a unique use case. Before you begin
   | ---- | -------------------------------------- | ------------------------------------------------------------- |
   | 1    | Register for a PayU Merchant Account   | [Register](doc:register-for-a-merchant-account-on-dashboard)  |
   | 2    | Complete KYC and activate your account | [Activate Account](doc:complete-your-kyc)                     |
-  | 3    | Access your Test Merchant Key and Salt | [Get Test Credentials](doc:access-test-merchant-key-and-salt) |
+  | 3    | Access your Test Merchant Key and Salt | [Get Test Credentials](doc:generate-test-merchant-key-and-salt) |
 
   <Callout icon="⚠️" theme="warn">
     **Important:** Never use production credentials during development. Always use test credentials until you're ready for go-live.
