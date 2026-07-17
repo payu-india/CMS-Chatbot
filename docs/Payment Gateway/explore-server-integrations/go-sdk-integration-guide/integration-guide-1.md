@@ -164,9 +164,7 @@ A PayU client is added with your merchant key and salt.
 
 ***
 
-### Step 1.4&#x20;
-
-### Create a Payment Request
+### Step 1.4 Create a Payment Request
 
 <Accordion title="Steps to Create a Payment Request" icon="fa-info-circle">
 1. Save this code in the `payu-go-integration` project folder as `pay.go`.
@@ -218,7 +216,9 @@ go run .
 
 </Accordion>
 
-<br />
+#### Expected Outcome
+
+This&#x20;
 
 <br />
 
