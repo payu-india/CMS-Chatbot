@@ -584,7 +584,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   var fieldStackInnerStyle = { display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '16px' };
   var btnRowStyle = { display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '20px', alignItems: 'center' };
   var btnRowSpacedStyle = { display: 'flex', flexWrap: 'wrap', gap: '8px', alignItems: 'center', marginTop: '16px' };
-  var navRowStyle = { display: 'flex', justifyContent: 'space-between', gap: '12px', marginTop: '20px', paddingTop: '16px', borderTop: '1px solid #e5e7eb' };
+  var navRowStyle = { display: 'flex', justifyContent: 'space-between', gap: '12px', marginTop: '20px', paddingTop: '16px', borderTop: '1px solid #e5e7eb', alignItems: 'center' };
   var labelStyle = { display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: 700, color: PAYU_GREEN };
   var reqStarStyle = { color: RED_REQ, fontWeight: 700 };
   var errTextStyle = { margin: '0 0 12px', fontSize: '14px', lineHeight: 1.5, color: RED_REQ };
@@ -617,25 +617,22 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   };
   var btnPrimaryStyle = {
     cursor: 'pointer', borderRadius: '6px', border: 'none', background: PAYU_GREEN,
-    color: '#fff', padding: '10px 16px', fontSize: '14px', fontWeight: 600, minHeight: '44px', boxSizing: 'border-box'
+    color: '#fff', padding: '10px 16px', fontSize: '14px', fontWeight: 600,
+    minHeight: '44px', boxSizing: 'border-box', lineHeight: 1.25
   };
   var btnSecondaryStyle = {
     cursor: 'pointer', borderRadius: '6px', border: '1px solid ' + PAYU_GREEN,
-    background: PAYU_GREEN_LIGHT, color: PAYU_GREEN, padding: '10px 16px',
-    fontSize: '14px', fontWeight: 600, minHeight: '44px', boxSizing: 'border-box'
+    background: '#fff', color: PAYU_GREEN, padding: '10px 16px',
+    fontSize: '14px', fontWeight: 600, minHeight: '44px', boxSizing: 'border-box', lineHeight: 1.25
   };
-  var summaryStyle = {
-    cursor: 'pointer', borderRadius: '6px', border: '1px solid ' + PAYU_GREEN,
-    background: PAYU_GREEN_LIGHT, color: PAYU_GREEN, padding: '8px 16px',
-    fontSize: '14px', fontWeight: 600, listStyle: 'none', width: '100%', textAlign: 'left',
-    minHeight: '44px', boxSizing: 'border-box'
+  var btnGhostStyle = {
+    cursor: 'pointer', borderRadius: '6px', border: '1px dashed #99f6e4',
+    background: '#fff', color: PAYU_GREEN, padding: '10px 16px',
+    fontSize: '14px', fontWeight: 600, width: '100%', textAlign: 'left',
+    minHeight: '44px', boxSizing: 'border-box', lineHeight: 1.25
   };
-  var linkBtnStyle = {
-    cursor: 'pointer', borderRadius: '6px', border: '1px solid ' + PAYU_GREEN,
-    background: PAYU_GREEN_LIGHT, color: PAYU_GREEN, padding: '8px 16px',
-    fontSize: '14px', fontWeight: 600, textDecoration: 'none', display: 'inline-flex', alignItems: 'center',
-    minHeight: '44px', boxSizing: 'border-box'
-  };
+  var actionBarStyle = { display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '16px' };
+  var actionBarRowStyle = { display: 'flex', flexWrap: 'wrap', gap: '10px', alignItems: 'center' };
   var checklistLabelStyle = {
     display: 'flex', cursor: 'pointer', alignItems: 'flex-start', gap: '8px',
     fontSize: '14px', fontWeight: 600, lineHeight: 1.5, color: PAYU_GREEN
@@ -1792,6 +1789,46 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     return isBlank(v) ? (fallback || '—') : v;
   }
 
+  function wizardBtnStyle(variant, disabled) {
+    var base = variant === 'primary' ? btnPrimaryStyle : btnSecondaryStyle;
+    if (!disabled) return Object.assign({}, base);
+    if (variant === 'primary') {
+      return Object.assign({}, base, { background: '#94a3b8', color: '#f8fafc', cursor: 'not-allowed' });
+    }
+    return Object.assign({}, base, {
+      borderColor: '#cbd5e1', background: '#f1f5f9', color: '#94a3b8', cursor: 'not-allowed'
+    });
+  }
+
+  function renderWizardButton(variant, label, onClick, disabled) {
+    var isDisabled = !!disabled;
+    return (
+      <button
+        type="button"
+        disabled={isDisabled}
+        onClick={isDisabled ? undefined : onClick}
+        style={wizardBtnStyle(variant, isDisabled)}
+      >
+        {label}
+      </button>
+    );
+  }
+
+  function renderWizardExternalLink(href, label) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={Object.assign({}, wizardBtnStyle('secondary', false), {
+          textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center'
+        })}
+      >
+        {label}
+      </a>
+    );
+  }
+
   function renderHexSegment(str, highlightIndex) {
     if (!str) return null;
     if (highlightIndex < 0 || highlightIndex >= str.length) return <span>{str}</span>;
@@ -1964,19 +2001,11 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
             );
           })}
         </div>
-        <div style={btnRowSpacedStyle}>
-          <button
-            type="button"
-            onClick={labClick(function () {
-              copyText(PayULabRuntime.serializeContextForClipboard(ctx), setCopyMsg);
-            })}
-            style={btnSecondaryStyle}
-          >
-            Copy session info
-          </button>
-          <button type="button" onClick={labClick(function () { setModalTab('lab'); })} style={btnPrimaryStyle}>
-            Back to lab
-          </button>
+        <div style={actionBarRowStyle}>
+          {renderWizardButton('secondary', 'Copy session info', labClick(function () {
+            copyText(PayULabRuntime.serializeContextForClipboard(ctx), setCopyMsg);
+          }), false)}
+          {renderWizardButton('primary', 'Back to lab', labClick(function () { setModalTab('lab'); }), false)}
         </div>
         <p style={mutedTextStyle}>
           Keys and salt are hidden if you copy session info. For debugging only.
@@ -2020,29 +2049,30 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   }
 
   function renderWizardFooter() {
+    var canGoForward = canAdvance();
     return (
       <div>
         <div style={navRowStyle}>
           {step > 0 ? (
-            <button type="button" onClick={labClick(function () { goToStep(step - 1); })} style={btnSecondaryStyle}>Back</button>
+            renderWizardButton('secondary', 'Back', labClick(function () { goToStep(step - 1); }), false)
           ) : (
             <span />
           )}
           {step < STEPS.length - 1 ? (
-            <button
-              type="button"
-              disabled={!canAdvance()}
-              onClick={labClick(function () {
+            renderWizardButton(
+              'primary',
+              step === 0 ? 'Next' : 'Continue',
+              labClick(function () {
                 if (!canAdvance()) return;
                 goToStep(step + 1);
-              })}
-              style={Object.assign({}, btnPrimaryStyle, { opacity: canAdvance() ? 1 : 0.45 })}
-            >
-              {step === 0 ? 'Next' : 'Continue'}
-            </button>
+              }),
+              !canGoForward
+            )
           ) : null}
         </div>
-        {continueHint() ? <p style={hintTextStyle}>{continueHint()}</p> : null}
+        {!canGoForward && continueHint() ? (
+          <p style={{ margin: '10px 0 0', fontSize: '14px', lineHeight: 1.5, color: '#b45309' }}>{continueHint()}</p>
+        ) : null}
       </div>
     );
   }
@@ -2110,7 +2140,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
               </div>
             );
           })}
-          <button type="button" onClick={labClick(function () { setShowUdf(!showUdf); })} style={summaryStyle}>
+          <button type="button" onClick={labClick(function () { setShowUdf(!showUdf); })} style={btnGhostStyle}>
             {showUdf ? 'Hide extra fields (udf1–udf5)' : 'Show extra fields (udf1–udf5)'}
           </button>
           {showUdf ? (
@@ -2130,14 +2160,12 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
           <input type="checkbox" checked={labAck} onChange={function (e) { setLabAck(e.target.checked); }} style={checkboxInputStyle} />
           <span>I am using test credentials only (not production).</span>
         </label>
-        <div style={btnRowStyle}>
-          <button type="button" onClick={labClick(saveParams)} style={btnPrimaryStyle}>Save payment details</button>
-          <button type="button" onClick={labClick(newTxnid)} style={btnSecondaryStyle}>New order ID</button>
-          <button type="button" onClick={labClick(resetToExamples)} style={btnSecondaryStyle}>Reset examples</button>
+        <div style={actionBarRowStyle}>
+          {renderWizardButton('primary', 'Save payment details', labClick(saveParams), false)}
+          {renderWizardButton('secondary', 'New order ID', labClick(newTxnid), false)}
+          {renderWizardButton('secondary', 'Reset examples', labClick(resetToExamples), false)}
         </div>
-        {wizardProgress().paramsSaved ? <p style={okTextStyle}>Saved. Next: create the hash.</p> : (
-          <p style={hintTextStyle}>Save payment details first, then you can continue.</p>
-        )}
+        {wizardProgress().paramsSaved ? <p style={okTextStyle}>Saved. Next: create the hash.</p> : null}
       </div>
     );
   }
@@ -2188,16 +2216,13 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
             />
           </div>
         </div>
-        <div style={btnRowSpacedStyle}>
-          <button type="button" onClick={labClick(showPipeString)} disabled={isBlank(salt) || busy} style={btnSecondaryStyle}>
-            1) Show hash string
-          </button>
-          <button type="button" onClick={labClick(generateHash)} disabled={hashStage < 1 || busy || isBlank(salt)} style={btnPrimaryStyle}>
-            {busy ? 'Working…' : '2) Generate hash'}
-          </button>
-          {hashHex ? (
-            <button type="button" onClick={labClick(function () { copyText(hashHex, setCopyMsg); })} style={btnSecondaryStyle}>Copy hash</button>
-          ) : null}
+        <div style={actionBarStyle}>
+          <div style={actionBarRowStyle}>
+            {renderWizardButton('secondary', 'Show hash string', labClick(showPipeString), isBlank(salt) || busy)}
+            {renderWizardButton('primary', busy ? 'Working…' : 'Generate hash', labClick(generateHash), hashStage < 1 || busy || isBlank(salt))}
+            {hashHex ? renderWizardButton('secondary', 'Copy hash', labClick(function () { copyText(hashHex, setCopyMsg); }), false) : null}
+            {renderWizardExternalLink(HASH_TOOL, 'Open hash tool')}
+          </div>
         </div>
         {pipeString && hashStage >= 1 ? <pre style={codeBlockPreStyle}>{pipeString}</pre> : null}
         {hashHex && wizardProgress().hashGenerated ? (
@@ -2206,12 +2231,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
             <code style={{ fontSize: '11px', wordBreak: 'break-all' }}>{hashHex}</code>
           </div>
         ) : null}
-        <a href={HASH_TOOL} target="_blank" rel="noopener noreferrer" style={linkBtnStyle}>Open hash tool</a>
-        {wizardProgress().hashGenerated ? (
-          <p style={okTextStyle}>Hash ready — open test checkout next.</p>
-        ) : (
-          <p style={hintTextStyle}>Finish all three hash steps to continue.</p>
-        )}
+        {wizardProgress().hashGenerated ? <p style={okTextStyle}>Hash ready — open test checkout next.</p> : null}
       </div>
     );
   }
@@ -2223,25 +2243,22 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
           Opens PayU test checkout with your saved details and hash. Allow pop-ups if your browser asks.
         </p>
         <form ref={payFormRef} method="post" action={TEST_PAYMENT} style={{ display: 'none' }} aria-hidden="true" />
-        <div style={btnRowSpacedStyle}>
-          <button type="button" onClick={labClick(function () { submitPayuCheckout('_blank'); })} disabled={!readyPay} style={btnPrimaryStyle}>
-            {amountLabel !== '—' ? 'Pay ₹' + amountLabel + ' on test checkout' : 'Open test checkout (new tab)'}
-          </button>
-          <button type="button" onClick={labClick(function () { submitPayuCheckout('_top'); })} disabled={!readyPay} style={btnSecondaryStyle}>
-            Open in this tab
-          </button>
-          <button type="button" onClick={labClick(function () { setShowCurl(!showCurl); })} disabled={!readyPay} style={btnSecondaryStyle}>
-            {showCurl ? 'Hide curl' : 'Show curl'}
-          </button>
-          <button type="button" onClick={labClick(function () { setShowNode(!showNode); })} disabled={!readyPay} style={btnSecondaryStyle}>
-            {showNode ? 'Hide Node.js code' : 'Show Node.js code'}
-          </button>
-          {readyPay ? (
-            <button type="button" onClick={labClick(function () { copyText(buildCurl(lab), setCopyMsg); })} style={btnSecondaryStyle}>Copy curl</button>
-          ) : null}
-          {readyPay ? (
-            <button type="button" onClick={labClick(function () { copyText(buildNodeSnippet(lab), setCopyMsg); })} style={btnSecondaryStyle}>Copy Node.js code</button>
-          ) : null}
+        <div style={actionBarStyle}>
+          <div style={actionBarRowStyle}>
+            {renderWizardButton(
+              'primary',
+              amountLabel !== '—' ? 'Pay ₹' + amountLabel + ' on test checkout' : 'Open test checkout',
+              labClick(function () { submitPayuCheckout('_blank'); }),
+              !readyPay
+            )}
+            {renderWizardButton('secondary', 'Open in this tab', labClick(function () { submitPayuCheckout('_top'); }), !readyPay)}
+          </div>
+          <div style={actionBarRowStyle}>
+            {renderWizardButton('secondary', showCurl ? 'Hide curl' : 'Show curl', labClick(function () { setShowCurl(!showCurl); }), !readyPay)}
+            {renderWizardButton('secondary', showNode ? 'Hide Node.js code' : 'Show Node.js code', labClick(function () { setShowNode(!showNode); }), !readyPay)}
+            {readyPay ? renderWizardButton('secondary', 'Copy curl', labClick(function () { copyText(buildCurl(lab), setCopyMsg); }), false) : null}
+            {readyPay ? renderWizardButton('secondary', 'Copy Node.js code', labClick(function () { copyText(buildNodeSnippet(lab), setCopyMsg); }), false) : null}
+          </div>
         </div>
         {showCurl && readyPay ? <pre style={codeBlockPreStyle}>{buildCurl(lab)}</pre> : null}
         {showNode && readyPay ? <pre style={codeBlockPreStyle}>{buildNodeSnippet(lab)}</pre> : null}
@@ -2260,9 +2277,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
             <p style={okTextStyle}>Checkout opened. Check what PayU sent back on the next step.</p>
             <p style={mutedTextStyle} role="note">{POPUP_BLOCKED_HINT}</p>
           </div>
-        ) : (
-          <p style={hintTextStyle}>Open test checkout to continue.</p>
-        )}
+        ) : null}
       </div>
     );
   }
@@ -2273,9 +2288,9 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
         <p style={bodyTextStyle}>
           After payment, PayU POSTs something like this to your success URL. Example values are filled in — add <strong>key</strong> and <strong>hash</strong> from the real callback.
         </p>
-        <div style={btnRowSpacedStyle}>
-          <button type="button" onClick={labClick(loadReturnFromSaved)} style={btnSecondaryStyle}>Load my saved payment</button>
-          <button type="button" onClick={labClick(loadVerifyFromReturn)} style={btnSecondaryStyle}>Send to verify step</button>
+        <div style={actionBarRowStyle}>
+          {renderWizardButton('secondary', 'Load my saved payment', labClick(loadReturnFromSaved), false)}
+          {renderWizardButton('secondary', 'Send to verify step', labClick(loadVerifyFromReturn), false)}
         </div>
         <div style={fieldStackStyle}>
           {RETURN_FIELDS.map(function (row) {
@@ -2293,14 +2308,10 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
             );
           })}
         </div>
-        <div style={btnRowStyle}>
-          <button type="button" onClick={labClick(markReturnReviewed)} style={btnPrimaryStyle}>I am done with this step</button>
+        <div style={actionBarRowStyle}>
+          {renderWizardButton('primary', 'I am done with this step', labClick(markReturnReviewed), false)}
         </div>
-        {wizardProgress().returnReviewed ? (
-          <p style={okTextStyle}>Good. Next: verify the callback hash.</p>
-        ) : (
-          <p style={hintTextStyle}>Mark this step done when you have reviewed the fields.</p>
-        )}
+        {wizardProgress().returnReviewed ? <p style={okTextStyle}>Good. Next: verify the callback hash.</p> : null}
         <p style={bodyTextStyle}>
           If payment failed, set <strong>status</strong> to <code>failure</code> — PayU hits your failure URL instead. Always verify the hash before updating an order.
         </p>
@@ -2314,8 +2325,8 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
         <p style={bodyTextStyle}>
           Paste the hash PayU sent in the callback. We pre-filled the other fields — you add <strong>salt</strong> and the response <strong>hash</strong>, then verify.
         </p>
-        <div style={btnRowSpacedStyle}>
-          <button type="button" onClick={labClick(loadVerifyFromReturn)} style={btnSecondaryStyle}>Load from previous step</button>
+        <div style={actionBarRowStyle}>
+          {renderWizardButton('secondary', 'Load from previous step', labClick(loadVerifyFromReturn), false)}
         </div>
         <code style={codeBlockStyle}>
           sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
@@ -2361,18 +2372,13 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
             />
           </div>
         </div>
-        <div style={btnRowStyle}>
-          <button type="button" onClick={labClick(verifyReverseHash)} disabled={busy} style={btnPrimaryStyle}>
-            {busy ? 'Checking…' : 'Verify hash'}
-          </button>
-          <a href={HASH_TOOL} target="_blank" rel="noopener noreferrer" style={linkBtnStyle}>Open hash tool</a>
+        <div style={actionBarRowStyle}>
+          {renderWizardButton('primary', busy ? 'Checking…' : 'Verify hash', labClick(verifyReverseHash), busy)}
+          {renderWizardExternalLink(HASH_TOOL, 'Open hash tool')}
         </div>
         {match === true ? <p style={okTextStyle}>Match — callback looks genuine for this lab.</p> : null}
         {match === false ? renderHashDiffDiagnosis() : null}
         {match === true && computedRev ? <code style={codeBlockStyle}>{computedRev}</code> : null}
-        {!wizardProgress().verifyDone ? (
-          <p style={hintTextStyle}>Verify the hash successfully to continue.</p>
-        ) : null}
       </div>
     );
   }
@@ -2431,7 +2437,9 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
             );
           })}
         </div>
-        <button type="button" onClick={labClick(restartLab)} style={btnPrimaryStyle}>Start over</button>
+        <div style={actionBarRowStyle}>
+          {renderWizardButton('primary', 'Start over', labClick(restartLab), false)}
+        </div>
       </div>
     );
   }
@@ -2458,7 +2466,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
             </ul>
           </div>
           <div style={{ flexShrink: 0, alignSelf: 'center' }}>
-            <button type="button" ref={launcherBtnRef} onClick={labClick(openModal)} style={Object.assign({}, btnPrimaryStyle, { padding: '12px 24px', fontSize: '15px' })}>
+            <button type="button" ref={launcherBtnRef} onClick={labClick(openModal)} style={Object.assign({}, wizardBtnStyle('primary', false), { padding: '12px 24px', fontSize: '15px' })}>
               Open walkthrough
             </button>
           </div>
