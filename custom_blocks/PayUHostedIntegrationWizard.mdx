@@ -2,7 +2,7 @@
 name: PayUHostedIntegrationWizard
 ---
 // PayUHostedIntegrationWizard — ReadMe Custom Component (Integration Guide)
-// Popup wizard + rule-based Assistant tab. Lab engine: payu-lab-engine.js (npm run build:integration-wizard to sync bundle).
+// Popup walkthrough + rule-based Help tab. Lab engine: payu-lab-engine.js (npm run build:integration-wizard to sync bundle).
 // Doc page: <PayUHostedIntegrationWizard />
 
 import { useState, useEffect, useRef } from 'react';
@@ -55,23 +55,23 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     function validateFieldErrors(data) {
       var errors = {};
       var p = data || {};
-      if (isBlank(p.key)) errors.key = 'Enter your test merchant key from the PayU dashboard.';
+      if (isBlank(p.key)) errors.key = 'Add your test merchant key from the PayU dashboard.';
       var i;
       for (i = 0; i < MANDATORY_FIELD_KEYS.length; i += 1) {
         var fk = MANDATORY_FIELD_KEYS[i];
-        if (isBlank(p[fk])) errors[fk] = 'Required: ' + fk;
+        if (isBlank(p[fk])) errors[fk] = fk + ' is required.';
       }
       if (!isBlank(p.amount) && !/^\d+(\.\d{1,2})?$/.test(empty(p.amount))) {
-        errors.amount = 'Amount must be a decimal string (e.g. 10.00).';
+        errors.amount = 'Use a number like 10.00 (up to 2 decimal places).';
       }
       if (!isBlank(p.email) && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(empty(p.email))) {
-        errors.email = 'Enter a valid email address.';
+        errors.email = 'That does not look like a valid email.';
       }
       if (!isBlank(p.phone) && !/^\d{10}$/.test(empty(p.phone).replace(/\s/g, ''))) {
-        errors.phone = 'Phone must be exactly 10 digits.';
+        errors.phone = 'Phone should be 10 digits, no spaces.';
       }
       if (!isBlank(p.txnid) && empty(p.txnid).length > 20) {
-        errors.txnid = 'txnid must be 20 characters or fewer.';
+        errors.txnid = 'txnid can be 20 characters max.';
       }
       return errors;
     }
@@ -238,29 +238,29 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     };
     
     var BLOCKER_MESSAGES = {
-      PREREQ_INCOMPLETE: 'Check all four prerequisites on step 1.',
-      PARAMS_NOT_SAVED: 'Click **Save parameters to lab** after filling every required field.',
-      LAB_ACK_REQUIRED: 'Confirm you are using test-only credentials (checkbox on step 2).',
-      FIELD_VALIDATION: 'Fix the highlighted field errors on step 2.',
-      SALT_REQUIRED: 'Enter your test salt — it is never pre-filled in this lab.',
-      PIPE_NOT_SHOWN: 'Click **1) Show pre-hash string** before computing the hash.',
-      HASH_NOT_GENERATED: 'Click **2) Compute SHA-512** after reviewing the pipe string.',
-      CHECKOUT_NOT_OPENED: 'Click **Open PayU test checkout** to launch a sandbox payment.',
-      RETURN_NOT_REVIEWED: 'Review the callback fields and click **Mark return step complete**.',
-      VERIFY_NOT_DONE: 'Enter salt, paste the callback hash, and click **Verify reverse hash**.',
-      TEST_CHECKLIST_INCOMPLETE: 'Check every item on the sandbox test checklist.'
+      PREREQ_INCOMPLETE: 'Tick all four boxes on step 1 first.',
+      PARAMS_NOT_SAVED: 'Fill in the fields, then hit **Save payment details**.',
+      LAB_ACK_REQUIRED: 'Check the box that says you are using test credentials only.',
+      FIELD_VALIDATION: 'Some fields have errors — fix the red ones on step 2.',
+      SALT_REQUIRED: 'Type your test salt. We never fill it in for you.',
+      PIPE_NOT_SHOWN: 'Click **Show hash string** before you generate the hash.',
+      HASH_NOT_GENERATED: 'Click **Generate hash** after you review the string.',
+      CHECKOUT_NOT_OPENED: 'Click **Open test checkout** to try a sandbox payment.',
+      RETURN_NOT_REVIEWED: 'Look at the callback fields, then click **I am done with this step**.',
+      VERIFY_NOT_DONE: 'Enter salt, paste the hash from PayU, and click **Verify hash**.',
+      TEST_CHECKLIST_INCOMPLETE: 'Tick every item on the checklist.'
     };
     
     var STEP_NEXT_ACTIONS = {
-      welcome: 'Click **Next** to review prerequisites.',
-      prereq: 'Check all four boxes, then click **Continue**.',
-      params: 'Enter your test merchant key, review pre-filled fields, confirm test credentials, then **Save parameters to lab**.',
-      hash: 'Enter salt → **Show pre-hash string** → **Compute SHA-512** (each step is required).',
-      post: 'Click **Open PayU test checkout** (allow pop-ups or use **Open in this tab**).',
-      return: 'Paste or load callback fields, then **Mark return step complete**.',
-      verify: 'Load callback fields, enter salt, paste response hash, then **Verify reverse hash**.',
-      test: 'Confirm each sandbox test item, then **Continue**.',
-      golive: 'Review the production checklist. Use **Restart wizard** to run the lab again.'
+      welcome: 'Hit **Next** when you are ready to start.',
+      prereq: 'Tick all four boxes, then **Continue**.',
+      params: 'Add your test key, check the example fields, tick the test-credentials box, then **Save payment details**.',
+      hash: 'Enter salt → **Show hash string** → **Generate hash**. Do all three.',
+      post: 'Click **Open test checkout**. If a new tab does not open, try **Open in this tab**.',
+      return: 'Fill in (or load) the callback fields, then **I am done with this step**.',
+      verify: 'Paste the hash PayU sent you, enter salt, and click **Verify hash**.',
+      test: 'Tick every checklist item, then **Continue**.',
+      golive: 'Read the go-live checklist. Want to run the lab again? Hit **Start over**.'
     };
     
     function maskEmail(email) {
@@ -363,32 +363,32 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
       if (!hashDiff || hashDiff.kind === 'match') return null;
       if (hashDiff.kind === 'invalid_pasted') {
         return {
-          title: 'Invalid callback hash',
-          body: 'The pasted hash is not a valid SHA-512 value (expected 128 hex characters, got ' + hashDiff.pastedLen + '). Copy the full **hash** field from PayU\'s POST to your surl/furl — no quotes or line breaks.',
+          title: 'That hash does not look right',
+          body: 'A SHA-512 hash is 128 characters long. Yours has ' + hashDiff.pastedLen + '. Copy the full **hash** from PayU callback — no spaces or quotes.',
           severity: 'error'
         };
       }
       if (hashDiff.kind === 'length_mismatch') {
         return {
-          title: 'Hash length mismatch',
-          body: 'Computed hash has ' + hashDiff.computedLen + ' characters but pasted has ' + hashDiff.pastedLen + '. You may have truncated the value when copying from logs or browser devtools.',
+          title: 'Hash length does not match',
+          body: 'Your hash has ' + hashDiff.pastedLen + ' chars but it should be ' + hashDiff.computedLen + '. You probably copied only part of it.',
           severity: 'error'
         };
       }
       var idx = hashDiff.index;
-      var hint = 'Compare salt, **status**, and field order against PayU docs.';
+      var hint = 'Double-check your salt, the **status** field, and that fields are in the right order.';
       if (idx < 16) {
-        hint = 'Early mismatch (character ' + (idx + 1) + ') often means **wrong salt** or **wrong merchant key** in the reverse hash string.';
+        hint = 'Mismatch near the start (char ' + (idx + 1) + ') — usually wrong **salt** or **merchant key**.';
       } else if (idx > 100) {
-        hint = 'Late mismatch (character ' + (idx + 1) + ') often means a **paste error** or truncated hash — re-copy from the callback POST body.';
+        hint = 'Mismatch near the end (char ' + (idx + 1) + ') — often a copy-paste mistake. Grab the hash again from the callback.';
       } else {
-        hint = 'Mismatch at character ' + (idx + 1) + ' — verify **status**, **udf** field order, and that txnid/amount match the payment.';
+        hint = 'Mismatch at char ' + (idx + 1) + ' — check **status**, UDF fields, and that txnid/amount match the payment.';
       }
       if (hashTrimNote) {
-        hint += ' Leading/trailing whitespace was ignored when comparing.';
+        hint += ' (We ignored extra spaces at the start or end.)';
       }
       return {
-        title: 'Hash mismatch at character ' + (idx + 1),
+        title: 'Hashes do not match (first diff at char ' + (idx + 1) + ')',
         body: hint,
         severity: 'error'
       };
@@ -401,8 +401,8 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     
       insights.push({
         id: 'whats-next',
-        title: 'What to do next',
-        body: STEP_NEXT_ACTIONS[stepId] || 'Follow the current step in the Lab tab.',
+        title: 'Do this next',
+        body: STEP_NEXT_ACTIONS[stepId] || 'Switch to the Lab tab and follow the current step.',
         severity: 'info'
       });
     
@@ -412,7 +412,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
           var code = ctx.blockers[i];
           insights.push({
             id: 'blocker-' + code,
-            title: 'Continue is locked',
+            title: 'You cannot continue yet',
             body: BLOCKER_MESSAGES[code] || code,
             severity: 'warning'
           });
@@ -424,7 +424,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
         var lines = keys.map(function (k) { return '**' + k + '**: ' + ctx.fieldErrors[k]; });
         insights.push({
           id: 'field-errors',
-          title: 'Field validation',
+          title: 'Fix these fields',
           body: lines.join(' '),
           severity: 'error'
         });
@@ -436,8 +436,8 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
       if (ctx.progress && ctx.progress.hashGenerated && stepId === 'hash') {
         insights.push({
           id: 'hash-server-reminder',
-          title: 'Production reminder',
-          body: 'On your server, compute the forward hash with the same pipe order — never expose **salt** in client-side code.',
+          title: 'Heads up for production',
+          body: 'Generate the hash on your server, not in the browser. Never put **salt** in frontend code.',
           severity: 'info'
         });
       }
@@ -445,8 +445,8 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
       if (stepId === 'verify' && ctx.match === true) {
         insights.push({
           id: 'verify-success',
-          title: 'Response verified',
-          body: 'Hash matched for this lab session. In production, always verify before updating order status — never trust the callback alone.',
+          title: 'Hash verified',
+          body: 'Nice — the callback hash matches. In production, always verify before you update an order.',
           severity: 'success'
         });
       }
@@ -507,18 +507,18 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     };
   }
 
-  var FIELD_PLACEHOLDERS = JSON.parse('{"key":"Your test merchant key","salt":"Your test salt","hash":"Paste response hash from PayU POST","status":"success or failure"}');
+  var FIELD_PLACEHOLDERS = JSON.parse('{"key":"Your test merchant key","salt":"Your test salt","hash":"Paste the hash from PayU here","status":"success or failure"}');
 
-  var STEPS = JSON.parse('[{"id":"welcome","title":"Hosted Checkout integration lab","tagline":"","stepLabel":"Start"},{"id":"prereq","title":"Prerequisites","tagline":"Confirm you have test credentials and HTTPS callback URLs before integrating.","stepLabel":"1"},{"id":"params","title":"Payment request","tagline":"Build the POST body your server sends to PayU — enter your test key and save.","stepLabel":"2"},{"id":"hash","title":"Request hash","tagline":"Generate the SHA-512 forward hash from your pipe string and test salt.","stepLabel":"3"},{"id":"post","title":"Test checkout","tagline":"Launch a real payment on test.payu.in with your saved parameters and hash.","stepLabel":"4"},{"id":"return","title":"Return payload","tagline":"See what PayU POSTs to your surl or furl after the customer pays.","stepLabel":"5"},{"id":"verify","title":"Verify response","tagline":"Recompute the reverse hash and confirm the callback is authentic.","stepLabel":"6"},{"id":"test","title":"Test checklist","tagline":"Validate sandbox behaviour before you ship to production.","stepLabel":"7"},{"id":"golive","title":"Go live","tagline":"Final checks before switching to the production endpoint.","stepLabel":"8"}]');
-  var WELCOME_OUTCOMES = JSON.parse('["Build a signed payment request with real field names and hash order","Generate SHA-512 and open PayU test checkout in one flow","Inspect surl/furl callback fields and verify the reverse hash","Leave with a sandbox-tested mental model of Hosted Checkout"]');
+  var STEPS = JSON.parse('[{"id":"welcome","title":"Welcome","tagline":"","stepLabel":"Start"},{"id":"prereq","title":"Before you start","tagline":"Make sure you have these four things ready.","stepLabel":"1"},{"id":"params","title":"Payment details","tagline":"We filled in examples — you add your test key and save.","stepLabel":"2"},{"id":"hash","title":"Create the hash","tagline":"Enter your salt and generate the SHA-512 hash PayU needs.","stepLabel":"3"},{"id":"post","title":"Try a test payment","tagline":"Open PayU test checkout and complete a sandbox payment.","stepLabel":"4"},{"id":"return","title":"What PayU sends back","tagline":"After payment, PayU POSTs these fields to your success or failure URL.","stepLabel":"5"},{"id":"verify","title":"Verify the callback","tagline":"Check the hash to make sure the response really came from PayU.","stepLabel":"6"},{"id":"test","title":"Sandbox checklist","tagline":"Tick these off before you ship to production.","stepLabel":"7"},{"id":"golive","title":"Go live","tagline":"Last checks before you take real payments.","stepLabel":"8"}]');
+  var WELCOME_OUTCOMES = JSON.parse('["Build a real payment request and sign it with a hash","Pay on PayU test checkout in your browser","See what PayU sends to your callback URL","Verify the callback so you know it is genuine"]');
 
-  var PREREQ = JSON.parse('[{"id":"acct","label":"PayU test merchant key and salt from the dashboard"},{"id":"https","label":"Public HTTPS surl and furl URLs reachable from the internet"},{"id":"hash","label":"Production hashing runs on your server, not in the browser"},{"id":"uniq","label":"Unique txnid per payment attempt"}]');
+  var PREREQ = JSON.parse('[{"id":"acct","label":"Test merchant key and salt from the PayU dashboard"},{"id":"https","label":"HTTPS success and failure URLs that PayU can reach on the internet"},{"id":"hash","label":"I know hashing runs on my server in production, not in the browser"},{"id":"uniq","label":"I will use a new txnid for every payment"}]');
   var MANDATORY = JSON.parse('[{"k":"txnid","l":"txnid"},{"k":"amount","l":"amount"},{"k":"productinfo","l":"productinfo"},{"k":"firstname","l":"firstname"},{"k":"email","l":"email"},{"k":"phone","l":"phone"},{"k":"surl","l":"surl"},{"k":"furl","l":"furl"}]');
   var OPTIONAL = JSON.parse('[{"k":"udf1","l":"udf1"},{"k":"udf2","l":"udf2"},{"k":"udf3","l":"udf3"},{"k":"udf4","l":"udf4"},{"k":"udf5","l":"udf5"}]');
   var REV_FIELDS = JSON.parse('[{"k":"status","l":"status"},{"k":"txnid","l":"txnid"},{"k":"amount","l":"amount"},{"k":"productinfo","l":"productinfo"},{"k":"firstname","l":"firstname"},{"k":"email","l":"email"},{"k":"key","l":"key"},{"k":"udf1","l":"udf1"},{"k":"udf2","l":"udf2"},{"k":"udf3","l":"udf3"},{"k":"udf4","l":"udf4"},{"k":"udf5","l":"udf5"}]');
   var RETURN_FIELDS = JSON.parse('[{"k":"status","l":"status"},{"k":"key","l":"key"},{"k":"txnid","l":"txnid"},{"k":"amount","l":"amount"},{"k":"productinfo","l":"productinfo"},{"k":"email","l":"email"},{"k":"hash","l":"hash"}]');
-  var TEST_CHECKS = JSON.parse('["Land on PayU test page with correct amount and productinfo","surl receives POST with expected txnid on success","furl receives POST with status failure when declined","Logged pre-hash string matches PayU docs field order","Reverse hash verified on response payload"]');
-  var GO_LIVE = JSON.parse('["Switch endpoint to https://secure.payu.in/_payment","Use production key and salt only on production servers","Enable webhooks and monitor surl or furl error rates","Run a small live transaction before full traffic"]');
+  var TEST_CHECKS = JSON.parse('["Test checkout shows the right amount and product","Success URL gets a POST with the right txnid","Failure URL gets a POST when payment fails","My hash string matches PayU field order in the docs","I verified the callback hash"]');
+  var GO_LIVE = JSON.parse('["Use https://secure.payu.in/_payment for real payments","Keep production key and salt on the server only","Turn on webhooks and watch callback errors","Run one small live payment before full traffic"]');
 
   var PAYU_GREEN = '#0f766e';
   var PAYU_GREEN_DARK = '#115e59';
@@ -816,22 +816,22 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   function validateFieldErrors(data) {
     var errors = {};
     var p = data || {};
-    if (isBlank(p.key)) errors.key = 'Enter your test merchant key from the PayU dashboard.';
+    if (isBlank(p.key)) errors.key = 'Add your test merchant key from the PayU dashboard.';
     var i;
     for (i = 0; i < MANDATORY.length; i += 1) {
-      if (isBlank(p[MANDATORY[i].k])) errors[MANDATORY[i].k] = 'Required: ' + MANDATORY[i].l;
+      if (isBlank(p[MANDATORY[i].k])) errors[MANDATORY[i].k] = MANDATORY[i].l + ' is required.';
     }
     if (!isBlank(p.amount) && !/^\d+(\.\d{1,2})?$/.test(empty(p.amount))) {
-      errors.amount = 'Amount must be a decimal string (e.g. 10.00).';
+      errors.amount = 'Use a number like 10.00 (up to 2 decimal places).';
     }
     if (!isBlank(p.email) && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(empty(p.email))) {
-      errors.email = 'Enter a valid email address.';
+      errors.email = 'That does not look like a valid email.';
     }
     if (!isBlank(p.phone) && !/^\d{10}$/.test(empty(p.phone).replace(/\s/g, ''))) {
-      errors.phone = 'Phone must be exactly 10 digits.';
+      errors.phone = 'Phone should be 10 digits, no spaces.';
     }
     if (!isBlank(p.txnid) && empty(p.txnid).length > 20) {
-      errors.txnid = 'txnid must be 20 characters or fewer.';
+      errors.txnid = 'txnid can be 20 characters max.';
     }
     return errors;
   }
@@ -959,8 +959,8 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
       <div className="mb-4 flex items-start gap-3 rounded-md border border-teal-200 bg-white/90 px-3 py-2.5 dark:border-teal-800 dark:bg-gray-900/50" role="note">
         <span className="mt-0.5 shrink-0 rounded bg-teal-700 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white dark:bg-teal-600">Try it</span>
         <p className="mb-0 min-w-0 text-sm leading-snug text-gray-700 dark:text-gray-200">
-          <span className="font-semibold text-gray-900 dark:text-gray-100">Interactive lab — </span>
-          steps with forms and buttons let you run a real test payment. Values stay in your browser for this session.
+          <span className="font-semibold text-gray-900 dark:text-gray-100">Hands-on lab — </span>
+          Fill in forms and click buttons to run a real test payment. Everything stays in your browser.
         </p>
       </div>
     );
@@ -1345,13 +1345,13 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
 
   function continueHint() {
     if (canAdvance()) return '';
-    if (step === 1) return 'Check all four prerequisites above to unlock Continue.';
-    if (step === 2) return 'Fill every field, confirm test credentials, then click Save parameters to lab.';
-    if (step === 3) return 'Enter salt → Show pre-hash string → Compute SHA-512. Each action is required.';
-    if (step === 4) return 'Click Open PayU test checkout to launch a real sandbox payment.';
-    if (step === 5) return 'Review callback fields, then click Mark return step complete.';
-    if (step === 6) return 'Enter salt and callback values, then click Verify reverse hash.';
-    if (step === 7) return 'Check every sandbox test item to continue.';
+    if (step === 1) return 'Tick all four boxes above, then you can continue.';
+    if (step === 2) return 'Fill everything in, tick the test-credentials box, then save.';
+    if (step === 3) return 'Salt → show hash string → generate hash. All three, in order.';
+    if (step === 4) return 'Open test checkout first — that unlocks the next step.';
+    if (step === 5) return 'Review the callback fields, then mark this step done.';
+    if (step === 6) return 'Enter salt, paste the callback hash, and verify.';
+    if (step === 7) return 'Tick every item on the checklist.';
     return '';
   }
 
@@ -1489,19 +1489,19 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
       setErr('');
       return;
     }
-    if (!labAck) { setErr('Confirm you are using test-only credentials in this lab.'); return; }
+    if (!labAck) { setErr('Please tick the box to confirm you are using test credentials only.'); return; }
     var labData = labEnsure();
     labData.params = data;
     labData = resetDownstreamProgress(labData, 2);
     labData.progress.paramsSaved = true;
-    if (!labWrite(labData)) { setErr('Could not save lab state. Allow storage and try again.'); return; }
+    if (!labWrite(labData)) { setErr('Could not save — allow browser storage and try again.'); return; }
     setLab(labData);
     clearHashUi();
     setFieldErrors({});
     setSaveAttempted(false);
     setReturnPreview(exampleReturnPreview(data));
     setRevResp(exampleRevResp(data));
-    setMsg('Parameters saved. Continue to the hash step — enter your test salt and generate SHA-512.');
+    setMsg('Saved. Next up: enter your salt and generate the hash.');
     setErr('');
   }
 
@@ -1522,8 +1522,8 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
   function showPipeString() {
     setErr('');
     var p = wizardProgress();
-    if (!p.paramsSaved) { setErr('Save payment parameters first (previous step).'); return; }
-    if (isBlank(salt)) { setErr('Enter your test salt before showing the pre-hash string.'); return; }
+    if (!p.paramsSaved) { setErr('Save your payment details first (go back one step).'); return; }
+    if (isBlank(salt)) { setErr('Enter your test salt first.'); return; }
     var params = mergeParams(lab.params);
     var pipe = buildForwardHashString(params, salt);
     var labData = labEnsure();
@@ -1534,14 +1534,14 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     setLab(labData);
     setPipeString(pipe);
     setHashStage(1);
-    setMsg('Step 1 of 2 done — review the string below, then click Compute SHA-512.');
+    setMsg('Good — now click Generate hash.');
   }
 
   function generateHash() {
     setErr('');
     var p = wizardProgress();
-    if (!p.paramsSaved) { setErr('Save payment parameters first.'); return; }
-    if (!p.pipeShown || hashStage < 1) { setErr('Click Show pre-hash string before computing the hash.'); return; }
+    if (!p.paramsSaved) { setErr('Save payment details first.'); return; }
+    if (!p.pipeShown || hashStage < 1) { setErr('Click Show hash string before you generate the hash.'); return; }
     if (isBlank(salt)) { setErr('Salt is required.'); return; }
     var params = mergeParams(lab.params);
     var pipe = buildForwardHashString(params, salt);
@@ -1557,7 +1557,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
       setPipeString(pipe);
       setHashHex(h);
       setHashStage(2);
-      setMsg('Hash generated. You can now continue to test checkout.');
+      setMsg('Hash is ready. You can open test checkout now.');
       setBusy(false);
       setErr('');
     }).catch(function () {
@@ -1598,18 +1598,18 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
 
   function submitPayuCheckout(target) {
     var data = labEnsure();
-    if (!paymentReady(data)) { setErr('Save parameters and generate hash first.'); setMsg(''); return; }
-    if (!syncPayForm(data)) { setErr('Could not prepare checkout form. Refresh and try again.'); return; }
+    if (!paymentReady(data)) { setErr('Save payment details and generate the hash first.'); setMsg(''); return; }
+    if (!syncPayForm(data)) { setErr('Something went wrong preparing checkout. Refresh and try again.'); return; }
     payFormRef.current.target = target || '_blank';
     payFormRef.current.submit();
     data.progress.checkoutOpened = true;
     labWrite(data);
     setLab(data);
     setErr('');
-    setMsg('Test checkout launched. Complete payment on PayU or close the tab and continue.');
+    setMsg('Checkout opened. Finish the payment (or close the tab) and come back here.');
   }
 
-  var POPUP_BLOCKED_HINT = 'If nothing opened, your browser may have blocked the pop-up — check the address bar or use Open in this tab instead.';
+  var POPUP_BLOCKED_HINT = 'No new tab? Your browser may have blocked the pop-up — check the address bar or use Open in this tab.';
 
   function buildCurl(data) {
     var p = mergeParams(data.params);
@@ -1639,19 +1639,19 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     setRevResp(exampleRevResp(next));
     setFieldErrors({});
     setSaveAttempted(false);
-    setMsg('Example values restored. Enter your test key and click Save parameters.');
+    setMsg('Example values restored. Add your test key and save again.');
     setErr('');
   }
 
   function loadReturnFromSaved() {
     var prog = wizardProgress();
     if (!prog.paramsSaved) {
-      setErr('Save payment parameters first (Step 3).');
+      setErr('Save payment details first.');
       return;
     }
     var p = mergeParams(lab.params);
     setReturnPreview(exampleReturnPreview(p));
-    setMsg('Callback preview filled from your saved parameters. Paste the hash after payment.');
+    setMsg('Loaded from your saved payment. Paste the hash after you pay.');
     setErr('');
   }
 
@@ -1665,7 +1665,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
       status: returnPreview.status || 'success'
     }));
     setResponseHash(returnPreview.hash || '');
-    setMsg('Non-secret callback fields loaded. Enter salt and paste the response hash, then click Verify.');
+    setMsg('Fields loaded. Add salt, paste the hash, and verify.');
     setErr('');
   }
 
@@ -1674,13 +1674,13 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     labData.progress.returnReviewed = true;
     labWrite(labData);
     setLab(labData);
-    setMsg('Return step complete. Continue to verify the reverse hash.');
+    setMsg('Done with this step. Next: verify the callback hash.');
     setErr('');
   }
 
   function verifyReverseHash() {
-    if (isBlank(salt)) { setErr('Enter test salt (same as hash step).'); return; }
-    if (isBlank(responseHash)) { setErr('Paste the hash from PayU response.'); return; }
+    if (isBlank(salt)) { setErr('Enter the same test salt you used for the hash.'); return; }
+    if (isBlank(responseHash)) { setErr('Paste the hash from PayU callback.'); return; }
     setBusy(true);
     setErr('');
     setMatch(null);
@@ -1702,10 +1702,10 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
         labData.progress.verifyDone = true;
         labWrite(labData);
         setLab(labData);
-        setMsg('Reverse hash verified. On your server, recompute and compare case-sensitively before updating orders.');
+        setMsg('Verified. On your server, always check the hash before updating an order.');
       } else {
         setMsg('');
-        setErr('Hash mismatch — see diagnosis below.');
+        setErr('Hashes do not match — see Help tab or the diagnosis below.');
       }
       setBusy(false);
     }).catch(function () { setErr('SHA-512 unavailable.'); setBusy(false); });
@@ -1773,7 +1773,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
       return (
         <div style={infoBoxStyle} role="alert">
           <p style={{ margin: 0, fontSize: '14px', lineHeight: 1.6 }}>
-            Pasted hash is not a valid SHA-512 — expected 128 hex characters, got {hashDiff.pastedLen}.
+            That is not a valid SHA-512 hash — need 128 characters, you have {hashDiff.pastedLen}. Copy the full hash from PayU with no extra spaces.
           </p>
         </div>
       );
@@ -1782,7 +1782,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
       return (
         <div style={infoBoxStyle} role="alert">
           <p style={{ margin: 0, fontSize: '14px', lineHeight: 1.6 }}>
-            Length mismatch — computed {hashDiff.computedLen} characters, pasted {hashDiff.pastedLen}.
+            Lengths do not match — yours has {hashDiff.pastedLen} chars, should be {hashDiff.computedLen}. You may have copied only part of the hash.
           </p>
         </div>
       );
@@ -1791,13 +1791,13 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
       <div style={infoBoxStyle} role="alert">
         {hashTrimNote ? (
           <p style={{ margin: '0 0 8px', fontSize: '13px', color: '#b45309' }}>
-            Leading/trailing whitespace was ignored when comparing hashes.
+            We ignored extra spaces at the start or end when comparing hashes.
           </p>
         ) : null}
         <p style={{ margin: '0 0 8px', fontSize: '14px', fontWeight: 600 }}>First difference at character {hashDiff.index + 1}:</p>
-        <p style={{ margin: '0 0 4px', fontSize: '12px', fontWeight: 700 }}>Computed</p>
+        <p style={{ margin: '0 0 4px', fontSize: '12px', fontWeight: 700 }}>What we computed</p>
         <code style={codeBlockStyle}>{renderHexSegment(hashDiff.computed, hashDiff.index)}</code>
-        <p style={{ margin: '0 0 4px', fontSize: '12px', fontWeight: 700 }}>Pasted</p>
+        <p style={{ margin: '0 0 4px', fontSize: '12px', fontWeight: 700 }}>What you pasted</p>
         <code style={codeBlockStyle}>{renderHexSegment(hashDiff.pasted, hashDiff.index)}</code>
       </div>
     );
@@ -1807,10 +1807,10 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     return (
       <div>
         <p style={{ fontSize: '16px', lineHeight: 1.65, color: '#374151', margin: '0 0 20px' }}>
-          This lab runs a full Hosted Checkout loop on PayU test — build a payment request, generate a hash, pay on sandbox, and verify the callback. Example fields are pre-filled; you supply your test <strong>key</strong> and <strong>salt</strong>.
+          This is a hands-on walkthrough of PayU Hosted Checkout on test. You will build a payment, create a hash, pay on sandbox, and check the callback. Example fields are already filled — you only need to add your test <strong>key</strong> and <strong>salt</strong>.
         </p>
         <div style={infoBoxStyle}>
-          <strong style={{ display: 'block', marginBottom: '10px', color: PAYU_GREEN_DARK }}>What you will achieve</strong>
+          <strong style={{ display: 'block', marginBottom: '10px', color: PAYU_GREEN_DARK }}>By the end you will have</strong>
           <ul style={{ margin: 0, paddingLeft: '20px', lineHeight: 1.85 }}>
             {WELCOME_OUTCOMES.map(function (item) {
               return <li key={item}>{item}</li>;
@@ -1818,16 +1818,16 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
           </ul>
         </div>
         <div style={infoBoxStyle}>
-          <strong style={{ display: 'block', marginBottom: '10px', color: PAYU_GREEN_DARK }}>End-to-end flow</strong>
+          <strong style={{ display: 'block', marginBottom: '10px', color: PAYU_GREEN_DARK }}>How it works</strong>
           <ol style={{ margin: 0, paddingLeft: '20px', lineHeight: 1.85 }}>
-            <li>Your server builds a signed POST to PayU</li>
-            <li>Customer pays on the hosted checkout page</li>
-            <li>PayU POSTs the result to your surl or furl</li>
-            <li>You verify the reverse hash before updating the order</li>
+            <li>Your server sends a signed payment request to PayU</li>
+            <li>Customer pays on PayU checkout page</li>
+            <li>PayU POSTs the result to your success or failure URL</li>
+            <li>You verify the hash before updating the order</li>
           </ol>
         </div>
         <p style={hintTextStyle} role="note">
-          Click <strong>Next</strong> to begin — each step unlocks only after you complete the required action.
+          Hit <strong>Next</strong> to start. Each step opens only after you finish the one before.
         </p>
       </div>
     );
@@ -1852,7 +1852,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
 
   function renderModalTabs() {
     return (
-      <div style={modalTabRowStyle} role="tablist" aria-label="Wizard views">
+      <div style={modalTabRowStyle} role="tablist" aria-label="Lab and Help">
         <button
           type="button"
           role="tab"
@@ -1869,7 +1869,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
           onClick={labClick(function () { setModalTab('help'); })}
           style={modalTab === 'help' ? modalTabBtnActiveStyle : modalTabBtnStyle}
         >
-          Assistant
+          Help
         </button>
       </div>
     );
@@ -1903,13 +1903,12 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     return (
       <div>
         <p style={bodyTextStyle}>
-          Rule-based integration assistant — deterministic guidance from your current lab state. No data is sent to an external AI service.
+          Stuck? This tab tells you what to do next based on where you are. It runs locally in your browser — nothing is sent to any AI service.
         </p>
         <div style={infoBoxStyle}>
-          <strong style={{ display: 'block', marginBottom: '6px', color: PAYU_GREEN_DARK }}>Session snapshot</strong>
+          <strong style={{ display: 'block', marginBottom: '6px', color: PAYU_GREEN_DARK }}>Where you are</strong>
           <p style={{ margin: 0, fontSize: '13px', lineHeight: 1.6 }}>
-            Step {ctx.step + 1} · <code style={{ fontSize: '12px' }}>{ctx.stepId}</code>
-            {ctx.canAdvance ? ' · ready to continue' : ' · action required'}
+            Step {ctx.step + 1}{ctx.canAdvance ? ' — ready to continue' : ' — one more action needed'}
           </p>
         </div>
         <div aria-live="polite">
@@ -1936,14 +1935,14 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
             })}
             style={btnSecondaryStyle}
           >
-            Copy context JSON
+            Copy session info
           </button>
           <button type="button" onClick={labClick(function () { setModalTab('lab'); })} style={btnPrimaryStyle}>
             Back to lab
           </button>
         </div>
         <p style={mutedTextStyle}>
-          Context schema v{PayULabRuntime.LAB_CONTEXT_SCHEMA_VERSION} · secrets redacted · future LLM copilot can consume the same JSON format.
+          Keys and salt are hidden if you copy session info. For debugging only.
         </p>
       </div>
     );
@@ -1967,10 +1966,10 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
         {step >= 2 && step <= 6 ? <LabInteractiveBanner /> : null}
         {step > 0 ? (
           <LabStatus items={[
-            { label: 'Parameters saved', ok: prog.paramsSaved },
-            { label: 'Hash generated', ok: prog.hashGenerated },
+            { label: 'Payment saved', ok: prog.paramsSaved },
+            { label: 'Hash done', ok: prog.hashGenerated },
             { label: 'Checkout opened', ok: prog.checkoutOpened },
-            { label: 'Response verified', ok: prog.verifyDone && match === true }
+            { label: 'Callback verified', ok: prog.verifyDone && match === true }
           ]} />
         ) : null}
         <div aria-live="polite" aria-atomic="true">
@@ -2075,7 +2074,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
             );
           })}
           <button type="button" onClick={labClick(function () { setShowUdf(!showUdf); })} style={summaryStyle}>
-            {showUdf ? 'Hide optional UDF fields' : 'Show optional UDF fields (udf1–udf5)'}
+            {showUdf ? 'Hide extra fields (udf1–udf5)' : 'Show extra fields (udf1–udf5)'}
           </button>
           {showUdf ? (
             <div style={fieldStackInnerStyle}>
@@ -2092,15 +2091,15 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
         </div>
         <label style={Object.assign({}, cardCheckStyle, { marginTop: '12px' })}>
           <input type="checkbox" checked={labAck} onChange={function (e) { setLabAck(e.target.checked); }} style={checkboxInputStyle} />
-          <span>I am using test-only credentials in this lab.</span>
+          <span>I am using test credentials only (not production).</span>
         </label>
         <div style={btnRowStyle}>
-          <button type="button" onClick={labClick(saveParams)} style={btnPrimaryStyle}>Save parameters to lab</button>
-          <button type="button" onClick={labClick(newTxnid)} style={btnSecondaryStyle}>New txnid</button>
-          <button type="button" onClick={labClick(resetToExamples)} style={btnSecondaryStyle}>Reset to examples</button>
+          <button type="button" onClick={labClick(saveParams)} style={btnPrimaryStyle}>Save payment details</button>
+          <button type="button" onClick={labClick(newTxnid)} style={btnSecondaryStyle}>New order ID</button>
+          <button type="button" onClick={labClick(resetToExamples)} style={btnSecondaryStyle}>Reset examples</button>
         </div>
-        {wizardProgress().paramsSaved ? <p style={okTextStyle}>Step complete — parameters saved. Continue to enter salt and generate hash.</p> : (
-          <p style={hintTextStyle}>Continue is locked until you click Save parameters to lab.</p>
+        {wizardProgress().paramsSaved ? <p style={okTextStyle}>Saved. Next: create the hash.</p> : (
+          <p style={hintTextStyle}>Save payment details first, then you can continue.</p>
         )}
       </div>
     );
@@ -2110,25 +2109,25 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     return (
       <div>
         <p style={bodyTextStyle}>
-          Follow the sequence below — each button unlocks the next. Salt and hash are never pre-filled; you must enter salt and generate the hash yourself.
+          Do these three steps in order. We never fill in salt or hash for you — that is on purpose.
         </p>
         <div style={infoBoxStyle}>
-          <strong>Sequence</strong>
+          <strong>Your checklist</strong>
           <ol style={{ margin: '8px 0 0', paddingLeft: '20px', lineHeight: 1.7 }}>
-            <li>{wizardProgress().pipeShown ? '✓' : '○'} Enter test salt</li>
-            <li>{wizardProgress().pipeShown ? '✓' : '○'} Show pre-hash string</li>
-            <li>{wizardProgress().hashGenerated ? '✓' : '○'} Compute SHA-512</li>
+            <li>{wizardProgress().pipeShown ? '✓' : '○'} Enter salt</li>
+            <li>{wizardProgress().pipeShown ? '✓' : '○'} Show hash string</li>
+            <li>{wizardProgress().hashGenerated ? '✓' : '○'} Generate hash</li>
           </ol>
         </div>
         <code style={codeBlockStyle}>
           sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
         </code>
         <p style={mutedTextStyle}>
-          The six empty segments between udf5 and SALT are reserved fields PayU expects in this exact position — leave them blank.
+          The empty |||||| bits in the middle are required — leave them blank, in that exact spot.
         </p>
         <div style={fieldStackStyle}>
           <div>
-            <FieldLabel name="salt (test lab only)" required={true} />
+            <FieldLabel name="salt" required={true} />
             <input
               type="password"
               value={salt}
@@ -2154,10 +2153,10 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
         </div>
         <div style={btnRowSpacedStyle}>
           <button type="button" onClick={labClick(showPipeString)} disabled={isBlank(salt) || busy} style={btnSecondaryStyle}>
-            1) Show pre-hash string
+            1) Show hash string
           </button>
           <button type="button" onClick={labClick(generateHash)} disabled={hashStage < 1 || busy || isBlank(salt)} style={btnPrimaryStyle}>
-            {busy ? 'Computing…' : '2) Compute SHA-512'}
+            {busy ? 'Working…' : '2) Generate hash'}
           </button>
           {hashHex ? (
             <button type="button" onClick={labClick(function () { copyText(hashHex, setCopyMsg); })} style={btnSecondaryStyle}>Copy hash</button>
@@ -2170,11 +2169,11 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
             <code style={{ fontSize: '11px', wordBreak: 'break-all' }}>{hashHex}</code>
           </div>
         ) : null}
-        <a href={HASH_TOOL} target="_blank" rel="noopener noreferrer" style={linkBtnStyle}>Open Hash Verification Tool</a>
+        <a href={HASH_TOOL} target="_blank" rel="noopener noreferrer" style={linkBtnStyle}>Open hash tool</a>
         {wizardProgress().hashGenerated ? (
-          <p style={okTextStyle}>Hash ready. Continue to open test checkout.</p>
+          <p style={okTextStyle}>Hash ready — open test checkout next.</p>
         ) : (
-          <p style={hintTextStyle}>Complete all three hash steps above to unlock Continue.</p>
+          <p style={hintTextStyle}>Finish all three hash steps to continue.</p>
         )}
       </div>
     );
@@ -2184,12 +2183,12 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     return (
       <div>
         <p style={bodyTextStyle}>
-          Opens PayU test checkout in a new tab with your saved fields and computed hash. Allow pop-ups if blocked. After payment, PayU redirects or POSTs to your surl/furl.
+          Opens PayU test checkout with your saved details and hash. Allow pop-ups if your browser asks.
         </p>
         <form ref={payFormRef} method="post" action={TEST_PAYMENT} style={{ display: 'none' }} aria-hidden="true" />
         <div style={btnRowSpacedStyle}>
           <button type="button" onClick={labClick(function () { submitPayuCheckout('_blank'); })} disabled={!readyPay} style={btnPrimaryStyle}>
-            {amountLabel !== '—' ? 'Pay ₹' + amountLabel + ' on PayU Test Checkout' : 'Open PayU test checkout (new tab)'}
+            {amountLabel !== '—' ? 'Pay ₹' + amountLabel + ' on test checkout' : 'Open test checkout (new tab)'}
           </button>
           <button type="button" onClick={labClick(function () { submitPayuCheckout('_top'); })} disabled={!readyPay} style={btnSecondaryStyle}>
             Open in this tab
@@ -2217,15 +2216,15 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
             {'POST ' + TEST_PAYMENT + '\nkey=' + displayVal(savedParams.key) + '&txnid=' + displayVal(savedParams.txnid) + '&amount=' + displayVal(savedParams.amount) + '&hash=' + (hashHex || '<compute first>')}
           </pre>
         ) : (
-          <p style={mutedTextStyle}>Save parameters and generate hash to preview the POST body.</p>
+          <p style={mutedTextStyle}>Save payment details and generate hash first to see the POST preview.</p>
         )}
         {wizardProgress().checkoutOpened ? (
           <div>
-            <p style={okTextStyle}>Checkout opened. Continue to review the return payload.</p>
+            <p style={okTextStyle}>Checkout opened. Check what PayU sent back on the next step.</p>
             <p style={mutedTextStyle} role="note">{POPUP_BLOCKED_HINT}</p>
           </div>
         ) : (
-          <p style={hintTextStyle}>Continue is locked until you open PayU test checkout.</p>
+          <p style={hintTextStyle}>Open test checkout to continue.</p>
         )}
       </div>
     );
@@ -2235,11 +2234,11 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     return (
       <div>
         <p style={bodyTextStyle}>
-          PayU POSTs to <strong>surl</strong> or <strong>furl</strong> with fields like these on success. Example values are shown below — <strong>key</strong> and <strong>hash</strong> stay blank for you to fill after payment.
+          After payment, PayU POSTs something like this to your success URL. Example values are filled in — add <strong>key</strong> and <strong>hash</strong> from the real callback.
         </p>
         <div style={btnRowSpacedStyle}>
-          <button type="button" onClick={labClick(loadReturnFromSaved)} style={btnSecondaryStyle}>Load from saved parameters</button>
-          <button type="button" onClick={labClick(loadVerifyFromReturn)} style={btnSecondaryStyle}>Copy to verify step</button>
+          <button type="button" onClick={labClick(loadReturnFromSaved)} style={btnSecondaryStyle}>Load my saved payment</button>
+          <button type="button" onClick={labClick(loadVerifyFromReturn)} style={btnSecondaryStyle}>Send to verify step</button>
         </div>
         <div style={fieldStackStyle}>
           {RETURN_FIELDS.map(function (row) {
@@ -2258,15 +2257,15 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
           })}
         </div>
         <div style={btnRowStyle}>
-          <button type="button" onClick={labClick(markReturnReviewed)} style={btnPrimaryStyle}>Mark return step complete</button>
+          <button type="button" onClick={labClick(markReturnReviewed)} style={btnPrimaryStyle}>I am done with this step</button>
         </div>
         {wizardProgress().returnReviewed ? (
-          <p style={okTextStyle}>Return step complete. Continue to verify the reverse hash.</p>
+          <p style={okTextStyle}>Good. Next: verify the callback hash.</p>
         ) : (
-          <p style={hintTextStyle}>Continue is locked until you mark this step complete.</p>
+          <p style={hintTextStyle}>Mark this step done when you have reviewed the fields.</p>
         )}
         <p style={bodyTextStyle}>
-          On failure, set <strong>status</strong> to <code>failure</code> — PayU POSTs to <strong>furl</strong>. Always verify the hash before updating orders.
+          If payment failed, set <strong>status</strong> to <code>failure</code> — PayU hits your failure URL instead. Always verify the hash before updating an order.
         </p>
       </div>
     );
@@ -2276,16 +2275,16 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     return (
       <div>
         <p style={bodyTextStyle}>
-          Recompute the reverse hash on your server and compare to the <strong>hash</strong> from the callback. Example txn/amount fields are pre-filled — enter your <strong>salt</strong>, paste the response <strong>hash</strong>, and click Verify.
+          Paste the hash PayU sent in the callback. We pre-filled the other fields — you add <strong>salt</strong> and the response <strong>hash</strong>, then verify.
         </p>
         <div style={btnRowSpacedStyle}>
-          <button type="button" onClick={labClick(loadVerifyFromReturn)} style={btnSecondaryStyle}>Load from return preview</button>
+          <button type="button" onClick={labClick(loadVerifyFromReturn)} style={btnSecondaryStyle}>Load from previous step</button>
         </div>
         <code style={codeBlockStyle}>
           sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
         </code>
         <p style={mutedTextStyle}>
-          The six empty segments after status are reserved fields PayU expects in this exact position — leave them blank.
+          Same empty |||||| gap as the forward hash — leave those blank.
         </p>
         <div style={fieldStackStyle}>
           <div>
@@ -2315,7 +2314,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
             );
           })}
           <div>
-            <FieldLabel name="hash (from callback)" required={true} />
+            <FieldLabel name="hash (from PayU)" required={true} />
             <input
               type="text"
               value={responseHash}
@@ -2327,15 +2326,15 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
         </div>
         <div style={btnRowStyle}>
           <button type="button" onClick={labClick(verifyReverseHash)} disabled={busy} style={btnPrimaryStyle}>
-            {busy ? 'Verifying…' : 'Verify reverse hash'}
+            {busy ? 'Checking…' : 'Verify hash'}
           </button>
-          <a href={HASH_TOOL} target="_blank" rel="noopener noreferrer" style={linkBtnStyle}>Open Hash Verification Tool</a>
+          <a href={HASH_TOOL} target="_blank" rel="noopener noreferrer" style={linkBtnStyle}>Open hash tool</a>
         </div>
-        {match === true ? <p style={okTextStyle}>Hash matches — response verified for this lab.</p> : null}
+        {match === true ? <p style={okTextStyle}>Match — callback looks genuine for this lab.</p> : null}
         {match === false ? renderHashDiffDiagnosis() : null}
         {match === true && computedRev ? <code style={codeBlockStyle}>{computedRev}</code> : null}
         {!wizardProgress().verifyDone ? (
-          <p style={hintTextStyle}>Continue is locked until reverse hash verification succeeds.</p>
+          <p style={hintTextStyle}>Verify the hash successfully to continue.</p>
         ) : null}
       </div>
     );
@@ -2345,7 +2344,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     return (
       <div>
         <p style={bodyTextStyle}>
-          Before go-live, confirm each item below in your sandbox environment. Check all boxes to continue.
+          Tick each box once you have tried it in sandbox.
         </p>
         <div style={{ display: 'grid', gap: '8px' }}>
           {TEST_CHECKS.map(function (label, idx) {
@@ -2374,7 +2373,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
     return (
       <div>
         <p style={bodyTextStyle}>
-          When sandbox testing is complete, use this checklist before routing production traffic. Production endpoint: <code style={{ fontSize: '12px' }}>{PROD_PAYMENT}</code>
+          Quick checklist before you switch to live payments. Production URL: <code style={{ fontSize: '12px' }}>{PROD_PAYMENT}</code>
         </p>
         <div style={{ display: 'grid', gap: '8px', marginBottom: '16px' }}>
           {GO_LIVE.map(function (label, idx) {
@@ -2395,42 +2394,42 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
             );
           })}
         </div>
-        <button type="button" onClick={labClick(restartLab)} style={btnPrimaryStyle}>Restart wizard</button>
+        <button type="button" onClick={labClick(restartLab)} style={btnPrimaryStyle}>Start over</button>
       </div>
     );
   }
 
   return (
     <div className="min-w-0" style={{ fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif' }}>
-      <div style={launcherCardStyle} role="region" aria-label="PayU Hosted Checkout integration wizard launcher">
+      <div style={launcherCardStyle} role="region" aria-label="Hosted Checkout walkthrough">
         <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-start', gap: '16px', justifyContent: 'space-between' }}>
           <div style={{ flex: '1 1 280px', minWidth: 0 }}>
             <div style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: PAYU_GREEN, marginBottom: '6px' }}>
-              Interactive lab
+              Try it yourself
             </div>
             <h3 style={{ margin: '0 0 8px', fontSize: '1.25rem', fontWeight: 700, color: '#111827' }}>
-              Hosted Checkout integration wizard
+              Hosted Checkout walkthrough
             </h3>
             <p style={{ margin: '0 0 12px', fontSize: '14px', lineHeight: 1.6, color: '#4b5563' }}>
-              Run a full test payment on PayU sandbox — build a request, generate a hash, pay, and verify the callback. Opens in a focused popup so you can follow along without leaving the docs.
+              Build a test payment, create a hash, pay on sandbox, and check the callback — all in one popup. Stays on this page.
             </p>
             <ul style={{ margin: 0, paddingLeft: '18px', fontSize: '13px', lineHeight: 1.7, color: '#374151' }}>
-              <li>Example fields pre-filled — you enter test key and salt</li>
-              <li>Built-in Assistant tab for step guidance and error diagnosis</li>
-              <li>Real SHA-512 and live test checkout</li>
-              <li>~10 minutes · test credentials only</li>
+              <li>Examples pre-filled — you add test key and salt</li>
+              <li>Help tab if you get stuck</li>
+              <li>Real hash + real test checkout</li>
+              <li>About 10 minutes</li>
             </ul>
           </div>
           <div style={{ flexShrink: 0, alignSelf: 'center' }}>
             <button type="button" ref={launcherBtnRef} onClick={labClick(openModal)} style={Object.assign({}, btnPrimaryStyle, { padding: '12px 24px', fontSize: '15px' })}>
-              Open integration wizard
+              Open walkthrough
             </button>
           </div>
         </div>
       </div>
 
       {modalOpen ? (
-        <div style={modalOverlayStyle} onClick={onOverlayClick} role="dialog" aria-modal="true" aria-label="PayU Hosted Checkout integration wizard">
+        <div style={modalOverlayStyle} onClick={onOverlayClick} role="dialog" aria-modal="true" aria-label="Hosted Checkout walkthrough">
           <div ref={modalPanelRef} style={modalPanelStyle} onClick={labStopBubble}>
             <div style={modalHeaderStyle}>
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px' }}>
@@ -2447,7 +2446,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
                   type="button"
                   ref={closeBtnRef}
                   onClick={labClick(closeModal)}
-                  aria-label="Close wizard"
+                  aria-label="Close walkthrough"
                   style={{ flexShrink: 0, cursor: 'pointer', border: 'none', background: 'rgba(255,255,255,0.2)', color: '#fff', borderRadius: '8px', width: '44px', height: '44px', fontSize: '18px', lineHeight: 1 }}
                 >
                   ×
@@ -2465,7 +2464,7 @@ export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard(
             <div style={modalFooterStyle}>
               {modalTab === 'lab' ? renderWizardFooter() : null}
               <p style={Object.assign({}, mutedTextStyle, { marginTop: modalTab === 'lab' ? '8px' : 0, marginBottom: 0 })}>
-                {modalTab === 'help' ? 'Assistant uses local session only · Esc to close' : 'Session saved in this browser · Esc to close'}
+                {modalTab === 'help' ? 'Help runs locally · Esc to close' : 'Progress saved in this browser · Esc to close'}
               </p>
             </div>
           </div>
