@@ -1,7 +1,7 @@
 ---
 title: FAQs to be Added - July 2026
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
