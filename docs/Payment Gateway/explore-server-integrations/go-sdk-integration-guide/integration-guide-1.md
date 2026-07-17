@@ -156,6 +156,8 @@ func main() {
 | `YOUR_TEST_MERCHANT_KEY`  | Your merchant key retrieved from the dashboard. We recommend you to use the test key.   |
 | `YOUR_TEST_MERCHANT_SALT` | Your merchant salt retrieved from the dashboard. We recommend you to use the test salt. |
 
+</Accordion>
+
 #### Expected Outcome
 
 A PayU client is added with your merchant key and salt.
@@ -214,7 +216,7 @@ func initiatePayment(client *payu.PayuStruct) (string, error) {
 go run .
 `}</Terminal>
 
-<br />
+</Accordion>
 
 <br />
 
