@@ -14,7 +14,7 @@ metadata:
 next:
   description: ''
 ---
-The PayU SDK for java enables you to easily work with the APIs of PayU by integrating this SDK within your base system. With our SDK, you do not need to worry about low-level details for API integration and with a few lines of code and a function call, get started within a few minutes. To install Java Web SDK, refer to [integraton steps](#integration-steps).
+The PayU SDK for java enables you to easily work with the APIs of PayU by integrating this SDK within your base system. With our SDK, you do not need to worry about low-level details for API integration and with a few lines of code and a function call, get started within a few minutes. To install Java Web SDK, refer to [Integraton Steps](#integration-steps).
 
 ## Features Supported
 
