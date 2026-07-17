@@ -222,9 +222,24 @@ This will create the `pay.html` file.
 
 ***
 
-### Step 1.5&#x20;
+### Step 1.5 Complete the Test Payment
 
-<br />
+<Accordion title="Steps to Complete the Test Payment" icon="fa-info-circle">
+1. Open the `payu.html` file or run the following command to open the checkout.
+
+<Terminal>{`
+  open pay.html
+`}</Terminal>
+
+2. Choose any payment method and provide the <a href="https://docs.payu.in/docs/test-cards-upi-id-and-wallets" title="Access Test Credentials">test credentials</a>.
+3. Complete the payment.
+</Accordion>
+
+#### Expected Outcome
+
+You will complete the test payment and receives the response.
+
+***
 
 <br />
 
