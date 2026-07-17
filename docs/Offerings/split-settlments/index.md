@@ -193,37 +193,6 @@ Implementing PayU Split Settlements is straightforward:
         Split a payment by percentage among child merchants at transaction time using the `_payment` API. **Used in:** [Split by Percentage During Transaction Integration](doc:split-by-percentage-during-transaction-integration), [Create the Split](doc:create-the-split).
       </td>
     </tr>
-
-    <tr>
-      <td>
-        [Absolute Split During Transaction – PayU Hosted Checkout](ref:absolute-split-during-transaction-payu-hosted-checkout)
-      </td>
-
-      <td>
-        Split by fixed amount on PayU Hosted Checkout at transaction time.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Split by Percentage During Transaction – PayU Hosted Checkout](ref:split-by-percentage-during-transaction-payu-hosted-checkout)
-      </td>
-
-      <td>
-        Split by percentage on PayU Hosted Checkout at transaction time.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Collect Payment API – PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)
-      </td>
-
-      <td>
-        Initiate a PayU-hosted payment with `splitRequest` for split-during-transaction flows.
-      </td>
-    </tr>
-
     <tr>
       <td>
         [Absolute Split After Transaction](ref:absolute-split-after-transaction)
