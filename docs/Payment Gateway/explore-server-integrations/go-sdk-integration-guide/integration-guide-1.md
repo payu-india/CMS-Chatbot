@@ -119,6 +119,49 @@ A new Go module is created and the PayU web SDK is added in the module.
 
 ***
 
-### Step 1.3&#x20;
+### Step 1.3 Build the PayU Client
+
+The next step after installing the PayU Go SDK is to build the PayU client.
+
+<Accordion title="Steps to Build the Client" icon="fa-info-circle">
+Use the following code to build the client.
+
+```go
+package main
+
+import (
+	"fmt"
+	"log"
+
+	payu "github.com/payu-india/web-sdk-go"
+)
+
+func main() {
+	// Replace with your PayU test credentials
+	key := "YOUR_TEST_MERCHANT_KEY"
+	salt := "YOUR_TEST_MERCHANT_SALT"
+
+	payuClient, err := payu.NewClient(key, salt, "TEST")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println("PayU client created successfully")
+	_ = payuClient
+}
+```
+
+| **Parameter**             | **Description**                                                                         |
+| ------------------------- | --------------------------------------------------------------------------------------- |
+| `YOUR_TEST_MERCHANT_KEY`  | Your merchant key retrieved from the dashboard. We recommend you to use the test key.   |
+| `YOUR_TEST_MERCHANT_SALT` | Your merchant salt retrieved from the dashboard. We recommend you to use the test salt. |
+
+#### Expected Outcome
+
+A PayU client is added with your merchant key and salt.
+
+***
+
+### Step 1.4&#x20;
 
 <br />
