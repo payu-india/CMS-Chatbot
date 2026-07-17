@@ -7,487 +7,470 @@ name: PayUHostedIntegrationWizard
 
 import { useState, useEffect, useRef } from 'react';
 
-// PAYU_LAB_BUNDLE_START
-var PayULabRuntime = (function () {
-/**
- * PayU Hosted Checkout — pure lab engine (no React/DOM).
- * Source of truth for hash, validation, and progress logic used by the integration wizard
- * and the rule-based integration assistant.
- */
-
-function empty(s) {
-  return s == null ? '' : String(s).trim();
-}
-
-function isBlank(s) {
-  return empty(s) === '';
-}
-
-var MANDATORY_FIELD_KEYS = ['txnid', 'amount', 'productinfo', 'firstname', 'email', 'phone', 'surl', 'furl'];
-
-var WIZARD_STEP_IDS = [
-  'welcome', 'prereq', 'params', 'hash', 'post', 'return', 'verify', 'test', 'golive'
-];
-
-function defaultProgress() {
-  return {
-    paramsSaved: false,
-    pipeShown: false,
-    hashGenerated: false,
-    checkoutOpened: false,
-    returnReviewed: false,
-    verifyDone: false
-  };
-}
-
-function mergeParams(params, defaults) {
-  var merged = Object.assign({}, defaults || {});
-  var p = params || {};
-  var k;
-  for (k in merged) {
-    if (!Object.prototype.hasOwnProperty.call(merged, k)) continue;
-    if (k === 'key') {
-      merged.key = isBlank(p.key) ? '' : String(p.key);
-      continue;
+export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard() {
+  // PAYU_LAB_BUNDLE_START
+  var PayULabRuntime = (function () {
+    
+    
+    function empty(s) {
+      return s == null ? '' : String(s).trim();
     }
-    if (!isBlank(p[k])) merged[k] = String(p[k]);
-  }
-  return merged;
-}
-
-function validateFieldErrors(data) {
-  var errors = {};
-  var p = data || {};
-  if (isBlank(p.key)) errors.key = 'Enter your test merchant key from the PayU dashboard.';
-  var i;
-  for (i = 0; i < MANDATORY_FIELD_KEYS.length; i += 1) {
-    var fk = MANDATORY_FIELD_KEYS[i];
-    if (isBlank(p[fk])) errors[fk] = 'Required: ' + fk;
-  }
-  if (!isBlank(p.amount) && !/^\d+(\.\d{1,2})?$/.test(empty(p.amount))) {
-    errors.amount = 'Amount must be a decimal string (e.g. 10.00).';
-  }
-  if (!isBlank(p.email) && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(empty(p.email))) {
-    errors.email = 'Enter a valid email address.';
-  }
-  if (!isBlank(p.phone) && !/^\d{10}$/.test(empty(p.phone).replace(/\s/g, ''))) {
-    errors.phone = 'Phone must be exactly 10 digits.';
-  }
-  if (!isBlank(p.txnid) && empty(p.txnid).length > 20) {
-    errors.txnid = 'txnid must be 20 characters or fewer.';
-  }
-  return errors;
-}
-
-function buildForwardHashString(params, saltVal) {
-  var p = params;
-  return (
-    empty(p.key) + '|' + empty(p.txnid) + '|' + empty(p.amount) + '|' + empty(p.productinfo) + '|' +
-    empty(p.firstname) + '|' + empty(p.email) + '|' + empty(p.udf1) + '|' + empty(p.udf2) + '|' +
-    empty(p.udf3) + '|' + empty(p.udf4) + '|' + empty(p.udf5) + '||||||' + empty(saltVal)
-  );
-}
-
-function buildReverseHashString(saltVal, resp) {
-  return (
-    empty(saltVal) + '|' + empty(resp.status) + '||||||' + empty(resp.udf5) + '|' + empty(resp.udf4) + '|' +
-    empty(resp.udf3) + '|' + empty(resp.udf2) + '|' + empty(resp.udf1) + '|' + empty(resp.email) + '|' +
-    empty(resp.firstname) + '|' + empty(resp.productinfo) + '|' + empty(resp.amount) + '|' +
-    empty(resp.txnid) + '|' + empty(resp.key)
-  );
-}
-
-function diffHexStrings(computed, pasted) {
-  var c = empty(computed).toLowerCase();
-  var p = empty(pasted).toLowerCase();
-  if (!/^[0-9a-f]{128}$/.test(p)) {
-    return { kind: 'invalid_pasted', pastedLen: p.length };
-  }
-  if (c.length !== p.length) {
-    return { kind: 'length_mismatch', pastedLen: p.length, computedLen: c.length };
-  }
-  for (var i = 0; i < c.length; i += 1) {
-    if (c[i] !== p[i]) return { kind: 'mismatch', index: i, computed: c, pasted: p };
-  }
-  return { kind: 'match' };
-}
-
-function getProgressBlockers(step, progress, extras) {
-  var p = progress || defaultProgress();
-  var x = extras || {};
-  var blockers = [];
-  if (step === 1 && !x.prereqDone) blockers.push('PREREQ_INCOMPLETE');
-  if (step === 2) {
-    if (!p.paramsSaved) blockers.push('PARAMS_NOT_SAVED');
-    if (!x.labAck) blockers.push('LAB_ACK_REQUIRED');
-    if (x.fieldErrorCount > 0) blockers.push('FIELD_VALIDATION');
-  }
-  if (step === 3) {
-    if (!p.paramsSaved) blockers.push('PARAMS_NOT_SAVED');
-    if (isBlank(x.salt)) blockers.push('SALT_REQUIRED');
-    if (!p.pipeShown) blockers.push('PIPE_NOT_SHOWN');
-    if (!p.hashGenerated || !x.hashHex || x.hashHex.length !== 128) blockers.push('HASH_NOT_GENERATED');
-  }
-  if (step === 4 && !p.checkoutOpened) blockers.push('CHECKOUT_NOT_OPENED');
-  if (step === 5 && !p.returnReviewed) blockers.push('RETURN_NOT_REVIEWED');
-  if (step === 6) {
-    if (!p.verifyDone || x.match !== true) blockers.push('VERIFY_NOT_DONE');
-  }
-  if (step === 7 && !x.testChecklistDone) blockers.push('TEST_CHECKLIST_INCOMPLETE');
-  return blockers;
-}
-
-function computeCanAdvance(step, progress, extras) {
-  return getProgressBlockers(step, progress, extras).length === 0;
-}
-
-function escapeJsString(s) {
-  return String(s || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
-}
-
-function buildNodeSnippet(params, testPaymentUrl) {
-  var p = params;
-  var url = testPaymentUrl || 'https://test.payu.in/_payment';
-  return [
-    "const crypto = require('crypto');",
-    '',
-    '// Never hardcode secrets — load from environment variables on your server.',
-    'const key = process.env.PAYU_KEY;',
-    'const salt = process.env.PAYU_SALT;',
-    '',
-    'const pipeString = [',
-    '  key,',
-    "  '" + escapeJsString(p.txnid) + "',",
-    "  '" + escapeJsString(p.amount) + "',",
-    "  '" + escapeJsString(p.productinfo) + "',",
-    "  '" + escapeJsString(p.firstname) + "',",
-    "  '" + escapeJsString(p.email) + "',",
-    "  '" + escapeJsString(p.udf1 || '') + "',",
-    "  '" + escapeJsString(p.udf2 || '') + "',",
-    "  '" + escapeJsString(p.udf3 || '') + "',",
-    "  '" + escapeJsString(p.udf4 || '') + "',",
-    "  '" + escapeJsString(p.udf5 || '') + "',",
-    "].join('|') + '||||||' + salt;",
-    '',
-    "const hash = crypto.createHash('sha512').update(pipeString).digest('hex');",
-    '',
-    'const body = new URLSearchParams({',
-    '  key,',
-    "  txnid: '" + escapeJsString(p.txnid) + "',",
-    "  amount: '" + escapeJsString(p.amount) + "',",
-    "  productinfo: '" + escapeJsString(p.productinfo) + "',",
-    "  firstname: '" + escapeJsString(p.firstname) + "',",
-    "  email: '" + escapeJsString(p.email) + "',",
-    "  phone: '" + escapeJsString(p.phone) + "',",
-    "  surl: '" + escapeJsString(p.surl) + "',",
-    "  furl: '" + escapeJsString(p.furl) + "',",
-    "  udf1: '" + escapeJsString(p.udf1 || '') + "',",
-    "  udf2: '" + escapeJsString(p.udf2 || '') + "',",
-    "  udf3: '" + escapeJsString(p.udf3 || '') + "',",
-    "  udf4: '" + escapeJsString(p.udf4 || '') + "',",
-    "  udf5: '" + escapeJsString(p.udf5 || '') + "',",
-    '  hash,',
-    '});',
-    '',
-    "fetch('" + url + "', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body });"
-  ].join('\n');
-}
-
-var engine = {
-  empty: empty,
-  isBlank: isBlank,
-  MANDATORY_FIELD_KEYS: MANDATORY_FIELD_KEYS,
-  WIZARD_STEP_IDS: WIZARD_STEP_IDS,
-  defaultProgress: defaultProgress,
-  mergeParams: mergeParams,
-  validateFieldErrors: validateFieldErrors,
-  buildForwardHashString: buildForwardHashString,
-  buildReverseHashString: buildReverseHashString,
-  diffHexStrings: diffHexStrings,
-  getProgressBlockers: getProgressBlockers,
-  computeCanAdvance: computeCanAdvance,
-  escapeJsString: escapeJsString,
-  buildNodeSnippet: buildNodeSnippet
-};
-
-var engineRef = typeof engine !== "undefined" ? engine : {
-  empty: empty, isBlank: isBlank, MANDATORY_FIELD_KEYS: MANDATORY_FIELD_KEYS,
-  WIZARD_STEP_IDS: WIZARD_STEP_IDS, defaultProgress: defaultProgress,
-  mergeParams: mergeParams, validateFieldErrors: validateFieldErrors,
-  buildForwardHashString: buildForwardHashString, buildReverseHashString: buildReverseHashString,
-  diffHexStrings: diffHexStrings, getProgressBlockers: getProgressBlockers,
-  computeCanAdvance: computeCanAdvance, escapeJsString: escapeJsString, buildNodeSnippet: buildNodeSnippet
-};
-/**
- * PayU Hosted Checkout — rule-based integration assistant (Phase 2).
- * Exports redacted lab context and deterministic insights (no LLM).
- */
-
-var LAB_CONTEXT_SCHEMA_VERSION = '1.0';
-var LAB_CONTEXT_EVENT = 'payu-hosted-integration-wizard-context';
-
-var ERROR_CODES = {
-  MISSING_KEY: 'MISSING_KEY',
-  FIELD_VALIDATION: 'FIELD_VALIDATION',
-  LAB_ACK_REQUIRED: 'LAB_ACK_REQUIRED',
-  PARAMS_NOT_SAVED: 'PARAMS_NOT_SAVED',
-  SALT_REQUIRED: 'SALT_REQUIRED',
-  PIPE_NOT_SHOWN: 'PIPE_NOT_SHOWN',
-  HASH_NOT_GENERATED: 'HASH_NOT_GENERATED',
-  CHECKOUT_NOT_OPENED: 'CHECKOUT_NOT_OPENED',
-  RETURN_NOT_REVIEWED: 'RETURN_NOT_REVIEWED',
-  VERIFY_NOT_DONE: 'VERIFY_NOT_DONE',
-  HASH_MISMATCH: 'HASH_MISMATCH',
-  INVALID_PASTED_HASH: 'INVALID_PASTED_HASH',
-  PREREQ_INCOMPLETE: 'PREREQ_INCOMPLETE',
-  TEST_CHECKLIST_INCOMPLETE: 'TEST_CHECKLIST_INCOMPLETE'
-};
-
-var BLOCKER_MESSAGES = {
-  PREREQ_INCOMPLETE: 'Check all four prerequisites on step 1.',
-  PARAMS_NOT_SAVED: 'Click **Save parameters to lab** after filling every required field.',
-  LAB_ACK_REQUIRED: 'Confirm you are using test-only credentials (checkbox on step 2).',
-  FIELD_VALIDATION: 'Fix the highlighted field errors on step 2.',
-  SALT_REQUIRED: 'Enter your test salt — it is never pre-filled in this lab.',
-  PIPE_NOT_SHOWN: 'Click **1) Show pre-hash string** before computing the hash.',
-  HASH_NOT_GENERATED: 'Click **2) Compute SHA-512** after reviewing the pipe string.',
-  CHECKOUT_NOT_OPENED: 'Click **Open PayU test checkout** to launch a sandbox payment.',
-  RETURN_NOT_REVIEWED: 'Review the callback fields and click **Mark return step complete**.',
-  VERIFY_NOT_DONE: 'Enter salt, paste the callback hash, and click **Verify reverse hash**.',
-  TEST_CHECKLIST_INCOMPLETE: 'Check every item on the sandbox test checklist.'
-};
-
-var STEP_NEXT_ACTIONS = {
-  welcome: 'Click **Next** to review prerequisites.',
-  prereq: 'Check all four boxes, then click **Continue**.',
-  params: 'Enter your test merchant key, review pre-filled fields, confirm test credentials, then **Save parameters to lab**.',
-  hash: 'Enter salt → **Show pre-hash string** → **Compute SHA-512** (each step is required).',
-  post: 'Click **Open PayU test checkout** (allow pop-ups or use **Open in this tab**).',
-  return: 'Paste or load callback fields, then **Mark return step complete**.',
-  verify: 'Load callback fields, enter salt, paste response hash, then **Verify reverse hash**.',
-  test: 'Confirm each sandbox test item, then **Continue**.',
-  golive: 'Review the production checklist. Use **Restart wizard** to run the lab again.'
-};
-
-function maskEmail(email) {
-  var e = engineRef.empty(email);
-  if (!e || e.indexOf('@') < 0) return e ? '[REDACTED]' : '';
-  var parts = e.split('@');
-  var local = parts[0];
-  var domain = parts[1];
-  var maskedLocal = local.length <= 2 ? '**' : local.charAt(0) + '***';
-  return maskedLocal + '@' + domain;
-}
-
-function maskPhone(phone) {
-  var p = engineRef.empty(phone).replace(/\s/g, '');
-  if (p.length < 4) return p ? '[REDACTED]' : '';
-  return '******' + p.slice(-4);
-}
-
-function maskHashTail(hex) {
-  var h = engineRef.empty(hex);
-  if (!h) return '';
-  if (h.length <= 8) return '[REDACTED]';
-  return '[REDACTED…' + h.slice(-4) + ']';
-}
-
-function redactParams(params, options) {
-  var opts = options || {};
-  var includeSecrets = !!opts.includeSecrets;
-  var p = params || {};
-  var out = {
-    key: includeSecrets ? p.key : (engineRef.isBlank(p.key) ? '' : '[REDACTED]'),
-    txnid: p.txnid || '',
-    amount: p.amount || '',
-    productinfo: p.productinfo || '',
-    firstname: p.firstname || '',
-    email: includeSecrets ? (p.email || '') : maskEmail(p.email),
-    phone: includeSecrets ? (p.phone || '') : maskPhone(p.phone),
-    surl: p.surl || '',
-    furl: p.furl || '',
-    udf1: p.udf1 || '',
-    udf2: p.udf2 || '',
-    udf3: p.udf3 || '',
-    udf4: p.udf4 || '',
-    udf5: p.udf5 || ''
-  };
-  return out;
-}
-
-function resolveLastErrorCode(input) {
-  if (input.lastErrorCode) return input.lastErrorCode;
-  if (input.hashDiff && input.hashDiff.kind === 'invalid_pasted') return ERROR_CODES.INVALID_PASTED_HASH;
-  if (input.hashDiff && input.hashDiff.kind === 'mismatch') return ERROR_CODES.HASH_MISMATCH;
-  if (input.fieldErrors && Object.keys(input.fieldErrors).length) return ERROR_CODES.FIELD_VALIDATION;
-  if (input.blockers && input.blockers.length) return input.blockers[0];
-  return null;
-}
-
-function exportLabContext(input) {
-  var step = typeof input.step === 'number' ? input.step : 0;
-  var stepId = engineRef.WIZARD_STEP_IDS[step] || 'welcome';
-  var progress = input.progress || engineRef.defaultProgress();
-  var extras = {
-    prereqDone: !!input.prereqDone,
-    labAck: !!input.labAck,
-    fieldErrorCount: input.fieldErrors ? Object.keys(input.fieldErrors).length : 0,
-    salt: input.salt,
-    hashHex: input.hashHex,
-    match: input.match,
-    testChecklistDone: !!input.testChecklistDone
-  };
-  var blockers = engineRef.getProgressBlockers(step, progress, extras);
-  var canAdvance = blockers.length === 0;
-
-  return {
-    schemaVersion: LAB_CONTEXT_SCHEMA_VERSION,
-    exportedAt: Date.now(),
-    step: step,
-    stepId: stepId,
-    stepLabel: input.stepLabel || String(step),
-    progress: Object.assign({}, progress),
-    canAdvance: canAdvance,
-    blockers: blockers,
-    params: redactParams(input.params, { includeSecrets: !!input.includeSecrets }),
-    fieldErrors: input.fieldErrors || {},
-    hashStage: input.hashStage || 0,
-    hashDiff: input.hashDiff || null,
-    hashTrimNote: !!input.hashTrimNote,
-    match: input.match,
-    lastErrorCode: resolveLastErrorCode({
-      lastErrorCode: input.lastErrorCode,
-      hashDiff: input.hashDiff,
-      fieldErrors: input.fieldErrors,
-      blockers: blockers
-    }),
-    lastUserMessage: input.err || input.msg || ''
-  };
-}
-
-function explainHashMismatch(hashDiff, hashTrimNote) {
-  if (!hashDiff || hashDiff.kind === 'match') return null;
-  if (hashDiff.kind === 'invalid_pasted') {
-    return {
-      title: 'Invalid callback hash',
-      body: 'The pasted hash is not a valid SHA-512 value (expected 128 hex characters, got ' + hashDiff.pastedLen + '). Copy the full **hash** field from PayU\'s POST to your surl/furl — no quotes or line breaks.',
-      severity: 'error'
+    
+    function isBlank(s) {
+      return empty(s) === '';
+    }
+    
+    var MANDATORY_FIELD_KEYS = ['txnid', 'amount', 'productinfo', 'firstname', 'email', 'phone', 'surl', 'furl'];
+    
+    var WIZARD_STEP_IDS = [
+      'welcome', 'prereq', 'params', 'hash', 'post', 'return', 'verify', 'test', 'golive'
+    ];
+    
+    function defaultProgress() {
+      return {
+        paramsSaved: false,
+        pipeShown: false,
+        hashGenerated: false,
+        checkoutOpened: false,
+        returnReviewed: false,
+        verifyDone: false
+      };
+    }
+    
+    function mergeParams(params, defaults) {
+      var merged = Object.assign({}, defaults || {});
+      var p = params || {};
+      var k;
+      for (k in merged) {
+        if (!Object.prototype.hasOwnProperty.call(merged, k)) continue;
+        if (k === 'key') {
+          merged.key = isBlank(p.key) ? '' : String(p.key);
+          continue;
+        }
+        if (!isBlank(p[k])) merged[k] = String(p[k]);
+      }
+      return merged;
+    }
+    
+    function validateFieldErrors(data) {
+      var errors = {};
+      var p = data || {};
+      if (isBlank(p.key)) errors.key = 'Enter your test merchant key from the PayU dashboard.';
+      var i;
+      for (i = 0; i < MANDATORY_FIELD_KEYS.length; i += 1) {
+        var fk = MANDATORY_FIELD_KEYS[i];
+        if (isBlank(p[fk])) errors[fk] = 'Required: ' + fk;
+      }
+      if (!isBlank(p.amount) && !/^\d+(\.\d{1,2})?$/.test(empty(p.amount))) {
+        errors.amount = 'Amount must be a decimal string (e.g. 10.00).';
+      }
+      if (!isBlank(p.email) && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(empty(p.email))) {
+        errors.email = 'Enter a valid email address.';
+      }
+      if (!isBlank(p.phone) && !/^\d{10}$/.test(empty(p.phone).replace(/\s/g, ''))) {
+        errors.phone = 'Phone must be exactly 10 digits.';
+      }
+      if (!isBlank(p.txnid) && empty(p.txnid).length > 20) {
+        errors.txnid = 'txnid must be 20 characters or fewer.';
+      }
+      return errors;
+    }
+    
+    function buildForwardHashString(params, saltVal) {
+      var p = params;
+      return (
+        empty(p.key) + '|' + empty(p.txnid) + '|' + empty(p.amount) + '|' + empty(p.productinfo) + '|' +
+        empty(p.firstname) + '|' + empty(p.email) + '|' + empty(p.udf1) + '|' + empty(p.udf2) + '|' +
+        empty(p.udf3) + '|' + empty(p.udf4) + '|' + empty(p.udf5) + '||||||' + empty(saltVal)
+      );
+    }
+    
+    function buildReverseHashString(saltVal, resp) {
+      return (
+        empty(saltVal) + '|' + empty(resp.status) + '||||||' + empty(resp.udf5) + '|' + empty(resp.udf4) + '|' +
+        empty(resp.udf3) + '|' + empty(resp.udf2) + '|' + empty(resp.udf1) + '|' + empty(resp.email) + '|' +
+        empty(resp.firstname) + '|' + empty(resp.productinfo) + '|' + empty(resp.amount) + '|' +
+        empty(resp.txnid) + '|' + empty(resp.key)
+      );
+    }
+    
+    function diffHexStrings(computed, pasted) {
+      var c = empty(computed).toLowerCase();
+      var p = empty(pasted).toLowerCase();
+      if (!/^[0-9a-f]{128}$/.test(p)) {
+        return { kind: 'invalid_pasted', pastedLen: p.length };
+      }
+      if (c.length !== p.length) {
+        return { kind: 'length_mismatch', pastedLen: p.length, computedLen: c.length };
+      }
+      for (var i = 0; i < c.length; i += 1) {
+        if (c[i] !== p[i]) return { kind: 'mismatch', index: i, computed: c, pasted: p };
+      }
+      return { kind: 'match' };
+    }
+    
+    function getProgressBlockers(step, progress, extras) {
+      var p = progress || defaultProgress();
+      var x = extras || {};
+      var blockers = [];
+      if (step === 1 && !x.prereqDone) blockers.push('PREREQ_INCOMPLETE');
+      if (step === 2) {
+        if (!p.paramsSaved) blockers.push('PARAMS_NOT_SAVED');
+        if (!x.labAck) blockers.push('LAB_ACK_REQUIRED');
+        if (x.fieldErrorCount > 0) blockers.push('FIELD_VALIDATION');
+      }
+      if (step === 3) {
+        if (!p.paramsSaved) blockers.push('PARAMS_NOT_SAVED');
+        if (isBlank(x.salt)) blockers.push('SALT_REQUIRED');
+        if (!p.pipeShown) blockers.push('PIPE_NOT_SHOWN');
+        if (!p.hashGenerated || !x.hashHex || x.hashHex.length !== 128) blockers.push('HASH_NOT_GENERATED');
+      }
+      if (step === 4 && !p.checkoutOpened) blockers.push('CHECKOUT_NOT_OPENED');
+      if (step === 5 && !p.returnReviewed) blockers.push('RETURN_NOT_REVIEWED');
+      if (step === 6) {
+        if (!p.verifyDone || x.match !== true) blockers.push('VERIFY_NOT_DONE');
+      }
+      if (step === 7 && !x.testChecklistDone) blockers.push('TEST_CHECKLIST_INCOMPLETE');
+      return blockers;
+    }
+    
+    function computeCanAdvance(step, progress, extras) {
+      return getProgressBlockers(step, progress, extras).length === 0;
+    }
+    
+    function escapeJsString(s) {
+      return String(s || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    }
+    
+    function buildNodeSnippet(params, testPaymentUrl) {
+      var p = params;
+      var url = testPaymentUrl || 'https://test.payu.in/_payment';
+      return [
+        "const crypto = require('crypto');",
+        '',
+        '// Never hardcode secrets — load from environment variables on your server.',
+        'const key = process.env.PAYU_KEY;',
+        'const salt = process.env.PAYU_SALT;',
+        '',
+        'const pipeString = [',
+        '  key,',
+        "  '" + escapeJsString(p.txnid) + "',",
+        "  '" + escapeJsString(p.amount) + "',",
+        "  '" + escapeJsString(p.productinfo) + "',",
+        "  '" + escapeJsString(p.firstname) + "',",
+        "  '" + escapeJsString(p.email) + "',",
+        "  '" + escapeJsString(p.udf1 || '') + "',",
+        "  '" + escapeJsString(p.udf2 || '') + "',",
+        "  '" + escapeJsString(p.udf3 || '') + "',",
+        "  '" + escapeJsString(p.udf4 || '') + "',",
+        "  '" + escapeJsString(p.udf5 || '') + "',",
+        "].join('|') + '||||||' + salt;",
+        '',
+        "const hash = crypto.createHash('sha512').update(pipeString).digest('hex');",
+        '',
+        'const body = new URLSearchParams({',
+        '  key,',
+        "  txnid: '" + escapeJsString(p.txnid) + "',",
+        "  amount: '" + escapeJsString(p.amount) + "',",
+        "  productinfo: '" + escapeJsString(p.productinfo) + "',",
+        "  firstname: '" + escapeJsString(p.firstname) + "',",
+        "  email: '" + escapeJsString(p.email) + "',",
+        "  phone: '" + escapeJsString(p.phone) + "',",
+        "  surl: '" + escapeJsString(p.surl) + "',",
+        "  furl: '" + escapeJsString(p.furl) + "',",
+        "  udf1: '" + escapeJsString(p.udf1 || '') + "',",
+        "  udf2: '" + escapeJsString(p.udf2 || '') + "',",
+        "  udf3: '" + escapeJsString(p.udf3 || '') + "',",
+        "  udf4: '" + escapeJsString(p.udf4 || '') + "',",
+        "  udf5: '" + escapeJsString(p.udf5 || '') + "',",
+        '  hash,',
+        '});',
+        '',
+        "fetch('" + url + "', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body });"
+      ].join('\n');
+    }
+    
+    var engine = {
+      empty: empty,
+      isBlank: isBlank,
+      MANDATORY_FIELD_KEYS: MANDATORY_FIELD_KEYS,
+      WIZARD_STEP_IDS: WIZARD_STEP_IDS,
+      defaultProgress: defaultProgress,
+      mergeParams: mergeParams,
+      validateFieldErrors: validateFieldErrors,
+      buildForwardHashString: buildForwardHashString,
+      buildReverseHashString: buildReverseHashString,
+      diffHexStrings: diffHexStrings,
+      getProgressBlockers: getProgressBlockers,
+      computeCanAdvance: computeCanAdvance,
+      escapeJsString: escapeJsString,
+      buildNodeSnippet: buildNodeSnippet
     };
-  }
-  if (hashDiff.kind === 'length_mismatch') {
-    return {
-      title: 'Hash length mismatch',
-      body: 'Computed hash has ' + hashDiff.computedLen + ' characters but pasted has ' + hashDiff.pastedLen + '. You may have truncated the value when copying from logs or browser devtools.',
-      severity: 'error'
+    
+    var engineRef = {
+      empty: empty, isBlank: isBlank, MANDATORY_FIELD_KEYS: MANDATORY_FIELD_KEYS,
+      WIZARD_STEP_IDS: WIZARD_STEP_IDS, defaultProgress: defaultProgress,
+      mergeParams: mergeParams, validateFieldErrors: validateFieldErrors,
+      buildForwardHashString: buildForwardHashString, buildReverseHashString: buildReverseHashString,
+      diffHexStrings: diffHexStrings, getProgressBlockers: getProgressBlockers,
+      computeCanAdvance: computeCanAdvance, escapeJsString: escapeJsString, buildNodeSnippet: buildNodeSnippet
     };
-  }
-  var idx = hashDiff.index;
-  var hint = 'Compare salt, **status**, and field order against PayU docs.';
-  if (idx < 16) {
-    hint = 'Early mismatch (character ' + (idx + 1) + ') often means **wrong salt** or **wrong merchant key** in the reverse hash string.';
-  } else if (idx > 100) {
-    hint = 'Late mismatch (character ' + (idx + 1) + ') often means a **paste error** or truncated hash — re-copy from the callback POST body.';
-  } else {
-    hint = 'Mismatch at character ' + (idx + 1) + ' — verify **status**, **udf** field order, and that txnid/amount match the payment.';
-  }
-  if (hashTrimNote) {
-    hint += ' Leading/trailing whitespace was ignored when comparing.';
-  }
-  return {
-    title: 'Hash mismatch at character ' + (idx + 1),
-    body: hint,
-    severity: 'error'
-  };
-}
-
-function getCopilotInsights(context) {
-  var ctx = context || {};
-  var insights = [];
-  var stepId = ctx.stepId || 'welcome';
-
-  insights.push({
-    id: 'whats-next',
-    title: 'What to do next',
-    body: STEP_NEXT_ACTIONS[stepId] || 'Follow the current step in the Lab tab.',
-    severity: 'info'
-  });
-
-  if (!ctx.canAdvance && ctx.blockers && ctx.blockers.length) {
-    var i;
-    for (i = 0; i < ctx.blockers.length; i += 1) {
-      var code = ctx.blockers[i];
+    
+    
+    var LAB_CONTEXT_SCHEMA_VERSION = '1.0';
+    var LAB_CONTEXT_EVENT = 'payu-hosted-integration-wizard-context';
+    
+    var ERROR_CODES = {
+      MISSING_KEY: 'MISSING_KEY',
+      FIELD_VALIDATION: 'FIELD_VALIDATION',
+      LAB_ACK_REQUIRED: 'LAB_ACK_REQUIRED',
+      PARAMS_NOT_SAVED: 'PARAMS_NOT_SAVED',
+      SALT_REQUIRED: 'SALT_REQUIRED',
+      PIPE_NOT_SHOWN: 'PIPE_NOT_SHOWN',
+      HASH_NOT_GENERATED: 'HASH_NOT_GENERATED',
+      CHECKOUT_NOT_OPENED: 'CHECKOUT_NOT_OPENED',
+      RETURN_NOT_REVIEWED: 'RETURN_NOT_REVIEWED',
+      VERIFY_NOT_DONE: 'VERIFY_NOT_DONE',
+      HASH_MISMATCH: 'HASH_MISMATCH',
+      INVALID_PASTED_HASH: 'INVALID_PASTED_HASH',
+      PREREQ_INCOMPLETE: 'PREREQ_INCOMPLETE',
+      TEST_CHECKLIST_INCOMPLETE: 'TEST_CHECKLIST_INCOMPLETE'
+    };
+    
+    var BLOCKER_MESSAGES = {
+      PREREQ_INCOMPLETE: 'Check all four prerequisites on step 1.',
+      PARAMS_NOT_SAVED: 'Click **Save parameters to lab** after filling every required field.',
+      LAB_ACK_REQUIRED: 'Confirm you are using test-only credentials (checkbox on step 2).',
+      FIELD_VALIDATION: 'Fix the highlighted field errors on step 2.',
+      SALT_REQUIRED: 'Enter your test salt — it is never pre-filled in this lab.',
+      PIPE_NOT_SHOWN: 'Click **1) Show pre-hash string** before computing the hash.',
+      HASH_NOT_GENERATED: 'Click **2) Compute SHA-512** after reviewing the pipe string.',
+      CHECKOUT_NOT_OPENED: 'Click **Open PayU test checkout** to launch a sandbox payment.',
+      RETURN_NOT_REVIEWED: 'Review the callback fields and click **Mark return step complete**.',
+      VERIFY_NOT_DONE: 'Enter salt, paste the callback hash, and click **Verify reverse hash**.',
+      TEST_CHECKLIST_INCOMPLETE: 'Check every item on the sandbox test checklist.'
+    };
+    
+    var STEP_NEXT_ACTIONS = {
+      welcome: 'Click **Next** to review prerequisites.',
+      prereq: 'Check all four boxes, then click **Continue**.',
+      params: 'Enter your test merchant key, review pre-filled fields, confirm test credentials, then **Save parameters to lab**.',
+      hash: 'Enter salt → **Show pre-hash string** → **Compute SHA-512** (each step is required).',
+      post: 'Click **Open PayU test checkout** (allow pop-ups or use **Open in this tab**).',
+      return: 'Paste or load callback fields, then **Mark return step complete**.',
+      verify: 'Load callback fields, enter salt, paste response hash, then **Verify reverse hash**.',
+      test: 'Confirm each sandbox test item, then **Continue**.',
+      golive: 'Review the production checklist. Use **Restart wizard** to run the lab again.'
+    };
+    
+    function maskEmail(email) {
+      var e = engineRef.empty(email);
+      if (!e || e.indexOf('@') < 0) return e ? '[REDACTED]' : '';
+      var parts = e.split('@');
+      var local = parts[0];
+      var domain = parts[1];
+      var maskedLocal = local.length <= 2 ? '**' : local.charAt(0) + '***';
+      return maskedLocal + '@' + domain;
+    }
+    
+    function maskPhone(phone) {
+      var p = engineRef.empty(phone).replace(/\s/g, '');
+      if (p.length < 4) return p ? '[REDACTED]' : '';
+      return '******' + p.slice(-4);
+    }
+    
+    function maskHashTail(hex) {
+      var h = engineRef.empty(hex);
+      if (!h) return '';
+      if (h.length <= 8) return '[REDACTED]';
+      return '[REDACTED…' + h.slice(-4) + ']';
+    }
+    
+    function redactParams(params, options) {
+      var opts = options || {};
+      var includeSecrets = !!opts.includeSecrets;
+      var p = params || {};
+      var out = {
+        key: includeSecrets ? p.key : (engineRef.isBlank(p.key) ? '' : '[REDACTED]'),
+        txnid: p.txnid || '',
+        amount: p.amount || '',
+        productinfo: p.productinfo || '',
+        firstname: p.firstname || '',
+        email: includeSecrets ? (p.email || '') : maskEmail(p.email),
+        phone: includeSecrets ? (p.phone || '') : maskPhone(p.phone),
+        surl: p.surl || '',
+        furl: p.furl || '',
+        udf1: p.udf1 || '',
+        udf2: p.udf2 || '',
+        udf3: p.udf3 || '',
+        udf4: p.udf4 || '',
+        udf5: p.udf5 || ''
+      };
+      return out;
+    }
+    
+    function resolveLastErrorCode(input) {
+      if (input.lastErrorCode) return input.lastErrorCode;
+      if (input.hashDiff && input.hashDiff.kind === 'invalid_pasted') return ERROR_CODES.INVALID_PASTED_HASH;
+      if (input.hashDiff && input.hashDiff.kind === 'mismatch') return ERROR_CODES.HASH_MISMATCH;
+      if (input.fieldErrors && Object.keys(input.fieldErrors).length) return ERROR_CODES.FIELD_VALIDATION;
+      if (input.blockers && input.blockers.length) return input.blockers[0];
+      return null;
+    }
+    
+    function exportLabContext(input) {
+      var step = typeof input.step === 'number' ? input.step : 0;
+      var stepId = engineRef.WIZARD_STEP_IDS[step] || 'welcome';
+      var progress = input.progress || engineRef.defaultProgress();
+      var extras = {
+        prereqDone: !!input.prereqDone,
+        labAck: !!input.labAck,
+        fieldErrorCount: input.fieldErrors ? Object.keys(input.fieldErrors).length : 0,
+        salt: input.salt,
+        hashHex: input.hashHex,
+        match: input.match,
+        testChecklistDone: !!input.testChecklistDone
+      };
+      var blockers = engineRef.getProgressBlockers(step, progress, extras);
+      var canAdvance = blockers.length === 0;
+    
+      return {
+        schemaVersion: LAB_CONTEXT_SCHEMA_VERSION,
+        exportedAt: Date.now(),
+        step: step,
+        stepId: stepId,
+        stepLabel: input.stepLabel || String(step),
+        progress: Object.assign({}, progress),
+        canAdvance: canAdvance,
+        blockers: blockers,
+        params: redactParams(input.params, { includeSecrets: !!input.includeSecrets }),
+        fieldErrors: input.fieldErrors || {},
+        hashStage: input.hashStage || 0,
+        hashDiff: input.hashDiff || null,
+        hashTrimNote: !!input.hashTrimNote,
+        match: input.match,
+        lastErrorCode: resolveLastErrorCode({
+          lastErrorCode: input.lastErrorCode,
+          hashDiff: input.hashDiff,
+          fieldErrors: input.fieldErrors,
+          blockers: blockers
+        }),
+        lastUserMessage: input.err || input.msg || ''
+      };
+    }
+    
+    function explainHashMismatch(hashDiff, hashTrimNote) {
+      if (!hashDiff || hashDiff.kind === 'match') return null;
+      if (hashDiff.kind === 'invalid_pasted') {
+        return {
+          title: 'Invalid callback hash',
+          body: 'The pasted hash is not a valid SHA-512 value (expected 128 hex characters, got ' + hashDiff.pastedLen + '). Copy the full **hash** field from PayU\'s POST to your surl/furl — no quotes or line breaks.',
+          severity: 'error'
+        };
+      }
+      if (hashDiff.kind === 'length_mismatch') {
+        return {
+          title: 'Hash length mismatch',
+          body: 'Computed hash has ' + hashDiff.computedLen + ' characters but pasted has ' + hashDiff.pastedLen + '. You may have truncated the value when copying from logs or browser devtools.',
+          severity: 'error'
+        };
+      }
+      var idx = hashDiff.index;
+      var hint = 'Compare salt, **status**, and field order against PayU docs.';
+      if (idx < 16) {
+        hint = 'Early mismatch (character ' + (idx + 1) + ') often means **wrong salt** or **wrong merchant key** in the reverse hash string.';
+      } else if (idx > 100) {
+        hint = 'Late mismatch (character ' + (idx + 1) + ') often means a **paste error** or truncated hash — re-copy from the callback POST body.';
+      } else {
+        hint = 'Mismatch at character ' + (idx + 1) + ' — verify **status**, **udf** field order, and that txnid/amount match the payment.';
+      }
+      if (hashTrimNote) {
+        hint += ' Leading/trailing whitespace was ignored when comparing.';
+      }
+      return {
+        title: 'Hash mismatch at character ' + (idx + 1),
+        body: hint,
+        severity: 'error'
+      };
+    }
+    
+    function getCopilotInsights(context) {
+      var ctx = context || {};
+      var insights = [];
+      var stepId = ctx.stepId || 'welcome';
+    
       insights.push({
-        id: 'blocker-' + code,
-        title: 'Continue is locked',
-        body: BLOCKER_MESSAGES[code] || code,
-        severity: 'warning'
+        id: 'whats-next',
+        title: 'What to do next',
+        body: STEP_NEXT_ACTIONS[stepId] || 'Follow the current step in the Lab tab.',
+        severity: 'info'
       });
+    
+      if (!ctx.canAdvance && ctx.blockers && ctx.blockers.length) {
+        var i;
+        for (i = 0; i < ctx.blockers.length; i += 1) {
+          var code = ctx.blockers[i];
+          insights.push({
+            id: 'blocker-' + code,
+            title: 'Continue is locked',
+            body: BLOCKER_MESSAGES[code] || code,
+            severity: 'warning'
+          });
+        }
+      }
+    
+      if (ctx.fieldErrors && Object.keys(ctx.fieldErrors).length) {
+        var keys = Object.keys(ctx.fieldErrors);
+        var lines = keys.map(function (k) { return '**' + k + '**: ' + ctx.fieldErrors[k]; });
+        insights.push({
+          id: 'field-errors',
+          title: 'Field validation',
+          body: lines.join(' '),
+          severity: 'error'
+        });
+      }
+    
+      var hashInsight = explainHashMismatch(ctx.hashDiff, ctx.hashTrimNote);
+      if (hashInsight) insights.push(Object.assign({ id: 'hash-diff' }, hashInsight));
+    
+      if (ctx.progress && ctx.progress.hashGenerated && stepId === 'hash') {
+        insights.push({
+          id: 'hash-server-reminder',
+          title: 'Production reminder',
+          body: 'On your server, compute the forward hash with the same pipe order — never expose **salt** in client-side code.',
+          severity: 'info'
+        });
+      }
+    
+      if (stepId === 'verify' && ctx.match === true) {
+        insights.push({
+          id: 'verify-success',
+          title: 'Response verified',
+          body: 'Hash matched for this lab session. In production, always verify before updating order status — never trust the callback alone.',
+          severity: 'success'
+        });
+      }
+    
+      return insights;
     }
-  }
-
-  if (ctx.fieldErrors && Object.keys(ctx.fieldErrors).length) {
-    var keys = Object.keys(ctx.fieldErrors);
-    var lines = keys.map(function (k) { return '**' + k + '**: ' + ctx.fieldErrors[k]; });
-    insights.push({
-      id: 'field-errors',
-      title: 'Field validation',
-      body: lines.join(' '),
-      severity: 'error'
-    });
-  }
-
-  var hashInsight = explainHashMismatch(ctx.hashDiff, ctx.hashTrimNote);
-  if (hashInsight) insights.push(Object.assign({ id: 'hash-diff' }, hashInsight));
-
-  if (ctx.progress && ctx.progress.hashGenerated && stepId === 'hash') {
-    insights.push({
-      id: 'hash-server-reminder',
-      title: 'Production reminder',
-      body: 'On your server, compute the forward hash with the same pipe order — never expose **salt** in client-side code.',
-      severity: 'info'
-    });
-  }
-
-  if (stepId === 'verify' && ctx.match === true) {
-    insights.push({
-      id: 'verify-success',
-      title: 'Response verified',
-      body: 'Hash matched for this lab session. In production, always verify before updating order status — never trust the callback alone.',
-      severity: 'success'
-    });
-  }
-
-  return insights;
-}
-
-function serializeContextForClipboard(context) {
-  return JSON.stringify(context, null, 2);
-}
-
-var copilot = {
-  LAB_CONTEXT_SCHEMA_VERSION: LAB_CONTEXT_SCHEMA_VERSION,
-  LAB_CONTEXT_EVENT: LAB_CONTEXT_EVENT,
-  ERROR_CODES: ERROR_CODES,
-  exportLabContext: exportLabContext,
-  getCopilotInsights: getCopilotInsights,
-  redactParams: redactParams,
-  serializeContextForClipboard: serializeContextForClipboard
-};
-
-return {
-  engine: engineRef,
-  LAB_CONTEXT_SCHEMA_VERSION: LAB_CONTEXT_SCHEMA_VERSION,
-  LAB_CONTEXT_EVENT: LAB_CONTEXT_EVENT,
-  ERROR_CODES: ERROR_CODES,
-  exportLabContext: exportLabContext,
-  getCopilotInsights: getCopilotInsights,
-  redactParams: redactParams,
-  serializeContextForClipboard: serializeContextForClipboard
-};
-})();
+    
+    function serializeContextForClipboard(context) {
+      return JSON.stringify(context, null, 2);
+    }
+    
+    return {
+      engine: engineRef,
+      LAB_CONTEXT_SCHEMA_VERSION: LAB_CONTEXT_SCHEMA_VERSION,
+      LAB_CONTEXT_EVENT: LAB_CONTEXT_EVENT,
+      ERROR_CODES: ERROR_CODES,
+      exportLabContext: exportLabContext,
+      getCopilotInsights: getCopilotInsights,
+      redactParams: redactParams,
+      serializeContextForClipboard: serializeContextForClipboard
+    };
+  })();
 // PAYU_LAB_BUNDLE_END
 
-export const PayUHostedIntegrationWizard = function PayUHostedIntegrationWizard() {
 
   var LAB_CONFIG = JSON.parse('{"storageKey":"payu-hosted-integration-wizard-v1","testPaymentUrl":"https://test.payu.in/_payment","simulatorUrl":"https://test-payment-middleware.payu.in/simulatorResponse","hashVerifyToolUrl":"https://payu-hashverificationtool.onrender.com/","defaults":{"key":"","txnid":"tran_1234","amount":"10.00","productinfo":"iPhone","firstname":"Aarav","email":"aarav@example.com","phone":"1234567890","surl":"https://test-payment-middleware.payu.in/simulatorResponse","furl":"https://test-payment-middleware.payu.in/simulatorResponse","udf1":"","udf2":"","udf3":"","udf4":"","udf5":""}}');
   var LAB_KEY = LAB_CONFIG.storageKey;
