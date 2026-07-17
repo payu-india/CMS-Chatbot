@@ -24,7 +24,7 @@ This section describes the procedure to install and configure the PayU Magento p
       </th>
 
       <th>
-        Supported PHP Versions
+        Supported PHP Versions or Feature
       </th>
 
       <th>
@@ -38,6 +38,34 @@ This section describes the procedure to install and configure the PayU Magento p
   <tbody>
     <tr>
       <td>
+        Magento
+      </td>
+
+      <td>
+        General
+      </td>
+
+      <td>
+        <Anchor target="_blank" href="https://github.com/payu-india/PayUbiz_Magento/blob/master/Magento_CommercePro_plugin.zip">GitHub Location</Anchor>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Magento Affordability
+      </td>
+
+      <td>
+        Affordability
+      </td>
+
+      <td>
+        <Anchor target="_blank" href="https://github.com/payu-india/PayUbiz_Magento/blob/master/PayUIndia_Affordability_Widget.zip">GitHub Location</Anchor>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
         Magento v2.4.x
       </td>
 
@@ -46,21 +74,7 @@ This section describes the procedure to install and configure the PayU Magento p
       </td>
 
       <td>
-        [GitHub Location](https://github.com/payu-india/PayUbiz_Magento/blob/master/PayUbiz_Magento-v2.4.zip)
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Magento v2.3.x
-      </td>
-
-      <td>
-        PHP 7.3, 7.4, 8.0
-      </td>
-
-      <td>
-        [GitHub Location](https://github.com/payu-india/PayUbiz_Magento/blob/master/PayUBiz_Magento_v2.3.zip)
+        <Anchor target="_blank" href="https://github.com/payu-india/PayUbiz_Magento/blob/master/PayUIndia_version_2.4.4.zip">GitHub Location</Anchor>
       </td>
     </tr>
   </tbody>
@@ -72,15 +86,15 @@ To install the PayU plugin for Magento:
 
 1. Download the PayU Plugin for Magento to the Magento version you use from the [Download the PayU plugin](#download-the-payu-plugin) table:
 2. Extract the archive that you have downloaded.
-3. Upload the *PayUIndia* folder that you find after extracting the archive to the *app/code* folder under Magento.
+3. Upload the _PayUIndia_ folder that you find after extracting the archive to the _app/code_ folder under Magento.
 
-> **Note**: If the *code* folder does not exist under the /*app* folder, create a code folder.
+> **Note**: If the _code_ folder does not exist under the /_app_ folder, create a code folder.
 
 4. Disable the cache:
-   * Navigate to the **Magento Admin** panel > **System** > **Cache Management**.
-   * Select all the cache types from left pane.
-   * Select **Action** and then select **Disable** from the drop-down list.
-   * Click **Submit.**
+   - Navigate to the **Magento Admin** panel > **System** > **Cache Management**.
+   - Select all the cache types from left pane.
+   - Select **Action** and then select **Disable** from the drop-down list.
+   - Click **Submit.**
 5. Execute the following Magento commands:
 
 ```plaintext
@@ -100,7 +114,7 @@ To configure the Magento v2.4 environment for PayU:
 2. Navigate to **Store** > **Configuration** > **Sales** > **Payment Methods**.
 3. Expand the **Payu** menu.
 
-   The *Configuration* page with the **Payu** tab selected is displayed, similar to the following screenshot:
+   The _Configuration_ page with the **Payu** tab selected is displayed, similar to the following screenshot:
 
 > **Note**: If the **Payu** tab is not displayed, clear the cache as described in the [Install Plugin for Magento v2.x](#install-plugin).
 
@@ -150,14 +164,14 @@ To configure the Magento v2.4 environment for PayU:
       <td>
         Select any of the following gateway environments from the drop-down list to which customer payment details will be redirected.
 
-        * * **Sandbox**: This is the Test environment and no actual fund transfer will take place.
+        - - **Sandbox**: This is the Test environment and no actual fund transfer will take place.
 
-        * * **Production**: This is the Live environment. Use this value only
+        - - **Production**: This is the Live environment. Use this value only
             If you select Sandbox in Transaction Mode, then use the following credentials:\\
 
-        * Merchant id: oZ7oo9
+        - Merchant id: oZ7oo9
 
-        * Salt: UkojH5TS |
+        - Salt: UkojH5TS |
       </td>
     </tr>
 
@@ -185,17 +199,23 @@ To configure the Magento v2.4 environment for PayU:
 
 > **Reference**: For more information on how to acess the Key and Salt, refer to any of the following:
 
-* **Production**:  [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
-* **Test**: [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
+- **Production**:  [Access Production Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
+- **Test**: [Access Test Merchant Key and Salt](doc:generate-test-merchant-key-and-salt)
 
 5. Click **Save Config** at the top-right corner.
 
-> 📘 Note:
->
-> After configuring the PayU Test environment, use the test card details to test the payment. For more information, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets).
+<Callout icon="📘" theme="info">
+  ### Note:
+
+  After configuring the PayU Test environment, use the test card details to test the payment. For more information, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets).
+</Callout>
 
 The configuration for the PayU plugin is complete and your customers can make payments through PayU.
 
-> 📘 Note:
->
-> PayU recommends this step to reconcile with PayU’s database after you receive the response. Verify the transaction details using the **Verification Payment**API. For API reference, refer to <a href="https://docs.payu.in/reference/verify_payment_api" target="_blank">Verify Payment API</a>..
+<Callout icon="📘" theme="info">
+  ### Note:
+
+  PayU recommends this step to reconcile with PayU’s database after you receive the response. Verify the transaction details using the **Verification Payment**API. For API reference, refer to <a href="https://docs.payu.in/reference/verify_payment_api" target="_blank">Verify Payment API</a>..
+</Callout>
+
+<br />
