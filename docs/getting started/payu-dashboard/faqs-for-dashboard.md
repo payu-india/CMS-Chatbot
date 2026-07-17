@@ -6,8 +6,9 @@ hidden: false
 metadata:
   title: FAQs for Dashboard
   description: >-
-    Find answers to frequently asked questions about the PayU Merchant Dashboard including transactions, settlements, API keys, webhooks, onboarding, and account management for India merchants. Covers FAQs for Dashboard.
-  robots: index
+    Find answers to frequently asked questions about the PayU Merchant Dashboard
+    including transactions, settlements, API keys, webhooks, onboarding, and
+    account management for India merchants. Covers FAQs for Dashboard.
   keywords:
     - payu dashboard faqs
     - payu merchant dashboard frequently asked questions
@@ -19,6 +20,7 @@ metadata:
     - payment gateway merchant dashboard help payu
     - payu dashboard faq vs razorpay cashfree
     - payu merchant account dashboard questions
+  robots: index
 next:
   description: ''
 ---
@@ -351,7 +353,7 @@ You can use the following APIs to get the transaction details:
   * [Get Transaction Info API](ref:get_transaction_info_api)
   * [Get Transaction Details API](ref:get_transaction_details_api)
 * The following Settlement Details API is used to retrieve settlement details that the bank has to settle you.
-  * [Settlement Details](ref:settlement-details)
+  * [Settlement Details](ref:settlement-details-range-api)
 
 ## **Collect or Send Payments**
 
