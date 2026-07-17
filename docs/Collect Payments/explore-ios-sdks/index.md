@@ -241,7 +241,7 @@ Configure webhooks to receive real-time payment notifications.
   5. Save and note the webhook secret for verification
 
   <Callout icon="📘" theme="info">
-    **Note:** For detailed webhook setup, refer to [Webhooks for Payments](doc:webhooks-for-payments).
+    **Note:** For detailed webhook setup, refer to [Webhooks for Payments](doc:webhook-events-and-sample-payloads).
   </Callout>
 </Accordion>
 
