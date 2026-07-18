@@ -117,7 +117,7 @@ Send these optional parameters in the request as required.
 | `note_category`    | `string` Use this parameter to specify which payment options the custom note message should be displayed for. This parameter should contain a comma-separated list of the payment options that you want the custom note to be displayed for. Example: `CC, NB` This will show the custom\_note for Credit Card and Net banking.                                                                     |
 </Accordion>
 
-
+<br />
 
 ***
 
@@ -1401,7 +1401,7 @@ You can customize the following in the Checkout page:<br/>
 Refer to the <a href="https://docs.payu.in/docs/payu-payment-page-customization" target="_blank">Customize PayU Payment Page</a> for more information about cutomizing the PayU payment page.
 </Accordion>
 
-
+<br />
 
 ***
 
@@ -1446,7 +1446,7 @@ You should compare the hash value you got from the above logic with the hash val
 
 You can also use the <Anchor target="_blank" href="https://payu-hashverificationtool.onrender.com/">PayU's Hash Verification System</Anchor> to generate a hash (reverse hash) for payment verification.
 
-
+<br />
 
 ***
 
@@ -1484,7 +1484,7 @@ After the transaction is complete, you should check the payment status. Use PayU
 </Tabs>
 </Accordion>
 
-
+<br />
 
 ***
 
@@ -1593,6 +1593,10 @@ It is equally important to test the failed transaction. Perform the following st
 
   - [x] Order remains unpaid
 </Callout>
+
+***
+
+<PayUHostedIntegrationWizard />
 
 ***
 
