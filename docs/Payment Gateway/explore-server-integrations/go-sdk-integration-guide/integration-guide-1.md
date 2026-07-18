@@ -799,7 +799,7 @@ You can also use the <Anchor target="_blank" href="https://payu-hashverification
 
 ***
 
-### Step 1.7 Verify the Payment
+### Step 1.6 Verify the Payment
 
 After the transaction is complete, you should check the payment status. Use PayU verification mechanisms for reconciliation. This is the recommended verification order:
 
