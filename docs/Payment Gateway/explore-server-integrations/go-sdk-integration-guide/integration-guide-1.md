@@ -220,6 +220,26 @@ go run .
 
 This will create the `pay.html` file.
 
+#### What Next - Customer Journey
+
+Customer selects a payment method and completes the payment. PayU then sends the transaction response parameters.
+
+<Accordion title="Customer Journey Outcome" icon="fa-route">
+**Expected Output**
+
+These are the expected outcomes of the transaction.
+
+- Success
+- Failure
+- Pending
+- Cancelled
+
+PayU then redirects to:
+
+- `surl` for success
+- `furl` for failure
+</Accordion>
+
 <Accordion title="Success and Error Response" icon="fa-circle-check">
 Below are the payment method wise success and error responses received.<br/>
 
@@ -718,26 +738,6 @@ splitInfo={"splitStatus":"","splitSegments":[]}
 Refer to the Errors section for the parameters and description.
 
 
-</Accordion>
-
-#### What Next - Customer Journey
-
-Customer selects a payment method and completes the payment. PayU then sends the transaction response parameters.
-
-<Accordion title="Customer Journey Outcome" icon="fa-route">
-**Expected Output**
-
-These are the expected outcomes of the transaction.
-
-- Success
-- Failure
-- Pending
-- Cancelled
-
-PayU then redirects to:
-
-- `surl` for success
-- `furl` for failure
 </Accordion>
 
 #### Step 1.4.1 Customize PayU Payment Page _(Optional)_
