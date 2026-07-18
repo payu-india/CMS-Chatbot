@@ -220,25 +220,6 @@ go run .
 
 This will create the `pay.html` file.
 
-***
-
-### Step 1.5 Complete the Test Payment
-
-<Accordion title="Steps to Complete the Test Payment" icon="fa-info-circle">
-1. Open the `payu.html` file or run the following command to open the checkout.
-
-<Terminal>{`
-  open pay.html
-`}</Terminal>
-
-2. Choose any payment method and provide the <a href="https://docs.payu.in/docs/test-cards-upi-id-and-wallets" title="Access Test Credentials">test credentials</a>.
-3. Complete the payment.
-</Accordion>
-
-#### Expected Outcome
-
-You will complete the test payment and receives the response.
-
 <Accordion title="Success and Error Response" icon="fa-circle-check">
 Below are the payment method wise success and error responses received.<br/>
 
@@ -759,7 +740,7 @@ PayU then redirects to:
 - `furl` for failure
 </Accordion>
 
-#### Step 1.3.1 Customize PayU Payment Page _(Optional)_
+#### Step 1.4.1 Customize PayU Payment Page _(Optional)_
 
 <Accordion title="Customize Checkout" icon="fa-gear">
 You can customize the following in the Checkout page:<br/>
@@ -773,7 +754,7 @@ Refer to the <a href="https://docs.payu.in/docs/payu-payment-page-customization"
 
 ***
 
-### Step 1.6 Verify Response via Reverse Hashing
+### Step 1.5 Verify Response via Reverse Hashing
 
 Response verification ensures that the response originated from PayU and has not been modified. It protects against:
 
