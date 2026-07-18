@@ -1,5 +1,5 @@
 ---
-title: Go SDK - Start Here
+title: Go SDK
 deprecated: false
 hidden: true
 metadata:
