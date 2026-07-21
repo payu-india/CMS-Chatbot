@@ -5,35 +5,15 @@ hidden: true
 metadata:
   robots: index
 ---
----
-title: Net Banking Integration - TPV with S2S
-excerpt: ''
-deprecated: false
-hidden: false
-metadata:
-  title: Net Banking TPV Integration - Merchant Hosted Checkout
-  description: >-
-    Learn how to integrate Net Banking with Third Party Validation (TPV) using
-    PayU's comprehensive guide. This documentation provides step-by-step
-    instructions, API details, and best practices for seamless and secure
-    payment processing. Enhance your online payment solutions with efficient net
-    banking integration."
-  keywords:
-    - Net Banking Integration for TPV
-    - ' Third Party Validation Net Banking Integration'
-    - API Integration for NetBanking TPV
-    - ' PayU NetBanking TPV Integration'
-    - TPV Net Banking Setup Guide
-  robots: index
-next:
-  description: ''
----
----
+***
+
 Integrate <Glossary>TPV</Glossary> through Net Banking using the procedure described in this section.
 
 <br />
 
 <Callout icon="👍" theme="okay">
+  ###
+
   Experience the end-to-end **Merchant Hosted Checkout** > **Net Banking** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 
   <HTMLBlock>{`
@@ -100,10 +80,6 @@ Integrate <Glossary>TPV</Glossary> through Net Banking using the procedure descr
   </Card>
 </Cards>
 
-**Prerequisites**: Seamless integration has to be done as per the standard kit. For more information, refer to  <a href="https://docs.payu.in/reference/_payment-merchant-hosted" target="_blank">Collect Payments API</a>  under API Reference.
-
-***
-
 ## Step 1: List the account numbers
 
 Collect or prepare a list of account numbers that must be posted to PayU for TPV at step 2. You can use the **Get Net Banking Status** API to check the bank network health.
@@ -164,7 +140,7 @@ Collect or prepare a list of account numbers that must be posted to PayU for TPV
 
 ## Step 2: Post the parameters to PayU
 
-With the following additional parameters, make the transaction request with the customer's bank account number to the PayU using the Collect Payment (**_payment**) API. For more information, refer to [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted) .
+With the following additional parameters, make the transaction request with the customer's bank account number to the PayU using the Collect Payment (**\_payment**) API. For more information, refer to [Collect Payment API - Merchant Hosted Checkout](ref:_payment_merchant_hosted) .
 
 <PaymentAPIEnvironment />
 
@@ -803,10 +779,12 @@ curl_close($ch);
 
 On basis of a successful response of the Collect Payment (**\_payment**) API, you need to redirect the user to the bank page using **acsTemplate**. In case of Bank page authentication (Non-Native OTP), ACS server will redirect the customer to termUrl passed in the payment request during initiation and authenticationResult will be posted along "cres" over the termUrl.
 
-> 📘 Notes:
->
-> - All callbacks POST form data on the merchant's `termUrl` that is passed in Initiate Transaction API.
-> - Validation of the response happens on the basis of the hash value being returned in the hash value of the response.
+<Callout icon="📘" theme="info">
+  ### Notes:
+
+  - All callbacks POST form data on the merchant's `termUrl` that is passed in Initiate Transaction API.
+  - Validation of the response happens on the basis of the hash value being returned in the hash value of the response.
+</Callout>
 
 <Accordion title="Response parameters over termURL" icon="fa-table">
   | Parameter                                        | Description | Example |
@@ -835,12 +813,14 @@ On basis of a successful response of the Collect Payment (**\_payment**) API, yo
 
 The authorization request is the final step of transaction processing. This again needs to be an S2S call from the merchant's server to PayU server.
 
-> 📘
->
-> **Note:**
->
-> - **For Redirection Based authentication from termUrl (if being sent by PayU)**: If `authenticationStatus=success`, use the `bankData` parameter value as it is under the **authentication\_info** parameter of the **Authorize Transaction API**.
-> - **For Native OTP based Authentication**: If **metaData.txnStatus** is "Authenticated", use the `result.postToBank` object value in the authentication\_info parameter of the **Authorize Transaction API**.
+<Callout icon="📘" theme="info">
+  ###
+
+  **Note:**
+
+  - **For Redirection Based authentication from termUrl (if being sent by PayU)**: If `authenticationStatus=success`, use the `bankData` parameter value as it is under the **authentication_info** parameter of the **Authorize Transaction API**.
+  - **For Native OTP based Authentication**: If **metaData.txnStatus** is "Authenticated", use the `result.postToBank` object value in the authentication_info parameter of the **Authorize Transaction API**.
+</Callout>
 
 #### Environment
 
@@ -1022,3 +1002,5 @@ The authorization request is the final step of transaction processing. This agai
 ## Step 6. Verify the payment
 
 <Verify_Payment_Tabs />
+
+<br />
