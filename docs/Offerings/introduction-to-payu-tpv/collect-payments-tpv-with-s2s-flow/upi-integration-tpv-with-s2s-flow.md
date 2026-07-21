@@ -783,8 +783,7 @@ With the following parameters, make the transaction request with the customer’
   </Accordion>
 </Accordion>
 
-### Sample Request
-
+  <Accordion title="Sample Request" icon="fa-code">
 ```curl
 curl --request POST 'https://test.payu.in/_payment' \
   --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -953,7 +952,7 @@ echo curl_getinfo($ch, CURLINFO_HTTP_CODE) . ' ' . $response;
 curl_close($ch);
 ?>
 ```
-
+</Accordion>
 ## Step 3: Authentication Flow
 
 On basis of a successful response of the Collect Payment (**\_payment**) API, you need to redirect the user to the bank page using **acsTemplate**. In case of Bank page authentication (Non-Native OTP), ACS server will redirect the customer to termUrl passed in the payment request during initiation and authenticationResult will be posted along "cres" over the termUrl.
