@@ -636,7 +636,7 @@ With the following additional parameters, make the transaction request with the 
   </Accordion>
 </Accordion>
 
-  <Accordion title="Sample Request)" icon="fa-code">
+  <Accordion title="Sample Request" icon="fa-code">
 ```curl
 curl --request POST 'https://test.payu.in/_payment' \
   --header 'Content-Type: application/x-www-form-urlencoded' \
