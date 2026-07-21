@@ -28,6 +28,7 @@ metadata:
 next:
   description: ''
 ---
+---
 Integrate <Glossary>TPV</Glossary> through Net Banking using the procedure described in this section.
 
 <br />
@@ -82,15 +83,19 @@ Integrate <Glossary>TPV</Glossary> through Net Banking using the procedure descr
     Post transaction request with beneficiary details to PayU
   </Card>
 
-  <Card title="3. Authorize Payment" href="#step-3-authorize-charge-the-payment">
+  <Card title="3. Authrentication Flow" href="#step-3-authrentication-flow">
+    Authenticate the payment with the customer's bank
+  </Card>
+
+  <Card title="4. Authorize Payment" href="#step-4-authorize-charge-the-payment">
     Authorize and charge the authenticated payment
   </Card>
 
-  <Card title="4. Check Response" href="#step-4-check-the-response-from-payu">
+  <Card title="5. Check Response" href="#step-5-check-the-response-from-payu">
     Validate the response and reverse hash from PayU
   </Card>
 
-  <Card title="5. Verify Payment" href="#step-5-verify-the-payment">
+  <Card title="6. Verify Payment" href="#step-6-verify-the-payment">
     Verify the payment using verify\_payment API
   </Card>
 </Cards>
@@ -631,7 +636,7 @@ With the following additional parameters, make the transaction request with the 
   </Accordion>
 </Accordion>
 
-### Step 2b: Non-Native OTP Flow
+## Step 3: Authrentication Flow
 
 On basis of a successful response of the Collect Payment (**\_payment**) API, you need to redirect the user to the bank page using **acsTemplate**. In case of Bank page authentication (Non-Native OTP), ACS server will redirect the customer to termUrl passed in the payment request during initiation and authenticationResult will be posted along "cres" over the termUrl.
 
@@ -663,7 +668,7 @@ On basis of a successful response of the Collect Payment (**\_payment**) API, yo
   | authorizationUrl<br /><code>mandatory</code> | This integration document assumes that you have opted out for the particular configuration. The authorization URL in legacy integrations is present based on the configuration at PayU. Contact your PayU Key Account Manager (KAM) to know more. <code>String</code> | [https://secure.payu.in/merchant/postservice?form=5ea3a2d](https://secure.payu.in/merchant/postservice?form=5ea3a2d) |
 </Accordion>
 
-## Step 3: Authorize (charge) the payment
+## Step 4: Authorize (charge) the payment
 
 The authorization request is the final step of transaction processing. This again needs to be an S2S call from the merchant's server to PayU server.
 
@@ -682,7 +687,7 @@ The authorization request is the final step of transaction processing. This agai
 | Production | [https://secure.payu.in/AuthorizeTransaction.php](https://secure.payu.in/AuthorizeTransaction.php) |
 
 <Accordion title="Request parameters" icon="fa-code">
-  **Post URL**: The data to be posted has to be exactly the same as the JSON response received in the authentication response in [Step 2b](#step-2b-non-native-otp-flow). The data must include the following parameters.
+  **Post URL**: The data to be posted has to be exactly the same as the JSON response received in the authentication response in [Step 3](#step-3-authrentication-flow). The data must include the following parameters.
 
   | Parameter                                        | Description | Example |
   | ------------------------------------------------ | ----------- | ------- |
@@ -750,7 +755,7 @@ The authorization request is the final step of transaction processing. This agai
   ```
 </Accordion>
 
-## Step 4: Check the response from PayU
+## Step 5: Check the response from PayU
 
 <Accordion title="Hash Validation Logic for Payment Response (Reverse Hashing)" icon="fa-code">
   While sending the response, PayU takes the exact same parameters that were sent in the request (in reverse order) to calculate the hash and returns it to you. You must verify the hash and then mark a transaction as a success or failure. This is to make sure the transaction has not tampered within the response.
@@ -851,6 +856,6 @@ The authorization request is the final step of transaction processing. This agai
   ```
 </Accordion>
 
-## Step 5. Verify the payment
+## Step 6. Verify the payment
 
 <Verify_Payment_Tabs />
