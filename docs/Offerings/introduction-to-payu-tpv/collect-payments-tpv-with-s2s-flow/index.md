@@ -6,8 +6,8 @@ metadata:
   robots: index
 ---
 This part of the devguide includes the following sections to integrate TPV with S2S flow:
+
 - [Net Banking Integration - TPV with S2S](https://docs.payu.in/docs/net-banking-integration-tpv-with-s2s)
 - [UPI Integration - TPV with S2S Flow](https://docs.payu.in/docs/upi-integration-tpv-with-s2s-flow)
-- [UPI Intent and Collect Autopay - TPV Integration with S2S](https://docs.payu.in/docs/upi-intent-and-collect-autopay-tpv-integration-with-s2s)
 
 <br />
