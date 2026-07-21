@@ -636,8 +636,7 @@ With the following additional parameters, make the transaction request with the 
   </Accordion>
 </Accordion>
 
-### Sample Request
-
+  <Accordion title="Sample Request)" icon="fa-code">
 ```curl
 curl --request POST 'https://test.payu.in/_payment' \
   --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -798,7 +797,7 @@ echo curl_getinfo($ch, CURLINFO_HTTP_CODE) . ' ' . $response;
 curl_close($ch);
 ?>
 ```
-
+</Accordion>
 
 ## Step 3: Authentication Flow
 
