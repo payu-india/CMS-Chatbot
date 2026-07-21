@@ -1,7 +1,7 @@
 ---
 name: Payment API Environment
 ---
-## Environment
+### Environment
 
 |                            |                                   |
 | :------------------------- | :-------------------------------- |
