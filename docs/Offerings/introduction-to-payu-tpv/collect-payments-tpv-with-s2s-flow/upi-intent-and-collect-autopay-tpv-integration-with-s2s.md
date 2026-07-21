@@ -240,7 +240,7 @@ Refer any of the following tabs based on the Intent or Collect Autopay Flow inte
     | Test Environment       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
     | Production Environment | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
-    <Accordion title="Request parameters" icon="fa-table">
+    <Accordion title="Request Parameters" icon="fa-table">
       In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is critical to calculate the hash correctly and post it to PayU in the request.
 
       | Parameter                            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Value                                                                                                                                           |
