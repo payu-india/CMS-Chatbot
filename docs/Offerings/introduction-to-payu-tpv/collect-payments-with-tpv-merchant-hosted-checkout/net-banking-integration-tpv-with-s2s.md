@@ -83,7 +83,7 @@ Integrate <Glossary>TPV</Glossary> through Net Banking using the procedure descr
     Post transaction request with beneficiary details to PayU
   </Card>
 
-  <Card title="3. Authrentication Flow" href="#step-3-authrentication-flow">
+  <Card title="3. Authentication Flow" href="#step-3-authentication-flow">
     Authenticate the payment with the customer's bank
   </Card>
 
@@ -636,7 +636,7 @@ With the following additional parameters, make the transaction request with the 
   </Accordion>
 </Accordion>
 
-## Step 3: Authrentication Flow
+## Step 3: Authentication Flow
 
 On basis of a successful response of the Collect Payment (**\_payment**) API, you need to redirect the user to the bank page using **acsTemplate**. In case of Bank page authentication (Non-Native OTP), ACS server will redirect the customer to termUrl passed in the payment request during initiation and authenticationResult will be posted along "cres" over the termUrl.
 
