@@ -732,7 +732,161 @@ With the following parameters, make the transaction request with the customer’
     > ```
   </Accordion>
 </Accordion>
+<Accordion title="Sample Request" icon="fa-code">
+```curl
+curl --request POST 'https://test.payu.in/_payment' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data-urlencode 'key=JP***g' \
+  --data-urlencode 'txnid=upi_tpv_12345' \
+  --data-urlencode 'amount=10.00' \
+  --data-urlencode 'productinfo=iPhone' \
+  --data-urlencode 'firstname=Ashish' \
+  --data-urlencode 'email=test@payu.in' \
+  --data-urlencode 'phone=9876543210' \
+  --data-urlencode 'pg=UPI' \
+  --data-urlencode 'bankcode=UPITPV' \
+  --data-urlencode 'vpa=customer@upi' \
+  --data-urlencode 'beneficiarydetail={"beneficiaryAccountNumber":"002001600674","ifscCode":"KTKB0000046"}' \
+  --data-urlencode 'api_version=6' \
+  --data-urlencode 'surl=https://example.com/payment/success' \
+  --data-urlencode 'furl=https://example.com/payment/failure' \
+  --data-urlencode 'hash=YOUR_CALCULATED_HASH'
+```
+```python
+import json
+import requests
 
+data = {
+    "key": "JP***g",
+    "txnid": "upi_tpv_12345",
+    "amount": "10.00",
+    "productinfo": "iPhone",
+    "firstname": "Ashish",
+    "email": "test@payu.in",
+    "phone": "9876543210",
+    "pg": "UPI",
+    "bankcode": "UPITPV",
+    "vpa": "customer@upi",
+    "beneficiarydetail": json.dumps({
+        "beneficiaryAccountNumber": "002001600674",
+        "ifscCode": "KTKB0000046"
+    }),
+    "api_version": "6",
+    "surl": "https://example.com/payment/success",
+    "furl": "https://example.com/payment/failure",
+    "hash": "YOUR_CALCULATED_HASH"
+}
+response = requests.post("https://test.payu.in/_payment", data=data)
+print(response.status_code, response.text)
+```
+```javascript
+const params = new URLSearchParams({
+  key: 'JP***g',
+  txnid: 'upi_tpv_12345',
+  amount: '10.00',
+  productinfo: 'iPhone',
+  firstname: 'Ashish',
+  email: 'test@payu.in',
+  phone: '9876543210',
+  pg: 'UPI',
+  bankcode: 'UPITPV',
+  vpa: 'customer@upi',
+  beneficiarydetail: JSON.stringify({
+    beneficiaryAccountNumber: '002001600674',
+    ifscCode: 'KTKB0000046'
+  }),
+  api_version: '6',
+  surl: 'https://example.com/payment/success',
+  furl: 'https://example.com/payment/failure',
+  hash: 'YOUR_CALCULATED_HASH'
+});
+const response = await fetch('https://test.payu.in/_payment', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+  body: params
+});
+console.log(response.status, await response.text());
+```
+```java
+import java.net.URI;
+import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+public class UpiTpvPayment {
+    public static void main(String[] args) throws Exception {
+        Map<String, String> data = new LinkedHashMap<>();
+        data.put("key", "JP***g");
+        data.put("txnid", "upi_tpv_12345");
+        data.put("amount", "10.00");
+        data.put("productinfo", "iPhone");
+        data.put("firstname", "Ashish");
+        data.put("email", "test@payu.in");
+        data.put("phone", "9876543210");
+        data.put("pg", "UPI");
+        data.put("bankcode", "UPITPV");
+        data.put("vpa", "customer@upi");
+        data.put("beneficiarydetail", "{\"beneficiaryAccountNumber\":\"002001600674\",\"ifscCode\":\"KTKB0000046\"}");
+        data.put("api_version", "6");
+        data.put("surl", "https://example.com/payment/success");
+        data.put("furl", "https://example.com/payment/failure");
+        data.put("hash", "YOUR_CALCULATED_HASH");
+
+        String body = data.entrySet().stream()
+            .map(e -> URLEncoder.encode(e.getKey(), StandardCharsets.UTF_8) + "="
+                + URLEncoder.encode(e.getValue(), StandardCharsets.UTF_8))
+            .collect(Collectors.joining("&"));
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(body))
+            .build();
+        HttpResponse<String> response = HttpClient.newHttpClient()
+            .send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.statusCode() + " " + response.body());
+    }
+}
+```
+```php
+<?php
+$data = [
+    'key' => 'JP***g',
+    'txnid' => 'upi_tpv_12345',
+    'amount' => '10.00',
+    'productinfo' => 'iPhone',
+    'firstname' => 'Ashish',
+    'email' => 'test@payu.in',
+    'phone' => '9876543210',
+    'pg' => 'UPI',
+    'bankcode' => 'UPITPV',
+    'vpa' => 'customer@upi',
+    'beneficiarydetail' => json_encode([
+        'beneficiaryAccountNumber' => '002001600674',
+        'ifscCode' => 'KTKB0000046'
+    ]),
+    'api_version' => '6',
+    'surl' => 'https://example.com/payment/success',
+    'furl' => 'https://example.com/payment/failure',
+    'hash' => 'YOUR_CALCULATED_HASH'
+];
+$ch = curl_init('https://test.payu.in/_payment');
+curl_setopt_array($ch, [
+    CURLOPT_POST => true,
+    CURLOPT_POSTFIELDS => http_build_query($data),
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_HTTPHEADER => ['Content-Type: application/x-www-form-urlencoded']
+]);
+$response = curl_exec($ch);
+echo curl_getinfo($ch, CURLINFO_HTTP_CODE) . ' ' . $response;
+curl_close($ch);
+?>
+```
+</Accordion>
 ## Step 3: Check the response from PayU
 
 <Accordion title="Hash Validation Logic for Payment Response (Reverse Hashing)" icon="fa-code">
