@@ -2,6 +2,7 @@
 title: Native OTP Flow Integration
 deprecated: false
 hidden: false
+icon: far fa-stopwatch-20
 metadata:
   title: Integrate with Native OTP Flow for EMI
   description: ''
@@ -62,4 +63,3 @@ The following sections describe how to integrate Native OTP Flow with PayU:
 | [Resend OTP API](ref:resend-otp-api) | Resend OTP when the customer enters an incorrect or expired OTP. **Used in:** all Native OTP Flow integration guides. |
 | [Get Checkout Details API](ref:get_checkout_details) | Check customer EMI eligibility before initiating Debit Card EMI or Cardless EMI native OTP payments.  |
 | [Verify Payment API](ref:verify_payment_api) | Server-side reconciliation of transaction status after OTP submission.  |
-
