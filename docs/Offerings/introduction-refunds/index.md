@@ -3,6 +3,7 @@ title: Refunds
 excerpt: ''
 deprecated: false
 hidden: false
+icon: fab fa-cash-app
 metadata:
   title: ''
   description: ''
