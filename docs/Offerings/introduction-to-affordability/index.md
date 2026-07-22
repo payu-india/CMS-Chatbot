@@ -3,6 +3,7 @@ title: Affordability & Loyalty
 excerpt: ''
 deprecated: false
 hidden: false
+icon: far fa-arrow-left-from-dotted-line
 metadata:
   title: PayU Affordability Introduction
   description: >-
