@@ -2,6 +2,7 @@
 title: Cordova UPI Bolt Mobile SDKs
 deprecated: false
 hidden: false
+icon: fad fa-air-conditioner
 metadata:
   robots: index
 ---
