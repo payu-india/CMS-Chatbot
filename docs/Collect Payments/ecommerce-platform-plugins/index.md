@@ -6,7 +6,7 @@ excerpt: >-
   without writing a single line of code or technical bandwidth.
 deprecated: false
 hidden: false
-icon: fab fa-creative-commons-remix
+icon: far fa-plug-circle-check
 metadata:
   title: ''
   description: ''
