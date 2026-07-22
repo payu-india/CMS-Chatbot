@@ -6,8 +6,9 @@ hidden: false
 metadata:
   title: Add an Employee
   description: >-
-    Manage PayU Dashboard users, roles, and employee permissions. Add team members, assign roles, and control access to transactions, settlements, and dashboard features for your merchant account. Covers Add an Employee.
-  robots: index
+    Manage PayU Dashboard users, roles, and employee permissions. Add team
+    members, assign roles, and control access to transactions, settlements, and
+    dashboard features for your merchant account. Covers Add an Employee.
   keywords:
     - payu dashboard user permissions guide
     - manage employees payu merchant dashboard
@@ -19,6 +20,7 @@ metadata:
     - payment gateway dashboard user management payu
     - payu dashboard add role employee
     - payu merchant dashboard access control
+  robots: index
 next:
   description: ''
 ---
@@ -27,11 +29,13 @@ To add an employee:
 1. Navigate to **Dashboard > Settings > User & Permissions**.
 2. Click **Add Employee** at the top-right corner of the page.
 
-   The *Add Employee* pop-up page is displayed.
+   The _Add Employee_ pop-up page is displayed.
 
-![PayU Dashboard - The Add Employee pop-up page is displayed.](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-124.png)
+![PayU Dashboard - The Add Employee pop-up page is displayed.](https://files.readme.io/991ed41273e084e80dc9d4f07811cfe2769e67956f01c8a8c18daea985b4ddc5-dashboard_add_employee.png)
 
 3. Enter the employee’s name in the **Name** field.
 4. Select the role from the **Select Role** drop-down list.
 5. Enter the employee’s email ID in the **Email ID** field.
 6. Click **Add Employee** to add the employee.
+
+<br />
