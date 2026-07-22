@@ -1,7 +1,8 @@
 ---
-title: '**Mobile SDKS**'
+title: Mobile SDKS
 deprecated: false
 hidden: false
+icon: far fa-mobile-retro
 metadata:
   robots: index
 ---
