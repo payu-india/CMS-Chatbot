@@ -2,6 +2,7 @@
 title: Rewards Partner Integration
 deprecated: false
 hidden: false
+icon: far fa-medal
 metadata:
   robots: index
 ---
