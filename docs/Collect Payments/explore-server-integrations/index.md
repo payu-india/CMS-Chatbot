@@ -5,6 +5,7 @@ excerpt: >-
   languages.
 deprecated: false
 hidden: false
+icon: far fa-server
 metadata:
   title: Explore Server-Side Integrations
   description: >-
