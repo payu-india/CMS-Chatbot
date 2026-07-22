@@ -2,6 +2,7 @@
 title: Chargeback
 deprecated: false
 hidden: false
+icon: far fa-cash-register
 metadata:
   robots: index
 ---
