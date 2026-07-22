@@ -511,8 +511,7 @@ With the following parameters, make the transaction request with the customer’
                       </td>
 
                       <td>
-                        <code>String</code> It is the hash calculated by the merchant. The hash calculation logic is:<br/>
-                        <code>sha512(key|txnid|amount|productinfo|<br/>firstname|email|udf1|udf2|udf3|udf4|<br/>udf5|||||SALT)</code>
+                        <code>String</code> It is the hash calculated by the merchant. The hash calculation logic is:<br/><code>sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3 |udf4|udf5||||||beneficiarydetail|SALT)</code>
                       </td>
 
                       <td>
@@ -927,131 +926,45 @@ curl_close($ch);
 ?>
 ```
 </Accordion>
-
-## Step 3: Authentication Flow
-
-On basis of a successful response of the Collect Payment (**\_payment**) API, you need to redirect the user to the bank page using **acsTemplate**. In case of Bank page authentication (Non-Native OTP), ACS server will redirect the customer to termUrl passed in the payment request during initiation and authenticationResult will be posted along "cres" over the termUrl.
-
-<Callout icon="📘" theme="info">
-  ### Notes:
-
-  - All callbacks POST form data on the merchant's `termUrl` that is passed in Initiate Transaction API.
-  - Validation of the response happens on the basis of the hash value being returned in the hash value of the response.
-</Callout>
-
-<Accordion title="Response parameters over termURL" icon="fa-table">
-  | Parameter                                        | Description | Example |
-  | ------------------------------------------------ | ----------- | ------- |
-  | rawBankData<br /><code>mandatory</code>          | <code>String</code> This parameter contains the raw response that is received from bank after authentication. The response is urlencoded and in query string format. | bankRespId=123\&status=success\&amount=1000 |
-  | referenceId<br /><code>mandatory</code>          | <code>String</code> This parameter contains the reference id being returned for the transaction. | TXN\_REF\_123456789 |
-  | bankData<br /><code>mandatory</code>             | <code>JSON</code> This parameter contains the JSON string that is to be used for authorization call. This parameter is received in case of successful OTP submission of decoupled transactions. The postToBank contains messageDigest and pares that is to be posted back for authorization. For more information on the fields in this JSON, refer to [bankData JSON Fields Description](#bankdata-json-fields-description). | |
-  | authenticationStatus<br /><code>mandatory</code> | <code>String</code> This parameter contains the authentication status of the transaction. | SUCCESS |
-  | hash<br /><code>mandatory</code>                 | <code>String</code> This parameter contains the calculated hash of the data that is posted to the merchant. For security purpose it is recommended to validate the hash value before consuming the response. The hash calculation logic is: <code>sha512(authenticationStatus\\\|bankData\\\|rawBankData\\\|referenceId\\\|salt)</code> | 5d41402abc4b2a76b9719d911017c592b2d4c3ef45d0b9e1c9b5a7b2c8f9e0d3 |
-</Accordion>
-
-<Accordion title="bankData JSON fields description" icon="fa-table">
-  #### bankData JSON Fields Description
-
-  | Field                                        | Description | Applicable for EMV 3DS |
-  | -------------------------------------------- | ----------- | ---------------------- |
-  | cres<br /><code>mandatory</code>             | This field contains the Base64 encoded value received from ACS as part of the authentication response. <code>String</code> | Yes |
-  | referenceId<br /><code>mandatory</code>      | This field is returned in case of decoupled flow. This field contains the reference id for the transaction. <code>String</code> | REF\_12345 |
-  | messageDigest<br /><code>mandatory</code>    | This field is returned in case of decoupled flow. This field contains the MD value being returned by the bank. <code>String</code> | d41d8cd98f00b204e9800998ecf8427e |
-  | pares<br /><code>mandatory</code>            | This field is returned in case of decoupled flow. This field contains the pares being returned by the bank. <code>String</code> | eJyrVkosLcmIz8nPS1WyUorPTFGyMjJQUkoD8ZNrAQytCFn |
-  | additionalInfo<br /><code>mandatory</code>   | This field is returned in case of decoupled flow. This field contains the data that is being used for the gateways that do not return pares. <code>String</code> | transaction\_id=12345\&status=pending |
-  | authorizationUrl<br /><code>mandatory</code> | This integration document assumes that you have opted out for the particular configuration. The authorization URL in legacy integrations is present based on the configuration at PayU. Contact your PayU Key Account Manager (KAM) to know more. <code>String</code> | [https://secure.payu.in/merchant/postservice?form=5ea3a2d](https://secure.payu.in/merchant/postservice?form=5ea3a2d) |
-</Accordion>
-
-## Step 4: Authorize (charge) the payment
-
-The authorization request is the final step of transaction processing. This again needs to be an S2S call from the merchant's server to PayU server.
-
-<Callout icon="📘" theme="info">
-  ###
-
-  **Note:**
-
-  - **For Redirection Based authentication from termUrl (if being sent by PayU)**: If `authenticationStatus=success`, use the `bankData` parameter value as it is under the **authentication_info** parameter of the **Authorize Transaction API**.
-  - **For Native OTP based Authentication**: If **metaData.txnStatus** is "Authenticated", use the `result.postToBank` object value in the authentication_info parameter of the **Authorize Transaction API**.
-</Callout>
-
-#### Environment
-
-|            |                                                                                                    |
-| ---------- | -------------------------------------------------------------------------------------------------- |
-| Test       | [https://test.payu.in/AuthorizeTransaction.php](https://test.payu.in/AuthorizeTransaction.php)     |
-| Production | [https://secure.payu.in/AuthorizeTransaction.php](https://secure.payu.in/AuthorizeTransaction.php) |
-
-<Accordion title="Request parameters" icon="fa-code">
-  **Post URL**: The data to be posted has to be exactly the same as the JSON response received in the authentication response in [Step 3](#step-3-authentication-flow). The data must include the following parameters.
-
-  | Parameter                                        | Description | Example |
-  | ------------------------------------------------ | ----------- | ------- |
-  | key<br /><code>mandatory</code>                  | The merchant key is provided by PayU and acts as a unique identifier for a specific merchant account in PayU's database. <code>String</code> | gtKFFx |
-  | txnid<br /><code>mandatory</code>                | The transaction ID is the order reference number generated by the merchant to track a particular order. It can be used only once and PayU's system does not accept a duplicate Transaction ID. <code>String</code> | ORD\_123456789 |
-  | amount<br /><code>mandatory</code>               | It should contain the payment amount of the particular transaction. The amount must be greater than Rs. 8000 for the cardless EMI option. <code>String</code> | 10000.00 |
-  | hash<br /><code>mandatory</code>                 | It is used to avoid the possibility of transaction tampering. The hash must be in the following structure: <code>valueOf(key)\\\|valueOf(txnid)\\\|valueOf(amount)\\\|valueOf(authentication\_info)\\\|valueOf(salt)</code> <code>String</code> | 3af7c2b8e6f9d4e1a9b7c5e2f8d3a6b9e1c4f7a2d5e8b1c3f6a9d2e5b8c1a4f7 |
-  | authentication\_info<br /><code>mandatory</code> | The JSON value received in the bankData on the Term URL, or pass the fields as in the JSON example. <code>JSON</code> | |
-
-  #### Example for authentication\_info JSON
-
-  ```json
-  {
-    "referenceId": "4b6dcb255093a92dc38599b82ac0f796619410e322a2b68ba69a6c7aa5dfb78d",
-    "cres": "eyJtZXNzYWdlVHlwZSI6IkNSZXMiLCJtZXNzYWdlVmVyc2lvbiI6IjIuMi4wIiwidGhyZWVEU1NlcnZlclRyYW5zSUQiOiIxMDY3ZjkyNi00YTJjLTE2MGMtOWU0ZS1lZmIxNjBiNjkwMGYiLCJUcmFuc2FjdGlvbklkIjoiNWU4NDE4ZDYtMWI4Ny01NzVhLWJkMzUtYjRkOWU0NjUiLCJjcmVzIjoiZXlKMGFISmxaVVJUVTJWeWRtVnlWSEpoYm5OSlJDSTZJakV3TmpkbU9USTJMVFJoTW1NdE1UWXdZeTA1WlRSbExXVm1ZakUyTUdJMk9UQXdaaUlzSW1GamMxUnlZVzV6U1VRaU9pSm1Zems1WkdJNU1pMWhOVGczTFRNek5qUXRNRFEzTXkxaE1HUTVPR1kwTnpReFptTWlMQ0p0WlhOellXZGxWSGx3WlNJNklrTlNaWE1pTENKdFpYTnpZV2RsVm1WeWMybHZiaUk2SWpJdU1pNHdJaXdpWTJoaGJHeGxibWRsUTI5dGNHeGxkR2x2YmtsdVpDSTZJbGtpTENKMGNtRnVjMU4wWVhSMWN5STZJbGtpTENKbFkya2lPaUl3TWlKOSJ9",
-    "additionalInfo": {
-      "authUdf1": "",
-      "authUdf2": "",
-      "authUdf3": "",
-      "authUdf4": "",
-      "authUdf5": "",
-      "authUdf6": "",
-      "authUdf7": "",
-      "authUdf8": "",
-      "authUdf9": "",
-      "authUdf10": ""
+<Accordion title="Sample Response" icon="fa-table">
+```json
+{
+    "metaData": {
+        "message": null,
+        "referenceId": "c99a6455b3e0dc5cd7167ab8c8cc10d2fa153cb509e3f64c6cd0ed9c5b64a8c9",
+        "statusCode": null,
+        "txnId": "my_order_26075",
+        "txnStatus": "pending",
+        "unmappedStatus": "pending"
+    },
+    "result": {
+        "paymentId": "403993715535965242",
+        "merchantName": "Sudhanshu",
+        "merchantVpa": "payutest@hdfcbank",
+        "amount": "1.00",
+        "intentURIData": "pa=payutest@hdfcbank&pn=Kumar&tr=403993715535965242&tid=PPPL403993715535965242080126220900&am=1.00&cu=INR&tn=UPIIntent",
+        "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vdGVzdC5wYXl1LmluL2M5OWE2NDU1YjNlMGRjNWNkNzE2N2FiOGM4Y2MxMGQyYzgzYTk5NmFhNDhiYTk4MmZjMGQ4MTI1MGY1ODgxZjMvaW50ZW50U2VhbWxlc3NIYW5kbGVyLnBocCIgbWV0aG9kPSJwb3N0Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0b2tlbiIgdmFsdWU9IjhERDNFRUFFLUI5NTktQzY1RS03MDczLTYzQTNGQUUxMjZGRiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iYW1vdW50IiB2YWx1ZT0iMS4wMCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0ibWlocGF5aWQiIHZhbHVlPSJjOTlhNjQ1NWIzZTBkYzVjZDcxNjdhYjhjOGNjMTBkMmZhMTUzY2I1MDllM2Y2NGM2Y2QwZWQ5YzViNjRhOGM5Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJkaXNhYmxlSW50ZW50U2VhbWxlc3NGYWlsdXJlIiB2YWx1ZT0iMCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0icGF5ZWVWcGEiIHZhbHVlPSJwYXl1dGVzdEBoZGZjYmFuayI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0icGF5ZWVOYW1lIiB2YWx1ZT0iU3VkaGFuc2h1Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJhZGRpdGlvbmFsQ2hhcmdlcyIgdmFsdWU9IjAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InRyYW5zYWN0aW9uRmVlIiB2YWx1ZT0iMS4wMCI+PC9mb3JtPjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0Jz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbmxvYWQ9ZnVuY3Rpb24oKXsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5mb3Jtc1sncGF5bWVudF9wb3N0J10uc3VibWl0KCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDwvc2NyaXB0PjwvYm9keT48L2h0bWw+",
+        "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
     }
-  }
-  ```
-
-  #### authentication\_info JSON Fields Description
-
-  | **Field**      | **Description**                                                                                        | **Applicable to EMV 3DS** |
-  | -------------- | ------------------------------------------------------------------------------------------------------ | ------------------------- |
-  | cres           | This field contains the Base 64 encoded value received from ACS as part of the authentication response | Yes                       |
-  | referenceId    | This field contains the same referenceId which was sent in response to the first call                   |                           |
-  | additionalInfo | This field can be used in the case of schemes where different parameters may be needed from the merchant side. |                    |
-  | messageDigest  | This field includes the Base 64 encoding of the SHA-256 hash of the JSON data posted to the server.     |                           |
-  | pares          | This parameter contains the pares being returned by the bank.                                           |                           |
+}
+```
 </Accordion>
+## Step 3: Invoke UPI Intent on Customer's Device
+Step 3: Invoke UPI Intent on customer's device
 
-<Accordion title="Sample request" icon="fa-code">
-  ```
-  curl POST 'https://test.payu.in/AuthorizeTransaction' \
-    --header 'Cookie: PHPSESSID=ca4slgf2hlcc3a80tauvnh96cr; PHPSESSID=69c3e6c6a9ee8' \
-    --form 'key=PRiQvJ' \
-    --form 'txnid=my_order_75942' \
-    --form 'amount=2' \
-    --form 'authentication_info={
-      "referenceId": "4b6dcb255093a92dc38599b82ac0f796619410e322a2b68ba69a6c7aa5dfb78d",
-      "cres": "eyJtZXNzYWdlVHlwZSI6IkNSZXMiLCJtZXNzYWdlVmVyc2lvbiI6IjIuMi4wIiwidGhyZWVEU1NlcnZlclRyYW5zSUQiOiIxMDY3ZjkyNi00YTJjLTE2MGMtOWU0ZS1lZmIxNjBiNjkwMGYiLCJUcmFuc2FjdGlvbklkIjoiNWU4NDE4ZDYtMWI4Ny01NzVhLWJkMzUtYjRkOWU0NjUiLCJjcmVzIjoiZXlKMGFISmxaVVJUVTJWeWRtVnlWSEpoYm5OSlJDSTZJakV3TmpkbU9USTJMVFJoTW1NdE1UWXdZeTA1WlRSbExXVm1ZakUyTUdJMk9UQXdaaUlzSW1GamMxUnlZVzV6U1VRaU9pSm1Zems1WkdJNU1pMWhOVGczTFRNek5qUXRNRFEzTXkxaE1HUTVPR1kwTnpReFptTWlMQ0p0WlhOellXZGxWSGx3WlNJNklrTlNaWE1pTENKdFpYTnpZV2RsVm1WeWMybHZiaUk2SWpJdU1pNHdJaXdpWTJoaGJHeGxibWRsUTI5dGNHeGxkR2x2YmtsdVpDSTZJbGtpTENKMGNtRnVjMU4wWVhSMWN5STZJbGtpTENKbFkya2lPaUl3TWlKOSJ9",
-      "additionalInfo": {
-        "authUdf1": "",
-        "authUdf2": "",
-        "authUdf3": "",
-        "authUdf4": "",
-        "authUdf5": "",
-        "authUdf6": "",
-        "authUdf7": "",
-        "authUdf8": "",
-        "authUdf9": "",
-        "authUdf10": ""
-      }
-    }'
-  ```
-</Accordion>
-
-## Step 5: Check the response from PayU
+You need to invoke intent in the customer's mobile device using the merchant VPA URL. Make sure that only this merchant VPA is embedded in the intent call since this helps to track the status of the transaction.
+Open the UPI Intent as per the NPCI Guidelines. Merchants can also open any specific app instead of making the Generic Intent call. For example, Google Pay, PhonePe, etc. This URL can then be fired using an Intent or a hyperlink which would open an Intent tray with a list of available supporting apps on the user's mobile device. The following sample UPI Deep Link URL and the format used for creating the URL:
+#### Sample URL (with values from the above sample JSON):
+```json
+upi://pay?pa=payu@axisbank&pn=SMSPLUS&tr=8312916361&am=10.17
+```
+#### Format for UPI Deep Linking URL (as per NPCI guidelines):
+```json
+"upi://pay?pa=" + merchantVpa + "&pn=" + merchantName + "&tr=" + referenceId + "&am=" + amount 
+```
+#### UPI Deep Linking URL parameters description
+Where the description of the parameters used in the URL is as described in the following table:
+## Step 4: Check the response from PayU
 
 <Accordion title="Hash Validation Logic for Payment Response (Reverse Hashing)" icon="fa-code">
   While sending the response, PayU takes the exact same parameters that were sent in the request (in reverse order) to calculate the hash and returns it to you. You must verify the hash and then mark a transaction as a success or failure. This is to make sure the transaction has not tampered within the response.
@@ -1127,7 +1040,7 @@ The authorization request is the final step of transaction processing. This agai
   ```
 </Accordion>
 
-## Step 6. Verify the payment
+## Step 5. Verify the payment
 
 <Verify_Payment_Tabs />
 
