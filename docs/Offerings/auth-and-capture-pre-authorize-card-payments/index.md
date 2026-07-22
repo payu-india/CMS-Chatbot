@@ -3,6 +3,7 @@ title: Pre-Authorize Payments
 excerpt: ''
 deprecated: false
 hidden: false
+icon: far fa-shop-lock
 metadata:
   title: ''
   description: ''
