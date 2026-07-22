@@ -2,6 +2,7 @@
 title: Tokenization or Save Cards
 deprecated: false
 hidden: false
+icon: far fa-square-half-stroke-horizontal
 metadata:
   title: Save Cards Introduction
   description: >-
