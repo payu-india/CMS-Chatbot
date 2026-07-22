@@ -3,6 +3,7 @@ title: Subscriptions or Recurring Payments
 excerpt: ''
 deprecated: false
 hidden: false
+icon: far fa-hands-bubbles
 metadata:
   title: Recurring Payments Introduction
   description: >-
