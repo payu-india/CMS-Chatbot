@@ -5,6 +5,7 @@ excerpt: >-
   case.
 deprecated: false
 hidden: false
+icon: fab fa-android
 metadata:
   title: PayU Android SDK
   description: >-
