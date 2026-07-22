@@ -3,6 +3,7 @@ title: Split Settlements
 excerpt: ''
 deprecated: false
 hidden: false
+icon: far fa-split
 metadata:
   title: Split Settlements Introduction
   description: >-
