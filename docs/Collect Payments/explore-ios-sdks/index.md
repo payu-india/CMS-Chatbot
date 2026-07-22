@@ -2,6 +2,7 @@
 title: ' iOS Mobile SDKs'
 deprecated: false
 hidden: false
+icon: fab fa-apple
 metadata:
   title: PayU iOS SDKs
   description: >-
