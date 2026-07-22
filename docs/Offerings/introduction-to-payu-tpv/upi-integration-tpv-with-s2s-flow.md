@@ -964,6 +964,12 @@ upi://pay?pa=payu@axisbank&pn=SMSPLUS&tr=8312916361&am=10.17
 ```
 #### UPI Deep Linking URL parameters description
 Where the description of the parameters used in the URL is as described in the following table:
+| Parameter | Description                                                                                  |
+| ------------- | ------------------------------------------------------------------------------------------------- |
+| merchantVpa   | As received in JSON response in key merchantVPA'                                                  |
+| merchantName  | As received in JSON response in key merchantName.                                                 |
+| referenceId   | As received in JSON response in key referenceId.                                                  |
+| amount        | Amount of transaction. This must be the same as the amount passed to the **initiatePayment** API. |
 ## Step 4: Check the response from PayU
 
 <Accordion title="Hash Validation Logic for Payment Response (Reverse Hashing)" icon="fa-code">
