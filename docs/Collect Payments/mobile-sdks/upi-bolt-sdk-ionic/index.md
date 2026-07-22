@@ -3,6 +3,7 @@ title: Capacitor UPI Bolt Mobile SDKs
 excerpt: ''
 deprecated: false
 hidden: false
+icon: fad fa-air-conditioner
 metadata:
   title: ''
   description: ''
