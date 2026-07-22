@@ -3,7 +3,7 @@ title: Checkout Solutions
 excerpt: ''
 deprecated: false
 hidden: false
-icon: 🕸️
+icon: far fa-check-to-slot
 metadata:
   title: ''
   description: ''
