@@ -3,6 +3,7 @@ title: Cordova CheckoutPro SDK
 excerpt: ''
 deprecated: false
 hidden: false
+icon: 🤖
 metadata:
   title: 'PayU Mobile SDK Integration: Cordova SDK Integration'
   description: >-
