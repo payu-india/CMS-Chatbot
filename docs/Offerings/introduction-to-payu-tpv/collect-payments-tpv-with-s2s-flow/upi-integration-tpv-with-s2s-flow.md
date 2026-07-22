@@ -1,7 +1,7 @@
 ---
 title: UPI Integration - TPV with S2S Flow
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
