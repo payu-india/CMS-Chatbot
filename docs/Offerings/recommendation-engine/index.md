@@ -3,6 +3,7 @@ title: Recommendation Engine
 excerpt: ''
 deprecated: false
 hidden: false
+icon: far fa-engine
 metadata:
   title: PayU India Recommendation Engine
   description: >-
