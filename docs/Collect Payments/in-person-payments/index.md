@@ -3,6 +3,7 @@ title: In-Person Payments
 excerpt: ''
 deprecated: false
 hidden: false
+icon: far fa-qrcode-read
 metadata:
   title: ''
   description: ''
