@@ -555,7 +555,7 @@ With the following parameters, make the transaction request with the customer’
                       </td>
 
                       <td>
-                        <code>String</code> This parameter must be passed with the value as <strong>4</strong> for Legacy Decoupled flow.
+                        <code>String</code> This parameter must be passed with the value as 4 for s2s response..
                       </td>
 
                       <td>
