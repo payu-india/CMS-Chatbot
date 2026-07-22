@@ -3,6 +3,7 @@ title: Cross-Border Payments
 excerpt: ''
 deprecated: false
 hidden: false
+icon: far fa-arrow-down-up-across-line
 metadata:
   title: PayU Cross-Border Payments Introduction
   description: >-
