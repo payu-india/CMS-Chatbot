@@ -31,7 +31,9 @@ To add an employee:
 
    The _Add Employee_ pop-up page is displayed.
 
-![PayU Dashboard - The Add Employee pop-up page is displayed.](https://files.readme.io/991ed41273e084e80dc9d4f07811cfe2769e67956f01c8a8c18daea985b4ddc5-dashboard_add_employee.png)
+
+<Image src="https://files.readme.io/991ed41273e084e80dc9d4f07811cfe2769e67956f01c8a8c18daea985b4ddc5-dashboard_add_employee.png" alt="PayU Dashboard - The Add Employee pop-up page is displayed." width="320px" border={true} />
+
 
 3. Enter the employee’s name in the **Name** field.
 4. Select the role from the **Select Role** drop-down list.
