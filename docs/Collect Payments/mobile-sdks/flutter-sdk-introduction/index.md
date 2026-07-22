@@ -3,6 +3,7 @@ title: Flutter Mobile SDKs
 excerpt: ''
 deprecated: false
 hidden: false
+icon: fab fa-flutter
 metadata:
   title: 'PayU Mobile SDK Integration: Flutter SDK'
   description: >-
