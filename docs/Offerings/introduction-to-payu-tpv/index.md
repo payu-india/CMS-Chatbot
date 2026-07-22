@@ -7,6 +7,7 @@ excerpt: >-
   operations.
 deprecated: false
 hidden: false
+icon: far fa-person-military-to-person
 metadata:
   title: Third-Party Verification or TPV Integration Introduction
   description: >-
