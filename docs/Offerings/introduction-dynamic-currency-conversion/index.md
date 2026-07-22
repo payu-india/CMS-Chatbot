@@ -3,6 +3,7 @@ title: International Payments
 excerpt: ''
 deprecated: false
 hidden: false
+icon: far fa-globe-pointer
 metadata:
   title: PayU India International Payments
   description: >-
