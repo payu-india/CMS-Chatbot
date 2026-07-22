@@ -3,6 +3,7 @@ title: React Native Mobile SDKs
 excerpt: ''
 deprecated: false
 hidden: false
+icon: fab fa-react
 metadata:
   title: React Native Mobile SDKs
   description: >-
