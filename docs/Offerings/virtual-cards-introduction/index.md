@@ -2,6 +2,7 @@
 title: Virtual Cards
 deprecated: false
 hidden: false
+icon: far fa-credit-card
 metadata:
   robots: index
 ---
@@ -109,4 +110,3 @@ The following sections describe how to integrate Virtual Cards with PayU:
   | Flutter | `payu_ppi_flutter` | [Flutter SDK Integration](doc:virtual-card-flutter-sdk-integration) |
   | React Native | `payu-ppi-react` | [React Native SDK Integration](doc:virtual-card-reactnative-sdk-integration) |
 </Accordion>
-
