@@ -54,8 +54,17 @@ Use these APIs to collect cross-border import payments, manage trade documents a
 | -------------------------------------------- | ------------------------- | ---------------------------------------------------------------- |
 | [Verify Payment API](ref:verify_payment_api) | `verify_payment`          | Reconcile the transaction status from your server after payment. |
 
-<Accordion title="LRS-specific APIs" icon="fa-globe">
-  Cross-border transactions under the Liberalised Remittance Scheme (LRS) use additional `_payment` parameters for PAN validation, TCS declarations, and `lrs_service_type`. For the full LRS API list and integration guides, refer to [Liberalised Remittance Scheme (LRS) for Travel & Education](doc:cb-lrs-integration).
-</Accordion>
+### LRS&#x20;
+
+| API name                                                                                  | Purpose                                                                                                                              |
+| ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| [PayU Hosted Checkout ](ref:_payment_payu_hosted_checkout_cb_lrs)                         | Initiate LRS transactions on PayU Hosted Checkout with `lrs_service_type` and buyer PAN details.                                     |
+| [Merchant Hosted Checkout](ref:_payment_merchant_hosted_cb_lrs)                           | Submit merchant-hosted S2S payment requests with mandatory LRS parameters (`lrs_service_type`, TCS declarations, PAN in UDF fields). |
+| [Collect Payment API – UPI ](ref:_payment_cross-border_merchant_hosted_upi)               | Initiate UPI Intent payments for cross-border LRS transactions.                                                                      |
+| [Collect Payment API – NetBanking ](ref:_payment_cross-border_merchant_hosted_netbanking) | Initiate NetBanking payments for cross-border LRS transactions.                                                                      |
+| [Get Token API – Partner Integration](ref:get_token_api)                                  | Generate a bearer token with `get_pan_details` scope for PAN Card Status Check API authentication.                                   |
+| [Verify Payment API](ref:verify_payment_api)                                              | Server-side reconciliation of transaction status after payment.                                                                      |
+
+<br />
 
 <br />
