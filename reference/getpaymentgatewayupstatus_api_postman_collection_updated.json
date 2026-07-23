@@ -16,8 +16,8 @@
         "tags": [
           "default"
         ],
-        "summary": "get Net Banking Up Status API UPI INTENT",
-        "description": "Check the availability status of UPI Intent (app-based UPI payments). Returns up_status indicating if UPI Intent payment gateway is operational.",
+        "summary": "Get Payment Gateway Up Status API ",
+        "description": "The **Get Payment Gateway Up Status** API allows you to check the real-time availability of payment options (Net Banking, Wallets, UPI) before displaying them to customers. This helps improve checkout experience by hiding unavailable payment methods.",
         "requestBody": {
           "content": {
             "application/x-www-form-urlencoded": {
