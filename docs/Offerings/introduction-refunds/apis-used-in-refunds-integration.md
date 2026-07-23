@@ -2,7 +2,7 @@
 title: APIs used in Integration
 deprecated: false
 hidden: false
-icon: fab fa-cash-app
+icon: far fa-rectangle-api
 metadata:
   title: APIs used in Refunds integration
   robots: index
