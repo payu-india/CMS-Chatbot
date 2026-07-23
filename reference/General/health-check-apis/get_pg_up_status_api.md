@@ -88,8 +88,8 @@ Check the Form Data below for **Try IT** experience. The following provides more
     </tbody>
   </table>
 </div>
-
-### Hash Generation
+</Accordion>
+<Accordion title="Hash Generation" icon="fa-lock">
 
 The hash parameter is required to authenticate your request. It must be generated server-side using the SHA-512 algorithm.
 
