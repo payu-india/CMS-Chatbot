@@ -3,6 +3,7 @@ title: APIs used in Integration
 excerpt: ''
 deprecated: false
 hidden: false
+icon: far fa-rectangle-api
 metadata:
   title: APIs used in Auth and Capture Integration
   description: ''
@@ -10,180 +11,38 @@ metadata:
 next:
   description: ''
 ---
-<Table>
-  <thead>
-    <tr>
-      <th>
-        API
-      </th>
+Use these APIs to authorize, capture, cancel, and track card or UPI pre-authorized payments.
 
-      <th>
-        Purpose
-      </th>
-    </tr>
-  </thead>
+### Authorize, capture, or cancel payment
 
-  <tbody>
-    <tr>
-      <td>
-        ### Capture and Collect Payment
-      </td>
+| Use case → Reference                                                                     | `command` / primary value         | Description                                                                                                                                                                        |
+| ---------------------------------------------------------------------------------------- | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Pre-Authorize Payment API – PayU Hosted](ref:pre_authorize_payment)                     | `_payment` with `pre_authorize=1` | Hold card funds without capturing them on PayU Hosted Checkout.                                                                                                                    |
+| [Pre-Authorize Payment API – Merchant Hosted](ref:pre_authorize_payment_merchant_hosted) | `_payment` with `pre_authorize=1` | Hold card funds without capturing them on merchant-hosted checkout.                                                                                                                |
+| [Capture a Pre-Authorized Payment API](ref:capture_a_payment)                            | `capture_transaction`             | Capture all or part of the held funds after authorization.                                                                                                                         |
+| [Cancel a Pre-Authorized Transaction API](ref:cancel-a-pre-authorized-transaction)       | `cancel_transaction`              | Cancel an authorization and release held funds. **Used in:** [Cancel a Pre-Authorized Payment](doc:cancel-a-pre-authorized-payment) and the card and UPI pre-authorization guides. |
 
-      <td>
+### Verify the payment
 
-      </td>
-    </tr>
+| Use case → Reference                         | `command` / primary value | Description                                                                                       |
+| -------------------------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------- |
+| [Verify Payment API](ref:verify_payment_api) | `verify_payment`          | Check transaction status; an `unmappedstatus` value of `auth` indicates successful authorization. |
 
-    <tr>
-      <td>
-        [Pre-Authorize Payment API – PayU Hosted](ref:pre_authorize_payment)
-      </td>
+### Check action status
 
-      <td>
-        Initiate a card pre-authorization on PayU Hosted Checkout with `pre_authorize=1` to hold funds without capturing.
-      </td>
-    </tr>
+| Use case → Reference                                                                   | `command` / primary value | Description                                                                    |
+| -------------------------------------------------------------------------------------- | ------------------------- | ------------------------------------------------------------------------------ |
+| [Check Action Status API with Request ID](ref:check_action_status_api_with_request_id) | `check_action_status`     | Check the status of authorization, capture, or refund requests queued at PayU. |
 
-    <tr>
-      <td>
-        [Pre-Authorize Payment API – Merchant Hosted](ref:pre_authorize_payment_merchant_hosted)
-      </td>
+### UPI one-time mandates
 
-      <td>
-        Initiate a card pre-authorization on merchant-hosted checkout with `pre_authorize=1`.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Capture a Pre-Authorized Payment API](ref:capture_a_payment)
-      </td>
-
-      <td>
-        Capture held funds (full or partial) using the `capture_transaction` command after authorization.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Cancel a Pre-Authorized Transaction API](ref:cancel-a-pre-authorized-transaction)
-      </td>
-
-      <td>
-        Cancel an authorization and release held funds using the `cancel_transaction` command. **Used in:** [Cancel a Pre-Authorized Payment](doc:cancel-a-pre-authorized-payment), all card and UPI pre-auth integration guides.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ### Verify the Payment
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Verify Payment API](ref:verify_payment_api)
-      </td>
-
-      <td>
-        Check transaction status; `unmappedstatus` of `auth` indicates a successful authorization.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ### Check Status
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Check Action Status API with Request ID](ref:check_action_status_api_with_request_id)
-      </td>
-
-      <td>
-        Check the status of auth, capture, or refund requests queued at PayU.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ### One-Time Mandate
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [UPI One-Time Mandate API – PayU Hosted](ref:upi-one-time-mandate-transaction-api-payu-hosted)
-      </td>
-
-      <td>
-        Initiate a UPI one-time mandate pre-authorization on PayU Hosted Checkout.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [UPI One-Time Mandate API – Merchant Hosted](ref:_payment-upi-one-time-mandate-transaction-api)
-      </td>
-
-      <td>
-        Initiate a UPI one-time mandate pre-authorization on merchant-hosted checkout.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [UPI OTM Status Check API](ref:upi-otm-status-check-api)
-      </td>
-
-      <td>
-        Check the status of a UPI one-time mandate transaction.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Validate VPA API](ref:validate_vpa_api)
-      </td>
-
-      <td>
-        Validate the customer's UPI VPA before initiating UPI Collect mandate flows.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [UPI Reserve Pay One-Time Mandate – PayU Hosted](ref:upi-reserve-pay-one-time-mandate-payu-hosted)
-      </td>
-
-      <td>
-        Pre-authorize UPI Reserve Pay transactions on PayU Hosted Checkout.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [UPI Reserve Pay One-Time Mandate – Merchant Hosted](ref:upi-reserve-pay-one-time-mandate-merchant-hosted)
-      </td>
-
-      <td>
-        Pre-authorize UPI Reserve Pay transactions on merchant-hosted checkout.
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| Use case → Reference                                                                                       | `command` / primary value | Description                                                                    |
+| ---------------------------------------------------------------------------------------------------------- | ------------------------- | ------------------------------------------------------------------------------ |
+| [UPI One-Time Mandate API – PayU Hosted](ref:upi-one-time-mandate-transaction-api-payu-hosted)             | `_payment`                | Initiate a UPI one-time mandate pre-authorization on PayU Hosted Checkout.     |
+| [UPI One-Time Mandate API – Merchant Hosted](ref:_payment-upi-one-time-mandate-transaction-api)            | `_payment`                | Initiate a UPI one-time mandate pre-authorization on merchant-hosted checkout. |
+| [UPI OTM Status Check API](ref:upi-otm-status-check-api)                                                   | OTM status endpoint       | Check the status of a UPI one-time mandate transaction.                        |
+| [Validate VPA API](ref:validate_vpa_api)                                                                   | `validateVpa`             | Validate the customer's UPI VPA before initiating a UPI Collect mandate.       |
+| [UPI Reserve Pay One-Time Mandate – PayU Hosted](ref:upi-reserve-pay-one-time-mandate-payu-hosted)         | `_payment`                | Pre-authorize a UPI Reserve Pay transaction on PayU Hosted Checkout.           |
+| [UPI Reserve Pay One-Time Mandate – Merchant Hosted](ref:upi-reserve-pay-one-time-mandate-merchant-hosted) | `_payment`                | Pre-authorize a UPI Reserve Pay transaction on merchant-hosted checkout.       |
 
 <br />
