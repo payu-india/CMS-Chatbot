@@ -2,11 +2,11 @@
 title: List of APIs used for PayU Hosted Checkout Integration
 deprecated: false
 hidden: false
+icon: far fa-rectangle-api
 metadata:
+  title: List of APIs used for PayU Hosted Checkout Integration
   robots: index
 ---
-##
-
 | Use case → Reference                                                                                                                            | `command` / primary value                               |
 | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
 | Collect payment (redirect to PayU) — [Collect Payment API (PayU Hosted Checkout)](https://docs.payu.in/reference/_payment_payu_hosted_checkout) | Browser form `POST` to `_payment API` (see below table) |
