@@ -16,7 +16,7 @@
         "tags": [
           "default"
         ],
-        "summary": " Get Payment Gateway Up Status API",
+        "summary": "get Net Banking Up Status API UPI INTENT",
         "description": "Check the availability status of UPI Intent (app-based UPI payments). Returns up_status indicating if UPI Intent payment gateway is operational.",
         "requestBody": {
           "content": {
@@ -69,8 +69,7 @@
               "application/json": {}
             }
           }
-        },
-        "x-internal": true
+        }
       }
     }
   }
