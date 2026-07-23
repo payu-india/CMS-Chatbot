@@ -1,5 +1,5 @@
 ---
-title: APIs used in Native OTP Flow integration
+title: APIs used in Integration
 deprecated: false
 hidden: false
 icon: far fa-stopwatch-20
