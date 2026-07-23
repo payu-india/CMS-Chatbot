@@ -7,7 +7,7 @@ metadata:
   title: APIs used in International Payments Integration
   robots: index
 ---
-Use these APIs to identify international cards, collect international or DCC payments, and verify the transaction.
+Use these APIs to identify international cards, collect international payments, and verify the transaction.
 
 ### Check the card
 
