@@ -17,11 +17,11 @@ The following APIs are used to onboard and manage merchants through Partner Inte
 
 ### Create and Update Merchant
 
-| Use case → Reference                                                                     | `command` / primary value                                | Description                                                                   |
-| ---------------------------------------------------------------------------------------- | -------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| Onboard a merchant — [Create Merchant API](ref:create_merchant_api)                      | `POST /api/v3/merchants`                                 | Creates a merchant account, submits KYC details, and returns the Merchant ID. |
-| Manage bank details — [Add or Update Bank Details API](ref:add_update_bank_details_api)  | `POST /api/v3/merchants/{merchant_uuid}/add_bank_detail` | Adds or updates a merchant's bank account details after PAN verification.     |
-| Update merchant details — [Update Merchant Details API](ref:update_merchant_details_api) | `PUT /api/v1/merchants/{uuid}/update`                    | Updates merchant information, including PAN details.                          |
+| Use case → Reference                                                                     | `command` / primary value                                        | Description                                                                   |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| Onboard a merchant — [Create Merchant API](ref:create_merchant_api)                      | `POST /api/v3/merchants`                                         | Creates a merchant account, submits KYC details, and returns the Merchant ID. |
+| Manage bank details — [Add or Update Bank Details API](ref:add_update_bank_details_api)  | `POST /api/v3/merchants/`<br />`{merchant_uuid}/add_bank_detail` | Adds or updates a merchant's bank account details after PAN verification.     |
+| Update merchant details — [Update Merchant Details API](ref:update_merchant_details_api) | `PUT /api/v1/merchants/`<br />`{uuid}/update`                    | Updates merchant information, including PAN details.                          |
 
 ### Verify Bank Details and KYC
 
