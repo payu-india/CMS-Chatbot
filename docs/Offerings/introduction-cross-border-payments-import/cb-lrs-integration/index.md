@@ -15,8 +15,6 @@ The Liberalised Remittance Scheme (LRS) is a framework established by the Reserv
 - Involves Tax Collected at Source (TCS) based on purpose & transaction amount as per applicable government regulations
 
 <Callout icon="📘" theme="info">
-  ###
-
   **Note**: All transactions under LRS require PAN verification and proper declarations regarding the annual limit of USD 250,000. PayU automates these compliance requirements, making international payments simple for both merchants and customers.
 </Callout>
 
@@ -92,15 +90,6 @@ The following sections describe how to integrate LRS for travel and education wi
   - [UPI Integration for CB LRS](doc:upi-integration-for-cb-lrs)
   - [NetBanking Integration for CB LRS](doc:netbanking-integration-for-cb-lrs)
 
-## APIs used in LRS integration
-
-| API name                                                                                                | Purpose                                                                                                                              |
-| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| [PayU Hosted Checkout – CB LRS](ref:_payment_payu_hosted_checkout_cb_lrs)                               | Initiate LRS transactions on PayU Hosted Checkout with `lrs_service_type` and buyer PAN details.                                     |
-| [Merchant Hosted Checkout – CB LRS](ref:_payment_merchant_hosted_cb_lrs)                                | Submit merchant-hosted S2S payment requests with mandatory LRS parameters (`lrs_service_type`, TCS declarations, PAN in UDF fields). |
-| [Collect Payment API – UPI (Cross-Border)](ref:_payment_cross-border_merchant_hosted_upi)               | Initiate UPI Intent payments for cross-border LRS transactions.                                                                      |
-| [Collect Payment API – NetBanking (Cross-Border)](ref:_payment_cross-border_merchant_hosted_netbanking) | Initiate NetBanking payments for cross-border LRS transactions.                                                                      |
-| [Get Token API – Partner Integration](ref:get_token_api)                                                | Generate a bearer token with `get_pan_details` scope for PAN Card Status Check API authentication.                                   |
-| [Verify Payment API](ref:verify_payment_api)                                                            | Server-side reconciliation of transaction status after payment.                                                                      |
+##
 
 <br />
