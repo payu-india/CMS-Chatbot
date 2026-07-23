@@ -16,30 +16,19 @@ metadata:
 next:
   description: ''
 ---
----
-title: Refunds
-deprecated: false
-hidden: false
-metadata:
-  title: Refunds Integration
-  description: >-
-    Initiate full or partial refunds via PayU APIs or Dashboard, track status,
-    and configure webhooks for refund notifications.
-  keywords:
-    - PayU Refunds
-    - Transaction Reversal
-    - Payment Cancellation
-    - Customer Refunds
-  robots: index
----
 Order cancellations are an unfortunate reality for any business. Customers may cancel an order, return part of the order or the full order. Merchants may not have the resources to fulfill the order and must cancel it. Therefore, it is imperative for merchants collecting payment online to refund the payment back to the customers.
 
-> 👍 Before you begin:
->
-> Register for a account with PayU before you start integration. Contact your PayU Key Account Manager to enable automatic refunds or instant refunds if required. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
+<Callout icon="👍" theme="okay">
+  ### Before you begin:
 
-> 📘 **Publish refund policy on your website**: 
-PayU recommends publishing the refund policy on your website, including the time taken to refund for failed transactions and the refund process.
+  Register for a account with PayU before you start integration. Contact your PayU Key Account Manager to enable automatic refunds or instant refunds if required. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
+</Callout>
+
+<Callout icon="📘" theme="info">
+  ### **Publish refund policy on your website**:
+
+  PayU recommends publishing the refund policy on your website, including the time taken to refund for failed transactions and the refund process.
+</Callout>
 
 ## Overview and Workflow
 
@@ -184,28 +173,21 @@ PayU recommends publishing the refund policy on your website, including the time
 
   For chargeback management, refer to the Chargeback section of the PayU Developer Guide.
 </Accordion>
+
 ## Integration guides
 
 The following sections describe how to initiate, track, and manage refunds with PayU:
 
-* [Refunds Dashboard](doc:refunds-dashboard)
-  * [Refund Wallet Dashboard](doc:refund-wallet-dashboard)
-* [Refund APIs](doc:refund-apis-doc)
-* [Refunds in PayU Products](doc:refunds-in-payu-products)
-  * [Refunds for Offers](doc:refunds-for-offers)
-  * [Refund APIs for Split Settlements](doc:refund-apis-for-split-settlements)
-  * [Partner Refunds](doc:partner-refunds)
-  * [Refunds for EMI](doc:refunds-for-emi)
-  * [Refunds for BNPL](doc:refunds-for-bnpl)
-* [Webhooks for Refunds](doc:webhooks-for-refunds)
-* [FAQs for Refunds](doc:faqs-for-refunds)
+- [Refunds Dashboard](doc:refunds-dashboard)
+  - [Refund Wallet Dashboard](doc:refund-wallet-dashboard)
+- [Refund APIs](doc:refund-apis-doc)
+- [Refunds in PayU Products](doc:refunds-in-payu-products)
+  - [Refunds for Offers](doc:refunds-for-offers)
+  - [Refund APIs for Split Settlements](doc:refund-apis-for-split-settlements)
+  - [Partner Refunds](doc:partner-refunds)
+  - [Refunds for EMI](doc:refunds-for-emi)
+  - [Refunds for BNPL](doc:refunds-for-bnpl)
+- [Webhooks for Refunds](doc:webhooks-for-refunds)
+- [FAQs for Refunds](doc:faqs-for-refunds)
 
-## APIs used in Refunds integration
-
-| API | Purpose |
-| --- | --- |
-| [Refund Transaction API](ref:refund_transaction_api) | Initiate a full or partial refund (`cancel_refund_transaction` command) for a captured transaction.|
-| [Check Refund Status API with PayU ID](ref:check_action_status_api_with_payu_id) | Poll refund status using the PayU transaction ID (`check_action_status_txn_id`). |
-| [Check Refund Status API with Request ID](ref:check_action_status_api_with_request_id) | Poll refund status using the merchant request ID.|
-| [Get All Refunds from Transaction IDs](ref:get_all_refunds_from_transaction_ids_api) | Retrieve all refund requests associated with one or more transaction IDs. |
-| [Refund Status API for Split Payments](ref:refund-status-api-for-split-payments) | Check refund status for split-payment child transactions. |
+<br />
