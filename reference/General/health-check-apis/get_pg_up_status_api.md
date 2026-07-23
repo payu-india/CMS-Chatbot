@@ -26,7 +26,6 @@ hidden: true
 
 ### Environment
 
-<Info>
 **Test Environment:**
 ```
 https://test.payu.in/merchant/postservice.php?form=2
@@ -38,7 +37,7 @@ https://info.payu.in/merchant/postservice.php?form=2
 ```
 
 Remember to use your production merchant key and salt when making requests to the production endpoint.
-</Info>
+
 
 <Accordion title="Request Parameters" icon="fa-table">
 Check the Form Data below for **Try IT** experience. The following provides more detailed description for some of the parameters.
