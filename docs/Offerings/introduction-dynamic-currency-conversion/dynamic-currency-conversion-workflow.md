@@ -2,6 +2,7 @@
 title: Workflow
 deprecated: false
 hidden: false
+icon: far fa-network-wired
 metadata:
   title: PayU International Payments Workflow
   description: >-
