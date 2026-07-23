@@ -2,7 +2,8 @@
 title: APIs used for Integration
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
+icon: far fa-rectangle-api
 metadata:
   title: APIs used for Cross-Border Import Integration
   description: ''
