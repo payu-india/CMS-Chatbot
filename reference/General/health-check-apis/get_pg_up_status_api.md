@@ -4,8 +4,6 @@ api:
   operationId: post_merchant-postservice-php
 hidden: true
 ---
-
-
 > **Note:** This API replaces the [Get Net Banking Status API](https://docs.payu.in/reference/get_net_banking_status_api). PayU strongly recommends you to migrate to this endpoint for continued support.
 
 <Accordion title="Features" icon="fa-circle">
@@ -21,10 +19,13 @@ hidden: true
   - `up_status = 0`: All gateways are down
   - `up_status = 3`: The option is available but performing poorly (low success rate). This status only appears if you explicitly pass `var2=1` in the request; otherwise, you'll only see `0` or `1`.
 </Accordion>
----
+
+***
 
 **POST /merchant/postservice.php**
+
 ### Environment
+
 <Info>
 **Test Environment:**
 ```
@@ -38,7 +39,6 @@ https://info.payu.in/merchant/postservice.php?form=2
 
 Remember to use your production merchant key and salt when making requests to the production endpoint.
 </Info>
-
 
 <Accordion title="Request Parameters" icon="fa-table">
 Check the Form Data below for **Try IT** experience. The following provides more detailed description for some of the parameters.
@@ -58,7 +58,7 @@ Check the Form Data below for **Try IT** experience. The following provides more
           <code>mandatory</code>
         </td>
         <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> The payment option code to check. Use <code>default</code> to retrieve all payment options, or specify a bank code (e.g., <code>AXIB</code>, <code>SBIB</code>), wallet code (e.g., <code>PHONEPE</code>, <code>OLAM</code>), or <code>UPI</code> for UPI payments.
+          <code>String</code> The payment option code to check. Use <code>default</code> to retrieve all payment options, or specify a bank code (e.g., <code>AXIB</code>, <code>SBIB</code>), wallet code (e.g., <code>PHONEPE</code>, <code>OLAM</code>), or <code>UPI</code> for UPI payments. For the list of bank codes, refer to  [Net Banking Codes](doc:net-banking-codes) or [Wallet Codes](doc:wallet-codes). 
         </td>
         <td>default</td>
       </tr>
@@ -85,6 +85,7 @@ Check the Form Data below for **Try IT** experience. The following provides more
     </tbody>
   </table>
 </div>
+
 ### Hash Generation
 
 The hash parameter is required to authenticate your request. It must be generated server-side using the SHA-512 algorithm.
@@ -117,7 +118,7 @@ console.log(hash);
 ```
 </Accordion>
 
----
+***
 
 ### Request Examples
 
@@ -305,12 +306,14 @@ In this example:
 
 </Accordion>
 
----
+***
 
 ### Response Schema
 
 <div>
-  <table>
+  
+
+<table>
     <thead>
       <tr>
         <th style="width: 15%;">Field</th>
@@ -356,97 +359,59 @@ In this example:
       </tr>
     </tbody>
   </table>
+
+
 </div>
 
----
-
-### Common Payment Option Codes
-
-<Accordion title="Net Banking Bank Codes" icon="fa-building-columns">
-
-| Code | Bank Name |
-|------|-----------|
-| AXIB | Axis Bank |
-| SBIB | State Bank of India |
-| HDFB | HDFC Bank |
-| ICIB | ICICI Bank |
-| PUNB | Punjab National Bank |
-| BBCB | Bank of Baroda Corporate |
-| INDB | IndusInd Bank |
-| KKBK | Kotak Mahindra Bank |
-| YESB | Yes Bank |
-
-> **Note:** For a complete list of bank codes, refer to your PayU merchant dashboard or contact PayU support.
-
-</Accordion>
-
-<Accordion title="Wallet Codes" icon="fa-wallet">
-
-| Code | Wallet Name |
-|------|-------------|
-| PHONEPE | PhonePe |
-| PAYTM | Paytm |
-| OLAM | Ola Money |
-| FREECHARGE | FreeCharge |
-| MOBIKWIK | MobiKwik |
-| AMAZON_PAY | Amazon Pay |
-
-</Accordion>
-
-<Accordion title="UPI Codes" icon="fa-mobile">
-
-| Code | Description |
-|------|-------------|
-| UPI | UPI Collect (VPA-based) |
-| INTENT | UPI Intent (App-based) |
-
-</Accordion>
-
----
-
+***
 ### Error Codes
 
 <div>
-  <table>
-    <thead>
-      <tr>
-        <th style="width: 15%;">Error Code</th>
-        <th style="width: 70%; white-space: normal; word-break: break-word;">Description & Action</th>
-        <th style="width: 15%;">HTTP Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>INVALID_HASH</td>
-        <td style="white-space: normal; word-break: break-word;">
-          Hash validation failed. Verify that you are using the correct salt and hash sequence. Ensure hash is lowercase hexadecimal.
-        </td>
-        <td>200</td>
-      </tr>
-      <tr>
-        <td>INVALID_KEY</td>
-        <td style="white-space: normal; word-break: break-word;">
-          Merchant key is invalid or inactive. Verify your merchant key from the PayU dashboard.
-        </td>
-        <td>200</td>
-      </tr>
-      <tr>
-        <td>MISSING_PARAMETER</td>
-        <td style="white-space: normal; word-break: break-word;">
-          One or more required parameters are missing. Ensure <code>key</code>, <code>command</code>, <code>var1</code>, and <code>hash</code> are all provided.
-        </td>
-        <td>200</td>
-      </tr>
-      <tr>
-        <td>INVALID_COMMAND</td>
-        <td style="white-space: normal; word-break: break-word;">
-          The <code>command</code> parameter must be <code>getNetbankingStatus</code>.
-        </td>
-        <td>200</td>
-      </tr>
-    </tbody>
-  </table>
+  
+
+<table>
+  <thead>
+    <tr>
+      <th style="width: 15%;">Error Code</th>
+      <th style="width: 70%; white-space: normal; word-break: break-word;">Description & Action</th>
+      <th style="width: 15%;">HTTP Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>INVALID_HASH</td>
+      <td style="white-space: normal; word-break: break-word;">
+        Hash validation failed. Verify that you are using the correct salt and hash sequence. Ensure hash is lowercase hexadecimal.
+      </td>
+      <td>200</td>
+    </tr>
+    <tr>
+      <td>INVALID_KEY</td>
+      <td style="white-space: normal; word-break: break-word;">
+        Merchant key is invalid or inactive. Verify your merchant key from the PayU dashboard.
+      </td>
+      <td>200</td>
+    </tr>
+    <tr>
+      <td>MISSING_PARAMETER</td>
+      <td style="white-space: normal; word-break: break-word;">
+        One or more required parameters are missing. Ensure <code>key</code>, <code>command</code>, <code>var1</code>, and <code>hash</code> are all provided.
+      </td>
+      <td>200</td>
+    </tr>
+    <tr>
+      <td>INVALID_COMMAND</td>
+      <td style="white-space: normal; word-break: break-word;">
+        The <code>command</code> parameter must be <code>getNetbankingStatus</code>.
+      </td>
+      <td>200</td>
+    </tr>
+  </tbody>
+</table>
+
+
 </div>
 
+***
 
----
+<br />
