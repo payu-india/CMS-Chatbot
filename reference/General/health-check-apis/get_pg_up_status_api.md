@@ -85,7 +85,6 @@ Check the Form Data below for **Try IT** experience. The following provides more
     </tbody>
   </table>
 </div>
-</Accordion>
 ### Hash Generation
 
 The hash parameter is required to authenticate your request. It must be generated server-side using the SHA-512 algorithm.
@@ -116,6 +115,7 @@ const hash = crypto.createHash('sha512').update(hashString).digest('hex');
 
 console.log(hash);
 ```
+</Accordion>
 
 ---
 
