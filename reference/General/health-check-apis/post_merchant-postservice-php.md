@@ -8,8 +8,7 @@ The **Get Payment Gateway Up Status** API allows you to check the real-time avai
 
 > **Note:** This API replaces the [Get Net Banking Status API](https://docs.payu.in/reference/get_net_banking_status_api). PayU strongly recommends you to migrate to this endpoint for continued support.
 
-## Key Features
-
+<Accordion title="Features" icon="fa-circle">
 * **Check specific payment options individually:** You can check the status of a wallet, a specific Net Banking provider, or UPI by passing the relevant code in the `var1` parameter. For example:
   - For a specific bank like Axis, pass `var1=AXIB`
   - For UPI, pass `var1=UPI`
@@ -17,12 +16,11 @@ The **Get Payment Gateway Up Status** API allows you to check the real-time avai
   - For all payment options at once, pass `var1=default`
   
   The hash calculation changes accordingly since `var1` is part of the hash sequence. There's no separate parameter to filter by mode.
-
 * **Gateway-level health monitoring:** PayU routes payments through multiple backend payment gateways. For any given payment option (for example, Axis Net Banking), there might be 2-3 gateways handling it. The API checks if **at least one gateway is working**:
   - `up_status = 1`: At least one gateway is operational
   - `up_status = 0`: All gateways are down
   - `up_status = 3`: The option is available but performing poorly (low success rate). This status only appears if you explicitly pass `var2=1` in the request; otherwise, you'll only see `0` or `1`.
-
+</Accordion>
 ---
 
 **POST /merchant/postservice.php**
@@ -43,6 +41,7 @@ Remember to use your production merchant key and salt when making requests to th
 
 
 <Accordion title="Request Parameters" icon="fa-table">
+Check the Form Data below for **Try IT** experience. The following provides more detailed description for some of the parameters.
 <div>
   <table>
     <thead>
@@ -53,26 +52,6 @@ Remember to use your production merchant key and salt when making requests to th
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>
-          key<br>
-          <code>mandatory</code>
-        </td>
-        <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> Your merchant key provided by PayU. This identifies your merchant account.
-        </td>
-        <td>vqpS7W</td>
-      </tr>
-      <tr>
-        <td>
-          command<br>
-          <code>mandatory</code>
-        </td>
-        <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> The API command identifier. Must be set to <code>getNetbankingStatus</code> for this endpoint.
-        </td>
-        <td>getNetbankingStatus</td>
-      </tr>
       <tr>
         <td>
           var1<br>
