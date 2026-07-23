@@ -1,5 +1,5 @@
 ---
-title: APIs used in Apple Pay integration
+title: APIs used in Integration
 deprecated: false
 hidden: false
 icon: fab fa-apple-pay
