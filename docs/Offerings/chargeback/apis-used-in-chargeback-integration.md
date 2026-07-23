@@ -1,5 +1,5 @@
 ---
-title: APIs used in Chargeback Integration
+title: APIs used Integration
 deprecated: false
 hidden: false
 icon: far fa-cash-register
