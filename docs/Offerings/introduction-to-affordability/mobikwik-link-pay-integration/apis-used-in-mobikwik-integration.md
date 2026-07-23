@@ -2,6 +2,7 @@
 title: APIs used Integration
 deprecated: false
 hidden: false
+icon: far fa-rectangle-api
 metadata:
   title: APIs used in Mobikwik Integration
   robots: index
