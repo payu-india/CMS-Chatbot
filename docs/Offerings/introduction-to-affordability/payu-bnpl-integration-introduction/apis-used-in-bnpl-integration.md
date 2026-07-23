@@ -2,6 +2,7 @@
 title: APIs used in BNPL Integration
 deprecated: false
 hidden: false
+icon: far fa-rectangle-api
 metadata:
   title: APIs used in BNPL Integration
   robots: index
