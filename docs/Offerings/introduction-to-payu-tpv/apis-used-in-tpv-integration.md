@@ -2,7 +2,7 @@
 title: APIs used in TPV integration
 deprecated: false
 hidden: false
-icon: far fa-person-military-to-person
+icon: far fa-rectangle-api
 metadata:
   title: APIs used in TPV integration
   robots: index
