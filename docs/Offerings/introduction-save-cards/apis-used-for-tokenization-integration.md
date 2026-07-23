@@ -1,5 +1,5 @@
 ---
-title: APIs used for Tokenization Integration
+title: APIs used for Integration
 deprecated: false
 hidden: false
 icon: far fa-square-half-stroke-horizontal
