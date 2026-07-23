@@ -7,6 +7,14 @@ metadata:
   title: APIs used for No Code Payments Integration
   robots: index
 ---
+PayU offers following APIs for Payment Link Integration. Also, you can use create them using Dashboard   as described in the [Payment Links](doc:payment-links-dashboard) section.
+
+<Callout icon="📘" theme="warn">
+  ### Use PayU Dashboard for creating buttons or invoices.
+
+  You must use PayU Dashboard for creating buttons or invoices. For more information, refer to [Payment Buttons](doc:payment-buttons-dashboard) or [Payment Invoices.](doc:invoices-dashboard)&#x20;
+</Callout>
+
 | API                                                                    | Purpose                                                                                                                                 |
 | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | [Get Token API – Payment Links](ref:get-token-api-for-payment-links)   | Obtain an OAuth bearer token (`create_payment_links`, `read_payment_links`, `update_payment_links` scopes) for Payment Links API calls. |
