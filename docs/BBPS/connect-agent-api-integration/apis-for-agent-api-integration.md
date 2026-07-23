@@ -3,6 +3,7 @@ title: APIs for BBPS Agent API Integration
 excerpt: ''
 deprecated: false
 hidden: false
+icon: far fa-rectangle-api
 metadata:
   title: ''
   description: ''
