@@ -1,5 +1,5 @@
 ---
-title: List of APIs used for Integration
+title: APIs used for Integration
 deprecated: false
 hidden: false
 icon: far fa-rectangle-api
