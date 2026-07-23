@@ -1,5 +1,5 @@
 ---
-title: APIs used in Virtual Cards integration
+title: APIs used in Integration
 deprecated: false
 hidden: false
 icon: far fa-rectangle-api
