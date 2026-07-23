@@ -7,218 +7,58 @@ metadata:
   title: APIs used in Closed-Loop Wallet integration
   robots: index
 ---
+---
+title: APIs used in Integration
+deprecated: false
+hidden: false
+icon: far fa-rectangle-api
+metadata:
+  title: APIs used in Closed-Loop Wallet integration
+  robots: index
+---
 <br />
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        API name
-      </th>
+Use these APIs to manage closed-loop wallet customers, load funds, debit wallets, and retrieve transaction status and history.
 
-      <th>
-        Purpose
-      </th>
-    </tr>
-  </thead>
+### Manage customers
 
-  <tbody>
-    <tr>
-      <td>
-        ### Customer Management
-      </td>
+| Use case → Reference | `command` / primary value | Description |
+| --- | --- | --- |
+| [Register Customer API](ref:register-customer-api) | `POST /v1/wallet/enroll` | Onboard a customer and create a closed-loop wallet account. |
+| [Retrieve Customer Record API](ref:retrieve-customer-record-api-1) | `POST /v1/wallet/retrieveCustRecord` | Fetch customer details and wallet balance before debit or load operations. |
+| [Update Profile API – Closed Loop](ref:update-profile-api-closed-loop) | `PATCH /v1/wallet/onboarding/v3/updateProfile` | Update customer profile details for a closed-loop wallet. |
+| [Change Wallet Status API](ref:change-wallet-status-api) | `PATCH /v1/wallet/onboarding/walletStatus` | Change the wallet status for a customer account. |
 
-      <td>
+### Load funds
 
-      </td>
-    </tr>
+| Use case → Reference | `command` / primary value | Description |
+| --- | --- | --- |
+| [PG Load API](ref:pg-load-api) | `POST /ppi/payment/pg-load/v1` | Initiate a wallet top-up through the payment gateway. |
+| [PG Load Enquiry API](ref:pg-load-enquiry-api) | `POST /ppi/payment/pg-load/enquiry/v1` | Check the status of a PG Load transaction during the top-up journey. |
+| [Load API – Closed Loop Wallet](ref:load-api-closed-loop-wallet) | `PATCH /v1/wallet/load-account` | Credit the wallet after a successful payment gateway transaction. |
+| [Check Status API – CLW](ref:check-status-api-clw) | `POST /v1/wallet/check-status` | Check the status of a load transaction in the top-up journey. |
 
-    <tr>
-      <td>
-        [Register Customer API](ref:register-customer-api)
-      </td>
+### Debit the wallet
 
-      <td>
-        Onboard a customer and create a closed-loop wallet account.&#x20;
-      </td>
-    </tr>
+| Use case → Reference | `command` / primary value | Description |
+| --- | --- | --- |
+| [Seamless Debit Transaction API](ref:collect-payment-api-card-seamless) | `_payment` | Debit the wallet through a server-to-server request without user redirection. |
+| [Non-Seamless Debit Transaction API](ref:non-seamless-debit-transaction-api) | `_payment` | Debit the wallet through PayU Hosted Checkout with user authorization. |
+| [Seamless Debit Enquiry API](ref:seamless-debit-enquiry-api) | `_payment` | Check the status of a seamless debit transaction. |
+| [Load and Pay Transaction API](ref:load-and-pay-transaction-api) | `_payment` | Load funds and debit the wallet in one request when the balance is insufficient. |
+| [Collect Payment API – PayU Hosted Checkout](ref:_payment_payu_hosted_checkout) | `_payment` | Redirect customers to PayU Hosted Checkout for wallet debit or load-and-pay flows. |
 
-    <tr>
-      <td>
-        [Retrieve Customer Record API](ref:retrieve-customer-record-api-1)
-      </td>
+### Enquiries
 
-      <td>
-        Fetch customer details and wallet balance before debit or load operations.&#x20;
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Update Profile API – Closed Loop](ref:update-profile-api-closed-loop)
-      </td>
-
-      <td>
-        Update customer profile details for a closed-loop wallet.&#x20;
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ### Load & Unload Amount
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [PG Load API](ref:pg-load-api)
-      </td>
-
-      <td>
-        Initiate a wallet top-up through the payment gateway.&#x20;
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [PG Load Enquiry API](ref:pg-load-enquiry-api)
-      </td>
-
-      <td>
-        Check the status of a PG Load transaction during the top-up journey.&#x20;
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Load API – Closed Loop Wallet](ref:load-api-closed-loop-wallet)
-      </td>
-
-      <td>
-        Credit the wallet after a successful payment gateway transaction.&#x20;
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Check Status API – CLW](ref:check-status-api-clw)
-      </td>
-
-      <td>
-        Check the status of a load transaction in the top-up journey.&#x20;
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ### Debit using \_payment API
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Seamless Debit Transaction API](ref:collect-payment-api-card-seamless)
-      </td>
-
-      <td>
-        Debit the wallet instantly via server-to-server `_payment` without user redirection.&#x20;
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Non-Seamless Debit Transaction API](ref:non-seamless-debit-transaction-api)
-      </td>
-
-      <td>
-        Debit the wallet via PayU Hosted Checkout with user authorization on the payment page.&#x20;
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Seamless Debit Enquiry API](ref:seamless-debit-enquiry-api)
-      </td>
-
-      <td>
-        Check the status of a seamless debit transaction.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Load and Pay Transaction API](ref:load-and-pay-transaction-api)
-      </td>
-
-      <td>
-        Load funds and debit the wallet in a single unified API call when balance is insufficient.&#x20;
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Collect Payment API – PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)
-      </td>
-
-      <td>
-        Redirect customers to PayU Hosted Checkout for wallet debit or load-and-pay flows.&#x20;
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ### &#x20;Enquiry APIs
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Statement Inquiry API – CLW](ref:statement-inquiry-api-clw)
-      </td>
-
-      <td>
-        Fetch wallet transaction history for a date range.&#x20;
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Change Wallet Status API](ref:change-wallet-status-api)
-      </td>
-
-      <td>
-        Change the wallet status for a customer account.&#x20;
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Verify Payment API](ref:verify_payment_api)
-      </td>
-
-      <td>
-        Server-side reconciliation after wallet load or payment gateway transactions.&#x20;
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| Use case → Reference | `command` / primary value | Description |
+| --- | --- | --- |
+| [Statement Inquiry API – CLW](ref:statement-inquiry-api-clw) | `POST /v1/wallet/statement-inquiry` | Fetch wallet transaction history for a date range. |
+| [Verify Payment API](ref:verify_payment_api) | `verify_payment` | Reconcile wallet load or payment gateway transaction status from your server. |
 
 <br />
 
 <Callout icon="📘" theme="info">
-  **Note**: To unload your wallet, refer to [Seamless Debit Integration - CLW](https://docs.payu.in/docs/seamless-debit-integration-clw) or [PayU Hosted Check-out Integration - CLW](https://docs.payu.in/docs/pay-hosted-checkout-merchant-integration-merchant-wallet) based on the integration.
+  **Note**: To unload your wallet, refer to [Seamless Debit Integration - CLW](doc:seamless-wallet-debit-integration-clw) or [PayU Hosted Check-out Integration - CLW](https://docs.payu.in/docs/pay-hosted-checkout-merchant-integration-merchant-wallet) based on the integration.
 </Callout>
 
 <br />
