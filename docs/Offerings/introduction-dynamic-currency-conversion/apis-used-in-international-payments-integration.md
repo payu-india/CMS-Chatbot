@@ -1,5 +1,5 @@
 ---
-title: APIs used in International Payments Integration
+title: APIs used in Integration
 deprecated: false
 hidden: false
 icon: far fa-rectangle-api
