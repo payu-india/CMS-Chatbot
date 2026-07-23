@@ -106,7 +106,7 @@ sha512(key|command|var1|salt)
 // Node.js example
 const crypto = require('crypto');
 
-const key = 'vqpS7W';
+const key = 'JPM7Fg';
 const command = 'getNetbankingStatus';
 const var1 = 'default';
 const salt = 'rF1d43OgVcGCVctqAFTG6QiTCB9UXiyg';
@@ -128,7 +128,7 @@ console.log(hash);
 ```bash
 curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'key=vqpS7W' \
+--data-urlencode 'key=JPM7Fg' \
 --data-urlencode 'command=getNetbankingStatus' \
 --data-urlencode 'var1=default' \
 --data-urlencode 'hash=YOUR_GENERATED_HASH'
@@ -170,7 +170,7 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 ```bash
 curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'key=vqpS7W' \
+--data-urlencode 'key=JPM7Fg' \
 --data-urlencode 'command=getNetbankingStatus' \
 --data-urlencode 'var1=SBIB' \
 --data-urlencode 'hash=YOUR_GENERATED_HASH'
@@ -202,7 +202,7 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 ```bash
 curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'key=vqpS7W' \
+--data-urlencode 'key=JPM7Fg' \
 --data-urlencode 'command=getNetbankingStatus' \
 --data-urlencode 'var1=UPI' \
 --data-urlencode 'hash=YOUR_GENERATED_HASH'
@@ -232,7 +232,7 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 ```bash
 curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'key=vqpS7W' \
+--data-urlencode 'key=JPM7Fg' \
 --data-urlencode 'command=getNetbankingStatus' \
 --data-urlencode 'var1=OLAM' \
 --data-urlencode 'hash=YOUR_GENERATED_HASH'
@@ -262,7 +262,7 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 ```bash
 curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'key=vqpS7W' \
+--data-urlencode 'key=JPM7Fg' \
 --data-urlencode 'command=getNetbankingStatus' \
 --data-urlencode 'var1=default' \
 --data-urlencode 'var2=1' \
@@ -448,146 +448,5 @@ In this example:
   </table>
 </div>
 
----
-
-### Code Examples in Multiple Languages
-
-<Accordion title="Python" icon="fa-code">
-
-```python
-import hashlib
-import requests
-
-# Merchant credentials
-key = 'vqpS7W'
-salt = 'rF1d43OgVcGCVctqAFTG6QiTCB9UXiyg'
-command = 'getNetbankingStatus'
-var1 = 'default'  # or specific code like 'AXIB', 'UPI', 'PHONEPE'
-
-# Generate hash
-hash_string = f"{key}|{command}|{var1}|{salt}"
-hash_value = hashlib.sha512(hash_string.encode()).hexdigest()
-
-# API request
-url = 'https://test.payu.in/merchant/postservice.php?form=2'
-payload = {
-    'key': key,
-    'command': command,
-    'var1': var1,
-    'hash': hash_value
-}
-
-response = requests.post(url, data=payload)
-print(response.json())
-```
-
-</Accordion>
-
-<Accordion title="PHP" icon="fa-code">
-
-```php
-<?php
-// Merchant credentials
-$key = 'vqpS7W';
-$salt = 'rF1d43OgVcGCVctqAFTG6QiTCB9UXiyg';
-$command = 'getNetbankingStatus';
-$var1 = 'default'; // or specific code like 'AXIB', 'UPI', 'PHONEPE'
-
-// Generate hash
-$hashString = $key . '|' . $command . '|' . $var1 . '|' . $salt;
-$hash = hash('sha512', $hashString);
-
-// API request
-$url = 'https://test.payu.in/merchant/postservice.php?form=2';
-$postData = array(
-    'key' => $key,
-    'command' => $command,
-    'var1' => $var1,
-    'hash' => $hash
-);
-
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-$response = curl_exec($ch);
-curl_close($ch);
-
-echo $response;
-?>
-```
-
-</Accordion>
-
-<Accordion title="Java" icon="fa-code">
-
-```java
-import java.io.*;
-import java.net.*;
-import java.security.MessageDigest;
-import java.nio.charset.StandardCharsets;
-
-public class PayUGatewayStatus {
-    public static void main(String[] args) throws Exception {
-        // Merchant credentials
-        String key = "vqpS7W";
-        String salt = "rF1d43OgVcGCVctqAFTG6QiTCB9UXiyg";
-        String command = "getNetbankingStatus";
-        String var1 = "default"; // or specific code like "AXIB", "UPI", "PHONEPE"
-        
-        // Generate hash
-        String hashString = key + "|" + command + "|" + var1 + "|" + salt;
-        MessageDigest md = MessageDigest.getInstance("SHA-512");
-        byte[] hashBytes = md.digest(hashString.getBytes(StandardCharsets.UTF_8));
-        StringBuilder hash = new StringBuilder();
-        for (byte b : hashBytes) {
-            hash.append(String.format("%02x", b));
-        }
-        
-        // API request
-        String url = "https://test.payu.in/merchant/postservice.php?form=2";
-        String postData = "key=" + URLEncoder.encode(key, "UTF-8") +
-                         "&command=" + URLEncoder.encode(command, "UTF-8") +
-                         "&var1=" + URLEncoder.encode(var1, "UTF-8") +
-                         "&hash=" + URLEncoder.encode(hash.toString(), "UTF-8");
-        
-        HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
-        conn.setRequestMethod("POST");
-        conn.setDoOutput(true);
-        conn.getOutputStream().write(postData.getBytes(StandardCharsets.UTF_8));
-        
-        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-        String response = in.readLine();
-        in.close();
-        
-        System.out.println(response);
-    }
-}
-```
-
-</Accordion>
-
----
-
-### Best Practices
-
-<Warning>
-**Security Best Practices:**
-- Never expose your salt in client-side code or version control
-- Always generate the hash server-side
-- Use HTTPS for all API requests
-- Rotate your salt periodically and update your hash generation accordingly
-</Warning>
-
-<Success>
-**Integration Tips:**
-- Call this API before displaying payment options on your checkout page to hide unavailable methods
-- Cache the response for 2-5 minutes to reduce API calls while maintaining freshness
-- Implement fallback logic: if the API call fails, display all payment options rather than none
-- Use `var1=default` during checkout initialization, then filter client-side based on customer preference
-- For mission-critical transactions, check specific payment methods using their codes (e.g., `var1=UPI`) before final submission
-</Success>
 
 ---
