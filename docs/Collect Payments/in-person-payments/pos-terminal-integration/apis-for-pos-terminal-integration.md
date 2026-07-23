@@ -1,10 +1,11 @@
 ---
-title: APIs for POS Terminal Integration
+title: APIs for Integration
 excerpt: ''
 deprecated: false
 hidden: false
+icon: far fa-rectangle-api
 metadata:
-  title: ''
+  title: APIs for POS Terminal Integration
   description: ''
   robots: index
 next:
