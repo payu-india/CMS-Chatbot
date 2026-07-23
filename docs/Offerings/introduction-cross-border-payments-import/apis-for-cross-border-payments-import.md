@@ -15,12 +15,12 @@ Use these APIs to collect cross-border import payments, manage trade documents a
 
 ### Collect payment
 
-| Use case → Reference                                                                                    | `command` / primary value | Description                                                                                                                                                   |
-| ------------------------------------------------------------------------------------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [PayU Hosted Checkout – CB](ref:_payment_cross-border_payu_hosted_checkout)                             | `_payment`                | Initiate a cross-border payment on PayU Hosted Checkout with `buyer_type_business` and mandatory UDF fields.                                                  |
-| [Collect Payment API – Cards (Cross-Border)](ref:_payment_cross-border_merchant_hosted_cards)           | `_payment`                | Submit merchant-hosted card payment requests for cross-border one-time transactions.                                                                          |
-| [Collect Payment API – NetBanking (Cross-Border)](ref:_payment_cross-border_merchant_hosted_netbanking) | `_payment`                | Initiate NetBanking payments for cross-border transactions. **Used in:** [NetBanking Integration](doc:netbanking-integration-merchant-hosted-integration-cb). |
-| [Collect Payment API – UPI (Cross-Border)](ref:_payment_cross-border_merchant_hosted_upi)               | `_payment`                | Initiate UPI Intent payments for cross-border transactions.                                                                                                   |
+| Use case → Reference                                                                      | `command` / primary value | Description                                                                                                                                                   |
+| ----------------------------------------------------------------------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [PayU Hosted Checkout](ref:_payment_cross-border_payu_hosted_checkout)                    | `_payment`                | Initiate a cross-border payment on PayU Hosted Checkout with `buyer_type_business` and mandatory UDF fields.                                                  |
+| [Collect Payment API – Cards ](ref:_payment_cross-border_merchant_hosted_cards)           | `_payment`                | Submit merchant-hosted card payment requests for cross-border one-time transactions.                                                                          |
+| [Collect Payment API – NetBanking ](ref:_payment_cross-border_merchant_hosted_netbanking) | `_payment`                | Initiate NetBanking payments for cross-border transactions. **Used in:** [NetBanking Integration](doc:netbanking-integration-merchant-hosted-integration-cb). |
+| [Collect Payment API – UPI ](ref:_payment_cross-border_merchant_hosted_upi)               | `_payment`                | Initiate UPI Intent payments for cross-border transactions.                                                                                                   |
 
 ### Update transaction data and upload invoices
 
