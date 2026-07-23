@@ -2,6 +2,7 @@
 title: APIs used for Integration
 deprecated: false
 hidden: false
+icon: far fa-rectangle-api
 metadata:
   title: APIs used for EMI Integration
   robots: index
