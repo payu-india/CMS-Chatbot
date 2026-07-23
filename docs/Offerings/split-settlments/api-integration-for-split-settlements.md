@@ -1,5 +1,5 @@
 ---
-title: Integration APIs
+title: APIs Integration Workflow
 excerpt: ''
 deprecated: false
 hidden: false
