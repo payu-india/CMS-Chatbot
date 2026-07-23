@@ -7,25 +7,27 @@ metadata:
   title: List of APIs used for PayU Hosted Checkout Integration
   robots: index
 ---
----
-title: APIs used for Integration
-deprecated: false
-hidden: false
-icon: far fa-rectangle-api
-metadata:
-  title: List of APIs used for PayU Hosted Checkout Integration
-  robots: index
----
-The following APIs used for PayU Hosted Checkout or Custom Checkout Integration:
+Use these APIs to check EMI eligibility, collect an EMI payment, and reconcile the resulting transaction.
 
-| Use case → Reference                                                                                                                            | `command` / primary value                               | Description |
-| ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- | ----------- |
-| Collect payment (redirect to PayU) — [Collect Payment API (PayU Hosted Checkout)](https://docs.payu.in/reference/_payment_payu_hosted_checkout) | Browser form `POST` to `_payment API` (see below table) | Collects payments by redirecting customers to PayU Hosted Checkout. |
-| Verify a payment — [Verify Payment API](https://docs.payu.in/reference/verify_payment_api)                                                      | `verify_payment`                                        | Retrieves the status and details of a transaction using the merchant transaction ID for reconciliation. |
-| Check transaction info — [Check Action Status with PayU ID](https://docs.payu.in/reference/check_action_status_api_with_payu_id)                | `check_action_status`                                   | Retrieves the status of capture, refund, and cancellation requests for a PayU ID. |
-| Get transaction by txnid — [Get Transaction Info API](https://docs.payu.in/reference/get_transaction_info_api)                                  | `get_transaction_info`                                  | Retrieves transaction details for an exact transaction time specified in minutes and seconds. |
-| Refund a transaction — [Refund Transaction API](https://docs.payu.in/reference/refund_transaction_api)                                          | `cancel_refund_transaction`                             | Cancels a transaction in the `auth` state or refunds a transaction in the `captured` state. |
+### Collect payment
 
-> **Collect Payment endpoint:** `POST https://test.payu.in/_payment` (test) · `POST https://secure.payu.in/_payment` (production)<br />`hash`**&#x20;on&#x20;**`_payment`**&#x20;(standard sequence):** `sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)`<br />**Post-service (**`command`**&#x20;APIs) endpoint:** `POST https://info.payu.in/merchant/postservice.php?form=2`<br />**Post-service hash formula:** `sha512(key|command|var1|SALT)`
+| Use case → Reference                                                            | `command` / primary value | Description                                                                                                                                                  |
+| ------------------------------------------------------------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [Collect Payment API – PayU Hosted Checkout](ref:_payment_payu_hosted_checkout) | `_payment`                | Initiate an EMI transaction on the PayU-hosted payment page (non-seamless checkout), where the customer selects EMI, enters card details, and completes OTP. |
+
+### Eligibility checks
+
+| Use case → Reference                                                                            | `command` / primary value                  | Description                                                                                                               |
+| ----------------------------------------------------------------------------------------------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
+| [Get Checkout Details API](ref:get_checkout_details)                                            | `get_checkout_details`                     | Check customer eligibility before payment by mobile number for debit-card pre-EMI and cardless EMI.                       |
+| [Get EMI According to Interest API](ref:get_emi_according_to_interest_api)                      | `getEmiAmountAccordingToInterest`          | Calculate interest, monthly instalment, processing fee, No-Cost EMI, tenure, and the corresponding `bankcode` for a plan. |
+| [Eligible BINs for EMI API v1.0](ref:eligiblebinsforemi)                                        | `eligibleBins`                             | Check credit-card EMI eligibility from the card BIN and return the issuing bank and minimum eligible amount.              |
+| [Eligible BINs for EMI API v2.0](https://docs.payu.in/v2/reference/eligible-bin-for-emi-api-v2) | `POST /issuing-bank/v1/bin/binEligibility` | Check EMI eligibility by card BIN or network token and return the issuing bank and minimum eligible amount.               |
+
+### Verify the payment
+
+| Use case → Reference                         | `command` / primary value | Description                                                      |
+| -------------------------------------------- | ------------------------- | ---------------------------------------------------------------- |
+| [Verify Payment API](ref:verify_payment_api) | `verify_payment`          | Reconcile the transaction status from your server after payment. |
 
 <br />
