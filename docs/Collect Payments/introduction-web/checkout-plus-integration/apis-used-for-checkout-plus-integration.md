@@ -1,7 +1,8 @@
 ---
-title: APIs Used for Checkout Plus Integration
+title: APIs used for Integration
 deprecated: false
 hidden: false
+icon: far fa-rectangle-api
 metadata:
   title: APIs Used for Checkout Plus Integration
   robots: index
