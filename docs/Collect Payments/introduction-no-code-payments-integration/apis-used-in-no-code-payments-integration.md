@@ -1,9 +1,10 @@
 ---
-title: APIs used in No Code Payments integration
+title: APIs used for Integration
 deprecated: false
 hidden: false
 icon: far fa-rectangle-api
 metadata:
+  title: APIs used for No Code Payments Integration
   robots: index
 ---
 | API                                                                    | Purpose                                                                                                                                 |
