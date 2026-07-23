@@ -591,16 +591,3 @@ public class PayUGatewayStatus {
 </Success>
 
 ---
-
-## Postman Collection
-
-Download the complete Postman collection for this API:
-
-📮 **[Download Postman Collection](attachment:getpaymentgatewayupstatus_api_postman_collection_updated.json)**
-
-The collection includes pre-configured requests for:
-- Checking all payment options (default)
-- Checking specific Net Banking providers
-- Checking wallet status
-- Checking UPI status
-- Checking UPI Intent status
