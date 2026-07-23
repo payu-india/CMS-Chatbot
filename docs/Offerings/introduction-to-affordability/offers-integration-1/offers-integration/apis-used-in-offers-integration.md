@@ -2,6 +2,7 @@
 title: APIs used in Offers Integration
 deprecated: false
 hidden: false
+icon: far fa-rectangle-api
 metadata:
   title: APIs used in Offers Integration
   robots: index
