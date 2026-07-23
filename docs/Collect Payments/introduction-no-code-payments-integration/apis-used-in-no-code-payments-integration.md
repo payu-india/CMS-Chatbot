@@ -2,7 +2,7 @@
 title: APIs used in No Code Payments integration
 deprecated: false
 hidden: false
-icon: fad fa-code-simple
+icon: far fa-rectangle-api
 metadata:
   robots: index
 ---
