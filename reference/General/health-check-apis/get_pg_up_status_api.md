@@ -38,9 +38,9 @@ https://info.payu.in/merchant/postservice.php?form=2
 
 Remember to use your production merchant key and salt when making requests to the production endpoint.
 
-
-<Accordion title="Request Parameters" icon="fa-table">
+## Request Parameters
 Check the Form Data below for **Try IT** experience. The following provides more detailed description for some of the parameters.
+<Accordion title="Partial Request Parameters" icon="fa-table">
 <div>
   <table>
     <thead>
