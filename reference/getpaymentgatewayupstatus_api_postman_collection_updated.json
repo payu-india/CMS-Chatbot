@@ -1,0 +1,76 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "getPaymentGatewayUpStatus API",
+    "description": "PayU Get Payment Gateway Up Status API - Check real-time availability of payment options (Net Banking, Wallets, UPI) before displaying them to customers.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://test.payu.in"
+    }
+  ],
+  "paths": {
+    "/merchant/postservice.php": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "get Net Banking Up Status API UPI INTENT",
+        "description": "Check the availability status of UPI Intent (app-based UPI payments). Returns up_status indicating if UPI Intent payment gateway is operational.",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "description": "Your merchant key provided by PayU. This identifies your merchant account.",
+                    "example": "vqpS7W"
+                  },
+                  "command": {
+                    "type": "string",
+                    "description": "The API command identifier. Must be set to \"getNetbankingStatus\" for this endpoint.",
+                    "example": "getNetbankingStatus"
+                  },
+                  "var1": {
+                    "type": "string",
+                    "description": "Payment option code for UPI Intent. Use \"INTENT\" for app-based UPI payments.",
+                    "example": "INTENT"
+                  },
+                  "hash": {
+                    "type": "string",
+                    "description": "SHA-512 hash for request authentication. Formula: sha512(key|command|var1|salt). Must be computed server-side and passed as lowercase hexadecimal.",
+                    "example": "{{hash}}"
+                  },
+                  "": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "form",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "example": "2"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}
