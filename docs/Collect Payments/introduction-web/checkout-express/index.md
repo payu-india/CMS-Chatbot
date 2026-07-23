@@ -18,8 +18,6 @@ next:
 PayU CommercePro Checkout provides a comprehensive checkout solution for your business. It helps minimize the COD RTO by analyzing customer shopping history and address quality. It allows your customers to securely save their payment details and addresses and use them across PayU network businesses. PayU CommercePro Checkout optimizes your checkout experience end-to-end by configuring the PayU offer engine and the PayU recommendation engine for your website/app checkout page.
 
 <Callout icon="📘" theme="info">
-  ###
-
   **Enable CommercePro Checkout**: If Checkout Express is not enabled, contact your PayU Key Account Manager (KAM) or click **Help** at the top-right corner of PayU Dashboard to raise a ticket with PayU Support.
 </Callout>
 
@@ -76,16 +74,6 @@ PayU supports CommercePro on the following platforms:
 
 <br />
 
-## APIs Used for Integration
-
-| Use case → Reference                                                                                                                                                                                                                       | Integration surface / next step                                                              |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------- |
-| Enable CommercePro — [CommercePro Checkout](https://docs.payu.in/docs/checkout-express) **(Integration)**                                                                                                                                  | PayU Dashboard **Help** ticket **or** your **PayU Key Account Manager (KAM)**                |
-| Website: handle return data — [Integrate CommercePro Checkout using Response Handler](https://docs.payu.in/docs/integration-checkout-express-response-handler) **(Integration)**                                                           | **Response Handler** integration path                                                        |
-| Website: server callback — [Integrate CommercePro Checkout using Callback URL](https://docs.payu.in/docs/integrate-commercepro-checkout-using-callback-url) **(Integration)**                                                              | **Callback URL** integration path                                                            |
-| Confirm payment server-side (typical PG follow-up) — [Verify Payment API](https://docs.payu.in/reference/verify_payment_api)                                                                                                               | Same post-service flow as other checkouts: `verify_payment` (and related commands as needed) |
-| Store platform — [CommercePro Checkout for WooCommerce](https://docs.payu.in/docs/commercepro-platform-for-woocommerce) / [CommercePro Checkout for Magento](https://docs.payu.in/docs/commercepro-platform-for-magento) **(Integration)** | **WooCommerce** or **Magento** plugin/docs (linked from the overview)                        |
-
-> **Note:** CommercePro is an end-to-end checkout product (offers, addresses, COD, etc.). **Collect/verify API details are on the linked implementation guides**, not summarized as one `_payment` / `command` row on the overview alone.
+##
 
 <br />
