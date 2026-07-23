@@ -1,5 +1,5 @@
 ---
-title: APIs used in Mobikwik Integration
+title: APIs used Integration
 deprecated: false
 hidden: false
 metadata:
