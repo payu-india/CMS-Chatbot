@@ -4,7 +4,7 @@ api:
   operationId: post_merchant-postservice-php
 hidden: true
 ---
-The **Get Payment Gateway Up Status** API allows you to check the real-time availability of payment options (Net Banking, Wallets, UPI) before displaying them to customers. This helps improve checkout experience by hiding unavailable payment methods.
+
 
 > **Note:** This API replaces the [Get Net Banking Status API](https://docs.payu.in/reference/get_net_banking_status_api). PayU strongly recommends you to migrate to this endpoint for continued support.
 
