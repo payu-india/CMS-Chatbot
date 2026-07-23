@@ -7,110 +7,35 @@ metadata:
   title: APIs used for EMI Integration
   robots: index
 ---
-<Table>
-  <thead>
-    <tr>
-      <th>
-        API name
-      </th>
+---
+title: APIs used for Integration
+deprecated: false
+hidden: false
+metadata:
+  title: APIs used for EMI Integration
+  robots: index
+---
+Use these APIs to check EMI eligibility, collect an EMI payment, and reconcile the resulting transaction.
 
-      <th>
-        Purpose
-      </th>
-    </tr>
-  </thead>
+### Collect payment
 
-  <tbody>
-    <tr>
-      <td>
-        ### \_payment API for Collect Payment
-      </td>
+| Use case → Reference | `command` / primary value | Description |
+| --- | --- | --- |
+| [Collect Payment API – PayU Hosted Checkout](ref:_payment_payu_hosted_checkout) | `_payment` | Initiate an EMI transaction on the PayU-hosted payment page (non-seamless checkout), where the customer selects EMI, enters card details, and completes OTP. |
 
-      <td>
+### Eligibility checks
 
-      </td>
-    </tr>
+| Use case → Reference | `command` / primary value | Description |
+| --- | --- | --- |
+| [Get Checkout Details API](ref:get_checkout_details) | `get_checkout_details` | Check customer eligibility before payment by mobile number for debit-card pre-EMI and cardless EMI. |
+| [Get EMI According to Interest API](ref:get_emi_according_to_interest_api) | `getEmiAmountAccordingToInterest` | Calculate interest, monthly instalment, processing fee, No-Cost EMI, tenure, and the corresponding `bankcode` for a plan. |
+| [Eligible BINs for EMI API v1.0](ref:eligiblebinsforemi) | `eligibleBins` | Check credit-card EMI eligibility from the card BIN and return the issuing bank and minimum eligible amount. |
+| [Eligible BINs for EMI API v2.0](https://docs.payu.in/v2/reference/eligible-bin-for-emi-api-v2) | `POST /issuing-bank/v1/bin/binEligibility` | Check EMI eligibility by card BIN or network token and return the issuing bank and minimum eligible amount. |
 
-    <tr>
-      <td>
-        [Collect Payment API – PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)
-      </td>
+### Verify the payment
 
-      <td>
-        Initiate an EMI transaction on the PayU-hosted payment page (non-seamless checkout). Customer selects EMI, enters card details, and completes OTP on PayU’s page.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ### Eligibility Check APIs
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Get Checkout Details API](ref:get_checkout_details)
-      </td>
-
-      <td>
-        Check customer eligibility before payment — by mobile number for debit-card pre-EMI and cardless EMI.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Get EMI According to Interest API](ref:get_emi_according_to_interest_api)
-      </td>
-
-      <td>
-        Calculate EMI details — interest rate, monthly instalment, processing fee, No-Cost EMI, tenure, and the corresponding `bankcode` for the chosen plan.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Eligible BINs for EMI API v1.0](ref:eligiblebinsforemi)
-      </td>
-
-      <td>
-        Check credit-card EMI eligibility from the card BIN; returns issuing bank and minimum eligible amount.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Eligible BINs for EMI API v2.0](ref:eligible-bins-for-emi-v20)
-      </td>
-
-      <td>
-        Check cardless EMI eligibility from card or customer information in the S2S flow.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ### Verify the Payment
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Verify Payment API](ref:verify_payment_api)
-      </td>
-
-      <td>
-        Server-side reconciliation of transaction status after payment.
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| Use case → Reference | `command` / primary value | Description |
+| --- | --- | --- |
+| [Verify Payment API](ref:verify_payment_api) | `verify_payment` | Reconcile the transaction status from your server after payment. |
 
 <br />
