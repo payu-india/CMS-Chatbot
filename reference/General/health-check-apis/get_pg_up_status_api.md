@@ -58,7 +58,11 @@ Check the Form Data below for **Try IT** experience. The following provides more
           <code>mandatory</code>
         </td>
         <td style="white-space: normal; word-break: break-word;">
-          <code>String</code> The payment option code to check. Use <code>default</code> to retrieve all payment options, or specify a bank code (e.g., <code>AXIB</code>, <code>SBIB</code>), wallet code (e.g., <code>PHONEPE</code>, <code>OLAM</code>), or <code>UPI</code> for UPI payments. For the list of bank codes, refer to  [Net Banking Codes](doc:net-banking-codes) or [Wallet Codes](doc:wallet-codes). 
+          <code>String</code> The payment option code to check. Use <code>default</code> to retrieve all payment options, or specify a bank code (e.g., <code>AXIB</code>, <code>SBIB</code>), wallet code (e.g., <code>PHONEPE</code>, <code>OLAM</code>), or <code>UPI</code> for UPI payments. For the list of bank codes, refer to  [Net Banking Codes](doc:net-banking-codes) or [Wallet Codes](doc:wallet-codes). For UPI, use the following:
+<ul>
+          <li>**UPI**: For UPI Collect (VPA-based)</li>
+          <li>**INTENT**: UPI Intent (App-based)</li>
+</ul>
         </td>
         <td>default</td>
       </tr>
