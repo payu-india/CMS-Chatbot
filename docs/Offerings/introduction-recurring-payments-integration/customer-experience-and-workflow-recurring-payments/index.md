@@ -3,6 +3,7 @@ title: Customer Experience and Workflow
 excerpt: ''
 deprecated: false
 hidden: false
+icon: far fa-network-wired
 metadata:
   title: Recurring Payments Customer Experience Workflow
   description: >-
