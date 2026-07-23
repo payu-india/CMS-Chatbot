@@ -7,27 +7,110 @@ metadata:
   title: APIs used in Offers Integration
   robots: index
 ---
-Use these APIs to check EMI eligibility, collect an EMI payment, and reconcile the resulting transaction.
+---
+title: Using API Integration
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: Recurring Payments Using API Integration
+  description: >-
+    Learn how to use various PayU’s API to create and manage recurring payments
+    for your online business. Find out how to set up subscription plans, capture
+    customer consent, and handle notifications.
+  keywords:
+    - APIs for Recurring Payments Integration
+    - APIs for Subscriptions Integration
+    - APIs for Autopay Integration
+    - APIs for Scheduled Payment Integration Integration
+  robots: index
+next:
+  description: ''
+---
+The following APIs support recurring-payment consent, charging, and mandate management for Cards, Net Banking, and UPI.
 
-### Collect payment
+### Consent and recurring payment lifecycle
 
-| Use case → Reference                                                            | `command` / primary value | Description                                                                                                                                                  |
-| ------------------------------------------------------------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [Collect Payment API – PayU Hosted Checkout](ref:_payment_payu_hosted_checkout) | `_payment`                | Initiate an EMI transaction on the PayU-hosted payment page (non-seamless checkout), where the customer selects EMI, enters card details, and completes OTP. |
+| Use case → Reference | `command` / primary value | Description |
+| --- | --- | --- |
+| [Payment Consent Transaction using PayU Hosted Checkout](ref:payment-consent-transaction-payu-hosted) | `POST /_payment` | Register a customer's recurring-payment consent through PayU Hosted Checkout. |
+| [Payment Consent Transaction with Merchant Hosted Checkout](ref:payment-consent-transaction-merchant-hosted) | `POST /_payment` | Register a customer's recurring-payment consent through a merchant-hosted Cards, Net Banking, or UPI checkout. |
+| [UPI Recurring Payment Consent Transaction](ref:upi-recurring-payment-consent-transaction) | `POST /_payment` | Register a UPI recurring-payment mandate through Merchant Hosted Checkout. |
+| [Pre-Debit Notification API](ref:pre_debit_notification_api) | `pre_debit_SI` | Notify the customer at least 48 hours before an upcoming recurring debit. |
+| [Recurring Payment Transaction API](ref:recurring_payment_api) | `si_transaction` | Charge a successfully registered Cards, Net Banking, or UPI mandate through the recurring interface. |
+| [Cancel the Recurring Payment for Cards](ref:cancel-the-recurring-payment-for-cards) | `mandate_revoke` | Revoke a card mandate so that it can no longer be used for recurring payments. |
+| [Cancel the Recurring Payment for UPI](ref:cancel-the-recurring-payment-for-upi) | `upi_mandate_revoke` | Revoke a UPI mandate so that it can no longer be used for recurring payments. |
 
-### Eligibility checks
+<Callout icon="👍" theme="okay">
+  Experience the end-to-end **PayU Hosted > Subscriptions** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 
-| Use case → Reference                                                                            | `command` / primary value                  | Description                                                                                                               |
-| ----------------------------------------------------------------------------------------------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
-| [Get Checkout Details API](ref:get_checkout_details)                                            | `get_checkout_details`                     | Check customer eligibility before payment by mobile number for debit-card pre-EMI and cardless EMI.                       |
-| [Get EMI According to Interest API](ref:get_emi_according_to_interest_api)                      | `getEmiAmountAccordingToInterest`          | Calculate interest, monthly instalment, processing fee, No-Cost EMI, tenure, and the corresponding `bankcode` for a plan. |
-| [Eligible BINs for EMI API v1.0](ref:eligiblebinsforemi)                                        | `eligibleBins`                             | Check credit-card EMI eligibility from the card BIN and return the issuing bank and minimum eligible amount.              |
-| [Eligible BINs for EMI API v2.0](https://docs.payu.in/v2/reference/eligible-bin-for-emi-api-v2) | `POST /issuing-bank/v1/bin/binEligibility` | Check EMI eligibility by card BIN or network token and return the issuing bank and minimum eligible amount.               |
+  <HTMLBlock>{`
+                    <style>
+                    .tooltip-btn {
+                        position: relative;
+                        background-color: #4CAF50;
+                        color: white;
+                        padding: 10px 20px;
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        font-weight: bold; /* Added this line */
+                    }
+                    .tooltip-btn:hover::after {
+                        content: attr(data-tooltip);
+                        position: absolute;
+                        bottom: 125%;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        background-color: #333;
+                        color: white;
+                        padding: 5px 10px;
+                        border-radius: 4px;
+                        white-space: nowrap;
+                        font-size: 12px;
+                        z-index: 1;
+                    }
+                    </style>
 
-### Verify the payment
+                    <button onclick="window.open('https://payu.in/integrationlab/subscription', '_blank')" 
+                            class="tooltip-btn" 
+                            data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Subscriptions - PayU Hosted Checkout with zero coding knowledge.">
+                        Experience the flow and get the code
+                    </button>
+  `}</HTMLBlock>
+</Callout>
 
-| Use case → Reference                         | `command` / primary value | Description                                                      |
-| -------------------------------------------- | ------------------------- | ---------------------------------------------------------------- |
-| [Verify Payment API](ref:verify_payment_api) | `verify_payment`          | Reconcile the transaction status from your server after payment. |
+After a registration is canceled for a customer, the merchant cannot restore it, and the customer must register a fresh mandate with the merchant.
 
-<br />
+### Manage Recurring Payment for Cards
+
+The following sections describe how to cancel or modify the recurring payment for cards:
+
+| Use case → Reference | `command` / primary value | Description |
+| --- | --- | --- |
+| [Check Mandate Status API](ref:check-mandate-status-api) | `check_mandate_status` | Retrieve the current state of a card mandate. |
+| [Modify the Recurring Payments for a Card](ref:modify-the-recurring-payments-for-a-card) | `POST /_payment` | Update the billing details for an existing Visa or Mastercard recurring-payment mandate after customer authentication. |
+| [Cancel the Recurring Payment for Cards](ref:cancel-the-recurring-payment-for-cards) | `mandate_revoke` | Revoke a card mandate so that the customer must register a new mandate to resume recurring payments. |
+
+### Manage Recurring Payment for Net Banking
+
+The following sections describe how to check or cancel the recurring payment for Net Banking:
+
+| Use case → Reference | `command` / primary value | Description |
+| --- | --- | --- |
+| [Cancel the Recurring Payment for Net Banking](https://docs.payu.in/reference/cancel-the-recurring-payment-for-net-banking) | `mandate_revoke` | Revoke a Net Banking mandate so that it can no longer be used for recurring payments. |
+| [Check the Net Banking Mandate Status API](https://docs.payu.in/reference/net_banking_mandate_status_api) | `NB_mandate_status` | Retrieve the current state of an e-NACH mandate. |
+
+### Manage Recurring Payment for UPI
+
+The following API commands are applicable only for UPI:
+
+| Use case → Reference | `command` / primary value | Description |
+| --- | --- | --- |
+| [Get Mandate Status API (for UPI only)](ref:get-mandate-status-api-for-upi-only) | `upi_mandate_status` | Retrieve the current state of a UPI mandate, including mandates paused outside the merchant's system. |
+| [Modify the Recurring Payment for UPI](ref:modify-the-recurring-payment-for-upi) | `upi_mandate_modify` | Modify an existing UPI recurring-payment registration. |
+| [Cancel the Recurring Payment for UPI](ref:cancel-the-recurring-payment-for-upi) | `upi_mandate_revoke` | Revoke an existing UPI recurring-payment registration. |
+
+<Callout icon="📘" theme="info">
+  **Handle Guest Checkout Transaction**: You can handle Guest Checkout transactions for EMI integration. For more information, refer to[ Cards Integration > Handling Guest Checkout Transactions](doc:collect-payments-with-cards-seamless#handling-guest-checkout-transactions).
+</Callout>
