@@ -7,10 +7,12 @@ metadata:
   title: APIs used in Integration
   robots: index
 ---
-| API                                                                    | Purpose                                                                                                                                                                                                 |
-| ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Virtual Cards Launch API** (`POST /loyalty-points/olw/user/card/v1`) | FORM-POST request with HMAC SHA-512 authorization (`referenceId`, `redirectUrl`, `mobileNumber`, `walletUrn`, `walletIdentifier`) to redirect customers to the Virtual Cards OTP page.                  |
-| **PayU PPI JS SDK** (`ppi.launch()`)                                   | Launch the Virtual Cards management UI in an iFrame on the merchant page or after a hosted redirect. Requires `https://jssdk.payu.in/ppi/ppi.min.js` (UAT: `https://jssdk-uat.payu.in/ppi/ppi.min.js`). |
+The following API and SDK are used for Virtual Cards integration:
+
+| Use case → Reference                                      | `command` / primary value               | Description                                                                                                   |
+| --------------------------------------------------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Launch Virtual Cards — **Virtual Cards Launch API**       | `POST /loyalty-points/olw/user/card/v1` | Sends an HMAC SHA-512-authorized form request and redirects the customer to the Virtual Cards OTP page.       |
+| Display the Virtual Cards interface — **PayU PPI JS SDK** | `ppi.launch()`                          | Launches the Virtual Cards management interface in an iFrame on the merchant page or after a hosted redirect. |
 
 <Accordion title="SDK integration" icon="fa-mobile-screen">
   Mobile integrations use platform-specific PayU PPI SDKs with server-side dynamic hash generation.
