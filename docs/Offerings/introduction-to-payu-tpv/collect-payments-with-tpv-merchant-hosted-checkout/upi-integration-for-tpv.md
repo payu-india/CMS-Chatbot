@@ -1,5 +1,5 @@
 ---
-title: UPI Integration - TPV
+title: UPI Intent Integration - TPV
 deprecated: false
 hidden: false
 link:
