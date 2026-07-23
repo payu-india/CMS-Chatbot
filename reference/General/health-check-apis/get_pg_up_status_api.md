@@ -169,7 +169,7 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 </Accordion>
 
 <Accordion title="Check Specific Net Banking Option" icon="fa-building-columns">
-
+For the list of bank codes, refer to  [Net Banking Codes](doc:net-banking-codes).
 **Request**
 
 ```bash
@@ -231,7 +231,7 @@ curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
 </Accordion>
 
 <Accordion title="Check Wallet Status" icon="fa-wallet">
-
+For the list of bank codes, refer to [Wallet Codes](doc:wallet-codes).
 **Request**
 
 ```bash
