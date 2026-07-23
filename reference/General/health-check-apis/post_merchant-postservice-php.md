@@ -25,7 +25,7 @@ The **Get Payment Gateway Up Status** API allows you to check the real-time avai
 
 ---
 
-## POST /merchant/postservice.php
+**POST /merchant/postservice.php**
 ### Environment
 <Info>
 **Test Environment:**
