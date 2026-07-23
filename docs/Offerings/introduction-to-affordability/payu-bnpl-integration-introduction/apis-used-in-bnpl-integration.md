@@ -7,132 +7,33 @@ metadata:
   title: APIs used in BNPL Integration
   robots: index
 ---
-<br />
+Use these APIs to check BNPL eligibility, initiate supported checkout flows, complete OTP authentication, and verify payment status.
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        API&#x20;
-      </th>
+### Eligibility checks
 
-      <th>
-        Purpose
-      </th>
-    </tr>
-  </thead>
+| Use case → Reference                                             | `command` / primary value                  | Description                                                                            |
+| ---------------------------------------------------------------- | ------------------------------------------ | -------------------------------------------------------------------------------------- |
+| [Get EMI Checkout Details API](ref:get-emi-checkout-details-api) | `GET /linkAndPay/get_emi_checkout_details` | Check BNPL Link & Pay eligibility and retrieve checkout details for supported lenders. |
+| [Get Checkout Details API](ref:get_checkout_details)             | `get_checkout_details`                     | Check customer BNPL eligibility before initiating payment on merchant-hosted checkout. |
 
-  <tbody>
-    <tr>
-      <td>
-        ### Eligibility Check
-      </td>
+### Collect payment
 
-      <td>
+| Use case → Reference                                                                       | `command` / primary value | Description                                                                                        |
+| ------------------------------------------------------------------------------------------ | ------------------------- | -------------------------------------------------------------------------------------------------- |
+| [Collect Payment API – BNPL (Merchant Hosted Checkout)](ref:_payment_merchant_hosted_bnpl) | `_payment`                | Submit a BNPL request with `pg=BNPL` and the provider `bankcode` on merchant-hosted checkout.      |
+| [Collect Payment API – BNPL Link & Pay](ref:collect-payment-api-bnpl-link-pay)             | `_payment`                | Initiate BNPL Link & Pay transactions, including one-click repeat-user flows after wallet linking. |
+| [Collect Payment API – S2S Link and Pay](ref:_payment_s2s_link_pay)                        | `_payment`                | Initiate a server-to-server BNPL Link & Pay transaction with OTP-based authentication.             |
 
-      </td>
-    </tr>
+### Submit OTP for Link & Pay
 
-    <tr>
-      <td>
-        [Get EMI Checkout Details API](ref:get-emi-checkout-details-api)
-      </td>
+| Use case → Reference                     | `command` / primary value | Description                                                                                 |
+| ---------------------------------------- | ------------------------- | ------------------------------------------------------------------------------------------- |
+| [Submit OTP API](ref:submit-otp-to-payu) | Submit OTP endpoint       | Submit the customer OTP and reference ID returned by `_payment` to complete authentication. |
 
-      <td>
-        Check BNPL Link & Pay eligibility and retrieve checkout details for supported lenders.
-      </td>
-    </tr>
+### Verify the payment
 
-    <tr>
-      <td>
-        [Get Checkout Details API](ref:get_checkout_details)
-      </td>
-
-      <td>
-        Check customer BNPL eligibility before initiating payment on merchant-hosted checkout.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ### \_payment API to Collect Payment
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Collect Payment API – BNPL (Merchant Hosted Checkout)](ref:_payment_merchant_hosted_bnpl)
-      </td>
-
-      <td>
-        Submit a BNPL payment request with `pg=BNPL` and the provider `bankcode` on merchant-hosted checkout.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Collect Payment API – BNPL Link & Pay](ref:collect-payment-api-bnpl-link-pay)
-      </td>
-
-      <td>
-        Initiate BNPL Link & Pay transactions, including one-click repeat-user flows after wallet linking.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Collect Payment API – S2S Link and Pay](ref:_payment_s2s_link_pay)
-      </td>
-
-      <td>
-        Server-to-server payment initiation for BNPL Link & Pay with OTP-based authentication.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ### Submit OTP for Link & Pay
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Submit OTP API](ref:submit-otp-to-payu)
-      </td>
-
-      <td>
-        Submit the customer OTP along with the reference ID from the `_payment` response to complete BNPL Link & Pay authentication.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        ### Verify the Payment
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Verify Payment API](ref:verify_payment_api)
-      </td>
-
-      <td>
-        Server-side reconciliation of transaction status after payment.
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| Use case → Reference                         | `command` / primary value | Description                                                      |
+| -------------------------------------------- | ------------------------- | ---------------------------------------------------------------- |
+| [Verify Payment API](ref:verify_payment_api) | `verify_payment`          | Reconcile the transaction status from your server after payment. |
 
 <br />
