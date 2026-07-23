@@ -1,5 +1,5 @@
 ---
-title: List of APIs used for PayU Hosted Checkout Integration
+title: List of APIs used for Integration
 deprecated: false
 hidden: false
 icon: far fa-rectangle-api
