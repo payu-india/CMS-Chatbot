@@ -36,13 +36,13 @@ PayU’s Checkout Plus is the easiest way to collect The payment page opens as a
 
 The following payment methods are supported in the PayU Checkout Plus:
 
-* Credit Card
-* Debit Card
-* Net-Banking
-* UPI
-* Wallet
-* EMI
-* BNPL
+- Credit Card
+- Debit Card
+- Net-Banking
+- UPI
+- Wallet
+- EMI
+- BNPL
 
 ## **Advantages of PayU Checkout Plus**
 
@@ -64,24 +64,13 @@ Nothing better than a few lines of code solving a complex problem. You can have 
 
 ## **Features**
 
-* **Easy integration** with pre-defined code snippets. Enables you to get started in few quick steps and start accepting payments.
-* **Works uniformly** for website and mobile applications.
-* **Complete re-directionless** payment on your cart page.
-* **Supports multiple payment modes** that your customer may want to use, such as, UPI, Net Banking, Credit Cards, Debit Cards, E-Wallets etc.
-* **Allows you to customise your payment page**, UI colours to suit your brand identity, logo etc.
-* **Create a wide range of offers** across different payment modes using the PayU dashboard. Customer is shown the applicable offers on the checkout page.
+- **Easy integration** with pre-defined code snippets. Enables you to get started in few quick steps and start accepting payments.
+- **Works uniformly** for website and mobile applications.
+- **Complete re-directionless** payment on your cart page.
+- **Supports multiple payment modes** that your customer may want to use, such as, UPI, Net Banking, Credit Cards, Debit Cards, E-Wallets etc.
+- **Allows you to customise your payment page**, UI colours to suit your brand identity, logo etc.
+- **Create a wide range of offers** across different payment modes using the PayU dashboard. Customer is shown the applicable offers on the checkout page.
 
-## APIs Used for Integration
-| Use case → Reference | `command` / primary value |
-| --- | --- |
-| Prerequisite — [PayU Hosted Checkout](https://docs.payu.in/docs/prebuilt-checkout-payu-hosted) **(Integration)** | **PayU Hosted Checkout** must be available/enabled for the merchant (Checkout Plus is an add-on UX) |
-| Embed Checkout Plus (modal) — [Integrate Checkout Plus](https://docs.payu.in/docs/integrate-checkout-plus) **(Integration)** | Same as hosted: browser flow to `_payment`, presented **inside a PayU-served modal** on your site (see full guide for snippet/SDK) |
-| Collect payment (underlying PG request) — [Collect Payment API (PayU Hosted Checkout)](https://docs.payu.in/reference/_payment_payu_hosted_checkout) | Form `POST` to `_payment` parameters as for hosted checkout (modal wraps this flow) |
-| Verify a payment — [Verify Payment API](https://docs.payu.in/reference/verify_payment_api) | `verify_payment` |
-| Check transaction info — [Check Action Status with PayU ID](https://docs.payu.in/reference/check_action_status_api_with_payu_id) | `check_action_status` |
-| Get transaction by txnid — [Get Transaction Info API](https://docs.payu.in/reference/get_transaction_info_api) | `get_transaction_info` |
 
-> **Collect Payment endpoint:** Same `_payment` URLs as **PayU Hosted Checkout** (modal wraps the hosted experience).  
-> **`hash` on `_payment`:** Same family as hosted **unless** the Checkout Plus guide specifies additional fields — follow the Checkout Plus integration doc.  
-> **Post-service (`command` APIs) endpoint:** `POST https://info.payu.in/merchant/postservice.php?form=2`  
-> **Post-service hash formula:** `sha512(key|command|var1|SALT)`
+
+<br />
