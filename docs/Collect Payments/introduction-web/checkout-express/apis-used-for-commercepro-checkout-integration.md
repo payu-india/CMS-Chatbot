@@ -1,7 +1,8 @@
 ---
-title: APIs used for CommercePro Checkout Integration
+title: APIs used for Integration
 deprecated: false
 hidden: false
+icon: far fa-rectangle-api
 metadata:
   title: APIs Used for CommercePro Checkout Integration
   robots: index
