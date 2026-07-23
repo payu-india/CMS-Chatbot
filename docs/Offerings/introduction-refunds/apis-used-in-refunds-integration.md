@@ -1,5 +1,5 @@
 ---
-title: APIs used in Refunds integration
+title: APIs used in Integration
 deprecated: false
 hidden: false
 icon: fab fa-cash-app
