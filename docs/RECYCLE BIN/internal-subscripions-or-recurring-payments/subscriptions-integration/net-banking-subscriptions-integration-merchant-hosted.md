@@ -5,13 +5,6 @@ hidden: true
 metadata:
   robots: index
 ---
----
-title: Net Banking Integration - Merchant Hosted
-deprecated: false
-hidden: true
-metadata:
-  robots: index
----
 PayU's Recurring Payment Integration enables merchants to set up automated subscription billing through various payment methods including Net Banking (e-NACH), UPI, and Cards. This comprehensive guide walks you through the complete workflow from capturing initial customer consent and mandate registration to executing seamless recurring transactions without additional customer intervention. The integration ensures full compliance with RBI guidelines while providing essential features like pre-debit notifications and robust payment verification processes.
 
 #### I. Payment Consent Flow
@@ -33,13 +26,13 @@ PayU's Recurring Payment Integration enables merchants to set up automated subsc
 #### II. Recurring Payments Flow
 
 <Cards columns={2}>
-  <Card title="3. Pre-Debit Notification" href="#step-3-pre-debit-notification">
+  <Card title="1. Pre-Debit Notification" href="#step-3-pre-debit-notification">
     Send advance notifications to customers about upcoming recurring payments, essential for UPI and Cards per RBI guidelines with authpayuid and debitDate parameters
 
     <br />
   </Card>
 
-  <Card title="4. Recurring Payment Transaction" href="#step-4-recurring-payment-transaction">
+  <Card title="2. Recurring Payment Transaction" href="#step-4-recurring-payment-transaction">
     Execute recurring payments automatically without additional customer involvement using server-to-server integration with authpayuid and invoiceDisplayNumber
 
     <br />
@@ -48,43 +41,149 @@ PayU's Recurring Payment Integration enables merchants to set up automated subsc
   <br />
 </Cards>
 
-## Step 1: Consent Transaction
+<br />
+
+## I. Payment Consent Flow
+### Step 1: Consent Transaction
 
 HTTP Method: **POST**
 
 **Environment**
 
-|                        |                                                                    |
-| :--------------------- | :----------------------------------------------------------------- |
-| Test Environment       | [https://test.payu.in/_payment](https://test.payu.in/_payment)     |
-| Production Environment | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
+|                        |                                                                     |
+| :--------------------- | :------------------------------------------------------------------ |
+| Test Environment       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
+| Production Environment | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
 <Accordion title="Request Parameters" icon="fa-table">
-  | **Parameter**                                       | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | **Value**                                                                                        |          |               |             |         |        |        |        |        |        |    |    |    |               |         |                                                                                                                                    |
-  | --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | -------- | ------------- | ----------- | ------- | ------ | ------ | ------ | ------ | ------ | -- | -- | -- | ------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-  | **key** *(mandatory)*                               | `String` The merchant key is a unique identifier for a merchant account in PayU's database.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | Your Test Key                                                                                    |          |               |             |         |        |        |        |        |        |    |    |    |               |         |                                                                                                                                    |
-  | **api\_version** *(optional)*                       | `String` The API version for this API.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | 7                                                                                                |          |               |             |         |        |        |        |        |        |    |    |    |               |         |                                                                                                                                    |
-  | **txnid** *(mandatory)*                             | `String` The transaction ID is a reference number for a specific order that is generated by the merchant. It is used to track the order and must be unique. PayU's system will not accept duplicate transaction IDs.<br />**Note**: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of 'duplicate Order ID.'                                                                                                                                                                                                                                                                        | `s7hhDQVWvbhBdN`                                                                                 |          |               |             |         |        |        |        |        |        |    |    |    |               |         |                                                                                                                                    |
-  | **amount** *(mandatory)*                            | `String` This field should contain the payment amount for the transaction.<br />The transaction limit is as follows: <ul><li>**Net Banking authentication**: Rs.10,00,000</li><li>**eNACH Aadhaar authentication**: Rs.1,00,000</li></ul>                                                                                                                                                                                                                                                                                                                                                                                                                                   | `10.00`                                                                                          |          |               |             |         |        |        |        |        |        |    |    |    |               |         |                                                                                                                                    |
-  | **productinfo** *(mandatory)*                       | `String` It should be a string containing a brief description of the product. `Character Limit-100`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | `iPhone`                                                                                         |          |               |             |         |        |        |        |        |        |    |    |    |               |         |                                                                                                                                    |
-  | **firstname** *(mandatory)*                         | `String` The first name of the customer. `Character Limit-60`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | `Ashish`                                                                                         |          |               |             |         |        |        |        |        |        |    |    |    |               |         |                                                                                                                                    |
-  | **email** *(mandatory)*                             | `String` The email of the customer. `Character Limit-50`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | [test@gmail.com](mailto:test@gmail.com)                                                          |          |               |             |         |        |        |        |        |        |    |    |    |               |         |                                                                                                                                    |
-  | **phone** *(mandatory)*                             | `String` The phone number of the customer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | `9876543210`                                                                                     |          |               |             |         |        |        |        |        |        |    |    |    |               |         |                                                                                                                                    |
-  | **lastname** *(mandatory)*                          | `String` The last name of the customer. `Character Limit-60`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | `Verma`                                                                                          |          |               |             |         |        |        |        |        |        |    |    |    |               |         |                                                                                                                                    |
-  | **address1** *(optional)*                           | `String` The first line of the billing address. `Character Limit-100`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | `H.No- 17, Block C, Kalyan Bldg, Khardilkar Road, Mumbai`                                        |          |               |             |         |        |        |        |        |        |    |    |    |               |         |                                                                                                                                    |
-  | **address2** *(optional)*                           | `String` The second line of the billing address. `Character Limit-100`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | `34 Saikripa-Estate, Tilak Nagar`                                                                |          |               |             |         |        |        |        |        |        |    |    |    |               |         |                                                                                                                                    |
-  | **city** *(optional)*                               | `String` The city where your customer resides as part of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Mumbai                                                                                           |          |               |             |         |        |        |        |        |        |    |    |    |               |         |                                                                                                                                    |
-  | **state** *(optional)*                              | `String` The state where your customer resides as part of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Maharashtra                                                                                      |          |               |             |         |        |        |        |        |        |    |    |    |               |         |                                                                                                                                    |
-  | **country** *(optional)*                            | `String` The country where your customer resides. `Character Limit-50`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | India                                                                                            |          |               |             |         |        |        |        |        |        |    |    |    |               |         |                                                                                                                                    |
-  | **zipcode** *(optional)*                            | `String` Billing address zip code is mandatory for the cardless EMI option. `Character Limit-20`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | 400004                                                                                           |          |               |             |         |        |        |        |        |        |    |    |    |               |         |                                                                                                                                    |
-  | **si** *(mandatory)*                                | This parameter signifies a successful consent taken from the user by the merchant. This parameter must contain 1 for a successful consent. Without this parameter sent as 1, subscription cannot be set up.<br />**Notes**: You can modify or cancel existing recurring payment registration as described in the following sections:<br />• [Manage Recurring Payment for Cards](http://docs.payu.in/reference/manage-recurring-payment-for-cards)<br />• [Manage UPI Recurring Transaction](http://docs.payu.in/reference/api-commands-to-manage-upi-recurring-transaction)                                                                                                | `1`                                                                                              |          |               |             |         |        |        |        |        |        |    |    |    |               |         |                                                                                                                                    |
-  | **si\_details** *(mandatory)*                       | This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU. <br />**Note**: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer – [https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0) ) <br />This is a JSON object and it includes a set of fields. For more information, refer to [SI Parameter JSON Details](http://docs.payu.in/reference/si-parameter-json-details) |                                                                                                  |          |               |             |         |        |        |        |        |        |    |    |    |               |         |                                                                                                                                    |
-  | **beneficiarydetail** *(mandatory for Net Banking)* | `varchar` This object represents bank account details of the customer which involves account number, name on the account and account type and needs to be passed if the recurring transaction needs to be set up against Net Banking. It includes the fields as mentioned in the beneficiarydetail fields description table.                                                                                                                                                                                                                                                                                                                                                | Refer to next section                                                                            |          |               |             |         |        |        |        |        |        |    |    |    |               |         |                                                                                                                                    |
-  | **hash** *(mandatory)*                              | `String` It is used to avoid the possibility of transaction tampering. For more information on hash generation process, refer to [Generate Hash](http://docs.payu.in/docs/generate-hash-merchant-hosted).<br />In the case of registration transaction, the formula is used to calculate this hash is similar to the following:<br />\`HASH = SHA512(key\\                                                                                                                                                                                                                                                                                                                  | txnid\\                                                                                          | amount\\ | productinfo\\ | firstname\\ | email\\ | udf1\\ | udf2\\ | udf3\\ | udf4\\ | udf5\\ | \\ | \\ | \\ | si\_details\\ | SALT)\` | `eabec285da28fd0e3054d41a4d24fe9f7599c9d0b66646f7a9984303fd6124044b6206daf831e9a8bda28a6200d318293a13d6c193109b60bd4b4f8b09c90972` |
-  | **pg** *(mandatory)*                                | `String` The pg parameter must include ENACH for Net Banking.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | `ENACH`                                                                                          |          |               |             |         |        |        |        |        |        |    |    |    |               |         |                                                                                                                                    |
-  | **bankcode** *(mandatory)*                          | `String` The merchant must post this parameter with the corresponding payment option's bank code value in it. For more information, refer to [Bank Codes - Recurring Payments](http://docs.payu.in/docs/bank-codes-recurring-payments).                                                                                                                                                                                                                                                                                                                                                                                                                                     | `ICICENCC`                                                                                       |          |               |             |         |        |        |        |        |        |    |    |    |               |         |                                                                                                                                    |
-  | **udf1 - udf5** *(optional)*                        | `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.<br />`Character Limit`-255                                                                                                                                                                                                                                                                                                                                                                                                                                              | `Payment Preference, Shipping Method, Shipping Address1, Shipping City, Shipping Zip Code, etc.` |          |               |             |         |        |        |        |        |        |    |    |    |               |         |                                                                                                                                    |
-  | **free\_trial** *(optional)*                        | This is mandatory only if the merchant wants to support free trial use cases.<br />In this case, PayU adjusts the transaction amount as INR 2.00 for cards and UPI and INR 0.00 for Net Banking irrespective of what amount is passed against the amount field in the request.<br />This parameter has no significance in the case of seamless flow.                                                                                                                                                                                                                                                                                                                        |                                                                                                  |          |               |             |         |        |        |        |        |        |    |    |    |               |         |                                                                                                                                    |
+<HTMLBlock>{`
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>key</strong><br /><em>mandatory</em></td>
+      <td><code>String</code> The merchant key is a unique identifier for a merchant account in PayU's database.</td>
+      <td>Your Test Key</td>
+    </tr>
+    <tr>
+      <td><strong>api_version</strong><br /><em>optional</em></td>
+      <td><code>String</code> The API version for this API.</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <td><strong>txnid</strong><br /><em>mandatory</em></td>
+      <td><code>String</code> The transaction ID is a reference number for a specific order that is generated by the merchant. It is used to track the order and must be unique. PayU's system will not accept duplicate transaction IDs.<br /><strong>Note</strong>: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of 'duplicate Order ID.'</td>
+      <td><code>s7hhDQVWvbhBdN</code></td>
+    </tr>
+    <tr>
+      <td><strong>amount</strong><br /><em>mandatory</em></td>
+      <td><code>String</code> This field should contain the payment amount for the transaction.<br />The transaction limit is as follows:<ul><li><strong>Net Banking authentication</strong>: Rs.10,00,000</li><li><strong>eNACH Aadhaar authentication</strong>: Rs.1,00,000</li></ul></td>
+      <td><code>10.00</code></td>
+    </tr>
+    <tr>
+      <td><strong>productinfo</strong><br /><em>mandatory</em></td>
+      <td><code>String</code> It should be a string containing a brief description of the product. <code>Character Limit-100</code></td>
+      <td><code>iPhone</code></td>
+    </tr>
+    <tr>
+      <td><strong>firstname</strong><br /><em>mandatory</em></td>
+      <td><code>String</code> The first name of the customer. <code>Character Limit-60</code></td>
+      <td><code>Ashish</code></td>
+    </tr>
+    <tr>
+      <td><strong>email</strong><br /><em>mandatory</em></td>
+      <td><code>String</code> The email of the customer. <code>Character Limit-50</code></td>
+      <td><a href="mailto:test@gmail.com">test@gmail.com</a></td>
+    </tr>
+    <tr>
+      <td><strong>phone</strong><br /><em>mandatory</em></td>
+      <td><code>String</code> The phone number of the customer.</td>
+      <td><code>9876543210</code></td>
+    </tr>
+    <tr>
+      <td><strong>lastname</strong><br /><em>mandatory</em></td>
+      <td><code>String</code> The last name of the customer. <code>Character Limit-60</code></td>
+      <td><code>Verma</code></td>
+    </tr>
+    <tr>
+      <td><strong>address1</strong><br /><em>optional</em></td>
+      <td><code>String</code> The first line of the billing address. <code>Character Limit-100</code></td>
+      <td><code>H.No- 17, Block C, Kalyan Bldg, Khardilkar Road, Mumbai</code></td>
+    </tr>
+    <tr>
+      <td><strong>address2</strong><br /><em>optional</em></td>
+      <td><code>String</code> The second line of the billing address. <code>Character Limit-100</code></td>
+      <td><code>34 Saikripa-Estate, Tilak Nagar</code></td>
+    </tr>
+    <tr>
+      <td><strong>city</strong><br /><em>optional</em></td>
+      <td><code>String</code> The city where your customer resides as part of the billing address.</td>
+      <td>Mumbai</td>
+    </tr>
+    <tr>
+      <td><strong>state</strong><br /><em>optional</em></td>
+      <td><code>String</code> The state where your customer resides as part of the billing address.</td>
+      <td>Maharashtra</td>
+    </tr>
+    <tr>
+      <td><strong>country</strong><br /><em>optional</em></td>
+      <td><code>String</code> The country where your customer resides. <code>Character Limit-50</code></td>
+      <td>India</td>
+    </tr>
+    <tr>
+      <td><strong>zipcode</strong><br /><em>optional</em></td>
+      <td><code>String</code> Billing address zip code is mandatory for the cardless EMI option. <code>Character Limit-20</code></td>
+      <td>400004</td>
+    </tr>
+    <tr>
+      <td><strong>si</strong><br /><em>mandatory</em></td>
+      <td>This parameter signifies a successful consent taken from the user by the merchant. This parameter must contain 1 for a successful consent. Without this parameter sent as 1, subscription cannot be set up.<br /><strong>Notes</strong>: You can modify or cancel existing recurring payment registration as described in the following sections:<ul><li><a href="http://docs.payu.in/reference/manage-recurring-payment-for-cards">Manage Recurring Payment for Cards</a></li><li><a href="http://docs.payu.in/reference/api-commands-to-manage-upi-recurring-transaction">Manage UPI Recurring Transaction</a></li></ul></td>
+      <td><code>1</code></td>
+    </tr>
+    <tr>
+      <td><strong>si_details</strong><br /><em>mandatory</em></td>
+      <td>This parameter represents mandatory details which need to be passed during the registration transaction from the merchant system to PayU.<br /><strong>Note</strong>: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that it can be forwarded to acquirers and issuers. For more information, refer to the <a href="https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&amp;Mode=0">RBI guidelines</a>.<br />This is a JSON object and it includes a set of fields. For more information, refer to <a href="http://docs.payu.in/reference/si-parameter-json-details">SI Parameter JSON Details</a>.</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>beneficiarydetail</strong><br /><em>mandatory for Net Banking</em></td>
+      <td><code>varchar</code> This object represents the customer's bank account details, including the account number, name on the account, and account type. It must be passed when the recurring transaction is set up against Net Banking. It includes the fields listed in the beneficiary detail fields description table.</td>
+      <td>Refer to next section</td>
+    </tr>
+    <tr>
+      <td><strong>hash</strong><br /><em>mandatory</em></td>
+      <td><code>String</code> It is used to avoid the possibility of transaction tampering. For more information on hash generation, refer to <a href="http://docs.payu.in/docs/generate-hash-merchant-hosted">Generate Hash</a>.<br />For a registration transaction, calculate the hash using the following formula:<br /><code>HASH = SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||si_details|SALT)</code></td>
+      <td><code>eabec285da28fd0e3054d41a4d24fe9f7599c9d0b66646f7a9984303fd6124044b6206daf831e9a8bda28a6200d318293a13d6c193109b60bd4b4f8b09c90972</code></td>
+    </tr>
+    <tr>
+      <td><strong>pg</strong><br /><em>mandatory</em></td>
+      <td><code>String</code> The pg parameter must include ENACH for Net Banking.</td>
+      <td><code>ENACH</code></td>
+    </tr>
+    <tr>
+      <td><strong>bankcode</strong><br /><em>mandatory</em></td>
+      <td><code>String</code> The merchant must post this parameter with the corresponding payment option's bank code. For more information, refer to <a href="http://docs.payu.in/docs/bank-codes-recurring-payments">Bank Codes - Recurring Payments</a>.</td>
+      <td><code>ICICENCC</code></td>
+    </tr>
+    <tr>
+      <td><strong>udf1 - udf5</strong><br /><em>optional</em></td>
+      <td><code>String</code> User-defined fields (udf) store information corresponding to a transaction. You can use up to five fields, designated as udf1, udf2, udf3, udf4, and udf5. <code>Character Limit-255</code></td>
+      <td><code>Payment Preference, Shipping Method, Shipping Address1, Shipping City, Shipping Zip Code, etc.</code></td>
+    </tr>
+    <tr>
+      <td><strong>free_trial</strong><br /><em>optional</em></td>
+      <td>This is mandatory only if the merchant wants to support free trial use cases.<br />In this case, PayU adjusts the transaction amount to INR 2.00 for Cards and UPI and INR 0.00 for Net Banking, irrespective of the amount passed in the request.<br />This parameter has no significance in the seamless flow.</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+`}</HTMLBlock>
 </Accordion>
 
 <Accordion title="Beneficiary Detail Fields Description" icon="fa-university">
@@ -237,11 +336,13 @@ The payment verification step ensures the transaction has been processed success
 
 The **Pre-Debit Notification** API allows the merchants to send a pre-debit notification to the customer regarding an upcoming payment which will be deducted from the customer's account as part of the registration.
 
-> ❗️ **Reminder**
->
-> * Check the mandate status before calling the **Pre-Debit Notification** API.
-> * Unless the Pre-Debit notification API is implemented, the **Recurring Payment Transaction** API will not work, and you will not be able to charge the customer for the given billing cycle.
-> * Pre-Debit notification is necessary only for Cards and UPI and works for only these two payment modes
+<Callout icon="❗️" theme="error">
+  ### **Reminder**
+
+  - Check the mandate status before calling the **Pre-Debit Notification** API.
+  - Unless the Pre-Debit notification API is implemented, the **Recurring Payment Transaction** API will not work, and you will not be able to charge the customer for the given billing cycle.
+  - Pre-Debit notification is necessary only for Cards and UPI and works for only these two payment modes
+</Callout>
 
 **Environment**
 
@@ -332,12 +433,16 @@ The **Pre-Debit Notification** API allows the merchants to send a pre-debit noti
 
 All successful registration transactions are charged over the recurring interface with server-to-server API without any additional 2FA or the customers' involvement.
 
-> 📘 **Notes**:
->
-> * Banks do not support refunds for Net Banking Recurring Payment transactions (or e-NACH transaction) so you will get an error message, "Refund not accepted for txn" or Error 232. For the list of banks supporting e-NACH, refer to Recurring Payments Bank Codes.
-> * Check the mandate status, call the **Pre-Debit Notification** API before calling the **Recurring Payment Transaction** API to make a recurring payment transaction.
+<Callout icon="📘" theme="info">
+  ### **Notes**:
 
-> 🚧 **Assumptions**: If the merchant has already performed a successful registration transaction with Net Banking/UPI/Card and mihpayid is received in response to the registration transaction captured successfully and mapped to the customer at the merchant's end.
+  - Banks do not support refunds for Net Banking Recurring Payment transactions (or e-NACH transaction) so you will get an error message, "Refund not accepted for txn" or Error 232. For the list of banks supporting e-NACH, refer to Recurring Payments Bank Codes.
+  - Check the mandate status, call the **Pre-Debit Notification** API before calling the **Recurring Payment Transaction** API to make a recurring payment transaction.
+</Callout>
+
+<Callout icon="🚧" theme="warn">
+  ### **Assumptions**: If the merchant has already performed a successful registration transaction with Net Banking/UPI/Card and mihpayid is received in response to the registration transaction captured successfully and mapped to the customer at the merchant's end.
+</Callout>
 
 **Environment**
 
@@ -697,3 +802,5 @@ All successful registration transactions are charged over the recurring interfac
   | **hash**  | Hash logic for this API is:<br />sha512(key\\\|command\\\|var1\\\|salt)sha512                                                                                                                                                                                                                                                                                |
   | **var1**  | For JSON fields description, refer to [Additional Info. Payment APIs](http://docs.payu.in/reference/addl_info-payment-apis#/)                                                                                                                                                                                                                                |
 </Accordion>
+
+<br />
