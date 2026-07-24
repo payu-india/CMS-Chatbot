@@ -1,7 +1,7 @@
 ---
 title: Cancel Pre-Authorized Transaction API
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
