@@ -1,5 +1,5 @@
 ---
-title: V1 Create Order API
+title: Create Order API
 deprecated: false
 hidden: false
 metadata:
