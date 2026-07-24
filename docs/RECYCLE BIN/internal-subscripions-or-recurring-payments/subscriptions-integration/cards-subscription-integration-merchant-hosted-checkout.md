@@ -917,12 +917,3 @@ All successful registration transactions are charged over the recurring interfac
 
 ***
 
-### Request Parameters Reference
-
-<Accordion title="Reference Information" icon="fa-book">
-  | Parameter | Reference                                                                                                                                                                                                                                                                                                                                                    |
-  | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-  | **key**   | For more information on how to generate the Key and Salt, refer to any of the following: <ul><li>**Production**: [Generate Merchant Key and Salt](http://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard)</li><li>**Test**: [Generate Test Merchant Key and Salt](http://docs.payu.in/docs/generate-test-merchant-key-and-salt)</li></ul> |
-  | **hash**  | Hash logic for this API is:<br />sha512(key\\\|command\\\|var1\\\|salt)sha512                                                                                                                                                                                                                                                                                |
-  | **var1**  | For JSON fields description, refer to [Additional Info. Payment APIs](http://docs.payu.in/reference/addl_info-payment-apis#/)                                                                                                                                                                                                                                |
-</Accordion>
