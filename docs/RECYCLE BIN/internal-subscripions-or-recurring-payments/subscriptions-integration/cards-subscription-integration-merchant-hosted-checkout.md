@@ -387,7 +387,8 @@ In the case of Cards, you must ensure that the payment response from PayU has th
 > - Registration transaction must be successful in making it eligible for the Recurring platform.
 
 At this step, if the status of the consent transaction is returned as success along with the other three conditions explained above, you can consider that the subscription setup is completed successfully.
-</Accordio>
+</Accordion>
+
 <Accordion title="Sample response" icon="fa-code">
 The response URL returned from PayU is in the form URL format (application/x-www-form-urlencoded).
 
