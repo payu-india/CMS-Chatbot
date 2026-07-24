@@ -5,14 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
----
-title: Merchant Hosted Integration - Mutual Fund Payments
-deprecated: false
-hidden: true
-metadata:
-  robots: index
----
-This section explains how to implement the **_payment** API for mutual fund payment using Merchant Hosted Checkout integration. The _payment includes the _product_ parameter contains various fields including the Wealth Tech object (**wtParams**). This integration involves the following steps:
+This section explains how to implement the **\_payment** API for mutual fund payment using Merchant Hosted Checkout integration. The \_payment includes the _product_ parameter contains various fields including the Wealth Tech object (**wtParams**). This integration involves the following steps:
 
 <Cards columns={3}>
   <Card title="1. Initiate the Payment to PayU" href="https://docs.payu.in/docs/enach-mutual-fund-payments-integration#step-1-initiate-the-payment-to-payu">
@@ -88,6 +81,7 @@ This section explains how to implement the **_payment** API for mutual fund paym
 </tr>
 </tbody>
 </table>
+
 `}</HTMLBlock>
     **Example JSON**:
 
@@ -126,11 +120,10 @@ This section explains how to implement the **_payment** API for mutual fund paym
 
 <Accordion title="Sample Request" icon="fa-exchange">
   ```bash
-  curl -i 'https://test.payu.in/_payment' \
-  -H 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' \
+ curl -i 'https://test.payu.in/_payment' \
   -H 'content-type: application/x-www-form-urlencoded' \
-  --data-urlencode 'key=KOEfPI' \
-  --data-urlencode 'txnid=7f41f520f71b' \
+  --data-urlencode "key=${PAYU_KEY}" \
+  --data-urlencode "txnid=${TXN_ID}" \
   --data-urlencode 'amount=50000' \
   --data-urlencode 'productinfo=Mutual Fund' \
   --data-urlencode 'firstname=John' \
@@ -138,11 +131,12 @@ This section explains how to implement the **_payment** API for mutual fund paym
   --data-urlencode 'phone=9876543210' \
   --data-urlencode 'pg=NB' \
   --data-urlencode 'bankcode=AXIB' \
-  --data-urlencode 'surl=https://apiplayground-response.herokuapp.com/' \
-  --data-urlencode 'furl=https://apiplayground-response.herokuapp.com/' \
+  --data-urlencode 'surl=https://example.com/payment/success' \
+  --data-urlencode 'furl=https://example.com/payment/failure' \
   --data-urlencode 'api_version=21' \
-  --data-urlencode 'hash=a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0' \
-  --data-urlencode 'product={"wtParams":[{"type":"mutual_fund","plan":"GD","amount":"50000","option":"G","scheme":"LT","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","mf_amc_code":"UTB"}]}'
+  --data-urlencode 'beneficiarydetail={"beneficiaryAccountNumber":"002001600674","ifscCode":"KTKB0000046"}' \
+  --data-urlencode 'product={"wtParams":[{"type":"mutual_fund","amount":"50000","receipt":"77407","mf_member_id":"123445","mf_user_id":"77407","mf_partner":"cams","mf_investment_type":"L","plan":"GD","option":"G","scheme":"LT","mf_amc_code":"UTB"}]}' \
+  --data-urlencode "hash=${HASH}"
   ```
 </Accordion>
 
@@ -167,3 +161,5 @@ This section explains how to implement the **_payment** API for mutual fund paym
 ## Step 3: Verify the Payment
 
 <Verify_Payment_Tabs />
+
+<br />
