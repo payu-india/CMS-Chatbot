@@ -1,7 +1,7 @@
 ---
 title: Hosted Checkout Integration Demo
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
