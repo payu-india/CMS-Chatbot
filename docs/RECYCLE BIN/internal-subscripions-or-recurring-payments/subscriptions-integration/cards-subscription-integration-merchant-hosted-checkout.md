@@ -22,7 +22,7 @@ metadata:
 ---
 PayU's Card Subscription Integration using the Merchant-Hosted Checkout method enables businesses to set up automated recurring payments through credit and debit cards with enhanced control over the payment flow. This section covers the complete process from capturing initial customer consent and mandate registration to executing seamless recurring transactions without requiring additional 2-factor authentication.
 
-## I. Payment consent flow
+#### I. Payment consent flow
 
 <Cards columns={2}>
   <Card title="1. Consent Transaction" href="#step-1-consent-transaction">
@@ -38,7 +38,7 @@ PayU's Card Subscription Integration using the Merchant-Hosted Checkout method e
   </Card>
 </Cards>
 
-## II. Recurring Payments Flow
+#### II. Recurring Payments Flow
 
 <Cards columns={2}>
   <Card title="3. Pre-Debit Notification" href="#step-3-pre-debit-notification">
