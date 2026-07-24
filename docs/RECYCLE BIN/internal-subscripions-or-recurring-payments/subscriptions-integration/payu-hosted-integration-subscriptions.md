@@ -19,8 +19,9 @@ metadata:
 This section describes steps to integrate Subscriptions using the PayU Hosted Checkout integration.
 
 <Callout icon="📘" theme="info">
-  **Note**: The PayU Hosted or non-seamless integration for Subscriptions involves only the **Collect Payment** API (**_payment**).
+  **Note**: The PayU Hosted or non-seamless integration for Subscriptions involves only the **Collect Payment** API (**\_payment**).
 </Callout>
+
 Based on the content about PayU Hosted Checkout integration for Subscriptions, I'll create organized cards for you:
 
 <Cards columns={3}>
@@ -43,14 +44,8 @@ Based on the content about PayU Hosted Checkout integration for Subscriptions, I
   <br />
 </Cards>
 
-**Additional Resources** 📚
-
-• **[Manage Recurring Payment for Cards](https://docs.payu.in/docs/manage-recurring-payment-for-cards)** - Handle card-based recurring transactions
-• **[Manage UPI Recurring Transaction](https://docs.payu.in/reference/api-commands-to-manage-upi-recurring-transaction)** - UPI recurring payment management
-• **[SI Parameter JSON Details](https://docs.payu.in/reference/si-parameter-json-details)** - Detailed subscription parameter specifications
-• **[RBI Guidelines](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0)** - Regulatory compliance information
-
 **Environment URLs** 🌐
+
 - **Production**: `https://secure.payu.in/_payment`
 - **Test**: `https://test.payu.in/_payment`
 
@@ -62,10 +57,10 @@ HTTP Method: **POST**
 
 **Environment**
 
-|                            |                                                                    |
-| :------------------------- | :----------------------------------------------------------------- |
-| **Production Environment** | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
-| **Test Environment**       | [https://test.payu.in/_payment](https://test.payu.in/_payment)     |
+|                            |                                                                     |
+| :------------------------- | :------------------------------------------------------------------ |
+| **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
+| **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
 
 <Accordion title="Request parameters" icon="fa-table">
   In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is critical to calculate the hash correctly and post it to PayU in the request.
@@ -401,5 +396,13 @@ The response URL returned from PayU is in the form URL format (application/x-www
 ## Step 3: Verify the Payment
 
 <Verify_Payment_Tabs />
+***
+
+## Additional Resources
+
+• **[Manage Recurring Payment for Cards](https://docs.payu.in/docs/manage-recurring-payment-for-cards)** - Handle card-based recurring transactions
+• **[Manage UPI Recurring Transaction](https://docs.payu.in/reference/api-commands-to-manage-upi-recurring-transaction)** - UPI recurring payment management
+• **[SI Parameter JSON Details](https://docs.payu.in/reference/si-parameter-json-details)** - Detailed subscription parameter specifications
+• **[RBI Guidelines](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0)** - Regulatory compliance information
 
 <br />
