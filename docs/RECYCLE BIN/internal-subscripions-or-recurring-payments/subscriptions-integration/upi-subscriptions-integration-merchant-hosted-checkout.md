@@ -65,7 +65,7 @@ Before starting the integration, ensure you have:
 
 ***
 
-## Payment Consent Transaction
+## I. Payment Consent Transaction
 
 ### Step 1: Post the Request
 
