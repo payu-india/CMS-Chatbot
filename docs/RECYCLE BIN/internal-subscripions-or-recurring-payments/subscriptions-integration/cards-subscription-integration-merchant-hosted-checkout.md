@@ -357,7 +357,7 @@ For parameters address1, address2, city, state, country, product info, email, an
 - . (Dot)
 </Accordion>
 
-### Sample request
+#### Sample request
 
 The sample code block for cards Seamless integration (Merchant-Hosted Checkout) is similar to the following:
 
@@ -368,8 +368,8 @@ curl -X POST "https://test.payu.in/_payment-H "accept: application/json" -H "Con
 &hash=e36568b2dfc460eab0eb3387fb7d90543ed861154f273b9593d6fcc152ed93a91e529c2f4be0965eeb57104e82d58889fa5efb52811ec78cbd1ad646e39c29a0”
 ```
 
-## Sample response
-
+#### Sample response
+<Accordion title="Expected Values in Response" icon="fa-table">
 In the case of Cards, you must ensure that the payment response from PayU has the expected values as described in the following table so that they successfully registered for a recurring plan or subscription for the customer:
 
 | Response Parameter | Expected Value                   | Description                                                                     |
@@ -387,7 +387,7 @@ In the case of Cards, you must ensure that the payment response from PayU has th
 > - Registration transaction must be successful in making it eligible for the Recurring platform.
 
 At this step, if the status of the consent transaction is returned as success along with the other three conditions explained above, you can consider that the subscription setup is completed successfully.
-
+</Accordio>
 <Accordion title="Sample response" icon="fa-code">
 The response URL returned from PayU is in the form URL format (application/x-www-form-urlencoded).
 
@@ -925,4 +925,3 @@ All successful registration transactions are charged over the recurring interfac
   | **hash**  | Hash logic for this API is:<br />sha512(key\\\|command\\\|var1\\\|salt)sha512                                                                                                                                                                                                                                                                                |
   | **var1**  | For JSON fields description, refer to [Additional Info. Payment APIs](http://docs.payu.in/reference/addl_info-payment-apis#/)                                                                                                                                                                                                                                |
 </Accordion>
-
