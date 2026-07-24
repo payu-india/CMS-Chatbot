@@ -4,7 +4,7 @@ api:
   operationId: post_merchant-postservice-php
 hidden: false
 ---
-> **Note:** This API replaces the [Get Net Banking Status API](https://docs.payu.in/reference/get_net_banking_status_api). PayU strongly recommends you to migrate to this endpoint for continued support.
+> **Note:** This API replaces the **Get Net Banking Status&#x20;**&#x41;PI. PayU strongly recommends you to migrate to this endpoint for continued support.
 
 <Accordion title="Features" icon="fa-circle">
 * **Check specific payment options individually:** You can check the status of a wallet, a specific Net Banking provider, or UPI by passing the relevant code in the `var1` parameter. For example:
@@ -27,11 +27,13 @@ hidden: false
 ### Environment
 
 **Test Environment:**
+
 ```
 https://test.payu.in/merchant/postservice.php?form=2
 ```
 
 **Production Environment:**
+
 ```
 https://info.payu.in/merchant/postservice.php?form=2
 ```
@@ -39,7 +41,9 @@ https://info.payu.in/merchant/postservice.php?form=2
 Remember to use your production merchant key and salt when making requests to the production endpoint.
 
 ## Request Parameters
+
 Check the Form Data below for **Try IT** experience. The following provides more detailed description for some of the parameters.
+
 <Accordion title="Partial Request Parameters" icon="fa-table">
 <div>
   <table>
@@ -88,7 +92,9 @@ Check the Form Data below for **Try IT** experience. The following provides more
     </tbody>
   </table>
 </div>
+
 </Accordion>
+
 <Accordion title="Hash Generation" icon="fa-lock">
 
 The hash parameter is required to authenticate your request. It must be generated server-side using the SHA-512 algorithm.
@@ -316,6 +322,8 @@ In this example:
 <div>
   
 
+
+
 <table>
     <thead>
       <tr>
@@ -364,13 +372,18 @@ In this example:
   </table>
 
 
+
+
 </div>
 
 ***
+
 ### Error Codes
 
 <div>
   
+
+
 
 <table>
   <thead>
@@ -411,6 +424,8 @@ In this example:
     </tr>
   </tbody>
 </table>
+
+
 
 
 </div>
