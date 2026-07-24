@@ -2,7 +2,7 @@
 api:
   file: getpaymentgatewayupstatus_api_postman_collection_updated.json
   operationId: post_merchant-postservice-php
-hidden: false
+hidden: true
 ---
 > **Note:** This API replaces the [Get Net Banking Status API](https://docs.payu.in/reference/get_net_banking_status_api). PayU strongly recommends you to migrate to this endpoint for continued support.
 
