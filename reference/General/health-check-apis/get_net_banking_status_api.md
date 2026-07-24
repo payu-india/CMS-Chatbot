@@ -1,9 +1,8 @@
 ---
-title: Get Net Banking Status API
 api:
   file: getNetBankingStatus.json
   operationId: NetBankingStatus
-hidden: false
+hidden: true
 metadata:
   title: Get Net Banking Status API
   description: >-
