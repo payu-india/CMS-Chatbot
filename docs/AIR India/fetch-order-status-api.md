@@ -1,7 +1,7 @@
 ---
 title: Fetch Order Status API
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -86,7 +86,7 @@ curl -X GET 'https://apitest.payu.in/cart/order?orderId=<merchant_order_id>&acti
 | orderId<br/>`mandatory` | `string` Encrypted order ID from the Create Order response (`transaction.orderid`). This differs from the merchant order ID in the query string. | `<encrypted_order_id>` |
 | X-Credential-Username<br/>`mandatory` | `string` Merchant key configured for Air India. | `<merchant_key>` |
 
-## Query Parameters
+### Query Parameters
 
 The `orderId` query parameter is the merchant order ID. It is distinct from the encrypted `orderId` sent in the request header.
 
