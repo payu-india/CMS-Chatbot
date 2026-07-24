@@ -22,7 +22,7 @@ metadata:
 ---
 PayU's Card Subscription Integration using the Merchant-Hosted Checkout method enables businesses to set up automated recurring payments through credit and debit cards with enhanced control over the payment flow. This section covers the complete process from capturing initial customer consent and mandate registration to executing seamless recurring transactions without requiring additional 2-factor authentication.
 
-#### I. Payment consent flow
+#### I. Payment Consent Flow
 
 <Cards columns={2}>
   <Card title="1. Consent Transaction" href="#step-1-consent-transaction">
@@ -56,7 +56,8 @@ PayU's Card Subscription Integration using the Merchant-Hosted Checkout method e
   <br />
 </Cards>
 
-## Step 1: Consent Transaction
+## I. Payment Consent Flow
+### Step 1: Consent Transaction
 
 HTTP Method: **POST**
 
@@ -71,8 +72,7 @@ HTTP Method: **POST**
 >
 > **Handle Guest Checkout Transaction**: You can handle Guest Checkout transactions for EMI integration. For more information, refer to[ Cards Integration > Handling Guest Checkout Transactions](doc:collect-payments-with-cards-seamless#handling-guest-checkout-transactions).
 
-## Request parameters
-
+<Accordion title="Request parameters" icon="fa-table">
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -355,8 +355,9 @@ For parameters address1, address2, city, state, country, product info, email, an
 - / (Slash)
 - (Space)
 - . (Dot)
+</Accordion>
 
-## Sample request
+### Sample request
 
 The sample code block for cards Seamless integration (Merchant-Hosted Checkout) is similar to the following:
 
@@ -387,9 +388,10 @@ In the case of Cards, you must ensure that the payment response from PayU has th
 
 At this step, if the status of the consent transaction is returned as success along with the other three conditions explained above, you can consider that the subscription setup is completed successfully.
 
+<Accordion title="Sample response" icon="fa-code">
 The response URL returned from PayU is in the form URL format (application/x-www-form-urlencoded).
 
-### Parsed response
+#### Parsed response
 
 ```
 Array
@@ -448,8 +450,8 @@ Array
     [cardnum] => XXXXXXXXXXXX4879
 )
 ```
-
-## Step 2: Verify the payment
+</Accordion>
+### Step 2: Verify the payment
 
 You can use the **Verify Payment** API and expose a webhook by requesting the PayU Integration team to configure the same against the **ws\_online\_response** parameter. If this webhook is configured, you will receive the above response object over HTTP form post method.
 
@@ -458,7 +460,8 @@ The payment verification step ensures the transaction has been processed success
 
 <Verify_Payment_Tabs />
 
-## Step 3: Pre-Debit Notification
+## II. Recurring Payments Flow
+### Step 1: Pre-Debit Notification
 
 The **Pre-Debit Notification** API allows the merchants to send a pre-debit notification to the customer regarding an upcoming payment which will be deducted from the customer's account as part of the registration.
 
@@ -923,4 +926,3 @@ All successful registration transactions are charged over the recurring interfac
   | **var1**  | For JSON fields description, refer to [Additional Info. Payment APIs](http://docs.payu.in/reference/addl_info-payment-apis#/)                                                                                                                                                                                                                                |
 </Accordion>
 
-<br />
