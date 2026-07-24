@@ -1,7 +1,7 @@
 ---
 title: Fetch Offer with Order ID API
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
