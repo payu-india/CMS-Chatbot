@@ -18,7 +18,7 @@
         "tags": [
           "Misc"
         ],
-        "summary": "NetBankingStatus",
+        "summary": "Get Net Banking Status API",
         "description": "",
         "operationId": "NetBankingStatus",
         "parameters": [
@@ -94,7 +94,8 @@
             "content": {}
           }
         },
-        "deprecated": false
+        "deprecated": false,
+        "x-internal": true
       },
       "parameters": []
     }
