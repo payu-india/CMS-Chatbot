@@ -916,4 +916,11 @@ All successful registration transactions are charged over the recurring interfac
 </Accordion>
 
 ***
+## Additional Resources
 
+• **[Manage Recurring Payment for Cards](https://docs.payu.in/docs/manage-recurring-payment-for-cards)** - Handle card-based recurring transactions
+• **[Manage UPI Recurring Transaction](https://docs.payu.in/reference/api-commands-to-manage-upi-recurring-transaction)** - UPI recurring payment management
+• **[SI Parameter JSON Details](https://docs.payu.in/reference/si-parameter-json-details)** - Detailed subscription parameter specifications
+• **[RBI Guidelines](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0)** - Regulatory compliance information
+
+<br />
