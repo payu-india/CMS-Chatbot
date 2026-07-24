@@ -9,28 +9,45 @@ metadata:
     SI on cards integration.
   robots: index
 ---
+---
+title: 'Cards Subscriptions Integration - Merchant Hosted Checkout '
+deprecated: false
+hidden: true
+metadata:
+  title: Cross-Border Payments  - Card Subscriptions with Merchant-Hosted Checkout
+  description: >-
+    Cross-Border Payments  - Card Subscriptions with Merchant-Hosted Checkout.
+    SI on cards integration.
+  robots: index
+---
 PayU's Card Subscription Integration using the Merchant-Hosted Checkout method enables businesses to set up automated recurring payments through credit and debit cards with enhanced control over the payment flow. This section covers the complete process from capturing initial customer consent and mandate registration to executing seamless recurring transactions without requiring additional 2-factor authentication.
 
+## I. Payment consent flow
+
 <Cards columns={2}>
-  <Card title="1. Consent Transaction" href="https://docs.payu.in/docs/subscription-for-cards#step-1-consent-transaction">
+  <Card title="1. Consent Transaction" href="#step-1-consent-transaction">
     Initiate the recurring payment mandate by sending a POST request with mandatory parameters including key, txnid, amount, productinfo, customer details, pg='CC', bankcode, si=1, and si\_details
 
     <br />
   </Card>
 
-  <Card title="2. Verify the Payment" href="https://docs.payu.in/docs/subscription-for-cards#step-2-verify-the-payment">
+  <Card title="2. Verify the Payment" href="#step-2-verify-the-payment">
     Use PayU's Verify Payment API or webhook setup to confirm successful consent transaction and mandate registration, handling any rejections or failures
 
     <br />
   </Card>
+</Cards>
 
-  <Card title="3. Pre-Debit Notification" href="https://docs.payu.in/docs/subscription-for-cards#step-3-pre-debit-notification">
+## II. Recurring Payments Flow
+
+<Cards columns={2}>
+  <Card title="3. Pre-Debit Notification" href="#step-3-pre-debit-notification">
     Send advance notifications to customers 24-48 hours before recurring charges using authpayuid, invoiceDisplayNumber, and debit amount parameters
 
     <br />
   </Card>
 
-  <Card title="4. Recurring Payment Transaction" href="https://docs.payu.in/docs/subscription-for-cards##step-4-recurring-payment-transaction">
+  <Card title="4. Recurring Payment Transaction" href="#step-4-recurring-payment-transaction">
     Execute automated recurring payments via server-to-server API without additional 2FA, using the registered mandate and billing schedule
 
     <br />
@@ -208,7 +225,7 @@ HTTP Method: **POST**
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> It is used to avoid the possibility of transaction tampering. For more information on hash generation process, refer to <a href="http://docs.payu.in/docs/generate-hash-merchant-hosted">Hashing Request and Response</a>.<br>In the case of registration transaction, the formula is used to calculate this hash is similar to the following:<br><code>HASH = SHA512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\||\||\||si_details\|SALT)</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>eabec285da28fd 0e3054d41a4d24fe 9f7599c9d0b6664 6f7a9984303fd612 4044b6206daf831 e9a8bda28a6200d 318293a13d6c193 109b60bd4b4f8b09 c90972</code></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>eabec285da28fd0e3054d41a4d24fe9f7599c9d0b66646f7a9984303fd6124044b6206daf831e9a8bda28a6200d318293a13d6c193109b60bd4b4f8b09c90972</code></p>
 </td>
 </tr>
 <tr>
@@ -222,7 +239,7 @@ HTTP Method: **POST**
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>bankcode<br><code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it.  For more information, refer <a href="http://docs.payu.in/docs/card-type-codes-and-supported-banks-for-cards">Card Type Codes and Supported Banks for Cards</a></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Each payment option is identified with a unique bank code at PayU. The merchant must post this parameter with the corresponding payment option’s bank code value in it. For more information, refer <a href="http://docs.payu.in/docs/card-type-codes-and-supported-banks-for-cards">Card Type Codes and Supported Banks for Cards</a></p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>AMEX</p>
 </td>
