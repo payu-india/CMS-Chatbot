@@ -9,17 +9,6 @@ metadata:
     SI on cards integration.
   robots: index
 ---
----
-title: 'Cards Subscriptions Integration - Merchant Hosted Checkout '
-deprecated: false
-hidden: true
-metadata:
-  title: Cross-Border Payments  - Card Subscriptions with Merchant-Hosted Checkout
-  description: >-
-    Cross-Border Payments  - Card Subscriptions with Merchant-Hosted Checkout.
-    SI on cards integration.
-  robots: index
----
 PayU's Card Subscription Integration using the Merchant-Hosted Checkout method enables businesses to set up automated recurring payments through credit and debit cards with enhanced control over the payment flow. This section covers the complete process from capturing initial customer consent and mandate registration to executing seamless recurring transactions without requiring additional 2-factor authentication.
 
 #### I. Payment Consent Flow
@@ -57,6 +46,7 @@ PayU's Card Subscription Integration using the Merchant-Hosted Checkout method e
 </Cards>
 
 ## I. Payment Consent Flow
+
 ### Step 1: Consent Transaction
 
 HTTP Method: **POST**
@@ -68,9 +58,9 @@ HTTP Method: **POST**
 | Test Environment       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
 | Production Environment | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
-> 📘
->
-> **Handle Guest Checkout Transaction**: You can handle Guest Checkout transactions for EMI integration. For more information, refer to[ Cards Integration > Handling Guest Checkout Transactions](doc:collect-payments-with-cards-seamless#handling-guest-checkout-transactions).
+<Callout icon="📘" theme="info">
+  **Handle Guest Checkout Transaction**: You can handle Guest Checkout transactions for EMI integration. For more information, refer to[ Cards Integration > Handling Guest Checkout Transactions](doc:collect-payments-with-cards-seamless#handling-guest-checkout-transactions).
+</Callout>
 
 <Accordion title="Request parameters" icon="fa-table">
 <HTMLBlock>{`
@@ -322,6 +312,7 @@ HTTP Method: **POST**
 </tr>   
 </tbody>
 </table>
+
 `}</HTMLBlock>
 
 > 📘 Notes for **additional\_info** parameter:
@@ -369,6 +360,7 @@ curl -X POST "https://test.payu.in/_payment-H "accept: application/json" -H "Con
 ```
 
 #### Sample response
+
 <Accordion title="Expected Values in Response" icon="fa-table">
 In the case of Cards, you must ensure that the payment response from PayU has the expected values as described in the following table so that they successfully registered for a recurring plan or subscription for the customer:
 
@@ -452,9 +444,10 @@ Array
 )
 ```
 </Accordion>
+
 ### Step 2: Verify the payment
 
-You can use the **Verify Payment** API and expose a webhook by requesting the PayU Integration team to configure the same against the **ws\_online\_response** parameter. If this webhook is configured, you will receive the above response object over HTTP form post method.
+You can use the **Verify Payment** API and expose a webhook by requesting the PayU Integration team to configure the same against the **ws_online_response** parameter. If this webhook is configured, you will receive the above response object over HTTP form post method.
 
 If the mandate is not confirmed by the customer or the mandate is confirmed by the customer, but the mandate registration is rejected from the banks, the status is communicated as a “failure” over webhook. For more information, refer to [Set up WebHook to Receive Cancellation or Modification Update from the Issuer Bank](ref:set-up-webhook-to-receive-cancellation-or-modification-update-from-the-issuer-bank).
 The payment verification step ensures the transaction has been processed successfully before proceeding to subsequent recurring payments.
@@ -462,15 +455,18 @@ The payment verification step ensures the transaction has been processed success
 <Verify_Payment_Tabs />
 
 ## II. Recurring Payments Flow
+
 ### Step 1: Pre-Debit Notification
 
 The **Pre-Debit Notification** API allows the merchants to send a pre-debit notification to the customer regarding an upcoming payment which will be deducted from the customer's account as part of the registration.
 
-> ❗️ **Reminder**
->
-> - Check the mandate status before calling the **Pre-Debit Notification** API.
-> - Unless the Pre-Debit notification API is implemented, the **Recurring Payment Transaction** API will not work, and you will not be able to charge the customer for the given billing cycle.
-> - Pre-Debit notification is necessary only for Cards and UPI and works for only these two payment modes
+<Callout icon="❗️" theme="error">
+  ### **Reminder**
+
+  - Check the mandate status before calling the **Pre-Debit Notification** API.
+  - Unless the Pre-Debit notification API is implemented, the **Recurring Payment Transaction** API will not work, and you will not be able to charge the customer for the given billing cycle.
+  - Pre-Debit notification is necessary only for Cards and UPI and works for only these two payment modes
+</Callout>
 
 **Environment**
 
@@ -561,12 +557,16 @@ The **Pre-Debit Notification** API allows the merchants to send a pre-debit noti
 
 All successful registration transactions are charged over the recurring interface with server-to-server API without any additional 2FA or the customers' involvement.
 
-> 📘 **Notes**:
->
-> - Banks do not support refunds for Net Banking Recurring Payment transactions (or e-NACH transaction) so you will get an error message, "Refund not accepted for txn" or Error 232. For the list of banks supporting e-NACH, refer to Recurring Payments Bank Codes.
-> - Check the mandate status, call the **Pre-Debit Notification** API before calling the **Recurring Payment Transaction** API to make a recurring payment transaction.
+<Callout icon="📘" theme="info">
+  ### **Notes**:
 
-> 🚧 **Assumptions**: If the merchant has already performed a successful registration transaction with Net Banking/UPI/Card and mihpayid is received in response to the registration transaction captured successfully and mapped to the customer at the merchant's end.
+  - Banks do not support refunds for Net Banking Recurring Payment transactions (or e-NACH transaction) so you will get an error message, "Refund not accepted for txn" or Error 232. For the list of banks supporting e-NACH, refer to Recurring Payments Bank Codes.
+  - Check the mandate status, call the **Pre-Debit Notification** API before calling the **Recurring Payment Transaction** API to make a recurring payment transaction.
+</Callout>
+
+<Callout icon="🚧" theme="warn">
+  ### **Assumptions**: If the merchant has already performed a successful registration transaction with Net Banking/UPI/Card and mihpayid is received in response to the registration transaction captured successfully and mapped to the customer at the merchant's end.
+</Callout>
 
 **Environment**
 
@@ -916,11 +916,10 @@ All successful registration transactions are charged over the recurring interfac
 </Accordion>
 
 ***
+
 ## Additional Resources
 
-• **[Manage Recurring Payment for Cards](https://docs.payu.in/docs/manage-recurring-payment-for-cards)** - Handle card-based recurring transactions
-• **[Manage UPI Recurring Transaction](https://docs.payu.in/reference/api-commands-to-manage-upi-recurring-transaction)** - UPI recurring payment management
-• **[SI Parameter JSON Details](https://docs.payu.in/reference/si-parameter-json-details)** - Detailed subscription parameter specifications
+• **[Manage Recurring Payment for Cards](https://docs.payu.in/docs/manage-recurring-payment-for-cards)** - Handle card-based recurring transactions<br />• **[SI Parameter JSON Details](https://docs.payu.in/reference/si-parameter-json-details)** - Detailed subscription parameter specifications
 • **[RBI Guidelines](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0)** - Regulatory compliance information
 
 <br />
