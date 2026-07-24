@@ -5,28 +5,41 @@ hidden: true
 metadata:
   robots: index
 ---
+---
+title: Net Banking Integration - Merchant Hosted
+deprecated: false
+hidden: true
+metadata:
+  robots: index
+---
 PayU's Recurring Payment Integration enables merchants to set up automated subscription billing through various payment methods including Net Banking (e-NACH), UPI, and Cards. This comprehensive guide walks you through the complete workflow from capturing initial customer consent and mandate registration to executing seamless recurring transactions without additional customer intervention. The integration ensures full compliance with RBI guidelines while providing essential features like pre-debit notifications and robust payment verification processes.
 
+**Payment consent flow**
+
 <Cards columns={2}>
-  <Card title="1. Consent Transaction" href="https://docs.payu.in/docs/subscription-for-netbanking#consent-transaction">
+  <Card title="1. Consent Transaction" href="#step-1-consent-transaction">
     Initiate the recurring payment process by capturing user consent for the mandate with required parameters including key, txnid, amount, productinfo, customer details, and si\_details JSON object
 
     <br />
   </Card>
 
-  <Card title="2. Verify the Payment" href="https://docs.payu.in/docs/subscription-for-netbanking#verify-the-payment">
+  <Card title="2. Verify the Payment" href="#step-2-verify-the-payment">
     Ensure the initial consent transaction or registration is successfully processed before proceeding with recurring charges
 
     <br />
   </Card>
+</Cards>
 
-  <Card title="3. Pre-Debit Notification" href="https://docs.payu.in/docs/subscription-for-netbanking#pre-debit-notification">
+**Recurring Payments Flow**
+
+<Cards columns={2}>
+  <Card title="3. Pre-Debit Notification" href="#step-3-pre-debit-notification">
     Send advance notifications to customers about upcoming recurring payments, essential for UPI and Cards per RBI guidelines with authpayuid and debitDate parameters
 
     <br />
   </Card>
 
-  <Card title="4. Recurring Payment Transaction" href="https://docs.payu.in/docs/subscription-for-netbanking#recurring-payment-transaction">
+  <Card title="4. Recurring Payment Transaction" href="#step-4-recurring-payment-transaction">
     Execute recurring payments automatically without additional customer involvement using server-to-server integration with authpayuid and invoiceDisplayNumber
 
     <br />
