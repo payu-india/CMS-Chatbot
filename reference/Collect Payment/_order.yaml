@@ -1,10 +1,10 @@
 - resend-otp-api
-- submit-otp-to-payu
 - _payment_payu_hosted_checkout
 - _payment_merchant_hosted
 - _payment_server_to_server
 - error-codes
 - addl_info-payment-apis
 - provision-alt-id-api
+- submit-otp-to-payu
 - using-airline-l3-data
 - sample-payu-hosted-checkout-api
