@@ -1,7 +1,7 @@
 ---
 title: Air India Integration APIs
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
