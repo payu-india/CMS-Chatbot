@@ -5,10 +5,6 @@ hidden: true
 metadata:
   robots: index
 ---
-# Calculate EMI API
-
-## Overview
-
 Calculates EMI (Equated Monthly Installment) options and amounts for selected banks/tenures, optionally applying offer discounts. Supports No Cost EMI (NCE) calculations.
 
 ## Endpoint
@@ -79,7 +75,8 @@ curl -X POST 'https://apitest.payu.in/v1/calculateEMI' \
 }
 ```
 
-## Headers
+## Request Parameters
+### Header Authentication Parameters
 
 | Parameter | Description | Example |
 |-----------|-------------|---------|
