@@ -44,6 +44,7 @@ PayU's Recurring Payment Integration enables merchants to set up automated subsc
 <br />
 
 ## I. Payment Consent Flow
+
 ### Step 1: Consent Transaction
 
 HTTP Method: **POST**
@@ -183,6 +184,7 @@ HTTP Method: **POST**
     </tr>
   </tbody>
 </table>
+
 `}</HTMLBlock>
 </Accordion>
 
@@ -333,6 +335,7 @@ The payment verification step ensures the transaction has been processed success
 ***
 
 ## II. Recurring Payments Flow
+
 ### Step 1: Pre-Debit Notification
 
 The **Pre-Debit Notification** API allows the merchants to send a pre-debit notification to the customer regarding an upcoming payment which will be deducted from the customer's account as part of the registration.
@@ -792,16 +795,6 @@ All successful registration transactions are charged over the recurring interfac
   > For UPI, call the **verify\_settlement** API after 10 mins from time of initiation whereas for Net Banking it can be called up to T+2 once in a day.
 </Accordion>
 
-***
-
-## Request Parameters Reference
-
-<Accordion title="Reference Information" icon="fa-book">
-  | Parameter | Reference                                                                                                                                                                                                                                                                                                                                                    |
-  | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-  | **key**   | For more information on how to generate the Key and Salt, refer to any of the following: <ul><li>**Production**: [Generate Merchant Key and Salt](http://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard)</li><li>**Test**: [Generate Test Merchant Key and Salt](http://docs.payu.in/docs/generate-test-merchant-key-and-salt)</li></ul> |
-  | **hash**  | Hash logic for this API is:<br />sha512(key\\\|command\\\|var1\\\|salt)sha512                                                                                                                                                                                                                                                                                |
-  | **var1**  | For JSON fields description, refer to [Additional Info. Payment APIs](http://docs.payu.in/reference/addl_info-payment-apis#/)                                                                                                                                                                                                                                |
-</Accordion>
+##
 
 <br />
