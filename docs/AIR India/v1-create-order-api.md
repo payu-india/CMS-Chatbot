@@ -28,8 +28,8 @@ Initiates the Air India checkout journey. Creates an order, returns available pa
 | order<br/>`mandatory` | `object` Order details container. | `{"amount":18902.00,"productinfo":"Tickets"}` |
 | order.amount<br/>`mandatory` | `number` Final payable amount as a decimal value. | `18902.00` |
 | order.productinfo<br/>`optional` | `string` Product or order description displayed for the payment. | `Tickets` |
-| customer<br/>`optional` | `object` Customer details container. For more information, refer to [customer JSON Object Fields Description](customer-json-object-fields-description) |  |
-| callBackActions<br/>`mandatory` | `object` Callback URL container. For more information, refer to [callBackActions JSON Fields Description](#callbackaction-json-fields-description) |  |
+| customer<br/>`optional` | `object` Customer details container. For more information, refer to [customer JSON Object Fields Description](#customer-json-object-fields-description) |  |
+| callBackActions<br/>`mandatory` | `object` Callback URL container. For more information, refer to [callBackActions JSON Fields Description(#callbackaction-json-fields-description) |  |
 | additionalInfo<br/>`optional` | `object` Additional order and routing metadata. For more information, refer to [additionalInfo JSON Object Fields Description](#additionalinfo-json-object-fields-description) | |
 | merchantCacheExpiry<br/>`conditional` | `number` Cache expiration time expressed as a Unix epoch timestamp. | `1798761599` |
 | udf1 - udf5<br/>`optional` | `string` Merchant-defined values passed in `additionalInfo.routingParam`. | `User Defined Field 1` |
