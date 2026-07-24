@@ -324,7 +324,7 @@ HTTP Method: **POST**
 
 ***
 
-## Step 2: Verify the payment
+### Step 2: Verify the payment
 
 The payment verification step ensures the transaction has been processed successfully before proceeding to subsequent recurring payments.
 
@@ -332,7 +332,8 @@ The payment verification step ensures the transaction has been processed success
 
 ***
 
-## Step 3: Pre-Debit Notification
+## II. Recurring Payments Flow
+### Step 1: Pre-Debit Notification
 
 The **Pre-Debit Notification** API allows the merchants to send a pre-debit notification to the customer regarding an upcoming payment which will be deducted from the customer's account as part of the registration.
 
@@ -429,7 +430,7 @@ The **Pre-Debit Notification** API allows the merchants to send a pre-debit noti
 
 ***
 
-## Step 4: Recurring Payment Transaction
+### Step 2: Recurring Payment Transaction
 
 All successful registration transactions are charged over the recurring interface with server-to-server API without any additional 2FA or the customers' involvement.
 
