@@ -23,7 +23,7 @@ Before starting the integration, ensure you have:
 * Merchant Key and Salt from PayU dashboard
 * Test environment access for development
 
-**Payment consent flow**
+#### I. Payment Consent Flow
 
 <Cards columns={2}>
   <Card title="1. Post the Request" href="#step-1-post-the-request">
@@ -51,7 +51,7 @@ Before starting the integration, ensure you have:
   </Card>
 </Cards>
 
-**Recurring Payments Flow**
+#### Recurring Payments Flow
 
 <Cards columns={2}>
   <Card title="1. Pre-Debit SI Notification" href="#step-1-pre-debit-si-notification">
