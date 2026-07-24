@@ -5,3 +5,4 @@
 - create-transaction-api
 - calculate-emi-api
 - fetch-order-status-api
+- payment-options-api
