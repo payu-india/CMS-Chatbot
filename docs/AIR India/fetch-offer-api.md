@@ -95,7 +95,8 @@ curl -X POST 'https://sandbox.payu.in/offers/transactions' \
 }
 ```
 
-## Headers
+## Request Parameters
+### Header Authentication Parameters
 
 | Parameter | Description | Example |
 |-----------|-------------|---------|
@@ -105,11 +106,11 @@ curl -X POST 'https://sandbox.payu.in/offers/transactions' \
 | platformId<br/>`mandatory` | `string` Platform identifier. Set this value to `1`. | `1` |
 | Content-Type<br/>`mandatory` | `string` Media type of the JSON request body. | `application/json` |
 
-### Authentication
+#### Authentication
 
 This API does not use `HeaderAuthentication`. Compute `Digest` as Base64(SHA-256(serialized JSON request body)). Then compute `signature` as Base64(HMAC-SHA256(`date: {Date}\ndigest: {Digest}`, merchant salt)) and send `Authorization` with `algorithm="hmac-sha256"` and `headers="date digest"`.
 
-## Request Parameters
+### Body Parameters
 
 | Parameter | Description | Example |
 |-----------|-------------|---------|
@@ -121,7 +122,7 @@ This API does not use `HeaderAuthentication`. Compute `Digest` as Base64(SHA-256
 | userDetails<br/>`optional` | `object` User information. See [userDetails object parameters](#userdetails-object-parameters) for details. | - |
 | offerParams<br/>`mandatory` | `object` Air India specific travel context. See [offerParams object parameters](#offerparams-object-parameters) for details. | - |
 
-### userDetails object parameters
+#### userDetails object parameters
 
 | Parameter | Description | Example |
 |-----------|-------------|---------|
@@ -130,7 +131,7 @@ This API does not use `HeaderAuthentication`. Compute `Digest` as Base64(SHA-256
 | email<br/>`optional` | `string` User email. | `abc@gmail.com` |
 | loggedInPhoneNumber<br/>`optional` | `string` Logged-in user's phone number. | `8310300493` |
 
-### offerParams object parameters
+#### offerParams object parameters
 
 Air India specific travel context:
 
