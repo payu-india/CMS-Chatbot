@@ -556,7 +556,7 @@ The **Pre-Debit Notification** API allows the merchants to send a pre-debit noti
 
 ***
 
-## Step 4: Recurring Payment Transaction
+### Step 2: Recurring Payment Transaction
 
 All successful registration transactions are charged over the recurring interface with server-to-server API without any additional 2FA or the customers' involvement.
 
@@ -809,7 +809,7 @@ All successful registration transactions are charged over the recurring interfac
 </Accordion>
 
 <Accordion title="Sample Response" icon="fa-check-circle">
-  \###Success Scenario
+  #### Success Scenario
 
   Here is a sample response object returned against recurring payment API when the transaction is successfully charged.
 
@@ -839,7 +839,7 @@ All successful registration transactions are charged over the recurring interfac
   }
   ```
 
-  ### Failure Scenarios
+  #### Failure Scenarios
 
   * Invalid hash
 
@@ -892,7 +892,7 @@ All successful registration transactions are charged over the recurring interfac
   | udf4          | Extra information received in the request echoed back.                                                                                                                            |
   | udf5          | Extra information received in the request echoed back.                                                                                                                            |
 
-  ### status field description
+  #### status field description
 
   This field gives the status of the transaction. Hence, the value of this field depends on whether the transaction was successful or not.\
   You must map the order status using this parameter only. The possible values of this parameter are:
@@ -916,7 +916,7 @@ All successful registration transactions are charged over the recurring interfac
 
 ***
 
-## Request Parameters Reference
+### Request Parameters Reference
 
 <Accordion title="Reference Information" icon="fa-book">
   | Parameter | Reference                                                                                                                                                                                                                                                                                                                                                    |
