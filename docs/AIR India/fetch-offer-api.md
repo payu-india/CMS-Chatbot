@@ -1,7 +1,7 @@
 ---
 title: Fetch Offer API
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
