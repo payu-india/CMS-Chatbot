@@ -19,9 +19,9 @@ This section describes step-by-step procedure to implement UPI Consent Transacti
 
 Before starting the integration, ensure you have:
 
-* Active PayU merchant account with UPI recurring payments enabled
-* Merchant Key and Salt from PayU dashboard
-* Test environment access for development
+- Active PayU merchant account with UPI recurring payments enabled
+- Merchant Key and Salt from PayU dashboard
+- Test environment access for development
 
 #### I. Payment Consent Flow
 
@@ -731,7 +731,7 @@ After successful registration, verify the mandate status:
 
 ## UPI Sequencing
 
-You may attempt multiple pre-debits and executions simultaneously in certain scenarios. To address such scenarios, **mandateSeqNo** field in var1 parameter in the **Pre Debit Notification** API and **Recurring Payment** API. 
+You may attempt multiple pre-debits and executions simultaneously in certain scenarios. To address such scenarios, **mandateSeqNo** field in var1 parameter in the **Pre Debit Notification** API and **Recurring Payment** API.
 
 <Callout icon="📘" theme="info">
   **Note**: The UPI Sequencing is only applicable for UPI autopay transactions.
@@ -787,10 +787,13 @@ A sequence is posted based on Mandate creation. When consent is taken, the first
   | Invalid Hash            | `{"status":0,"msg":"Invalid Hash."}`                                                                                                            |                            |
 </Accordion>
 
-## Related Documentation
+***
 
-* [UPI Consent Transaction API Reference](ref:upi-recurring-payment-consent-transaction)
-* [SI Parameter JSON Details](ref:si-parameter-json-details)
-* [Manage UPI Recurring Transaction](ref:api-commands-to-manage-upi-recurring-transaction)
-* [Validate VPA API](ref:validate_vpa_api)
-* [Bank Codes - Recurring Payments](doc:bank-codes-recurring-payments)
+## Additional Resources
+
+• **[Manage Recurring Payment for Cards](https://docs.payu.in/docs/manage-recurring-payment-for-cards)** - Handle card-based recurring transactions
+• **[Manage UPI Recurring Transaction](https://docs.payu.in/reference/api-commands-to-manage-upi-recurring-transaction)** - UPI recurring payment management
+• **[SI Parameter JSON Details](https://docs.payu.in/reference/si-parameter-json-details)** - Detailed subscription parameter specifications
+• **[RBI Guidelines](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0)** - Regulatory compliance information
+
+<br />
