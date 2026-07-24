@@ -5,7 +5,6 @@
 - addl_info-payment-apis
 - provision-alt-id-api
 - native-otp-flow-apis
-- submit-otp-to-payu
 - resend-otp-api
 - using-airline-l3-data
 - sample-payu-hosted-checkout-api
