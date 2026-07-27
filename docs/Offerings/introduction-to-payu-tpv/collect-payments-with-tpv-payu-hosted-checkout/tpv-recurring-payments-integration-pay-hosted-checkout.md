@@ -92,7 +92,7 @@ Submit the transaction parameters to PayU's payment gateway using the appropriat
   <Accordion title="Hash calculation" icon="fa-code">
     If UDF parameters are defined in the hash calculation, the same UDF fields must be included in the request sent to PayU.
 
-    `sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5| |||||beneficiarydetail|SALT)`
+    `SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|SALT)`
 
     WithOut UDF Parameters.
 
