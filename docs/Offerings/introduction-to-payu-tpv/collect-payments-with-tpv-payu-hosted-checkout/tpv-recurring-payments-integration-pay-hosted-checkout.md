@@ -96,7 +96,7 @@ Submit the transaction parameters to PayU's payment gateway using the appropriat
 
     WithOut UDF Parameters.
 
-    `sha512(key|txnid|amount|productinfo|firstname|email|||||||||||beneficiarydetail|SAL T)`
+    `SHA512(key|txnid|amount|productinfo|firstname|email|||||||||||si_details|SALT)`
 
     Replace SALT with the salt value provided during onboarding.
   </Accordion>
