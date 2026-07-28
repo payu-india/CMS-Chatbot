@@ -3,6 +3,7 @@ title: FAQs
 deprecated: false
 hidden: false
 metadata:
+  title: Shopify FAQs
   robots: index
 ---
 <Accordion title="1. On Shopify, why are only card payment options showing while UPI, Net Banking, or wallets are missing?" icon="fa-info-circle">
