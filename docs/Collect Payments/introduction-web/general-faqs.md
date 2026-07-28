@@ -229,3 +229,49 @@ This section provides answers to general frequently asked questions (FAQs) on pa
 <Accordion title="What is a dynamic descriptor for card payments, and how do I configure it?" icon="fa-info-circle">
   A dynamic descriptor controls the merchant text that can appear on the customer's card statement. A recognisable descriptor can reduce customer confusion and chargebacks.
 </Accordion>
+<Accordion title="How do I configure a webhook URL for payment notifications?" icon="fa-info-circle">
+  To configure a webhook:
+  1. Sign in to PayU Dashboard and go to **Settings > Webhooks**.
+  2. Create a webhook and enter a publicly accessible HTTPS URL.
+  3. Select the payment events that your endpoint must receive.
+  4. Test the webhook and confirm that your endpoint returns a successful HTTP response.
+  5. Validate the hash in every payload and handle duplicate events idempotently.
+  A webhook supplements the browser redirect to `surl` or `furl`; it does not replace those URLs.
+  For more information, refer to [Create a New Webhook](doc:create-a-new-webhook) and [Webhooks](doc:webhooks).
+</Accordion>
+<Accordion title="What should I check when a hash mismatch error occurs on the callback or response?" icon="fa-info-circle">
+  Check the following:
+  * Use the Salt and merchant key for the same environment as the endpoint.
+  * Follow the documented reverse-hash formula and parameter order exactly.
+  * Preserve empty fields and additional charges in the formula where required.
+  * Check UTF-8 and URL-decoding behaviour for special characters.
+  * Remove unintended spaces or line breaks from parameter values.
+  * Log the pre-hash string securely and compare it with the expected sequence. Never log the Salt.
+  Reject a response when hash validation fails.
+  For more information, refer to [Generate Hash](doc:generate-hash-merchant-hosted) and [Using PayU Hash Verification Tool](doc:using-payu-hash-verification-tool).
+</Accordion>
+<Accordion title="How do I handle a transaction stuck in pending status?" icon="fa-info-circle">
+  Do not fulfil the order while the payment status is pending. Use the Verify Payment API to retrieve the current status and use webhooks to receive subsequent updates. If you poll, use a bounded retry interval and stop after your business-defined timeout.
+  Reconcile unresolved transactions before fulfilment. If the status remains pending beyond the normal processing window, raise a PayU support ticket with the transaction ID.
+  For more information, refer to [Verify Payment API](ref:verify_payment_api) and [Webhooks](doc:webhooks).
+</Accordion>
+<Accordion title="What checkout page customization options are available?" icon="fa-info-circle">
+  The available customization depends on the integration:
+  * **PayU Hosted Checkout:** Configure supported branding options such as the logo and theme while PayU hosts the payment page.
+  * **Merchant Hosted Checkout:** Control the checkout UI and payment-mode presentation on your website, subject to security and PCI-DSS requirements.
+  * **CheckoutPro mobile SDKs:** Configure supported themes, colours, fonts, and payment-mode ordering through the SDK.
+  For more information, refer to [PayU Payment Page Customization](doc:payu-payment-page-customization) and [Merchant Hosted Checkout](doc:custom-checkout-merchant-hosted).
+</Accordion>
+<Accordion title="How do I implement offer or discount codes in a payment request?" icon="fa-info-circle">
+  Create and configure the offer in PayU Dashboard, then pass the offer identifier required by your integration in the payment request. Validate the offer's dates, eligibility rules, payment modes, and discount configuration before going live. Use the payment response to reconcile the applied discount.
+  Contact your PayU Key Account Manager (KAM) for enablement or configuration of account-specific and bank-funded offers.
+  For more information, refer to [Offers Integration](doc:offers-integration).
+</Accordion>
+<Accordion title="How can I control payment mode ordering or sequencing on checkout?" icon="fa-info-circle">
+  The available control depends on the integration:
+  * **PayU Hosted Checkout:** Use the supported parameters to enforce or remove payment categories. Contact your PayU Key Account Manager (KAM) for account-level sequencing options.
+  * **Merchant Hosted Checkout:** Retrieve the available payment options and render them in the required order.
+  * **Mobile SDKs:** Use the SDK's payment-mode ordering configuration.
+  Ordering must comply with applicable NPCI requirements for UPI.
+  For more information, refer to [Enforce Pay Method or Remove Category](doc:enforce-pay-method-or-remove-category).
+</Accordion>
