@@ -1,5 +1,5 @@
 ---
-title: Troubleshooting Wix Integration
+title: FAQs for Wix Integration
 excerpt: ''
 deprecated: false
 hidden: false
