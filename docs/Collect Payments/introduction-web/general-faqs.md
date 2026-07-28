@@ -82,15 +82,15 @@ This section provides answers to general frequently asked questions (FAQs) on pa
 
 ## Request/Response
 
-<Accordion title="10. What should I do if my request parameters are not working?" icon="fa-info-circle">
+<Accordion title="1. What should I do if my request parameters are not working?" icon="fa-info-circle">
   If your request parameters are not working, you should check to make sure that they are correctly formatted and that their values are valid. You should also check the documentation for the API or web service you are using to make sure that you are using the correct parameters and values. If you are still having issues, you may need to contact PayU support for assistance.
 </Accordion>
 
-<Accordion title="11. I am receiving a “bad request” error message when posting my API request. What could be causing this?" icon="fa-info-circle">
+<Accordion title="2. I am receiving a “bad request” error message when posting my API request. What could be causing this?" icon="fa-info-circle">
   A “bad request” error message typically indicates that there is something wrong with the request parameters being sent. Double-check that all required parameters are included in the request and that they are in the correct format. Check the API documentation for the specific endpoint being used to ensure that all required parameters are included.
 </Accordion>
 
-<Accordion title="12. I am not receiving any response when posting my API request. What could be causing this?" icon="fa-info-circle">
+<Accordion title="3. I am not receiving any response when posting my API request. What could be causing this?" icon="fa-info-circle">
   The causes for not receiving a response when posting an API request can be any of the following:
 
   * Check whether your Internet or Broadband connection is working.
@@ -98,11 +98,11 @@ This section provides answers to general frequently asked questions (FAQs) on pa
   * Check the API documentation for the specific endpoint being used to ensure that the correct HTTP method is being used (e.g., POST vs GET).
 </Accordion>
 
-<Accordion title="13. I am receiving an “invalid parameter” error message when posting my API request. What does this mean?" icon="fa-info-circle">
+<Accordion title="4. I am receiving an “invalid parameter” error message when posting my API request. What does this mean?" icon="fa-info-circle">
   An “invalid parameter” error message typically means that one or more of the parameters being sent in the API request is not valid. Check that all parameters are spelled correctly and that they are in the correct format. Also, refer to the API documentation for the specific endpoint being used to ensure that all parameters are being sent correctly.
 </Accordion>
 
-<Accordion title="14. The response from PayU is not in JSON format and it is in an encrypted format. How do I get the response in JSON format?" icon="fa-info-circle">
+<Accordion title="5. The response from PayU is not in JSON format and it is in an encrypted format. How do I get the response in JSON format?" icon="fa-info-circle">
   You need to append “?form=2” with the endpoint to get the response in JSON format. For example, the following endpoints are used for integration APIs such as **Verify Payment**, **Get Transaction Details**, **Get TDR**, **Eligible Bins for EMI**, **Create Invoice**, and **Get BIN Info** APIs:
 
   | **Test Environment**       | [https://test.payu.in/merchant/postservice.php?form=2](https://test.payu.in/merchant/postservice.php?form=2) |
@@ -110,7 +110,7 @@ This section provides answers to general frequently asked questions (FAQs) on pa
   | **Production Environment** | [https://info.payu.in/merchant/postservice?form=2](https://info.payu.in/merchant/postservice?form=2)         |
 </Accordion>
 
-<Accordion title="15. When I posted an API with all the necessary values to PayU, I got a response similar to the following, and not sure why?" icon="fa-info-circle">
+<Accordion title="6. When I posted an API with all the necessary values to PayU, I got a response similar to the following, and not sure why?" icon="fa-info-circle">
   a:2:\{s:6:""status"";i:0;s:3:""msg"";s:21:""Merchant key is empty"";}"
 
   In the cURL request, if there are unwanted spaces in the key, Salt, or with any other parameter’s value, the response is similar to the above. Check and remove the unwanted spaces in the cURL request.
