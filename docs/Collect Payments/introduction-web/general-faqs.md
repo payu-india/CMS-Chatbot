@@ -124,6 +124,17 @@ This section provides answers to general frequently asked questions (FAQs) on pa
   A webhook is an HTTP callback. The callback is done to a URL specified while creating a webhook. The webhook callbacks are event-driven i.e. a callback to a webhook will be done whenever the event associated with the webhook occurs. For example, Successful Payment Webhook – The event associated with this webhook is Successful Payment.
 </Accordion>
 
+<Accordion title="How do I configure a webhook URL for payment notifications?" icon="fa-info-circle">
+  To configure a webhook:
+  1. Sign in to PayU Dashboard and go to **Settings > Webhooks**.
+  2. Create a webhook and enter a publicly accessible HTTPS URL.
+  3. Select the payment events that your endpoint must receive.
+  4. Test the webhook and confirm that your endpoint returns a successful HTTP response.
+  5. Validate the hash in every payload and handle duplicate events idempotently.
+  A webhook supplements the browser redirect to `surl` or `furl`; it does not replace those URLs.
+  For more information, refer to [Create a New Webhook](doc:create-a-new-webhook) and [Webhooks](doc:webhooks).
+</Accordion>
+
 <Accordion title="How do I create a webhook using PayU Dashboard?" icon="fa-info-circle">
   You can create a webhook using Dashboard or manually:
 
@@ -228,16 +239,6 @@ This section provides answers to general frequently asked questions (FAQs) on pa
 </Accordion>
 <Accordion title="What is a dynamic descriptor for card payments, and how do I configure it?" icon="fa-info-circle">
   A dynamic descriptor controls the merchant text that can appear on the customer's card statement. A recognisable descriptor can reduce customer confusion and chargebacks.
-</Accordion>
-<Accordion title="How do I configure a webhook URL for payment notifications?" icon="fa-info-circle">
-  To configure a webhook:
-  1. Sign in to PayU Dashboard and go to **Settings > Webhooks**.
-  2. Create a webhook and enter a publicly accessible HTTPS URL.
-  3. Select the payment events that your endpoint must receive.
-  4. Test the webhook and confirm that your endpoint returns a successful HTTP response.
-  5. Validate the hash in every payload and handle duplicate events idempotently.
-  A webhook supplements the browser redirect to `surl` or `furl`; it does not replace those URLs.
-  For more information, refer to [Create a New Webhook](doc:create-a-new-webhook) and [Webhooks](doc:webhooks).
 </Accordion>
 <Accordion title="What should I check when a hash mismatch error occurs on the callback or response?" icon="fa-info-circle">
   Check the following:
