@@ -6,27 +6,7 @@ metadata:
   title: FAQs for Shopify
   robots: index
 ---
----
-title: FAQs for Shopify
-excerpt: ''
-deprecated: false
-hidden: false
-metadata:
-  title: ''
-  description: ''
-  keywords:
-    - Shopify FAQs
-    - PayU Shopify FAQs
-    - Shopify integration FAQs
-  robots: index
-next:
-  description: ''
----
 This section provides answers for frequently asked questions about integrating PayU with Shopify, including hosted checkout, onsite card payments, offers, CommercePro, and cross-border payments.
-
-<Callout icon="📘" theme="info">
-  **Reference**: For integration steps, refer to [Shopify](doc:shopify) and the linked guides in [Related documentation](#related-documentation).
-</Callout>
 
 ## General
 
@@ -60,7 +40,6 @@ This section provides answers for frequently asked questions about integrating P
      New merchant accounts can initially have a limited set of payment modes. Contact your PayU Key Account Manager (KAM) if a required mode is not enabled.
      For more information, refer to [Integrate with Shopify](doc:integrate-with-shopify).
 </Accordion>
-
 
 ## Integrate with Shopify
 
@@ -252,4 +231,4 @@ This section provides answers for frequently asked questions about integrating P
   Settlement information is available in the settlement tab on PayU merchant dashboard. APIs can be provided on request through your PayU Key Account Manager (KAM).
 </Accordion>
 
-
+<br />
