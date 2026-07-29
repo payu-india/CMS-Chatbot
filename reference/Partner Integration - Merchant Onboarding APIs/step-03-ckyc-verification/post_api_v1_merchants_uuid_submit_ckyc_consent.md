@@ -37,9 +37,12 @@ Returns:- `message`: success text- `data.consents[]`: list of active consent rec
 ### Observed Success Variants
 
 - **UBO_exist = 0 flow**: `data.consents[]` includes `ubo_not_exist`
-- **UBO_exist = 1 flow**: `data.consents[]` does not include `ubo_not_exist`### Saved Examples in this request- `200 
-  — Success (UBO_exist=0)`- `200 
-  — Success (UBO_exist=1)`- `422 
-  — Invalid consent name`- `401 — Unauthorized`
+- **UBO_exist = 1 flow**: `data.consents[]` does not include `ubo_not_exist`
+
+### Saved Examples in this request
+  - `200 — Success (UBO_exist=0)`- 
+  - `200 — Success (UBO_exist=1)` 
+  — `422 — Invalid consent name`
+  - `401 — Unauthorized`
 
 <br />
