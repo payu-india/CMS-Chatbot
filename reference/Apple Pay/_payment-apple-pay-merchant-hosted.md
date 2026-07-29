@@ -1,5 +1,5 @@
 ---
-title: Apple Pay
+title: Collect using Apple Pay
 deprecated: false
 hidden: true
 metadata:
