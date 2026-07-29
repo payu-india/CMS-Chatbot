@@ -28,7 +28,7 @@ Use one or many entries in `consents[]`:
 - `ubo_not_exist` — declare UBO does not exist / opt out of UBO submission
 - `digilocker_consent` — consent for DigiLocker path`provided_by_uuid` should be the **partner UUID**.
 
-## Response Documentation
+## Response Parameters
 
 ### Success (200)
 
