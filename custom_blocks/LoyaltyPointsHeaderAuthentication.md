@@ -15,8 +15,9 @@ All PayU Loyalty Points API requests require **HMAC-SHA512** header authenticati
 | Accept | `application/json` |
 | mid | Merchant ID (MID) provided by PayU during onboarding. Some Loyalty Points APIs accept `MID` instead of `mid`. |
 | Date | Current UTC timestamp in RFC 1123 format (for example, `Fri, 24 Jul 2026 05:51:20 GMT`). |
-| Authorization | HMAC signature. Format: `hmac username="<merchant_key>", algorithm="sha512", headers="date", signature="<computed_signature>"`. For field descriptions, refer to [authorization fields description](#authorization-fields-description). |
+| Authorization | HMAC signature. Format: `hmac username="<merchant_key>", algorithm="sha512", headers="date", signature="<computed_signature>"`. For field descriptions, refer to  the below authorization fields description (inside the Accordion). |
 
+<Accordion title="authorization fields description" icon="fa-code">
 #### authorization fields description
 
 | Parameter | Description |
@@ -83,4 +84,5 @@ hmac username="<merchant_key>", algorithm="sha512", headers="date", signature="<
     return true;
   }
   ```
+</Accordion>
 </Accordion>
