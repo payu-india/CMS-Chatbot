@@ -6,6 +6,13 @@ metadata:
   robots: index
 ---
 ---
+title: Collect Payment with Rewards API
+deprecated: false
+hidden: false
+metadata:
+  robots: index
+---
+---
 title: Collect Payment using Rewards API
 deprecated: false
 hidden: false
@@ -237,6 +244,18 @@ HTTP Method: **POST**
   </tbody>
 </Table>
 `}</HTMLBlock>
+
+## Hash generation
+
+The `_payment` API uses a `hash` parameter in the request body (not header-based authentication). Generate the hash before each request.
+
+<Accordion title="Understanding Hashing and sample code" icon="fa-code">
+  <HashingRequestParameters />
+
+  #### Hashing Sample Code
+
+  <HashingSample />
+</Accordion>
 
 ## splitInfo JSON Object
 
