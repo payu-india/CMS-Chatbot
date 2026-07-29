@@ -13,7 +13,11 @@ Skip CKYC Consent submits merchant/product-account level consents to skip or opt
 ## Authentication Header
 
 `Authorization:
-Bearer {{access_token}}`- `Content-Type: application/json\`## Request Body`json{  "consents": [    {"name": "skip_ckyc_flow", "provided_by_uuid": "<partner_uuid>"},    {"name": "gst_consent", "provided_by_uuid": "<partner_uuid>"},    {"name": "ubo_not_exist", "provided_by_uuid": "<partner_uuid>"},    {"name": "digilocker_consent", "provided_by_uuid": "<partner_uuid>"}  ]}`
+Bearer {{access_token}}`- `Content-Type: application/json\`
+
+## Request Body
+
+`json{  "consents": [    {"name": "skip_ckyc_flow", "provided_by_uuid": "<partner_uuid>"},    {"name": "gst_consent", "provided_by_uuid": "<partner_uuid>"},    {"name": "ubo_not_exist", "provided_by_uuid": "<partner_uuid>"},    {"name": "digilocker_consent", "provided_by_uuid": "<partner_uuid>"}  ]}`
 
 ## Supported Consent Names
 
