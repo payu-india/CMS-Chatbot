@@ -4,3 +4,4 @@ api:
   operationId: post_api_v1_merchants_uuid_submit_ckyc_consent
 hidden: false
 ---
+<br />
