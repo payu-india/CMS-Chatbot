@@ -6,24 +6,25 @@ metadata:
   robots: index
 ---
 ---
-title: Earn Rewards Integration
+title: Rewards Pay Redemption Integration
 deprecated: false
-hidden: true
+hidden: false
 link:
   new_tab: false
 metadata:
   robots: index
 ---
+Integrate  Rewardx  to enable customers to redeem their loyalty points during checkout. Follow these sequential steps to implement a complete RewardX integration.
 
-Integrate RewardX  to enable customers to redeem their loyalty points during checkout. Follow these sequential steps to implement a complete RewardX earn loyalty points.
+This section describes the complete integration workflow for RewardX Seamless Transactions. This integration involves the following steps:
 
 <Cards columns={2}>
   <Card title="1. Fetch All Balance" href="#step-1-fetch-all-balance">
-   Fetch the balance of all the loyalty points integrated.
+    Call loyalty-service to get usable reward balances for the customer before initiating payment
   </Card>
 
   <Card title="2. Initiate Payment with PayU" href="#step-2-initiate-payment-with-payu">
-    Prepare PayU payment POST with SPLITPAY parameters and generate the required hash
+    Prepare PayU payment POST with the splitInfo parameter and generate the required hash
   </Card>
 
   <Card title="3. Check Response from PayU" href="#step-3-check-response-from-payu">
@@ -36,6 +37,8 @@ Integrate RewardX  to enable customers to redeem their loyalty points during che
 </Cards>
 
 <Rewards_Fetch_All_Balance />
+
+<br />
 
 ## Step 2: Initiate Payment with PayU
 
@@ -52,8 +55,8 @@ Integrate RewardX  to enable customers to redeem their loyalty points during che
   | pg<br />`mandatory`          | `String` The pg parameter must contain `SPLITPAY` for Rewards transactions.                                                                                                                                                                                                                        | SPLITPAY                                                                                           |   |
   | bankcode<br />`mandatory`    | `String` The bankcode parameter identifies the reward provider used at the parent transaction level. Use `TWIDX` for **TWID** Rewards or `ZRD` for **Zillion** Rewards. For more information, refer to [Reward Provider Codes](#reward-provider-codes).                                            | TWIDX                                                                                              |   |
   | splitInfo                    | `JSON` This parameter must contain the TWID split information. For more information, refer to [splitInfo JSON Object Fields Description](#splitinfo-json-object-fields-description). The sample JSON for Spend/Burn or Earn Points with payment methods: <br />-[Cards](#cards) <br />-[UPI](#upi) | Refer to to [splitInfo JSON Object Fields Description](#splitinfo-json-object-fields-description). |   |
-  | furl<br />`mandatory`        | `String` The success URL, which is the page PayU will redirect to if the transaction is successful.                                                                                                                                                                                                |                                                                                                    |   |
-  | surl<br />`mandatory`        | `String` The Failure URL, which is the page PayU will redirect to if the transaction is failed.                                                                                                                                                                                                    |                                                                                                    |   |
+  | furl<br />`mandatory`        | `String` The failure URL, which is the page PayU will redirect to if the transaction has failed.                                                                                                                                                                                                |                                                                                                    |   |
+  | surl<br />`mandatory`        | `String` The success URL, which is the page PayU will redirect to if the transaction is successful.                                                                                                                                                                                                    |                                                                                                    |   |
   | hash<br />`mandatory`        | `String` It is the hash calculated by the merchant. The hash calculation logic is: \`sha512(key\\\|txnid\\\|amount\\\|productinfo\\\|firstname\\\|email\\\|udf1\\\|udf2\\\|udf3\\\|udf4\\\|udf5\\\|\\\|\\\|\\\|\\\|                                                                                | SALT)\`                                                                                            |   |
   | address1<br />`optional`     | `String` The first line of the billing address. **For Fraud Detection**: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.                                                                     |                                                                                                    |   |
   | address2<br />`optional`     | `String` The second line of the billing address.                                                                                                                                                                                                                                                   |                                                                                                    |   |
@@ -91,11 +94,67 @@ Use the following bankcode values to identify the reward provider in both the to
 
 #### splitInfo JSON Object Fields Description
 
-> 📘 Important:
+> 📘 Important Notes:
 >
 > A complete payment cannot be settled by Rewards (TWID or Zillion) alone — Rewards must always be combined with a **Card** or **UPI** instrument inside `childPaymentInstruments`. The sum of `transactionAmount` across all child instruments must equal the order `amount`.
 >
 > **Earn** is supported for both **TWID and Zillion**. Pass the reward instrument inside `earnPaymentInstruments` (with `transactionAmount: "0"`) when the customer is paying via Card/UPI and accruing reward points on that transaction.
+> You can spend Zillion rewards without combination of Cards or UPI, but not with TWID rewards. For example, if the transaction amount Rs.10, you can spend 100 Zillion points (assuming 100 Zillion points is worth Rs.10), but you cannot do that with TWID points. This example with TWID points, you must spend al teast Rs.0.5 (50 paisa) and 995 TWID points (assuming 100 TWID points is worth Rs.10).
+
+<Accordion title="Sample JSON for Spend Points along with Card (Partly)" icon="fa-code">
+  ```json
+  "splitInfo": {
+  "childPaymentInstruments": [
+    {
+      "name": "CC",
+      "bankCode": "CC",
+      "cardNumber": "4808550000000000",
+      "cvv": "855",
+      "validThrough": "05/26",
+      "ownerName": "Payu",
+      "transactionAmount": "992"
+    },
+    {
+      "name": "RD",
+      "bankCode": "TWIDLS",
+      "transactionAmount": "8",
+      "rewardId": 271508,
+      "rewardName": "Zillion",
+      "cardBin": "000000",
+      "cardLastFour": "0000"
+    }
+  ],
+  "earnPaymentInstruments": [],
+  "totalAmount": "1000.00",
+  "consent": false
+  }
+  ```
+</Accordion>
+
+<Accordion title="Sample JSON for Spend Points along with UPI" icon="fa-code">
+  ```json
+  {
+    "childPaymentInstruments": [
+      {
+        "name": "UPI",
+        "bankCode": "UPI",
+        "vpa": "kk@okaxis",
+        "transactionAmount": "995"
+      },
+      {
+        "name": "RD",
+        "bankCode": "TWIDLS",
+        "rewardId": 271508,
+        "rewardName": "Zillion",
+        "transactionAmount": "5"
+      }
+    ],
+    "earnPaymentInstruments": [],
+    "totalAmount": "1000.00",
+    "consent": false
+  }
+  ```
+</Accordion>
 
 <Accordion title="Field Descriptions in childPaymentInstruments" icon="fa-table">
   | Field                                    | Description                                                                                                                                                                                                                 | Example          |
@@ -114,23 +173,9 @@ Use the following bankcode values to identify the reward provider in both the to
   | transactionAmount                        | The amount to be processed in the transaction for the given payment instrument.                                                                                                                                             | 512              |
 </Accordion>
 
-<Accordion title="Field Descriptions in earnPaymentInstruments" icon="fa-table">
-  Use the `earnPaymentInstruments` array when the customer is paying via Card or UPI and accruing reward points on the same transaction. Earn is supported for both **TWID** and **Zillion**.
-
-  | Field                                   | Description                                                                                                                                                                                                                 | Example  |
-  | --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-  | name                                    | The name of the payment instrument. Use **RD** for the reward instrument.                                                                                                                                                   | RD       |
-  | bankCode                                | The bank code identifier for the reward instrument. Use `TWIDLS` for **TWID** Rewards or `ZLS` for **Zillion** Rewards.                                                                                                     | TWIDLS   |
-  | transactionAmount                       | The amount processed against the reward instrument. For Earn requests this is typically `"0"`, since reward points are accrued (not redeemed).                                                                              | 0        |
-  | rewardId<br /> `mandatory for TWID`     | The unique reward identifier returned in the `rewardId` field of the Fetch Balance response.                                                                                                                                | 270940   |
-  | rewardName<br /> `mandatory for TWID`   | `String` Brand name of the reward program. Pass the value received as `issuerDetailDTO.brandName` in the Fetch Balance response (for example, `Woodland`, `HDFC Bank`). **Mandatory for TWID, not applicable for Zillion.** | Woodland |
-  | cardBin<br /> `mandatory for TWID`      | The TWID Rewards card BIN (first 6 digits of the underlying card).                                                                                                                                                          | 524216   |
-  | cardLastFour<br /> `mandatory for TWID` | The last four digits of the TWID Rewards card.                                                                                                                                                                              | 0009     |
-</Accordion>
-
 #### Cards
 
-<Accordion title="Sample request for Earn Points with Card (TWID)" icon="fa-code">
+<Accordion title="Sample request for Burn Points with Card (Zillion)" icon="fa-code">
   ```curl
   curl -X POST "https://test.payu.in/_payment" \
     -H "accept: application/json" \
@@ -139,128 +184,87 @@ Use the following bankcode values to identify the reward provider in both the to
       "key": "KOEfPI",
       "txnid": "ram1234",
       "productinfo": "Product Info",
-      "amount": "1000",
+      "amount": "100",
       "email": "test@example.com",
       "firstname": "Payu-Admin",
       "lastname": "",
-      "phone": "9304204920",
-      "surl": "https://pp1admin.payu.in/test_response",
-      "furl": "https://pp1admin.payu.in/test_response",
-      "pg": "SPLITPAY",
-      "bankcode": "TWIDX",
-      "txn_s2s_flow": "4",
-      "splitInfo": {
-        "childPaymentInstruments": [
-          {
-            "bankCode": "CC",
-            "name": "CC",
-            "cardNumber": "5123456789012346",
-            "cvv": "345",
-            "validThrough": "12/26",
-            "ownerName": "Payu",
-            "transactionAmount": "1000.00"
-          }
-        ],
-        "earnPaymentInstruments": [
-          {
-            "name": "RD",
-            "bankCode": "TWIDLS",
-            "transactionAmount": "0",
-            "rewardId": 270940,
-            "rewardName": "Woodland",
-            "cardBin": "524216",
-            "cardLastFour": "0009"
-          }
-        ],
-        "totalAmount": "1000.00",
-        "consent": false
-      },
-      "hash": "e0241876845d20e42336426cf135651d5241503b51e525dffd17f88d1e694f7718a89e33cec6f21971097faad7dca5442910498c298de249b23ea3b12a75ed0c"
-    }'
-  ```
-</Accordion>
-
-<Accordion title="Sample request for Earn Points with Card (Zillion)" icon="fa-code">
-  ```curl
-  curl -X POST "https://test.payu.in/_payment" \
-    -H "accept: application/json" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "key": "KOEfPI",
-      "txnid": "ram1234",
-      "productinfo": "Product Info",
-      "amount": "1000",
-      "email": "test@example.com",
-      "firstname": "Payu-Admin",
-      "lastname": "",
-      "phone": "9304204920",
-      "surl": "https://pp1admin.payu.in/test_response",
-      "furl": "https://pp1admin.payu.in/test_response",
+      "phone": "880**08522",
+      "surl": "https://pp56admin.payu.in/test_response",
+      "furl": "https://pp56admin.payu.in/test_response",
       "pg": "SPLITPAY",
       "bankcode": "ZRD",
       "txn_s2s_flow": "4",
       "splitInfo": {
         "childPaymentInstruments": [
           {
-            "bankCode": "CC",
             "name": "CC",
+            "bankCode": "CC",
             "cardNumber": "5123456789012346",
             "cvv": "345",
-            "validThrough": "12/26",
+            "validThrough": "07/25",
             "ownerName": "Payu",
-            "transactionAmount": "1000.00"
-          }
-        ],
-        "earnPaymentInstruments": [
+            "transactionAmount": "99"
+          },
           {
             "name": "RD",
             "bankCode": "ZLS",
-            "transactionAmount": "0",
-            "rewardId": 270940
+            "transactionAmount": "1"
           }
-        ],
-        "totalAmount": "1000.00",
-        "consent": false
+        ]
       },
-      "hash": "e0241876845d20e42336426cf135651d5241503b51e525dffd17f88d1e694f7718a89e33cec6f21971097faad7dca5442910498c298de249b23ea3b12a75ed0c"
+      "hash": "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741"
     }'
   ```
 </Accordion>
 
-<Accordion title="Sample JSON for Earn Points with Card" icon="fa-code">
-  ```json
-  {
-      "childPaymentInstruments": [
+<Accordion title="Sample request for Burn Points with Card (TWID)" icon="fa-code">
+  ```curl
+  curl -X POST "https://test.payu.in/_payment" \
+    -H "accept: application/json" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "key": "KOEfPI",
+      "txnid": "ram1234",
+      "productinfo": "Product Info",
+      "amount": "100",
+      "email": "test@example.com",
+      "firstname": "Payu-Admin",
+      "lastname": "",
+      "phone": "880**08522",
+      "surl": "https://pp56admin.payu.in/test_response",
+      "furl": "https://pp56admin.payu.in/test_response",
+      "pg": "SPLITPAY",
+      "bankcode": "TWIDX",
+      "txn_s2s_flow": "4",
+      "splitInfo": {
+        "childPaymentInstruments": [
           {
-              "bankCode": "CC",
-              "name": "CC",
-              "cardNumber": "5123456789012346",
-              "cvv": "345",
-              "validThrough": "12/26",
-              "ownerName": "Payu",
-              "transactionAmount": "1000.00"
-          }
-      ],
-      "earnPaymentInstruments": [
+            "name": "CC",
+            "bankCode": "CC",
+            "cardNumber": "5123456789012346",
+            "cvv": "345",
+            "validThrough": "07/25",
+            "ownerName": "Payu",
+            "transactionAmount": "412"
+          },
           {
-              "name": "RD",
-              "bankCode": "TWIDLS",
-              "transactionAmount": "0",
-              "rewardId": 270940,
-              "rewardName": "Woodland",
-              "cardBin": "524216",
-              "cardLastFour": "0009"
+            "name": "RD",
+            "bankCode": "TWIDLS",
+            "transactionAmount": "100",
+            "rewardId": 269434,
+            "cardBin": "512345",
+            "cardLastFour": "2346"
           }
-      ],
-      "totalAmount": "1000.00",
-      "consent": false
-  }
+        ]
+      },
+      "hash": "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741"
+    }'
   ```
 </Accordion>
 
 #### UPI
 
-<Accordion title="Sample request for Earn Points with UPI (TWID)" icon="fa-code">
+<Accordion title="Sample request for Burn Points with UPI (Zillion)" icon="fa-code">
   ```curl
   curl -X POST "https://test.payu.in/_payment" \
     -H "accept: application/json" \
@@ -269,58 +273,13 @@ Use the following bankcode values to identify the reward provider in both the to
       "key": "KOEfPI",
       "txnid": "ram1234",
       "productinfo": "Product Info",
-      "amount": "1000",
+      "amount": "100",
       "email": "test@example.com",
       "firstname": "Payu-Admin",
       "lastname": "",
-      "phone": "9304204920",
-      "surl": "https://pp1admin.payu.in/test_response",
-      "furl": "https://pp1admin.payu.in/test_response",
-      "pg": "SPLITPAY",
-      "bankcode": "TWIDX",
-      "txn_s2s_flow": "4",
-      "splitInfo": {
-        "childPaymentInstruments": [
-          {
-            "name": "UPI",
-            "bankCode": "UPI",
-            "vpa": "kk@okaxis",
-            "transactionAmount": "1000"
-          }
-        ],
-        "earnPaymentInstruments": [
-          {
-            "name": "RD",
-            "bankCode": "TWIDLS",
-            "transactionAmount": "0",
-            "rewardId": 270940,
-            "rewardName": "Woodland"
-          }
-        ],
-        "totalAmount": "1000.00",
-        "consent": false
-      },
-      "hash": "f158a418e38993aa4d1d72d056ebf08047d77a8a14f219ef619f6612e9a6ff8f6147ad035c97c012b74f15ebd08eaea423dd7438654f91d7aca1f10d4f406800"
-    }'
-  ```
-</Accordion>
-
-<Accordion title="Sample request for Earn Points with UPI (Zillion)" icon="fa-code">
-  ```curl
-  curl -X POST "https://test.payu.in/_payment" \
-    -H "accept: application/json" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "key": "KOEfPI",
-      "txnid": "ram1234",
-      "productinfo": "Product Info",
-      "amount": "1000",
-      "email": "test@example.com",
-      "firstname": "Payu-Admin",
-      "lastname": "",
-      "phone": "9304204920",
-      "surl": "https://pp1admin.payu.in/test_response",
-      "furl": "https://pp1admin.payu.in/test_response",
+      "phone": "9999999999",
+      "surl": "https://pp56admin.payu.in/test_response",
+      "furl": "https://pp56admin.payu.in/test_response",
       "pg": "SPLITPAY",
       "bankcode": "ZRD",
       "txn_s2s_flow": "4",
@@ -330,48 +289,59 @@ Use the following bankcode values to identify the reward provider in both the to
             "name": "UPI",
             "bankCode": "UPI",
             "vpa": "kk@okaxis",
-            "transactionAmount": "1000"
-          }
-        ],
-        "earnPaymentInstruments": [
+            "transactionAmount": "99"
+          },
           {
             "name": "RD",
             "bankCode": "ZLS",
-            "transactionAmount": "0",
-            "rewardId": 270940
+            "transactionAmount": "1"
           }
-        ],
-        "totalAmount": "1000.00",
-        "consent": false
+        ]
       },
-      "hash": "f158a418e38993aa4d1d72d056ebf08047d77a8a14f219ef619f6612e9a6ff8f6147ad035c97c012b74f15ebd08eaea423dd7438654f91d7aca1f10d4f406800"
+      "hash": "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741"
     }'
   ```
 </Accordion>
 
-<Accordion title="Sample JSON for Earn Points with UPI (Partly)" icon="fa-code">
-  ```json
-  {
-    "childPaymentInstruments": [
-      {
-        "name": "UPI",
-        "bankCode": "UPI",
-        "vpa": "kk@okaxis",
-        "transactionAmount": "1000"
-      }
-    ],
-    "earnPaymentInstruments": [
-      {
-        "name": "RD",
-        "bankCode": "TWIDLS",
-        "transactionAmount": "0",
-        "rewardId": 270940,
-        "rewardName": "Woodland"
-      }
-    ],
-    "totalAmount": "1000.00",
-    "consent": false
-  }
+<Accordion title="Sample request for Burn Points with UPI (TWID)" icon="fa-code">
+  ```curl
+  curl -X POST "https://test.payu.in/_payment" \
+    -H "accept: application/json" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "key": "KOEfPI",
+      "txnid": "ram1234",
+      "productinfo": "Product Info",
+      "amount": "100",
+      "email": "test@example.com",
+      "firstname": "Payu-Admin",
+      "lastname": "",
+      "phone": "9999999999",
+      "surl": "https://pp56admin.payu.in/test_response",
+      "furl": "https://pp56admin.payu.in/test_response",
+      "pg": "SPLITPAY",
+      "bankcode": "TWIDX",
+      "txn_s2s_flow": "4",
+      "splitInfo": {
+        "childPaymentInstruments": [
+          {
+            "name": "UPI",
+            "bankCode": "UPI",
+            "vpa": "kk@okaxis",
+            "transactionAmount": "412"
+          },
+          {
+            "name": "RD",
+            "bankCode": "TWIDLS",
+            "transactionAmount": "100",
+            "rewardId": 269434,
+            "cardBin": "512345",
+            "cardLastFour": "2346"
+          }
+        ]
+      },
+      "hash": "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741"
+    }'
   ```
 </Accordion>
 
@@ -379,10 +349,10 @@ Use the following bankcode values to identify the reward provider in both the to
 
 <ReverseHashing />
 
-<Accordion title="Sample response (parsed)" icon="fa-code">
-  * Success scenario (Zillion + UPI)
+### Sample Success response (parsed)
 
-  ```
+<Accordion title="Success scenario (Zillion + UPI)" icon="fa-code">
+  ```json
   {
   "mihpayid": "999091000010475",
   "mode": "SPLITPAY",
@@ -446,10 +416,10 @@ Use the following bankcode values to identify the reward provider in both the to
   }
   }
   ```
+</Accordion>
 
-  * Success scenario (Zillion + Cards)
-
-  ```
+<Accordion title="Success scenario (Zillion + Cards)" icon="fa-code">
+  ```json
   {
   "mihpayid": "999091000010471",
   "mode": "SPLITPAY",
@@ -512,76 +482,76 @@ Use the following bankcode values to identify the reward provider in both the to
   }
   }
   ```
+</Accordion>
 
-  * Success scenario (TWID + Cards)
-
+<Accordion title="Success scenario (TWID + Cards)" icon="fa-code">
+  ```json
+   {
+   "mihpayid": "999091000010480",
+   "mode": "SPLITPAY",
+   "status": "success",
+   "unmappedstatus": "success",
+   "key": "KOEfPI",
+   "txnid": "ram1234",
+   "amount": "512",
+   "discount": "0.00",
+   "net_amount_debit": "512",
+   "addedon": "2025-01-10 15:00:00",
+   "productinfo": "Product Info",
+   "firstname": "Payu-Admin",
+   "lastname": "",
+   "address1": "",
+   "address2": "",
+   "city": "",
+   "state": "",
+   "country": "",
+   "zipcode": "",
+   "email": "test@example.com",
+   "phone": "8800108522",
+   "udf1": "",
+   "udf2": "",
+   "udf3": "",
+   "udf4": "",
+   "udf5": "",
+   "udf6": "",
+   "udf7": "",
+   "udf8": "",
+   "udf9": "",
+   "udf10": "",
+   "hash": "29efcd4f7a8a9a60a61481d70e21baf5ba6e7a472716d9b99bd911ef5390240411107b959e5bc8cdabc31463d150d4e02578349afa20529b18e271f60dd6db59",
+   "field1": "",
+   "field2": "",
+   "field3": "",
+   "field4": "",
+   "field5": "",
+   "field6": "",
+   "field7": "",
+   "field8": "",
+   "field9": "",
+   "payment_source": "payuS2S",
+   "PG_TYPE": "SPLITPAY-PG",
+   "bank_ref_num": "1255",
+   "error": "E000",
+   "bankcode": "TWIDX",
+   "error_Message": "No Error",
+   "splitPayInfo": {
+     "cc": {
+       "name": "CC",
+       "bankCode": "CC",
+       "transactionAmount": "412"
+     },
+     "rd": {
+       "name": "RD",
+       "bankCode": "TWIDLS",
+       "transactionAmount": "100"
+     }
+   }
+   }
   ```
-  {
-  "mihpayid": "999091000010480",
-  "mode": "SPLITPAY",
-  "status": "success",
-  "unmappedstatus": "success",
-  "key": "KOEfPI",
-  "txnid": "ram1234",
-  "amount": "512",
-  "discount": "0.00",
-  "net_amount_debit": "512",
-  "addedon": "2025-01-10 15:00:00",
-  "productinfo": "Product Info",
-  "firstname": "Payu-Admin",
-  "lastname": "",
-  "address1": "",
-  "address2": "",
-  "city": "",
-  "state": "",
-  "country": "",
-  "zipcode": "",
-  "email": "test@example.com",
-  "phone": "8800108522",
-  "udf1": "",
-  "udf2": "",
-  "udf3": "",
-  "udf4": "",
-  "udf5": "",
-  "udf6": "",
-  "udf7": "",
-  "udf8": "",
-  "udf9": "",
-  "udf10": "",
-  "hash": "29efcd4f7a8a9a60a61481d70e21baf5ba6e7a472716d9b99bd911ef5390240411107b959e5bc8cdabc31463d150d4e02578349afa20529b18e271f60dd6db59",
-  "field1": "",
-  "field2": "",
-  "field3": "",
-  "field4": "",
-  "field5": "",
-  "field6": "",
-  "field7": "",
-  "field8": "",
-  "field9": "",
-  "payment_source": "payuS2S",
-  "PG_TYPE": "SPLITPAY-PG",
-  "bank_ref_num": "1255",
-  "error": "E000",
-  "bankcode": "TWIDX",
-  "error_Message": "No Error",
-  "splitPayInfo": {
-    "cc": {
-      "name": "CC",
-      "bankCode": "CC",
-      "transactionAmount": "412"
-    },
-    "rd": {
-      "name": "RD",
-      "bankCode": "TWIDLS",
-      "transactionAmount": "100"
-    }
-  }
-  }
-  ```
+</Accordion>
 
-  * Success scenario (TWID + UPI)
-
-  ```
+<Accordion title="Success scenario (TWID + UPI)" icon="fa-code">
+  ```json
   {
   "mihpayid": "999091000010482",
   "mode": "SPLITPAY",
@@ -645,10 +615,12 @@ Use the following bankcode values to identify the reward provider in both the to
   }
   }
   ```
+</Accordion>
 
-  * Failure scenario
+### Failure scenarios
 
-  ```
+<Accordion title="Failure scenario" icon="fa-code">
+  ```json
   Array
   (
       [mihpayid] => 20869277619
@@ -704,87 +676,6 @@ Use the following bankcode values to identify the reward provider in both the to
       [cardhash] => This field is no longer supported in postback params.
   )
   ```
-
-  <br />
-</Accordion>
-
-<Accordion title="Raw _payment API response (Card / UPI)" icon="fa-code">
-  In the **decoupled (txn\_s2s\_flow = 4)** integration, the immediate response from the `_payment` endpoint is a JSON payload containing a `referenceId`, `metaData`, optional `binData`, and a base64-encoded `result.acsTemplate`. The merchant must base64-decode the `acsTemplate` to obtain an HTML form that auto-submits to the bank/UPI redirect page where the customer completes authentication. The `parsed` postback shown above is what PayU posts back to your `surl` / `furl` after the customer finishes the authentication step.
-
-  * Raw `_payment` response (Card)
-
-  ```json
-  {
-    "referenceId": "29b2d115825c53d10a56d64fd359c816",
-    "order": 1,
-    "metaData": {
-      "referenceId": "29b2d115825c53d10a56d64fd359c816",
-      "txnId": "6e5cc585-6d9f-47e5-909c-78268bafec7b",
-      "txnStatus": "Enrolled",
-      "unmappedStatus": "pending",
-      "type": "otp",
-      "expiryTimeout": 180,
-      "cancelUrl": "https://pp1api.payu.in/split-payment/transaction/v1/af6221f5e6baa4cae60c86eff057b234/cancel/29b2d115825c53d10a56d64fd359c816",
-      "isSplitTransaction": true
-    },
-    "binData": {
-      "pureS2SSupported": false,
-      "issuingBank": "ICICI",
-      "category": "creditcard",
-      "cardType": "VISA",
-      "isDomestic": true
-    },
-    "result": {
-      "otpPostUrl": "",
-      "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vcHAxc2VjdXJlLnBheXUuaW4vLi4uLi9DcmVxIiBtZXRob2Q9InBvc3QiPjwvZm9ybT4="
-    },
-    "mode": "CC"
-  }
-  ```
-
-  * Raw `_payment` response (UPI)
-
-  ```json
-  {
-    "referenceId": "3d6cd50a233c2016644af4a0be40fa12",
-    "order": 1,
-    "metaData": {
-      "referenceId": "3d6cd50a233c2016644af4a0be40fa12",
-      "txnId": "6e557dba-955d-4ee9-b49e-7b5b186e71e5",
-      "txnStatus": "pending",
-      "unmappedStatus": "pending",
-      "type": "otp",
-      "expiryTimeout": 180,
-      "cancelUrl": "https://pp1api.payu.in/split-payment/transaction/v1/9c5c73a100f323c2c2b5a3568cd3176f/cancel/3d6cd50a233c2016644af4a0be40fa12",
-      "isSplitTransaction": true
-    },
-    "result": {
-      "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vcHAxYXBpLnBheXUuaW4vcHVibGljLy8vM2Q2Y2Q1MGEyMzNjMjAxNjY0NGFmNGEwYmU0MGZhMTIvdXBpTG9hZGVyIiBtZXRob2Q9ImdldCI+PC9mb3JtPg=="
-    },
-    "mode": "UPI"
-  }
-  ```
-
-  #### Raw response field reference
-
-  | Field                       | Description                                                                                                               | Example                              |
-  | --------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
-  | referenceId                 | `String` Unique reference for this leg of the split transaction.                                                          | 29b2d115825c53d10a56d64fd359c816     |
-  | order                       | `Number` Sequence of the leg within the split transaction.                                                                | 1                                    |
-  | metaData.txnId              | `String` PayU internal transaction id.                                                                                    | 6e5cc585-6d9f-47e5-909c-78268bafec7b |
-  | metaData.txnStatus          | `String` Status of the leg (e.g. `Enrolled`, `pending`).                                                                  | Enrolled                             |
-  | metaData.unmappedStatus     | `String` Unmapped (raw) status of the leg.                                                                                | pending                              |
-  | metaData.type               | `String` Type of authentication challenge (e.g. `otp`).                                                                   | otp                                  |
-  | metaData.expiryTimeout      | `Number` Expiry, in seconds, for the authentication step.                                                                 | 180                                  |
-  | metaData.cancelUrl          | `String` URL the merchant can call to cancel the split-payment leg before the customer completes authentication.          | https\://...                         |
-  | metaData.isSplitTransaction | `Boolean` Always `true` for `SPLITPAY` flows.                                                                             | true                                 |
-  | binData.issuingBank         | `String` Issuing bank for the card (Card flow only).                                                                      | ICICI                                |
-  | binData.category            | `String` Card category (Card flow only).                                                                                  | creditcard                           |
-  | binData.cardType            | `String` Card network (Card flow only).                                                                                   | VISA                                 |
-  | binData.isDomestic          | `Boolean` Whether the card is domestic (Card flow only).                                                                  | true                                 |
-  | result.acsTemplate          | `String (Base64)` Base64-encoded HTML form. Decode and render in the browser to redirect the customer for authentication. | PGh0bWw+PGJvZHk+...                  |
-  | result.otpPostUrl           | `String` URL to which the OTP must be POSTed (when applicable).                                                           |                                      |
-  | mode                        | `String` Payment instrument used for this leg: `CC` for Card, `UPI` for UPI.                                              | CC                                   |
 </Accordion>
 
 ## Step 4: Verify the Payment
