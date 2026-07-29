@@ -5,12 +5,18 @@ api:
 hidden: false
 ---
 Skip CKYC Consent submits merchant/product-account level consents to skip or opt out of selected onboarding checks.
-## Endpoint`POST /api/v1/merchants/{uuid}/submit_ckyc_consent`
 
-## Headers- `Authorization: 
-Bearer {{access_token}}`- `Content-Type: application/json`## Request Body```json{  "consents": [    {"name": "skip_ckyc_flow", "provided_by_uuid": "<partner_uuid>"},    {"name": "gst_consent", "provided_by_uuid": "<partner_uuid>"},    {"name": "ubo_not_exist", "provided_by_uuid": "<partner_uuid>"},    {"name": "digilocker_consent", "provided_by_uuid": "<partner_uuid>"}  ]}```
+## Endpoint
+
+`POST /api/v1/merchants/{uuid}/submit_ckyc_consent`
+
+## Authentication Header
+
+`Authorization:
+Bearer {{access_token}}`- `Content-Type: application/json\`## Request Body`json{  "consents": [    {"name": "skip_ckyc_flow", "provided_by_uuid": "<partner_uuid>"},    {"name": "gst_consent", "provided_by_uuid": "<partner_uuid>"},    {"name": "ubo_not_exist", "provided_by_uuid": "<partner_uuid>"},    {"name": "digilocker_consent", "provided_by_uuid": "<partner_uuid>"}  ]}`
 
 ## Supported Consent Names
+
 Use one or many entries in `consents[]`:
 
 - `skip_ckyc_flow` — skip CKYC OTP/data path
@@ -24,9 +30,12 @@ Use one or many entries in `consents[]`:
 
 Returns:- `message`: success text- `data.consents[]`: list of active consent records on product accountEach `data.consents[]` item can include:- `uuid`, `name`, `provided_by_uuid`, `provided_by`- `record_id`, `record_type`, `active`- `product_account_uuid`, `merchant_id`, `merchant_uuid`
 
-### Observed Success Variants 
+### Observed Success Variants
+
 - **UBO_exist = 0 flow**: `data.consents[]` includes `ubo_not_exist`
 - **UBO_exist = 1 flow**: `data.consents[]` does not include `ubo_not_exist`### Saved Examples in this request- `200 
-— Success (UBO_exist=0)`- `200 
-— Success (UBO_exist=1)`- `422 
-— Invalid consent name`- `401 — Unauthorized`
+  — Success (UBO_exist=0)`- `200 
+  — Success (UBO_exist=1)`- `422 
+  — Invalid consent name`- `401 — Unauthorized`
+
+<br />
