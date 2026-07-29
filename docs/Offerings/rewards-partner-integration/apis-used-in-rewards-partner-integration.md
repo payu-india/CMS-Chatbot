@@ -1,9 +1,10 @@
 ---
-title: APIs used in Rewards Partner Integration
+title: APIs used in Integration
 deprecated: false
 hidden: false
 icon: far fa-rectangle-api
 metadata:
+  title: APIs used in Rewards Partner Integration
   robots: index
 ---
 The following APIs are used for Rewards Partner integration:
