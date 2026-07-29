@@ -1416,304 +1416,6 @@
         "operationId": "post_api_v3_merchants_kyc_document_ckyc_data"
       }
     },
-    "/api/v1/merchants/{uuid}/submit_ckyc_consent": {
-      "post": {
-        "tags": [
-          "Step 03 — CKYC Verification"
-        ],
-        "summary": "D. Skip CKYC Consent",
-        "description": "# D. Skip CKYC Consent\n\nSubmits merchant/product-account level consents to skip or opt out of selected onboarding checks.\n\n## Endpoint\n`POST /api/v1/merchants/{uuid}/submit_ckyc_consent`\n\n## Headers\n- `Authorization: Bearer {{access_token}}`\n- `Content-Type: application/json`\n\n## Request Body\n```json\n{\n  \"consents\": [\n    {\"name\": \"skip_ckyc_flow\", \"provided_by_uuid\": \"<partner_uuid>\"},\n    {\"name\": \"gst_consent\", \"provided_by_uuid\": \"<partner_uuid>\"},\n    {\"name\": \"ubo_not_exist\", \"provided_by_uuid\": \"<partner_uuid>\"},\n    {\"name\": \"digilocker_consent\", \"provided_by_uuid\": \"<partner_uuid>\"}\n  ]\n}\n```\n\n## Supported Consent Names\nUse one or many entries in `consents[]`:\n- `skip_ckyc_flow` — skip CKYC OTP/data path\n- `gst_consent` — consent for GST-based flow\n- `ubo_not_exist` — declare UBO does not exist / opt out of UBO submission\n- `digilocker_consent` — consent for DigiLocker path\n\n`provided_by_uuid` should be the **partner UUID**.\n\n## Response Documentation\n### Success (200)\nReturns:\n- `message`: success text\n- `data.consents[]`: list of active consent records on product account\n\nEach `data.consents[]` item can include:\n- `uuid`, `name`, `provided_by_uuid`, `provided_by`\n- `record_id`, `record_type`, `active`\n- `product_account_uuid`, `merchant_id`, `merchant_uuid`\n\n### Observed Success Variants\n- **UBO_exist = 0 flow**: `data.consents[]` includes `ubo_not_exist`\n- **UBO_exist = 1 flow**: `data.consents[]` does not include `ubo_not_exist`\n\n### Saved Examples in this request\n- `200 — Success (UBO_exist=0)`\n- `200 — Success (UBO_exist=1)`\n- `422 — Invalid consent name`\n- `401 — Unauthorized`\n",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "example": {
-                  "consents": [
-                    {
-                      "name": "skip_ckyc_flow",
-                      "provided_by_uuid": "{{partner_uuid}}"
-                    }
-                  ]
-                },
-                "properties": {
-                  "consents": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "name": {
-                          "type": "string",
-                          "example": "skip_ckyc_flow"
-                        },
-                        "provided_by_uuid": {
-                          "type": "string",
-                          "example": "{{partner_uuid}}"
-                        }
-                      },
-                      "required": [
-                        "name",
-                        "provided_by_uuid"
-                      ],
-                      "example": {
-                        "name": "skip_ckyc_flow",
-                        "provided_by_uuid": "{{partner_uuid}}"
-                      }
-                    },
-                    "example": [
-                      {
-                        "name": "skip_ckyc_flow",
-                        "provided_by_uuid": "{{partner_uuid}}"
-                      }
-                    ]
-                  }
-                },
-                "required": [
-                  "consents"
-                ]
-              },
-              "example": {
-                "consents": [
-                  {
-                    "name": "skip_ckyc_flow",
-                    "provided_by_uuid": "{{partner_uuid}}"
-                  }
-                ]
-              }
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "example": "Bearer {{access_token}}"
-          },
-          {
-            "name": "Content-Type",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "example": "application/json"
-          },
-          {
-            "name": "Accept",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "example": "application/json"
-          },
-          {
-            "name": "uuid",
-            "in": "path",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "Merchant UUID from Step 01 create merchant response",
-            "example": "{{uuid}}"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "headers": {
-              "Content-Type": {
-                "schema": {
-                  "type": "string",
-                  "example": "application/json"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object"
-                },
-                "examples": {
-                  "example-0": {
-                    "summary": "200 — Success (UBO_exist=0)",
-                    "value": {
-                      "message": "Consent submitted successfully",
-                      "data": {
-                        "consents": [
-                          {
-                            "uuid": "11f1-3336-5a64a2d8-8306-02f4a48620c1",
-                            "name": "skip_ckyc_flow",
-                            "provided_by_uuid": "Partner",
-                            "provided_by": null,
-                            "record_id": 27986,
-                            "record_type": "ProductAccount",
-                            "merchant_id": null,
-                            "active": true,
-                            "product_account_uuid": "11f1-3335-5e00033e-b7b7-02f4a48620c1",
-                            "merchant_uuid": null
-                          },
-                          {
-                            "uuid": "11f1-3337-6b2a03aa-8306-02f4a48620c1",
-                            "name": "gst_consent",
-                            "provided_by_uuid": "11f1-1d1b-a73f183a-b5f2-02111e9ad6d9",
-                            "provided_by": "PAYU PAYMENTS PRIVATE LIMITED",
-                            "record_id": 27986,
-                            "record_type": "ProductAccount",
-                            "merchant_id": null,
-                            "active": true,
-                            "product_account_uuid": "11f1-3335-5e00033e-b7b7-02f4a48620c1",
-                            "merchant_uuid": null
-                          },
-                          {
-                            "uuid": "11f1-3339-f40d7ef2-9dfb-02f4a48620c1",
-                            "name": "digilocker_consent",
-                            "provided_by_uuid": "Partner",
-                            "provided_by": null,
-                            "record_id": 27986,
-                            "record_type": "ProductAccount",
-                            "merchant_id": null,
-                            "active": true,
-                            "product_account_uuid": "11f1-3335-5e00033e-b7b7-02f4a48620c1",
-                            "merchant_uuid": null
-                          },
-                          {
-                            "uuid": "11f1-3343-5c19f076-a411-02f4a48620c1",
-                            "name": "ubo_not_exist",
-                            "provided_by_uuid": "11f1-1d1b-a73f183a-b5f2-02111e9ad6d9",
-                            "provided_by": "PAYU PAYMENTS PRIVATE LIMITED",
-                            "record_id": 27986,
-                            "record_type": "ProductAccount",
-                            "merchant_id": null,
-                            "active": true,
-                            "product_account_uuid": "11f1-3335-5e00033e-b7b7-02f4a48620c1",
-                            "merchant_uuid": null
-                          }
-                        ]
-                      }
-                    }
-                  },
-                  "example-1": {
-                    "summary": "200 — Success (UBO_exist=1)",
-                    "value": {
-                      "message": "Consent submitted successfully",
-                      "data": {
-                        "consents": [
-                          {
-                            "uuid": "11f1-3336-5a64a2d8-8306-02f4a48620c1",
-                            "name": "skip_ckyc_flow",
-                            "provided_by_uuid": "Partner",
-                            "provided_by": null,
-                            "record_id": 27986,
-                            "record_type": "ProductAccount",
-                            "merchant_id": null,
-                            "active": true,
-                            "product_account_uuid": "11f1-3335-5e00033e-b7b7-02f4a48620c1",
-                            "merchant_uuid": null
-                          },
-                          {
-                            "uuid": "11f1-3337-6b2a03aa-8306-02f4a48620c1",
-                            "name": "gst_consent",
-                            "provided_by_uuid": "11f1-1d1b-a73f183a-b5f2-02111e9ad6d9",
-                            "provided_by": "PAYU PAYMENTS PRIVATE LIMITED",
-                            "record_id": 27986,
-                            "record_type": "ProductAccount",
-                            "merchant_id": null,
-                            "active": true,
-                            "product_account_uuid": "11f1-3335-5e00033e-b7b7-02f4a48620c1",
-                            "merchant_uuid": null
-                          },
-                          {
-                            "uuid": "11f1-3339-f40d7ef2-9dfb-02f4a48620c1",
-                            "name": "digilocker_consent",
-                            "provided_by_uuid": "Partner",
-                            "provided_by": null,
-                            "record_id": 27986,
-                            "record_type": "ProductAccount",
-                            "merchant_id": null,
-                            "active": true,
-                            "product_account_uuid": "11f1-3335-5e00033e-b7b7-02f4a48620c1",
-                            "merchant_uuid": null
-                          }
-                        ]
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "headers": {
-              "Content-Type": {
-                "schema": {
-                  "type": "string",
-                  "example": "application/json"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string",
-                      "example": "Unauthorized"
-                    }
-                  },
-                  "required": [
-                    "error"
-                  ]
-                },
-                "example": {
-                  "error": "Unauthorized"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Unprocessable Entity",
-            "headers": {
-              "Content-Type": {
-                "schema": {
-                  "type": "string",
-                  "example": "application/json"
-                }
-              }
-            },
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string",
-                      "example": "Validation failed"
-                    },
-                    "error": {
-                      "type": "string",
-                      "example": "Invalid consent name"
-                    }
-                  },
-                  "required": [
-                    "message",
-                    "error"
-                  ]
-                },
-                "example": {
-                  "message": "Validation failed",
-                  "error": "Invalid consent name"
-                }
-              }
-            }
-          }
-        },
-        "operationId": "post_api_v1_merchants_uuid_submit_ckyc_consent"
-      }
-    },
     "/api/v3/merchants/{mid}/kyc_document": {
       "post": {
         "tags": [
@@ -3785,6 +3487,302 @@
         },
         "security": [],
         "operationId": "post_oauth_token"
+      }
+    },
+    "/api/v1/merchants/{uuid}/submit_consents": {
+      "post": {
+        "tags": [
+          "Step 03 — CKYC Verification"
+        ],
+        "summary": "D. Skip CKYC Consent",
+        "description": "Skip CKYC Consent submits merchant/product-account level consents to skip or opt out of selected onboarding checks.## Endpoint`POST /api/v1/merchants/{uuid}/submit_ckyc_consent`## Headers- `Authorization: Bearer {{access_token}}`- `Content-Type: application/json`## Request Body```json{  \"consents\": [    {\"name\": \"skip_ckyc_flow\", \"provided_by_uuid\": \"<partner_uuid>\"},    {\"name\": \"gst_consent\", \"provided_by_uuid\": \"<partner_uuid>\"},    {\"name\": \"ubo_not_exist\", \"provided_by_uuid\": \"<partner_uuid>\"},    {\"name\": \"digilocker_consent\", \"provided_by_uuid\": \"<partner_uuid>\"}  ]}```## Supported Consent NamesUse one or many entries in `consents[]`:- `skip_ckyc_flow` — skip CKYC OTP/data path- `gst_consent` — consent for GST-based flow- `ubo_not_exist` — declare UBO does not exist / opt out of UBO submission- `digilocker_consent` — consent for DigiLocker path`provided_by_uuid` should be the **partner UUID**.## Response Documentation### Success (200)Returns:- `message`: success text- `data.consents[]`: list of active consent records on product accountEach `data.consents[]` item can include:- `uuid`, `name`, `provided_by_uuid`, `provided_by`- `record_id`, `record_type`, `active`- `product_account_uuid`, `merchant_id`, `merchant_uuid`### Observed Success Variants- **UBO_exist = 0 flow**: `data.consents[]` includes `ubo_not_exist`- **UBO_exist = 1 flow**: `data.consents[]` does not include `ubo_not_exist`### Saved Examples in this request- `200 — Success (UBO_exist=0)`- `200 — Success (UBO_exist=1)`- `422 — Invalid consent name`- `401 — Unauthorized`",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "consents": [
+                    {
+                      "name": "skip_ckyc_flow",
+                      "provided_by_uuid": "{{partner_uuid}}"
+                    }
+                  ]
+                },
+                "properties": {
+                  "consents": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "example": "skip_ckyc_flow"
+                        },
+                        "provided_by_uuid": {
+                          "type": "string",
+                          "example": "{{partner_uuid}}"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "provided_by_uuid"
+                      ],
+                      "example": {
+                        "name": "skip_ckyc_flow",
+                        "provided_by_uuid": "{{partner_uuid}}"
+                      }
+                    },
+                    "example": [
+                      {
+                        "name": "skip_ckyc_flow",
+                        "provided_by_uuid": "{{partner_uuid}}"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "consents"
+                ]
+              },
+              "example": {
+                "consents": [
+                  {
+                    "name": "skip_ckyc_flow",
+                    "provided_by_uuid": "{{partner_uuid}}"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {{access_token}}"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "in": "path",
+            "name": "uuid",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "example-0": {
+                    "summary": "200 — Success (UBO_exist=0)",
+                    "value": {
+                      "message": "Consent submitted successfully",
+                      "data": {
+                        "consents": [
+                          {
+                            "uuid": "11f1-3336-5a64a2d8-8306-02f4a48620c1",
+                            "name": "skip_ckyc_flow",
+                            "provided_by_uuid": "Partner",
+                            "provided_by": null,
+                            "record_id": 27986,
+                            "record_type": "ProductAccount",
+                            "merchant_id": null,
+                            "active": true,
+                            "product_account_uuid": "11f1-3335-5e00033e-b7b7-02f4a48620c1",
+                            "merchant_uuid": null
+                          },
+                          {
+                            "uuid": "11f1-3337-6b2a03aa-8306-02f4a48620c1",
+                            "name": "gst_consent",
+                            "provided_by_uuid": "11f1-1d1b-a73f183a-b5f2-02111e9ad6d9",
+                            "provided_by": "PAYU PAYMENTS PRIVATE LIMITED",
+                            "record_id": 27986,
+                            "record_type": "ProductAccount",
+                            "merchant_id": null,
+                            "active": true,
+                            "product_account_uuid": "11f1-3335-5e00033e-b7b7-02f4a48620c1",
+                            "merchant_uuid": null
+                          },
+                          {
+                            "uuid": "11f1-3339-f40d7ef2-9dfb-02f4a48620c1",
+                            "name": "digilocker_consent",
+                            "provided_by_uuid": "Partner",
+                            "provided_by": null,
+                            "record_id": 27986,
+                            "record_type": "ProductAccount",
+                            "merchant_id": null,
+                            "active": true,
+                            "product_account_uuid": "11f1-3335-5e00033e-b7b7-02f4a48620c1",
+                            "merchant_uuid": null
+                          },
+                          {
+                            "uuid": "11f1-3343-5c19f076-a411-02f4a48620c1",
+                            "name": "ubo_not_exist",
+                            "provided_by_uuid": "11f1-1d1b-a73f183a-b5f2-02111e9ad6d9",
+                            "provided_by": "PAYU PAYMENTS PRIVATE LIMITED",
+                            "record_id": 27986,
+                            "record_type": "ProductAccount",
+                            "merchant_id": null,
+                            "active": true,
+                            "product_account_uuid": "11f1-3335-5e00033e-b7b7-02f4a48620c1",
+                            "merchant_uuid": null
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "example-1": {
+                    "summary": "200 — Success (UBO_exist=1)",
+                    "value": {
+                      "message": "Consent submitted successfully",
+                      "data": {
+                        "consents": [
+                          {
+                            "uuid": "11f1-3336-5a64a2d8-8306-02f4a48620c1",
+                            "name": "skip_ckyc_flow",
+                            "provided_by_uuid": "Partner",
+                            "provided_by": null,
+                            "record_id": 27986,
+                            "record_type": "ProductAccount",
+                            "merchant_id": null,
+                            "active": true,
+                            "product_account_uuid": "11f1-3335-5e00033e-b7b7-02f4a48620c1",
+                            "merchant_uuid": null
+                          },
+                          {
+                            "uuid": "11f1-3337-6b2a03aa-8306-02f4a48620c1",
+                            "name": "gst_consent",
+                            "provided_by_uuid": "11f1-1d1b-a73f183a-b5f2-02111e9ad6d9",
+                            "provided_by": "PAYU PAYMENTS PRIVATE LIMITED",
+                            "record_id": 27986,
+                            "record_type": "ProductAccount",
+                            "merchant_id": null,
+                            "active": true,
+                            "product_account_uuid": "11f1-3335-5e00033e-b7b7-02f4a48620c1",
+                            "merchant_uuid": null
+                          },
+                          {
+                            "uuid": "11f1-3339-f40d7ef2-9dfb-02f4a48620c1",
+                            "name": "digilocker_consent",
+                            "provided_by_uuid": "Partner",
+                            "provided_by": null,
+                            "record_id": 27986,
+                            "record_type": "ProductAccount",
+                            "merchant_id": null,
+                            "active": true,
+                            "product_account_uuid": "11f1-3335-5e00033e-b7b7-02f4a48620c1",
+                            "merchant_uuid": null
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Unauthorized"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                },
+                "example": {
+                  "error": "Unauthorized"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Validation failed"
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid consent name"
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "error"
+                  ]
+                },
+                "example": {
+                  "message": "Validation failed",
+                  "error": "Invalid consent name"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "post_api_v1_merchants_uuid_submit_ckyc_consent"
       }
     }
   }
