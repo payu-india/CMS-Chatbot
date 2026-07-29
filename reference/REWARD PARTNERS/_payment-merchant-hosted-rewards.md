@@ -5,21 +5,6 @@ hidden: false
 metadata:
   robots: index
 ---
----
-title: Collect Payment with Rewards API
-deprecated: false
-hidden: false
-metadata:
-  robots: index
----
----
-title: Collect Payment using Rewards API
-deprecated: false
-hidden: false
-metadata:
-  robots: index
----
-
 The **Collect Payment using Rewards** API (**_payment** API) is used to initiate a payment transaction that combines reward points (TWID/Zillion) with other payment methods like Cards or UPI.
 
 **Environment**
@@ -244,18 +229,6 @@ HTTP Method: **POST**
   </tbody>
 </Table>
 `}</HTMLBlock>
-
-## Hash generation
-
-The `_payment` API uses a `hash` parameter in the request body (not header-based authentication). Generate the hash before each request.
-
-<Accordion title="Understanding Hashing and sample code" icon="fa-code">
-  <HashingRequestParameters />
-
-  #### Hashing Sample Code
-
-  <HashingSample />
-</Accordion>
 
 ## splitInfo JSON Object
 
