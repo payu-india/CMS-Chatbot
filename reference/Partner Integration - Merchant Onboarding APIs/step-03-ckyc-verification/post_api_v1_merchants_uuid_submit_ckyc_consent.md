@@ -28,10 +28,10 @@ Use one or many entries in `consents[]`:
 - `ubo_not_exist` — declare UBO does not exist / opt out of UBO submission
 - `digilocker_consent` — consent for DigiLocker path`provided_by_uuid` should be the **partner UUID**.
 
-## Response Parameters
+## Sample Response
 
 ### Success (200)
-
+#### Sample JSON
 Returns:- `message`: success text- `data.consents[]`: list of active consent records on product accountEach `data.consents[]` item can include:- `uuid`, `name`, `provided_by_uuid`, `provided_by`- `record_id`, `record_type`, `active`- `product_account_uuid`, `merchant_id`, `merchant_uuid`
 
 ### Observed Success Variants
