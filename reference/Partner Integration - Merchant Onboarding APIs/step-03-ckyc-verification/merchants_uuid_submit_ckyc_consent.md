@@ -8,7 +8,7 @@ Skip CKYC Consent submits merchant/product-account level consents to skip or opt
 
 ## Endpoint
 
-`POST /api/v1/merchants/{uuid}/submit_consent`
+`POST /api/v1/merchants/{uuid}/submit_consents`
 
 ## Authentication Header
 
