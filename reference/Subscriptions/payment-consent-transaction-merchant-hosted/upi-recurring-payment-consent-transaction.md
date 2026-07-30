@@ -38,6 +38,10 @@ This section provides the request parameters, sample request and response for a 
 
 <br />
 
+<NPCI_Subrciptions_Recommendations />
+
+<br />
+
 <Callout icon="👍" theme="okay">
   Experience the end-to-end **Merchant Hosted Checkout** > **UPI** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 
@@ -109,16 +113,18 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 | bankcode<br />`mandatory`                    | `varchar` This parameter contains UPI or INTENT for UPI.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | UPI                                                                                                                                |
 | si<br />`mandatory`                          | This parameter signifies a successful consent taken from the user by the merchant. This parameter must contain 1 for a successful consent. Without this parameter sent as 1, subscription cannot be set up.<br />**Notes**: You can modify or cancel existing recurring payment registration as described in the following sections:<br />- [Manage Recurring Payment for Cards](http://docs.payu.in/reference/manage-recurring-payment-for-cards)<br />- [Manage UPI Recurring Transaction](http://docs.payu.in/reference/api-commands-to-manage-upi-recurring-transaction)                                         |                                                                                                                                    |
 | si_details<br />`mandatory`                  | This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.<br />**Note**: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers (for more details refer – [RBI Notification](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0)).<br />This is a JSON object and it includes a set of fields. For more information, refer to [SI Parameter JSON Details](http://docs.payu.in/reference/si-parameter-json-details). |                                                                                                                                    |
-| vpa<br />`mandatory for UPI Collect`         | `varchar` This parameter contains the customer's VPA handle. For the list UPI handles supported, refer to [UPI Handles](http://docs.payu.in/docs/upi-handles).<br />The merchant is advised to check the validity of the VPA through using the VPA Validation API. PayU extends support for the same if required. For more information on using VPA Validation API, refer to [Validate VPA Handle API](http://docs.payu.in/reference/validate_vpa_api).                                                                                                                                                              | abc@upi                                                                                                                            |
+| vpa<br />`mandatory for UPI Collect`         | `varchar` This parameter contains the customer's VPA handle. For the list UPI handles supported, refer to [UPI Handles](http://docs.payu.in/docs/upi-handles).<br />The merchant is advised to check the validity of the VPA through using the VPA Validation API. PayU extends support for the same if required. For more information on using VPA Validation API, refer to [Validate VPA Handle API](http://docs.payu.in/reference/validate_vpa_api).                                                                                                                                                              | abc\@upi                                                                                                                           |
 | txn_s2s_flow<br />`mandatory for UPI Intent` | `integer` This parameter must be passed with the values as 4 for UPI Intent.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | 4                                                                                                                                  |
 | free_trial<br />`optional`                   | This is mandatory only if the merchant wants to support free trial use cases.<br />In this case, PayU adjusts the transaction amount as INR 2.00 for cards and UPI and INR 0.00 for Net Banking irrespective of what amount is passed against the amount field in the request.                                                                                                                                                                                                                                                                                                                                       |                                                                                                                                    |
 
-> 📘 Notes
->
-> The **bankcode** parameter value can be any of the following:
->
-> * UPI: Pass this value for UPI transactions.
-> * INTENT: Pass this value for Intent.
+<Callout icon="📘" theme="info">
+  ### Notes
+
+  The **bankcode** parameter value can be any of the following:
+
+  - UPI: Pass this value for UPI transactions.
+  - INTENT: Pass this value for Intent.
+</Callout>
 
 For more information on bank codes used for recurring payments registration, refer to [Bank Codes - Recurring Payments](doc:bank-codes-recurring-payments)
 
@@ -126,21 +132,23 @@ Characters allowed for parameters
 
 For parameters address1, address2, city, state, country, product info, email, and phone following characters are allowed:
 
-* Characters: A to Z, a to z, 0 to 9
-* – (Minus)
-* _ (Underscore)
-* @ ()
-* / (Slash)
-* (Space)
-* . (Dot)
+- Characters: A to Z, a to z, 0 to 9
+- – (Minus)
+- \_ (Underscore)
+- @ ()
+- / (Slash)
+- (Space)
+- . (Dot)
 
 ## Sample request
 
 The sample code block for UPI Seamless integration (Merchant-Hosted Checkout) is similar to the following code block:
 
-> 📘 Note:
->
-> Before you make payment request to PayU, it is recommended to validate the UPI handle provided by your customer is eligible for recurring payment using the validateVPA API to avoid transaction failure. For more information, refer to [Validate VPA API](ref:validate_vpa_api).
+<Callout icon="📘" theme="info">
+  ### Note:
+
+  Before you make payment request to PayU, it is recommended to validate the UPI handle provided by your customer is eligible for recurring payment using the validateVPA API to avoid transaction failure. For more information, refer to [Validate VPA API](ref:validate_vpa_api).
+</Callout>
 
 ### UPI Consent Transaction
 
@@ -208,7 +216,7 @@ The response URL returned from PayU is in the form URL format (application/x-www
 
 #### UPI Consent Transaction
 
-* The formatted response for UPI Consent Transaction is similar to the following:
+- The formatted response for UPI Consent Transaction is similar to the following:
 
 ```json
 Array
@@ -267,7 +275,7 @@ Array
 
 #### UPI Intent
 
-* The formatted response for UPI Intent:
+- The formatted response for UPI Intent:
 
 ```json
 {
