@@ -60,12 +60,7 @@ Follow this recommended path:
 | **In-person / POS**                  | POS terminal, UPI QR, Android POS                                             | Product-specific                        | [In-person payments](ref:pos-terminal-integration-apis)                                                 |
 
 ## What's Next?
-<Columns layout="auto">
-  <Column>
-    <div style={{ borderLeft: '3px solid #208B75', paddingLeft: '16px' }}>
-      Choose your API based on your requirement.
-    </div>
-  </Column>
-</Columns>
+
+Choose your API based on your requirement.
 
 <br />
