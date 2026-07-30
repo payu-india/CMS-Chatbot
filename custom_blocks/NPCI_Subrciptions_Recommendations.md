@@ -1,6 +1,7 @@
 ---
 name: NPCI_Subrciptions_Recommendations
 ---
+<Accordion title="Important Recommendations" icon="fa-info-clock">
 <Callout icon="📘" theme="info">
   ### Notes:
 
@@ -9,5 +10,7 @@ name: NPCI_Subrciptions_Recommendations
   - Above execution timing and limiting the execution attempts to 4 will be applicable post 31st July, 2026.
   - &#x20;Combination of debit Frequency as "ADHOC" (As on when presented) and category as "Loan EMI payment " is not allowed as per NPCI guidelines for ENACH bank mandates and Loan merchants are restricted to create the bank mandates on other frequencies such as MONTHLY.
 </Callout>
+
+</Accordion>
 
 <br />
