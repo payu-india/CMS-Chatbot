@@ -8,7 +8,7 @@ Skip CKYC Consent submits merchant/product-account level consents to skip or opt
 
 ## Endpoint
 
-`POST /api/v1/merchants/{uuid}/submit_ckyc_consent`
+`POST /api/v1/merchants/{uuid}/submit_consent`
 
 ## Authentication Header
 
@@ -31,8 +31,16 @@ Use one or many entries in `consents[]`:
 ## Sample Response
 
 ### Success (200)
+
 #### Sample JSON
-Returns:- `message`: success text- `data.consents[]`: list of active consent records on product accountEach `data.consents[]` item can include:- `uuid`, `name`, `provided_by_uuid`, `provided_by`- `record_id`, `record_type`, `active`- `product_account_uuid`, `merchant_id`, `merchant_uuid`
+
+Returns:
+
+\- `message`: success text
+
+\- `data.consents[]`: list of active consent records on product account
+
+Each `data.consents[]` item can includes: `uuid`, `name`, `provided_by_uuid`, `provided_by`- `record_id`, `record_type`, `active`- `product_account_uuid`, `merchant_id`, `merchant_uuid`
 
 ### Observed Success Variants
 
@@ -40,9 +48,10 @@ Returns:- `message`: success text- `data.consents[]`: list of active consent rec
 - **UBO_exist = 1 flow**: `data.consents[]` does not include `ubo_not_exist`
 
 ### Saved Examples in this request
-  - `200 — Success (UBO_exist=0)`- 
-  - `200 — Success (UBO_exist=1)` 
+
+- `200 — Success (UBO_exist=0)`-
+- `200 — Success (UBO_exist=1)`
   — `422 — Invalid consent name`
-  - `401 — Unauthorized`
+- `401 — Unauthorized`
 
 <br />
