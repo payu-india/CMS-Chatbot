@@ -23,37 +23,39 @@ Before starting the integration, ensure you have:
 - Merchant Key and Salt from PayU dashboard
 - Test environment access for development
 
+<NPCI_Subrciptions_Recommendations />
+
 #### I. Payment Consent Flow
 
-<Cards columns={2}>
+<Cards>
   <Card title="1. Post the Request" href="#step-1-post-the-request">
     Send the UPI consent transaction request with S2S parameters.
 
-    <br />
+
   </Card>
 
   <Card title="2. Check Response from PayU" href="#step-2-check-the-response-from-payu">
     Handle the response for UPI Intent flows.
 
-    <br />
+
   </Card>
 
   <Card title="3. Configure Webhooks" href="#step-3-configure-webhooks">
     Set up webhooks to receive transaction status updates.
 
-    <br />
+
   </Card>
 
   <Card title="4. Verify Mandate Registration" href="#step-4-verify-mandate-registration">
     Confirm the mandate registration was successful.
 
-    <br />
+
   </Card>
 </Cards>
 
 #### II.  Recurring Payments Flow
 
-<Cards columns={2}>
+<Cards>
   <Card title="1. Pre-Debit SI Notification" href="#step-1-pre-debit-si-notification">
     Send pre-debit notifications for upcoming recurring debits.
   </Card>
@@ -78,23 +80,23 @@ Before implementing, familiarize yourself with the required parameters.
 <Accordion title="Key Parameters for UPI Mandate Registration" icon="fa-list">
   **Mandatory Parameters:**
 
-  * `key`, `txnid`, `amount`, `productinfo`, `firstname`, `email`, `phone`, `lastname`
-  * `surl`, `furl`, `hash`
-  * `pg` (must be `UPI`)
-  * `bankcode` (`UPI` for Collect, `INTENT` for Intent)
-  * `si` (must be `1`)
-  * `si_details` (JSON object with mandate details)
-  * `api_version` (must be `7`)
+  - `key`, `txnid`, `amount`, `productinfo`, `firstname`, `email`, `phone`, `lastname`
+  - `surl`, `furl`, `hash`
+  - `pg` (must be `UPI`)
+  - `bankcode` (`UPI` for Collect, `INTENT` for Intent)
+  - `si` (must be `1`)
+  - `si_details` (JSON object with mandate details)
+  - `api_version` (must be `7`)
 
   **UPI-Specific Parameters:**
 
-  * `vpa` (mandatory for UPI Collect - customer's VPA handle)
+  - `vpa` (mandatory for UPI Collect - customer's VPA handle)
 
   **S2S Flow Parameters (for UPI Intent):**
 
-  * `txn_s2s_flow` = `4` (Legacy Decoupled flow)
-  * `s2s_client_ip` (customer's source IP)
-  * `s2s_device_info` (customer's device/user agent)
+  - `txn_s2s_flow` = `4` (Legacy Decoupled flow)
+  - `s2s_client_ip` (customer's source IP)
+  - `s2s_device_info` (customer's device/user agent)
 </Accordion>
 
 <Accordion title="Request Parameters" icon="fa-table">
@@ -120,10 +122,10 @@ Before implementing, familiarize yourself with the required parameters.
   | `furl`<br />`mandatory`                                             | `String` The Failure URL, which is the page PayU will redirect to if the transaction is failed.                                                                                                                                                                         |                                             |
   | vpa `conditional`                                                   | `String` Customer's VPA handle. Mandatory for UPI Collect flow.                                                                                                                                                                                                         | `customer@upi`                              |
   | si `mandatory`                                                      | `String` Signifies successful consent taken from the user. Must be `1` for subscription setup.                                                                                                                                                                          | `1`                                         |
-  | si\_details `mandatory`                                             | `JSON String` JSON object containing mandate details (billingAmount, billingCurrency, billingCycle, etc.). Refer to si\_details JSON Object below.                                                                                                                      | See si\_details accordion                   |
-  | txn\_s2s\_flow `conditional`                                        | `Integer` Parameter to enable S2S flow. Must be `4` for Legacy Decoupled flow (UPI Intent).                                                                                                                                                                             | `4`                                         |
-  | s2s\_client\_ip `conditional`                                       | `String` Source IP of the customer. Required for UPI Intent flow.                                                                                                                                                                                                       | `10.200.12.12`                              |
-  | s2s\_device\_info `conditional`                                     | `String` Customer agent's device information. Required for UPI Intent flow.                                                                                                                                                                                             | `Mozilla/5.0 (Windows NT 10.0; Win64; x64)` |
+  | si_details `mandatory`                                              | `JSON String` JSON object containing mandate details (billingAmount, billingCurrency, billingCycle, etc.). Refer to si_details JSON Object below.                                                                                                                       | See si_details accordion                    |
+  | txn_s2s_flow `conditional`                                          | `Integer` Parameter to enable S2S flow. Must be `4` for Legacy Decoupled flow (UPI Intent).                                                                                                                                                                             | `4`                                         |
+  | s2s_client_ip `conditional`                                         | `String` Source IP of the customer. Required for UPI Intent flow.                                                                                                                                                                                                       | `10.200.12.12`                              |
+  | s2s_device_info `conditional`                                       | `String` Customer agent's device information. Required for UPI Intent flow.                                                                                                                                                                                             | `Mozilla/5.0 (Windows NT 10.0; Win64; x64)` |
 </Accordion>
 
 <Accordion title="Hashing Logic" icon="fa-table">
@@ -190,7 +192,7 @@ Before implementing, familiarize yourself with the required parameters.
   ```
 </Accordion>
 
-<Accordion title="Sample Requests" icon="fa-terminal" defaultOpen>
+<Accordion title="Sample Requests" icon="fa-terminal">
   ```bash
   curl --location --request POST 'https://test.payu.in/_payment' \
   --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -658,7 +660,7 @@ Configure webhooks to receive real-time transaction status updates. PayU will se
 
 <Accordion title="Webhook Payload Example" icon="fa-code">
   ```text
-  unmappedstatus=success&phone=9988776655&txnid=upiConsentTxn12345&hash=84e335094bbcb2ddaa0f9a488eb338e143b273765d89c9dfa502402562d0b6f3c7935e28194ca92f380be7c84c3695415b106dcf52cb016a15fcf6adc98d724&status=success&firstname=Ashish&productinfo=Monthly Subscription&mode=UPI&amount=10.00&email=test@payu.in&mihpayid=403993715525317379&surl=https://example.com/success&payment_source=sist
+    unmappedstatus=success&phone=9988776655&txnid=upiConsentTxn12345&hash=84e335094bbcb2ddaa0f9a488eb338e143b273765d89c9dfa502402562d0b6f3c7935e28194ca92f380be7c84c3695415b106dcf52cb016a15fcf6adc98d724&status=success&firstname=Ashish&productinfo=Monthly Subscription&mode=UPI&amount=10.00&email=test@payu.in&mihpayid=403993715525317379&surl=https://example.com/success&payment_source=sist
   ```
 </Accordion>
 
@@ -689,7 +691,7 @@ Configure webhooks to receive real-time transaction status updates. PayU will se
   | Response Parameter | Expected Value | Description                                                               |
   | ------------------ | -------------- | ------------------------------------------------------------------------- |
   | status             | `success`      | Indicates that the transaction is successful with the UPI provider        |
-  | payment\_source    | `sist`         | Indicates UPI details have been marked correctly for Standing Instruction |
+  | payment_source     | `sist`         | Indicates UPI details have been marked correctly for Standing Instruction |
   | mihpayid           | `<mihpayid>`   | PayU's transaction acknowledgment for a Consent transaction               |
 </Accordion>
 
@@ -713,18 +715,18 @@ After successful registration, verify the mandate status:
 
 <Accordion title="Verification Checklist" icon="fa-check-circle">
   1. **Check Response Parameters**:
-     * `status` should be `success`
-     * `payment_source` should be `sist`
-     * `mihpayid` should not be null
+     - `status` should be `success`
+     - `payment_source` should be `sist`
+     - `mihpayid` should not be null
 
   2. **Store Mandate Details**:
-     * Save `mihpayid` for future recurring payments
-     * Save mandate expiry dates from `si_details`
-     * Store customer's VPA for reference
+     - Save `mihpayid` for future recurring payments
+     - Save mandate expiry dates from `si_details`
+     - Store customer's VPA for reference
 
   3. **Test Subsequent Payment**:
-     * Use the stored mandate details to initiate a subsequent recurring payment
-     * Verify the payment processes successfully
+     - Use the stored mandate details to initiate a subsequent recurring payment
+     - Verify the payment processes successfully
 </Accordion>
 
 <PACB_Recurring_Payments_Flow />
@@ -743,9 +745,9 @@ A sequence is posted based on Mandate creation. When consent is taken, the first
 
 <Accordion title="Sample request" icon="fa-code">
   ```curl
-  curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data 'form=2&key=smsplus&command=pre_debit_si&var1={"authpayuid": "25600438037", "requestId": "REQ-2024-001-SEQ2", "debitDate": "2024-12-20", "amount": "100.00", "invoiceDisplayNumber": "INV-12345", "mandateSeqNo": 2}&hash=d9e184476637002a3c2db99a7324673647a313de96e574b7a9812e99153dc1a47f0f9da9b32e3a7382bb46dce09a5eb8d4471c85e1bfc1b0dac380a67ff07b43'
+    curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
+    --header 'Content-Type: application/x-www-form-urlencoded' \
+    --data 'form=2&key=smsplus&command=pre_debit_si&var1={"authpayuid": "25600438037", "requestId": "REQ-2024-001-SEQ2", "debitDate": "2024-12-20", "amount": "100.00", "invoiceDisplayNumber": "INV-12345", "mandateSeqNo": 2}&hash=d9e184476637002a3c2db99a7324673647a313de96e574b7a9812e99153dc1a47f0f9da9b32e3a7382bb46dce09a5eb8d4471c85e1bfc1b0dac380a67ff07b43'
   ```
 </Accordion>
 
@@ -754,7 +756,7 @@ A sequence is posted based on Mandate creation. When consent is taken, the first
   | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
   | **Success Cases**        |                                                                                                                                        |
   | Successful Pre-debit     | `{"status":1,"action":"MANDATE_PRE_DEBIT","message":"Request Processed Successfully"}`                                                 |
-  | *Failure Scenarios*\*    |                                                                                                                                        |
+  | _Failure Scenarios_\*    |                                                                                                                                        |
   | Invalid mandateSeqNo     | `{"status":0,"message":"Invalid value for mandateSeqNo","action":"MANDATE_PRE_DEBIT"}`                                                 |
   | Duplicate Pre-debit      | `{"status":"E9254","action":"MANDATE_PRE_DEBIT","message":"Predebit notification already sent for the mandate sequence no.:2"}`        |
   | Execution Already Exists | `{"status":"E9256","action":"MANDATE_PRE_DEBIT","message":"Execution already sent for the mandate sequence no.:2"}`                    |
@@ -768,23 +770,23 @@ A sequence is posted based on Mandate creation. When consent is taken, the first
 
 <Accordion title="Sample request" icon="fa-flask">
   ```curl
-  curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data 'form=2&key=smsplus&command=si_transaction&var1={"authpayuid": "25600438037", "invoiceDisplayNumber": "INV-12345", "amount": "100.00", "txnid": "TXN-2024-001-SEQ2", "phone": "9999999999", "email": "customer@example.com", "mandateSeqNo": 2}&hash=23a6d57370cc2b2c36a7a8ff3b0894a4309a153586544399155d29fe7dc2599cbcf74519d7bc3c8da1e407a874f2c953e05704279e770332db187d1c7b0cbb4d'
+    curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
+    --header 'Content-Type: application/x-www-form-urlencoded' \
+    --data 'form=2&key=smsplus&command=si_transaction&var1={"authpayuid": "25600438037", "invoiceDisplayNumber": "INV-12345", "amount": "100.00", "txnid": "TXN-2024-001-SEQ2", "phone": "9999999999", "email": "customer@example.com", "mandateSeqNo": 2}&hash=23a6d57370cc2b2c36a7a8ff3b0894a4309a153586544399155d29fe7dc2599cbcf74519d7bc3c8da1e407a874f2c953e05704279e770332db187d1c7b0cbb4d'
   ```
 </Accordion>
 
 <Accordion title="Response in various scenarios" icon="fa-flask">
   # Table 3: Scenarios and Response Payloads
 
-  | Scenario                | Response Payload                                                                                                                                |                            |
-  | :---------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------- |
-  | **Success Cases**       |                                                                                                                                                 |                            |
-  | Transaction In Progress | \`\{"status":1,"message":"Transaction Processed successfully","details":\{...,"status":"in progress","field9":"92\\                             | Transaction Initiated"}}\` |
-  | Transaction Captured    | `{"status":1,"message":"Transaction Processed successfully","details":{...,"status":"captured","field9":"Transaction Completed Successfully"}}` |                            |
-  | **Transaction Errors**  |                                                                                                                                                 |                            |
-  | Authentication Failed   | `{"status":1,"message":"Transaction Processed successfully","details":{...,"status":"failed","field9":"Basic authentication check failed"}}`    |                            |
-  | Invalid Hash            | `{"status":0,"msg":"Invalid Hash."}`                                                                                                            |                            |
+  | Scenario                | Response Payload                                                                                                                                |                              |
+  | :---------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------- |
+  | **Success Cases**       |                                                                                                                                                 |                              |
+  | Transaction In Progress | \`\{"status":1,"message":"Transaction Processed successfully","details":\{...,"status":"in progress","field9":"92\\                             | Transaction Initiated"\}\}\` |
+  | Transaction Captured    | `{"status":1,"message":"Transaction Processed successfully","details":{...,"status":"captured","field9":"Transaction Completed Successfully"}}` |                              |
+  | **Transaction Errors**  |                                                                                                                                                 |                              |
+  | Authentication Failed   | `{"status":1,"message":"Transaction Processed successfully","details":{...,"status":"failed","field9":"Basic authentication check failed"}}`    |                              |
+  | Invalid Hash            | `{"status":0,"msg":"Invalid Hash."}`                                                                                                            |                              |
 </Accordion>
 
 ***
