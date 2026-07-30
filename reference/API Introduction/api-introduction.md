@@ -6,6 +6,18 @@ excerpt: >-
 deprecated: false
 hidden: true
 metadata:
+  title: PayU API Introduction | Developer Guide
+  description: >-
+    Canonical starting point for PayU APIs. Learn which PayU API to use, how
+    authentication works, base URLs, common workflows, and how to make your
+    first API request.
+  keywords:
+    - PayU API
+    - PayU API introduction
+    - PayU developer documentation
+    - PayU payment API
+    - PayU API reference
+    - PayU REST API
   robots: index
 ---
 PayU APIs let you collect payments, verify transactions, issue refunds, manage subscriptions, disburse payouts, and operate partner or marketplace flows. This **API Introduction** is the canonical starting point for developers working with PayU APIs before you dive into individual [API Reference](ref:introduction-api-reference) pages.
