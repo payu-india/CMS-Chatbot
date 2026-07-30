@@ -18,8 +18,6 @@ This section describes the request and response parameters with sample request a
 
 <NPCI_Subrciptions_Recommendations />
 
-<br />
-
 <Callout icon="👍" theme="okay">
   Experience the end-to-end **Merchant Hosted Checkout**> **UPI** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 
