@@ -13,19 +13,15 @@ next:
 This section describes the request and response parameters with sample request and response for UPI One-Time mandate Intent and Collect flow. For more information on integration, refer to [Merchant Hosted Integration - UPI OTM](doc:merchant-hosted-integration-upi-otm).
 
 <Callout icon="📘" theme="info">
-  ###
-
   **Note**: Currently, PayU supports UPI One-Time Mandate only for the Seamless integration.
 </Callout>
+
+<NPCI_Subrciptions_Recommendations />
 
 <br />
 
 <Callout icon="👍" theme="okay">
-  ###
-
   Experience the end-to-end **Merchant Hosted Checkout**> **UPI** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
-
-    
 
   <HTMLBlock>{`
                           <style>
