@@ -7,6 +7,10 @@ metadata:
 ---
 Integrate TPV through UPI using the procedure described in this section with S2S Flow.
 
+<NPCI_Subrciptions_Recommendations />
+
+<br />
+
 ## Step 1: Validate VPA
 
 When your customer makes payment through UPI, you can validate the customer’s Virtual Payment Address (VPA) and then initiate payment. The **validateVpa** API is used to validate the UPI handle. Validate the VPA (UPI handle) using the **validateVpa** API. For Try-It experience, refer to [Validate VPA Handle API](ref:validate_vpa_api).
@@ -17,192 +21,192 @@ When your customer makes payment through UPI, you can validate the customer’s 
   <Validate_VPA />
 
   **Validate VPA for Recurring Payment**
-```curl
-curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g" \
-  -d "command=validateVPA" \
-  -d "var1=9999999999@upi" \
-  -d "var2={\"validateAutoPayVPA\":\"1\"}" \
-  -d "hash=75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e"
-```
-```python
-import requests
-import json
 
-url = "https://test.payu.in/merchant/postservice"
+  ```curl
+  curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
+    -H "accept: application/json" \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -d "key=JP***g" \
+    -d "command=validateVPA" \
+    -d "var1=9999999999@upi" \
+    -d "var2={\"validateAutoPayVPA\":\"1\"}" \
+    -d "hash=75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e"
+  ```
+  ```python
+  import requests
+  import json
 
-headers = {
-    "accept": "application/json",
-    "Content-Type": "application/x-www-form-urlencoded"
-}
+  url = "https://test.payu.in/merchant/postservice"
 
-var2_json = json.dumps({"validateAutoPayVPA": "1"})
+  headers = {
+      "accept": "application/json",
+      "Content-Type": "application/x-www-form-urlencoded"
+  }
 
-data = {
-    "key": "JP***g",
-    "command": "validateVPA",
-    "var1": "9999999999@upi",
-    "var2": var2_json,
-    "hash": "75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e"
-}
+  var2_json = json.dumps({"validateAutoPayVPA": "1"})
 
-response = requests.post(url, headers=headers, data=data, params={"form": "2"})
+  data = {
+      "key": "JP***g",
+      "command": "validateVPA",
+      "var1": "9999999999@upi",
+      "var2": var2_json,
+      "hash": "75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e"
+  }
 
-print("Status Code:", response.status_code)
-print("Response:", response.json())
-```
-```java
-import java.io.IOException;
-import java.net.URI;
-import java.net.URLEncoder;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
+  response = requests.post(url, headers=headers, data=data, params={"form": "2"})
 
-public class ValidateAutoPayVPA {
-    public static void main(String[] args) throws IOException, InterruptedException {
-        String url = "https://test.payu.in/merchant/postservice?form=2";
-        
-        String var2Json = "{\"validateAutoPayVPA\":\"1\"}";
-        
-        Map<String, String> params = new HashMap<>();
-        params.put("key", "JP***g");
-        params.put("command", "validateVPA");
-        params.put("var1", "9999999999@upi");
-        params.put("var2", var2Json);
-        params.put("hash", "75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e");
-        
-        String formData = params.entrySet().stream()
-            .map(e -> URLEncoder.encode(e.getKey(), StandardCharsets.UTF_8) + "=" 
-                    + URLEncoder.encode(e.getValue(), StandardCharsets.UTF_8))
-            .collect(Collectors.joining("&"));
-        
-        HttpClient client = HttpClient.newHttpClient();
-        
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create(url))
-            .header("accept", "application/json")
-            .header("Content-Type", "application/x-www-form-urlencoded")
-            .POST(HttpRequest.BodyPublishers.ofString(formData))
-            .build();
-        
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        
-        System.out.println("Status Code: " + response.statusCode());
-        System.out.println("Response: " + response.body());
-    }
-}
-```
-```javascript
-const axios = require('axios');
-const qs = require('qs');
+  print("Status Code:", response.status_code)
+  print("Response:", response.json())
+  ```
+  ```java
+  import java.io.IOException;
+  import java.net.URI;
+  import java.net.URLEncoder;
+  import java.net.http.HttpClient;
+  import java.net.http.HttpRequest;
+  import java.net.http.HttpResponse;
+  import java.nio.charset.StandardCharsets;
+  import java.util.HashMap;
+  import java.util.Map;
+  import java.util.stream.Collectors;
 
-const url = 'https://test.payu.in/merchant/postservice?form=2';
+  public class ValidateAutoPayVPA {
+      public static void main(String[] args) throws IOException, InterruptedException {
+          String url = "https://test.payu.in/merchant/postservice?form=2";
+          
+          String var2Json = "{\"validateAutoPayVPA\":\"1\"}";
+          
+          Map<String, String> params = new HashMap<>();
+          params.put("key", "JP***g");
+          params.put("command", "validateVPA");
+          params.put("var1", "9999999999@upi");
+          params.put("var2", var2Json);
+          params.put("hash", "75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e");
+          
+          String formData = params.entrySet().stream()
+              .map(e -> URLEncoder.encode(e.getKey(), StandardCharsets.UTF_8) + "=" 
+                      + URLEncoder.encode(e.getValue(), StandardCharsets.UTF_8))
+              .collect(Collectors.joining("&"));
+          
+          HttpClient client = HttpClient.newHttpClient();
+          
+          HttpRequest request = HttpRequest.newBuilder()
+              .uri(URI.create(url))
+              .header("accept", "application/json")
+              .header("Content-Type", "application/x-www-form-urlencoded")
+              .POST(HttpRequest.BodyPublishers.ofString(formData))
+              .build();
+          
+          HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+          
+          System.out.println("Status Code: " + response.statusCode());
+          System.out.println("Response: " + response.body());
+      }
+  }
+  ```
+  ```javascript
+  const axios = require('axios');
+  const qs = require('qs');
 
-const var2Json = JSON.stringify({ validateAutoPayVPA: '1' });
+  const url = 'https://test.payu.in/merchant/postservice?form=2';
 
-const data = {
-    key: 'JP***g',
-    command: 'validateVPA',
-    var1: '9999999999@upi',
-    var2: var2Json,
-    hash: '75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e'
-};
+  const var2Json = JSON.stringify({ validateAutoPayVPA: '1' });
 
-const config = {
-    headers: {
-        'accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded'
-    }
-};
+  const data = {
+      key: 'JP***g',
+      command: 'validateVPA',
+      var1: '9999999999@upi',
+      var2: var2Json,
+      hash: '75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e'
+  };
 
-axios.post(url, qs.stringify(data), config)
-    .then(response => {
-        console.log('Status Code:', response.status);
-        console.log('Response:', response.data);
-    })
-    .catch(error => {
-        console.error('Error:', error.response ? error.response.data : error.message);
-    });
-```
-```php
-<?php
+  const config = {
+      headers: {
+          'accept': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded'
+      }
+  };
 
-$url = "https://test.payu.in/merchant/postservice?form=2";
+  axios.post(url, qs.stringify(data), config)
+      .then(response => {
+          console.log('Status Code:', response.status);
+          console.log('Response:', response.data);
+      })
+      .catch(error => {
+          console.error('Error:', error.response ? error.response.data : error.message);
+      });
+  ```
+  ```php
+  <?php
 
-$var2Json = json_encode(array('validateAutoPayVPA' => '1'));
+  $url = "https://test.payu.in/merchant/postservice?form=2";
 
-$data = array(
-    'key' => 'JP***g',
-    'command' => 'validateVPA',
-    'var1' => '9999999999@upi',
-    'var2' => $var2Json,
-    'hash' => '75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e'
-);
+  $var2Json = json_encode(array('validateAutoPayVPA' => '1'));
 
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    'accept: application/json',
-    'Content-Type: application/x-www-form-urlencoded'
-));
+  $data = array(
+      'key' => 'JP***g',
+      'command' => 'validateVPA',
+      'var1' => '9999999999@upi',
+      'var2' => $var2Json,
+      'hash' => '75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e'
+  );
 
-$response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-curl_close($ch);
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_POST, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+      'accept: application/json',
+      'Content-Type: application/x-www-form-urlencoded'
+  ));
 
-echo "Status Code: " . $httpCode . "\n";
-echo "Response: " . $response . "\n";
+  $response = curl_exec($ch);
+  $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+  curl_close($ch);
 
-$jsonResponse = json_decode($response, true);
-print_r($jsonResponse);
-?>
-```
-```perl
-#!/usr/bin/perl
-use strict;
-use warnings;
-use LWP::UserAgent;
-use HTTP::Request::Common;
-use JSON;
+  echo "Status Code: " . $httpCode . "\n";
+  echo "Response: " . $response . "\n";
 
-my $url = "https://test.payu.in/merchant/postservice?form=2";
+  $jsonResponse = json_decode($response, true);
+  print_r($jsonResponse);
+  ?>
+  ```
+  ```perl
+  #!/usr/bin/perl
+  use strict;
+  use warnings;
+  use LWP::UserAgent;
+  use HTTP::Request::Common;
+  use JSON;
 
-my $var2_json = encode_json({ validateAutoPayVPA => '1' });
+  my $url = "https://test.payu.in/merchant/postservice?form=2";
 
-my %data = (
-    key     => 'JP***g',
-    command => 'validateVPA',
-    var1    => '9999999999@upi',
-    var2    => $var2_json,
-    hash    => '75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e'
-);
+  my $var2_json = encode_json({ validateAutoPayVPA => '1' });
 
-my $ua = LWP::UserAgent->new;
-$ua->timeout(30);
+  my %data = (
+      key     => 'JP***g',
+      command => 'validateVPA',
+      var1    => '9999999999@upi',
+      var2    => $var2_json,
+      hash    => '75uy573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472poy9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e'
+  );
 
-my $response = $ua->post($url, 
-    Content_Type => 'application/x-www-form-urlencoded',
-    Content => \%data
-);
+  my $ua = LWP::UserAgent->new;
+  $ua->timeout(30);
 
-if ($response->is_success) {
-    print "Status Code: " . $response->code . "\n";
-    print "Response: " . $response->decoded_content . "\n";
-} else {
-    print "Error: " . $response->status_line . "\n";
-}
-```
+  my $response = $ua->post($url, 
+      Content_Type => 'application/x-www-form-urlencoded',
+      Content => \%data
+  );
 
+  if ($response->is_success) {
+      print "Status Code: " . $response->code . "\n";
+      print "Response: " . $response->decoded_content . "\n";
+  } else {
+      print "Error: " . $response->status_line . "\n";
+  }
+  ```
 </Accordion>
 
 <Accordion title="Sample response" icon="fa-reply">
@@ -221,15 +225,17 @@ if ($response->is_success) {
   }
   ```
 
-  > 📘 Notes:
-  >
-  > * The **payerAccountName** parameter can be empty or NA or will have a payer name based on the value given by the bank.
-  > * If both **isVPAValid** and **isAutoPayVPAValid** is 1, you must initiate payment for Recurring Payments.
-  > * Ignore the **isAutoPayBankValid** parameter in the response.
+  <Callout icon="📘" theme="info">
+    ### Notes:
+
+    - The **payerAccountName** parameter can be empty or NA or will have a payer name based on the value given by the bank.
+    - If both **isVPAValid** and **isAutoPayVPAValid** is 1, you must initiate payment for Recurring Payments.
+    - Ignore the **isAutoPayBankValid** parameter in the response.
+  </Callout>
 
   **Failure scenarios**
 
-  * If invalid VPA, the response is similar to the following:
+  - If invalid VPA, the response is similar to the following:
 
   ```plaintext
   {
@@ -237,7 +243,7 @@ if ($response->is_success) {
   }  
   ```
 
-  * Invalid VPA but handle supporting SI (Autopay):
+  - Invalid VPA but handle supporting SI (Autopay):
 
   ```plaintext
   {
@@ -245,7 +251,7 @@ if ($response->is_success) {
   }
   ```
 
-  * Customer valid but handle not supporting SI (Autopay):
+  - Customer valid but handle not supporting SI (Autopay):
 
   ```plaintext
   {
@@ -253,7 +259,7 @@ if ($response->is_success) {
   }
   ```
 
-  * Neither customer valid nor handle supporting Autopay:
+  - Neither customer valid nor handle supporting Autopay:
 
   ```plaintext
   {
@@ -745,231 +751,244 @@ With the following parameters, make the transaction request with the customer’
   <Accordion title="Checksum Logic for Hash" icon="fa-code">
     The following hash logic must be used for the parameters posted:
 
-    > 📘 beneficiarydetail parameter in Hashing:
-    >
-    > The **beneficiarydetail** parameter value will be at last or the last value to be appended.
-    >
-    > ```plaintext
-    > key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3
-    > |udf4|udf5||||||beneficiarydetail|SALT
-    > ```
+    <Callout icon="📘" theme="info">
+      ### beneficiarydetail parameter in Hashing:
+
+      The **beneficiarydetail** parameter value will be at last or the last value to be appended.
+
+      ```plaintext
+      key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3
+      |udf4|udf5||||||beneficiarydetail|SALT
+      ```
+    </Callout>
   </Accordion>
 </Accordion>
 
-  <Accordion title="Sample Request" icon="fa-code">
-```curl
-curl --request POST 'https://test.payu.in/_payment' \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data-urlencode 'key=JP***g' \
-  --data-urlencode 'txnid=upi_tpv_12345' \
-  --data-urlencode 'amount=10.00' \
-  --data-urlencode 'productinfo=iPhone' \
-  --data-urlencode 'firstname=Ashish' \
-  --data-urlencode 'email=test@payu.in' \
-  --data-urlencode 'phone=9876543210' \
-  --data-urlencode 'pg=UPI' \
-  --data-urlencode 'bankcode=UPITPV' \
-  --data-urlencode 'vpa=customer@upi' \
-  --data-urlencode 'beneficiarydetail={"beneficiaryAccountNumber":"002001600674","ifscCode":"KTKB0000046"}' \
-  --data-urlencode 'api_version=6' \
-  --data-urlencode 'surl=https://example.com/payment/success' \
-  --data-urlencode 'furl=https://example.com/payment/failure' \
-  --data-urlencode 's2s_client_ip=192.0.2.1' \
-  --data-urlencode 's2s_device_info=Mozilla/5.0' \
-  --data-urlencode 'txn_s2s_flow=4' \
-  --data-urlencode 'hash=YOUR_CALCULATED_HASH'
-```
-```python
-import json
-import requests
+<Accordion title="Sample Request" icon="fa-code">
+  ```curl
+  curl --request POST 'https://test.payu.in/_payment' \
+    --header 'Content-Type: application/x-www-form-urlencoded' \
+    --data-urlencode 'key=JP***g' \
+    --data-urlencode 'txnid=upi_tpv_12345' \
+    --data-urlencode 'amount=10.00' \
+    --data-urlencode 'productinfo=iPhone' \
+    --data-urlencode 'firstname=Ashish' \
+    --data-urlencode 'email=test@payu.in' \
+    --data-urlencode 'phone=9876543210' \
+    --data-urlencode 'pg=UPI' \
+    --data-urlencode 'bankcode=UPITPV' \
+    --data-urlencode 'vpa=customer@upi' \
+    --data-urlencode 'beneficiarydetail={"beneficiaryAccountNumber":"002001600674","ifscCode":"KTKB0000046"}' \
+    --data-urlencode 'api_version=6' \
+    --data-urlencode 'surl=https://example.com/payment/success' \
+    --data-urlencode 'furl=https://example.com/payment/failure' \
+    --data-urlencode 's2s_client_ip=192.0.2.1' \
+    --data-urlencode 's2s_device_info=Mozilla/5.0' \
+    --data-urlencode 'txn_s2s_flow=4' \
+    --data-urlencode 'hash=YOUR_CALCULATED_HASH'
+  ```
+  ```python
+  import json
+  import requests
 
-data = {
-    "key": "JP***g",
-    "txnid": "upi_tpv_12345",
-    "amount": "10.00",
-    "productinfo": "iPhone",
-    "firstname": "Ashish",
-    "email": "test@payu.in",
-    "phone": "9876543210",
-    "pg": "UPI",
-    "bankcode": "UPITPV",
-    "vpa": "customer@upi",
-    "beneficiarydetail": json.dumps({
-        "beneficiaryAccountNumber": "002001600674",
-        "ifscCode": "KTKB0000046"
+  data = {
+      "key": "JP***g",
+      "txnid": "upi_tpv_12345",
+      "amount": "10.00",
+      "productinfo": "iPhone",
+      "firstname": "Ashish",
+      "email": "test@payu.in",
+      "phone": "9876543210",
+      "pg": "UPI",
+      "bankcode": "UPITPV",
+      "vpa": "customer@upi",
+      "beneficiarydetail": json.dumps({
+          "beneficiaryAccountNumber": "002001600674",
+          "ifscCode": "KTKB0000046"
+      }),
+      "api_version": "6",
+      "surl": "https://example.com/payment/success",
+      "furl": "https://example.com/payment/failure",
+      "s2s_client_ip": "192.0.2.1",
+      "s2s_device_info": "Mozilla/5.0",
+      "txn_s2s_flow": "4",
+      "hash": "YOUR_CALCULATED_HASH"
+  }
+  response = requests.post("https://test.payu.in/_payment", data=data)
+  print(response.status_code, response.text)
+  ```
+  ```javascript
+  const params = new URLSearchParams({
+    key: 'JP***g',
+    txnid: 'upi_tpv_12345',
+    amount: '10.00',
+    productinfo: 'iPhone',
+    firstname: 'Ashish',
+    email: 'test@payu.in',
+    phone: '9876543210',
+    pg: 'UPI',
+    bankcode: 'UPITPV',
+    vpa: 'customer@upi',
+    beneficiarydetail: JSON.stringify({
+      beneficiaryAccountNumber: '002001600674',
+      ifscCode: 'KTKB0000046'
     }),
-    "api_version": "6",
-    "surl": "https://example.com/payment/success",
-    "furl": "https://example.com/payment/failure",
-    "s2s_client_ip": "192.0.2.1",
-    "s2s_device_info": "Mozilla/5.0",
-    "txn_s2s_flow": "4",
-    "hash": "YOUR_CALCULATED_HASH"
-}
-response = requests.post("https://test.payu.in/_payment", data=data)
-print(response.status_code, response.text)
-```
-```javascript
-const params = new URLSearchParams({
-  key: 'JP***g',
-  txnid: 'upi_tpv_12345',
-  amount: '10.00',
-  productinfo: 'iPhone',
-  firstname: 'Ashish',
-  email: 'test@payu.in',
-  phone: '9876543210',
-  pg: 'UPI',
-  bankcode: 'UPITPV',
-  vpa: 'customer@upi',
-  beneficiarydetail: JSON.stringify({
-    beneficiaryAccountNumber: '002001600674',
-    ifscCode: 'KTKB0000046'
-  }),
-  api_version: '6',
-  surl: 'https://example.com/payment/success',
-  furl: 'https://example.com/payment/failure',
-  s2s_client_ip: '192.0.2.1',
-  s2s_device_info: 'Mozilla/5.0',
-  txn_s2s_flow: '4',
-  hash: 'YOUR_CALCULATED_HASH'
-});
-const response = await fetch('https://test.payu.in/_payment', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-  body: params
-});
-console.log(response.status, await response.text());
-```
-```java
-import java.net.URI;
-import java.net.URLEncoder;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
+    api_version: '6',
+    surl: 'https://example.com/payment/success',
+    furl: 'https://example.com/payment/failure',
+    s2s_client_ip: '192.0.2.1',
+    s2s_device_info: 'Mozilla/5.0',
+    txn_s2s_flow: '4',
+    hash: 'YOUR_CALCULATED_HASH'
+  });
+  const response = await fetch('https://test.payu.in/_payment', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: params
+  });
+  console.log(response.status, await response.text());
+  ```
+  ```java
+  import java.net.URI;
+  import java.net.URLEncoder;
+  import java.net.http.HttpClient;
+  import java.net.http.HttpRequest;
+  import java.net.http.HttpResponse;
+  import java.nio.charset.StandardCharsets;
+  import java.util.LinkedHashMap;
+  import java.util.Map;
+  import java.util.stream.Collectors;
 
-public class UpiTpvPayment {
-    public static void main(String[] args) throws Exception {
-        Map<String, String> data = new LinkedHashMap<>();
-        data.put("key", "JP***g");
-        data.put("txnid", "upi_tpv_12345");
-        data.put("amount", "10.00");
-        data.put("productinfo", "iPhone");
-        data.put("firstname", "Ashish");
-        data.put("email", "test@payu.in");
-        data.put("phone", "9876543210");
-        data.put("pg", "UPI");
-        data.put("bankcode", "UPITPV");
-        data.put("vpa", "customer@upi");
-        data.put("beneficiarydetail", "{\"beneficiaryAccountNumber\":\"002001600674\",\"ifscCode\":\"KTKB0000046\"}");
-        data.put("api_version", "6");
-        data.put("surl", "https://example.com/payment/success");
-        data.put("furl", "https://example.com/payment/failure");
-        data.put("s2s_client_ip", "192.0.2.1");
-        data.put("s2s_device_info", "Mozilla/5.0");
-        data.put("txn_s2s_flow", "4");
-        data.put("hash", "YOUR_CALCULATED_HASH");
+  public class UpiTpvPayment {
+      public static void main(String[] args) throws Exception {
+          Map<String, String> data = new LinkedHashMap<>();
+          data.put("key", "JP***g");
+          data.put("txnid", "upi_tpv_12345");
+          data.put("amount", "10.00");
+          data.put("productinfo", "iPhone");
+          data.put("firstname", "Ashish");
+          data.put("email", "test@payu.in");
+          data.put("phone", "9876543210");
+          data.put("pg", "UPI");
+          data.put("bankcode", "UPITPV");
+          data.put("vpa", "customer@upi");
+          data.put("beneficiarydetail", "{\"beneficiaryAccountNumber\":\"002001600674\",\"ifscCode\":\"KTKB0000046\"}");
+          data.put("api_version", "6");
+          data.put("surl", "https://example.com/payment/success");
+          data.put("furl", "https://example.com/payment/failure");
+          data.put("s2s_client_ip", "192.0.2.1");
+          data.put("s2s_device_info", "Mozilla/5.0");
+          data.put("txn_s2s_flow", "4");
+          data.put("hash", "YOUR_CALCULATED_HASH");
 
-        String body = data.entrySet().stream()
-            .map(e -> URLEncoder.encode(e.getKey(), StandardCharsets.UTF_8) + "="
-                + URLEncoder.encode(e.getValue(), StandardCharsets.UTF_8))
-            .collect(Collectors.joining("&"));
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://test.payu.in/_payment"))
-            .header("Content-Type", "application/x-www-form-urlencoded")
-            .POST(HttpRequest.BodyPublishers.ofString(body))
-            .build();
-        HttpResponse<String> response = HttpClient.newHttpClient()
-            .send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println(response.statusCode() + " " + response.body());
-    }
-}
-```
-```php
-<?php
-$data = [
-    'key' => 'JP***g',
-    'txnid' => 'upi_tpv_12345',
-    'amount' => '10.00',
-    'productinfo' => 'iPhone',
-    'firstname' => 'Ashish',
-    'email' => 'test@payu.in',
-    'phone' => '9876543210',
-    'pg' => 'UPI',
-    'bankcode' => 'UPITPV',
-    'vpa' => 'customer@upi',
-    'beneficiarydetail' => json_encode([
-        'beneficiaryAccountNumber' => '002001600674',
-        'ifscCode' => 'KTKB0000046'
-    ]),
-    'api_version' => '6',
-    'surl' => 'https://example.com/payment/success',
-    'furl' => 'https://example.com/payment/failure',
-    's2s_client_ip' => '192.0.2.1',
-    's2s_device_info' => 'Mozilla/5.0',
-    'txn_s2s_flow' => '4',
-    'hash' => 'YOUR_CALCULATED_HASH'
-];
-$ch = curl_init('https://test.payu.in/_payment');
-curl_setopt_array($ch, [
-    CURLOPT_POST => true,
-    CURLOPT_POSTFIELDS => http_build_query($data),
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_HTTPHEADER => ['Content-Type: application/x-www-form-urlencoded']
-]);
-$response = curl_exec($ch);
-echo curl_getinfo($ch, CURLINFO_HTTP_CODE) . ' ' . $response;
-curl_close($ch);
-?>
-```
+          String body = data.entrySet().stream()
+              .map(e -> URLEncoder.encode(e.getKey(), StandardCharsets.UTF_8) + "="
+                  + URLEncoder.encode(e.getValue(), StandardCharsets.UTF_8))
+              .collect(Collectors.joining("&"));
+          HttpRequest request = HttpRequest.newBuilder()
+              .uri(URI.create("https://test.payu.in/_payment"))
+              .header("Content-Type", "application/x-www-form-urlencoded")
+              .POST(HttpRequest.BodyPublishers.ofString(body))
+              .build();
+          HttpResponse<String> response = HttpClient.newHttpClient()
+              .send(request, HttpResponse.BodyHandlers.ofString());
+          System.out.println(response.statusCode() + " " + response.body());
+      }
+  }
+  ```
+  ```php
+  <?php
+  $data = [
+      'key' => 'JP***g',
+      'txnid' => 'upi_tpv_12345',
+      'amount' => '10.00',
+      'productinfo' => 'iPhone',
+      'firstname' => 'Ashish',
+      'email' => 'test@payu.in',
+      'phone' => '9876543210',
+      'pg' => 'UPI',
+      'bankcode' => 'UPITPV',
+      'vpa' => 'customer@upi',
+      'beneficiarydetail' => json_encode([
+          'beneficiaryAccountNumber' => '002001600674',
+          'ifscCode' => 'KTKB0000046'
+      ]),
+      'api_version' => '6',
+      'surl' => 'https://example.com/payment/success',
+      'furl' => 'https://example.com/payment/failure',
+      's2s_client_ip' => '192.0.2.1',
+      's2s_device_info' => 'Mozilla/5.0',
+      'txn_s2s_flow' => '4',
+      'hash' => 'YOUR_CALCULATED_HASH'
+  ];
+  $ch = curl_init('https://test.payu.in/_payment');
+  curl_setopt_array($ch, [
+      CURLOPT_POST => true,
+      CURLOPT_POSTFIELDS => http_build_query($data),
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_HTTPHEADER => ['Content-Type: application/x-www-form-urlencoded']
+  ]);
+  $response = curl_exec($ch);
+  echo curl_getinfo($ch, CURLINFO_HTTP_CODE) . ' ' . $response;
+  curl_close($ch);
+  ?>
+  ```
 </Accordion>
+
 <Accordion title="Sample Response" icon="fa-table">
-```json
-{
-    "metaData": {
-        "message": null,
-        "referenceId": "c99a6455b3e0dc5cd7167ab8c8cc10d2fa153cb509e3f64c6cd0ed9c5b64a8c9",
-        "statusCode": null,
-        "txnId": "my_order_26075",
-        "txnStatus": "pending",
-        "unmappedStatus": "pending"
-    },
-    "result": {
-        "paymentId": "403993715535965242",
-        "merchantName": "Sudhanshu",
-        "merchantVpa": "payutest@hdfcbank",
-        "amount": "1.00",
-        "intentURIData": "pa=payutest@hdfcbank&pn=Kumar&tr=403993715535965242&tid=PPPL403993715535965242080126220900&am=1.00&cu=INR&tn=UPIIntent",
-        "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vdGVzdC5wYXl1LmluL2M5OWE2NDU1YjNlMGRjNWNkNzE2N2FiOGM4Y2MxMGQyYzgzYTk5NmFhNDhiYTk4MmZjMGQ4MTI1MGY1ODgxZjMvaW50ZW50U2VhbWxlc3NIYW5kbGVyLnBocCIgbWV0aG9kPSJwb3N0Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0b2tlbiIgdmFsdWU9IjhERDNFRUFFLUI5NTktQzY1RS03MDczLTYzQTNGQUUxMjZGRiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iYW1vdW50IiB2YWx1ZT0iMS4wMCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0ibWlocGF5aWQiIHZhbHVlPSJjOTlhNjQ1NWIzZTBkYzVjZDcxNjdhYjhjOGNjMTBkMmZhMTUzY2I1MDllM2Y2NGM2Y2QwZWQ5YzViNjRhOGM5Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJkaXNhYmxlSW50ZW50U2VhbWxlc3NGYWlsdXJlIiB2YWx1ZT0iMCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0icGF5ZWVWcGEiIHZhbHVlPSJwYXl1dGVzdEBoZGZjYmFuayI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0icGF5ZWVOYW1lIiB2YWx1ZT0iU3VkaGFuc2h1Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJhZGRpdGlvbmFsQ2hhcmdlcyIgdmFsdWU9IjAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InRyYW5zYWN0aW9uRmVlIiB2YWx1ZT0iMS4wMCI+PC9mb3JtPjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0Jz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbmxvYWQ9ZnVuY3Rpb24oKXsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5mb3Jtc1sncGF5bWVudF9wb3N0J10uc3VibWl0KCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDwvc2NyaXB0PjwvYm9keT48L2h0bWw+",
-        "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
-    }
-}
-```
+  ```json
+  {
+      "metaData": {
+          "message": null,
+          "referenceId": "c99a6455b3e0dc5cd7167ab8c8cc10d2fa153cb509e3f64c6cd0ed9c5b64a8c9",
+          "statusCode": null,
+          "txnId": "my_order_26075",
+          "txnStatus": "pending",
+          "unmappedStatus": "pending"
+      },
+      "result": {
+          "paymentId": "403993715535965242",
+          "merchantName": "Sudhanshu",
+          "merchantVpa": "payutest@hdfcbank",
+          "amount": "1.00",
+          "intentURIData": "pa=payutest@hdfcbank&pn=Kumar&tr=403993715535965242&tid=PPPL403993715535965242080126220900&am=1.00&cu=INR&tn=UPIIntent",
+          "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vdGVzdC5wYXl1LmluL2M5OWE2NDU1YjNlMGRjNWNkNzE2N2FiOGM4Y2MxMGQyYzgzYTk5NmFhNDhiYTk4MmZjMGQ4MTI1MGY1ODgxZjMvaW50ZW50U2VhbWxlc3NIYW5kbGVyLnBocCIgbWV0aG9kPSJwb3N0Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0b2tlbiIgdmFsdWU9IjhERDNFRUFFLUI5NTktQzY1RS03MDczLTYzQTNGQUUxMjZGRiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iYW1vdW50IiB2YWx1ZT0iMS4wMCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0ibWlocGF5aWQiIHZhbHVlPSJjOTlhNjQ1NWIzZTBkYzVjZDcxNjdhYjhjOGNjMTBkMmZhMTUzY2I1MDllM2Y2NGM2Y2QwZWQ5YzViNjRhOGM5Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJkaXNhYmxlSW50ZW50U2VhbWxlc3NGYWlsdXJlIiB2YWx1ZT0iMCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0icGF5ZWVWcGEiIHZhbHVlPSJwYXl1dGVzdEBoZGZjYmFuayI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0icGF5ZWVOYW1lIiB2YWx1ZT0iU3VkaGFuc2h1Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJhZGRpdGlvbmFsQ2hhcmdlcyIgdmFsdWU9IjAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InRyYW5zYWN0aW9uRmVlIiB2YWx1ZT0iMS4wMCI+PC9mb3JtPjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0Jz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbmxvYWQ9ZnVuY3Rpb24oKXsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5mb3Jtc1sncGF5bWVudF9wb3N0J10uc3VibWl0KCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDwvc2NyaXB0PjwvYm9keT48L2h0bWw+",
+          "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
+      }
+  }
+  ```
 </Accordion>
+
 ## Step 3: Invoke UPI Intent on Customer's Device
+
 Step 3: Invoke UPI Intent on customer's device
 
 You need to invoke intent in the customer's mobile device using the merchant VPA URL. Make sure that only this merchant VPA is embedded in the intent call since this helps to track the status of the transaction.
 Open the UPI Intent as per the NPCI Guidelines. Merchants can also open any specific app instead of making the Generic Intent call. For example, Google Pay, PhonePe, etc. This URL can then be fired using an Intent or a hyperlink which would open an Intent tray with a list of available supporting apps on the user's mobile device. The following sample UPI Deep Link URL and the format used for creating the URL:
+
 #### Sample URL (with values from the above sample JSON):
+
 ```json
 upi://pay?pa=payu@axisbank&pn=SMSPLUS&tr=8312916361&am=10.17
 ```
+
 #### Format for UPI Deep Linking URL (as per NPCI guidelines):
+
 ```json
 "upi://pay?pa=" + merchantVpa + "&pn=" + merchantName + "&tr=" + referenceId + "&am=" + amount 
 ```
+
 #### UPI Deep Linking URL parameters description
+
 Where the description of the parameters used in the URL is as described in the following table:
-| Parameter | Description                                                                                  |
-| ------------- | ------------------------------------------------------------------------------------------------- |
-| merchantVpa   | As received in JSON response in key merchantVPA'                                                  |
-| merchantName  | As received in JSON response in key merchantName.                                                 |
-| referenceId   | As received in JSON response in key referenceId.                                                  |
-| amount        | Amount of transaction. This must be the same as the amount passed to the **initiatePayment** API. |
+
+| Parameter    | Description                                                                                       |
+| ------------ | ------------------------------------------------------------------------------------------------- |
+| merchantVpa  | As received in JSON response in key merchantVPA'                                                  |
+| merchantName | As received in JSON response in key merchantName.                                                 |
+| referenceId  | As received in JSON response in key referenceId.                                                  |
+| amount       | Amount of transaction. This must be the same as the amount passed to the **initiatePayment** API. |
+
 ## Step 4: Check the response from PayU
 
 <Accordion title="Hash Validation Logic for Payment Response (Reverse Hashing)" icon="fa-code">
