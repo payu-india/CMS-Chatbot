@@ -1,5 +1,5 @@
 ---
-title: API Introduction
+title: Introduction
 excerpt: >-
   Start here to understand the PayU API ecosystem. How they are organized, how
   authentication works, and how to make your first request.
