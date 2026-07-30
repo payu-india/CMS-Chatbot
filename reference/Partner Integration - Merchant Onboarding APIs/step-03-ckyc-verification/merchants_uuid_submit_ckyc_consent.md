@@ -15,7 +15,7 @@ Skip CKYC Consent submits merchant/product-account level consents to skip or opt
 `Authorization:
 Bearer {{access_token}}`- `Content-Type: application/json\`
 
-## Request Body
+## Sample Request JSON
 
 `json{  "consents": [    {"name": "skip_ckyc_flow", "provided_by_uuid": "<partner_uuid>"},    {"name": "gst_consent", "provided_by_uuid": "<partner_uuid>"},    {"name": "ubo_not_exist", "provided_by_uuid": "<partner_uuid>"},    {"name": "digilocker_consent", "provided_by_uuid": "<partner_uuid>"}  ]}`
 
@@ -36,9 +36,8 @@ Use one or many entries in `consents[]`:
 
 Returns:
 
-\- `message`: success text
-
-\- `data.consents[]`: list of active consent records on product account
+- `message`: success text
+- `data.consents[]`: list of active consent records on product account
 
 Each `data.consents[]` item can includes: `uuid`, `name`, `provided_by_uuid`, `provided_by`- `record_id`, `record_type`, `active`- `product_account_uuid`, `merchant_id`, `merchant_uuid`
 
