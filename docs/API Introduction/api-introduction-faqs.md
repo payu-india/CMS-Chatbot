@@ -108,5 +108,5 @@ Some APIs/flows are not supported in Test or in the Try It playground. Check lim
 ## Related APIs
 
 * [Collect Payment API — PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)
-* [Verify Payment API](ref:verify_payment)
+* [Verify Payment API](ref:verify_payment_api)
 * [Create Payment Link API](ref:create-payment-links)

@@ -89,7 +89,7 @@ Get credentials → Authenticate → Call Test API → Create payment
 | 2. Authenticate | Build the correct hash or OAuth token | [Authentication](doc:api-authentication-and-security) |
 | 3. First call | Hit a Test endpoint | [Making Your First API Request](doc:making-your-first-api-request) |
 | 4. Collect | Create a payment with `_payment` | [Collect Payment](ref:_payment_payu_hosted_checkout) |
-| 5. Confirm | Verify status server-to-server | [Verify Payment](ref:verify_payment) |
+| 5. Confirm | Verify status server-to-server | [Verify Payment](ref:verify_payment_api) |
 | 6. Notify | Process surl/furl and webhooks | [Webhooks and Callbacks](doc:webhooks-and-callbacks) |
 | 7. Operate | Refund, settle, reconcile | [Common API Workflows](doc:common-api-workflows) |
 
@@ -104,6 +104,6 @@ Get credentials → Authenticate → Call Test API → Create payment
 ## Related APIs
 
 * [Collect Payment API — PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)
-* [Verify Payment API](ref:verify_payment)
+* [Verify Payment API](ref:verify_payment_api)
 * [Create Payment Link API](ref:create-payment-links)
 * [Generate Token using Merchant's Credentials API](ref:generate-token-using-merchants-credentials-api)

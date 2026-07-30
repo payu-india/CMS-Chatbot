@@ -38,7 +38,7 @@ Create payment (_payment / Payment Link)
 | 1 | Create payment request with unique `txnid` | [Collect Payment](ref:_payment_payu_hosted_checkout), [Payment Links](ref:create-payment-links) |
 | 2 | Customer pays using Test instruments in Test env | [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) |
 | 3 | Handle return URLs | [Handling Web Checkout](doc:handling-web-checkout) |
-| 4 | Confirm status server-to-server | [Verify Payment](ref:verify_payment) |
+| 4 | Confirm status server-to-server | [Verify Payment](ref:verify_payment_api) |
 
 ## Workflow 2 — Authenticate requests
 
@@ -72,7 +72,7 @@ Use cases:
 
 APIs:
 
-* [Verify Payment](ref:verify_payment)
+* [Verify Payment](ref:verify_payment_api)
 * [Check Transaction APIs](ref:check-transaction-apis)
 
 ## Workflow 4 — Handle callbacks and webhooks
@@ -174,6 +174,6 @@ Start with [Introduction to Payouts](doc:introduction-to-payouts) and [Payouts t
 ## Related APIs
 
 * [Collect Payment API — PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)
-* [Verify Payment API](ref:verify_payment)
+* [Verify Payment API](ref:verify_payment_api)
 * [Create Payment Link API](ref:create-payment-links)
 * [Generate Token using Merchant's Credentials API](ref:generate-token-using-merchants-credentials-api)

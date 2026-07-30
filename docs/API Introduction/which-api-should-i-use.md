@@ -32,7 +32,7 @@ Choosing the right PayU API depends on what you want to accomplish — not on ho
 | Accept payments with full backend control | Collect Payment (`_payment`) — Server-to-Server | [S2S integration](doc:server-to-server-integration) |
 | Accept payments in a mobile app | Mobile SDKs (backed by payment APIs) | [Mobile SDKs](doc:explore-android-sdks) |
 | Collect payment without building checkout UI | Payment Links / Invoices | [No-code payments](doc:introduction-no-code-payments-integration), [Payment Links API](ref:create-payment-links) |
-| Check if a payment succeeded | General APIs — Verify Payment / transaction details | [Verify Payment](ref:verify_payment) |
+| Check if a payment succeeded | General APIs — Verify Payment / transaction details | [Verify Payment](ref:verify_payment_api) |
 | Refund a payment | General APIs — Refund | [Refunds](doc:introduction-refunds), [Refund APIs](doc:apis-used-in-refunds-integration) |
 | Charge customers on a schedule | Subscriptions / Recurring / Zion | [Recurring payments](doc:introduction-recurring-payments-integration) |
 | Save cards for faster checkout | Tokenization / Save Cards | [Save Cards](doc:introduction-save-cards) |
@@ -71,7 +71,7 @@ For a deeper comparison of checkout products, see [Getting Started — Introduct
 
 | Next job | API to call | Why |
 | :------- | :---------- | :-- |
-| Confirm final status from your server | [Verify Payment](ref:verify_payment) / transaction details | Never trust browser redirects alone |
+| Confirm final status from your server | [Verify Payment](ref:verify_payment_api) / transaction details | Never trust browser redirects alone |
 | React in real time | [Webhooks and Callbacks](doc:webhooks-and-callbacks) | Async status updates for success, failure, refund |
 | Return money to customer | Refund APIs | Full or partial refunds against `mihpayid` / `txnid` |
 | Understand settlement timing | Settlement APIs | Know when funds are settled to your account |
@@ -93,7 +93,7 @@ Not every PayU product uses the same authentication. Pick APIs and auth together
 
 1. [Making Your First API Request](doc:making-your-first-api-request)
 2. [Collect Payment — PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)
-3. [Verify Payment](ref:verify_payment)
+3. [Verify Payment](ref:verify_payment_api)
 4. [Webhooks and Callbacks](doc:webhooks-and-callbacks)
 
 ### Path B — Marketplace / aggregator
@@ -126,5 +126,5 @@ Not every PayU product uses the same authentication. Pick APIs and auth together
 * [Collect Payment API — PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)
 * [Collect Payment API — Merchant Hosted Checkout](ref:_payment_merchant_hosted)
 * [Collect Payment API — S2S](ref:_payment_server_to_server)
-* [Verify Payment API](ref:verify_payment)
+* [Verify Payment API](ref:verify_payment_api)
 * [Create Payment Link API](ref:create-payment-links)

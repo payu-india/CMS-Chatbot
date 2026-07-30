@@ -129,6 +129,6 @@ PayU APIs are product-specific for these concerns:
 
 ## Related APIs
 
-* [Verify Payment API](ref:verify_payment)
+* [Verify Payment API](ref:verify_payment_api)
 * [Check Transaction APIs](ref:check-transaction-apis)
 * [Collect Payment API — PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)

@@ -42,7 +42,7 @@ See [API Authentication and Security](doc:api-authentication-and-security).
 
 * Treat redirect callbacks as **untrusted user browser events**.
 * Validate reverse hash on callbacks.
-* Confirm final success with [Verify Payment](ref:verify_payment) or equivalent server APIs.
+* Confirm final success with [Verify Payment](ref:verify_payment_api) or equivalent server APIs.
 * Design for pending states — especially UPI and some bank flows.
 
 ## Webhooks
@@ -100,6 +100,6 @@ See [API Environments and Base URLs](doc:api-environments-and-base-urls) and [Te
 
 ## Related APIs
 
-* [Verify Payment API](ref:verify_payment)
+* [Verify Payment API](ref:verify_payment_api)
 * [Collect Payment API — PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)
 * [Check Transaction APIs](ref:check-transaction-apis)

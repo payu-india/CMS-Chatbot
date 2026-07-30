@@ -39,7 +39,7 @@ Use both. Redirects improve UX; webhooks and Verify Payment keep your source of 
 * Accept the posted response on your server.
 * Verify **reverse hash** before trusting status.
 * Persist the raw callback payload.
-* Confirm final status with [Verify Payment](ref:verify_payment) when needed.
+* Confirm final status with [Verify Payment](ref:verify_payment_api) when needed.
 * Never mark an order paid from client-side JavaScript alone.
 
 Guides:
@@ -107,10 +107,10 @@ PayU event delivery should be treated as **at-least-once**. Your handler must to
 * [Common API Workflows](doc:common-api-workflows)
 * [API Best Practices](doc:api-best-practices)
 * [Error Handling for APIs](doc:error-handling-for-apis)
-* [Verify Payment API](ref:verify_payment)
+* [Verify Payment API](ref:verify_payment_api)
 
 ## Related APIs
 
 * [Collect Payment API — PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)
-* [Verify Payment API](ref:verify_payment)
+* [Verify Payment API](ref:verify_payment_api)
 * [Check Transaction APIs](ref:check-transaction-apis)

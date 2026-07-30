@@ -149,6 +149,6 @@ See [Headers and Content Types](doc:headers-and-content-types) for header conven
 ## Related APIs
 
 * [Collect Payment API — PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)
-* [Verify Payment API](ref:verify_payment)
+* [Verify Payment API](ref:verify_payment_api)
 * [Generate Token using Merchant's Credentials API](ref:generate-token-using-merchants-credentials-api)
 * [Get Token API](ref:get_token_api)

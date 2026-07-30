@@ -131,5 +131,5 @@ See the limitations list on [PayU India API Reference](ref:introduction-api-refe
 ## Related APIs
 
 * [Collect Payment API — PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)
-* [Verify Payment API](ref:verify_payment)
+* [Verify Payment API](ref:verify_payment_api)
 * [Generate Token using Merchant's Credentials API](ref:generate-token-using-merchants-credentials-api)

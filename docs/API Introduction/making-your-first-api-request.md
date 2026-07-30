@@ -133,7 +133,7 @@ curl -X POST 'https://test.payu.in/merchant/postservice.php?form=2' \
   -d 'hash=<YOUR_HASH>'
 ```
 
-API Reference: [Verify Payment API](ref:verify_payment).
+API Reference: [Verify Payment API](ref:verify_payment_api).
 
 ## Try It in API Reference
 
@@ -166,5 +166,5 @@ Note the Test limitations listed on the API Reference introduction page.
 ## Related APIs
 
 * [Collect Payment API — PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)
-* [Verify Payment API](ref:verify_payment)
+* [Verify Payment API](ref:verify_payment_api)
 * [Create Payment Link API](ref:create-payment-links)

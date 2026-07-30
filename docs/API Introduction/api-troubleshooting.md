@@ -87,7 +87,7 @@ Use this page to diagnose the most common PayU API integration failures. For exh
 
 **Fix**
 
-* Call [Verify Payment](ref:verify_payment)
+* Call [Verify Payment](ref:verify_payment_api)
 * Wait/retry according to product guidance for that payment mode
 * Use webhooks for later terminal updates
 
@@ -143,6 +143,6 @@ Before contacting [PayU Support](https://help.payu.in):
 
 ## Related APIs
 
-* [Verify Payment API](ref:verify_payment)
+* [Verify Payment API](ref:verify_payment_api)
 * [Collect Payment API — PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)
 * [Error Codes](ref:error-codes)

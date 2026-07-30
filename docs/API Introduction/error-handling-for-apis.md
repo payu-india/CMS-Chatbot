@@ -115,6 +115,6 @@ See [Generate Hash](doc:hashing-request-and-response) and [API Authentication an
 
 ## Related APIs
 
-* [Verify Payment API](ref:verify_payment)
+* [Verify Payment API](ref:verify_payment_api)
 * [Collect Payment API — PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)
 * [Error Codes](ref:error-codes)
