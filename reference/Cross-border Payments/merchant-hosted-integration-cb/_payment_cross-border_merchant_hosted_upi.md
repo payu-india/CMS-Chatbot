@@ -8,8 +8,12 @@ PayU allows you to collect payments using UPI handles. For the list of UPI provi
 
 After the payment is complete, you must use the [Invoice Upload API](ref:invoice_upload_api) to upload invoices / AWBs (Air-way bill number). AWB details are mandatory for Goods transactions.
 
+<NPCI_Subrciptions_Recommendations />
+
+<br />
+
 <Callout icon="📘" theme="info">
-  **Reference**: For steps to integrate UPI for Cross-Border Payments, refer to [[S2S] UPI Consent Transaction - Cross Border](doc:upi-consent-transaction-cb)
+  **Reference**: For steps to integrate UPI for Cross-Border Payments, refer to [\[S2S\] UPI Consent Transaction - Cross Border](doc:upi-consent-transaction-cb)
 </Callout>
 
 ## Recommended prerequisite before initiating payment
@@ -20,36 +24,36 @@ Validate the VPA (UPI handle) using the **validateVpa** API. For more informatio
 
 ## Environment
 
-| Environment                | URL                                                                |
-| :------------------------- | :----------------------------------------------------------------- |
-| **Test Environment**       | [https://test.payu.in/_payment](https://test.payu.in/_payment)     |
-| **Production Environment** | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
+| Environment                | URL                                                                 |
+| :------------------------- | :------------------------------------------------------------------ |
+| **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
+| **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
 <Accordion title="Sample request" icon="fa-code">
   ```curl
-  curl --location --request POST 'https://test.payu.in/_payment' \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data-urlencode 'key=JPM7Fg' \
-  --data-urlencode 'txnid=payuTestTransaction12345' \
-  --data-urlencode 'amount=100.00' \
-  --data-urlencode 'firstname=Ashish' \
-  --data-urlencode 'email=test@payu.in' \
-  --data-urlencode 'phone=9988776655' \
-  --data-urlencode 'productinfo=Product Info' \
-  --data-urlencode 'surl=https://test.payu.in/admin/test_response' \
-  --data-urlencode 'furl=https://test.payu.in/admin/test_response' \
-  --data-urlencode 'pg=UPI' \
-  --data-urlencode 'bankcode=INTENT' \
-  --data-urlencode 'txn_s2s_flow=4' \
-  --data-urlencode 's2s_client_ip=10.200.12.12' \
-  --data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
-  --data-urlencode 'udf1=AELPR1234E' \
-  --data-urlencode 'udf3=02-02-1980' \
-  --data-urlencode 'udf4=XYZ Pvt. Ltd.' \
-  --data-urlencode 'udf5=INV123456' \
-  --data-urlencode 'buyer_type_business=1' \
-  --data-urlencode 'udf_params={"udf7":"0100000029","udf8":"99953729071"}' \
-  --data-urlencode 'hash=YOUR_CALCULATED_HASH'
+    curl --location --request POST 'https://test.payu.in/_payment' \
+    --header 'Content-Type: application/x-www-form-urlencoded' \
+    --data-urlencode 'key=JPM7Fg' \
+    --data-urlencode 'txnid=payuTestTransaction12345' \
+    --data-urlencode 'amount=100.00' \
+    --data-urlencode 'firstname=Ashish' \
+    --data-urlencode 'email=test@payu.in' \
+    --data-urlencode 'phone=9988776655' \
+    --data-urlencode 'productinfo=Product Info' \
+    --data-urlencode 'surl=https://test.payu.in/admin/test_response' \
+    --data-urlencode 'furl=https://test.payu.in/admin/test_response' \
+    --data-urlencode 'pg=UPI' \
+    --data-urlencode 'bankcode=INTENT' \
+    --data-urlencode 'txn_s2s_flow=4' \
+    --data-urlencode 's2s_client_ip=10.200.12.12' \
+    --data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
+    --data-urlencode 'udf1=AELPR1234E' \
+    --data-urlencode 'udf3=02-02-1980' \
+    --data-urlencode 'udf4=XYZ Pvt. Ltd.' \
+    --data-urlencode 'udf5=INV123456' \
+    --data-urlencode 'buyer_type_business=1' \
+    --data-urlencode 'udf_params={"udf7":"0100000029","udf8":"99953729071"}' \
+    --data-urlencode 'hash=YOUR_CALCULATED_HASH'
   ```
 </Accordion>
 
@@ -59,11 +63,13 @@ Validate the VPA (UPI handle) using the **validateVpa** API. For more informatio
   <Accordion title="Using the IntentURIData value in response" icon="fa-code">
     The **IntentURIData** parameter returns the URI in the response. For example, it contains the first debit amount .
 
-    > 📘 Notes:
-    >
-    > * Every time there is a change, you need to incorporate the changes to avoid breaking the transactions.
-    > * The **tid** value which is passed in the intent URI acts as a validation check at NPCI's end which do not allow duplicate transaction.
-    > * The tr value not necessary and it is a payU\_id. It can be any reference id for PayU's internal reconciliation.
+    <Callout icon="📘" theme="info">
+      ### Notes:
+
+      - Every time there is a change, you need to incorporate the changes to avoid breaking the transactions.
+      - The **tid** value which is passed in the intent URI acts as a validation check at NPCI's end which do not allow duplicate transaction.
+      - The tr value not necessary and it is a payU_id. It can be any reference id for PayU's internal reconciliation.
+    </Callout>
   </Accordion>
 
   **Parsed response**
@@ -100,15 +106,16 @@ Validate the VPA (UPI handle) using the **validateVpa** API. For more informatio
 <details>
   <summary>Additional info for request parameters</summary>
 
-  ### Payment Request Parameters
+### Payment Request Parameters
 
-  The payment request parameters include standard fields like key, txnid, amount, firstname, email, phone, and productinfo. For UPI payments, the following specific parameters are important:
+The payment request parameters include standard fields like key, txnid, amount, firstname, email, phone, and productinfo. For UPI payments, the following specific parameters are important:
 
-  * **pg**: Set to "UPI" to indicate UPI payment method
-  * **bankcode**: Set to "UPI" for UPI transactions
-  * **vpa**: The Virtual Payment Address (UPI ID) of the customer
+- **pg**: Set to "UPI" to indicate UPI payment method
+- **bankcode**: Set to "UPI" for UPI transactions
+- **vpa**: The Virtual Payment Address (UPI ID) of the customer
 
-  For a comprehensive list of all parameters and their descriptions,  refer to the following:
+For a comprehensive list of all parameters and their descriptions,  refer to the following:
+
 </details>
 
 <Callout icon="📘" theme="info">
@@ -116,9 +123,11 @@ Validate the VPA (UPI handle) using the **validateVpa** API. For more informatio
 </Callout>
 
 <Callout icon="🚧" theme="warn">
-  **Testing UPI:** You can test UPI only with the anything@payu or [9999999999@payu.in](mailto:9999999999@payu.in) as VPA.
+  **Testing UPI:** You can test UPI only with the anything\@payu or [9999999999@payu.in](mailto:9999999999@payu.in) as VPA.
 </Callout>
 
 <Callout icon="❗️" theme="error">
   **Error handling:** If any error message is displayed with an error code, refer to the [Error Codes](ref:error-codes) section to understand the reason for these error codes.
 </Callout>
+
+<br />
