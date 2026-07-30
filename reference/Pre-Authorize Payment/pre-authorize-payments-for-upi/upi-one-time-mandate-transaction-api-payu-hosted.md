@@ -12,6 +12,10 @@ next:
 ---
 This section describes the request and response parameters with sample request and response for UPI One-Time Mandate (OTM) Intent and Collect flow with PayU Hosted Checkout integration (non-seamless flow). For more information on integration, refer to [UPI One-Time Mandate](doc:upi-intent-one-time-mandate-integration-payu-hosted).
 
+<NPCI_Subrciptions_Recommendations />
+
+<br />
+
 <Callout icon="👍" theme="okay">
   Experience the end-to-end PayU Hosted Checkout flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 
@@ -97,7 +101,7 @@ This section describes the request and response parameters with sample request a
       <td>
         `varchar` This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant's) end. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post us a unique transaction ID for every new transaction. `Character limit`: 25
 
-        * **Note**: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of 'duplicate Order ID.'
+        - **Note**: Ensure that the transaction ID sent to us has not been successful earlier. In case of this duplication, the customer would get an error of 'duplicate Order ID.'
       </td>
 
       <td>
@@ -111,7 +115,7 @@ This section describes the request and response parameters with sample request a
       </td>
 
       <td>
-        `float` This parameter should contain the payment amount of the particular transaction.  * **Note**: Type-cast the amount to float type
+        `float` This parameter should contain the payment amount of the particular transaction.  \* **Note**: Type-cast the amount to float type
       </td>
 
       <td>
@@ -227,8 +231,8 @@ This section describes the request and response parameters with sample request a
       </td>
 
       <td>
-        * **UPI**: Used for UPI Collect
-        * **INTENT**: Used for UPI Intent
+        - **UPI**: Used for UPI Collect
+        - **INTENT**: Used for UPI Intent
       </td>
     </tr>
 
@@ -246,7 +250,7 @@ This section describes the request and response parameters with sample request a
       </td>
 
       <td>
-        abc@payu
+        abc\@payu
       </td>
     </tr>
 
@@ -270,7 +274,7 @@ This section describes the request and response parameters with sample request a
       </td>
 
       <td>
-        This parameter contains the following information in JSON format:  * paymentStartDate  * paymentEndDate **Example**: `{"paymentStartDate":"2024-07-24","paymentEndDate":"2024-07-28"}`
+        This parameter contains the following information in JSON format:  _paymentStartDate_ paymentEndDate **Example**: `{"paymentStartDate":"2024-07-24","paymentEndDate":"2024-07-28"}`
       </td>
 
       <td>
@@ -455,3 +459,5 @@ surl: http://local.admin.payu.in/test_response
 curl: http://local.admin.payu.in/test_response
 furl: http://local.admin.payu.in/test_response
 ```
+
+<br />
