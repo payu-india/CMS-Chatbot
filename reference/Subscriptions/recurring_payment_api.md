@@ -33,16 +33,18 @@ next:
 ---
 All successful registration transactions are charged over the recurring interface with server-to-server API without any additional 2FA or the customers’ involvement. This section describes how to achieve the Recurring Transaction for Net Banking, Cards, and UPI through the common platform.
 
-> 📘
->
-> **Notes**:
->
-> - Banks do not support refunds for Net Banking Recurring Payment transactions (or e-NACH transaction) so you will get an error message, “Refund not accepted for txn” or Error 232. For the list of banks supporting e-NACH, refer to Recurring Payments Bank Codes.
-> - Check the mandate status, call the **Pre-Debit Notification** API before calling the **Recurring Payment Transaction** API to make a recurring payment transaction.
+<Callout icon="📘" theme="info">
+  **Notes**:
 
-> 🚧
->
-> **Assumptions**: If the merchant has already performed a successful registration transaction with Net Banking/UPI/Card and mihpayid is received in response to the registration transaction captured successfully and mapped to the customer at the merchant’s end.
+  - Banks do not support refunds for Net Banking Recurring Payment transactions (or e-NACH transaction) so you will get an error message, “Refund not accepted for txn” or Error 232. For the list of banks supporting e-NACH, refer to Recurring Payments Bank Codes.
+  - Check the mandate status, call the **Pre-Debit Notification** API before calling the **Recurring Payment Transaction** API to make a recurring payment transaction.
+</Callout>
+
+<NPCI_Subrciptions_Recommendations />
+
+<Callout icon="🚧" theme="warn">
+  **Assumptions**: If the merchant has already performed a successful registration transaction with Net Banking/UPI/Card and mihpayid is received in response to the registration transaction captured successfully and mapped to the customer at the merchant’s end.
+</Callout>
 
 ### Environment
 
@@ -53,14 +55,14 @@ All successful registration transactions are charged over the recurring interfac
 
 <Accordion title="Sample request" icon="fa-code">
   ```curl
-  curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642' \
-  --data-urlencode 'form=2' \
-  --data-urlencode 'key=BmTY3G' \
-  --data-urlencode 'command=si_transaction' \
-  --data-urlencode 'var1={"authpayuid":"6611192557","invoiceDisplayNumber":"12345678910","amount":"3.00","txnid":"REC15113506209","phone":"9999999999","email":"chota.bheem@gmail.com","udf2":"","udf3":"","udf4":"","udf5":""}' \
-  --data-urlencode 'hash=YOUR_HASH_VALUE' \
+    curl --location 'https://info.payu.in/merchant/postservice.php?form=2' \
+    --header 'Content-Type: application/x-www-form-urlencoded' \
+    --header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642' \
+    --data-urlencode 'form=2' \
+    --data-urlencode 'key=BmTY3G' \
+    --data-urlencode 'command=si_transaction' \
+    --data-urlencode 'var1={"authpayuid":"6611192557","invoiceDisplayNumber":"12345678910","amount":"3.00","txnid":"REC15113506209","phone":"9999999999","email":"chota.bheem@gmail.com","udf2":"","udf3":"","udf4":"","udf5":""}' \
+    --data-urlencode 'hash=YOUR_HASH_VALUE' \
   ```
 </Accordion>
 
@@ -97,7 +99,7 @@ All successful registration transactions are charged over the recurring interfac
 
   **Failure scenarios**
 
-  * Invalid hash
+  - Invalid hash
 
   ```json
   {
@@ -106,7 +108,7 @@ All successful registration transactions are charged over the recurring interfac
   }
   ```
 
-  * Basic authentication check failed
+  - Basic authentication check failed
 
   ```json
   {
@@ -150,24 +152,23 @@ All successful registration transactions are charged over the recurring interfac
 
   ### status field description
 
-  This field gives the status of the transaction. Hence, the value of this field depends on whether the transaction was successful or not.\
-  You must map the order status using this parameter only. The possible values of this parameter are:
+  This field gives the status of the transaction. Hence, the value of this field depends on whether the transaction was successful or not.<br />You must map the order status using this parameter only. The possible values of this parameter are:
 
-  * **captured**: If the transaction is successful, the value will be captured. In some cases, the response of Net banking recurring can be captured over real-time basis (ICICI bank in the specific scenario).
-  * **pending**: This is common with most Net Banking (except ICICI in the specific scenario) or UPI recurring transaction. In that case, the merchant should consider this as successful initiation of payment with bank / NPCI. The status will be notified back to the merchant over payment processing with individual bank gets completed.\
-    For UPI, “pending” transactions get usually get converted into captured or failed within 10 mins from the time of initiation. The Query API can be called post 10 mins from initiation, whereas for Net Banking, it can be called up to T+2 once a day. For more information, refer to [Capture response of Recurring Transaction](#capture-response-of-recurring-transaction-for-net-banking-and-upi).\
-    For Net Banking, “pending” transaction gets converted into “captured” or “failed” from the same day till T+2 anytime, depending upon the bank account used by the customer in setting up registration.
-  * **failed**: The value of the status as “failed” or blank must be treated as a failed transaction only.
-  * **in-progress**: The status of transaction is in progress.
+  - **captured**: If the transaction is successful, the value will be captured. In some cases, the response of Net banking recurring can be captured over real-time basis (ICICI bank in the specific scenario).
+  - **pending**: This is common with most Net Banking (except ICICI in the specific scenario) or UPI recurring transaction. In that case, the merchant should consider this as successful initiation of payment with bank / NPCI. The status will be notified back to the merchant over payment processing with individual bank gets completed.<br />For UPI, “pending” transactions get usually get converted into captured or failed within 10 mins from the time of initiation. The Query API can be called post 10 mins from initiation, whereas for Net Banking, it can be called up to T+2 once a day. For more information, refer to [Capture response of Recurring Transaction](#capture-response-of-recurring-transaction-for-net-banking-and-upi).<br />For Net Banking, “pending” transaction gets converted into “captured” or “failed” from the same day till T+2 anytime, depending upon the bank account used by the customer in setting up registration.
+  - **failed**: The value of the status as “failed” or blank must be treated as a failed transaction only.
+  - **in-progress**: The status of transaction is in progress.
 
-  To capture the final status of “pending” transaction to either “captured” or “failed”, PayU recommends merchants to either implement Webhook URL or call **verify\_payment** API after regular intervals. For more information on:
+  To capture the final status of “pending” transaction to either “captured” or “failed”, PayU recommends merchants to either implement Webhook URL or call **verify_payment** API after regular intervals. For more information on:
 
-  * Webhook: Refer to [Webhooks](doc:webhooks)
-  * **verify\_payment** API: Refer to [Verify Payment API](ref:verify_payment_api)
+  - Webhook: Refer to [Webhooks](doc:webhooks)
+  - **verify_payment** API: Refer to [Verify Payment API](ref:verify_payment_api)
 
-  > 📘 Note:
-  >
-  > For UPI, call the **verify\_settlement** API after 10 mins from time of initiation whereas for Net Banking it can be called up to T+2 once in a day.
+  <Callout icon="📘" theme="info">
+    ### Note:
+
+    For UPI, call the **verify_settlement** API after 10 mins from time of initiation whereas for Net Banking it can be called up to T+2 once in a day.
+  </Callout>
 </Accordion>
 
 ## UPI Sequencing
@@ -177,13 +178,13 @@ A sequence is posted based on Mandate creation. When consent is taken, the first
 
 <Accordion title="Sample request" icon="fa-flask">
   ```curl
-  curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data-urlencode 'form=2' \
-  --data-urlencode 'key=smsplus' \
-  --data-urlencode 'command=si_transaction' \
-  --data-urlencode 'var1={"authpayuid": "25600438037", "invoiceDisplayNumber": "INV-12345", "amount": "100.00", "txnid": "TXN-2024-001-SEQ2", "phone": "9999999999", "email": "customer@example.com", "mandateSeqNo": 2}' \
-  --data-urlencode 'hash=YOUR_HASH_VALUE'
+    curl --location 'https://test.payu.in/merchant/postservice.php?form=2' \
+    --header 'Content-Type: application/x-www-form-urlencoded' \
+    --data-urlencode 'form=2' \
+    --data-urlencode 'key=smsplus' \
+    --data-urlencode 'command=si_transaction' \
+    --data-urlencode 'var1={"authpayuid": "25600438037", "invoiceDisplayNumber": "INV-12345", "amount": "100.00", "txnid": "TXN-2024-001-SEQ2", "phone": "9999999999", "email": "customer@example.com", "mandateSeqNo": 2}' \
+    --data-urlencode 'hash=YOUR_HASH_VALUE'
   ```
 </Accordion>
 
@@ -192,15 +193,14 @@ A sequence is posted based on Mandate creation. When consent is taken, the first
 
   # Table 3: Scenarios and Response Payloads
 
-| Scenario | Response Payload |
-|----------|------------------|
-| **Success Cases** |
-| Transaction In Progress | `{"status":1,"message":"Transaction Processed successfully","details":{...,"status":"in progress","field9":"92\|Transaction Initiated"}}` |
-| Transaction Captured | `{"status":1,"message":"Transaction Processed successfully","details":{...,"status":"captured","field9":"Transaction Completed Successfully"}}` |
-| **Transaction Errors** |
-| Authentication Failed | `{"status":1,"message":"Transaction Processed successfully","details":{...,"status":"failed","field9":"Basic authentication check failed"}}` |
-| Invalid Hash | `{"status":0,"msg":"Invalid Hash."}` |
-
+  | Scenario                | Response Payload                                                                                                                                |
+  | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+  | **Success Cases**       |                                                                                                                                                 |
+  | Transaction In Progress | `{"status":1,"message":"Transaction Processed successfully","details":{...,"status":"in progress","field9":"92\|Transaction Initiated"}}`       |
+  | Transaction Captured    | `{"status":1,"message":"Transaction Processed successfully","details":{...,"status":"captured","field9":"Transaction Completed Successfully"}}` |
+  | **Transaction Errors**  |                                                                                                                                                 |
+  | Authentication Failed   | `{"status":1,"message":"Transaction Processed successfully","details":{...,"status":"failed","field9":"Basic authentication check failed"}}`    |
+  | Invalid Hash            | `{"status":0,"msg":"Invalid Hash."}`                                                                                                            |
 </Accordion>
 
 ## Request parameters
