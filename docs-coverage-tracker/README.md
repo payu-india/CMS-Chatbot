@@ -35,6 +35,10 @@ The attached sample progress report was used only as a reference for reporting p
 ## Regenerating
 
 ```bash
+# FY26-27 progress report (sample layout)
+python3 docs-coverage-tracker/generate_progress_report.py
+
+# Master coverage tracker
 python3 docs-coverage-tracker/generate_coverage_tracker.py
 ```
 
