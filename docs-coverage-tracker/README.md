@@ -2,9 +2,13 @@
 
 Leadership-ready inventory of PayU products documented in this repository, with coverage scoring, gap analysis, and Integration Guide prioritization.
 
-## Deliverable
+## Deliverables
 
-- [`PayU_Product_Documentation_Coverage_Tracker.xlsx`](./PayU_Product_Documentation_Coverage_Tracker.xlsx)
+1. **FY26–27 Progress Report (sample format)** — [`PayU_Docs_Coverage_Progress_Report_26-27_Product_Docs.xlsx`](./PayU_Docs_Coverage_Progress_Report_26-27_Product_Docs.xlsx)  
+   Same layout as the Docs Coverage Progress Report sample: Product → Content Coverage checklist → Recommendations → TW → monthly scores → Total / Docs Score → portfolio Coverage %.
+
+2. **Master Coverage Tracker** — [`PayU_Product_Documentation_Coverage_Tracker.xlsx`](./PayU_Product_Documentation_Coverage_Tracker.xlsx)  
+   Executive dashboard, inventory matrix, gap analysis, IG prioritization.
 
 ## Workbook sheets
 
