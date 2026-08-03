@@ -1,10 +1,10 @@
 ---
-title: Troubleshooting BigCommerce Integration
+title: FAQs
 excerpt: ''
 deprecated: false
 hidden: false
 metadata:
-  title: ''
+  title: FAQs for BigCommerce Integration
   description: ''
   robots: index
 next:
