@@ -1,5 +1,5 @@
 ---
-title: ' FAQs for Interakt for WhatsApp Business Integration'
+title: ' FAQs'
 deprecated: false
 hidden: false
 metadata:
