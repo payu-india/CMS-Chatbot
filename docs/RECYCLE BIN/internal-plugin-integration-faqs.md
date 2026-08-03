@@ -1,5 +1,5 @@
 ---
-title: '[Internal] Plugin Integration FAQs'
+title: '[Internal] Plugin Integration FAQs for Review'
 deprecated: false
 hidden: true
 icon: ⁉️
