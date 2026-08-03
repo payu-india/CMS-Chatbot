@@ -25,24 +25,26 @@ When the order goes through, the customer is taken to PayU to make a secure paym
 
 ## Requirements
 
-* Merchant Account on WooCommerce website
-* PayU Plugin for WooCommerce version 5.5.2
+- Merchant Account on WooCommerce website
+- PayU Plugin for WooCommerce version 5.5.2
 
-> 👍 Before you begin:
->
-> Register for a account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
+<Callout icon="👍" theme="okay">
+  ### Before you begin:
+
+  Register for a account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
+</Callout>
 
 ## What PayU offers?
 
 PayU offers the following capabilities on WooCommerce platform:
 
-* **PayU WooCommerce Plugin**: Refer to [Install and Configure PayU WooCommerce Plugin](doc:install-and-configure-payu-woocommerce-plugin)
-* **PayU CommercePro Checkout for WooCommerce**: Refer to [CommercePro Checkout for WooCommerce](doc:commercepro-platform-for-woocommerce)
+- **PayU WooCommerce Plugin**: Refer to [Install and Configure PayU WooCommerce Plugin](doc:install-and-configure-payu-woocommerce-plugin)
+- **PayU CommercePro Checkout for WooCommerce**: Refer to [CommercePro Checkout for WooCommerce](doc:commercepro-platform-for-woocommerce)
 
-If you encounter issues while integration, refer to [Troubleshooting WooCommerce Integration](doc:troubleshooting-woocommerce-integration)
+If you encounter issues while integration, refer to [FAQs for WooCommerce Integration](doc:faqs-woocommerce-integration)
 
 ## Video tutorial
 
 The following video describes how to install PayU plugin and then configure the WooCommerce settings.
 
-<Embed url="https://www.youtube.com/watch?v=Px20tTRqQNg" title="How to integrate PayU plugin on WooCommerce" favicon="https://www.google.com/favicon.ico" image="https://i.ytimg.com/vi/Px20tTRqQNg/hqdefault.jpg" provider="youtube.com" href="https://www.youtube.com/watch?v=Px20tTRqQNg" typeOfEmbed="youtube" html="%3Ciframe%20class%3D%22embedly-embed%22%20src%3D%22%2F%2Fcdn.embedly.com%2Fwidgets%2Fmedia.html%3Fsrc%3Dhttps%253A%252F%252Fwww.youtube.com%252Fembed%252FPx20tTRqQNg%253Ffeature%253Doembed%26display_name%3DYouTube%26url%3Dhttps%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253DPx20tTRqQNg%26image%3Dhttps%253A%252F%252Fi.ytimg.com%252Fvi%252FPx20tTRqQNg%252Fhqdefault.jpg%26key%3D7788cb384c9f4d5dbbdbeffd9fe4b92f%26type%3Dtext%252Fhtml%26schema%3Dyoutube%22%20width%3D%22854%22%20height%3D%22480%22%20scrolling%3D%22no%22%20title%3D%22YouTube%20embed%22%20frameborder%3D%220%22%20allow%3D%22autoplay%3B%20fullscreen%3B%20encrypted-media%3B%20picture-in-picture%3B%22%20allowfullscreen%3D%22true%22%3E%3C%2Fiframe%3E" />
+<Embed title="" typeOfEmbed="youtube" url="https://www.youtube.com/watch?v=Px20tTRqQNg" href="https://www.youtube.com/watch?v=Px20tTRqQNg" html="%3Ciframe%20class%3D%22embedly-embed%22%20src%3D%22%2F%2Fcdn.embedly.com%2Fwidgets%2Fmedia.html%3Fsrc%3Dhttps%253A%252F%252Fwww.youtube.com%252Fembed%252FPx20tTRqQNg%253Ffeature%253Doembed%26display_name%3DYouTube%26url%3Dhttps%253A%252F%252Fwww.youtube.com%252Fwatch%253Fv%253DPx20tTRqQNg%26image%3Dhttps%253A%252F%252Fi.ytimg.com%252Fvi%252FPx20tTRqQNg%252Fhqdefault.jpg%26key%3D7788cb384c9f4d5dbbdbeffd9fe4b92f%26type%3Dtext%252Fhtml%26schema%3Dyoutube%22%20width%3D%22854%22%20height%3D%22480%22%20scrolling%3D%22no%22%20title%3D%22YouTube%20embed%22%20frameborder%3D%220%22%20allow%3D%22autoplay%3B%20fullscreen%3B%20encrypted-media%3B%20picture-in-picture%3B%22%20allowfullscreen%3D%22true%22%3E%3C%2Fiframe%3E" />
