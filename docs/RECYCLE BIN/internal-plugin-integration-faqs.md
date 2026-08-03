@@ -1,7 +1,8 @@
 ---
 title: '[Internal] Plugin Integration FAQs'
 deprecated: false
-hidden: false
+hidden: true
+icon: ⁉️
 metadata:
   robots: index
 ---
