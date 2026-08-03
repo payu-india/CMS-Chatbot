@@ -20,25 +20,27 @@ When the order goes through, the customer is taken to PayU to make a secure paym
 
 ## Requirements
 
-* Store Account on the BigCommerce website
-* PayU Merchant Key and Salt
+- Store Account on the BigCommerce website
+- PayU Merchant Key and Salt
 
-> 👍 Before you begin:
->
-> Register for a account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
+<Callout icon="👍" theme="okay">
+  ### Before you begin:
+
+  Register for a account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
+</Callout>
 
 ## What does this app do?
 
 PayU allows merchants to accept following payment methods on the BigCommerce platform:
 
-* Cards
-  * VISA
-  * MasterCard
-  * Diners
-  * American Express
-* Net Banking
-* UPI
-* EMI
-* Wallets
+- Cards
+  - VISA
+  - MasterCard
+  - Diners
+  - American Express
+- Net Banking
+- UPI
+- EMI
+- Wallets
 
-For procedure to install and configure, refer to [Install and Configure PayU BigCommerce Plugin](doc:install-payu-plugin-for-bigcommerce) . If you encounter issues while integration, refer to [Troubleshooting BigCommerce Integration](doc:troubleshooting-bigcommerce-integration).
+For procedure to install and configure, refer to [Install and Configure PayU BigCommerce Plugin](doc:install-payu-plugin-for-bigcommerce) . If you encounter issues while integration, refer to [FAQs](doc:faqs-bigcommerce-integration).
