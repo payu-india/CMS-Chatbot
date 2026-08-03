@@ -1,5 +1,5 @@
 ---
-title: FAQs for Zoho Integration
+title: FAQs
 deprecated: false
 hidden: false
 metadata:
