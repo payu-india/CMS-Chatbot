@@ -6,7 +6,7 @@ PAN + DOBSets the merchant's PAN details and date of birth/incorporation. The en
 ## Entity Applicability
 **All entities**
 ## Allowed
-Entity Types| Entity Type | CKYC Method | CIN Required | UBO Required | Business Members | DigiLocker |
+| Entity Types| Entity Type | CKYC Method | CIN Required | UBO Required | Business Members | DigiLocker |
 |-------------|-------------|--------------|--------------|------------------|------------|
 | Individual | OTP | No | No | No | Skip if CKYC ok || Sole Proprietorship | OTP | No | No | No | Skip if CKYC ok |
 | Partnership | Fetch | No | Yes | Yes | Always || Pvt Ltd | Fetch | **Yes** | Yes | Yes | Always || Public Limited | Fetch | **Yes** | Yes | Yes | Always |
