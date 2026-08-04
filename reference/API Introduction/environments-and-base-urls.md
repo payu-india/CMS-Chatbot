@@ -7,54 +7,54 @@ metadata:
 ---
 PayU provides separate **Test** and **Production** environments for you to test and then go-live. We recommend you to test your integration first with test key and salt values, then switch host, key, and salt together when you go-live.
 
-PayU uses different gateway URLs for every product. Always use the base URL for the API family you are calling.
+PayU uses different gateway URLs for different product. Always use the base URL for the API family you are calling.
 
 ## Environment Basics
 
-| Environment    | Purpose                                      | Credentials                      |
-| :------------- | :------------------------------------------- | :------------------------------- |
-| **Test**       | Build, Try It playground, and UAT validation | Test merchant key and salt       |
-| **Production** | Live customer traffic                        | Production merchant key and salt |
+| Environment    | Purpose                                     | Required Credentials    |
+| :------------- | :------------------------------------------ | :---------------------- |
+| **Test**       | Build and test the PayU product integration | Test key and salt       |
+| **Production** | Go-live with PayU products after testing    | Production key and salt |
 
 <Callout icon="🚧" theme="warn">
-  ### Switch as a set
+  ### Switch as a Set
 
   When moving to Production, update **all** of the following together:
 
-  - Base URL / host
-  - Merchant key
-  - Salt / client secret
-  - Any product-specific tokens or partner credentials
+  - [x] Base URL / host
+  - [x] Merchant key
+  - [x] Salt / client secret
+  - [x] Any product-specific tokens or partner credentials
+
+
 </Callout>
 
-## Collect Payment (`_payment`)
+### Product-wise Base URLs
 
-| Environment | Base URL                          |
-| :---------- | :-------------------------------- |
-| Test        | `https://test.payu.in/_payment`   |
-| Production  | `https://secure.payu.in/_payment` |
+These are the product-wise base URLs
 
-Related references:
+<Accordion title="Collect Payment (_payment)" icon="far fa-money-bill-trend-up">
+  | Environment | Base URL                          |
+  | :---------- | :-------------------------------- |
+  | Test        | `https://test.payu.in/_payment`   |
+  | Production  | `https://secure.payu.in/_payment` |
+</Accordion>
 
-- [Collect Payment — PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)
-- [Collect Payment — Merchant Hosted Checkout](ref:_payment_merchant_hosted)
-- [Collect Payment — S2S](ref:_payment_server_to_server)
+<Accordion title="General APIs" icon="far fa-gear-complex-api">
+  | Environment | Base URL                                               |
+  | :---------- | :----------------------------------------------------- |
+  | Test        | `https://test.payu.in/merchant/postservice.php?form=2` |
+  | Production  | `https://info.payu.in/merchant/postservice.php?form=2` |
 
-## General APIs
+  Append `form=2` to receive JSON responses for General APIs. Refer to the [REST API Format](doc:rest-api-format) page for more information.
+</Accordion>
 
-| Environment | Base URL                                               |
-| :---------- | :----------------------------------------------------- |
-| Test        | `https://test.payu.in/merchant/postservice.php?form=2` |
-| Production  | `https://info.payu.in/merchant/postservice.php?form=2` |
-
-Append `form=2` to receive JSON responses for General APIs. See [REST API Format](doc:rest-api-format).
-
-## v2 Payments
-
-| Environment | Base URL                              |
-| :---------- | :------------------------------------ |
-| Test        | `https://apitest.payu.in/v2/payments` |
-| Production  | `https://api.payu.in/v2/payments`     |
+<Accordion title="V2 Payments" icon="far fa-code">
+  | Environment | Base URL                              |
+  | :---------- | :------------------------------------ |
+  | Test        | `https://apitest.payu.in/v2/payments` |
+  | Production  | `https://api.payu.in/v2/payments`     |
+</Accordion>
 
 ## OAuth / Accounts (Payouts and Partner auth)
 
