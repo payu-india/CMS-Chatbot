@@ -5,52 +5,54 @@ hidden: true
 metadata:
   robots: index
 ---
-PayU does not use one authentication method for every product. Most Payment Gateway APIs authenticate with your **merchant key** and a **SHA-512 hash** derived from your **salt**. Payouts and Partner APIs typically use **OAuth**. Some product APIs use **HMAC signed headers**.
+PayU uses multiple authentication types for every product. Most Payment Gateway APIs authenticate with your merchant key and a SHA-512 hash derived from your salt. Payouts and Partner APIs typically use OAuth. Some product APIs use HMAC signed headers.
 
 This page is the unified authentication entry point for PayU APIs.
 
-## Authentication models at a glance
+## Authentication Models at a Glance
 
-| Model                 | How it works                                                               | Used by                                                        |
-| :-------------------- | :------------------------------------------------------------------------- | :------------------------------------------------------------- |
-| **Key + salt + hash** | Send `key` in the request body and a `hash` computed with your salt        | Collect Payment (`_payment`), General APIs, many PG features   |
-| **OAuth 2.0**         | Exchange credentials for an access token, then call product APIs           | Payouts, Partner integration / onboarding                      |
-| **HMAC headers**      | Sign request body + date with merchant secret; send `authorization` header | Selected product APIs (for example, some wallet/rewards flows) |
+| Model                                               | How it works                                                               | Used by                                                        |
+| :-------------------------------------------------- | :------------------------------------------------------------------------- | :------------------------------------------------------------- |
+| `key`**&#x20;+&#x20;**`salt`**&#x20;+&#x20;**`hash` | Send `key` in the request body and a `hash` computed with your salt        | Collect Payment (`_payment`), General APIs, other PG features  |
+| **OAuth 2.0**                                       | Exchange credentials for an access token, and call product APIs            | Payouts and Partner integration / onboarding                   |
+| **HMAC headers**                                    | Sign request body + date with merchant secret; send `authorization` header | Selected product APIs (for example, some wallet/rewards flows) |
 
 <Callout icon="📘" theme="info">
-  ### Get credentials first
+  ### Get Your Credentials First
 
-  Generate your Test and Production **key** and **salt** from the PayU Dashboard:
+  Generate your Test and Production key and salt from the PayU Dashboard:
 
-  - [Generate Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard)
-  - [Generate Merchant Key and Salt on PayUBiz Dashboard](doc:generate-merchant-key-and-salt-on-payubiz-dashboard)
+  - [Generate Test Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard)
+  - [Generate Production Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard)
 
   For Integration API testing, documentation examples may use a static Test key such as `JPTXg`. Always replace sample keys with your own credentials before go-live.
 </Callout>
 
-## Key + salt + hash authentication
+## `key` + `salt` + `hash` Authentication
 
-When you post requests to Payment or General APIs, you include the merchant key as a request parameter. Requests are accompanied by a `hash` calculated on your server using your salt. Separate HTTP Basic Auth is not required for these APIs.
+When you post requests to Payment or General APIs, you include the merchant key as a request parameter. Requests are accompanied by a `hash` calculated on your server using your salt. A separate HTTP Basic authentication is not required for these APIs.
 
-### Payment API (`_payment`) hash
+### Payment API (`_payment`) Hash Logic
 
-Use this hash logic while posting Collect Payment (`_payment`) parameters:
+This is the hash logic for posting Collect Payment (`_payment`) parameters.
 
 ```
 sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
 ```
 
-For complete hashing rules, optional fields, and reverse hashing, see [Generate Hash](doc:hashing-request-and-response).
+Refer to [Generate Hash](doc:hashing-request-and-response) for more information about complete hashing rules, optional fields, and reverse hashing.
 
-### General APIs hash
+### General APIs Hash Logic
 
-For command-based General APIs such as Verify Payment, Get BIN Info, and Refund Transaction:
+Below is the hash logic for command-based General APIs such as Verify Payment, Get BIN Info, and Refund Transaction.
 
 ```
 sha512(key|command|var1|salt)
 ```
 
-### Feature-specific hash variants
+### Feature-specific Hash Variants
+
+These are the feature-specific hash variants.
 
 |                       |              |       |        |             |           |       |      |      |      |      |      |   |   |   |   |   | Integration       | Hash string     |
 | --------------------- | ------------ | ----- | ------ | ----------- | --------- | ----- | ---- | ---- | ---- | ---- | ---- | - | - | - | - | - | :---------------- | :-------------- |
@@ -123,19 +125,3 @@ See [Headers and Content Types](doc:headers-and-content-types) for header conven
 - **Rotate credentials** through the Dashboard if compromise is suspected.
 - **Enforce HTTPS** for all callbacks (`surl`, `furl`) and webhook endpoints.
 - **Treat browser redirects as untrusted** — confirm with Verify Payment or an equivalent server API.
-
-## What to read next
-
-- [Generate Hash](doc:hashing-request-and-response)
-- [API Environments and Base URLs](doc:api-environments-and-base-urls)
-- [Making Your First API Request](doc:making-your-first-api-request)
-- [Authentication with PayU APIs](ref:authentication-with-payu-apis) (API Reference companion)
-
-## Related APIs
-
-- [Collect Payment API — PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)
-- [Verify Payment API](ref:verify_payment_api)
-- [Generate Token using Merchant's Credentials API](ref:generate-token-using-merchants-credentials-api)
-- [Get Token API](ref:get_token_api)
-
-<br />
