@@ -1,5 +1,5 @@
 ---
-title: API Introduction FAQs
+title: FAQs
 deprecated: false
 hidden: true
 metadata:
