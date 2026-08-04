@@ -302,7 +302,7 @@ servers:
 paths:
   /oauth/token:
     post:
-      summary: GetToken
+      summary: Get Token API
       operationId: GetToken
       tags:
         - Step 00 — Authentication
