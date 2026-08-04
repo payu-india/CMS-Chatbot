@@ -32,15 +32,15 @@ This page is the unified authentication entry point for PayU APIs.
 
 When you post requests to Payment or General APIs, you include the merchant key as a request parameter. Requests are accompanied by a `hash` calculated on your server using your salt. A separate HTTP Basic authentication is not required for these APIs. Below are the different hash logics available:
 
-### Payment API (`_payment`) Hash Logic
+<Accordion title="### Payment API (`_payment`) Hash Logic" icon="far fa-hashtag-lock">
+  This is the hash logic for posting Collect Payment (`_payment`) parameters.
 
-This is the hash logic for posting Collect Payment (`_payment`) parameters.
+  ```text _payment Hash Logic
+  sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
+  ```
 
-```
-sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
-```
-
-Refer to [Generate Hash](doc:hashing-request-and-response) for more information about complete hashing rules, optional fields, and reverse hashing.
+  Refer to [Generate Hash](doc:hashing-request-and-response) for more information about complete hashing rules, optional fields, and reverse hashing.
+</Accordion>
 
 ### General APIs Hash Logic
 
