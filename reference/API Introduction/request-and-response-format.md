@@ -72,6 +72,11 @@ Common fields include:
 
 Content type is typically `application/x-www-form-urlencoded`.
 
+<Accordion title="Request Sample" icon="far fa-code">
+  ```curl cURL - Example Request
+  ```
+</Accordion>
+
 ## OAuth Product Request Format
 
 OAuth products usually:
