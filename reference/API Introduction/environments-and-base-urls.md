@@ -25,8 +25,6 @@ PayU uses different gateway URLs for different product. Always use the base URL 
   - [x] Merchant key
   - [x] Salt / client secret
   - [x] Any product-specific tokens or partner credentials
-
-
 </Callout>
 
 ## Product-wise Base URLs
