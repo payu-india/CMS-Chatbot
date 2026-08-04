@@ -1,8 +1,8 @@
 ---
-title: Step 12 — Add/Update UBO API
+title: Step 12 — Add/Update UBO
 hidden: false
 ---
-Submits UBO details. UBOs are individuals who own or control 25%+ of the business.
+This step is to submit UBO details. UBOs are individuals who own or control 25%+ of the business.
 
 ## Prerequisite 
 
