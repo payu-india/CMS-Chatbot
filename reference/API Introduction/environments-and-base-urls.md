@@ -93,6 +93,6 @@ To choose the correct base URL:
 
 ## Test limitations
 
-Some products, APIs, and flows are not fully supported for test journey. Notable examples include certain refund flows, some UPI S2S flows, selected subscription UPI flows, some Save Cards Model 2 flows, TPV, and parts of Split Settlements and Omnichannel.
+Some products, APIs, and flows are not fully supported for test journey. Notable examples include certain refund flows, some UPI S2S flows, selected subscription UPI flows, some Save Cards Model 2 flows, TPV, and parts of Split Settlements and Omnichannel.<br />
 
 See the limitations list on [PayU India API Reference](ref:introduction-api-reference) and use [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) for supported test instruments.
