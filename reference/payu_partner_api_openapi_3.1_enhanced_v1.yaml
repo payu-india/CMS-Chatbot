@@ -777,7 +777,7 @@ paths:
           description: Internal Server Error
   /api/v3/merchants/{mid_bank_proof}/kyc_document:
     post:
-      summary: UploadBankProof
+      summary: Upload Bank Proof API
       operationId: UploadBankProof
       tags:
         - Step 06 — Upload Bank Proof (Conditional)
