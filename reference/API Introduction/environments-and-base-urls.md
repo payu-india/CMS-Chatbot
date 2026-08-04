@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-PayU provides separate **Test** and **Production** environments for you to test and then go-live. We recommend you to test your integration first with test key and salt values, then switch host, key, and salt together when you go-live.<br />
+PayU provides separate **Test** and **Production** environments for you to test and then go-live. We recommend you to test your integration first with test key and salt values, then switch host, key, and salt together when you go-live.
 
 PayU uses different gateway URLs for different product. Always use the base URL for the API family you are calling.
 
@@ -86,7 +86,7 @@ These are the product-wise base URLs
 
 To choose the correct base URL:
 
-1. Identify the **API family** from [Which API should I use?](doc:which-api-should-i-use).
+1. Identify the **API family** from Choose Your API.
 2. Open the specific operation in [API Reference](ref:introduction-api-reference).
 3. Use the environment block on that page (or this consolidated map) for Test vs Production.
 4. Keep the request auth aligned with that family.
