@@ -5,88 +5,63 @@ hidden: true
 metadata:
   robots: index
 ---
-Always integrate against PayU **Test** before Production. Testing validates hash generation, callbacks, Verify Payment, and product-specific edge cases without moving real money.
+Always test APIs before going to production. Testing validates hash generation, callbacks, Verify Payment, and product-specific edge cases without moving real money.
 
-## Testing workflow
+## Testing Workflow
 
-```
-Create Test credentials
-→ Pick Test base URL
-→ Use test instruments
-→ Call APIs / Try It / Postman
-→ Validate callbacks + reverse hash
-→ Run Verify Payment
-→ Complete go-live checklist
-```
+Below is the testing workflow:
 
-## 1. Test credentials and environments
+<Accordion title="1. Test Credentials and Environments" icon="far fa-screwdriver-wrench">
+  To begin with you should:
 
-- Generate Test key and salt from the Dashboard: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
-- Use Test hosts from [API Environments and Base URLs](doc:api-environments-and-base-urls)
-- Do not mix Production keys with Test URLs (or the reverse)
+  - Generate Test key and salt from the Dashboard: [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard)
 
-## 2. Test payment instruments
+  - Use Test hosts from [API Environments and Base URLs](doc:api-environments-and-base-urls)
 
-For checkout and Collect Payment testing, use only documented test instruments:
+  - Not mix Production keys with Test URLs (or the reverse)
+</Accordion>
 
-- [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets)
+<Accordion title="2. Test Payment Instruments" icon="far fa-credit-card">
+  Test PayU's payment instruments as a next step:
 
-Product-specific fixtures may also exist (for example, EMI test cards/wallets in custom blocks used by Affordability docs).
+  For checkout and Collect payment testing, use only documented test instruments. Product-specific fixtures may also exist (for example, EMI test cards/wallets in custom blocks used by Affordability docs).
+</Accordion>
 
-## 3. API Reference Try It playground
+<Accordion title="3. API Reference Try It Playground" icon="far fa-display-code">
+  Most API Reference pages support interactive calls:
 
-Most API Reference pages support interactive calls:
+  1. Open an operation from [API Reference](ref:introduction-api-reference).
+  2. Fill required parameters.
+  3. Generate hash when prompted.
+  4. Click **Try It**.
+  5. Inspect response and copy language bindings as needed.
+</Accordion>
 
-1. Open an operation from [API Reference](ref:introduction-api-reference).
-2. Fill required parameters.
-3. Generate hash when prompted.
-4. Click **Try It**.
-5. Inspect response and copy language bindings as needed.
+<Accordion title="4. Postman and Local Testing" icon="far fa-sign-posts">
+  - Use Postman collections where available.
 
-### Try It limitations
+  - Go through the <Anchor target="_blank" href="https://payu-hosted-checkout.readme.io/v1/recipes/curl-walkthrough">cURL mechanics.</Anchor>
 
-PayU currently does not fully support Test/Try It for all flows. Examples include certain refund flows, some UPI S2S flows, selected subscription UPI flows, some Save Cards Model 2 flows, TPV, parts of Split Settlements, and Omnichannel.
+  - Keep secrets in Postman environments, not shared collections.
+</Accordion>
 
-See the limitations callout on [PayU India API Reference](ref:introduction-api-reference).
+<Accordion title="5. Validate these in Test" icon="far fa-note-sticky">
+  | Area          | Validate                                             |
+  | :------------ | :--------------------------------------------------- |
+  | Auth          | Correct hash/token per API family                    |
+  | Idempotency   | Unique `txnid` per attempt                           |
+  | Callbacks     | `surl`/`furl` reachability and reverse hash          |
+  | Webhooks      | Event receipt, signature checks, duplicate handling  |
+  | Status truth  | Verify Payment matches final business state          |
+  | Failure paths | Declines, cancelled payments, missing params         |
+  | Refunds       | Full/partial refund behavior where supported in Test |
+</Accordion>
 
-## 4. Postman and local testing
+<Accordion title="6. Go-Live Readiness" icon="far fa-file-video">
+  Before switching to Production:
 
-- Use Postman collections where available — start with [SDKs, Postman, and Tools](doc:sdks-postman-and-tools).
-- For cURL mechanics, see the [cURL Walkthrough recipe](https://payu-hosted-checkout.readme.io/v1/recipes/curl-walkthrough).
-- Keep secrets in Postman environments, not shared collections.
-
-## 5. What to validate in Test
-
-| Area          | Validate                                             |
-| :------------ | :--------------------------------------------------- |
-| Auth          | Correct hash/token per API family                    |
-| Idempotency   | Unique `txnid` per attempt                           |
-| Callbacks     | `surl`/`furl` reachability and reverse hash          |
-| Webhooks      | Event receipt, signature checks, duplicate handling  |
-| Status truth  | Verify Payment matches final business state          |
-| Failure paths | Declines, cancelled payments, missing params         |
-| Refunds       | Full/partial refund behavior where supported in Test |
-
-## 6. Go-live readiness
-
-Before switching to Production:
-
-- Replace Test host, key, and salt together
-- Re-run smoke tests on Production credentials in a controlled manner
-- Confirm webhook URLs and HTTPS certificates
-- Follow product Integration Checklists in Collect Payments / SDK guides
-
-Related: [API Best Practices](doc:api-best-practices)
-
-## What to read next
-
-- [Making Your First API Request](doc:making-your-first-api-request)
-- [Error Handling for APIs](doc:error-handling-for-apis)
-- [API Troubleshooting](doc:api-troubleshooting)
-- [Using PayU Hash Verification Tool](doc:using-payu-hash-verification-tool)
-
-## Related APIs
-
-- [Collect Payment API — PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)
-- [Verify Payment API](ref:verify_payment_api)
-- [Create Payment Link API](ref:create-payment-links)
+  - Replace Test host, key, and salt together
+  - Re-run smoke tests on Production credentials in a controlled manner
+  - Confirm webhook URLs and HTTPS certificates
+  - Follow product Integration Checklists in Collect Payments / SDK guides
+</Accordion>
