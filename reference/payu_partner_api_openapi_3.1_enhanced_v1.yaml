@@ -1352,53 +1352,6 @@ paths:
           description: Validation Failed
         '500':
           description: Internal Server Error
-  /api/v3/merchants/{mid}/kyc_document/generate_digilocker_link:
-    post:
-      summary: Generate Digilocker Link
-      operationId: GenerateDigilockerLink
-      tags:
-        - Step 09 — DigiLocker Verification
-      security:
-        - BearerAuth: []
-      description: ''
-      parameters:
-        - name: mid
-          in: path
-          required: true
-          schema:
-            type: string
-            example: '8390925'
-          description: >-
-            Merchant ID (numeric). Returned in Step 01 (CreateMerchant)
-            response. Required for KYC document operations and DigiLocker
-            verification.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-            example:
-              consent: true
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                type: object
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized - Invalid or expired token
-        '403':
-          description: Forbidden - No access to this resource
-        '404':
-          description: Not Found
-        '422':
-          description: Validation Failed
-        '500':
-          description: Internal Server Error
   /api/v3/merchants/kyc_document/create_vkyc_profile:
     post:
       summary: CreateVKYCProfile
@@ -2516,6 +2469,53 @@ paths:
               merchant[signatory_contact_details_attributes[1][email]]: signatory2@yopmail.com
               merchant[signatory_contact_details_attributes[1][contact_detail_type]]: Signing Authority
               merchant[signatory_contact_details_attributes[1][cin_number]]: ''
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized - Invalid or expired token
+        '403':
+          description: Forbidden - No access to this resource
+        '404':
+          description: Not Found
+        '422':
+          description: Validation Failed
+        '500':
+          description: Internal Server Error
+  /api/v3/merchants/{mid}/kyc_document/generate_digilocker_link:
+    post:
+      summary: Generate Digilocker Link API
+      operationId: GenerateDigilockerLink
+      tags:
+        - Step 09 — DigiLocker Verification
+      security:
+        - BearerAuth: []
+      description: ''
+      parameters:
+        - name: mid
+          in: path
+          required: true
+          schema:
+            type: string
+            example: '8390925'
+          description: >-
+            Merchant ID (numeric). Returned in Step 01 (CreateMerchant)
+            response. Required for KYC document operations and DigiLocker
+            verification.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              consent: true
       responses:
         '200':
           description: Successful response
