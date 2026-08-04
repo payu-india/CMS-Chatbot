@@ -30,7 +30,7 @@ This page is the unified authentication entry point for PayU APIs.
 
 ## `key` + `salt` + `hash` Authentication
 
-When you post requests to Payment or General APIs, you include the merchant key as a request parameter. Requests are accompanied by a `hash` calculated on your server using your salt. A separate HTTP Basic authentication is not required for these APIs.
+When you post requests to Payment or General APIs, you include the merchant key as a request parameter. Requests are accompanied by a `hash` calculated on your server using your salt. A separate HTTP Basic authentication is not required for these APIs. Below are the different hash logics available:
 
 ### Payment API (`_payment`) Hash Logic
 
