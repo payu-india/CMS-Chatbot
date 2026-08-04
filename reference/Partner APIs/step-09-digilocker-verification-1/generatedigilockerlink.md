@@ -7,6 +7,8 @@ hidden: false
 The **Generate DigiLocker Link** API creates a DigiLocker authentication URL for Aadhaar-based verification (Step 09 of 16).
 
 <Callout icon="📘" theme="info">
+  ### Notes:
+
   - **Prerequisite:** Step 08 (Signatory Details) — mandatory.
   - **Branching:**
     - Individual / Sole Prop — skip if CKYC succeeded; required if CKYC was skipped or failed
