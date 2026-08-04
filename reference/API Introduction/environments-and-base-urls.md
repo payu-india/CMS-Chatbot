@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-PayU provides separate **Test** and **Production** environments for you to test and then go-live. We recommend you to test your integration first with test key and salt values, then switch host, key, and salt together when you go-live.
+PayU provides separate **Test** and **Production** environments for you to test and then go-live. We recommend you to test your integration first with test key and salt values, then switch host, key, and salt together when you go-live.<br />
 
 PayU uses different gateway URLs for different product. Always use the base URL for the API family you are calling.
 
