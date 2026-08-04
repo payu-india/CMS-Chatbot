@@ -1,5 +1,5 @@
 ---
-title: API Troubleshooting
+title: Issues and Troubleshooting
 deprecated: false
 hidden: true
 metadata:
