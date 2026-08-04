@@ -1,5 +1,5 @@
 ---
-title: FAQs
+title: Frequently Asked Questions (FAQs)
 deprecated: false
 hidden: true
 metadata:
