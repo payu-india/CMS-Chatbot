@@ -10,7 +10,8 @@ Steps- Step 02 (PAN + Entity) — PAN must be submitted and entity type set
 
 ## Entity Applicability**All entities** — but the method differs:
 
-## Branching Logic```IF entity_type IN (Individual, Sole Proprietorship):    
+## Branching Logic
+If entity_type IN (Individual, Sole Proprietorship):    
 1. Call "Send CKYC OTP" (Sub-request A) — consent: true + mobile required    
 2. Merchant receives OTP on mobile    
 3. Call "Verify CKYC OTP" (Sub-request B) — with the OTPELSE (Partnership, Pvt Ltd, Public Limited, LLP, Trust, Society, One Person Company, etc.):   
