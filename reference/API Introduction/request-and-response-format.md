@@ -102,8 +102,16 @@ OAuth products usually:
 
 PayU APIs are product-specific for these concerns:
 
-| Concern           | What to know                                                                                                                                             |
-| :---------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Pagination**    | Some list APIs (for example, payment links or settlement/on-hold queries) accept page/offset parameters. Use the parameters documented on that API page. |
-| **Idempotency**   | Use a unique `txnid` for every new payment attempt. Treat webhook deliveries as at-least-once and process them idempotently.                             |
-| **Rate limiting** | Exceeding request burst limits can return temporary throttling errors. Back off and retry safely.                                                        |
+<Tabs>
+  <Tab title="Pagination" icon="📄">
+    Some list APIs (for example, payment links or settlement/on-hold queries) accept page/offset parameters. Use the parameters documented on that API page.
+  </Tab>
+
+  <Tab title="Idempotency" icon="far fa-arrow-down-up-across-line">
+    Use a unique `txnid` for every new payment attempt. Treat webhook deliveries as at-least-once and process them idempotently.
+  </Tab>
+
+  <Tab title="Rate limiting" icon="far fa-building-circle-exclamation">
+    Exceeding request burst limits can return temporary throttling errors. Back off and retry safely.
+  </Tab>
+</Tabs>
