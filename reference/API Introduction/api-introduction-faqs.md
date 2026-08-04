@@ -7,27 +7,29 @@ metadata:
 ---
 ## Getting started
 
-### Where should I start with PayU APIs?
-
-Start with [API Introduction](doc:api-introduction), then [Which API should I use?](doc:which-api-should-i-use), then [Making Your First API Request](doc:making-your-first-api-request). Use [API Reference](ref:introduction-api-reference) for exact endpoint schemas.
-
-### What is the difference between Integration Guides and API Reference?
-
-Integration Guides explain end-to-end product setup and UX flows. API Reference documents request/response contracts and Try It calls. API Introduction explains shared concepts used by both.
+1. ### AWhere should I start with PayU APIs?
+   <Accordion title="Answer" icon="fab fa-adn">
+     Start with [API Introduction](doc:api-introduction), then [Choose](doc:which-api-should-i-use) Your API, then [Making Your First API Request](doc:making-your-first-api-request). You can then go through specific endpoint pages.
+   </Accordion>
+2. ### What is the difference between Integration Guides and API Reference?
+   <Accordion title="Answer" icon="fab fa-adn">
+     Integration Guides explain end-to-end product setup and UX flows. Whereas, API Reference documents request/response contracts and Try It calls. API Introduction explains shared concepts used by both.
+   </Accordion>
 
 ## Authentication
 
-### Do all PayU APIs use the same authentication?
-
-No. Most Payment Gateway APIs use merchant key + salt + SHA-512 hash. Payouts and Partner APIs typically use OAuth. Some product APIs use HMAC headers. See [API Authentication and Security](doc:api-authentication-and-security).
-
-### Where do I get key and salt?
-
-From the PayU Dashboard. See [Generate Merchant Key and Salt](doc:generate-merchant-key-and-salt-on-payu-dashboard).
-
-### Can I generate hash in the browser?
-
-You can prototype there, but production hash generation must happen on your server so the salt is never exposed.
+1. ### Do all PayU APIs use the same authentication?
+   <Accordion title="Answer" icon="fab fa-adn">
+     No. Most Payment Gateway APIs use merchant `key` + `salt` + SHA-512 hash. Payouts and Partner APIs typically use OAuth. Some product APIs use HMAC headers. Refer to [API Authentication and Security](doc:api-authentication-and-security) for more information.
+   </Accordion>
+2. ### Where do I get key and salt?
+   <Accordion title="Answer" icon="fab fa-adn">
+     You can <Anchor target="_blank" href="doc:generate-merchant-key-and-salt-on-payu-dashboard">generate merchant key and salt</Anchor> from the dashboard.
+   </Accordion>
+3. ### Can I generate a hash value in the browser?
+   <Accordion title="Answer" icon="fab fa-adn">
+     You can prototype there, however, you should generate a production hash on your server so the salt is never exposed.
+   </Accordion>
 
 ## Environments and URLs
 
