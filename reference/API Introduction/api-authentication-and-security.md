@@ -42,13 +42,13 @@ When you post requests to Payment or General APIs, you include the merchant key 
   Refer to [Generate Hash](doc:hashing-request-and-response) for more information about complete hashing rules, optional fields, and reverse hashing.
 </Accordion>
 
-### General APIs Hash Logic
+<Accordion title="General APIs Hash Logic" icon="fad fa-grip-lines-vertical">
+  Below is the hash logic for command-based General APIs such as Verify Payment, Get BIN Info, and Refund Transaction.
 
-Below is the hash logic for command-based General APIs such as Verify Payment, Get BIN Info, and Refund Transaction.
-
-```
-sha512(key|command|var1|salt)
-```
+  ```
+  sha512(key|command|var1|salt)
+  ```
+</Accordion>
 
 ### Feature-specific Hash Variants
 
