@@ -558,7 +558,7 @@ paths:
           description: Internal Server Error
   /api/v1/merchants/{uuid_business}/update:
     put:
-      summary: UpdateMerchant_BusinessDetails
+      summary: Update Merchant Business Details
       operationId: UpdateMerchant_BusinessDetails
       tags:
         - 'Step 04 — Update: Business Details'
