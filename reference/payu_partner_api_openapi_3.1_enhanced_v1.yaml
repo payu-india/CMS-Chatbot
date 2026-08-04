@@ -927,68 +927,6 @@ paths:
           description: Validation Failed
         '500':
           description: Internal Server Error
-  /api/v1/merchants/{uuid}/update:
-    put:
-      summary: Update Merchant Addresses
-      operationId: UpdateMerchant_Addresses
-      tags:
-        - 'Step 10 — Update: Addresses'
-      security:
-        - BearerAuth: []
-      description: ''
-      parameters:
-        - name: uuid
-          in: path
-          required: true
-          schema:
-            type: string
-            example: 11ef-d968-6b042d6c-9b94-02975f21d323
-          description: >-
-            Unique merchant identifier (UUID format). Returned in Step 01
-            (CreateMerchant) response. Used for most update operations
-            throughout the onboarding flow.
-      requestBody:
-        required: true
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                merchant[registration_address][address_line]:
-                  type: string
-                merchant[registration_address][city]:
-                  type: string
-                merchant[registration_address][state]:
-                  type: string
-                merchant[registration_address][pincode]:
-                  type: string
-                merchant[operating_address][address_line]:
-                  type: string
-                merchant[operating_address][city]:
-                  type: string
-                merchant[operating_address][state]:
-                  type: string
-                merchant[operating_address][pincode]:
-                  type: string
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                type: object
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized - Invalid or expired token
-        '403':
-          description: Forbidden - No access to this resource
-        '404':
-          description: Not Found
-        '422':
-          description: Validation Failed
-        '500':
-          description: Internal Server Error
   /api/v3/merchants/{mid}/kyc_document:
     post:
       summary: UploadKYCDocument
@@ -2472,6 +2410,68 @@ paths:
               type: object
             example:
               consent: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized - Invalid or expired token
+        '403':
+          description: Forbidden - No access to this resource
+        '404':
+          description: Not Found
+        '422':
+          description: Validation Failed
+        '500':
+          description: Internal Server Error
+  /api/v1/merchants/{uuid}/update:
+    put:
+      summary: Update Merchant Addresses API
+      operationId: UpdateMerchant_Addresses
+      tags:
+        - 'Step 10 — Update: Addresses'
+      security:
+        - BearerAuth: []
+      description: ''
+      parameters:
+        - name: uuid
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 11ef-d968-6b042d6c-9b94-02975f21d323
+          description: >-
+            Unique merchant identifier (UUID format). Returned in Step 01
+            (CreateMerchant) response. Used for most update operations
+            throughout the onboarding flow.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                merchant[registration_address][address_line]:
+                  type: string
+                merchant[registration_address][city]:
+                  type: string
+                merchant[registration_address][state]:
+                  type: string
+                merchant[registration_address][pincode]:
+                  type: string
+                merchant[operating_address][address_line]:
+                  type: string
+                merchant[operating_address][city]:
+                  type: string
+                merchant[operating_address][state]:
+                  type: string
+                merchant[operating_address][pincode]:
+                  type: string
       responses:
         '200':
           description: Successful response
