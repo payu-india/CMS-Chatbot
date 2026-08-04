@@ -10,42 +10,18 @@ PayU exposes multiple API styles. This page explains the shared **General API** 
 PayU General APIs are server-to-server calls from your server to PayU. The basic execution pattern is consistent across many web-service commands, while each command has its own `var` parameter meanings.
 
 <Callout icon="📘" theme="info">
-  ### cURL walkthrough
+  ### cURL Walkthrough
 
   For a hands-on walkthrough of making API calls with cURL, see the [cURL Walkthrough recipe](https://payu-hosted-checkout.readme.io/v1/recipes/curl-walkthrough).
 </Callout>
 
-## General APIs — base URLs
+## General API Base URLs
 
-| Environment | Base URL                                               |
-| :---------- | :----------------------------------------------------- |
-| Test        | `https://test.payu.in/merchant/postservice.php?form=2` |
-| Production  | `https://info.payu.in/merchant/postservice.php?form=2` |
+Go through the base URLs of general APIs before proceeding with the next section.
 
-<Callout icon="📘" theme="info">
-  ### Note
+## General API Request format
 
-  These base URLs are for **General APIs**. For `_payment` endpoints, use:
-
-  - [Collect Payment API — PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)
-  - [Collect Payment API — Merchant Hosted Checkout](ref:_payment_merchant_hosted)
-  - [Collect Payment API — S2S](ref:_payment_server_to_server)
-
-  Full host map: [API Environments and Base URLs](doc:api-environments-and-base-urls).
-</Callout>
-
-## General APIs — request format
-
-| Parameter        | Description                                                                                                                                                               | Sample value       |
-| :--------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------------- |
-| `key`            | Merchant key provided by PayU. See [Access Merchant Key and Salt](doc:generate-merchant-key-and-salt-copy).                                                               | `Ibibo`            |
-| `command`        | Name of the web service to execute.                                                                                                                                       | `verify_payment`   |
-| `hash`           | SHA-512 hash calculated at your end. For General APIs: `sha512(key\|command\|var1\|salt)`. For `_payment` hashing, see [Generate Hash](doc:hashing-request-and-response). | `ajh84ba8abvav`    |
-| `var1` … `var15` | Command-specific variable parameters. Definitions are documented on each API Reference page.                                                                              | Depends on command |
-
-### Example General API request shape
-
-```bash
+```curl cURL - Example Request
 curl -X POST 'https://test.payu.in/merchant/postservice.php?form=2' \
   -d 'key=<YOUR_KEY>' \
   -d 'command=verify_payment' \
@@ -53,11 +29,24 @@ curl -X POST 'https://test.payu.in/merchant/postservice.php?form=2' \
   -d 'var1=<TXNID>'
 ```
 
-## General APIs — response format
+### Parameter and Description
 
-To receive JSON, append `form=2` to the General API endpoint:
+| Parameter        | Description                                                                                                                                                               | Sample value       |
+| :--------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------------- |
+| `key`            | Merchant key provided by PayU. Refer to [Access Merchant Key and Salt](doc:generate-merchant-key-and-salt-copy) for more information.                                     | `Ibibo`            |
+| `command`        | Name of the web service to execute.                                                                                                                                       | `verify_payment`   |
+| `hash`           | SHA-512 hash calculated at your end. For General APIs: `sha512(key\|command\|var1\|salt)`. For `_payment` hashing, see [Generate Hash](doc:hashing-request-and-response). | `ajh84ba8abvav`    |
+| `var1` … `var15` | Command-specific variable parameters. Definitions are documented on each API Reference page.                                                                              | Depends on command |
 
-`https://test.payu.in/merchant/postservice.php?form=2`
+## General API Response Format
+
+To receive JSON, append `form=2` to the General API endpoint. For example:
+
+```text Example
+https://test.payu.in/merchant/postservice.php?form=2
+```
+
+### Parameter and Description
 
 | Parameter             | Description                                                                                           | Example                                  |
 | :-------------------- | :---------------------------------------------------------------------------------------------------- | :--------------------------------------- |
@@ -69,7 +58,7 @@ To receive JSON, append `form=2` to the General API endpoint:
 
 Exact response fields vary by `command`. Always validate using the corresponding API Reference response schema.
 
-## Collect Payment (`_payment`) request format
+## Collect Payment (`_payment`) Request Format
 
 Collect Payment requests use payment fields rather than `command`/`var1` style parameters.
 
@@ -83,22 +72,15 @@ Common fields include:
 
 Content type is typically `application/x-www-form-urlencoded`.
 
-See:
-
-- [Headers and Content Types](doc:headers-and-content-types)
-- [Collect Payment API — PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)
-
-## OAuth product request format
+## OAuth Product Request Format
 
 OAuth products usually:
 
 1. Call a token endpoint with client/merchant credentials.
 2. Call resource endpoints with the issued access token.
-3. Use JSON request/response bodies more often than form-encoded General APIs.
+3. Use JSON request/response bodies more often than form-encoded general APIs.
 
-Start with the product’s token API, for example [Generate Token using Merchant's Credentials API](ref:generate-token-using-merchants-credentials-api).
-
-## Pagination, idempotency, and rate behavior
+## Pagination, Idempotency, and Rate Behavior
 
 PayU APIs are product-specific for these concerns:
 
@@ -107,16 +89,3 @@ PayU APIs are product-specific for these concerns:
 | **Pagination**    | Some list APIs (for example, payment links or settlement/on-hold queries) accept page/offset parameters. Use the parameters documented on that API page. |
 | **Idempotency**   | Use a unique `txnid` for every new payment attempt. Treat webhook deliveries as at-least-once and process them idempotently.                             |
 | **Rate limiting** | Exceeding request burst limits can return temporary throttling errors. Back off and retry safely.                                                        |
-
-## What to read next
-
-- [API Authentication and Security](doc:api-authentication-and-security)
-- [Headers and Content Types](doc:headers-and-content-types)
-- [Making Your First API Request](doc:making-your-first-api-request)
-- [Error Handling for APIs](doc:error-handling-for-apis)
-
-## Related APIs
-
-- [Verify Payment API](ref:verify_payment_api)
-- [Check Transaction APIs](ref:check-transaction-apis)
-- [Collect Payment API — PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)
