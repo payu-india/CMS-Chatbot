@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-This guide walks through the shortest path from zero to a successful PayU API call in the test environment.
+Go through this guide and make your first successful PayU API call in the test environment.
 
 ## Workflow overview
 
