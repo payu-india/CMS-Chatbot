@@ -60,61 +60,49 @@ When you post requests to Payment or General APIs, you include the merchant key 
   | **Split Settlements** | `sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|SALT\|splitRequest)`      |
 </Accordion>
 
-### Hash logic for `_payment` with `api_version=19`
+<Accordion title="_payment with api_version=19 Hash Logic " icon="far fa-gear-complex-api">
+  This is the hash logic for `_payment` with `api_version=19` . Hash formulas can change with API version and enabled features.
 
-When using `_payment` with **api_version=19**, use:
+  ```
+  sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|user_token|offer_key|offer_auto_apply|cart_details|extra_charges|phone)
+  ```
+</Accordion>
 
-```
-key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|user_token|offer_key|offer_auto_apply|cart_details|extra_charges|phone
-```
+## OAuth Authentication
 
-Hash formulas can change with API version and enabled features. Always confirm the formula on the specific API Reference page and in [Generate Hash](doc:hashing-request-and-response).
-
-### Reverse hashing
-
-Validate PayU responses and callbacks by reverse-hashing response fields with your salt before updating order status.
-
-- Guide: [Generate Hash](doc:hashing-request-and-response)
-- Tooling: [Using PayU Hash Verification Tool](doc:using-payu-hash-verification-tool)
-- SDK helper: [PayU Node SDK on GitHub](https://github.com/payu-india/payu-sdk-node)
-
-## OAuth authentication
-
-Use OAuth when integrating products that issue access tokens.
-
-### Typical OAuth flow
+You should use OAuth when integrating products that issue access tokens. This is the OAuth flow
 
 1. Obtain client credentials or merchant credentials for the product.
 2. Call the token endpoint in Test or Production.
 3. Send the access token with subsequent product API requests as required by that product.
 4. Refresh or regenerate tokens according to product expiry rules.
 
-| Product                     | Token starting point                                                                                  |
-| :-------------------------- | :---------------------------------------------------------------------------------------------------- |
-| Payouts                     | [Generate Token using Merchant's Credentials API](ref:generate-token-using-merchants-credentials-api) |
-| Partner integration         | [Get Token API](ref:get_token_api)                                                                    |
-| Partner merchant onboarding | [Step 00 — Authentication](ref:step-00-authentication)                                                |
+<Accordion title="Products and APIs" icon="far fa-gear-complex-api">
+  | Product                     | Token APIs                                                                                            |
+  | :-------------------------- | :---------------------------------------------------------------------------------------------------- |
+  | Payouts                     | [Generate Token using Merchant's Credentials API](ref:generate-token-using-merchants-credentials-api) |
+  | Partner integration         | [Get Token API](ref:get_token_api)                                                                    |
+  | Partner merchant onboarding | [Step 00 — Authentication](ref:step-00-authentication)                                                |
+</Accordion>
 
-OAuth hosts differ from `_payment` and General API hosts. See [API Environments and Base URLs](doc:api-environments-and-base-urls).
+OAuth hosts differ from `_payment` and General API hosts. Refer to [API Environments and Base URLs](doc:api-environments-and-base-urls) for more information.
 
-## HMAC header authentication
+## HMAC Header Authentication
 
 Some PayU product APIs authenticate with signed headers instead of a body `hash` parameter.
 
-Common headers:
+<Accordion title="Common Headers" icon="far fa-table-cells-header-lock">
+  | Header          | Purpose                                                                           |
+  | :-------------- | :-------------------------------------------------------------------------------- |
+  | `date`          | Current UTC date/time used in the signature input                                 |
+  | `authorization` | HMAC signature payload including username, algorithm, headers list, and signature |
+</Accordion>
 
-| Header          | Purpose                                                                           |
-| :-------------- | :-------------------------------------------------------------------------------- |
-| `date`          | Current UTC date/time used in the signature input                                 |
-| `authorization` | HMAC signature payload including username, algorithm, headers list, and signature |
-
-Typical signature input pattern:
-
-```
-sha512(<Body data> + '|' + date + '|' + merchant_secret)
-```
-
-See [Headers and Content Types](doc:headers-and-content-types) for header conventions and examples.
+<Accordion title="Signature Input Pattern" icon="far fa-file-signature">
+  ```
+  sha512(<Body data> + '|' + date + '|' + merchant_secret)
+  ```
+</Accordion>
 
 ## Security best practices
 
