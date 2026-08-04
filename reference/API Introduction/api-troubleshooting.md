@@ -16,9 +16,15 @@ Go through this checklist before analysing the errors:
 
 
   - [x] Are key, salt, and host all from the **same environment** (Test vs Production)?
-    - [x] Is the **hash/token** generated with the documented formula for this request?
-    - [x] Is `txnid` unique for a new payment?
-    - [x] Did you validate reverse hash and then **Verify Payment**?
+
+
+  - [x] Is the **hash/token** generated with the documented formula for this request?
+
+
+  - [x] Is `txnid` unique for a new payment?
+
+
+  - [x] Did you validate reverse hash and then **Verify Payment**?
 </Accordion>
 
 ## Issues and Troubleshooting
