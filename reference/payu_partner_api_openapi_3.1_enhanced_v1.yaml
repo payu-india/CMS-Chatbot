@@ -1294,45 +1294,6 @@ paths:
           description: Validation Failed
         '500':
           description: Internal Server Error
-  /api/v3/merchants/{mid}/kyc_document/required_docs:
-    get:
-      summary: FetchRequiredDocs
-      operationId: FetchRequiredDocs
-      tags:
-        - Step 14 — Fetch Required KYC Documents
-      security:
-        - BearerAuth: []
-      description: ''
-      parameters:
-        - name: mid
-          in: path
-          required: true
-          schema:
-            type: string
-            example: '8390925'
-          description: >-
-            Merchant ID (numeric). Returned in Step 01 (CreateMerchant)
-            response. Required for KYC document operations and DigiLocker
-            verification.
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                type: object
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized - Invalid or expired token
-        '403':
-          description: Forbidden - No access to this resource
-        '404':
-          description: Not Found
-        '422':
-          description: Validation Failed
-        '500':
-          description: Internal Server Error
   /api/v3/merchants/{mid}/kyc_document/{kyc_document_uuid}:
     get:
       summary: ShowKYCDocument
@@ -2016,6 +1977,45 @@ paths:
                   type: string
                 merchant[operating_address][pincode]:
                   type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized - Invalid or expired token
+        '403':
+          description: Forbidden - No access to this resource
+        '404':
+          description: Not Found
+        '422':
+          description: Validation Failed
+        '500':
+          description: Internal Server Error
+  /api/v3/merchants/{mid}/kyc_document/required_docs:
+    get:
+      summary: Fetch Required Docs API
+      operationId: FetchRequiredDocs
+      tags:
+        - Step 14 — Fetch Required KYC Documents
+      security:
+        - BearerAuth: []
+      description: ''
+      parameters:
+        - name: mid
+          in: path
+          required: true
+          schema:
+            type: string
+            example: '8390925'
+          description: >-
+            Merchant ID (numeric). Returned in Step 01 (CreateMerchant)
+            response. Required for KYC document operations and DigiLocker
+            verification.
       responses:
         '200':
           description: Successful response
