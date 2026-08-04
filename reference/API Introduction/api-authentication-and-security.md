@@ -15,21 +15,15 @@ Follow these best practices during authentication:
 
 - [x] **Never expose salt or client secrets in frontend code**, mobile apps, or public repositories.
 
-
 - [x] **Generate hashes on your server** for every payment and General API request.
-
 
 - [x] **Validate reverse hash** on every surl/furl callback and webhook payload before trusting the status.
 
-
 - [x] **Use test credentials for testing**; switch key, salt, and base URLs together at go-live.
-
 
 - [x] **Rotate credentials** through the Dashboard if compromise is suspected.
 
-
 - [x] **Enforce HTTPS** for all callbacks (`surl`, `furl`) and webhook endpoints.
-
 
 - [x] **Treat browser redirects as untrusted** and confirm with Verify Payment or an equivalent server API.
 
@@ -127,13 +121,3 @@ Some PayU product APIs authenticate with signed headers instead of a body `hash`
     sha512(<Body data> + '|' + date + '|' + merchant_secret)
   ```
 </Accordion>
-
-##
-
--
-- **Generate hashes on your server** for every payment and General API request.
-- **Validate reverse hash** on every surl/furl callback and webhook payload before trusting status.
-- **Use Test credentials only in Test**; switch key, salt, and base URLs together at go-live.
-- **Rotate credentials** through the Dashboard if compromise is suspected.
-- **Enforce HTTPS** for all callbacks (`surl`, `furl`) and webhook endpoints.
-- **Treat browser redirects as untrusted** — confirm with Verify Payment or an equivalent server API.
