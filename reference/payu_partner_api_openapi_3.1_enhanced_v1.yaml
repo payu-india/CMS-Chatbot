@@ -1248,7 +1248,7 @@ paths:
           description: Internal Server Error
   /api/v3/merchants/kyc_document/create_vkyc_profile:
     post:
-      summary: Create VKYC Profile
+      summary: Create VKYC Profile API
       operationId: CreateVKYCProfile
       tags:
         - Step 11 — Video KYC (VKYC)
