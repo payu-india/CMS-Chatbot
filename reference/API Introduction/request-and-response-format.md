@@ -73,7 +73,20 @@ Common fields include:
 Content type is typically `application/x-www-form-urlencoded`.
 
 <Accordion title="Request Sample" icon="far fa-code">
-  ```curl cURL - Example Request
+  ```curl cURL - Example Payload
+  curl -X POST "https://test.payu.in/_payment" \
+    -H "accept: application/json" \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -d "key=JP***g" \
+    -d "txnid=PQI6MqpYrjEefU" \
+    -d "amount=10.00" \
+    -d "firstname=PayU User" \
+    -d "email=test@gmail.com" \
+    -d "phone=9876543210" \
+    -d "productinfo=iPhone" \
+    -d "surl=https://apiplayground-response.herokuapp.com/" \
+    -d "furl=https://apiplayground-response.herokuapp.com/" \
+    -d "hash=HASH_VALUE"
   ```
 </Accordion>
 
