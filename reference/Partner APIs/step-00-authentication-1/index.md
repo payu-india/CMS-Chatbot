@@ -72,7 +72,7 @@ curl --location 'https://test-accounts.payu.in/oauth/token' \
 ```
 
 </Accordion>
-
+## Response Parameters
 
 <Accordion title="Response parameters" icon="fa-table">
 
@@ -86,7 +86,7 @@ curl --location 'https://test-accounts.payu.in/oauth/token' \
 
 </Accordion>
 
-## Request parameters
+## Request Parameters
 
 <Accordion title="Header parameters" icon="fa-table">
 
