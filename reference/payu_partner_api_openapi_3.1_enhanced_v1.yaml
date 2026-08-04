@@ -1326,7 +1326,7 @@ paths:
           description: Internal Server Error
   /api/v1/merchants/{uuid}/generate_merged_document_for_esign:
     get:
-      summary: GenerateAgreementForESign
+      summary: Generate Agreement for ESign API
       operationId: GenerateAgreementForESign
       tags:
         - Step 16 — E-Sign Agreement
