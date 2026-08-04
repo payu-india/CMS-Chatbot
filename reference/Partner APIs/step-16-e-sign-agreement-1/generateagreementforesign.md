@@ -10,7 +10,7 @@ The **Generate Agreement for E-Sign** API generates the merged merchant agreemen
   ### Notes:
 
   - After successful e-sign, the merchant can be activated.
-  - **Scope:** `refer_merchant` plus at least one of `client_manage_agreement` or `client_manage_kyc_details`. `refer_merchant` alone returns `401`.
+  - **Scope:** `refer_merchant`
 </Callout>
 
 **HTTP Method**: GET
