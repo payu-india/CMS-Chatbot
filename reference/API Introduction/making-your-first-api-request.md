@@ -1,105 +1,75 @@
 ---
-title: Error Handling for APIs
+title: API Versioning
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-PayU API errors usually fall into a few categories: authentication/hash issues, validation problems, payment declines, and product-specific failures. Handle them deliberately so customers are not left in an unknown payment state.
+PayU uses a **capability-driven versioning model**. Unlike a single global `/v1` surface for every product, versioning appears as:
 
-## Where to find error codes
+- an `api_version` request parameter on many Collect Payment flows
+- path-based versions for selected APIs (for example, `/v2/payments`)
+- feature-specific request fields that change hash formulas
 
-| Resource                                               | Use it for                                                  |
-| :----------------------------------------------------- | :---------------------------------------------------------- |
-| [Error Codes](ref:error-codes)                         | Complete payment error code reference                       |
-| [Error Handling (Hosted Checkout)](doc:error-handling) | Common checkout integration failures with screenshots       |
-| Product-specific error pages                           | Refunds, pre-auth, split settlements, partner KYC, and more |
+## Versioning mechanisms
 
-This page is the API Introduction overview. Use the references above for exhaustive code lists.
+| Mechanism                        | Where you see it                                      | What it controls                                        |
+| :------------------------------- | :---------------------------------------------------- | :------------------------------------------------------ |
+| `api_version`**&#x20;parameter** | `_payment` and related checkout/subscription requests | Enables fields and behaviors for a given capability set |
+| **URL path version**             | e.g. `https://api.payu.in/v2/payments`                | Selects a distinct API contract                         |
+| **Feature payload fields**       | `si_details`, `splitRequest`, offers fields, etc.     | Adds required hash segments and validation rules        |
 
-## How PayU surfaces errors
+## Using `api_version` with Collect Payment
 
-| Layer                          | What you receive                                                              |
-| :----------------------------- | :---------------------------------------------------------------------------- |
-| **General API response**       | `status=0` with `msg` explaining the failure                                  |
-| **Checkout /&#x20;**`_payment` | Error page, redirect to `furl`, or API error payload depending on integration |
-| **Bank/UPI/wallet decline**    | Payment failure with PayU/bank error codes after the request was accepted     |
-| **OAuth / product APIs**       | HTTP status + product error body (follow that API Reference)                  |
+Some integrations require a specific `api_version` value. Examples commonly seen in docs include values such as `7` or `19`, depending on the feature.
 
-## Common integration errors
+Rules of thumb:
 
-### Hash mismatch
+1. Set `api_version` exactly as required by the Integration Guide / API Reference for that feature.
+2. Regenerate `hash` after including version-dependent fields.
+3. Do not assume a newer number is always better — use the version documented for your flow.
 
-**Symptom:** Transaction fails because the `hash` parameter is incorrect.
+### Example: hash changes with version 19
 
-**Fix:**
+For `_payment` with **api_version=19**, hash input expands to include additional fields such as `udf6…udf10`, `user_token`, offer fields, cart details, extra charges, and phone.
 
-1. Regenerate hash with the exact field order for your API family.
-2. Ensure salt matches the key/environment.
-3. Recalculate whenever request parameters change.
+See [API Authentication and Security](doc:api-authentication-and-security) and [Generate Hash](doc:hashing-request-and-response).
 
-See [Generate Hash](doc:hashing-request-and-response) and [API Authentication and Security](doc:api-authentication-and-security).
+## Path-based versions
 
-### Duplicate transaction ID (`txnid`)
+Selected products expose versioned hosts/paths:
 
-**Symptom:** Request rejected because `txnid` was used earlier or already captured.
+| Environment | v2 Payments base URL                  |
+| :---------- | :------------------------------------ |
+| Test        | `https://apitest.payu.in/v2/payments` |
+| Production  | `https://api.payu.in/v2/payments`     |
 
-**Fix:** Generate a new unique `txnid` for every new payment attempt.
+When an API is on a versioned path, treat it as a separate contract: different auth, headers, or response shapes may apply.
 
-### Invalid amount
+## How to choose the correct version
 
-**Symptom:** Amount missing, malformed, or rejected.
+| Question                                         | Action                                                      |
+| :----------------------------------------------- | :---------------------------------------------------------- |
+| Does my Integration Guide specify `api_version`? | Use that exact value                                        |
+| Does the API Reference path include `/v2/`?      | Use the v2 base URL and schema                              |
+| Am I enabling SI, split, offers, or TPV fields?  | Confirm whether hash formula changes                        |
+| Am I copying an old sample?                      | Diff required fields against the current API Reference page |
 
-**Fix:** Send amount in the format required by the API Reference. Include all mandatory amount-related fields.
+## Compatibility guidance
 
-### Mandatory parameters missing
-
-**Symptom:** PayU rejects the request before payment processing.
-
-**Fix:** Compare your payload with the required fields on the target API Reference page.
-
-### Incorrect payment details
-
-**Symptom:** Card/UPI/wallet details invalid in Merchant Hosted or S2S flows.
-
-**Fix:** Validate client-side inputs and use Test instruments only in Test.
-
-## Recommended error-handling pattern
-
-```
-1. Validate request locally (mandatory fields, amount, unique txnid)
-2. Generate auth (hash/token)
-3. Call PayU
-4. Branch on transport success vs business failure
-5. Persist raw response + mapped order state
-6. For uncertain states, call Verify Payment
-7. Show customer-safe messages; log raw codes internally
-```
-
-## Customer-safe messaging
-
-- Do **not** expose salt, hash strings, or internal stack traces to customers.
-- Map bank/PayU decline codes to clear retry guidance.
-- For pending states, tell customers the payment is being confirmed and reconcile asynchronously.
-
-## Refunds, chargebacks, and product errors
-
-| Domain            | Start here                                                                         |
-| :---------------- | :--------------------------------------------------------------------------------- |
-| Refunds           | [Refunds introduction](doc:introduction-refunds), refund error docs under Refunds  |
-| Chargebacks       | [Chargeback](doc:chargeback)                                                       |
-| Pre-authorize     | [Pre-authorize payment error codes](ref:error-codes-pre-authorize-payment)         |
-| Split settlements | Split settlement refund/error docs under [Split Settlements](doc:split-settlments) |
+- Pin the version your integration was certified with.
+- When upgrading versions, retest hash generation, callbacks, and Verify Payment handling in Test.
+- Keep version values in server-side configuration — not hard-coded in multiple places inconsistently.
 
 ## What to read next
 
-- [API Troubleshooting](doc:api-troubleshooting)
+- [API Architecture](doc:api-architecture)
+- [API Authentication and Security](doc:api-authentication-and-security)
+- [Request and Response Format](doc:rest-api-format)
 - [Testing PayU APIs](doc:testing-payu-apis)
-- [Common API Workflows](doc:common-api-workflows)
-- [Error Codes](ref:error-codes)
 
 ## Related APIs
 
-- [Verify Payment API](ref:verify_payment_api)
 - [Collect Payment API — PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)
-- [Error Codes](ref:error-codes)
+- [Collect Payment API — S2S](ref:_payment_server_to_server)
+- [Payment Consent Transaction](ref:payment-consent-transaction-payu-hosted)
