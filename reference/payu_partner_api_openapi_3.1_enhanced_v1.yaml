@@ -446,7 +446,7 @@ paths:
           description: Internal Server Error
   /api/v3/merchants/kyc_document/send_ckyc_otp:
     post:
-      summary: A. Send CKYC OTP (Individual / Sole Prop)
+      summary: A. Send CKYC OTP API (Individual / Sole Prop)
       operationId: SendCkycOtp
       tags:
         - Step 03 — CKYC Verification
