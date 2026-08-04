@@ -521,7 +521,7 @@ paths:
           description: Internal Server Error
   /api/v3/merchants/kyc_document/ckyc_data:
     post:
-      summary: C. Fetch CKYC Data (Non-Individual Entities)
+      summary: C. Fetch CKYC Data API (Non-Individual Entities)
       operationId: FetchCkycData
       tags:
         - Step 03 — CKYC Verification
