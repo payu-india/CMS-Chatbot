@@ -927,88 +927,6 @@ paths:
           description: Validation Failed
         '500':
           description: Internal Server Error
-  /api/v1/merchants/{uuid_signatory}/signatory_details:
-    put:
-      summary: Add Signatory Details
-      operationId: AddSignatoryDetails
-      tags:
-        - Step 08 — Add Signatory Details
-      security:
-        - BearerAuth: []
-      description: ''
-      parameters:
-        - name: uuid_signatory
-          in: path
-          required: true
-          schema:
-            type: string
-            example: 11ef-d968-6b042d6c-9b94-02975f21d323
-          description: >-
-            Merchant UUID from Step 01. Runtime path:
-            `/api/v1/merchants/{uuid}/signatory_details`.
-      requestBody:
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              properties:
-                merchant[signatory_contact_details_attributes[0][authorised_signatory]]:
-                  type: string
-                merchant[signatory_contact_details_attributes[0][name]]:
-                  type: string
-                merchant[signatory_contact_details_attributes[0][pancard_number]]:
-                  type: string
-                merchant[signatory_contact_details_attributes[0][email]]:
-                  type: string
-                merchant[signatory_contact_details_attributes[0][contact_detail_type]]:
-                  type: string
-                merchant[signatory_contact_details_attributes[0][cin_number]]:
-                  type: string
-                merchant[signatory_contact_details_attributes[1][authorised_signatory]]:
-                  type: string
-                merchant[signatory_contact_details_attributes[1][name]]:
-                  type: string
-                merchant[signatory_contact_details_attributes[1][pancard_number]]:
-                  type: string
-                merchant[signatory_contact_details_attributes[1][email]]:
-                  type: string
-                merchant[signatory_contact_details_attributes[1][contact_detail_type]]:
-                  type: string
-                merchant[signatory_contact_details_attributes[1][cin_number]]:
-                  type: string
-            example:
-              merchant[signatory_contact_details_attributes[0][authorised_signatory]]: 'true'
-              merchant[signatory_contact_details_attributes[0][name]]: Signatory 1 Name
-              merchant[signatory_contact_details_attributes[0][pancard_number]]: ABCDE1234F
-              merchant[signatory_contact_details_attributes[0][email]]: signatory1@yopmail.com
-              merchant[signatory_contact_details_attributes[0][contact_detail_type]]: Signing Authority
-              merchant[signatory_contact_details_attributes[0][cin_number]]: ''
-              merchant[signatory_contact_details_attributes[1][authorised_signatory]]: 'false'
-              merchant[signatory_contact_details_attributes[1][name]]: Signatory 2 Name
-              merchant[signatory_contact_details_attributes[1][pancard_number]]: ABCDE1234F
-              merchant[signatory_contact_details_attributes[1][email]]: signatory2@yopmail.com
-              merchant[signatory_contact_details_attributes[1][contact_detail_type]]: Signing Authority
-              merchant[signatory_contact_details_attributes[1][cin_number]]: ''
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                type: object
-        '400':
-          description: Bad Request
-        '401':
-          description: Unauthorized - Invalid or expired token
-        '403':
-          description: Forbidden - No access to this resource
-        '404':
-          description: Not Found
-        '422':
-          description: Validation Failed
-        '500':
-          description: Internal Server Error
   /api/v1/merchants/{uuid}/update:
     put:
       summary: UpdateMerchant_Addresses
@@ -1436,107 +1354,13 @@ paths:
           description: Internal Server Error
   /api/v3/merchants/{mid}/kyc_document/generate_digilocker_link:
     post:
-      summary: GenerateDigilockerLink
+      summary: Generate Digilocker Link
       operationId: GenerateDigilockerLink
       tags:
         - Step 09 — DigiLocker Verification
       security:
         - BearerAuth: []
-      description: >
-        # Generate DigiLocker Link — Step 09 of 16
-
-
-        Generates a DigiLocker authentication URL for the merchant.
-
-
-        ## Endpoint
-
-
-        `POST /api/v3/merchants/{mid}/kyc_document/generate_digilocker_link`
-
-
-        ## Prerequisite Steps
-
-        - **Step 08 (Signatory Details) — MANDATORY.** DigiLocker fails without
-        it.
-
-
-        ## Branching — When to Call
-
-
-        | Entity Type | CKYC Status | DigiLocker |
-
-        |-------------|-------------|------------|
-
-        | Individual / Sole Prop | Succeeded | **SKIP** (optional) |
-
-        | Individual / Sole Prop | Skipped/Failed | **REQUIRED** |
-
-        | All other entities | Any | **ALWAYS REQUIRED** |
-
-
-        ## Request Body (JSON)
-
-
-        | Parameter | Type | Required | Validation | Description |
-
-        |-----------|------|----------|------------|-------------|
-
-        | `consent` | boolean | Yes | Must be `true` | Merchant consent for
-        Aadhaar verification |
-
-
-        ## Response
-
-        Returns a DigiLocker URL. Redirect the merchant to this URL.
-
-
-        ## Error Handling
-
-
-        | Error Code | Cause | Recovery |
-
-        |------------|-------|----------|
-
-        | `422` - "Signatory details required" | Step 08 not completed |
-        Complete Step 08 first |
-
-        | `422` - "Consent required" | consent not true | Set consent to true |
-
-
-
-
-        ## Response Fields (200 OK)
-
-
-        | Field | Type | Description |
-
-        |-------|------|-------------|
-
-        | `status` | string | `link_generated` — DigiLocker auth URL is ready |
-
-        | `capture_link` | string | Full DigiLocker OAuth URL — redirect the
-        merchant here |
-
-
-        ## Error Response Fields
-
-
-        | Field | Type | Description |
-
-        |-------|------|-------------|
-
-        | `error_message` | string | e.g., `"Digilocker KYC is already
-        completed"` — idempotent, no action needed |
-
-
-        After the merchant completes DigiLocker auth, check `digilocker_status`
-        via GetMerchant: `null` → `link_generated` → `approved`.
-
-
-        ## Next Step
-
-        Proceed to **Step 10** — Update addresses.
+      description: ''
       parameters:
         - name: mid
           in: path
@@ -2610,6 +2434,88 @@ paths:
             Merchant identifier. Can be either the numeric MID or UUID. Use this
             endpoint to check merchant status, verification statuses, and
             onboarding progress at any point.
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized - Invalid or expired token
+        '403':
+          description: Forbidden - No access to this resource
+        '404':
+          description: Not Found
+        '422':
+          description: Validation Failed
+        '500':
+          description: Internal Server Error
+  /api/v1/merchants/{uuid_signatory}/signatory_details:
+    put:
+      summary: Add Signatory Details API
+      operationId: AddSignatoryDetails
+      tags:
+        - Step 08 — Add Signatory Details
+      security:
+        - BearerAuth: []
+      description: ''
+      parameters:
+        - name: uuid_signatory
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 11ef-d968-6b042d6c-9b94-02975f21d323
+          description: >-
+            Merchant UUID from Step 01. Runtime path:
+            `/api/v1/merchants/{uuid}/signatory_details`.
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                merchant[signatory_contact_details_attributes[0][authorised_signatory]]:
+                  type: string
+                merchant[signatory_contact_details_attributes[0][name]]:
+                  type: string
+                merchant[signatory_contact_details_attributes[0][pancard_number]]:
+                  type: string
+                merchant[signatory_contact_details_attributes[0][email]]:
+                  type: string
+                merchant[signatory_contact_details_attributes[0][contact_detail_type]]:
+                  type: string
+                merchant[signatory_contact_details_attributes[0][cin_number]]:
+                  type: string
+                merchant[signatory_contact_details_attributes[1][authorised_signatory]]:
+                  type: string
+                merchant[signatory_contact_details_attributes[1][name]]:
+                  type: string
+                merchant[signatory_contact_details_attributes[1][pancard_number]]:
+                  type: string
+                merchant[signatory_contact_details_attributes[1][email]]:
+                  type: string
+                merchant[signatory_contact_details_attributes[1][contact_detail_type]]:
+                  type: string
+                merchant[signatory_contact_details_attributes[1][cin_number]]:
+                  type: string
+            example:
+              merchant[signatory_contact_details_attributes[0][authorised_signatory]]: 'true'
+              merchant[signatory_contact_details_attributes[0][name]]: Signatory 1 Name
+              merchant[signatory_contact_details_attributes[0][pancard_number]]: ABCDE1234F
+              merchant[signatory_contact_details_attributes[0][email]]: signatory1@yopmail.com
+              merchant[signatory_contact_details_attributes[0][contact_detail_type]]: Signing Authority
+              merchant[signatory_contact_details_attributes[0][cin_number]]: ''
+              merchant[signatory_contact_details_attributes[1][authorised_signatory]]: 'false'
+              merchant[signatory_contact_details_attributes[1][name]]: Signatory 2 Name
+              merchant[signatory_contact_details_attributes[1][pancard_number]]: ABCDE1234F
+              merchant[signatory_contact_details_attributes[1][email]]: signatory2@yopmail.com
+              merchant[signatory_contact_details_attributes[1][contact_detail_type]]: Signing Authority
+              merchant[signatory_contact_details_attributes[1][cin_number]]: ''
       responses:
         '200':
           description: Successful response
