@@ -929,7 +929,7 @@ paths:
           description: Internal Server Error
   /api/v3/merchants/{mid}/kyc_document:
     post:
-      summary: Upload KYC Document
+      summary: Upload KYC Document API
       operationId: UploadKYCDocument
       tags:
         - Step 15 — Upload KYC Documents
