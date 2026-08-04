@@ -4,7 +4,7 @@ hidden: false
 ---
 Creates a new merchant account on PayU. Returns `mid` and `uuid` identifiers used in all subsequent steps.
 
-## Prerequisite Steps-
+## Prerequisite Steps
 
 Step 00 (Authentication) — valid bearer token required
 
