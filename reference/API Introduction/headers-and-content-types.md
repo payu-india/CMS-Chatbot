@@ -22,8 +22,8 @@ For most Collect Payment and General APIs, authentication values are part of the
 
 <Accordion title="Recommended Headers" icon="far fa-table-cells-header-unlock">
   ```http
-  Content-Type: application/x-www-form-urlencoded
-  Accept: application/json
+    Content-Type: application/x-www-form-urlencoded
+    Accept: application/json
   ```
 </Accordion>
 
@@ -41,40 +41,42 @@ After you generate an access token:
 
 Selected PayU product APIs authenticate with signed headers:
 
-| Header          | Description                                                                      |
-| :-------------- | :------------------------------------------------------------------------------- |
-| `date`          | Current date/time, for example `Wed, 28 Jun 2023 11:25:19 GMT`                   |
-| `authorization` | HMAC signature string including username, algorithm, headers list, and signature |
+<Accordion title="Header and Description" icon="far fa-heading">
+  | Header          | Description                                                                      |
+  | :-------------- | :------------------------------------------------------------------------------- |
+  | `date`          | Current date/time, for example `Wed, 28 Jun 2023 11:25:19 GMT`                   |
+  | `authorization` | HMAC signature string including username, algorithm, headers list, and signature |
+</Accordion>
 
-### Authorization field components
+<Accordion title="Authorization Field Components" icon="far fa-pen-field">
+  | Field       | Description                                              |
+  | :---------- | :------------------------------------------------------- |
+  | `username`  | Merchant/client identifier (merchant key)                |
+  | `algorithm` | Hash algorithm — use `sha512`                            |
+  | `headers`   | Header names included in the signature (commonly `date`) |
+  | `signature` | Hex digest of the hashed string                          |
+</Accordion>
 
-| Field       | Description                                              |
-| :---------- | :------------------------------------------------------- |
-| `username`  | Merchant/client identifier (merchant key)                |
-| `algorithm` | Hash algorithm — use `sha512`                            |
-| `headers`   | Header names included in the signature (commonly `date`) |
-| `signature` | Hex digest of the hashed string                          |
+<Accordion title="Hashing Algorithm" icon="far fa-hashtag-lock">
+  ```
+  sha512(<Body data> + '|' + date + '|' + merchant_secret)
+  ```
 
-### Hashing algorithm
+  Where `<Body data>` is the request body posted with the call.
+</Accordion>
 
-```
-sha512(<Body data> + '|' + date + '|' + merchant_secret)
-```
-
-Where `<Body data>` is the request body posted with the call.
-
-### Sample authorization header construction
-
-```javascript
-var merchant_key = '<merchant_key>';
-var merchant_secret = '<merchant_salt>';
-var date = new Date().toUTCString();
-var data = request['data'] || '';
-var hash_string = data + '|' + date + '|' + merchant_secret;
-var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
-var authorization =
-  'hmac username="' + merchant_key + '", ' +
-  'algorithm="sha512", headers="date", signature="' + hash + '"';
-```
+<Accordion title="Sample Authorization Header Construction" icon="far fa-space-station-moon-construction">
+  ```javascript
+  var merchant_key = '<merchant_key>';
+  var merchant_secret = '<merchant_salt>';
+  var date = new Date().toUTCString();
+  var data = request['data'] || '';
+  var hash_string = data + '|' + date + '|' + merchant_secret;
+  var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
+  var authorization =
+    'hmac username="' + merchant_key + '", ' +
+    'algorithm="sha512", headers="date", signature="' + hash + '"';
+  ```
+</Accordion>
 
 Use this pattern only for APIs that document HMAC header authentication.
