@@ -1,0 +1,1337 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Partner API - Public Entity Copy 2",
+    "version": "1.0.0",
+    "description": "# PayU Partner Onboarding APIs — Complete 16-Step Specification\n\nA complete set of white-label APIs that let partners onboard merchants onto PayU entirely from their own platform. Partners call APIs, PayU validates, verifies, and activates. PayU remains the system of record.\n\n## Architecture\n\n```\nMERCHANT ──(browser/app)──> PARTNER BACKEND ──(API)──> PAYU BACKEND\n                                               <──(webhook)──\n```\n\nAll API calls are **server-to-server**. Never expose your bearer token to the browser.\n\n## Environments\n\n| Environment | Auth URL | Partner API URL |\n|-------------|----------|-----------------|\n| Test | `https://test-accounts.payu.in` | `https://test-partner.payu.in` |\n| Production | `https://accounts.payu.in` | `https://partner.payu.in` |\n\n## Authentication\n\nAll requests require a bearer token obtained via OAuth (`POST /oauth/token`).\n\n| Header | Value |\n|--------|-------|\n| `Authorization` | `Bearer {token}` |\n| `Content-Type` | `application/json` or `multipart/form-data` (file uploads) |\n\n## The 16-Step Onboarding Sequence\n\nThis sequence **must be followed exactly**. Each step depends on the previous one.\n\n| Step | Name | Endpoint | Entities | Notes |\n|------|------|----------|----------|-------|\n| 01 | Create Merchant | `POST /api/v3/merchants` | All | Returns `mid` + `uuid`. Entity type set here. |\n| 02 | Update: PAN + DOB | `PUT /api/v1/merchants/{uuid}/update` | All | PAN, DOB/DOI |\n| 03 | CKYC Verification | `POST .../send_ckyc_otp` or `.../ckyc_data` | All | OTP for Individual/Sole Prop; Fetch for others |\n| 04 | Update: Business Details | `PUT /api/v1/merchants/{uuid}/update` | All | Category, GST, CIN (if eligible) |\n| 05 | Update: Bank Details | `PUT /api/v1/merchants/{uuid}/update` | All | Auto-verification attempted |\n| 06 | Upload Bank Proof | `POST /api/v3/merchants/{mid}/kyc_document` | All (conditional) | Only if bank auto-verification fails |\n| 07 | Update: Website Details | `PUT /api/v1/merchants/{uuid}/update` | All | Website, Android, iOS URLs |\n| 08 | Add Signatory Details | `POST /api/v1/merchants/{uuid}/add_bank_detail` | All | Prerequisite for DigiLocker |\n| 09 | DigiLocker Verification | `POST .../generate_digilocker_link` | Conditional | See branching rules below |\n| 10 | Update: Addresses | `PUT /api/v1/merchants/{uuid}/update` | All | Registration + Operating |\n| 11 | Video KYC | `POST .../create_vkyc_profile` | All | Can be skipped |\n| 12 | Add/Update UBO | `POST /api/v1/merchants/{uuid}/add_bank_detail` | Pvt Ltd, Public Ltd, Partnership, Trust, LLP, Society | Not for Individual/Sole Prop |\n| 13 | Business Members & KMP | `PUT /api/v1/merchants/{uuid}/submit_business_members` | Pvt Ltd, Public Ltd, Partnership, LLP | Not for Individual/Sole Prop/Trust/Society |\n| 14 | Fetch Required KYC Docs | `GET /api/v3/merchants/{mid}/kyc_document/required_docs` | All | Response feeds into Step 15 |\n| 15 | Upload KYC Documents | `POST /api/v3/merchants/{mid}/kyc_document` | All | One call per required doc category |\n| 16 | E-Sign Agreement | `GET .../generate_merged_document_for_esign` | All | Final step — merchant activated |\n\n## Entity-Step Applicability Matrix\n\n| Step | Individual | Sole Prop | Partnership | Pvt Ltd | Public Ltd | LLP | Trust | Society | One Person Co |\n|------|-----------|-----------|-------------|---------|------------|-----|-------|---------|---------------|\n| 01-02 | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |\n| 03 CKYC | OTP flow | OTP flow | Fetch flow | Fetch flow | Fetch flow | Fetch flow | Fetch flow | Fetch flow | Fetch flow |\n| 04-05 | Yes | Yes | Yes | Yes (+ CIN) | Yes (+ CIN) | Yes | Yes | Yes | Yes (+ CIN) |\n| 06 | If bank fails | If bank fails | If bank fails | If bank fails | If bank fails | If bank fails | If bank fails | If bank fails | If bank fails |\n| 07-08 | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |\n| 08 CIN field | No | No | No | Yes | Yes | No | No | No | Yes |\n| 09 DigiLocker | Skip if CKYC ok | Skip if CKYC ok | Required | Required | Required | Required | Required | Required | Required |\n| 10-11 | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |\n| 12 UBO | No | No | Yes | Yes | Yes | Yes | Yes | Yes | No |\n| 13 Biz Members | No | No | Yes | Yes | Yes | Yes | No | No | No |\n| 14-16 | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes | Yes |\n\n## DigiLocker Branching Rules (Step 09)\n\n```\nIF entity_type IN (Individual, Sole Proprietorship):\n    IF CKYC (Step 03) succeeded:\n        DigiLocker = OPTIONAL (can skip)\n    ELSE IF CKYC was skipped:\n        DigiLocker = REQUIRED\nELSE (all other entity types):\n    DigiLocker = ALWAYS REQUIRED (even if CKYC succeeded)\n\nPREREQUISITE: Step 08 (Signatory Details) must be completed before DigiLocker.\n```\n\n## Key Identifiers\n\n| Identifier | Source | Format | Used In Steps |\n|------------|--------|--------|---------------|\n| `mid` | Step 01 response | Numeric (e.g., `8390925`) | 06, 09, 14, 15 (KYC doc APIs) |\n| `uuid` | Step 01 response | UUID (e.g., `11ef-d968-6b042d6c-9b94-02975f21d323`) | 02, 04, 05, 07, 08, 10, 12, 13, 16 |\n| `product_account_uuid` | Step 01 response | UUID | 16 (E-Sign) |\n\n## Error Codes Reference\n\n| Code | Meaning | Recovery |\n|------|---------|----------|\n| `200` | Success | Process response |\n| `201` | Created | Resource created |\n| `204` | No Content | Deletion successful |\n| `400` | Bad Request | Check parameters |\n| `401` | Unauthorized | Token invalid/expired — call Step 00 again |\n| `403` | Forbidden | No access to this merchant |\n| `404` | Not Found | Check `uuid`, `mid`, or `merchant_id` |\n| `422` | Validation Failed | Read error message — it says exactly what's wrong |\n| `429` | Rate Limited | Back off and retry |\n| `500` | Server Error | Retry with exponential backoff |\n\n## Utilities\n\nThe **GetMerchant** API (`GET /api/v1/merchants/{merchant_id}`) can be called **at any point** between steps to check internal statuses: PAN verification, bank verification, CKYC status, DigiLocker status, VKYC status, document verification, agreement status, and overall onboarding stage. See the Utilities folder.\n\n## References\n\n- [PayU Partner Program Overview](https://docs.payu.in/docs/payu-partner-program-overview)\n- [Onboarding APIs Reference](https://docs.payu.in/reference/onboarding-apis)\n- [Documents Checklist](https://docs.payu.in/docs/documents-checklist-for-account-activation)\n\n\n## Discovered During Live Testing (March 2026)\n\n1. **CreateMerchant requires `merchant[product]=PayUbiz`** — without it, a MySQL duplicate entry error occurs. The `business_entity_type` is also required at creation time (despite initial assumption it could be deferred to Step 02). The entity type can be changed in Step 02 via the Update API.\n3. **VKYC requires signatory details** — calling VKYC before adding signatory returns: `Please complete (Signing authority details captured step) before initiating VKYC`.\n\n\n## Learnings from Live Merchant (mid: 760070179, Private Limited, status: live)\n\n### Successful API Responses Captured\n- **VKYC**: Returns `capture_link` even for already-approved merchants (generates new VCIP link)\n- **DigiLocker**: Returns `\"Digilocker KYC is already completed\"` if already done — idempotent check\n- **Required Docs**: For a live Private Limited, returns 5 remaining categories (some already `Approved`). The `kyc_document` field is `null` for pending, or contains `{\"status\": \"Approved\"}` for uploaded docs.\n- **Show KYC Document**: Returns full document details including `doc_url` (signed S3 URL), `document_category_name`, `document_type_name`, `status`\n- **Upload KYC Document (no file)**: Returns `{\"error\": {\"document\": \"must be present\"}}` — file is mandatory\n- **GetMerchant (live)**: Shows `status: live`, all verifications `Success`/`approved`, `settlement_status: Active`, `agreement_status: Approved`\n\n### API Constraints Discovered\n\n### E-Sign Correct Endpoint (Discovered March 2026)\n- **URL:** `GET /api/v1/merchants/{uuid}/generate_merged_document_for_esign` on `test-partner.payu.in`\n- **Scope:** `refer_merchant` + at least one of (`client_manage_agreement` or `client_manage_kyc_details`). `refer_merchant` alone returns `401`.\n"
+  },
+  "servers": [
+    {
+      "url": "https://test-accounts.payu.in",
+      "description": "Authentication Server (Test)"
+    },
+    {
+      "url": "https://test-partner.payu.in",
+      "description": "Test/Sandbox Environment"
+    },
+    {
+      "url": "https://partner.payu.in",
+      "description": "Production Environment"
+    }
+  ],
+  "paths": {
+    "/oauth/token": {
+      "post": {
+        "summary": "GetToken",
+        "operationId": "GetToken",
+        "tags": [
+          "Step 00 — Authentication"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "# GetToken — Obtain Bearer Token\n\n**Step 0 of 16** — Always call this first.\n\n## Endpoint\n\n`POST /oauth/token`\n\n## Request Body (x-www-form-urlencoded)\n\n| Parameter | Type | Required | Validation | Description |\n|-----------|------|----------|------------|-------------|\n| `client_id` | string | Yes | 64-char hex | Partner OAuth client ID |\n| `client_secret` | string | Yes | 64-char hex | Partner OAuth client secret |\n| `grant_type` | string | Yes | Must be `client_credentials` | OAuth grant type |\n| `scope` | string | Yes | Space-separated | Required scopes |\n\n## Response (200 OK)\n\n```json\n{\n    \"access_token\": \"7b5843b39e5532bc...\",\n    \"token_type\": \"Bearer\",\n    \"expires_in\": 7199,\n    \"scope\": \"refer_merchant\",\n    \"created_at\": 1723498499\n}\n```\n\n## Response-to-Request Mapping\n\n| Response Field | Used As | In Steps |\n|---------------|---------|----------|\n| `access_token` | `Authorization: Bearer {access_token}` header | All subsequent steps |\n| `expires_in` | Token validity in seconds | Refresh before expiry |\n\n## Error Handling\n\n| Error | Cause | Recovery |\n|-------|-------|----------|\n| `401` | Invalid client_id or client_secret | Verify credentials with PayU KAM |\n| `400` | Invalid grant_type or scope | Check parameter values |\n\n## Next Step\n\nUse the `access_token` in Step 01 to create a merchant.\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "client_id": {
+                    "type": "string"
+                  },
+                  "client_secret": {
+                    "type": "string"
+                  },
+                  "grant_type": {
+                    "type": "string"
+                  },
+                  "scope": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or expired token"
+          },
+          "403": {
+            "description": "Forbidden - No access to this resource"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v3/merchants": {
+      "post": {
+        "summary": "CreateMerchant",
+        "operationId": "CreateMerchant",
+        "tags": [
+          "Step 01 — Create Merchant"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "# CreateMerchant — Step 01 of 16\n\nCreates a new merchant shell account on PayU.\n\n## Endpoint\n\n`POST /api/v3/merchants`\n\n## Prerequisite Steps\n- Step 00: Valid bearer token with `refer_merchant` scope\n\n## Entity Applicability\n**All entities**\n\n## Request Body (form-data)\n\n| Parameter | Type | Required | Validation | Description |\n|-----------|------|----------|------------|-------------|\n| `merchant[display_name]` | string | Yes | Non-empty | Business or display name |\n| `merchant[email]` | string | Yes | Valid email, unique across PayU | Merchant email |\n| `merchant[mobile]` | string | Yes | Exactly 10 digits | Indian mobile number |\n| `merchant[business_details][business_entity_type]` | string | Yes | From allowed list | Business entity type |\n| `merchant[business_details][business_entity_type]` | string | Yes | From allowed list | Entity type — determines downstream flow |\n| `merchant[product]` | string | Yes | Must be `PayUbiz` | PayU product type — **required to avoid backend error** |\n\n**IMPORTANT: `merchant[product]=PayUbiz` is REQUIRED.** Omitting it causes a backend MySQL duplicate entry error in the test environment.\n\n## Response (200 OK)\n\n```json\n{\n    \"mid\": 12345678,\n    \"uuid\": \"11ef-d968-6b042d6c-9b94-02975f21d323\",\n    \"product_account_uuid\": \"11ef-d968-6b042d6c-9b94-02975f21d323\"\n}\n```\n\n## Response-to-Request Mapping\n\n| Response Field | Format | Used In Steps |\n|---------------|--------|---------------|\n| `mid` | Numeric (e.g., `12345678`) | Steps 06, 09, 14, 15 — KYC document APIs use `{mid}` in URL path |\n| `uuid` | UUID string | Steps 02, 04, 05, 07, 08, 10, 12 — Update/signatory APIs use `{uuid}` in URL path |\n| `product_account_uuid` | UUID string | Step 16 — E-Sign API uses this in URL path |\n\n## Error Handling\n\n| Error Code | Cause | Recovery |\n|------------|-------|----------|\n| `422` - \"Email has already been taken\" | Duplicate email | Use a different email or retrieve existing merchant |\n| `422` - \"Mobile is invalid\" | Not 10 digits | Fix mobile format |\n| `401` | Token expired or invalid | Re-authenticate via Step 00 |\n\n\n\n## Response Fields (200 OK)\n\n| Field | Type | Description | Used In |\n|-------|------|-------------|---------|\n| `merchant.mid` | integer | Numeric merchant ID | Steps 06, 09, 14, 15 (URL path `{mid}`) |\n| `merchant.uuid` | string | Merchant UUID | Steps 02, 04, 05, 07, 08, 10, 12 (URL path `{uuid}`) |\n| `merchant.email` | string | Registered email | — |\n| `merchant.registered_mobile` | string | Registered mobile | — |\n| `merchant.product` | string | PayU product (`PayUbiz`) | — |\n| `merchant.business_type` | string | Business classification (`LongTail`) | — |\n| `merchant.business_entity` | string | Entity type set at creation | Determines downstream flow |\n| `merchant.status` | string | Onboarding status: `account_created` initially | Poll via GetMerchant |\n| `merchant.partner_source` | string | Always `Create Merchant API` for API-created merchants | — |\n| `merchant.pan_verification_status` | string | `Pending` initially → `Success` / `Failed` after Step 02 | Check before Step 03 |\n| `merchant.bank_verification_status` | string | `null` initially → set after Step 05 | Determines Step 06 |\n| `merchant.kyc_status.kyc_status` | string | `LOCKED` initially → `COMPLETED` after KYC done | — |\n| `merchant.kyc_status.ckyc_status` | string | `PENDING` initially → `COMPLETED` after Step 03 | Determines Step 09 |\n| `merchant.agreement_status` | string | `Not Generated` initially → `Approved` after Step 16 | — |\n| `merchant.vkyc_status` | string | `pending` → `link_generated` → `approved` / `declined` | — |\n| `merchant.digilocker_status` | string | `null` → `link_generated` → `approved` | — |\n| `merchant.document_status` | string | `Pending` → tracks KYC document upload progress | — |\n| `merchant.settlement_status` | string | `null` → `Active` once merchant is live | — |\n| `merchant.is_authorisation_letter_required` | boolean | `true` for non-individual entities | Affects Step 14 docs |\n| `merchant.blocked` | boolean | Whether merchant is blocked | — |\n| `merchant.skip_vkyc_eligible` | boolean | Whether VKYC can be skipped | Step 11 |\n| `merchant.ckyc_skipped` | boolean | Whether CKYC was skipped | Affects Step 09 DigiLocker |\n| `merchant.service_intent` | string | Service intent (`default`) | — |\n\n## Next Step\nProceed to **Step 02** — Update merchant with PAN, DOB, and business entity type.\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "merchant[display_name]": {
+                    "type": "string"
+                  },
+                  "merchant[email]": {
+                    "type": "string"
+                  },
+                  "merchant[mobile]": {
+                    "type": "string"
+                  },
+                  "merchant[product]": {
+                    "type": "string"
+                  },
+                  "merchant[business_details][business_entity_type]": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or expired token"
+          },
+          "403": {
+            "description": "Forbidden - No access to this resource"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/merchants/{uuid}/update": {
+      "put": {
+        "summary": "UpdateMerchant_Addresses",
+        "operationId": "UpdateMerchant_Addresses",
+        "tags": [
+          "Step 10 — Update: Addresses"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "# UpdateMerchant: Addresses — Step 10 of 16\n\n## Endpoint\n\n`PUT /api/v1/merchants/{uuid}/update`\n\n## Request Body (form-data)\n\n| Parameter | Type | Required | Validation | Description |\n|-----------|------|----------|------------|-------------|\n| `merchant[registration_address][address_line]` | string | Yes | Non-empty | Registered address |\n| `merchant[registration_address][city]` | string | Yes | Non-empty | City |\n| `merchant[registration_address][state]` | string | Yes | Valid Indian state | State |\n| `merchant[registration_address][pincode]` | string | Yes | 6 digits | Pincode |\n| `merchant[operating_address][address_line]` | string | Yes | Non-empty | Operating address |\n| `merchant[operating_address][city]` | string | Yes | Non-empty | City |\n| `merchant[operating_address][state]` | string | Yes | Valid Indian state | State |\n| `merchant[operating_address][pincode]` | string | Yes | 6 digits | Pincode |\n\n## Next Step\nProceed to **Step 11** — Video KYC.\n",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "11ef-d968-6b042d6c-9b94-02975f21d323"
+            },
+            "description": "Unique merchant identifier (UUID format). Returned in Step 01 (CreateMerchant) response. Used for most update operations throughout the onboarding flow."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "merchant[registration_address][address_line]": {
+                    "type": "string"
+                  },
+                  "merchant[registration_address][city]": {
+                    "type": "string"
+                  },
+                  "merchant[registration_address][state]": {
+                    "type": "string"
+                  },
+                  "merchant[registration_address][pincode]": {
+                    "type": "string"
+                  },
+                  "merchant[operating_address][address_line]": {
+                    "type": "string"
+                  },
+                  "merchant[operating_address][city]": {
+                    "type": "string"
+                  },
+                  "merchant[operating_address][state]": {
+                    "type": "string"
+                  },
+                  "merchant[operating_address][pincode]": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or expired token"
+          },
+          "403": {
+            "description": "Forbidden - No access to this resource"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v3/merchants/kyc_document/send_ckyc_otp": {
+      "post": {
+        "summary": "A. Send CKYC OTP (Individual / Sole Prop)",
+        "operationId": "A._Send_CKYC_OTP_Individual_/_Sole_Prop",
+        "tags": [
+          "Step 03 — CKYC Verification"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "# Send CKYC OTP — Step 03A of 16\n\nSends OTP to merchant's mobile for CKYC verification. **Only for Individual / Sole Proprietorship entities.**\n\n## Endpoint\n\n`POST /api/v3/merchants/kyc_document/send_ckyc_otp`\n\n## Prerequisite Steps\n- Step 01: `mid` from CreateMerchant response\n- Step 02: PAN submitted and entity type = Individual or Sole Proprietorship\n\n## Entity Applicability\n**Individual and Sole Proprietorship only.** For all other entities, use Sub-request C (Fetch CKYC Data).\n\n## Request Body (JSON)\n\n| Parameter | Type | Required | Validation | Description |\n|-----------|------|----------|------------|-------------|\n| `merchant_id` | string | Yes | Numeric `mid` from Step 01 | Merchant ID |\n| `mobile` | string | Yes | 10-digit mobile | Same mobile used in Step 01 |\n| `consent` | boolean | Yes | **Must be `true`** | Merchant consent for CKYC — mandatory for compliance |\n\n## Error Handling\n\n| Error Code | Cause | Recovery |\n|------------|-------|----------|\n| `422` - \"Consent is required\" | `consent` not `true` | Set consent to `true` |\n| `422` - \"Mobile is invalid\" | Bad mobile format | Use 10-digit number |\n| `422` - \"PAN not found\" | PAN from Step 02 not yet verified | Wait for PAN verification, retry |\n\n## Next Step\nAfter merchant receives OTP, call **Sub-request B (Verify CKYC OTP)**.\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "merchant_id": "{{mid}}",
+                "mobile": "{{merchant_mobile}}",
+                "consent": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or expired token"
+          },
+          "403": {
+            "description": "Forbidden - No access to this resource"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v3/merchants/kyc_document/verify_ckyc_otp": {
+      "post": {
+        "summary": "B. Verify CKYC OTP (Individual / Sole Prop)",
+        "operationId": "B._Verify_CKYC_OTP_Individual_/_Sole_Prop",
+        "tags": [
+          "Step 03 — CKYC Verification"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "# Verify CKYC OTP — Step 03B of 16\n\nVerifies the OTP sent in Step 03A and returns CKYC identity data.\n\n## Endpoint\n\n`POST /api/v3/merchants/kyc_document/verify_ckyc_otp`\n\n## Prerequisite Steps\n- Step 03A: OTP sent successfully, merchant has received OTP\n\n## Entity Applicability\n**Individual and Sole Proprietorship only.**\n\n## Request Body (JSON)\n\n| Parameter | Type | Required | Validation | Description |\n|-----------|------|----------|------------|-------------|\n| `merchant_id` | string | Yes | Numeric `mid` from Step 01 | Merchant ID |\n| `otp` | string | Yes | Exactly 6 digits | OTP received by merchant on mobile. **Must be sent as a string** to preserve leading zeros (e.g. `\"014645\"`, not `14645`). |\n\n## Response (200 OK)\n\nReturns CKYC data: name, DOB, address (city, state, pincode), masked mobile.\n\n## Response-to-Request Mapping\n\nCKYC success status affects **Step 09 (DigiLocker)**:\n- If this succeeds → DigiLocker is optional for Individual/Sole Prop\n- Track via GetMerchant → `ckyc_status`\n\n## Error Handling\n\n| Error Code | Cause | Recovery |\n|------------|-------|----------|\n| `422` - \"OTP should be of 6 digits\" | OTP was sent as a number (stripping leading zeros) or is not 6 digits | Ensure OTP is sent as a string, not parsed with parseInt() |\n| `422` - \"OTP is invalid\" | Wrong OTP | Ask merchant to re-check; resend OTP via Step 03A |\n| `422` - \"OTP expired\" | OTP validity window passed | Resend OTP via Step 03A |\n\n## Next Step\nProceed to **Step 04** — Update merchant with business details.\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "merchant_id": "{{mid}}",
+                "otp": "123456"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or expired token"
+          },
+          "403": {
+            "description": "Forbidden - No access to this resource"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v3/merchants/kyc_document/ckyc_data": {
+      "post": {
+        "summary": "C. Fetch CKYC Data (Non-Individual Entities)",
+        "operationId": "C._Fetch_CKYC_Data_Non_Individual_Entities",
+        "tags": [
+          "Step 03 — CKYC Verification"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "# Fetch CKYC Data — Step 03C of 16\n\nFetches CKYC identity data directly using PAN (no OTP needed). **For all non-Individual/non-Sole Prop entities.**\n\n## Endpoint\n\n`POST /api/v3/merchants/kyc_document/ckyc_data`\n\n## Prerequisite Steps\n- Step 01: `mid` from CreateMerchant response\n- Step 02: PAN submitted and entity type set (not Individual/Sole Prop)\n\n## Entity Applicability\n**Partnership, Pvt Ltd, Public Limited, LLP, Trust, Society, One Person Company, Government, NGO, Hindu Undivided Family, Local Authority, Artificial Juridical Person**\n\n## Request Body (JSON)\n\n| Parameter | Type | Required | Validation | Description |\n|-----------|------|----------|------------|-------------|\n| `merchant_id` | string | Yes | Numeric `mid` | Merchant ID |\n| `consent` | boolean | Yes | **Must be `true`** | Merchant consent — mandatory for CKYC compliance |\n\n## Response (200 OK)\n\nReturns CKYC data: name, date of incorporation, address, masked mobile.\n\n## Error Handling\n\n| Error Code | Cause | Recovery |\n|------------|-------|----------|\n| `422` - \"Consent is required\" | `consent` not `true` | Set consent to `true` |\n| `422` - \"CKYC record not found\" | No CKYC record for this PAN | Merchant may need additional verification |\n\n\n\n## Response Fields (200 OK)\n\n| Field | Type | Description |\n|-------|------|-------------|\n| `ckyc_number` | string | CKYC identification number from CERSAI registry |\n| `name` | string | Entity name as registered in CKYC |\n| `father_name` | string | Father's name (empty for companies) |\n| `dob` | string | Date of birth/incorporation (format: `DD-MM-YYYY`) |\n| `address` | string | Registered address from CKYC |\n| `pincode` | string | Pincode from CKYC |\n| `state` | string | State from CKYC |\n| `city` | string | City from CKYC |\n| `related_persons_data` | array | Related persons (directors, partners) — may be empty |\n\nThis data can be displayed to the merchant for confirmation. The `ckyc_status` in GetMerchant changes to `success` after this call.\n\n## Next Step\nProceed to **Step 04** — Update merchant with business details.\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "merchant_id": "{{mid}}",
+                "consent": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or expired token"
+          },
+          "403": {
+            "description": "Forbidden - No access to this resource"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v3/merchants/{mid}/kyc_document": {
+      "post": {
+        "summary": "UploadKYCDocument",
+        "operationId": "UploadKYCDocument",
+        "tags": [
+          "Step 15 — Upload KYC Documents"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "# Upload KYC Document — Step 15 of 16\n\nCall this **once per required document category** from Step 14.\n\n## Endpoint\n\n`POST /api/v3/merchants/{mid}/kyc_document`\n\n## Request Body (multipart/form-data)\n\n| Parameter | Type | Required | Source | Description |\n|-----------|------|----------|--------|-------------|\n| `merchant[document_category]` | string | Yes | Step 14 → `document_categories[i].name` | Exact category name |\n| `merchant[document_type]` | string | Yes | Step 14 → `document_categories[i].document_types[j].name` | Exact type name |\n| `merchant[processed_document]` | file | Yes | Merchant upload | JPG/PNG/PDF, max 5 MB |\n\n## Response (200 OK)\n\n```json\n{\n    \"merchant\": {\n        \"mid\": \"8390925\",\n        \"kyc_document_name\": \"PAN Card of Signing Authority\",\n        \"kyc_document_uuid\": \"11ef-587e-4383...\",\n        \"kyc_document_status\": \"DOCUMENT_SUBMITTED\",\n        \"error_message\": null,\n        \"created_at\": \"2024-08-12T07:41:19.000Z\"\n    }\n}\n```\n\n## Error Handling\n\n| Error Code | Cause | Recovery |\n|------------|-------|----------|\n| `422` - \"Invalid document category\" | category doesn't match Step 14 | Re-fetch Step 14, use exact `name` |\n| `422` - \"File too large\" | Exceeds 5 MB | Compress before uploading |\n| `422` - \"Unsupported format\" | Not JPG/PNG/PDF | Convert to accepted format |\n\n## Next Step\nAfter all documents uploaded, proceed to **Step 16** — E-Sign Agreement.\n",
+        "parameters": [
+          {
+            "name": "mid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "8390925"
+            },
+            "description": "Merchant ID (numeric). Returned in Step 01 (CreateMerchant) response. Required for KYC document operations and DigiLocker verification."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "merchant[document_category]": {
+                    "type": "string"
+                  },
+                  "merchant[document_type]": {
+                    "type": "string"
+                  },
+                  "merchant[processed_document]": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or expired token"
+          },
+          "403": {
+            "description": "Forbidden - No access to this resource"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/merchants/{uuid}/signatory_details": {
+      "put": {
+        "summary": "AddUpdateUBO",
+        "operationId": "AddUpdateUBO",
+        "tags": [
+          "Step 12 — Add/Update UBO"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "# Add/Update UBO — Step 12 of 16\n\n## Endpoint\n\n`PUT /api/v1/merchants/{uuid}/signatory_details`\n\n## Entity Applicability\n**Only:** Pvt Ltd, Public Ltd, Partnership, Trust, LLP, Society.\n\n## Request Body (x-www-form-urlencoded)\n\n**Per UBO (indexed: `ubo[0]`, `ubo[1]`, etc.):**\n\n| Parameter | Type | Required | Description |\n|-----------|------|----------|-------------|\n| `merchant[ubo[N][beneficiary_name]]` | string | Yes | Full name |\n| `merchant[ubo[N][ubo_pan_number]]` | string | Yes | PAN number |\n| `merchant[ubo[N][ownership_percent]]` | string | Yes | Ownership % |\n| `merchant[ubo[N][dob]]` | string | Yes | YYYY-MM-DD |\n| `merchant[ubo[N][nationality]]` | string | Yes | ISO country code |\n| `merchant[ubo[N][address][address_line]]` | string | Yes | Address |\n| `merchant[ubo[N][address][pincode]]` | string | Yes | 6-digit pincode |\n| `merchant[ubo_exist]` | string | Yes | `\"1\"` |\n\n\n\n## Response Fields (200 OK — when successful via Postman)\n\nReturns full merchant object including `ultimate_beneficiaries[]` array with added UBOs.\n\n## Error Response Fields\n\n| Field | Type | Description |\n|-------|------|-------------|\n| `error` | string | `\"param is missing or the value is empty: bank_detail\"` — bank_detail params must be included |\n\n\n\n## Multiple UBOs (Up to 4)\n\nSubmit up to 4 UBOs in a single request using array indexing `ubo[0]`, `ubo[1]`, `ubo[2]`, `ubo[3]`.\n\n- UBOs 0-1 are enabled by default; UBOs 2-3 are disabled — enable as needed\n- Each UBO requires: beneficiary_name, ubo_pan_number, ownership_percent, dob, nationality, address, pincode\n- Email is optional but recommended\n- Total ownership percentages should be consistent with business records\n- `merchant[ubo_exist]` must be `\"1\"` when any UBOs are submitted\n\n## Next Step\nProceed to **Step 13** (Business Members) if applicable, or **Step 14**.\n",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "11ef-d968-6b042d6c-9b94-02975f21d323"
+            },
+            "description": "Unique merchant identifier (UUID format). Returned in Step 01 (CreateMerchant) response. Used for most update operations throughout the onboarding flow."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "merchant[ubo[0][beneficiary_name]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[0][ubo_pan_number]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[0][ownership_percent]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[0][dob]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[0][nationality]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[0][email]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[0][address][address_line]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[0][address][pincode]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[1][beneficiary_name]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[1][ubo_pan_number]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[1][ownership_percent]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[1][dob]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[1][nationality]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[1][email]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[1][address][address_line]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[1][address][pincode]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[2][beneficiary_name]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[2][ubo_pan_number]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[2][ownership_percent]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[2][dob]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[2][nationality]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[2][email]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[2][address][address_line]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[2][address][pincode]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[3][beneficiary_name]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[3][ubo_pan_number]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[3][ownership_percent]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[3][dob]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[3][nationality]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[3][email]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[3][address][address_line]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo[3][address][pincode]]": {
+                    "type": "string"
+                  },
+                  "merchant[ubo_exist]": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or expired token"
+          },
+          "403": {
+            "description": "Forbidden - No access to this resource"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v3/merchants/{mid}/kyc_document/generate_digilocker_link": {
+      "post": {
+        "summary": "GenerateDigilockerLink",
+        "operationId": "GenerateDigilockerLink",
+        "tags": [
+          "Step 09 — DigiLocker Verification"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "# Generate DigiLocker Link — Step 09 of 16\n\nGenerates a DigiLocker authentication URL for the merchant.\n\n## Endpoint\n\n`POST /api/v3/merchants/{mid}/kyc_document/generate_digilocker_link`\n\n## Prerequisite Steps\n- **Step 08 (Signatory Details) — MANDATORY.** DigiLocker fails without it.\n\n## Branching — When to Call\n\n| Entity Type | CKYC Status | DigiLocker |\n|-------------|-------------|------------|\n| Individual / Sole Prop | Succeeded | **SKIP** (optional) |\n| Individual / Sole Prop | Skipped/Failed | **REQUIRED** |\n| All other entities | Any | **ALWAYS REQUIRED** |\n\n## Request Body (JSON)\n\n| Parameter | Type | Required | Validation | Description |\n|-----------|------|----------|------------|-------------|\n| `consent` | boolean | Yes | Must be `true` | Merchant consent for Aadhaar verification |\n\n## Response\nReturns a DigiLocker URL. Redirect the merchant to this URL.\n\n## Error Handling\n\n| Error Code | Cause | Recovery |\n|------------|-------|----------|\n| `422` - \"Signatory details required\" | Step 08 not completed | Complete Step 08 first |\n| `422` - \"Consent required\" | consent not true | Set consent to true |\n\n\n\n## Response Fields (200 OK)\n\n| Field | Type | Description |\n|-------|------|-------------|\n| `status` | string | `link_generated` — DigiLocker auth URL is ready |\n| `capture_link` | string | Full DigiLocker OAuth URL — redirect the merchant here |\n\n## Error Response Fields\n\n| Field | Type | Description |\n|-------|------|-------------|\n| `error_message` | string | e.g., `\"Digilocker KYC is already completed\"` — idempotent, no action needed |\n\nAfter the merchant completes DigiLocker auth, check `digilocker_status` via GetMerchant: `null` → `link_generated` → `approved`.\n\n## Next Step\nProceed to **Step 10** — Update addresses.\n",
+        "parameters": [
+          {
+            "name": "mid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "8390925"
+            },
+            "description": "Merchant ID (numeric). Returned in Step 01 (CreateMerchant) response. Required for KYC document operations and DigiLocker verification."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "consent": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or expired token"
+          },
+          "403": {
+            "description": "Forbidden - No access to this resource"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v3/merchants/kyc_document/create_vkyc_profile": {
+      "post": {
+        "summary": "CreateVKYCProfile",
+        "operationId": "CreateVKYCProfile",
+        "tags": [
+          "Step 11 — Video KYC (VKYC)"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "# Create VKYC Profile — Step 11 of 16\n\n## Endpoint\n\n`POST /api/v3/merchants/kyc_document/create_vkyc_profile`\n\n## Request Body (JSON)\n\n| Parameter | Type | Required | Description |\n|-----------|------|----------|-------------|\n| `merchant_id` | string | Yes | Numeric merchant ID (mid) |\n\n## Response\nReturns a VCIP link. Share with the merchant to complete video verification.\n\n## VKYC Statuses (check via GetMerchant)\n- `not_initiated` → VKYC not started\n- `in_progress` → Merchant has started\n- `approved` → Verification passed\n- `declined` → Verification failed — merchant may retry\n\n\n\n## Response Fields (200 OK)\n\n| Field | Type | Description |\n|-------|------|-------------|\n| `uuid` | string | VKYC profile UUID |\n| `status` | string | `link_generated` — VCIP link is ready |\n| `profile_id` | string | VKYC vendor profile ID |\n| `capture_link` | string | VCIP video call URL — share with merchant |\n| `scheduled_at` | string/null | Scheduled time (if applicable) |\n| `start_time` | string/null | Video call start time |\n| `end_time` | string/null | Video call end time |\n| `capture_expires_at` | string/null | Link expiry timestamp |\n\n## Error Response Fields\n\n| Field | Type | Description |\n|-------|------|-------------|\n| `error_message` | string | e.g., `\"Please complete (Signing authority details captured step) before initiating VKYC\"` — complete Step 08 first |\n\nShare `capture_link` with the merchant. Track status via GetMerchant → `vkyc_status`: `pending` → `link_generated` → `approved` / `declined`.\n\n## Next Step\nProceed to **Step 12** — UBO (if applicable) or **Step 13** — Business Members (if applicable) or **Step 14**.\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "merchant_id": "{{mid}}"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or expired token"
+          },
+          "403": {
+            "description": "Forbidden - No access to this resource"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/merchants/{uuid}/submit_business_members": {
+      "put": {
+        "summary": "SubmitBusinessMembers",
+        "operationId": "SubmitBusinessMembers",
+        "tags": [
+          "Step 13 — Business Members & KMP"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "# Submit Business Members — Step 13 of 16\n\n## Endpoint\n\n`PUT /api/v1/merchants/{uuid}/submit_business_members`\n\n## Entity Applicability\n**Only:** Pvt Ltd, Public Ltd, Partnership, LLP.\n\n## Request Body (JSON)\n\n```json\n{\n    \"business_members\": [\n        {\n            \"name\": \"Director Name\",\n            \"designation\": \"Director\",\n            \"doj\": \"03/2020\",\n            \"dob\": \"15/06/1985\",\n            \"pincode\": \"560001\",\n            \"pan_number\": \"ABCDE1234F\"\n        }\n    ]\n}\n```\n\n| Field | Type | Required | Validation | Description |\n|-------|------|----------|------------|-------------|\n| `name` | string | Yes | Non-empty | Full name |\n| `designation` | string | Yes | Director, Partner, Designated Partner, etc. | Role |\n| `doj` | string | Yes | `MM/YYYY` | Date of joining |\n| `dob` | string | Yes | `DD/MM/YYYY` | Date of birth |\n| `pincode` | string | Yes | 6 digits | Pincode |\n| `pan_number` | string | Yes | `ABCDE1234F` | PAN number |\n\n\n\n## Response Fields (200 OK)\n\n| Field | Type | Description |\n|-------|------|-------------|\n| `message` | string | `\"Business members submitted successfully\"` |\n| `data` | array | Array of submitted business members |\n| `data[].id` | integer | Internal member ID |\n| `data[].uuid` | string | Member UUID |\n| `data[].name` | string | Member name |\n| `data[].designation` | string | Role (Director, Partner, etc.) |\n| `data[].date_of_birth` | string | DOB in `YYYY-MM-DD` format |\n| `data[].pan_number` | string | Member PAN |\n| `data[].date_of_joining` | string | Joining date in `MM/YYYY` |\n| `data[].date_of_resignation` | string/null | Resignation date (null if active) |\n| `data[].active` | boolean | Whether member is currently active |\n\n\n\n## Multiple Business Members (Up to 4 shown)\n\nThe `business_members` JSON array can contain any number of members. 4 are shown as template.\n\n- Each member requires: `name`, `designation`, `doj` (MM/YYYY), `dob` (DD/MM/YYYY), `pincode`, `pan_number`\n- Valid designations: Director, Partner, Designated Partner, CEO, CFO, Senior Management, Trustee, Secretary\n- Remove entries from the array if fewer members are needed\n- All PAN numbers are validated against the PAN registry\n\n## Next Step\nProceed to **Step 14** — Fetch required KYC documents.\n",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "11ef-d968-6b042d6c-9b94-02975f21d323"
+            },
+            "description": "Unique merchant identifier (UUID format). Returned in Step 01 (CreateMerchant) response. Used for most update operations throughout the onboarding flow."
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              },
+              "example": {
+                "business_members": [
+                  {
+                    "name": "Member 1 Name",
+                    "designation": "Director",
+                    "doj": "03/2020",
+                    "dob": "15/06/1985",
+                    "pincode": "560001",
+                    "pan_number": "ABCDE1234F"
+                  },
+                  {
+                    "name": "Member 2 Name",
+                    "designation": "Partner",
+                    "doj": "06/2021",
+                    "dob": "20/09/1990",
+                    "pincode": "122001",
+                    "pan_number": "BCDEF2345G"
+                  },
+                  {
+                    "name": "Member 3 Name",
+                    "designation": "CEO",
+                    "doj": "01/2022",
+                    "dob": "10/03/1988",
+                    "pincode": "400001",
+                    "pan_number": "CDEFG3456H"
+                  },
+                  {
+                    "name": "Member 4 Name",
+                    "designation": "Senior Management",
+                    "doj": "09/2023",
+                    "dob": "05/12/1995",
+                    "pincode": "600001",
+                    "pan_number": "DEFGH4567I"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or expired token"
+          },
+          "403": {
+            "description": "Forbidden - No access to this resource"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/merchants/11f0-8ee3-5847ce32-bf72-02975f21d323/list_business_members": {
+      "get": {
+        "summary": "List Business members API",
+        "operationId": "List_Business_members_API",
+        "tags": [
+          "Step 13 — Business Members & KMP"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "# List Business Members API\n\nReturns all currently persisted business members for a merchant.\n\n## Endpoint\n`GET /api/v1/merchants/{product_account_uuid}/list_business_members`\n\n## Base URL\n- Test: `https://test-partner.payu.in`\n- Production: `https://partner.payu.in`\n\n## Auth\n- Header: `Authorization: Bearer {access_token}`\n- Required scope: `refer_merchant`\n\n## Path Parameter\n- `product_account_uuid` (string, required): Merchant UUID.\n\n## Success Response\n- `200 OK`\n\n```json\n{\n  \"data\": [\n    {\n      \"id\": 3471,\n      \"uuid\": \"11f1-28f2-7068d69c-879e-02f4a48620c1\",\n      \"name\": \"Test CEO Flow\",\n      \"designation\": \"CEO\",\n      \"date_of_birth\": \"1990-08-15\",\n      \"pan_number\": \"AVGPL0693P\",\n      \"date_of_joining\": \"03/2026\",\n      \"active\": true\n    }\n  ]\n}\n```\n\n## Empty State\n- `200 OK` with `data: []` when no members exist.\n\n## Common Errors\n- `404` when UUID is invalid or reseller is not allowed to access that merchant.\n- `401/403` auth or permission issues.\n\n## Recommended Usage\nUse this API as the source of truth after every submit/delete member action.",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or expired token"
+          },
+          "403": {
+            "description": "Forbidden - No access to this resource"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v3/merchants/{mid}/kyc_document/required_docs": {
+      "get": {
+        "summary": "FetchRequiredDocs",
+        "operationId": "FetchRequiredDocs",
+        "tags": [
+          "Step 14 — Fetch Required KYC Documents"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "# Fetch Required KYC Documents — Step 14 of 16\n\nReturns the list of document categories and types the merchant must upload.\n\n## Endpoint\n\n`GET /api/v3/merchants/{mid}/kyc_document/required_docs`\n\n## How to Use the Response in Step 15\n\nFor each item in `response.document_categories[]`:\n1. Read `name` → this becomes `merchant[document_category]` in Step 15\n2. Choose one from `document_types[].name` → this becomes `merchant[document_type]` in Step 15\n3. Upload the file via Step 15\n\n**Example mapping:**\n```\nResponse:\n  document_categories[0].name = \"PAN Card of Signing Authority\"\n  document_categories[0].document_types[0].name = \"PAN Card\"\n\nStep 15 Request:\n  merchant[document_category] = \"PAN Card of Signing Authority\"\n  merchant[document_type] = \"PAN Card\"\n  merchant[processed_document] = @pan_card.jpg\n```\n\n## See folder description for complete UUID-to-name reference tables and per-entity document requirements.\n\n\n\n## Response Fields (200 OK)\n\n| Field | Type | Description |\n|-------|------|-------------|\n| `business_entity` | string | Entity type (e.g., `\"Private Limited\"`) |\n| `eligible_for_br_exemption` | boolean | Whether Board Resolution exemption applies |\n| `document_categories` | array | Required document categories |\n| `document_categories[].id` | integer | Internal category ID |\n| `document_categories[].name` | string | Category name — **use this as `merchant[document_category]` in Step 15** |\n| `document_categories[].uuid` | string | Category UUID — maps to YML reference tables |\n| `document_categories[].name_on_frontend` | string | Frontend key for the category |\n| `document_categories[].re_fetch` | boolean | Whether re-fetch is needed |\n| `document_categories[].kyc_document_status` | string | `\"required\"` = needs upload |\n| `document_categories[].document_types` | array | Accepted document types for this category |\n| `document_categories[].document_types[].name` | string | Type name — **use this as `merchant[document_type]` in Step 15** |\n| `document_categories[].document_types[].id` | integer | Internal type ID |\n| `document_categories[].document_types[].uuid` | string | Type UUID — maps to YML reference tables |\n| `document_categories[].document_types[].name_on_frontend` | string | Frontend key |\n| `document_categories[].document_types[].issue_date_req` | boolean | `true` = issue date field required during upload |\n| `document_categories[].document_types[].expiry_date_req` | boolean | `true` = expiry date field required during upload |\n| `document_categories[].kyc_document` | object/null | `null` = not yet uploaded; object with `status` if uploaded |\n\n## Next Step\nFor each required category, call **Step 15** — Upload KYC Document.\n",
+        "parameters": [
+          {
+            "name": "mid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "8390925"
+            },
+            "description": "Merchant ID (numeric). Returned in Step 01 (CreateMerchant) response. Required for KYC document operations and DigiLocker verification."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or expired token"
+          },
+          "403": {
+            "description": "Forbidden - No access to this resource"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v3/merchants/{mid}/kyc_document/{kyc_document_uuid}": {
+      "get": {
+        "summary": "ShowKYCDocument",
+        "operationId": "ShowKYCDocument",
+        "tags": [
+          "Step 15 — Upload KYC Documents"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "# Show KYC Document — Sub-utility of Step 15\n\nRetrieves full details of a specific uploaded KYC document, including verification status, rejection reasons, and a signed download URL.\n\n## Endpoint\n\n`GET /api/v3/merchants/{mid}/kyc_document/{kyc_document_uuid}`\n\n## Path Parameters\n\n| Parameter | Source | Description |\n|-----------|--------|-------------|\n| `{mid}` | Step 01 → `mid` | Numeric merchant ID |\n| `{kyc_document_uuid}` | Step 15 Upload response → `kyc_document_uuid` | UUID of the uploaded document |\n\n## The Complete 3-API Document Lifecycle Mapping\n\nThis is how the three document APIs connect to each other:\n\n### Step 14: Fetch Required Docs → tells you WHAT to upload\n\n```\nGET /api/v3/merchants/{mid}/kyc_document/required_docs\n\nResponse:\n  document_categories[i].name                    → e.g., \"Bank Account Proof\"\n  document_categories[i].uuid                    → e.g., \"11e8-748f-297c6048...\"\n  document_categories[i].document_types[j].name  → e.g., \"Cancelled Cheque\"\n  document_categories[i].document_types[j].uuid  → e.g., \"ca0a-9047-28d705a1...\"\n  document_categories[i].kyc_document_status     → \"required\" (needs upload)\n  document_categories[i].kyc_document            → null (nothing uploaded yet)\n```\n\n### Step 15: Upload KYC Document → uses the names from Step 14 as input\n\n```\nPOST /api/v3/merchants/{mid}/kyc_document\n\nRequest (form-data):\n  merchant[document_category] = \"Bank Account Proof\"     ← from Step 14 category.name\n  merchant[document_type]     = \"Cancelled Cheque\"       ← from Step 14 document_types[j].name\n  merchant[processed_document] = @file.jpg               ← the actual file\n\nResponse:\n  merchant.kyc_document_uuid   = \"11f1-13a7-6047c1c0...\"  ← USE THIS in Show KYC Document\n  merchant.kyc_document_status = \"DOCUMENT_SUBMITTED\"\n  merchant.kyc_document_name   = \"Bank Account Proof\"\n```\n\n### Show KYC Document (this API) → uses the uuid from Step 15 to check status\n\n```\nGET /api/v3/merchants/{mid}/kyc_document/{kyc_document_uuid}\n\nPath:\n  {kyc_document_uuid} = \"11f1-13a7-6047c1c0...\"  ← from Step 15 upload response\n\nResponse:\n  kyc_document.status              = \"Approved\" / \"DOCUMENT_SUBMITTED\" / \"DOCUMENT_REJECTED\"\n  kyc_document.document_category_name = \"Bank Account Proof\"   ← confirms category\n  kyc_document.document_type_name  = \"Cancelled Cheque\"        ← confirms type\n  kyc_document.document_category_id = 95                       ← internal numeric ID\n  kyc_document.document_type_id    = 112                       ← internal numeric ID\n  kyc_document.error               = null or \"rejection reason\"\n  kyc_document.remarks             = null or \"reviewer notes\"\n  kyc_document.doc_url             = \"https://...signed_s3_url...\" ← download link (30 min expiry)\n```\n\n## Complete Data Flow Diagram\n\n```\nStep 14 (required_docs)          Step 15 (upload)              Show KYC (this API)\n─────────────────────          ──────────────────             ───────────────────\ncategory.name ──────────────→ merchant[document_category]\ncategory.document_types         \n  [j].name ─────────────────→ merchant[document_type]\n                               merchant[processed_document] = file\n                                        │\n                               Response: │\n                               kyc_document_uuid ──────────→ {kyc_document_uuid} in URL path\n                               kyc_document_status            │\n                                                              │\n                                                    Response: ▼\n                                                    status (Approved/Rejected/Submitted)\n                                                    document_category_name (confirms)\n                                                    document_type_name (confirms)\n                                                    error (rejection reason)\n                                                    doc_url (signed download URL)\n```\n\n## ID Cross-Reference (from live responses)\n\n| Category Name | Category ID | Type Name | Type ID |\n|---------------|------------|-----------|---------|\n| Bank Account Proof | 95 | Cancelled Cheque | 112 |\n| Address Proof of Signing Authority | 103 | Aadhar | 116 |\n| Government Issued Certificate | 104 | Certificate of Incorporation | 142 |\n| Authorisation Letter | 105 | Power of Attorney | 158 |\n| Service Agreement | 107 | Agreement | 148 |\n| Memorandum of Association | 115 | Memorandum of Association | 159 |\n| Articles of Association | 116 | Articles of Association | 160 |\n\n## Document Statuses\n\n| Status | Meaning | Action |\n|--------|---------|--------|\n| `DOCUMENT_SUBMITTED` | Uploaded, pending review | Wait — poll periodically |\n| `Approved` | Verified by PayU | No action needed |\n| `DOCUMENT_REJECTED` | Rejected | Read `error` field, delete doc, re-upload |\n\n## Notes\n- `doc_url` is a pre-signed S3 URL valid for ~30 minutes\n- Auto-generated documents (like Service Agreement after e-sign) may have `document_type_name: null`\n- The `document_category_id` and `document_type_id` are internal numeric IDs — use `name` fields for display\n",
+        "parameters": [
+          {
+            "name": "mid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "8390925"
+            },
+            "description": "Merchant ID (numeric). Returned in Step 01 (CreateMerchant) response. Required for KYC document operations and DigiLocker verification."
+          },
+          {
+            "name": "kyc_document_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "11ef-587e-43837330-95b0-021ec077a271"
+            },
+            "description": "Unique identifier for a specific KYC document. Returned when uploading a document via POST /api/v3/merchants/{mid}/kyc_document. Required to view or delete a specific document."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or expired token"
+          },
+          "403": {
+            "description": "Forbidden - No access to this resource"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "DeleteKYCDocument",
+        "operationId": "DeleteKYCDocument",
+        "tags": [
+          "Step 15 — Upload KYC Documents"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "# Delete KYC Document (Sub-utility)\n\nDeletes a rejected document so it can be re-uploaded.\n\n## Endpoint\n\n`DELETE /api/v3/merchants/{mid}/kyc_document/{kyc_document_uuid}`\n\n## Response\n`204 No Content` on success.\n\n## When to Use\nWhen `ShowKYCDocument` returns `DOCUMENT_REJECTED`, delete the document and re-upload via Step 15.\n",
+        "parameters": [
+          {
+            "name": "mid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "8390925"
+            },
+            "description": "Merchant ID (numeric). Returned in Step 01 (CreateMerchant) response. Required for KYC document operations and DigiLocker verification."
+          },
+          {
+            "name": "kyc_document_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "11ef-587e-43837330-95b0-021ec077a271"
+            },
+            "description": "Unique identifier for a specific KYC document. Returned when uploading a document via POST /api/v3/merchants/{mid}/kyc_document. Required to view or delete a specific document."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or expired token"
+          },
+          "403": {
+            "description": "Forbidden - No access to this resource"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v3/merchants/8390925/kyc_document/11ef-587e-43837330-95b0-021ec077a271": {
+      "delete": {
+        "summary": "Delete KYC document",
+        "operationId": "Delete_KYC_document",
+        "tags": [
+          "Step 15 — Upload KYC Documents"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "# Delete KYC Document API\n\nDeletes an already uploaded KYC document for a merchant.\n\n## Endpoint\n`DELETE /api/v3/merchants/{merchant_id}/kyc_document/{kyc_document_uuid}`\n\n## Base URL\n- Test: `https://test-partner.payu.in`\n- Production: `https://partner.payu.in`\n\n## Auth\n- Header: `Authorization: Bearer {access_token}`\n- Required scope: `client_manage_kyc_details`\n\n## Path Parameters\n- `merchant_id` (required): MID\n- `kyc_document_uuid` (required): UUID returned by Create KYC Document API response at `merchant.kyc_document_uuid`\n\n## Success Response\n- `204 No Content`\n\n## Error Responses\n- `404` when document UUID does not exist for the merchant (example: `{\"document\":\"does not exist\"}`)\n- `401/403` auth or permission issues\n\n## Integration Sequence\n1. Call `required_docs` to identify valid category/type.\n2. Upload via Create KYC Document API.\n3. Persist `merchant.kyc_document_uuid`.\n4. Use that UUID in Delete KYC Document API when document removal is needed.",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or expired token"
+          },
+          "403": {
+            "description": "Forbidden - No access to this resource"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/merchants/{uuid}/generate_merged_document_for_esign": {
+      "get": {
+        "summary": "GenerateAgreementForESign",
+        "operationId": "GenerateAgreementForESign",
+        "tags": [
+          "Step 16 — E-Sign Agreement"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "# Generate Agreement for E-Sign — Step 16 of 16\n\nGenerates the merchant service agreement for digital signing. Final step in the onboarding flow.\n\n## Endpoint\n\n`GET /api/v1/merchants/{uuid}/generate_merged_document_for_esign`\n\n**Base URL:** `https://test-partner.payu.in` (Test) / `https://partner.payu.in` (Production)\n\n## Authentication — Scope Requirements\n\nThe `refer_merchant` scope alone returns `401 Unauthorized`. This endpoint requires `refer_merchant` **plus at least one additional scope**.\n\n| Scope Combination | Result |\n|-------------------|--------|\n| `refer_merchant` only | `401 Unauthorized` |\n| `client_manage_agreement` only | `401 Unauthorized` |\n| `client_manage_agreement + client_manage_kyc_details` | `401 Unauthorized` |\n| `refer_merchant + client_manage_agreement` | **Works** |\n| `refer_merchant + client_manage_kyc_details` | **Works** |\n| All three scopes | **Works** |\n\nMinimum required: `refer_merchant` + one of (`client_manage_agreement` or `client_manage_kyc_details`).\n\n## Path Parameter\n\n| Parameter | Source | Description |\n|-----------|--------|-------------|\n| `{uuid}` | Step 01 response → `merchant.uuid` | Merchant UUID |\n\n## Prerequisite Steps\nAll Steps 01-15 must be complete.\n\n## Error Responses\n\n| Response | Meaning |\n|----------|---------|\n| `{\"error\": \"Agreement is already approved\"}` | Agreement already signed — no action needed |\n| `{\"status\": \"Unauthorized\"}` | Token scope insufficient — see scope table above |\n| `{\"kyc_document\": \"Agreement Not Found\"}` | Prior steps incomplete — check merchant status |\n\n## After Success\nMerchant moves toward activation. Day-0 flags auto-enable: S2S, tokenisation, callbacks, refunds.\n",
+        "parameters": [
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "11ef-d968-6b042d6c-9b94-02975f21d323"
+            },
+            "description": "Unique merchant identifier (UUID format). Returned in Step 01 (CreateMerchant) response. Used for most update operations throughout the onboarding flow."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or expired token"
+          },
+          "403": {
+            "description": "Forbidden - No access to this resource"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/v1/merchants/{merchant_id}": {
+      "get": {
+        "summary": "GetMerchant",
+        "operationId": "GetMerchant",
+        "tags": [
+          "Utilities"
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "description": "# GetMerchant — Status Polling (Utility)\n\nRetrieves the complete merchant profile and all internal verification statuses. Call this **between any steps** to check progress.\n\n## Endpoint\n\n`GET /api/v1/merchants/{merchant_id}`\n\nReplace `{merchant_id}` with the numeric `mid` from Step 01.\n\n## Key Status Fields to Check\n\n| Field | After Step | Values | Decision |\n|-------|-----------|--------|----------|\n| `pan_verification_status` | Step 02 | `verified` / `failed` / `pending` | Wait for verification before Step 03 |\n| `bank_verification_status` | Step 05 | `verified` / `failed` / `pending` | `verified` → skip Step 06; else → do Step 06 |\n| `ckyc_status` | Step 03 | `success` / `failed` / `pending` | Determines DigiLocker requirement (Step 09) |\n| `digilocker_status` | Step 09 | `verified` / `pending` / `failed` | Track completion |\n| `vkyc_status` | Step 11 | `not_initiated` / `in_progress` / `approved` / `declined` | Track VKYC |\n| `kyc_document_status` | Step 15 | Per-document status | Check approvals/rejections |\n| `agreement_status` | Step 16 | `pending` / `signed` / `expired` | Track e-sign |\n| `activation_status` | Final | `active` / `pending` / `rejected` | Merchant ready |\n\n## Usage Pattern\n\n```\nAfter each step:\n  1. Call GetMerchant\n  2. Check relevant status field\n  3. IF status = expected → proceed to next step\n  4. IF status = failed → handle error (retry, re-upload, etc.)\n  5. IF status = pending → poll again after delay\n```\n",
+        "parameters": [
+          {
+            "name": "merchant_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "8390925 or 11ef-d968-6b042d6c-9b94-02975f21d323"
+            },
+            "description": "Merchant identifier. Can be either the numeric MID or UUID. Use this endpoint to check merchant status, verification statuses, and onboarding progress at any point."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid or expired token"
+          },
+          "403": {
+            "description": "Forbidden - No access to this resource"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "Bearer token obtained via OAuth 2.0 (POST /oauth/token)"
+      },
+      "OAuth2": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://test-accounts.payu.in/oauth/token",
+            "scopes": {
+              "refer_merchant": "Merchant referral operations",
+              "client_manage_agreement": "Manage merchant agreements",
+              "client_manage_kyc_details": "Manage KYC details"
+            }
+          }
+        },
+        "description": "OAuth 2.0 authentication flow"
+      }
+    },
+    "schemas": {}
+  },
+  "security": [
+    {
+      "BearerAuth": []
+    }
+  ]
+}
