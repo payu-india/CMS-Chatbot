@@ -1,5 +1,5 @@
 ---
-title: Cancel Recurring Payment for a VISA/MASTER and AMEX Card
+title: Cancel Recurring Payment for VISA/MASTER Cards
 excerpt: 'API Command: **mandate_revoke**'
 deprecated: false
 hidden: false
