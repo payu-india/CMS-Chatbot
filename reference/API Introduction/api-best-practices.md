@@ -1,5 +1,5 @@
 ---
-title: API Best Practices
+title: Best Practices
 deprecated: false
 hidden: true
 metadata:
