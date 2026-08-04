@@ -1277,34 +1277,13 @@ paths:
         '500':
           description: Internal Server Error
     delete:
-      summary: DeleteKYCDocument
+      summary: Delete KYC Document API
       operationId: DeleteKYCDocument
       tags:
         - Step 15 — Upload KYC Documents
       security:
         - BearerAuth: []
-      description: >
-        # Delete KYC Document (Sub-utility)
-
-
-        Deletes a rejected document so it can be re-uploaded.
-
-
-        ## Endpoint
-
-
-        `DELETE /api/v3/merchants/{mid}/kyc_document/{kyc_document_uuid}`
-
-
-        ## Response
-
-        `204 No Content` on success.
-
-
-        ## When to Use
-
-        When `ShowKYCDocument` returns `DOCUMENT_REJECTED`, delete the document
-        and re-upload via Step 15.
+      description: ''
       parameters:
         - name: mid
           in: path
