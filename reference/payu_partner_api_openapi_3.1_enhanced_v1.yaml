@@ -1248,95 +1248,13 @@ paths:
           description: Internal Server Error
   /api/v3/merchants/kyc_document/create_vkyc_profile:
     post:
-      summary: CreateVKYCProfile
+      summary: Create VKYC Profile
       operationId: CreateVKYCProfile
       tags:
         - Step 11 — Video KYC (VKYC)
       security:
         - BearerAuth: []
-      description: >
-        # Create VKYC Profile — Step 11 of 16
-
-
-        ## Endpoint
-
-
-        `POST /api/v3/merchants/kyc_document/create_vkyc_profile`
-
-
-        ## Request Body (JSON)
-
-
-        | Parameter | Type | Required | Description |
-
-        |-----------|------|----------|-------------|
-
-        | `merchant_id` | string | Yes | Numeric merchant ID (mid) |
-
-
-        ## Response
-
-        Returns a VCIP link. Share with the merchant to complete video
-        verification.
-
-
-        ## VKYC Statuses (check via GetMerchant)
-
-        - `not_initiated` → VKYC not started
-
-        - `in_progress` → Merchant has started
-
-        - `approved` → Verification passed
-
-        - `declined` → Verification failed — merchant may retry
-
-
-
-
-        ## Response Fields (200 OK)
-
-
-        | Field | Type | Description |
-
-        |-------|------|-------------|
-
-        | `uuid` | string | VKYC profile UUID |
-
-        | `status` | string | `link_generated` — VCIP link is ready |
-
-        | `profile_id` | string | VKYC vendor profile ID |
-
-        | `capture_link` | string | VCIP video call URL — share with merchant |
-
-        | `scheduled_at` | string/null | Scheduled time (if applicable) |
-
-        | `start_time` | string/null | Video call start time |
-
-        | `end_time` | string/null | Video call end time |
-
-        | `capture_expires_at` | string/null | Link expiry timestamp |
-
-
-        ## Error Response Fields
-
-
-        | Field | Type | Description |
-
-        |-------|------|-------------|
-
-        | `error_message` | string | e.g., `"Please complete (Signing authority
-        details captured step) before initiating VKYC"` — complete Step 08 first
-        |
-
-
-        Share `capture_link` with the merchant. Track status via GetMerchant →
-        `vkyc_status`: `pending` → `link_generated` → `approved` / `declined`.
-
-
-        ## Next Step
-
-        Proceed to **Step 12** — UBO (if applicable) or **Step 13** — Business
-        Members (if applicable) or **Step 14**.
+      description: ''
       requestBody:
         required: true
         content:
