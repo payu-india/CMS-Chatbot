@@ -14,4 +14,6 @@ Step 14: Fetch required docs to know what to upload
 ## File Constraints- Formats
 JPG, PNG, PDF- Max size: 5 MB per file
 
-## Document Statuses (check via GetMerchant or Show KYC Document) `DOCUMENT_SUBMITTED` — Uploaded, pending review- `DOCUMENT_APPROVED` — Verified successfully- `DOCUMENT_REJECTED` — Rejected — delete and re-upload
+## Document Statuses
+Check via GetMerchant or Show KYC Document:
+`DOCUMENT_SUBMITTED` — Uploaded, pending review- `DOCUMENT_APPROVED` — Verified successfully- `DOCUMENT_REJECTED` — Rejected — delete and re-upload
