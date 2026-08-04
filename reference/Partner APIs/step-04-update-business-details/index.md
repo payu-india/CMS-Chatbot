@@ -23,5 +23,6 @@ IF entity_type IN (Individual, Sole Proprietorship):
 ## Downstream Impact
 | CKYC Outcome | Entity Type | DigiLocker (Step 09) |
 |-------------|-------------|---------------------|
-| Succeeded | Individual / Sole Prop | **Optional** (can skip) || Succeeded | All others | **Required** || Skipped | Individual / Sole Prop | **Required** |
+| Succeeded | Individual / Sole Prop | **Optional** (can skip) |
+| Succeeded | All others | **Required** || Skipped | Individual / Sole Prop | **Required** |
 | Skipped | All others | **Required** |
