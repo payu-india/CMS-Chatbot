@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-PayU exposes multiple API styles. This page explains the shared **General API** request/response contract and how it differs from Collect Payment (`_payment`) and OAuth product APIs.
+PayU exposes multiple API styles. This page explains the shared **General API** request/response contract and how it differs from Collect Payment (`_payment`) and OAuth product APIs.<br />
 
 PayU General APIs are server-to-server calls from your server to PayU. The basic execution pattern is consistent across many web-service commands, while each command has its own `var` parameter meanings.
 
