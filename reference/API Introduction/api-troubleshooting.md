@@ -13,10 +13,18 @@ Go through this checklist before analysing the errors:
 
 <Accordion title="Checklist" icon="far fa-table-list">
   - [x] Are you calling the correct **API family** and **base URL**?
-  - [x] Are key, salt, and host all from the **same environment** (Test vs Production)?
-  - [x] Is the **hash/token** generated with the documented formula for this request?
-  - [x] Is `txnid` unique for a new payment?
-  - [x] Did you validate reverse hash and then **Verify Payment**?
+
+
+  - [ ] Are key, salt, and host all from the **same environment** (Test vs Production)?
+
+
+  - [ ] Is the **hash/token** generated with the documented formula for this request?
+
+
+  - [ ] Is `txnid` unique for a new payment?
+
+
+  - [ ] Did you validate reverse hash and then **Verify Payment**?
 </Accordion>
 
 ## Issues and Troubleshooting
