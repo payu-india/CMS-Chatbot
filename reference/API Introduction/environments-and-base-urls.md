@@ -5,11 +5,11 @@ hidden: true
 metadata:
   robots: index
 ---
-PayU provides separate **Test** and **Production** environments. Most integrations should start in Test with Test key/salt values, then switch host, key, and salt together when you go live.
+PayU provides separate **Test** and **Production** environments for you to test and then go-live. We recommend you to test your integration first with test key and salt values, then switch host, key, and salt together when you go-live.
 
-PayU does **not** use one universal gateway URL for every product. Always use the base URL for the API family you are calling.
+PayU uses different gateway URLs for every product. Always use the base URL for the API family you are calling.
 
-## Environment basics
+## Environment Basics
 
 | Environment    | Purpose                                      | Credentials                      |
 | :------------- | :------------------------------------------- | :------------------------------- |
