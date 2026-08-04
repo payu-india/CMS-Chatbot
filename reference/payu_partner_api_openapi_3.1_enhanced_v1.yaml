@@ -1268,7 +1268,7 @@ paths:
           description: Internal Server Error
   /api/v1/merchants/11f0-8ee3-5847ce32-bf72-02975f21d323/list_business_members:
     get:
-      summary: List Business members API
+      summary: List Business Members API
       operationId: List_Business_members_API
       tags:
         - Step 13 — Business Members & KMP
