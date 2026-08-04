@@ -345,7 +345,7 @@ paths:
           description: Internal Server Error
   /api/v3/merchants:
     post:
-      summary: CreateMerchant
+      summary: Create Merchant API
       operationId: CreateMerchant
       tags:
         - Step 01 — Create Merchant
