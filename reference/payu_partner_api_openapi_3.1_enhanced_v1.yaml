@@ -833,7 +833,7 @@ paths:
           description: Internal Server Error
   /api/v1/merchants/{uuid_website}/update:
     put:
-      summary: UpdateMerchant_WebsiteDetails
+      summary: Update Merchant Website Details API
       operationId: UpdateMerchant_WebsiteDetails
       tags:
         - 'Step 07 — Update: Website Details'
