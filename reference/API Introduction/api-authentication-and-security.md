@@ -42,7 +42,7 @@ When you post requests to Payment or General APIs, you include the merchant key 
   Refer to [Generate Hash](doc:hashing-request-and-response) for more information about complete hashing rules, optional fields, and reverse hashing.
 </Accordion>
 
-<Accordion title="General APIs Hash Logic" icon="fad fa-grip-lines-vertical">
+<Accordion title="General APIs Hash Logic" icon="far fa-grip-lines-vertical">
   Below is the hash logic for command-based General APIs such as Verify Payment, Get BIN Info, and Refund Transaction.
 
   ```
@@ -50,15 +50,15 @@ When you post requests to Payment or General APIs, you include the merchant key 
   ```
 </Accordion>
 
-### Feature-specific Hash Variants
+<Accordion title="Feature-specific Hash Logics" icon="far fa-file-signature">
+  These are the feature-specific hash logics.
 
-These are the feature-specific hash variants.
-
-|                       |              |       |        |             |           |       |      |      |      |      |      |   |   |   |   |   | Integration       | Hash string     |
-| --------------------- | ------------ | ----- | ------ | ----------- | --------- | ----- | ---- | ---- | ---- | ---- | ---- | - | - | - | - | - | :---------------- | :-------------- |
-| **SI / Subscription** | \`sha512(key | txnid | amount | productinfo | firstname | email | udf1 | udf2 | udf3 | udf4 | udf5 |   |   |   |   |   | si_details        | SALT)\`         |
-| **TPV**               | \`sha512(key | txnid | amount | productinfo | firstname | email | udf1 | udf2 | udf3 | udf4 | udf5 |   |   |   |   |   | beneficiarydetail | SALT)\`         |
-| **Split Settlements** | \`sha512(key | txnid | amount | productinfo | firstname | email | udf1 | udf2 | udf3 | udf4 | udf5 |   |   |   |   |   | SALT              | splitRequest)\` |
+  | **Feature**           | Logic                                                                                                                        |
+  | --------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+  | **SI / Subscription** | `sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|si_details\|SALT)`        |
+  | **TPV**               | `sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|beneficiarydetail\|SALT)` |
+  | **Split Settlements** | `sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|SALT\|splitRequest)`      |
+</Accordion>
 
 ### Hash logic for `_payment` with `api_version=19`
 
