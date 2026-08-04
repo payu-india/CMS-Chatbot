@@ -484,7 +484,7 @@ paths:
           description: Internal Server Error
   /api/v3/merchants/kyc_document/verify_ckyc_otp:
     post:
-      summary: B. Verify CKYC OTP (Individual / Sole Prop)
+      summary: B. Verify CKYC OTP API (Individual / Sole Prop)
       operationId: VerifyCkycOtp
       tags:
         - Step 03 — CKYC Verification
