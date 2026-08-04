@@ -22,17 +22,7 @@ metadata:
 next:
   description: ''
 ---
-This page answers common questions about PayU Android SDK integration. For step-by-step guides, use the links below.
-
-## Related documentation
-
-| Topic | Guide |
-| --- | --- |
-| SDK overview and selection | [Explore Android SDKs](doc:explore-android-sdks) |
-| CheckoutPro integration | [Integration Steps](doc:integration-steps-android-checkout-pro) |
-| Hash generation | [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk) |
-| Callbacks and verification | [Handling Redirect URLs (surl/furl)](doc:handling-redirect-urls-surlfurl-with-android-sdk) |
-| Troubleshooting | [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors) |
+This page answers common questions about PayU Android SDK integration. For step-by-step guides, use the cross-references as in the FAQ (if any).
 
 ## Key/Salt
 
@@ -1200,6 +1190,14 @@ This page answers common questions about PayU Android SDK integration. For step-
 
   * For version updates, refer to [Version History](doc:change-logs) and [Integration Steps](doc:integration-steps-android-checkout-pro).
   * For test credentials and parameter formats, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets) and [Card Number Formats](doc:card-number-formats).
-
 </Accordion>
+---
+## Related documentation
 
+| Topic | Guide |
+| --- | --- |
+| SDK overview and selection | [Explore Android SDKs](doc:explore-android-sdks) |
+| CheckoutPro integration | [Integration Steps](doc:integration-steps-android-checkout-pro) |
+| Hash generation | [Generate Dynamic Hash](doc:hash-generation-for-checkoutpro-sdk) |
+| Callbacks and verification | [Handling Redirect URLs (surl/furl)](doc:handling-redirect-urls-surlfurl-with-android-sdk) |
+| Troubleshooting | [Troubleshooting CheckoutPro SDK](doc:android-checkoutpro-troubleshoot-errors) |
