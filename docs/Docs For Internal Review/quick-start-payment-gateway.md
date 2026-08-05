@@ -10,8 +10,6 @@ metadata:
 ---
 This page helps you **start accepting payments quickly** using the available checkout options.
 
-***
-
 ## Get Started Quickly
 
 If your goal is to:
