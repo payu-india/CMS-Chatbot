@@ -4,7 +4,7 @@ api:
   operationId: UpdateMerchant_Addresses
 hidden: false
 ---
-The **UpdateMerchant Addresses** API adds registration and operating addresses for the merchant (Step 10 of 16).
+The **Update Merchant Addresses** API adds registration and operating addresses for the merchant (Step 10 of 16).
 
 <Callout icon="📘" theme="info">
   ### Notes:
@@ -22,24 +22,24 @@ The **UpdateMerchant Addresses** API adds registration and operating addresses f
 | Test Environment       | `https://test-partner.payu.in/api/v1/merchants/{uuid}/update` |
 | Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/update`      |
 
-## Sample Request
+## Sample request
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-  curl --location --request PUT 'https://test-partner.payu.in/api/v1/merchants/{{uuid}}/update' \
-  --header 'Authorization: Bearer {{access_token}}' \
-  --form 'merchant[registration_address][address_line]="123 MG Road"' \
-  --form 'merchant[registration_address][city]="Bangalore"' \
-  --form 'merchant[registration_address][state]="Karnataka"' \
-  --form 'merchant[registration_address][pincode]="560001"' \
-  --form 'merchant[operating_address][address_line]="456 Indiranagar"' \
-  --form 'merchant[operating_address][city]="Bangalore"' \
-  --form 'merchant[operating_address][state]="Karnataka"' \
-  --form 'merchant[operating_address][pincode]="560038"'
+    curl --location --request PUT 'https://test-partner.payu.in/api/v1/merchants/{{uuid}}/update' \
+    --header 'Authorization: Bearer {{access_token}}' \
+    --form 'merchant[registration_address][address_line]="123 MG Road"' \
+    --form 'merchant[registration_address][city]="Bangalore"' \
+    --form 'merchant[registration_address][state]="Karnataka"' \
+    --form 'merchant[registration_address][pincode]="560001"' \
+    --form 'merchant[operating_address][address_line]="456 Indiranagar"' \
+    --form 'merchant[operating_address][city]="Bangalore"' \
+    --form 'merchant[operating_address][state]="Karnataka"' \
+    --form 'merchant[operating_address][pincode]="560038"'
   ```
 </Accordion>
 
-## Sample Response
+## Sample response
 
 ### Success scenario
 
@@ -99,7 +99,7 @@ The **UpdateMerchant Addresses** API adds registration and operating addresses f
   | merchant.status               | `string` — Current onboarding status   | `third_party_on_hold`                    |
 </Accordion>
 
-## Request parameters
+## Additional request parameters info
 
 ### Header parameters
 
