@@ -1,0 +1,92 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Partner API — GetToken (Authentication)",
+    "description": "# PayU Partner Onboarding — Step 00: GetToken\n\nStandalone collection for obtaining a bearer token. **This endpoint does not require OAuth bearer authentication** — it is the starting point for all Partner Onboarding API calls.\n\nUse the `access_token` returned here as `Authorization: Bearer {access_token}` in all subsequent onboarding API requests.\n\n## Environments\n\n| Environment | Auth URL |\n|-------------|----------|\n| Test | `https://test-accounts.payu.in/oauth/token` |\n| Production | `https://accounts.payu.in/oauth/token` |\n\n## Scopes\n\n| Scope | Purpose |\n|-------|---------|\n| `refer_merchant` | Create and manage merchant accounts (Steps 01–13) |\n| `client_manage_kyc_details` | KYC documents and verification (Steps 03, 06, 09, 11, 14, 15) |\n| `client_manage_agreement` | Agreement management (Step 16) |\n",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://test-accounts.payu.in"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "noauthAuth": {
+        "type": "http",
+        "scheme": "noauth"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Step 00 — Authentication",
+      "description": "# Step 00 — Authentication (OAuth Token)\n\nBefore calling any onboarding API, obtain a bearer token from PayU's OAuth endpoint.\n\n**No bearer token is required for this call** — send `client_id` and `client_secret` in the request body.\n"
+    }
+  ],
+  "paths": {
+    "/oauth/token": {
+      "post": {
+        "tags": [
+          "Step 00 — Authentication"
+        ],
+        "summary": "GetToken",
+        "description": "# GetToken — Obtain Bearer Token\n\n**Step 0 of 16** — Always call this first.\n\n## Endpoint\n\n`POST /oauth/token`\n\n## Request Body (x-www-form-urlencoded)\n\n| Parameter | Type | Required | Validation | Description |\n|-----------|------|----------|------------|-------------|\n| `client_id` | string | Yes | 64-char hex | Partner OAuth client ID |\n| `client_secret` | string | Yes | 64-char hex | Partner OAuth client secret |\n| `grant_type` | string | Yes | Must be `client_credentials` | OAuth grant type |\n| `scope` | string | Yes | Space-separated | Required scopes |\n\n## Response (200 OK)\n\n```json\n{\n    \"access_token\": \"7b5843b39e5532bc...\",\n    \"token_type\": \"Bearer\",\n    \"expires_in\": 7199,\n    \"scope\": \"refer_merchant\",\n    \"created_at\": 1723498499\n}\n```\n\n## Response-to-Request Mapping\n\n| Response Field | Used As | In Steps |\n|---------------|---------|----------|\n| `access_token` | `Authorization: Bearer {access_token}` header | All subsequent steps |\n| `expires_in` | Token validity in seconds | Refresh before expiry |\n\n## Error Handling\n\n| Error | Cause | Recovery |\n|-------|-------|----------|\n| `401` | Invalid client_id or client_secret | Verify credentials with PayU KAM |\n| `400` | Invalid grant_type or scope | Check parameter values |\n\n## Next Step\n\nUse the `access_token` in Step 01 to create a merchant.\n",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "client_id": {
+                    "type": "string",
+                    "description": "Partner OAuth client ID (from PayU KAM)",
+                    "example": "{{client_id}}"
+                  },
+                  "client_secret": {
+                    "type": "string",
+                    "description": "Partner OAuth client secret. Keep confidential — never expose in client-side code.",
+                    "example": "{{client_secret}}"
+                  },
+                  "grant_type": {
+                    "type": "string",
+                    "description": "Must be `client_credentials` for server-to-server partner authentication.",
+                    "example": "client_credentials"
+                  },
+                  "scope": {
+                    "type": "string",
+                    "description": "Space-separated scopes. Include `refer_merchant` at minimum.",
+                    "example": "refer_merchant client_manage_kyc_details client_manage_agreement"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "noauthAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/x-www-form-urlencoded"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}
