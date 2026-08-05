@@ -165,8 +165,6 @@ In the case of Cards, you must ensure that the payment response from PayU has th
 | mihpayid           | \<mihpayid number> sent. by PayU | Indicates PayU’s transaction acknowledgment for a Consent transaction           |
 
 <Callout icon="📘" theme="info">
-  ###
-
   **Notes**:
 
   - If any of the above four checks are not satisfied, that means the transaction has not been correctly authorized for Standing Instruction. The merchant must not consider this transaction eligible for the Recurring platform.
@@ -247,7 +245,6 @@ Array
   | Successful     | Successful         | captured       | success | sist           |
   | Failed         | Successful         | captured       | success | payu           |
   | Failed         | Failed             | failed         | failure | payu           |
-  | Successful     | Failed             | Not possible   | N/A     | N/A            |
 </Callout>
 
 ## Webhook for Getting Transaction Details
