@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-A enables businesses to securely accept payments from customers through their website or mobile application. Accept payments securely on your website, mobile app, or e-commerce store using PayU Payment Gateway.<br />
+A payment gateway enables businesses to securely accept online payments from customers. With the PayU Payment Gateway, you can accept payments on your website, mobile app, or e-commerce store quickly and securely.<br />
 
 PayU enables businesses to collect payments through:
 
