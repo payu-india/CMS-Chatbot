@@ -29,7 +29,7 @@ The **Generate DigiLocker Link** API creates a DigiLocker authentication URL for
   **Note:** DigiLocker fails without Step 08 (Signatory Details). Use **GetMerchant** to check `entity_type` and `ckyc_status` before deciding whether DigiLocker is required.
 </Callout>
 
-## Sample Request
+## Sample request
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
@@ -42,7 +42,7 @@ The **Generate DigiLocker Link** API creates a DigiLocker authentication URL for
   ```
 </Accordion>
 
-## Sample Response
+## Sample response
 
 ### Success scenario
 
@@ -84,7 +84,7 @@ The **Generate DigiLocker Link** API creates a DigiLocker authentication URL for
   | message   | `string` — Status message                                         | `Digilocker link generated successfully`  |
 </Accordion>
 
-## Request parameters
+## Additional request parameters info
 
 ### Header parameters
 
