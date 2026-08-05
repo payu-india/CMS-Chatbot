@@ -2,7 +2,7 @@
 title: Register Webhooks API to Get Real-Time Merchant Status
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''

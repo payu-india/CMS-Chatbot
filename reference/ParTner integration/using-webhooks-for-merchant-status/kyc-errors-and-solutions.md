@@ -2,7 +2,7 @@
 title: KYC Errors and Solutions
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''

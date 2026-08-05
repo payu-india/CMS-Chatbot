@@ -2,7 +2,7 @@
 title: Get Real-Time Merchant Status using Webhooks
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
