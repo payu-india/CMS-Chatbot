@@ -86,72 +86,6 @@ This helps you quickly identify the most suitable payment solution for your use 
 PayU offers the following various integrations:
 
 <Tabs>
-  <Tab title="Web">
-    <HoverCardGrid
-      columns={2}
-      items={[
-        {
-          title: "PayU Hosted",
-          href: "/docs/prebuilt-checkout-payu-hosted",
-          text: "Checkout integration",
-          target: "_self",
-        },
-        {
-          title: "Merchant Hosted",
-          href: "/docs/custom-checkout-merchant-hosted",
-          text: "Checkout integration",
-          target: "_self",
-        },
-      ]}
-    />
-  </Tab>
-
-  <Tab title="Plugins">
-    <HoverCardGrid
-      columns={2}
-      items={[
-        {
-          title: "PayU Payment Gateway Ecommerce Plugins",
-          text: (
-            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-              {[
-                { name: "Shopify", link: "/docs/shopify", icon: "fa-brands fa-shopify" },
-                { name: "Wix", link: "/docs/wix", icon: "fa-brands fa-wix" },
-                { name: "Odoo", link: "/docs/odoo", icon: "fa-solid fa-o" },
-                { name: "WooCommerce", link: "/docs/woocommerce", icon: "fa-brands fa-wordpress" },
-                { name: "Interakt", link: "/docs/interakt-for-whatsapp-business", icon: "fa-brands fa-whatsapp" },
-                { name: "Magento", link: "/docs/magento", icon: "fa-brands fa-magento" },
-                { name: "OpenCart", link: "/docs/opencart", icon: "fa-brands fa-opencart" },
-                { name: "Shopmatic", link: "/docs/shopmatic", icon: "fa fa-shopping-cart" },
-                { name: "PrestaShop", link: "/docs/prestashop", icon: "fa fa-shopping-cart" },
-                { name: "BigCommerce", link: "/docs/bigcommerce", icon: "fa fa-store" },
-                { name: "Zoho", link: "/docs/zoho-integration", icon: "fa fa-briefcase" },
-                { name: "Fynd Store", link: "/docs/fynd-integration", icon: "fa fa-store" },
-              ].map((item) => (
-                <li
-                  key={item.name}
-                  style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}
-                >
-                  <span style={{ width: "20px", display: "inline-flex", justifyContent: "center" }}>
-                    <i className={`${item.icon} fa-lg`}></i>
-                  </span>
-                  <a
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ whiteSpace: "nowrap" }}
-                  >
-                    <strong>{item.name}</strong>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          ),
-        },
-      ]}
-    />
-  </Tab>
-
   <Tab title="Mobile SDKs">
     <HoverCardGrid
       columns={2}
@@ -190,6 +124,10 @@ PayU offers the following various integrations:
         },
       ]}
     />
+  </Tab>
+
+  <Tab title="Tab 2">
+    <WebIntegrationsHoverCards />
   </Tab>
 </Tabs>
 
