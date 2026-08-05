@@ -23,7 +23,7 @@ The **Create VKYC Profile** API creates a Video KYC profile and returns a VCIP c
 | Test Environment       | `https://test-partner.payu.in/api/v3/merchants/kyc_document/create_vkyc_profile` |
 | Production Environment | `https://partner.payu.in/api/v3/merchants/kyc_document/create_vkyc_profile`      |
 
-## Sample Request
+## Sample request
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
@@ -36,7 +36,7 @@ The **Create VKYC Profile** API creates a Video KYC profile and returns a VCIP c
   ```
 </Accordion>
 
-## Sample Response
+## Sample response
 
 ### Success scenario
 
@@ -76,7 +76,7 @@ The **Create VKYC Profile** API creates a Video KYC profile and returns a VCIP c
   | scheduled_at | `string`/`null` — Scheduled time if applicable                  | `null`                                 |
 </Accordion>
 
-## Request parameters
+## Additional request parameters info
 
 ### Header parameters
 
