@@ -92,7 +92,7 @@ The **Update Merchant Details** such as PAN + DOB using this API so that the mer
   | merchant.status                  | `string` — Current onboarding status                | `account_created` |
 </Accordion>
 
-## Request parameters
+## Additional Request parameters Info
 
 ### Header parameters
 
