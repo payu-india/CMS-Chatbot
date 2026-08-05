@@ -21,7 +21,7 @@ The **Deelete KYC Document** API returns details for a previously uploaded KYC d
 | Test Environment       | `https://test-partner.payu.in/api/v3/merchants/{mid}/kyc_document/{kyc_document_uuid}` |
 | Production Environment | `https://partner.payu.in/api/v3/merchants/{mid}/kyc_document/{kyc_document_uuid}`      |
 
-## Sample Request
+## Sample request
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
@@ -31,7 +31,7 @@ The **Deelete KYC Document** API returns details for a previously uploaded KYC d
   ```
 </Accordion>
 
-## Sample Response
+## Sample response
 
 ### Success scenario
 
@@ -88,7 +88,7 @@ The **Deelete KYC Document** API returns details for a previously uploaded KYC d
   | doc_url                | `string` — Signed URL to the uploaded file | `https://s3.example.com/signed-url...` |
 </Accordion>
 
-## Request parameters
+## Additional request parameters info
 
 ### Header parameters
 
