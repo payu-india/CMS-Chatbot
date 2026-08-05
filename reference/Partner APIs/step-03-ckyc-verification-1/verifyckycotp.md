@@ -85,7 +85,7 @@ The **Verify CKYC OTP** API verifies the OTP from Step 03A and returns CKYC iden
   | mobile    | `string` — Masked mobile number         | `******3210`          |
 </Accordion>
 
-## Request parameters
+## Additional Request parameters Info
 
 ### Header parameters
 
