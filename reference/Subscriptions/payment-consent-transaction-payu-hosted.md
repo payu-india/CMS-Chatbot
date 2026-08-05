@@ -37,8 +37,6 @@ next:
 This section describes how to set up a Payment Consent or Registration transaction using PayU Hosted Checkout integration with **\_payment** API.
 
 <Callout icon="👍" theme="okay">
-  ###
-
   Experience the end-to-end **Subscriptions** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 
   <HTMLBlock>{`
@@ -340,8 +338,6 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
     </tr>
   </tbody>
 </Table>
-
-
 `}</HTMLBlock>
 
 ## Sample request
@@ -643,7 +639,4 @@ Array
   | Successful     | Successful         | captured       | success | sist           |
   | Failed         | Successful         | captured       | success | payu           |
   | Failed         | Failed             | failed         | failure | payu           |
-  | Successful     | Failed             | Not possible   | N/A     | N/A            |
 </Callout>
-
-<br />
