@@ -1778,96 +1778,13 @@ paths:
           description: Internal Server Error
   /api/v1/merchants/{uuid}/generate_merged_document_for_esign:
     get:
-      summary: GenerateAgreementForESign
+      summary: Generate Agreement for ESign API
       operationId: GenerateAgreementForESign
       tags:
         - Step 16 — E-Sign Agreement
       security:
         - BearerAuth: []
-      description: >
-        # Generate Agreement for E-Sign — Step 16 of 16
-
-
-        Generates the merchant service agreement for digital signing. Final step
-        in the onboarding flow.
-
-
-        ## Endpoint
-
-
-        `GET /api/v1/merchants/{uuid}/generate_merged_document_for_esign`
-
-
-        **Base URL:** `https://test-partner.payu.in` (Test) /
-        `https://partner.payu.in` (Production)
-
-
-        ## Authentication — Scope Requirements
-
-
-        The `refer_merchant` scope alone returns `401 Unauthorized`. This
-        endpoint requires `refer_merchant` **plus at least one additional
-        scope**.
-
-
-        | Scope Combination | Result |
-
-        |-------------------|--------|
-
-        | `refer_merchant` only | `401 Unauthorized` |
-
-        | `client_manage_agreement` only | `401 Unauthorized` |
-
-        | `client_manage_agreement + client_manage_kyc_details` | `401
-        Unauthorized` |
-
-        | `refer_merchant + client_manage_agreement` | **Works** |
-
-        | `refer_merchant + client_manage_kyc_details` | **Works** |
-
-        | All three scopes | **Works** |
-
-
-        Minimum required: `refer_merchant` + one of (`client_manage_agreement`
-        or `client_manage_kyc_details`).
-
-
-        ## Path Parameter
-
-
-        | Parameter | Source | Description |
-
-        |-----------|--------|-------------|
-
-        | `{uuid}` | Step 01 response → `merchant.uuid` | Merchant UUID |
-
-
-        ## Prerequisite Steps
-
-        All Steps 01-15 must be complete.
-
-
-        ## Error Responses
-
-
-        | Response | Meaning |
-
-        |----------|---------|
-
-        | `{"error": "Agreement is already approved"}` | Agreement already
-        signed — no action needed |
-
-        | `{"status": "Unauthorized"}` | Token scope insufficient — see scope
-        table above |
-
-        | `{"kyc_document": "Agreement Not Found"}` | Prior steps incomplete —
-        check merchant status |
-
-
-        ## After Success
-
-        Merchant moves toward activation. Day-0 flags auto-enable: S2S,
-        tokenisation, callbacks, refunds.
+      description: ''
       parameters:
         - name: uuid
           in: path
