@@ -28,6 +28,8 @@ Know More about PayU Hosted Checkout and how the payment flow works.
   - Backend-only payment processing
 </Callout>
 
+***
+
 ## Prerequisites
 
 Before you begin with PayU Hosted Checkout integration:
@@ -38,6 +40,8 @@ Before you begin with PayU Hosted Checkout integration:
 - Ability to generate SHA-512 on the server (not recommended in browser).
 - Make sure you have the transaction ID created.
 
+***
+
 ## Integration Steps Overview
 
 Below is the overview of the PayU Hosted Checkout integration:
@@ -47,6 +51,8 @@ Below is the overview of the PayU Hosted Checkout integration:
 3. Redirect user to PayU
 4. Handle success/failure response (reverse hashing)
 5. Verify the Payment
+
+***
 
 ## Make your Test Payment
 
@@ -86,13 +92,13 @@ Follow the below steps to make your test payment:
   | **furl**        | `string` The failure URL to which PayU redirects the user after a failure transaction. For example, <a href="https://test-payment-middleware.payu.in/simulatorResponse" title="Example surl">Success URL Example</a> |
   | **salt**        | `string` The salt provided by PayU during onboarding.                                                                                                                                                                |
 
-  <br />
+
 
   <Callout icon="📘" theme="info">
     **Handy Tips**
 
-    * `txnid` must be unique
-    * No extra spaces in values
+    - `txnid` must be unique
+    - No extra spaces in values
   </Callout>
 </Accordion>
 
@@ -101,13 +107,13 @@ Follow the below steps to make your test payment:
 
   Create a hash value by by concatenating the following parameters in a specific order.
 
-  * `key`
-  * `txnid`
-  * `amount`
-  * `productinfo`
-  * `firstname`
-  * `email`
-  * `salt`
+  - `key`
+  - `txnid`
+  - `amount`
+  - `productinfo`
+  - `firstname`
+  - `email`
+  - `salt`
 
   ```Hash Logic
   key|txnid|amount|productinfo|firstname|email|||||||||||salt
@@ -121,25 +127,25 @@ Follow the below steps to make your test payment:
 
     Follow these rules to create a correct hash value:
 
-    * Do not change the parameter order
-    * Do not skip pipes (|). Even if fields are empty, you must include separators.
-    * Keep the empty fields. Fields like `udf1`– `udf5` are optional, but their positions should remain empty even if you are not passing any values.
-    * No Extra Spaces or Hidden Characters. They will break the hash.
-    * Encode the string using UTF-8 before hashing.
+    - Do not change the parameter order
+    - Do not skip pipes (|). Even if fields are empty, you must include separators.
+    - Keep the empty fields. Fields like `udf1`– `udf5` are optional, but their positions should remain empty even if you are not passing any values.
+    - No Extra Spaces or Hidden Characters. They will break the hash.
+    - Encode the string using UTF-8 before hashing.
   </Callout>
 
   <Callout icon="📘" theme="info">
     **Look For:**
 
-    * [ ] Extra spaces: Example `"Test "`
-    * [ ] Newline characters
-    * [ ] Missing pipes `(|)`
-    * [ ] Incorrect order
+    - [ ] Extra spaces: Example `"Test "`
+    - [ ] Newline characters
+    - [ ] Missing pipes `(|)`
+    - [ ] Incorrect order
 
     These may break the hash.
   </Callout>
 
-  <br />
+
 
   <Accordion title="Step 2.1 Generate SHA-512 Hash using Node " icon="fa-info-circle">
     ```node Node.js
@@ -156,7 +162,7 @@ Follow the below steps to make your test payment:
     ```
   </Accordion>
 
-  <br />
+
 
   <Accordion title="Step 2.2 Debug Your Hash (Highly Recommended)" icon="fa-info-circle">
     Before using the hash, print the exact string using the following JS code:
@@ -166,7 +172,7 @@ Follow the below steps to make your test payment:
     ```
   </Accordion>
 
-  <br />
+
 </Accordion>
 
 <Accordion title="Step 3: Create an HTML File to Accept The Payment" icon="fa-info-circle">
@@ -197,12 +203,12 @@ Follow the below steps to make your test payment:
     </html>
   ```
 
-  <br />
+
 
   **Replace:**
 
-  * `YOUR_KEY` with test key.
-  * `GENERATED_HASH` with the generated hash.
+  - `YOUR_KEY` with test key.
+  - `GENERATED_HASH` with the generated hash.
 </Accordion>
 
 <Accordion title="Step 4: Complete the Test Payment" icon="fa-info-circle">
@@ -217,17 +223,19 @@ Follow the below steps to make your test payment:
 <Accordion title="Errors and Troubleshooting" icon="fa-info-circle">
   **Invalid Hash**
 
-  * Check parameter order
-  * Ensure no extra spaces
-  * Use UTF-8 encoding
+  - Check parameter order
+  - Ensure no extra spaces
+  - Use UTF-8 encoding
 
   **Payment Page Not Loading**
 
-  * Verify endpoint URL
-  * Ensure form uses POST
+  - Verify endpoint URL
+  - Ensure form uses POST
 
   Refer to the Erors and Troubleshooting page for more information about errors and fixes.
 </Accordion>
+
+***
 
 ## What is Next?
 
@@ -236,6 +244,8 @@ After you complete the test payment:
 - Handle payment response
 - Verify transaction status
 - Move to production
+
+***
 
 ## Next Steps
 
