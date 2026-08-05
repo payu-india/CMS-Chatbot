@@ -1,0 +1,138 @@
+---
+name: RefundsSplitSettlementsHoverCards
+---
+// RefundsSplitSettlementsHoverCards - ReadMe CMS Custom Component
+// Hardcoded Refunds + Split Settlements cards. No page props.
+// Name in Settings must be: RefundsSplitSettlementsHoverCards
+// On the page insert only: RefundsSplitSettlementsHoverCards self-closing tag
+// Do not add helpers above export - keep all logic inside the export.
+
+export const RefundsSplitSettlementsHoverCards = () => {
+  const gapPx = 20;
+  const minCardPx = 280;
+  const gridTemplateColumns =
+    'repeat(auto-fit, minmax(max(' +
+    minCardPx +
+    'px, calc((100% - ' +
+    gapPx +
+    'px) / 2)), 1fr))';
+
+  const themes = [
+    'linear-gradient(165deg, #eef3ff 0%, #e8effc 50%, #e3ebf8 100%)',
+    'linear-gradient(165deg, #fff6ec 0%, #fff2e4 50%, #ffedd9 100%)',
+  ];
+
+  const cardShadow =
+    'shadow-[0_10px_28px_-8px_rgba(15,23,42,0.14),0_4px_10px_-4px_rgba(15,23,42,0.08)]';
+  const cardShadowHover =
+    'hover:shadow-[0_22px_44px_-12px_rgba(15,23,42,0.2),0_10px_20px_-8px_rgba(15,23,42,0.12)]';
+
+  const hoverUnderline =
+    'transition-[text-decoration,text-decoration-color] duration-300 ' +
+    'group-hover:underline group-hover:decoration-[#00b058] group-hover:underline-offset-[3px]';
+
+  const cardClass =
+    'group rounded-xl text-left !no-underline hover:!no-underline ' +
+    cardShadow +
+    ' ' +
+    cardShadowHover +
+    ' transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ' +
+    'hover:-translate-y-1.5';
+
+  const cards = [
+    {
+      title: 'Refunds',
+      href: '/docs/introduction-refunds',
+      text: 'Initiate full or partial refunds for successful transactions directly via PayU APIs or dashboard.',
+      background: themes[0],
+    },
+    {
+      title: 'Split Settlements',
+      href: '/docs/split-settlments',
+      text: 'Automatically split incoming payments between multiple stakeholders such as vendors or partners as per predefined rules.',
+      background: themes[1],
+    },
+  ];
+
+  return (
+    <div className="my-6">
+      <ul
+        className="m-0 grid list-none p-0"
+        style={{
+          display: 'grid',
+          gridTemplateColumns: gridTemplateColumns,
+          gap: gapPx + 'px',
+          alignItems: 'stretch',
+          margin: 0,
+          padding: 0,
+          listStyle: 'none',
+        }}
+      >
+        {cards.map((card) => (
+          <li
+            key={card.title}
+            className="m-0 list-none p-0"
+            style={{
+              display: 'flex',
+              margin: 0,
+              padding: 0,
+              listStyle: 'none',
+              height: '100%',
+            }}
+          >
+            <a
+              href={card.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cardClass + ' w-full'}
+              style={{
+                display: 'grid',
+                gridTemplateRows: 'auto auto',
+                alignContent: 'start',
+                gap: '12px',
+                padding: '20px',
+                height: '100%',
+                width: '100%',
+                boxSizing: 'border-box',
+                margin: 0,
+                textDecoration: 'none',
+                background: card.background,
+              }}
+            >
+              <span
+                className={hoverUnderline}
+                style={{
+                  display: 'block',
+                  margin: 0,
+                  padding: 0,
+                  fontSize: '16px',
+                  fontWeight: 600,
+                  lineHeight: '24px',
+                  color: '#0f172a',
+                }}
+              >
+                {card.title}
+              </span>
+              <span
+                className={hoverUnderline}
+                style={{
+                  margin: 0,
+                  padding: 0,
+                  fontSize: '14px',
+                  lineHeight: '22px',
+                  color: '#475569',
+                }}
+              >
+                {card.text}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+// Preview - blank line required above this tag
+
+<RefundsSplitSettlementsHoverCards />
