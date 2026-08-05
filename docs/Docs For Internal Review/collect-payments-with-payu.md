@@ -86,46 +86,6 @@ This helps you quickly identify the most suitable payment solution for your use 
 PayU offers the following various integrations:
 
 <Tabs>
-  <Tab title="Mobile SDKs">
-    <HoverCardGrid
-      columns={2}
-      items={[
-        {
-          title: "Mobile SDK Integrations",
-          text: (
-            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-              {[
-                { name: "Android SDK", link: "/docs/explore-android-sdks", icon: "fa-brands fa-android" },
-                { name: "iOS Mobile SDK", link: "/docs/explore-ios-sdks", icon: "fa fa-tablet" },
-                { name: "React Native Mobile SDK", link: "/docs/explore-reactnative-sdks", icon: "fa-brands fa-react" },
-                { name: "Flutter Mobile SDK", link: "/docs/flutter-sdk-introduction", icon: "fa fa-mobile" },
-                { name: "Cordova CheckoutPro SDK", link: "/docs/cordova-sdk-introduction", icon: "fa fa-plug" },
-                { name: "Capacitor UPI Bolt Mobile SDK", link: "/docs/upi-bolt-sdk-ionic", icon: "fa fa-bolt" },
-              ].map((item) => (
-                <li
-                  key={item.name}
-                  style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}
-                >
-                  <span style={{ width: "20px", display: "inline-flex", justifyContent: "center" }}>
-                    <i className={`${item.icon} fa-lg`}></i>
-                  </span>
-                  <a
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ whiteSpace: "nowrap" }}
-                  >
-                    <strong>{item.name}</strong>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          ),
-        },
-      ]}
-    />
-  </Tab>
-
   <Tab title="Web">
     <WebIntegrationsHoverCards />
   </Tab>
