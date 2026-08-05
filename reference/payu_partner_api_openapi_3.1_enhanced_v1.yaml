@@ -1522,107 +1522,13 @@ paths:
           description: Internal Server Error
   /api/v3/merchants/{mid}/kyc_document/generate_digilocker_link:
     post:
-      summary: GenerateDigilockerLink
+      summary: Generate Digilocker Link API
       operationId: GenerateDigilockerLink
       tags:
         - Step 09 — DigiLocker Verification
       security:
         - BearerAuth: []
-      description: >
-        # Generate DigiLocker Link — Step 09 of 16
-
-
-        Generates a DigiLocker authentication URL for the merchant.
-
-
-        ## Endpoint
-
-
-        `POST /api/v3/merchants/{mid}/kyc_document/generate_digilocker_link`
-
-
-        ## Prerequisite Steps
-
-        - **Step 08 (Signatory Details) — MANDATORY.** DigiLocker fails without
-        it.
-
-
-        ## Branching — When to Call
-
-
-        | Entity Type | CKYC Status | DigiLocker |
-
-        |-------------|-------------|------------|
-
-        | Individual / Sole Prop | Succeeded | **SKIP** (optional) |
-
-        | Individual / Sole Prop | Skipped/Failed | **REQUIRED** |
-
-        | All other entities | Any | **ALWAYS REQUIRED** |
-
-
-        ## Request Body (JSON)
-
-
-        | Parameter | Type | Required | Validation | Description |
-
-        |-----------|------|----------|------------|-------------|
-
-        | `consent` | boolean | Yes | Must be `true` | Merchant consent for
-        Aadhaar verification |
-
-
-        ## Response
-
-        Returns a DigiLocker URL. Redirect the merchant to this URL.
-
-
-        ## Error Handling
-
-
-        | Error Code | Cause | Recovery |
-
-        |------------|-------|----------|
-
-        | `422` - "Signatory details required" | Step 08 not completed |
-        Complete Step 08 first |
-
-        | `422` - "Consent required" | consent not true | Set consent to true |
-
-
-
-
-        ## Response Fields (200 OK)
-
-
-        | Field | Type | Description |
-
-        |-------|------|-------------|
-
-        | `status` | string | `link_generated` — DigiLocker auth URL is ready |
-
-        | `capture_link` | string | Full DigiLocker OAuth URL — redirect the
-        merchant here |
-
-
-        ## Error Response Fields
-
-
-        | Field | Type | Description |
-
-        |-------|------|-------------|
-
-        | `error_message` | string | e.g., `"Digilocker KYC is already
-        completed"` — idempotent, no action needed |
-
-
-        After the merchant completes DigiLocker auth, check `digilocker_status`
-        via GetMerchant: `null` → `link_generated` → `approved`.
-
-
-        ## Next Step
-
-        Proceed to **Step 10** — Update addresses.
+      description: ''
       parameters:
         - name: mid
           in: path
