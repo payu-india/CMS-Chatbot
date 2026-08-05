@@ -602,7 +602,7 @@ paths:
           description: Internal Server Error
   /api/v1/merchants/{uuid_bank}/update:
     put:
-      summary: UpdateMerchant_BankDetails
+      summary: Update Bank Details API
       operationId: UpdateMerchant_BankDetails
       tags:
         - 'Step 05 — Update: Bank Details'
