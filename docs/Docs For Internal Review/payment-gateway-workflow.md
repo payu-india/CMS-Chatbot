@@ -1,7 +1,7 @@
 ---
 title: Payment Gateway Workflow
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
