@@ -25,11 +25,11 @@ The **UpdateMerchant Website Details** API adds the merchant website and/or app 
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-  curl --location --request PUT 'https://test-partner.payu.in/api/v1/merchants/{{uuid}}/update' \
-  --header 'Authorization: Bearer {{access_token}}' \
-  --form 'merchant[website_details][website_url]="https://www.example.com"' \
-  --form 'merchant[website_details][android_url]="https://play.google.com/store/apps/details?id=com.example"' \
-  --form 'merchant[website_details][ios_url]="https://apps.apple.com/app/example/id123456"'
+    curl --location --request PUT 'https://test-partner.payu.in/api/v1/merchants/{{uuid}}/update' \
+    --header 'Authorization: Bearer {{access_token}}' \
+    --form 'merchant[website_details][website_url]="https://www.example.com"' \
+    --form 'merchant[website_details][android_url]="https://play.google.com/store/apps/details?id=com.example"' \
+    --form 'merchant[website_details][ios_url]="https://apps.apple.com/app/example/id123456"'
   ```
 </Accordion>
 
@@ -79,7 +79,7 @@ The **UpdateMerchant Website Details** API adds the merchant website and/or app 
   | merchant.status | `string` — Current onboarding status | `account_created` |
 </Accordion>
 
-## Request parameters
+## Additional Request Parameters Info
 
 ### Header parameters
 
