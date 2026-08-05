@@ -1062,57 +1062,13 @@ paths:
           description: Internal Server Error
   /api/v1/merchants/{uuid}/update:
     put:
-      summary: UpdateMerchant_Addresses
+      summary: Update Merchant Addresses API
       operationId: UpdateMerchant_Addresses
       tags:
         - 'Step 10 — Update: Addresses'
       security:
         - BearerAuth: []
-      description: >
-        # UpdateMerchant: Addresses — Step 10 of 16
-
-
-        ## Endpoint
-
-
-        `PUT /api/v1/merchants/{uuid}/update`
-
-
-        ## Request Body (form-data)
-
-
-        | Parameter | Type | Required | Validation | Description |
-
-        |-----------|------|----------|------------|-------------|
-
-        | `merchant[registration_address][address_line]` | string | Yes |
-        Non-empty | Registered address |
-
-        | `merchant[registration_address][city]` | string | Yes | Non-empty |
-        City |
-
-        | `merchant[registration_address][state]` | string | Yes | Valid Indian
-        state | State |
-
-        | `merchant[registration_address][pincode]` | string | Yes | 6 digits |
-        Pincode |
-
-        | `merchant[operating_address][address_line]` | string | Yes | Non-empty
-        | Operating address |
-
-        | `merchant[operating_address][city]` | string | Yes | Non-empty | City
-        |
-
-        | `merchant[operating_address][state]` | string | Yes | Valid Indian
-        state | State |
-
-        | `merchant[operating_address][pincode]` | string | Yes | 6 digits |
-        Pincode |
-
-
-        ## Next Step
-
-        Proceed to **Step 11** — Video KYC.
+      description: ''
       parameters:
         - name: uuid
           in: path
