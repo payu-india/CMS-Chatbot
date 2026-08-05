@@ -80,7 +80,7 @@ The **Send CKYC OTP** API sends an OTP to the merchant mobile for CKYC verificat
   | message   | `string` — Confirmation that OTP was sent | `OTP sent successfully` |
 </Accordion>
 
-## Request parameters
+## Additional Request parameters Info
 
 ### Header parameters
 
