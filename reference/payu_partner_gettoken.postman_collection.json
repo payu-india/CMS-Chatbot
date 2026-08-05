@@ -31,7 +31,7 @@
           "Step 00 — Authentication"
         ],
         "summary": "Get Token API",
-        "description": "# GetToken — Obtain Bearer Token\n\n**Step 0 of 16** — Always call this first.\n\n## Endpoint\n\n`POST /oauth/token`\n\n## Request Body (x-www-form-urlencoded)\n\n| Parameter | Type | Required | Validation | Description |\n|-----------|------|----------|------------|-------------|\n| `client_id` | string | Yes | 64-char hex | Partner OAuth client ID |\n| `client_secret` | string | Yes | 64-char hex | Partner OAuth client secret |\n| `grant_type` | string | Yes | Must be `client_credentials` | OAuth grant type |\n| `scope` | string | Yes | Space-separated | Required scopes |\n\n## Response (200 OK)\n\n```json\n{\n    \"access_token\": \"7b5843b39e5532bc...\",\n    \"token_type\": \"Bearer\",\n    \"expires_in\": 7199,\n    \"scope\": \"refer_merchant\",\n    \"created_at\": 1723498499\n}\n```\n\n## Response-to-Request Mapping\n\n| Response Field | Used As | In Steps |\n|---------------|---------|----------|\n| `access_token` | `Authorization: Bearer {access_token}` header | All subsequent steps |\n| `expires_in` | Token validity in seconds | Refresh before expiry |\n\n## Error Handling\n\n| Error | Cause | Recovery |\n|-------|-------|----------|\n| `401` | Invalid client_id or client_secret | Verify credentials with PayU KAM |\n| `400` | Invalid grant_type or scope | Check parameter values |\n\n## Next Step\n\nUse the `access_token` in Step 01 to create a merchant.\n",
+        "description": "",
         "requestBody": {
           "content": {
             "application/x-www-form-urlencoded": {
