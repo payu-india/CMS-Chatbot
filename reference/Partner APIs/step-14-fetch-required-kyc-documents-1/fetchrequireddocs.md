@@ -23,22 +23,22 @@ The **Fetch Required KYC Documents** API returns document categories and accepte
 | Production Environment | `https://partner.payu.in/api/v3/merchants/{mid}/kyc_document/required_docs`      |
 
 <Callout icon="📘" theme="info">
-  ### **Mapping to Step 15:**&#x20;
+  ### **Mapping to Step 15 - Upload KYC Documents:**&#x20;
 
   `document_categories[i].name` → `merchant[document_category]`; `document_categories[i].document_types[j].name` → `merchant[document_type]`.
 </Callout>
 
-## Sample Request
+## Sample request
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-  curl --location 'https://test-partner.payu.in/api/v3/merchants/{{mid}}/kyc_document/required_docs' \
-  --header 'Authorization: Bearer {{access_token}}' \
-  --header 'Accept: application/json'
+    curl --location 'https://test-partner.payu.in/api/v3/merchants/{{mid}}/kyc_document/required_docs' \
+    --header 'Authorization: Bearer {{access_token}}' \
+    --header 'Accept: application/json'
   ```
 </Accordion>
 
-## Sample Response
+## Sample response
 
 ### Success scenario
 
@@ -95,7 +95,7 @@ The **Fetch Required KYC Documents** API returns document categories and accepte
   | document_categories\[].kyc_document           | `object`/`null` — Existing upload status when already submitted     | `null` or `{ "status": "Approved" }`             |
 </Accordion>
 
-## Request parameters
+## Additional request parameters info
 
 ### Header parameters
 
