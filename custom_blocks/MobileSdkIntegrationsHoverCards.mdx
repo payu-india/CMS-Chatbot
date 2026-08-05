@@ -1,0 +1,159 @@
+---
+name: MobileSdkIntegrationsHoverCards
+---
+/**
+ * MobileSdkIntegrationsHoverCards - ReadMe CMS Custom Component
+ *
+ * Hardcoded Mobile SDKs-tab card. No page props needed —
+ * safe inside ReadMe Tabs under Refactored MDX.
+ *
+ * Setup: Settings → Custom Components → name must be MobileSdkIntegrationsHoverCards
+ * Paste this file, keep the preview tag after the export, Save.
+ *
+ * On the page (inside Mobile SDKs tab): type `<` → pick MobileSdkIntegrationsHoverCards
+ * or insert: <MobileSdkIntegrationsHoverCards />
+ *
+ * Do not add helpers above `export` — ReadMe MDX / Acorn fails on `{`.
+ */
+
+export const MobileSdkIntegrationsHoverCards = () => {
+  const cardShadow =
+    'shadow-[0_10px_28px_-8px_rgba(15,23,42,0.14),0_4px_10px_-4px_rgba(15,23,42,0.08)]';
+  const cardShadowHover =
+    'hover:shadow-[0_22px_44px_-12px_rgba(15,23,42,0.2),0_10px_20px_-8px_rgba(15,23,42,0.12)]';
+
+  const cardClass =
+    'rounded-xl text-left ' +
+    cardShadow +
+    ' ' +
+    cardShadowHover +
+    ' transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ' +
+    'hover:-translate-y-1.5';
+
+  const cardLayoutStyle = {
+    display: 'grid',
+    gridTemplateRows: 'auto auto',
+    alignContent: 'start',
+    gap: '12px',
+    padding: '20px',
+    height: '100%',
+    width: '100%',
+    boxSizing: 'border-box',
+    margin: 0,
+    background: 'linear-gradient(165deg, #eefbf3 0%, #e8f7ee 50%, #e3f3e9 100%)',
+  };
+
+  const titleStyle = {
+    display: 'block',
+    margin: 0,
+    padding: 0,
+    fontSize: '16px',
+    fontWeight: 600,
+    lineHeight: '24px',
+    color: '#0f172a',
+  };
+
+  const bodyStyle = {
+    margin: 0,
+    padding: 0,
+    fontSize: '14px',
+    lineHeight: '22px',
+    color: '#475569',
+  };
+
+  const linkBaseStyle = {
+    color: '#0f172a',
+    whiteSpace: 'nowrap',
+    textDecoration: 'none',
+    textDecorationColor: 'transparent',
+    textUnderlineOffset: '3px',
+    transition: 'text-decoration-color 0.2s ease',
+  };
+
+  const linkHoverStyle = {
+    textDecoration: 'underline',
+    textDecorationColor: '#00b058',
+  };
+
+  const renderLink = (item) => (
+    <a
+      href={item.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={linkBaseStyle}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.textDecoration = linkHoverStyle.textDecoration;
+        e.currentTarget.style.textDecorationColor = linkHoverStyle.textDecorationColor;
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.textDecoration = 'none';
+        e.currentTarget.style.textDecorationColor = 'transparent';
+      }}
+    >
+      <strong>{item.name}</strong>
+    </a>
+  );
+
+  const sdkLinks = [
+    { name: 'Android SDK', href: '/docs/explore-android-sdks', icon: 'fa-brands fa-android' },
+    { name: 'iOS Mobile SDK', href: '/docs/explore-ios-sdks', icon: 'fa fa-tablet' },
+    {
+      name: 'React Native Mobile SDK',
+      href: '/docs/explore-reactnative-sdks',
+      icon: 'fa-brands fa-react',
+    },
+    {
+      name: 'Flutter Mobile SDK',
+      href: '/docs/flutter-sdk-introduction',
+      icon: 'fa fa-mobile',
+    },
+    {
+      name: 'Cordova CheckoutPro SDK',
+      href: '/docs/cordova-sdk-introduction',
+      icon: 'fa fa-plug',
+    },
+    {
+      name: 'Capacitor UPI Bolt Mobile SDK',
+      href: '/docs/upi-bolt-sdk-ionic',
+      icon: 'fa fa-bolt',
+    },
+  ];
+
+  return (
+    <div className="my-6">
+      <div className={cardClass} style={cardLayoutStyle}>
+        <span style={titleStyle}>Mobile SDK Integrations</span>
+        <div style={bodyStyle}>
+          <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+            {sdkLinks.map((item) => (
+              <li
+                key={item.name}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  marginBottom: '6px',
+                }}
+              >
+                <span
+                  style={{
+                    width: '20px',
+                    display: 'inline-flex',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <i className={`${item.icon} fa-lg`} aria-hidden="true" />
+                </span>
+                {renderLink(item)}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Default preview for ReadMe CMS (must appear after exports; keep a blank line above).
+
+<MobileSdkIntegrationsHoverCards />
