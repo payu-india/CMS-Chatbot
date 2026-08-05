@@ -26,11 +26,11 @@ The **Upload Bank Proof** API uploads bank account proof when auto-verification 
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-  curl --location 'https://test-partner.payu.in/api/v3/merchants/{{mid}}/kyc_document' \
-  --header 'Authorization: Bearer {{access_token}}' \
-  --form 'merchant[document_category]="Bank Account Proof"' \
-  --form 'merchant[document_type]="Cancelled Cheque"' \
-  --form 'merchant[processed_document]=@"/path/to/cancelled_cheque.pdf"'
+    curl --location 'https://test-partner.payu.in/api/v3/merchants/{{mid}}/kyc_document' \
+    --header 'Authorization: Bearer {{access_token}}' \
+    --form 'merchant[document_category]="Bank Account Proof"' \
+    --form 'merchant[document_type]="Cancelled Cheque"' \
+    --form 'merchant[processed_document]=@"/path/to/cancelled_cheque.pdf"'
   ```
 </Accordion>
 
@@ -80,7 +80,7 @@ The **Upload Bank Proof** API uploads bank account proof when auto-verification 
   | merchant.created_at          | `string` — Upload timestamp (ISO 8601)        | `2024-08-12T07:41:19.000Z` |
 </Accordion>
 
-## Request parameters
+## Additional Request Parameters Info
 
 ### Header parameters
 
