@@ -1406,8 +1406,6 @@ After the payment is successful or failed, PayU POSTs back to your `surl` or `fu
   sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
   ```
 
-
-
   You should compare the hash value you got from the above logic with the hash value you received in the response. The payment is verified if the hash values match and update the order state.
 </Accordion>
 
@@ -1578,9 +1576,7 @@ It is equally important to test the failed transaction. Perform the following st
   - [x] Order remains unpaid
 </Callout>
 
-***
 
-<PayUHostedIntegrationWizard />
 
 ***
 
@@ -1599,11 +1595,11 @@ Now that you successfully tested the integration, check the go-live checklist fo
 <Accordion title="Security Checklist" icon="fa-shield-check">
   - [x] Hash generation occurs server-side
 
-  - [x] Salt is never exposed
+    - [x] Salt is never exposed
 
-  - [x] HTTPS is enforced
+    - [x] HTTPS is enforced
 
-  - [x] Sensitive information is not logged
+    - [x] Sensitive information is not logged
 </Accordion>
 
 <Accordion title="Webhooks" icon="fa-info-circle">
@@ -1613,17 +1609,17 @@ Now that you successfully tested the integration, check the go-live checklist fo
 <Accordion title="Production Readiness" icon="fa-clipboard-check">
   - [x] Hash validation implemented
 
-  - [x] Reverse hash validation implemented
+    - [x] Reverse hash validation implemented
 
-  - [x] Callback retries handled
+    - [x] Callback retries handled
 
-  - [x] Duplicate processing prevented
+    - [x] Duplicate processing prevented
 
-  - [x] Failure URL is triggered
+    - [x] Failure URL is triggered
 
-  - [x] Alerting configured
+    - [x] Alerting configured
 
-  - [x] Failure URL is triggered
+    - [x] Failure URL is triggered
 </Accordion>
 
 ***
@@ -1728,3 +1724,9 @@ Now that you successfully tested the integration, check the go-live checklist fo
   - Reject mismatched callbacks
   - Log mismatch for investigation
 </Accordion>
+
+***
+
+## Sandbox for Your Testing
+
+<PayUHostedIntegrationWizard />
