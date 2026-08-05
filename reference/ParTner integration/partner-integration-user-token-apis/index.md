@@ -2,7 +2,7 @@
 title: User Token APIs - Partner Integration
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Partner Integration User Token APIs
   description: ''
