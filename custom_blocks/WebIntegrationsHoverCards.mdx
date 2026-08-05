@@ -1,0 +1,193 @@
+---
+name: WebIntegrationsHoverCards
+---
+/**
+ * WebIntegrationsHoverCards - ReadMe CMS Custom Component
+ *
+ * Hardcoded Web-tab cards (Checkout + Server-side SDKs). No page props needed —
+ * safe inside ReadMe Tabs under Refactored MDX.
+ *
+ * Setup: Settings → Custom Components → name must be WebIntegrationsHoverCards
+ * Paste this file, keep the preview tag after the export, Save.
+ *
+ * On the page (inside Web tab): type `<` → pick WebIntegrationsHoverCards
+ * or insert: <WebIntegrationsHoverCards />
+ *
+ * Do not add helpers above `export` — ReadMe MDX / Acorn fails on `{`.
+ */
+
+export const WebIntegrationsHoverCards = () => {
+  const gapPx = 20;
+  const minCardPx = 280;
+  const gridTemplateColumns = `repeat(auto-fit, minmax(max(${minCardPx}px, calc((100% - ${gapPx}px) / 2)), 1fr))`;
+
+  const themes = [
+    {
+      background: 'linear-gradient(165deg, #eef3ff 0%, #e8effc 50%, #e3ebf8 100%)',
+    },
+    {
+      background: 'linear-gradient(165deg, #fff6ec 0%, #fff2e4 50%, #ffedd9 100%)',
+    },
+  ];
+
+  const cardShadow =
+    'shadow-[0_10px_28px_-8px_rgba(15,23,42,0.14),0_4px_10px_-4px_rgba(15,23,42,0.08)]';
+  const cardShadowHover =
+    'hover:shadow-[0_22px_44px_-12px_rgba(15,23,42,0.2),0_10px_20px_-8px_rgba(15,23,42,0.12)]';
+
+  const cardClass =
+    'rounded-xl text-left ' +
+    cardShadow +
+    ' ' +
+    cardShadowHover +
+    ' transition-[transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ' +
+    'hover:-translate-y-1.5';
+
+  const cardLayoutStyle = {
+    display: 'grid',
+    gridTemplateRows: 'auto auto',
+    alignContent: 'start',
+    gap: '12px',
+    padding: '20px',
+    height: '100%',
+    width: '100%',
+    boxSizing: 'border-box',
+    margin: 0,
+  };
+
+  const titleStyle = {
+    display: 'block',
+    margin: 0,
+    padding: 0,
+    fontSize: '16px',
+    fontWeight: 600,
+    lineHeight: '24px',
+    color: '#0f172a',
+  };
+
+  const bodyStyle = {
+    margin: 0,
+    padding: 0,
+    fontSize: '14px',
+    lineHeight: '22px',
+    color: '#475569',
+  };
+
+  const linkStyle = {
+    color: '#0f172a',
+    textDecoration: 'none',
+    whiteSpace: 'nowrap',
+  };
+
+  const checkoutLinks = [
+    { name: 'PayU Hosted', href: '/docs/prebuilt-checkout-payu-hosted' },
+    { name: 'Merchant Hosted', href: '/docs/custom-checkout-merchant-hosted' },
+    { name: 'CommercePro', href: '/docs/checkout-express' },
+    { name: 'Checkout Plus', href: '/docs/checkout-plus-integration' },
+  ];
+
+  const sdkLinks = [
+    { name: 'GO SDK', href: '/docs/go-sdk', icon: 'fa-brands fa-golang' },
+    { name: 'JAVA SDK', href: '/docs/java-sdk', icon: 'fa-brands fa-java' },
+    { name: 'PHP SDK', href: '/docs/php-sdk', icon: 'fa-brands fa-php' },
+    { name: 'NodeJS SDK', href: '/docs/node-js-sdk', icon: 'fa-brands fa-node-js' },
+  ];
+
+  const cards = [
+    {
+      title: 'Checkout Integrations',
+      background: themes[0].background,
+      body: (
+        <ul style={{ paddingLeft: '16px', margin: 0 }}>
+          {checkoutLinks.map((item) => (
+            <li key={item.name} style={{ marginBottom: '6px' }}>
+              <a href={item.href} target="_blank" rel="noopener noreferrer" style={linkStyle}>
+                <strong>{item.name}</strong>
+              </a>
+            </li>
+          ))}
+        </ul>
+      ),
+    },
+    {
+      title: 'Server-side Integrations',
+      background: themes[1].background,
+      body: (
+        <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+          {sdkLinks.map((item) => (
+            <li
+              key={item.name}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                marginBottom: '6px',
+              }}
+            >
+              <span
+                style={{
+                  width: '20px',
+                  display: 'inline-flex',
+                  justifyContent: 'center',
+                }}
+              >
+                <i className={`${item.icon} fa-lg`} aria-hidden="true" />
+              </span>
+              <a href={item.href} target="_blank" rel="noopener noreferrer" style={linkStyle}>
+                <strong>{item.name}</strong>
+              </a>
+            </li>
+          ))}
+        </ul>
+      ),
+    },
+  ];
+
+  return (
+    <div className="my-6">
+      <ul
+        className="m-0 grid list-none p-0"
+        style={{
+          display: 'grid',
+          gridTemplateColumns,
+          gap: `${gapPx}px`,
+          alignItems: 'stretch',
+          margin: 0,
+          padding: 0,
+          listStyle: 'none',
+        }}
+      >
+        {cards.map((card) => (
+          <li
+            key={card.title}
+            className="m-0 list-none p-0"
+            style={{
+              display: 'flex',
+              margin: 0,
+              padding: 0,
+              listStyle: 'none',
+              height: '100%',
+            }}
+          >
+            <div
+              className={cardClass + ' w-full'}
+              style={{ ...cardLayoutStyle, background: card.background }}
+            >
+              <span style={titleStyle}>{card.title}</span>
+              <div
+                className="[&_a]:!no-underline hover:[&_a]:underline hover:[&_a]:decoration-[#00b058] hover:[&_a]:underline-offset-[3px]"
+                style={bodyStyle}
+              >
+                {card.body}
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+// Default preview for ReadMe CMS (must appear after exports; keep a blank line above).
+
+<WebIntegrationsHoverCards />
