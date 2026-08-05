@@ -66,18 +66,4 @@ You can use these <Anchor target="_blank" href="/docs/test-cards-upi-id-and-wall
 
 Once you integrate with PayU, you can also manage post-payment operations seamlessly:
 
-<HoverCardGrid
-  columns={3}
-  items={[
-    {
-      title: 'Refunds',
-      href: '/docs/introduction-refunds',
-      text: 'Initiate full or partial refunds for successful transactions directly via PayU APIs or dashboard.',
-    },
-    {
-      title: 'Split Settlements',
-      href: '/docs/split-settlments',
-      text: 'Automatically split incoming payments between multiple stakeholders (such as vendors or partners) as per predefined rules.',
-    },
-  ]}
-/>
+<RefundsSplitSettlementsHoverCards />
