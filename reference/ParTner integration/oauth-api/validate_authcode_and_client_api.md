@@ -5,7 +5,7 @@ api:
   file: validate-auth-code-4.json
   operationId: ValidateAuthCodeandClient
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
