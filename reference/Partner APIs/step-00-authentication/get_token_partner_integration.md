@@ -94,7 +94,7 @@ curl --location 'https://test-accounts.payu.in/oauth/token' \
 
 </Accordion>
 
-## Request Parameters
+## Additional Request Parameters Info
 
 <Accordion title="Header parameters" icon="fa-table">
 
