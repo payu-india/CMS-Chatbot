@@ -2,7 +2,7 @@
 title: Partner Category List
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
