@@ -1,10 +1,7 @@
 ---
-title: Create a Payment Link API
-excerpt: ''
 api:
   file: payment-link-33.json
   operationId: CreatePaymentLinkAPI
-deprecated: false
 hidden: false
 metadata:
   title: Create a Payment Link API
