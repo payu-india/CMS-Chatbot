@@ -10,12 +10,6 @@ api:
   operationId: GetToken
 hidden: false
 ---
----
-api:
-  file: payu_partner_api_openapi_3.1_enhanced_v1.yaml
-  operationId: GetToken
-hidden: false
----
 The **GetToken** API obtains an OAuth bearer token for Partner Onboarding APIs. Call this first (Step 00); use the returned `access_token` as `Authorization: Bearer {token}` on all later steps.
 
 **HTTP Method**: POST
