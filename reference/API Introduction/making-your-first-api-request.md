@@ -1,5 +1,5 @@
 ---
-title: API Versioning
+title: Versioning
 deprecated: false
 hidden: true
 metadata:
