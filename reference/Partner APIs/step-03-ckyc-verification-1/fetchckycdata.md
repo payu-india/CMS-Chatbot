@@ -83,7 +83,7 @@ The **Fetch CKYC Data** API fetches CKYC identity data using PAN without OTP (St
   | related_persons_data | `array` — Related persons (directors/partners); may be empty | `[]`                   |
 </Accordion>
 
-## Request parameters
+## Additional Request parameters Info
 
 ### Header parameters
 
