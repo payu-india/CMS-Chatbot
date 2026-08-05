@@ -23,6 +23,31 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Refer merchants using APIs
+excerpt: ''
+deprecated: false
+hidden: true
+metadata:
+  title: Refer Merchants using Integration APIs
+  description: >-
+    Efficiently onboard referral merchants with PayU's Partner Integration API.
+    Follow our detailed guide to integrate the referral process seamlessly,
+    manage referrals, and optimize your partnership benefits. Discover how to
+    use PayU's API for streamlined referral onboarding today.
+  keywords:
+    - PayU API referral onboarding
+    - PayU Partner integration API
+    - API merchant referral onboarding
+    - PayU referral API integration.Merchant onboarding PayU API
+    - PayU partner program API.Referral onboarding via PayU API
+    - API-based referral onboarding PayU
+    - Integrate PayU referral API
+    - PayU partner API guide
+  robots: index
+next:
+  description: ''
+---
 This documentation provides comprehensive guidance for integrating with PayU's Partner Integration API. This API enables businesses and individual partners to integrate PayU's payment solutions into their platforms, onboard merchants, and manage the complete merchant lifecycle.
 
 ## Overview
@@ -49,41 +74,108 @@ The token-based authentication works as follows:
 
 > **Important**: Access tokens should be securely stored and never exposed in client-side code.
 
-<Accordion title="User Token APIs" icon="fa-info-circle">
-  The Merchant Onboarding Integration offers several token-related endpoints for authentication purposes. These endpoints handle token generation, refresh, and OTP verification when required.
+<Accordion title="Authentication" icon="fa-info-circle">
+  Obtain a bearer token before calling any onboarding API. Credentials are sent in the request body — no prior OAuth token is required for this call.
 
-  * [Partner Integration User Token APIs](https://docs.payu.in/reference/partner-integration-user-token-apis#/)
-  * [Get Token API](https://docs.payu.in/reference/get_token_api#/)
-  * [Refresh Token API](https://docs.payu.in/reference/refresh_token_api#/)
+  * [GetToken API](ref:gettoken) — Step 00
 </Accordion>
 
 ## Merchant Onboarding Process
 
-The Merchant Onboarding flow consists of several key steps:
+The Partner Onboarding flow follows a **16-step sequence**. Each step depends on the previous one. Call **GetToken** (Step 00) first, then proceed through merchant creation, verification, KYC, and e-sign.
 
-1. Create a merchant record with basic details
-2. Update additional merchant information as needed
-3. Add and verify bank account details
-4. Upload the required KYC documents
-5. Complete e-signature process for merchant agreement
-6. Monitor merchant status through webhooks
+| Step | Name |
+| :--- | :--- |
+| 00 | Authentication (GetToken) |
+| 01 | Create Merchant |
+| 02 | Update: PAN + DOB |
+| 03 | CKYC Verification |
+| 04 | Update: Business Details |
+| 05 | Update: Bank Details |
+| 06 | Upload Bank Proof (conditional) |
+| 07 | Update: Website Details |
+| 08 | Add Signatory Details |
+| 09 | DigiLocker Verification |
+| 10 | Update: Addresses |
+| 11 | Video KYC (VKYC) |
+| 12 | Add/Update UBO |
+| 13 | Business Members & KMP |
+| 14 | Fetch Required KYC Documents |
+| 15 | Upload KYC Documents |
+| 16 | E-Sign Agreement |
+
+Use **GetMerchant** (Utilities) between steps to check verification and onboarding status.
+
+## List of APIs
+
+The APIs used in the onboarding flow are listed below. These map to the **Partner APIs** reference section:
+
+| Description | **API** |
+| :--- | :--- |
+| **Step 00 — Authentication** | |
+| Obtains an OAuth bearer token for Partner Onboarding APIs. Call this first; use the returned `access_token` on all later steps. | [GetToken API](ref:gettoken) |
+| **Step 01 — Create Merchant** | |
+| Creates a new merchant shell account on PayU. Returns `mid`, `uuid`, and `product_account_uuid`. | [CreateMerchant API](ref:createmerchant) |
+| **Step 02 — Update Merchant Details** | |
+| Sets the merchant PAN and date of birth or incorporation. | [UpdateMerchant PAN + DOB API](ref:updatemerchant_pan_dob_entity) |
+| **Step 03 — CKYC Verification** | |
+| Sends an OTP to the merchant mobile for CKYC verification (Individual / Sole Proprietorship). | [Send CKYC OTP API](ref:sendckycotp) |
+| Verifies the OTP from Step 03A and returns CKYC identity data. | [Verify CKYC OTP API](ref:verifyckycotp) |
+| Fetches CKYC identity data using PAN without OTP (all other entity types). | [Fetch CKYC Data API](ref:fetchckycdata) |
+| **Step 04 — Update: Business Details** | |
+| Adds business category, sub-category, expected volume, GST, business name, and CIN where required. | [UpdateMerchant Business Details API](ref:updatemerchant_businessdetails) |
+| **Step 05 — Update Bank Details** | |
+| Adds settlement bank account details. PayU attempts auto-verification after this step. | [UpdateMerchant Bank Details API](ref:updatemerchant_bankdetails) |
+| **Step 06 — Upload Bank Proof (Conditional)** | |
+| Uploads bank account proof when auto-verification from Step 05 failed. | [Upload Bank Proof API](ref:uploadbankproof) |
+| **Step 07 — Update: Website Details** | |
+| Adds the merchant website and/or app store URLs. | [UpdateMerchant Website Details API](ref:updatemerchant_websitedetails) |
+| **Step 08 — Add Signatory Details** | |
+| Submits the authorised signatory for the merchant agreement. Prerequisite for DigiLocker. | [Add Signatory Details API](ref:addsignatorydetails) |
+| **Step 09 — DigiLocker Verification** | |
+| Creates a DigiLocker authentication URL for Aadhaar-based verification. | [Generate DigiLocker Link API](ref:generatedigilockerlink) |
+| **Step 10 — Update: Addresses** | |
+| Adds registration and operating addresses for the merchant. | [UpdateMerchant Addresses API](ref:updatemerchant_addresses) |
+| **Step 11 — Video KYC (VKYC)** | |
+| Creates a Video KYC profile and returns a VCIP capture link. | [Create VKYC Profile API](ref:createvkycprofile) |
+| **Step 12 — Add/Update UBO** | |
+| Submits Ultimate Beneficial Owner details (entity-dependent). | [Add/Update UBO API](ref:addupdateubo) |
+| **Step 13 — Business Members & KMP** | |
+| Submits directors, partners, or designated partners. | [Submit Business Members API](ref:submitbusinessmembers) |
+| Retrieves business members already submitted for the merchant. | [List Business Members API](ref:list_business_members_api) |
+| **Step 14 — Fetch Required KYC Documents** | |
+| Returns document categories and accepted types required for the merchant. | [Fetch Required KYC Documents API](ref:fetchrequireddocs) |
+| **Step 15 — Upload KYC Documents** | |
+| Uploads one KYC document per required category from Step 14. | [Upload KYC Document API](ref:uploadkycdocument) |
+| Returns details for a previously uploaded KYC document, including a signed URL and status. | [Show KYC Document API](ref:showkycdocument) |
+| Deletes a previously uploaded KYC document. | [Delete KYC Document API](ref:deletekycdocument) |
+| **Step 16 — E-Sign Agreement** | |
+| Generates the merged merchant agreement document for electronic signing (final step). | [Generate Agreement for E-Sign API](ref:generateagreementforesign) |
+| **Utilities** | |
+| Retrieves the full merchant profile and verification statuses. Call between any steps to check progress. | [GetMerchant API](ref:getmerchant) |
 
 <Accordion title="Create, Update, and Manage Merchants" icon="fa-info-circle">
-  The APIs for merchant creation and management allow partners to register new merchants and update their information.
+  APIs for merchant creation and profile updates across the onboarding sequence:
 
-  For detailed specifications on merchant onboarding, please refer to:
-
-  * [Create Merchant API](https://docs.payu.in/reference/create_merchant_api#/)
-  * [Update Merchant Details API](https://docs.payu.in/reference/update_merchant_details_api#/)
-  * [Get Merchant API](https://docs.payu.in/reference/get_merchant_api#/)
+  * [GetToken API](ref:gettoken) — Step 00
+  * [CreateMerchant API](ref:createmerchant) — Step 01
+  * [UpdateMerchant PAN + DOB API](ref:updatemerchant_pan_dob_entity) — Step 02
+  * [UpdateMerchant Business Details API](ref:updatemerchant_businessdetails) — Step 04
+  * [UpdateMerchant Website Details API](ref:updatemerchant_websitedetails) — Step 07
+  * [Add Signatory Details API](ref:addsignatorydetails) — Step 08
+  * [UpdateMerchant Addresses API](ref:updatemerchant_addresses) — Step 10
+  * [Add/Update UBO API](ref:addupdateubo) — Step 12
+  * [Submit Business Members API](ref:submitbusinessmembers) — Step 13
+  * [List Business Members API](ref:list_business_members_api) — Step 13
+  * [GetMerchant API](ref:getmerchant) — Utilities
 </Accordion>
 
 <Accordion title="Bank Account Verification" icon="fa-info-circle">
-  Bank account verification is a critical step in the merchant onboarding process. PayU provides specific APIs for adding, updating, and verifying bank details.
+  Bank account verification is handled during Steps 05 and 06. PayU attempts auto-verification after bank details are submitted; upload bank proof only if auto-verification fails.
 
-  For specifications on bank verification, please refer to:
-
-  * [Add Update Bank Details API](https://docs.payu.in/reference/add_update_bank_details_api#/)
+  * [UpdateMerchant Bank Details API](ref:updatemerchant_bankdetails) — Step 05
+  * [Upload Bank Proof API](ref:uploadbankproof) — Step 06 (conditional)
+  * [GetMerchant API](ref:getmerchant) — Check `bank_verification_status` before deciding whether Step 06 is needed
 </Accordion>
 
 ## KYC Document Management
@@ -95,12 +187,17 @@ The KYC process requires merchants to provide various identification and busines
 Different merchant types require different documentation. The exact requirements should be determined by referencing the official PayU documentation.
 
 <Accordion title="Document Upload APIs" icon="fa-info-circle">
-  For specifications on KYC document management, please refer to:
+  KYC and identity verification APIs across Steps 03, 09, 11, 14, and 15:
 
-  * [Docs Required API](https://docs.payu.in/reference/docs_required_api#/)
-  * [Create KYC Document API](https://docs.payu.in/reference/create_kyc_document_api#/)
-  * [Delete KYC Document API](https://docs.payu.in/reference/delete_kyc_document_api#/)
-  * [Upload Aadhar XML Offline API](https://docs.payu.in/reference/upload_aadhaar_xml_offline_api#/)
+  * [Send CKYC OTP API](ref:sendckycotp) — Step 03A
+  * [Verify CKYC OTP API](ref:verifyckycotp) — Step 03B
+  * [Fetch CKYC Data API](ref:fetchckycdata) — Step 03C
+  * [Generate DigiLocker Link API](ref:generatedigilockerlink) — Step 09
+  * [Create VKYC Profile API](ref:createvkycprofile) — Step 11
+  * [Fetch Required KYC Documents API](ref:fetchrequireddocs) — Step 14
+  * [Upload KYC Document API](ref:uploadkycdocument) — Step 15
+  * [Show KYC Document API](ref:showkycdocument) — Step 15
+  * [Delete KYC Document API](ref:deletekycdocument) — Step 15
 </Accordion>
 
 ### Document Types and Guidelines
@@ -123,10 +220,7 @@ The electronic signature process is required to complete merchant agreements. Pa
 For e-signature specifications, please refer to:
 
 <Accordion title="E-sign APIs" icon="fa-info-circle">
-  * [E-Sign Flow APIs](https://docs.payu.in/reference/e-sign-flow-apis#/)
-  * [Generate Merchant Agreement for E-Sign API](https://docs.payu.in/reference/generate-merchant-agreement-for-e-sign-api#/)
-  * [Send OTP to Signatory Email API](https://docs.payu.in/reference/send-otp-to-signatory-email-api#/)
-  * [E-Sign Merchant Agreement API](https://docs.payu.in/reference/e-sign-merchant-agreement-api#/)
+  * [Generate Agreement for E-Sign API](ref:generateagreementforesign) — Step 16
 </Accordion>
 
 ## Webhooks for Real-Time Updates
