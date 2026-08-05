@@ -21,19 +21,19 @@ The **Upload KYC Document** API uploads one KYC document per required category f
 | Test Environment       | `https://test-partner.payu.in/api/v3/merchants/{mid}/kyc_document` |
 | Production Environment | `https://partner.payu.in/api/v3/merchants/{mid}/kyc_document`      |
 
-## Sample Request
+## Sample request
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-  curl --location 'https://test-partner.payu.in/api/v3/merchants/{{mid}}/kyc_document' \
-  --header 'Authorization: Bearer {{access_token}}' \
-  --form 'merchant[document_category]="PAN Card of Signing Authority"' \
-  --form 'merchant[document_type]="PAN Card"' \
-  --form 'merchant[processed_document]=@"/path/to/pan.pdf"'
+    curl --location 'https://test-partner.payu.in/api/v3/merchants/{{mid}}/kyc_document' \
+    --header 'Authorization: Bearer {{access_token}}' \
+    --form 'merchant[document_category]="PAN Card of Signing Authority"' \
+    --form 'merchant[document_type]="PAN Card"' \
+    --form 'merchant[processed_document]=@"/path/to/pan.pdf"'
   ```
 </Accordion>
 
-## Sample Response
+## Sample response
 
 ### Success scenario
 
@@ -79,7 +79,7 @@ The **Upload KYC Document** API uploads one KYC document per required category f
   | merchant.created_at          | `string` — Upload timestamp                                                    | `2024-08-12T07:41:19.000Z`      |
 </Accordion>
 
-## Request parameters
+## Additional request parameters info
 
 ### Header parameters
 
