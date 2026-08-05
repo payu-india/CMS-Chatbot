@@ -193,24 +193,6 @@ PayU offers the following various integrations:
   </Tab>
 </Tabs>
 
-<HoverCardGrid
-  columns={2}
-  items={[
-    {
-      title: "PayU Hosted",
-      href: "/docs/prebuilt-checkout-payu-hosted",
-      text: "Checkout integration",
-      target: "_self",
-    },
-    {
-      title: "Merchant Hosted",
-      href: "/docs/custom-checkout-merchant-hosted",
-      text: "Checkout integration",
-      target: "_self",
-    },
-  ]}
-/>
-
 ## Next Steps
 
 Now that you have chosen your integration path, continue to the corresponding implementation guide:
