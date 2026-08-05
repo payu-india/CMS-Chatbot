@@ -90,7 +90,7 @@ PayU offers the following various integrations:
     <WebIntegrationsHoverCards />
   </Tab>
 
-  <Tab title="Mobile SDKs">
+  <Tab title="Plugins">
     <PluginIntegrationsHoverCards />
   </Tab>
 </Tabs>
