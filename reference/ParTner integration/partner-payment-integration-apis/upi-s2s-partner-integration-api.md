@@ -2,7 +2,7 @@
 title: UPI S2S Integration API - Partner Integration
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
