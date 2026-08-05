@@ -4,7 +4,7 @@ api:
   operationId: DeleteKYCDocument
 hidden: false
 ---
-The **Show KYC Document** API returns details for a previously uploaded KYC document, including a signed document URL and verification status (Step 15).
+The **Deelete KYC Document** API returns details for a previously uploaded KYC document, including a signed document URL and verification status (Step 15).
 
 <Callout icon="📘" theme="info">
   ### Note:
@@ -25,9 +25,9 @@ The **Show KYC Document** API returns details for a previously uploaded KYC docu
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-  curl --location 'https://test-partner.payu.in/api/v3/merchants/{{mid}}/kyc_document/{{kyc_document_uuid}}' \
-  --header 'Authorization: Bearer {{access_token}}' \
-  --header 'Accept: application/json'
+    curl --location 'https://test-partner.payu.in/api/v3/merchants/{{mid}}/kyc_document/{{kyc_document_uuid}}' \
+    --header 'Authorization: Bearer {{access_token}}' \
+    --header 'Accept: application/json'
   ```
 </Accordion>
 
