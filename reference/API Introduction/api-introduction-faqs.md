@@ -7,7 +7,7 @@ metadata:
 ---
 ## Getting started
 
-1. ### AWhere should I start with PayU APIs?
+1. ### Where should I start with PayU APIs?
    <Accordion title="Answer" icon="fab fa-adn">
      Start with [API Introduction](doc:api-introduction), then [Choose](doc:which-api-should-i-use) Your API, then [Making Your First API Request](doc:making-your-first-api-request). You can then go through specific endpoint pages.
    </Accordion>
