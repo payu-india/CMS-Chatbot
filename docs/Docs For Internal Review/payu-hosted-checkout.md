@@ -83,6 +83,7 @@ The following is the customer journey using cards as a payment method:
       </div>
 
       <p style={{ margin: 0 }}>
+
         Customer clicks <b>Pay Now</b> on your website or app.
       </p>
     </div>
@@ -90,12 +91,22 @@ The following is the customer journey using cards as a payment method:
 
   <Card>
     <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-external-link-alt" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
-
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Redirect to PayU</h4>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "10px",
+          marginBottom: "6px",
+        }}
+      >
+        <i
+          className="fa fa-external-link-alt"
+          style={{ color: "#00b386", fontSize: "20px", lineHeight: 1 }}
+        ></i>
+        <h4 style={{ margin: 0, fontWeight: "600" }}>Redirect to PayU</h4>
+      </div>
 
       <p style={{ margin: 0 }}>
-
         Customer is redirected to the PayU Hosted Checkout page.
       </p>
     </div>
@@ -103,12 +114,22 @@ The following is the customer journey using cards as a payment method:
 
   <Card>
     <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-credit-card" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
-
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Enter Payment Details</h4>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "10px",
+          marginBottom: "6px",
+        }}
+      >
+        <i
+          className="fa fa-credit-card"
+          style={{ color: "#00b386", fontSize: "20px", lineHeight: 1 }}
+        ></i>
+        <h4 style={{ margin: 0, fontWeight: "600" }}>Enter Payment Details</h4>
+      </div>
 
       <p style={{ margin: 0 }}>
-
         Customer selects payment method and enters details (Card, UPI, NetBanking, Wallet).
       </p>
     </div>
@@ -116,12 +137,22 @@ The following is the customer journey using cards as a payment method:
 
   <Card>
     <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-shield-alt" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
-
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Authenticate Payment</h4>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "10px",
+          marginBottom: "6px",
+        }}
+      >
+        <i
+          className="fa fa-shield-alt"
+          style={{ color: "#00b386", fontSize: "20px", lineHeight: 1 }}
+        ></i>
+        <h4 style={{ margin: 0, fontWeight: "600" }}>Authenticate Payment</h4>
+      </div>
 
       <p style={{ margin: 0 }}>
-
         Customer completes authentication (OTP, UPI approval, etc.).
       </p>
     </div>
@@ -129,12 +160,22 @@ The following is the customer journey using cards as a payment method:
 
   <Card>
     <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-university" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
-
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Payment Processing</h4>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "10px",
+          marginBottom: "6px",
+        }}
+      >
+        <i
+          className="fa fa-university"
+          style={{ color: "#00b386", fontSize: "20px", lineHeight: 1 }}
+        ></i>
+        <h4 style={{ margin: 0, fontWeight: "600" }}>Payment Processing</h4>
+      </div>
 
       <p style={{ margin: 0 }}>
-
         PayU processes the transaction with the bank or payment provider.
       </p>
     </div>
@@ -142,12 +183,22 @@ The following is the customer journey using cards as a payment method:
 
   <Card>
     <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-check-circle" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
-
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Payment Status</h4>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "10px",
+          marginBottom: "6px",
+        }}
+      >
+        <i
+          className="fa fa-check-circle"
+          style={{ color: "#00b386", fontSize: "20px", lineHeight: 1 }}
+        ></i>
+        <h4 style={{ margin: 0, fontWeight: "600" }}>Payment Status</h4>
+      </div>
 
       <p style={{ margin: 0 }}>
-
         Customer is redirected back to your website with success or failure status.
       </p>
     </div>
@@ -163,12 +214,22 @@ Understanding the following basic concepts will help you navigate the integratio
 <Cards>
   <Card>
     <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-exchange-alt" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
-
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Transaction</h4>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "10px",
+          marginBottom: "6px",
+        }}
+      >
+        <i
+          className="fa fa-exchange-alt"
+          style={{ color: "#00b386", fontSize: "20px", lineHeight: 1 }}
+        ></i>
+        <h4 style={{ margin: 0, fontWeight: "600" }}>Transaction</h4>
+      </div>
 
       <p style={{ margin: 0 }}>
-
         A single payment attempt initiated by the customer on your website.
       </p>
     </div>
@@ -176,12 +237,22 @@ Understanding the following basic concepts will help you navigate the integratio
 
   <Card>
     <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-paper-plane" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
-
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Payment Request</h4>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "10px",
+          marginBottom: "6px",
+        }}
+      >
+        <i
+          className="fa fa-paper-plane"
+          style={{ color: "#00b386", fontSize: "20px", lineHeight: 1 }}
+        ></i>
+        <h4 style={{ margin: 0, fontWeight: "600" }}>Payment Request</h4>
+      </div>
 
       <p style={{ margin: 0 }}>
-
         The payment data sent from your server to PayU to initiate a transaction.
       </p>
     </div>
@@ -189,12 +260,22 @@ Understanding the following basic concepts will help you navigate the integratio
 
   <Card>
     <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-reply" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
-
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Payment Response</h4>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "10px",
+          marginBottom: "6px",
+        }}
+      >
+        <i
+          className="fa fa-reply"
+          style={{ color: "#00b386", fontSize: "20px", lineHeight: 1 }}
+        ></i>
+        <h4 style={{ margin: 0, fontWeight: "600" }}>Payment Response</h4>
+      </div>
 
       <p style={{ margin: 0 }}>
-
         The transaction result returned by PayU after payment processing.
       </p>
     </div>
@@ -202,12 +283,22 @@ Understanding the following basic concepts will help you navigate the integratio
 
   <Card>
     <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-random" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
-
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Redirect Flow</h4>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "10px",
+          marginBottom: "6px",
+        }}
+      >
+        <i
+          className="fa fa-random"
+          style={{ color: "#00b386", fontSize: "20px", lineHeight: 1 }}
+        ></i>
+        <h4 style={{ margin: 0, fontWeight: "600" }}>Redirect Flow</h4>
+      </div>
 
       <p style={{ margin: 0 }}>
-
         Customer is redirected to PayU for payment and back to your site after completion.
       </p>
     </div>
@@ -215,12 +306,22 @@ Understanding the following basic concepts will help you navigate the integratio
 
   <Card>
     <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-server" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
-
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>API Flow</h4>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "10px",
+          marginBottom: "6px",
+        }}
+      >
+        <i
+          className="fa fa-server"
+          style={{ color: "#00b386", fontSize: "20px", lineHeight: 1 }}
+        ></i>
+        <h4 style={{ margin: 0, fontWeight: "600" }}>API Flow</h4>
+      </div>
 
       <p style={{ margin: 0 }}>
-
         Server-to-server communication for handling payment verification and status updates.
       </p>
     </div>
