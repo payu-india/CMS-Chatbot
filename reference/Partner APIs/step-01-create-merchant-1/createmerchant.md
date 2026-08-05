@@ -86,7 +86,7 @@ The **CreateMerchant** API creates a new merchant shell account on PayU (Step 01
   | product_account_uuid | `string` — Product account UUID used in E-Sign (Step 16)                                      | `11ef-d968-6b042d6c-9b94-02975f21d323` |
 </Accordion>
 
-## Request parameters
+## Additional Request parameters description
 
 ### Header parameters
 
