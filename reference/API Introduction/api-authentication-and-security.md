@@ -1,5 +1,5 @@
 ---
-title: API Authentication and Security
+title: Authentication and Security
 deprecated: false
 hidden: true
 metadata:
