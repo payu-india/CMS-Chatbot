@@ -2,7 +2,7 @@
 title: Using Webhooks for Merchant Status
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
