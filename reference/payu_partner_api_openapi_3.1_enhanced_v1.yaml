@@ -786,53 +786,13 @@ paths:
           description: Internal Server Error
   /api/v1/merchants/{uuid_website}/update:
     put:
-      summary: UpdateMerchant_WebsiteDetails
+      summary: Update Website Details API
       operationId: UpdateMerchant_WebsiteDetails
       tags:
         - 'Step 07 — Update: Website Details'
       security:
         - BearerAuth: []
-      description: >
-        # UpdateMerchant: Website Details — Step 07 of 16
-
-
-        ## Endpoint
-
-
-        `PUT /api/v1/merchants/{uuid}/update`
-
-
-        ## Request Body (form-data)
-
-
-        | Parameter | Type | Required | Validation | Description |
-
-        |-----------|------|----------|------------|-------------|
-
-        | `merchant[website_details][website_url]` | string | Conditional |
-        Valid URL | Website URL |
-
-        | `merchant[website_details][android_url]` | string | No | Valid Play
-        Store URL | Android app URL |
-
-        | `merchant[website_details][ios_url]` | string | No | Valid App Store
-        URL | iOS app URL |
-
-
-        At least one URL should be provided if the merchant has an online
-        presence.
-
-
-        ## Next Step
-
-        Proceed to **Step 08** — Add Signatory Details.
-
-
-
-        > **API path:** `PUT /api/v1/merchants/{uuid}/update` — use the merchant
-        `uuid` from Step 01 in the path. (OpenAPI uses a distinct path-parameter
-        name on this page so ReadMe can import multiple Update-Merchant step
-        groups that share the same HTTP method and path.)
+      description: ''
       parameters:
         - name: uuid_website
           in: path
