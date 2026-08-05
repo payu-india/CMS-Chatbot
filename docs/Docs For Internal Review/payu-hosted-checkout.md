@@ -107,6 +107,7 @@ The following is the customer journey using cards as a payment method:
       </div>
 
       <p style={{ margin: 0 }}>
+
         Customer is redirected to the PayU Hosted Checkout page.
       </p>
     </div>
@@ -130,6 +131,7 @@ The following is the customer journey using cards as a payment method:
       </div>
 
       <p style={{ margin: 0 }}>
+
         Customer selects payment method and enters details (Card, UPI, NetBanking, Wallet).
       </p>
     </div>
@@ -153,6 +155,7 @@ The following is the customer journey using cards as a payment method:
       </div>
 
       <p style={{ margin: 0 }}>
+
         Customer completes authentication (OTP, UPI approval, etc.).
       </p>
     </div>
@@ -176,6 +179,7 @@ The following is the customer journey using cards as a payment method:
       </div>
 
       <p style={{ margin: 0 }}>
+
         PayU processes the transaction with the bank or payment provider.
       </p>
     </div>
@@ -199,6 +203,7 @@ The following is the customer journey using cards as a payment method:
       </div>
 
       <p style={{ margin: 0 }}>
+
         Customer is redirected back to your website with success or failure status.
       </p>
     </div>
@@ -230,6 +235,7 @@ Understanding the following basic concepts will help you navigate the integratio
       </div>
 
       <p style={{ margin: 0 }}>
+
         A single payment attempt initiated by the customer on your website.
       </p>
     </div>
@@ -253,6 +259,7 @@ Understanding the following basic concepts will help you navigate the integratio
       </div>
 
       <p style={{ margin: 0 }}>
+
         The payment data sent from your server to PayU to initiate a transaction.
       </p>
     </div>
@@ -276,6 +283,7 @@ Understanding the following basic concepts will help you navigate the integratio
       </div>
 
       <p style={{ margin: 0 }}>
+
         The transaction result returned by PayU after payment processing.
       </p>
     </div>
@@ -299,6 +307,7 @@ Understanding the following basic concepts will help you navigate the integratio
       </div>
 
       <p style={{ margin: 0 }}>
+
         Customer is redirected to PayU for payment and back to your site after completion.
       </p>
     </div>
@@ -322,6 +331,7 @@ Understanding the following basic concepts will help you navigate the integratio
       </div>
 
       <p style={{ margin: 0 }}>
+
         Server-to-server communication for handling payment verification and status updates.
       </p>
     </div>
@@ -357,6 +367,8 @@ PayU Hosted Checkout helps you accept online payments quickly without building o
     - **Smart Payment Experience:** Supports features like payment recommendations and saved preferences.
 </Accordion>
 
+***
+
 ## Supported Payment Methods
 
 PayU Hosted Checkout supports multiple payment methods commonly used in India:
@@ -368,6 +380,8 @@ PayU Hosted Checkout supports multiple payment methods commonly used in India:
 - Wallets
 
 This allows you to offer a wide range of payment options without additional integrations.
+
+***
 
 ## What Happens After Payment
 
@@ -386,7 +400,7 @@ Once the payment is completed:
   - This ensures the payment status is authentic and prevents tampering
 </Callout>
 
-<br />
+***
 
 ## Next Steps
 
