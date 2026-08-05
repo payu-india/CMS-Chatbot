@@ -491,110 +491,13 @@ paths:
           description: Internal Server Error
   /api/v3/merchants/kyc_document/ckyc_data:
     post:
-      summary: C. Fetch CKYC Data (Non-Individual Entities)
+      summary: C. Fetch CKYC Data API (Non-Individual Entities)
       operationId: FetchCkycData
       tags:
         - Step 03 — CKYC Verification
       security:
         - BearerAuth: []
-      description: >
-        # Fetch CKYC Data — Step 03C of 16
-
-
-        Fetches CKYC identity data directly using PAN (no OTP needed). **For all
-        non-Individual/non-Sole Prop entities.**
-
-
-        ## Endpoint
-
-
-        `POST /api/v3/merchants/kyc_document/ckyc_data`
-
-
-        ## Prerequisite Steps
-
-        - Step 01: `mid` from CreateMerchant response
-
-        - Step 02: PAN submitted and entity type set (not Individual/Sole Prop)
-
-
-        ## Entity Applicability
-
-        **Partnership, Pvt Ltd, Public Limited, LLP, Trust, Society, One Person
-        Company, Government, NGO, Hindu Undivided Family, Local Authority,
-        Artificial Juridical Person**
-
-
-        ## Request Body (JSON)
-
-
-        | Parameter | Type | Required | Validation | Description |
-
-        |-----------|------|----------|------------|-------------|
-
-        | `merchant_id` | string | Yes | Numeric `mid` | Merchant ID |
-
-        | `consent` | boolean | Yes | **Must be `true`** | Merchant consent —
-        mandatory for CKYC compliance |
-
-
-        ## Response (200 OK)
-
-
-        Returns CKYC data: name, date of incorporation, address, masked mobile.
-
-
-        ## Error Handling
-
-
-        | Error Code | Cause | Recovery |
-
-        |------------|-------|----------|
-
-        | `422` - "Consent is required" | `consent` not `true` | Set consent to
-        `true` |
-
-        | `422` - "CKYC record not found" | No CKYC record for this PAN |
-        Merchant may need additional verification |
-
-
-
-
-        ## Response Fields (200 OK)
-
-
-        | Field | Type | Description |
-
-        |-------|------|-------------|
-
-        | `ckyc_number` | string | CKYC identification number from CERSAI
-        registry |
-
-        | `name` | string | Entity name as registered in CKYC |
-
-        | `father_name` | string | Father's name (empty for companies) |
-
-        | `dob` | string | Date of birth/incorporation (format: `DD-MM-YYYY`) |
-
-        | `address` | string | Registered address from CKYC |
-
-        | `pincode` | string | Pincode from CKYC |
-
-        | `state` | string | State from CKYC |
-
-        | `city` | string | City from CKYC |
-
-        | `related_persons_data` | array | Related persons (directors, partners)
-        — may be empty |
-
-
-        This data can be displayed to the merchant for confirmation. The
-        `ckyc_status` in GetMerchant changes to `success` after this call.
-
-
-        ## Next Step
-
-        Proceed to **Step 04** — Update merchant with business details.
+      description: ''
       requestBody:
         required: true
         content:
