@@ -22,15 +22,15 @@ PayU offers multiple integration methods depending on your business requirements
 
 <Accordion title="Benefits" icon="fa-lightbulb">
   - **Secure and Reliable Transactions**: The PayU Payment Gateway ensures that every transaction is securely processed using encryption and industry-standard safeguards, helping protect customers from fraud and unauthorized access.
-  - **Faster and Smoother Payments**: PayU provides an optimized checkout experience that reduces friction and enables quick transaction processing, ensuring a smooth payment journey for customers.
-  - **Reduced Payment Failures**: With real-time transaction handling and intelligent processing, PayU helps minimize failed payments and improves overall payment success rates.
-  - **Multiple Payment Options**: PayU enables businesses to accept a wide range of payment methods including cards, UPI, net banking, and wallets, offering flexibility and convenience to customers.
-  - **Improved Customer Experience**: A seamless and intuitive payment flow helps customers complete transactions quickly, enhancing trust and satisfaction.
-  - **Flexible Integration Options**: PayU offers multiple integration methods such as Hosted Checkout, Web Checkout, and APIs, allowing businesses to choose what best fits their needs.
-  - **Better Conversion Rates**: A smoother payment experience leads to fewer drop-offs during checkout, helping businesses improve conversion rates and revenue.
-  - **Scalable and Business-Friendly**: PayU is built to handle growing transaction volumes, making it suitable for businesses of all sizes across web and mobile platforms.
-  - **Developer-Friendly**: With simple integration options and support for multiple tech stacks, PayU enables developers to go live quickly and efficiently.
-  - **Operational Efficiency**: PayU simplifies payment management with centralized tracking and reporting, reducing manual effort and improving operational workflows.
+    - **Faster and Smoother Payments**: PayU provides an optimized checkout experience that reduces friction and enables quick transaction processing, ensuring a smooth payment journey for customers.
+    - **Reduced Payment Failures**: With real-time transaction handling and intelligent processing, PayU helps minimize failed payments and improves overall payment success rates.
+    - **Multiple Payment Options**: PayU enables businesses to accept a wide range of payment methods including cards, UPI, net banking, and wallets, offering flexibility and convenience to customers.
+    - **Improved Customer Experience**: A seamless and intuitive payment flow helps customers complete transactions quickly, enhancing trust and satisfaction.
+    - **Flexible Integration Options**: PayU offers multiple integration methods such as Hosted Checkout, Web Checkout, and APIs, allowing businesses to choose what best fits their needs.
+    - **Better Conversion Rates**: A smoother payment experience leads to fewer drop-offs during checkout, helping businesses improve conversion rates and revenue.
+    - **Scalable and Business-Friendly**: PayU is built to handle growing transaction volumes, making it suitable for businesses of all sizes across web and mobile platforms.
+    - **Developer-Friendly**: With simple integration options and support for multiple tech stacks, PayU enables developers to go live quickly and efficiently.
+    - **Operational Efficiency**: PayU simplifies payment management with centralized tracking and reporting, reducing manual effort and improving operational workflows.
 </Accordion>
 
 ## Choose Your Integration Path
@@ -87,60 +87,7 @@ PayU offers the following various integrations:
 
 <Tabs>
   <Tab title="Web">
-    <HoverCardGrid
-      columns={2}
-      items={[
-        {
-          title: "Checkout Integrations",
-          text: (
-            <ul style={{ paddingLeft: "16px", margin: 0 }}>
-              {[
-                { name: "PayU Hosted", link: "/docs/prebuilt-checkout-payu-hosted" },
-                { name: "Merchant Hosted", link: "/docs/custom-checkout-merchant-hosted" },
-                { name: "CommercePro", link: "/docs/checkout-express" },
-                { name: "Checkout Plus", link: "/docs/checkout-plus-integration" },
-              ].map((item) => (
-                <li key={item.name}>
-                  <a href={item.link} target="_blank" rel="noopener noreferrer">
-                    <strong>{item.name}</strong>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          ),
-        },
-        {
-          title: "Server-side Integrations",
-          text: (
-            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-              {[
-                { name: "GO SDK", link: "/docs/go-sdk", icon: "fa-brands fa-golang" },
-                { name: "JAVA SDK", link: "/docs/java-sdk", icon: "fa-brands fa-java" },
-                { name: "PHP SDK", link: "/docs/php-sdk", icon: "fa-brands fa-php" },
-                { name: "NodeJS SDK", link: "/docs/node-js-sdk", icon: "fa-brands fa-node-js" },
-              ].map((item) => (
-                <li
-                  key={item.name}
-                  style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}
-                >
-                  <span style={{ width: "20px", display: "inline-flex", justifyContent: "center" }}>
-                    <i className={`${item.icon} fa-lg`}></i>
-                  </span>
-                  <a
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ whiteSpace: "nowrap" }}
-                  >
-                    <strong>{item.name}</strong>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          ),
-        },
-      ]}
-    />
+
   </Tab>
 
   <Tab title="Plugins">
@@ -227,6 +174,65 @@ PayU offers the following various integrations:
         },
       ]}
     />
+  </Tab>
+
+  <Tab title="Tab 4">
+    <HTMLBlock>{`
+    <HoverCardGrid
+      columns={2}
+      items={[
+        {
+          title: "Checkout Integrations",
+          text: (
+            <ul style={{ paddingLeft: "16px", margin: 0 }}>
+              {[
+                { name: "PayU Hosted", link: "/docs/prebuilt-checkout-payu-hosted" },
+                { name: "Merchant Hosted", link: "/docs/custom-checkout-merchant-hosted" },
+                { name: "CommercePro", link: "/docs/checkout-express" },
+                { name: "Checkout Plus", link: "/docs/checkout-plus-integration" },
+              ].map((item) => (
+                <li key={item.name}>
+                  <a href={item.link} target="_blank" rel="noopener noreferrer">
+                    <strong>{item.name}</strong>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ),
+        },
+        {
+          title: "Server-side Integrations",
+          text: (
+            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+              {[
+                { name: "GO SDK", link: "/docs/go-sdk", icon: "fa-brands fa-golang" },
+                { name: "JAVA SDK", link: "/docs/java-sdk", icon: "fa-brands fa-java" },
+                { name: "PHP SDK", link: "/docs/php-sdk", icon: "fa-brands fa-php" },
+                { name: "NodeJS SDK", link: "/docs/node-js-sdk", icon: "fa-brands fa-node-js" },
+              ].map((item) => (
+                <li
+                  key={item.name}
+                  style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}
+                >
+                  <span style={{ width: "20px", display: "inline-flex", justifyContent: "center" }}>
+                    <i className={\`${item.icon} fa-lg\`}></i>
+                  </span>
+                  <a
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ whiteSpace: "nowrap" }}
+                  >
+                    <strong>{item.name}</strong>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ),
+        },
+      ]}
+    />
+    `}</HTMLBlock>
   </Tab>
 </Tabs>
 
