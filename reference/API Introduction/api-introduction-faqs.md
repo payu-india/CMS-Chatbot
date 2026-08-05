@@ -16,6 +16,8 @@ metadata:
      Integration Guides explain end-to-end product setup and UX flows. Whereas, API Reference documents request/response contracts and Try It calls. API Introduction explains shared concepts used by both.
    </Accordion>
 
+***
+
 ## Authentication
 
 1. ### Do all PayU APIs use the same authentication?
@@ -31,69 +33,68 @@ metadata:
      You can prototype there, however, you should generate a production hash on your server so the salt is never exposed.
    </Accordion>
 
+***
+
 ## Environments and URLs
 
-### Is there one base URL for all PayU APIs?
+1. ### Is there one base URL for all PayU APIs?
+   <Accordion title="Answer" icon="fab fa-adn">
+     No. Collect Payment, General APIs, OAuth products, BBPS, and others use different hosts. Refer to the [API Environments and Base URLs](doc:api-environments-and-base-urls) document for more information.
+   </Accordion>
+2. ### Can I use the Test key with the Production URL?
+   <Accordion title="Answer" icon="fab fa-adn">
+     No. Keep environment, key, and salt matched as a set.
+   </Accordion>
 
-No. Collect Payment, General APIs, OAuth products, BBPS, and others use different hosts. See [API Environments and Base URLs](doc:api-environments-and-base-urls).
-
-### Can I use Test key with Production URL?
-
-No. Keep environment, key, and salt matched as a set.
+***
 
 ## Payments and verification
 
-### Why do I need Verify Payment if I already got a success callback?
+1. ### Why do I need to verify the payment using the API or any other method if I already got a success callback?
+   <Accordion title="Answer" icon="fab fa-adn">
+     Callbacks can be delayed, duplicated, or manipulated in the browser channel. Verify Payment API (or an equivalent server API) is the reliable source of truth.
+   </Accordion>
+2. ### What should I do if the customer closes the app before redirect?
+   <Accordion title="Answer" icon="fab fa-adn">
+     Store the `txnid`, check webhooks, and call Verify Payment/transaction detail APIs to reconcile.
+   </Accordion>
 
-Callbacks can be delayed, duplicated, or manipulated in the browser channel. Verify Payment (or an equivalent server API) is the reliable source of truth.
-
-### What should I do if the customer closes the app before redirect?
-
-Store the `txnid`, listen for webhooks, and call Verify Payment / transaction detail APIs to reconcile.
+***
 
 ## Webhooks
 
-### Are webhooks mandatory?
+1. ### Are webhooks mandatory?
+   <Accordion title="Answer" icon="fab fa-adn">
+     Webhooks are recommended for production-grade reliability, especially for async payment modes and refunds. Refer to the [Webhooks and Callbacks](doc:webhooks-and-callbacks) document for more information.
 
-Strongly recommended for production-grade reliability, especially for async payment modes and refunds. See [Webhooks and Callbacks](doc:webhooks-and-callbacks).
 
-### Can the same webhook arrive more than once?
+   </Accordion>
 
-Yes. Design handlers to be idempotent.
+***
 
 ## Versioning
 
-### What is `api_version`?
+1. ### What is `api_version`?
+   <Accordion title="Answer" icon="fab fa-adn">
+     A request parameter used by many Collect Payment/feature flows to select a capability set. It can change required fields and hash input. Refer to the [API Versioning](doc:api-versioning) document for more information.
+   </Accordion>
 
-A request parameter used by many Collect Payment/feature flows to select a capability set. It can change required fields and hash input. See [API Versioning](doc:api-versioning).
+***
 
 ## Tools
 
-### Does PayU provide SDKs and Postman collections?
+1. ### Why does Try It fail for my API?
+   <Accordion title="Answer" icon="fab fa-adn">
+     Some APIs/flows are not supported in Test or in the Try It playground.
+   </Accordion>
 
-Yes. See [SDKs, Postman, and Tools](doc:sdks-postman-and-tools).
-
-### Why does Try It fail for my API?
-
-Some APIs/flows are not supported in Test or in the Try It playground. Check limitations on [API Reference introduction](ref:introduction-api-reference).
+***
 
 ## Support
 
-### How do I get help?
-
-1. Use [API Troubleshooting](doc:api-troubleshooting)
-2. Check [Error Codes](ref:error-codes)
-3. Raise a ticket at [https://help.payu.in](https://help.payu.in) with `txnid`/request IDs and sanitized logs
-
-## What to read next
-
-- [API Best Practices](doc:api-best-practices)
-- [Common API Workflows](doc:common-api-workflows)
-- [Testing PayU APIs](doc:testing-payu-apis)
-- [API Reference](ref:introduction-api-reference)
-
-## Related APIs
-
-- [Collect Payment API — PayU Hosted Checkout](ref:_payment_payu_hosted_checkout)
-- [Verify Payment API](ref:verify_payment_api)
-- [Create Payment Link API](ref:create-payment-links)
+1. ### How do I get help?
+   <Accordion title="Answer" icon="fab fa-adn">
+     1. Use [API Troubleshooting](doc:api-troubleshooting)
+     2. Check [Error Codes](ref:error-codes)
+     3. Raise a ticket at [https://help.payu.in](https://help.payu.in) with `txnid`/request IDs and sanitized logs
+   </Accordion>
