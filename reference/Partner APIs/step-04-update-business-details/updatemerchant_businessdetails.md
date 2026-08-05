@@ -4,7 +4,7 @@ api:
   operationId: UpdateMerchant_BusinessDetails
 hidden: false
 ---
-The **UpdateMerchant Business Details** API adds business category, sub-category, expected volume, GST, business name, and CIN where required (Step 04 of 16).
+The **Update Business Details** API adds business category, sub-category, expected volume, GST, business name, and CIN where required (Step 04 of 16).
 
 <Callout icon="📘" theme="info">
   ### Notes:
@@ -26,15 +26,15 @@ The **UpdateMerchant Business Details** API adds business category, sub-category
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-  curl --location --request PUT 'https://test-partner.payu.in/api/v1/merchants/{{uuid}}/update' \
-  --header 'Authorization: Bearer {{access_token}}' \
-  --form 'merchant[business_category]="Arts, Gifts & Stationery"' \
-  --form 'merchant[business_sub_category]="Art Dealers and Galleries"' \
-  --form 'merchant[monthly_expected_volume]="500000"' \
-  --form 'merchant[gst_number]="29ABCDE1234F1Z5"' \
-  --form 'merchant[gst_consent]="true"' \
-  --form 'merchant[business_name]="MERCHANT BUSINESS NAME"' \
-  --form 'merchant[cin_number]="U74999KA2020PTC123456"'
+    curl --location --request PUT 'https://test-partner.payu.in/api/v1/merchants/{{uuid}}/update' \
+    --header 'Authorization: Bearer {{access_token}}' \
+    --form 'merchant[business_category]="Arts, Gifts & Stationery"' \
+    --form 'merchant[business_sub_category]="Art Dealers and Galleries"' \
+    --form 'merchant[monthly_expected_volume]="500000"' \
+    --form 'merchant[gst_number]="29ABCDE1234F1Z5"' \
+    --form 'merchant[gst_consent]="true"' \
+    --form 'merchant[business_name]="MERCHANT BUSINESS NAME"' \
+    --form 'merchant[cin_number]="U74999KA2020PTC123456"'
   ```
 </Accordion>
 
@@ -86,7 +86,7 @@ The **UpdateMerchant Business Details** API adds business category, sub-category
   | merchant.status        | `string` — Current onboarding status | `account_created`        |
 </Accordion>
 
-## Request parameters
+## All Request parameters Info
 
 ### Header parameters
 
