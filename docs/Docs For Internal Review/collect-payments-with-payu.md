@@ -126,7 +126,7 @@ PayU offers the following various integrations:
     />
   </Tab>
 
-  <Tab title="Tab 2">
+  <Tab title="Web">
     <WebIntegrationsHoverCards />
   </Tab>
 </Tabs>
