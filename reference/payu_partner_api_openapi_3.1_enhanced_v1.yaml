@@ -1848,6 +1848,7 @@ paths:
           description: Validation Failed
         '500':
           description: Internal Server Error
+      x-internal: false
 components:
   securitySchemes:
     BearerAuth:
