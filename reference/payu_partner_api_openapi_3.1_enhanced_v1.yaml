@@ -844,7 +844,7 @@ paths:
           description: Internal Server Error
   /api/v1/merchants/{uuid_signatory}/signatory_details:
     put:
-      summary: AddSignatoryDetails
+      summary: Add Signatory Details API
       operationId: AddSignatoryDetails
       tags:
         - Step 08 — Add Signatory Details
