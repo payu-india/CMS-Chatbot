@@ -1249,100 +1249,13 @@ paths:
           description: Internal Server Error
   /api/v1/merchants/{uuid}/signatory_details:
     put:
-      summary: AddUpdateUBO
+      summary: Add Update UBO API
       operationId: AddUpdateUBO
       tags:
         - Step 12 — Add/Update UBO
       security:
         - BearerAuth: []
-      description: >
-        # Add/Update UBO — Step 12 of 16
-
-
-        ## Endpoint
-
-
-        `PUT /api/v1/merchants/{uuid}/signatory_details`
-
-
-        ## Entity Applicability
-
-        **Only:** Pvt Ltd, Public Ltd, Partnership, Trust, LLP, Society.
-
-
-        ## Request Body (x-www-form-urlencoded)
-
-
-        **Per UBO (indexed: `ubo[0]`, `ubo[1]`, etc.):**
-
-
-        | Parameter | Type | Required | Description |
-
-        |-----------|------|----------|-------------|
-
-        | `merchant[ubo[N][beneficiary_name]]` | string | Yes | Full name |
-
-        | `merchant[ubo[N][ubo_pan_number]]` | string | Yes | PAN number |
-
-        | `merchant[ubo[N][ownership_percent]]` | string | Yes | Ownership % |
-
-        | `merchant[ubo[N][dob]]` | string | Yes | YYYY-MM-DD |
-
-        | `merchant[ubo[N][nationality]]` | string | Yes | ISO country code |
-
-        | `merchant[ubo[N][address][address_line]]` | string | Yes | Address |
-
-        | `merchant[ubo[N][address][pincode]]` | string | Yes | 6-digit pincode
-        |
-
-        | `merchant[ubo_exist]` | string | Yes | `"1"` |
-
-
-
-
-        ## Response Fields (200 OK — when successful via Postman)
-
-
-        Returns full merchant object including `ultimate_beneficiaries[]` array
-        with added UBOs.
-
-
-        ## Error Response Fields
-
-
-        | Field | Type | Description |
-
-        |-------|------|-------------|
-
-        | `error` | string | `"param is missing or the value is empty:
-        bank_detail"` — bank_detail params must be included |
-
-
-
-
-        ## Multiple UBOs (Up to 4)
-
-
-        Submit up to 4 UBOs in a single request using array indexing `ubo[0]`,
-        `ubo[1]`, `ubo[2]`, `ubo[3]`.
-
-
-        - UBOs 0-1 are enabled by default; UBOs 2-3 are disabled — enable as
-        needed
-
-        - Each UBO requires: beneficiary_name, ubo_pan_number,
-        ownership_percent, dob, nationality, address, pincode
-
-        - Email is optional but recommended
-
-        - Total ownership percentages should be consistent with business records
-
-        - `merchant[ubo_exist]` must be `"1"` when any UBOs are submitted
-
-
-        ## Next Step
-
-        Proceed to **Step 13** (Business Members) if applicable, or **Step 14**.
+      description: ''
       parameters:
         - name: uuid
           in: path
