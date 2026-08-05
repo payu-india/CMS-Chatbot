@@ -38,7 +38,7 @@ The following diagram illustrates how PayU payment gateway works.
   - Performs authentication (like OTP or 3D Secure)
 </Accordion>
 
-<Accordion title="7. Issuing Bank Gebnerates the Authorization Response" icon="fa-check">
+<Accordion title="7. Issuing Bank Generates the Authorization Response" icon="fa-check">
   The issuing bank approves or declines the transaction and sends a response back through the same chain (network → acquiring bank → PayU).
 </Accordion>
 
