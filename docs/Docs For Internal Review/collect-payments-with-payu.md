@@ -95,7 +95,7 @@ PayU offers the following various integrations:
   </Tab>
 
   <Tab title="Mobile SDKs">
-
+    <MobileSdkIntegrationsHoverCards />
   </Tab>
 </Tabs>
 
