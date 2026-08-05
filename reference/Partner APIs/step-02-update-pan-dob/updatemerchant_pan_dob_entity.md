@@ -4,7 +4,7 @@ api:
   operationId: UpdateMerchant_PAN_DOB_Entity
 hidden: false
 ---
-The **UpdateMerchant PAN + DOB** API sets the merchant PAN and date of birth or incorporation (Step 02 of 16).
+The **Update Merchant Details** such as PAN + DOB using this API so that the merchant PAN and date of birth or incorporation (Step 02 of 16) are updated.
 
 <Callout icon="📘" theme="info">
   ### Notes:
