@@ -33,15 +33,15 @@ The **Add Signatory Details** API submits the authorised signatory for the merch
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-  curl --location --request PUT 'https://test-partner.payu.in/api/v1/merchants/{{uuid}}/signatory_details' \
-  --header 'Authorization: Bearer {{access_token}}' \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data-urlencode 'merchant[signatory_contact_details_attributes[0][authorised_signatory]]=true' \
-  --data-urlencode 'merchant[signatory_contact_details_attributes[0][name]]=Signatory 1 Name' \
-  --data-urlencode 'merchant[signatory_contact_details_attributes[0][pancard_number]]=ABCDE1234F' \
-  --data-urlencode 'merchant[signatory_contact_details_attributes[0][email]]=signatory1@yopmail.com' \
-  --data-urlencode 'merchant[signatory_contact_details_attributes[0][contact_detail_type]]=Signing Authority' \
-  --data-urlencode 'merchant[signatory_contact_details_attributes[0][cin_number]]='
+    curl --location --request PUT 'https://test-partner.payu.in/api/v1/merchants/{{uuid}}/signatory_details' \
+    --header 'Authorization: Bearer {{access_token}}' \
+    --header 'Content-Type: application/x-www-form-urlencoded' \
+    --data-urlencode 'merchant[signatory_contact_details_attributes[0][authorised_signatory]]=true' \
+    --data-urlencode 'merchant[signatory_contact_details_attributes[0][name]]=Signatory 1 Name' \
+    --data-urlencode 'merchant[signatory_contact_details_attributes[0][pancard_number]]=ABCDE1234F' \
+    --data-urlencode 'merchant[signatory_contact_details_attributes[0][email]]=signatory1@yopmail.com' \
+    --data-urlencode 'merchant[signatory_contact_details_attributes[0][contact_detail_type]]=Signing Authority' \
+    --data-urlencode 'merchant[signatory_contact_details_attributes[0][cin_number]]='
   ```
 </Accordion>
 
@@ -91,7 +91,7 @@ The **Add Signatory Details** API submits the authorised signatory for the merch
   | merchant.status | `string` — Current onboarding status | `account_created` |
 </Accordion>
 
-## Request parameters
+## Additional request parameters info
 
 ### Header parameters
 
