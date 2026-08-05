@@ -5,7 +5,7 @@ api:
   file: partner-apis-16.json
   operationId: get_token
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Get Token API - Partner Integration
   description: >-

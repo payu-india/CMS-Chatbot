@@ -5,7 +5,7 @@ api:
   file: send-otp-1.json
   operationId: send_otp
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Send OTP API for Partner Integration
   description: >-

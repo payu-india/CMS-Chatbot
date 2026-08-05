@@ -5,7 +5,7 @@ api:
   file: partner-apis-16.json
   operationId: refresh_token
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:

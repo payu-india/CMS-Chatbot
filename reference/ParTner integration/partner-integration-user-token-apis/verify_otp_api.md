@@ -5,7 +5,7 @@ api:
   file: partner-apis-21.json
   operationId: VerifyOTPAPI
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: >-
