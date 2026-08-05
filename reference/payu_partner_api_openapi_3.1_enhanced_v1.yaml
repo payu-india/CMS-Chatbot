@@ -1814,73 +1814,13 @@ paths:
           description: Internal Server Error
   /api/v1/merchants/{merchant_id}:
     get:
-      summary: GetMerchant
+      summary: Get Merchant API
       operationId: GetMerchant
       tags:
         - Utilities
       security:
         - BearerAuth: []
-      description: >
-        # GetMerchant — Status Polling (Utility)
-
-
-        Retrieves the complete merchant profile and all internal verification
-        statuses. Call this **between any steps** to check progress.
-
-
-        ## Endpoint
-
-
-        `GET /api/v1/merchants/{merchant_id}`
-
-
-        Replace `{merchant_id}` with the numeric `mid` from Step 01.
-
-
-        ## Key Status Fields to Check
-
-
-        | Field | After Step | Values | Decision |
-
-        |-------|-----------|--------|----------|
-
-        | `pan_verification_status` | Step 02 | `verified` / `failed` /
-        `pending` | Wait for verification before Step 03 |
-
-        | `bank_verification_status` | Step 05 | `verified` / `failed` /
-        `pending` | `verified` → skip Step 06; else → do Step 06 |
-
-        | `ckyc_status` | Step 03 | `success` / `failed` / `pending` |
-        Determines DigiLocker requirement (Step 09) |
-
-        | `digilocker_status` | Step 09 | `verified` / `pending` / `failed` |
-        Track completion |
-
-        | `vkyc_status` | Step 11 | `not_initiated` / `in_progress` / `approved`
-        / `declined` | Track VKYC |
-
-        | `kyc_document_status` | Step 15 | Per-document status | Check
-        approvals/rejections |
-
-        | `agreement_status` | Step 16 | `pending` / `signed` / `expired` |
-        Track e-sign |
-
-        | `activation_status` | Final | `active` / `pending` / `rejected` |
-        Merchant ready |
-
-
-        ## Usage Pattern
-
-
-        ```
-
-        After each step:
-          1. Call GetMerchant
-          2. Check relevant status field
-          3. IF status = expected → proceed to next step
-          4. IF status = failed → handle error (retry, re-upload, etc.)
-          5. IF status = pending → poll again after delay
-        ```
+      description: ''
       parameters:
         - name: merchant_id
           in: path
