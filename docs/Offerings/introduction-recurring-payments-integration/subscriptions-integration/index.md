@@ -5,37 +5,18 @@ hidden: true
 metadata:
   robots: index
 ---
----
-title: Subscriptions
-excerpt: ''
-deprecated: false
-hidden: false
-metadata:
-  title: PayU Subscriptions Overview
-  description: >-
-    Learn how to integrate PayU Subscriptions to charge customers automatically on a recurring basis. 
-    Set up various billing models, manage subscription lifecycles, and ensure RBI compliance.
-  keywords:
-    - PayU Subscriptions
-    - Recurring Payments
-    - Standing Instructions
-    - Mandate Management
-    - Pre-Debit Notification
-  robots: index
----
-
 ## Overview
 
 PayU Subscriptions allow you to charge your customers automatically on a recurring basis. With PayU Subscriptions, you can set up various billing models, manage subscription lifecycles, and ensure regulatory compliance for automated recurring payments.
 
 ## Key Features
 
-* **Automated Recurring Billing**: Charge customers automatically based on predefined schedules
-* **RBI Compliance**: Fully compliant with RBI guidelines for recurring payments
-* **Smart Retry Logic**: Automatically retry failed payments with configurable schedules
-* **Flexible Billing Models**: Support for fixed, variable, and usage-based billing
-* **Comprehensive Webhooks**: Real-time notifications for all subscription events
-* **Customer Management**: Complete customer lifecycle management with payment method tokenization
+- **Automated Recurring Billing**: Charge customers automatically based on predefined schedules
+- **RBI Compliance**: Fully compliant with RBI guidelines for recurring payments
+- **Smart Retry Logic**: Automatically retry failed payments with configurable schedules
+- **Flexible Billing Models**: Support for fixed, and variable billing
+- **Comprehensive Webhooks**: Real-time notifications for all subscription events
+- **Customer Management**: Complete customer lifecycle management with payment method tokenization
 
 ## Workflow
 
@@ -57,14 +38,16 @@ Seamless integration provides greater control by embedding payment collection di
 
 **Different modes to integrate:**
 
-* **UPI Integration**: Customers are redirected to their UPI app for mandate approval through intent-based flows, providing a familiar mobile-first experience. For more information, refer to [UPI Subscriptions Integration](doc:upi-subscriptions-integration-merchant-hosted-checkout).
+- **UPI Integration**: Customers are redirected to their UPI app for mandate approval through intent-based flows, providing a familiar mobile-first experience. For more information, refer to [UPI Subscriptions Integration](doc:upi-subscriptions-integration-merchant-hosted-checkout).
 
-* **Cards Integration**: Card-based subscriptions utilize redirect flows to PayU's secure tokenization interface, ensuring PCI DSS compliance and RBI tokenization requirements. For more information, refer to [Cards Subscription Integration](doc:cards-subscription-integration-merchant-hosted-checkout).
+- **Cards Integration**: Card-based subscriptions utilize redirect flows to PayU's secure tokenization interface, ensuring PCI DSS compliance and RBI tokenization requirements. For more information, refer to [Cards Subscription Integration](doc:cards-subscription-integration-merchant-hosted-checkout).
 
-* **ENACH Integration**: Direct integration with NPCI's ENACH infrastructure enables automated mandate creation for net banking customers, supporting both physical and digital mandate workflows. For more information, refer to [Net Banking Integration](doc:net-banking-subscriptions-integration-merchant-hosted).
+- **ENACH Integration**: Direct integration with NPCI's ENACH infrastructure enables automated mandate creation for net banking customers, supporting digital mandate workflows. For more information, refer to [Net Banking Integration](doc:net-banking-subscriptions-integration-merchant-hosted).
 
 <Callout icon="📘" theme="info">
-  **Note**: Once the authorization transaction is successful, PayU returns the `mihpayid`, `txnid`, and `hash`.
+  ### **Note:**
+
+  After the authorization transaction is completes, PayU returns the `mihpayid`, `txnid`, and `hash`.
 </Callout>
 
 ### Step 2: Mandate Management APIs
@@ -81,13 +64,15 @@ Before proceeding to hit pre-debit/recurring payments, check the mandate status 
 
 After subscription creation and mandate approval, PayU provides comprehensive APIs for recurring payment lifecycle management, covering pre-debit notifications, payment processing, and mandate management across all payment methods.
 
-<Callout icon="📘">
-  **Note**: This step is common for both seamless and non-seamless integration.
+<Callout icon="📘" theme="info">
+  ### **Note**:
+
+  This step is common for both seamless and non-seamless integration.
 </Callout>
 
 #### Step 3.1: Pre-Debit Notification API (Card and UPI Autopay Only)
 
-The Pre-Debit Notification API is **mandatory for RBI compliance** and must be called 24-72 hours before processing any recurring payment. This API sends notifications to customers about upcoming charges via SMS and email.
+The Pre-Debit Notification API is **mandatory for RBI compliance** and must be called 24-36 hours before processing any recurring payment. This API sends notifications to customers about upcoming charges via SMS and email.
 
 For more information, refer to [Pre-Debit Notification API](ref:pre_debit_notification_api).
 
@@ -101,24 +86,24 @@ For more information, refer to [Recurring Payment Transaction API](ref:recurring
 
 **For Cards (VISA/Mastercard):**
 
-* [Modify the Recurring Payments for a Card](ref:modify-the-recurring-payments-for-a-card)
-* [Cancel the Recurring Payment for Cards](ref:cancel-the-recurring-payment-for-cards)
+- [Modify the Recurring Payments for a Card](ref:modify-the-recurring-payments-for-a-card)
+- [Cancel the Recurring Payment for Cards](ref:cancel-the-recurring-payment-for-cards)
 
 **For Cards (AMEX):**
 
-* [Modify Recurring Payments for AMEX Card](ref:modify-recurring-payments-for-amex-card)
-* [Cancel Recurring Payment for AMEX Card](ref:cancel-recurring-payment-for-a-amex-card)
+- [Modify Recurring Payments for AMEX Card](ref:modify-recurring-payments-for-amex-card)
+- [Cancel Recurring Payment for AMEX Card](ref:cancel-recurring-payment-for-a-amex-card)
 
 **For ENACH/Net Banking:**
 
 PayU's ENACH APIs enable net banking mandate status monitoring, cancellation management, and UMRN tracking for seamless recurring payment administration across participating banks.
 
-* [Cancel the Recurring Payment for Net Banking](ref:cancel-the-recurring-payment-for-net-banking)
+- [Cancel the Recurring Payment for Net Banking](ref:cancel-the-recurring-payment-for-net-banking)
 
 **For UPI:**
 
-* [Modify the Recurring Payment for UPI](ref:modify-the-recurring-payment-for-upi)
-* [Cancel the Recurring Payment for UPI](ref:cancel-the-recurring-payment-for-upi)
+- [Modify the Recurring Payment for UPI](ref:modify-the-recurring-payment-for-upi)
+- [Cancel the Recurring Payment for UPI](ref:cancel-the-recurring-payment-for-upi)
 
 ## Manage Mandates
 
@@ -134,7 +119,7 @@ Before proceeding to hit pre-debit/recurring payments, check the mandate status:
 
 ### Additional Mandate Management APIs
 
-* **Validate VPA API**: Use this API to validate if a VPA supports recurring payments before initiating a UPI mandate. Refer to [Validate VPA API](ref:validate_vpa_api).
+- **Validate VPA API**: Use this API to validate if a VPA supports recurring payments before initiating a UPI mandate. Refer to [Validate VPA API](ref:validate_vpa_api).
 
 ## Customization and Advanced Features
 
