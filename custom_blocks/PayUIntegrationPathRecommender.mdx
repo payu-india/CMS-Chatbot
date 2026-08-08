@@ -440,17 +440,23 @@ export const PayUIntegrationPathRecommender = function PayUIntegrationPathRecomm
     color: '#111827',
   };
 
-  var optionBtn = {
-    width: '100%',
-    textAlign: 'left',
-    padding: '12px 14px',
-    border: '2px solid #e5e7eb',
-    borderRadius: '10px',
-    background: '#fff',
-    cursor: 'pointer',
-    font: 'inherit',
-    color: 'inherit',
-  };
+  function optionBtnStyle(optId, hoveredOpt) {
+    var hovered = hoveredOpt === optId;
+    return {
+      width: '100%',
+      textAlign: 'left',
+      padding: '12px 14px',
+      border: '2px solid ' + (hovered ? '#00A651' : '#e5e7eb'),
+      borderRadius: '10px',
+      background: hovered ? '#f0fdf4' : '#fff',
+      cursor: 'pointer',
+      font: 'inherit',
+      color: 'inherit',
+      boxShadow: hovered ? '0 10px 24px rgba(0,166,81,0.16)' : '0 1px 2px rgba(0,0,0,0.04)',
+      transform: hovered ? 'scale(1.02)' : 'scale(1)',
+      transition: 'transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease',
+    };
+  }
 
   var _history = useState([START]);
   var history = _history[0];
@@ -461,8 +467,18 @@ export const PayUIntegrationPathRecommender = function PayUIntegrationPathRecomm
   var _done = useState(false);
   var done = _done[0];
   var setDone = _done[1];
+  var _modalOpen = useState(false);
+  var modalOpen = _modalOpen[0];
+  var setModalOpen = _modalOpen[1];
+  var _hoveredOpt = useState(null);
+  var hoveredOpt = _hoveredOpt[0];
+  var setHoveredOpt = _hoveredOpt[1];
+  var _hoveredLaunch = useState(false);
+  var hoveredLaunch = _hoveredLaunch[0];
+  var setHoveredLaunch = _hoveredLaunch[1];
   var questionRef = useRef(null);
-  var firstOptionRef = useRef(null);
+  var launchBtnRef = useRef(null);
+  var modalRef = useRef(null);
 
   var currentId = done ? null : history[history.length - 1];
   var q = currentId ? resolveQuestion(currentId, answers) : null;
@@ -471,9 +487,37 @@ export const PayUIntegrationPathRecommender = function PayUIntegrationPathRecomm
   var pct = done ? 100 : Math.min(100, Math.round((stepNum / estTotal) * 100));
 
   useEffect(function () {
-    if (done) return;
+    if (!modalOpen || done) return;
     if (questionRef.current) questionRef.current.focus();
-  }, [history, done]);
+  }, [history, done, modalOpen]);
+
+  useEffect(function () {
+    if (!modalOpen) return;
+    function onKey(e) {
+      if (e.key === 'Escape') setModalOpen(false);
+    }
+    window.addEventListener('keydown', onKey);
+    return function () {
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [modalOpen]);
+
+  useEffect(function () {
+    if (modalOpen && questionRef.current) {
+      questionRef.current.focus();
+    }
+    if (!modalOpen && launchBtnRef.current) {
+      launchBtnRef.current.focus();
+    }
+  }, [modalOpen]);
+
+  function openModal() {
+    setModalOpen(true);
+  }
+
+  function closeModal() {
+    setModalOpen(false);
+  }
 
   function onPick(oid) {
     if (!currentId) return;
@@ -519,6 +563,12 @@ export const PayUIntegrationPathRecommender = function PayUIntegrationPathRecomm
     setHistory([START]);
     setAnswers({});
     setDone(false);
+    setHoveredOpt(null);
+  }
+
+  function restartAndOpen() {
+    restart();
+    setModalOpen(true);
   }
 
   var recs = done ? recommend(answers) : [];
@@ -533,18 +583,28 @@ export const PayUIntegrationPathRecommender = function PayUIntegrationPathRecomm
     return { bg: '#fef3c7', color: '#92400e' };
   }
 
-  return (
-    <div style={shell} role="region" aria-label="PayU Integration Path Recommender">
-      <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#00A651', marginBottom: '6px' }}>
-        PayU DevEx
-      </div>
-      <h2 style={{ margin: '0 0 6px', fontSize: '1.25rem', fontWeight: 700, color: '#1e3a5f' }}>
-        Find your PayU integration path
-      </h2>
-      <p style={{ margin: '0 0 16px', color: '#6b7280', fontSize: '13px' }}>
-        Step 4 of the Quick Start Guide. Tap to answer - each step adapts to your previous choice. Or scroll down to browse all paths.
-      </p>
+  var launchBtnStyle = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '10px',
+    width: '100%',
+    maxWidth: '420px',
+    padding: '16px 24px',
+    borderRadius: '12px',
+    border: 'none',
+    background: hoveredLaunch ? '#008f47' : '#00A651',
+    color: '#fff',
+    fontSize: '16px',
+    fontWeight: 700,
+    cursor: 'pointer',
+    boxShadow: hoveredLaunch ? '0 14px 32px rgba(0,166,81,0.35)' : '0 8px 20px rgba(0,166,81,0.25)',
+    transform: hoveredLaunch ? 'scale(1.03) translateY(-2px)' : 'scale(1) translateY(0)',
+    transition: 'transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease',
+  };
 
+  var wizardBody = (
+    <div>
       {!done && history.length > 1 ? (
         <div style={{ marginBottom: '10px', fontSize: '12px', color: '#00A651', fontWeight: 500 }}>
           Your path: {buildPathSummary(answers)}
@@ -579,19 +639,23 @@ export const PayUIntegrationPathRecommender = function PayUIntegrationPathRecomm
           >
             {q.text}
           </h3>
-          <p style={{ margin: '0 0 12px', fontSize: '12px', color: '#6b7280' }}>{q.hint}</p>
-          <div style={{ display: 'grid', gap: '8px' }}>
-            {q.options.map(function (opt, optIdx) {
+          <p style={{ margin: '0 0 6px', fontSize: '12px', color: '#6b7280' }}>{q.hint}</p>
+          <p style={{ margin: '0 0 12px', fontSize: '12px', color: '#00A651', fontWeight: 500 }}>Tap an option to continue</p>
+          <div style={{ display: 'grid', gap: '10px' }}>
+            {q.options.map(function (opt) {
               return (
                 <button
                   key={opt.id}
                   type="button"
-                  ref={optIdx === 0 ? firstOptionRef : null}
+                  onMouseEnter={function () { setHoveredOpt(opt.id); }}
+                  onMouseLeave={function () { setHoveredOpt(null); }}
+                  onFocus={function () { setHoveredOpt(opt.id); }}
+                  onBlur={function () { setHoveredOpt(null); }}
                   onClick={function () { onPick(opt.id); }}
-                  style={optionBtn}
+                  style={optionBtnStyle(opt.id, hoveredOpt)}
                 >
-                  <span style={{ fontWeight: 500 }}>{opt.label}</span>
-                  <span style={{ display: 'block', marginTop: '3px', fontSize: '12px', color: '#6b7280', fontWeight: 400 }}>{opt.desc}</span>
+                  <span style={{ fontWeight: 600 }}>{opt.label}</span>
+                  <span style={{ display: 'block', marginTop: '4px', fontSize: '12px', color: '#6b7280', fontWeight: 400 }}>{opt.desc}</span>
                 </button>
               );
             })}
@@ -683,8 +747,85 @@ export const PayUIntegrationPathRecommender = function PayUIntegrationPathRecomm
           </button>
         ) : null}
       </div>
+    </div>
+  );
 
-      <details style={{ marginTop: '20px' }}>
+  return (
+    <div style={shell} role="region" aria-label="PayU Integration Path Recommender">
+      <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#00A651', marginBottom: '6px' }}>
+        PayU DevEx
+      </div>
+      <h2 style={{ margin: '0 0 6px', fontSize: '1.25rem', fontWeight: 700, color: '#1e3a5f' }}>
+        Choose your integration path
+      </h2>
+      <p style={{ margin: '0 0 16px', color: '#6b7280', fontSize: '13px' }}>
+        Step 4 of the Quick Start Guide. Not sure where to start? Open the interactive finder - it takes about 2 minutes.
+      </p>
+
+      <div
+        style={{
+          padding: '20px',
+          borderRadius: '14px',
+          border: '1px solid rgba(0,166,81,0.2)',
+          background: 'linear-gradient(135deg, #f0fdf4 0%, #ffffff 55%, #f8fafc 100%)',
+          marginBottom: '16px',
+        }}
+      >
+        {done && primary ? (
+          <div>
+            <p style={{ margin: '0 0 6px', fontSize: '12px', fontWeight: 600, color: '#00A651', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+              Your recommendation
+            </p>
+            <h3 style={{ margin: '0 0 8px', fontSize: '1.1rem', color: '#1e3a5f' }}>{primary.name}</h3>
+            <p style={{ margin: '0 0 14px', fontSize: '13px', color: '#4b5563' }}>{primary.product.description}</p>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+              <button
+                ref={launchBtnRef}
+                type="button"
+                onClick={openModal}
+                onMouseEnter={function () { setHoveredLaunch(true); }}
+                onMouseLeave={function () { setHoveredLaunch(false); }}
+                style={Object.assign({}, launchBtnStyle, { maxWidth: 'none', width: 'auto', flex: '1 1 auto' })}
+              >
+                View full result
+              </button>
+              <button
+                type="button"
+                onClick={restartAndOpen}
+                style={{ padding: '12px 18px', borderRadius: '12px', fontSize: '14px', fontWeight: 600, cursor: 'pointer', background: '#fff', border: '1px solid #e5e7eb', color: '#374151' }}
+              >
+                Start over
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div style={{ textAlign: 'center' }}>
+            <p style={{ margin: '0 0 4px', fontSize: '15px', fontWeight: 600, color: '#1e3a5f' }}>
+              Find the right PayU integration in a few taps
+            </p>
+            <p style={{ margin: '0 0 16px', fontSize: '13px', color: '#6b7280' }}>
+              Web, mobile, plugins, no-code - we will match you to the official docs path.
+            </p>
+            <button
+              ref={launchBtnRef}
+              type="button"
+              onClick={openModal}
+              onMouseEnter={function () { setHoveredLaunch(true); }}
+              onMouseLeave={function () { setHoveredLaunch(false); }}
+              aria-haspopup="dialog"
+              style={launchBtnStyle}
+            >
+              <span>Open integration path finder</span>
+              <span aria-hidden="true" style={{ fontSize: '18px' }}>&rarr;</span>
+            </button>
+            <p style={{ margin: '12px 0 0', fontSize: '12px', color: '#9ca3af' }}>
+              Free · No signup · ~2 min
+            </p>
+          </div>
+        )}
+      </div>
+
+      <details style={{ marginTop: '4px' }}>
         <summary style={{ cursor: 'pointer', fontWeight: 600, color: '#1e3a5f', fontSize: '14px' }}>
           See all integration paths
         </summary>
@@ -693,7 +834,7 @@ export const PayUIntegrationPathRecommender = function PayUIntegrationPathRecomm
             All PayU integration paths
           </h3>
           <p style={{ margin: '0 0 16px', fontSize: '13px', color: '#6b7280' }}>
-            Complete reference of PayU collect-payment integrations. Use the wizard above for a personalized recommendation.
+            Complete reference of PayU collect-payment integrations. Use the finder above for a personalized recommendation.
           </p>
           {CATEGORY_ORDER.map(function (cat) {
             var items = groupedProducts[cat];
@@ -735,6 +876,65 @@ export const PayUIntegrationPathRecommender = function PayUIntegrationPathRecomm
           })}
         </div>
       </details>
+
+      {modalOpen ? (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 99999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '16px',
+            background: 'rgba(15, 23, 42, 0.55)',
+            backdropFilter: 'blur(4px)',
+          }}
+          onClick={function (e) {
+            if (e.target === e.currentTarget) closeModal();
+          }}
+        >
+          <div
+            ref={modalRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="payu-ipr-modal-title"
+            style={{
+              width: '100%',
+              maxWidth: '560px',
+              maxHeight: '90vh',
+              overflow: 'auto',
+              borderRadius: '16px',
+              background: '#ffffff',
+              boxShadow: '0 24px 64px rgba(0,0,0,0.28)',
+              fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif',
+              fontSize: '14px',
+              lineHeight: 1.5,
+              color: '#111827',
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 18px', borderBottom: '1px solid #e5e7eb', position: 'sticky', top: 0, background: '#fff', zIndex: 1 }}>
+              <div>
+                <p style={{ margin: 0, fontSize: '11px', fontWeight: 600, color: '#00A651', textTransform: 'uppercase', letterSpacing: '0.04em' }}>PayU DevEx</p>
+                <h2 id="payu-ipr-modal-title" style={{ margin: '2px 0 0', fontSize: '1.1rem', fontWeight: 700, color: '#1e3a5f' }}>
+                  Integration path finder
+                </h2>
+              </div>
+              <button
+                type="button"
+                onClick={closeModal}
+                aria-label="Close integration path finder"
+                style={{ width: '36px', height: '36px', borderRadius: '8px', border: '1px solid #e5e7eb', background: '#fff', cursor: 'pointer', fontSize: '20px', lineHeight: 1, color: '#6b7280' }}
+              >
+                ×
+              </button>
+            </div>
+            <div style={{ padding: '18px' }}>
+              {wizardBody}
+            </div>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 };
