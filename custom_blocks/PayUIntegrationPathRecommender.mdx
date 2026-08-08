@@ -1,485 +1,319 @@
 ---
 name: PayUIntegrationPathRecommender
 ---
-// PayUIntegrationPathRecommender - ReadMe CMS Custom Component
-// Products and URLs from PayU_Docs_Inventory.csv and docs/getting started/introduction/index.md
-// MDX-safe: all logic inside export; data via JSON.parse strings
-// Doc page: <PayUIntegrationPathRecommender />
+/**
+ * PayU Integration Path Recommender - Data module
+ * ================================================
+ * Edit this file to update product copy, docs URLs, and wizard options.
+ * You do not need to change PayUIntegrationPathRecommender.jsx unless you
+ * add new question branches or scoring rules.
+ *
+ * Field reference (PRODUCTS entries):
+ * - category: Group heading in the static summary table (Web checkout, Mobile SDK, etc.)
+ * - description: One-line summary shown in results and the summary table
+ * - pros: Bullet list of strengths; shown on the primary result card ("Why this works for you")
+ * - cons: Bullet list of trade-offs; shown on the primary result card ("Trade-offs to know")
+ * - complexity: low | medium | high - shown as a badge on the result card
+ * - goLiveDays: Rough days-to-go-live estimate shown on the result card
+ * - docsUrl: Link to the official PayU docs page for this integration path
+ *
+ * Option arrays (OPT_*): Each item has id (internal key), label (button text), desc (subtitle).
+ */
 
-import { useState } from 'react';
+export const CATEGORY_ORDER = [
+  'Web checkout',
+  'Mobile SDK',
+  'Cross-platform SDK',
+  'Plugin',
+  'No-code',
+  'In-person',
+  'Offering',
+  'API',
+];
 
-export const PayUIntegrationPathRecommender = function PayUIntegrationPathRecommender() {
-  var PRODUCTS = JSON.parse(
-    '{"PayU Hosted Checkout":{"category":"Web checkout","description":"Prebuilt checkout page hosted by PayU. No PCI-DSS on your side. Fastest path to go live.","pros":["No PCI-DSS required","Low dev effort","All payment modes on PayU page","WebView option for mobile apps"],"cons":["Customer redirects to PayU","Limited UI customization"],"complexity":"low","goLiveDays":3,"docsUrl":"https://docs.payu.in/collect-payments/introduction-web/prebuilt-checkout-payu-hosted"},"Merchant Hosted Checkout":{"category":"Web checkout","description":"Custom seamless checkout on your website. You control the UI; PCI-DSS required for card data on your site.","pros":["Full checkout UI control","Customer stays on your site","Per-method seamless integrations"],"cons":["PCI-DSS compliance required","Higher integration effort"],"complexity":"medium","goLiveDays":14,"docsUrl":"https://docs.payu.in/collect-payments/introduction-web/custom-checkout-merchant-hosted"},"Server-to-Server Integration":{"category":"Web checkout","description":"Backend-orchestrated payments with maximum control. For large merchants and marketplaces.","pros":["Very high customization","Backend control","Marketplace-ready"],"cons":["High PCI scope","Complex integration","Longer go-live"],"complexity":"high","goLiveDays":21,"docsUrl":"https://docs.payu.in/collect-payments/introduction-web/server-to-server-integration"},"CommercePro Checkout":{"category":"Web checkout","description":"Optimized high-conversion checkout. PayU handles sensitive card data.","pros":["Conversion-optimized UI","No PCI for sensitive data","Callback URL integration"],"cons":["Medium dev effort","Less UI control than merchant-hosted"],"complexity":"medium","goLiveDays":10,"docsUrl":"https://docs.payu.in/collect-payments/introduction-web/checkout-express"},"Checkout Plus":{"category":"Web checkout","description":"High-conversion hosted variant with mobile WebView support.","pros":["Optimized checkout","Mobile WebView friendly","PayU-hosted sensitive data"],"cons":["Medium customization"],"complexity":"medium","goLiveDays":10,"docsUrl":"https://docs.payu.in/collect-payments/introduction-web/checkout-plus-integration"},"Payment Links":{"category":"No-code","description":"Create and share payment links from dashboard or API. No checkout integration.","pros":["Zero checkout code","Share via SMS, email, WhatsApp","Instant setup"],"cons":["Not for high-volume cart checkout"],"complexity":"low","goLiveDays":1,"docsUrl":"https://docs.payu.in/collect-payments/introduction-no-code-payments-integration/payment-links-dashboard"},"UPI QR Integration":{"category":"In-person","description":"Dynamic UPI QR for counter, kiosk, and offline collection.","pros":["Offline and in-store UPI","No card terminal needed","API-driven QR generation"],"cons":["Display surface needed","Status polling required"],"complexity":"low","goLiveDays":5,"docsUrl":"https://docs.payu.in/collect-payments/in-person-payments/integrate-upi-qr"},"Android Checkout Pro SDK":{"category":"Mobile SDK","description":"Official Android Checkout Pro SDK for native in-app payments including UPI Intent.","pros":["Native Android UX","UPI Intent support","All payment modes in-app"],"cons":["Android only","Server-side hash required"],"complexity":"medium","goLiveDays":14,"docsUrl":"https://docs.payu.in/collect-payments/explore-android-sdks/android-checkoutpro-sdk"},"iOS Checkout Pro SDK":{"category":"Mobile SDK","description":"Official iOS Checkout Pro SDK for native in-app payments.","pros":["Native iOS UX","In-app payment flow","Apple ecosystem ready"],"cons":["iOS only","Swift or Objective-C skills"],"complexity":"medium","goLiveDays":14,"docsUrl":"https://docs.payu.in/collect-payments/explore-ios-sdks/ios-checkoutpro-sdk"},"React Native Checkout Pro SDK":{"category":"Cross-platform SDK","description":"Checkout Pro for React Native apps wrapping native Android and iOS SDKs.","pros":["Shared JS codebase","Native payment UX","Cross-platform mobile"],"cons":["RN bridge setup","Platform-specific config"],"complexity":"medium","goLiveDays":14,"docsUrl":"https://docs.payu.in/collect-payments/explore-reactnative-sdks/react-native-checkoutpro-sdk"},"Flutter Checkout Pro SDK":{"category":"Cross-platform SDK","description":"Checkout Pro for Flutter/Dart mobile applications.","pros":["Single Flutter codebase","Native checkout experience"],"cons":["Flutter plugin integration","Platform builds"],"complexity":"medium","goLiveDays":14,"docsUrl":"https://docs.payu.in/collect-payments/flutter-sdk-introduction/flutter-checkoutpro-sdk"},"Cordova Checkout Pro SDK":{"category":"Cross-platform SDK","description":"Checkout Pro for Ionic, Cordova, and hybrid mobile apps.","pros":["Hybrid app support","Reuses web skills"],"cons":["WebView and surl/furl handling","Lower UX than native SDK"],"complexity":"medium","goLiveDays":14,"docsUrl":"https://docs.payu.in/collect-payments/cordova-sdk-introduction"},"eCommerce Platform Plugins":{"category":"Plugin","description":"Ready-made plugins for Shopify, WooCommerce, Magento, and other platforms.","pros":["Very low dev effort","No PCI burden","Platform-managed checkout"],"cons":["Limited to supported platforms","Platform-specific config"],"complexity":"low","goLiveDays":2,"docsUrl":"https://docs.payu.in/collect-payments/ecommerce-platform-plugins"},"Save Cards (Tokenization)":{"category":"Offering","description":"PayU Vault tokenization for one-click repeat purchases. RBI-compliant saved cards.","pros":["Repeat purchase conversion","PCI-compliant tokens","Works with hosted and merchant-hosted"],"cons":["Customer consent flows","Extra integration step"],"complexity":"medium","goLiveDays":10,"docsUrl":"https://docs.payu.in/offerings/introduction-save-cards"},"Recurring Payments":{"category":"Offering","description":"Subscriptions, standing instructions, and recurring billing on cards, UPI, and eNACH.","pros":["Automated billing","SI on cards and UPI","Zion automation platform"],"cons":["RBI mandate rules","Webhook mandatory","KAM enablement"],"complexity":"high","goLiveDays":21,"docsUrl":"https://docs.payu.in/offerings/introduction-recurring-payments-integration"},"Split Settlements":{"category":"Offering","description":"Split transaction proceeds between marketplace and vendors automatically.","pros":["Multi-vendor payouts","Configurable split ratios","Marketplace compliance"],"cons":["Vendor onboarding","Reconciliation overhead"],"complexity":"high","goLiveDays":21,"docsUrl":"https://docs.payu.in/offerings/split-settlments"},"Webhooks":{"category":"API","description":"Real-time server notifications for payment, refund, and subscription events.","pros":["Reliable reconciliation","Required for production","Subscription event support"],"cons":["Public HTTPS endpoint","Idempotency handling"],"complexity":"low","goLiveDays":2,"docsUrl":"https://docs.payu.in/developer-tools/webhooks-consolidated"},"Refunds API":{"category":"API","description":"Programmatic full and partial refunds with status tracking.","pros":["Automated refunds","Partial refund support","Dashboard and API"],"cons":["Settlement timing awareness"],"complexity":"low","goLiveDays":2,"docsUrl":"https://docs.payu.in/offerings/introduction-refunds"},"Third-Party Verification (TPV)":{"category":"Offering","description":"Verify payer bank account matches registered beneficiary for regulated use cases.","pros":["Net banking TPV","UPI TPV on SDK","Compliance for lending and insurance"],"cons":["Extra verification step","Use-case specific"],"complexity":"medium","goLiveDays":10,"docsUrl":"https://docs.payu.in/offerings/introduction-to-payu-tpv/collect-payments-with-tpv-payu-hosted-checkout"}}'
-  );
-
-  var OPT_CHANNEL = JSON.parse('[{"id":"website","label":"Custom website or web app","desc":"You will write integration code for your site"},{"id":"mobile","label":"Native mobile app","desc":"Android and/or iOS native or hybrid app"},{"id":"cross_platform","label":"Cross-platform mobile app","desc":"React Native, Flutter, or Cordova/Ionic"},{"id":"plugin","label":"eCommerce platform store","desc":"Shopify, WooCommerce, Magento, or similar"},{"id":"nocode","label":"No-code collection","desc":"Payment links, buttons, or invoices only"},{"id":"in_person","label":"In-person / offline","desc":"Counter, kiosk, or field QR collection"},{"id":"both","label":"Website and mobile apps","desc":"Omnichannel - payments on web and in-app"}]');
-  var OPT_PLUGIN = JSON.parse('[{"id":"shopify","label":"Shopify","desc":"CommercePro or standard PayU plugin"},{"id":"woocommerce","label":"WooCommerce","desc":"WordPress eCommerce plugin"},{"id":"magento","label":"Magento","desc":"Adobe Commerce plugin"},{"id":"other_plugin","label":"Other platform","desc":"PrestaShop, OpenCart, Odoo, Wix, etc."}]');
-  var OPT_CROSS = JSON.parse('[{"id":"react_native","label":"React Native","desc":"React Native Checkout Pro SDK"},{"id":"flutter","label":"Flutter","desc":"Flutter Checkout Pro SDK"},{"id":"cordova","label":"Cordova / Ionic","desc":"Cordova Checkout Pro SDK"}]');
-  var OPT_LAUNCH = JSON.parse('[{"id":"web_first","label":"Web checkout first","desc":"We will ask about hosted vs merchant-hosted web flow"},{"id":"mobile_first","label":"Mobile app payments first","desc":"We will ask about Android/iOS SDK path"},{"id":"together","label":"Both together","desc":"Recommend a unified starting path"}]');
-  var OPT_WEB = JSON.parse('[{"id":"hosted","label":"PayU Hosted Checkout","desc":"Redirect to PayU - no PCI, fastest go-live (recommended for most)"},{"id":"merchant_hosted","label":"Merchant Hosted Checkout","desc":"Seamless UI on your site - you have PCI-DSS"},{"id":"commercepro","label":"CommercePro Checkout","desc":"Optimized conversion - PayU handles sensitive data"},{"id":"server_to_server","label":"Server-to-Server","desc":"Full backend control - marketplaces and large merchants"},{"id":"unsure","label":"Not sure - fastest go-live","desc":"We recommend PayU Hosted Checkout"}]');
-  var OPT_MOBILE_PLAT = JSON.parse('[{"id":"android","label":"Android only","desc":"Android Checkout Pro SDK"},{"id":"ios","label":"iOS only","desc":"iOS Checkout Pro SDK"},{"id":"both_mobile","label":"Android and iOS","desc":"Separate SDK integration per platform"}]');
-  var OPT_MOBILE_UX = JSON.parse('[{"id":"native","label":"Native SDK (Checkout Pro)","desc":"Best in-app UX - UPI Intent, cards, wallets"},{"id":"redirect","label":"Hosted checkout in WebView","desc":"Redirect to PayU page inside app - faster to ship"},{"id":"unsure","label":"Recommend for me","desc":"We suggest native Checkout Pro SDK"}]');
-  var OPT_NOCODE = JSON.parse('[{"id":"links","label":"Payment links","desc":"Share URL - dashboard or API"},{"id":"qr","label":"UPI QR codes","desc":"Dynamic QR for offline or invoice"},{"id":"both_nocode","label":"Both links and QR","desc":"Flexible no-code collection"}]');
-  var OPT_PAYMENTS = JSON.parse('[{"id":"cards","label":"Cards only","desc":"Credit and debit cards"},{"id":"upi","label":"UPI only","desc":"Intent on mobile, collect on web"},{"id":"cards_upi","label":"Cards + UPI","desc":"Most common for India checkout"},{"id":"all","label":"All methods","desc":"Cards, UPI, net banking, wallets, EMI"}]');
-  var OPT_BUSINESS = JSON.parse('[{"id":"one_time","label":"One-time payments only","desc":"Standard checkout - most merchants"},{"id":"recurring","label":"Subscriptions / recurring","desc":"Standing instructions, SI, mandates"},{"id":"saved","label":"Saved cards / one-click","desc":"PayU Vault tokenization"},{"id":"marketplace","label":"Marketplace / split settlement","desc":"Pay multiple vendors from one order"},{"id":"tpv","label":"Third-party verification (TPV)","desc":"Verify payer account for regulated flows"}]');
-  var OPT_BUSINESS_NOCODE = JSON.parse('[{"id":"one_time","label":"One-time collections","desc":"Standard links or QR"},{"id":"recurring","label":"Recurring billing","desc":"Needs subscription APIs beyond basic links"},{"id":"marketplace","label":"Marketplace payouts","desc":"Split settlement between parties"}]');
-
-  var START = 'channel';
-
-  function isMobileContext(a) {
-    return a.channel === 'mobile' || a.channel === 'cross_platform' || a.launch_priority === 'mobile_first' || a.mobile_platform || a.mobile_ux;
-  }
-
-  function isWebContext(a) {
-    return a.channel === 'website' || a.launch_priority === 'web_first' || a.web_experience;
-  }
-
-  function getNext(a, justAnswered) {
-    if (!a.channel) return START;
-    if (justAnswered === 'channel') {
-      if (a.channel === 'plugin') return 'plugin_platform';
-      if (a.channel === 'cross_platform') return 'cross_stack';
-      if (a.channel === 'nocode') return 'nocode_type';
-      if (a.channel === 'in_person') return 'business_model';
-      if (a.channel === 'mobile') return 'mobile_platform';
-      if (a.channel === 'both') return 'launch_priority';
-      if (a.channel === 'website') return 'web_experience';
-    }
-    if (justAnswered === 'plugin_platform') return 'business_model';
-    if (justAnswered === 'cross_stack') return 'payment_focus';
-    if (justAnswered === 'launch_priority') {
-      if (a.launch_priority === 'web_first') return 'web_experience';
-      if (a.launch_priority === 'mobile_first') return 'mobile_platform';
-      return 'payment_focus';
-    }
-    if (justAnswered === 'web_experience') return 'payment_focus';
-    if (justAnswered === 'mobile_platform') return 'mobile_ux';
-    if (justAnswered === 'mobile_ux') return 'payment_focus';
-    if (justAnswered === 'nocode_type') return 'business_model';
-    if (justAnswered === 'payment_focus') return 'business_model';
-    if (justAnswered === 'business_model') return null;
-    if (a.channel === 'plugin' && a.plugin_platform && !a.business_model) return 'business_model';
-    if (a.channel === 'nocode' && a.nocode_type && !a.business_model) return 'business_model';
-    if (a.payment_focus && !a.business_model) return 'business_model';
-    if (a.mobile_ux && !a.payment_focus) return 'payment_focus';
-    if (a.mobile_platform && !a.mobile_ux) return 'mobile_ux';
-    if (a.web_experience && !a.payment_focus) return 'payment_focus';
-    if (a.channel === 'both' && !a.launch_priority) return 'launch_priority';
-    if (a.channel === 'mobile' && !a.mobile_platform) return 'mobile_platform';
-    if (a.channel === 'website' && !a.web_experience) return 'web_experience';
-    if (a.channel === 'cross_platform' && !a.cross_stack) return 'cross_stack';
-    return null;
-  }
-
-  function resolveQuestion(id, a) {
-    if (id === 'channel') {
-      return { id: 'channel', text: 'How will you collect payments?', hint: 'Matches PayU Collect Payments integration paths', options: OPT_CHANNEL };
-    }
-    if (id === 'plugin_platform') {
-      return { id: 'plugin_platform', text: 'Which eCommerce platform?', hint: 'All use PayU eCommerce plugins - very low dev effort', options: OPT_PLUGIN };
-    }
-    if (id === 'cross_stack') {
-      return { id: 'cross_stack', text: 'Which cross-platform framework?', hint: 'PayU Checkout Pro SDK per framework', options: OPT_CROSS };
-    }
-    if (id === 'launch_priority') {
-      return { id: 'launch_priority', text: 'What are you launching first?', hint: 'For omnichannel website + mobile', options: OPT_LAUNCH };
-    }
-    if (id === 'web_experience') {
-      return { id: 'web_experience', text: 'Which web checkout experience?', hint: 'From PayU Integration Comparison Matrix', options: OPT_WEB };
-    }
-    if (id === 'mobile_platform') {
-      return { id: 'mobile_platform', text: 'Which mobile platform(s)?', hint: 'Checkout Pro SDK is per platform', options: OPT_MOBILE_PLAT };
-    }
-    if (id === 'mobile_ux') {
-      return { id: 'mobile_ux', text: 'How should in-app payment work?', hint: 'Native SDK vs hosted WebView per PayU docs', options: OPT_MOBILE_UX };
-    }
-    if (id === 'nocode_type') {
-      return { id: 'nocode_type', text: 'How do you want to collect?', hint: 'No-code paths from PayU docs', options: OPT_NOCODE };
-    }
-    if (id === 'payment_focus') {
-      var payHint = isMobileContext(a) ? 'UPI Intent is recommended for UPI on native mobile SDK' : 'Merchant Hosted supports UPI Collect on web';
-      return { id: 'payment_focus', text: 'Which payment methods do you need?', hint: payHint, options: OPT_PAYMENTS };
-    }
-    if (id === 'business_model') {
-      var bizOpts = a.channel === 'nocode' || a.channel === 'in_person' ? OPT_BUSINESS_NOCODE : OPT_BUSINESS;
-      var bizText = a.channel === 'plugin' ? 'Any additional PayU offerings needed?' : 'What is your business payment model?';
-      return { id: 'business_model', text: bizText, hint: 'Tap one - your integration path appears next', options: bizOpts };
-    }
-    return null;
-  }
-
-  function buildPathSummary(a) {
-    var parts = [];
-    if (a.channel === 'website') parts.push('Website');
-    if (a.channel === 'mobile') parts.push('Mobile app');
-    if (a.channel === 'cross_platform') parts.push('Cross-platform app');
-    if (a.channel === 'plugin') parts.push('eCommerce plugin');
-    if (a.channel === 'nocode') parts.push('No-code');
-    if (a.channel === 'in_person') parts.push('In-person');
-    if (a.channel === 'both') parts.push('Web + mobile');
-    if (a.plugin_platform) parts.push(a.plugin_platform);
-    if (a.cross_stack) parts.push(a.cross_stack);
-    if (a.web_experience === 'hosted' || a.web_experience === 'unsure') parts.push('Hosted checkout');
-    if (a.web_experience === 'merchant_hosted') parts.push('Merchant hosted');
-    if (a.web_experience === 'commercepro') parts.push('CommercePro');
-    if (a.web_experience === 'server_to_server') parts.push('Server-to-Server');
-    if (a.mobile_platform === 'android') parts.push('Android');
-    if (a.mobile_platform === 'ios') parts.push('iOS');
-    if (a.mobile_platform === 'both_mobile') parts.push('Android + iOS');
-    if (a.mobile_ux === 'native' || a.mobile_ux === 'unsure') parts.push('Native SDK');
-    if (a.mobile_ux === 'redirect') parts.push('Hosted WebView');
-    return parts.length ? parts.join(' · ') : 'Your workflow';
-  }
-
-  function estimateSteps(a) {
-    if (!a.channel) return 4;
-    if (a.channel === 'plugin' || a.channel === 'in_person') return 2;
-    if (a.channel === 'nocode') return 2;
-    if (a.channel === 'cross_platform') return 3;
-    if (a.channel === 'website') return 3;
-    if (a.channel === 'mobile') return 4;
-    if (a.channel === 'both') return 4;
-    return 4;
-  }
-
-  function getPrimaryKey(a) {
-    if (a.channel === 'plugin') return 'eCommerce Platform Plugins';
-    if (a.channel === 'in_person') return 'UPI QR Integration';
-    if (a.channel === 'nocode') {
-      if (a.nocode_type === 'qr' || a.nocode_type === 'both_nocode') return 'UPI QR Integration';
-      return 'Payment Links';
-    }
-    if (a.channel === 'cross_platform') {
-      if (a.cross_stack === 'react_native') return 'React Native Checkout Pro SDK';
-      if (a.cross_stack === 'flutter') return 'Flutter Checkout Pro SDK';
-      return 'Cordova Checkout Pro SDK';
-    }
-    var mobilePath = a.channel === 'mobile' || (a.channel === 'both' && a.launch_priority === 'mobile_first');
-    if (mobilePath) {
-      if (a.mobile_ux === 'redirect') return 'PayU Hosted Checkout';
-      if (a.mobile_platform === 'ios') return 'iOS Checkout Pro SDK';
-      if (a.mobile_platform === 'android') return 'Android Checkout Pro SDK';
-      if (a.mobile_platform === 'both_mobile') return 'Android Checkout Pro SDK';
-      return 'Android Checkout Pro SDK';
-    }
-    var webPath = a.channel === 'website' || (a.channel === 'both' && a.launch_priority === 'web_first');
-    if (webPath) {
-      if (a.web_experience === 'server_to_server') return 'Server-to-Server Integration';
-      if (a.web_experience === 'merchant_hosted') return 'Merchant Hosted Checkout';
-      if (a.web_experience === 'commercepro') return 'CommercePro Checkout';
-      return 'PayU Hosted Checkout';
-    }
-    if (a.channel === 'both' && a.launch_priority === 'together') return 'PayU Hosted Checkout';
-    return 'PayU Hosted Checkout';
-  }
-
-  function getCompanions(a, primaryKey) {
-    var list = [];
-    var seen = {};
-    function add(key, reason) {
-      if (key === primaryKey || seen[key] || !PRODUCTS[key]) return;
-      seen[key] = 1;
-      list.push({ key: key, reason: reason });
-    }
-    if (a.mobile_platform === 'both_mobile' && primaryKey === 'Android Checkout Pro SDK') {
-      add('iOS Checkout Pro SDK', 'You also need iOS Checkout Pro SDK for the App Store build.');
-    }
-    if (a.mobile_platform === 'both_mobile' && primaryKey === 'iOS Checkout Pro SDK') {
-      add('Android Checkout Pro SDK', 'You also need Android Checkout Pro SDK for Google Play.');
-    }
-    if (a.payment_focus === 'upi' && isMobileContext(a) && primaryKey.indexOf('SDK') >= 0) {
-      add('Third-Party Verification (TPV)', 'Optional: enable UPI TPV if payer account must match beneficiary.');
-    }
-    if (a.channel === 'both' && a.launch_priority === 'together') {
-      add('Android Checkout Pro SDK', 'Add native Checkout Pro when you ship the Android app.');
-      add('iOS Checkout Pro SDK', 'Add native Checkout Pro when you ship the iOS app.');
-    }
-    if (a.business_model === 'recurring') add('Recurring Payments', 'Required for subscriptions and standing instructions.');
-    if (a.business_model === 'saved') add('Save Cards (Tokenization)', 'Enables PayU Vault one-click checkout.');
-    if (a.business_model === 'marketplace') add('Split Settlements', 'Splits payouts across marketplace vendors.');
-    if (a.business_model === 'tpv') add('Third-Party Verification (TPV)', 'Verify payer bank account for regulated industries.');
-    if (a.channel !== 'nocode' && a.channel !== 'plugin') {
-      add('Webhooks', 'Essential for production payment reconciliation.');
-      add('Refunds API', 'Automate refunds from your backend.');
-    }
-    if (a.business_model === 'recurring' && a.channel !== 'nocode') {
-      add('Webhooks', 'Subscription webhooks are mandatory for recurring payments.');
-    }
-    if (a.web_experience === 'commercepro' && primaryKey !== 'Checkout Plus') {
-      add('Checkout Plus', 'Alternative high-conversion hosted option with WebView support.');
-    }
-    return list.slice(0, 4);
-  }
-
-  function getPrimaryReason(a, key) {
-    if (key === 'PayU Hosted Checkout') {
-      if (a.mobile_ux === 'redirect') return 'PayU Hosted Checkout with WebView is the documented path for redirect-based mobile apps.';
-      if (a.web_experience === 'unsure' || !a.web_experience) return 'Lowest PCI scope and fastest go-live per PayU Integration Comparison Matrix.';
-      return 'Best when you want PayU to host the payment page with no PCI-DSS burden.';
-    }
-    if (key === 'Merchant Hosted Checkout') return 'You chose full UI control on your site with PCI-DSS - this is the official Merchant Hosted path.';
-    if (key === 'Server-to-Server Integration') return 'Maximum backend control for marketplaces and large merchants.';
-    if (key === 'CommercePro Checkout') return 'Optimized conversion checkout where PayU handles sensitive payment data.';
-    if (key === 'Payment Links') return 'Zero checkout integration - create and share links from dashboard or API.';
-    if (key === 'UPI QR Integration') return 'Official PayU in-person dynamic UPI QR integration.';
-    if (key === 'Android Checkout Pro SDK') return 'Official PayU Android Checkout Pro SDK for native in-app payments.';
-    if (key === 'iOS Checkout Pro SDK') return 'Official PayU iOS Checkout Pro SDK for native in-app payments.';
-    if (key === 'React Native Checkout Pro SDK') return 'Official cross-platform SDK for React Native apps.';
-    if (key === 'Flutter Checkout Pro SDK') return 'Official cross-platform SDK for Flutter apps.';
-    if (key === 'Cordova Checkout Pro SDK') return 'Official SDK for Ionic and Cordova hybrid apps.';
-    if (key === 'eCommerce Platform Plugins') return 'Lowest effort path for Shopify, WooCommerce, Magento, and similar platforms.';
-    return 'Recommended based on your answers and PayU integration documentation.';
-  }
-
-  function recommend(a) {
-    var primaryKey = getPrimaryKey(a);
-    var primaryProduct = PRODUCTS[primaryKey];
-    var recs = [];
-    if (primaryProduct) {
-      recs.push({
-        name: primaryKey,
-        score: 100,
-        reason: getPrimaryReason(a, primaryKey),
-        product: primaryProduct,
-        isPrimary: true,
-      });
-    }
-    var companions = getCompanions(a, primaryKey);
-    for (var i = 0; i < companions.length; i += 1) {
-      var c = companions[i];
-      recs.push({
-        name: c.key,
-        score: Math.max(40, 85 - i * 8),
-        reason: c.reason,
-        product: PRODUCTS[c.key],
-        isPrimary: false,
-      });
-    }
-    if (!recs.length) {
-      recs.push({
-        name: 'PayU Hosted Checkout',
-        score: 50,
-        reason: 'Default starting point for most PayU merchants.',
-        product: PRODUCTS['PayU Hosted Checkout'],
-        isPrimary: true,
-      });
-    }
-    return recs;
-  }
-
-  function explain(a, recs) {
-    var p = recs[0];
-    if (!p) return '';
-    var parts = ['Based on your workflow (' + buildPathSummary(a) + '), your primary integration is ' + p.name + '.'];
-    if (a.payment_focus === 'upi' && p.name.indexOf('SDK') >= 0) {
-      parts.push('Enable UPI Intent in Checkout Pro for best mobile UPI conversion.');
-    }
-    if (a.payment_focus === 'upi' && p.name === 'Merchant Hosted Checkout') {
-      parts.push('Integrate UPI Collect via Merchant Hosted seamless checkout.');
-    }
-    parts.push(p.reason);
-    return parts.join(' ');
-  }
-
-  var shell = {
-    border: '1px solid #e5e7eb',
-    borderRadius: '12px',
-    background: '#ffffff',
-    padding: '20px',
-    margin: '16px 0',
-    boxShadow: '0 1px 3px rgba(0,0,0,.06)',
-    fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif',
-    fontSize: '14px',
-    lineHeight: 1.5,
-    color: '#111827',
-  };
-
-  var optionBtn = {
-    width: '100%',
-    textAlign: 'left',
-    padding: '12px 14px',
-    border: '2px solid #e5e7eb',
-    borderRadius: '10px',
-    background: '#fff',
-    cursor: 'pointer',
-    font: 'inherit',
-    color: 'inherit',
-  };
-
-  var _history = useState([START]);
-  var history = _history[0];
-  var setHistory = _history[1];
-  var _answers = useState({});
-  var answers = _answers[0];
-  var setAnswers = _answers[1];
-  var _done = useState(false);
-  var done = _done[0];
-  var setDone = _done[1];
-
-  var currentId = done ? null : history[history.length - 1];
-  var q = currentId ? resolveQuestion(currentId, answers) : null;
-  var stepNum = history.length;
-  var estTotal = estimateSteps(answers);
-  var pct = done ? 100 : Math.min(95, Math.round((stepNum / estTotal) * 100));
-
-  function onPick(oid) {
-    if (!currentId) return;
-    var nextAnswers = Object.assign({}, answers);
-    nextAnswers[currentId] = oid;
-    var nextId = getNext(nextAnswers, currentId);
-    setAnswers(nextAnswers);
-    if (nextId) {
-      setHistory(history.concat([nextId]));
-    } else {
-      setDone(true);
-    }
-  }
-
-  function goBack() {
-    if (done) {
-      setDone(false);
-      return;
-    }
-    if (history.length <= 1) return;
-    var prev = history.slice(0, -1);
-    var removedId = history[history.length - 1];
-    var nextAnswers = Object.assign({}, answers);
-    delete nextAnswers[removedId];
-    setHistory(prev);
-    setAnswers(nextAnswers);
-  }
-
-  function restart() {
-    setHistory([START]);
-    setAnswers({});
-    setDone(false);
-  }
-
-  var recs = done ? recommend(answers) : [];
-  var primary = recs[0];
-  var rest = recs.slice(1);
-
-  function complexityStyle(c) {
-    if (c === 'low') return { bg: '#d1fae5', color: '#065f46' };
-    if (c === 'high') return { bg: '#fee2e2', color: '#991b1b' };
-    return { bg: '#fef3c7', color: '#92400e' };
-  }
-
-  return (
-    <div style={shell} role="region" aria-label="PayU Integration Path Recommender">
-      <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.04em', color: '#00A651', marginBottom: '6px' }}>
-        PayU DevEx
-      </div>
-      <h2 style={{ margin: '0 0 6px', fontSize: '1.25rem', fontWeight: 700, color: '#1e3a5f' }}>
-        Find your PayU integration path
-      </h2>
-      <p style={{ margin: '0 0 16px', color: '#6b7280', fontSize: '13px' }}>
-        Workflow-based recommender aligned to PayU docs. Tap to answer - each step adapts to your previous choice.
-      </p>
-
-      {!done && history.length > 1 ? (
-        <div style={{ marginBottom: '10px', fontSize: '12px', color: '#00A651', fontWeight: 500 }}>
-          Your path: {buildPathSummary(answers)}
-        </div>
-      ) : null}
-
-      {!done ? (
-        <div style={{ marginBottom: '16px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: '#6b7280', marginBottom: '6px' }}>
-            <span>Step {stepNum}{estTotal ? ' - ~' + estTotal + ' questions' : ''}</span>
-            <span>{pct}%</span>
-          </div>
-          <div style={{ height: '6px', background: '#e5e7eb', borderRadius: '999px', overflow: 'hidden' }}>
-            <div style={{ height: '100%', width: pct + '%', background: '#00A651', borderRadius: '999px', transition: 'width 0.25s ease' }} />
-          </div>
-        </div>
-      ) : null}
-
-      {!done && q ? (
-        <div>
-          <h3 style={{ margin: '0 0 4px', fontSize: '1.05rem', fontWeight: 600, color: '#1e3a5f' }}>{q.text}</h3>
-          <p style={{ margin: '0 0 12px', fontSize: '12px', color: '#6b7280' }}>{q.hint}</p>
-          <div style={{ display: 'grid', gap: '8px' }}>
-            {q.options.map(function (opt) {
-              return (
-                <button key={opt.id} type="button" onClick={function () { onPick(opt.id); }} style={optionBtn}>
-                  <span style={{ fontWeight: 500 }}>{opt.label}</span>
-                  <span style={{ display: 'block', marginTop: '3px', fontSize: '12px', color: '#6b7280', fontWeight: 400 }}>{opt.desc}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      ) : null}
-
-      {done && primary && primary.product ? (
-        <div>
-          <div style={{ marginBottom: '16px', padding: '12px 14px', borderRadius: '10px', border: '1px solid rgba(0,166,81,.25)', background: 'rgba(0,166,81,.06)', fontSize: '13px', color: '#374151' }}>
-            {explain(answers, recs)}
-          </div>
-          <div style={{ border: '2px solid #00A651', borderRadius: '12px', overflow: 'hidden', marginBottom: '16px' }}>
-            <div style={{ background: '#00A651', color: '#fff', fontSize: '12px', fontWeight: 600, padding: '8px 14px' }}>Primary integration</div>
-            <div style={{ padding: '16px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px' }}>
-                <div>
-                  <h3 style={{ margin: 0, fontSize: '1.1rem', color: '#1e3a5f' }}>{primary.name}</h3>
-                  <p style={{ margin: '4px 0 0', fontSize: '12px', color: '#6b7280' }}>{primary.product.category}</p>
-                </div>
-                <span style={{ fontSize: '1.5rem', fontWeight: 700, color: '#00A651' }}>{primary.score}%</span>
-              </div>
-              <p style={{ margin: '10px 0', fontSize: '13px' }}>{primary.product.description}</p>
-              <p style={{ margin: '0 0 10px', fontSize: '12px', color: '#4b5563' }}>{primary.reason}</p>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', margin: '8px 0' }}>
-                <span style={{ fontSize: '11px', fontWeight: 600, padding: '3px 8px', borderRadius: '999px', background: complexityStyle(primary.product.complexity).bg, color: complexityStyle(primary.product.complexity).color, textTransform: 'capitalize' }}>
-                  {primary.product.complexity} complexity
-                </span>
-                <span style={{ fontSize: '11px', fontWeight: 600, padding: '3px 8px', borderRadius: '999px', background: '#f3f4f6', color: '#374151' }}>
-                  ~{primary.product.goLiveDays} days to go-live
-                </span>
-              </div>
-              <a href={primary.product.docsUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', marginTop: '10px', fontSize: '13px', fontWeight: 600, color: '#00A651' }}>
-                View PayU documentation
-              </a>
-            </div>
-          </div>
-          {rest.length ? (
-            <div>
-              <p style={{ fontWeight: 600, color: '#1e3a5f', margin: '0 0 8px' }}>Also integrate</p>
-              <div style={{ display: 'grid', gap: '8px' }}>
-                {rest.map(function (r) {
-                  return (
-                    <div key={r.name} style={{ border: '1px solid #e5e7eb', borderRadius: '10px', padding: '12px', background: '#f9fafb' }}>
-                      <h4 style={{ margin: '0 0 4px', fontSize: '14px', color: '#1e3a5f' }}>
-                        {r.name}
-                      </h4>
-                      <p style={{ margin: '0 0 6px', fontSize: '12px', color: '#6b7280' }}>{r.reason}</p>
-                      <a href={r.product.docsUrl} target="_blank" rel="noopener noreferrer" style={{ fontSize: '13px', fontWeight: 600, color: '#00A651' }}>Documentation</a>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          ) : null}
-        </div>
-      ) : null}
-
-      <div style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', marginTop: '16px', paddingTop: '12px', borderTop: '1px solid #e5e7eb' }}>
-        {history.length > 1 || done ? (
-          <button type="button" onClick={goBack} style={{ padding: '8px 14px', borderRadius: '8px', fontSize: '13px', fontWeight: 600, cursor: 'pointer', background: '#fff', border: '1px solid #e5e7eb', color: '#374151' }}>
-            Back
-          </button>
-        ) : (
-          <span />
-        )}
-        {done ? (
-          <button type="button" onClick={restart} style={{ padding: '8px 14px', borderRadius: '8px', fontSize: '13px', fontWeight: 600, cursor: 'pointer', background: '#00A651', border: 'none', color: '#fff' }}>
-            Start over
-          </button>
-        ) : null}
-      </div>
-    </div>
-  );
+export const PRODUCTS = {
+  'PayU Hosted Checkout': {
+    category: 'Web checkout',
+    description: 'Prebuilt checkout page hosted by PayU. No PCI-DSS on your side. Fastest path to go live.',
+    pros: ['No PCI-DSS required', 'Low dev effort', 'All payment modes on PayU page', 'WebView option for mobile apps'],
+    cons: ['Customer redirects to PayU', 'Limited UI customization'],
+    complexity: 'low',
+    goLiveDays: 3,
+    docsUrl: 'https://docs.payu.in/collect-payments/introduction-web/prebuilt-checkout-payu-hosted',
+  },
+  'Merchant Hosted Checkout': {
+    category: 'Web checkout',
+    description: 'Custom seamless checkout on your website. You control the UI; PCI-DSS required for card data on your site.',
+    pros: ['Full checkout UI control', 'Customer stays on your site', 'Per-method seamless integrations'],
+    cons: ['PCI-DSS compliance required', 'Higher integration effort'],
+    complexity: 'medium',
+    goLiveDays: 14,
+    docsUrl: 'https://docs.payu.in/collect-payments/introduction-web/custom-checkout-merchant-hosted',
+  },
+  'Server-to-Server Integration': {
+    category: 'Web checkout',
+    description: 'Backend-orchestrated payments with maximum control. For large merchants and marketplaces.',
+    pros: ['Very high customization', 'Backend control', 'Marketplace-ready'],
+    cons: ['High PCI scope', 'Complex integration', 'Longer go-live'],
+    complexity: 'high',
+    goLiveDays: 21,
+    docsUrl: 'https://docs.payu.in/collect-payments/introduction-web/server-to-server-integration',
+  },
+  'CommercePro Checkout': {
+    category: 'Web checkout',
+    description: 'Optimized high-conversion checkout for web. PayU handles sensitive card data on your domain.',
+    pros: ['Conversion-optimized UI', 'No PCI for sensitive data', 'Callback URL integration'],
+    cons: ['Medium dev effort', 'Less UI control than merchant-hosted'],
+    complexity: 'medium',
+    goLiveDays: 10,
+    docsUrl: 'https://docs.payu.in/collect-payments/introduction-web/checkout-express',
+  },
+  'Checkout Plus': {
+    category: 'Web checkout',
+    description: 'High-conversion hosted checkout with built-in mobile WebView support for hybrid apps.',
+    pros: ['Optimized checkout', 'Mobile WebView friendly', 'PayU-hosted sensitive data'],
+    cons: ['Medium customization', 'Less control than merchant-hosted'],
+    complexity: 'medium',
+    goLiveDays: 10,
+    docsUrl: 'https://docs.payu.in/collect-payments/introduction-web/checkout-plus-integration',
+  },
+  'Payment Links': {
+    category: 'No-code',
+    description: 'Create and share payment links from dashboard or API. No checkout integration.',
+    pros: ['Zero checkout code', 'Share via SMS, email, WhatsApp', 'Instant setup'],
+    cons: ['Not for high-volume cart checkout'],
+    complexity: 'low',
+    goLiveDays: 1,
+    docsUrl: 'https://docs.payu.in/collect-payments/introduction-no-code-payments-integration/payment-links-dashboard',
+  },
+  'UPI QR Integration': {
+    category: 'In-person',
+    description: 'Dynamic UPI QR for counter, kiosk, and offline collection.',
+    pros: ['Offline and in-store UPI', 'No card terminal needed', 'API-driven QR generation'],
+    cons: ['Display surface needed', 'Status polling required'],
+    complexity: 'low',
+    goLiveDays: 5,
+    docsUrl: 'https://docs.payu.in/collect-payments/in-person-payments/integrate-upi-qr',
+  },
+  'Android Checkout Pro SDK': {
+    category: 'Mobile SDK',
+    description: 'Official Android Checkout Pro SDK for native in-app payments including UPI Intent.',
+    pros: ['Native Android UX', 'UPI Intent support', 'All payment modes in-app'],
+    cons: ['Android only', 'Server-side hash required'],
+    complexity: 'medium',
+    goLiveDays: 14,
+    docsUrl: 'https://docs.payu.in/collect-payments/explore-android-sdks/android-checkoutpro-sdk',
+  },
+  'iOS Checkout Pro SDK': {
+    category: 'Mobile SDK',
+    description: 'Official iOS Checkout Pro SDK for native in-app payments.',
+    pros: ['Native iOS UX', 'In-app payment flow', 'Apple ecosystem ready'],
+    cons: ['iOS only', 'Swift or Objective-C skills'],
+    complexity: 'medium',
+    goLiveDays: 14,
+    docsUrl: 'https://docs.payu.in/collect-payments/explore-ios-sdks/ios-checkoutpro-sdk',
+  },
+  'React Native Checkout Pro SDK': {
+    category: 'Cross-platform SDK',
+    description: 'Checkout Pro for React Native apps wrapping native Android and iOS SDKs.',
+    pros: ['Shared JS codebase', 'Native payment UX', 'Cross-platform mobile'],
+    cons: ['RN bridge setup', 'Platform-specific config'],
+    complexity: 'medium',
+    goLiveDays: 14,
+    docsUrl: 'https://docs.payu.in/collect-payments/explore-reactnative-sdks/react-native-checkoutpro-sdk',
+  },
+  'Flutter Checkout Pro SDK': {
+    category: 'Cross-platform SDK',
+    description: 'Checkout Pro for Flutter/Dart mobile applications.',
+    pros: ['Single Flutter codebase', 'Native checkout experience'],
+    cons: ['Flutter plugin integration', 'Platform builds'],
+    complexity: 'medium',
+    goLiveDays: 14,
+    docsUrl: 'https://docs.payu.in/collect-payments/flutter-sdk-introduction/flutter-checkoutpro-sdk',
+  },
+  'Cordova Checkout Pro SDK': {
+    category: 'Cross-platform SDK',
+    description: 'Checkout Pro for Ionic, Cordova, and hybrid mobile apps.',
+    pros: ['Hybrid app support', 'Reuses web skills'],
+    cons: ['WebView and surl/furl handling', 'Lower UX than native SDK'],
+    complexity: 'medium',
+    goLiveDays: 14,
+    docsUrl: 'https://docs.payu.in/collect-payments/cordova-sdk-introduction',
+  },
+  'PayU Shopify Plugin': {
+    category: 'Plugin',
+    description: 'Official PayU plugin for Shopify stores including CommercePro checkout options.',
+    pros: ['Very low dev effort', 'No PCI burden', 'Shopify-managed checkout'],
+    cons: ['Shopify-specific configuration', 'Limited to Shopify platform'],
+    complexity: 'low',
+    goLiveDays: 2,
+    docsUrl: 'https://docs.payu.in/collect-payments/ecommerce-platform-plugins/shopify',
+  },
+  'PayU WooCommerce Plugin': {
+    category: 'Plugin',
+    description: 'Official PayU plugin for WooCommerce on WordPress.',
+    pros: ['Very low dev effort', 'No PCI burden', 'WordPress plugin install'],
+    cons: ['WooCommerce-specific configuration', 'WordPress hosting required'],
+    complexity: 'low',
+    goLiveDays: 2,
+    docsUrl: 'https://docs.payu.in/collect-payments/ecommerce-platform-plugins/woocommerce',
+  },
+  'PayU Magento Plugin': {
+    category: 'Plugin',
+    description: 'Official PayU plugin for Adobe Commerce (Magento).',
+    pros: ['Very low dev effort', 'No PCI burden', 'CommercePro option for Magento'],
+    cons: ['Magento-specific configuration', 'Adobe Commerce setup'],
+    complexity: 'low',
+    goLiveDays: 2,
+    docsUrl: 'https://docs.payu.in/collect-payments/ecommerce-platform-plugins/magento',
+  },
+  'eCommerce Platform Plugins': {
+    category: 'Plugin',
+    description: 'Ready-made plugins for PrestaShop, OpenCart, Odoo, Wix, and other supported platforms.',
+    pros: ['Very low dev effort', 'No PCI burden', 'Platform-managed checkout'],
+    cons: ['Limited to supported platforms', 'Platform-specific config'],
+    complexity: 'low',
+    goLiveDays: 2,
+    docsUrl: 'https://docs.payu.in/collect-payments/ecommerce-platform-plugins',
+  },
+  'Save Cards (Tokenization)': {
+    category: 'Offering',
+    description: 'PayU Vault tokenization for one-click repeat purchases. RBI-compliant saved cards.',
+    pros: ['Repeat purchase conversion', 'PCI-compliant tokens', 'Works with hosted and merchant-hosted'],
+    cons: ['Customer consent flows', 'Extra integration step'],
+    complexity: 'medium',
+    goLiveDays: 10,
+    docsUrl: 'https://docs.payu.in/offerings/introduction-save-cards',
+  },
+  'Recurring Payments': {
+    category: 'Offering',
+    description: 'Subscriptions, standing instructions, and recurring billing on cards, UPI, and eNACH.',
+    pros: ['Automated billing', 'SI on cards and UPI', 'Zion automation platform'],
+    cons: ['RBI mandate rules', 'Webhook mandatory', 'KAM enablement'],
+    complexity: 'high',
+    goLiveDays: 21,
+    docsUrl: 'https://docs.payu.in/offerings/introduction-recurring-payments-integration',
+  },
+  'Split Settlements': {
+    category: 'Offering',
+    description: 'Split transaction proceeds between marketplace and vendors automatically.',
+    pros: ['Multi-vendor payouts', 'Configurable split ratios', 'Marketplace compliance'],
+    cons: ['Vendor onboarding', 'Reconciliation overhead'],
+    complexity: 'high',
+    goLiveDays: 21,
+    docsUrl: 'https://docs.payu.in/offerings/split-settlments',
+  },
+  'Webhooks': {
+    category: 'API',
+    description: 'Real-time server notifications for payment, refund, and subscription events.',
+    pros: ['Reliable reconciliation', 'Required for production', 'Subscription event support'],
+    cons: ['Public HTTPS endpoint', 'Idempotency handling'],
+    complexity: 'low',
+    goLiveDays: 2,
+    docsUrl: 'https://docs.payu.in/developer-tools/webhooks-consolidated',
+  },
+  'Refunds API': {
+    category: 'API',
+    description: 'Programmatic full and partial refunds with status tracking.',
+    pros: ['Automated refunds', 'Partial refund support', 'Dashboard and API'],
+    cons: ['Settlement timing awareness'],
+    complexity: 'low',
+    goLiveDays: 2,
+    docsUrl: 'https://docs.payu.in/offerings/introduction-refunds',
+  },
+  'Third-Party Verification (TPV)': {
+    category: 'Offering',
+    description: 'Verify payer bank account matches registered beneficiary for regulated use cases.',
+    pros: ['Net banking TPV', 'UPI TPV on SDK', 'Compliance for lending and insurance'],
+    cons: ['Extra verification step', 'Use-case specific'],
+    complexity: 'medium',
+    goLiveDays: 10,
+    docsUrl: 'https://docs.payu.in/offerings/introduction-to-payu-tpv/collect-payments-with-tpv-payu-hosted-checkout',
+  },
 };
 
-<PayUIntegrationPathRecommender />
+export const OPT_CHANNEL = [
+  { id: 'website', label: 'Custom website or web app', desc: 'You will write integration code for your site' },
+  { id: 'mobile', label: 'Native mobile app', desc: 'Android and/or iOS native app' },
+  { id: 'cross_platform', label: 'Cross-platform mobile app', desc: 'React Native, Flutter, or Cordova/Ionic' },
+  { id: 'plugin', label: 'eCommerce platform store', desc: 'Shopify, WooCommerce, Magento, or similar' },
+  { id: 'nocode', label: 'No-code collection', desc: 'Payment links, buttons, or invoices only' },
+  { id: 'in_person', label: 'In-person / offline', desc: 'Counter, kiosk, or field QR collection' },
+  { id: 'both', label: 'Website and mobile apps', desc: 'Omnichannel - payments on web and in-app' },
+  { id: 'unsure', label: 'Not sure yet', desc: 'Answer two quick questions and we will point you in the right direction' },
+];
+
+export const OPT_UNSURE_CONTEXT = [
+  { id: 'selling_online', label: 'I sell on a website I build or control', desc: 'Custom site, web app, or SaaS product' },
+  { id: 'mobile_app', label: 'I have (or am building) a mobile app', desc: 'Native or cross-platform mobile product' },
+  { id: 'ecommerce_store', label: 'I use an eCommerce platform store', desc: 'Shopify, WooCommerce, Magento, etc.' },
+  { id: 'collect_without_code', label: 'I just need to collect payments without code', desc: 'Links, QR, or invoices' },
+  { id: 'truly_unsure', label: 'Still not sure - recommend the fastest start', desc: 'PayU Hosted Checkout works for most merchants' },
+];
+
+export const OPT_PLUGIN = [
+  { id: 'shopify', label: 'Shopify', desc: 'CommercePro or standard PayU plugin' },
+  { id: 'woocommerce', label: 'WooCommerce', desc: 'WordPress eCommerce plugin' },
+  { id: 'magento', label: 'Magento', desc: 'Adobe Commerce plugin' },
+  { id: 'other_plugin', label: 'Other platform', desc: 'PrestaShop, OpenCart, Odoo, Wix, etc.' },
+];
+
+export const OPT_CROSS = [
+  { id: 'react_native', label: 'React Native', desc: 'React Native Checkout Pro SDK' },
+  { id: 'flutter', label: 'Flutter', desc: 'Flutter Checkout Pro SDK' },
+  { id: 'cordova', label: 'Cordova / Ionic', desc: 'Cordova Checkout Pro SDK' },
+];
+
+export const OPT_LAUNCH = [
+  { id: 'web_first', label: 'Web checkout first', desc: 'We will ask about hosted vs merchant-hosted web flow' },
+  { id: 'mobile_first', label: 'Mobile app payments first', desc: 'We will ask about Android/iOS SDK path' },
+  { id: 'together', label: 'Both together', desc: 'Recommend a unified starting path' },
+];
+
+export const OPT_WEB = [
+  { id: 'hosted', label: 'PayU Hosted Checkout', desc: 'Redirect to PayU - no PCI, fastest go-live (recommended for most)' },
+  { id: 'merchant_hosted', label: 'Merchant Hosted Checkout', desc: 'Seamless UI on your site - you have PCI-DSS' },
+  { id: 'commercepro', label: 'CommercePro Checkout', desc: 'Optimized web conversion - PayU handles sensitive data' },
+  { id: 'checkout_plus', label: 'Checkout Plus', desc: 'Optimized checkout with built-in mobile WebView support' },
+  { id: 'server_to_server', label: 'Server-to-Server', desc: 'Full backend control - marketplaces and large merchants' },
+  { id: 'unsure', label: 'Not sure - fastest go-live', desc: 'We recommend PayU Hosted Checkout' },
+];
+
+export const OPT_MOBILE_PLAT = [
+  { id: 'android', label: 'Android only', desc: 'Android Checkout Pro SDK' },
+  { id: 'ios', label: 'iOS only', desc: 'iOS Checkout Pro SDK' },
+  { id: 'both_mobile', label: 'Android and iOS', desc: 'Separate SDK integration per platform' },
+];
+
+export const OPT_MOBILE_UX = [
+  { id: 'native', label: 'Native SDK (Checkout Pro)', desc: 'Best in-app UX - UPI Intent, cards, wallets' },
+  { id: 'redirect', label: 'Hosted checkout in WebView', desc: 'Redirect to PayU page inside app - faster to ship' },
+  { id: 'unsure', label: 'Recommend for me', desc: 'We suggest native Checkout Pro SDK' },
+];
+
+export const OPT_NOCODE = [
+  { id: 'links', label: 'Payment links', desc: 'Share URL - dashboard or API' },
+  { id: 'qr', label: 'UPI QR codes', desc: 'Dynamic QR for offline or invoice' },
+  { id: 'both_nocode', label: 'Both links and QR', desc: 'Flexible no-code collection' },
+];
+
+export const OPT_PAYMENTS = [
+  { id: 'cards', label: 'Cards only', desc: 'Credit and debit cards' },
+  { id: 'upi', label: 'UPI only', desc: 'Intent on mobile, collect on web' },
+  { id: 'cards_upi', label: 'Cards + UPI', desc: 'Most common for India checkout' },
+  { id: 'all', label: 'All methods', desc: 'Cards, UPI, net banking, wallets, EMI' },
+];
+
+export const OPT_BUSINESS = [
+  { id: 'one_time', label: 'One-time payments only', desc: 'Standard checkout - most merchants' },
+  { id: 'recurring', label: 'Subscriptions / recurring', desc: 'Standing instructions, SI, mandates' },
+  { id: 'saved', label: 'Saved cards / one-click', desc: 'PayU Vault tokenization' },
+  { id: 'marketplace', label: 'Marketplace / split settlement', desc: 'Pay multiple vendors from one order' },
+  { id: 'tpv', label: 'Third-party verification (TPV)', desc: 'Verify payer account for regulated flows' },
+];
+
+export const OPT_BUSINESS_NOCODE = [
+  { id: 'one_time', label: 'One-time collections', desc: 'Standard links or QR' },
+  { id: 'recurring', label: 'Recurring billing', desc: 'Needs subscription APIs beyond basic links' },
+  { id: 'marketplace', label: 'Marketplace payouts', desc: 'Split settlement between parties' },
+];
