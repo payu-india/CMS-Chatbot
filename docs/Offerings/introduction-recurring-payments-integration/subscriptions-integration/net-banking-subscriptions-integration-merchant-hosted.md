@@ -326,14 +326,15 @@ The payment verification step ensures the transaction has been processed success
 All successful registration transactions are charged over the recurring interface with server-to-server API without any additional 2FA or the customers' involvement.
 
 <Callout icon="📘" theme="info">
-  ### **Notes**:
+  ### **Refunds**:
 
-  - Banks do not support refunds for Net Banking Recurring Payment transactions (or e-NACH transaction) so you will get an error message, "Refund not accepted for txn" or Error 232. To handle the refunds in this regard, PayU offers an alternate way to perform refunds. You must request your PayU Key Account Manager to enable refunds for Net Banking. For the list of banks supporting e-NACH, refer to [Recurring Payments Bank Codes - ENACH Registration.](doc:recurring-payments-bank-codes-enach-registration)
-  - Call the **Recurring Payment Transaction** API to make a recurring payment transaction.
+  Banks do not support refunds for Net Banking Recurring Payment transactions (or e-NACH transaction) so you will get an error message, "Refund not accepted for txn" or Error 232. To handle the refunds in this regard, PayU offers an alternate way to perform refunds. You must request your PayU Key Account Manager to enable refunds for Net Banking. For the list of banks supporting e-NACH, refer to [Recurring Payments Bank Codes - ENACH Registration.](doc:recurring-payments-bank-codes-enach-registration)
 </Callout>
 
 <Callout icon="🚧" theme="warn">
-  ### **Assumptions**: If the merchant has already performed a successful registration transaction with Net Banking/UPI/Card and mihpayid is received in response to the registration transaction captured successfully and mapped to the customer at the merchant's end.
+  ### **Assumptions**:&#x20;
+
+  If the merchant has already performed a successful registration transaction with Net Banking/UPI/Card and mihpayid is received in response to the registration transaction captured successfully and mapped to the customer at the merchant's end.
 </Callout>
 
 **Environment**
