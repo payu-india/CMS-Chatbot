@@ -56,8 +56,8 @@ Unlike Cards and UPI recurring payments, **eNACH does not require a pre-debit no
 | Cards          | Required, where applicable |
 | UPI            | Required, where applicable |
 
+### Registration transaction workflow
 
-### Registration transaction workflow 
 The steps involved in a registration transaction (e-Mandate) are:
 
 1. This is usually an INR 0.00 (zero rupee) transaction hence it is called a registration transaction.
@@ -78,15 +78,17 @@ The steps involved in a registration transaction (e-Mandate) are:
 
 <Image src="https://files.readme.io/6cccafc-recurring_payment_netbanking_workflow_step4.png" align="center" width="512px" border={true} />
 
+
 <br />
 
+
 <Image src="https://files.readme.io/6ba7e05-recurring_payment_aadhaar_step1.png" align="center" width="512px" border={true} />
+
 
 5. The customer is redirected to the Bank’s login page and authenticates himself with either net banking username and password or debit card number and ATM PIN depending upon the preferred bank.
 6. On successful authentication, the customer sees registration details like billing amount, billing frequency, start date, and end date of the subscription plan.
 7. The customer approves the subscription details from the bank page using standard 2FA flow and gets redirected back to PayU'
 8. On receiving either of the response from the bank, the same is communicated back to the merchant on a real-time basis.
-
 
 ### Recurring transaction workflow
 
@@ -97,7 +99,6 @@ The steps to perform a recurring transaction for Net Banking are:
 3. The real-time response for Recurring transactions to the merchant is always returned as Pending. For direct integration with ICICI bank, the response will be real-time.
 4. For NPCI-supported banks and HDFC direct Integration, the response of the transaction is received over SFTP from acquirers at the end of the day, which is then stored in PayU’s DB, and the same is communicated to the merchant over a webhook API call.
 5. TAT for receiving either Success or Failure case of e-NACH transactions is T+2 similar to the registration transaction.
-
 
 ## NPCI Integration Flow
 
@@ -120,28 +121,43 @@ The steps involved in a registration transaction (e-Mandate) are:
    - **Non-Seamless Integration**: The customer selects preferred bank and enters account details like account number, name of the account, and account type: Savings or Current.
    - **Seamless Integration**: Merchant has to send all the parameters, that is, preferred bank, account number, name of the account, and account type.
 
+
 <Image src="https://files.readme.io/6cccafc-recurring_payment_netbanking_workflow_step4.png" align="center" width="512px" border={true} />
+
+
 <br />
+
+
 <Image src="https://files.readme.io/6ba7e05-recurring_payment_aadhaar_step1.png" align="center" width="512px" border={true} />
+
 
 5. The customer is redirected to the NPCI site for authentication:
 6. Customer enter their Aadhaar card number in the **Aadhaar Card Number** field and clicks **Confirm**.
+
+
 <Image src="https://files.readme.io/b3f6343-enach-aadhaar-step1.png" align="center" border={true} />
+
+
 7. Customer enter the OTP in the **OTP** and **Confirm OTP** fields that is received to the mobile phone registered with Aadhaar, and then clicks **Continue**.
+
 
 <Image src="https://files.readme.io/4d3d281-enach-aadhaar-step2.png" align="center" border={true} />
 
+
 8. Customer enter the OTP that is sent by to bank to the registered mobile number and clicks **Continue**.
+
 
 <Image src="https://files.readme.io/be47075-enach-aadhaar-step3.png" align="center" border={true} />
 
+
 The transaction status is displayed similar to the following screenshot:
+
 
 <Image src="https://files.readme.io/b3f78b9-enach-aadhaar-step4.png" align="center" border={true} />
 
+
 9. On successful authentication, the customer sees registration details like billing amount, billing frequency, start date, and end date of the subscription plan.
 10. On receiving either of the response from the bank, the same is communicated back to the merchant on a real-time basis.
-
 
 ### Recurring transaction workflow
 
@@ -172,7 +188,7 @@ For the list of banks supported for the Net Banking recurring platform and their
 
 ## Transaction limits
 
-The transaction limit for recurring payments using Net Banking is as follows:
+The transaction limit for recurring payments is as follows:
 
-- Net Banking: Rs.10,00,000
+- Direct Integration or Net Banking: Rs.10,00,000
 - Aadhaar based eSign or eNACH Aadhaar Authentication: Rs.1,00,000
