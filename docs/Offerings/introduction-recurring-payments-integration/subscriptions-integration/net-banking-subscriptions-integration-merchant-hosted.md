@@ -12,14 +12,10 @@ PayU's Recurring Payment Integration enables merchants to set up automated subsc
 <Cards>
   <Card title="1. Consent Transaction" href="#step-1-consent-transaction">
     Initiate the recurring payment process by capturing user consent for the mandate with required parameters including key, txnid, amount, productinfo, customer details, and si_details JSON object
-
-
   </Card>
 
   <Card title="2. Verify the Payment" href="#step-2-verify-the-payment">
     Ensure the initial consent transaction or registration is successfully processed before proceeding with recurring charges
-
-
   </Card>
 </Cards>
 
@@ -28,8 +24,6 @@ PayU's Recurring Payment Integration enables merchants to set up automated subsc
 <Cards>
   <Card title="Recurring Payment Transaction" href="#step-4-recurring-payment-transaction">
     Execute recurring payments automatically without additional customer involvement using server-to-server integration with authpayuid and invoiceDisplayNumber
-
-
   </Card>
 </Cards>
 
@@ -334,7 +328,7 @@ All successful registration transactions are charged over the recurring interfac
 <Callout icon="📘" theme="info">
   ### **Notes**:
 
-  - Banks do not support refunds for Net Banking Recurring Payment transactions (or e-NACH transaction) so you will get an error message, "Refund not accepted for txn" or Error 232. To handle the refunds in this regard, PayU offers an alternate way to perform refunds. You must request your PayU Key Account Manager to enable refunds for Net Banking. For the list of banks supporting e-NACH, refer to Recurring Payments Bank Codes.
+  - Banks do not support refunds for Net Banking Recurring Payment transactions (or e-NACH transaction) so you will get an error message, "Refund not accepted for txn" or Error 232. To handle the refunds in this regard, PayU offers an alternate way to perform refunds. You must request your PayU Key Account Manager to enable refunds for Net Banking. For the list of banks supporting e-NACH, refer to [Recurring Payments Bank Codes - ENACH Registration.](doc:recurring-payments-bank-codes-enach-registration)
   - Call the **Recurring Payment Transaction** API to make a recurring payment transaction.
 </Callout>
 
