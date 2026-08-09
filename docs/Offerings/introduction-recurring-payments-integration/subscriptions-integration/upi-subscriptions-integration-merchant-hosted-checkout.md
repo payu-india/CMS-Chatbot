@@ -1,12 +1,10 @@
 ---
-title: 'UPI Subscriptions Integration - Merchant Hosted Checkout '
+title: UPI Subscriptions Integration [S2S]
 deprecated: false
 hidden: true
 metadata:
   title: UPI Subscriptions Integration for Merchant Hosted
-  description: >-
-    UPI subscriptions with merchant-hosted checkout. Recurring UPI Autopay
-    integration.
+  description: UPI subscriptions with S2S. Recurring UPI Autopay integration.
   keywords:
     - UPI subscriptions integration
     - recurring UPI merchant hosted
