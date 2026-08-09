@@ -334,8 +334,8 @@ All successful registration transactions are charged over the recurring interfac
 <Callout icon="📘" theme="info">
   ### **Notes**:
 
-  - Banks do not support refunds for Net Banking Recurring Payment transactions (or e-NACH transaction) so you will get an error message, "Refund not accepted for txn" or Error 232. For the list of banks supporting e-NACH, refer to Recurring Payments Bank Codes.
-  - Check the mandate status, call the **Pre-Debit Notification** API before calling the **Recurring Payment Transaction** API to make a recurring payment transaction.
+  - Banks do not support refunds for Net Banking Recurring Payment transactions (or e-NACH transaction) so you will get an error message, "Refund not accepted for txn" or Error 232. To handle the refunds in this regard, PayU offers an alternate way to perform refunds. You must request your PayU Key Account Manager to enable refunds for Net Banking. For the list of banks supporting e-NACH, refer to Recurring Payments Bank Codes.
+  - Call the **Recurring Payment Transaction** API to make a recurring payment transaction.
 </Callout>
 
 <Callout icon="🚧" theme="warn">
@@ -693,7 +693,6 @@ All successful registration transactions are charged over the recurring interfac
 ## Additional Resources
 
 • **[SI Parameter JSON Details](https://docs.payu.in/reference/si-parameter-json-details)** - Detailed subscription parameter specifications
-• **[RBI Guidelines](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0)** - Regulatory compliance information
 
 <br />
 
