@@ -18,38 +18,75 @@ metadata:
 next:
   description: ''
 ---
-Net Banking recurring like cards are processed seamlessly without the customer’s intervention and any 2FA.
-There are two common terms in Net Banking recurring:
+Net Banking recurring like cards are processed seamlessly without the customer’s intervention and any 2FA. <br />There are two common terms in Net Banking recurring:
 
-* <Glossary>Registration transaction</Glossary>(also known as e-Mandate transaction)
-* Payment transaction (also known as e-NACH transaction or SI transaction).
+- <Glossary>Registration transaction</Glossary>(also known as e-Mandate transaction)
+- Payment transaction (also known as e-NACH transaction or SI transaction).
 
 <Callout icon="📘" theme="info">
   **Note**: Effective from 1st April 2024, mandates can be issued for a maximum duration of 40 years from the date of issuance.
 </Callout>
 
-## Registration transaction workflow
+PayU offers the following flows for integration
+
+1. [eNach Direct Integration](#enach-direct-integration)
+2. [NPCI Integration](#npci-ntegration)
+
+## eNACH Direct Integration
+
+After the customer completes eNACH mandate registration, PayU processes the mandate registration with the participating bank. The merchant can initiate a recurring debit after the mandate is successfully registered and available for execution.
+
+Unlike Cards and UPI recurring payments, **eNACH does not require a pre-debit notification**. Do not call the `pre_debit_SI` API for an eNACH recurring debit.
+
+### Workflow
+
+1. Complete the eNACH consent transaction.
+2. Wait for PayU and the participating bank to complete mandate registration. This may take up to **T+2 days**, depending on the bank.
+3. Confirm that the mandate is registered and available for execution.
+4. Call the Recurring Payment API with the registered mandate details and the amount to be debited.
+5. Process the response and use PayU’s status mechanisms to track the final outcome.
+
+> **Important:** The merchant must not initiate a recurring debit until the eNACH mandate has been successfully registered. The exact mandate-status check and recurring-payment API parameters depend on the PayU integration being used.
+
+#### eNACH and pre-debit notifications
+
+| Payment method | Pre-debit notification     |
+| -------------- | -------------------------- |
+| eNACH          | Not required               |
+| Cards          | Required, where applicable |
+| UPI            | Required, where applicable |
+
+For Cards and UPI, refer to the relevant pre-debit notification documentation for timing and request requirements. These requirements do not apply to eNACH.
+
+## Workflows involved
+
+### Registration transaction workflow
 
 The steps involved in a registration transaction (e-Mandate) are:
 
 1. This is usually an INR 0.00 (zero rupee) transaction hence it is called a registration transaction.
 
-> 📘 Notes:
->
-> * Upfront payment can be collected only through direct integration – HDFC Bank and ICICI Bank. For all the 40+ banks supported through NPCI, you cannot collect the upfront amount and perform only the INR 0.00 authentication.
-> * Upfront payment can be collected only through direct integration – HDFC Bank**(₹1 Lakh)** and ICICI Bank.
+<Callout icon="📘" theme="info">
+  ### Notes:
+
+  - Upfront payment can be collected only through direct integration – HDFC Bank and ICICI Bank. For all the 40+ banks supported through NPCI, you cannot collect the upfront amount and perform only the INR 0.00 authentication. To enable direct integration, contact your PayU Key Account Manager (KAM) or <Anchor target="_blank" href="https://help.payu.in">PayU Support</Anchor>.
+  - Upfront payment can be collected only through direct integration – HDFC Bank **(₹1 Lakh)** and ICICI Bank.
+</Callout>
 
 2. Merchant presents an option to sign up for a recurring platform where the customer needs to provide his/her consent.
 3. Billing details like amount, frequency, start date, and end date of the subscription need to be presented to the customer and passed to PayU during payment request.
 4. On redirecting to PayU:
-   * **Non-Seamless Integration**: The customer selects preferred bank and enters account details like account number, name of the account, and account type: Savings or Current.
-   * **Seamless Integration**: Merchant has to send all the parameters, that is, preferred bank, account number, name of the account, and account type.
+   - **Non-Seamless Integration**: The customer selects preferred bank and enters account details like account number, name of the account, and account type: Savings or Current.
+   - **Seamless Integration**: Merchant has to send all the parameters, that is, preferred bank, account number, name of the account, and account type.
 
-<Image align="center" border={true} width="512px" src="https://files.readme.io/6cccafc-recurring_payment_netbanking_workflow_step4.png" className="border" />
+
+<Image src="https://files.readme.io/6cccafc-recurring_payment_netbanking_workflow_step4.png" align="center" width="512px" border={true} />
+
 
 <br />
 
-<Image align="center" border={true} width="512px" src="https://files.readme.io/6ba7e05-recurring_payment_aadhaar_step1.png" className="border" />
+
+<Image src="https://files.readme.io/6ba7e05-recurring_payment_aadhaar_step1.png" align="center" width="512px" border={true} />
 
 5. The customer is redirected to the any of the following based on authentication selected:
    1. Bank’s login page and authenticates himself with either net banking username and password or debit card number and ATM PIN depending upon the preferred bank.
@@ -58,27 +95,35 @@ The steps involved in a registration transaction (e-Mandate) are:
 7. The customer approves the subscription details from the bank page using standard 2FA flow and gets redirected back to PayU'
 8. On receiving either of the response from the bank, the same is communicated back to the merchant on a real-time basis.
 
-### eNACH Aadhaar Authentication
+### eNACH Aadhaar Authentication flow
 
 In Step 5 above, the customer is redirected to NPCI page for the Aadhaar authentication, so the additional steps involved for Aadhaar authentication are:
 
 1. Customer enter their Aadhaar card number in the **Aadhaar Card Number** field and clicks **Confirm**.
 
-<Image align="center" border={true} src="https://files.readme.io/b3f6343-enach-aadhaar-step1.png" className="border" />
+
+<Image src="https://files.readme.io/b3f6343-enach-aadhaar-step1.png" align="center" border={true} />
+
 
 2. Customer enter the OTP in the **OTP** and **Confirm OTP** fields that is received to the mobile phone registered with Aadhaar, and then clicks **Continue**.
 
-<Image align="center" border={true} src="https://files.readme.io/4d3d281-enach-aadhaar-step2.png" className="border" />
+
+<Image src="https://files.readme.io/4d3d281-enach-aadhaar-step2.png" align="center" border={true} />
+
 
 3. Customer enter the OTP that is sent by to bank to the registered mobile number and clicks **Continue**.
 
-<Image align="center" border={true} src="https://files.readme.io/be47075-enach-aadhaar-step3.png" className="border" />
+
+<Image src="https://files.readme.io/be47075-enach-aadhaar-step3.png" align="center" border={true} />
+
 
 The transaction status is displayed similar to the following screenshot:
 
-<Image align="center" border={true} src="https://files.readme.io/b3f78b9-enach-aadhaar-step4.png" className="border" />
 
-## Recurring transaction workflow
+<Image src="https://files.readme.io/b3f78b9-enach-aadhaar-step4.png" align="center" border={true} />
+
+
+### Recurring transaction workflow
 
 The steps to perform a recurring transaction for Net Banking are:
 
@@ -100,8 +145,8 @@ For Net Banking, there are three methods to authenticate:
 
 You can use Recurring Payment API or bulk upload on PayU Dashboard. For more information, refer to the following sections:
 
-* [Recurring Payment Transaction API](ref:recurring_payment_api) for Recurring Payment API.
-* [Using PayU Dashboard](https://docs.payu.in/docs/subscription-dashboard/) for payment links using PayU Dashboard.
+- [Recurring Payment Transaction API](ref:recurring_payment_api) for Recurring Payment API.
+- [Using PayU Dashboard](https://docs.payu.in/docs/subscription-dashboard/) for payment links using PayU Dashboard.
 
 For the list of banks supported for the Net Banking recurring platform and their bank codes, refer to [Bank Codes - Recurring Payments](doc:bank-codes-recurring-payments) .
 
@@ -109,5 +154,5 @@ For the list of banks supported for the Net Banking recurring platform and their
 
 The transaction limit for recurring payments using Net Banking is as follows:
 
-* Net Banking: Rs.10,00,000
-* Aadhaar based eSign or eNACH Aadhaar Authentication: Rs.1,00,000
+- Net Banking: Rs.10,00,000
+- Aadhaar based eSign or eNACH Aadhaar Authentication: Rs.1,00,000
