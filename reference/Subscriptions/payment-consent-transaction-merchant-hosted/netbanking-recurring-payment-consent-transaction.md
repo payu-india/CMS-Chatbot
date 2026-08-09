@@ -36,7 +36,10 @@ next:
       slug: customer-experience-and-workflow-recurring-payments
       title: Customer Experience and Workflow
 ---
-This section provides the request parameters, sample request and response for a Net Banking Recurring Payment consent transaction or Consent transaction.
+This section provides the request parameters, sample request and response for a Net Banking Recurring Payment consent transaction or Consent transaction. PayU provides the following integration flows:
+
+- [Direct Integration](doc:net-banking-experience#enach-direct-integration-flow)
+- [NPCI Integration](doc:net-banking-experience#npci-integration-flow)
 
 <Callout icon="ℹ️" theme="info">
   ### Reference:
