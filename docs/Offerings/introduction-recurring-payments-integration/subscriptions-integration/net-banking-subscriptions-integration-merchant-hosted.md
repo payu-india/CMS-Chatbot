@@ -7,16 +7,11 @@ metadata:
 ---
 PayU's Recurring Payment Integration enables merchants to set up automated subscription billing through various payment methods including Net Banking (e-NACH), UPI, and Cards. This comprehensive guide walks you through the complete workflow from capturing initial customer consent and mandate registration to executing seamless recurring transactions without additional customer intervention. The integration ensures full compliance with RBI guidelines while providing essential features.
 
-PayU provides the following integration flows:
-
-- [Direct Integration:](doc:net-banking-experience#enach-direct-integration-flow) Supported only for HDFC Bank and ICICI Bank
-- [NPCI Integration:](doc:net-banking-experience#npci-integration-flow) eNACH flow that is authenticated through NPCI. For the supported list of banks, refer to [eNACH Supported Banks and Verification Modes.](doc:enach-supported-banks)
-
 #### I. Payment Consent Flow
 
 <Cards>
   <Card title="1. Consent Transaction" href="#step-1-consent-transaction">
-    Initiate the recurring payment process by capturing user consent for the mandate with required parameters including key, txnid, amount, productinfo, customer details, and si_details JSON object
+    Initiate the recurring payment process by capturing user consent for the mandate with required parameters including pg='ENACH', bankcode, si=1, and si_details
   </Card>
 
   <Card title="2. Verify the Payment" href="#step-2-verify-the-payment">
@@ -331,15 +326,14 @@ The payment verification step ensures the transaction has been processed success
 All successful registration transactions are charged over the recurring interface with server-to-server API without any additional 2FA or the customers' involvement.
 
 <Callout icon="📘" theme="info">
-  ### **Refunds**:
+  ### **Notes**:
 
-  Banks do not support refunds for Net Banking Recurring Payment transactions (or e-NACH transaction) so you will get an error message, "Refund not accepted for txn" or Error 232. To handle the refunds in this regard, PayU offers an alternate way to perform refunds. You must request your PayU Key Account Manager to enable refunds for Net Banking. For the list of banks supporting e-NACH, refer to [Recurring Payments Bank Codes - ENACH Registration.](doc:recurring-payments-bank-codes-enach-registration)
+  - Banks do not support refunds for Net Banking Recurring Payment transactions (or e-NACH transaction) so you will get an error message, "Refund not accepted for txn" or Error 232. To handle the refunds in this regard, PayU offers an alternate way to perform refunds. You must request your PayU Key Account Manager to enable refunds for Net Banking. For the list of banks supporting e-NACH, refer to Recurring Payments Bank Codes.
+  - Call the **Recurring Payment Transaction** API to make a recurring payment transaction.
 </Callout>
 
 <Callout icon="🚧" theme="warn">
-  ### **Assumptions**:&#x20;
-
-  If the merchant has already performed a successful registration transaction with Net Banking/UPI/Card and mihpayid is received in response to the registration transaction captured successfully and mapped to the customer at the merchant's end.
+  ### **Assumptions**: If the merchant has already performed a successful registration transaction with Net Banking/UPI/Card and mihpayid is received in response to the registration transaction captured successfully and mapped to the customer at the merchant's end.
 </Callout>
 
 **Environment**
