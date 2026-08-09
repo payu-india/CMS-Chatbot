@@ -7,6 +7,11 @@ metadata:
 ---
 PayU's Recurring Payment Integration enables merchants to set up automated subscription billing through various payment methods including Net Banking (e-NACH), UPI, and Cards. This comprehensive guide walks you through the complete workflow from capturing initial customer consent and mandate registration to executing seamless recurring transactions without additional customer intervention. The integration ensures full compliance with RBI guidelines while providing essential features.
 
+PayU provides the following integration flows:
+
+- [Direct Integration:](doc:net-banking-experience#enach-direct-integration-flow) Supported only for HDFC Bank and ICICI Bank
+- [NPCI Integration:](doc:net-banking-experience#npci-integration-flow) eNACH flow that is authenticated through NPCI. For the supported list of banks, refer to [eNACH Supported Banks and Verification Modes.](doc:enach-supported-banks)
+
 #### I. Payment Consent Flow
 
 <Cards>
