@@ -43,10 +43,9 @@ This section provides the request parameters, sample request and response for a 
 
   PayU provides the following integration flows:
 
-  - [Direct Integration](doc:net-banking-experience#enach-direct-integration-flow)
-  - [NPCI Integration](doc:net-banking-experience#npci-integration-flow)
+  - [Direct Integration:](doc:net-banking-experience#enach-direct-integration-flow) Supported only for HDFC Bank and ICICI Bank
 
-  For more information on the payment experience, refer to [Net Banking Payment Experience.](doc:net-banking-experience)
+  - [NPCI Integration:](doc:net-banking-experience#npci-integration-flow) eNACH flow that is authenticated through NPCI. For the supported list of banks, refer to [eNACH Supported Banks and Verification Modes.](doc:enach-supported-banks)
 </Callout>
 
 <br />
