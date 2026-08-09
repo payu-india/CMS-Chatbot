@@ -57,7 +57,7 @@ Unlike Cards and UPI recurring payments, **eNACH does not require a pre-debit no
 | UPI            | Required, where applicable |
 
 
-### Registration mandate workflow 
+### Registration transaction workflow 
 The steps involved in a registration transaction (e-Mandate) are:
 
 1. This is usually an INR 0.00 (zero rupee) transaction hence it is called a registration transaction.
