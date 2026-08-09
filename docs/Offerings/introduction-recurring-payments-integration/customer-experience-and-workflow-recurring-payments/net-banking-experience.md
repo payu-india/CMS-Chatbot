@@ -186,9 +186,35 @@ You can use Recurring Payment API or bulk upload on PayU Dashboard. For more inf
 
 For the list of banks supported for the Net Banking recurring platform and their bank codes, refer to [Bank Codes - Recurring Payments](doc:bank-codes-recurring-payments) .
 
-## Transaction limits
+## Transaction limits and AFA requirements
 
 The transaction limit for recurring payments is as follows:
 
 - Direct Integration or Net Banking: Rs.10,00,000
 - Aadhaar based eSign or eNACH Aadhaar Authentication: Rs.1,00,000
+
+### AFA requirements
+
+Additional Factor of Authentication (AFA) may be required at specific stages of a recurring-payment flow. The applicable requirement depends on the payment method and the underlying payment rail.
+
+Under RBI’s **Digital Payments – E-mandate Framework, 2026**, the following scenarios require AFA or may require AFA:
+
+| Scenario                                                                                 | AFA requirement                                                                                                          |
+| ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Registering a new e-mandate                                                              | AFA is required before the mandate can be registered.                                                                    |
+| Processing the first transaction                                                         | AFA is required. If registration and the first transaction occur together, the same AFA validation may be used for both. |
+| Modifying an existing mandate                                                            | AFA validation is required.                                                                                              |
+| Withdrawing or revoking a mandate                                                        | AFA validation is required.                                                                                              |
+| Opting out of an upcoming transaction or the entire mandate                              | The opt-out request must be validated using AFA.                                                                         |
+| Subsequent recurring transaction up to ₹15,000                                           | AFA is generally not required for covered payment methods, subject to the applicable mandate and issuer controls.        |
+| Subsequent recurring transaction above ₹15,000                                           | AFA is required.                                                                                                         |
+| Insurance premium, mutual-fund subscription, or credit-card bill payment up to ₹1,00,000 | AFA may not be required under the specified RBI exception.                                                               |
+| The same categories above ₹1,00,000                                                      | AFA is required.                                                                                                         |
+
+The issuer must also send a pre-transaction notification at least 24 hours before the debit. This notification requirement is separate from the AFA requirement.
+
+<Callout icon="📘" theme="info">
+  ## AFA scenario&#x73;**:**&#x20;
+
+  AFA is required when registering, modifying, withdrawing, or opting out of an e-mandate, and for the first transaction under the mandate. For covered payment methods, subsequent recurring payment transactions up to ₹15,000 may be processed without AFA; transactions above ₹15,000 require AFA. Insurance premiums, mutual-fund subscriptions, and credit-card bill payments may be processed without AFA up to ₹1,00,000, subject to RBI requirements.
+</Callout>
