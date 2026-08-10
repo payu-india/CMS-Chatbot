@@ -9,7 +9,7 @@ metadata:
 title: Partner Portal (manual onboarding)
 excerpt: >-
   Onboard merchants manually via the PayU Partner Portal: register, configure
-  branding, log in, refer merchants, and track incentives.
+  branding, log in, and track incentives.
 deprecated: false
 hidden: false
 metadata:
@@ -218,18 +218,6 @@ The Partner Dashboard page is displayed.
 
 <Image align="center" className="border" border={true} src="https://files.readme.io/e898a8e39d8272497e4680710b460e75091e1968eac96c8a303fd128f873d835-Screenshot_2025-08-26_at_2.54.57_PM.png" />
 
-### Refer merchants from the dashboard
-
-After you log in, use **Refer a Merchant** to onboard merchants manually:
-
-1. Log in to [partner.payu.in](https://partner.payu.in/).
-2. Under **Refer a Merchant**, choose **Add Single Merchant** or **Add Multiple Merchants** (CSV).
-3. Enter merchant fields such as name, email, phone, and business category.
-4. Optionally complete the merchant profile on their behalf.
-
-Portal capabilities after referral include transaction summaries, settlement reports, chargebacks, incentives, and user management. For the full single- and bulk-referral procedures, see [Referral Onboarding](doc:referral-onboarding).
-
-For the full standalone login guide, see [Log in to Partner Portal](doc:log-in-to-partner-portal).
 
 ## Step 4: Track Incentives
 
