@@ -113,9 +113,7 @@ flowchart TD
 **Get started**
 
 - [Quick start — Partner Integration](doc:quick-start-partner-integration)
-- [Refer Merchants using APIs](doc:refer-merchants-using-api)
 - [APIs for Partner Integration](doc:apis-for-partner-integration)
-- [Partner APIs introduction](ref:partner-integration-api-introduction)
 
 ## Referral links
 
