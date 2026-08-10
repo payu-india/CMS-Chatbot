@@ -1,5 +1,5 @@
 ---
-title: Which Partner Integration to Choose?
+title: Which Partner Integration Method to Choose?
 deprecated: false
 hidden: true
 metadata:
