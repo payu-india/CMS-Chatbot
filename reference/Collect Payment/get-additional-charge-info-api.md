@@ -92,6 +92,49 @@ curl --location 'https://test.payu.in/merchant/postservice?form=2' \
   </tbody>
 </table>
 
+### Hash Generation
+
+The `hash` parameter ensures request integrity and authenticity. It must be computed on the **server-side** using SHA-512.
+
+#### Hash Sequence
+
+```
+key|command|var1|salt
+```
+
+#### Sample hash generation code
+```php
+<?php
+$key = "smsplus";
+$command = "get_additional_charge";
+$var1 = '{"requestId":"abc1234","amount":10000,"category":"CC","bankCode":"CC","bin":"456789"}';
+$salt = "your_merchant_salt";
+
+$hashString = $key . '|' . $command . '|' . $var1 . '|' . $salt;
+$hash = strtolower(hash('sha512', $hashString));
+
+echo $hash;
+?>
+```
+```python
+import hashlib
+
+key = "smsplus"
+command = "get_additional_charge"
+var1 = '{"requestId":"abc1234","amount":10000,"category":"CC","bankCode":"CC","bin":"456789"}'
+salt = "your_merchant_salt"
+
+hash_string = f"{key}|{command}|{var1}|{salt}"
+hash_value = hashlib.sha512(hash_string.encode('utf-8')).hexdigest().lower()
+
+print(hash_value)
+```
+
+<Warning>
+**Security Best Practice:** Always compute the hash on your server. Never expose your merchant salt to client-side code or share it in version control systems.
+</Warning>
+
+
 ### var1 Parameters
 
 The `var1` parameter must be a JSON-encoded string containing the following fields:
@@ -209,7 +252,7 @@ For **Credit Card** and **Debit Card** transactions, you must provide either `bi
 
 ---
 
-## Response Schema
+## Response Parameters
 
 ### Success Response (status = 1)
 
@@ -431,55 +474,8 @@ For **Credit Card** and **Debit Card** transactions, you must provide either `bi
 
 ---
 
-## Hash Generation
 
-The `hash` parameter ensures request integrity and authenticity. It must be computed on the **server-side** using SHA-512.
-
-### Hash Sequence
-
-```
-key|command|var1|salt
-```
-
-### Example Hash Calculation (PHP)
-
-```php
-<?php
-$key = "smsplus";
-$command = "get_additional_charge";
-$var1 = '{"requestId":"abc1234","amount":10000,"category":"CC","bankCode":"CC","bin":"456789"}';
-$salt = "your_merchant_salt";
-
-$hashString = $key . '|' . $command . '|' . $var1 . '|' . $salt;
-$hash = strtolower(hash('sha512', $hashString));
-
-echo $hash;
-?>
-```
-
-### Example Hash Calculation (Python)
-
-```python
-import hashlib
-
-key = "smsplus"
-command = "get_additional_charge"
-var1 = '{"requestId":"abc1234","amount":10000,"category":"CC","bankCode":"CC","bin":"456789"}'
-salt = "your_merchant_salt"
-
-hash_string = f"{key}|{command}|{var1}|{salt}"
-hash_value = hashlib.sha512(hash_string.encode('utf-8')).hexdigest().lower()
-
-print(hash_value)
-```
-
-<Warning>
-**Security Best Practice:** Always compute the hash on your server. Never expose your merchant salt to client-side code or share it in version control systems.
-</Warning>
-
----
-
-## Integration Notes
+## Notes
 
 1. **Amount Format:** All monetary values (`amount`, `additionalChargeBase`, `additionalChargeGst`, `additionalChargeTotal`) are in **paise** for INR. Divide by 100 to get the rupee value.
 
