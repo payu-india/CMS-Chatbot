@@ -128,16 +128,21 @@ class Product:
         return round(100.0 * sum(scores) / len(scores), 1)
 
     def status(self) -> str:
+        """Documentation maturity for the product — not whether the product exists.
+
+        Critical gaps = coverage below 40% (many key doc types absent).
+        Partial = some docs present, important gaps remain.
+        Complete = most applicable doc types are present (≥85%).
+        """
         score = self.coverage_score()
-        # Missing critical overview + integration for developer-facing products
         overview = self.flag("overview")
         ig = self.flag("integration_guide")
         if overview == "No" and ig == "No" and score < 40:
-            return "Missing"
+            return "Critical gaps"
         if score >= 85:
             return "Complete"
         if score < 40:
-            return "Missing"
+            return "Critical gaps"
         return "Partial"
 
 
@@ -2052,7 +2057,7 @@ def apply_status_fill(cell):
     elif v == "Partial":
         cell.fill = FILL_YELLOW
         cell.font = FONT_YELLOW
-    elif v == "Missing":
+    elif v in {"Critical gaps", "Missing"}:
         cell.fill = FILL_RED
         cell.font = FONT_RED
     cell.alignment = CENTER
@@ -2091,45 +2096,7 @@ def set_hyperlink(cell, path: str):
     cell.border = THIN
 
 
-def product_row_data(p: Product) -> dict:
-    return {
-        "Product Name": p.name,
-        "Product Category": p.category,
-        "Product Type": p.product_type,
-        "Overview Page Exists": p.flag("overview"),
-        "Overview Page Link": p.link("overview"),
-        "Integration Guide Exists": p.flag("integration_guide"),
-        "Integration Guide Link": p.link("integration_guide"),
-        "API Reference Exists": p.flag("api_reference"),
-        "API Reference Link": p.link("api_reference"),
-        "SDK Exists": p.flag("sdk"),
-        "SDK Link": p.link("sdk"),
-        "Quick Start Exists": p.flag("quick_start"),
-        "Quick Start Link": p.link("quick_start"),
-        "Webhooks Documented": p.flag("webhooks"),
-        "Webhooks Link": p.link("webhooks"),
-        "Error Codes Documented": p.flag("error_codes"),
-        "Error Codes Link": p.link("error_codes"),
-        "Testing Guide Exists": p.flag("testing"),
-        "Testing Guide Link": p.link("testing"),
-        "Go Live Guide Exists": p.flag("go_live"),
-        "Go Live Guide Link": p.link("go_live"),
-        "Troubleshooting Exists": p.flag("troubleshooting"),
-        "Troubleshooting Link": p.link("troubleshooting"),
-        "FAQs Exists": p.flag("faqs"),
-        "FAQs Link": p.link("faqs"),
-        "Changelog Exists": p.flag("changelog"),
-        "Changelog Link": p.link("changelog"),
-        "Documentation Status": p.status(),
-        "Documentation Coverage (%)": p.coverage_score(),
-        "Recommend Dedicated Integration Guide": "Yes" if p.recommend_ig else "No",
-        "Recommended Priority": p.priority,
-        "Recommended Action": p.recommended_action,
-        "Notes": p.notes,
-    }
-
-
-# --- Fix-first ranking used only on the Coverage Scoring sheet ---
+# --- Shared helpers for maturity status + fix-first ranking ---
 _TIER_WEIGHT = {"P0": 1000, "P1": 700, "P2": 400, "P3": 100}
 _CORE_BOOST = {
     "PayU Hosted Checkout (Prebuilt)": 50,
@@ -2150,6 +2117,30 @@ _CORE_BOOST = {
     "Offer Engine / Offers": 35,
 }
 _COMPLEX_KEYS = ("S2S", "TPV", "Partner", "Subscriptions", "Tokenization", "Split", "Cross-Border")
+
+
+def what_to_fix(p: Product) -> str:
+    """Which documentation types are absent or only partial for this product."""
+    critical = [
+        ("Overview", "overview"),
+        ("Integration Guide", "integration_guide"),
+        ("API Reference", "api_reference"),
+        ("Testing", "testing"),
+        ("Go Live", "go_live"),
+        ("Webhooks", "webhooks"),
+        ("Error Codes", "error_codes"),
+        ("Troubleshooting", "troubleshooting"),
+        ("FAQs", "faqs"),
+        ("Changelog", "changelog"),
+    ]
+    missing = [label for label, dim in critical if p.flag(dim) == "No"]
+    partial = [label for label, dim in critical if p.flag(dim) == "Partial"]
+    bits = []
+    if missing:
+        bits.append("Missing doc types: " + ", ".join(missing[:6]))
+    if partial:
+        bits.append("Partial doc types: " + ", ".join(partial[:3]))
+    return "; ".join(bits) if bits else "No critical doc-type gaps — keep current quality"
 
 
 def fix_priority_score(p: Product) -> float:
@@ -2181,27 +2172,43 @@ def why_fix_first(p: Product) -> str:
     return "; ".join(parts)
 
 
-def what_to_fix(p: Product) -> str:
-    critical = [
-        ("Overview", "overview"),
-        ("Integration Guide", "integration_guide"),
-        ("API Reference", "api_reference"),
-        ("Testing", "testing"),
-        ("Go Live", "go_live"),
-        ("Webhooks", "webhooks"),
-        ("Error Codes", "error_codes"),
-        ("Troubleshooting", "troubleshooting"),
-        ("FAQs", "faqs"),
-        ("Changelog", "changelog"),
-    ]
-    missing = [label for label, dim in critical if p.flag(dim) == "No"]
-    partial = [label for label, dim in critical if p.flag(dim) == "Partial"]
-    bits = []
-    if missing:
-        bits.append("Missing: " + ", ".join(missing[:5]))
-    if partial:
-        bits.append("Partial: " + ", ".join(partial[:3]))
-    return "; ".join(bits) if bits else "No critical gaps — keep current quality"
+def product_row_data(p: Product) -> dict:
+    return {
+        "Product Name": p.name,
+        "Product Category": p.category,
+        "Product Type": p.product_type,
+        "Overview Page Exists": p.flag("overview"),
+        "Overview Page Link": p.link("overview"),
+        "Integration Guide Exists": p.flag("integration_guide"),
+        "Integration Guide Link": p.link("integration_guide"),
+        "API Reference Exists": p.flag("api_reference"),
+        "API Reference Link": p.link("api_reference"),
+        "SDK Exists": p.flag("sdk"),
+        "SDK Link": p.link("sdk"),
+        "Quick Start Exists": p.flag("quick_start"),
+        "Quick Start Link": p.link("quick_start"),
+        "Webhooks Documented": p.flag("webhooks"),
+        "Webhooks Link": p.link("webhooks"),
+        "Error Codes Documented": p.flag("error_codes"),
+        "Error Codes Link": p.link("error_codes"),
+        "Testing Guide Exists": p.flag("testing"),
+        "Testing Guide Link": p.link("testing"),
+        "Go Live Guide Exists": p.flag("go_live"),
+        "Go Live Guide Link": p.link("go_live"),
+        "Troubleshooting Exists": p.flag("troubleshooting"),
+        "Troubleshooting Link": p.link("troubleshooting"),
+        "FAQs Exists": p.flag("faqs"),
+        "FAQs Link": p.link("faqs"),
+        "Changelog Exists": p.flag("changelog"),
+        "Changelog Link": p.link("changelog"),
+        "Documentation Maturity": p.status(),
+        "Documentation Coverage (%)": p.coverage_score(),
+        "What's missing (doc types)": what_to_fix(p),
+        "Recommend Dedicated Integration Guide": "Yes" if p.recommend_ig else "No",
+        "Recommended Priority": p.priority,
+        "Recommended Action": p.recommended_action,
+        "Notes": p.notes,
+    }
 
 
 def build_workbook(products: list[Product]) -> Workbook:
@@ -2215,9 +2222,9 @@ def build_workbook(products: list[Product]) -> Workbook:
     missing_ig = sum(1 for r in rows if r["Integration Guide Exists"] == "No")
     with_api = sum(1 for r in rows if r["API Reference Exists"] == "Yes")
     with_sdk = sum(1 for r in rows if r["SDK Exists"] == "Yes")
-    complete = sum(1 for r in rows if r["Documentation Status"] == "Complete")
-    partial = sum(1 for r in rows if r["Documentation Status"] == "Partial")
-    missing = sum(1 for r in rows if r["Documentation Status"] == "Missing")
+    complete = sum(1 for r in rows if r["Documentation Maturity"] == "Complete")
+    partial = sum(1 for r in rows if r["Documentation Maturity"] == "Partial")
+    missing = sum(1 for r in rows if r["Documentation Maturity"] == "Critical gaps")
     requiring = partial + missing
     overall_coverage = round(sum(r["Documentation Coverage (%)"] for r in rows) / total, 1) if total else 0
 
@@ -2248,17 +2255,31 @@ def build_workbook(products: list[Product]) -> Workbook:
     ws["A2"].alignment = WRAP
     ws.row_dimensions[2].height = 36
 
+    ws.merge_cells("A3:L3")
+    ws["A3"] = (
+        "LEGEND — Colours do NOT mean the product is absent from PayU. "
+        "Green Complete = ≥85% of applicable doc types present. "
+        "Yellow Partial = some docs present, gaps remain. "
+        "Red Critical gaps = <40% coverage (many doc types absent — Overview/IG/API/Testing/Go-Live/etc.). "
+        "In Inventory: Yes/No/Partial/N/A refers to that specific documentation type for the product. "
+        "See column “What's missing (doc types)” for the concrete list."
+    )
+    ws["A3"].font = Font(name="Calibri", size=10, color="0B3D5C")
+    ws["A3"].fill = FILL_BLUE
+    ws["A3"].alignment = WRAP
+    ws.row_dimensions[3].height = 48
+
     # KPI headers
     kpis = [
         ("Total Products", total),
         ("Overall Coverage %", f"{overall_coverage}%"),
         ("Complete", complete),
         ("Partial", partial),
-        ("Missing / Require Docs", requiring),
+        ("Critical gaps / Partial", requiring),
         ("With Overview", with_overview),
-        ("Missing Overview", missing_overview),
+        ("No Overview page", missing_overview),
         ("With Integration Guide", with_ig),
-        ("Missing Integration Guide", missing_ig),
+        ("No Integration Guide", missing_ig),
         ("With API Reference", with_api),
         ("With SDK Docs", with_sdk),
         ("P0 IG Recommendations", len(p0)),
@@ -2291,11 +2312,11 @@ def build_workbook(products: list[Product]) -> Workbook:
         cell.alignment = CENTER
 
     maturity = [
-        ("Complete Documentation", complete, f"{round(100*complete/total,1)}%", "Protect & maintain; use as templates"),
-        ("Partial Documentation", partial, f"{round(100*partial/total,1)}%", "Close gaps — highest ROI for DevEx"),
-        ("Missing / Thin Documentation", missing, f"{round(100*missing/total,1)}%", "Prioritize or confirm N/A with product"),
-        ("Products Missing Overview", missing_overview, f"{round(100*missing_overview/total,1)}%", "Blockers for discoverability"),
-        ("Products Missing Integration Guide", missing_ig, f"{round(100*missing_ig/total,1)}%", "Primary support-ticket driver"),
+        ("Complete (≥85% doc types present)", complete, f"{round(100*complete/total,1)}%", "Protect & maintain; use as templates"),
+        ("Partial (some docs present, gaps remain)", partial, f"{round(100*partial/total,1)}%", "Close gaps — highest ROI for DevEx"),
+        ("Critical gaps (<40% coverage — many doc types absent)", missing, f"{round(100*missing/total,1)}%", "Prioritize or confirm N/A with product"),
+        ("Products with no Overview page", missing_overview, f"{round(100*missing_overview/total,1)}%", "Blockers for discoverability"),
+        ("Products with no Integration Guide", missing_ig, f"{round(100*missing_ig/total,1)}%", "Primary support-ticket driver"),
         ("Recommend Dedicated Integration Guide", sum(1 for p in products if p.recommend_ig), "—", "Do NOT IG everything — focus list below"),
     ]
     for r_i, row in enumerate(maturity, 9):
@@ -2308,20 +2329,20 @@ def build_workbook(products: list[Product]) -> Workbook:
                 cell.fill = FILL_GREEN
             elif c_i == 1 and "Partial" in str(row[0]):
                 cell.fill = FILL_YELLOW
-            elif c_i == 1 and "Missing" in str(row[0]):
+            elif c_i == 1 and "Critical gaps" in str(row[0]):
                 cell.fill = FILL_RED
 
     # Chart data
-    ws["F7"] = "Status Distribution"
+    ws["F7"] = "Maturity mix"
     ws["F7"].font = FONT_SECTION
-    ws["F8"] = "Status"
+    ws["F8"] = "Maturity"
     ws["G8"] = "Count"
     style_header_row(ws, 8, 6, 7)
     ws["F9"] = "Complete"
     ws["G9"] = complete
     ws["F10"] = "Partial"
     ws["G10"] = partial
-    ws["F11"] = "Missing"
+    ws["F11"] = "Critical gaps"
     ws["G11"] = missing
     for r in range(9, 12):
         for c in range(6, 8):
@@ -2332,7 +2353,7 @@ def build_workbook(products: list[Product]) -> Workbook:
     apply_status_fill(ws["F11"])
 
     pie = PieChart()
-    pie.title = "Documentation Status Mix"
+    pie.title = "Documentation Maturity Mix"
     labels = Reference(ws, min_col=6, min_row=9, max_row=11)
     data = Reference(ws, min_col=7, min_row=8, max_row=11)
     pie.add_data(data, titles_from_data=True)
@@ -2608,15 +2629,27 @@ def build_workbook(products: list[Product]) -> Workbook:
     # =====================================================================
     inv = wb.create_sheet("Product Documentation Inventory")
     inv_headers = list(rows[0].keys())
+    inv.merge_cells(start_row=1, start_column=1, end_row=1, end_column=min(8, len(inv_headers)))
+    inv["A1"] = (
+        "LEGEND: Red/Yellow/Green under Documentation Maturity = overall doc completeness for the product "
+        "(Critical gaps / Partial / Complete) — NOT whether the PayU product exists. "
+        "Yes/No/Partial/N/A under each “… Exists” column = whether THAT documentation type is present. "
+        "Use “What's missing (doc types)” for the concrete list (e.g. Go Live, FAQs, Changelog)."
+    )
+    inv["A1"].font = Font(name="Calibri", size=10, color="0B3D5C")
+    inv["A1"].fill = FILL_BLUE
+    inv["A1"].alignment = WRAP
+    inv.row_dimensions[1].height = 48
+
     for c, h in enumerate(inv_headers, 1):
-        cell = inv.cell(row=1, column=c, value=h)
+        cell = inv.cell(row=2, column=c, value=h)
         cell.fill = FILL_HEADER
         cell.font = FONT_HEADER
         cell.alignment = Alignment(wrap_text=True, vertical="center", horizontal="center")
         cell.border = THIN
-    inv.row_dimensions[1].height = 40
-    inv.freeze_panes = "A2"
-    inv.auto_filter.ref = f"A1:{get_column_letter(len(inv_headers))}{len(rows)+1}"
+    inv.row_dimensions[2].height = 40
+    inv.freeze_panes = "A3"
+    inv.auto_filter.ref = f"A2:{get_column_letter(len(inv_headers))}{len(rows)+2}"
 
     link_cols = {
         "Overview Page Link",
@@ -2648,7 +2681,7 @@ def build_workbook(products: list[Product]) -> Workbook:
         "Recommend Dedicated Integration Guide",
     }
 
-    for r_i, row in enumerate(rows, 2):
+    for r_i, row in enumerate(rows, 3):
         for c_i, h in enumerate(inv_headers, 1):
             val = row[h]
             cell = inv.cell(row=r_i, column=c_i)
@@ -2658,10 +2691,16 @@ def build_workbook(products: list[Product]) -> Workbook:
                 set_hyperlink(cell, val)
             else:
                 cell.value = val if val != "" else ("—" if h.endswith("Link") else val)
-                cell.alignment = WRAP if h in {"Recommended Action", "Notes", "Product Category", "Product Type"} else CENTER
+                cell.alignment = WRAP if h in {
+                    "Recommended Action",
+                    "Notes",
+                    "Product Category",
+                    "Product Type",
+                    "What's missing (doc types)",
+                } else CENTER
             if h in yn_cols:
                 apply_yn_fill(cell)
-            if h == "Documentation Status":
+            if h == "Documentation Maturity":
                 apply_status_fill(cell)
             if h == "Recommended Priority":
                 apply_priority_fill(cell)
@@ -2676,10 +2715,13 @@ def build_workbook(products: list[Product]) -> Workbook:
                     else:
                         cell.fill = FILL_RED
 
+    # Legend row above data would clash with freeze; put note in row 0 area via header comment in A1 already on dashboard.
+    # Widen key explanation columns.
     autosize(inv, min_width=12, max_width=40)
-    for h in ["Recommended Action", "Notes"]:
-        idx = inv_headers.index(h) + 1
-        inv.column_dimensions[get_column_letter(idx)].width = 48
+    for h in ["Recommended Action", "Notes", "What's missing (doc types)"]:
+        if h in inv_headers:
+            idx = inv_headers.index(h) + 1
+            inv.column_dimensions[get_column_letter(idx)].width = 48
 
     # Conditional formatting already applied cell-wise; add score bar chart data sheet later
 
@@ -3119,7 +3161,9 @@ def build_workbook(products: list[Product]) -> Workbook:
     meth["A4"].font = FONT_SECTION
     methodology_lines = [
         "Equal weight across applicable dimensions (N/A excluded): Overview, Integration Guide, API Reference, SDK, Quick Start, Webhooks, Error Codes, Testing, Go Live, Troubleshooting, FAQs, Changelog.",
-        "Yes = 1.0 · Partial = 0.5 · No = 0.0 · Coverage % = 100 × sum(scores) / count(applicable). Status: Complete ≥ 85%; Partial 40–84.9%; Missing < 40%.",
+        "Yes = 1.0 · Partial = 0.5 · No = 0.0 · Coverage % = 100 × sum(scores) / count(applicable). "
+        "Documentation Maturity: Complete ≥ 85%; Partial 40–84.9%; Critical gaps < 40% "
+        "(Critical gaps = many documentation types are absent for that product — not that the PayU product is missing).",
     ]
     for i, line in enumerate(methodology_lines):
         meth.cell(row=5 + i, column=1, value=line).alignment = WRAP
@@ -3151,10 +3195,10 @@ def build_workbook(products: list[Product]) -> Workbook:
         "Product Name",
         "Priority Tier",
         "Coverage %",
-        "Status",
+        "Documentation Maturity",
         "Fix Priority Score",
         "Why fix first (basis)",
-        "What to fix",
+        "What to fix (which doc types)",
         "Recommended Action",
         "Recommend Dedicated IG",
     ]
@@ -3207,7 +3251,7 @@ def build_workbook(products: list[Product]) -> Workbook:
     br_start = fix_end + 2
     meth.cell(row=br_start, column=1, value="D. Per-product dimension breakdown (same fix-first order)").font = FONT_SECTION
     break_headers = (
-        ["Fix Priority Rank", "Product Name", "Coverage %", "Status"]
+        ["Fix Priority Rank", "Product Name", "Coverage %", "Documentation Maturity"]
         + [d.replace("_", " ").title() for d in DIMENSIONS]
         + ["Applicable Dimensions"]
     )
@@ -3357,7 +3401,7 @@ def build_workbook(products: list[Product]) -> Workbook:
     summary["A50"].font = FONT_SECTION
     how_to = [
         "1. Leadership reviews Executive Dashboard KPIs and P0 list weekly/biweekly.",
-        "2. Docs team filters Product Documentation Inventory by Status=Partial/Missing and Priority=P0/P1.",
+        "2. Docs team filters Product Documentation Inventory by Maturity=Partial/Critical gaps and Priority=P0/P1; use “What's missing (doc types)” for the concrete gap list.",
         "3. Use IG Prioritization to assign writing projects — only where Recommend Dedicated IG=Yes.",
         "4. Gap Analysis drives IA cleanup (duplicates, naming, restructures) in parallel with new IG content.",
         "5. Re-run generate_coverage_tracker.py after major docs releases to refresh scores from the repository.",
@@ -3487,7 +3531,7 @@ def build_workbook(products: list[Product]) -> Workbook:
         "Avg Coverage %",
         "Complete",
         "Partial",
-        "Missing",
+        "Critical gaps",
         "P0 IG Recs",
     ]
     for c, h in enumerate(cat_headers, 1):
@@ -3507,7 +3551,7 @@ def build_workbook(products: list[Product]) -> Workbook:
             round(sum(p.coverage_score() for p in plist) / len(plist), 1),
             sum(1 for p in plist if p.status() == "Complete"),
             sum(1 for p in plist if p.status() == "Partial"),
-            sum(1 for p in plist if p.status() == "Missing"),
+            sum(1 for p in plist if p.status() == "Critical gaps"),
             sum(1 for p in plist if p.priority == "P0" and p.recommend_ig),
         ]
         for c, v in enumerate(vals, 1):
@@ -3553,8 +3597,8 @@ def main():
     print(f"Products: {len(products)}")
     complete = sum(1 for p in products if p.status() == "Complete")
     partial = sum(1 for p in products if p.status() == "Partial")
-    missing = sum(1 for p in products if p.status() == "Missing")
-    print(f"Status Complete/Partial/Missing: {complete}/{partial}/{missing}")
+    missing = sum(1 for p in products if p.status() == "Critical gaps")
+    print(f"Maturity Complete/Partial/Critical gaps: {complete}/{partial}/{missing}")
     print(
         f"Overall avg coverage: {round(sum(p.coverage_score() for p in products)/len(products),1)}%"
     )
