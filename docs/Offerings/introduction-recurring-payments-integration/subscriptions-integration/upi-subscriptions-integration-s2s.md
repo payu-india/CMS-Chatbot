@@ -29,7 +29,6 @@ Before starting the integration, ensure you have:
   <Card title="1. Post the Request" href="#step-1-post-the-request">
     Send the UPI consent transaction request with S2S parameters.
 
-
   </Card>
 
   <Card title="2. Check Response from PayU" href="#step-2-check-the-response-from-payu">
@@ -424,12 +423,16 @@ response = Net::HTTP.post_form(uri, form)
 puts response.code
 puts response.body
 ```
-
+<Callout icon="📘" theme="info">
 Notes:
 - `/_payment` usually returns HTML for a browser redirect; in production, merchants typically POST these fields from an HTML form, not a server-side HTTP client.
 - Prefer valid JSON for `si_details`, for example:  
-  `{"billingAmount":"1.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2025-10-14","paymentEndDate":"2027-12-01"}`  
+```
+{"billingAmount":"1.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2025-10-14","paymentEndDate":"2027-12-01"}
+```
   Keep the same string in both the request body and the hash calculation.
+</Callout>
+
 </Accordion>
 
 <Callout icon="📘" theme="info">
