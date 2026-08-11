@@ -59,15 +59,13 @@ Hyperlocal businesses can use Instant Refunds to build trust when services are c
 
 Event platforms can issue full or partial refunds within minutes when events are cancelled, rescheduled, or partially fulfilled. PayU highlights events as a use case for partial or full refunds within minutes. 
 
-## How Instant Refunds Work
+## How Instant Refunds work
 
-The typical refund journey follows these steps:
-
-- **Customer requests a refund**<br /> The refund may be triggered by a cancellation, return, failed service, or order issue.
-- **Merchant initiates the refund**<br /> The merchant initiates the refund using the PayU Dashboard or Refund Transaction API.
-- **PayU validates the refund request**<br /> PayU validates the transaction, refund rules, and refund amount before processing.
-- **Instant Refund is processed to the supported payment source**<br /> Instant Refunds are routed back to the customer’s original payment source.
-- **Merchant tracks refund status**<br /> Merchants can monitor refund status through dashboard.
+1. **Customer requests a refund**: Triggered by a cancellation, return, failed service, or order issue.
+2. **Merchant initiates the refund**: Use the [PayU Dashboard](doc:refunds-dashboard) or [Refund Transaction API](ref:refund_transaction_api).
+3. **PayU validates the refund request**: PayU checks the transaction, refund rules, and refund amount.
+4. **Instant Refund is processed**: Eligible refunds are routed back to the customer’s original payment source on a supported channel.
+5. **Merchant tracks refund status**: Monitor progress from the dashboard, [Refund APIs](doc:refund-apis-doc), or [Webhooks for Refunds](doc:webhooks-for-refunds).
 
 ### Instant Refund Prerequisites
 
