@@ -1,7 +1,7 @@
 ---
 title: Quick Start Integration - Merchant Hosted Checkout [Cards]
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
