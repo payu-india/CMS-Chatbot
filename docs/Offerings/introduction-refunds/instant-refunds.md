@@ -73,11 +73,11 @@ Issue full or partial refunds when events are cancelled, rescheduled, or partial
 
 ## How Instant Refunds work
 
-1. **Customer requests a refund** — Triggered by a cancellation, return, failed service, or order issue.
-2. **Merchant initiates the refund** — Use the [PayU Dashboard](doc:refunds-dashboard) or [Refund Transaction API](ref:refund_transaction_api).
-3. **PayU validates the refund request** — PayU checks the transaction, refund rules, and refund amount.
-4. **Instant Refund is processed** — Eligible refunds are routed back to the customer’s original payment source on a supported channel.
-5. **Merchant tracks refund status** — Monitor progress from the dashboard, [Refund APIs](doc:refund-apis-doc), or [Webhooks for Refunds](doc:webhooks-for-refunds).
+1. **Customer requests a refund**: Triggered by a cancellation, return, failed service, or order issue.
+2. **Merchant initiates the refund**: Use the [PayU Dashboard](doc:refunds-dashboard) or [Refund Transaction API](ref:refund_transaction_api).
+3. **PayU validates the refund request**: PayU checks the transaction, refund rules, and refund amount.
+4. **Instant Refund is processed**: Eligible refunds are routed back to the customer’s original payment source on a supported channel.
+5. **Merchant tracks refund status**: Monitor progress from the dashboard, [Refund APIs](doc:refund-apis-doc), or [Webhooks for Refunds](doc:webhooks-for-refunds).
 
 ### Prerequisites
 
