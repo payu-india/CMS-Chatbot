@@ -1083,7 +1083,7 @@ Use the **Recurring Payment Transaction** API to execute recurring payment trans
   | in-progress | Transaction is being processed                                               |
 </Callout>
 
-### UPI Sequencing
+## UPI Sequencing
 
 You may attempt multiple pre-debits and executions simultaneously in certain scenarios. To address such scenarios, **mandateSeqNo** field in var1 parameter in the **Pre Debit Notification** API and **Recurring Payment** API.
 
