@@ -2938,21 +2938,24 @@ def build_workbook(products: list[Product]) -> Workbook:
     igp["A1"] = "Integration Guide Recommendations & Prioritization"
     igp["A1"].font = FONT_TITLE
     igp["A1"].fill = FILL_TITLE
-    igp.merge_cells("A1:J1")
+    igp.merge_cells("A1:K1")
     igp["A2"] = (
         "Rule: Recommend a dedicated Integration Guide only where it provides meaningful DevEx value "
         "(core journey, high complexity, high support dependency, or revenue-critical). "
-        "Plugins/utilities/ops products may use install guides or API maps instead."
+        "Plugins/utilities/ops products may use install guides or API maps instead. "
+        "Priority basis: P0 = must have IG now (core/high-support); P1 = next (high DevEx/vertical impact); "
+        "P2 = later; P3 = low / no dedicated IG needed. See 'Why this priority' for each row."
     )
     igp["A2"].alignment = WRAP
-    igp.merge_cells("A2:J2")
-    igp.row_dimensions[2].height = 36
+    igp.merge_cells("A2:K2")
+    igp.row_dimensions[2].height = 48
 
     ig_headers = [
         "Product Name",
         "Category",
         "Recommend Dedicated IG",
         "Priority",
+        "Why this priority",
         "Merchant Adoption Signal",
         "Core Payment Journey",
         "Developer Complexity",
@@ -2966,8 +2969,9 @@ def build_workbook(products: list[Product]) -> Workbook:
         cell.font = FONT_HEADER
         cell.alignment = CENTER
         cell.border = THIN
+    igp.row_dimensions[4].height = 36
     igp.freeze_panes = "A5"
-    igp.auto_filter.ref = f"A4:J{4+len(products)}"
+    igp.auto_filter.ref = f"A4:K{4+len(products)}"
 
     def signals(p: Product):
         core = "Yes" if "Core" in p.product_type or p.category.startswith("Collect Payments / Web") or p.name in {
@@ -2999,6 +3003,57 @@ def build_workbook(products: list[Product]) -> Workbook:
         )
         return adoption, core, complexity, support, gap
 
+    def why_ig_priority(p: Product, adoption: str, core: str, complexity: str, support: str, gap: str) -> str:
+        """Plain-language reason for the assigned IG priority tier."""
+        drivers = []
+        if adoption == "High":
+            drivers.append("high merchant adoption")
+        elif adoption == "Medium":
+            drivers.append("medium adoption")
+        else:
+            drivers.append("lower/niche adoption")
+
+        if core == "Yes":
+            drivers.append("on the core payment journey")
+        if complexity == "High":
+            drivers.append("high developer complexity")
+        elif complexity == "Medium":
+            drivers.append("moderate complexity")
+        if support == "High":
+            drivers.append("high support dependency without a clear IG")
+        elif support == "Medium":
+            drivers.append("moderate support risk")
+        if gap == "High":
+            drivers.append(f"large doc gap ({p.coverage_score()}% coverage)")
+        elif gap == "Medium":
+            drivers.append(f"moderate doc gap ({p.coverage_score()}% coverage)")
+        else:
+            drivers.append(f"docs relatively stronger ({p.coverage_score()}%)")
+
+        if not p.recommend_ig:
+            if p.priority in {"P2", "P3"}:
+                return (
+                    f"{p.priority}: dedicated IG not recommended — "
+                    + "; ".join(drivers)
+                    + ". Prefer install how-to / API map / cross-links instead."
+                )
+            return (
+                f"{p.priority}: dedicated IG not the primary ask — "
+                + "; ".join(drivers)
+                + "."
+            )
+
+        if p.priority == "P0":
+            lead = "P0 — must have a dedicated Integration Guide immediately"
+        elif p.priority == "P1":
+            lead = "P1 — important next; schedule after P0 core journeys"
+        elif p.priority == "P2":
+            lead = "P2 — improve later; lower urgency vs core journeys"
+        else:
+            lead = "P3 — low priority / maintain only"
+
+        return f"{lead} because of " + "; ".join(drivers) + "."
+
     # Sort: recommend Yes first, then priority
     pri_order = {"P0": 0, "P1": 1, "P2": 2, "P3": 3}
     sorted_products = sorted(
@@ -3012,6 +3067,7 @@ def build_workbook(products: list[Product]) -> Workbook:
             p.category,
             "Yes" if p.recommend_ig else "No",
             p.priority,
+            why_ig_priority(p, adoption, core, complexity, support, gap_sev),
             adoption,
             core,
             complexity,
@@ -3026,9 +3082,12 @@ def build_workbook(products: list[Product]) -> Workbook:
             cell.font = FONT_BODY
         apply_yn_fill(igp.cell(row=r_i, column=3))
         apply_priority_fill(igp.cell(row=r_i, column=4))
+        if p.recommend_ig and p.priority in {"P0", "P1"}:
+            igp.row_dimensions[r_i].height = 48
 
     autosize(igp, min_width=12, max_width=42)
-    igp.column_dimensions["J"].width = 55
+    igp.column_dimensions["E"].width = 56
+    igp.column_dimensions["K"].width = 55
 
     # =====================================================================
     # Sheet 5 — Coverage Scoring (with fix-first prioritization)
