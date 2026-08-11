@@ -1,7 +1,7 @@
 ---
 title: Instant Refunds
 deprecated: false
-hidden: false
+hidden: true
 icon: fab fa-cash-app
 metadata:
   robots: index
