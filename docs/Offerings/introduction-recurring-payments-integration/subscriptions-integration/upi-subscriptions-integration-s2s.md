@@ -146,9 +146,9 @@ Before implementing, familiarize yourself with the required parameters.
   | paymentEndDate<br />`mandatory`   | `String`<br />Mandate end date (YYYY-MM-DD).                                      | `2025-12-01` |
 </Accordion>
 
+#### A. UPI Intent Flow
 <Accordion title="Request Payload Structure" icon="fa-file-code">
   #### UPI Intent Flow (with S2S Parameters)
-
   ```json
   {
     "key": "JPM7Fg",
@@ -182,7 +182,7 @@ Before implementing, familiarize yourself with the required parameters.
   ```
 </Accordion>
 
-<Accordion title="Sample Request" icon="fa-terminal">
+<Accordion title="Sample Request for UPI Intent" icon="fa-terminal">
   ```bash
 ```curl
 curl --location 'https://secure.payu.in/_payment' \
@@ -470,12 +470,156 @@ puts response.body
 <Callout icon="📘" theme="info">
   **Note**: Before you make payment request to PayU, it is recommended to validate the UPI handle provided by your customer is eligible for recurring payment using the validateVPA API. For more information, refer to [Validate VPA API](ref:validate_vpa_api).
 </Callout>
+#### B. UPI Collect Flow
+<Accordion title="Sample request" icon="fa-code">
+  ```curl
+      curl -X      POST "https://test.payu.in/_payment" -H      "accept: application/json" -H      "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&txnid=xdB9G7qYpfqszo&amount=10&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=UPI&bankcode=UPI&vpa=VPA-anything@payu&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=649bc87e0e8ee7bbd1e930d43c99a9165eb9fa7a3f4542a33e8d66bd207a63d631708fd9781e56b133581f7dabeaa67baa5609d5e5c9990f986792d59e7d41cb"
+  ```
+  ```python
+  import requests
+
+  url = "https://test.payu.in/_payment"
+
+  headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+  }
+
+  data = {
+    "key": "JP***g",
+    "txnid": "xdB9G7qYpfqszo",
+    "amount": "10",
+    "firstname": "PayU User",
+    "email": "test@gmail.com",
+    "phone": "9876543210",
+    "productinfo": "iPhone",
+    "pg": "UPI",
+    "bankcode": "UPI",
+    "vpa": "VPA-anything@payu",
+    "surl": "https://apiplayground-response.herokuapp.com/",
+    "furl": "https://apiplayground-response.herokuapp.com/",
+    "hash": "649bc87e0e8ee7bbd1e930d43c99a9165eb9fa7a3f4542a33e8d66bd207a63d631708fd9781e56b133581f7dabeaa67baa5609d5e5c9990f986792d59e7d41cb"
+  }
+
+  response = requests.post(url, headers=headers, data=data)
+  print(response.status_code)
+  print(response.text)
+  ```
+  ```perl
+  use strict;
+  use warnings;
+  use LWP::UserAgent;
+  use HTTP::Request::Common qw(POST);
+
+  my $url = "https://test.payu.in/_payment";
+
+  my $ua = LWP::UserAgent->new();
+
+  my $response = $ua->request(POST $url,
+      'Accept' => 'application/json',
+      'Content-Type' => 'application/x-www-form-urlencoded',
+      Content => [
+          key => 'JP***g',
+          txnid => 'xdB9G7qYpfqszo',
+          amount => '10',
+          firstname => 'PayU User',
+          email => 'test@gmail.com',
+          phone => '9876543210',
+          productinfo => 'iPhone',
+          pg => 'UPI',
+          bankcode => 'UPI',
+          vpa => 'VPA-anything@payu',
+          surl => 'https://apiplayground-response.herokuapp.com/',
+          furl => 'https://apiplayground-response.herokuapp.com/',
+          hash => '649bc87e0e8ee7bbd1e930d43c99a9165eb9fa7a3f4542a33e8d66bd207a63d631708fd9781e56b133581f7dabeaa67baa5609d5e5c9990f986792d59e7d41cb'
+      ]
+  );
+
+  print "Status: " . $response->code . "\n";
+  print "Response: " . $response->content . "\n";
+  ```
+  ```java
+  import java.io.IOException;
+  import java.net.URI;
+  import java.net.URLEncoder;
+  import java.net.http.HttpClient;
+  import java.net.http.HttpRequest;
+  import java.net.http.HttpResponse;
+  import java.nio.charset.StandardCharsets;
+  import java.util.HashMap;
+  import java.util.Map;
+  import java.util.stream.Collectors;
+
+  public class PayURequest \{
+      public static void main(String[] args) throws IOException, InterruptedException \{
+          String url = "https://test.payu.in/_payment";
+          
+          Map<String, String> parameters = new HashMap<>();
+          parameters.put("key", "JP***g");
+          parameters.put("txnid", "xdB9G7qYpfqszo");
+          parameters.put("amount", "10");
+          parameters.put("firstname", "PayU User");
+          parameters.put("email", "test@gmail.com");
+          parameters.put("phone", "9876543210");
+          parameters.put("productinfo", "iPhone");
+          parameters.put("pg", "UPI");
+          parameters.put("bankcode", "UPI");
+          parameters.put("vpa", "VPA-anything@payu");
+          parameters.put("surl", "https://apiplayground-response.herokuapp.com/");
+          parameters.put("furl", "https://apiplayground-response.herokuapp.com/");
+          parameters.put("hash", "649bc87e0e8ee7bbd1e930d43c99a9165eb9fa7a3f4542a33e8d66bd207a63d631708fd9781e56b133581f7dabeaa67baa5609d5e5c9990f986792d59e7d41cb");
+          
+          String formData = parameters.entrySet()
+                  .stream()
+                  .map(entry -> URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8) + "=" + 
+                               URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8))
+                  .collect(Collectors.joining("&"));
+          
+          HttpClient client = HttpClient.newHttpClient();
+          HttpRequest request = HttpRequest.newBuilder()
+                  .uri(URI.create(url))
+                  .header("Accept", "application/json")
+                  .header("Content-Type", "application/x-www-form-urlencoded")
+                  .POST(HttpRequest.BodyPublishers.ofString(formData))
+                  .build();
+          
+          HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+          
+          System.out.println("Status Code: " + response.statusCode());
+          System.out.println("Response: " + response.body());
+      \}
+  \}
+  ```
+  ```javascript
+  const url = 'https://test.payu.in/merchant/postservice?form=2';
+
+  const data = new URLSearchParams({
+  key: 'JP***g',
+  command: 'validateVPA',
+  var1: '9999999999@upi',
+  hash: '75bb573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472fff9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e'
+  });
+
+  const response = await fetch(url, {
+  method: 'POST',
+  headers: {
+   'Accept': 'application/json',
+   'Content-Type': 'application/x-www-form-urlencoded'
+  },
+  body: data.toString()
+  });
+
+  const result = await response.json();
+  console.log(result);
+  ```
+</Accordion>
 
 ***
 
 ### Step 2: Check the Response from PayU
 
-The API returns different response the following for UPI Inten.
+#### UPI Intent Flow 
+The API returns different response the following for UPI Intent.
 
 <Accordion title="UPI Intent Response" icon="fa-check">
   For UPI Intent with S2S flow, the response is a JSON object containing the intent URI:
@@ -524,6 +668,75 @@ The API returns different response the following for UPI Inten.
 <Callout icon="📘" theme="info">
   If you want to use PayU's timer page for UPI collect, you can use the **result.acsTemplate** and **base64decode** it to redirect the customer on given HTML.
 </Callout>
+
+#### UPI Collect Flow
+
+<Accordion title="Hash Validation" icon="fa-lock" />
+
+While sending the response, PayU takes the exact same parameters that were sent in the request (in reverse order) to calculate the hash and returns it to you. You must verify the hash and then mark a transaction as a success or failure. This is to make sure the transaction has not tampered within the response.
+
+The order of the parameters is similar to the following code block:
+
+```
+sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
+```
+</Accordion>
+
+<Accordion title="Sample Response" icon="fa-code">
+  ```
+      Array
+      (
+          [mihpayid] => 403993715523409521
+          [mode] => UPI
+          [status] => success
+          [unmappedstatus] => captured
+          [key] => JPM7Fg
+          [txnid] => 5jJ9xRceXX1ydT
+          [amount] => 10.00
+          [discount] => 0.00
+          [net_amount_debit] => 1000
+          [addedon] => 2021-07-02 15:03:50
+          [productinfo] => iPhone
+          [firstname] => PayU User
+          [lastname] => 
+          [address1] => 
+          [address2] => 
+          [city] => 
+          [state] => 
+          [country] => 
+          [zipcode] => 
+          [email] => test@gmail.com
+          [phone] => 9876543210
+          [udf1] => 
+          [udf2] => 
+          [udf3] => 
+          [udf4] => 
+          [udf5] => 
+          [udf6] => 
+          [udf7] => 
+          [udf8] => 
+          [udf9] => 
+          [udf10] => 
+          [hash] => 716f92a6452adadba68d133ba7f5ca3f3403f03f554e3ef850911f3e6727ee73402b249054170ad276c8b55ca12368a5e27cc69ffb0642ef6403dae9a5708794
+          [field1] => vpa-anything@payu
+          [field2] => 5jJ9xRceXX1ydT
+          [field3] => 
+          [field4] => PayU User
+          [field5] => AXIhh4ExnaJ9dKiJvPxsewHwxMMmT3ba7UY
+          [field6] => 
+          [field7] => Transaction completed successfully
+          [field8] => 
+          [field9] => Transaction completed successfully
+          [payment_source] => payu
+          [PG_TYPE] => UPI-PG
+          [bank_ref_num] => 5jJ9xRceXX1ydT
+          [bankcode] => UPI
+          [error] => E000
+          [error_Message] => No Error
+      )
+  ```
+</Accordion>
+
 
 ***
 
