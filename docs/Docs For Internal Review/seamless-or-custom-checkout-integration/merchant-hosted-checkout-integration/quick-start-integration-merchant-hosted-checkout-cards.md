@@ -32,17 +32,11 @@ Know more about [Merchant Hosted Checkout](doc:merchant-hosted-checkout) and the
 
   ![](https://files.readme.io/885ee54d0bb0b25b9ea1584b6b13cadf03e710a52e326175a8d9246181cd4102-nimbus-mart-card-checkout.png)
 
-
-
-
-
   ### 2. Card authentication (OTP / 3-D Secure)
 
   When the issuer requires authentication, the customer completes OTP or 3-D Secure. Your return URLs must be reachable so PayU can send the customer back after authentication.
 
   ![](https://files.readme.io/73e4b2dff67dae8877f975da455056e465e964c7e7b90f0f79a6e762968fc15c-nimbus-mart-otp-challenge.png)
-
-
 
   ### 3. Payment success on your website
 
@@ -198,7 +192,7 @@ Follow the below steps to make your test card payment:
   Use the sample below as a starting point for a **Nimbus Mart**-style Merchant Hosted card form. In production, prefer rendering the form from your server after computing `hash` server-side (never ship Salt to the browser).
 
   ```curl
-   curl -X POST "https://test.payu.in/_payment" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&txnid=EaE4ZO3vU4iPsp&amount=10.00&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=cc&bankcode=MAST&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&ccnum=5123456789012346&ccexpmon=05&ccexpyr=2022&ccvv=123&ccname=undefined&hash=fc3206829a6b4f8e300aeefb8f91add568b83dc90d01383a8e16553cc9600a3aefd4be2e370d32f0315ef1b9f28740515a9556b55abfefa7b54b434f894c9304"
+   curl -X POST "https://test.payu.in/_payment" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=YOUR_KEY&txnid=EaE4ZO3vU4iPsp&amount=10.00&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=cc&bankcode=MAST&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&ccnum=5123456789012346&ccexpmon=05&ccexpyr=2022&ccvv=123&ccname=undefined&hash=GENERATED_HASH
   ```
 
   **Replace:**
