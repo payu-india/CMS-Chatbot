@@ -190,387 +190,246 @@ Before implementing, familiarize yourself with the required parameters.
   ```
 </Accordion>
 
-<Accordion title="Sample Requests" icon="fa-terminal">
+<Accordion title="Sample Request" icon="fa-terminal">
   ```bash
-  curl --location --request POST 'https://test.payu.in/_payment' \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data-urlencode 'key=JPM7Fg' \
-  --data-urlencode 'txnid=upiIntentTxn12345' \
-  --data-urlencode 'amount=10.00' \
-  --data-urlencode 'firstname=Ashish' \
-  --data-urlencode 'lastname=Kumar' \
-  --data-urlencode 'email=abc@payu.in' \
-  --data-urlencode 'phone=9988776655' \
-  --data-urlencode 'productinfo=Monthly Subscription' \
-  --data-urlencode 'address1=34 Saikripa-Estate, Tilak Nagar' \
-  --data-urlencode 'city=Mumbai' \
-  --data-urlencode 'state=Maharashtra' \
-  --data-urlencode 'country=India' \
-  --data-urlencode 'zipcode=400004' \
-  --data-urlencode 'surl=https://example.com/success' \
-  --data-urlencode 'furl=https://example.com/failure' \
-  --data-urlencode 'pg=UPI' \
-  --data-urlencode 'bankcode=INTENT' \
-  --data-urlencode 'api_version=7' \
-  --data-urlencode 'si=1' \
-  --data-urlencode 'si_details={"billingAmount":"10.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2025-06-05","paymentEndDate":"2025-12-01"}' \
-  --data-urlencode 'txn_s2s_flow=4' \
-  --data-urlencode 's2s_client_ip=10.200.12.12' \
-  --data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64)' \
-  --data-urlencode 'hash=YOUR_CALCULATED_HASH'
+ curl --location 'https://secure.payu.in/_payment' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642; PHPSESSID=68ed52caaaf5e' \
+--data-urlencode 'key=BmTY3G' \
+--data-urlencode 'txnid=my_order_49428' \
+--data-urlencode 'amount=1' \
+--data-urlencode 'firstname=PayU User' \
+--data-urlencode 'email=test@gmail.com' \
+--data-urlencode 'phone=9876543210' \
+--data-urlencode 'productinfo=my_order_49428' \
+--data-urlencode 'si=4' \
+--data-urlencode 'surl=https://apiplayground-response.herokuapp.com/' \
+--data-urlencode 'furl=https://apiplayground-response.herokuapp.com/' \
+--data-urlencode 'si_details={billingAmount: 1.00,billingCurrency: INR,billingCycle: MONTHLY,billingInterval: 1,paymentStartDate: 2025-10-14,paymentEndDate: 2027-12-01}' \
+--data-urlencode 'hash=67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb'
   ```
+Here are equivalents of that `POST https://secure.payu.in/_payment` form request. Session `Cookie` headers are omitted — they are not part of the merchant API contract.
 
-  # CURL Request Translation to Multiple Programming Languages
+**Python**
+```python
+import requests
 
-  This document provides equivalent code snippets in various programming languages for the following CURL request:
+url = "https://secure.payu.in/_payment"
 
-  ```bash
-  curl --location --request POST 'https://test.payu.in/_payment'   --header 'Content-Type: application/x-www-form-urlencoded'   --data-urlencode 'key=JPM7Fg'   --data-urlencode 'txnid=upiIntentTxn12345'   --data-urlencode 'amount=10.00'   --data-urlencode 'firstname=Ashish'   --data-urlencode 'lastname=Kumar'   --data-urlencode 'email=abc@payu.in'   --data-urlencode 'phone=9988776655'   --data-urlencode 'productinfo=Monthly Subscription'   --data-urlencode 'address1=34 Saikripa-Estate, Tilak Nagar'   --data-urlencode 'city=Mumbai'   --data-urlencode 'state=Maharashtra'   --data-urlencode 'country=India'   --data-urlencode 'zipcode=400004'   --data-urlencode 'surl=https://example.com/success'   --data-urlencode 'furl=https://example.com/failure'   --data-urlencode 'pg=UPI'   --data-urlencode 'bankcode=INTENT'   --data-urlencode 'api_version=7'   --data-urlencode 'si=1'   --data-urlencode 'si_details={"billingAmount":"10.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2025-06-05","paymentEndDate":"2025-12-01"}'   --data-urlencode 'txn_s2s_flow=4'   --data-urlencode 's2s_client_ip=10.200.12.12'   --data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64)'   --data-urlencode 'hash=YOUR_CALCULATED_HASH'
-  ```
-  ```python
-  import requests
+headers = {
+    "Content-Type": "application/x-www-form-urlencoded"
+}
 
-  def make_payu_payment():
-      url = "https://test.payu.in/_payment"
-      
-      # Prepare form data
-      data = {
-          'key': 'JPM7Fg',
-          'txnid': 'upiIntentTxn12345',
-          'amount': '10.00',
-          'firstname': 'Ashish',
-          'lastname': 'Kumar',
-          'email': 'abc@payu.in',
-          'phone': '9988776655',
-          'productinfo': 'Monthly Subscription',
-          'address1': '34 Saikripa-Estate, Tilak Nagar',
-          'city': 'Mumbai',
-          'state': 'Maharashtra',
-          'country': 'India',
-          'zipcode': '400004',
-          'surl': 'https://example.com/success',
-          'furl': 'https://example.com/failure',
-          'pg': 'UPI',
-          'bankcode': 'INTENT',
-          'api_version': '7',
-          'si': '1',
-          'si_details': '{"billingAmount":"10.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2025-06-05","paymentEndDate":"2025-12-01"}',
-          'txn_s2s_flow': '4',
-          's2s_client_ip': '10.200.12.12',
-          's2s_device_info': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
-          'hash': 'YOUR_CALCULATED_HASH'
-      }
-      
-      headers = {
-          'Content-Type': 'application/x-www-form-urlencoded'
-      }
-      
-      try:
-          # Send POST request
-          response = requests.post(url, data=data, headers=headers)
-          
-          print(f"Status Code: {response.status_code}")
-          print(f"Response: {response.text}")
-          
-          return response
-          
-      except requests.exceptions.RequestException as e:
-          print(f"Error occurred: {e}")
-          return None
+data = {
+    "key": "BmTY3G",
+    "txnid": "my_order_49428",
+    "amount": "1",
+    "firstname": "PayU User",
+    "email": "test@gmail.com",
+    "phone": "9876543210",
+    "productinfo": "my_order_49428",
+    "si": "4",
+    "surl": "https://apiplayground-response.herokuapp.com/",
+    "furl": "https://apiplayground-response.herokuapp.com/",
+    "si_details": "{billingAmount: 1.00,billingCurrency: INR,billingCycle: MONTHLY,billingInterval: 1,paymentStartDate: 2025-10-14,paymentEndDate: 2027-12-01}",
+    "hash": "67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb",
+}
 
-  # Execute the request
-  make_payu_payment()
-  ```
+response = requests.post(url, headers=headers, data=data)
+print(response.status_code)
+print(response.text)
+```
 
-  ```csharp
-  using System;
-  using System.Collections.Generic;
-  using System.Net.Http;
-  using System.Threading.Tasks;
+**JavaScript (Node / fetch)**
+```javascript
+async function makePayURequest() {
+  const url = "https://secure.payu.in/_payment";
 
-  class Program
-  {
-      private static readonly HttpClient client = new HttpClient();
+  const body = new URLSearchParams({
+    key: "BmTY3G",
+    txnid: "my_order_49428",
+    amount: "1",
+    firstname: "PayU User",
+    email: "test@gmail.com",
+    phone: "9876543210",
+    productinfo: "my_order_49428",
+    si: "4",
+    surl: "https://apiplayground-response.herokuapp.com/",
+    furl: "https://apiplayground-response.herokuapp.com/",
+    si_details:
+      "{billingAmount: 1.00,billingCurrency: INR,billingCycle: MONTHLY,billingInterval: 1,paymentStartDate: 2025-10-14,paymentEndDate: 2027-12-01}",
+    hash: "67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb",
+  });
 
-      static async Task Main(string[] args)
-      {
-          await MakePayUPayment();
-      }
+  const response = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body,
+  });
 
-      static async Task MakePayUPayment()
-      {
-          string url = "https://test.payu.in/_payment";
-          
-          // Prepare form data
-          var formParams = new List<KeyValuePair<string, string>>
-          {
-              new KeyValuePair<string, string>("key", "JPM7Fg"),
-              new KeyValuePair<string, string>("txnid", "upiIntentTxn12345"),
-              new KeyValuePair<string, string>("amount", "10.00"),
-              new KeyValuePair<string, string>("firstname", "Ashish"),
-              new KeyValuePair<string, string>("lastname", "Kumar"),
-              new KeyValuePair<string, string>("email", "abc@payu.in"),
-              new KeyValuePair<string, string>("phone", "9988776655"),
-              new KeyValuePair<string, string>("productinfo", "Monthly Subscription"),
-              new KeyValuePair<string, string>("address1", "34 Saikripa-Estate, Tilak Nagar"),
-              new KeyValuePair<string, string>("city", "Mumbai"),
-              new KeyValuePair<string, string>("state", "Maharashtra"),
-              new KeyValuePair<string, string>("country", "India"),
-              new KeyValuePair<string, string>("zipcode", "400004"),
-              new KeyValuePair<string, string>("surl", "https://example.com/success"),
-              new KeyValuePair<string, string>("furl", "https://example.com/failure"),
-              new KeyValuePair<string, string>("pg", "UPI"),
-              new KeyValuePair<string, string>("bankcode", "INTENT"),
-              new KeyValuePair<string, string>("api_version", "7"),
-              new KeyValuePair<string, string>("si", "1"),
-              new KeyValuePair<string, string>("si_details", "{\"billingAmount\":\"10.00\",\"billingCurrency\":\"INR\",\"billingCycle\":\"MONTHLY\",\"billingInterval\":1,\"paymentStartDate\":\"2025-06-05\",\"paymentEndDate\":\"2025-12-01\"}"),
-              new KeyValuePair<string, string>("txn_s2s_flow", "4"),
-              new KeyValuePair<string, string>("s2s_client_ip", "10.200.12.12"),
-              new KeyValuePair<string, string>("s2s_device_info", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"),
-              new KeyValuePair<string, string>("hash", "YOUR_CALCULATED_HASH")
-          };
+  console.log(response.status);
+  console.log(await response.text());
+}
 
-          var formContent = new FormUrlEncodedContent(formParams);
-          
-          try
-          {
-              // Send POST request
-              HttpResponseMessage response = await client.PostAsync(url, formContent);
-              
-              string responseBody = await response.Content.ReadAsStringAsync();
-              
-              Console.WriteLine($"Status Code: {response.StatusCode}");
-              Console.WriteLine($"Response: {responseBody}");
-          }
-          catch (HttpRequestException e)
-          {
-              Console.WriteLine($"Error occurred: {e.Message}");
-          }
-      }
-  }
-  ```
+makePayURequest();
+```
 
-  ```javascript
-  async function makePayUPayment() {
-      const url = "https://test.payu.in/_payment";
-      
-      // Prepare form data
-      const formData = new URLSearchParams();
-      formData.append('key', 'JPM7Fg');
-      formData.append('txnid', 'upiIntentTxn12345');
-      formData.append('amount', '10.00');
-      formData.append('firstname', 'Ashish');
-      formData.append('lastname', 'Kumar');
-      formData.append('email', 'abc@payu.in');
-      formData.append('phone', '9988776655');
-      formData.append('productinfo', 'Monthly Subscription');
-      formData.append('address1', '34 Saikripa-Estate, Tilak Nagar');
-      formData.append('city', 'Mumbai');
-      formData.append('state', 'Maharashtra');
-      formData.append('country', 'India');
-      formData.append('zipcode', '400004');
-      formData.append('surl', 'https://example.com/success');
-      formData.append('furl', 'https://example.com/failure');
-      formData.append('pg', 'UPI');
-      formData.append('bankcode', 'INTENT');
-      formData.append('api_version', '7');
-      formData.append('si', '1');
-      formData.append('si_details', '{"billingAmount":"10.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2025-06-05","paymentEndDate":"2025-12-01"}');
-      formData.append('txn_s2s_flow', '4');
-      formData.append('s2s_client_ip', '10.200.12.12');
-      formData.append('s2s_device_info', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)');
-      formData.append('hash', 'YOUR_CALCULATED_HASH');
-      
-      const options = {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          body: formData
-      };
-      
-      try {
-          // Send POST request
-          const response = await fetch(url, options);
-          const responseText = await response.text();
-          
-          console.log(`Status Code: ${response.status}`);
-          console.log(`Response: ${responseText}`);
-          
-          return response;
-          
-      } catch (error) {
-          console.error(`Error occurred: ${error.message}`);
-          return null;
-      }
-  }
+**PHP**
+```php
+$url = "https://secure.payu.in/_payment";
 
-  // Execute the request
-  makePayUPayment();
-  ```
+$postData = [
+    "key" => "BmTY3G",
+    "txnid" => "my_order_49428",
+    "amount" => "1",
+    "firstname" => "PayU User",
+    "email" => "test@gmail.com",
+    "phone" => "9876543210",
+    "productinfo" => "my_order_49428",
+    "si" => "4",
+    "surl" => "https://apiplayground-response.herokuapp.com/",
+    "furl" => "https://apiplayground-response.herokuapp.com/",
+    "si_details" => "{billingAmount: 1.00,billingCurrency: INR,billingCycle: MONTHLY,billingInterval: 1,paymentStartDate: 2025-10-14,paymentEndDate: 2027-12-01}",
+    "hash" => "67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb",
+];
 
-  ```java
-  import java.io.*;
-  import java.net.*;
-  import java.nio.charset.StandardCharsets;
-  import java.util.*;
+$ch = curl_init();
+curl_setopt_array($ch, [
+    CURLOPT_URL => $url,
+    CURLOPT_POST => true,
+    CURLOPT_POSTFIELDS => http_build_query($postData),
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_HTTPHEADER => ["Content-Type: application/x-www-form-urlencoded"],
+]);
 
-  public class PayUPayment {
-      
-      public static void main(String[] args) {
-          try {
-              makePayUPayment();
-          } catch (Exception e) {
-              System.err.println("Error occurred: " + e.getMessage());
-              e.printStackTrace();
-          }
-      }
-      
-      public static void makePayUPayment() throws Exception {
-          String url = "https://test.payu.in/_payment";
-          
-          // Prepare form data
-          Map<String, String> parameters = new HashMap<>();
-          parameters.put("key", "JPM7Fg");
-          parameters.put("txnid", "upiIntentTxn12345");
-          parameters.put("amount", "10.00");
-          parameters.put("firstname", "Ashish");
-          parameters.put("lastname", "Kumar");
-          parameters.put("email", "abc@payu.in");
-          parameters.put("phone", "9988776655");
-          parameters.put("productinfo", "Monthly Subscription");
-          parameters.put("address1", "34 Saikripa-Estate, Tilak Nagar");
-          parameters.put("city", "Mumbai");
-          parameters.put("state", "Maharashtra");
-          parameters.put("country", "India");
-          parameters.put("zipcode", "400004");
-          parameters.put("surl", "https://example.com/success");
-          parameters.put("furl", "https://example.com/failure");
-          parameters.put("pg", "UPI");
-          parameters.put("bankcode", "INTENT");
-          parameters.put("api_version", "7");
-          parameters.put("si", "1");
-          parameters.put("si_details", "{\"billingAmount\":\"10.00\",\"billingCurrency\":\"INR\",\"billingCycle\":\"MONTHLY\",\"billingInterval\":1,\"paymentStartDate\":\"2025-06-05\",\"paymentEndDate\":\"2025-12-01\"}");
-          parameters.put("txn_s2s_flow", "4");
-          parameters.put("s2s_client_ip", "10.200.12.12");
-          parameters.put("s2s_device_info", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)");
-          parameters.put("hash", "YOUR_CALCULATED_HASH");
-          
-          // Create connection
-          URL obj = new URL(url);
-          HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
-          
-          // Set request method and headers
-          connection.setRequestMethod("POST");
-          connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-          connection.setDoOutput(true);
-          
-          // Build form data string
-          StringBuilder formData = new StringBuilder();
-          for (Map.Entry<String, String> entry : parameters.entrySet()) {
-              if (formData.length() > 0) {
-                  formData.append("&");
-              }
-              formData.append(URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8.toString()));
-              formData.append("=");
-              formData.append(URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8.toString()));
-          }
-          
-          // Send POST request
-          try (DataOutputStream wr = new DataOutputStream(connection.getOutputStream())) {
-              wr.writeBytes(formData.toString());
-              wr.flush();
-          }
-          
-          // Get response
-          int responseCode = connection.getResponseCode();
-          System.out.println("Status Code: " + responseCode);
-          
-          BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-          String inputLine;
-          StringBuilder response = new StringBuilder();
-          
-          while ((inputLine = in.readLine()) != null) {
-              response.append(inputLine);
-          }
-          in.close();
-          
-          System.out.println("Response: " + response.toString());
-      }
-  }
-  ```
+$response = curl_exec($ch);
+$status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
 
-  ```php
-  <?php
+echo $status . PHP_EOL;
+echo $response;
+```
 
-  function makePayUPayment() {
-      $url = "https://test.payu.in/_payment";
-      
-      // Prepare form data
-      $data = array(
-          'key' => 'JPM7Fg',
-          'txnid' => 'upiIntentTxn12345',
-          'amount' => '10.00',
-          'firstname' => 'Ashish',
-          'lastname' => 'Kumar',
-          'email' => 'abc@payu.in',
-          'phone' => '9988776655',
-          'productinfo' => 'Monthly Subscription',
-          'address1' => '34 Saikripa-Estate, Tilak Nagar',
-          'city' => 'Mumbai',
-          'state' => 'Maharashtra',
-          'country' => 'India',
-          'zipcode' => '400004',
-          'surl' => 'https://example.com/success',
-          'furl' => 'https://example.com/failure',
-          'pg' => 'UPI',
-          'bankcode' => 'INTENT',
-          'api_version' => '7',
-          'si' => '1',
-          'si_details' => '{"billingAmount":"10.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2025-06-05","paymentEndDate":"2025-12-01"}',
-          'txn_s2s_flow' => '4',
-          's2s_client_ip' => '10.200.12.12',
-          's2s_device_info' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
-          'hash' => 'YOUR_CALCULATED_HASH'
-      );
-      
-      // Initialize cURL
-      $ch = curl_init();
-      
-      // Set cURL options
-      curl_setopt($ch, CURLOPT_URL, $url);
-      curl_setopt($ch, CURLOPT_POST, true);
-      curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-      curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-      curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-          'Content-Type: application/x-www-form-urlencoded'
-      ));
-      
-      // Execute request
-      $response = curl_exec($ch);
-      
-      // Check for errors
-      if (curl_errno($ch)) {
-          echo 'Error occurred: ' . curl_error($ch) . PHP_EOL;
-          curl_close($ch);
-          return false;
-      }
-      
-      // Get response info
-      $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-      
-      echo "Status Code: " . $httpCode . PHP_EOL;
-      echo "Response: " . $response . PHP_EOL;
-      
-      curl_close($ch);
-      return $response;
-  }
+**Java**
+```java
+import java.net.URI;
+import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
-  // Execute the request
-  makePayUPayment();
-  ?>
-  ```
+public class PayUPayment {
+    public static void main(String[] args) throws Exception {
+        String url = "https://secure.payu.in/_payment";
+
+        Map<String, String> formData = new LinkedHashMap<>();
+        formData.put("key", "BmTY3G");
+        formData.put("txnid", "my_order_49428");
+        formData.put("amount", "1");
+        formData.put("firstname", "PayU User");
+        formData.put("email", "test@gmail.com");
+        formData.put("phone", "9876543210");
+        formData.put("productinfo", "my_order_49428");
+        formData.put("si", "4");
+        formData.put("surl", "https://apiplayground-response.herokuapp.com/");
+        formData.put("furl", "https://apiplayground-response.herokuapp.com/");
+        formData.put("si_details", "{billingAmount: 1.00,billingCurrency: INR,billingCycle: MONTHLY,billingInterval: 1,paymentStartDate: 2025-10-14,paymentEndDate: 2027-12-01}");
+        formData.put("hash", "67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb");
+
+        String body = formData.entrySet().stream()
+                .map(e -> URLEncoder.encode(e.getKey(), StandardCharsets.UTF_8) + "="
+                        + URLEncoder.encode(e.getValue(), StandardCharsets.UTF_8))
+                .collect(Collectors.joining("&"));
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .header("Content-Type", "application/x-www-form-urlencoded")
+                .POST(HttpRequest.BodyPublishers.ofString(body))
+                .build();
+
+        HttpResponse<String> response = HttpClient.newHttpClient()
+                .send(request, HttpResponse.BodyHandlers.ofString());
+
+        System.out.println(response.statusCode());
+        System.out.println(response.body());
+    }
+}
+```
+
+**C#**
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+class Program
+{
+    private static readonly HttpClient client = new HttpClient();
+
+    static async Task Main()
+    {
+        string url = "https://secure.payu.in/_payment";
+
+        var formData = new List<KeyValuePair<string, string>>
+        {
+            new("key", "BmTY3G"),
+            new("txnid", "my_order_49428"),
+            new("amount", "1"),
+            new("firstname", "PayU User"),
+            new("email", "test@gmail.com"),
+            new("phone", "9876543210"),
+            new("productinfo", "my_order_49428"),
+            new("si", "4"),
+            new("surl", "https://apiplayground-response.herokuapp.com/"),
+            new("furl", "https://apiplayground-response.herokuapp.com/"),
+            new("si_details", "{billingAmount: 1.00,billingCurrency: INR,billingCycle: MONTHLY,billingInterval: 1,paymentStartDate: 2025-10-14,paymentEndDate: 2027-12-01}"),
+            new("hash", "67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb"),
+        };
+
+        var response = await client.PostAsync(url, new FormUrlEncodedContent(formData));
+        Console.WriteLine((int)response.StatusCode);
+        Console.WriteLine(await response.Content.ReadAsStringAsync());
+    }
+}
+```
+
+**Ruby**
+```ruby
+require "net/http"
+require "uri"
+
+uri = URI("https://secure.payu.in/_payment")
+
+form = {
+  "key" => "BmTY3G",
+  "txnid" => "my_order_49428",
+  "amount" => "1",
+  "firstname" => "PayU User",
+  "email" => "test@gmail.com",
+  "phone" => "9876543210",
+  "productinfo" => "my_order_49428",
+  "si" => "4",
+  "surl" => "https://apiplayground-response.herokuapp.com/",
+  "furl" => "https://apiplayground-response.herokuapp.com/",
+  "si_details" => "{billingAmount: 1.00,billingCurrency: INR,billingCycle: MONTHLY,billingInterval: 1,paymentStartDate: 2025-10-14,paymentEndDate: 2027-12-01}",
+  "hash" => "67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb"
+}
+
+response = Net::HTTP.post_form(uri, form)
+puts response.code
+puts response.body
+```
+
+Notes:
+- `/_payment` usually returns HTML for a browser redirect; in production, merchants typically POST these fields from an HTML form, not a server-side HTTP client.
+- Prefer valid JSON for `si_details`, for example:  
+  `{"billingAmount":"1.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2025-10-14","paymentEndDate":"2027-12-01"}`  
+  Keep the same string in both the request body and the hash calculation.
 </Accordion>
 
 <Callout icon="📘" theme="info">
@@ -581,22 +440,7 @@ Before implementing, familiarize yourself with the required parameters.
 
 ### Step 2: Check the Response from PayU
 
-The API returns different response structures for UPI Collect and UPI Intent flows.
-
-<Accordion title="UPI Collect Response" icon="fa-check">
-  For UPI Collect, the response is returned in URL-encoded format (application/x-www-form-urlencoded):
-
-  ```plaintext
-  eyJzdGF0dXMiOiJzdWNjZXNzIiwicmVzdWx0Ijp7Im1paHBheWlkIjoiNzYwMTI2NTU4NSIsIm1vZGUiOiJVUEkiLCJzdGF0dXMiOiJwZW5kaW5nIiwia2V5IjoiTWVyY2hhbnRLZXkiLCJ0eG5pZCI6IjZiMmYzZDY4NWVjMWJiYTdkZDRiIiwiYW1vdW50IjoiMTAuMDAiLCJhZGRlZG9uIjoiMjAxOC0xMS0wMSAxOTo1NjozMiIsInByb2R1Y3RpbmZvIjoiUHJvZHVjdCBJbmZvIiwiZmlyc3RuYW1lIjoiUGF5dS1Vc2VyIiwibGFzdG5hbWUiOiIiLCJhZGRyZXNzMSI6IiIsImFkZHJlc3MyIjoiIiwiY2l0eSI6IiIsInN0YXRlIjoiIiwiY291bnRyeSI6IiIsInppcGNvZGUiOiIiLCJlbWFpbCI6InRlc3RAZXhhbXBsZS5jb20iLCJwaG9uZSI6IjEyMzQ1Njc4OTAiLCJ1ZGYxIjoiIiwidWRmMiI6IiIsInVkZjMiOiIiLCJ1ZGY0IjoiIiwidWRmNSI6IiIsInVkZjYiOiIiLCJ1ZGY3IjoiIiwidWRmOCI6IiIsInVkZjkiOiIiLCJ1ZGYxMCI6IiIsImNhcmRfdG9rZW4iOiIiLCJjYXJkX25vIjoiIiwiZmllbGQwIjoiIiwiZmllbGQxIjoiYWJjZEB1cGkiLCJmaWVsZDIiOiIiLCJmaWVsZDMiOiIiLCJmaWVsZDQiOiIiLCJmaWVsZDUiOiIiLCJmaWVsZDYiOiIiLCJmaWVsZDciOiIiLCJmaWVsZDgiOiIiLCJmaWVsZDkiOiIiLCJwYXltZW50X3NvdXJjZSI6InBheXVQdXJlUzJTIiwiUEdfVFlQRSI6IkFYSVNVIiwiZXJyb3IiOiJFMDAwIiwiZXJyb3JfTWVzc2FnZSI6Ik5vIEVycm9yIiwibmV0X2Ftb3VudF9kZWJpdCI6IjAiLCJhZGRpdGlvbmFsQ2hhcmdlcyI6IjI5LjUiLCJ1bm1hcHBlZHN0YXR1cyI6ImluIHByb2dyZXNzIiwiaGFzaCI6IjU2NzQ3OGE5ZDUyMzhlZTIyZGFhMDM2ZWMwMjAxMzk0OGY2YjgwNGUzMWNhYzNkYmQyMDc1NmU5ZjFkNDFlMjI4ZTQxYzJkYjcwZmU4ZWRlZmMyNDBiOTQwODZlN2QzN2Y4ZDQ2OTA4MzU4Y2NjNzA4Y2JjNWVlNTJjMjlkYWEwIiwiYmFua19yZWZfbm8iOiJBWEk5MTEwMDAwMDAwMDQ5MTg0NzY2MTU0MTc5OTcwNTY5OCIsImJhbmtfcmVmX251bSI6IkFYSTkxMTAwMDAwMDAwNDkxODQ3NjYxNTQxNzk5NzA1Njk4IiwiYmFua2NvZGUiOiJVUEkiLCJzdXJsIjoiaHR0cHM6XC9cL2FkbWluLnBheXUuaW5cL3Rlc3RfcmVzcG9uc2UiLCJjdXJsIjoiaHR0cHM6XC9cL2FkbWluLnBheXUuaW5cL3Rlc3RfcmVzcG9uc2UiLCJmdXJsIjoiaHR0cHM6XC9cL2FkbWluLnBheXUuaW5cL3Rlc3RfcmVzcG9uc2UifX0
-  ```
-
-  **Base64 decoded response:**
-
-  ```plaintext
-  {"status":"success","result":{"mihpayid":"7601265585","mode":"UPI","status":"pending","key":"MerchantKey","txnid":"6b2f3d685ec1bba7dd4b","amount":"10.00","addedon":"2018-11-01
-  19:56:32","productinfo":"ProductInfo","firstname":"PayuUser","lastname":"","address1":"","address2":"","city":"","state":"","country":"","zipcode":"","email":"test@example.com","phone":"1234567890","udf1":"","udf2":"","udf3":"","udf4":"","udf5":"","udf6":"","udf7":"","udf8":"","udf9":"","udf10":"","card_token":"","card_no":"","field0":"","field1":"abcd@upi","field2":"","field3":"","field4":"","field5":"","field6":"","field7":"","field8":"","field9":"","payment_source":"payuPureS2S","PG_TYPE":"AXISU","error":"E000","error_Message":"NoError","net_amount_debit":"0","additionalCharges":"29.5","unmappedstatus":"inprogress","hash":"567478a9d5238ee22daa036ec02013948f6b804e31cac3dbd20756e9f1d41e228e41c2db70fe8edefc240b94086e7d37f8d46908358ccc708cbc5ee52c29daa0","bank_ref_no":"AXI91100000000491847661541799705698","bank_ref_num":"AXI91100000000491847661541799705698","bankcode":"UPI","surl":"https:\/\/admin.payu.in\/test_response","curl":"https:\/\/admin.payu.in\/test_response","furl":"https:\/\/admin.payu.in\/test_response"}}
-  ```
-</Accordion>
+The API returns different response the following for UPI Inten.
 
 <Accordion title="UPI Intent Response" icon="fa-check">
   For UPI Intent with S2S flow, the response is a JSON object containing the intent URI:
