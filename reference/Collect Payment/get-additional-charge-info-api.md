@@ -78,7 +78,7 @@ curl --location 'https://test.payu.in/merchant/postservice?form=2' \
         JSON-encoded string containing the transaction details. See <strong>var1 Parameters</strong> below for structure. For more information, refer to <a href="#var1-json-object-fields-description"> var1 JSON Object Fields Description</a>
 
       </td>
-      <td><code>{"requestId":"abc1234","amount":10000,"category":"CC","bankCode":"CC","bin":"456789"}</code></td>
+      <td><code>Refer to <a href="#var1-json-object-fields-description"> var1 JSON Object Fields Description</code></td>
     </tr>
     <tr>
       <td><code>hash</code></td>
