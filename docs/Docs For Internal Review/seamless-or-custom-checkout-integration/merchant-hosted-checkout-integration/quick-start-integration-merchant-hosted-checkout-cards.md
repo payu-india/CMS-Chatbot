@@ -5,17 +5,6 @@ hidden: true
 metadata:
   robots: index
 ---
----
-title: Merchant Hosted Checkout Cards Quick Start (HTML Integration)
-excerpt: >-
-  Integrate card payments on your Merchant Hosted Checkout with a simple HTML
-  form. Generate hash, post card parameters to PayU, and complete your first
-  test payment — with sample screens for a fictitious merchant.
-deprecated: false
-hidden: true
-metadata:
-  robots: index
----
 ## When to Use Merchant Hosted Checkout for Cards
 
 Use this approach if you want to:
@@ -26,44 +15,41 @@ Use this approach if you want to:
 
 Know more about [Merchant Hosted Checkout](doc:merchant-hosted-checkout) and the full [Cards Integration](doc:collect-payments-with-cards-seamless) guide.
 
-<Callout icon="📘" theme="info">
-  ### **Other Integration Options:**
-
-  Consider other integrations if you need:
-
-  - A PayU-hosted payment page (no card fields on your site) — [PayU Hosted Checkout Quick Start](doc:payu-hosted-checkout-quick-start-html-integration)
-  - Backend-only card orchestration (Classic / Decoupled / Direct Auth) — [Server-to-Server Integration](doc:server-to-server-integration)
-</Callout>
-
 <Callout icon="⚠️" theme="warn">
-  **PCI note**
+  ### **PCI-DSS Certification**
 
   Collecting card data on your page increases PCI scope. Generate hash only on your server, never store CVV, and do not log full PAN. Prefer HTTPS everywhere.
 </Callout>
 
 ***
 
-## What it looks like after integration
+<Accordion title="What it looks like after integration" icon="far fa-check-to-slot">
+  The following sample screens use a fictitious merchant, **Nimbus Mart**, to show a typical Merchant Hosted Cards experience after you integrate.
 
-The following sample screens use a fictitious merchant, **Nimbus Mart**, to show a typical Merchant Hosted Cards experience after you integrate.
+  ### 1. Card checkout on your website
 
-### 1. Card checkout on your website
+  Customers stay on **Nimbus Mart** and enter card details next to the order summary. You control this UI; PayU receives the posted payment request.
 
-Customers stay on **Nimbus Mart** and enter card details next to the order summary. You control this UI; PayU receives the posted payment request.
+  ![](https://files.readme.io/885ee54d0bb0b25b9ea1584b6b13cadf03e710a52e326175a8d9246181cd4102-nimbus-mart-card-checkout.png)
 
-<Image src="assets/nimbus-mart-card-checkout.png" alt="Nimbus Mart checkout with card payment form for Wireless Earbuds ₹1,299" align="center" border={true} caption="_Sample: Nimbus Mart — Merchant Hosted card checkout_" />
 
-### 2. Card authentication (OTP / 3-D Secure)
 
-When the issuer requires authentication, the customer completes OTP or 3-D Secure. Your return URLs must be reachable so PayU can send the customer back after authentication.
 
-<Image src="assets/nimbus-mart-otp-challenge.png" alt="OTP challenge screen for Nimbus Mart payment of ₹1,299" align="center" border={true} caption="_Sample: Nimbus Mart — card authentication challenge_" />
 
-### 3. Payment success on your website
+  ### 2. Card authentication (OTP / 3-D Secure)
 
-After PayU processes the payment, the customer returns to your success page. Mark the order paid only after reverse hash validation and Verify Payment / webhook confirmation.
+  When the issuer requires authentication, the customer completes OTP or 3-D Secure. Your return URLs must be reachable so PayU can send the customer back after authentication.
 
-<Image src="assets/nimbus-mart-payment-success.png" alt="Nimbus Mart payment successful page for order NM-48291" align="center" border={true} caption="_Sample: Nimbus Mart — payment success_" />
+  ![](https://files.readme.io/73e4b2dff67dae8877f975da455056e465e964c7e7b90f0f79a6e762968fc15c-nimbus-mart-otp-challenge.png)
+
+
+
+  ### 3. Payment success on your website
+
+  After PayU processes the payment, the customer returns to your success page. Mark the order paid only after reverse hash validation and Verify Payment / webhook confirmation.
+
+  ![](https://files.readme.io/414295fecb5baa482d60a4bf9c2906122d08ec89c7c06a0790f4b84e10ab5378-nimbus-mart-payment-success.png)
+</Accordion>
 
 ***
 
@@ -80,18 +66,6 @@ Before you begin with Merchant Hosted Cards integration:
 
 ***
 
-## Integration Steps Overview
-
-Below is the overview of the Merchant Hosted Cards integration:
-
-1. Prepare card payment request parameters
-2. Create a secure hash
-3. Post the card form from your checkout to PayU
-4. Handle success/failure response (reverse hashing)
-5. Verify the payment
-
-***
-
 ## Make your Test Payment
 
 Follow the below steps to make your test card payment:
@@ -101,7 +75,7 @@ Follow the below steps to make your test card payment:
 | **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
 | **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
-<Accordion title="Step 1: Prepare Request Parameters" icon="fa-info-circle">
+<Accordion title="Step 1: Prepare Request Parameters" icon="far fa-table-list">
   Define these mandatory parameters for cards. You can also send optional parameters. Refer to the [Cards Integration](doc:collect-payments-with-cards-seamless) guide for the full list.
 
   ```Mandatory Parameters
@@ -124,28 +98,28 @@ Follow the below steps to make your test card payment:
   salt={{salt_value}}
   ```
 
-  | **Parameters**  | **Description**                                                                                                                                                                                                | **Example**              |
-  | :-------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------- |
-  | **key**         | `string` Merchant key provided by PayU during onboarding.                                                                                                                                                      | `JPG****k`               |
-  | **txnid**       | `string` Unique reference for this order. Must be unique for every attempt.                                                                                                                                    | `txn_123456`             |
-  | **amount**      | `string` Amount in INR, up to 2 decimal places, no commas.                                                                                                                                                     | `10.00`                  |
-  | **productinfo** | `string` Short product description.                                                                                                                                                                            | `Wireless Earbuds`       |
-  | **firstname**   | `string` Customer first name.                                                                                                                                                                                  | `Aarav`                  |
-  | **email**       | `string` Customer email.                                                                                                                                                                                       | `aarav@testmail.com`     |
-  | **phone**       | `string` Customer phone (10-digit).                                                                                                                                                                            | `9999999999`             |
-  | **surl**        | `string` Success URL after payment.                                                                                                                                                                            | Your HTTPS success URL   |
-  | **furl**        | `string` Failure URL after payment.                                                                                                                                                                            | Your HTTPS failure URL   |
-  | **pg**          | `string` Payment mode for cards.                                                                                                                                                                               | `CC`                     |
-  | **bankcode**    | `string` Card bank/scheme code as applicable (for example `CC` or `MAST`).                                                                                                                                     | `CC`                     |
-  | **ccnum**       | `string` Card number (validate with Luhn). Use [test cards](doc:test-cards-upi-id-and-wallets) in sandbox.                                                                                                     | `5123456789012346`       |
-  | **ccname**      | `string` Name on card.                                                                                                                                                                                         | `Aarav Sharma`           |
-  | **ccvv**        | `string` CVV / security code. Never store this after the request.                                                                                                                                              | `123`                    |
-  | **ccexpmon**    | `string` Expiry month (`MM`).                                                                                                                                                                                  | `12`                     |
-  | **ccexpyr**     | `string` Expiry year (`YYYY`).                                                                                                                                                                                 | `2026`                   |
-  | **salt**        | `string` Merchant salt — use only on the server when generating hash (do not put Salt in the browser form as a visible field in production).                                                                   | From PayU dashboard      |
+  | **Parameters**  | **Description**                                                                                                                              | **Example**            |
+  | :-------------- | :------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------- |
+  | **key**         | `string` Merchant key provided by PayU during onboarding.                                                                                    | `JPG****k`             |
+  | **txnid**       | `string` Unique reference for this order. Must be unique for every attempt.                                                                  | `txn_123456`           |
+  | **amount**      | `string` Amount in INR, up to 2 decimal places, no commas.                                                                                   | `10.00`                |
+  | **productinfo** | `string` Short product description.                                                                                                          | `Wireless Earbuds`     |
+  | **firstname**   | `string` Customer first name.                                                                                                                | `Aarav`                |
+  | **email**       | `string` Customer email.                                                                                                                     | `aarav@testmail.com`   |
+  | **phone**       | `string` Customer phone (10-digit).                                                                                                          | `9999999999`           |
+  | **surl**        | `string` Success URL after payment.                                                                                                          | Your HTTPS success URL |
+  | **furl**        | `string` Failure URL after payment.                                                                                                          | Your HTTPS failure URL |
+  | **pg**          | `string` Payment mode for cards.                                                                                                             | `CC`                   |
+  | **bankcode**    | `string` Card bank/scheme code as applicable (for example `CC` or `MAST`).                                                                   | `CC`                   |
+  | **ccnum**       | `string` Card number (validate with Luhn). Use [test cards](doc:test-cards-upi-id-and-wallets) in sandbox.                                   | `5123456789012346`     |
+  | **ccname**      | `string` Name on card.                                                                                                                       | `Aarav Sharma`         |
+  | **ccvv**        | `string` CVV / security code. Never store this after the request.                                                                            | `123`                  |
+  | **ccexpmon**    | `string` Expiry month (`MM`).                                                                                                                | `12`                   |
+  | **ccexpyr**     | `string` Expiry year (`YYYY`).                                                                                                               | `2026`                 |
+  | **salt**        | `string` Merchant salt — use only on the server when generating hash (do not put Salt in the browser form as a visible field in production). | From PayU dashboard    |
 
   <Callout icon="📘" theme="info">
-    **Handy Tips**
+    ### **Tips:**
 
     - `txnid` must be unique
     - No extra spaces in values
@@ -153,7 +127,7 @@ Follow the below steps to make your test card payment:
   </Callout>
 </Accordion>
 
-<Accordion title="Step 2: Generate SHA-512 Hash (Critical Step)" icon="fa-info-circle">
+<Accordion title="Step 2: Generate SHA-512 Hash (Critical Step)" icon="far fa-lock-a">
   Hash generation is required to **secure your payment request**. If the hash is incorrect, PayU will reject the transaction with an `Invalid Hash` error.
 
   Create a hash value by concatenating the following parameters in a specific order:
@@ -174,7 +148,7 @@ Follow the below steps to make your test card payment:
   ```
 
   <Callout icon="⚠️" theme="warn">
-    **Critical Rules**
+    ### **Critical Rules**
 
     - Do not change the parameter order
     - Do not skip pipes (`|`). Even if fields are empty, you must include separators.
@@ -185,7 +159,7 @@ Follow the below steps to make your test card payment:
   </Callout>
 
   <Callout icon="📘" theme="info">
-    **Look For:**
+    ### **Look For:**
 
     - [ ] Extra spaces: Example `"Aarav "`
     - [ ] Newline characters
@@ -195,7 +169,7 @@ Follow the below steps to make your test card payment:
     These may break the hash.
   </Callout>
 
-  <Accordion title="Step 2.1 Generate SHA-512 Hash using Node.js" icon="fa-info-circle">
+  <Accordion title="Step 2.1 Generate SHA-512 Hash using Node.js" icon="far fa-lock-hashtag">
     ```node
     const crypto = require("crypto");
 
@@ -211,7 +185,7 @@ Follow the below steps to make your test card payment:
     ```
   </Accordion>
 
-  <Accordion title="Step 2.2 Debug Your Hash (Highly Recommended)" icon="fa-info-circle">
+  <Accordion title="Step 2.2 Debug Your Hash (Highly Recommended)" icon="far fa-computer-mouse-button-left">
     Before using the hash, print the exact string:
 
     ```javascript
@@ -220,52 +194,11 @@ Follow the below steps to make your test card payment:
   </Accordion>
 </Accordion>
 
-<Accordion title="Step 3: Create an HTML Checkout Form for Cards" icon="fa-info-circle">
+<Accordion title="Step 3: Post Payment Request" icon="fa-info-circle">
   Use the sample below as a starting point for a **Nimbus Mart**-style Merchant Hosted card form. In production, prefer rendering the form from your server after computing `hash` server-side (never ship Salt to the browser).
 
-  ```html
-  <!doctype html>
-  <html>
-    <head>
-      <title>Nimbus Mart — Checkout</title>
-    </head>
-    <body>
-      <h1>Nimbus Mart</h1>
-      <p>Wireless Earbuds — ₹10.00</p>
-
-      <form name="payu" method="post" action="https://test.payu.in/_payment">
-        <input type="hidden" name="key" value="YOUR_KEY" />
-        <input type="hidden" name="txnid" value="txn_123456" />
-        <input type="hidden" name="amount" value="10.00" />
-        <input type="hidden" name="productinfo" value="Wireless Earbuds" />
-        <input type="hidden" name="firstname" value="Aarav" />
-        <input type="hidden" name="email" value="aarav@testmail.com" />
-        <input type="hidden" name="phone" value="9999999999" />
-        <input type="hidden" name="surl" value="https://nimbusmart.example.com/success" />
-        <input type="hidden" name="furl" value="https://nimbusmart.example.com/failure" />
-        <input type="hidden" name="pg" value="CC" />
-        <input type="hidden" name="bankcode" value="CC" />
-        <input type="hidden" name="hash" value="GENERATED_HASH" />
-
-        <label>Card number</label>
-        <input type="text" name="ccnum" value="5123456789012346" autocomplete="cc-number" />
-
-        <label>Name on card</label>
-        <input type="text" name="ccname" value="Aarav Sharma" autocomplete="cc-name" />
-
-        <label>Expiry month (MM)</label>
-        <input type="text" name="ccexpmon" value="12" autocomplete="cc-exp-month" />
-
-        <label>Expiry year (YYYY)</label>
-        <input type="text" name="ccexpyr" value="2026" autocomplete="cc-exp-year" />
-
-        <label>CVV</label>
-        <input type="password" name="ccvv" value="123" autocomplete="cc-csc" />
-
-        <input type="submit" value="Pay ₹10.00" />
-      </form>
-    </body>
-  </html>
+  ```curl
+   curl -X POST "https://test.payu.in/_payment" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&txnid=EaE4ZO3vU4iPsp&amount=10.00&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=cc&bankcode=MAST&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&ccnum=5123456789012346&ccexpmon=05&ccexpyr=2022&ccvv=123&ccname=undefined&hash=fc3206829a6b4f8e300aeefb8f91add568b83dc90d01383a8e16553cc9600a3aefd4be2e370d32f0315ef1b9f28740515a9556b55abfefa7b54b434f894c9304"
   ```
 
   **Replace:**
