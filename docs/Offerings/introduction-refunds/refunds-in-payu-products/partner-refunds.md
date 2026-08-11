@@ -2,7 +2,7 @@
 title: Partner Refunds
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
