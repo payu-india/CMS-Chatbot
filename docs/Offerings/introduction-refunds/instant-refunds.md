@@ -14,8 +14,6 @@ PayU supports merchant-initiated refunds through the **PayU Dashboard** or the *
 
 If Instant Refunds are enabled for a merchant, eligible refunds can be completed within **1 minute&#x20;**&#x6F;f the refund request.
 
- 
-
 ## Key Features and Benefits
 
 ### 1. Faster Customer Refund Experience
@@ -25,8 +23,6 @@ Instant Refunds help merchants improve customer satisfaction by reducing the tim
 - **Refunds within seconds**: Eligible refunds can be completed within 1 minute of the refund request.
 - **Back-to-source refunds**: Refunds are sent back to the source account used by the customer for the original payment.
 - **Improved customer trust**: Faster refunds can reduce anxiety for customers after cancellations, returns, or failed service delivery.
-
- 
 
 ### 2. Full and Partial Refund Support
 
