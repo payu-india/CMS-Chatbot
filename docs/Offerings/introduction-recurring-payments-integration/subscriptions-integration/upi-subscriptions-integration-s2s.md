@@ -21,7 +21,18 @@ Before starting the integration, ensure you have:
 - Merchant Key and Salt from PayU dashboard
 - Test environment access for development
 
-<NPCI_Subrciptions_Recommendations />
+<Callout icon="⚠️" theme="warning">
+  **Important UPI Integration Changes as per NPCI Mandate on UPI Collect Disablement**:
+
+  - **Seamless Form Post Users**: Merchants using Seamless Form Post flow must migrate to `txn_s2s_flow` (UPI Intent S2S), as Intent is **not supported** in the seamless form post flow for Android and Desktop web. For migration guidance, refer to [UPI Intent S2S Integration](doc:upi-intent-server-to-server).
+
+  - **For Android Apps**: Merchants must implement the Smart Intent implementation. Refer to [UPI Smart Intent - Non SDK Flow](doc:upi-smart-intent-non-sdk-flow) or use [PayU Android SDKs](doc:explore-android-sdks) which have Smart Intent built-in.
+
+  - **For iOS Apps**: Merchants can implement the specific deeplink and continue using the UPI Collect flow as is.
+
+  - **For Web**: Merchants must use the deeplink created via [UPI Intent S2S Integration](doc:upi-intent-server-to-server) to generate a QR code of the deeplink, instead of the UPI Collect flow.
+</Callout>
+
 
 #### I. Payment Consent Flow
 
@@ -415,43 +426,6 @@ class Program
     }
 }
 ```
-```ruby
-require "net/http"
-require "uri"
-
-uri = URI("https://secure.payu.in/_payment")
-
-form = {
-  "key" => "BmTY3G",
-  "txnid" => "my_order_95314",
-  "amount" => "1.00",
-  "firstname" => "Payu-Admin",
-  "email" => "test@example.com",
-  "phone" => "1234567890",
-  "productinfo" => "my_order_95314",
-  "api_version" => "7",
-  "si" => "1",
-  "pg" => "UPI",
-  "bankcode" => "INTENT",
-  "txn_s2s_flow" => "4",
-  "surl" => "https://test.payu.in/admin/test_response/",
-  "furl" => "https://test.payu.in/admin/test_response",
-  "si_details" => '{"billingAmount":"1.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2025-10-14","paymentEndDate":"2019-12-01"}',
-  "hash" => "67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb"
-}
-
-http = Net::HTTP.new(uri.host, uri.port)
-http.use_ssl = true
-
-request = Net::HTTP::Post.new(uri)
-request["accept"] = "application/json"
-request["Content-Type"] = "application/x-www-form-urlencoded"
-request.set_form_data(form)
-
-response = http.request(request)
-puts response.code
-puts response.body
-```
 
   <Callout icon="📘" theme="info">
     Notes:
@@ -618,7 +592,7 @@ puts response.body
 
 ### Step 2: Check the Response from PayU
 
-#### UPI Intent Flow 
+#### A. UPI Intent Flow 
 The API returns different response the following for UPI Intent.
 
 <Accordion title="UPI Intent Response" icon="fa-check">
@@ -669,9 +643,9 @@ The API returns different response the following for UPI Intent.
   If you want to use PayU's timer page for UPI collect, you can use the **result.acsTemplate** and **base64decode** it to redirect the customer on given HTML.
 </Callout>
 
-#### UPI Collect Flow
+#### B. UPI Collect Flow
 
-<Accordion title="Hash Validation" icon="fa-lock" />
+<Accordion title="Hash Validation" icon="fa-lock">
 
 While sending the response, PayU takes the exact same parameters that were sent in the request (in reverse order) to calculate the hash and returns it to you. You must verify the hash and then mark a transaction as a success or failure. This is to make sure the transaction has not tampered within the response.
 
