@@ -8,24 +8,13 @@ Sample Excel used only for reporting philosophy/format inspiration.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field, asdict
+from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
 
 from openpyxl import Workbook
-from openpyxl.chart import BarChart, Reference, PieChart
-from openpyxl.chart.label import DataLabelList
-from openpyxl.formatting.rule import CellIsRule, FormulaRule
-from openpyxl.styles import (
-    Alignment,
-    Border,
-    Font,
-    PatternFill,
-    Side,
-)
-from openpyxl.utils import get_column_letter
-from openpyxl.worksheet.hyperlink import Hyperlink
+from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 
 ROOT = Path("/workspace")
 OUT_DIR = Path("/workspace/docs-coverage-tracker")
@@ -1964,37 +1953,29 @@ def build_products() -> list[Product]:
     # Validate paths lightly — mark missing explicit paths as None already handled by flag()
     return products
 
-
 # ---------------------------------------------------------------------------
-# Excel styling helpers
+# Lean workbook (feedback: less noise, less clutter, clear prioritization)
 # ---------------------------------------------------------------------------
 
 FILL_HEADER = PatternFill("solid", fgColor="0B3D5C")
-FILL_HEADER2 = PatternFill("solid", fgColor="145A86")
 FILL_GREEN = PatternFill("solid", fgColor="C6EFCE")
 FILL_YELLOW = PatternFill("solid", fgColor="FFEB9C")
 FILL_RED = PatternFill("solid", fgColor="FFC7CE")
-FILL_BLUE = PatternFill("solid", fgColor="DDEBF7")
-FILL_ORANGE = PatternFill("solid", fgColor="FCE4D6")
 FILL_GREY = PatternFill("solid", fgColor="F2F2F2")
-FILL_P0 = PatternFill("solid", fgColor="FF6B6B")
-FILL_P1 = PatternFill("solid", fgColor="FFD93D")
-FILL_P2 = PatternFill("solid", fgColor="6BCB77")
-FILL_P3 = PatternFill("solid", fgColor="B0B0B0")
+FILL_P0 = PatternFill("solid", fgColor="C00000")
+FILL_P1 = PatternFill("solid", fgColor="FFC000")
+FILL_P2 = PatternFill("solid", fgColor="548235")
+FILL_P3 = PatternFill("solid", fgColor="808080")
 FILL_TITLE = PatternFill("solid", fgColor="072A40")
 FILL_KPI = PatternFill("solid", fgColor="E8F4FC")
-FILL_WHITE = PatternFill("solid", fgColor="FFFFFF")
+FILL_ALT = PatternFill("solid", fgColor="F7F9FB")
 
 FONT_HEADER = Font(name="Calibri", bold=True, color="FFFFFF", size=11)
-FONT_TITLE = Font(name="Calibri", bold=True, color="FFFFFF", size=18)
-FONT_SECTION = Font(name="Calibri", bold=True, color="0B3D5C", size=13)
-FONT_KPI = Font(name="Calibri", bold=True, color="0B3D5C", size=20)
+FONT_TITLE = Font(name="Calibri", bold=True, color="FFFFFF", size=16)
+FONT_SECTION = Font(name="Calibri", bold=True, color="0B3D5C", size=12)
+FONT_KPI = Font(name="Calibri", bold=True, color="0B3D5C", size=18)
 FONT_BODY = Font(name="Calibri", size=10)
 FONT_BOLD = Font(name="Calibri", bold=True, size=10)
-FONT_LINK = Font(name="Calibri", size=10, color="0563C1", underline="single")
-FONT_GREEN = Font(name="Calibri", size=10, color="006100")
-FONT_YELLOW = Font(name="Calibri", size=10, color="9C5700")
-FONT_RED = Font(name="Calibri", size=10, color="9C0006")
 
 THIN = Border(
     left=Side(style="thin", color="B0B0B0"),
@@ -2005,58 +1986,126 @@ THIN = Border(
 WRAP = Alignment(wrap_text=True, vertical="top")
 CENTER = Alignment(wrap_text=True, vertical="center", horizontal="center")
 
+# Explicit ranking weights (documented in workbook)
+PRIORITY_TIER_WEIGHT = {"P0": 1000, "P1": 700, "P2": 400, "P3": 100}
 
-def autosize(ws, min_width=10, max_width=48, extra=2):
-    for col in ws.columns:
-        letter = get_column_letter(col[0].column)
-        length = 0
-        for cell in col:
-            if cell.value is None:
-                continue
-            length = max(length, min(len(str(cell.value)), max_width))
-        ws.column_dimensions[letter].width = max(min_width, min(max_width, length + extra))
+# Business-criticality boost for core payment journey / high-revenue surfaces
+CORE_JOURNEY_BOOST = {
+    "PayU Hosted Checkout (Prebuilt)": 50,
+    "Merchant Hosted Checkout (Custom / Seamless)": 50,
+    "Server-to-Server (S2S) Checkout": 48,
+    "Payment Links": 45,
+    "Checkout Plus (ICP / Bolt Checkout)": 42,
+    "Android CheckoutPro SDK": 40,
+    "iOS CheckoutPro SDK": 40,
+    "Subscriptions / Recurring Payments": 45,
+    "PayU Payouts": 45,
+    "Partner Merchant Onboarding (API / OAuth)": 42,
+    "Tokenization / Save Cards (Vault)": 40,
+    "Third-Party Verification (TPV)": 40,
+    "Split Settlements (Aggregator / Marketplace)": 38,
+    "Cross-Border Payments Import (PACB)": 38,
+    "EMI / Cardless EMI": 35,
+    "Offer Engine / Offers": 35,
+}
 
 
-def style_header_row(ws, row, start_col=1, end_col=None):
-    end_col = end_col or ws.max_column
-    for col in range(start_col, end_col + 1):
-        cell = ws.cell(row=row, column=col)
-        cell.fill = FILL_HEADER
-        cell.font = FONT_HEADER
-        cell.alignment = Alignment(wrap_text=True, vertical="center", horizontal="center")
-        cell.border = THIN
+def missing_critical(p: Product) -> str:
+    """Short list of highest-value missing dimensions only."""
+    critical = [
+        ("Overview", "overview"),
+        ("Integration Guide", "integration_guide"),
+        ("API Reference", "api_reference"),
+        ("Testing", "testing"),
+        ("Go Live", "go_live"),
+        ("Webhooks", "webhooks"),
+        ("Error Codes", "error_codes"),
+        ("Troubleshooting", "troubleshooting"),
+        ("FAQs", "faqs"),
+    ]
+    missing = []
+    for label, dim in critical:
+        if p.flag(dim) == "No":
+            missing.append(label)
+    return ", ".join(missing[:5]) if missing else "—"
 
 
-def apply_yn_fill(cell):
-    v = str(cell.value or "").strip()
-    if v == "Yes":
-        cell.fill = FILL_GREEN
-        cell.font = FONT_GREEN
-    elif v == "Partial":
-        cell.fill = FILL_YELLOW
-        cell.font = FONT_YELLOW
-    elif v == "No":
-        cell.fill = FILL_RED
-        cell.font = FONT_RED
-    elif v == "N/A":
-        cell.fill = FILL_GREY
-    cell.alignment = CENTER
-    cell.border = THIN
+def why_prioritized(p: Product) -> str:
+    reasons = []
+    if p.priority == "P0":
+        reasons.append("P0: core journey / high support dependency")
+    elif p.priority == "P1":
+        reasons.append("P1: high DevEx or vertical revenue impact")
+    elif p.priority == "P2":
+        reasons.append("P2: useful later; lower urgency")
+    else:
+        reasons.append("P3: niche / maintain only")
+
+    if p.recommend_ig:
+        reasons.append("needs dedicated Integration Guide")
+    cov = p.coverage_score()
+    if cov < 55:
+        reasons.append(f"large doc gap ({cov}% coverage)")
+    elif cov < 75:
+        reasons.append(f"moderate doc gap ({cov}% coverage)")
+
+    if any(k in p.name for k in ["S2S", "TPV", "Partner", "Subscriptions", "Tokenization", "Split", "Cross-Border"]):
+        reasons.append("high developer complexity")
+    if p.name in CORE_JOURNEY_BOOST:
+        reasons.append("core payment / revenue surface")
+    return "; ".join(reasons)
+
+
+def ranking_basis_text() -> list[str]:
+    return [
+        "Products are ranked by a Priority Score (higher = do sooner).",
+        "",
+        "Priority Score = Tier weight + Gap severity + Core-journey boost + IG need + Complexity signal",
+        "",
+        "1) Tier weight (primary): P0=1000, P1=700, P2=400, P3=100",
+        "   Assigned from: merchant adoption, core payment journey, business/revenue impact,",
+        "   developer complexity, support dependency, existing doc gaps, DevEx impact.",
+        "",
+        "2) Gap severity: (100 − Coverage%) × 2",
+        "   Lower coverage rises within the same tier so incomplete critical docs surface first.",
+        "",
+        "3) Core-journey boost (0–50): Hosted/MH/S2S, Payment Links, mobile CheckoutPro,",
+        "   Subscriptions, Payouts, Partner Onboarding, Tokenization, TPV, Split Settlements,",
+        "   Cross-Border, EMI, Offers.",
+        "",
+        "4) Integration Guide need: +30 if a dedicated IG is recommended; else 0",
+        "",
+        "5) Complexity signal: +20 if product is inherently hard to integrate without support",
+        "   (S2S, TPV, Partner, Subscriptions, Tokenization, Split, Cross-Border).",
+        "",
+        "Coverage % itself is equal-weight across applicable dimensions:",
+        "Overview, Integration Guide, API Reference, SDK, Quick Start, Webhooks, Error Codes,",
+        "Testing, Go Live, Troubleshooting, FAQs, Changelog (N/A excluded).",
+        "Yes=1, Partial=0.5, No=0. Status: Complete≥85%, Partial 40–84.9%, Missing<40%.",
+    ]
+
+
+def priority_score(p: Product) -> float:
+    tier = PRIORITY_TIER_WEIGHT.get(p.priority, 0)
+    gap = (100.0 - p.coverage_score()) * 2.0
+    core = CORE_JOURNEY_BOOST.get(p.name, 0)
+    ig = 30 if p.recommend_ig else 0
+    complex_names = ("S2S", "TPV", "Partner", "Subscriptions", "Tokenization", "Split", "Cross-Border")
+    complexity = 20 if any(k in p.name for k in complex_names) else 0
+    return tier + gap + core + ig + complexity
 
 
 def apply_status_fill(cell):
     v = str(cell.value or "").strip()
     if v == "Complete":
         cell.fill = FILL_GREEN
-        cell.font = FONT_GREEN
     elif v == "Partial":
         cell.fill = FILL_YELLOW
-        cell.font = FONT_YELLOW
     elif v == "Missing":
         cell.fill = FILL_RED
-        cell.font = FONT_RED
     cell.alignment = CENTER
     cell.border = THIN
+    cell.font = FONT_BODY
 
 
 def apply_priority_fill(cell):
@@ -2073,1236 +2122,346 @@ def apply_priority_fill(cell):
     elif v == "P3":
         cell.fill = FILL_P3
         cell.font = Font(name="Calibri", bold=True, size=10, color="FFFFFF")
+    else:
+        cell.font = FONT_BODY
     cell.alignment = CENTER
     cell.border = THIN
 
 
-def set_hyperlink(cell, path: str):
-    if not path:
-        cell.value = "—"
-        cell.alignment = CENTER
-        cell.border = THIN
-        return
-    # Relative repo path as display; hyperlink as file path for Excel
-    cell.value = path
-    cell.hyperlink = path
-    cell.font = FONT_LINK
-    cell.alignment = WRAP
-    cell.border = THIN
-
-
-def product_row_data(p: Product) -> dict:
-    return {
-        "Product Name": p.name,
-        "Product Category": p.category,
-        "Product Type": p.product_type,
-        "Overview Page Exists": p.flag("overview"),
-        "Overview Page Link": p.link("overview"),
-        "Integration Guide Exists": p.flag("integration_guide"),
-        "Integration Guide Link": p.link("integration_guide"),
-        "API Reference Exists": p.flag("api_reference"),
-        "API Reference Link": p.link("api_reference"),
-        "SDK Exists": p.flag("sdk"),
-        "SDK Link": p.link("sdk"),
-        "Quick Start Exists": p.flag("quick_start"),
-        "Quick Start Link": p.link("quick_start"),
-        "Webhooks Documented": p.flag("webhooks"),
-        "Webhooks Link": p.link("webhooks"),
-        "Error Codes Documented": p.flag("error_codes"),
-        "Error Codes Link": p.link("error_codes"),
-        "Testing Guide Exists": p.flag("testing"),
-        "Testing Guide Link": p.link("testing"),
-        "Go Live Guide Exists": p.flag("go_live"),
-        "Go Live Guide Link": p.link("go_live"),
-        "Troubleshooting Exists": p.flag("troubleshooting"),
-        "Troubleshooting Link": p.link("troubleshooting"),
-        "FAQs Exists": p.flag("faqs"),
-        "FAQs Link": p.link("faqs"),
-        "Changelog Exists": p.flag("changelog"),
-        "Changelog Link": p.link("changelog"),
-        "Documentation Status": p.status(),
-        "Documentation Coverage (%)": p.coverage_score(),
-        "Recommend Dedicated Integration Guide": "Yes" if p.recommend_ig else "No",
-        "Recommended Priority": p.priority,
-        "Recommended Action": p.recommended_action,
-        "Notes": p.notes,
-    }
-
-
-def build_workbook(products: list[Product]) -> Workbook:
-    wb = Workbook()
-    rows = [product_row_data(p) for p in products]
-
-    total = len(rows)
-    with_overview = sum(1 for r in rows if r["Overview Page Exists"] == "Yes")
-    missing_overview = sum(1 for r in rows if r["Overview Page Exists"] == "No")
-    with_ig = sum(1 for r in rows if r["Integration Guide Exists"] == "Yes")
-    missing_ig = sum(1 for r in rows if r["Integration Guide Exists"] == "No")
-    with_api = sum(1 for r in rows if r["API Reference Exists"] == "Yes")
-    with_sdk = sum(1 for r in rows if r["SDK Exists"] == "Yes")
-    complete = sum(1 for r in rows if r["Documentation Status"] == "Complete")
-    partial = sum(1 for r in rows if r["Documentation Status"] == "Partial")
-    missing = sum(1 for r in rows if r["Documentation Status"] == "Missing")
-    requiring = partial + missing
-    overall_coverage = round(sum(r["Documentation Coverage (%)"] for r in rows) / total, 1) if total else 0
-
-    p0 = [p for p in products if p.priority == "P0" and p.recommend_ig]
-    p1 = [p for p in products if p.priority == "P1" and p.recommend_ig]
-    p2 = [p for p in products if p.priority == "P2" and p.recommend_ig]
-
-    # =====================================================================
-    # Sheet 1 — Executive Dashboard
-    # =====================================================================
-    ws = wb.active
-    ws.title = "Executive Dashboard"
-
-    ws.merge_cells("A1:L1")
-    ws["A1"] = "PayU Product Documentation Coverage Tracker — Executive Dashboard"
-    ws["A1"].font = FONT_TITLE
-    ws["A1"].fill = FILL_TITLE
-    ws["A1"].alignment = Alignment(vertical="center", horizontal="left")
-    ws.row_dimensions[1].height = 32
-
-    ws.merge_cells("A2:L2")
-    ws["A2"] = (
-        f"Source of truth: PayU Developer Documentation repository (docs/, reference/, recipes/, custom_pages/). "
-        f"Generated: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}. "
-        f"DevEx goal: Enable developers to successfully integrate PayU products without requiring support intervention."
-    )
-    ws["A2"].font = Font(name="Calibri", italic=True, size=10, color="333333")
-    ws["A2"].alignment = WRAP
-    ws.row_dimensions[2].height = 36
-
-    # KPI headers
-    kpis = [
-        ("Total Products", total),
-        ("Overall Coverage %", f"{overall_coverage}%"),
-        ("Complete", complete),
-        ("Partial", partial),
-        ("Missing / Require Docs", requiring),
-        ("With Overview", with_overview),
-        ("Missing Overview", missing_overview),
-        ("With Integration Guide", with_ig),
-        ("Missing Integration Guide", missing_ig),
-        ("With API Reference", with_api),
-        ("With SDK Docs", with_sdk),
-        ("P0 IG Recommendations", len(p0)),
-    ]
-    for i, (label, value) in enumerate(kpis):
-        col = i + 1
-        ws.cell(row=4, column=col, value=label).font = FONT_BOLD
-        ws.cell(row=4, column=col).fill = FILL_HEADER2
-        ws.cell(row=4, column=col).font = FONT_HEADER
-        ws.cell(row=4, column=col).alignment = CENTER
-        ws.cell(row=4, column=col).border = THIN
-        c = ws.cell(row=5, column=col, value=value)
-        c.font = FONT_KPI
-        c.fill = FILL_KPI
-        c.alignment = CENTER
-        c.border = THIN
-    ws.row_dimensions[5].height = 28
-
-    # Status summary table
-    ws["A7"] = "Documentation Maturity Summary"
-    ws["A7"].font = FONT_SECTION
-    ws.merge_cells("A7:D7")
-
-    headers = ["Metric", "Count", "% of Portfolio", "Leadership Signal"]
-    for i, h in enumerate(headers, 1):
-        cell = ws.cell(row=8, column=i, value=h)
-        cell.fill = FILL_HEADER
-        cell.font = FONT_HEADER
-        cell.border = THIN
-        cell.alignment = CENTER
-
-    maturity = [
-        ("Complete Documentation", complete, f"{round(100*complete/total,1)}%", "Protect & maintain; use as templates"),
-        ("Partial Documentation", partial, f"{round(100*partial/total,1)}%", "Close gaps — highest ROI for DevEx"),
-        ("Missing / Thin Documentation", missing, f"{round(100*missing/total,1)}%", "Prioritize or confirm N/A with product"),
-        ("Products Missing Overview", missing_overview, f"{round(100*missing_overview/total,1)}%", "Blockers for discoverability"),
-        ("Products Missing Integration Guide", missing_ig, f"{round(100*missing_ig/total,1)}%", "Primary support-ticket driver"),
-        ("Recommend Dedicated Integration Guide", sum(1 for p in products if p.recommend_ig), "—", "Do NOT IG everything — focus list below"),
-    ]
-    for r_i, row in enumerate(maturity, 9):
-        for c_i, val in enumerate(row, 1):
-            cell = ws.cell(row=r_i, column=c_i, value=val)
-            cell.border = THIN
-            cell.alignment = WRAP
-            cell.font = FONT_BODY
-            if c_i == 1 and "Complete" in str(row[0]):
-                cell.fill = FILL_GREEN
-            elif c_i == 1 and "Partial" in str(row[0]):
-                cell.fill = FILL_YELLOW
-            elif c_i == 1 and "Missing" in str(row[0]):
-                cell.fill = FILL_RED
-
-    # Chart data
-    ws["F7"] = "Status Distribution"
-    ws["F7"].font = FONT_SECTION
-    ws["F8"] = "Status"
-    ws["G8"] = "Count"
-    style_header_row(ws, 8, 6, 7)
-    ws["F9"] = "Complete"
-    ws["G9"] = complete
-    ws["F10"] = "Partial"
-    ws["G10"] = partial
-    ws["F11"] = "Missing"
-    ws["G11"] = missing
-    for r in range(9, 12):
-        for c in range(6, 8):
-            ws.cell(row=r, column=c).border = THIN
-            ws.cell(row=r, column=c).alignment = CENTER
-    apply_status_fill(ws["F9"])
-    apply_status_fill(ws["F10"])
-    apply_status_fill(ws["F11"])
-
-    pie = PieChart()
-    pie.title = "Documentation Status Mix"
-    labels = Reference(ws, min_col=6, min_row=9, max_row=11)
-    data = Reference(ws, min_col=7, min_row=8, max_row=11)
-    pie.add_data(data, titles_from_data=True)
-    pie.set_categories(labels)
-    pie.dataLabels = DataLabelList()
-    pie.dataLabels.showPercent = True
-    pie.dataLabels.showVal = True
-    pie.width = 12
-    pie.height = 8
-    ws.add_chart(pie, "I7")
-
-    # P0 / P1 / P2 recommendations
-    start = 16
-    ws.cell(row=start, column=1, value="P0 Recommendations — Must Have Dedicated Integration Guides Immediately").font = FONT_SECTION
-    ws.merge_cells(start_row=start, start_column=1, end_row=start, end_column=8)
-    ws.cell(row=start, column=1).fill = FILL_P0
-    ws.cell(row=start, column=1).font = Font(name="Calibri", bold=True, size=12, color="FFFFFF")
-
-    rec_headers = [
-        "Product",
-        "Category",
-        "Coverage %",
-        "Why P0",
-        "Expected DevEx Impact",
-        "Expected Support Reduction",
-        "Expected Integration TAT Impact",
-        "Recommended Action",
-    ]
-    for i, h in enumerate(rec_headers, 1):
-        cell = ws.cell(row=start + 1, column=i, value=h)
-        cell.fill = FILL_HEADER
-        cell.font = FONT_HEADER
-        cell.border = THIN
-        cell.alignment = CENTER
-
-    p0_rationales = {
-        "PayU Hosted Checkout (Prebuilt)": (
-            "Core payment journey; highest merchant adoption entry path",
-            "First-success for majority of new merchants",
-            "High — reduces hash/callback/verify tickets",
-            "Cuts first payment time by clarifying end-to-end path",
-        ),
-        "Merchant Hosted Checkout (Custom / Seamless)": (
-            "Core journey for customized UX; high complexity across methods",
-            "Enables self-serve multi-method integration",
-            "High — cards/UPI/NB method confusion",
-            "Reduces multi-page scavenger hunt for method docs",
-        ),
-        "Server-to-Server (S2S) Checkout": (
-            "Highest developer complexity; classic/decoupled/direct auth",
-            "Critical for advanced merchants; currently fragmented",
-            "Very high — S2S errors dominate complex tickets",
-            "Decision tree + flow guide shortens S2S TAT significantly",
-        ),
-        "Checkout Plus (ICP / Bolt Checkout)": (
-            "Strategic checkout product with naming confusion (Plus/ICP/Bolt)",
-            "Removes ambiguity for modern checkout adopters",
-            "Medium-High — naming/support confusion",
-            "Faster adoption of Checkout Plus vs wrong product choice",
-        ),
-        "Payment Links": (
-            "High-adoption no-code + API; used across WhatsApp/TPV/partners",
-            "Unblocks non-engineering and hybrid integrations",
-            "High — link creation/webhook/status tickets",
-            "Dashboard+API unified guide accelerates go-live",
-        ),
-        "Android CheckoutPro SDK": (
-            "Primary Android collect path; mobile is core revenue channel",
-            "Self-serve Android first payment without SE handholding",
-            "High — SDK setup/hash/callback tickets",
-            "Sample-app-led IG cuts Android TAT",
-        ),
-        "iOS CheckoutPro SDK": (
-            "Primary iOS collect path; parity with Android required",
-            "Parity DevEx for iOS merchants",
-            "High — iOS release/privacy/hash issues",
-            "Go-live checklist reduces App Store integration delays",
-        ),
-        "EMI / Cardless EMI": (
-            "Affordability core; conversion/revenue impact",
-            "Merchants enable EMI without support dependency",
-            "Medium-High — EMI codes/eligibility confusion",
-            "Hosted/MH/S2S matrix reduces EMI enablement TAT",
-        ),
-        "Offer Engine / Offers": (
-            "Revenue lever; dashboard+API complexity",
-            "Self-serve offer create→apply→validate",
-            "High — offer validation/refund edge cases",
-            "End-to-end offer IG reduces campaign launch delays",
-        ),
-        "Subscriptions / Recurring Payments": (
-            "Core recurring revenue product; SI/Recurring/Subscriptions naming debt",
-            "Unifies consent→PDN→recurring mental model",
-            "Very high — mandate/PDN/UPI AutoPay tickets",
-            "Single narrative cuts recurring integration TAT",
-        ),
-        "Cross-Border Payments Import (PACB)": (
-            "Strategic international revenue; multi-flow (LRS/VA/subs)",
-            "Reduces specialist dependency for CB merchants",
-            "High — CB onboarding/payment mode tickets",
-            "Structured CB IG accelerates import merchant go-live",
-        ),
-        "Split Settlements (Aggregator / Marketplace)": (
-            "Marketplace/aggregator core; onboarding+split complexity",
-            "Parent/child settlement self-serve",
-            "High — child onboarding/split refund tickets",
-            "Marketplace IG reduces aggregator launch TAT",
-        ),
-        "Tokenization / Save Cards (Vault)": (
-            "PCI-reducing foundational capability; recurring dependency",
-            "Clear Model 1/2/3 choice prevents wrong vault path",
-            "High — tokenization model/support loops",
-            "Correct-first-time vault choice shortens TAT",
-        ),
-        "Third-Party Verification (TPV)": (
-            "Regulated/mutual-fund/finance flows; APIs dispersed",
-            "Hosted/MH/S2S/Payment Link TPV in one place",
-            "Very high — TPV parameter/support dependency",
-            "Consolidated TPV IG + API IA cuts finance vertical TAT",
-        ),
-        "PayU Payouts": (
-            "Core disbursement product; multi-feature surface",
-            "Single Transfer→webhook→reconcile self-serve",
-            "High — beneficiary/transfer status tickets",
-            "Master Payouts IG reduces disbursement go-live TAT",
-        ),
-        "Partner Merchant Onboarding (API / OAuth)": (
-            "Partner-sourced merchant growth; duplicate API trees",
-            "Partners onboard merchants without PayU ops bottleneck",
-            "Very high — KYC/OAuth partner escalations",
-            "Canonical partner IG + merged API trees cut partner TAT",
-        ),
-    }
-
-    r = start + 2
-    for p in p0:
-        why, devex, support, tat = p0_rationales.get(
-            p.name,
-            (
-                "Core journey / high business impact with documentation gaps",
-                "Improves self-serve success",
-                "Reduces repetitive support",
-                "Shortens integration TAT",
-            ),
-        )
-        vals = [
-            p.name,
-            p.category,
-            p.coverage_score(),
-            why,
-            devex,
-            support,
-            tat,
-            p.recommended_action,
-        ]
-        for c, v in enumerate(vals, 1):
-            cell = ws.cell(row=r, column=c, value=v)
-            cell.border = THIN
-            cell.alignment = WRAP
-            cell.font = FONT_BODY
-        r += 1
-    p0_end = r
-
-    r += 1
-    ws.cell(row=r, column=1, value="P1 Recommendations — Next Wave Documentation Improvements").font = Font(
-        name="Calibri", bold=True, size=12
-    )
-    ws.cell(row=r, column=1).fill = FILL_P1
-    ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=8)
-    r += 1
-    for i, h in enumerate(rec_headers, 1):
-        cell = ws.cell(row=r, column=i, value=h)
-        cell.fill = FILL_HEADER
-        cell.font = FONT_HEADER
-        cell.border = THIN
-    r += 1
-    for p in p1:
-        vals = [
-            p.name,
-            p.category,
-            p.coverage_score(),
-            "High DevEx/business impact; gaps remain after P0 core journeys",
-            "Improves advanced/vertical self-serve success",
-            "Medium-High reduction in specialty tickets",
-            "Meaningful TAT reduction for mid-complexity products",
-            p.recommended_action,
-        ]
-        for c, v in enumerate(vals, 1):
-            cell = ws.cell(row=r, column=c, value=v)
-            cell.border = THIN
-            cell.alignment = WRAP
-            cell.font = FONT_BODY
-        r += 1
-
-    r += 1
-    ws.cell(row=r, column=1, value="P2 Recommendations — Improve Later").font = Font(
-        name="Calibri", bold=True, size=12, color="FFFFFF"
-    )
-    ws.cell(row=r, column=1).fill = FILL_P2
-    ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=8)
-    r += 1
-    for i, h in enumerate(rec_headers, 1):
-        cell = ws.cell(row=r, column=i, value=h)
-        cell.fill = FILL_HEADER
-        cell.font = FONT_HEADER
-        cell.border = THIN
-    r += 1
-    for p in p2:
-        vals = [
-            p.name,
-            p.category,
-            p.coverage_score(),
-            "Useful but lower adoption/urgency vs core journeys",
-            "Incremental DevEx polish",
-            "Moderate/localized support reduction",
-            "Smaller TAT impact; schedule after P0/P1",
-            p.recommended_action,
-        ]
-        for c, v in enumerate(vals, 1):
-            cell = ws.cell(row=r, column=c, value=v)
-            cell.border = THIN
-            cell.alignment = WRAP
-            cell.font = FONT_BODY
-        r += 1
-
-    r += 2
-    ws.cell(row=r, column=1, value="Key Documentation Gaps").font = FONT_SECTION
-    ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=6)
-    r += 1
-    gaps = [
-        "1. Go-Live documentation is rare outside Merchant Hosted/S2S checklists, iOS Custom Browser, partner testing, and plugin checklist — most products lack explicit production readiness guides.",
-        "2. Changelog / release notes are largely absent (except limited SDK version history) — developers cannot track breaking changes.",
-        "3. Troubleshooting pages are sparse vs FAQs; support dependency remains for error diagnosis.",
-        "4. Naming inconsistency increases cognitive load: Collect Payments vs Collect Payment; Checkout Express vs CommercePro; Checkout Plus/ICP/Bolt; Subscriptions/Recurring/SI; Zion/ZION; Pluxee/Sodexo; Mutual Funds/Wealth Tech; MCP dual meaning.",
-        "5. Duplicate / parallel surfaces: Integration ASK AI Docs overlaps canonical guides; Partner API trees duplicated; Merchant Hosted API surfaces duplicated; Rewards vs Pay with Rewards vs Flipkart SuperCoins overlap.",
-        "6. Server-side SDK docs are thin single pages — insufficient for DevEx goal of zero-support first integration.",
-        "7. TPV and Cross-Border API information architecture is dispersed (JSON collections + guide folders) rather than a clean reference IA.",
-        "8. Folder typo and editorial residue: Offerings/split-settlments; payouts releasepending- prefixes; ParTner integration casing; internal-review* unpublished partner overview.",
-    ]
-    for g in gaps:
-        ws.cell(row=r, column=1, value=g).alignment = WRAP
-        ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=8)
-        ws.row_dimensions[r].height = 30
-        r += 1
-
-    r += 1
-    ws.cell(row=r, column=1, value="Overall Observations").font = FONT_SECTION
-    r += 1
-    observations = [
-        "The repository is broad and product-rich: Collect Payments, Offerings, Payouts, Partners, BBPS, WhatsApp, MCP/CLI, and utilities are all represented with substantial page volume (~900+ guide files, ~850+ reference files).",
-        "Coverage quality is uneven: core hosted/MH/S2S and several Offerings have strong overview+integration scaffolds, but 'complete' maturity (testing + go-live + troubleshooting + FAQs + errors + webhooks) is uncommon.",
-        "Integration Guides should NOT be created for every product. Plugins with install+troubleshooting, dashboard modules, chargebacks ops, and utility APIs are better served by focused how-tos and cross-links.",
-        "Highest DevEx ROI is consolidating the core payment journey (Hosted/MH/S2S/Checkout Plus/Payment Links) plus Subscriptions, TPV, Tokenization, Split Settlements, Payouts, and Partner Onboarding into decision-tree-led Integration Guides.",
-        "Aligning to the DevEx goal requires treating Integration Guides as merchant journeys (choose → integrate → test → go-live → troubleshoot), not as indexes of API pages.",
-        "RECYCLE BIN and Integration ASK AI Docs indicate active restructuring — prioritize promoting reviewed ASK AI content into canonical IA and deleting/redirecting duplicates.",
-    ]
-    for o in observations:
-        ws.cell(row=r, column=1, value=o).alignment = WRAP
-        ws.merge_cells(start_row=r, start_column=1, end_row=r, end_column=8)
-        ws.row_dimensions[r].height = 36
-        r += 1
-
-    autosize(ws, min_width=14, max_width=42)
-    ws.column_dimensions["D"].width = 46
-    ws.column_dimensions["E"].width = 36
-    ws.column_dimensions["F"].width = 36
-    ws.column_dimensions["G"].width = 36
-    ws.column_dimensions["H"].width = 48
-    ws.freeze_panes = "A4"
-
-    # =====================================================================
-    # Sheet 2 — Product Documentation Inventory
-    # =====================================================================
-    inv = wb.create_sheet("Product Documentation Inventory")
-    inv_headers = list(rows[0].keys())
-    for c, h in enumerate(inv_headers, 1):
-        cell = inv.cell(row=1, column=c, value=h)
+def style_header(ws, row, cols):
+    for c in range(1, cols + 1):
+        cell = ws.cell(row=row, column=c)
         cell.fill = FILL_HEADER
         cell.font = FONT_HEADER
         cell.alignment = Alignment(wrap_text=True, vertical="center", horizontal="center")
         cell.border = THIN
-    inv.row_dimensions[1].height = 40
-    inv.freeze_panes = "A2"
-    inv.auto_filter.ref = f"A1:{get_column_letter(len(inv_headers))}{len(rows)+1}"
 
-    link_cols = {
-        "Overview Page Link",
-        "Integration Guide Link",
-        "API Reference Link",
-        "SDK Link",
-        "Quick Start Link",
-        "Webhooks Link",
-        "Error Codes Link",
-        "Testing Guide Link",
-        "Go Live Guide Link",
-        "Troubleshooting Link",
-        "FAQs Link",
-        "Changelog Link",
-    }
-    yn_cols = {
-        "Overview Page Exists",
-        "Integration Guide Exists",
-        "API Reference Exists",
-        "SDK Exists",
-        "Quick Start Exists",
-        "Webhooks Documented",
-        "Error Codes Documented",
-        "Testing Guide Exists",
-        "Go Live Guide Exists",
-        "Troubleshooting Exists",
-        "FAQs Exists",
-        "Changelog Exists",
-        "Recommend Dedicated Integration Guide",
-    }
 
-    for r_i, row in enumerate(rows, 2):
-        for c_i, h in enumerate(inv_headers, 1):
-            val = row[h]
-            cell = inv.cell(row=r_i, column=c_i)
+def autosize(ws, widths: dict[str, float]):
+    for letter, width in widths.items():
+        ws.column_dimensions[letter].width = width
+
+
+def build_workbook(products: list[Product]) -> Workbook:
+    wb = Workbook()
+
+    ranked = sorted(
+        products,
+        key=lambda p: (-priority_score(p), p.coverage_score(), p.name),
+    )
+
+    total = len(products)
+    complete = sum(1 for p in products if p.status() == "Complete")
+    partial = sum(1 for p in products if p.status() == "Partial")
+    missing = sum(1 for p in products if p.status() == "Missing")
+    avg_cov = round(sum(p.coverage_score() for p in products) / total, 1) if total else 0
+    p0 = [p for p in ranked if p.priority == "P0"]
+    p1 = [p for p in ranked if p.priority == "P1"]
+
+    # =========================================================================
+    # Sheet 1 — Executive Summary (lean)
+    # =========================================================================
+    ws = wb.active
+    ws.title = "Executive Summary"
+
+    ws.merge_cells("A1:F1")
+    ws["A1"] = "PayU Product Docs Coverage — Executive Summary"
+    ws["A1"].font = FONT_TITLE
+    ws["A1"].fill = FILL_TITLE
+    ws.row_dimensions[1].height = 28
+
+    ws.merge_cells("A2:F2")
+    ws["A2"] = (
+        f"Repo-sourced · {datetime.now(timezone.utc).strftime('%Y-%m-%d')} UTC · "
+        "Goal: developers integrate without support. "
+        "Use 'Priority Ranked List' as the working queue."
+    )
+    ws["A2"].font = Font(name="Calibri", italic=True, size=10)
+    ws["A2"].alignment = WRAP
+    ws.row_dimensions[2].height = 30
+
+    kpis = [
+        ("Products", total),
+        ("Avg Coverage", f"{avg_cov}%"),
+        ("Complete", complete),
+        ("Partial", partial),
+        ("Missing", missing),
+        ("P0 items", len(p0)),
+    ]
+    for i, (label, val) in enumerate(kpis):
+        c = i + 1
+        ws.cell(row=4, column=c, value=label).font = FONT_HEADER
+        ws.cell(row=4, column=c).fill = FILL_HEADER
+        ws.cell(row=4, column=c).alignment = CENTER
+        ws.cell(row=4, column=c).border = THIN
+        cell = ws.cell(row=5, column=c, value=val)
+        cell.font = FONT_KPI
+        cell.fill = FILL_KPI
+        cell.alignment = CENTER
+        cell.border = THIN
+
+    ws["A7"] = "Top 10 priorities (start here)"
+    ws["A7"].font = FONT_SECTION
+    top_headers = ["Rank", "Product", "Priority", "Coverage %", "Why this is higher", "Action"]
+    for c, h in enumerate(top_headers, 1):
+        ws.cell(row=8, column=c, value=h)
+    style_header(ws, 8, 6)
+
+    for i, p in enumerate(ranked[:10], 1):
+        r = 8 + i
+        vals = [
+            i,
+            p.name,
+            p.priority,
+            p.coverage_score(),
+            why_prioritized(p),
+            p.recommended_action,
+        ]
+        for c, v in enumerate(vals, 1):
+            cell = ws.cell(row=r, column=c, value=v)
             cell.border = THIN
             cell.font = FONT_BODY
-            if h in link_cols:
-                set_hyperlink(cell, val)
-            else:
-                cell.value = val if val != "" else ("—" if h.endswith("Link") else val)
-                cell.alignment = WRAP if h in {"Recommended Action", "Notes", "Product Category", "Product Type"} else CENTER
-            if h in yn_cols:
-                apply_yn_fill(cell)
-            if h == "Documentation Status":
-                apply_status_fill(cell)
-            if h == "Recommended Priority":
-                apply_priority_fill(cell)
-            if h == "Documentation Coverage (%)":
-                cell.number_format = "0.0"
-                cell.alignment = CENTER
-                if isinstance(val, (int, float)):
-                    if val >= 85:
-                        cell.fill = FILL_GREEN
-                    elif val >= 40:
-                        cell.fill = FILL_YELLOW
-                    else:
-                        cell.fill = FILL_RED
-
-    autosize(inv, min_width=12, max_width=40)
-    for h in ["Recommended Action", "Notes"]:
-        idx = inv_headers.index(h) + 1
-        inv.column_dimensions[get_column_letter(idx)].width = 48
-
-    # Conditional formatting already applied cell-wise; add score bar chart data sheet later
-
-    # =====================================================================
-    # Sheet 3 — Gap Analysis
-    # =====================================================================
-    gap = wb.create_sheet("Gap Analysis")
-    gap["A1"] = "Documentation Gap Analysis"
-    gap["A1"].font = FONT_TITLE
-    gap["A1"].fill = FILL_TITLE
-    gap.merge_cells("A1:F1")
-    gap.row_dimensions[1].height = 28
-
-    def write_gap_section(ws, start_row, title, items, headers_local):
-        ws.cell(row=start_row, column=1, value=title).font = FONT_SECTION
-        ws.merge_cells(start_row=start_row, start_column=1, end_row=start_row, end_column=len(headers_local))
-        for i, h in enumerate(headers_local, 1):
-            cell = ws.cell(row=start_row + 1, column=i, value=h)
-            cell.fill = FILL_HEADER
-            cell.font = FONT_HEADER
-            cell.border = THIN
-            cell.alignment = CENTER
-        rr = start_row + 2
-        for item in items:
-            for c, v in enumerate(item, 1):
-                cell = ws.cell(row=rr, column=c, value=v)
-                cell.border = THIN
+            cell.alignment = WRAP if c >= 5 else CENTER
+            if c == 2:
                 cell.alignment = WRAP
-                cell.font = FONT_BODY
-            rr += 1
-        return rr + 1
+        apply_priority_fill(ws.cell(row=r, column=3))
+        ws.row_dimensions[r].height = 42
 
-    no_overview = [
-        (
-            p.name,
-            p.category,
-            p.recommended_action or "Create overview: definition, use cases, how it works, next-step CTA.",
-        )
-        for p in products
-        if p.flag("overview") == "No"
+    ws["A20"] = "How priority was decided (short)"
+    ws["A20"].font = FONT_SECTION
+    short_basis = [
+        "Higher rank = higher Priority Score.",
+        "Order drivers: (1) P0→P3 tier from business/DevEx impact, (2) bigger documentation gaps within tier,",
+        "(3) core payment/revenue surfaces boosted, (4) dedicated Integration Guide needed, (5) high complexity.",
+        "Full formula and weights are on sheet: Scoring & Ranking Basis.",
     ]
-    no_ig = [
-        (
+    for i, line in enumerate(short_basis):
+        ws.cell(row=21 + i, column=1, value=line).font = FONT_BODY
+        ws.merge_cells(start_row=21 + i, start_column=1, end_row=21 + i, end_column=6)
+
+    ws["A26"] = "Key gaps (portfolio)"
+    ws["A26"].font = FONT_SECTION
+    gaps = [
+        "Go-Live and Changelog docs are rare across products.",
+        "Troubleshooting is thin vs FAQs — support still absorbs diagnosis.",
+        "Naming/duplicates add noise: Checkout Plus/ICP/Bolt; CommercePro/Express; Partner API trees; ASK AI shadow docs.",
+        "Server SDK pages are too thin for zero-support first integration.",
+    ]
+    for i, g in enumerate(gaps):
+        ws.cell(row=27 + i, column=1, value=f"• {g}").alignment = WRAP
+        ws.merge_cells(start_row=27 + i, start_column=1, end_row=27 + i, end_column=6)
+        ws.row_dimensions[27 + i].height = 28
+
+    autosize(ws, {"A": 8, "B": 40, "C": 10, "D": 12, "E": 48, "F": 52})
+    ws.freeze_panes = "A9"
+
+    # =========================================================================
+    # Sheet 2 — Priority Ranked List (hero sheet)
+    # =========================================================================
+    pr = wb.create_sheet("Priority Ranked List")
+    pr.merge_cells("A1:I1")
+    pr["A1"] = "Priority Ranked Product List — higher rank = do sooner"
+    pr["A1"].font = FONT_TITLE
+    pr["A1"].fill = FILL_TITLE
+    pr.row_dimensions[1].height = 28
+
+    pr.merge_cells("A2:I2")
+    pr["A2"] = (
+        "Sorted by Priority Score. See 'Scoring & Ranking Basis' for the formula. "
+        "Focus on Rank 1–N where Priority is P0/P1 and Coverage is below 75%."
+    )
+    pr["A2"].font = Font(name="Calibri", italic=True, size=10)
+    pr["A2"].alignment = WRAP
+
+    headers = [
+        "Rank",
+        "Product",
+        "Category",
+        "Priority",
+        "Coverage %",
+        "Status",
+        "Priority Score",
+        "Why prioritized",
+        "Recommended action",
+    ]
+    for c, h in enumerate(headers, 1):
+        pr.cell(row=4, column=c, value=h)
+    style_header(pr, 4, len(headers))
+    pr.freeze_panes = "A5"
+    pr.auto_filter.ref = f"A4:I{4 + len(ranked)}"
+
+    for i, p in enumerate(ranked, 1):
+        r = 4 + i
+        vals = [
+            i,
             p.name,
             p.category,
-            "Yes" if p.recommend_ig else "No",
             p.priority,
+            p.coverage_score(),
+            p.status(),
+            round(priority_score(p), 1),
+            why_prioritized(p),
             p.recommended_action,
-        )
-        for p in products
-        if p.flag("integration_guide") == "No"
+        ]
+        for c, v in enumerate(vals, 1):
+            cell = pr.cell(row=r, column=c, value=v)
+            cell.border = THIN
+            cell.font = FONT_BODY
+            cell.alignment = WRAP if c in {2, 3, 8, 9} else CENTER
+        apply_priority_fill(pr.cell(row=r, column=4))
+        apply_status_fill(pr.cell(row=r, column=6))
+        cov_cell = pr.cell(row=r, column=5)
+        cov = p.coverage_score()
+        if cov >= 85:
+            cov_cell.fill = FILL_GREEN
+        elif cov >= 40:
+            cov_cell.fill = FILL_YELLOW
+        else:
+            cov_cell.fill = FILL_RED
+
+    autosize(
+        pr,
+        {
+            "A": 7,
+            "B": 42,
+            "C": 28,
+            "D": 10,
+            "E": 12,
+            "F": 11,
+            "G": 13,
+            "H": 46,
+            "I": 50,
+        },
+    )
+
+    # =========================================================================
+    # Sheet 3 — Product Inventory (slim)
+    # =========================================================================
+    inv = wb.create_sheet("Product Inventory")
+    inv.merge_cells("A1:H1")
+    inv["A1"] = "Product Inventory (slim)"
+    inv["A1"].font = FONT_TITLE
+    inv["A1"].fill = FILL_TITLE
+
+    inv_headers = [
+        "Product",
+        "Category",
+        "Type",
+        "Coverage %",
+        "Status",
+        "Priority",
+        "Missing critical docs",
+        "Overview path",
     ]
-    no_api = [
-        (
+    for c, h in enumerate(inv_headers, 1):
+        inv.cell(row=3, column=c, value=h)
+    style_header(inv, 3, len(inv_headers))
+    inv.freeze_panes = "A4"
+    inv.auto_filter.ref = f"A3:H{3 + len(products)}"
+
+    # Keep inventory in rank order too (less cognitive jump)
+    for i, p in enumerate(ranked, 1):
+        r = 3 + i
+        vals = [
             p.name,
             p.category,
             p.product_type,
-            "Add API reference map" if "API" in p.product_type or p.applicable.get("api_reference", True) is not False else "N/A — non-API product",
-        )
-        for p in products
-        if p.flag("api_reference") == "No"
-    ]
-    no_sdk = [
-        (p.name, p.category, p.notes or "SDK docs missing or N/A")
-        for p in products
-        if p.flag("sdk") == "No" and p.product_type.startswith("Integration Channel (SDK)")
-    ]
-
-    r = 3
-    r = write_gap_section(
-        gap,
-        r,
-        "Products without Overview Pages",
-        no_overview or [("None — all inventoried products have an overview/intro path", "—", "—")],
-        ["Product", "Category", "Recommendation"],
-    )
-    r = write_gap_section(
-        gap,
-        r,
-        "Products without Integration Guides (Exists=No)",
-        no_ig or [("None", "—", "—", "—", "—")],
-        ["Product", "Category", "Recommend Dedicated IG?", "Priority", "Recommendation"],
-    )
-    r = write_gap_section(
-        gap,
-        r,
-        "Products missing API References (where applicable)",
-        no_api,
-        ["Product", "Category", "Type", "Recommendation"],
-    )
-    r = write_gap_section(
-        gap,
-        r,
-        "SDK products missing SDK documentation signals",
-        no_sdk or [("None for major SDK products inventoried", "—", "—")],
-        ["Product", "Category", "Recommendation"],
-    )
-
-    duplicates = [
-        (
-            "Checkout Plus / ICP / Bolt",
-            "docs/Collect Payments/introduction-web/checkout-plus-integration vs Integration ASK AI Docs/checkout-plusicp-checkoutbolt-checkout.md",
-            "Canonicalize on Checkout Plus; redirect ASK AI page; retire alternate names in H1s",
-        ),
-        (
-            "CommercePro vs Checkout Express",
-            "docs/.../checkout-express (title CommercePro) vs reference/Checkout Express vs plugins/commercepro-checkout.md",
-            "Pick one public name; alias the other in intro; align folder/reference names",
-        ),
-        (
-            "Subscriptions / Recurring / SI",
-            "Offerings/introduction-recurring-payments-integration + ASK AI subscription page + Pre-debit aggregate API",
-            "One IA hub with tabs for Hosted/MH/API/Zion; deprecate duplicate aggregate",
-        ),
-        (
-            "Partner Onboarding API trees",
-            "reference/ParTner integration vs reference/Partner Integration - Merchant Onboarding APIs",
-            "Merge to one partner onboarding reference; fix ParTner casing",
-        ),
-        (
-            "Merchant Hosted API surfaces",
-            "reference/Collect Payment/_payment_merchant_hosted + PayU Merchant Hosted — _payment + General APIs/merchanthostedpostservice",
-            "Single MH API landing with deprecation notices on duplicates",
-        ),
-        (
-            "Rewards surfaces",
-            "Offerings/rewards-partner-integration + reference/REWARD PARTNERS + Pay with rewards + Flipkart supercoins",
-            "Hub page explaining partner programs; link child APIs",
-        ),
-        (
-            "WooCommerce guides",
-            "ecommerce-platform-plugins/woocommerce vs Integration ASK AI Docs/woocommerce-payu-plugin-integration-guide.md",
-            "Merge unique ASK AI content into canonical plugin guide",
-        ),
-        (
-            "TPV guides",
-            "Offerings/introduction-to-payu-tpv vs ASK AI upi-net-banking-tpv + payment-link-tpv guides + root tpv-*.json",
-            "Canonical TPV hub + structured API reference",
-        ),
-        (
-            "Payouts introduction",
-            "docs/payouts/introduction-to-payouts.md vs custom_pages/payouts-introduction.md",
-            "One introduction; remove or redirect custom page duplicate",
-        ),
-        (
-            "Collect Payments naming",
-            "docs/Collect Payments vs reference/Collect Payment",
-            "Standardize pluralization in nav labels",
-        ),
-    ]
-    r = write_gap_section(
-        gap,
-        r,
-        "Products / Areas with Duplicate Documentation",
-        duplicates,
-        ["Theme", "Evidence (repo paths)", "Recommendation"],
-    )
-
-    inconsistent = [
-        (
-            "MCP acronym collision",
-            "MCP & CLI (Model Context Protocol) vs international payments MCP Lookup (Multi-Currency Pricing)",
-            "Always expand acronym on first use; rename MCP Lookup to Multi-Currency Pricing Lookup in titles",
-        ),
-        (
-            "split-settlments typo",
-            "docs/Offerings/split-settlments",
-            "Rename folder/slug to split-settlements with redirect",
-        ),
-        (
-            "releasepending- payouts residue",
-            "docs/payouts/releasepending-pay-to-phone-integration/* and matching reference APIs",
-            "Rename to pay-to-phone-*; remove editorial prefix",
-        ),
-        (
-            "Pluxee vs Sodexo",
-            "Guide uses Pluxee; reference/Sodexo",
-            "Rebrand reference category to Pluxee (Sodexo legacy)",
-        ),
-        (
-            "Mutual Funds vs Wealth Tech",
-            "docs/Offerings/mutual-funds-payments vs reference/Wealth Tech",
-            "Align category labels; cross-link explicitly",
-        ),
-        (
-            "UPI Bolt channel naming",
-            "Ionic vs Capacitor vs Cordova UPI Bolt pages",
-            "One UPI Bolt hub with platform tabs",
-        ),
-        (
-            "DBQR naming",
-            "Dynamic Storefront QR / DBQR / Offline DBQR / Dynamic Bharat QR",
-            "Glossary + canonical product name on overview",
-        ),
-        (
-            "internal-review* partner overview",
-            "docs/partners/internal-reviewpartner-integration-overview",
-            "Publish as canonical or unhide; remove internal-review prefix",
-        ),
-    ]
-    r = write_gap_section(
-        gap,
-        r,
-        "Inconsistent Documentation / Naming",
-        inconsistent,
-        ["Issue", "Evidence", "Recommendation"],
-    )
-
-    restructure = [
-        (
-            "Core Web Checkout",
-            "introduction-web contains product folders + shared webhooks/errors/testing/FAQs",
-            "Keep shared utilities; ensure each checkout product has journey IG that deep-links shared pages",
-        ),
-        (
-            "Integration ASK AI Docs",
-            "Parallel hidden guides duplicating canonical topics",
-            "Promotion workflow: review → merge → redirect → delete",
-        ),
-        (
-            "Affordability suite",
-            "EMI, Offers, BNPL, LazyPay, MobiKwik, Loyalty, Widget under introduction-to-affordability",
-            "Hub overview already exists — add decision tree to choose affordability product",
-        ),
-        (
-            "Mobile SDKs",
-            "Many sibling SDKs per platform",
-            "Platform landing with 'Choose your SDK' matrix (CheckoutPro vs Core vs method SDKs)",
-        ),
-        (
-            "Reference root JSON sprawl",
-            "Hundreds of versioned/duplicate Postman/OpenAPI JSON at reference root",
-            "Archive superseded collections; keep one current per API family",
-        ),
-        (
-            "RECYCLE BIN",
-            "Contains proposed improvements, internal subscription copies, FAQs to be added",
-            "Mine for content gaps (e.g., faqs-to-be-added) then keep bin out of public nav",
-        ),
-    ]
-    r = write_gap_section(
-        gap,
-        r,
-        "Products / Areas Requiring Restructuring",
-        restructure,
-        ["Area", "Current State", "Recommendation"],
-    )
-
-    autosize(gap, min_width=16, max_width=50)
-    gap.freeze_panes = "A3"
-
-    # =====================================================================
-    # Sheet 4 — Integration Guide Prioritization
-    # =====================================================================
-    igp = wb.create_sheet("IG Prioritization")
-    igp["A1"] = "Integration Guide Recommendations & Prioritization"
-    igp["A1"].font = FONT_TITLE
-    igp["A1"].fill = FILL_TITLE
-    igp.merge_cells("A1:J1")
-    igp["A2"] = (
-        "Rule: Recommend a dedicated Integration Guide only where it provides meaningful DevEx value "
-        "(core journey, high complexity, high support dependency, or revenue-critical). "
-        "Plugins/utilities/ops products may use install guides or API maps instead."
-    )
-    igp["A2"].alignment = WRAP
-    igp.merge_cells("A2:J2")
-    igp.row_dimensions[2].height = 36
-
-    ig_headers = [
-        "Product Name",
-        "Category",
-        "Recommend Dedicated IG",
-        "Priority",
-        "Merchant Adoption Signal",
-        "Core Payment Journey",
-        "Developer Complexity",
-        "Support Dependency Risk",
-        "Existing Gap Severity",
-        "Rationale / Action",
-    ]
-    for c, h in enumerate(ig_headers, 1):
-        cell = igp.cell(row=4, column=c, value=h)
-        cell.fill = FILL_HEADER
-        cell.font = FONT_HEADER
-        cell.alignment = CENTER
-        cell.border = THIN
-    igp.freeze_panes = "A5"
-    igp.auto_filter.ref = f"A4:J{4+len(products)}"
-
-    def signals(p: Product):
-        core = "Yes" if "Core" in p.product_type or p.category.startswith("Collect Payments / Web") or p.name in {
-            "Payment Links",
-            "PayU Payouts",
-            "Subscriptions / Recurring Payments",
-            "Split Settlements (Aggregator / Marketplace)",
-            "Cross-Border Payments Import (PACB)",
-        } else "No"
-        complexity = (
-            "High"
-            if any(x in p.name for x in ["S2S", "Subscriptions", "TPV", "Partner", "Split", "Cross-Border", "Tokenization", "Wallet", "Zion"])
-            else ("Medium" if p.recommend_ig else "Low")
-        )
-        adoption = (
-            "High"
-            if p.priority == "P0"
-            else ("Medium" if p.priority == "P1" else "Lower / Niche")
-        )
-        support = (
-            "High"
-            if p.priority in {"P0", "P1"} and p.recommend_ig
-            else ("Medium" if p.recommend_ig else "Low")
-        )
-        gap = (
-            "High"
-            if p.coverage_score() < 55
-            else ("Medium" if p.coverage_score() < 80 else "Low")
-        )
-        return adoption, core, complexity, support, gap
-
-    # Sort: recommend Yes first, then priority
-    pri_order = {"P0": 0, "P1": 1, "P2": 2, "P3": 3}
-    sorted_products = sorted(
-        products,
-        key=lambda p: (0 if p.recommend_ig else 1, pri_order.get(p.priority, 9), p.name),
-    )
-    for r_i, p in enumerate(sorted_products, 5):
-        adoption, core, complexity, support, gap_sev = signals(p)
-        vals = [
-            p.name,
-            p.category,
-            "Yes" if p.recommend_ig else "No",
+            p.coverage_score(),
+            p.status(),
             p.priority,
-            adoption,
-            core,
-            complexity,
-            support,
-            gap_sev,
-            p.recommended_action,
+            missing_critical(p),
+            p.link("overview") or "—",
         ]
         for c, v in enumerate(vals, 1):
-            cell = igp.cell(row=r_i, column=c, value=v)
+            cell = inv.cell(row=r, column=c, value=v)
             cell.border = THIN
-            cell.alignment = WRAP
             cell.font = FONT_BODY
-        apply_yn_fill(igp.cell(row=r_i, column=3))
-        apply_priority_fill(igp.cell(row=r_i, column=4))
+            cell.alignment = WRAP if c in {1, 2, 3, 7, 8} else CENTER
+        apply_status_fill(inv.cell(row=r, column=5))
+        apply_priority_fill(inv.cell(row=r, column=6))
 
-    autosize(igp, min_width=12, max_width=42)
-    igp.column_dimensions["J"].width = 55
-
-    # =====================================================================
-    # Sheet 5 — Coverage Scoring Methodology
-    # =====================================================================
-    meth = wb.create_sheet("Coverage Scoring")
-    meth["A1"] = "Documentation Coverage Score — Methodology"
-    meth["A1"].font = FONT_TITLE
-    meth["A1"].fill = FILL_TITLE
-    meth.merge_cells("A1:E1")
-
-    meth["A3"] = "Scoring Model"
-    meth["A3"].font = FONT_SECTION
-    methodology_lines = [
-        "Each product is scored only on applicable documentation dimensions (N/A dimensions are excluded from the denominator).",
-        "Applicable dimensions (equal weight): Overview, Integration Guide, API Reference, SDK, Quick Start, Webhooks, Error Codes, Testing, Go Live, Troubleshooting, FAQs, Changelog.",
-        "Dimension values: Yes = 1.0, Partial = 0.5, No = 0.0, N/A = excluded.",
-        "Coverage % = 100 × (sum of dimension scores) / (count of applicable dimensions).",
-        "Status thresholds: Complete ≥ 85%; Partial 40–84.9%; Missing < 40% (or no overview+IG with very low score).",
-        "Partial is used when coverage exists only via shared pages, incomplete checklists, or dispersed/unstructured API assets.",
-        "Links point to repository-relative paths under docs/ or reference/ (and occasionally recipes/custom_pages noted in Notes).",
-        "RECYCLE BIN content is excluded from product inventory as non-canonical.",
-        "Integration ASK AI Docs are treated as duplicate/shadow content — noted in gaps, not as primary coverage credit unless no canonical page exists.",
-        "This tracker intentionally does NOT copy data from the sample FY26-27 progress report; scores are freshly derived from the current repository.",
-    ]
-    for i, line in enumerate(methodology_lines, 4):
-        meth.cell(row=i, column=1, value=line).alignment = WRAP
-        meth.merge_cells(start_row=i, start_column=1, end_row=i, end_column=5)
-        meth.row_dimensions[i].height = 28
-
-    meth["A15"] = "Per-Product Score Breakdown"
-    meth["A15"].font = FONT_SECTION
-    break_headers = ["Product Name", "Coverage %", "Status"] + [d.replace("_", " ").title() for d in DIMENSIONS] + ["Applicable Dimensions"]
-    for c, h in enumerate(break_headers, 1):
-        cell = meth.cell(row=16, column=c, value=h)
-        cell.fill = FILL_HEADER
-        cell.font = FONT_HEADER
-        cell.alignment = CENTER
-        cell.border = THIN
-    meth.freeze_panes = "A17"
-    meth.auto_filter.ref = f"A16:{get_column_letter(len(break_headers))}{16+len(products)}"
-
-    for r_i, p in enumerate(products, 17):
-        flags = [p.flag(d) for d in DIMENSIONS]
-        applicable_n = sum(1 for f in flags if f != "N/A")
-        vals = [p.name, p.coverage_score(), p.status()] + flags + [applicable_n]
-        for c, v in enumerate(vals, 1):
-            cell = meth.cell(row=r_i, column=c, value=v)
-            cell.border = THIN
-            cell.alignment = CENTER if c > 1 else WRAP
-            cell.font = FONT_BODY
-        apply_status_fill(meth.cell(row=r_i, column=3))
-        for c in range(4, 4 + len(DIMENSIONS)):
-            apply_yn_fill(meth.cell(row=r_i, column=c))
-        score_cell = meth.cell(row=r_i, column=2)
-        score_cell.number_format = "0.0"
-        if p.coverage_score() >= 85:
-            score_cell.fill = FILL_GREEN
-        elif p.coverage_score() >= 40:
-            score_cell.fill = FILL_YELLOW
-        else:
-            score_cell.fill = FILL_RED
-
-    autosize(meth, min_width=10, max_width=36)
-
-    # =====================================================================
-    # Sheet 6 — Repository Analysis Summary
-    # =====================================================================
-    summary = wb.create_sheet("Repository Analysis")
-    summary["A1"] = "Repository Analysis Summary"
-    summary["A1"].font = FONT_TITLE
-    summary["A1"].fill = FILL_TITLE
-    summary.merge_cells("A1:D1")
-
-    summary["A3"] = "Scope Analyzed"
-    summary["A3"].font = FONT_SECTION
-    scope_rows = [
-        ("docs/", "Merchant-facing guides & tutorials (excluding RECYCLE BIN from inventory)"),
-        ("reference/", "API reference pages + OpenAPI/Postman collections"),
-        ("recipes/", "Code walkthrough recipes supporting checkout/verify flows"),
-        ("custom_pages/", "Standalone pages (PG chooser, payouts intro)"),
-        ("payment-error-codes.json", "Global payment error code dataset at repo root"),
-        ("_order.yaml trees", "Navigation/order metadata used to identify product boundaries"),
-    ]
-    summary["A4"] = "Area"
-    summary["B4"] = "Role in analysis"
-    style_header_row(summary, 4, 1, 2)
-    for i, (a, b) in enumerate(scope_rows, 5):
-        summary.cell(row=i, column=1, value=a).border = THIN
-        summary.cell(row=i, column=2, value=b).border = THIN
-        summary.cell(row=i, column=2).alignment = WRAP
-
-    summary["A12"] = "Top-Level Documentation IA (from docs/_order.yaml)"
-    summary["A12"].font = FONT_SECTION
-    ia = [
-        "getting started",
-        "Collect Payments",
-        "Offerings",
-        "partners",
-        "Whatsapp integration",
-        "payouts",
-        "MCP & CLI",
-        "BBPS",
-        "API basics",
-        "Monitoring & Alerts",
-        "RECYCLE BIN (excluded from product SoT)",
-        "Integration ASK AI Docs (shadow/duplicate content)",
-        "AIR India (merchant-specific)",
-    ]
-    summary["A13"] = "Nav Section"
-    summary["B13"] = "Inventory Treatment"
-    style_header_row(summary, 13, 1, 2)
-    treatments = [
-        "Onboarding + Dashboard products",
-        "Core collect: checkout, no-code, in-person, plugins, SDKs",
-        "Value-added payment products & features",
-        "Partner program, portal, onboarding & payments APIs",
-        "WhatsApp native payments & EPL",
-        "Disbursements product family",
-        "Agentic/devtooling surfaces",
-        "Bill pay / recharge agent APIs",
-        "Cross-cutting API auth, hashing, redirect handling",
-        "Overwatch monitoring",
-        "Excluded from coverage credit",
-        "Tracked as duplication risk, not primary coverage",
-        "Merchant-specific; low public IG priority",
-    ]
-    for i, (a, b) in enumerate(zip(ia, treatments), 14):
-        summary.cell(row=i, column=1, value=a).border = THIN
-        summary.cell(row=i, column=2, value=b).border = THIN
-
-    summary["A29"] = "Reference API Categories Observed"
-    summary["A29"].font = FONT_SECTION
-    ref_cats = sorted(
-        [
-            p.name
-            for p in Path("/workspace/reference").iterdir()
-            if p.is_dir() and p.name not in {"Archive", "ReadMeConfig", "introduction"}
-        ]
+    autosize(
+        inv,
+        {"A": 40, "B": 28, "C": 26, "D": 11, "E": 11, "F": 10, "G": 40, "H": 46},
     )
-    summary["A30"] = "API Category Folder"
-    style_header_row(summary, 30, 1, 1)
-    for i, name in enumerate(ref_cats, 31):
-        summary.cell(row=i, column=1, value=name).border = THIN
 
-    # Category rollup chart data
-    from collections import Counter
+    # =========================================================================
+    # Sheet 4 — Scoring & Ranking Basis
+    # =========================================================================
+    basis = wb.create_sheet("Scoring & Ranking Basis")
+    basis.merge_cells("A1:B1")
+    basis["A1"] = "Coverage Scoring & Priority Ranking — Basis"
+    basis["A1"].font = FONT_TITLE
+    basis["A1"].fill = FILL_TITLE
+    basis.row_dimensions[1].height = 28
 
-    cat_counts = Counter(p.category.split(" / ")[0] for p in products)
-    summary["C29"] = "Products by Top Category"
-    summary["C29"].font = FONT_SECTION
-    summary["C30"] = "Category"
-    summary["D30"] = "Products"
-    style_header_row(summary, 30, 3, 4)
-    for i, (cat, cnt) in enumerate(sorted(cat_counts.items()), 31):
-        summary.cell(row=i, column=3, value=cat).border = THIN
-        summary.cell(row=i, column=4, value=cnt).border = THIN
+    basis["A3"] = "A. Priority ranking basis (what makes an item higher)"
+    basis["A3"].font = FONT_SECTION
+    for i, line in enumerate(ranking_basis_text()):
+        basis.cell(row=4 + i, column=1, value=line).font = FONT_BODY
+        basis.merge_cells(start_row=4 + i, start_column=1, end_row=4 + i, end_column=2)
 
-    chart = BarChart()
-    chart.type = "col"
-    chart.title = "Products by Category"
-    n = len(cat_counts)
-    data = Reference(summary, min_col=4, min_row=30, max_row=30 + n)
-    cats = Reference(summary, min_col=3, min_row=31, max_row=30 + n)
-    chart.add_data(data, titles_from_data=True)
-    chart.set_categories(cats)
-    chart.shape = 4
-    chart.width = 15
-    chart.height = 10
-    summary.add_chart(chart, "F29")
-
-    summary["A50"] = "How to Use This Tracker"
-    summary["A50"].font = FONT_SECTION
-    how_to = [
-        "1. Leadership reviews Executive Dashboard KPIs and P0 list weekly/biweekly.",
-        "2. Docs team filters Product Documentation Inventory by Status=Partial/Missing and Priority=P0/P1.",
-        "3. Use IG Prioritization to assign writing projects — only where Recommend Dedicated IG=Yes.",
-        "4. Gap Analysis drives IA cleanup (duplicates, naming, restructures) in parallel with new IG content.",
-        "5. Re-run generate_coverage_tracker.py after major docs releases to refresh scores from the repository.",
-        "6. Do not treat this file's historical sample Excel as data input — repository remains the source of truth.",
+    start = 4 + len(ranking_basis_text()) + 2
+    basis.cell(row=start, column=1, value="B. Worked example — top ranked products").font = FONT_SECTION
+    ex_headers = [
+        "Rank",
+        "Product",
+        "Tier",
+        "Gap pts",
+        "Core boost",
+        "IG pts",
+        "Complexity",
+        "Priority Score",
     ]
-    for i, line in enumerate(how_to, 51):
-        summary.cell(row=i, column=1, value=line).alignment = WRAP
-        summary.merge_cells(start_row=i, start_column=1, end_row=i, end_column=5)
+    for c, h in enumerate(ex_headers, 1):
+        basis.cell(row=start + 1, column=c, value=h)
+    style_header(basis, start + 1, len(ex_headers))
 
-    autosize(summary, min_width=18, max_width=60)
-    summary.freeze_panes = "A3"
-
-    # =====================================================================
-    # Sheet 7 — Executive Recommendations (detailed)
-    # =====================================================================
-    exe = wb.create_sheet("Executive Recommendations")
-    exe["A1"] = "Executive Recommendations — P0 / P1 / P2"
-    exe["A1"].font = FONT_TITLE
-    exe["A1"].fill = FILL_TITLE
-    exe.merge_cells("A1:G1")
-    exe["A2"] = (
-        "Aligned to PayU DevEx goal: Enable developers to successfully integrate PayU products without requiring support intervention. "
-        "Priorities balance merchant adoption, core payment journey criticality, business/revenue impact, developer complexity, support dependency, and documentation gaps."
-    )
-    exe["A2"].alignment = WRAP
-    exe.merge_cells("A2:G2")
-    exe.row_dimensions[2].height = 40
-
-    def write_exec_block(ws, start, title, fill, plist, default_rationale):
-        ws.cell(row=start, column=1, value=title).fill = fill
-        ws.cell(row=start, column=1).font = Font(name="Calibri", bold=True, size=12, color="FFFFFF" if fill != FILL_P1 else "000000")
-        ws.merge_cells(start_row=start, start_column=1, end_row=start, end_column=7)
-        headers_e = [
-            "Product",
-            "Coverage %",
-            "Why this priority",
-            "DevEx Impact",
-            "Support Dependency Reduction",
-            "Integration TAT Impact",
-            "Recommended Action",
-        ]
-        for c, h in enumerate(headers_e, 1):
-            cell = ws.cell(row=start + 1, column=c, value=h)
-            cell.fill = FILL_HEADER
-            cell.font = FONT_HEADER
-            cell.border = THIN
-            cell.alignment = CENTER
-        r = start + 2
-        for p in plist:
-            why, devex, support, tat = default_rationale(p)
-            for c, v in enumerate(
-                [p.name, p.coverage_score(), why, devex, support, tat, p.recommended_action],
-                1,
-            ):
-                cell = ws.cell(row=r, column=c, value=v)
-                cell.border = THIN
-                cell.alignment = WRAP
-                cell.font = FONT_BODY
-            ws.row_dimensions[r].height = 48
-            r += 1
-        return r + 2
-
-    def p0_r(p):
-        return p0_rationales.get(
-            p.name,
-            (
-                "Critical product with material gaps or fragmentation",
-                "High — unlocks self-serve success",
-                "High — removes repeat support loops",
-                "High — shortens time-to-first-successful-integration",
-            ),
-        )
-
-    def p1_r(p):
-        return (
-            "Important after core journeys; complexity or vertical revenue impact",
-            "Medium-High — improves specialty self-serve",
-            "Medium-High — reduces specialty escalations",
-            "Medium — improves TAT for mid-complexity integrations",
-        )
-
-    def p2_r(p):
-        return (
-            "Valuable polish / niche adoption; schedule after P0/P1",
-            "Medium — incremental clarity",
-            "Medium/Low — localized ticket reduction",
-            "Lower — smaller portfolio TAT impact",
-        )
-
-    r = 4
-    r = write_exec_block(exe, r, "P0 — MUST have dedicated Integration Guide immediately", FILL_P0, p0, p0_r)
-    r = write_exec_block(exe, r, "P1 — Important documentation improvements next", FILL_P1, p1, p1_r)
-    r = write_exec_block(exe, r, "P2 — Improve later", FILL_P2, p2, p2_r)
-
-    exe.cell(row=r, column=1, value="Portfolio Recommendations (Cross-Cutting)").font = FONT_SECTION
-    r += 1
-    cross = [
-        "Establish an Integration Guide template: Overview → Choose integration → Prerequisites → Step-by-step → Test/Sandbox → Go-Live → Webhooks → Errors → Troubleshooting → FAQs → API map.",
-        "Create a public 'Choose your integration' decision tree that routes Hosted vs MH vs S2S vs Checkout Plus vs Plugins vs SDKs (partial drafts exist under getting started/choose-your-payment-gateway).",
-        "Institute a quarterly coverage refresh by re-running this tracker against main/v1.",
-        "Assign owners per P0 product for Integration Guide delivery; track to Complete (≥85%) status.",
-        "Run an IA cleanup sprint for naming + duplicates in parallel with P0 writing — otherwise new IGs will inherit confusion.",
-        "Promote go-live checklists from MH/S2S/iOS CB as the standard artifact every P0/P1 IG must include.",
-    ]
-    for line in cross:
-        exe.cell(row=r, column=1, value=line).alignment = WRAP
-        exe.merge_cells(start_row=r, start_column=1, end_row=r, end_column=7)
-        exe.row_dimensions[r].height = 30
-        r += 1
-
-    autosize(exe, min_width=14, max_width=40)
-    exe.column_dimensions["C"].width = 42
-    exe.column_dimensions["G"].width = 48
-    exe.freeze_panes = "A4"
-
-    # =====================================================================
-    # Sheet 8 — Coverage by Category (helper)
-    # =====================================================================
-    cat = wb.create_sheet("Coverage by Category")
-    cat["A1"] = "Coverage Rollup by Product Category"
-    cat["A1"].font = FONT_TITLE
-    cat["A1"].fill = FILL_TITLE
-    cat.merge_cells("A1:G1")
-    cat_headers = [
-        "Category",
-        "Products",
-        "Avg Coverage %",
-        "Complete",
-        "Partial",
-        "Missing",
-        "P0 IG Recs",
-    ]
-    for c, h in enumerate(cat_headers, 1):
-        cell = cat.cell(row=3, column=c, value=h)
-        cell.fill = FILL_HEADER
-        cell.font = FONT_HEADER
-        cell.border = THIN
-    from collections import defaultdict
-
-    buckets = defaultdict(list)
-    for p in products:
-        buckets[p.category].append(p)
-    for r_i, (category, plist) in enumerate(sorted(buckets.items()), 4):
-        vals = [
-            category,
-            len(plist),
-            round(sum(p.coverage_score() for p in plist) / len(plist), 1),
-            sum(1 for p in plist if p.status() == "Complete"),
-            sum(1 for p in plist if p.status() == "Partial"),
-            sum(1 for p in plist if p.status() == "Missing"),
-            sum(1 for p in plist if p.priority == "P0" and p.recommend_ig),
-        ]
+    for i, p in enumerate(ranked[:15], 1):
+        r = start + 1 + i
+        tier = PRIORITY_TIER_WEIGHT.get(p.priority, 0)
+        gap = round((100.0 - p.coverage_score()) * 2.0, 1)
+        core = CORE_JOURNEY_BOOST.get(p.name, 0)
+        ig = 30 if p.recommend_ig else 0
+        complex_names = ("S2S", "TPV", "Partner", "Subscriptions", "Tokenization", "Split", "Cross-Border")
+        complexity = 20 if any(k in p.name for k in complex_names) else 0
+        vals = [i, p.name, p.priority, gap, core, ig, complexity, round(priority_score(p), 1)]
         for c, v in enumerate(vals, 1):
-            cell = cat.cell(row=r_i, column=c, value=v)
+            cell = basis.cell(row=r, column=c, value=v)
             cell.border = THIN
-            cell.alignment = CENTER if c > 1 else WRAP
             cell.font = FONT_BODY
-        sc = cat.cell(row=r_i, column=3)
-        if vals[2] >= 85:
-            sc.fill = FILL_GREEN
-        elif vals[2] >= 40:
-            sc.fill = FILL_YELLOW
-        else:
-            sc.fill = FILL_RED
-    cat.freeze_panes = "A4"
-    cat.auto_filter.ref = f"A3:G{3+len(buckets)}"
-    autosize(cat)
+            cell.alignment = CENTER if c != 2 else WRAP
+        apply_priority_fill(basis.cell(row=r, column=3))
+
+    note_row = start + 18
+    basis.cell(row=note_row, column=1, value="C. What we deliberately removed (noise reduction)").font = FONT_SECTION
+    removed = [
+        "Removed duplicate recommendation sheets (IG Prioritization + Executive Recommendations + Gap Analysis walls of text).",
+        "Removed 30+ inventory link/flag columns — kept only decision-useful fields.",
+        "Removed Repository Analysis / category charts / pie charts that did not change decisions.",
+        "Coverage dimension breakdown is summarized via Coverage % + Missing critical docs instead of a wide matrix.",
+    ]
+    for i, line in enumerate(removed):
+        basis.cell(row=note_row + 1 + i, column=1, value=f"• {line}").alignment = WRAP
+        basis.merge_cells(
+            start_row=note_row + 1 + i,
+            start_column=1,
+            end_row=note_row + 1 + i,
+            end_column=8,
+        )
+
+    autosize(
+        basis,
+        {"A": 10, "B": 42, "C": 10, "D": 10, "E": 12, "F": 10, "G": 12, "H": 14},
+    )
+    basis.column_dimensions["A"].width = 12
+    basis.column_dimensions["B"].width = 42
 
     return wb
 
 
 def main():
     products = build_products()
-    # Sanity: verify flagged Yes paths exist
     problems = []
     for p in products:
         for dim in DIMENSIONS:
@@ -3311,8 +2470,8 @@ def main():
                 if not (ROOT / val).exists():
                     problems.append(f"{p.name} :: {dim} :: {val}")
     if problems:
-        print("WARNING: missing paths detected:")
-        for pr in problems:
+        print("WARNING: missing paths:")
+        for pr in problems[:20]:
             print(" -", pr)
     else:
         print("All explicit paths resolve.")
@@ -3321,19 +2480,10 @@ def main():
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     wb.save(OUT_FILE)
     print(f"Wrote {OUT_FILE}")
-    print(f"Products: {len(products)}")
-    complete = sum(1 for p in products if p.status() == "Complete")
-    partial = sum(1 for p in products if p.status() == "Partial")
-    missing = sum(1 for p in products if p.status() == "Missing")
-    print(f"Status Complete/Partial/Missing: {complete}/{partial}/{missing}")
-    print(
-        f"Overall avg coverage: {round(sum(p.coverage_score() for p in products)/len(products),1)}%"
-    )
-    print(
-        f"P0/P1/P2 IG recs: {sum(1 for p in products if p.priority=='P0' and p.recommend_ig)}/"
-        f"{sum(1 for p in products if p.priority=='P1' and p.recommend_ig)}/"
-        f"{sum(1 for p in products if p.priority=='P2' and p.recommend_ig)}"
-    )
+    ranked = sorted(products, key=lambda p: (-priority_score(p), p.coverage_score(), p.name))
+    print("Top 10 priorities:")
+    for i, p in enumerate(ranked[:10], 1):
+        print(f"  {i}. [{p.priority}] {p.name} — {p.coverage_score()}% — score {priority_score(p):.1f}")
 
 
 if __name__ == "__main__":
