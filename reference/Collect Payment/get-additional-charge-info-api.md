@@ -75,7 +75,8 @@ curl --location 'https://test.payu.in/merchant/postservice?form=2' \
       <td><code>var1</code></td>
       <td>
         <strong>JSON String</strong> (Mandatory)<br/>
-        JSON-encoded string containing the transaction details. See <strong>var1 Parameters</strong> below for structure.
+        JSON-encoded string containing the transaction details. See <strong>var1 Parameters</strong> below for structure. For more information, refer to <a href="#var1-json-object-fields-description"> var1 JSON Object Fields Description</a>
+
       </td>
       <td><code>{"requestId":"abc1234","amount":10000,"category":"CC","bankCode":"CC","bin":"456789"}</code></td>
     </tr>
@@ -85,7 +86,7 @@ curl --location 'https://test.payu.in/merchant/postservice?form=2' \
         <strong>String</strong> (Mandatory)<br/>
         SHA-512 hash for request validation. Hash sequence:<br/>
         <code>key|command|var1|salt</code><br/>
-        Compute on the server-side using your merchant salt.
+        Compute on the server-side using your merchant salt. or more information, refer to <a href="#hasg-generation"> Hash Generation</a>
       </td>
       <td><code>c9c2440160a75303...</code></td>
     </tr>
@@ -135,7 +136,7 @@ print(hash_value)
 </Warning>
 
 
-### var1 Parameters
+### var1 JSON Object Fields Description
 
 The `var1` parameter must be a JSON-encoded string containing the following fields:
 
