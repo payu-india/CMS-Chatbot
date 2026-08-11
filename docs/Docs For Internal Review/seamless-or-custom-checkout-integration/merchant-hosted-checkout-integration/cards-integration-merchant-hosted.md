@@ -22,6 +22,9 @@ Merchant Hosted Checkout enables you to securely accept **credit and debit card*
   Customer enters card details on your checkout → your server hashes and posts to PayU → 3DS/OTP as required → PayU returns to your `surl`/`furl` → you verify on the backend.
 </Callout>
 
+
+
+
 ***
 
 ## Prerequisites
