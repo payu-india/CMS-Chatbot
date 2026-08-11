@@ -445,149 +445,243 @@ class Program
   **Note**: Before you make payment request to PayU, it is recommended to validate the UPI handle provided by your customer is eligible for recurring payment using the validateVPA API. For more information, refer to [Validate VPA API](ref:validate_vpa_api).
 </Callout>
 #### B. UPI Collect Flow
+<Callout icon="📘" theme="info">
+Notes: 
+* For UPI Collect flow, you must note that *si=1** 
+* As per NPCI's guidelines, UPI Collect payments are allowed only on MCC 6012 and 6211. 
+  </Callout>
 <Accordion title="Sample request" icon="fa-code">
-  ```curl
-      curl -X      POST "https://test.payu.in/_payment" -H      "accept: application/json" -H      "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&txnid=xdB9G7qYpfqszo&amount=10&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=UPI&bankcode=UPI&vpa=VPA-anything@payu&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=649bc87e0e8ee7bbd1e930d43c99a9165eb9fa7a3f4542a33e8d66bd207a63d631708fd9781e56b133581f7dabeaa67baa5609d5e5c9990f986792d59e7d41cb"
-  ```
-  ```python
-  import requests
+```curl
+curl --location 'https://secure.payu.in/_payment' \
+--header 'accept: application/json' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642; PHPSESSID=68ed52caaaf5e' \
+--data-urlencode 'key=BmTY3G' \
+--data-urlencode 'txnid=my_order_29327' \
+--data-urlencode 'amount=1.00' \
+--data-urlencode 'firstname=Payu-Admin' \
+--data-urlencode 'email=test@example.com' \
+--data-urlencode 'phone=1234567890' \
+--data-urlencode 'productinfo=my_order_29327' \
+--data-urlencode 'api_version=7' \
+--data-urlencode 'si=1' \
+--data-urlencode 'pg=UPI' \
+--data-urlencode 'bankcode=UPI' \
+--data-urlencode 'vpa=anything@payu' \
+--data-urlencode 'surl=https://test.payu.in/admin/test_response/' \
+--data-urlencode 'furl=https://test.payu.in/admin/test_response' \
+--data-urlencode 'si_details={"billingAmount":"1.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2025-10-14","paymentEndDate":"2029-12-01"}' \
+--data-urlencode 'hash=67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb'
+```
+```python
+import requests
 
-  url = "https://test.payu.in/_payment"
+url = "https://secure.payu.in/_payment"
 
-  headers = {
+headers = {
     "accept": "application/json",
-    "Content-Type": "application/x-www-form-urlencoded"
-  }
+    "Content-Type": "application/x-www-form-urlencoded",
+}
 
-  data = {
-    "key": "JP***g",
-    "txnid": "xdB9G7qYpfqszo",
-    "amount": "10",
-    "firstname": "PayU User",
-    "email": "test@gmail.com",
-    "phone": "9876543210",
-    "productinfo": "iPhone",
+data = {
+    "key": "BmTY3G",
+    "txnid": "my_order_29327",
+    "amount": "1.00",
+    "firstname": "Payu-Admin",
+    "email": "test@example.com",
+    "phone": "1234567890",
+    "productinfo": "my_order_29327",
+    "api_version": "7",
+    "si": "1",
     "pg": "UPI",
     "bankcode": "UPI",
-    "vpa": "VPA-anything@payu",
-    "surl": "https://apiplayground-response.herokuapp.com/",
-    "furl": "https://apiplayground-response.herokuapp.com/",
-    "hash": "649bc87e0e8ee7bbd1e930d43c99a9165eb9fa7a3f4542a33e8d66bd207a63d631708fd9781e56b133581f7dabeaa67baa5609d5e5c9990f986792d59e7d41cb"
-  }
+    "vpa": "anything@payu",
+    "surl": "https://test.payu.in/admin/test_response/",
+    "furl": "https://test.payu.in/admin/test_response",
+    "si_details": '{"billingAmount":"1.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2025-10-14","paymentEndDate":"2029-12-01"}',
+    "hash": "67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb",
+}
 
-  response = requests.post(url, headers=headers, data=data)
-  print(response.status_code)
-  print(response.text)
-  ```
-  ```perl
-  use strict;
-  use warnings;
-  use LWP::UserAgent;
-  use HTTP::Request::Common qw(POST);
+response = requests.post(url, headers=headers, data=data)
+print(response.status_code)
+print(response.text)
+```
+```javascript
+async function makePayURequest() {
+  const url = "https://secure.payu.in/_payment";
 
-  my $url = "https://test.payu.in/_payment";
-
-  my $ua = LWP::UserAgent->new();
-
-  my $response = $ua->request(POST $url,
-      'Accept' => 'application/json',
-      'Content-Type' => 'application/x-www-form-urlencoded',
-      Content => [
-          key => 'JP***g',
-          txnid => 'xdB9G7qYpfqszo',
-          amount => '10',
-          firstname => 'PayU User',
-          email => 'test@gmail.com',
-          phone => '9876543210',
-          productinfo => 'iPhone',
-          pg => 'UPI',
-          bankcode => 'UPI',
-          vpa => 'VPA-anything@payu',
-          surl => 'https://apiplayground-response.herokuapp.com/',
-          furl => 'https://apiplayground-response.herokuapp.com/',
-          hash => '649bc87e0e8ee7bbd1e930d43c99a9165eb9fa7a3f4542a33e8d66bd207a63d631708fd9781e56b133581f7dabeaa67baa5609d5e5c9990f986792d59e7d41cb'
-      ]
-  );
-
-  print "Status: " . $response->code . "\n";
-  print "Response: " . $response->content . "\n";
-  ```
-  ```java
-  import java.io.IOException;
-  import java.net.URI;
-  import java.net.URLEncoder;
-  import java.net.http.HttpClient;
-  import java.net.http.HttpRequest;
-  import java.net.http.HttpResponse;
-  import java.nio.charset.StandardCharsets;
-  import java.util.HashMap;
-  import java.util.Map;
-  import java.util.stream.Collectors;
-
-  public class PayURequest \{
-      public static void main(String[] args) throws IOException, InterruptedException \{
-          String url = "https://test.payu.in/_payment";
-          
-          Map<String, String> parameters = new HashMap<>();
-          parameters.put("key", "JP***g");
-          parameters.put("txnid", "xdB9G7qYpfqszo");
-          parameters.put("amount", "10");
-          parameters.put("firstname", "PayU User");
-          parameters.put("email", "test@gmail.com");
-          parameters.put("phone", "9876543210");
-          parameters.put("productinfo", "iPhone");
-          parameters.put("pg", "UPI");
-          parameters.put("bankcode", "UPI");
-          parameters.put("vpa", "VPA-anything@payu");
-          parameters.put("surl", "https://apiplayground-response.herokuapp.com/");
-          parameters.put("furl", "https://apiplayground-response.herokuapp.com/");
-          parameters.put("hash", "649bc87e0e8ee7bbd1e930d43c99a9165eb9fa7a3f4542a33e8d66bd207a63d631708fd9781e56b133581f7dabeaa67baa5609d5e5c9990f986792d59e7d41cb");
-          
-          String formData = parameters.entrySet()
-                  .stream()
-                  .map(entry -> URLEncoder.encode(entry.getKey(), StandardCharsets.UTF_8) + "=" + 
-                               URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8))
-                  .collect(Collectors.joining("&"));
-          
-          HttpClient client = HttpClient.newHttpClient();
-          HttpRequest request = HttpRequest.newBuilder()
-                  .uri(URI.create(url))
-                  .header("Accept", "application/json")
-                  .header("Content-Type", "application/x-www-form-urlencoded")
-                  .POST(HttpRequest.BodyPublishers.ofString(formData))
-                  .build();
-          
-          HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-          
-          System.out.println("Status Code: " + response.statusCode());
-          System.out.println("Response: " + response.body());
-      \}
-  \}
-  ```
-  ```javascript
-  const url = 'https://test.payu.in/merchant/postservice?form=2';
-
-  const data = new URLSearchParams({
-  key: 'JP***g',
-  command: 'validateVPA',
-  var1: '9999999999@upi',
-  hash: '75bb573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472fff9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e'
+  const body = new URLSearchParams({
+    key: "BmTY3G",
+    txnid: "my_order_29327",
+    amount: "1.00",
+    firstname: "Payu-Admin",
+    email: "test@example.com",
+    phone: "1234567890",
+    productinfo: "my_order_29327",
+    api_version: "7",
+    si: "1",
+    pg: "UPI",
+    bankcode: "UPI",
+    vpa: "anything@payu",
+    surl: "https://test.payu.in/admin/test_response/",
+    furl: "https://test.payu.in/admin/test_response",
+    si_details:
+      '{"billingAmount":"1.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2025-10-14","paymentEndDate":"2029-12-01"}',
+    hash: "67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb",
   });
 
   const response = await fetch(url, {
-  method: 'POST',
-  headers: {
-   'Accept': 'application/json',
-   'Content-Type': 'application/x-www-form-urlencoded'
-  },
-  body: data.toString()
+    method: "POST",
+    headers: {
+      accept: "application/json",
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body,
   });
 
-  const result = await response.json();
-  console.log(result);
-  ```
-</Accordion>
+  console.log(response.status);
+  console.log(await response.text());
+}
 
+makePayURequest();
+```
+```php
+$url = "https://secure.payu.in/_payment";
+
+$postData = [
+    "key" => "BmTY3G",
+    "txnid" => "my_order_29327",
+    "amount" => "1.00",
+    "firstname" => "Payu-Admin",
+    "email" => "test@example.com",
+    "phone" => "1234567890",
+    "productinfo" => "my_order_29327",
+    "api_version" => "7",
+    "si" => "1",
+    "pg" => "UPI",
+    "bankcode" => "UPI",
+    "vpa" => "anything@payu",
+    "surl" => "https://test.payu.in/admin/test_response/",
+    "furl" => "https://test.payu.in/admin/test_response",
+    "si_details" => '{"billingAmount":"1.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2025-10-14","paymentEndDate":"2029-12-01"}',
+    "hash" => "67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb",
+];
+
+$ch = curl_init();
+curl_setopt_array($ch, [
+    CURLOPT_URL => $url,
+    CURLOPT_POST => true,
+    CURLOPT_POSTFIELDS => http_build_query($postData),
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_HTTPHEADER => [
+        "accept: application/json",
+        "Content-Type: application/x-www-form-urlencoded",
+    ],
+]);
+
+$response = curl_exec($ch);
+$status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+
+echo $status . PHP_EOL;
+echo $response;
+```
+```java
+import java.net.URI;
+import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+public class PayUPayment {
+    public static void main(String[] args) throws Exception {
+        String url = "https://secure.payu.in/_payment";
+
+        Map<String, String> formData = new LinkedHashMap<>();
+        formData.put("key", "BmTY3G");
+        formData.put("txnid", "my_order_29327");
+        formData.put("amount", "1.00");
+        formData.put("firstname", "Payu-Admin");
+        formData.put("email", "test@example.com");
+        formData.put("phone", "1234567890");
+        formData.put("productinfo", "my_order_29327");
+        formData.put("api_version", "7");
+        formData.put("si", "1");
+        formData.put("pg", "UPI");
+        formData.put("bankcode", "UPI");
+        formData.put("vpa", "anything@payu");
+        formData.put("surl", "https://test.payu.in/admin/test_response/");
+        formData.put("furl", "https://test.payu.in/admin/test_response");
+        formData.put("si_details", "{\"billingAmount\":\"1.00\",\"billingCurrency\":\"INR\",\"billingCycle\":\"MONTHLY\",\"billingInterval\":1,\"paymentStartDate\":\"2025-10-14\",\"paymentEndDate\":\"2029-12-01\"}");
+        formData.put("hash", "67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb");
+
+        String body = formData.entrySet().stream()
+                .map(e -> URLEncoder.encode(e.getKey(), StandardCharsets.UTF_8) + "="
+                        + URLEncoder.encode(e.getValue(), StandardCharsets.UTF_8))
+                .collect(Collectors.joining("&"));
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .header("accept", "application/json")
+                .header("Content-Type", "application/x-www-form-urlencoded")
+                .POST(HttpRequest.BodyPublishers.ofString(body))
+                .build();
+
+        HttpResponse<String> response = HttpClient.newHttpClient()
+                .send(request, HttpResponse.BodyHandlers.ofString());
+
+        System.out.println(response.statusCode());
+        System.out.println(response.body());
+    }
+}
+```
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+
+class Program
+{
+    private static readonly HttpClient client = new HttpClient();
+
+    static async Task Main()
+    {
+        string url = "https://secure.payu.in/_payment";
+        client.DefaultRequestHeaders.Accept.Add(
+            new MediaTypeWithQualityHeaderValue("application/json"));
+
+        var formData = new List<KeyValuePair<string, string>>
+        {
+            new("key", "BmTY3G"),
+            new("txnid", "my_order_29327"),
+            new("amount", "1.00"),
+            new("firstname", "Payu-Admin"),
+            new("email", "test@example.com"),
+            new("phone", "1234567890"),
+            new("productinfo", "my_order_29327"),
+            new("api_version", "7"),
+            new("si", "1"),
+            new("pg", "UPI"),
+            new("bankcode", "UPI"),
+            new("vpa", "anything@payu"),
+            new("surl", "https://test.payu.in/admin/test_response/"),
+            new("furl", "https://test.payu.in/admin/test_response"),
+            new("si_details", "{\"billingAmount\":\"1.00\",\"billingCurrency\":\"INR\",\"billingCycle\":\"MONTHLY\",\"billingInterval\":1,\"paymentStartDate\":\"2025-10-14\",\"paymentEndDate\":\"2029-12-01\"}"),
+            new("hash", "67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb"),
+        };
+
+        var response = await client.PostAsync(url, new FormUrlEncodedContent(formData));
+        Console.WriteLine((int)response.StatusCode);
+        Console.WriteLine(await response.Content.ReadAsStringAsync());
+    }
+}
+```
 ***
 
 ### Step 2: Check the Response from PayU
