@@ -6,13 +6,6 @@ metadata:
   robots: index
 ---
 ---
-title: 'Get Checkout Details API '
-deprecated: false
-hidden: true
-metadata:
-  robots: index
----
----
 title: Get Checkout Details API
 deprecated: false
 hidden: false
