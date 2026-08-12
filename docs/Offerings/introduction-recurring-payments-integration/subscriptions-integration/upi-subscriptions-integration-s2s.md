@@ -33,7 +33,6 @@ Before starting the integration, ensure you have:
   - **For Web**: Merchants must use the deeplink created via [UPI Intent S2S Integration](doc:upi-intent-server-to-server) to generate a QR code of the deeplink, instead of the UPI Collect flow.
 </Callout>
 
-
 #### I. Payment Consent Flow
 
 <Cards>
@@ -158,8 +157,10 @@ Before implementing, familiarize yourself with the required parameters.
 </Accordion>
 
 #### A. UPI Intent Flow
+
 <Accordion title="Request Payload Structure" icon="fa-file-code">
   #### UPI Intent Flow (with S2S Parameters)
+
   ```json
   {
     "key": "JPM7Fg",
@@ -220,36 +221,37 @@ curl --location 'https://secure.payu.in/_payment' \
 ```python
 import requests
 
-url = "https://secure.payu.in/_payment"
+url = "[https://secure.payu.in/\_payment](https://secure.payu.in/_payment)"
 
 headers = {
-    "accept": "application/json",
-    "Content-Type": "application/x-www-form-urlencoded",
-}
+t": "application/json",
+nt-Type": "application/x-www-form-urlencoded",
+
 
 data = {
-    "key": "BmTY3G",
-    "txnid": "my_order_95314",
-    "amount": "1.00",
-    "firstname": "Payu-Admin",
-    "email": "test@example.com",
-    "phone": "1234567890",
-    "productinfo": "my_order_95314",
-    "api_version": "7",
-    "si": "1",
-    "pg": "UPI",
-    "bankcode": "INTENT",
-    "txn_s2s_flow": "4",
-    "surl": "https://test.payu.in/admin/test_response/",
-    "furl": "https://test.payu.in/admin/test_response",
-    "si_details": '{"billingAmount":"1.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2025-10-14","paymentEndDate":"2019-12-01"}',
-    "hash": "67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb",
-}
+y": "BmTY3G",
+nid": "my_order_95314",
+ount": "1.00",
+rstname": "Payu-Admin",
+ail": "test@example.com",
+one": "1234567890",
+oductinfo": "my_order_95314",
+i_version": "7",
+": "1",
+": "UPI",
+nkcode": "INTENT",
+n_s2s_flow": "4",
+rl": "https://test.payu.in/admin/test_response/",
+rl": "https://test.payu.in/admin/test_response",
+_details": '{"billingAmount":"1.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2025-10-14","paymentEndDate":"2019-12-01"}',
+sh": "67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb",
+
 
 response = requests.post(url, headers=headers, data=data)
 print(response.status_code)
 print(response.text)
-```
+
+````
 ```javascript
 async function makePayURequest() {
   const url = "https://secure.payu.in/_payment";
@@ -288,7 +290,7 @@ async function makePayURequest() {
 }
 
 makePayURequest();
-```
+````
 ```php
 $url = "https://secure.payu.in/_payment";
 
@@ -427,29 +429,35 @@ class Program
 }
 ```
 
-  <Callout icon="📘" theme="info">
-    Notes:
-   -  `paymentEndDate` in the sample (`2019-12-01`) is before `paymentStartDate` — use a later end date in a real request, and keep the exact `si_details` string aligned with your hash.
-    - `/_payment` usually returns HTML for a browser redirect; in production, merchants typically POST these fields from an HTML form, not a server-side HTTP client.
-    - Prefer valid JSON for `si_details`, for example:
+<Callout icon="📘" theme="info">
+  Notes:
 
-    ```
-    {"billingAmount":"1.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2025-10-14","paymentEndDate":"2027-12-01"}
-    ```
+  - `paymentEndDate` in the sample (`2019-12-01`) is before `paymentStartDate` — use a later end date in a real request, and keep the exact `si_details` string aligned with your hash.
+  - `/_payment` usually returns HTML for a browser redirect; in production, merchants typically POST these fields from an HTML form, not a server-side HTTP client.
+  - Prefer valid JSON for `si_details`, for example:
 
-    Keep the same string in both the request body and the hash calculation.
-  </Callout>
+  ```
+  {"billingAmount":"1.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2025-10-14","paymentEndDate":"2027-12-01"}
+  ```
+
+  Keep the same string in both the request body and the hash calculation.
+</Callout>
+
 </Accordion>
 
 <Callout icon="📘" theme="info">
   **Note**: Before you make payment request to PayU, it is recommended to validate the UPI handle provided by your customer is eligible for recurring payment using the validateVPA API. For more information, refer to [Validate VPA API](ref:validate_vpa_api).
 </Callout>
+
 #### B. UPI Collect Flow
+
 <Callout icon="📘" theme="info">
-Notes: 
-* For UPI Collect flow, you must note that *si=1** 
-* As per NPCI's guidelines, UPI Collect payments are allowed only on MCC 6012 and 6211. 
-  </Callout>
+  Notes:
+
+  - For UPI Collect flow, you must note that _si=1_\*
+  - As per NPCI's guidelines, UPI Collect payments are allowed only on MCC 6012 and 6211.
+</Callout>
+
 <Accordion title="Sample request" icon="fa-code">
 ```curl
 curl --location 'https://secure.payu.in/_payment' \
@@ -476,36 +484,37 @@ curl --location 'https://secure.payu.in/_payment' \
 ```python
 import requests
 
-url = "https://secure.payu.in/_payment"
+url = "[https://secure.payu.in/\_payment](https://secure.payu.in/_payment)"
 
 headers = {
-    "accept": "application/json",
-    "Content-Type": "application/x-www-form-urlencoded",
-}
+t": "application/json",
+nt-Type": "application/x-www-form-urlencoded",
+
 
 data = {
-    "key": "BmTY3G",
-    "txnid": "my_order_29327",
-    "amount": "1.00",
-    "firstname": "Payu-Admin",
-    "email": "test@example.com",
-    "phone": "1234567890",
-    "productinfo": "my_order_29327",
-    "api_version": "7",
-    "si": "1",
-    "pg": "UPI",
-    "bankcode": "UPI",
-    "vpa": "anything@payu",
-    "surl": "https://test.payu.in/admin/test_response/",
-    "furl": "https://test.payu.in/admin/test_response",
-    "si_details": '{"billingAmount":"1.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2025-10-14","paymentEndDate":"2029-12-01"}',
-    "hash": "67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb",
-}
+y": "BmTY3G",
+nid": "my_order_29327",
+ount": "1.00",
+rstname": "Payu-Admin",
+ail": "test@example.com",
+one": "1234567890",
+oductinfo": "my_order_29327",
+i_version": "7",
+": "1",
+": "UPI",
+nkcode": "UPI",
+a": "anything@payu",
+rl": "https://test.payu.in/admin/test_response/",
+rl": "https://test.payu.in/admin/test_response",
+_details": '{"billingAmount":"1.00","billingCurrency":"INR","billingCycle":"MONTHLY","billingInterval":1,"paymentStartDate":"2025-10-14","paymentEndDate":"2029-12-01"}',
+sh": "67de5db43d30293e715969e6d7d849cea689b189509488c3a2b5615865f886559848bac2b1ddad5a53a5b38daaf48cd2bf9c06366c416c3da52ca47e96020cbb",
+
 
 response = requests.post(url, headers=headers, data=data)
 print(response.status_code)
 print(response.text)
-```
+
+````
 ```javascript
 async function makePayURequest() {
   const url = "https://secure.payu.in/_payment";
@@ -544,7 +553,7 @@ async function makePayURequest() {
 }
 
 makePayURequest();
-```
+````
 ```php
 $url = "https://secure.payu.in/_payment";
 
@@ -682,11 +691,13 @@ class Program
     }
 }
 ```
+
 ***
 
 ### Step 2: Check the Response from PayU
 
-#### A. UPI Intent Flow 
+#### A. UPI Intent Flow
+
 The API returns different response the following for UPI Intent.
 
 <Accordion title="UPI Intent Response" icon="fa-check">
@@ -740,17 +751,16 @@ The API returns different response the following for UPI Intent.
 #### B. UPI Collect Flow
 
 <Accordion title="Hash Validation" icon="fa-lock">
+  While sending the response, PayU takes the exact same parameters that were sent in the request (in reverse order) to calculate the hash and returns it to you. You must verify the hash and then mark a transaction as a success or failure. This is to make sure the transaction has not tampered within the response.
 
-While sending the response, PayU takes the exact same parameters that were sent in the request (in reverse order) to calculate the hash and returns it to you. You must verify the hash and then mark a transaction as a success or failure. This is to make sure the transaction has not tampered within the response.
+  The order of the parameters is similar to the following code block:
 
-The order of the parameters is similar to the following code block:
-
-```
-sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
-```
+  ```
+  sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
+  ```
 </Accordion>
 
-<Accordion title="Sample Response" icon="fa-code">
+<Accordion title="Sample Response [Parsed]" icon="fa-code">
   ```
       Array
       (
@@ -804,7 +814,6 @@ sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amo
       )
   ```
 </Accordion>
-
 
 ***
 
