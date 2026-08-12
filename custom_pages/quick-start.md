@@ -1,6 +1,6 @@
 ---
 title: Quick Start
 fullscreen: false
-hidden: true
+hidden: false
 ---
-<MerchantHostedCheckoutStepsHoverCards />
+<br />
