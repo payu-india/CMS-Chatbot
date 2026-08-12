@@ -4,8 +4,11 @@ Repo-sourced documentation coverage and prioritization for PayU Developer Docs.
 
 ## Deliverables
 
-1. **Master Coverage Tracker** — [`PayU_Product_Documentation_Coverage_Tracker.xlsx`](./PayU_Product_Documentation_Coverage_Tracker.xlsx)
-2. **FY26–27 Progress Report (sample format)** — [`PayU_Docs_Coverage_Progress_Report_26-27_Product_Docs.xlsx`](./PayU_Docs_Coverage_Progress_Report_26-27_Product_Docs.xlsx)
+1. **Leadership Coverage Report (combined, VP-ready)** — [`PayU_Product_Docs_Leadership_Coverage_Report.xlsx`](./PayU_Product_Docs_Leadership_Coverage_Report.xlsx)  
+   Uses Progress Report checklist coverage as source of truth. Three sheets: Executive Dashboard, Coverage Snapshot (Present/Absent), Priorities & Action Items.
+
+2. **Master Coverage Tracker** — [`PayU_Product_Documentation_Coverage_Tracker.xlsx`](./PayU_Product_Documentation_Coverage_Tracker.xlsx)
+3. **FY26–27 Progress Report (sample format)** — [`PayU_Docs_Coverage_Progress_Report_26-27_Product_Docs.xlsx`](./PayU_Docs_Coverage_Progress_Report_26-27_Product_Docs.xlsx)
 
 ## Coverage Tracker sheets
 
