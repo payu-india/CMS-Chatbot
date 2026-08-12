@@ -1,5 +1,5 @@
 ---
-title: UPI Subscriptions Integration [S2S]
+title: UPI Subscriptions Integration
 deprecated: false
 hidden: false
 metadata:
