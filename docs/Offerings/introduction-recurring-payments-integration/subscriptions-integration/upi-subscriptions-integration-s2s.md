@@ -1,7 +1,7 @@
 ---
 title: UPI Subscriptions Integration [S2S]
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: UPI Subscriptions Integration for Merchant Hosted
   description: UPI subscriptions with S2S. Recurring UPI Autopay integration.

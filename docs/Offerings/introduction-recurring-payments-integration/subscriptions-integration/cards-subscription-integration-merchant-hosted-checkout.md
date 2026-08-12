@@ -1,7 +1,7 @@
 ---
 title: 'Cards Subscriptions Integration - Merchant Hosted Checkout '
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: Cross-Border Payments  - Card Subscriptions with Merchant-Hosted Checkout
   description: >-

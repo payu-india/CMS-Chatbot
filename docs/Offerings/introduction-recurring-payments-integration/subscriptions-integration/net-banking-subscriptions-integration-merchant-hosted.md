@@ -1,7 +1,7 @@
 ---
 title: Net Banking Subscriptions Integration - Merchant Hosted
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
