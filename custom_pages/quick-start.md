@@ -1,6 +1,6 @@
 ---
 title: Quick Start
 fullscreen: false
-hidden: false
+hidden: true
 ---
 <br />
