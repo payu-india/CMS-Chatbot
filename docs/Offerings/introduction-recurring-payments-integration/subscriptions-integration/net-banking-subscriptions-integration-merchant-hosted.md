@@ -5,7 +5,7 @@ hidden: false
 metadata:
   robots: index
 ---
-PayU's Recurring Payment Integration enables merchants to set up automated subscription billing through various payment methods including Net Banking (e-NACH), UPI, and Cards. This comprehensive guide walks you through the complete workflow from capturing initial customer consent and mandate registration to executing seamless recurring transactions without additional customer intervention. The integration ensures full compliance with RBI guidelines while providing essential features.
+PayU's Recurring Payment Integration enables merchants to set up automated subscription billing through various payment methods including Net Banking (e-NACH), UPI, and Cards. This comprehensive guide walks you through the complete workflow from capturing initial customer consent and mandate registration to executing seamless recurring transactions without additional customer intervention. The integration ensures full compliance with RBI guidelines while providing essential features.InvoiceDisplayNumber
 
 #### I. Payment Consent Flow
 
@@ -23,7 +23,7 @@ PayU's Recurring Payment Integration enables merchants to set up automated subsc
 
 <Cards>
   <Card title="Recurring Payment Transaction" href="#step-4-recurring-payment-transaction">
-    Execute recurring payments automatically without additional customer involvement using server-to-server integration with authpayuid and invoiceDisplayNumber
+    Execute recurring payments automatically without additional customer involvement using server-to-server integration with authpayuid.
   </Card>
 </Cards>
 
