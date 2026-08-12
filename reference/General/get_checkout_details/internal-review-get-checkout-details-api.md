@@ -6,6 +6,13 @@ metadata:
   robots: index
 ---
 ---
+title: 'Get Checkout Details API '
+deprecated: false
+hidden: true
+metadata:
+  robots: index
+---
+---
 title: Get Checkout Details API
 deprecated: false
 hidden: false
@@ -169,7 +176,7 @@ hmac username="<merchant_key>", algorithm="sha512", headers="date", signature="<
         <code>conditional</code>
       </td>
       <td style={{ textAlign: "left" }}>
-        <code>Object</code> Required when <code>checkCustomerEligibility</code> is true. If included, <code>mobile</code> must be a valid 10-digit mobile number. Optional: <code>ifscCodes</code> for bank-name mapping with <code>getSdkDetails</code>.
+        <code>Object</code> Required when <code>checkCustomerEligibility</code> is true. If included, <code>mobile</code> must be a valid 10-digit mobile number. Optional: <code>ifscCodes</code> for bank-name mapping.
       </td>
       <td style={{ textAlign: "left" }}>
         {"mobile": "9368252248"}
@@ -221,7 +228,7 @@ hmac username="<merchant_key>", algorithm="sha512", headers="date", signature="<
 | amount `mandatory` | `Number` Transaction amount. | `8000` |
 | txnId `optional` | `String` Transaction ID. When provided, the API validates it has not already been captured. | `TXN_12345` |
 | additional_charges `optional` | `String` Pre-configured charges in `MODE:amount` format. | `"UPI:10,CC:5"` |
-| pre_authorize `optional` | `Integer` Set to `1` with `getPaymentDetailsWithExtraFields` for UPI OTM options. | `1` |
+| pre_authorize `optional` | `Integer` Set to `1` for UPI OTM / pre-authorize options. | `1` |
 | source `optional` | `String` Transaction source. | `"Android_SDK"`, `"IOS_SDK"` |
 
 ### customerDetails fields
@@ -229,7 +236,7 @@ hmac username="<merchant_key>", algorithm="sha512", headers="date", signature="<
 | Parameter | Description | Example |
 | --------- | ----------- | ------- |
 | mobile `conditional` | `String` Customer mobile number. Required when `checkCustomerEligibility` is true. | `9368252248` |
-| ifscCodes `optional` | `String[]` IFSC codes for bank-name mapping. Used with `getSdkDetails`. | `["SBIN", "HDFC"]` |
+| ifscCodes `optional` | `String[]` IFSC codes for bank-name mapping. | `["SBIN", "HDFC"]` |
 
 ### filters.paymentOptions fields
 
@@ -261,13 +268,9 @@ hmac username="<merchant_key>", algorithm="sha512", headers="date", signature="<
 | checkNTBCustomerEligibility | `Boolean` Includes NTB EMI eligibility in `paymentOption.emi.ntb`. |
 | returnUserLimit | `Boolean` Returns `maximumEligibleLimit` on eligible tenure options. |
 | getMerchantDetails | `Boolean` Returns merchant branding in `merchant`. |
-| getCheckoutExpress | `Boolean` Returns Express Checkout fields. |
-| getSdkDetails | `Boolean` Returns SDK configuration in `configData.sdkConfig`. |
 | getActivePaymentDetails | `Boolean` Returns only active payment options with full detail. |
 | getPgIdForEachOption | `Boolean` Includes `pgId` for each payment option. |
-| getPaymentDetailsWithExtraFields | `Boolean` Returns SDK extra fields — `imageURL`, `category`, UPI apps, verification modes. |
 | emiTopBanks | `Boolean` Returns prioritized top bank list within EMI subcategories. |
-| commonCheckoutDetailsRequired | `Boolean` Enriches EMI with common-checkout metadata. |
 
 ### Example request body
 
@@ -292,8 +295,7 @@ hmac username="<merchant_key>", algorithm="sha512", headers="date", signature="<
     "getExtendedPaymentDetails": true,
     "getAdditionalCharges": true,
     "checkCustomerEligibility": true,
-    "getMerchantDetails": true,
-    "getSdkDetails": true
+    "getMerchantDetails": true
   },
   "filters": {
     "paymentOptions": {
@@ -963,7 +965,7 @@ echo "Response: " . $response . "\n";
 ```
 </Accordion>
 <Accordion title="Check down status" icon="fa-reply">
-Use `checkDownStatus` to return `downInfo` with issuing-bank and payment-mode downtime lists. Keys in `downInfo` correspond to the payment mode categories in `paymentOption`.
+Use `checkDownStatus` to return `downInfo` with issuing-bank and payment-mode downtime lists. Keys in `downInfo` use payment mode category names (for example, `netbanking`), not filter short codes (`nb`).
 
 ```curl
 curl -X POST "https://api.payu.in/fems/v1/checkout/detail" \
@@ -1631,7 +1633,7 @@ echo "Response: " . $response . "\n";
 ```
 </Accordion>
 <Accordion title="Get merchant details" icon="fa-reply">
-Use `getMerchantDetails` (and optionally `getCheckoutExpress`) to return merchant branding and Express Checkout fields.
+Use `getMerchantDetails` to return merchant branding and checkout settings.
 
 ```curl
 curl -X POST "https://api.payu.in/fems/v1/checkout/detail" \
@@ -1639,7 +1641,7 @@ curl -X POST "https://api.payu.in/fems/v1/checkout/detail" \
   -H "Content-Type: application/json" \
   -H "Date: Fri, 24 Jul 2026 05:51:20 GMT" \
   -H "Authorization: hmac username=\"YOUR_MERCHANT_KEY\", algorithm=\"sha512\", headers=\"date\", signature=\"GENERATED_SIGNATURE\"" \
-  -d '{"requestId":"12345678","transactionDetails":{"amount":5000},"useCase":{"getMerchantDetails":true,"getCheckoutExpress":true}}'
+  -d '{"requestId":"12345678","transactionDetails":{"amount":5000},"useCase":{"getMerchantDetails":true}}'
 ```
 ```python
 import hashlib
@@ -1656,7 +1658,7 @@ url = "https://api.payu.in/fems/v1/checkout/detail"
 
 payload = {'requestId': '12345678',
  'transactionDetails': {'amount': 5000},
- 'useCase': {'getMerchantDetails': True, 'getCheckoutExpress': True}}
+ 'useCase': {'getMerchantDetails': True}}
 
 date = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S GMT")
 body = json.dumps(payload, separators=(",", ":"))
@@ -1693,8 +1695,7 @@ const payload = {
     "amount": 5000
   },
   "useCase": {
-    "getMerchantDetails": true,
-    "getCheckoutExpress": true
+    "getMerchantDetails": true
   }
 };
 
@@ -1750,7 +1751,7 @@ public class CheckoutDetailRequest {
         String secret = "YOUR_MERCHANT_SALT";
         String url = "https://api.payu.in/fems/v1/checkout/detail";
 
-        String requestBodyJson = "{\"requestId\":\"12345678\",\"transactionDetails\":{\"amount\":5000},\"useCase\":{\"getMerchantDetails\":true,\"getCheckoutExpress\":true}}";
+        String requestBodyJson = "{\"requestId\":\"12345678\",\"transactionDetails\":{\"amount\":5000},\"useCase\":{\"getMerchantDetails\":true}}";
         String date = DateTimeFormatter
                 .ofPattern("EEE, dd MMM yyyy HH:mm:ss 'GMT'", Locale.ENGLISH)
                 .format(ZonedDateTime.now(ZoneOffset.UTC));
@@ -1790,7 +1791,7 @@ class Program
         var secret = "YOUR_MERCHANT_SALT";
         var url = "https://api.payu.in/fems/v1/checkout/detail";
 
-        var body = @"{""requestId"":""12345678"",""transactionDetails"":{""amount"":5000},""useCase"":{""getMerchantDetails"":true,""getCheckoutExpress"":true}}";
+        var body = @"{""requestId"":""12345678"",""transactionDetails"":{""amount"":5000},""useCase"":{""getMerchantDetails"":true}}";
         var date = DateTime.UtcNow.ToString("r");
         var hashString = $"{body}|{date}|{secret}";
         var signature = Convert.ToHexString(SHA512.HashData(Encoding.UTF8.GetBytes(hashString)))
@@ -1818,245 +1819,7 @@ $key = "YOUR_MERCHANT_KEY";
 $secret = "YOUR_MERCHANT_SALT";
 $url = "https://api.payu.in/fems/v1/checkout/detail";
 
-$payload = json_decode('{"requestId":"12345678","transactionDetails":{"amount":5000},"useCase":{"getMerchantDetails":true,"getCheckoutExpress":true}}', true);
-
-$date = gmdate("D, d M Y H:i:s") . " GMT";
-$body = json_encode($payload, JSON_UNESCAPED_SLASHES);
-$signature = str_pad(hash("sha512", $body . "|" . $date . "|" . $secret), 128, "0", STR_PAD_LEFT);
-
-$ch = curl_init($url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
-curl_setopt($ch, CURLOPT_HTTPHEADER, [
-  "accept: application/json",
-  "Content-Type: application/json",
-  "Date: $date",
-  "Authorization: hmac username=\"$key\", algorithm=\"sha512\", headers=\"date\", signature=\"$signature\""
-]);
-
-$response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-curl_close($ch);
-
-echo "Status Code: " . $httpCode . "\n";
-echo "Response: " . $response . "\n";
-?>
-```
-</Accordion>
-<Accordion title="Get SDK details" icon="fa-reply">
-Use `getSdkDetails` with other `useCase` flags to return SDK configuration, IFSC bank mapping, downtime, and enriched payment options for mobile SDK checkout.
-
-```curl
-curl -X POST "https://api.payu.in/fems/v1/checkout/detail" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/json" \
-  -H "Date: Fri, 24 Jul 2026 05:51:20 GMT" \
-  -H "Authorization: hmac username=\"YOUR_MERCHANT_KEY\", algorithm=\"sha512\", headers=\"date\", signature=\"GENERATED_SIGNATURE\"" \
-  -d '{"requestId":"1784875415044","transactionDetails":{"amount":835,"source":"Android_SDK"},"customerDetails":{"mobile":"9368252248","ifscCodes":["SBIN","HDFC0001"]},"useCase":{"getAdditionalCharges":true,"getTaxSpecification":true,"checkDownStatus":true,"getExtendedPaymentDetails":true,"checkCustomerEligibility":true,"getMerchantDetails":true,"getPaymentDetailsWithExtraFields":true,"getSdkDetails":true},"isSITxn":false}'
-```
-```python
-import hashlib
-import json
-import requests
-from datetime import datetime, timezone
-
-def get_sha512_hash(hash_string):
-    return hashlib.sha512(hash_string.encode("utf-8")).hexdigest().zfill(128)
-
-key = "YOUR_MERCHANT_KEY"
-secret = "YOUR_MERCHANT_SALT"
-url = "https://api.payu.in/fems/v1/checkout/detail"
-
-payload = {'requestId': '1784875415044',
- 'transactionDetails': {'amount': 835, 'source': 'Android_SDK'},
- 'customerDetails': {'mobile': '9368252248', 'ifscCodes': ['SBIN', 'HDFC0001']},
- 'useCase': {'getAdditionalCharges': True,
-             'getTaxSpecification': True,
-             'checkDownStatus': True,
-             'getExtendedPaymentDetails': True,
-             'checkCustomerEligibility': True,
-             'getMerchantDetails': True,
-             'getPaymentDetailsWithExtraFields': True,
-             'getSdkDetails': True},
- 'isSITxn': False}
-
-date = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S GMT")
-body = json.dumps(payload, separators=(",", ":"))
-signature = get_sha512_hash(f"{body}|{date}|{secret}")
-
-headers = {
-    "accept": "application/json",
-    "Content-Type": "application/json",
-    "Date": date,
-    "Authorization": (
-        f'hmac username="{key}", algorithm="sha512", '
-        f'headers="date", signature="{signature}"'
-    ),
-}
-
-response = requests.post(url, data=body, headers=headers)
-print("Status Code:", response.status_code)
-print("Response:", response.text)
-```
-```javascript
-const crypto = require("crypto");
-
-function getSha512Hash(hashString) {
-  return crypto.createHash("sha512").update(hashString).digest("hex").padStart(128, "0");
-}
-
-const key = "YOUR_MERCHANT_KEY";
-const secret = "YOUR_MERCHANT_SALT";
-const url = "https://api.payu.in/fems/v1/checkout/detail";
-
-const payload = {
-  "requestId": "1784875415044",
-  "transactionDetails": {
-    "amount": 835,
-    "source": "Android_SDK"
-  },
-  "customerDetails": {
-    "mobile": "9368252248",
-    "ifscCodes": [
-      "SBIN",
-      "HDFC0001"
-    ]
-  },
-  "useCase": {
-    "getAdditionalCharges": true,
-    "getTaxSpecification": true,
-    "checkDownStatus": true,
-    "getExtendedPaymentDetails": true,
-    "checkCustomerEligibility": true,
-    "getMerchantDetails": true,
-    "getPaymentDetailsWithExtraFields": true,
-    "getSdkDetails": true
-  },
-  "isSITxn": false
-};
-
-const date = new Date().toUTCString();
-const body = JSON.stringify(payload);
-const signature = getSha512Hash(`${body}|${date}|${secret}`);
-
-async function makeRequest() {
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "accept": "application/json",
-        "Content-Type": "application/json",
-        "Date": date,
-        "Authorization": `hmac username="${key}", algorithm="sha512", headers="date", signature="${signature}"`
-      },
-      body: body
-    });
-    const data = await response.text();
-    console.log("Status Code:", response.status);
-    console.log("Response:", data);
-  } catch (error) {
-    console.error("Error:", error);
-  }
-}
-
-makeRequest();
-```
-```java
-import java.math.BigInteger;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
-
-public class CheckoutDetailRequest {
-    public static String getSha512Hash(String hashString) throws Exception {
-        MessageDigest md = MessageDigest.getInstance("SHA-512");
-        byte[] digest = md.digest(hashString.getBytes(StandardCharsets.UTF_8));
-        String hashtext = new BigInteger(1, digest).toString(16);
-        return String.format("%128s", hashtext).replace(' ', '0');
-    }
-
-    public static void main(String[] args) throws Exception {
-        String key = "YOUR_MERCHANT_KEY";
-        String secret = "YOUR_MERCHANT_SALT";
-        String url = "https://api.payu.in/fems/v1/checkout/detail";
-
-        String requestBodyJson = "{\"requestId\":\"1784875415044\",\"transactionDetails\":{\"amount\":835,\"source\":\"Android_SDK\"},\"customerDetails\":{\"mobile\":\"9368252248\",\"ifscCodes\":[\"SBIN\",\"HDFC0001\"]},\"useCase\":{\"getAdditionalCharges\":true,\"getTaxSpecification\":true,\"checkDownStatus\":true,\"getExtendedPaymentDetails\":true,\"checkCustomerEligibility\":true,\"getMerchantDetails\":true,\"getPaymentDetailsWithExtraFields\":true,\"getSdkDetails\":true},\"isSITxn\":false}";
-        String date = DateTimeFormatter
-                .ofPattern("EEE, dd MMM yyyy HH:mm:ss 'GMT'", Locale.ENGLISH)
-                .format(ZonedDateTime.now(ZoneOffset.UTC));
-        String hash = getSha512Hash(requestBodyJson + "|" + date + "|" + secret);
-        String authorization = "hmac username=\"" + key
-                + "\", algorithm=\"sha512\", headers=\"date\", signature=\""
-                + hash + "\"";
-
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .header("accept", "application/json")
-                .header("Content-Type", "application/json")
-                .header("Date", date)
-                .header("Authorization", authorization)
-                .POST(HttpRequest.BodyPublishers.ofString(requestBodyJson))
-                .build();
-
-        HttpResponse<String> response = HttpClient.newHttpClient()
-                .send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println("Status Code: " + response.statusCode());
-        System.out.println("Response: " + response.body());
-    }
-}
-```
-```csharp
-using System;
-using System.Net.Http;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-
-class Program
-{
-    static async Task Main(string[] args)
-    {
-        var key = "YOUR_MERCHANT_KEY";
-        var secret = "YOUR_MERCHANT_SALT";
-        var url = "https://api.payu.in/fems/v1/checkout/detail";
-
-        var body = @"{""requestId"":""1784875415044"",""transactionDetails"":{""amount"":835,""source"":""Android_SDK""},""customerDetails"":{""mobile"":""9368252248"",""ifscCodes"":[""SBIN"",""HDFC0001""]},""useCase"":{""getAdditionalCharges"":true,""getTaxSpecification"":true,""checkDownStatus"":true,""getExtendedPaymentDetails"":true,""checkCustomerEligibility"":true,""getMerchantDetails"":true,""getPaymentDetailsWithExtraFields"":true,""getSdkDetails"":true},""isSITxn"":false}";
-        var date = DateTime.UtcNow.ToString("r");
-        var hashString = $"{body}|{date}|{secret}";
-        var signature = Convert.ToHexString(SHA512.HashData(Encoding.UTF8.GetBytes(hashString)))
-            .ToLower()
-            .PadLeft(128, '0');
-
-        var client = new HttpClient();
-        var request = new HttpRequestMessage(HttpMethod.Post, url);
-        request.Headers.TryAddWithoutValidation("accept", "application/json");
-        request.Headers.TryAddWithoutValidation("Date", date);
-        request.Headers.TryAddWithoutValidation(
-            "Authorization",
-            $"hmac username=\"{key}\", algorithm=\"sha512\", headers=\"date\", signature=\"{signature}\"");
-        request.Content = new StringContent(body, Encoding.UTF8, "application/json");
-
-        var response = await client.SendAsync(request);
-        Console.WriteLine($"Status Code: {(int)response.StatusCode}");
-        Console.WriteLine($"Response: {await response.Content.ReadAsStringAsync()}");
-    }
-}
-```
-```php
-<?php
-$key = "YOUR_MERCHANT_KEY";
-$secret = "YOUR_MERCHANT_SALT";
-$url = "https://api.payu.in/fems/v1/checkout/detail";
-
-$payload = json_decode('{"requestId":"1784875415044","transactionDetails":{"amount":835,"source":"Android_SDK"},"customerDetails":{"mobile":"9368252248","ifscCodes":["SBIN","HDFC0001"]},"useCase":{"getAdditionalCharges":true,"getTaxSpecification":true,"checkDownStatus":true,"getExtendedPaymentDetails":true,"checkCustomerEligibility":true,"getMerchantDetails":true,"getPaymentDetailsWithExtraFields":true,"getSdkDetails":true},"isSITxn":false}', true);
+$payload = json_decode('{"requestId":"12345678","transactionDetails":{"amount":5000},"useCase":{"getMerchantDetails":true}}', true);
 
 $date = gmdate("D, d M Y H:i:s") . " GMT";
 $body = json_encode($payload, JSON_UNESCAPED_SLASHES);
@@ -2112,16 +1875,136 @@ All responses follow a standard envelope:
 
 ### data.details fields
 
+Successful responses return checkout data under `data.details`.
+
 | Parameter | Description |
 | --------- | ----------- |
-| paymentOption | `Object` Payment modes: `emi`, `nb`, `cc`, `dc`, `upi`, `cash`, `bnpl`, `enach`, `si`. |
-| merchant | `Object` Merchant branding. Returned when `getMerchantDetails` is true. |
-| configData | `Object` Tax specification and SDK config. |
-| downInfo | `Object` Downtime information. Returned when `checkDownStatus` is true. |
-| merchantAdditionalInfo | `Object` Express Checkout merchant parameters. |
+| paymentOption | `Object` Payment modes requested via filters / enabled for the merchant: `emi`, `nb`, `cc`, `dc`, `upi`, `cash`, `bnpl`, `enach`, `si`, `qr`, `sbqr`, etc. |
+| merchant | `Object` Merchant branding and checkout settings. Returned when `getMerchantDetails` is true. Omitted when the flag is false. |
+| configData | `Object` Tax and SDK configuration. Returned when `getTaxSpecification` is true and/or config data exists. Omitted when neither applies or no data exists. |
+| downInfo | `Object` Downtime by payment mode. Returned when `checkDownStatus` is true. Omitted when the flag is false or no downtime exists. |
+| merchantAdditionalInfo | `Object` Dynamic Express Checkout merchant parameters. Sibling of `merchant` under `details` (not nested inside `merchant`). Often omitted when no parameters are configured. |
 | registeredAmtConvFee | `Object` Convenience fee for registered payment methods (SI flows). |
 | recurringAmtConvFee | `Object` Convenience fee for recurring payments (SI flows). |
 | si_details | `Object` Standing Instruction configuration. |
+
+### data.details.merchant
+
+Returned when `useCase.getMerchantDetails` is `true`.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| logo | `String` / `null` | Merchant logo URL. `null` if not configured. |
+| displayName | `String` | Merchant name shown on checkout. |
+| retryAllowed | `Integer` | Max payment retry attempts (`0` = no retries). |
+| isClevertapActive | `Number` | CleverTap analytics flag (`0` = off, `1` = on). |
+| walletIdentifier | `String` / `null` | Wallet identifier for wallet flows. `null` if not configured. |
+| enableNewOffersEngine | `Boolean` | Whether the new offers engine is enabled. |
+| accentColor | `String` | Checkout theme color (hex). Optional branding field when returned. |
+| featureEnforcedOffers | `Boolean` | Offer enforcement enabled. Optional branding field when returned. |
+| enableMapMyIndia | `Boolean` | MapMyIndia address lookup enabled. Optional branding field when returned. |
+| saveMerchantProvidedAddress | `Boolean` | Save merchant-provided address. Optional branding field when returned. |
+| ifscBankNameMapping | `Object` | IFSC-to-bank mapping. Returned when `customerDetails.ifscCodes` is provided. |
+
+#### ifscBankNameMapping value (per IFSC prefix)
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| name | `String` | Bank display name. |
+| ibiboCode | `String` | Net banking `ibiboCode`. |
+| imageURL | `String` / `null` | Bank logo URL. |
+
+Example:
+
+```json
+{
+  "merchant": {
+    "logo": null,
+    "displayName": "English.bmrc",
+    "retryAllowed": 0,
+    "isClevertapActive": 0,
+    "walletIdentifier": null,
+    "enableNewOffersEngine": true
+  }
+}
+```
+
+### data.details.configData
+
+Returned when `getTaxSpecification` is true and/or config data exists.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| taxSpecification | `Object` | GST configuration. Returned when `getTaxSpecification` is true. |
+| taxSpecification.default | `Integer` | Default GST % on convenience fees (for example, `18`). |
+| sdkConfig | `Object` | SDK checkout configuration when present in the response. |
+
+#### sdkConfig fields
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| isQuickPayEnabled | `Boolean` | Quick Pay (saved instruments) enabled. |
+| enable3dsSDK | `Boolean` | 3DS SDK flow enabled. |
+| customerRevenueEnabled | `Boolean` | Customer revenue tracking enabled. |
+| checkout_timer_duration | `Integer` | Checkout session timer in seconds (`0` = disabled). |
+| internationalOn3DSS | `Boolean` | 3D Secure for international cards. |
+| isQuickPayBottomSheetEnabled | `Boolean` | Quick Pay bottom sheet UI enabled. |
+| pricingShadowMode | `String` | Pricing shadow mode (may be empty). |
+| pricingLiveMode | `String` | Pricing live mode (may be empty). |
+| preferredUpiApps | `String` / `null` | Preferred UPI apps override. |
+| upiSiApps | `String` | Comma-separated UPI apps for standing instruction. |
+| enableInternal3DSS | `Boolean` | Internal 3D Secure processing. |
+| nfcEnabled | `Boolean` | NFC tap-to-pay enabled. |
+| isOfferEnabled | `Boolean` | Offers on SDK checkout. |
+| deviceFP | `Boolean` | Device fingerprinting for fraud detection. |
+| disabledLoadAndPay | `Integer` | Load & Pay control (`0` = enabled, `1` = disabled). |
+| upiApps | `Array` | Supported UPI apps for SDK intent flow. |
+| (other keys) | Varies | Additional merchant-specific SDK flags (for example, `3DSSupportedBankList`, `isInsuranceMerchant`, `checkout_timer`, `opgsp_merchant`). |
+
+#### sdkConfig.upiApps[] item
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| appName | `String` | UPI app identifier (for example, `googlepay`, `phonepe`). |
+| handlers | `String` | Comma-separated UPI handles. |
+| androidBundleIdentifier | `String` | Android package name for intent launch. |
+| iOSSchemaIdentifier | `String` | iOS URI scheme (optional). |
+
+### data.details.downInfo
+
+Returned when `checkDownStatus` is `true` and downtime exists.
+
+Map of downtime categories to affected `ibiboCode` values. Keys use payment mode category names (for example, `netbanking`), not filter short codes (`nb`).
+
+| Key | Type | Description |
+| --- | ---- | ----------- |
+| issuingBanks | `Array` of `String` | Issuing bank codes with card downtime (for example, `["HSBC", "HDFC"]`). |
+| netbanking | `Array` of `String` | Down net banking `ibiboCode` values. |
+| emi | `Array` of `String` | Down EMI `ibiboCode` values. |
+| creditcard | `Array` of `String` | Down credit card options. |
+| debitcard | `Array` of `String` | Down debit card options. |
+| upi | `Array` of `String` | Down UPI options. |
+| (other modes) | `Array` of `String` | Other payment mode categories with downtime (for example, `cash`, `wallet`). |
+
+Example:
+
+```json
+{
+  "downInfo": {
+    "netbanking": ["BOINB", "JSBNB", "CRPB"]
+  }
+}
+```
+
+### data.details.merchantAdditionalInfo
+
+Dynamic key-value map for Express Checkout merchant parameters. Keys and types vary by merchant — do not hardcode in client integrations.
+
+`merchantAdditionalInfo` is a sibling of `merchant` under `details`, not nested inside `merchant`. Often omitted when no parameters are configured.
+
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| (dynamic keys) | `String` / `Boolean` / `Integer` | Merchant-specific Express Checkout parameters (for example, `tags`, `payuVerifiedBadge`, `dynamic_cod_fee`). |
 
 ### Non-EMI payment option structure
 
@@ -2412,7 +2295,7 @@ All responses follow a standard envelope:
           "AXIS",
           "ICICI"
         ],
-        "nb": [
+        "netbanking": [
           "SBIB",
           "ANDB"
         ],
@@ -2550,6 +2433,7 @@ All responses follow a standard envelope:
         "logo": "https://...",
         "displayName": "Merchant Name",
         "retryAllowed": 3,
+        "isClevertapActive": 0,
         "walletIdentifier": "WALLET_ID",
         "enableNewOffersEngine": true,
         "accentColor": "#1A73E8",
@@ -2558,78 +2442,8 @@ All responses follow a standard envelope:
         "saveMerchantProvidedAddress": false
       },
       "merchantAdditionalInfo": {
-        "...": "..."
-      }
-    }
-  }
-}
-```
-</Accordion>
-<Accordion title="Get SDK details" icon="fa-reply">
-```json
-{
-  "status": 1,
-  "httpCode": "200",
-  "message": "",
-  "data": {
-    "details": {
-      "merchant": {
-        "displayName": "Merchant Name",
-        "logo": "https://...",
-        "ifscBankNameMapping": {
-          "SBIN": {
-            "name": "State Bank of India",
-            "ibiboCode": "SBIB",
-            "imageURL": "https://..."
-          }
-        }
-      },
-      "configData": {
-        "taxSpecification": {
-          "default": 18
-        },
-        "sdkConfig": {
-          "isQuickPayEnabled": true,
-          "deviceFP": true,
-          "upiApps": [
-            "..."
-          ]
-        }
-      },
-      "downInfo": {
-        "issuingBanks": [
-          "HDFC",
-          "AXIS"
-        ],
-        "nb": [
-          "SBIB"
-        ]
-      },
-      "paymentOption": {
-        "upi": {
-          "all": {
-            "INTENT": {
-              "title": "UPI Intent",
-              "imageURL": "https://...",
-              "category": "upi",
-              "priority": "100",
-              "supportedApps": [
-                "..."
-              ]
-            }
-          },
-          "si": {
-            "appNames": [
-              "..."
-            ],
-            "handles": [
-              "..."
-            ]
-          }
-        },
-        "emi": {
-          "...": "..."
-        }
+        "tags": "...",
+        "payuVerifiedBadge": true
       }
     }
   }
