@@ -195,7 +195,7 @@ These are the errors you may get during mandate registration, along with their d
           This error occurs when tokenization fails or the card/token BIN is not supported for subscriptions.<br /><br />**Note:&#x20;**
 
           1. You should enable the required flag on your MID to receive this error. Raise request to the support team to enable the flag.
-          2. This failure scenario does not apply to the Direct Auth flow because the token is updated later through a separate `Update SI` API. In this flow, the upfront transaction is completed before the `Update SI` API is invoked, so the transaction cannot fail at this stage.
+          2. This failure scenario does not apply to the Direct Auth flow.
         </td>
 
         <td>
