@@ -124,6 +124,12 @@ Array
 )
 ```
 
+<Callout icon="far fa-brake-warning" theme="error">
+  ### **Errors During Transaction and Mandate Registration**
+
+  Refer to the Error Codes page for details on errors you may get during transaction processing or mandate registration.
+</Callout>
+
 <Callout icon="📘" theme="info">
   ### **Note:**
 
