@@ -31,7 +31,7 @@ next:
       type: basic
 ---
 <Callout icon="✅" theme="okay">
-  <FreshTag heading="What's New!" asHeading={false} />
+    <FreshTag heading="What's New!" asHeading={false} />
 
   - [RuPay Debit and Credit Cards](https://docs.payu.in/reference/credit-card-recurring-payment-consent-transaction) are supported for Subscriptions.
   - Introducing <Anchor target="_blank" href="https://docs.payu.in/docs/plans">plans</Anchor> for subscriptions
@@ -257,7 +257,7 @@ Array
 <Callout icon="far fa-brake-warning" theme="error">
   ### **Errors During Transaction and Mandate Registration**
 
-  Refer to the Error Codes page for details on errors you may get during transaction processing or mandate registration.
+  Refer to the <Anchor target="_blank" href="https://docs.payu.in/reference/error-codes">Error Codes</Anchor> page for details on errors you may get during transaction processing or mandate registration.
 </Callout>
 
 ## Webhook for Getting Transaction Details
