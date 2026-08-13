@@ -238,7 +238,7 @@ Array
 <Callout icon="far fa-brake-warning" theme="error">
   ### **Errors During Transaction and Mandate Registration**
 
-  Refer to the Error Codes page for details on errors you may get during transaction processing or mandate registration.
+  Refer to the <Anchor target="_blank" href="https://docs.payu.in/reference/error-codes">Error Codes</Anchor> page for details on errors you may get during transaction processing or mandate registration.
 </Callout>
 
 <Callout icon="📘" theme="info">
