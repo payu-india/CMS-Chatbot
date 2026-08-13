@@ -13,7 +13,7 @@ next:
 The following are possible errors and error codes for a transaction. You need to remember the following while error handling based on payment response:
 
 - The **PayU Error Code** column in the following table corresponds to the value returned in the **error** parameter of the payment response
-- The **error\_message / message** column in the following table corresponds to the value returned in the **error\_message / message** parameter of the payment response
+- The **error_message / message** column in the following table corresponds to the value returned in the **error_message / message** parameter of the payment response
 
 <Callout icon="📘" theme="info">
   ### **Note:**&#x20;
@@ -52,7 +52,7 @@ The following are possible errors and error codes for a transaction. You need t
 The PayU error mappings documentation page provides a reference guide for various error codes in the PayU payment system. The page includes:
 
 - [Field Error code structure](https://docs.payu.in/reference/error-codes#field-error-code-structure): Explains how error codes are formatted and what different components mean
-- **Field7 Error Code Mapping** - Contains error codes like ALT\_ID\_PROV\_ERROR, 3DS\_METHOD\_POSITIVE, etc., with their descriptions, platform layers, and API layers for the following payment modes:
+- **Field7 Error Code Mapping** - Contains error codes like ALT_ID_PROV_ERROR, 3DS_METHOD_POSITIVE, etc., with their descriptions, platform layers, and API layers for the following payment modes:
   - [Field7 for Card payments](https://docs.payu.in/reference/error-codes#field7-for-card-payments)
   - [Field 7 for Net Banking/Wallet payments](https://docs.payu.in/reference/error-codes#netbanking-and-wallets)
 
@@ -155,4 +155,12 @@ The following are the errors associated with NetBanking and wallets along with t
   maxHeight="500px"
 />
 
-<br />
+## Subscription Error Codes
+
+These are the errors you may get during mandate registration, along with their descriptions and recommended actions.
+
+<Accordion title="Errors and Recommended Fix" icon="⚠️">
+  | **Errors (Error Code)** | **Error Message**                                   | **Error Description**                                                                               | **Recommended Fix**     |
+  | ----------------------- | --------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ----------------------- |
+  | **E756**                | Tokenization failed before debit could be initiated | This error occurs when tokenization fails or the card/token BIN is not supported for subscriptions. | Retry using a new card. |
+</Accordion>
