@@ -34,54 +34,56 @@ next:
       title: Introduction
       type: basic
 ---
-> ✅
->
-> <FreshTag heading="What's New!" asHeading={false} />
->
-> - Introducing <Anchor target="_blank" href="https://docs.payu.in/docs/plans">subscription Plans</Anchor>.<br />
+<Callout icon="✅" theme="okay">
+  <FreshTag heading="What's New!" asHeading={false} />
+
+  - Introducing <Anchor target="_blank" href="https://docs.payu.in/docs/plans">subscription Plans</Anchor>.<br />
+</Callout>
 
 <br />
 
 This section describes how to set up a Payment Consent or Registration transaction using PayU Hosted Checkout integration with **\_payment** API.
 
-> 👍 **Try Out Subscriptions!**
->
-> Experience the end-to-end **Subscriptions** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
->
-> <HTMLBlock>{`
->                                 <style>
->                                 .tooltip-btn {
->                                     position: relative;
->                                     background-color: #4CAF50;
->                                     color: white;
->                                     padding: 10px 20px;
->                                     border: none;
->                                     border-radius: 5px;
->                                     cursor: pointer;
->                                     font-weight: bold; /* Added this line */
->                                 }
->                                 .tooltip-btn:hover::after {
->                                     content: attr(data-tooltip);
->                                     position: absolute;
->                                     bottom: 125%;
->                                     left: 50%;
->                                     transform: translateX(-50%);
->                                     background-color: #333;
->                                     color: white;
->                                     padding: 5px 10px;
->                                     border-radius: 4px;
->                                     white-space: nowrap;
->                                     font-size: 12px;
->                                     z-index: 1;
->                                 }
->                                 </style>
->
->                                 <button onclick="window.open('https://payu.in/integrationlab/subscription', '_blank')" 
->                                         class="tooltip-btn" 
->                                         data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Subscriptions - PayU Hosted Checkout with zero coding knowledge.">
->                                     Experience the flow and get the code
->                                 </button>
-> `}</HTMLBlock>
+<Callout icon="👍" theme="okay">
+  ### **Try Out Subscriptions!**
+
+  Experience the end-to-end **Subscriptions** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
+
+  <HTMLBlock>{`
+                                  <style>
+                                  .tooltip-btn {
+                                      position: relative;
+                                      background-color: #4CAF50;
+                                      color: white;
+                                      padding: 10px 20px;
+                                      border: none;
+                                      border-radius: 5px;
+                                      cursor: pointer;
+                                      font-weight: bold; /* Added this line */
+                                  }
+                                  .tooltip-btn:hover::after {
+                                      content: attr(data-tooltip);
+                                      position: absolute;
+                                      bottom: 125%;
+                                      left: 50%;
+                                      transform: translateX(-50%);
+                                      background-color: #333;
+                                      color: white;
+                                      padding: 5px 10px;
+                                      border-radius: 4px;
+                                      white-space: nowrap;
+                                      font-size: 12px;
+                                      z-index: 1;
+                                  }
+                                  </style>
+
+                                  <button onclick="window.open('https://payu.in/integrationlab/subscription', '_blank')" 
+                                          class="tooltip-btn" 
+                                          data-tooltip="Automatically generate code including hashing for your eCommerce website to integrate Subscriptions - PayU Hosted Checkout with zero coding knowledge.">
+                                      Experience the flow and get the code
+                                  </button>
+  `}</HTMLBlock>
+</Callout>
 
 HTTP Method: **POST**
 
@@ -645,6 +647,12 @@ Array
 )
 ```
 
+<Callout icon="far fa-brake-warning" theme="error">
+  ### **Errors During Transaction and Mandate Registration**
+
+  Refer to the <Anchor target="_blank" href="https://docs.payu.in/reference/error-codes">Error Codes</Anchor> page for details on errors you may get during transaction processing or mandate registration.
+</Callout>
+
 ## Standing Instructions Vs Plan
 
 The following are the points to consider:
@@ -653,5 +661,3 @@ The following are the points to consider:
 - The transaction moves to the `bounced` state if a invalid `planId` is passed in the request.
 - The plan details are automatically used to fetch billing amount, currency, cycle, and other details.
 - The checkout will display plan-based subscription information.
-
-<br />
