@@ -291,6 +291,12 @@ Array
 }
 ```
 
+<Callout icon="far fa-brake-warning" theme="error">
+  ### **Errors During Transaction and Mandate Registration**
+
+  Refer to the Error Codes page for details on errors you may get during transaction processing or mandate registration.
+</Callout>
+
 ## Webhook for Getting Transaction Details
 
 You can expose a webhook by requesting the PayU Integration team to configure the same against the **ws_online_response** parameter. If this webhook is configured, you will receive the above response object over HTTP form post method similar to the following:
