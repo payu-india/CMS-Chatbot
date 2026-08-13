@@ -160,7 +160,51 @@ The following are the errors associated with NetBanking and wallets along with t
 These are the errors you may get during mandate registration, along with their descriptions and recommended actions.
 
 <Accordion title="Errors and Recommended Fix" icon="⚠️">
-  | **Errors (Error Code)** | **Error Message**                                   | **Error Description**                                                                               | **Recommended Fix**     |
-  | ----------------------- | --------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ----------------------- |
-  | **E756**                | Tokenization failed before debit could be initiated | This error occurs when tokenization fails or the card/token BIN is not supported for subscriptions. | Retry using a new card. |
+  <Table>
+    <thead>
+      <tr>
+        <th>
+          **Errors (Error Code)**
+        </th>
+
+        <th>
+          **Error Message**
+        </th>
+
+        <th>
+          **Error Description**
+        </th>
+
+        <th>
+          **Recommended Fix**
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>
+          **E756**
+        </td>
+
+        <td>
+          Tokenization failed before debit could be initiated
+        </td>
+
+        <td>
+          This error occurs when tokenization fails or the card/token BIN is not supported for subscriptions.
+
+          <Callout icon="📘" theme="info">
+            ### **Note:**
+
+            You should enable the required flag on your MID to receive this error.
+          </Callout>
+        </td>
+
+        <td>
+          Retry using a new card.
+        </td>
+      </tr>
+    </tbody>
+  </Table>
 </Accordion>
