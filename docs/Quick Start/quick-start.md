@@ -90,15 +90,21 @@ If you would rather just browse everything PayU offers instead of answering ques
 
 ***
 
-## Who's going to set this up?
+## Who is Going to Set this Up?
 
-Once you've got a recommendation above, this decides how it's presented to you — not what's recommended.
+Once you have got a recommendation above, this decides how it's presented to you — not what's recommended.
 
-- **I'll do it myself** → you'll get a fully guided, step-by-step walkthrough with no assumed technical knowledge, using your PayU Dashboard wherever possible instead of code.
-- **I have a developer** → jump to [Send this to your developer](#send-this-to-your-developer).
-- **I'll use an AI assistant (ChatGPT, Claude, Gemini) to help me build it** → jump to [Build this with AI](#build-this-with-ai).
+<Columns layout="fixed">
+  <Column>
+    **I'll do it myself** → you will get a fully guided, step-by-step walkthrough with no assumed technical knowledge, using your PayU Dashboard wherever possible instead of code.
+  </Column>
+</Columns>
+
+-
+- **I have a developer** → Go to [Send this to your developer](#send-this-to-your-developer).
+- **I'll use an AI assistant (ChatGPT, Claude, Gemini) to help me build it** → Go to [Build this with AI](#build-this-with-ai).
 - **I use a plugin, so I don't think I need code** → your platform's plugin guide already has everything you need — no further questions here.
-- **Not sure** → that's fine. If you have someone at your business who writes code or manages your website, choose "I have a developer." Otherwise, start with "I'll do it myself" — the guided path is written for exactly this situation.
+- **Not sure** → that's fine. If you have someone at your business who writes code or manages your website, choose **I have a developer**. Otherwise, start with **I'll do it myself** — the guided path is written for exactly this situation.
 
 ***
 
