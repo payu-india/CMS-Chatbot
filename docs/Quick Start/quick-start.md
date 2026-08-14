@@ -47,7 +47,7 @@ You don't need to know anything about payment gateways, APIs, or checkout types 
 
 ***
 
-## New Here, or Picking Back Up?
+## New Here, or Picking from Back Up?
 
 <Cards>
   <Card title="If this is your first time setting up payments with PayU" icon="far fa-rectangle-new">
