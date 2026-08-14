@@ -94,29 +94,26 @@ If you would rather just browse everything PayU offers instead of answering ques
 
 Once you have got a recommendation above, this decides how it's presented to you — not what's recommended.
 
-- <Columns layout="fixed">
-    <Column>
-      **I'll do it myself** → you will get a fully guided, step-by-step walkthrough with no assumed technical knowledge, using your PayU Dashboard wherever possible instead of code.
-    </Column>
-  </Columns>
-- **I have a developer** → Go to [Send this to your developer](#send-this-to-your-developer).
-- **I'll use an AI assistant (ChatGPT, Claude, Gemini) to help me build it** → Go to [Build this with AI](#build-this-with-ai).
-- **I use a plugin, so I don't think I need code** → your platform's plugin guide already has everything you need — no further questions here.
-- **Not sure** → that's fine. If you have someone at your business who writes code or manages your website, choose **I have a developer**. Otherwise, start with **I'll do it myself** — the guided path is written for exactly this situation.
+- **I'll do it myself** → you will get a fully guided, step-by-step walkthrough with no assumed technical knowledge, using your PayU Dashboard wherever possible instead of code.
+
+* **I have a developer** → Go to [Send this to your developer](#send-this-to-your-developer).
+* **I'll use an AI assistant (ChatGPT, Claude, Gemini) to help me build it** → Go to [Build this with AI](#build-this-with-ai).
+* **I use a plugin, so I don't think I need code** → your platform's plugin guide already has everything you need — no further questions here.
+* **Not sure** → that's fine. If you have someone at your business who writes code or manages your website, choose **I have a developer**. Otherwise, start with **I'll do it myself** — the guided path is written for exactly this situation.
 
 ***
 
-## Send this to your developer
+## Send This to Your Developer
 
-If someone else — a freelancer, an agency, or a colleague — is going to do the technical work, don't make them start from scratch or wait on dashboard access they may not have.
+If someone else — a freelancer, an agency, or a colleague — is going to do the technical work, do not make them start from scratch or wait on dashboard access they may not have.
 
 <Callout icon="👍" theme="okay">
-  ### Share this directly
+  ### Share This Directly
 
   Copy the summary below and send it to your developer as-is. It works whether or not they have a PayU Dashboard login.
 </Callout>
 
-**Developer handoff summary**
+**Developer Handoff Summary**
 
 ```
 Integration: [recommended product from above, e.g. PayU Hosted Checkout]
