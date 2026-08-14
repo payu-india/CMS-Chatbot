@@ -98,6 +98,14 @@ Once you have got a recommendation above, this decides how it's presented to you
   <Column>
     **I'll do it myself** → you will get a fully guided, step-by-step walkthrough with no assumed technical knowledge, using your PayU Dashboard wherever possible instead of code.
   </Column>
+
+  <Column>
+    **I have a developer** → Go to [Send this to your developer](#send-this-to-your-developer).
+  </Column>
+
+  <Column>
+    **I'll use an AI assistant (ChatGPT, Claude, Gemini) to help me build it** → Go to [Build this with AI](#build-this-with-ai).
+  </Column>
 </Columns>
 
 -
