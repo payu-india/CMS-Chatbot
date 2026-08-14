@@ -71,27 +71,26 @@ You don't need to know anything about payment gateways, APIs, or checkout types 
 
 ## What do you want to do?
 
-{/* Embed point: interactive path finder. Update underlying question set to
-     start here (Goal), then Setup, then show the recommendation, then ask
-     Builder — per the research-driven redesign. */}
-
 <PayUIntegrationPathRecommender />
 
-If you'd rather just browse everything PayU offers instead of answering questions, every path is listed below.
+If you would rather just browse everything PayU offers instead of answering questions, every path is listed below.
 
-<details>
-<summary><b>See all PayU integration paths</b></summary>
+<Accordion title="See All PayU Integration Paths" icon="fab fa-product-hunt">
 
-| Path                                                           | Best for                                                         | Do you need a developer? | Typical time     |
-| -------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------------ | ---------------- |
-| **Pay Handle** (payment link)                                  | Selling without a website — invoices, social media, WhatsApp     | No                       | Minutes          |
-| **PayU Hosted Checkout**                                       | A website where you want PayU to handle the whole payment page   | Usually not, but helps   | A few days       |
-| **Merchant Hosted Checkout**                                   | A website where you want full control of the payment page design | Yes                      | 1–2 weeks        |
-| **Server-to-Server Integration**                               | Marketplaces or platforms paying out multiple parties            | Yes                      | 2–3 weeks        |
-| **UPI QR**                                                     | In-person, counter, or kiosk collection                          | No                       | Under a week     |
-| **eCommerce plugins** (Shopify, WooCommerce, Magento)          | You already sell through one of these platforms                  | No                       | Minutes to hours |
-| **Mobile SDKs** (Android, iOS, React Native, Flutter, Cordova) | A mobile app                                                     | Yes                      | 1–2 weeks        |
-| **Recurring Payments**                                         | Subscriptions or membership billing                              | Usually yes              | 2–3 weeks        |
+</Accordion>
+
+<br />
+
+| Path                                                           | Best for                                                         | Do you need a developer?       | Typical time     |
+| -------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------------------ | ---------------- |
+| **Payment Link**                                               | Selling without a website — invoices, social media, WhatsApp     | No                             | Minutes          |
+| **PayU Hosted Checkout**                                       | A website where you want PayU to handle the whole payment page   | Developer efforts are very low | A few days       |
+| **Merchant Hosted Checkout**                                   | A website where you want full control of the payment page design | Yes                            | 1–2 weeks        |
+| **Server-to-Server Integration**                               | Marketplaces or platforms paying out multiple parties            | Yes                            | 2–3 weeks        |
+| **UPI QR**                                                     | In-person, counter, or kiosk collection                          | No                             | Under a week     |
+| **eCommerce plugins** (Shopify, WooCommerce, Magento)          | You already sell through one of these platforms                  | No                             | Minutes to hours |
+| **Mobile SDKs** (Android, iOS, React Native, Flutter, Cordova) | A mobile app                                                     | Yes                            | 1–2 weeks        |
+| **Recurring Payments**                                         | Subscriptions or membership billing                              | Yes                            | 2–3 weeks        |
 
 </details>
 
