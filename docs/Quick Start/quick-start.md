@@ -71,7 +71,7 @@ You don't need to know anything about payment gateways, APIs, or checkout types 
 
 <PayUIntegrationPathRecommender />
 
-If you would rather just browse everything PayU offers instead of answering questions, every path is listed below.
+#### **Prefer to browse? See all ways to accept payments with PayU**
 
 <Accordion title="See All PayU Integration Paths" icon="fab fa-product-hunt">
   | Path                                                           | Best for                                                         | Do you need a developer?       | Typical time     |
