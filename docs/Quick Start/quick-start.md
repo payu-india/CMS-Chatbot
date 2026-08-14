@@ -35,28 +35,26 @@ EDITORIAL NOTES (delete before publishing — not part of the rendered page):
 
 You don't need to know anything about payment gateways, APIs, or checkout types to start. Answer a couple of quick questions below and we will show you exactly what to do next — whether that's something you do yourself, something you hand to a developer, or something an AI assistant builds for you.
 
-<Callout icon="📘" theme="info">
-  ### What is PayU, in one sentence?
+<Tabs>
+  <Tab title="What is PayU, in one sentence?" icon="far fa-pen-line">
+    PayU helps you accept money from your customers — online, through a link, or in person — and get it into your bank account safely. You don't need to be technical to use it.
+  </Tab>
 
-  PayU helps you accept money from your customers — online, through a link, or in person — and get it into your bank account safely. You don't need to be technical to use it.
-</Callout>
-
-<Callout icon="📘" theme="info">
-  ### What is a payment gateway?
-
-  A payment gateway is the service that securely takes your customer's card or bank details and confirms whether the payment went through. PayU is yours.
-</Callout>
+  <Tab title="What is a payment gateway?" icon="far fa-money-bills">
+    A payment gateway is the service that securely takes your customer's card or bank details and confirms whether the payment went through. PayU is yours.
+  </Tab>
+</Tabs>
 
 ***
 
 ## New Here, or Picking Back Up?
 
 <Cards>
-  <Card title="**If this is your first time setting up payments with PayU**" icon="far fa-rectangle-new">
+  <Card title="If this is your first time setting up payments with PayU" icon="far fa-rectangle-new">
     skip straight to [What do you want to do?](#what-do-you-want-to-do) below.
   </Card>
 
-  <Card title="**If you've already started**" icon="far fa-square-list">
+  <Card title="If you've already started" icon="far fa-square-list">
     pick the option that matches where you are — it'll save you from repeating steps you have already done:
 
     - **I've set things up but haven't taken a real payment yet** → go to the [Activation Diagnostic](#activation-diagnostic)
