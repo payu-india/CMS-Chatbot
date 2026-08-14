@@ -136,68 +136,70 @@ Your developer's version of this page skips everything above and goes straight t
 
 ***
 
-## Build this with AI
+## Build This with AI
 
 Most developers who successfully integrate PayU today use an AI assistant — ChatGPT, Claude, or Gemini — to write the actual code. This works well if you give it the right instructions and the right reference material.
 
 <Callout icon="⚠️" theme="warn">
-  ### Review before you use it live
+  ### Review Before you Use it Live
 
   Your AI assistant will write real code from this. Review what it produces before using it with real payments — especially anything that touches your Salt or handles customer data.
 </Callout>
 
 Copy these two prompts one at a time — splitting the work like this avoids running into your AI tool's response length limits partway through.
 
-**Prompt 1 — core integration**
+<Tabs>
+  <Tab title="Prompt 1 — Core Integration" icon="far fa-bar-progress-empty">
+    ```text Prompt
+    Help me integrate [recommended product, e.g. PayU Hosted Checkout] into my
+    [your platform, e.g. Node.js website]. My goal is [your goal, e.g. a one-time
+    card/UPI payment on a product page].
 
-```
-Help me integrate [recommended product, e.g. PayU Hosted Checkout] into my
-[your platform, e.g. Node.js website]. My goal is [your goal, e.g. a one-time
-card/UPI payment on a product page].
+    Here's what I need you to do:
+    1. Generate a signed payment request using a Merchant Key and Salt (I'll provide
+       these separately — do not hardcode them).
+    2. Build the request with the required fields: transaction ID, amount, product
+       info, customer details, and success/failure redirect URLs.
+    3. Generate the request hash following PayU's documented algorithm.
+    4. Redirect the customer to the PayU Hosted Checkout URL with the signed payload.
 
-Here's what I need you to do:
-1. Generate a signed payment request using a Merchant Key and Salt (I'll provide
-   these separately — do not hardcode them).
-2. Build the request with the required fields: transaction ID, amount, product
-   info, customer details, and success/failure redirect URLs.
-3. Generate the request hash following PayU's documented algorithm.
-4. Redirect the customer to the PayU Hosted Checkout URL with the signed payload.
+    Reference documentation: https://docs.payu.in/collect-payments/introduction-web/[path]
+    ```
+  </Tab>
 
-Reference documentation: https://docs.payu.in/collect-payments/introduction-web/[path]
-```
+  <Tab title="Prompt 2 — Success and Failure Handling" icon="far fa-bar-progress-empty">
+    ```text Prompt
+    Now help me handle the response PayU sends back after a payment attempt:
+    1. Receive and verify the redirect to my success/failure URLs.
+    2. Verify the response hash to confirm the response actually came from PayU.
+    3. Handle the webhook/callback PayU sends server-to-server for the same
+       transaction, and reconcile it against my order records.
+    4. Log both the redirect response and the webhook so I can debug mismatches.
 
-**Prompt 2 — success and failure handling**
+    Reference documentation: https://docs.payu.in/developer-tools/webhooks-consolidated
+    ```
+  </Tab>
+</Tabs>
 
-```
-Now help me handle the response PayU sends back after a payment attempt:
-1. Receive and verify the redirect to my success/failure URLs.
-2. Verify the response hash to confirm the response actually came from PayU.
-3. Handle the webhook/callback PayU sends server-to-server for the same
-   transaction, and reconcile it against my order records.
-4. Log both the redirect response and the webhook so I can debug mismatches.
-
-Reference documentation: https://docs.payu.in/developer-tools/webhooks-consolidated
-```
-
-Once your AI assistant produces code, test it in sandbox before going live — see [Test it safely](#test-it-safely) below.
+Once your AI assistant produces code, test it in sandbox before going live.
 
 ***
 
-## What happens after you choose
+## What Happens After you choose
 
 Every PayU integration follows the same shape, no matter which path above you took:
 
-1. **Understand what you're using** — you just did this
-2. **See what you need before you start** — plain-language prerequisites, not jargon
+1. **Understand what you are using** — you just did this
+2. **See what you need before you start** — plain-language prerequisites
 3. **Set it up** — guided steps, a developer handoff, an AI prompt, or a plugin install
 4. **Test it safely** — try a payment that doesn't use real money
 5. **Go live** — switch on real payments
-6. **Confirm your first real payment came through**
+6. **Confirm your first real payment**
 7. **Know what to do next**
 
 ***
 
-## Test it safely
+## Test it Safely
 
 Before any real customer pays you, try it yourself in test mode — this uses fake payment details and doesn't touch real money.
 
@@ -211,20 +213,20 @@ Before any real customer pays you, try it yourself in test mode — this uses fa
 
 ## Activation Diagnostic
 
-If you've already set things up but haven't taken a real payment yet, tell us what's stopping you — the fix is different depending on where the hold-up actually is.
+If you have already set things up but have not taken a real payment yet, tell us what's stopping you — the fix is different depending on where the hold-up actually is.
 
 **Things PayU can fix for you:**
 
 - **My website/business verification is still pending** → [Check your verification status](#) — most verifications complete within a few business days; if yours has taken longer, [escalate here](#).
 - **I don't have my keys yet, or can't find them** → your Merchant Key and Salt are in **Dashboard → Settings → API Keys**. If you don't see them, your account may still be finishing verification — check the status above first.
-- **My pricing isn't clear to me** → [See a plain-language breakdown of PayU's fees](#).
+- **My pricing is not clear to me** → [See a plain-language breakdown of PayU's fees](#).
 - **I need international payments enabled** → [Request international activation](#).
 - **I tried a test payment but I'm not sure it worked** → [Verify your test payment](#test-it-safely) using the same steps above.
 
 **Things that are on your side, not PayU's — and that's okay:**
 
-- **My website or store isn't ready yet** — no rush. Your integration will be waiting when you are. [Get a reminder in a few weeks](#) instead of working through steps that don't apply yet.
-- **I don't have traffic or orders yet** — same as above. Nothing further to do on the payments side until you're ready to launch.
+- **My website or store isn't ready yet** — no rush. Your integration will be waiting when you are. [Get a reminder in a few weeks](#) instead of working through steps that do not apply yet.
+- **I don't have traffic or orders yet** — same as above. Nothing further to do on the payments side until you are ready to launch.
 - **I'm waiting on a partner, developer, or a fixed go-live date** (e.g. a school term or system rollout) — your setup is fine as-is; there's nothing blocking it on PayU's end.
 
 ***
@@ -243,18 +245,18 @@ Already accepting payments? Here's what most merchants add next:
 
 ## Still not sure?
 
-Describe your business in your own words to Ask AI — for example, _"I sell handmade candles on Instagram and want people to be able to pay me directly."_ It'll point you to the right starting point, whether you're technical or not.
+Describe your business in your own words to Ask AI — for example, _"I sell handmade candles on Instagram and want people to be able to pay me directly."_ It will point you to the right starting point, whether you are technical or not.
 
 <Callout icon="📘" theme="info">
   ### Ask AI can help with questions like:
 
-  - "What is PayU?"
-  - "What is a payment gateway?"
-  - "Which PayU product should I use?"
-  - "Do I need a developer?"
-  - "How do I integrate Hosted Checkout?"
-  - "How do I generate the hash?"
-  - "How do I verify a payment?"
+  - **What is PayU?**
+  - **What is a payment gateway?**
+  - **Which PayU product should I use?**
+  - **Do I need a developer?**
+  - **How do I integrate Hosted Checkout?**
+  - **How do I generate the hash?**
+  - **How do I verify a payment?**
 </Callout>
 
 ***
