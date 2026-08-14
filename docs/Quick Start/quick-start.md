@@ -65,11 +65,9 @@ You don't need to know anything about payment gateways, APIs, or checkout types 
   </Card>
 </Cards>
 
-<br />
-
 ***
 
-## What do you want to do?
+## What do You Want to Do?
 
 <PayUIntegrationPathRecommender />
 
