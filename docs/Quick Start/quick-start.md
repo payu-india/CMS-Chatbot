@@ -101,7 +101,7 @@ Once you have got a recommendation above, this decides how it's presented to you
 
 ***
 
-## Send This to Your Developer
+### Send This to Your Developer
 
 If someone else — a freelancer, an agency, or a colleague — is going to do the technical work, do not make them start from scratch or wait on dashboard access they may not have.
 
@@ -111,7 +111,7 @@ If someone else — a freelancer, an agency, or a colleague — is going to do t
   Copy the summary below and send it to your developer as-is. It works whether or not they have a PayU Dashboard login.
 </Callout>
 
-**Developer Handoff Summary**
+#### **Developer Handoff Summary**
 
 ```
 Integration: [recommended product from above, e.g. PayU Hosted Checkout]
@@ -134,7 +134,7 @@ Your developer's version of this page skips everything above and goes straight t
 
 ***
 
-## Build This with AI
+### Build This with AI
 
 Most developers who successfully integrate PayU today use an AI assistant — ChatGPT, Claude, or Gemini — to write the actual code. This works well if you give it the right instructions and the right reference material.
 
@@ -229,7 +229,7 @@ If you have already set things up but have not taken a real payment yet, tell us
 
 ***
 
-## Add more to your setup
+## Add More to Your Setup
 
 Already accepting payments? Here's what most merchants add next:
 
@@ -241,7 +241,7 @@ Already accepting payments? Here's what most merchants add next:
 
 ***
 
-## Still not sure?
+## Still Not Sure?
 
 Describe your business in your own words to Ask AI — for example, _"I sell handmade candles on Instagram and want people to be able to pay me directly."_ It will point you to the right starting point, whether you are technical or not.
 
