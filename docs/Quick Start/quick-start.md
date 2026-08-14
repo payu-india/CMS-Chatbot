@@ -76,23 +76,17 @@ You don't need to know anything about payment gateways, APIs, or checkout types 
 If you would rather just browse everything PayU offers instead of answering questions, every path is listed below.
 
 <Accordion title="See All PayU Integration Paths" icon="fab fa-product-hunt">
-
+  | Path                                                           | Best for                                                         | Do you need a developer?       | Typical time     |
+  | -------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------------------ | ---------------- |
+  | **Payment Link**                                               | Selling without a website — invoices, social media, WhatsApp     | No                             | Minutes          |
+  | **PayU Hosted Checkout**                                       | A website where you want PayU to handle the whole payment page   | Developer efforts are very low | A few days       |
+  | **Merchant Hosted Checkout**                                   | A website where you want full control of the payment page design | Yes                            | 1–2 weeks        |
+  | **Server-to-Server Integration**                               | Marketplaces or platforms paying out multiple parties            | Yes                            | 2–3 weeks        |
+  | **UPI QR**                                                     | In-person, counter, or kiosk collection                          | No                             | Under a week     |
+  | **eCommerce plugins** (Shopify, WooCommerce, Magento)          | You already sell through one of these platforms                  | No                             | Minutes to hours |
+  | **Mobile SDKs** (Android, iOS, React Native, Flutter, Cordova) | A mobile app                                                     | Yes                            | 1–2 weeks        |
+  | **Recurring Payments**                                         | Subscriptions or membership billing                              | Yes                            | 2–3 weeks        |
 </Accordion>
-
-<br />
-
-| Path                                                           | Best for                                                         | Do you need a developer?       | Typical time     |
-| -------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------------------ | ---------------- |
-| **Payment Link**                                               | Selling without a website — invoices, social media, WhatsApp     | No                             | Minutes          |
-| **PayU Hosted Checkout**                                       | A website where you want PayU to handle the whole payment page   | Developer efforts are very low | A few days       |
-| **Merchant Hosted Checkout**                                   | A website where you want full control of the payment page design | Yes                            | 1–2 weeks        |
-| **Server-to-Server Integration**                               | Marketplaces or platforms paying out multiple parties            | Yes                            | 2–3 weeks        |
-| **UPI QR**                                                     | In-person, counter, or kiosk collection                          | No                             | Under a week     |
-| **eCommerce plugins** (Shopify, WooCommerce, Magento)          | You already sell through one of these platforms                  | No                             | Minutes to hours |
-| **Mobile SDKs** (Android, iOS, React Native, Flutter, Cordova) | A mobile app                                                     | Yes                            | 1–2 weeks        |
-| **Recurring Payments**                                         | Subscriptions or membership billing                              | Yes                            | 2–3 weeks        |
-
-</details>
 
 ***
 
