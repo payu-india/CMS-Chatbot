@@ -1,5 +1,5 @@
 ---
-title: eNACH Supported Banks and Verification Modes
+title: Get eNACH Supported Banks and Verification Modes
 excerpt: ''
 deprecated: false
 hidden: false
