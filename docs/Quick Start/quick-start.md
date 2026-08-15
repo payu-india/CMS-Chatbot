@@ -16,40 +16,24 @@ PayU helps you accept money from customers and get it into your bank account. An
 
 Already started? Continue where you left off →
 
+***
+
 ## What are you trying to do?
 
 Let us know what are you trying to do:
 
-I have a website and want customers to pay online
-I don't have a website and want to send customers a payment link
-I want to accept payments in person — shop, counter, or kiosk
-I want to charge customers regularly — subscriptions or memberships
-I run a platform or marketplace where multiple sellers get paid
-I'm not sure what I need
+- I have a website and want customers to pay online
+- I don't have a website and want to send customers a payment link
+- I want to accept payments in person — shop, counter, or kiosk
+- I want to charge customers regularly — subscriptions or memberships
+- I run a platform or marketplace where multiple sellers get paid
+- I'm not sure what I need
 
 Just answer honestly — there's no wrong choice here, and you can change your answers anytime.
 
 <PayUIntegrationPathRecommender />
 
 {/* Full decision tree the component must implement: Q1 "What are you trying to do?" - Website → Q2 - Payment link (no website) → Result: [Pay Handle / Payment Links] - In person → Result: UPI QR - Recurring/subscriptions → Result: Recurring Payments → Q4 - Platform/marketplace → Result: Server-to-Server/Split Settlement → Q4 - Not sure → Q1-fallback Q1-fallback "What are you using today — website, social/messaging, in person, or nothing yet?" → maps to same 5 outcomes as Q1 - Still unsure → exits to Ask AI Q2 (only if Q1 = Website) "Is your website on a store platform like Shopify or WooCommerce, or is it custom-built?" - Store platform → Q2a - Custom-built → Q2b - No website yet → Result: [Pay Handle / Payment Links] (bridge framing: "a way to start collecting money now, while your site is being built") Q2a (only if Q2 = store platform) "Which platform?" - Shopify / WooCommerce / Magento / Other → Result: matching plugin, terminal, no Q4 Q2b (only if Q2 = custom-built) "Does the payment page need to match your site exactly?" - Simple PayU page is fine → Result: PayU Hosted Checkout → Q4 - Needs exact match → Result: [Merchant Hosted Checkout / Seamless Checkout] → Q4 - Not sure → Result: PayU Hosted Checkout (default) → Q4, with note: "Most merchants start here — you can add full design control later." Q4 (only after custom-website, recurring, or platform/marketplace results — never after plugin, Pay Handle, or UPI QR) "Who's setting this up? (This changes how we present the next step — not what we recommend.)" - I'll do it myself → guided setup inline - I have a developer → Send This to Your Developer - I'll use an AI assistant → Build with AI - Not sure → guided setup (default) + handoff note */}
-
-<br />
-
-<br />
-
-<br />
-
-<br />
-
-<br />
-
-<br />
-
-<br />
-
-<br />
-
-<br />
 
 Recommendation card, shown once a result resolves:
 
@@ -69,9 +53,13 @@ Why this recommendation? (expandable) · \[Change my answers]
 
 Prefer to browse instead? See all ways to accept payments with PayU →
 
-Your journey from here
+***
 
-Choose → Prepare → Build → Test → Go live → First payment
+## Your Journey from Here
+
+**Choose** → **Prepare** → **Build** → **Test** → **Go live** → **First payment**
+
+<br />
 
 Testing before you go live
 
