@@ -50,6 +50,6 @@ Technical guide: [link to the specific product's developer documentation]
 
 ## Build with AI
 
-<br />
+Give your AI assistant the right prompt and point it at PayU's official documentation as the source of truth.
 
 <br />
