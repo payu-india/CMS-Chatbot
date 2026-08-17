@@ -14,10 +14,9 @@ metadata:
 next:
   description: ''
 ---
-You can share the payment link with customers to collect payments from them. You can create and manage payment links using:
+PayU Payment Links enable merchants to collect one-time or recurring payments through a secure, shareable URL—without requiring customers to navigate to a checkout flow. Create links from the <Anchor target="_blank" href="#payment-links-dashboard">PayU Dashboard</Anchor> or using <Anchor target="_blank" href="doc:integration-api-for-payment-links">Payment Link APIs</Anchor>, then share them through your preferred customer channel.
 
-- [Payment Links on PayU Dashboard](#payment-links-dashboard)
-- [Integration APIs for Payment Links](doc:integration-api-for-payment-links)
+Developers can integrate link creation, subscription registration, bulk uploads, webhook notifications, and payment tracking into existing business workflows. With dashboard reporting, transaction history, exports, and webhook alerts, PayU Payment Links provide a flexible way to simplify collections, improve payment visibility, and support both digital and assisted payment journeys.
 
 Check the following video on PayU Payments Link offerings:
 
@@ -64,5 +63,3 @@ This part of the documentation includes the following sections:
 - [Export the Payment Link History](doc:export-the-payment-link-history)
 - [Integration APIs for Payment Links](doc:integration-api-for-payment-links)
 - [FAQs - Payment Links](doc:faqs-payment-links)
-
-<br />
