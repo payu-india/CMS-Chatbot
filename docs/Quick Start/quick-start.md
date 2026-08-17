@@ -1,5 +1,5 @@
 ---
-title: ' Quick Start — Accept Payments with PayU'
+title: What Are You Trying To Achieve?
 excerpt: >-
   Answer a couple of quick questions and we will show you exactly what to do
   next — no technical background needed.
@@ -16,7 +16,7 @@ Already started? Continue where you left off →
 
 ***
 
-## What are you trying to do?
+## What are You Trying To Do?
 
 Let us know what are you trying to do:
 
