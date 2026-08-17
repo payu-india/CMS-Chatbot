@@ -8,7 +8,7 @@ hidden: true
 metadata:
   robots: index
 ---
-Not sure which option fits? [Get a personalized recommendation →](quick-start) — this page is for browsing and comparing.
+Not sure which option fits? Get a personalized recommendation → — this page is for browsing and comparing.
 
 | Path                                                           | Best for                                                               | Typically set up by                                                         | Typical time                                    |
 | -------------------------------------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------- | ----------------------------------------------- |
