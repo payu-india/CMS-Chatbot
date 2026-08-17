@@ -10,9 +10,9 @@ metadata:
 ---
 Not sure which option fits? Get a <Anchor target="_blank" href="https://docs.payu.in/docs/quick-start">personalized recommendation</Anchor> — this page is for browsing and comparing.
 
-| Path                                                           | Best for                                                               | Typically set up by                                                         | Typical time                                    |
+| Path                                                           | Best For                                                               | Typically Set Up By                                                         | Typical time                                    |
 | -------------------------------------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------- | ----------------------------------------------- |
-| \[Pay Handle / Payment Links — CONFIRM NAME]                   | Selling without a website — invoices, social media, WhatsApp           | You, from your dashboard                                                    | _\[TO CONFIRM]_                                 |
+| Payment Links                                                  | Selling without a website — invoices, social media, WhatsApp           | You. Use your Dashboard.                                                    | _\[TO CONFIRM]_                                 |
 | PayU Hosted Checkout                                           | A website where a simple, secure PayU-hosted page is enough            | _\[TO CONFIRM]_                                                             | _\[TO CONFIRM]_                                 |
 | \[Merchant Hosted Checkout / Seamless Checkout — CONFIRM NAME] | A website where the payment page must match your site's design exactly | A developer                                                                 | _\[TO CONFIRM]_                                 |
 | Server-to-Server Integration                                   | Marketplaces or platforms paying out multiple sellers                  | _\[TO CONFIRM — not stated as strictly developer-required, see validation]_ | _\[TO CONFIRM]_                                 |
