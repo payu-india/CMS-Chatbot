@@ -93,6 +93,10 @@ Ask AI →
 
 ## Activation Diagnostics
 
+Already set up but have not taken a real payment yet? Let's find out where you are stuck.
+
+<br />
+
 <br />
 
 ## Get Help
