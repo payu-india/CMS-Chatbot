@@ -4,7 +4,7 @@ excerpt: >-
   Already set up but haven't taken a real payment yet? Let's find out where
   you're stuck.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -17,7 +17,7 @@ Most integrations move through the same stages:
 Tell us where things stopped, and we'll point you the right way.
 
 <Accordion title="Things PayU can typically help with:" icon="fab fa-hire-a-helper">
-
+  **Things PayU can typically help with:**
 </Accordion>
 
 <br />
