@@ -17,11 +17,11 @@ Most integrations move through the same stages:
 Tell us where things stopped, and we'll point you the right way.
 
 <Accordion title="Things PayU can typically help with:" icon="fab fa-hire-a-helper">
-  - My verification is still pending →
+  - My verification is still pending → \[_Need clarification here on what to do next?]_
 
   - I don't have my keys, or can't find them → See retrieve test and production keys
 
-  - My pricing isn't clear to me →  [See PayU's pricing explained ](#)
+  - My pricing isn't clear to me →  [See PayU's pricing explained](#)
 
   - I need international payments enabled → _\[TO CONFIRM: self-service or request-based process]_
 
