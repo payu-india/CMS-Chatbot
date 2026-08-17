@@ -53,13 +53,25 @@ Prefer to browse instead? See all ways to accept payments with PayU →
 
 ***
 
-## All Ways To Accept Payments With PayU
+### All Ways To Accept Payments With PayU
 
-<br />
+<Accordion title="Other Offerings" icon="far fa-comment-captions">
+  | Path                                                           | Best For                                                               | Typically Set Up By                                                         | Typical time                                    |
+  | -------------------------------------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------- | ----------------------------------------------- |
+  | Payment Links                                                  | Selling without a website — invoices, social media, WhatsApp           | You. Use your Dashboard.                                                    | _\[TO CONFIRM]_                                 |
+  | PayU Hosted Checkout                                           | A website where a simple, secure PayU-hosted page is enough            | _\[TO CONFIRM]_                                                             | _\[TO CONFIRM]_                                 |
+  | \[Merchant Hosted Checkout / Seamless Checkout — CONFIRM NAME] | A website where the payment page must match your site's design exactly | A developer                                                                 | _\[TO CONFIRM]_                                 |
+  | Server-to-Server Integration                                   | Marketplaces or platforms paying out multiple sellers                  | _\[TO CONFIRM — not stated as strictly developer-required, see validation]_ | _\[TO CONFIRM]_                                 |
+  | UPI QR                                                         | In-person, counter, or kiosk collection                                | You, from your dashboard                                                    | _\[TO CONFIRM]_                                 |
+  | eCommerce plugins (Shopify, WooCommerce, Magento)              | You already sell through one of these platforms                        | You, via plugin install                                                     | _\[TO CONFIRM — current supported plugin list]_ |
+  | Recurring Payments                                             | Subscriptions or membership billing                                    | _\[TO CONFIRM — not stated as strictly developer-required, see validation]_ | _\[TO CONFIRM]_                                 |
+</Accordion>
 
 ***
 
 ## Your Journey from Here
+
+This is how your journey looks like from here:
 
 **Choose** → **Prepare** → **Build** → **Test** → **Go live** → **First payment**
 
@@ -79,6 +91,6 @@ Ask AI →
 
 ***
 
-## Get help
+## Get Help
 
 Postman Collection · Troubleshooting & error codes · FAQs · Contact support
