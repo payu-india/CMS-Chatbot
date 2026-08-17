@@ -16,7 +16,7 @@ Already started? Continue where you left off →
 
 ## What are You Trying To Do?
 
-Let us know what are you trying to do:
+Not from technical background? No worries! Choose your option here:
 
 - I have a website and want customers to pay online
 - I don't have a website and want to send customers a payment link
@@ -47,7 +47,7 @@ Why this recommendation? (expandable) · \[Change my answers]
 
 "Change my answers" reopens at the earliest question that would change the current result — never a full restart.
 
-Prefer to browse instead? See all ways to accept payments with PayU →
+Prefer to browse instead? See below for all ways to accept payments with PayU.
 
 ***
 
@@ -64,30 +64,6 @@ Prefer to browse instead? See all ways to accept payments with PayU →
   | eCommerce plugins (Shopify, WooCommerce, Magento)              | You already sell through one of these platforms                        | You, via plugin install                                                     | _\[TO CONFIRM — current supported plugin list]_ |
   | Recurring Payments                                             | Subscriptions or membership billing                                    | _\[TO CONFIRM — not stated as strictly developer-required, see validation]_ | _\[TO CONFIRM]_                                 |
 </Accordion>
-
-***
-
-## Your Journey from Here
-
-This is how your journey looks like from here:
-
-**Choose** → **Prepare** → **Build** → **Test** → **Go live** → **First payment**
-
-***
-
-## Testing Before You Go Live
-
-You can try most PayU setups safely before using them with real customers. See test details → for more information.
-
-***
-
-## Ask AI
-
-Not sure any of this applies to you? Describe your business in your own words.
-
-Ask AI →
-
-***
 
 ## Activation Diagnostics
 
@@ -120,6 +96,20 @@ Tell us where things stopped, and we'll point you the right way.
 
   - I'm waiting on a partner, developer, or a fixed go-live date
 </Accordion>
+
+***
+
+## Your Journey from Here
+
+This is how your journey looks like from here:
+
+**Choose** → **Prepare** → **Build** → **Test** → **Go live** → **First payment**
+
+***
+
+## Testing Before You Go Live
+
+You can try most PayU setups safely before using them with real customers. See test details → for more information.
 
 ***
 
