@@ -20,7 +20,15 @@ Watch this video to know more about Payment Links:<br />
 
 ***
 
-## Prerequisites
+## Make Sure You Have
+
+A PayU account created. Refer to the Register for a Merchant Account page for steps to create an account.
+
+***
+
+## Supported Payment Methods
+
+You can accept payment from a payment link using these payment methods:
 
 <br />
 
