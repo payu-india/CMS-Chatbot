@@ -17,21 +17,21 @@ Most integrations move through the same stages:
 Tell us where things stopped, and we'll point you the right way.
 
 <Accordion title="Things PayU can typically help with:" icon="fab fa-hire-a-helper">
-  **Things PayU can typically help with:**
+  - My verification is still pending →
+
+  - I don't have my keys, or can't find them → See retrieve test and production keys
+
+  - My pricing isn't clear to me →  [See PayU's pricing explained ](#)
+
+  - I need international payments enabled → _\[TO CONFIRM: self-service or request-based process]_
+
+  - I tried a test payment but I'm not sure it worked → [Verify your test payment](#)
 </Accordion>
 
-<br />
+<Accordion title="Things on your side — and that's okay:" icon="far fa-user-magnifying-glass">
+  - My website or store isn't ready yet
 
-- My verification is still pending → _\[TO CONFIRM: does a self-service status check exist today?]_
-- I don't have my keys, or can't find them → _\[TO CONFIRM: current dashboard path]_
-- My pricing isn't clear to me → [See PayU's pricing explained →](#)
-- I need international payments enabled → _\[TO CONFIRM: self-service or request-based process]_
-- I tried a test payment but I'm not sure it worked → [Verify your test payment →](#)
+  - I don't have traffic or orders yet
 
-**Things on your side — and that's okay:**
-
-- My website or store isn't ready yet
-- I don't have traffic or orders yet
-- I'm waiting on a partner, developer, or a fixed go-live date
-
-_\[TO CONFIRM: whether a reminder/nudge mechanism exists for merchants in this state today]_
+  - I'm waiting on a partner, developer, or a fixed go-live date
+</Accordion>
