@@ -91,6 +91,10 @@ Ask AI →
 
 ***
 
+## Activation Diagnostics
+
+<br />
+
 ## Get Help
 
 Postman Collection · Troubleshooting & error codes · FAQs · Contact support
