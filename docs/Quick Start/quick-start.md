@@ -8,9 +8,7 @@ hidden: true
 metadata:
   robots: index
 ---
-## Let's Get You Accepting Payments
-
-PayU helps you accept money from customers and get it into your bank account. Answer a couple of quick questions and we will show you exactly what to do next — you do not need any technical background to get started.
+PayU helps you accept money from customers and get it into your bank account. Answer a couple of quick questions and we will show you exactly what to do next — you do not need any technical background to get started.<br />
 
 Already started? Continue where you left off →
 
