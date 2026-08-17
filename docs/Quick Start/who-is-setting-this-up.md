@@ -36,7 +36,7 @@ Technical guide: [link to the specific product's developer documentation]
   This page does not specify how a developer who is not the account owner should obtain or use PayU credentials. Do not instruct merchants to share their Merchant Salt directly until PayU confirms an approved mechanism. This section stays blank until Security signs off — see the validation checklist.
 </Callout>
 
-**The technical guide covers:**
+**The technical guide you share with  the developer covers:**
 
 - Sandbox and production credentials, clearly labeled
 - Complete, copy-paste, runnable code
@@ -45,5 +45,11 @@ Technical guide: [link to the specific product's developer documentation]
 - A production go-live checklist
 
 [Open the developer documentation →](#)
+
+***
+
+## Build with AI
+
+<br />
 
 <br />
