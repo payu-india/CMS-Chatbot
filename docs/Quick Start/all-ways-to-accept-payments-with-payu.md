@@ -20,15 +20,6 @@ Not sure which option fits? Get a <Anchor target="_blank" href="https://docs.pay
 | eCommerce plugins (Shopify, WooCommerce, Magento)              | You already sell through one of these platforms                        | You, via plugin install                                                     | _\[TO CONFIRM — current supported plugin list]_ |
 | Recurring Payments                                             | Subscriptions or membership billing                                    | _\[TO CONFIRM — not stated as strictly developer-required, see validation]_ | _\[TO CONFIRM]_                                 |
 
-Each row links to its technical documentation: [Hosted Checkout](#) · [Merchant/Seamless Checkout](#) · [Server-to-Server](#) · [UPI QR](#) · [Plugins](#) · [Recurring Payments](#)
-
-{/* Mobile SDKs intentionally excluded pending Product validation on
-     whether mobile integration volume warrants inclusion. GoQwik-related
-     flows intentionally excluded pending Engineering validation on
-     whether they fit this table's model at all. */}
-
-\===== PAGE: Send This to Your Developer =====
-
 ***
 
 title: "Send This to Your Developer"
