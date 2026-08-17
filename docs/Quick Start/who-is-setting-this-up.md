@@ -16,6 +16,34 @@ Let us know who is setting up your chosen PayU product:
 
 ## Send This to Your Developer
 
-<br />
+Share this If a developer, a freelancer, an agency, or a colleague is doing the technical work for you.
+
+### **What to Send**
+
+```
+What I want to achieve: [merchant's stated goal]
+Where I want to accept payments: [merchant's stated setup]
+Recommended PayU solution: [recommended product]
+What's needed before starting: [filtered prerequisites from the result]
+Technical guide: [link to the specific product's developer documentation]
+```
+
+**Getting your developer access to your PayU account**
+
+<Callout icon="⚠️" theme="warn">
+  ### \[REQUIRES SECURITY/ENGINEERING VALIDATION — NOT YET RESOLVED]
+
+  This page does not specify how a developer who is not the account owner should obtain or use PayU credentials. Do not instruct merchants to share their Merchant Salt directly until PayU confirms an approved mechanism. This section stays blank until Security signs off — see the validation checklist.
+</Callout>
+
+**The technical guide covers:**
+
+- Sandbox and production credentials, clearly labeled
+- Complete, copy-paste, runnable code
+- Webhook and callback handling
+- Error codes and how to read logs
+- A production go-live checklist
+
+[Open the developer documentation →](#)
 
 <br />
