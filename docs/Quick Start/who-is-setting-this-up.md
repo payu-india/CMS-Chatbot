@@ -50,6 +50,8 @@ Technical guide: [link to the specific product's developer documentation]
 
 ## Build with AI
 
-Give your AI assistant the right prompt and point it at PayU's official documentation as the source of truth.
+If you or any developer wants to use an AI assistant such as ChatGPT, Claude, or any other application to help write the code, below prompts are built to keep that assistant grounded in PayU's actual documentation, rather than guessing.
+
+<br />
 
 <br />
