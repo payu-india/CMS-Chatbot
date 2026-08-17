@@ -30,7 +30,7 @@ A PayU account created. Refer to the Register for a Merchant Account page for st
 
 You can accept payment from a payment link using these payment methods:
 
-<br />
+-
 
 ## Workflow
 
