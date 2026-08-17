@@ -8,8 +8,6 @@ hidden: true
 metadata:
   robots: index
 ---
-{/* ENGINEERING NOTES (delete before publishing): 1. <PayUIntegrationPathRecommender /> must be rebuilt to the decision tree below exactly. Q4 never changes the recommended product — presentation only. 2. Two product names below are placeholders pending Product/Documentation naming validation: - [Merchant Hosted Checkout / Seamless Checkout — CONFIRM NAME] - [Pay Handle / Payment Links — CONFIRM NAME] Do not pick one unilaterally; both appear bracketed below until resolved. 3. The GoQwik-related flow (and any product outside the standard Merchant Key + Salt model) is NOT represented in this tree. [REQUIRES ENGINEERING VALIDATION] before it can be added — do not assume it fits an existing branch. 4. Testing claim below is deliberately softened to avoid the "zero-KYC across all products" claim flagged as possibly false. Do not strengthen this copy until Product confirms per-product testing/KYC behavior. */}
-
 ## Let's Get You Accepting Payments
 
 PayU helps you accept money from customers and get it into your bank account. Answer a couple of quick questions and we will show you exactly what to do next — you do not need any technical background to get started.
@@ -59,20 +57,22 @@ Prefer to browse instead? See all ways to accept payments with PayU →
 
 **Choose** → **Prepare** → **Build** → **Test** → **Go live** → **First payment**
 
-<br />
+***
 
-Testing before you go live
+## Testing Before You Go Live
 
-You can try most PayU setups safely before using them with real customers. \[TO CONFIRM: which products this applies to and whether any require verification first — do not state this applies universally until Product confirms]
+You can try most PayU setups safely before using them with real customers. See test details → for more information.
 
-See test details →
+***
 
-Ask AI
+## Ask AI
 
 Not sure any of this applies to you? Describe your business in your own words.
 
 Ask AI →
 
-Get help
+***
+
+## Get help
 
 Postman Collection · Troubleshooting & error codes · FAQs · Contact support
