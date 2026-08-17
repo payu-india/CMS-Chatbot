@@ -25,7 +25,7 @@ Let us know what are you trying to do:
 - I want to accept payments in person — shop, counter, or kiosk
 - I want to charge customers regularly — subscriptions or memberships
 - I run a platform or marketplace where multiple sellers get paid
-- I'm not sure what I need
+- I'm not sure what I need.
 
 Just answer honestly — there's no wrong choice here, and you can change your answers anytime.
 
