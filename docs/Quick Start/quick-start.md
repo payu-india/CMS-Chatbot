@@ -53,6 +53,12 @@ Prefer to browse instead? See all ways to accept payments with PayU →
 
 ***
 
+## All Ways To Accept Payments With PayU
+
+<br />
+
+***
+
 ## Your Journey from Here
 
 **Choose** → **Prepare** → **Build** → **Test** → **Go live** → **First payment**
