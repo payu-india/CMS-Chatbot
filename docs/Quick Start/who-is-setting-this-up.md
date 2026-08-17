@@ -8,7 +8,7 @@ metadata:
 Let us know who is setting up your chosen PayU product:
 
 - I have no developer. I will do it myself → guided setup inline.
-- I have a developer who can set it up for me →&#x20;
+- I have a developer who can set it up for me → Send this to your developer
 - I will use an AI assistant to integrate the chosen product → Build with AI
 - I am confused and not sure how and where to start → guided setup (default) + handoff note
 
@@ -51,6 +51,8 @@ Technical guide: [link to the specific product's developer documentation]
 ## Build with AI
 
 If you or any developer wants to use an AI assistant such as ChatGPT, Claude, or any other application to help write the code, below prompts are built to keep that assistant grounded in PayU's actual documentation, rather than guessing.
+
+<br />
 
 <br />
 
