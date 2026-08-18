@@ -14,6 +14,129 @@
   ],
   "paths": {
     "/postservice.php": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "cancel_refund_transaction",
+        "description": "",
+        "operationId": "cancel_refund_transaction",
+        "parameters": [
+          {
+            "name": "form",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/form"
+                },
+                {}
+              ]
+            }
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "description": "",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/Content-Type"
+                },
+                {
+                  "examples": [
+                    "application/x-www-form-urlencoded"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "key",
+                  "command",
+                  "var1",
+                  "var2",
+                  "var3",
+                  "hash"
+                ],
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/key"
+                      },
+                      {
+                        "description": "This parameter must contain the merchant key provided by PayU."
+                      }
+                    ]
+                  },
+                  "command": {
+                    "const": "cancel_refund_transaction",
+                    "type": "string",
+                    "description": "This parameter must contain the command as cancel_refund_transaction.."
+                  },
+                  "var1": {
+                    "type": "integer",
+                    "description": "This parameter must contains the Payu ID (mihpayuid) that you receive in the response for a successful payment transation.",
+                    "contentEncoding": "int64",
+                    "examples": [
+                      403993715524996350
+                    ]
+                  },
+                  "var2": {
+                    "type": "integer",
+                    "description": "This parameter must contain the Token ID (unique token from the merchant) for the refund request. Token ID has to be generated at your end for each new refund request..",
+                    "contentEncoding": "int32",
+                    "examples": [
+                      123321
+                    ]
+                  },
+                  "var3": {
+                    "type": "integer",
+                    "description": "For captured transaction: This parameter must contain the amount which needs to be refunded. Both partial and full refunds are allowed.",
+                    "contentEncoding": "int64",
+                    "examples": [
+                      500
+                    ]
+                  },
+                  "hash": {
+                    "type": "string",
+                    "description": "This parameter must contain the hash value to be calculated at your end.."
+                  },
+                  "var8": {
+                    "type": "string",
+                    "description": "Refund split information provided by merchant in a JSON format. This is applicable only with the Split transactions.",
+                    "example": "{\"childMerchantKey1\":{\"amount\":100,\"aggregatorRefundAmount\":40},\"childMerchantKey2\":{\"amount\":20,\"aggregatorRefundAmount\":0}}"
+                  }
+                },
+                "contentMediaType": "application/x-www-form-urlencoded"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {},
+            "content": {}
+          }
+        },
+        "deprecated": false
+      },
       "parameters": []
     }
   },
@@ -59,9 +182,5 @@
       "name": "Misc",
       "description": ""
     }
-  ],
-  "x-readme": {
-    "explorer-enabled": true,
-    "proxy-enabled": true
-  }
+  ]
 }
