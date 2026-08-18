@@ -1,4 +1,23 @@
 ---
+api:
+  file: refund_apis.json
+  operationId: refundTransaction
+hidden: false
+link:
+  new_tab: false
+metadata:
+  title: Refund Transaction API
+  description: >-
+    The Refund Transaction API allows users to cancel or refund transactions in
+    different states, with specific parameters required for each action. Sample
+    requests and responses are provided for successful and failed scenarios.
+  keywords:
+    - cancel_refund_transaction command
+    - Refund Transaction API
+    - Cancel a Refund API
+    - API for Refund Transaction
+---
+---
 title: Refund Transaction API
 api:
   file: refund_apis.json
@@ -160,7 +179,7 @@ In this API:
       'var2': 'test15',
       'var3': '0.10',
       'hash': '',
-      'var8': '{"amount": 100,"aggregatorRefundAmount": 40 }'
+      'var8': '{"childMerchantKey1":{"amount":100,"aggregatorRefundAmount":40},"childMerchantKey2":{"amount":20,"aggregatorRefundAmount":0}}'
   }
 
   response = requests.post(url, headers=headers, data=data)
@@ -178,7 +197,7 @@ In this API:
   form.append('var2', 'test15');
   form.append('var3', '0.10');
   form.append('hash', '');
-  form.append('var8', '{"amount": 100,"aggregatorRefundAmount": 40 }');
+  form.append('var8', '{"childMerchantKey1":{"amount":100,"aggregatorRefundAmount":40},"childMerchantKey2":{"amount":20,"aggregatorRefundAmount":0}}');
 
   axios.post('https://info.payu.in/merchant/postservice.php?form=2', form, {
     headers: {
@@ -207,7 +226,7 @@ In this API:
       'var2' => 'test15',
       'var3' => '0.10',
       'hash' => '',
-      'var8' => '{"amount": 100,"aggregatorRefundAmount": 40 }'
+      'var8' => '{"childMerchantKey1":{"amount":100,"aggregatorRefundAmount":40},"childMerchantKey2":{"amount":20,"aggregatorRefundAmount":0}}'
     )
   ));
 
@@ -271,7 +290,7 @@ In this API:
     "var2" => "test15",
     "var3" => "0.10",
     "hash" => "",
-    "var8" => '{"amount": 100,"aggregatorRefundAmount": 40 }'
+    "var8" => '{"childMerchantKey1":{"amount":100,"aggregatorRefundAmount":40},"childMerchantKey2":{"amount":20,"aggregatorRefundAmount":0}}'
   }, 'multipart/form-data')
 
   response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
@@ -304,7 +323,7 @@ In this API:
       writer.WriteField("var2", "test15")
       writer.WriteField("var3", "0.10")
       writer.WriteField("hash", "")
-      writer.WriteField("var8", `{"amount": 100,"aggregatorRefundAmount": 40 }`)
+      writer.WriteField("var8", `{"childMerchantKey1":{"amount":100,"aggregatorRefundAmount":40},"childMerchantKey2":{"amount":20,"aggregatorRefundAmount":0}}`)
       writer.Close()
       
       req, _ := http.NewRequest("POST", url, body)
