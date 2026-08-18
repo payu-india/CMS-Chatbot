@@ -31,32 +31,16 @@ Just answer honestly — there's no wrong choice here, and you can change your a
 
 {/* Full decision tree the component must implement: Q1 "What are you trying to do?" - Website → Q2 - Payment link (no website) → Result: [Pay Handle / Payment Links] - In person → Result: UPI QR - Recurring/subscriptions → Result: Recurring Payments → Q4 - Platform/marketplace → Result: Server-to-Server/Split Settlement → Q4 - Not sure → Q1-fallback Q1-fallback "What are you using today — website, social/messaging, in person, or nothing yet?" → maps to same 5 outcomes as Q1 - Still unsure → exits to Ask AI Q2 (only if Q1 = Website) "Is your website on a store platform like Shopify or WooCommerce, or is it custom-built?" - Store platform → Q2a - Custom-built → Q2b - No website yet → Result: [Pay Handle / Payment Links] (bridge framing: "a way to start collecting money now, while your site is being built") Q2a (only if Q2 = store platform) "Which platform?" - Shopify / WooCommerce / Magento / Other → Result: matching plugin, terminal, no Q4 Q2b (only if Q2 = custom-built) "Does the payment page need to match your site exactly?" - Simple PayU page is fine → Result: PayU Hosted Checkout → Q4 - Needs exact match → Result: [Merchant Hosted Checkout / Seamless Checkout] → Q4 - Not sure → Result: PayU Hosted Checkout (default) → Q4, with note: "Most merchants start here — you can add full design control later." Q4 (only after custom-website, recurring, or platform/marketplace results — never after plugin, Pay Handle, or UPI QR) "Who's setting this up? (This changes how we present the next step — not what we recommend.)" - I'll do it myself → guided setup inline - I have a developer → Send This to Your Developer - I'll use an AI assistant → Build with AI - Not sure → guided setup (default) + handoff note */}
 
-Recommendation card, shown once a result resolves:
-
-Your recommended setup \[product name in plain language]
-
-Why we're recommending this \[one to two sentences tied to the specific answers given]
-
-What you'll need \[filtered to this path only]
-
-How it will be set up \[one line matching the Q4 answer, or omitted entirely for plugin/Pay Handle/UPI QR results]
-
-\[Start setup →]
-
-Why this recommendation? (expandable) · \[Change my answers]
-
-"Change my answers" reopens at the earliest question that would change the current result — never a full restart.
-
-Prefer to browse instead? See below for all ways to accept payments with PayU.
-
 ***
 
 ### All Ways To Accept Payments With PayU
 
+Prefer to browse instead? See below for all ways to accept payments with PayU.
+
 <Accordion title="Other Offerings" icon="far fa-comment-captions">
   | Path                                                           | Best For                                                               | Typically Set Up By                                                         | Typical time                                    |
   | -------------------------------------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------- | ----------------------------------------------- |
-  | Payment Links                                                  | Collect payments without a website.                                    | You. Use your Dashboard.                                                    | _\[TO CONFIRM]_                                 |
+  | Payment Links                                                  | Collecting payments without a website.                                 | You. Use your Dashboard.                                                    | _\[TO CONFIRM]_                                 |
   | PayU Hosted Checkout                                           | A website where a simple, secure PayU-hosted page is enough            | _\[TO CONFIRM]_                                                             | _\[TO CONFIRM]_                                 |
   | \[Merchant Hosted Checkout / Seamless Checkout — CONFIRM NAME] | A website where the payment page must match your site's design exactly | A developer                                                                 | _\[TO CONFIRM]_                                 |
   | Server-to-Server Integration                                   | Marketplaces or platforms paying out multiple sellers                  | _\[TO CONFIRM — not stated as strictly developer-required, see validation]_ | _\[TO CONFIRM]_                                 |
