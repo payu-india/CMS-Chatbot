@@ -6,7 +6,6 @@ name: PayUQuickStartWizard
 ---
 // PayUQuickStartWizard - ReadMe CMS Custom Component
 // Single-component recommendation flow for PayU Quick Start Guide
-// Replaces PayUIntegrationPathRecommender with simplified question tree
 // Doc page: <PayUQuickStartWizard />
 
 import { useState, useRef, useEffect } from 'react';
@@ -38,13 +37,46 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
   var showStep2 = _showStep2[0];
   var setShowStep2 = _showStep2[1];
 
-  var mainContentRef = useRef(null);
+  var _modalOpen = useState(false);
+  var modalOpen = _modalOpen[0];
+  var setModalOpen = _modalOpen[1];
 
-  useEffect(function() {
-    if (mainContentRef.current) {
-      mainContentRef.current.focus();
+  var _hoveredOpt = useState(null);
+  var hoveredOpt = _hoveredOpt[0];
+  var setHoveredOpt = _hoveredOpt[1];
+
+  var _hoveredLaunch = useState(false);
+  var hoveredLaunch = _hoveredLaunch[0];
+  var setHoveredLaunch = _hoveredLaunch[1];
+
+  var questionRef = useRef(null);
+  var launchBtnRef = useRef(null);
+  var modalRef = useRef(null);
+
+  useEffect(function () {
+    if (!modalOpen) return;
+    if (questionRef.current) questionRef.current.focus();
+  }, [currentQuestion, result, modalOpen]);
+
+  useEffect(function () {
+    if (!modalOpen) return;
+    function onKey(e) {
+      if (e.key === 'Escape') setModalOpen(false);
     }
-  }, [currentQuestion, result]);
+    window.addEventListener('keydown', onKey);
+    return function () {
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [modalOpen]);
+
+  useEffect(function () {
+    if (modalOpen && questionRef.current) {
+      questionRef.current.focus();
+    }
+    if (!modalOpen && launchBtnRef.current) {
+      launchBtnRef.current.focus();
+    }
+  }, [modalOpen]);
 
   function handleAnswer(questionKey, answerKey) {
     var newAnswers = Object.assign({}, answers);
@@ -109,31 +141,64 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
 
   function changeAnswers() {
     if (!result) return;
-
     var productKey = result.product.key;
-
     if (productKey.indexOf('plugin_') === 0) {
       setCurrentQuestion('Q2');
       setResult(null);
       setShowStep2(false);
       return;
     }
-
     if (productKey === 'hosted_checkout' || productKey === 'merchant_hosted') {
       setCurrentQuestion('Q3');
       setResult(null);
       setShowStep2(false);
       return;
     }
-
     setCurrentQuestion('Q1');
     setResult(null);
     setShowStep2(false);
   }
 
+  function goBack() {
+    if (result) {
+      setResult(null);
+      return;
+    }
+    var prevQuestion = null;
+    if (currentQuestion === 'Q1_fallback') prevQuestion = 'Q1';
+    else if (currentQuestion === 'Q2') prevQuestion = answers.Q1 === 'not_sure' ? 'Q1_fallback' : 'Q1';
+    else if (currentQuestion === 'Q2_platform') prevQuestion = 'Q2';
+    else if (currentQuestion === 'Q3') prevQuestion = 'Q2';
+    if (prevQuestion) {
+      setCurrentQuestion(prevQuestion);
+      var newAnswers = Object.assign({}, answers);
+      delete newAnswers[currentQuestion];
+      setAnswers(newAnswers);
+    }
+  }
+
+  function restart() {
+    setCurrentQuestion('Q1');
+    setAnswers({});
+    setResult(null);
+    setShowStep2(false);
+  }
+
+  function openModal() {
+    setModalOpen(true);
+  }
+
+  function closeModal() {
+    setModalOpen(false);
+  }
+
+  function restartAndOpen() {
+    restart();
+    setModalOpen(true);
+  }
+
   function buildAIPrompt(product, step) {
     var context = answers.Q2 === 'custom' || answers.Q2 === 'platform' ? 'website' : 'business';
-
     if (step === 1) {
       var productActionMap = {
         payment_links: 'Create a payment link with the required amount and customer details.',
@@ -147,9 +212,7 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
         plugin_magento: 'Install the PayU extension and configure payment settings in Magento admin.',
         plugin_other: 'Follow your platform\'s plugin installation and configuration guide.'
       };
-
       var productAction = productActionMap[product.key] || 'Complete the integration as specified in the documentation.';
-
       return 'I\'m integrating ' + product.name + ' into my ' + context + ' to accept ' + product.paymentMethodsSummary + '.\n\nHere is the official PayU documentation — treat it as the only source of truth. Do not invent or guess at endpoints, parameters, hashing logic, credentials, security requirements, or response fields that are not explicitly written in this documentation. If something I ask isn\'t covered there, tell me it isn\'t covered instead of guessing.\n\nDocumentation: ' + product.docsUrl + '\n\nDo this in two steps:\n\nSTEP 1 — Core integration\n1. Generate a signed payment request using a Merchant Key and Salt (I will provide these separately — never hardcode them in code you write for me).\n2. Build the request with the required fields exactly as specified in the documentation above.\n3. Generate the request hash using the exact algorithm in the documentation.\n4. ' + productAction + '\n\nAsk me for my tech stack (language/framework) before writing code, and ask me anything else you need that isn\'t in the documentation rather than assuming it.\n\nOnce Step 1 works, I\'ll come back with Step 2 for handling PayU\'s response.';
     } else if (step === 2) {
       return 'Now that the core integration works, handle PayU\'s response:\n\nSTEP 2 — Response and webhook handling\n1. Set up a server endpoint to receive PayU\'s callback (webhook) after payment completion.\n2. Validate the hash in the response to confirm it\'s from PayU and hasn\'t been tampered with.\n3. Update your order or transaction status based on the payment result.\n4. Handle success, failure, and pending states appropriately for your ' + context + '.\n\nRefer to PayU\'s webhook documentation: ' + product.webhooksUrl + '\n\nFollow the same rule: use only what\'s in the documentation. If unclear, ask instead of guessing.';
@@ -160,37 +223,30 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
     var Q1 = userAnswers.Q1;
     var Q2 = userAnswers.Q2;
     var Q3 = userAnswers.Q3;
-
     if (product.key === 'payment_links') {
       if (Q2 === 'no_website') {
         return 'You wanted to accept payments but don\'t have a website yet. Payment Links let you start collecting money now by sharing a link via SMS, email, or WhatsApp — no website required. You can build your site later.';
       }
       return 'You wanted to send payment links without needing a website. Payment Links let you share a secure payment URL with customers via any channel — SMS, email, WhatsApp, social media — and they can pay directly from the link.';
     }
-
     if (product.key === 'upi_qr') {
       return 'You wanted to accept payments in person at your shop, counter, or kiosk. UPI QR codes let customers scan and pay instantly using any UPI app on their phone.';
     }
-
     if (product.key === 'recurring_payments') {
       return 'You wanted to set up recurring or subscription billing. PayU Recurring Payments let customers authorize once, and subsequent charges happen automatically on the schedule you define.';
     }
-
     if (product.key === 'split_settlement') {
       return 'You run a platform or marketplace where multiple sellers get paid. Split Settlements automatically divide transaction amounts between your platform and sellers, with configurable commission structures.';
     }
-
     if (product.key === 'hosted_checkout') {
       if (Q3 === 'not_sure') {
         return 'You have a custom-built website and weren\'t sure about the payment page design. PayU Hosted Checkout is the recommended starting point — it\'s a secure, pre-built payment page that works immediately. You can add full design control later if needed.';
       }
       return 'You wanted a website checkout without needing the payment page to match your site design exactly. PayU Hosted Checkout provides a secure, pre-built payment page so you can start accepting payments quickly.';
     }
-
     if (product.key === 'merchant_hosted') {
       return 'You wanted a website checkout where the payment page matches your site design exactly. Merchant Hosted Checkout gives you full control over the payment interface while PayU handles the payment processing in the background.';
     }
-
     if (product.key.indexOf('plugin_') === 0) {
       var platformNames = {
         plugin_shopify: 'Shopify',
@@ -201,14 +257,12 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
       var platform = platformNames[product.key] || 'your platform';
       return 'Your website is on ' + platform + '. The PayU plugin integrates directly with ' + platform + ' — no custom coding required. Install it from your platform\'s admin panel and configure your payment settings.';
     }
-
     return 'Based on your answers, ' + product.name + ' is the best fit for your use case.';
   }
 
   function getQ1AnswerText(userAnswers) {
     var Q1 = userAnswers.Q1;
     var Q1_fallback = userAnswers.Q1_fallback;
-
     var q1Map = {
       website: 'Accept payments on a website',
       payment_link: 'Send payment links without a website',
@@ -216,14 +270,12 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
       recurring: 'Set up recurring or subscription billing',
       platform: 'Run a platform where multiple sellers get paid'
     };
-
     var fallbackMap = {
       website: 'Accept payments on a website',
       social: 'Accept payments via social media or messaging',
       in_person: 'Accept payments in person',
       nothing: 'Start accepting payments (no current setup)'
     };
-
     return q1Map[Q1] || fallbackMap[Q1_fallback] || 'Accept payments';
   }
 
@@ -236,9 +288,9 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
 
   function copyToClipboard(text) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(function() {
+      navigator.clipboard.writeText(text).then(function () {
         alert('Copied to clipboard!');
-      }).catch(function() {
+      }).catch(function () {
         fallbackCopy(text);
       });
     } else {
@@ -263,59 +315,60 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
     document.body.removeChild(textArea);
   }
 
-  var shellStyle = {
-    maxWidth: '800px',
-    margin: '0 auto',
+  var shell = {
+    border: '1px solid #e5e7eb',
+    borderRadius: '12px',
+    background: '#ffffff',
     padding: '20px',
-    fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif'
+    margin: '16px 0',
+    boxShadow: '0 1px 3px rgba(0,0,0,.06)',
+    fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif',
+    fontSize: '14px',
+    lineHeight: 1.5,
+    color: '#111827',
   };
 
-  var buttonStyle = {
-    padding: '12px 20px',
-    fontSize: '16px',
-    backgroundColor: '#0066cc',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    textAlign: 'left',
-    transition: 'background-color 0.2s',
+  function optionBtnStyle(optId, hovered) {
+    var isHovered = hovered === optId;
+    return {
+      width: '100%',
+      textAlign: 'left',
+      padding: '12px 14px',
+      border: '2px solid ' + (isHovered ? '#00A651' : '#e5e7eb'),
+      borderRadius: '10px',
+      background: isHovered ? '#f0fdf4' : '#fff',
+      cursor: 'pointer',
+      font: 'inherit',
+      color: 'inherit',
+      boxShadow: isHovered ? '0 10px 24px rgba(0,166,81,0.16)' : '0 1px 2px rgba(0,0,0,0.04)',
+      transform: isHovered ? 'scale(1.02)' : 'scale(1)',
+      transition: 'transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease',
+    };
+  }
+
+  var launchBtnStyle = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '10px',
     width: '100%',
-    marginBottom: '12px'
-  };
-
-  var tabButtonStyle = {
-    padding: '10px 16px',
-    fontSize: '14px',
-    backgroundColor: '#f0f0f0',
-    color: '#333',
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    transition: 'all 0.2s'
-  };
-
-  var activeTabStyle = {
-    backgroundColor: '#0066cc',
+    maxWidth: '420px',
+    padding: '16px 24px',
+    borderRadius: '12px',
+    border: 'none',
+    background: hoveredLaunch ? '#008f47' : '#00A651',
     color: '#fff',
-    borderColor: '#0066cc'
+    fontSize: '16px',
+    fontWeight: 700,
+    cursor: 'pointer',
+    boxShadow: hoveredLaunch ? '0 14px 32px rgba(0,166,81,0.35)' : '0 8px 20px rgba(0,166,81,0.25)',
+    transform: hoveredLaunch ? 'scale(1.03) translateY(-2px)' : 'scale(1) translateY(0)',
+    transition: 'transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease',
   };
 
-  var panelContainerStyle = {
-    border: '1px solid #ddd',
-    borderRadius: '4px',
-    padding: '20px',
-    backgroundColor: '#fafafa',
-    minHeight: '200px'
-  };
-
-  var panelContentStyle = {
-    fontSize: '14px',
-    lineHeight: '1.6'
-  };
+  var wizardBody = null;
 
   if (!result) {
-    var questionData = null;
     var questionTitle = '';
     var questionOptions = [];
 
@@ -362,132 +415,189 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
       ];
     }
 
-    return (
-      <div style={shellStyle}>
-        <div ref={mainContentRef} tabIndex={-1} role="region" aria-live="polite">
-          <h2 style={{ fontSize: '24px', marginBottom: '8px' }}>{questionTitle}</h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '16px' }}>
-            {questionOptions.map(function(opt) {
+    wizardBody = (
+      <div>
+        <div aria-live="polite" aria-atomic="true">
+          <h3 ref={questionRef} tabIndex={-1} style={{ margin: '0 0 4px', fontSize: '1.05rem', fontWeight: 600, color: '#1e3a5f', outline: 'none' }}>
+            {questionTitle}
+          </h3>
+          <p style={{ margin: '0 0 12px', fontSize: '12px', color: '#00A651', fontWeight: 500 }}>Tap an option to continue</p>
+          <div style={{ display: 'grid', gap: '10px' }}>
+            {questionOptions.map(function (opt) {
               return (
                 <button
                   key={opt.id}
-                  onClick={function() { handleAnswer(currentQuestion, opt.id); }}
-                  style={buttonStyle}
                   type="button"
+                  onMouseEnter={function () { setHoveredOpt(opt.id); }}
+                  onMouseLeave={function () { setHoveredOpt(null); }}
+                  onFocus={function () { setHoveredOpt(opt.id); }}
+                  onBlur={function () { setHoveredOpt(null); }}
+                  onClick={function () { handleAnswer(currentQuestion, opt.id); }}
+                  style={optionBtnStyle(opt.id, hoveredOpt)}
                 >
-                  {opt.label}
+                  <span style={{ fontWeight: 600 }}>{opt.label}</span>
                 </button>
               );
             })}
           </div>
           {currentQuestion === 'Q3' && answers.Q3 === 'not_sure' && (
-            <p style={{ marginTop: '16px', fontSize: '14px', color: '#666' }}>
+            <p style={{ marginTop: '12px', fontSize: '12px', color: '#6b7280', fontStyle: 'italic' }}>
               Most merchants start with a simple, secure PayU page — you can add full design control later.
             </p>
           )}
         </div>
-        <div role="progressbar" aria-valuenow={getProgressValue()} aria-valuemin={0} aria-valuemax={3} style={{ marginTop: '24px', fontSize: '14px', color: '#666', textAlign: 'center' }}>
-          Step {getProgressValue()} of up to 3
+
+        <div style={{ marginTop: '16px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: '#6b7280', marginBottom: '6px' }}>
+            <span>Step {getProgressValue()} of up to 3</span>
+          </div>
+          <div
+            role="progressbar"
+            aria-valuenow={getProgressValue()}
+            aria-valuemin={0}
+            aria-valuemax={3}
+            aria-label={'Quick Start progress: step ' + getProgressValue() + ' of 3'}
+            style={{ height: '6px', background: '#e5e7eb', borderRadius: '999px', overflow: 'hidden' }}
+          >
+            <div style={{ height: '100%', width: (getProgressValue() * 33.33) + '%', background: '#00A651', borderRadius: '999px', transition: 'width 0.25s ease' }} />
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', marginTop: '16px', paddingTop: '12px', borderTop: '1px solid #e5e7eb' }}>
+          {currentQuestion !== 'Q1' ? (
+            <button type="button" onClick={goBack} style={{ padding: '8px 14px', borderRadius: '8px', fontSize: '13px', fontWeight: 600, cursor: 'pointer', background: '#fff', border: '1px solid #e5e7eb', color: '#374151' }}>
+              Back
+            </button>
+          ) : (
+            <span />
+          )}
+          <button type="button" onClick={restart} style={{ padding: '8px 14px', borderRadius: '8px', fontSize: '13px', fontWeight: 600, cursor: 'pointer', background: '#00A651', border: 'none', color: '#fff' }}>
+            Start over
+          </button>
         </div>
       </div>
     );
-  }
+  } else {
+    var product = result.product;
+    var whyText = renderWhyText(product, result.answers);
 
-  var product = result.product;
-  var whyText = renderWhyText(product, result.answers);
+    wizardBody = (
+      <div>
+        <div style={{ marginBottom: '16px', padding: '12px 14px', borderRadius: '10px', border: '1px solid rgba(0,166,81,.25)', background: 'rgba(0,166,81,.06)', fontSize: '13px', color: '#374151' }}>
+          {whyText}
+        </div>
 
-  return (
-    <div style={shellStyle}>
-      <div ref={mainContentRef} tabIndex={-1} role="region" aria-live="polite">
-        <h2 style={{ fontSize: '28px', marginBottom: '4px' }}>Your recommended setup</h2>
-        <h3 style={{ fontSize: '24px', fontWeight: '600', marginTop: '8px', marginBottom: '16px' }}>
-          {product.name}
-        </h3>
+        <div style={{ border: '2px solid #00A651', borderRadius: '12px', overflow: 'hidden', marginBottom: '16px' }}>
+          <div style={{ background: '#00A651', color: '#fff', fontSize: '12px', fontWeight: 600, padding: '8px 14px' }}>
+            Your recommended setup
+          </div>
+          <div style={{ padding: '16px' }}>
+            <h3 style={{ margin: 0, fontSize: '1.1rem', color: '#1e3a5f' }}>{product.name}</h3>
+            <p style={{ margin: '4px 0 0', fontSize: '12px', color: '#6b7280' }}>{product.category}</p>
+            <p style={{ margin: '10px 0', fontSize: '13px' }}>{product.description}</p>
+          </div>
+        </div>
 
-        <section style={{ marginBottom: '24px' }}>
-          <h4 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '8px' }}>Why</h4>
-          <p style={{ lineHeight: '1.6' }}>{whyText}</p>
-        </section>
-
-        <section style={{ marginBottom: '24px' }}>
-          <h4 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '8px' }}>What you'll need</h4>
-          <ul style={{ lineHeight: '1.8', paddingLeft: '20px' }}>
-            {product.prerequisites.map(function(prereq, index) {
+        <div style={{ marginBottom: '16px' }}>
+          <h4 style={{ fontSize: '14px', fontWeight: '600', color: '#1e3a5f', marginBottom: '8px' }}>What you'll need</h4>
+          <ul style={{ lineHeight: '1.8', paddingLeft: '20px', fontSize: '13px', color: '#4b5563', margin: 0 }}>
+            {product.prerequisites.map(function (prereq, index) {
               return <li key={index}>{prereq}</li>;
             })}
           </ul>
-        </section>
+        </div>
 
-        <section style={{ marginBottom: '24px' }}>
-          <h4 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '12px' }}>How do you want to proceed?</h4>
-
-          <div style={{ display: 'flex', gap: '12px', marginBottom: '16px', flexWrap: 'wrap' }}>
+        <div style={{ marginBottom: '16px' }}>
+          <h4 style={{ fontSize: '14px', fontWeight: '600', color: '#1e3a5f', marginBottom: '12px' }}>How do you want to proceed?</h4>
+          <div style={{ display: 'flex', gap: '8px', marginBottom: '12px', flexWrap: 'wrap' }}>
             <button
-              onClick={function() { setActivePanel('myself'); setShowStep2(false); }}
-              style={Object.assign({}, tabButtonStyle, activePanel === 'myself' ? activeTabStyle : {})}
+              onClick={function () { setActivePanel('myself'); setShowStep2(false); }}
+              style={{
+                padding: '10px 16px',
+                fontSize: '14px',
+                backgroundColor: activePanel === 'myself' ? '#00A651' : '#fff',
+                color: activePanel === 'myself' ? '#fff' : '#374151',
+                border: '1px solid ' + (activePanel === 'myself' ? '#00A651' : '#e5e7eb'),
+                borderRadius: '8px',
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+                fontWeight: 600
+              }}
               type="button"
             >
               I'll do it myself
             </button>
             <button
-              onClick={function() { setActivePanel('developer'); setShowStep2(false); }}
-              style={Object.assign({}, tabButtonStyle, activePanel === 'developer' ? activeTabStyle : {})}
+              onClick={function () { setActivePanel('developer'); setShowStep2(false); }}
+              style={{
+                padding: '10px 16px',
+                fontSize: '14px',
+                backgroundColor: activePanel === 'developer' ? '#00A651' : '#fff',
+                color: activePanel === 'developer' ? '#fff' : '#374151',
+                border: '1px solid ' + (activePanel === 'developer' ? '#00A651' : '#e5e7eb'),
+                borderRadius: '8px',
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+                fontWeight: 600
+              }}
               type="button"
             >
               I have a developer
             </button>
             <button
-              onClick={function() { setActivePanel('ai'); setShowStep2(false); }}
-              style={Object.assign({}, tabButtonStyle, activePanel === 'ai' ? activeTabStyle : {})}
+              onClick={function () { setActivePanel('ai'); setShowStep2(false); }}
+              style={{
+                padding: '10px 16px',
+                fontSize: '14px',
+                backgroundColor: activePanel === 'ai' ? '#00A651' : '#fff',
+                color: activePanel === 'ai' ? '#fff' : '#374151',
+                border: '1px solid ' + (activePanel === 'ai' ? '#00A651' : '#e5e7eb'),
+                borderRadius: '8px',
+                cursor: 'pointer',
+                transition: 'all 0.2s',
+                fontWeight: 600
+              }}
               type="button"
             >
               I'll use AI to build it
             </button>
           </div>
 
-          <div style={panelContainerStyle}>
+          <div style={{ border: '1px solid #e5e7eb', borderRadius: '10px', padding: '16px', backgroundColor: '#f9fafb', minHeight: '200px' }}>
             {activePanel === 'myself' && (
-              <div style={panelContentStyle}>
-                <h5 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '12px' }}>Getting started</h5>
-                <p style={{ lineHeight: '1.6', marginBottom: '16px' }}>{product.description}</p>
-
-                <h5 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '12px', marginTop: '20px' }}>Next steps</h5>
-                <ol style={{ lineHeight: '1.8', paddingLeft: '20px', marginBottom: '16px' }}>
-                  {product.prerequisites.map(function(prereq, index) {
+              <div style={{ fontSize: '14px', lineHeight: '1.6' }}>
+                <p style={{ margin: '0 0 12px', fontSize: '13px', color: '#4b5563' }}>{product.description}</p>
+                <h5 style={{ fontSize: '13px', fontWeight: '600', color: '#1e3a5f', marginBottom: '8px', marginTop: '16px' }}>Next steps</h5>
+                <ol style={{ lineHeight: '1.7', paddingLeft: '20px', marginBottom: '12px', fontSize: '13px', color: '#4b5563' }}>
+                  {product.prerequisites.map(function (prereq, index) {
                     return <li key={index}>{prereq}</li>;
                   })}
                 </ol>
-
-                <p style={{ lineHeight: '1.6', marginTop: '16px' }}>
-                  For detailed instructions, see the{' '}
-                  <a href={product.docsUrl} target="_blank" rel="noopener noreferrer" style={{ color: '#0066cc', textDecoration: 'underline' }}>
-                    technical guide for {product.name}
-                  </a>.
-                </p>
+                <a href={product.docsUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', marginTop: '8px', fontSize: '13px', fontWeight: 600, color: '#00A651' }}>
+                  View PayU documentation
+                </a>
               </div>
             )}
 
             {activePanel === 'developer' && (
-              <div style={panelContentStyle}>
-                <h5 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '12px' }}>Share this with your developer</h5>
-                <div style={{ backgroundColor: '#f9f9f9', padding: '16px', borderRadius: '4px', fontSize: '14px', fontFamily: 'monospace', lineHeight: '1.8' }}>
-                  <p><strong>What I want to achieve:</strong> {getQ1AnswerText(result.answers)}</p>
+              <div style={{ fontSize: '14px', lineHeight: '1.6' }}>
+                <div style={{ backgroundColor: '#f9fafb', padding: '12px 14px', borderRadius: '8px', fontSize: '13px', fontFamily: 'monospace', lineHeight: '1.7', border: '1px solid #e5e7eb' }}>
+                  <p style={{ margin: '0 0 8px' }}><strong>What I want to achieve:</strong> {getQ1AnswerText(result.answers)}</p>
                   {(result.answers.Q2 || result.answers.Q3) && (
-                    <p><strong>Where I want to accept payments:</strong> {result.answers.Q2 === 'custom' || result.answers.Q2 === 'platform' ? 'On my website' : 'For my business'}</p>
+                    <p style={{ margin: '0 0 8px' }}><strong>Where I want to accept payments:</strong> {result.answers.Q2 === 'custom' || result.answers.Q2 === 'platform' ? 'On my website' : 'For my business'}</p>
                   )}
-                  <p><strong>Recommended PayU solution:</strong> {product.name}</p>
-                  <p><strong>What's needed before starting:</strong></p>
-                  <ul style={{ paddingLeft: '20px', marginTop: '8px', marginBottom: '8px' }}>
-                    {product.prerequisites.map(function(prereq, index) {
+                  <p style={{ margin: '0 0 8px' }}><strong>Recommended PayU solution:</strong> {product.name}</p>
+                  <p style={{ margin: '0 0 4px' }}><strong>What's needed before starting:</strong></p>
+                  <ul style={{ paddingLeft: '20px', margin: '4px 0 8px 0', fontSize: '12px' }}>
+                    {product.prerequisites.map(function (prereq, index) {
                       return <li key={index}>{prereq}</li>;
                     })}
                   </ul>
-                  <p><strong>Technical guide:</strong> <a href={product.docsUrl} target="_blank" rel="noopener noreferrer" style={{ color: '#0066cc' }}>{product.docsUrl}</a></p>
+                  <p style={{ margin: 0 }}><strong>Technical guide:</strong> <a href={product.docsUrl} target="_blank" rel="noopener noreferrer" style={{ color: '#00A651', fontWeight: 600 }}>{product.docsUrl}</a></p>
                 </div>
-
-                <div style={{ backgroundColor: '#fff3cd', border: '1px solid #ffc107', padding: '12px', borderRadius: '4px', marginTop: '16px', fontSize: '14px' }}>
-                  <p style={{ fontWeight: '600', marginBottom: '8px' }}>⚠️ [REQUIRES SECURITY/ENGINEERING VALIDATION]</p>
-                  <p style={{ lineHeight: '1.6', margin: 0 }}>
+                <div style={{ backgroundColor: '#fff3cd', border: '1px solid #ffc107', padding: '10px 12px', borderRadius: '8px', marginTop: '12px', fontSize: '12px' }}>
+                  <p style={{ fontWeight: '600', marginBottom: '4px', color: '#92400e' }}>⚠️ [REQUIRES SECURITY/ENGINEERING VALIDATION]</p>
+                  <p style={{ lineHeight: '1.6', margin: 0, color: '#78350f' }}>
                     This section will explain how a developer who isn't the account owner gets access to credentials, once PayU confirms the approved process.
                   </p>
                 </div>
@@ -495,88 +605,32 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
             )}
 
             {activePanel === 'ai' && (
-              <div style={panelContentStyle}>
-                <h5 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '12px' }}>Copy this prompt to your AI assistant</h5>
-                <p style={{ lineHeight: '1.6', marginBottom: '16px', fontSize: '14px' }}>
-                  Use this with Claude, ChatGPT, or another AI coding assistant. Copy the entire prompt below and paste it into your conversation.
+              <div style={{ fontSize: '14px', lineHeight: '1.6' }}>
+                <p style={{ lineHeight: '1.6', marginBottom: '12px', fontSize: '12px', color: '#6b7280' }}>
+                  Use this with Claude, ChatGPT, or another AI coding assistant. Copy the entire prompt and paste it into your conversation.
                 </p>
-
                 <div style={{ position: 'relative' }}>
-                  <pre style={{
-                    backgroundColor: '#f5f5f5',
-                    padding: '16px',
-                    borderRadius: '4px',
-                    fontSize: '13px',
-                    lineHeight: '1.6',
-                    overflowX: 'auto',
-                    whiteSpace: 'pre-wrap',
-                    wordWrap: 'break-word',
-                    border: '1px solid #ddd'
-                  }}>
+                  <pre style={{ backgroundColor: '#f9fafb', padding: '12px', borderRadius: '8px', fontSize: '12px', lineHeight: '1.6', overflowX: 'auto', whiteSpace: 'pre-wrap', wordWrap: 'break-word', border: '1px solid #e5e7eb', margin: 0 }}>
                     {buildAIPrompt(product, 1)}
                   </pre>
                   <button
-                    onClick={function() { copyToClipboard(buildAIPrompt(product, 1)); }}
-                    style={{
-                      position: 'absolute',
-                      top: '8px',
-                      right: '8px',
-                      padding: '6px 12px',
-                      fontSize: '12px',
-                      backgroundColor: '#fff',
-                      border: '1px solid #ccc',
-                      borderRadius: '4px',
-                      cursor: 'pointer'
-                    }}
+                    onClick={function () { copyToClipboard(buildAIPrompt(product, 1)); }}
+                    style={{ position: 'absolute', top: '8px', right: '8px', padding: '6px 10px', fontSize: '11px', fontWeight: 600, borderRadius: '6px', border: '1px solid #e5e7eb', background: '#fff', color: '#374151', cursor: 'pointer' }}
                     type="button"
                   >
                     Copy
                   </button>
                 </div>
-
-                {!showStep2 && (
-                  <button
-                    onClick={function() { setShowStep2(true); }}
-                    style={Object.assign({}, buttonStyle, { marginTop: '16px', width: 'auto' })}
-                    type="button"
-                  >
-                    Get the next prompt (Step 2)
-                  </button>
-                )}
-
                 {showStep2 && (
-                  <div style={{ marginTop: '24px' }}>
-                    <h5 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '12px' }}>Step 2: Handle the response</h5>
-                    <p style={{ lineHeight: '1.6', marginBottom: '16px', fontSize: '14px' }}>
-                      Once Step 1 works and you can initiate payments, use this prompt to handle PayU's response and webhooks.
-                    </p>
+                  <div style={{ marginTop: '16px' }}>
+                    <p style={{ fontSize: '13px', fontWeight: 600, color: '#1e3a5f', marginBottom: '8px' }}>Step 2: Handle webhook response</p>
                     <div style={{ position: 'relative' }}>
-                      <pre style={{
-                        backgroundColor: '#f5f5f5',
-                        padding: '16px',
-                        borderRadius: '4px',
-                        fontSize: '13px',
-                        lineHeight: '1.6',
-                        overflowX: 'auto',
-                        whiteSpace: 'pre-wrap',
-                        wordWrap: 'break-word',
-                        border: '1px solid #ddd'
-                      }}>
+                      <pre style={{ backgroundColor: '#f9fafb', padding: '12px', borderRadius: '8px', fontSize: '12px', lineHeight: '1.6', overflowX: 'auto', whiteSpace: 'pre-wrap', wordWrap: 'break-word', border: '1px solid #e5e7eb', margin: 0 }}>
                         {buildAIPrompt(product, 2)}
                       </pre>
                       <button
-                        onClick={function() { copyToClipboard(buildAIPrompt(product, 2)); }}
-                        style={{
-                          position: 'absolute',
-                          top: '8px',
-                          right: '8px',
-                          padding: '6px 12px',
-                          fontSize: '12px',
-                          backgroundColor: '#fff',
-                          border: '1px solid #ccc',
-                          borderRadius: '4px',
-                          cursor: 'pointer'
-                        }}
+                        onClick={function () { copyToClipboard(buildAIPrompt(product, 2)); }}
+                        style={{ position: 'absolute', top: '8px', right: '8px', padding: '6px 10px', fontSize: '11px', fontWeight: 600, borderRadius: '6px', border: '1px solid #e5e7eb', background: '#fff', color: '#374151', cursor: 'pointer' }}
                         type="button"
                       >
                         Copy
@@ -584,26 +638,141 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
                     </div>
                   </div>
                 )}
+                <div style={{ marginTop: '12px', display: 'flex', gap: '8px' }}>
+                  {!showStep2 && (
+                    <button
+                      onClick={function () { setShowStep2(true); }}
+                      style={{ padding: '8px 14px', fontSize: '13px', fontWeight: 600, borderRadius: '8px', background: '#00A651', color: '#fff', border: 'none', cursor: 'pointer' }}
+                      type="button"
+                    >
+                      Show Step 2
+                    </button>
+                  )}
+                </div>
               </div>
             )}
           </div>
-        </section>
+        </div>
 
-        <details style={{ marginTop: '24px', marginBottom: '16px' }}>
-          <summary style={{ cursor: 'pointer', fontWeight: '600', fontSize: '14px' }}>
-            Why this recommendation?
-          </summary>
-          <p style={{ marginTop: '12px', lineHeight: '1.6', fontSize: '14px', color: '#555' }}>
-            {whyText} This recommendation is based on your answers about what you're trying to achieve and where you want to accept payments.
-          </p>
-        </details>
-
-        <button onClick={changeAnswers} style={Object.assign({}, buttonStyle, { backgroundColor: '#f0f0f0', color: '#333', width: 'auto' })} type="button">
-          Change my answers
-        </button>
+        <div style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', marginTop: '16px', paddingTop: '12px', borderTop: '1px solid #e5e7eb' }}>
+          <button type="button" onClick={changeAnswers} style={{ padding: '8px 14px', borderRadius: '8px', fontSize: '13px', fontWeight: 600, cursor: 'pointer', background: '#fff', border: '1px solid #e5e7eb', color: '#374151' }}>
+            Change answers
+          </button>
+          <button type="button" onClick={restart} style={{ padding: '8px 14px', borderRadius: '8px', fontSize: '13px', fontWeight: 600, cursor: 'pointer', background: '#00A651', border: 'none', color: '#fff' }}>
+            Start over
+          </button>
+        </div>
       </div>
+    );
+  }
+
+  return (
+    <div style={shell}>
+      {!modalOpen && (
+        <div style={{ textAlign: 'center' }}>
+          <button
+            ref={launchBtnRef}
+            type="button"
+            onClick={openModal}
+            onMouseEnter={function () { setHoveredLaunch(true); }}
+            onMouseLeave={function () { setHoveredLaunch(false); }}
+            style={launchBtnStyle}
+          >
+            <span style={{ fontSize: '20px' }}>🚀</span>
+            <span>Find Your Integration Path</span>
+          </button>
+        </div>
+      )}
+
+      {modalOpen && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 99999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            background: 'rgba(15, 23, 42, 0.55)',
+            backdropFilter: 'blur(4px)',
+            padding: '16px'
+          }}
+          onClick={function (e) {
+            if (e.target === e.currentTarget) closeModal();
+          }}
+        >
+          <div
+            ref={modalRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="wizard-title"
+            style={{
+              position: 'relative',
+              width: '100%',
+              maxWidth: '680px',
+              maxHeight: '90vh',
+              background: '#fff',
+              borderRadius: '16px',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+              display: 'flex',
+              flexDirection: 'column',
+              overflow: 'hidden'
+            }}
+          >
+            <div
+              style={{
+                position: 'sticky',
+                top: 0,
+                zIndex: 1,
+                background: 'linear-gradient(135deg, #00A651 0%, #008f47 100%)',
+                color: '#fff',
+                padding: '20px 24px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                borderBottom: '1px solid rgba(255,255,255,0.1)'
+              }}
+            >
+              <h2 id="wizard-title" style={{ margin: 0, fontSize: '1.25rem', fontWeight: 700 }}>
+                Find Your Integration Path
+              </h2>
+              <button
+                onClick={closeModal}
+                type="button"
+                aria-label="Close dialog"
+                style={{
+                  background: 'transparent',
+                  border: 'none',
+                  color: '#fff',
+                  fontSize: '24px',
+                  cursor: 'pointer',
+                  padding: '4px',
+                  lineHeight: 1,
+                  opacity: 0.9,
+                  transition: 'opacity 0.2s'
+                }}
+                onMouseEnter={function (e) { e.currentTarget.style.opacity = '1'; }}
+                onMouseLeave={function (e) { e.currentTarget.style.opacity = '0.9'; }}
+              >
+                ×
+              </button>
+            </div>
+
+            <div
+              style={{
+                flex: 1,
+                overflowY: 'auto',
+                padding: '24px'
+              }}
+            >
+              {wizardBody}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
-
-<PayUQuickStartWizard />
