@@ -1,0 +1,609 @@
+---
+name: PayUQuickStartWizard
+---
+---
+name: PayUQuickStartWizard
+---
+// PayUQuickStartWizard - ReadMe CMS Custom Component
+// Single-component recommendation flow for PayU Quick Start Guide
+// Replaces PayUIntegrationPathRecommender with simplified question tree
+// Doc page: <PayUQuickStartWizard />
+
+import { useState, useRef, useEffect } from 'react';
+
+export const PayUQuickStartWizard = function PayUQuickStartWizard() {
+  // PRODUCT_DATA_INLINE_START
+  var _products = JSON.parse("{\"payment_links\":{\"key\":\"payment_links\",\"name\":\"Payment Links\",\"category\":\"No-code solution\",\"description\":\"Share payment links via SMS, email, WhatsApp, or social media. Customers click the link and pay online — no website needed.\",\"prerequisites\":[\"A registered PayU merchant account\",\"Payment Links enabled on your account (contact your Key Account Manager if not already enabled)\"],\"docsUrl\":\"https://docs.payu.in/collect-payments/introduction-no-code-payments-integration/payment-links-dashboard\",\"webhooksUrl\":\"https://docs.payu.in/developer-tools/webhooks-consolidated\",\"paymentMethodsSummary\":\"UPI, cards, net banking, and wallets\"},\"upi_qr\":{\"key\":\"upi_qr\",\"name\":\"UPI QR Code\",\"category\":\"In-person payments\",\"description\":\"Display a QR code at your counter, shop, or kiosk. Customers scan and pay using any UPI app.\",\"prerequisites\":[\"A registered PayU merchant account\",\"In-person payment methods enabled on your account\"],\"docsUrl\":\"https://docs.payu.in/collect-payments/in-person-payments\",\"webhooksUrl\":\"https://docs.payu.in/developer-tools/webhooks-consolidated\",\"paymentMethodsSummary\":\"UPI payments via QR code\"},\"recurring_payments\":{\"key\":\"recurring_payments\",\"name\":\"Recurring Payments\",\"category\":\"Subscription billing\",\"description\":\"Set up automatic recurring charges for subscriptions, memberships, or installment payments. Customers authorize once; subsequent charges happen automatically.\",\"prerequisites\":[\"A registered PayU merchant account\",\"Recurring payments enabled on your account (contact your Key Account Manager)\",\"Choose an implementation method: API integration, Zion platform, or Dashboard bulk upload\"],\"docsUrl\":\"https://docs.payu.in/offerings/introduction-recurring-payments-integration\",\"webhooksUrl\":\"https://docs.payu.in/developer-tools/webhooks-consolidated\",\"paymentMethodsSummary\":\"cards, UPI, and net banking with standing instructions\"},\"split_settlement\":{\"key\":\"split_settlement\",\"name\":\"Server-to-Server / Split Settlement\",\"category\":\"Marketplace & platform\",\"description\":\"Split transaction amounts between multiple sellers or service providers automatically. Suitable for marketplaces, aggregators, and multi-vendor platforms.\",\"prerequisites\":[\"A registered PayU merchant account\",\"Split Settlement feature enabled on your account (contact your Key Account Manager)\",\"Technical integration capability — this path uses server-side APIs\"],\"docsUrl\":\"https://docs.payu.in/offerings/split-settlments\",\"webhooksUrl\":\"https://docs.payu.in/developer-tools/webhooks-consolidated\",\"paymentMethodsSummary\":\"all PayU-supported payment methods with automated distribution\"},\"hosted_checkout\":{\"key\":\"hosted_checkout\",\"name\":\"PayU Hosted Checkout\",\"category\":\"Web checkout\",\"description\":\"Redirect customers to a secure PayU-hosted payment page. PayU handles the payment interface; you control the checkout flow from your website.\",\"prerequisites\":[\"A registered PayU merchant account\",\"Your Merchant Key and Salt (available in the PayU Dashboard under Payment Gateway → Web Integration → Key Salt Details)\",\"A website or web application where customers initiate checkout\"],\"docsUrl\":\"https://docs.payu.in/collect-payments/introduction-web/prebuilt-checkout-payu-hosted\",\"webhooksUrl\":\"https://docs.payu.in/developer-tools/webhooks-consolidated\",\"paymentMethodsSummary\":\"UPI, cards, net banking, and wallets\"},\"merchant_hosted\":{\"key\":\"merchant_hosted\",\"name\":\"Merchant Hosted Checkout\",\"category\":\"Web checkout\",\"description\":\"Build a payment page that matches your website's design exactly. You control the entire payment interface; PayU processes the payment in the background.\",\"prerequisites\":[\"A registered PayU merchant account\",\"Your Merchant Key and Salt (available in the PayU Dashboard)\",\"Technical capability to build a custom payment form and handle API requests\",\"PCI-DSS compliance if you collect card details directly (or use PayU's tokenization to avoid this requirement)\"],\"docsUrl\":\"https://docs.payu.in/collect-payments/introduction-web/custom-checkout-merchant-hosted\",\"webhooksUrl\":\"https://docs.payu.in/developer-tools/webhooks-consolidated\",\"paymentMethodsSummary\":\"UPI, cards, net banking, and wallets\"},\"plugin_shopify\":{\"key\":\"plugin_shopify\",\"name\":\"Shopify Plugin\",\"category\":\"eCommerce plugin\",\"description\":\"Install the PayU payment gateway on your Shopify store. No coding required — configure it directly in Shopify's admin panel.\",\"prerequisites\":[\"A registered PayU merchant account\",\"An active Shopify store\",\"Your PayU Merchant Key and Salt\"],\"docsUrl\":\"https://docs.payu.in/collect-payments/ecommerce-platform-plugins/shopify\",\"webhooksUrl\":\"https://docs.payu.in/developer-tools/webhooks-consolidated\",\"paymentMethodsSummary\":\"UPI, cards, net banking, and wallets\"},\"plugin_woocommerce\":{\"key\":\"plugin_woocommerce\",\"name\":\"WooCommerce Plugin\",\"category\":\"eCommerce plugin\",\"description\":\"Install the PayU plugin on your WooCommerce-powered WordPress site. Download, install, and configure from your WordPress admin panel.\",\"prerequisites\":[\"A registered PayU merchant account\",\"A WordPress site with WooCommerce installed\",\"Your PayU Merchant Key and Salt\"],\"docsUrl\":\"https://docs.payu.in/collect-payments/ecommerce-platform-plugins/woocommerce\",\"webhooksUrl\":\"https://docs.payu.in/developer-tools/webhooks-consolidated\",\"paymentMethodsSummary\":\"UPI, cards, net banking, and wallets\"},\"plugin_magento\":{\"key\":\"plugin_magento\",\"name\":\"Magento Plugin\",\"category\":\"eCommerce plugin\",\"description\":\"Install the PayU extension on your Magento store. Configure payment settings directly from the Magento admin panel.\",\"prerequisites\":[\"A registered PayU merchant account\",\"A Magento store (Magento 2.x or compatible version)\",\"Your PayU Merchant Key and Salt\"],\"docsUrl\":\"https://docs.payu.in/collect-payments/ecommerce-platform-plugins/magento\",\"webhooksUrl\":\"https://docs.payu.in/developer-tools/webhooks-consolidated\",\"paymentMethodsSummary\":\"UPI, cards, net banking, and wallets\"},\"plugin_other\":{\"key\":\"plugin_other\",\"name\":\"Other Platform Plugin\",\"category\":\"eCommerce plugin\",\"description\":\"PayU supports plugins for Wix, BigCommerce, OpenCart, PrestaShop, and other platforms. Find your platform's integration guide.\",\"prerequisites\":[\"A registered PayU merchant account\",\"An active store on a supported eCommerce platform\",\"Your PayU Merchant Key and Salt\"],\"docsUrl\":\"https://docs.payu.in/collect-payments/ecommerce-platform-plugins\",\"webhooksUrl\":\"https://docs.payu.in/developer-tools/webhooks-consolidated\",\"paymentMethodsSummary\":\"UPI, cards, net banking, and wallets\"}}");
+  // PRODUCT_DATA_INLINE_END
+
+  var products = _products;
+
+  var _state = useState('Q1');
+  var currentQuestion = _state[0];
+  var setCurrentQuestion = _state[1];
+
+  var _answers = useState({});
+  var answers = _answers[0];
+  var setAnswers = _answers[1];
+
+  var _result = useState(null);
+  var result = _result[0];
+  var setResult = _result[1];
+
+  var _activePanel = useState('myself');
+  var activePanel = _activePanel[0];
+  var setActivePanel = _activePanel[1];
+
+  var _showStep2 = useState(false);
+  var showStep2 = _showStep2[0];
+  var setShowStep2 = _showStep2[1];
+
+  var mainContentRef = useRef(null);
+
+  useEffect(function() {
+    if (mainContentRef.current) {
+      mainContentRef.current.focus();
+    }
+  }, [currentQuestion, result]);
+
+  function handleAnswer(questionKey, answerKey) {
+    var newAnswers = Object.assign({}, answers);
+    newAnswers[questionKey] = answerKey;
+    setAnswers(newAnswers);
+
+    if (questionKey === 'Q1') {
+      if (answerKey === 'website') {
+        setCurrentQuestion('Q2');
+      } else if (answerKey === 'payment_link') {
+        showResult('payment_links', newAnswers);
+      } else if (answerKey === 'in_person') {
+        showResult('upi_qr', newAnswers);
+      } else if (answerKey === 'recurring') {
+        showResult('recurring_payments', newAnswers);
+      } else if (answerKey === 'platform') {
+        showResult('split_settlement', newAnswers);
+      } else if (answerKey === 'not_sure') {
+        setCurrentQuestion('Q1_fallback');
+      }
+    } else if (questionKey === 'Q1_fallback') {
+      if (answerKey === 'website') {
+        setCurrentQuestion('Q2');
+      } else if (answerKey === 'social' || answerKey === 'nothing') {
+        showResult('payment_links', newAnswers);
+      } else if (answerKey === 'in_person') {
+        showResult('upi_qr', newAnswers);
+      } else if (answerKey === 'still_unsure') {
+        window.open('https://docs.payu.in/', '_blank');
+      }
+    } else if (questionKey === 'Q2') {
+      if (answerKey === 'platform') {
+        setCurrentQuestion('Q2_platform');
+      } else if (answerKey === 'custom') {
+        setCurrentQuestion('Q3');
+      } else if (answerKey === 'no_website') {
+        showResult('payment_links', newAnswers);
+      }
+    } else if (questionKey === 'Q2_platform') {
+      var pluginMap = {
+        shopify: 'plugin_shopify',
+        woocommerce: 'plugin_woocommerce',
+        magento: 'plugin_magento',
+        other: 'plugin_other'
+      };
+      showResult(pluginMap[answerKey] || 'plugin_other', newAnswers);
+    } else if (questionKey === 'Q3') {
+      if (answerKey === 'simple' || answerKey === 'not_sure') {
+        showResult('hosted_checkout', newAnswers);
+      } else if (answerKey === 'exact_match') {
+        showResult('merchant_hosted', newAnswers);
+      }
+    }
+  }
+
+  function showResult(productKey, currentAnswers) {
+    var product = products[productKey];
+    if (product) {
+      setResult({ product: product, answers: currentAnswers });
+    }
+  }
+
+  function changeAnswers() {
+    if (!result) return;
+
+    var productKey = result.product.key;
+
+    if (productKey.indexOf('plugin_') === 0) {
+      setCurrentQuestion('Q2');
+      setResult(null);
+      setShowStep2(false);
+      return;
+    }
+
+    if (productKey === 'hosted_checkout' || productKey === 'merchant_hosted') {
+      setCurrentQuestion('Q3');
+      setResult(null);
+      setShowStep2(false);
+      return;
+    }
+
+    setCurrentQuestion('Q1');
+    setResult(null);
+    setShowStep2(false);
+  }
+
+  function buildAIPrompt(product, step) {
+    var context = answers.Q2 === 'custom' || answers.Q2 === 'platform' ? 'website' : 'business';
+
+    if (step === 1) {
+      var productActionMap = {
+        payment_links: 'Create a payment link with the required amount and customer details.',
+        upi_qr: 'Generate a static or dynamic QR code for in-person payments.',
+        recurring_payments: 'Create a mandate or standing instruction for recurring charges.',
+        split_settlement: 'Create a payment request with split configuration for multiple parties.',
+        hosted_checkout: 'Redirect the customer to the PayU Hosted Checkout URL with the signed payload.',
+        merchant_hosted: 'Submit the payment request to PayU and handle the response inline or via redirect.',
+        plugin_shopify: 'Configure the PayU plugin settings in the Shopify admin panel.',
+        plugin_woocommerce: 'Install and configure the PayU plugin in WordPress admin.',
+        plugin_magento: 'Install the PayU extension and configure payment settings in Magento admin.',
+        plugin_other: 'Follow your platform\'s plugin installation and configuration guide.'
+      };
+
+      var productAction = productActionMap[product.key] || 'Complete the integration as specified in the documentation.';
+
+      return 'I\'m integrating ' + product.name + ' into my ' + context + ' to accept ' + product.paymentMethodsSummary + '.\n\nHere is the official PayU documentation — treat it as the only source of truth. Do not invent or guess at endpoints, parameters, hashing logic, credentials, security requirements, or response fields that are not explicitly written in this documentation. If something I ask isn\'t covered there, tell me it isn\'t covered instead of guessing.\n\nDocumentation: ' + product.docsUrl + '\n\nDo this in two steps:\n\nSTEP 1 — Core integration\n1. Generate a signed payment request using a Merchant Key and Salt (I will provide these separately — never hardcode them in code you write for me).\n2. Build the request with the required fields exactly as specified in the documentation above.\n3. Generate the request hash using the exact algorithm in the documentation.\n4. ' + productAction + '\n\nAsk me for my tech stack (language/framework) before writing code, and ask me anything else you need that isn\'t in the documentation rather than assuming it.\n\nOnce Step 1 works, I\'ll come back with Step 2 for handling PayU\'s response.';
+    } else if (step === 2) {
+      return 'Now that the core integration works, handle PayU\'s response:\n\nSTEP 2 — Response and webhook handling\n1. Set up a server endpoint to receive PayU\'s callback (webhook) after payment completion.\n2. Validate the hash in the response to confirm it\'s from PayU and hasn\'t been tampered with.\n3. Update your order or transaction status based on the payment result.\n4. Handle success, failure, and pending states appropriately for your ' + context + '.\n\nRefer to PayU\'s webhook documentation: ' + product.webhooksUrl + '\n\nFollow the same rule: use only what\'s in the documentation. If unclear, ask instead of guessing.';
+    }
+  }
+
+  function renderWhyText(product, userAnswers) {
+    var Q1 = userAnswers.Q1;
+    var Q2 = userAnswers.Q2;
+    var Q3 = userAnswers.Q3;
+
+    if (product.key === 'payment_links') {
+      if (Q2 === 'no_website') {
+        return 'You wanted to accept payments but don\'t have a website yet. Payment Links let you start collecting money now by sharing a link via SMS, email, or WhatsApp — no website required. You can build your site later.';
+      }
+      return 'You wanted to send payment links without needing a website. Payment Links let you share a secure payment URL with customers via any channel — SMS, email, WhatsApp, social media — and they can pay directly from the link.';
+    }
+
+    if (product.key === 'upi_qr') {
+      return 'You wanted to accept payments in person at your shop, counter, or kiosk. UPI QR codes let customers scan and pay instantly using any UPI app on their phone.';
+    }
+
+    if (product.key === 'recurring_payments') {
+      return 'You wanted to set up recurring or subscription billing. PayU Recurring Payments let customers authorize once, and subsequent charges happen automatically on the schedule you define.';
+    }
+
+    if (product.key === 'split_settlement') {
+      return 'You run a platform or marketplace where multiple sellers get paid. Split Settlements automatically divide transaction amounts between your platform and sellers, with configurable commission structures.';
+    }
+
+    if (product.key === 'hosted_checkout') {
+      if (Q3 === 'not_sure') {
+        return 'You have a custom-built website and weren\'t sure about the payment page design. PayU Hosted Checkout is the recommended starting point — it\'s a secure, pre-built payment page that works immediately. You can add full design control later if needed.';
+      }
+      return 'You wanted a website checkout without needing the payment page to match your site design exactly. PayU Hosted Checkout provides a secure, pre-built payment page so you can start accepting payments quickly.';
+    }
+
+    if (product.key === 'merchant_hosted') {
+      return 'You wanted a website checkout where the payment page matches your site design exactly. Merchant Hosted Checkout gives you full control over the payment interface while PayU handles the payment processing in the background.';
+    }
+
+    if (product.key.indexOf('plugin_') === 0) {
+      var platformNames = {
+        plugin_shopify: 'Shopify',
+        plugin_woocommerce: 'WooCommerce',
+        plugin_magento: 'Magento',
+        plugin_other: 'your eCommerce platform'
+      };
+      var platform = platformNames[product.key] || 'your platform';
+      return 'Your website is on ' + platform + '. The PayU plugin integrates directly with ' + platform + ' — no custom coding required. Install it from your platform\'s admin panel and configure your payment settings.';
+    }
+
+    return 'Based on your answers, ' + product.name + ' is the best fit for your use case.';
+  }
+
+  function getQ1AnswerText(userAnswers) {
+    var Q1 = userAnswers.Q1;
+    var Q1_fallback = userAnswers.Q1_fallback;
+
+    var q1Map = {
+      website: 'Accept payments on a website',
+      payment_link: 'Send payment links without a website',
+      in_person: 'Accept payments in person',
+      recurring: 'Set up recurring or subscription billing',
+      platform: 'Run a platform where multiple sellers get paid'
+    };
+
+    var fallbackMap = {
+      website: 'Accept payments on a website',
+      social: 'Accept payments via social media or messaging',
+      in_person: 'Accept payments in person',
+      nothing: 'Start accepting payments (no current setup)'
+    };
+
+    return q1Map[Q1] || fallbackMap[Q1_fallback] || 'Accept payments';
+  }
+
+  function getProgressValue() {
+    if (currentQuestion === 'Q1' || currentQuestion === 'Q1_fallback') return 1;
+    if (currentQuestion === 'Q2' || currentQuestion === 'Q2_platform') return 2;
+    if (currentQuestion === 'Q3') return 3;
+    return 1;
+  }
+
+  function copyToClipboard(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function() {
+        alert('Copied to clipboard!');
+      }).catch(function() {
+        fallbackCopy(text);
+      });
+    } else {
+      fallbackCopy(text);
+    }
+  }
+
+  function fallbackCopy(text) {
+    var textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+      document.execCommand('copy');
+      alert('Copied to clipboard!');
+    } catch (err) {
+      alert('Could not copy to clipboard');
+    }
+    document.body.removeChild(textArea);
+  }
+
+  var shellStyle = {
+    maxWidth: '800px',
+    margin: '0 auto',
+    padding: '20px',
+    fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, sans-serif'
+  };
+
+  var buttonStyle = {
+    padding: '12px 20px',
+    fontSize: '16px',
+    backgroundColor: '#0066cc',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    textAlign: 'left',
+    transition: 'background-color 0.2s',
+    width: '100%',
+    marginBottom: '12px'
+  };
+
+  var tabButtonStyle = {
+    padding: '10px 16px',
+    fontSize: '14px',
+    backgroundColor: '#f0f0f0',
+    color: '#333',
+    border: '1px solid #ccc',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    transition: 'all 0.2s'
+  };
+
+  var activeTabStyle = {
+    backgroundColor: '#0066cc',
+    color: '#fff',
+    borderColor: '#0066cc'
+  };
+
+  var panelContainerStyle = {
+    border: '1px solid #ddd',
+    borderRadius: '4px',
+    padding: '20px',
+    backgroundColor: '#fafafa',
+    minHeight: '200px'
+  };
+
+  var panelContentStyle = {
+    fontSize: '14px',
+    lineHeight: '1.6'
+  };
+
+  if (!result) {
+    var questionData = null;
+    var questionTitle = '';
+    var questionOptions = [];
+
+    if (currentQuestion === 'Q1') {
+      questionTitle = 'What do you want to do?';
+      questionOptions = [
+        { id: 'website', label: 'Accept payments on a website' },
+        { id: 'payment_link', label: 'Send a payment link — no website needed' },
+        { id: 'in_person', label: 'Accept payments in person' },
+        { id: 'recurring', label: 'Set up recurring or subscription billing' },
+        { id: 'platform', label: 'I run a platform where multiple sellers get paid' },
+        { id: 'not_sure', label: 'Not sure' }
+      ];
+    } else if (currentQuestion === 'Q1_fallback') {
+      questionTitle = 'What are you using today to sell?';
+      questionOptions = [
+        { id: 'website', label: 'A website' },
+        { id: 'social', label: 'Social media or messaging' },
+        { id: 'in_person', label: 'In person' },
+        { id: 'nothing', label: 'Nothing yet' },
+        { id: 'still_unsure', label: 'Just describe your business to Ask AI' }
+      ];
+    } else if (currentQuestion === 'Q2') {
+      questionTitle = 'Is your website on a platform like Shopify or WooCommerce, or is it custom-built?';
+      questionOptions = [
+        { id: 'platform', label: 'It\'s on a store platform (Shopify, WooCommerce, Magento, etc.)' },
+        { id: 'custom', label: 'It\'s custom-built / coded' },
+        { id: 'no_website', label: 'I don\'t have a website yet' }
+      ];
+    } else if (currentQuestion === 'Q2_platform') {
+      questionTitle = 'Which platform?';
+      questionOptions = [
+        { id: 'shopify', label: 'Shopify' },
+        { id: 'woocommerce', label: 'WooCommerce' },
+        { id: 'magento', label: 'Magento' },
+        { id: 'other', label: 'Something else' }
+      ];
+    } else if (currentQuestion === 'Q3') {
+      questionTitle = 'Does the payment page need to look exactly like the rest of your website, or is a simple, secure PayU page fine?';
+      questionOptions = [
+        { id: 'simple', label: 'A simple, secure PayU page is fine' },
+        { id: 'exact_match', label: 'It needs to match my website exactly' },
+        { id: 'not_sure', label: 'Not sure' }
+      ];
+    }
+
+    return (
+      <div style={shellStyle}>
+        <div ref={mainContentRef} tabIndex={-1} role="region" aria-live="polite">
+          <h2 style={{ fontSize: '24px', marginBottom: '8px' }}>{questionTitle}</h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '16px' }}>
+            {questionOptions.map(function(opt) {
+              return (
+                <button
+                  key={opt.id}
+                  onClick={function() { handleAnswer(currentQuestion, opt.id); }}
+                  style={buttonStyle}
+                  type="button"
+                >
+                  {opt.label}
+                </button>
+              );
+            })}
+          </div>
+          {currentQuestion === 'Q3' && answers.Q3 === 'not_sure' && (
+            <p style={{ marginTop: '16px', fontSize: '14px', color: '#666' }}>
+              Most merchants start with a simple, secure PayU page — you can add full design control later.
+            </p>
+          )}
+        </div>
+        <div role="progressbar" aria-valuenow={getProgressValue()} aria-valuemin={0} aria-valuemax={3} style={{ marginTop: '24px', fontSize: '14px', color: '#666', textAlign: 'center' }}>
+          Step {getProgressValue()} of up to 3
+        </div>
+      </div>
+    );
+  }
+
+  var product = result.product;
+  var whyText = renderWhyText(product, result.answers);
+
+  return (
+    <div style={shellStyle}>
+      <div ref={mainContentRef} tabIndex={-1} role="region" aria-live="polite">
+        <h2 style={{ fontSize: '28px', marginBottom: '4px' }}>Your recommended setup</h2>
+        <h3 style={{ fontSize: '24px', fontWeight: '600', marginTop: '8px', marginBottom: '16px' }}>
+          {product.name}
+        </h3>
+
+        <section style={{ marginBottom: '24px' }}>
+          <h4 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '8px' }}>Why</h4>
+          <p style={{ lineHeight: '1.6' }}>{whyText}</p>
+        </section>
+
+        <section style={{ marginBottom: '24px' }}>
+          <h4 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '8px' }}>What you'll need</h4>
+          <ul style={{ lineHeight: '1.8', paddingLeft: '20px' }}>
+            {product.prerequisites.map(function(prereq, index) {
+              return <li key={index}>{prereq}</li>;
+            })}
+          </ul>
+        </section>
+
+        <section style={{ marginBottom: '24px' }}>
+          <h4 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '12px' }}>How do you want to proceed?</h4>
+
+          <div style={{ display: 'flex', gap: '12px', marginBottom: '16px', flexWrap: 'wrap' }}>
+            <button
+              onClick={function() { setActivePanel('myself'); setShowStep2(false); }}
+              style={Object.assign({}, tabButtonStyle, activePanel === 'myself' ? activeTabStyle : {})}
+              type="button"
+            >
+              I'll do it myself
+            </button>
+            <button
+              onClick={function() { setActivePanel('developer'); setShowStep2(false); }}
+              style={Object.assign({}, tabButtonStyle, activePanel === 'developer' ? activeTabStyle : {})}
+              type="button"
+            >
+              I have a developer
+            </button>
+            <button
+              onClick={function() { setActivePanel('ai'); setShowStep2(false); }}
+              style={Object.assign({}, tabButtonStyle, activePanel === 'ai' ? activeTabStyle : {})}
+              type="button"
+            >
+              I'll use AI to build it
+            </button>
+          </div>
+
+          <div style={panelContainerStyle}>
+            {activePanel === 'myself' && (
+              <div style={panelContentStyle}>
+                <h5 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '12px' }}>Getting started</h5>
+                <p style={{ lineHeight: '1.6', marginBottom: '16px' }}>{product.description}</p>
+
+                <h5 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '12px', marginTop: '20px' }}>Next steps</h5>
+                <ol style={{ lineHeight: '1.8', paddingLeft: '20px', marginBottom: '16px' }}>
+                  {product.prerequisites.map(function(prereq, index) {
+                    return <li key={index}>{prereq}</li>;
+                  })}
+                </ol>
+
+                <p style={{ lineHeight: '1.6', marginTop: '16px' }}>
+                  For detailed instructions, see the{' '}
+                  <a href={product.docsUrl} target="_blank" rel="noopener noreferrer" style={{ color: '#0066cc', textDecoration: 'underline' }}>
+                    technical guide for {product.name}
+                  </a>.
+                </p>
+              </div>
+            )}
+
+            {activePanel === 'developer' && (
+              <div style={panelContentStyle}>
+                <h5 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '12px' }}>Share this with your developer</h5>
+                <div style={{ backgroundColor: '#f9f9f9', padding: '16px', borderRadius: '4px', fontSize: '14px', fontFamily: 'monospace', lineHeight: '1.8' }}>
+                  <p><strong>What I want to achieve:</strong> {getQ1AnswerText(result.answers)}</p>
+                  {(result.answers.Q2 || result.answers.Q3) && (
+                    <p><strong>Where I want to accept payments:</strong> {result.answers.Q2 === 'custom' || result.answers.Q2 === 'platform' ? 'On my website' : 'For my business'}</p>
+                  )}
+                  <p><strong>Recommended PayU solution:</strong> {product.name}</p>
+                  <p><strong>What's needed before starting:</strong></p>
+                  <ul style={{ paddingLeft: '20px', marginTop: '8px', marginBottom: '8px' }}>
+                    {product.prerequisites.map(function(prereq, index) {
+                      return <li key={index}>{prereq}</li>;
+                    })}
+                  </ul>
+                  <p><strong>Technical guide:</strong> <a href={product.docsUrl} target="_blank" rel="noopener noreferrer" style={{ color: '#0066cc' }}>{product.docsUrl}</a></p>
+                </div>
+
+                <div style={{ backgroundColor: '#fff3cd', border: '1px solid #ffc107', padding: '12px', borderRadius: '4px', marginTop: '16px', fontSize: '14px' }}>
+                  <p style={{ fontWeight: '600', marginBottom: '8px' }}>⚠️ [REQUIRES SECURITY/ENGINEERING VALIDATION]</p>
+                  <p style={{ lineHeight: '1.6', margin: 0 }}>
+                    This section will explain how a developer who isn't the account owner gets access to credentials, once PayU confirms the approved process.
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {activePanel === 'ai' && (
+              <div style={panelContentStyle}>
+                <h5 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '12px' }}>Copy this prompt to your AI assistant</h5>
+                <p style={{ lineHeight: '1.6', marginBottom: '16px', fontSize: '14px' }}>
+                  Use this with Claude, ChatGPT, or another AI coding assistant. Copy the entire prompt below and paste it into your conversation.
+                </p>
+
+                <div style={{ position: 'relative' }}>
+                  <pre style={{
+                    backgroundColor: '#f5f5f5',
+                    padding: '16px',
+                    borderRadius: '4px',
+                    fontSize: '13px',
+                    lineHeight: '1.6',
+                    overflowX: 'auto',
+                    whiteSpace: 'pre-wrap',
+                    wordWrap: 'break-word',
+                    border: '1px solid #ddd'
+                  }}>
+                    {buildAIPrompt(product, 1)}
+                  </pre>
+                  <button
+                    onClick={function() { copyToClipboard(buildAIPrompt(product, 1)); }}
+                    style={{
+                      position: 'absolute',
+                      top: '8px',
+                      right: '8px',
+                      padding: '6px 12px',
+                      fontSize: '12px',
+                      backgroundColor: '#fff',
+                      border: '1px solid #ccc',
+                      borderRadius: '4px',
+                      cursor: 'pointer'
+                    }}
+                    type="button"
+                  >
+                    Copy
+                  </button>
+                </div>
+
+                {!showStep2 && (
+                  <button
+                    onClick={function() { setShowStep2(true); }}
+                    style={Object.assign({}, buttonStyle, { marginTop: '16px', width: 'auto' })}
+                    type="button"
+                  >
+                    Get the next prompt (Step 2)
+                  </button>
+                )}
+
+                {showStep2 && (
+                  <div style={{ marginTop: '24px' }}>
+                    <h5 style={{ fontSize: '16px', fontWeight: '600', marginBottom: '12px' }}>Step 2: Handle the response</h5>
+                    <p style={{ lineHeight: '1.6', marginBottom: '16px', fontSize: '14px' }}>
+                      Once Step 1 works and you can initiate payments, use this prompt to handle PayU's response and webhooks.
+                    </p>
+                    <div style={{ position: 'relative' }}>
+                      <pre style={{
+                        backgroundColor: '#f5f5f5',
+                        padding: '16px',
+                        borderRadius: '4px',
+                        fontSize: '13px',
+                        lineHeight: '1.6',
+                        overflowX: 'auto',
+                        whiteSpace: 'pre-wrap',
+                        wordWrap: 'break-word',
+                        border: '1px solid #ddd'
+                      }}>
+                        {buildAIPrompt(product, 2)}
+                      </pre>
+                      <button
+                        onClick={function() { copyToClipboard(buildAIPrompt(product, 2)); }}
+                        style={{
+                          position: 'absolute',
+                          top: '8px',
+                          right: '8px',
+                          padding: '6px 12px',
+                          fontSize: '12px',
+                          backgroundColor: '#fff',
+                          border: '1px solid #ccc',
+                          borderRadius: '4px',
+                          cursor: 'pointer'
+                        }}
+                        type="button"
+                      >
+                        Copy
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </section>
+
+        <details style={{ marginTop: '24px', marginBottom: '16px' }}>
+          <summary style={{ cursor: 'pointer', fontWeight: '600', fontSize: '14px' }}>
+            Why this recommendation?
+          </summary>
+          <p style={{ marginTop: '12px', lineHeight: '1.6', fontSize: '14px', color: '#555' }}>
+            {whyText} This recommendation is based on your answers about what you're trying to achieve and where you want to accept payments.
+          </p>
+        </details>
+
+        <button onClick={changeAnswers} style={Object.assign({}, buttonStyle, { backgroundColor: '#f0f0f0', color: '#333', width: 'auto' })} type="button">
+          Change my answers
+        </button>
+      </div>
+    </div>
+  );
+};
+
+<PayUQuickStartWizard />
