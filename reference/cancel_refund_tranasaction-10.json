@@ -18,8 +18,8 @@
         "tags": [
           "Misc"
         ],
-        "summary": "cancel_refund_transaction",
-        "description": "",
+        "summary": "Refund Transaction API",
+        "description": "Initiate full or partial refunds for captured transactions or cancel authorized transactions.",
         "operationId": "cancel_refund_transaction",
         "parameters": [
           {
