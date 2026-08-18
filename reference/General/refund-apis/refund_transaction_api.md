@@ -161,7 +161,7 @@ In this API:
   --form 'var2="test15"' \
   --form 'var3="0.10"' \
   --form 'hash=""' \
-  --form 'var8="{\"amount\": 100,\"aggregatorRefundAmount\": 40 }"
+  --form 'var8="{"childMerchantKey1":{"amount":100,"aggregatorRefundAmount":40},"childMerchantKey2":{"amount":20,"aggregatorRefundAmount":0}}"
   ```
   ```python
   import requests
