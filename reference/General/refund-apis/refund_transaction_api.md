@@ -185,7 +185,6 @@ In this API:
   response = requests.post(url, headers=headers, data=data)
   print(response.text)
   ```
-
   ```javascript
   const axios = require('axios');
   const FormData = require('form-data');
@@ -208,7 +207,6 @@ In this API:
   .then(response => console.log(response.data))
   .catch(error => console.error(error));
   ```
-
   ```php
   <?php
   $curl = curl_init();
@@ -235,7 +233,6 @@ In this API:
   echo $response;
   ?>
   ```
-
   ```java
   import java.io.*;
   import java.net.http.*;
@@ -259,7 +256,7 @@ In this API:
               "--" + boundary + "\r\n" +
               "Content-Disposition: form-data; name=\"hash\"\r\n\r\n\r\n" +
               "--" + boundary + "\r\n" +
-              "Content-Disposition: form-data; name=\"var8\"\r\n\r\n{\"amount\": 100,\"aggregatorRefundAmount\": 40 }\r\n" +
+              "Content-Disposition: form-data; name=\"var8\"\r\n\r\n{\"childMerchantKey1\":{\"amount\":100,\"aggregatorRefundAmount\":40},\"childMerchantKey2\":{\"amount\":20,\"aggregatorRefundAmount\":0}}\r\n" +
               "--" + boundary + "--\r\n";
           
           HttpRequest request = HttpRequest.newBuilder()
@@ -274,71 +271,6 @@ In this API:
       }
   }
   ```
-
-  ```ruby
-  require 'net/http'
-  require 'uri'
-
-  uri = URI.parse("https://info.payu.in/merchant/postservice.php?form=2")
-  request = Net::HTTP::Post.new(uri)
-  request["Cookie"] = "PHPSESSID=7nv3d144qeh7g102p3uau1o6pm"
-
-  request.set_form({
-    "key" => "smsplus",
-    "command" => "cancel_refund_transaction",
-    "var1" => "24523622342",
-    "var2" => "test15",
-    "var3" => "0.10",
-    "hash" => "",
-    "var8" => '{"childMerchantKey1":{"amount":100,"aggregatorRefundAmount":40},"childMerchantKey2":{"amount":20,"aggregatorRefundAmount":0}}'
-  }, 'multipart/form-data')
-
-  response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
-    http.request(request)
-  end
-
-  puts response.body
-  ```
-
-  ```go
-  package main
-
-  import (
-      "bytes"
-      "fmt"
-      "io"
-      "mime/multipart"
-      "net/http"
-  )
-
-  func main() {
-      url := "https://info.payu.in/merchant/postservice.php?form=2"
-      
-      body := &bytes.Buffer{}
-      writer := multipart.NewWriter(body)
-      
-      writer.WriteField("key", "smsplus")
-      writer.WriteField("command", "cancel_refund_transaction")
-      writer.WriteField("var1", "24523622342")
-      writer.WriteField("var2", "test15")
-      writer.WriteField("var3", "0.10")
-      writer.WriteField("hash", "")
-      writer.WriteField("var8", `{"childMerchantKey1":{"amount":100,"aggregatorRefundAmount":40},"childMerchantKey2":{"amount":20,"aggregatorRefundAmount":0}}`)
-      writer.Close()
-      
-      req, _ := http.NewRequest("POST", url, body)
-      req.Header.Set("Content-Type", writer.FormDataContentType())
-      req.Header.Set("Cookie", "PHPSESSID=7nv3d144qeh7g102p3uau1o6pm")
-      
-      client := &http.Client{}
-      resp, _ := client.Do(req)
-      defer resp.Body.Close()
-      
-      responseBody, _ := io.ReadAll(resp.Body)
-      fmt.Println(string(responseBody))
-  }
-  ```
-
   ```csharp
   using System;
   using System.Net.Http;
@@ -358,7 +290,7 @@ In this API:
           content.Add(new StringContent("test15"), "var2");
           content.Add(new StringContent("0.10"), "var3");
           content.Add(new StringContent(""), "hash");
-          content.Add(new StringContent("{\"amount\": 100,\"aggregatorRefundAmount\": 40 }"), "var8");
+          content.Add(new StringContent("{\"childMerchantKey1\":{\"amount\":100,\"aggregatorRefundAmount\":40},\"childMerchantKey2\":{\"amount\":20,\"aggregatorRefundAmount\":0}}"), "var8");
           
           client.DefaultRequestHeaders.Add("Cookie", "PHPSESSID=7nv3d144qeh7g102p3uau1o6pm");
           
@@ -369,8 +301,6 @@ In this API:
       }
   }
   ```
-
-  Each example replicates the same multipart form-data POST request with the split information JSON in the `var8` field 🚀
 </Accordion>
 
 <Accordion title="Sample response" icon="fa-reply">
