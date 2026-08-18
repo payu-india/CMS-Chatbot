@@ -56,7 +56,19 @@ To create a plan:
 
 ### Field Validation
 
-<br />
+These are the plan creation field validations.
+
+| Field                              | Mandatory/Optional                     | Validation / Allowed Values                                                                                                                    |
+| ---------------------------------- | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Plan ID** (`merchantPlanId`)     | Optional                               | 32 (Should be unique. Cannot be changed after plan creation.)                                                                                  |
+| Plan Name                          | Mandatory                              | No Limit.                                                                                                                                      |
+| Description                        | Mandatory                              | 100 (Description of the plan)                                                                                                                  |
+| Plan Type (Billing Type)           | Mandatory                              | Allowed values: `RECURRING` and `ONE_TIME`                                                                                                     |
+| Currency                           | Mandatory                              | From allowed merchant currencies (e.g. INR, USD, EUR, GBP).                                                                                    |
+| Billing Amount (`autopayLimit`)    | Mandatory                              | No Limit. Digits with up to 2 decimals; min 1.<br /><br />**Note:** In case FreeTrial value = 1, amount needs to be Rs 2 for mandate creation. |
+| Upfront Amount                     | Mandatory (Except Enach)               | Same as Billing Amount format if provided (digits, up to 2 decimals; min 1). One-time registration amount.                                     |
+| Billing Cycle (`billingFrequency`) | Mandatory when Plan Type = RECURRING   | Allowed values: `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`. For ONE_TIME set to ADHOC.                                                             |
+| Billing Interval                   | Mandatory when Plan Type = `RECURRING` | Positive integer; minimum 1. (e.g. every 1 Month, every 3 Weeks.)                                                                              |
 
 ## Create Subscriptions for a Plan
 
