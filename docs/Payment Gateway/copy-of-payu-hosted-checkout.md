@@ -42,11 +42,16 @@ This is the simplest and fastest way to accept payments through a checkout flow 
 
 ## When Should You Use This?
 
-PayU Hosted Checkout is best when you want a straightforward, secure payment page and don't need it to match your website's design exactly. Most merchants start here because it gets you live quickly with minimal development effort.
+PayU Hosted Checkout is best when you want a straightforward, secure payment page and do not need it to match your website's design exactly. Most merchants start here because it gets you live quickly with minimal development effort.<br />
 
-If you need complete control over how the payment page looks and feels — where every element matches your site's brand precisely — see [Merchant Hosted Checkout](https://docs.payu.in/docs/custom-checkout-merchant-hosted) instead. That approach requires more development work but gives you exact design control.
+If you need complete control over how the payment page looks and feels — where every element matches your site's brand precisely — see [Merchant Hosted Checkout](https://docs.payu.in/docs/custom-checkout-merchant-hosted) instead. That approach requires more development work but gives you exact design control.<br />
 
-If you don't have a website yet, or you'd rather not deal with any technical setup at all, PayU also offers Pay Handle — a payment link you can send customers directly, with no integration required. See [Pay Handle](https://docs.payu.in/collect-payments/introduction-no-code-payments-integration/payment-links-dashboard) →
+<Callout icon="🟢" theme="info">
+  ### Other Easy Ways
+
+  - If you do not want a technical setup or you do not have a website yet, PayU also offers Pay Handle — a payment link you can send customers directly, with no integration required. See [Pay Handle](https://docs.payu.in/collect-payments/introduction-no-code-payments-integration/payment-links-dashboard) →
+  - If you are not sure which product to use, answer few simple questions to get recommended products.
+</Callout>
 
 ***
 
