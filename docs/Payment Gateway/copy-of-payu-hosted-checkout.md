@@ -23,7 +23,7 @@ This page helps you understand how **PayU Hosted Checkout** works before you beg
 <Callout icon="🟡" theme="info">
   ### Som&#x65;**&#x20;Technical Setup Required**
 
-  This product integration needs some technical setup. A developer can help, but many merchants manage this with guided steps.
+  You can follow the guided steps to set up Hosted Checkout. If you have a developer or technical team, you can share the integration guide with them.
 </Callout>
 
 ***
@@ -36,7 +36,7 @@ PayU Hosted Checkout is a payment integration method where:<br />
 - PayU handles the entire payment experience, including security and processing
 - After the payment is completed, customers are redirected back to your website
 
-This is the simplest and fastest way to accept payments through a checkout flow on your website.
+This is a simple way to accept online payments without building and hosting your own payment page.
 
 ***
 
