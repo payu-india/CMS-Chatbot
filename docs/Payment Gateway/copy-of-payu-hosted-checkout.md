@@ -42,6 +42,12 @@ This is a simple way to accept online payments without building and hosting your
 
 ## When Should You Use This?
 
+<Columns layout="fixed">
+  <Column>
+    Use PayU Hosted checkout if you are a business with a website or app and want PayU to host the payment page while they retain control of the surrounding checkout experience.
+  </Column>
+</Columns>
+
 PayU Hosted Checkout is best when you want a straightforward, secure payment page and do not need it to match your website's design exactly. It gets you live quickly with some development effort.<br />
 
 If you need complete control over how the payment page looks and feels — where every element matches your site's brand precisely — see [Merchant Hosted Checkout](https://docs.payu.in/docs/custom-checkout-merchant-hosted) instead. That approach requires more development work but gives you exact design control.<br />
@@ -111,7 +117,7 @@ You need:
 
 ## Supported Payment Methods
 
-PayU Hosted Checkout supports multiple payment methods commonly used in India:
+PayU Hosted Checkout supports multiple payment methods:
 
 - Credit Cards
 - Debit Cards
@@ -132,20 +138,29 @@ Once the payment is completed:
 - A payment response is sent with transaction details
 
 <Callout icon="⚠️" theme="warn">
-  ### **Important: Backend Verification**
+  ### **Important:**
 
-  Even after redirection:
-
-  - You should always verify the transaction on your backend by calling PayU's verification API or processing the webhook notification PayU sends to your server
-  - This ensures the payment status is authentic and prevents tampering — a customer could theoretically modify the redirect URL in their browser, but they can't fake the server-to-server verification call that only your backend can make
+  Don't treat the browser redirect alone as confirmation that a payment succeeded. Your integration should verify the payment status using PayU's server-side verification mechanism.
 </Callout>
+
+<Columns layout="fixed">
+  <Column>
+    **For Developers**
+
+    Learn how to verify payment status and handle webhooks in the technical integration guide.
+  </Column>
+</Columns>
 
 ***
 
-## Next Steps
+## Ready to integrate?
 
-Now that you understand how PayU Hosted Checkout works:
+**Start with Quick Start**
 
-- **Get started quickly:** Go to the [Quick Start Guide](https://docs.payu.in/docs/quick-start) for steps to test the integration.
+Follow the guided steps to set up and test your first payment.
 
-- **See the full technical guide:** When you or your developer are ready to build, refer to [Web Integration - PayU Hosted](https://docs.payu.in/docs/prebuilt-checkout-page-integration) for complete step-by-step instructions on credentials, API parameters, hash generation, code samples, testing, and going live. That guide contains all the technical detail and code needed to integrate PayU Hosted Checkout on your website.
+**Need technical implementation details?**
+
+If you are a developer or working with one, use the complete integration guide.
+
+<br />
