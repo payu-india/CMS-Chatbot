@@ -42,7 +42,7 @@ This is a simple way to accept online payments without building and hosting your
 
 ## When Should You Use This?
 
-PayU Hosted Checkout is best when you want a straightforward, secure payment page and do not need it to match your website's design exactly. Most merchants start here because it gets you live quickly with some development effort.<br />
+PayU Hosted Checkout is best when you want a straightforward, secure payment page and do not need it to match your website's design exactly. It gets you live quickly with some development effort.<br />
 
 If you need complete control over how the payment page looks and feels — where every element matches your site's brand precisely — see [Merchant Hosted Checkout](https://docs.payu.in/docs/custom-checkout-merchant-hosted) instead. That approach requires more development work but gives you exact design control.<br />
 
@@ -58,15 +58,15 @@ If you need complete control over how the payment page looks and feels — where
 ## What You Get
 
 <Accordion title="Key Benefits" icon="fa-rocket">
-  - **No PCI-DSS burden on you:** When a customer enters their card details on the PayU-hosted page, that sensitive payment data is handled entirely by PayU. PCI-DSS — the security standard that governs how card data must be stored, transmitted, and processed — is normally your responsibility to maintain; PayU Hosted Checkout takes that on for you, so you avoid the complexity and cost of certification.
+  - **Ready-to-use payment page:** PayU hosts the checkout experience, so you do not need to build your own payment page.
 
-  - **Multiple payment methods, one integration:** Accept payments via cards, UPI, netbanking, and wallets through a single integration, without building separate flows for each payment type. The PayU Checkout page automatically adapts to mobile screens and handles mobile payment intents (like UPI deep-linking on mobile web) without extra configuration on your side.
+  - **Multiple payment methods**: Accept cards, UPI, NetBanking and wallets through one integration.
 
-  - **Fast to launch, low ongoing engineering effort:** A ready-made checkout page hosted by PayU eliminates the need to build your own payment form, validation logic, or direct integrations with banks and payment providers. This requires far less development than building your own payment page, and PayU handles all of that infrastructure for you going forward.
+  - **Secure payment handling**: PayU handles sensitive payment information on the hosted payment page.
 
-  - **Manage payment methods without code:** When you want to enable or disable a payment option (like adding a new wallet or bank), you can do it from your PayU Dashboard without writing any code or redeploying your website — it's a configuration change, not a development task.
+  - **Customisation options**: Add your branding and configure supported payment options from the PayU Dashboard.
 
-  - **Branding and conversion features:** While PayU hosts the payment page, you can still align it with your brand using your logo, color scheme, and language preferences (several Indian languages are supported). The page also includes features like saved payment preferences for returning customers and intelligent payment method recommendations that help more customers complete their purchases.
+  - **Faster implementation:** Start with a ready-made checkout instead of building a payment experience from scratch.
 </Accordion>
 
 ***
@@ -80,6 +80,21 @@ Below diagram depicts the customer experience during a payment using PayU Hosted
 
 
 The following is the customer journey using cards as a payment method:
+
+1. Customer clicks **Pay Now**.
+2. Your website starts a payment with PayU.
+3. Customer is redirected to PayU's payment page.
+4. Customer selects a payment method and completes payment.
+5. PayU processes the payment.
+6. Customer returns to your website with the payment result.
+
+<Columns layout="fixed">
+  <Column>
+    **For Developers**
+
+    The integration sends a payment request to PayU and receives a payment response. See the \[technical integration guide] for request parameters, hash generation and response handling.
+  </Column>
+</Columns>
 
 <Accordion title="Step 1: Initiate Payment" icon="fa-shopping-cart">
   Customer clicks **Pay Now** on your website or app. This payment attempt is called a **transaction**, and it's tracked with a unique transaction ID so you can look it up later in your PayU Dashboard or retrieve its details via API.
