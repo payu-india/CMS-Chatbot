@@ -21,9 +21,9 @@ metadata:
 This page helps you understand how **PayU Hosted Checkout** works before you begin integration.
 
 <Callout icon="🟡" theme="info">
-  ### **Minimum Technical Setup Required**
+  ### Som&#x65;**&#x20;Technical Setup Required**
 
-  This product integration needs minimum technical setup. A developer can help, but many merchants manage this with guided steps.
+  This product integration needs Some technical setup. A developer can help, but many merchants manage this with guided steps.
 </Callout>
 
 ***
@@ -42,7 +42,7 @@ This is the simplest and fastest way to accept payments through a checkout flow 
 
 ## When Should You Use This?
 
-PayU Hosted Checkout is best when you want a straightforward, secure payment page and do not need it to match your website's design exactly. Most merchants start here because it gets you live quickly with minimal development effort.<br />
+PayU Hosted Checkout is best when you want a straightforward, secure payment page and do not need it to match your website's design exactly. Most merchants start here because it gets you live quickly with some development effort.<br />
 
 If you need complete control over how the payment page looks and feels — where every element matches your site's brand precisely — see [Merchant Hosted Checkout](https://docs.payu.in/docs/custom-checkout-merchant-hosted) instead. That approach requires more development work but gives you exact design control.<br />
 
