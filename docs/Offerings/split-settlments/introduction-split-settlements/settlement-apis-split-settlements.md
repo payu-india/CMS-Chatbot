@@ -4,7 +4,7 @@ excerpt: ''
 deprecated: false
 hidden: false
 link:
-  url: https://docs.payu.in/update/reference/settlement-details-1
+  url: https://docs.payu.in/reference/settlement-details-1
 metadata:
   title: ''
   description: ''
