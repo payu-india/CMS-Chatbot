@@ -214,6 +214,7 @@ hmac username="<merchant_key>", algorithm="sha512", headers="date", signature="<
   </tbody>
 </Table>
 `}</HTMLBlock>
+<Accordion title="transactionDetails JSON Fields description" icon="fa-table">
 ### transactionDetails fields
 
 | Parameter | Description | Example |
@@ -223,14 +224,16 @@ hmac username="<merchant_key>", algorithm="sha512", headers="date", signature="<
 | additional_charges `optional` | `String` Pre-configured charges in `MODE:amount` format. | `"UPI:10,CC:5"` |
 | pre_authorize `optional` | `Integer` Set to `1` for UPI OTM / pre-authorize options. | `1` |
 | source `optional` | `String` Transaction source. | `"Android_SDK"`, `"IOS_SDK"` |
-
+</Accordion>
+<Accordion title="customerDetails JSON Fields description" icon="fa-table">
 ### customerDetails fields
 
 | Parameter | Description | Example |
 | --------- | ----------- | ------- |
 | mobile `conditional` | `String` Customer mobile number. Required when `checkCustomerEligibility` is true. | `9368252248` |
 | ifscCodes `optional` | `String[]` IFSC codes for bank-name mapping. | `["SBIN", "HDFC"]` |
-
+</Accordion>
+<Accordion title="filters.paymentOptions JSON Fields description" icon="fa-table">
 ### filters.paymentOptions fields
 
 | Filter key | Description | Example |
@@ -248,7 +251,8 @@ hmac username="<merchant_key>", algorithm="sha512", headers="date", signature="<
 | cash | Wallet and cash options. Includes wallet-style methods (PhonePe, Amazon Pay, Paytm) in addition to cash-collection options. | `"PAYTM"` |
 | enach | eNACH options | `"all"` |
 | standinginstruction / si | Standing Instruction options | `"all"` |
-
+</Accordion>
+<Accordion title="useCase JSON Fields description" icon="fa-="fa-table">
 ### useCase fields
 
 | Field | Description |
@@ -264,7 +268,8 @@ hmac username="<merchant_key>", algorithm="sha512", headers="date", signature="<
 | getActivePaymentDetails | `Boolean` Returns only active payment options with full detail. |
 | getPgIdForEachOption | `Boolean` Includes `pgId` for each payment option. |
 | emiTopBanks | `Boolean` Returns prioritized top bank list within EMI subcategories. |
-
+</Accordion>
+<Accordion title="Example JSON" icon="fa-="fa-table">
 ### Example request body
 
 ```json
@@ -311,12 +316,12 @@ hmac username="<merchant_key>", algorithm="sha512", headers="date", signature="<
   "isSITxn": false
 }
 ```
-
+</Accordion>
 ## Sample request
 
 All samples below include HMAC-SHA512 authentication headers. Replace `YOUR_MERCHANT_KEY`, `YOUR_MERCHANT_SALT`, and `GENERATED_SIGNATURE` with your PayU credentials. See [Request header](#request-header) for the signing algorithm.
 
-<Accordion title="Get extended payment details" icon="fa-reply">
+<Accordion title="Get extended payment details" icon="fa-code">
 Use `getExtendedPaymentDetails` to retrieve EMI tenure breakup and extended payment option details.
 
 ```curl
@@ -529,7 +534,7 @@ echo "Response: " . $response . "\n";
 ?>
 ```
 </Accordion>
-<Accordion title="Get additional charges" icon="fa-reply">
+<Accordion title="Get additional charges" icon="fa-code">
 Use `getAdditionalCharges` to return the `additionalCharge` configured for each payment option.
 
 > **Note**: Use `getTaxSpecification` if you want to calculate the tax split of additional charges on your end.
@@ -744,7 +749,7 @@ echo "Response: " . $response . "\n";
 ?>
 ```
 </Accordion>
-<Accordion title="Get tax specification" icon="fa-reply">
+<Accordion title="Get tax specification" icon="fa-code">
 Use `getTaxSpecification` to return `configData.taxSpecification`.
 
 ```curl
@@ -957,7 +962,7 @@ echo "Response: " . $response . "\n";
 ?>
 ```
 </Accordion>
-<Accordion title="Check down status" icon="fa-reply">
+<Accordion title="Check down status" icon="fa-code">
 Use `checkDownStatus` to return `downInfo` with issuing-bank and payment-mode downtime lists. Keys in `downInfo` use payment mode category names (for example, `netbanking`), not filter short codes (`nb`).
 
 ```curl
@@ -1170,7 +1175,7 @@ echo "Response: " . $response . "\n";
 ?>
 ```
 </Accordion>
-<Accordion title="Check customer eligibility" icon="fa-reply">
+<Accordion title="Check customer eligibility" icon="fa-code">
 Use `checkCustomerEligibility` to evaluate customer eligibility for EMI and BNPL payment options. `customerDetails.mobile` is required when `checkCustomerEligibility` is true.
 
 ```curl
@@ -1400,7 +1405,7 @@ echo "Response: " . $response . "\n";
 ?>
 ```
 </Accordion>
-<Accordion title="Filter EMI options" icon="fa-reply">
+<Accordion title="Filter EMI options" icon="fa-code">
 Use `filters.paymentOptions.emi` to limit EMI banks returned in the response. Use `"all"` (case-insensitive) to include every option in a category. For the full list of EMI bank codes, refer to [EMI Options for Get Checkout Details API](ref:emi-options-for-get-checkout-details-api).
 
 ```curl
@@ -1625,7 +1630,7 @@ echo "Response: " . $response . "\n";
 ?>
 ```
 </Accordion>
-<Accordion title="Get merchant details" icon="fa-reply">
+<Accordion title="Get merchant details" icon="fa-code">
 Use `getMerchantDetails` to return merchant branding and checkout settings.
 
 ```curl
