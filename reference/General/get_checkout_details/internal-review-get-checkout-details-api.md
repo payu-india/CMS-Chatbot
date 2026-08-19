@@ -214,8 +214,6 @@ hmac username="<merchant_key>", algorithm="sha512", headers="date", signature="<
   </tbody>
 </Table>
 `}</HTMLBlock>
-
-<Accordion title="transactionDetails fields JSON fields description" icon="fa-table">
 ### transactionDetails fields
 
 | Parameter | Description | Example |
@@ -225,17 +223,16 @@ hmac username="<merchant_key>", algorithm="sha512", headers="date", signature="<
 | additional_charges `optional` | `String` Pre-configured charges in `MODE:amount` format. | `"UPI:10,CC:5"` |
 | pre_authorize `optional` | `Integer` Set to `1` for UPI OTM / pre-authorize options. | `1` |
 | source `optional` | `String` Transaction source. | `"Android_SDK"`, `"IOS_SDK"` |
-</Accordion>
-<Accordion title="customerDetails fields JSON fields description" icon="fa-table">
+
 ### customerDetails fields
 
 | Parameter | Description | Example |
 | --------- | ----------- | ------- |
 | mobile `conditional` | `String` Customer mobile number. Required when `checkCustomerEligibility` is true. | `9368252248` |
 | ifscCodes `optional` | `String[]` IFSC codes for bank-name mapping. | `["SBIN", "HDFC"]` |
-</Accordion>
-<Accordion title="filters.paymentOptions JSON fields description" icon="fa-table">
+
 ### filters.paymentOptions fields
+
 | Filter key | Description | Example |
 | ---------- | ----------- | ------- |
 | emi.dc | Debit-card EMI banks | `"SBIN,KKBK,ICIC"` or `"all"` |
@@ -251,8 +248,7 @@ hmac username="<merchant_key>", algorithm="sha512", headers="date", signature="<
 | cash | Wallet and cash options. Includes wallet-style methods (PhonePe, Amazon Pay, Paytm) in addition to cash-collection options. | `"PAYTM"` |
 | enach | eNACH options | `"all"` |
 | standinginstruction / si | Standing Instruction options | `"all"` |
-</Accordion>
-<Accordion title="useCase JSON fields description" icon="fa-table">
+
 ### useCase fields
 
 | Field | Description |
@@ -268,9 +264,9 @@ hmac username="<merchant_key>", algorithm="sha512", headers="date", signature="<
 | getActivePaymentDetails | `Boolean` Returns only active payment options with full detail. |
 | getPgIdForEachOption | `Boolean` Includes `pgId` for each payment option. |
 | emiTopBanks | `Boolean` Returns prioritized top bank list within EMI subcategories. |
-</Accordion>
-<Accordion title="Sample JSON object" icon="fa-code">
-### Sample request body
+
+### Example request body
+
 ```json
 {
   "requestId": "9920371372_38",
@@ -315,7 +311,6 @@ hmac username="<merchant_key>", algorithm="sha512", headers="date", signature="<
   "isSITxn": false
 }
 ```
-</Accordion>
 
 ## Sample request
 
@@ -1872,7 +1867,7 @@ All responses follow a standard envelope:
 | message | `String` Human-readable message. Empty on success. | `""` |
 | data.details | `Object` Checkout details payload. | See sample responses |
 
-<Accordion title="data.details JSON fields description" icon="fa-code">
+<Accordion title="data.details JSON fields description" icon="fa-table">
 ### data.details fields
 
 Successful responses return checkout data under `data.details`.
@@ -1888,7 +1883,7 @@ Successful responses return checkout data under `data.details`.
 | recurringAmtConvFee | `Object` Convenience fee for recurring payments (SI flows). |
 | si_details | `Object` Standing Instruction configuration. |
 </Accordion>
-<Accordion title="data.details.merchant JSON fields description" icon="fa-code">
+<Accordion title="data.details.merchant JSON fields description" icon="fa-table">
 ### data.details.merchant
 
 Returned when `useCase.getMerchantDetails` is `true`.
@@ -2011,7 +2006,7 @@ Dynamic key-value map for Express Checkout merchant parameters. Keys and types v
 | ----- | ---- | ----------- |
 | (dynamic keys) | `String` / `Boolean` / `Integer` | Merchant-specific Express Checkout parameters (for example, `tags`, `payuVerifiedBadge`, `dynamic_cod_fee`). |
 </Accordion>
-
+<Accordion title="Non-EMI payment option structure" icon="fa-reply">
 ### Non-EMI payment option structure
 
 ```json
@@ -2029,7 +2024,8 @@ Dynamic key-value map for Express Checkout merchant parameters. Keys and types v
   }
 }
 ```
-
+</Accordion>
+<Accordion title="EMI payment option structure" icon="fa-reply">
 ### EMI payment option structure
 
 ```json
@@ -2066,6 +2062,7 @@ Dynamic key-value map for Express Checkout merchant parameters. Keys and types v
   }
 }
 ```
+</Accordion>
 <Accordion title="eligibility JSON fields description" icon="fa-table">
 ### eligibility object
 
