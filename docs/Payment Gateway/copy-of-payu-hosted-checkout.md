@@ -23,7 +23,7 @@ This page helps you understand how **PayU Hosted Checkout** works before you beg
 <Callout icon="🟡" theme="info">
   ### Som&#x65;**&#x20;Technical Setup Required**
 
-  This product integration needs Some technical setup. A developer can help, but many merchants manage this with guided steps.
+  This product integration needs some technical setup. A developer can help, but many merchants manage this with guided steps.
 </Callout>
 
 ***
