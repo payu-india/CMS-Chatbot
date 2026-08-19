@@ -21,7 +21,7 @@ metadata:
 This page helps you understand how **PayU Hosted Checkout** works before you begin integration.
 
 <Callout icon="🟡" theme="info">
-  ### **Some Technical Setup Required**
+  ### **Minimum Technical Setup Required**
 
   This product integration needs minimum technical setup. A developer can help, but many merchants manage this with guided steps.
 </Callout>
