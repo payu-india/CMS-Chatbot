@@ -102,9 +102,10 @@ The following is the customer journey using cards as a payment method:
 
 You need:
 
-- A website you can add a small amount of code to (yours or your developer's)
-- A PayU account — a free test account is enough to start, no approval needed
-- Some technical setup.
+- A website or application where you want to accept payments
+- A PayU account
+- Access to your website's technical setup, either yourself or through a developer
+- A way to test the integration before going live
 
 ***
 
