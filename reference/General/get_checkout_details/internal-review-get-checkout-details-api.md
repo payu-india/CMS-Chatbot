@@ -59,7 +59,7 @@ All Get Checkout Details API requests require **HMAC-SHA512** header authenticat
 | Date | Current UTC timestamp in RFC 1123 format (for example, `Fri, 24 Jul 2026 05:51:20 GMT`). Use the same value when computing the Authorization header. |
 | Authorization | HMAC-SHA512 signature. Format: `hmac username="<merchant_key>", algorithm="sha512", headers="date", signature="<computed_signature>"`. |
 
-<Accordion title="Authorization fields and hashing algorithm" icon="fa-code">
+<Accordion title="Authorization fields and hashing algorithm" icon="fa-table">
 #### Authorization fields description
 
 | Parameter | Description |
@@ -214,7 +214,6 @@ hmac username="<merchant_key>", algorithm="sha512", headers="date", signature="<
   </tbody>
 </Table>
 `}</HTMLBlock>
-<Accordion title="transactionDetails JSON Fields description" icon="fa-table">
 ### transactionDetails fields
 
 | Parameter | Description | Example |
@@ -224,16 +223,14 @@ hmac username="<merchant_key>", algorithm="sha512", headers="date", signature="<
 | additional_charges `optional` | `String` Pre-configured charges in `MODE:amount` format. | `"UPI:10,CC:5"` |
 | pre_authorize `optional` | `Integer` Set to `1` for UPI OTM / pre-authorize options. | `1` |
 | source `optional` | `String` Transaction source. | `"Android_SDK"`, `"IOS_SDK"` |
-</Accordion>
-<Accordion title="customerDetails JSON Fields description" icon="fa-table">
+
 ### customerDetails fields
 
 | Parameter | Description | Example |
 | --------- | ----------- | ------- |
 | mobile `conditional` | `String` Customer mobile number. Required when `checkCustomerEligibility` is true. | `9368252248` |
 | ifscCodes `optional` | `String[]` IFSC codes for bank-name mapping. | `["SBIN", "HDFC"]` |
-</Accordion>
-<Accordion title="filters.paymentOptions JSON Fields description" icon="fa-table">
+
 ### filters.paymentOptions fields
 
 | Filter key | Description | Example |
@@ -251,8 +248,7 @@ hmac username="<merchant_key>", algorithm="sha512", headers="date", signature="<
 | cash | Wallet and cash options. Includes wallet-style methods (PhonePe, Amazon Pay, Paytm) in addition to cash-collection options. | `"PAYTM"` |
 | enach | eNACH options | `"all"` |
 | standinginstruction / si | Standing Instruction options | `"all"` |
-</Accordion>
-<Accordion title="useCase JSON Fields description" icon="fa-="fa-table">
+
 ### useCase fields
 
 | Field | Description |
@@ -268,8 +264,7 @@ hmac username="<merchant_key>", algorithm="sha512", headers="date", signature="<
 | getActivePaymentDetails | `Boolean` Returns only active payment options with full detail. |
 | getPgIdForEachOption | `Boolean` Includes `pgId` for each payment option. |
 | emiTopBanks | `Boolean` Returns prioritized top bank list within EMI subcategories. |
-</Accordion>
-<Accordion title="Example JSON" icon="fa-="fa-table">
+
 ### Example request body
 
 ```json
@@ -316,7 +311,7 @@ hmac username="<merchant_key>", algorithm="sha512", headers="date", signature="<
   "isSITxn": false
 }
 ```
-</Accordion>
+
 ## Sample request
 
 All samples below include HMAC-SHA512 authentication headers. Replace `YOUR_MERCHANT_KEY`, `YOUR_MERCHANT_SALT`, and `GENERATED_SIGNATURE` with your PayU credentials. See [Request header](#request-header) for the signing algorithm.
@@ -1175,7 +1170,7 @@ echo "Response: " . $response . "\n";
 ?>
 ```
 </Accordion>
-<Accordion title="Check customer eligibility" icon="fa-code">
+<Accordion title="Check customer eligibility" icon="fa-reply">
 Use `checkCustomerEligibility` to evaluate customer eligibility for EMI and BNPL payment options. `customerDetails.mobile` is required when `checkCustomerEligibility` is true.
 
 ```curl
@@ -1872,6 +1867,7 @@ All responses follow a standard envelope:
 | message | `String` Human-readable message. Empty on success. | `""` |
 | data.details | `Object` Checkout details payload. | See sample responses |
 
+<Accordion title="data.details JSON fields description" icon="fa-code">
 ### data.details fields
 
 Successful responses return checkout data under `data.details`.
@@ -1886,7 +1882,8 @@ Successful responses return checkout data under `data.details`.
 | registeredAmtConvFee | `Object` Convenience fee for registered payment methods (SI flows). |
 | recurringAmtConvFee | `Object` Convenience fee for recurring payments (SI flows). |
 | si_details | `Object` Standing Instruction configuration. |
-
+</Accordion>
+<Accordion title="data.details.merchant JSON fields description" icon="fa-code">
 ### data.details.merchant
 
 Returned when `useCase.getMerchantDetails` is `true`.
@@ -1904,17 +1901,16 @@ Returned when `useCase.getMerchantDetails` is `true`.
 | enableMapMyIndia | `Boolean` | MapMyIndia address lookup enabled. Optional branding field when returned. |
 | saveMerchantProvidedAddress | `Boolean` | Save merchant-provided address. Optional branding field when returned. |
 | ifscBankNameMapping | `Object` | IFSC-to-bank mapping. Returned when `customerDetails.ifscCodes` is provided. |
-
-#### ifscBankNameMapping value (per IFSC prefix)
+  <Accordion title="ifscBankNameMapping JSON fields description" icon="fa-table">
+  #### ifscBankNameMapping value (per IFSC prefix)
 
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | name | `String` | Bank display name. |
 | ibiboCode | `String` | Net banking `ibiboCode`. |
 | imageURL | `String` / `null` | Bank logo URL. |
-
-Example:
-
+</Accordion>
+<Accordion title="Example JSON" icon="fa-code">
 ```json
 {
   "merchant": {
@@ -1927,6 +1923,9 @@ Example:
   }
 }
 ```
+  </Accordion>
+</Accordion>
+<Accordion title="data.details.configData JSON fields description" icon="fa-table">
 
 ### data.details.configData
 
@@ -1937,9 +1936,9 @@ Returned when `getTaxSpecification` is true and/or config data exists.
 | taxSpecification | `Object` | GST configuration. Returned when `getTaxSpecification` is true. |
 | taxSpecification.default | `Integer` | Default GST % on convenience fees (for example, `18`). |
 | sdkConfig | `Object` | SDK checkout configuration when present in the response. |
-
+</Accordion>
+<Accordion title="sdkConfig JSON fields description" icon="fa-table">
 #### sdkConfig fields
-
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | isQuickPayEnabled | `Boolean` | Quick Pay (saved instruments) enabled. |
@@ -1960,6 +1959,7 @@ Returned when `getTaxSpecification` is true and/or config data exists.
 | upiApps | `Array` | Supported UPI apps for SDK intent flow. |
 | (other keys) | Varies | Additional merchant-specific SDK flags (for example, `3DSSupportedBankList`, `isInsuranceMerchant`, `checkout_timer`, `opgsp_merchant`). |
 
+  <Accordion title="sdkConfig.upiApp JSON fields description" icon="fa-table">
 #### sdkConfig.upiApps[] item
 
 | Field | Type | Description |
@@ -1968,9 +1968,10 @@ Returned when `getTaxSpecification` is true and/or config data exists.
 | handlers | `String` | Comma-separated UPI handles. |
 | androidBundleIdentifier | `String` | Android package name for intent launch. |
 | iOSSchemaIdentifier | `String` | iOS URI scheme (optional). |
-
+  </Accordion>
+</Accordion>
+<Accordion title="data.details.downInfo JSON fields description" icon="fa-table">
 ### data.details.downInfo
-
 Returned when `checkDownStatus` is `true` and downtime exists.
 
 Map of downtime categories to affected `ibiboCode` values. Keys use payment mode category names (for example, `netbanking`), not filter short codes (`nb`).
@@ -1994,9 +1995,9 @@ Example:
   }
 }
 ```
-
+</Accordion>
+<Accordion title="data.details.merchantAdditionalInfo JSON fields description" icon="fa-table">
 ### data.details.merchantAdditionalInfo
-
 Dynamic key-value map for Express Checkout merchant parameters. Keys and types vary by merchant — do not hardcode in client integrations.
 
 `merchantAdditionalInfo` is a sibling of `merchant` under `details`, not nested inside `merchant`. Often omitted when no parameters are configured.
@@ -2004,6 +2005,7 @@ Dynamic key-value map for Express Checkout merchant parameters. Keys and types v
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | (dynamic keys) | `String` / `Boolean` / `Integer` | Merchant-specific Express Checkout parameters (for example, `tags`, `payuVerifiedBadge`, `dynamic_cod_fee`). |
+</Accordion>
 
 ### Non-EMI payment option structure
 
@@ -2059,13 +2061,14 @@ Dynamic key-value map for Express Checkout merchant parameters. Keys and types v
   }
 }
 ```
-
+<Accordion title="eligibility JSON fields description" icon="fa-table">
 ### eligibility object
 
 | Parameter | Description | Example |
 | --------- | ----------- | ------- |
 | status | `Boolean` `true` if eligible. | `true` |
 | reason | `String` Reason when `status` is `false`. | `"Customer not eligible for EMI"` |
+</Accordion>
 
 ## Sample response
 
