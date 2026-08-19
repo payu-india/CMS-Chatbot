@@ -30,7 +30,7 @@ This page helps you understand how **PayU Hosted Checkout** works before you beg
 
 ## What is PayU Hosted Checkout?
 
-PayU Hosted Checkout is a payment integration method where:
+PayU Hosted Checkout is a payment integration method where:<br />
 
 - You redirect customers from your website to a **PayU-hosted payment page**
 - PayU handles the entire payment experience, including security and processing
