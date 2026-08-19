@@ -1,7 +1,7 @@
 ---
 title: Payment Links V2
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Dashboard for Payment Links
   keywords:
