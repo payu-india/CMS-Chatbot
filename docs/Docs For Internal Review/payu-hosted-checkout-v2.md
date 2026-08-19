@@ -162,7 +162,7 @@ Once the payment is completed:
 
 **Start with Quick Start**
 
-Follow the guided steps to set up and test your first payment.
+Follow the guided steps to set up and test your first payment.<br />
 
 **Need technical implementation details?**
 
