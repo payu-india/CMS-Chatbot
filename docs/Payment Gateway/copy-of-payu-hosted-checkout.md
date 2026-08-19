@@ -96,30 +96,6 @@ The following is the customer journey using cards as a payment method:
   </Column>
 </Columns>
 
-<Accordion title="Step 1: Initiate Payment" icon="fa-shopping-cart">
-  Customer clicks **Pay Now** on your website or app. This payment attempt is called a **transaction**, and it's tracked with a unique transaction ID so you can look it up later in your PayU Dashboard or retrieve its details via API.
-</Accordion>
-
-<Accordion title="Step 2: Redirect to PayU" icon="fa-external-link-alt">
-  Customer is redirected to the PayU Hosted Checkout page. At this point, your website or server sends PayU the transaction details — the order amount, customer information, and what's being purchased. This package of data is the **Payment Request**.
-</Accordion>
-
-<Accordion title="Step 3: Enter Payment Details" icon="far fa-credit-card">
-  Customer selects payment method and enters details (Card, UPI, NetBanking, Wallet).
-</Accordion>
-
-<Accordion title="Step 4: Authenticate Payment" icon="far fa-shield-check">
-  Customer completes authentication (OTP, UPI approval, etc.).
-</Accordion>
-
-<Accordion title="Step 5: Payment Processing" icon="far fa-money-bills">
-  PayU processes the transaction with the bank or payment provider.
-</Accordion>
-
-<Accordion title="Step 6: Payment Status" icon="far fa-space-station-moon-construction">
-  Customer is redirected back to your website with success or failure status. PayU sends back the result — whether the transaction succeeded, failed, or is still pending, along with details like the transaction ID and payment method used. This is the **Payment Response**, which your site uses to show the customer a confirmation or retry message and to update your order records.
-</Accordion>
-
 ***
 
 ## What You Will Need (Prerequisites)
