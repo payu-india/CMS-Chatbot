@@ -26,6 +26,14 @@ This page helps you understand how **PayU Hosted Checkout** works before you beg
   You can follow the guided steps to set up Hosted Checkout. If you have a developer or technical team, you can share the integration guide with them.
 </Callout>
 
+<Callout icon="far fa-face-thinking" theme="success">
+  ### **Not Sure Hosted Checkout is Fight for You?**
+
+  Tell us what you are trying to achieve and how you plan to set it up. We will help you find the right PayU solution.
+
+  \[Find the right integration →]
+</Callout>
+
 ***
 
 ## What is PayU Hosted Checkout?
@@ -40,23 +48,30 @@ This is a simple way to accept online payments without building and hosting your
 
 ***
 
-## When Should You Use This?
+## Is this right for you?
 
 <Columns layout="fixed">
   <Column>
-    Use PayU Hosted checkout if you are a business with a website or app and want PayU to host the payment page while they retain control of the surrounding checkout experience.
+    **Best For:** Businesses that have a website or app and want PayU to host the payment page while they retain control of the surrounding checkout experience.
   </Column>
 </Columns>
 
-PayU Hosted Checkout is best when you want a straightforward, secure payment page and do not need it to match your website's design exactly. It gets you live quickly with some development effort.<br />
+<Columns layout="fixed">
+  <Column>
+    **Use Hosted Checkout when:&#x20;**&#x79;ou want a straightforward, secure payment page and do not need it to match your website's design exactly. It gets you live quickly with some development effort.
+  </Column>
+</Columns>
 
-If you need complete control over how the payment page looks and feels — where every element matches your site's brand precisely — see [Merchant Hosted Checkout](https://docs.payu.in/docs/custom-checkout-merchant-hosted) instead. That approach requires more development work but gives you exact design control.<br />
+<Columns layout="fixed">
+  <Column>
+    **Consider alternatives if:&#x20;**&#x79;ou need complete control over how the payment page looks and feels — where every element matches your site's brand precisely — see [Merchant Hosted Checkout](https://docs.payu.in/docs/custom-checkout-merchant-hosted) instead. That approach requires more development work but gives you exact design control.
+  </Column>
+</Columns>
 
 <Callout icon="🟢" theme="info">
   ### Other Easy Ways
 
   - If you do not want a technical setup or you do not have a website yet, PayU also offers Pay Handle — a payment link you can send customers directly, with no integration required. See [Pay Handle](https://docs.payu.in/collect-payments/introduction-no-code-payments-integration/payment-links-dashboard) →
-  - If you are not sure which product to use, answer few simple questions to get recommended products.
 </Callout>
 
 ***
@@ -70,7 +85,7 @@ If you need complete control over how the payment page looks and feels — where
 
   - **Secure payment handling**: PayU handles sensitive payment information on the hosted payment page.
 
-  - **Customisation options**: Add your branding and configure supported payment options from the PayU Dashboard.
+  - **Customization options**: Add your branding and configure supported payment options from the PayU Dashboard.
 
   - **Faster implementation:** Start with a ready-made checkout instead of building a payment experience from scratch.
 </Accordion>
