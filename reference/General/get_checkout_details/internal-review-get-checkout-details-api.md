@@ -214,6 +214,8 @@ hmac username="<merchant_key>", algorithm="sha512", headers="date", signature="<
   </tbody>
 </Table>
 `}</HTMLBlock>
+
+<Accordion title="transactionDetails fields JSON fields description" icon="fa-table">
 ### transactionDetails fields
 
 | Parameter | Description | Example |
@@ -223,16 +225,17 @@ hmac username="<merchant_key>", algorithm="sha512", headers="date", signature="<
 | additional_charges `optional` | `String` Pre-configured charges in `MODE:amount` format. | `"UPI:10,CC:5"` |
 | pre_authorize `optional` | `Integer` Set to `1` for UPI OTM / pre-authorize options. | `1` |
 | source `optional` | `String` Transaction source. | `"Android_SDK"`, `"IOS_SDK"` |
-
+</Accordion>
+<Accordion title="customerDetails fields JSON fields description" icon="fa-table">
 ### customerDetails fields
 
 | Parameter | Description | Example |
 | --------- | ----------- | ------- |
 | mobile `conditional` | `String` Customer mobile number. Required when `checkCustomerEligibility` is true. | `9368252248` |
 | ifscCodes `optional` | `String[]` IFSC codes for bank-name mapping. | `["SBIN", "HDFC"]` |
-
+</Accordion>
+<Accordion title="filters.paymentOptions JSON fields description" icon="fa-table">
 ### filters.paymentOptions fields
-
 | Filter key | Description | Example |
 | ---------- | ----------- | ------- |
 | emi.dc | Debit-card EMI banks | `"SBIN,KKBK,ICIC"` or `"all"` |
@@ -248,7 +251,8 @@ hmac username="<merchant_key>", algorithm="sha512", headers="date", signature="<
 | cash | Wallet and cash options. Includes wallet-style methods (PhonePe, Amazon Pay, Paytm) in addition to cash-collection options. | `"PAYTM"` |
 | enach | eNACH options | `"all"` |
 | standinginstruction / si | Standing Instruction options | `"all"` |
-
+</Accordion>
+<Accordion title="useCase JSON fields description" icon="fa-table">
 ### useCase fields
 
 | Field | Description |
@@ -264,9 +268,9 @@ hmac username="<merchant_key>", algorithm="sha512", headers="date", signature="<
 | getActivePaymentDetails | `Boolean` Returns only active payment options with full detail. |
 | getPgIdForEachOption | `Boolean` Includes `pgId` for each payment option. |
 | emiTopBanks | `Boolean` Returns prioritized top bank list within EMI subcategories. |
-
-### Example request body
-
+</Accordion>
+<Accordion title="Sample JSON object" icon="fa-code">
+### Sample request body
 ```json
 {
   "requestId": "9920371372_38",
@@ -311,6 +315,7 @@ hmac username="<merchant_key>", algorithm="sha512", headers="date", signature="<
   "isSITxn": false
 }
 ```
+</Accordion>
 
 ## Sample request
 
