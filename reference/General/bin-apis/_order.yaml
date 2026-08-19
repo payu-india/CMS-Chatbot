@@ -2,3 +2,4 @@
 - check_is_domestic_api
 - save_card_bin_info_api
 - s2s-get-eligible-bins-api
+- bin-eligibility-api-bajaj-dp-emi
