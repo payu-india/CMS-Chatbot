@@ -160,7 +160,7 @@ Once the payment is completed:
 
 <Columns layout="fixed">
   <Column>
-    **For Developers**
+    **For Developers:**
 
     Learn how to verify payment status and handle webhooks in the technical integration guide.
   </Column>
