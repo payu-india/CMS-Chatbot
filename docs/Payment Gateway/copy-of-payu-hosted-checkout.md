@@ -175,7 +175,9 @@ PayU Hosted Checkout supports multiple payment methods commonly used in India:
 
 This allows you to offer a wide range of payment options without additional integrations.
 
-## What Happens After Payment
+***
+
+## What Happens After a Payment
 
 Once the payment is completed:
 
@@ -184,7 +186,7 @@ Once the payment is completed:
 - A payment response is sent with transaction details
 
 <Callout icon="⚠️" theme="warn">
-  **Important: Backend Verification**
+  ### **Important: Backend Verification**
 
   Even after redirection:
 
@@ -192,12 +194,12 @@ Once the payment is completed:
   - This ensures the payment status is authentic and prevents tampering — a customer could theoretically modify the redirect URL in their browser, but they can't fake the server-to-server verification call that only your backend can make
 </Callout>
 
-<br />
+***
 
 ## Next Steps
 
 Now that you understand how PayU Hosted Checkout works:
 
-- **Get started quickly:** Go to the [Quick Start Guide](https://docs.payu.in/docs/quick-start) to answer a few questions and see your recommended integration path — including guidance on whether you'll set this up yourself, hand it to a developer, or build with AI assistance.
+- **Get started quickly:** Go to the [Quick Start Guide](https://docs.payu.in/docs/quick-start) for steps to test the integration.
 
 - **See the full technical guide:** When you or your developer are ready to build, refer to [Web Integration - PayU Hosted](https://docs.payu.in/docs/prebuilt-checkout-page-integration) for complete step-by-step instructions on credentials, API parameters, hash generation, code samples, testing, and going live. That guide contains all the technical detail and code needed to integrate PayU Hosted Checkout on your website.
