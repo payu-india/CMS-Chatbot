@@ -5,8 +5,6 @@ hidden: true
 metadata:
   robots: index
 ---
-# BIN Eligibility API — Bajaj DP EMI
-
 The BIN Eligibility API allows you to check whether a customer is eligible for Bajaj Down Payment (DP) EMI based on their card's Bank Identification Number (BIN). This API returns eligibility status along with tenure-specific information, including the new `emiTerm` and `downPaymentTerm` fields for DP EMI plans.
 
 <Info>
@@ -742,4 +740,3 @@ If you're receiving `401 Unauthorized` errors, verify the following:
 
 // Use this exact string in signature computation
 ```
-
