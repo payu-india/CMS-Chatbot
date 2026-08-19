@@ -81,85 +81,39 @@ Below diagram depicts the customer experience during a payment using PayU Hosted
 
 The following is the customer journey using cards as a payment method:
 
-<Cards columns="3">
-  <Card>
-    <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-mouse-pointer" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
+<Accordion title="Step 1: Initiate Payment" icon="fa-shopping-cart">
+  Customer clicks **Pay Now** on your website or app. This payment attempt is called a **transaction**, and it's tracked with a unique transaction ID so you can look it up later in your PayU Dashboard or retrieve its details via API.
+</Accordion>
 
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Initiate Payment</h4>
+<Accordion title="Step 2: Redirect to PayU" icon="fa-external-link-alt">
+  Customer is redirected to the PayU Hosted Checkout page. At this point, your website or server sends PayU the transaction details — the order amount, customer information, and what's being purchased. This package of data is the **Payment Request**.
+</Accordion>
 
-      <p style={{ margin: 0 }}>
+<Accordion title="Step 3: Enter Payment Details" icon="far fa-credit-card">
+  Customer selects payment method and enters details (Card, UPI, NetBanking, Wallet).
+</Accordion>
 
-        Customer clicks <b>Pay Now</b> on your website or app. This payment attempt is called a <b>transaction</b>, and it's tracked with a unique transaction ID so you can look it up later in your PayU Dashboard or retrieve its details via API.
-      </p>
-    </div>
-  </Card>
+<Accordion title="Step 4: Authenticate Payment" icon="far fa-shield-check">
+  Customer completes authentication (OTP, UPI approval, etc.).
+</Accordion>
 
-  <Card>
-    <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-external-link-alt" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
+<Accordion title="Step 5: Payment Processing" icon="far fa-money-bills">
+  PayU processes the transaction with the bank or payment provider.
+</Accordion>
 
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Redirect to PayU</h4>
+<Accordion title="Step 6: Payment Status" icon="far fa-space-station-moon-construction">
+  Customer is redirected back to your website with success or failure status. PayU sends back the result — whether the transaction succeeded, failed, or is still pending, along with details like the transaction ID and payment method used. This is the **Payment Response**, which your site uses to show the customer a confirmation or retry message and to update your order records.
+</Accordion>
 
-      <p style={{ margin: 0 }}>
+***
 
-        Customer is redirected to the PayU Hosted Checkout page. At this point, your website or server sends PayU the transaction details — the order amount, customer information, and what's being purchased. This package of data is the <b>Payment Request</b>.
-      </p>
-    </div>
-  </Card>
+## What You Will Need (Prerequisites)
 
-  <Card>
-    <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-credit-card" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
+You need:
 
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Enter Payment Details</h4>
-
-      <p style={{ margin: 0 }}>
-
-        Customer selects payment method and enters details (Card, UPI, NetBanking, Wallet).
-      </p>
-    </div>
-  </Card>
-
-  <Card>
-    <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-shield-alt" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
-
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Authenticate Payment</h4>
-
-      <p style={{ margin: 0 }}>
-
-        Customer completes authentication (OTP, UPI approval, etc.).
-      </p>
-    </div>
-  </Card>
-
-  <Card>
-    <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-university" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
-
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Payment Processing</h4>
-
-      <p style={{ margin: 0 }}>
-
-        PayU processes the transaction with the bank or payment provider.
-      </p>
-    </div>
-  </Card>
-
-  <Card>
-    <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-check-circle" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
-
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Payment Status</h4>
-
-      <p style={{ margin: 0 }}>
-
-        Customer is redirected back to your website with success or failure status. PayU sends back the result — whether the transaction succeeded, failed, or is still pending, along with details like the transaction ID and payment method used. This is the <b>Payment Response</b>, which your site uses to show the customer a confirmation or retry message and to update your order records.
-      </p>
-    </div>
-  </Card>
-</Cards>
+- A website you can add a small amount of code to (yours or your developer's)
+- A PayU account — a free test account is enough to start, no approval needed
+- Some technical setup.
 
 ***
 
