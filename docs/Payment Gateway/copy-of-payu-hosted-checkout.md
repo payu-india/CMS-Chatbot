@@ -18,6 +18,16 @@ metadata:
     - PayU integration
   robots: index
 ---
+This page helps you understand how **PayU Hosted Checkout** works before you begin integration.
+
+<Callout icon="🟡" theme="info">
+  ### **Some Technical Setup Required**
+
+  This product integration needs minimum technical setup. A developer can help, but many merchants manage this with guided steps.
+</Callout>
+
+***
+
 ## What is PayU Hosted Checkout?
 
 PayU Hosted Checkout is a payment integration method where:
@@ -26,140 +36,37 @@ PayU Hosted Checkout is a payment integration method where:
 - PayU handles the entire payment experience, including security and processing
 - After the payment is completed, customers are redirected back to your website
 
-This is the **simplest and fastest way** to start accepting payments from web without building or managing your own payment UI.
+This is the simplest and fastest way to accept payments through a checkout flow on your website.
 
 ***
 
-## When should you use this?
+## When Should You Use This?
 
 PayU Hosted Checkout is best when you want a straightforward, secure payment page and don't need it to match your website's design exactly. Most merchants start here because it gets you live quickly with minimal development effort.
 
 If you need complete control over how the payment page looks and feels — where every element matches your site's brand precisely — see [Merchant Hosted Checkout](https://docs.payu.in/docs/custom-checkout-merchant-hosted) instead. That approach requires more development work but gives you exact design control.
 
-***
-
-## Why Use PayU Hosted Checkout
-
-PayU Hosted Checkout helps you accept online payments quickly without building or managing a payment interface.
-
-<Accordion title="Benefits" icon="fa-rocket">
-  - **Faster Go-Live**: Integrate and start accepting payments with minimal development effort — often in hours, not days.
-  - **Built-in Security and Compliance:** When a customer enters their card details on the PayU-hosted page, that sensitive payment data is handled entirely by PayU, reducing your compliance burden. PCI-DSS — the security standard that governs how card data must be stored, transmitted, and processed — is normally your responsibility to maintain; PayU Hosted Checkout takes that on for you, so you avoid the complexity and cost of certification.
-  - **Multiple Payment Methods:** Accept payments via cards, UPI, netbanking, and wallets through a single integration, without building separate flows for each payment type.
-  - **Easy Payment Method Enablement:** When you want to enable or disable a payment option (like adding a new wallet or bank), you can do it from your PayU Dashboard without writing any code or redeploying your website — it's a configuration change, not a development task.
-  - **Customizable Checkout Experience:** While PayU hosts the payment page, you can still align it with your brand using your logo, color scheme, and language preferences (several Indian languages are supported) — so the experience doesn't feel entirely disconnected from your site.
-  - **Improved Conversion Experience:** Leverage PayU's optimized checkout flows, which include features like saved payment preferences for returning customers and intelligent payment method recommendations that help more customers complete their purchases.
-  - **Reduced Engineering Overhead:** No need to build or maintain payment UI, form validation, or direct integrations with banks and payment providers — PayU handles all of that infrastructure for you.
-</Accordion>
+If you don't have a website yet, or you'd rather not deal with any technical setup at all, PayU also offers Pay Handle — a payment link you can send customers directly, with no integration required. See [Pay Handle](https://docs.payu.in/collect-payments/introduction-no-code-payments-integration/payment-links-dashboard) →
 
 ***
 
-## Key Concepts
+## What You Get
 
-Understanding the following basic concepts will help you navigate the integration more easily:
+<Accordion title="Key Benefits" icon="fa-rocket">
+  - **No PCI-DSS burden on you:** When a customer enters their card details on the PayU-hosted page, that sensitive payment data is handled entirely by PayU. PCI-DSS — the security standard that governs how card data must be stored, transmitted, and processed — is normally your responsibility to maintain; PayU Hosted Checkout takes that on for you, so you avoid the complexity and cost of certification.
 
-<Cards columns="3">
-  <Card>
-    <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-exchange-alt" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
+  - **Multiple payment methods, one integration:** Accept payments via cards, UPI, netbanking, and wallets through a single integration, without building separate flows for each payment type. The PayU Checkout page automatically adapts to mobile screens and handles mobile payment intents (like UPI deep-linking on mobile web) without extra configuration on your side.
 
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Transaction</h4>
+  - **Fast to launch, low ongoing engineering effort:** A ready-made checkout page hosted by PayU eliminates the need to build your own payment form, validation logic, or direct integrations with banks and payment providers. This requires far less development than building your own payment page, and PayU handles all of that infrastructure for you going forward.
 
-      <p style={{ margin: 0 }}>
+  - **Manage payment methods without code:** When you want to enable or disable a payment option (like adding a new wallet or bank), you can do it from your PayU Dashboard without writing any code or redeploying your website — it's a configuration change, not a development task.
 
-        When a customer clicks "Pay" on your website and attempts to complete a purchase, that single payment attempt is called a transaction. Each transaction is tracked with a unique identifier (transaction ID) so you can look it up later in your PayU Dashboard or retrieve its details via API.
-      </p>
-    </div>
-  </Card>
-
-  <Card>
-    <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-paper-plane" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
-
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Payment Request</h4>
-
-      <p style={{ margin: 0 }}>
-
-        When a customer clicks "Pay," your website or server sends PayU the transaction details — the order amount, customer information, and what's being purchased. This package of data, sent as parameters in a redirect or API call, is the Payment Request. It's how PayU knows what payment to collect and for whom.
-      </p>
-    </div>
-  </Card>
-
-  <Card>
-    <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-reply" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
-
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Payment Response</h4>
-
-      <p style={{ margin: 0 }}>
-
-        After the customer completes (or cancels) the payment on PayU's page, PayU sends back the result — whether the transaction succeeded, failed, or is still pending, along with details like the transaction ID and payment method used. This result, returned to your website and server, is the Payment Response. Your site uses it to show the customer a confirmation or retry message and to update your order records.
-      </p>
-    </div>
-  </Card>
-
-  <Card>
-    <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-random" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
-
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>Redirect Flow</h4>
-
-      <p style={{ margin: 0 }}>
-
-        The sequence where your customer is sent to PayU's payment page to enter their details, then returned to your site after payment is complete — that back-and-forth journey is the Redirect Flow. It's what makes Hosted Checkout "hosted": the payment page lives on PayU's servers, not yours, and the customer visibly moves between the two.
-      </p>
-    </div>
-  </Card>
-
-  <Card>
-    <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-server" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
-
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>API Flow</h4>
-
-      <p style={{ margin: 0 }}>
-
-        While your customer sees the redirect and payment page, behind the scenes your server and PayU's server exchange data directly — verifying the transaction status, checking payment details, and confirming the result. This server-to-server communication, which happens in the background to keep your records accurate and secure, is the API Flow.
-      </p>
-    </div>
-  </Card>
-</Cards>
+  - **Branding and conversion features:** While PayU hosts the payment page, you can still align it with your brand using your logo, color scheme, and language preferences (several Indian languages are supported). The page also includes features like saved payment preferences for returning customers and intelligent payment method recommendations that help more customers complete their purchases.
+</Accordion>
 
 ***
 
-## How Payment Flow Works
-
-The payment journey in Hosted Checkout looks like this:
-
-
-<Image src="https://files.readme.io/932f800-payuhosted_wf.png" alt="PayU Hosted Checkout Workflow" align="center" border={true} />
-
-
-<Accordion title="Step 1: Initiate Payment" icon="fa-shopping-cart">
-  Customer selects items and initiates the payment on the merchant website.
-</Accordion>
-
-<Accordion title="Step 2: Redirect to PayU" icon="fa-external-link-alt">
-  Customer is redirected to PayU Checkout to enter payment details.
-</Accordion>
-
-<Accordion title="Step 3: Send to Bank" icon="fa-paper-plane">
-  PayU sends the payment request with transaction details to the bank or provider.
-</Accordion>
-
-<Accordion title="Step 4: Process Payment" icon="fa-university">
-  The bank processes the transaction and returns a success or failure status to PayU.
-</Accordion>
-
-<Accordion title="Step 5: Return Response" icon="fa-reply">
-  PayU redirects the customer back to the merchant website with the payment result.
-</Accordion>
-
-This flow ensures that sensitive payment data is handled by PayU, reducing your security and compliance overhead.
-
-***
-
-## Customer journey
+## How it works
 
 Below diagram depicts the customer experience during a payment using PayU Hosted Checkout:
 
@@ -178,7 +85,7 @@ The following is the customer journey using cards as a payment method:
 
       <p style={{ margin: 0 }}>
 
-        Customer clicks <b>Pay Now</b> on your website or app.
+        Customer clicks <b>Pay Now</b> on your website or app. This payment attempt is called a <b>transaction</b>, and it's tracked with a unique transaction ID so you can look it up later in your PayU Dashboard or retrieve its details via API.
       </p>
     </div>
   </Card>
@@ -191,7 +98,7 @@ The following is the customer journey using cards as a payment method:
 
       <p style={{ margin: 0 }}>
 
-        Customer is redirected to the PayU Hosted Checkout page.
+        Customer is redirected to the PayU Hosted Checkout page. At this point, your website or server sends PayU the transaction details — the order amount, customer information, and what's being purchased. This package of data is the <b>Payment Request</b>.
       </p>
     </div>
   </Card>
@@ -243,24 +150,13 @@ The following is the customer journey using cards as a payment method:
 
       <p style={{ margin: 0 }}>
 
-        Customer is redirected back to your website with success or failure status.
+        Customer is redirected back to your website with success or failure status. PayU sends back the result — whether the transaction succeeded, failed, or is still pending, along with details like the transaction ID and payment method used. This is the <b>Payment Response</b>, which your site uses to show the customer a confirmation or retry message and to update your order records.
       </p>
     </div>
   </Card>
 </Cards>
 
 ***
-
-## Capabilities of PayU Hosted Checkout
-
-<Accordion title="Features" icon="fa-cogs">
-  - **Prebuilt Payment Page:** A ready-made checkout page hosted by PayU collects payment details securely, eliminating the need for you to build your own payment form — reducing both development time and security risk.
-  - **Redirect-Based Integration:** Simple integration using a redirect flow from your website to PayU — typically requires only server-side code to build the redirect with transaction parameters and a secure hash, then handle the response when the customer returns.
-  - **Secure Payment Handling:** Handles authentication flows such as OTP verification and bank redirects securely, so your customers' payment credentials are protected throughout the transaction without you having to manage the authentication infrastructure.
-  - **Quick Integration Setup:** Integration kits and APIs enable faster implementation with minimal setup — most merchants can complete a test payment within hours of starting the integration.
-  - **Mobile-Optimized Experience:** The PayU Checkout page automatically adapts to mobile screens, supports responsive checkout flows, and handles mobile payment intents (like UPI deep-linking on mobile web) without extra configuration on your side.
-  - **Smart Payment Experience:** Supports features like payment method recommendations (suggesting the most relevant payment option for each customer based on their history and preferences) and saved payment preferences for returning customers, helping improve conversion rates.
-</Accordion>
 
 ## Supported Payment Methods
 
