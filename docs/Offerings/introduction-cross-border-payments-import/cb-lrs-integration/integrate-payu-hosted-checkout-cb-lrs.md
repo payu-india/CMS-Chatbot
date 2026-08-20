@@ -8,6 +8,16 @@ metadata:
     - Integrate PayU Hosted Checkout for CB LRS
   robots: index
 ---
+---
+title: Integrate PayU Hosted Checkout
+deprecated: false
+hidden: false
+metadata:
+  title: 'Integrate PayU Hosted Checkout - CB LRS '
+  keywords:
+    - Integrate PayU Hosted Checkout for CB LRS
+  robots: index
+---
 PayU’s **_payment** API supports LRS transactions by capturing the following information in addition to the typical PayU Hosted Checkout transaction for cross-border paymentsL
 
 * **LRS Service Type** - _Mandatory for LRS transactions_
@@ -60,7 +70,7 @@ The following parameters (mandatory) must be posted using any of the following s
 | surl<br/>`mandatory` | `String` The success URL, which is the page PayU will redirect to if the transaction is successful. |  |
 | furl<br/>`mandatory` | `String` The Failure URL, which is the page PayU will redirect to if the transaction is failed. |  |
 | udf1<br/>`optional` | `String` The Permanent Account Number of the buyer must be collected in this field. This is required if AD bank request this detail.<br/><br/>*Note: If not sent in the payment request, it will collected on the checkout page.* | AELPR****E |
-| udf3<br/>`optional but recommended for higher approval rate` | `String` The date of birth of the buyer must be collected using this field in the DD-MM-YYYY format. This is required if AD bank request this detail.<br/>*Note: If not sent in the payment request, it will collected on the checkout page.* | 02-02-1980 |
+| udf3<br/>`optional but recommended for higher approval rate` | `String` The date of birth of the buyer must be collected using this field in the DD/MM/YYYY format. This is required if AD bank request this detail.<br/>*Note: If not sent in the payment request, it will collected on the checkout page.* | 02/12/1980 |
 | udf4<br/>`mandatory for payment aggregators` | `String` This parameter must include end merchant legal entity name. | XYZ Pvt. Ltd. |
 | udf5<br/>`mandatory for cross-border payments` | `String` The invoice ID or invoice number must be collected using this field. | INV123456 |
 | buyer_type_business<br/>`optional in case of B2B transaction for cross-border payments` | This parameter is used to identify whether it is a business-to-business transaction. If 1 is posted, it is a B2B transaction. | 1 |
