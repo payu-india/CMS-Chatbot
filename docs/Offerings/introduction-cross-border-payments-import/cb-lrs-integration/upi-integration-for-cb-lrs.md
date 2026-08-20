@@ -5,6 +5,13 @@ hidden: true
 metadata:
   robots: index
 ---
+---
+title: '[Internal Review]UPI Integration for CB LRS'
+deprecated: false
+hidden: true
+metadata:
+  robots: index
+---
 This section explains how to integrate UPI Intent payments for cross-border transactions under LRS (Liberalised Remittance Scheme) using the Server-to-Server (S2S) flow.
 
 <Cards>
@@ -45,17 +52,90 @@ This section explains how to integrate UPI Intent payments for cross-border tran
 
 ***
 
-## Step 1: Validate the PAN Card
+## Step 1: Validate the PAN card
+
+You must generate the bearer token as in [Step 1a](#step-1a-generate-token) and then use that bearer token for authentication in [Step 1b](#step-1b-validate-pan-card-using-api).
+
+### Step 1a: Generate Token
+
+The Generate Token API is used to generate the token to be used in [Step 1b](#step-1b-validate-pan-card-using-api).
+**Environment**
+
+| Test           | [https://uat-accounts.payu.in](https://uat-accounts.payu.in) |
+| :------------- | :----------------------------------------------------------- |
+| **Production** | [https://accounts.payu.in](https://accounts.payu.in)         |
+
+<Accordion title="Request parameters" icon="fa-table">
+  | Parameter       | Description                                                                                                                                            |
+  | :-------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | `client_id`     | For getting your client ID, refer to [Get Client ID and Secret from Dashboard](doc:get-client-id-and-secret-from-dashboard).                           |
+  | `client_secret` | For getting your client secret, refer to [Get Client ID and Secret from Dashboard](doc:get-client-id-and-secret-from-dashboard).                       |
+  | `scope`         | The scope that must be used for PAN Card validation is `get_pan_details`.                                                                              |
+  | `grant_type`    | This parameter contains a constant value used to get the access token. The `grant_type` used across the partner integration is **client_credentials**. |
+</Accordion>
+
+<Accordion title="Sample request" icon="fa-info-circle">
+  ```curl
+    curl --location -g --request POST '{{hub_base_url}}/oauth/token' \
+    --header 'Content-Type: application/x-www-form-urlencoded' \
+    --data-urlencode 'client_id={{client_id}}' \
+    --data-urlencode 'client_secret={{client_secret}}' \
+    --data-urlencode 'grant_type=client_credentials' \
+    --data-urlencode 'scope=get_pan_details'
+  ```
+</Accordion>
+
+<Accordion title="Sample response" icon="fa-info-circle">
+  ### Success scenario
+
+  ```json
+  {
+  "access_token": "55c6edd7928aa4122021130a728782ae4dffd341843d83b90f613bf334d57e40",
+  "token_type": "Bearer",
+  "expires_in": 7011,
+  "scope": "create_payment_links",
+  "created_at": 1763036368
+  }
+  ```
+</Accordion>
+
+### Step 1b: Validate PAN Card using API
 
 The PAN Card Status Check API allows merchants to verify PAN (Permanent Account Number) card details. It validates whether a given PAN number is active, confirms if the provided name and date of birth match the official PAN records, and checks the seeding status of the PAN. This API is essential for KYC (Know Your Customer) processes, identity verification, and regulatory compliance.
 
 **Endpoint**
 
-```
-https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
-```
+| Test           | [https://uat-onepayuonboarding.payu.in/](https://uat-onepayuonboarding.payu.in/) |
+| :------------- | :------------------------------------------------------------------------------- |
+| **Production** | [https://onboarding.payu.in/](https://onboarding.payu.in/)                       |
 
 <Accordion title="Request parameters" icon="fa-table">
+  #### Header
+
+  <HTMLBlock>{`
+  <table style="width: 100%; border-collapse: collapse;">
+  <thead>
+  <tr>
+    <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameters</strong></th>
+    <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
+    <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td style="border: 1px solid #ddd; padding: 8px;"><p>token</p>
+  </td>
+    <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>This parameter must contain the token that must be revoked.</p>
+  </td>
+    <td style="border: 1px solid #ddd; padding: 8px;"><p><code>{token}</code></p>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  `}</HTMLBlock>
+
+  #### Body Parameters
+
   | Parameter                     | Description                                                   | Example      |
   | ----------------------------- | ------------------------------------------------------------- | ------------ |
   | `pan_number`<br />`mandatory` | The PAN (Permanent Account Number) to be verified             | "CYCPD2784G" |
@@ -65,12 +145,9 @@ https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 
 <Accordion title="Sample Request" icon="fa-code">
   ```bash
-  curl --location 'https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status' \
+  curl --location 'https://uat-onepayuonboarding.payu.in/dvs/kyc/check_pan_card_status' \
   --header 'Content-Type: application/json' \
-  --header 'Date: Thu, 17 Jun 2025 08:17:59 GMT' \
-  --header 'Digest: DFXmqI0rFnXlmHLlsRwdDMw9vUSVzyYQzGP+MKLo8f8=' \
-  --header 'Authorization: hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="7qjgpH9B4QALxDR0nVlHdEKEYMZ0XeJ0QpnvveSyqMo="' \
-  --header 'platformId: 1' \
+  --header 'Authorization: Bearer 55c6edd7928aa4122021130a728782ae4dffd341843d83b90f613bf334d57e40' \
   --data '{
       "pan_number": "CYCPD2784G",
       "name": "AKASH DEEP",
@@ -104,18 +181,18 @@ https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
 </Accordion>
 
 <Accordion title="Response Parameters" icon="fa-table">
-  | Parameter   | Description                                             | Example                                                              |
-  | ----------- | ------------------------------------------------------- | -------------------------------------------------------------------- |
-  | id          | Unique identifier for the verification request          | `86235`                                                              |
-  | api_name    | Identifier of the API that was called                   | `"pan_status_check"`                                                 |
-  | identifier  | A unique hash identifier for the verification request   | `"79c0d918a4f4661cb9cb17d96d24ac1cf04b6013d504cc766ac5235380bfc0d5"` |
-  | response    | Contains the verification results                       | See result table below                                               |
-  | status      | Overall status of the API call                          | `"success"`                                                          |
-  | http_status | HTTP status code of the response                        | `200`                                                                |
-  | client_id   | Unique identifier of the client making the request      | `"195ab95fa4700eeaaf38b7f5b538d2979f0f281e0a4eaedca1aa675b79b331a2"` |
-  | created_at  | Timestamp when the verification record was created      | `"2025-04-30T05:51:40.000Z"`                                         |
-  | updated_at  | Timestamp when the verification record was last updated | `"2025-04-30T05:51:40.000Z"`                                         |
-  | client_name | Name of the client account                              | `"SignzyClient"`                                                     |
+  | Parameter   | Description                                             | Example                                                                                     |
+  | ----------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+  | id          | Unique identifier for the verification request          | `86235`                                                                                     |
+  | api_name    | Identifier of the API that was called                   | `"pan_status_check"`                                                                        |
+  | identifier  | A unique hash identifier for the verification request   | `79c0d918a4f4661cb9cb`<br />`17d96d24ac1cf0`<br />`>4b6013d504cc766a`<br />`c5235380bfc0d5` |
+  | response    | Contains the verification results                       | See result table below                                                                      |
+  | status      | Overall status of the API call                          | `"success"`                                                                                 |
+  | http_status | HTTP status code of the response                        | `200`                                                                                       |
+  | client_id   | Unique identifier of the client making the request      | `195ab95fa4700eeaa`<br />`f38b7f5b538d2979`<br />`f0f281e0a4eaedca`<br />`1aa675b79b331a2`  |
+  | created_at  | Timestamp when the verification record was created      | `"2025-04-30T05:51:40.000Z"`                                                                |
+  | updated_at  | Timestamp when the verification record was last updated | `"2025-04-30T05:51:40.000Z"`                                                                |
+  | client_name | Name of the client account                              | `"SignzyClient"`                                                                            |
 
   #### Response Result Object
 
@@ -126,8 +203,6 @@ https://test10-onboarding.payu.in/dvs/kyc/check_pan_card_status
   | dobMatch      | Indicates if the provided DOB matches with PAN records (Y/N)       | `"Y"`      |
   | seedingStatus | Indicates if the PAN is seeded with additional verifications (Y/N) | `"Y"`      |
 </Accordion>
-
-***
 
 ## Step 2: Request Payment with PayU
 
