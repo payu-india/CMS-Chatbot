@@ -10,10 +10,20 @@ metadata:
     - Create Payment Link in a few minutes
   robots: index
 ---
+Collect payments from your customers without a website or coding.
+
 <Callout icon="🟢" theme="success">
-  **No Coding Required**
+  ### **No Coding Required**
 
   Create and share payment links directly from your PayU Dashboard — no website or technical setup needed.
+</Callout>
+
+<Callout icon="far fa-face-thinking" theme="warn">
+  ### **Not Sure Which PayU Solution is Right for You?**
+
+  Tell us what you want to achieve and how you plan to accept payments. We will recommend the PayU solution that best fits your needs.
+
+  \[Find the right solution →]
 </Callout>
 
 ***
