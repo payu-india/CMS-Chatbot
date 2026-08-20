@@ -312,7 +312,7 @@ Post the payment parameters to PayU's `_payment` API endpoint to initiate a NetB
   --data-urlencode 'lrs_tnc=1' \
   --data-urlencode 'lrs_service_type=travel' \
   --data-urlencode 'tcs_amount=2.00' \
-  --data-urlencode 'lrs_tcs_declaration_under_limit=0' \
+  --data-urlencode 'lrs_tcs_declaration_under_limit=1' \
   --data-urlencode 'hash=YOUR_CALCULATED_HASH'
   ```
 </Accordion>
