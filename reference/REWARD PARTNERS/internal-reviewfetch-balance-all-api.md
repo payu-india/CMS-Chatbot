@@ -6,12 +6,6 @@ metadata:
   robots: index
 ---
 ---
-title: Fetch Balance All API
-deprecated: false
-hidden: false
-metadata:
-  robots: index
----
 ---
 title: Fetch Balance All API - TWID (Updated with New Flow)
 deprecated: false
