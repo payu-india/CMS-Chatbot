@@ -17,7 +17,7 @@ This page helps you understand how **PayU Hosted Checkout** works before you beg
 </Callout>
 
 <Callout icon="far fa-face-thinking" theme="success">
-  ### **Not Sure Hosted Checkout is Fight for You?**
+  ### **Not Sure Hosted Checkout is Fit for You?**
 
   Tell us what you are trying to achieve and how you plan to set it up. We will help you find the right PayU solution.
 
