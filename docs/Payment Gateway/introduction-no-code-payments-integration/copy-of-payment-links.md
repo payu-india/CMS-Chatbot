@@ -164,13 +164,25 @@ Once your customer completes the payment:
   <Column>
     **You see the payment status immediately&#x20;**&#x69;n your PayU Dashboard under **Payment Tools → Payment Links**
   </Column>
+</Columns>
 
+<Columns layout="fixed">
   <Column>
-    **Payment details are recorded**: You can see the amount, date, customer details, and transaction status
+    <Columns layout="fixed">
+      <Column>
+        **Payment details are recorded**: You can see the amount, date, customer details, and transaction status
+      </Column>
+    </Columns>
   </Column>
+</Columns>
 
+<Columns layout="fixed">
   <Column>
-    **You can export payment history**: Download a report of all payments received through your links
+    <Columns layout="fixed">
+      <Column>
+        **You can export payment history**: Download a report of all payments received through your links
+      </Column>
+    </Columns>
   </Column>
 </Columns>
 
