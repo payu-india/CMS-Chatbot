@@ -293,7 +293,7 @@ The `split-info` parameter must be a valid JSON string with the following struct
 
 
 ## Sample Request
-### Card + Rewards Transaction
+### Burn Points with Card (TWID) 
 ```bash
 curl -X POST "https://test.payu.in/_payment" \
   -H "Content-Type: application/x-www-form-urlencoded" \
@@ -336,7 +336,7 @@ curl -X POST "https://test.payu.in/_payment" \
     "totalAmount": "1000.00",
     "consent": false
   }'
-### Saved Card Flow (storecardTokenType = 0)
+### Burn Points with Saved Card Flow (TWID and storecardTokenType = 0)
 
 **Use Case:** PayU saved card with reward redemption
 
@@ -385,7 +385,7 @@ curl -X POST "https://test.payu.in/_payment" \
   }
 ```
 
-### Network Token Flow (storecardTokenType = 1)
+### Burn Points with Saved Card Flow Network Token Flow (TWID with storecardTokenType = 1)
 
 **Use Case:** Network token (non-PayU saved card) with TAVV/cryptogram
 
@@ -438,7 +438,7 @@ curl -X POST "https://test.payu.in/_payment" \
   }
 ```
 
-### ALT ID Flow
+### Burn Points with ALT ID Flow (TWID)
 
 **Use Case:** Alternative identifier flow with additionalInfo
 
@@ -490,7 +490,7 @@ curl -X POST "https://test.payu.in/_payment" \
 }
 ```
 
-### UPI + Reward
+### Burn Points with UPI (TWID)
 
 **Use Case:** UPI VPA with reward redemption (Zillion example)
 
@@ -533,46 +533,3 @@ curl -X POST "https://test.payu.in/_payment" \
   }
 ```
 
-### Saved Card for New User
-
-**Use Case:** Fresh card number (not previously saved). Pass `store_card=1` in _payment request to save.
-
-```bash
-curl -X POST "https://test.payu.in/_payment" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=YOUR_MERCHANT_KEY" \
-  -d "txnid=TXN123456" \
-  -d "amount=1000" \
-  -d "productinfo=Product Info" \
-  -d "firstname=Ashish" \
-  -d "email=test@gmail.com" \
-  -d "phone=9876543210" \
-  -d "surl=https://www.merchant-surl.com" \
-  -d "furl=https://www.merchant-furl.com" \
-  -d "hash=generated_hash_value" \
-  --data-urlencode 'split-info={
-    "childPaymentInstruments": [
-    {
-      "name": "CC",
-      "bankCode": "CC",
-      "cardNumber": "5123456789012346",
-      "cvv": "345",
-      "validThrough": "05/29",
-      "ownerName": "Payu",
-      "transactionAmount": "999"
-    },
-    {
-      "name": "RD",
-      "bankCode": "TWIDLS",
-      "transactionAmount": "1",
-      "rewardId": 280513,
-      "rewardName": "twid Cash",
-      "cardBin": "512345",
-      "cardLastFour": "2346"
-    }
-  ],
-  "earnPaymentInstruments": [],
-  "totalAmount": "1000.00",
-  "consent": false
-  }
-```
