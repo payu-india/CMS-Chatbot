@@ -5,14 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
----
-title: Fetch Balance All API - TWID (Updated with New Flow)
-deprecated: false
-hidden: false
-metadata:
-  robots: index
----
-
+This API is used to fetch all the reward balances for a customer. It can be used before calling the Collect Payment API (\_payment) to check if the customer has the balance. &#x20;
 
 ## Environment
 
@@ -44,6 +37,7 @@ HTTP Method: **POST**
   white-space: nowrap;
 }
 </style>
+
 <Table align={["left","left","left"]}>
   <thead>
     <tr>
@@ -147,13 +141,14 @@ HTTP Method: **POST**
 </Table>
 `}</HTMLBlock>
 
+<Callout icon="⚠️" theme="warn">
+  ### **Notes**
 
-> ⚠️ **Notes**
->
-> The Fetch Balance API remains the same as the older version, with **two additional parameters** required for the new TWID flow:
->
-> - **`loyaltyApiVersion`**: Identifies the new TWID API flow. This field may be deprecated in the future.
-> - **`sessionId`**: Required to fetch the balance from TWID. **The same `sessionId` must also be passed in the `_payment` request inside the `loyaltyDetails` block of the `split-info` JSON.**
+  The Fetch Balance API remains the same as the older version, with **two additional parameters** required for the new TWID flow:
+
+  - `loyaltyApiVersion`: Identifies the new TWID API flow. This field may be deprecated in the future.
+  - `sessionId`: Required to fetch the balance from TWID. **The same&#x20;**`sessionId`**&#x20;must also be passed in the&#x20;**`_payment`**&#x20;request inside the&#x20;**`loyaltyDetails`**&#x20;block of the&#x20;**`split-info`**&#x20;JSON.**
+</Callout>
 
 ## Sample request
 
@@ -400,18 +395,18 @@ echo "Response: " . $response . "\n";
 
 ## Response parameters
 
-| Parameter                   | Description                                                    | Example                                    |
-| --------------------------- | -------------------------------------------------------------- | ------------------------------------------ |
-| data[].loyaltyProvider      | `String` - Loyalty provider identifier for this response entry | `"TWID"`                                   |
-| data[].usableAmount         | `Number` - Maximum monetary amount that can be saved           | `500.0`                                    |
-| data[].usablePoints         | `Number` - Required reward points for maximum savings          | `500`                                      |
-| data[].title                | `String` - Display title describing the reward offer           | `"Save Rs 500 using 500 TWID Cash Points"` |
-| data[].earnConfig.points    | `Number` - Points that can be earned                           | `0`                                        |
-| data[].issuerDetailDTO.logo | `String` - Logo URL of the brand/issuer                        | `"https://cdn.twidpay.com/brand_logo.png"` |
-| data[].holdApplicable       | `Boolean` - Indicates if points can be held for the reward     | `false`                                    |
-| data[].customErrorMessage   | `String` - Error message for specific provider (if applicable) | `"Unable to process request for provider"` |
-| data[].rewardId             | `Number` - Unique identifier for the reward                    | `270943`                                   |
-| data[].issuerDetailDTO.brandName | `String` - Name of the brand/issuer (used as rewardName in payment) | `"twid Cash"`, `"Woodland"`       |
+| Parameter                         | Description                                                         | Example                                    |
+| --------------------------------- | ------------------------------------------------------------------- | ------------------------------------------ |
+| data\[].loyaltyProvider           | `String` - Loyalty provider identifier for this response entry      | `"TWID"`                                   |
+| data\[].usableAmount              | `Number` - Maximum monetary amount that can be saved                | `500.0`                                    |
+| data\[].usablePoints              | `Number` - Required reward points for maximum savings               | `500`                                      |
+| data\[].title                     | `String` - Display title describing the reward offer                | `"Save Rs 500 using 500 TWID Cash Points"` |
+| data\[].earnConfig.points         | `Number` - Points that can be earned                                | `0`                                        |
+| data\[].issuerDetailDTO.logo      | `String` - Logo URL of the brand/issuer                             | `"https://cdn.twidpay.com/brand_logo.png"` |
+| data\[].holdApplicable            | `Boolean` - Indicates if points can be held for the reward          | `false`                                    |
+| data\[].customErrorMessage        | `String` - Error message for specific provider (if applicable)      | `"Unable to process request for provider"` |
+| data\[].rewardId                  | `Number` - Unique identifier for the reward                         | `270943`                                   |
+| data\[].issuerDetailDTO.brandName | `String` - Name of the brand/issuer (used as rewardName in payment) | `"twid Cash"`, `"Woodland"`                |
 
 ## Sample response
 
@@ -485,22 +480,25 @@ echo "Response: " . $response . "\n";
 
 ## Important Notes
 
-> 📘 **TWID Reward Name Mapping**
->
-> The `issuerDetailDTO.brandName` returned in the Fetch Balance response (for example, `"Woodland"`, `"HDFC Bank"`) is the value you **must pass** as `rewardName` in the `childPaymentInstruments` / `earnPaymentInstruments` array of the `_payment` request when the reward provider is **TWID**.
->
-> **Note:** The `rewardName` field is **NOT applicable for Zillion** rewards.
+<Callout icon="📘" theme="info">
+  ### **TWID Reward Name Mapping**
 
-> ⚠️ **Session Consistency Requirement**
->
-> The `sessionId` used in the Fetch Balance API request **MUST be identical** to the `sessionId` passed in the `_payment` request within the `loyaltyDetails` block of the `split-info` JSON. TWID validates this sessionId during redemption.
+  The `issuerDetailDTO.brandName` returned in the Fetch Balance response (for example, `"Woodland"`, `"HDFC Bank"`) is the value you **must pass** as `rewardName` in the `childPaymentInstruments` / `earnPaymentInstruments` array of the `_payment` request when the reward provider is **TWID**.
+
+  **Note:** The `rewardName` field is **NOT applicable for Zillion** rewards.
+</Callout>
+
+<Callout icon="⚠️" theme="warn">
+  ### **Session Consistency Requirement**
+
+  The `sessionId` used in the Fetch Balance API request **MUST be identical** to the `sessionId` passed in the `_payment` request within the `loyaltyDetails` block of the `split-info` JSON. TWID validates this sessionId during redemption.
+</Callout>
 
 ## Related Documentation
 
 - [Collect Payment with Rewards API](_payment-merchant-hosted-rewards.md)
 - [TWID Integration Guide](https://docs.payu.in)
 
----
+***
 
-**Last Updated:** August 2026  
-**Version:** 2.0 (New TWID Flow)
+**Last Updated:** August 2026<br />**Version:** 2.0 (New TWID Flow)
