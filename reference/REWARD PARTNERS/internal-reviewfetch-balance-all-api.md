@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-This API is used to fetch all the reward balances for a customer. It can be used before calling the Collect Payment API (\_payment) to check if the customer has the balance. &#x20;
+This API is used to fetch all the reward balances for a customer. It can be used before calling the Collect Payment API (\_payment) to check if the customer has the balance.
 
 ## Environment
 
@@ -92,7 +92,7 @@ HTTP Method: **POST**
     <tr>
       <td style={{ textAlign: "left" }}>
         loyaltyApiVersion <br/>
-        <code>mandatory</code> <span style={{ color: "red" }}>NEW</span>
+        <code>mandatory</code>
       </td>
       <td style={{ textAlign: "left" }}>
         <code>Number</code> Identifies the TWID API flow. 0 = legacy path; 1 = new routing. <strong>Note:</strong> This field may be deprecated in the future.
@@ -104,7 +104,7 @@ HTTP Method: **POST**
     <tr>
       <td style={{ textAlign: "left" }}>
         sessionId <br/>
-        <code>mandatory</code> <span style={{ color: "red" }}>NEW</span>
+        <code>mandatory</code>
       </td>
       <td style={{ textAlign: "left" }}>
         <code>String</code> Required to fetch the balance from TWID. <strong>The same sessionId must also be passed in the _payment request inside the loyaltyDetails block of the split-info JSON.</strong>
