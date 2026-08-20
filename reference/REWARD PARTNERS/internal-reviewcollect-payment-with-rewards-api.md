@@ -532,4 +532,104 @@ curl -X POST "https://test.payu.in/_payment" \
   "consent": false
   }
 ```
+## Sample response
 
+### Success scenario (TWID + Cards)
+
+```json
+{
+  "mihpayid": "999091000010480",
+  "mode": "SPLITPAY",
+  "status": "success",
+  "unmappedstatus": "success",
+  "key": "KOEfPI",
+  "txnid": "ram1234",
+  "amount": "512",
+  "discount": "0.00",
+  "net_amount_debit": "512",
+  "addedon": "2025-01-10 15:00:00",
+  "productinfo": "Product Info",
+  "firstname": "Payu-Admin",
+  "email": "test@example.com",
+  "phone": "8800108522",
+  "hash": "29efcd4f7a8a9a60a61481d70e21baf5ba6e7a472716d9b99bd911ef5390240411107b959e5bc8cdabc31463d150d4e02578349afa20529b18e271f60dd6db59",
+  "payment_source": "payuS2S",
+  "PG_TYPE": "SPLITPAY-PG",
+  "bank_ref_num": "1255",
+  "error": "E000",
+  "bankcode": "TWIDX",
+  "error_Message": "No Error",
+  "splitPayInfo": {
+    "cc": {
+      "name": "CC",
+      "bankCode": "CC",
+      "transactionAmount": "412"
+    },
+    "rd": {
+      "name": "RD",
+      "bankCode": "TWIDLS",
+      "transactionAmount": "100"
+    }
+  }
+}
+```
+
+### Success scenario (Zillion + UPI)
+
+```json
+{
+  "mihpayid": "999091000010475",
+  "mode": "SPLITPAY",
+  "status": "success",
+  "unmappedstatus": "success",
+  "key": "KOEfPI",
+  "txnid": "ram12345",
+  "amount": "100",
+  "discount": "0.00",
+  "net_amount_debit": "100",
+  "addedon": "2025-01-10 14:56:13",
+  "productinfo": "Product Info",
+  "firstname": "Payu-Admin",
+  "email": "test@example.com",
+  "phone": "8800**8522",
+  "hash": "29efcd4f7a8a9a60a61481d70e21baf5ba6e7a472716d9b99bd911ef5390240411107b959e5bc8cdabc31463d150d4e02578349afa20529b18e271f60dd6db59",
+  "payment_source": "payuS2S",
+  "PG_TYPE": "SPLITPAY-PG",
+  "bank_ref_num": "1254",
+  "error": "E000",
+  "bankcode": "ZRD",
+  "error_Message": "No Error",
+  "splitPayInfo": {
+    "upi": {
+      "name": "UPI",
+      "bankCode": "UPI",
+      "vpa": "kk@okaxis",
+      "transactionAmount": "99"
+    },
+    "rd": {
+      "name": "RD",
+      "bankCode": "ZLS",
+      "transactionAmount": "1"
+    }
+  }
+}
+```
+
+### Failure scenario
+
+```json
+{
+  "mihpayid": "20869277619",
+  "mode": "CC",
+  "status": "failure",
+  "unmappedstatus": "failed",
+  "key": "L43t1c",
+  "txnid": "26ba7cd6a67b0a010542",
+  "amount": "1.00",
+  "cardCategory": "domestic",
+  "discount": "0.00",
+  "net_amount_debit": "0.00",
+  "error": "E1903",
+  "error_Message": "Authorization failed at Bank"
+}
+```
