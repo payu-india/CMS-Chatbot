@@ -12,10 +12,6 @@ metadata:
 ---
 Collect payments from your customers without a website or coding.
 
-<br />
-
-Your customer clicks the link, enters their payment details, and completes the payment — all without needing a website or checkout page.
-
 <Callout icon="🟢" theme="success">
   ### **No Coding Required**
 
@@ -46,17 +42,6 @@ Use Payment Links when:
 - **You operate a small business or provide services** — where you send payment requests to individual customers
 
 If you want customers to pay directly on your website during checkout, consider [PayU Hosted Checkout](https://docs.payu.in/docs/prebuilt-checkout-page-integration) instead.
-
-***
-
-## What You Will Need
-
-To start using Payment Links:
-
-- **PayU merchant account** — [Sign up here](https://onboarding.payu.in/) if you don't have one yet
-- **Access to PayU Dashboard** — where you'll create your payment links
-- **Customer contact details** — so you can share the link (email, phone number, WhatsApp, etc.)
-- **Payment details** — amount, purpose/description, and any custom information you want to collect from the customer
 
 ***
 
@@ -109,29 +94,91 @@ You can create payment links one at a time, or upload multiple links at once if 
 
 ***
 
-## What your customer does
+## How do I Create a Payment Link?
+
+<Callout icon="far fa-list-timeline" theme="success">
+  ### You Will Need These:
+
+  - **PayU merchant account** — [Sign up here](https://onboarding.payu.in/) if you don't have one yet
+
+  - **Access to PayU Dashboard** — where you'll create your payment links
+
+  - **Customer contact details** — so you can share the link (email, phone number, WhatsApp, etc.)
+
+  - **Payment details** — amount, purpose/description, and any custom information you want to collect from the customer
+</Callout>
+
+To create a Payment Link:
+
+1. Log in to the PayU Dashboard.
+2. Go to **Payment Tools** → **Payment Links**.
+3. Click **Create New Payment Links**.
+4. Enter the required details.
+5. Create the link.
+
+<Columns layout="fixed">
+  <Column>
+    **Need detailed steps?**  See Create a Payment Link →
+  </Column>
+</Columns>
+
+***
+
+## How does My Customer Pay?
 
 When your customer receives the payment link:
 
-1. **Opens the link** — clicks the URL you sent them
-2. **Sees the payment details** — amount, purpose, and any message you included
-3. **Fills in any required information** (optional) — if you've set up a form to collect details like name, delivery address, or customer ID
-4. **Chooses payment method** — UPI, cards, net banking, or wallets
-5. **Completes payment** — enters payment details and confirms
-6. **Receives confirmation** — sees a success or failure message
+<Accordion title="1. Opens the link" icon="far fa-link">
+  Clicks the URL you sent them
+</Accordion>
+
+<Accordion title="Sees the payment details" icon="far fa-square-sliders-vertical">
+  Amount, purpose, and any message you included
+</Accordion>
+
+<Accordion title="Fills in any required information (optional)" icon="far fa-keyboard-down">
+  If you have set up a form to collect details like name, delivery address, or customer ID
+</Accordion>
+
+<Accordion title="Chooses payment method" icon="far fa-credit-card">
+  UPI, cards, net banking, or wallets
+</Accordion>
+
+<Accordion title="Completes payment" icon="far fa-money-bills">
+  enters payment details and confirms
+</Accordion>
+
+<Accordion title="Receives confirmation" icon="far fa-diagram-successor">
+  sees a success or failure message
+</Accordion>
 
 Your customer doesn't need a PayU account or any special app — the link works in any browser.
 
 ***
 
-## What happens after payment?
+## How do I Manage Payments?
 
 Once your customer completes the payment:
 
-- **You see the payment status immediately** in your PayU Dashboard under **Payment Tools → Payment Links**
-- **Payment details are recorded** — you can see the amount, date, customer details, and transaction status
-- **You can export payment history** — download a report of all payments received through your links
-- **Links can be reused or deactivated** — you control whether a link can be used multiple times or just once, and you can disable links that are no longer needed
+<Columns layout="fixed">
+  <Column>
+    **You see the payment status immediately&#x20;**&#x69;n your PayU Dashboard under **Payment Tools → Payment Links**
+  </Column>
+
+  <Column>
+    **Payment details are recorded**: You can see the amount, date, customer details, and transaction status
+  </Column>
+
+  <Column>
+    **You can export payment history**: Download a report of all payments received through your links
+  </Column>
+</Columns>
+
+<Columns layout="fixed">
+  <Column>
+    **Links can be reused or deactivated**: You control whether a link can be used multiple times or just once, and you can disable links that are no longer needed
+  </Column>
+</Columns>
 
 If a payment fails, you can share the same link again for the customer to retry, or create a new one.
 
