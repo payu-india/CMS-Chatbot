@@ -12,10 +12,16 @@ metadata:
 ---
 Collect payments from your customers without a website or coding.
 
+<br />
+
+Your customer clicks the link, enters their payment details, and completes the payment — all without needing a website or checkout page.
+
 <Callout icon="🟢" theme="success">
   ### **No Coding Required**
 
   Create and share payment links directly from your PayU Dashboard — no website or technical setup needed.
+
+  Create your first payment link →
 </Callout>
 
 <Callout icon="far fa-face-thinking" theme="warn">
@@ -28,17 +34,11 @@ Collect payments from your customers without a website or coding.
 
 ***
 
-## What is Payment Links?
+## What Can I Do with Payment Links?
 
 Payment Links lets you collect payments by creating a secure payment link and sharing it with your customer through WhatsApp, SMS, email, or any other channel you use to communicate with them.
 
-Your customer clicks the link, enters their payment details, and completes the payment — all without needing a website or checkout page.
-
-***
-
-## Is this right for me?
-
-Payment Links is best when:
+Use Payment Links when:
 
 - **You don't have a website** — you run your business through social media, messaging apps, or in person
 - **You want to request payment from a specific customer** — for an invoice, order, or service
@@ -49,7 +49,7 @@ If you want customers to pay directly on your website during checkout, consider 
 
 ***
 
-## What you'll need
+## What You Will Need
 
 To start using Payment Links:
 
@@ -60,7 +60,7 @@ To start using Payment Links:
 
 ***
 
-## How it works
+## How Does It Work
 
 Here's what you do:
 
