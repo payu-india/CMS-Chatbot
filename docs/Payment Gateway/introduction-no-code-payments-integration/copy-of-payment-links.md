@@ -196,21 +196,23 @@ If a payment fails, you can share the same link again for the customer to retry,
 
 ***
 
-## Next steps
+## Next Steps
 
-Ready to create your first payment link?
+<Cards>
+  <Card title="**Ready to create your first payment link?**" icon="far fa-link">
+    **[Create a Payment Link:](doc:create-a-new-payment-link)&#x20;**&#x73;tep-by-step guide to creating your first link from the PayU Dashboard
+  </Card>
 
-- **[Create a Payment Link](doc:create-a-new-payment-link)** — step-by-step guide to creating your first link from the PayU Dashboard
+  <Card title="Want to create multiple payment links at once?" icon="far fa-check-double">
+    **[Create Payment Links in Bulk:](doc:bulk-upload-to-create-multiple-payments-links)&#x20;**&#x75;pload a file to create many links at once
+  </Card>
 
-Want to create multiple payment links at once?
+  <Card title="Need more control or want to automate link creation?" icon="fa-comments">
+    **[Integration APIs for Payment Links](doc:integration-api-for-payment-links)** — technical documentation for developers who want to create links programmatically
 
-- **[Create Payment Links in Bulk](doc:bulk-upload-to-create-multiple-payments-links)** — upload a file to create many links at once
 
-Need more control or want to automate link creation?
-
-- **[Integration APIs for Payment Links](doc:integration-api-for-payment-links)** — technical documentation for developers who want to create links programmatically
-
-<br />
+  </Card>
+</Cards>
 
 ### More resources
 
@@ -220,12 +222,4 @@ Check this video to see how PayU Payment Links work:
 
 <br />
 
-### All Payment Links guides
-
-- [Create a Payment Link](doc:create-a-new-payment-link)
-- [Create Payment Links in Bulk](doc:bulk-upload-to-create-multiple-payments-links)
-- [Customize the Calendar View for Payment Links](doc:customize-the-calendar-view-for-payment-links)
-- [Categorize the Payment Links View](doc:categorize-the-payment-links-view)
-- [Export the Payment Link History](doc:export-the-payment-link-history)
-- [Integration APIs for Payment Links](doc:integration-api-for-payment-links)
-- [FAQs - Payment Links](doc:faqs-payment-links)
+<br />
