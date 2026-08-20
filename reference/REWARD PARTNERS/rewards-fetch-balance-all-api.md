@@ -5,13 +5,7 @@ hidden: false
 metadata:
   robots: index
 ---
----
-title: Fetch Balance All API - TWID
-deprecated: false
-hidden: false
-metadata:
-  robots: index
----
+This API is used to fetch all the reward balances for a customer. It can be used before calling the Collect Payment API (\_payment) to check if the customer has the balance. &#x20;
 
 ## Environment
 
@@ -43,6 +37,7 @@ HTTP Method: **POST**
   white-space: nowrap;
 }
 </style>
+
 <Table align={["left","left","left"]}>
   <thead>
     <tr>
@@ -294,16 +289,16 @@ echo "Response: " . $response . "\n";
 
 ## Response parameters
 
-| Parameter                   | Description                                                    | Example                                    |
-| --------------------------- | -------------------------------------------------------------- | ------------------------------------------ |
-| data[].loyaltyProvider      | `String` - Loyalty provider identifier for this response entry | `"TWID"`                                   |
-| data[].usableAmount         | `Number` - Maximum monetary amount that can be saved           | `500.0`                                    |
-| data[].usablePoints         | `Number` - Required reward points for maximum savings          | `500`                                      |
-| data[].title                | `String` - Display title describing the reward offer           | `"Save Rs 500 using 500 TWID Cash Points"` |
-| data[].earnConfig.points    | `Number` - Points that can be earned                           | `0`                                        |
-| data[].issuerDetailDTO.logo | `String` - Logo URL of the brand/issuer                        | `"https://cdn.twidpay.com/brand_logo.png"` |
-| data[].holdApplicable       | `Boolean` - Indicates if points can be held for the reward     | `false`                                    |
-| data[].customErrorMessage   | `String` - Error message for specific provider (if applicable) | `"Unable to process request for provider"` |
+| Parameter                    | Description                                                    | Example                                    |
+| ---------------------------- | -------------------------------------------------------------- | ------------------------------------------ |
+| data\[].loyaltyProvider      | `String` - Loyalty provider identifier for this response entry | `"TWID"`                                   |
+| data\[].usableAmount         | `Number` - Maximum monetary amount that can be saved           | `500.0`                                    |
+| data\[].usablePoints         | `Number` - Required reward points for maximum savings          | `500`                                      |
+| data\[].title                | `String` - Display title describing the reward offer           | `"Save Rs 500 using 500 TWID Cash Points"` |
+| data\[].earnConfig.points    | `Number` - Points that can be earned                           | `0`                                        |
+| data\[].issuerDetailDTO.logo | `String` - Logo URL of the brand/issuer                        | `"https://cdn.twidpay.com/brand_logo.png"` |
+| data\[].holdApplicable       | `Boolean` - Indicates if points can be held for the reward     | `false`                                    |
+| data\[].customErrorMessage   | `String` - Error message for specific provider (if applicable) | `"Unable to process request for provider"` |
 
 ## Sample response
 
