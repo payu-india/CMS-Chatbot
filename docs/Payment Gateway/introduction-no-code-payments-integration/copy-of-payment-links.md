@@ -112,7 +112,7 @@ You'll need:
 
 ***
 
-## How Does It Work
+## How do I Create a Payment Link?
 
 Here is how it works:
 
@@ -131,37 +131,13 @@ Here is how it works:
 
 <Columns layout="fixed">
   <Column>
-    You can create payment links one at a time, or upload multiple links at once if you need to send payment requests to many customers.
+    **Need detailed steps?**  See Create a Payment Link →
   </Column>
 </Columns>
 
-***
-
-## How do I Create a Payment Link?
-
-<Callout icon="far fa-list-timeline" theme="success">
-  ### You Will Need These:
-
-  - **PayU merchant account** — [Sign up here](https://onboarding.payu.in/) if you don't have one yet
-
-  - **Access to PayU Dashboard** — where you'll create your payment links
-
-  - **Customer contact details** — so you can share the link (email, phone number, WhatsApp, etc.)
-
-  - **Payment details** — amount, purpose/description, and any custom information you want to collect from the customer
-</Callout>
-
-To create a Payment Link:
-
-1. Log in to the PayU Dashboard.
-2. Go to **Payment Tools** → **Payment Links**.
-3. Click **Create New Payment Links**.
-4. Enter the required details.
-5. Create the link.
-
 <Columns layout="fixed">
   <Column>
-    **Need detailed steps?**  See Create a Payment Link →
+    You can create payment links one at a time, or upload multiple links at once if you need to send payment requests to many customers.
   </Column>
 </Columns>
 
@@ -255,7 +231,9 @@ If a payment fails, you can share the same link again for the customer to retry,
   </Card>
 </Cards>
 
-### More resources
+***
+
+## Video Tutorial
 
 Check this video to see how PayU Payment Links work:
 
