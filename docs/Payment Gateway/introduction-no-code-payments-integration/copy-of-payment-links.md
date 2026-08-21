@@ -30,7 +30,40 @@ Use Payment Links when:
 - **You want to collect payments quickly** — without building or learning how to use technical integrations
 - **You operate a small business or provide services** — where you send payment requests to individual customers
 
-Create your first payment link →
+<HTMLBlock>{`
+                <style>
+                .tooltip-btn {
+                    position: relative;
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-weight: bold; /* Added this line */
+                }
+                .tooltip-btn:hover::after {
+                    content: attr(data-tooltip);
+                    position: absolute;
+                    bottom: 125%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: #333;
+                    color: white;
+                    padding: 5px 10px;
+                    border-radius: 4px;
+                    white-space: nowrap;
+                    font-size: 12px;
+                    z-index: 1;
+                }
+                </style>
+
+                <button onclick="window.open('https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/collection/rocz44o/payu-hosted-checkout-collection-complete-integration', '_blank')" 
+                        class="tooltip-btn" 
+                        data-tooltip="Click to see steps to create your first payment link.">
+                    Create your first payment link →
+                </button>
+`}</HTMLBlock>
 
 If you want customers to pay directly on your website during checkout, consider [PayU Hosted Checkout](https://docs.payu.in/docs/prebuilt-checkout-page-integration) instead.
 
