@@ -244,7 +244,3 @@ If a payment fails, you can share the same link again for the customer to retry,
     **Automate Payment Links with APIs:** Create and manage payment links programmatically.
   </Card>
 </Cards>
-
-***
-
-## Video Tutorial
