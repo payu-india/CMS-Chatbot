@@ -1,5 +1,5 @@
 ---
-title: Copy of Webhook Events and Sample Payloads
+title: StoreCard Webhook Events and Sample Payloads
 excerpt: List of webhook events along with sample payloads.
 deprecated: false
 hidden: true
@@ -28,22 +28,23 @@ You can accept customer payments using PayU products. By subscribing to payments
 
 The table below lists the available webhook events.
 
-| **Event Name** | **Event Type** | **Description**                                            |
-| :------------- | :------------- | :--------------------------------------------------------- |
-| `Successful`   | `Payment`      | Triggered when a payment is successful.                    |
-| `Failed`       | `Payment`      | Triggered when a payment is failed.                        |
-| `Refund`       | `Payment`      | Triggered when a payment refund is successful and failure. |
-| `Dispute`      | `Payment`      | Triggered when a dispute is raised for a payment.          |
+| **Event Name**            | **Description**                                               |
+| :------------------------ | :------------------------------------------------------------ |
+| `ACTIVE`                  | Determines that a card token is active.                       |
+| `DELETED`                 | Triggered when a card token is deleted.                       |
+| `SUSPENDED`               | Triggered when a card token is suspended.                     |
+| `Redigitization Complete` | Triggered when a re-digitization of a card token is complete. |
+| `UPDATED`                 | Triggered when a card token is updated.                       |
 
 ## Sample Payloads
 
 The following are the sample payloads for webhook events.
 
-> 📘
->
-> The payment successful and failure payloads are in the Form POST URL Encoded format:
->
-> ` application/x-www-form-urlencode`
+<Callout icon="📘" theme="info">
+  The payment successful and failure payloads are in the Form POST URL Encoded format:
+
+  ` application/x-www-form-urlencode`
+</Callout>
 
 ### Payment Successful
 
@@ -177,9 +178,11 @@ mihpayid=27553387529
 
 #### Payments Event Payload Parameter Description
 
-> 📘 **Webhook amount field:**&#x20;
->
-> The `amount` field in the webhook payload reflects the **original transaction amount** passed in the payment request — it does not include convenience fees or MDR charges added by the merchant. If you have configured convenience fees, the `net_amount_debit` field (where available) reflects the actual amount debited from the customer's account. Always use `amount` for reconciliation against your order value and `net_amount_debit` for the customer-side amount.
+<Callout icon="📘" theme="info">
+  ### **Webhook amount field:**&#x20;
+
+  The `amount` field in the webhook payload reflects the **original transaction amount** passed in the payment request — it does not include convenience fees or MDR charges added by the merchant. If you have configured convenience fees, the `net_amount_debit` field (where available) reflects the actual amount debited from the customer's account. Always use `amount` for reconciliation against your order value and `net_amount_debit` for the customer-side amount.
+</Callout>
 
 <Accordion title="Parameters and Description" icon="fa-table">
   | Parameters               | Description                                                                                                                                                                                                                                                     |
@@ -203,22 +206,22 @@ mihpayid=27553387529
   | hash                     | Hash calculated by PayU. Merchant must verify it before marking the transaction success/failure to ensure integrity. See [Response Handling](doc:using-payu-hash-verification-tool).                                                                            |
   | status                   | Outcome of the transaction: `success`, `failure`, or `pending`. Treat only `success` as successful.                                                                                                                                                             |
   | error                    | Error code indicating the reason for failure (e.g. E500). Failure reasons vary by bank.                                                                                                                                                                         |
-  | error\_Message           | Human-readable error message. Refer to [Error Codes](ref:error-codes) for the list.                                                                                                                                                                             |
-  | PG\_TYPE                 | Payment gateway type used for the transaction (e.g. `CC-PG` for credit card, `DC-PG` for debit card, `UPI-PG`, `CASH-PG`, `EMI-PG`, `BNPL-PG`, `QR-PG`).                                                                                                        |
-  | bank\_ref\_num           | For successful transactions, the bank reference number generated by the bank.                                                                                                                                                                                   |
-  | bank\_ref\_no            | Same as bank\_ref\_num; alternate parameter name for bank reference number.                                                                                                                                                                                     |
+  | error_Message            | Human-readable error message. Refer to [Error Codes](ref:error-codes) for the list.                                                                                                                                                                             |
+  | PG_TYPE                  | Payment gateway type used for the transaction (e.g. `CC-PG` for credit card, `DC-PG` for debit card, `UPI-PG`, `CASH-PG`, `EMI-PG`, `BNPL-PG`, `QR-PG`).                                                                                                        |
+  | bank_ref_num             | For successful transactions, the bank reference number generated by the bank.                                                                                                                                                                                   |
+  | bank_ref_no              | Same as bank_ref_num; alternate parameter name for bank reference number.                                                                                                                                                                                       |
   | unmappedstatus           | Transaction status in PayU’s internal system; can include intermediate states. Values include: dropped, bounced, captured, auth, failed, usercancelled, pending. See [Payment State Explanations](ref:payment-state-explanations).                              |
   | surl                     | Success URL – URL on which PayU redirects when the transaction is successful.                                                                                                                                                                                   |
   | furl                     | Failure URL – URL on which PayU redirects when the transaction fails.                                                                                                                                                                                           |
   | curl                     | Cancel URL – URL used when the user cancels (character limit 50 in request).                                                                                                                                                                                    |
   | addedon                  | Date and time when the transaction was recorded (e.g. `2026-02-27 14:24:42`).                                                                                                                                                                                   |
   | discount                 | Discount amount applied (e.g. `0.00`).                                                                                                                                                                                                                          |
-  | net\_amount\_debit       | Net amount debited from the customer.                                                                                                                                                                                                                           |
+  | net_amount_debit         | Net amount debited from the customer.                                                                                                                                                                                                                           |
   | additionalCharges        | Additional charges applied (e.g. convenience fee).                                                                                                                                                                                                              |
-  | payment\_source          | Source of the payment (e.g. `payu`).                                                                                                                                                                                                                            |
-  | pa\_name                 | Name of the payment aggregator through which the transaction was routed (e.g. PayU, RazorPay). Shown when using Maximiser / other aggregators.                                                                                                                  |
-  | offer\_key               | Key of the offer applied, if any.                                                                                                                                                                                                                               |
-  | offer\_availed           | Indicates whether an offer was availed.                                                                                                                                                                                                                         |
+  | payment_source           | Source of the payment (e.g. `payu`).                                                                                                                                                                                                                            |
+  | pa_name                  | Name of the payment aggregator through which the transaction was routed (e.g. PayU, RazorPay). Shown when using Maximiser / other aggregators.                                                                                                                  |
+  | offer_key                | Key of the offer applied, if any.                                                                                                                                                                                                                               |
+  | offer_availed            | Indicates whether an offer was availed.                                                                                                                                                                                                                         |
   | authenticaticationMethod | Authentication method used (e.g. 3DS). Note: name may appear with typo in payload.                                                                                                                                                                              |
   | field0 – field9          | Gateway- or flow-specific fields. Content varies by payment mode and outcome (e.g. bank reference, RRN, auth result, status message). For cards, field7/field8/field9 often carry auth result or message (e.g. AUCNEGATIVE, UNKNOWN, Message Received Invalid). |
 </Accordion>
@@ -233,14 +236,14 @@ The following table provides description for each status of the transaction. You
 
 ### Refund Successful
 
-> 📘
->
-> **Note:**
->
-> The Refund and Dispute payloads are in the following format:
->
-> - **Method:** POST
-> - **Content type:** application/json
+<Callout icon="📘" theme="info">
+  **Note:**
+
+  The Refund and Dispute payloads are in the following format:
+
+  - **Method:** POST
+  - **Content type:** application/json
+</Callout>
 
 **Field reference:** `merchantTxnId` (merchant order ID), `mihpayid` (PayU transaction ID), `token` (merchant refund ID), `request_id` (PayU refund ID), `amt` (refund amount), `status` (`success` or `failure`), `action` (`refund`), `key` (merchant key), `bank_ref_num` / `bank_arn` (bank reference).
 
@@ -316,9 +319,9 @@ The following table provides description for each status of the transaction. You
   | ---------------- | ------------------------------------------------------------------------- | -------------------------------- |
   | merchantTxnId    | `String` Merchant Sale transaction id `Character Limit: 50`               |                                  |
   | mihpayid         | `String` payuid `Character Limit: max 255 chars`                          | Var1 for refund initiate API     |
-  | bank\_arn        | `String` Reference number for refund tracking `Character Limit: 45`       |                                  |
-  | bank\_ref\_num   | `String` Bank reference number `Character Limit: 255`                     |                                  |
-  | request\_id      | `String` Unique refund id generated by payu `Character Limit:  255`       |                                  |
+  | bank_arn         | `String` Reference number for refund tracking `Character Limit: 45`       |                                  |
+  | bank_ref_num     | `String` Bank reference number `Character Limit: 255`                     |                                  |
+  | request_id       | `String` Unique refund id generated by payu `Character Limit:  255`       |                                  |
   | token            | `String` Unique refund txn id provided by merchant `Character Limit:  23` | Var2 for refund initiate API     |
   | action           | `String` refund `Character Limit: 32`                                     |                                  |
   | amt              | `String` Refund amount `Character Limit: 65`                              | Var3 for refund initiate API     |
@@ -352,23 +355,23 @@ The following table provides description for each status of the transaction. You
 #### Dispute Payload Parameters
 
 <Accordion title="Parameters and Description" icon="fa-table">
-  | Field        | Description                                                                                                                                                                                                       |
-  | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | type         | Type of transaction  and merchant must include the value as **payments** only.                                                                                                                                    |
-  | event        | Event type and the merchant must the include the value as **dispute** only.                                                                                                                                       |
-  | reason\_code | Reason for the chargeback. For the list of reason codes, refer to [Reason codes for chargebacks](https://docs.payu.in/docs/webhooks-for-chargeback#reason-codes-for-chargebacks).                                 |
-  | created\_at  | Timestamp when the chargeback was created                                                                                                                                                                         |
-  | updated\_at  | Timestamp when the chargeback was last updated                                                                                                                                                                    |
-  | mid          | PayU Merchant ID                                                                                                                                                                                                  |
-  | cb\_id       | Chargeback ID                                                                                                                                                                                                     |
-  | txn\_id      | This is the PayU transaction ID that is associated with the chargeback.                                                                                                                                           |
-  | cb\_type     | Type of chargeback (for example, "RBI/BO", that is, Reserve Bank of India/Banking Operations)                                                                                                                     |
-  | due\_date    | Due date for the chargeback resolution                                                                                                                                                                            |
-  | cb\_amount   | Amount involved in the chargeback                                                                                                                                                                                 |
-  | cb\_status   | Current status of the chargeback. For the possible chargeback status values, refer to [cb\_status field values description](https://docs.payu.in/docs/webhooks-for-chargeback#cb_status-field-values-description) |
+  | Field       | Description                                                                                                                                                                                                      |
+  | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | type        | Type of transaction  and merchant must include the value as **payments** only.                                                                                                                                   |
+  | event       | Event type and the merchant must the include the value as **dispute** only.                                                                                                                                      |
+  | reason_code | Reason for the chargeback. For the list of reason codes, refer to [Reason codes for chargebacks](https://docs.payu.in/docs/webhooks-for-chargeback#reason-codes-for-chargebacks).                                |
+  | created_at  | Timestamp when the chargeback was created                                                                                                                                                                        |
+  | updated_at  | Timestamp when the chargeback was last updated                                                                                                                                                                   |
+  | mid         | PayU Merchant ID                                                                                                                                                                                                 |
+  | cb_id       | Chargeback ID                                                                                                                                                                                                    |
+  | txn_id      | This is the PayU transaction ID that is associated with the chargeback.                                                                                                                                          |
+  | cb_type     | Type of chargeback (for example, "RBI/BO", that is, Reserve Bank of India/Banking Operations)                                                                                                                    |
+  | due_date    | Due date for the chargeback resolution                                                                                                                                                                           |
+  | cb_amount   | Amount involved in the chargeback                                                                                                                                                                                |
+  | cb_status   | Current status of the chargeback. For the possible chargeback status values, refer to [cb_status field values description](https://docs.payu.in/docs/webhooks-for-chargeback#cb_status-field-values-description) |
 </Accordion>
 
-#### cb\_status Parameter Values
+#### cb_status Parameter Values
 
 <Accordion title="Parameters and Description" icon="fa-table">
   The `cb_status` or chargeback status field can have the following values:<br />
@@ -385,15 +388,15 @@ The following table provides description for each status of the transaction. You
   | Closed under Fraud Liability | It indicates that the chargeback has been closed since the transaction has been identified as fraudulent. Moreover, PayU will cover the chargeback amount under the fraud liability program so the chargeback amount will be reversed back to the merchant account or will not be debited from the merchant's account. |
 </Accordion>
 
-> 📘
->
-> **Webhook Logs**
->
-> You can now view the webhook logs on your dashboard by navigating to:
->
-> Dashboard -> Developers -> Webhook logs
->
-> Ensure that your webhook URL is captures and handles the posted response payload. Additionally, you may use the <Anchor target="_blank" href="https://docs.payu.in/reference/transaction-callback-api">Transaction Callback API</Anchor> to manually test the response payload:
+<Callout icon="📘" theme="info">
+  **Webhook Logs**
+
+  You can now view the webhook logs on your dashboard by navigating to:
+
+  Dashboard -> Developers -> Webhook logs
+
+  Ensure that your webhook URL is captures and handles the posted response payload. Additionally, you may use the <Anchor target="_blank" href="https://docs.payu.in/reference/transaction-callback-api">Transaction Callback API</Anchor> to manually test the response payload:
+</Callout>
 
 ## IP Addresses
 
@@ -403,5 +406,3 @@ All our webhook requests originate from a set of IP addresses. If your server-ha
 | :--------------------- | :--------------------------------------------------------------------- | :---------------------------------------------------------------------- |
 | Test Environment       | <ul><li>180.179.174.1</li> <li>3.6.73.183</li> <li>3.6.83.44</li></ul> | NA                                                                      |
 | Production Environment | <ul><li>3.7.89.1</li> <li>3.7.89.2</li> <li>3.7.89.3</li></ul>         | <ul><li>52.140.8.88</li> <li>52.140.8.89</li> <li>52.140.8.64</li></ul> |
-
-<br />
