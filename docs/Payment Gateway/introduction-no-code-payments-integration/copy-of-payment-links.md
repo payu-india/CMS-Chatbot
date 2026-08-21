@@ -19,28 +19,6 @@ metadata:
   fontWeight="bold"
  />
 
-Collect payments from your customers without a website or coding.
-
-<Callout icon="🟢" theme="success">
-  ### **No Coding Required**
-
-  Create and share payment links directly from your PayU Dashboard  without a website or technical setup.
-
-  Create your first payment link →
-</Callout>
-
-<Callout icon="far fa-face-thinking" theme="warn">
-  ### **Not Sure Which PayU Solution is Right for You?**
-
-  Tell us what you want to achieve and how you plan to accept payments. We will recommend the PayU solution that best fits your needs.
-
-  \[Find the right solution →]
-</Callout>
-
-***
-
-## What Can I Do with Payment Links?
-
 Payment Links lets you collect payments by creating a secure payment link and sharing it with your customer through WhatsApp, SMS, email, or any other channel you use to communicate with them.
 
 Use Payment Links when:
@@ -50,7 +28,17 @@ Use Payment Links when:
 - **You want to collect payments quickly** — without building or learning how to use technical integrations
 - **You operate a small business or provide services** — where you send payment requests to individual customers
 
+Create your first payment link →
+
 If you want customers to pay directly on your website during checkout, consider [PayU Hosted Checkout](https://docs.payu.in/docs/prebuilt-checkout-page-integration) instead.
+
+<Callout icon="far fa-face-thinking" theme="warn">
+  ### **Not Sure Which PayU Solution is Right for You?**
+
+  Tell us what you want to achieve and how you plan to accept payments. We will recommend the PayU solution that best fits your needs.
+
+  \[Find the right solution →]
+</Callout>
 
 ***
 
