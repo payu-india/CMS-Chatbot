@@ -3,7 +3,7 @@ title: Add or Update Bank Details API
 api:
   file: Add_Update_Bank_Details_API_Collection.json
   operationId: Add/UpdateBankDetails
-hidden: false
+hidden: true
 metadata:
   title: Add or Update Bank Details
 ---
