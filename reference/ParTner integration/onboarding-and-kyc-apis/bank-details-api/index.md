@@ -2,7 +2,7 @@
 title: Bank Details API
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
