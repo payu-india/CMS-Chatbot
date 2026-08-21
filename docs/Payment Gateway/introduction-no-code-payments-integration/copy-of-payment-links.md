@@ -12,7 +12,7 @@ metadata:
 ---
 <Banner
   isInline={true}
-  message="No website or Coding Required."
+  message="Integration effort: No code or website required"
   color="#15C614"
   textColor="#ffffff"
   fontSize="14px"
