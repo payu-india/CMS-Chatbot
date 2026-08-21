@@ -82,11 +82,11 @@ Consider another PayU solution if:
 - You want to create payment links programmatically → **Payment Links APIs**
 
 <Callout icon="far fa-face-thinking" theme="warn">
-  ### **Not Sure Which PayU Solution To Choose?**
+  ### **Not Sure Which PayU Solution is Right For You?**
 
   Tell us what you want to achieve and how you plan to accept payments. We will recommend the best PayU solution that fits your needs.
 
-  \[Find the right solution →]
+  Find the right solution →
 </Callout>
 
 ***
@@ -100,6 +100,12 @@ You'll need:
 <Columns layout="fixed">
   <Column>
     **A PayU merchant account:** Sign up here if you do not have an account.
+  </Column>
+</Columns>
+
+<Columns layout="fixed">
+  <Column>
+    **Access to the PayU Dashboard:** Where you will create and manage your payment links.
   </Column>
 </Columns>
 
