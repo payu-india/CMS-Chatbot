@@ -9,50 +9,46 @@ metadata:
 ---
 The following APIs are used to onboard and manage merchants through Partner Integration:
 
-### Authentication
-
-| Use case → Reference                                          | `command` / primary value | Description                                                                |
-| ------------------------------------------------------------- | ------------------------- | -------------------------------------------------------------------------- |
-| Generate an access token — [Get Token API](ref:get_token_api) | `POST /oauth/token`       | Generates an access token using the partner's client ID and client secret. |
-
-### Create and Update Merchant
-
-| Use case → Reference                                                                     | `command` / primary value                                        | Description                                                                   |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| Onboard a merchant — [Create Merchant API](ref:create_merchant_api)                      | `POST /api/v3/merchants`                                         | Creates a merchant account, submits KYC details, and returns the Merchant ID. |
-| Manage bank details — [Add or Update Bank Details API](ref:add_update_bank_details_api)  | `POST /api/v3/merchants/`<br />`{merchant_uuid}/add_bank_detail` | Adds or updates a merchant's bank account details after PAN verification.     |
-| Update merchant details — [Update Merchant Details API](ref:update_merchant_details_api) | `PUT /api/v1/merchants/`<br />`{uuid}/update`                    | Updates merchant information, including PAN details.                          |
-
-### Verify Bank Details and KYC
-
-| Use case → Reference                                                                          | `command` / primary value             | Description                                                                  |
-| --------------------------------------------------------------------------------------------- | ------------------------------------- | ---------------------------------------------------------------------------- |
-| Retrieve merchant details — [Get Merchant API](ref:get_merchant_api)                          | `GET /api/v1/merchants/{mid}`         | Retrieves the details of a merchant linked to the partner.                   |
-| Verify and link a merchant — [Verify and Link Merchant API](ref:verify_and_link_merchant_api) | `POST /api/v1/merchants/{mid}/verify` | Verifies an existing merchant and links the merchant account to the partner. |
-
-### User Token APIs
-
-| Use case → Reference                                 | `command` / primary value      | Description                                                                     |
-| ---------------------------------------------------- | ------------------------------ | ------------------------------------------------------------------------------- |
-| Send an OTP — [Send OTP API](ref:send_otp_api)       | `POST /api/v1/otps/send_otp`   | Sends an OTP to verify merchant details or authorize a bank-details update.     |
-| Verify an OTP — [Verify OTP API](ref:verify_otp_api) | `POST /api/v1/otps/verify_otp` | Verifies the merchant's OTP and returns a user token for authorized operations. |
-
-### Manage KYC
-
-| Use case → Reference                                                                      | `command` / primary value                                         | Description                                                    |
-| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | -------------------------------------------------------------- |
-| Retrieve required KYC documents — [Info KYC Document API](ref:info_kyc_document_api)      | `GET /api/v3/merchants/kyc_document/info`                         | Retrieves the documents required to complete a merchant's KYC. |
-| Upload a KYC document — [Create KYC Document](ref:create_kyc_document_api)                | `POST /api/v3/merchants/{mid}/kyc_document`                       | Uploads a KYC document for a merchant.                         |
-| Delete a KYC document — [Delete KYC Document API](ref:delete_kyc_document_api)            | `DELETE /api/v3/merchants/{mid}/kyc_document/{kyc_document_uuid}` | Deletes a previously uploaded KYC document.                    |
-| Submit CKYC details — [Post CKYC API](ref:post_ckyc_api)                                  | `POST /api/v3/merchants/kyc_document/ckyc_data`                   | Submits the merchant's Central KYC details to PayU.            |
-| Upload Aadhaar XML — [Upload Aadhaar XML Offline API](ref:upload_aadhaar_xml_offline_api) | `POST /api/v3/merchants/kyc_document/aadhaar_xml_offline`         | Uploads the merchant's offline Aadhaar XML file for KYC.       |
-
-### E-Sign Flow APIs
-
-| Use case → Reference                                                                                                           | `command` / primary value                                                           | Description                                                           |
-| ------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| Generate the merchant agreement — [Generate Merchant Agreement for E-sign API](ref:generate-merchant-agreement-for-e-sign-api) | `POST /v3/merchants/{merchant_uuid}/generate_agreement_for_esign`                   | Generates the merchant agreement document for electronic signing.     |
-| Send an OTP to the signatory — [Send OTP to Signatory Email API](ref:send-otp-to-signatory-email-api)                          | `POST /v3/merchants/{merchant_uuid}/agreements/{agreement_uuid}/send_signatory_otp` | Sends an OTP to the merchant's signatory for agreement signing.       |
-| E-sign the merchant agreement — [E-Sign Merchant Agreement API](ref:e-sign-merchant-agreement-api)                             | `POST /v3/merchants/{merchant_uuid}/agreements/{agreement_uuid}/esign`              | Uses the signatory OTP to electronically sign the merchant agreement. |
-
-<br />
+| Description                                                                                                                     | **API**                                                                   |
+| :------------------------------------------------------------------------------------------------------------------------------ | :------------------------------------------------------------------------ |
+| **Step 00 — Authentication**                                                                                                    |                                                                           |
+| Obtains an OAuth bearer token for Partner Onboarding APIs. Call this first; use the returned `access_token` on all later steps. | [Get Token API](ref:get_token_partner_integration)                        |
+| **Step 01 — Create Merchant**                                                                                                   |                                                                           |
+| Creates a new merchant shell account on PayU. Returns `mid`, `uuid`, and `product_account_uuid`.                                | [Create Merchant API](ref:createmerchant)                                 |
+| **Step 02 — Update Merchant Details**                                                                                           |                                                                           |
+| Sets the merchant PAN and date of birth or incorporation.                                                                       | [Update Merchant Details API](ref:updatemerchant_pan_dob_entity)          |
+| **Step 03 — CKYC Verification**                                                                                                 |                                                                           |
+| Sends an OTP to the merchant mobile for CKYC verification (Individual / Sole Proprietorship).                                   | [Send CKYC OTP API](ref:sendckycotp)                                      |
+| Verifies the OTP from Step 03A and returns CKYC identity data.                                                                  | [Verify CKYC OTP API](ref:verifyckycotp)                                  |
+| Fetches CKYC identity data using PAN without OTP (all other entity types).                                                      | [Fetch CKYC Data API](ref:fetchckycdata)                                  |
+| **Step 04 — Update: Business Details**                                                                                          |                                                                           |
+| Adds business category, sub-category, expected volume, GST, business name, and CIN where required.                              | [UpdateMerchant Business Details API](ref:updatemerchant_businessdetails) |
+| **Step 05 — Update Bank Details**                                                                                               |                                                                           |
+| Adds settlement bank account details. PayU attempts auto-verification after this step.                                          | [UpdateMerchant Bank Details API](ref:updatemerchant_bankdetails)         |
+| **Step 06 — Upload Bank Proof (Conditional)**                                                                                   |                                                                           |
+| Uploads bank account proof when auto-verification from Step 05 failed.                                                          | [Upload Bank Proof API](ref:uploadbankproof)                              |
+| **Step 07 — Update: Website Details**                                                                                           |                                                                           |
+| Adds the merchant website and/or app store URLs.                                                                                | [Update Website Details API](ref:updatemerchant_websitedetails)           |
+| **Step 08 — Add Signatory Details**                                                                                             |                                                                           |
+| Submits the authorised signatory for the merchant agreement. Prerequisite for DigiLocker.                                       | [Add Signatory Details API](ref:addsignatorydetails)                      |
+| **Step 09 — DigiLocker Verification**                                                                                           |                                                                           |
+| Creates a DigiLocker authentication URL for Aadhaar-based verification.                                                         | [Generate DigiLocker Link API](ref:generatedigilockerlink)                |
+| **Step 10 — Update: Addresses**                                                                                                 |                                                                           |
+| Adds registration and operating addresses for the merchant.                                                                     | [Update Merchant Addresses API](ref:updatemerchant_addresses)             |
+| **Step 11 — Video KYC (VKYC)**                                                                                                  |                                                                           |
+| Creates a Video KYC profile and returns a VCIP capture link.                                                                    | [Create VKYC Profile API](ref:createvkycprofile)                          |
+| **Step 12 — Add/Update UBO**                                                                                                    |                                                                           |
+| Submits Ultimate Beneficial Owner details (entity-dependent).                                                                   | [Add/Update UBO API](ref:addupdateubo)                                    |
+| **Step 13 — Business Members & KMP**                                                                                            |                                                                           |
+| Submits directors, partners, or designated partners.                                                                            | [Submit Business Members API](ref:submitbusinessmembers)                  |
+| Retrieves business members already submitted for the merchant.                                                                  | [List Business Members API](ref:list_business_members_api)                |
+| **Step 14 — Fetch Required KYC Documents**                                                                                      |                                                                           |
+| Returns document categories and accepted types required for the merchant.                                                       | [Fetch Required KYC Documents API](ref:fetchrequireddocs)                 |
+| **Step 15 — Upload KYC Documents**                                                                                              |                                                                           |
+| Uploads one KYC document per required category from Step 14.                                                                    | [Upload KYC Document API](ref:uploadkycdocument)                          |
+| Returns details for a previously uploaded KYC document, including a signed URL and status.                                      | [Show KYC Document API](ref:showkycdocument)                              |
+| Deletes a previously uploaded KYC document.                                                                                     | [Delete KYC Document API](ref:deletekycdocument)                          |
+| **Step 16 — E-Sign Agreement**                                                                                                  |                                                                           |
+| Generates the merged merchant agreement document for electronic signing (final step).                                           | [Generate Agreement for E-Sign API](ref:generateagreementforesign)        |
+| **Utilities**                                                                                                                   |                                                                           |
+| Retrieves the full merchant profile and verification statuses. Call between any steps to check progress.                        | [Get Merchant Details API](ref:getmerchant)                               |
