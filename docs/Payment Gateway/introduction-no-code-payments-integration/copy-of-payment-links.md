@@ -10,6 +10,15 @@ metadata:
     - Create Payment Link in a few minutes
   robots: index
 ---
+<Banner
+  isInline={true}
+  message="No website or Coding Required."
+  color="#15C614"
+  textColor="#ffffff"
+  fontSize="14px"
+  fontWeight="bold"
+ />
+
 Collect payments from your customers without a website or coding.
 
 <Callout icon="🟢" theme="success">
