@@ -1,4 +1,3 @@
-- document-categories-and-types
 - partner-integration-api-introduction
 - step-00-authentication
 - step-01-create-merchant-1
@@ -17,5 +16,6 @@
 - step-14-fetch-required-kyc-documents-1
 - step-15-upload-kyc-documents-1
 - step-16-e-sign-agreement-1
+- document-categories-and-types
 - partner-category-list
 - utilities-1
