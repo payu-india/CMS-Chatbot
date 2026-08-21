@@ -114,50 +114,26 @@ You'll need:
 
 ## How Does It Work
 
-Here's what you do:
+Here is how it works:
 
-<Cards columns="3">
-  <Card>
-    <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-plus-circle" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
+<Accordion title="1. Create a payment link" icon="far fa-link">
+  1. Log in to your PayU Dashboard and go to **Payment Tools** → **Payment Links&#x20;**&#x66;rom then left navigation.
+  2. Enter the amount, purpose, and any additional details you want to collect from your customer.
+</Accordion>
 
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>1. Create a payment link</h4>
+<Accordion title="2. Share the link" icon="far fa-share-nodes">
+  Share the payment link with your customer through WhatsApp, SMS, email, social media, or another channel.
+</Accordion>
 
-      <p style={{ margin: 0 }}>
+<Accordion title="3. Customer pays" icon="far fa-credit-card">
+  Your customer opens the link, provides any requested information, chooses a payment method, and completes the payment.
+</Accordion>
 
-        Log in to your PayU Dashboard, go to <b>Payment Tools → Payment Links</b>, and create a new link. Enter the amount, purpose, and any custom details you want to collect from your customer (like name, delivery address, or order details).
-      </p>
-    </div>
-  </Card>
-
-  <Card>
-    <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-share-alt" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
-
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>2. Share the link</h4>
-
-      <p style={{ margin: 0 }}>
-
-        Copy the payment link and send it to your customer through WhatsApp, SMS, email, or any other channel. You can also share it through social media or your messaging platform.
-      </p>
-    </div>
-  </Card>
-
-  <Card>
-    <div style={{ color: "#000", padding: "8px" }}>
-      <i className="fa fa-check-circle" style={{ color: "#00b386", fontSize: "20px", marginBottom: "10px" }}></i>
-
-      <h4 style={{ margin: "0 0 6px 0", fontWeight: "600" }}>3. Customer pays</h4>
-
-      <p style={{ margin: 0 }}>
-
-        Your customer clicks the link, fills in any requested details (if you've set up a form), and completes the payment using their preferred payment method.
-      </p>
-    </div>
-  </Card>
-</Cards>
-
-You can create payment links one at a time, or upload multiple links at once if you need to send payment requests to many customers.
+<Columns layout="fixed">
+  <Column>
+    You can create payment links one at a time, or upload multiple links at once if you need to send payment requests to many customers.
+  </Column>
+</Columns>
 
 ***
 
