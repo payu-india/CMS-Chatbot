@@ -2,7 +2,7 @@
 api:
   file: payu_merchant_api_final.json
   operationId: updateMerchantById
-hidden: false
+hidden: true
 metadata:
   title: Update Merchant Details API
   description: >-
