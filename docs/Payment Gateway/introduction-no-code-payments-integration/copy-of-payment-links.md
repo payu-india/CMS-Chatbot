@@ -19,6 +19,8 @@ metadata:
   fontWeight="bold"
  />
 
+## What Can I Do with Payment Links?
+
 Payment Links lets you collect payments by creating a secure payment link and sharing it with your customer through WhatsApp, SMS, email, or any other channel you use to communicate with them.
 
 Use Payment Links when:
