@@ -65,8 +65,6 @@ Use Payment Links when:
                 </button>
 `}</HTMLBlock>
 
-If you want customers to pay directly on your website during checkout, consider [PayU Hosted Checkout](https://docs.payu.in/docs/prebuilt-checkout-page-integration) instead.
-
 <Callout icon="far fa-face-thinking" theme="warn">
   ### **Not Sure Which PayU Solution is Right for You?**
 
