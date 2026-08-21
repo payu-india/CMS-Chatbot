@@ -3,6 +3,7 @@ title: Cards Integration for CB LRS
 deprecated: false
 hidden: false
 metadata:
+  title: Cards Integration for Cross-Border Payments with LRS
   robots: index
 ---
 ---
