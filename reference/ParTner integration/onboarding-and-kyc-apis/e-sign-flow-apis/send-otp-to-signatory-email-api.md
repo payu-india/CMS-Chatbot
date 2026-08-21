@@ -2,7 +2,7 @@
 api:
   file: Send_OTP_To_Signatory_Email_API.json
   operationId: SendOtpToSignatoryEmail
-hidden: false
+hidden: true
 metadata:
   title: Send OTP to Signatory Email API
 ---

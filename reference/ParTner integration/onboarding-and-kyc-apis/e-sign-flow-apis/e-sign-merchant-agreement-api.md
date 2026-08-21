@@ -2,7 +2,7 @@
 api:
   file: ESign_Merchant_Agreement_API.json
   operationId: EsignMerchantAgreement
-hidden: false
+hidden: true
 metadata:
   title: E-Sign Merchant Agreement API
 ---

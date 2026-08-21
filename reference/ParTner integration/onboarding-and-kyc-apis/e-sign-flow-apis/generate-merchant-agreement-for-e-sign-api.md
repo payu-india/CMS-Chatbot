@@ -2,7 +2,7 @@
 api:
   file: Generate_Merchant_Agreement_For_ESign_API_v0.json
   operationId: GenerateMerchantAgreementForEsign
-hidden: false
+hidden: true
 metadata:
   title: Generate Merchant Agreement For E-Sign
 ---
