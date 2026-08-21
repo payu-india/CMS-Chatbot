@@ -1,7 +1,7 @@
 ---
-title: '[Internal Review]Cards Integration for CB LRS'
+title: Cards Integration for CB LRS
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
