@@ -65,13 +65,50 @@ Use Payment Links when:
                 </button>
 `}</HTMLBlock>
 
-<Callout icon="far fa-face-thinking" theme="warn">
-  ### **Not Sure Which PayU Solution is Right for You?**
+***
 
-  Tell us what you want to achieve and how you plan to accept payments. We will recommend the PayU solution that best fits your needs.
+## Is Payment Links Right for Me?
+
+Payment Links is a good choice if:
+
+- **You don't have a website** and run your business through social media, messaging apps, or in person.
+- **You want to request payment** from a specific customer for an invoice, order, or service.
+- **You want to start collecting payments** quickly without building or learning a technical integration.
+- **You run a small business or provide services** where you regularly send payment requests to individual customers.
+
+<Callout icon="far fa-face-thinking" theme="warn">
+  ### **Not Sure Which PayU Solution To Choose?**
+
+  Tell us what you want to achieve and how you plan to accept payments. We will recommend the best PayU solution that fits your needs.
 
   \[Find the right solution →]
 </Callout>
+
+***
+
+## What Will I Need?
+
+You don't need a website or developer to get started.
+
+You'll need:
+
+<Columns layout="fixed">
+  <Column>
+    **A PayU merchant account:** Sign up here if you do not have an account.
+  </Column>
+</Columns>
+
+<Columns layout="fixed">
+  <Column>
+    **Customer contact details**: Required details such as a phone number, email address, or WhatsApp contact.
+  </Column>
+</Columns>
+
+<Columns layout="fixed">
+  <Column>
+    **Payment details**: Such as the amount, purpose, and any additional information you want to collect.
+  </Column>
+</Columns>
 
 ***
 
