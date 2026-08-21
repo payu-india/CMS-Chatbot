@@ -6,13 +6,6 @@ metadata:
   robots: index
 ---
 ---
-title: '[Internal Review]Cards Integration for CB LRS'
-deprecated: false
-hidden: true
-metadata:
-  robots: index
----
----
 title: Cards Integration for CB LRS
 deprecated: false
 hidden: false
