@@ -446,7 +446,7 @@ Note:- If we are passing pluginTypes as ["BHIM"] then issuingBanks is Mandatory 
     </tr>
   <tr>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>beneficiaryDetails<br><code>optional</code></p></td>
-      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Boolean</code> For TPV transaction Map - {"accountNumber": "", "ifsc": ""}</p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>For TPV transaction Map - {"accountNumber": "", "ifsc": ""}</p></td>
     </tr>
   </tbody>
 </table>
