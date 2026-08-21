@@ -1,8 +1,9 @@
 ---
-title: UPI Integration for CB LRS
+title: UPI Integration
 deprecated: false
 hidden: false
 metadata:
+  title: UPI Integration for Cross-Border Payments with LRS
   robots: index
 ---
 This section explains how to integrate UPI Intent payments for cross-border transactions under LRS (Liberalised Remittance Scheme) using the Server-to-Server (S2S) flow.
