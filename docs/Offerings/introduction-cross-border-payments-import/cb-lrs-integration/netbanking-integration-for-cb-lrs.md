@@ -1,7 +1,7 @@
 ---
-title: '[Internal Review]NetBanking Integration for CB LRS'
+title: NetBanking Integration for CB LRS
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
