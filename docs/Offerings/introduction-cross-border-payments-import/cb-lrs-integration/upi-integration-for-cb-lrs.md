@@ -1,7 +1,7 @@
 ---
-title: '[Internal Review]UPI Integration for CB LRS'
+title: UPI Integration for CB LRS
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
