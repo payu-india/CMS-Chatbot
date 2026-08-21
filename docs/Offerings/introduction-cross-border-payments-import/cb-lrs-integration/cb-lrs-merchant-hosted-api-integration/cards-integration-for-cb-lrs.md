@@ -1,5 +1,5 @@
 ---
-title: Cards Integration for CB LRS
+title: Cards Integration
 deprecated: false
 hidden: false
 metadata:
