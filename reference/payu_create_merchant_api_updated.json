@@ -175,7 +175,8 @@
               "merchants:create"
             ]
           }
-        ]
+        ],
+        "x-internal": true
       }
     },
     "/api/v3/merchants-1": {}
