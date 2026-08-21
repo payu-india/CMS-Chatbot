@@ -444,6 +444,10 @@ Note:- If we are passing pluginTypes as ["BHIM"] then issuingBanks is Mandatory 
       <td style="border: 1px solid #ddd; padding: 8px;"><p>isCCTxnEnabled<br><code>optional</code></p></td>
       <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Boolean</code> Enables card fallback if supported – true or false.</p></td>
     </tr>
+  <tr>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p>beneficiaryDetails<br><code>optional</code></p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Boolean</code> For TPV transaction Map - {"accountNumber": "", "ifsc": ""}</p></td>
+    </tr>
   </tbody>
 </table>
 
