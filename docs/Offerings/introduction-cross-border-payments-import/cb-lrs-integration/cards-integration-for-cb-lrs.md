@@ -307,7 +307,7 @@ Post the payment parameters to PayU's `_payment` API endpoint to initiate a card
   --data-urlencode 's2s_client_ip=10.200.12.12' \
   --data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
   --data-urlencode 'udf1=CYCPD2784G' \
-  --data-urlencode 'udf3=02-02-1980' \
+  --data-urlencode 'udf3=02/12/1980' \
   --data-urlencode 'udf4=XYZ Pvt. Ltd.' \
   --data-urlencode 'udf5=INV123456' \
   --data-urlencode 'buyer_type_business=0' \
