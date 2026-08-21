@@ -15,7 +15,7 @@ Collect payments from your customers without a website or coding.
 <Callout icon="🟢" theme="success">
   ### **No Coding Required**
 
-  Create and share payment links directly from your PayU Dashboard — no website or technical setup needed.
+  Create and share payment links directly from your PayU Dashboard  without a website or technical setup.
 
   Create your first payment link →
 </Callout>
@@ -209,8 +209,6 @@ If a payment fails, you can share the same link again for the customer to retry,
 
   <Card title="Need more control or want to automate link creation?" icon="fa-comments">
     **[Integration APIs for Payment Links](doc:integration-api-for-payment-links)** — technical documentation for developers who want to create links programmatically
-
-
   </Card>
 </Cards>
 
