@@ -1,8 +1,9 @@
 ---
-title: NetBanking Integration for CB LRS
+title: NetBanking Integration
 deprecated: false
 hidden: false
 metadata:
+  title: NetBanking Integration for Cross-Border Payments with LRS
   robots: index
 ---
 ---
