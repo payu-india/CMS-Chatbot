@@ -1,7 +1,7 @@
 ---
 title: Create KYC Document API
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---

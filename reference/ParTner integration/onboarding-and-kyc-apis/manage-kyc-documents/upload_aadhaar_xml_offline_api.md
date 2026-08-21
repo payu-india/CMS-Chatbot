@@ -1,7 +1,7 @@
 ---
 title: 'Upload Aadhaar XML Offline API '
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Upload Aadhaar XML Offline API
   robots: index

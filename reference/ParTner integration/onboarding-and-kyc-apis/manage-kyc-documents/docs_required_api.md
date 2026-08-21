@@ -2,7 +2,7 @@
 api:
   file: Documents_Required_API_Collection.json
   operationId: DocumentsrequiredforKYC
-hidden: false
+hidden: true
 metadata:
   title: Documents Required for KYC API
   keywords:

@@ -3,7 +3,7 @@ title: Info KYC Document API
 api:
   file: Info_KYC_Document_API_With_BusinessEntity.json
   operationId: InfoKYCdocument
-hidden: false
+hidden: true
 metadata:
   title: Info KYC Document API
 ---
