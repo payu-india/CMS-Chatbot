@@ -237,7 +237,7 @@ PayU UPI Bolt SDK will provide a simpler and more efficient payment experience t
     </tr>
     <tr>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>issuingBanks<br><code>optional</code></p></td>
-      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Array&lt;String&gt;</code> List of Issuing Bank's (Values - AXIS or HDFC)<br/>**Note**: If we are passing pluginTypes as ["BHIM"] then issuingBanks is Mandatory and you need to pass ["AXIS"] </p></td>
+      <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Array&lt;String&gt;</code> List of Issuing Bank's (Values - AXIS or HDFC)<br/><b>Note</b>: If we are passing pluginTypes as ["BHIM"] then issuingBanks is Mandatory and you need to pass ["AXIS"] </p></td>
       <td style="border: 1px solid #ddd; padding: 8px;"><p>["AXIS", "HDFC"]</p></td>
     </tr>
   </tbody>
