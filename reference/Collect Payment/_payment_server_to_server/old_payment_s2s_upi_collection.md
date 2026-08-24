@@ -3,7 +3,7 @@ excerpt: ''
 api:
   file: merchant-hosted-36.json
   operationId: S2S-UPICollection
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
