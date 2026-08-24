@@ -59,11 +59,11 @@ Below is the sample error response of a transaction declined by an issuer.
 Now let us understand the root cause of this error. Failures are commonly caused by customer action, issuer/bank rules, payment instrument restrictions, or technical timeouts.
 
 <Accordion title="Examples" icon="fa-info-circle">
-  * Customer entered wrong OTP/CVV.
-  * Customer cancelled or abandoned payment.
-  * Issuer declined due to risk, limits, insufficient funds, or card restrictions.
-  * Bank/PSP was unavailable.
-  * Payment method is not enabled for the merchant.
+  - Customer entered wrong OTP/CVV.
+  - Customer cancelled or abandoned payment.
+  - Issuer declined due to risk, limits, insufficient funds, or card restrictions.
+  - Bank/PSP was unavailable.
+  - Payment method is not enabled for the merchant.
 </Accordion>
 
 ## Troubleshooting
@@ -81,7 +81,7 @@ Now that we know the root cause let's troubleshoot the error.
 </Accordion>
 
 <Callout icon="📘" theme="info">
-  **Handy Tips**
+  ### **Handy Tips**
 
   Do not show raw bank text directly to customers if it is unclear. Map it to a clear message such as "Your bank declined the payment. Try another card or contact your bank."
 </Callout>
@@ -103,7 +103,7 @@ Now that we know the root cause let's troubleshoot the error.
 
 Go through some of these message examples you can display to customers.
 
-<Accordion title="Errro Messages and Fixes" icon="fa-info-circle">
+<Accordion title="Error Messages and Fixes" icon="fa-info-circle">
   | PayU error type        | Customer-safe message                                                              | Recommended fix                                                                                   |
   | ---------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
   | Issuer decline         | Your bank declined this payment. Try another payment method or contact your bank.  | Offer alternate payment modes and do not retry the same `txnid`.                                  |
@@ -117,15 +117,15 @@ Go through some of these message examples you can display to customers.
 Here is a checklist you as a developer should go through while fixing the error.
 
 <Accordion title="Checklist" icon="fa-list">
-  * [x] Confirm the failure is final before creating another attempt.
+  - [x] Confirm the failure is final before creating another attempt.
 
-  * [x] Store full diagnostic fields for support and reconciliation.
+  - [x] Store full diagnostic fields for support and reconciliation.
 
-  * [x] Do not retry the same `txnid` as a new payment.
+  - [x] Do not retry the same `txnid` as a new payment.
 
-  * [x] Offer alternate payment methods for customer/issuer declines.
+  - [x] Offer alternate payment methods for customer/issuer declines.
 
-  * [x] Use [Issuer Decline Error Codes](ref:issuer-decline-error-codes) for card decline details.
+  - [x] Use [Issuer Decline Error Codes](ref:issuer-decline-error-codes) for card decline details.
 
-  * [x] Use [Transaction Stages - Error References on Field7 & Field8](ref:transaction-stages-error-references-field7-field8) to identify the failed processing stage.
+  - [x] Use [Transaction Stages - Error References on Field7 & Field8](ref:transaction-stages-error-references-field7-field8) to identify the failed processing stage.
 </Accordion>
