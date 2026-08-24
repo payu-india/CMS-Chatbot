@@ -10,7 +10,7 @@ These are the issuer decline error codes and card-network response codes, along 
 
 Refer to the Payment Failed or Declined page for debugging guidance and retry handling.
 
-<Accordion title="" icon="fa-info-circle">
+<Accordion title="Errors and Fixes" icon="far fa-screwdriver-wrench">
   <AdvancedTable
     data={[
       {
