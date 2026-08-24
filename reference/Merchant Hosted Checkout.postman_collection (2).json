@@ -23,7 +23,7 @@
     "/_payment": {
       "post": {
         "summary": "Initiate UPI Intent Payment",
-        "description": "Initiates a UPI Intent payment transaction. The customer is redirected to their UPI app to complete the payment.\n\n**Static Parameters:**\n- `key`: Fixed as `JPM7Fg` (merchant identifier)\n- `bankcode`: Fixed as `INTENT` (enables UPI Intent flow)\n\n**Flow:**\n1. API validates the request parameters and hash\n2. Creates a payment session\n3. Returns response with payment details\n4. Customer redirected to UPI app via Intent URL\n5. After payment, customer redirected to surl (success) or furl (failure)\n\n**Hash Formula:**\n```\nSHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)\n```\n\nNote: Use empty strings for unused UDF fields in hash calculation.",
+        "description": "",
         "operationId": "createUpiIntentPayment",
         "tags": [
           "UPI Intent Payment"
