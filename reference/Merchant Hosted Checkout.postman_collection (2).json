@@ -1,0 +1,275 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Merchant Hosted Checkout",
+    "description": "PayU’s Merchant Hosted Checkout allows you to create a custom payment experience on your website while leveraging PayU’s secure payment processing infrastructure. This approach gives you greater control over the look and feel of your checkout flow, while still benefiting from PayU’s robust security and compliance features. With merchant hosted checkout, you collect the payment details on your website and then securely transmit them to PayU for processing.\n\nMerchant Hosted Checkout supports a wide range of payment methods:\n\n1. Net Banking Integration\n    \n2. Cards Integration\n    \n3. EMI Integration\n    \n4. UPI Integration\n    \n5. Wallets Integration\n    \n6. BNPL Integration\n    \n\n### 📖 Documentation\n\nComplete integration guide: [https://docs.payu.in/docs/custom-checkout-merchant-hosted](https://docs.payu.in/docs/custom-checkout-merchant-hosted)\n\n### 🚀 How to Use\n\nAPI-wise explanations and host configurations are provided in the documentation section alongside each API documentation.\n\n### 🔑 Authentication Setup\n\n#### Step 1: Obtain Merchant Key and Salt\n\nThese credentials are essential for authentication and **must be kept secure**.\n\n**Production Environment:**\n\n- Download from: [Generate Merchant Key and Salt on PayU Dashboard](https://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard)\n    \n\n**Sandbox Environment:**\n\n- Download from: [Generate Test Merchant Key and Salt](https://docs.payu.in/docs/generate-test-merchant-key-and-salt)\n    \n\n#### Step 2: Configure Collection Variables\n\n1. Navigate to the collection variables tab\n    \n2. Update the following variables with your credentials:\n    \n    - `key` - Your PayU Merchant Key\n        \n    - `salt` - Your PayU Merchant Salt\n        \n\n#### ⚠️ Important Notes\n\n- Ensure you use the correct key and salt for your target environment\n    \n- **Sandbox credentials** for testing and development\n    \n- **Production credentials** for live transactions only\n    \n- Never expose these credentials in client-side code or public repositories\n    \n\n### 🛠️ Environment Configuration\n\nMake sure to select the appropriate environment (Sandbox/Production) before running any requests to ensure you're using the correct endpoints and credentials.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://test.payu.in"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Net Banking Integration",
+      "description": "Document Link - [https://docs.payu.in/docs/collect-payments-with-net-banking-seamless](https://docs.payu.in/docs/collect-payments-with-net-banking-seamless)"
+    },
+    {
+      "name": "Cards Integration",
+      "description": "Document Link - [https://docs.payu.in/docs/collect-payments-with-cards-seamless](https://docs.payu.in/docs/collect-payments-with-cards-seamless)"
+    },
+    {
+      "name": "EMI Integration",
+      "description": "Document Link - [https://docs.payu.in/docs/collect-payments-with-emi-seamless](https://docs.payu.in/docs/collect-payments-with-emi-seamless)"
+    },
+    {
+      "name": "EMI Integration > Integrate with Debit Card",
+      "description": "Document Link - [https://docs.payu.in/docs/collect-payments-with-emi-using-debit-card](https://docs.payu.in/docs/collect-payments-with-emi-using-debit-card)"
+    },
+    {
+      "name": "EMI Integration > Integrate with Credit Card",
+      "description": "Document Link - [https://docs.payu.in/docs/collect-payments-with-emi-using-credit-card](https://docs.payu.in/docs/collect-payments-with-emi-using-credit-card)"
+    },
+    {
+      "name": "UPI Integration",
+      "description": "Document Link - [https://docs.payu.in/docs/collect-payments-with-upi-seamless](https://docs.payu.in/docs/collect-payments-with-upi-seamless)"
+    },
+    {
+      "name": "Wallets Integration",
+      "description": "Document Link - [https://docs.payu.in/docs/collect-payments-with-wallets-seamless](https://docs.payu.in/docs/collect-payments-with-wallets-seamless)"
+    },
+    {
+      "name": "BNPL Integration",
+      "description": "Document Link - [https://docs.payu.in/docs/general-flow-bnpl-integration-with-merchant-hosted](https://docs.payu.in/docs/general-flow-bnpl-integration-with-merchant-hosted)"
+    }
+  ],
+  "paths": {
+    "/merchant/postservice.php": {
+      "post": {
+        "tags": [
+          "BNPL Integration"
+        ],
+        "summary": "get_checkout_details API",
+        "description": "Generated from cURL: curl --request POST \\\n     --url https://test.payu.in/merchant/postservice.php \\\n     --header 'accept: application/json' \\\n     --header 'content-type: application/x-www-form-urlencoded' \\\n     --data key=JPM7Fg \\\n     --data command=get_checkout_details \\\n     --data 'var1={\"transactionDetails\":{\"amount\":\"100.00\",\"txnid\":\"asdusucbshb\"},\"usecase\":{\"checkDownStatus\":\"true\"},\"requestId\":\"yegdyyshds\"}' \\\n     --data hash=hash",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "example": "JPM7Fg"
+                  },
+                  "command": {
+                    "type": "string",
+                    "example": "get_checkout_details"
+                  },
+                  "var1": {
+                    "type": "string",
+                    "example": "{\"transactionDetails\":{\"amount\":\"100.00\",\"txnid\":\"asdusucbshb\"},\"usecase\":{\"checkDownStatus\":\"true\"},\"requestId\":\"yegdyyshds\"}"
+                  },
+                  "hash": {
+                    "type": "string",
+                    "example": "hash"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "content-type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/x-www-form-urlencoded"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/_payment": {
+      "post": {
+        "tags": [
+          "BNPL Integration"
+        ],
+        "summary": "Payment API",
+        "description": "Generated from cURL: curl -X POST \"https://test.payu.in/_payment\" -H \"accept: application/json\" -H \"Content-Type: application/x-www-form-urlencoded\" -d \"key=J****g&txnid=5jJ9xYceXX1ydT&amount=1000.00&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=BNPL&bankcode=LAZYPAY&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=6840ba0d1a14554f7ee5d20966dfbac6b221718e72dd823f05b6da01420286315b4956c28325898b66520b111604020ea2c547608606674766eb7e4164dc0baa\"",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "example": "J****g"
+                  },
+                  "txnid": {
+                    "type": "string",
+                    "example": "5jJ9xYceXX1ydT"
+                  },
+                  "amount": {
+                    "type": "number",
+                    "example": "1000.00"
+                  },
+                  "firstname": {
+                    "type": "string",
+                    "example": "Ashish"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "test@gmail.com"
+                  },
+                  "phone": {
+                    "type": "integer",
+                    "example": "9876543210"
+                  },
+                  "productinfo": {
+                    "type": "string",
+                    "example": "iPhone"
+                  },
+                  "pg": {
+                    "type": "string",
+                    "example": "BNPL"
+                  },
+                  "bankcode": {
+                    "type": "string",
+                    "example": "LAZYPAY"
+                  },
+                  "surl": {
+                    "type": "string",
+                    "example": "https://apiplayground-response.herokuapp.com/"
+                  },
+                  "furl": {
+                    "type": "string",
+                    "example": "https://apiplayground-response.herokuapp.com/"
+                  },
+                  "hash": {
+                    "type": "string",
+                    "example": "6840ba0d1a14554f7ee5d20966dfbac6b221718e72dd823f05b6da01420286315b4956c28325898b66520b111604020ea2c547608606674766eb7e4164dc0baa"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/x-www-form-urlencoded"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/merchant/postservice": {
+      "post": {
+        "tags": [
+          "UPI Integration"
+        ],
+        "summary": "validateVPA API",
+        "description": "Generated from cURL: curl -X POST \"https://test.payu.in/merchant/postservice?form=2\" -H \"accept: application/json\" -H \"Content-Type: application/x-www-form-urlencoded\" -d \"key=JP***g&command=validateVPA&var1=9999999999@upi&hash=75bb573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472fff9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e\"",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "example": "JP***g"
+                  },
+                  "command": {
+                    "type": "string",
+                    "example": "validateVPA"
+                  },
+                  "var1": {
+                    "type": "string",
+                    "example": "9999999999@upi"
+                  },
+                  "hash": {
+                    "type": "string",
+                    "example": "75bb573dce34375a5fa2970afa21023d53e1cf5b8cd80a6472fff9b7c964c7a5da9146c9007df8b7391cbaf2d7d7d91dcaae8bf1d19d1837315a3376d6dc827e"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/x-www-form-urlencoded"
+          },
+          {
+            "name": "form",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "example": "2"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}
