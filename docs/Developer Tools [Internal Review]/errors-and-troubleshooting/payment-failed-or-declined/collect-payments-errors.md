@@ -1690,6 +1690,6 @@ Primary categories: Authentication and authorization errors and Payment failures
     {'bank_code': '`E909`', 'description': 'Transaction time out', 'recommended_fix': 'Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt.'},
     {'bank_code': '`E4220`', 'description': 'MERCHANT CREDIT NOT SUPPORTED IN IMPS', 'recommended_fix': 'Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt.'},
     {'bank_code': '`E4378`', 'description': 'Transaction declined due to risk score by beneficiary bank', 'recommended_fix': 'Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt.'},
-    {'bank_code': '`Verification failure`', 'description': 'Indicates that a verification call confirms the transaction has failed or been declined.', 'recommended_fix': 'Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt.'}
+    {'bank_code': '`Verification failure`', 'description': 'Indicates that a verification call confirms the transaction has failed or been declined.', 'recommended_fix': 'Verify final payment status, show a customer-safe retry or alternate-payment message, and use a new txnid for any new payment attempt.'},
   ]}
 />
