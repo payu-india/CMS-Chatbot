@@ -2,7 +2,7 @@
 title: StoreCard Webhook Events and Sample Payloads [Internal Review]
 excerpt: List of webhook events along with sample payloads.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   description: >-
     Configure PayU Dashboard webhooks to receive payment, refund, and dispute
