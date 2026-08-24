@@ -3,3 +3,4 @@
 - invalid-hash-error
 - payment-failed-or-declined
 - pending-transactions
+- webhook-failures
