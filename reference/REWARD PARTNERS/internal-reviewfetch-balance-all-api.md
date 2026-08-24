@@ -146,7 +146,7 @@ HTTP Method: **POST**
 
   The Fetch Balance API remains the same as the older version, with **two additional parameters** required for the new TWID flow:
 
-  - `loyaltyApiVersion`: Identifies the new TWID API flow. This field may be deprecated in the future.
+  - `loyaltyApiVersion`: Identifies the new TWID API flow.&#x20;
   - `sessionId`: Required to fetch the balance from TWID. **The same&#x20;**`sessionId`**&#x20;must also be passed in the&#x20;**`_payment`**&#x20;request inside the&#x20;**`loyaltyDetails`**&#x20;block of the&#x20;**`split-info`**&#x20;JSON.**
 </Callout>
 
