@@ -1,6 +1,0 @@
----
-api:
-  file: Merchant Hosted Checkout.postman_collection (2).json
-  operationId: post_payment
-hidden: false
----
