@@ -22,7 +22,7 @@
   "paths": {
     "/_payment": {
       "post": {
-        "summary": "Initiate UPI Intent Payment",
+        "summary": "UPI Intent - S2S",
         "description": "",
         "operationId": "createUpiIntentPayment",
         "tags": [
