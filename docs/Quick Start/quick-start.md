@@ -1,13 +1,17 @@
 ---
-title: Accept Payments with PayU
+title: Get Started
 excerpt: Answer a couple of quick questions and we'll show you exactly what to do next.
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-## Let's get you accepting payments
+## Choose Your Solution
 
 Answer a couple of quick questions and we'll show you exactly what to do next.
 
 <PayUQuickStartWizard />
+
+***
+
+##
