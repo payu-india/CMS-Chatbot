@@ -3,3 +3,4 @@
 - transaction-stage-errors
 - s2s-link-and-pay-errors
 - refund-payment-errors
+- payouts-and-smart-send-errors
