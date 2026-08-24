@@ -4,7 +4,7 @@ excerpt: >-
   Go through the Ecommerce platform plugin troubleshooting issues and their
   recommended fixes.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
