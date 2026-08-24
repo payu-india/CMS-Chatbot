@@ -6,7 +6,7 @@ hidden: true
 metadata:
   robots: index
 ---
-These are Alt ID card and token-related payment errors, along with their descriptions, and recommended fix.
+These are BNPL payment errors, along with their descriptions, and recommended fix.
 
 Refer to the [Payment Failed or Declined](doc:payment-failed-declined) page for debugging guidance and retry handling.
 
