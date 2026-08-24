@@ -1,389 +1,2568 @@
 {
-  "openapi": "3.1.0",
+  "openapi": "3.0.0",
   "info": {
-    "title": "PayU Merchant Hosted — _payment",
-    "version": "1.0.0",
-    "x-derivedFrom": [
-      "API Collection/Merchant Hosted Checkout.postman_collection_9th_June.json"
-    ],
-    "description": "OpenAPI **3.1** for PayU merchant-hosted **`POST /_payment`**.\n\nThe **`pg`** enum matches the payment rails reflected from the **Merchant Hosted Checkout** Postman collection\n(cards, EMI, UPI, BNPL, net banking as **NB**, and the collection’s wallet sample which used **`pg=UPI`**).\nUse **`bankcode`** and checkout APIs per your PayU **Key Account Manager (KAM)** for wallet-specific codes.\n\nHash rules and response verification: [merchant-hosted checkout](https://docs.payu.in/docs/custom-checkout-merchant-hosted).\n"
+    "title": "Partners - Merchant Onboarding APIs",
+    "version": "1.0.0"
   },
   "servers": [
     {
-      "url": "https://test.payu.in",
-      "description": "Sandbox"
+      "url": "http://{{payu_partner_prod}}"
     },
     {
-      "url": "https://secure.payu.in",
-      "description": "Production"
+      "url": "https://partner.payu.in"
+    },
+    {
+      "url": "http://{{rp_test}}"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Create Merchant API"
+    },
+    {
+      "name": "Update Merchant API",
+      "description": "The Update merchant API let's you update the required details for your merchant including\n\n1. PAN detail\n    \n2. Bank detail\n    \n3. Operating & Registered addess\n    \n4. Website details\n    \n5. GST\n    \n6. CIN number.\n    \n\n## Caution\n\nIt is recommended to update the following details in the same order as below to avoid race conditions & failures:\n\n1. PAN detail\n    \n2. Bank detail\n    \n3. GST\n    \n4. CIN number.\n    \n\nSince, these information are validated in realtime, sending all at once may cause validation failure"
+    },
+    {
+      "name": "Add/Update Signatory & UBO"
+    },
+    {
+      "name": "Business Member APIs"
+    },
+    {
+      "name": "Manage KYC documents",
+      "description": "# Overview\n\nAfter updating the required business details of your merchant, you need to upload few documents of the merchant as a part of the KYC (Know Your Customer). These APIs let's you:\n\n1. Fetch the list of documents required for the merchant.\n    \n2. Upload the docs one at a time.\n    \n3. You can also delete a KYC doc."
+    },
+    {
+      "name": "E-Sign APIs"
     }
   ],
   "paths": {
-    "/_payment": {
+    "/api/v3/merchants": {
       "post": {
-        "operationId": "merchantHostedPayment",
-        "summary": "Collect Payment - Merchant Hosted",
-        "description": "",
         "tags": [
-          "Payment"
+          "Create Merchant API"
         ],
+        "summary": "Create Merchant API",
+        "description": "# **Create Merchant API Documentation**\n\n## **API Overview**\n\n**Method:** `POST`  \n**Endpoint:** `/api/v3/merchants`  \n**Content-Type:** `multipart/form-data`  \n**Purpose:** Create a new merchant account with basic business details and website information.\n\n---\n\n## **API Environment**\n\n| Environment | Base URL |\n| --- | --- |\n| **Production** | `https://partner.payu.in` |\n| **Test** | `https://test-partner.payu.in` |\n\n---\n\n## **Headers**\n\n| Header | Data Type | Required | Description | Example |\n| --- | --- | --- | --- | --- |\n| `Authorization` | String | ✅ Yes | Bearer token for authentication. Use the Get Token API with scope 'refer merchant' to ontain the scope | `Bearer {your_token_here}` |\n\n---\n\n## **Form Data Parameters**\n\n### **Basic Merchant Information**\n\n| Parameter | Data Type | Required | Example Value | Description |\n| --- | --- | --- | --- | --- |\n| `[merchant][display_name]` | String | ✅ Yes | `PAYU PAYMENTS PRIVATE LIMITED` | Display name for the merchant |\n| `merchant[email]` | String | ✅ Yes | `boro21@yomail.com` | Primary email address for the merchant |\n| `merchant[mobile]` | String | ✅ Yes | `6296578770` | Primary mobile number for the merchant |\n| `merchant[business_details][business_entity_type]` | String | ✅ Yes | Individual | The entity type of the Merchant's business. |\n\n---\n\n## **Complete Request Example**\n\n``` curl\n--header 'Authorization: Bearer ' \\\n--form '[merchant][display_name]=\"PAYU PAYMENTS PRIVATE LIMITED\"' \\\n--form 'merchant[email]=\"boro21@yomail.com\"' \\\n--form 'merchant[mobile]=\"6296578770\"'\n--form 'merchant[business_details][business_entity_type]=\"Individual\"'\n\n ```\n\n---\n\n## **Complete response Example**\n\n``` json\n{\n  \"merchant\": {\n    \"name\": \"DIVY HARESHKUMAR SHAH\",\n    \"email\": \"boro15@yomail.com\",\n    \"registered_mobile\": \"9916965913\",\n    \"mid\": 8791796,\n    \"product\": \"PayUbiz\",\n    \"business_type\": \"LongTail\",\n    \"business_name\": null,\n    \"pancard_name\": null,\n    \"pancard_number\": null,\n    \"website_url\": null,\n    \"android_url\": null,\n    \"ios_url\": null,\n    \"gst_number\": null,\n    \"created_at\": \"2025-06-26T07:16:25.000Z\",\n    \"mobile\": \"9916965913\",\n    \"blocked\": false,\n    \"first_name\": \"DIVY\",\n    \"last_name\": \"HARESHKUMAR SHAH\",\n    \"bank_detail\": {\n      \"bank_account_number\": null,\n      \"ifsc_code\": null,\n      \"holder_name\": null,\n      \"nodal_code\": null,\n      \"nodal_status\": null\n    },\n    \"operating_address\": {\n      \"address_line\": null,\n      \"city\": null,\n      \"state\": null,\n      \"pincode\": null\n    },\n    \"registration_address\": {\n      \"address_line\": null,\n      \"city\": null,\n      \"state\": null,\n      \"pincode\": null\n    },\n    \"business_entity\": \"Sole Proprietorship\",\n    \"status\": \"account_created\",\n    \"partner_source\": \"Create Merchant API\",\n    \"pan_verification_status\": \"Pending\",\n    \"website_approval_status\": null,\n    \"notification_email\": \"boro15@yomail.com\",\n    \"settlement_status\": \"Active\",\n    \"is_service_agreement_accepted\": false,\n    \"is_authorisation_letter_required\": false,\n    \"monthly_expected_volume\": null,\n    \"business_category\": null,\n    \"business_sub_category\": null,\n    \"bank_verification_status\": null,\n    \"uuid\": \"11f0-525d-76182ba4-954a-021ec077a271\",\n    \"penny_deposit_status\": null,\n    \"document_status\": \"Docs Approved\",\n    \"kyc_status\": {\n      \"status\": \"LOCKED\",\n      \"kyc_status\": \"LOCKED\"\n    },\n    \"agreement_status\": \"Approved\",\n    \"integration_type\": \"Not Selected\",\n    \"service_intent\": \"default\"\n  }\n}\n\n ```",
         "requestBody": {
-          "required": true,
           "content": {
-            "application/x-www-form-urlencoded": {
+            "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/MerchantHostedPaymentForm"
-              },
-              "examples": {
-                "cardCcFromPostman": {
-                  "summary": "Cards — CC + bankcode CC (PayU-style sample)",
-                  "value": {
-                    "key": "JP***g",
-                    "firstname": "Ashsih",
-                    "email": "test@example.com",
-                    "amount": "1",
-                    "phone": "7988XX5823",
-                    "productinfo": "Product_info",
-                    "surl": "https://admin.payu.in/test_response",
-                    "furl": "https://admin.payu.in/test_response",
-                    "pg": "CC",
-                    "bankcode": "CC",
-                    "ccnum": "XXXXXXXXXXXX9500",
-                    "ccname": "Test User",
-                    "ccvv": "XXX",
-                    "ccexpmon": "XX",
-                    "ccexpyr": "XXXX",
-                    "txnid": "fd3e847h2",
-                    "hash": "091dae1bfe27bbad238fcecc88718dd68c92de25098c4ef5f72a17645f37a3a9e55df2e9a31e9c75ecfd145d3157cbd874937b0fe84e4f65233b2fb3cfb9684e"
+                "type": "object",
+                "properties": {
+                  "[merchant][display_name]": {
+                    "type": "string",
+                    "example": "PAYU PAYMENTS PRIVATE LIMITED"
+                  },
+                  "merchant[email]": {
+                    "type": "string",
+                    "example": "boro21@yomail.com"
+                  },
+                  "merchant[mobile]": {
+                    "type": "integer",
+                    "example": "6296578770"
+                  },
+                  "merchant[business_details][business_entity_type]": {
+                    "type": "string",
+                    "example": "Individual"
                   }
-                },
-                "upiFromPostman": {
-                  "summary": "UPI — pg and bankcode UPI + vpa (Postman collection pattern)",
-                  "value": {
-                    "key": "JP***g",
-                    "txnid": "xdB9G7qYpfqszo",
-                    "amount": "10",
-                    "firstname": "PayU User",
-                    "email": "test@gmail.com",
-                    "phone": "9876543210",
-                    "productinfo": "iPhone",
-                    "pg": "UPI",
-                    "bankcode": "UPI",
-                    "vpa": "success@payu",
-                    "surl": "https://apiplayground-response.herokuapp.com/",
-                    "furl": "https://apiplayground-response.herokuapp.com/",
-                    "hash": "REPLACE_WITH_SERVER_GENERATED_HASH"
-                  }
-                },
-                "netBankingFromPostman": {
-                  "summary": "Net Banking — NB + TESTPGNB (Postman collection pattern; pg expressed here as NB)",
-                  "value": {
-                    "key": "JP***g",
-                    "txnid": "ewP8oRopzdHEtC",
-                    "amount": "10.00",
-                    "firstname": "Ashish",
-                    "email": "test@gmail.com",
-                    "phone": "9876543210",
-                    "productinfo": "iPhone",
-                    "pg": "NB",
-                    "bankcode": "TESTPGNB",
-                    "surl": "https://apiplayground-response.herokuapp.com/",
-                    "furl": "https://apiplayground-response.herokuapp.com/",
-                    "hash": "REPLACE_WITH_SERVER_GENERATED_HASH"
-                  }
-                },
-                "emiFromPostman": {
-                  "summary": "EMI — pg EMI + bankcode EMIA3 + card fields (Postman collection pattern)",
-                  "value": {
-                    "key": "JP***g",
-                    "txnid": "H6mUfE0ccAY94j",
-                    "amount": "20000.00",
-                    "firstname": "Ashish",
-                    "email": "test@gmail.com",
-                    "phone": "9876543210",
-                    "productinfo": "iPhone",
-                    "pg": "EMI",
-                    "bankcode": "EMIA3",
-                    "surl": "https://apiplayground-response.herokuapp.com/",
-                    "furl": "https://apiplayground-response.herokuapp.com/",
-                    "ccnum": "5123456789012346",
-                    "ccexpmon": "05",
-                    "ccexpyr": "2022",
-                    "ccvv": "123",
-                    "ccname": "",
-                    "hash": "REPLACE_WITH_SERVER_GENERATED_HASH"
-                  }
-                },
-                "bnplFromPostman": {
-                  "summary": "BNPL — pg BNPL + bankcode LAZYPAY (Postman collection pattern)",
-                  "value": {
-                    "key": "J****g",
-                    "txnid": "5jJ9xYceXX1ydT",
-                    "amount": "1000.00",
-                    "firstname": "Ashish",
-                    "email": "test@gmail.com",
-                    "phone": "9876543210",
-                    "productinfo": "iPhone",
-                    "pg": "BNPL",
-                    "bankcode": "LAZYPAY",
-                    "surl": "https://apiplayground-response.herokuapp.com/",
-                    "furl": "https://apiplayground-response.herokuapp.com/",
-                    "hash": "REPLACE_WITH_SERVER_GENERATED_HASH"
-                  }
-                }
-              },
-              "encoding": {
-                "key": {
-                  "style": "form"
-                },
-                "txnid": {
-                  "style": "form"
-                },
-                "amount": {
-                  "style": "form"
-                },
-                "productinfo": {
-                  "style": "form"
-                },
-                "firstname": {
-                  "style": "form"
-                },
-                "email": {
-                  "style": "form"
-                },
-                "phone": {
-                  "style": "form"
-                },
-                "pg": {
-                  "style": "form"
-                },
-                "bankcode": {
-                  "style": "form"
-                },
-                "surl": {
-                  "style": "form"
-                },
-                "furl": {
-                  "style": "form"
-                },
-                "hash": {
-                  "style": "form"
-                },
-                "udf1": {
-                  "style": "form"
-                },
-                "udf2": {
-                  "style": "form"
-                },
-                "udf3": {
-                  "style": "form"
-                },
-                "udf4": {
-                  "style": "form"
-                },
-                "udf5": {
-                  "style": "form"
-                },
-                "ccnum": {
-                  "style": "form"
-                },
-                "ccvv": {
-                  "style": "form"
-                },
-                "ccexpmon": {
-                  "style": "form"
-                },
-                "ccexpyr": {
-                  "style": "form"
-                },
-                "ccname": {
-                  "style": "form"
-                },
-                "vpa": {
-                  "style": "form"
                 }
               }
             }
           }
         },
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {{resellerToken}}"
+          }
+        ],
+        "responses": {
+          "422": {
+            "description": "Unprocessable Content",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Tue, 24 Jun 2025 09:44:52 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "chunked"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Server": {
+                "schema": {
+                  "type": "string",
+                  "example": "nginx"
+                }
+              },
+              "X-Permitted-Cross-Domain-Policies": {
+                "schema": {
+                  "type": "string",
+                  "example": "none"
+                }
+              },
+              "Referrer-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "strict-origin-when-cross-origin"
+                }
+              },
+              "X-DNS-Prefetch-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "on"
+                }
+              },
+              "x-download-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "x-content-type-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "x-xss-protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1mode=block"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Access-Control-Allow-Methods": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Access-Control-Allow-Headers": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "x-frame-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "DENY"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=31536000; includeSubDomains; preload"
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "X-Request-Id": {
+                "schema": {
+                  "type": "string",
+                  "example": "73d2bfea-4591-4a7d-a41f-05b44748ecbe"
+                }
+              },
+              "X-Runtime": {
+                "schema": {
+                  "type": "number",
+                  "example": "0.350604"
+                }
+              },
+              "vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Accept, Origin"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "example-0": {
+                    "summary": "PAN does not Match with entity",
+                    "value": {
+                      "errors": {
+                        "pancard_number": [
+                          "Pancard number AAJTS8863Q does not match with selected Business entity Partnership. You can do either of the\n    following:\n\n    1. Either change business entity(under Business Details) to one of Trust\n\n    2. Change the PAN number."
+                        ]
+                      }
+                    }
+                  },
+                  "example-1": {
+                    "summary": "Invalid Business Entity",
+                    "value": {
+                      "error": {
+                        "business_entity": "Invalid business entity"
+                      }
+                    }
+                  },
+                  "example-2": {
+                    "summary": "Invalid Mobile",
+                    "value": {
+                      "error": "Mobile has invalid value"
+                    }
+                  },
+                  "example-3": {
+                    "summary": "Email Invalid",
+                    "value": {
+                      "errors": {
+                        "email": [
+                          "Email is invalid"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/merchants/11ef-d968-6b042d6c-9b94-02975f21d323/update": {
+      "put": {
+        "tags": [
+          "Update Merchant API"
+        ],
+        "summary": "Update Merchant API",
+        "description": "# **Update Merchant API Documentation**\n\n## **API Overview**\n\n**Method:** `PUT`  \n**Content-Type:** `multipart/form-data`  \n**Purpose:** Update comprehensive merchant information including business details, addresses, website information, and bank details\n\n---\n\n## **Endpoints**\n\n| Environment | Endpoint | Description | Usage |\n| --- | --- | --- | --- |\n| **Test** | `https://test-partner.payu.in/api/v1/merchants/{product_account_uuid}/update` | Testing/Sandbox environment | Development, testing, and integration purposes |\n| **Production** | `https://partner.payu.in/api/v1/merchants/{product_account_uuid}/update` | Live production environment | Live transactions and production use |\n\n---\n\n## **Path Parameters**\n\n| Parameter | Data Type | Required | Description | Example |\n| --- | --- | --- | --- | --- |\n| `product_account_uuid` | String | ✅ Yes | Unique identifier for the merchant's product account. The product_account_uuid is returned as `uuid` in the response of the create merchant API | `{{product_account_uuid}}` |\n\n---\n\n## **Headers**\n\n| Header | Data Type | Required | Description | Example |\n| --- | --- | --- | --- | --- |\n| `Authorization` | String | ✅ Yes | Bearer token for authentication. | `{{vault:bearer-token}}` |\n\n---\n\n## **Merchant API Parameter Description Table**\n\n| Parameter | Field Name | Data Type | Example Value | Description |\n| --- | --- | --- | --- | --- |\n| **Basic Information** |  |  |  |  |\n| `merchant[pancard_number]` | PAN Card Number | String | XXXXXXXX1D | Merchant's PAN card number for tax identification |\n| `merchant[pancard_name]` | PAN Card Name | String | PAYU PAYMENTS PRIVATE LIMITED | Name as registered on the PAN card |\n| `merchant[business_entity]` | Business Entity Type | String | Public Limited | Type of business entity (e.g., Private Limited, Public Limited, Partnership) |\n| `merchant[business_category]` | Business Category | String | Food & Groceries | Primary business category |\n| `merchant[business_sub_category]` | Business Sub-category | String | Meat Stores | Specific sub-category within the main business category |\n| `merchant[monthly_expected_volume]` | Monthly Expected Volume | Number | 78658 | Expected monthly transaction volume or revenue |\n| `merchant[gst_number]` | GST Number | String | XXXXXXXXXXXXXZY | Goods and Services Tax registration number |\n| `merchant[integration_type]` | Integration Type | String | ThirdParty | Type of integration (\"ThirdParty\"/\"Tools\" |\n| `merchant[cin_number]` | CIN Number | String | XXXXXXXXXXXXXXXXX3037 | Corporate Identification Number for companies |\n| `merchant[vkyc_exempt_status]` | vKYC Exempt Status | String/Number | \"Opted for Skip\" | Video KYC exemption status (see enum values below) |\n| **Registration Address** |  |  |  |  |\n| `merchant[registration_address][address_line]` | Registration Address Line | String | M1703, banashankari | Street address of registered office |\n| `merchant[registration_address][state]` | Registration State | String | Karnataka | State where business is registered |\n| `merchant[registration_address][city]` | Registration City | String | Bangalore | City where business is registered |\n| `merchant[registration_address][pincode]` | Registration Pincode | String | 560001 | Postal code of registration address. The allowed character limit is 6 |\n| **Operating Address** |  |  |  |  |\n| `merchant[operating_address][address_line]` | Operating Address Line | String | M1703, Banashankari | Street address of operating location |\n| `merchant[operating_address][state]` | Operating State | String | Karnataka | State where business operates |\n| `merchant[operating_address][city]` | Operating City | String | Bangalore | City where business operates |\n| `merchant[operating_address][pincode]` | Operating Pincode | String | 560001 | Postal code of operating address. The allowed character limit is 6 |\n| **Website Details** |  |  |  |  |\n| `merchant[website_details][website_url]` | Website URL | String | [www.borosil.com](http://www.borosil.com) | Main website URL |\n| `merchant[website_details][android_url]` | Android App URL | String | [www.borosil.com](http://www.borosil.com) | Android application URL or download link |\n| `merchant[website_details][ios_url]` | iOS App URL | String | [www.borosil.com](http://www.borosil.com) | iOS application URL or download link |\n| **Bank Details** |  |  |  |  |\n| `merchant[bank_detail][bank_account_number]` | Bank Account Number | String | XXXXXXX4847 | Bank account number for settlements |\n| `merchant[bank_detail][holder_name]` | Account Holder Name | String | PAYU PAYMENTS PRIVATE LIMITED | Name of the bank account holder |\n| `merchant[bank_detail][ifsc_code]` | IFSC Code | String | SBIN0000093 | Indian Financial System Code for bank identification |\n\n## **vKYC Exempt Status Enum Values**\n\n| Enum Value | Description |\n| --- | --- |\n| `not_applicable` | vKYC exemption is not applicable |\n| `Non face to face` | Non face-to-face verification method |\n| `Physical Verification Completed` | Physical verification has been completed |\n| `BH Approval` | 3 Business Head approval obtained |\n| `Whitelabeled` | 4 Whitelabeled merchant status |\n| `Opted for Skip` | **Current Value** - Merchant has opted to skip vKYC |\n\n## Recommended order of the details update using the update merchant API\n\n1. PAN details\n    \n2. Bank details\n    \n3. GST no\n    \n4. CIN no\n    \n5. Website details\n    \n\n## **Validation Rules**\n\n- If GST number is passed, ensure that address in the GST details match with the operating address provided in the API.\n    \n- Bank details, once added, can not be updated via API. Reach out to PayU merchant care to update the bank details.\n    \n\n---\n\n### **Format Validations**\n\n| Field | Rule | Description |\n| --- | --- | --- |\n| `pancard_number` | PAN Format | Must follow Indian PAN card format (10 alphanumeric characters) |\n| `gst_number` | GST Format | Must follow Indian GST number format (15 characters) |\n| `cin_number` | CIN Format | Must follow Corporate Identity Number format (21 characters) |\n| `pincode` | Length: 6 digits | Must be exactly 6 numeric characters |\n| `ifsc_code` | IFSC Format | Must follow Indian IFSC code format (11 characters) |\n| `website_url` | URL Format | Must be a valid URL format |\n\n### **Business Rules**\n\n| Rule | Description |\n| --- | --- |\n| **PAN-Name Match** | PAN card name should match the business entity name |\n| **Address Consistency** | Registration and operating addresses can be different |\n| **Bank Account** | Bank account holder name should match PAN card name |\n| **Integration Type** | Must be one of: Tools, ThirdParty |\n\n---\n\n## **Expected Responses**\n\n- **Success:** `200 OK` with updated merchant details\n    \n- **Validation Error:** `422 Unprocessable Entity` with specific field errors\n    \n- **Unauthorized:** `401 Unauthorized` (if bearer token is invalid)\n    \n- **Not Found:** `404 Not Found` (if product_account_uuid doesn't exist)\n    \n- **Bad Request:** `400 Bad Request` (if required parameters are missing)",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "merchant[pancard_number]": {
+                    "type": "string",
+                    "example": "AAJCS9091D"
+                  },
+                  "merchant[pancard_name]": {
+                    "type": "string",
+                    "example": "PAYU PAYMENTS PRIVATE LIMITED"
+                  },
+                  "merchant[business_entity]": {
+                    "type": "string",
+                    "example": "Public Limited"
+                  },
+                  "merchant[business_category]": {
+                    "type": "string",
+                    "example": "Arts, Gifts & Stationery"
+                  },
+                  "merchant[business_sub_category]": {
+                    "type": "string",
+                    "example": "Art Dealers and Galleries"
+                  },
+                  "merchant[business_name]": {
+                    "type": "string",
+                    "example": "PAYU PAYMENTS PRIVATE LIMITED"
+                  },
+                  "merchant[monthly_expected_volume]": {
+                    "type": "integer",
+                    "example": "78658"
+                  },
+                  "merchant[registration_address][address_line]": {
+                    "type": "string",
+                    "example": "M1703, banashankari"
+                  },
+                  "merchant[registration_address][state]": {
+                    "type": "string",
+                    "example": "Karnataka"
+                  },
+                  "merchant[registration_address][city]": {
+                    "type": "string",
+                    "example": "Haryana"
+                  },
+                  "merchant[registration_address][pincode]": {
+                    "type": "integer",
+                    "example": "122018"
+                  },
+                  "merchant[operating_address][city]": {
+                    "type": "string",
+                    "example": "Bangalore"
+                  },
+                  "merchant[operating_address][state]": {
+                    "type": "string",
+                    "example": "Haryana"
+                  },
+                  "merchant[operating_address][address_line]": {
+                    "type": "string",
+                    "example": "M1703, Banashankari"
+                  },
+                  "merchant[operating_address][pincode]": {
+                    "type": "integer",
+                    "example": "122018"
+                  },
+                  "merchant[business_type]": {
+                    "type": "string",
+                    "example": "LongTail"
+                  },
+                  "merchant[gst_number]": {
+                    "type": "string",
+                    "example": "06AAJCS9091D1Z4"
+                  },
+                  "merchant[integration_type]": {
+                    "type": "string",
+                    "example": "ThirdParty"
+                  },
+                  "merchant[website_details][website_url]": {
+                    "type": "string",
+                    "example": "www.borosil.com"
+                  },
+                  "merchant[website_details][android_url]": {
+                    "type": "string",
+                    "example": "www.borosil.com"
+                  },
+                  "merchant[website_details][ios_url]": {
+                    "type": "string",
+                    "example": "www.borosil.com"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token received from VerifyOtp",
+            "example": "{{vault:bearer-token}}"
+          }
+        ],
         "responses": {
           "200": {
-            "description": "May return HTML or a **query-string style** body (e.g. `mihpayid=…&status=success&…`) depending on integration.\nVerify **`hash`** on return using PayU’s post-response hash rules.\n",
+            "description": "OK",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Mon, 12 Aug 2024 06:00:03 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "chunked"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Server": {
+                "schema": {
+                  "type": "string",
+                  "example": "nginx"
+                }
+              },
+              "X-DNS-Prefetch-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "on"
+                }
+              },
+              "x-download-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "x-content-type-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "x-xss-protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1mode=block"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Access-Control-Allow-Methods": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Access-Control-Allow-Headers": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "x-frame-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "DENY"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=63072000; includeSubdomains;"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"9facc89617179980112020961866421f\""
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=0, private, must-revalidate"
+                }
+              },
+              "X-Request-Id": {
+                "schema": {
+                  "type": "string",
+                  "example": "fb6cb156-fe2b-4423-a117-b3308e489b4b"
+                }
+              },
+              "X-Runtime": {
+                "schema": {
+                  "type": "number",
+                  "example": "3.713445"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Origin"
+                }
+              },
+              "Content-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "gzip"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "merchant": {
+                    "name": "Mahi Srivastava",
+                    "email": "test.ob0213457@yomail.com",
+                    "registered_mobile": "7292033398",
+                    "mid": 8390925,
+                    "product": "PayUbiz",
+                    "business_type": "LongTail",
+                    "business_name": "Mahi Srivastava",
+                    "pancard_name": null,
+                    "pancard_number": "AEAPH3985F",
+                    "website_url": null,
+                    "android_url": null,
+                    "ios_url": null,
+                    "gst_number": null,
+                    "created_at": "2024-08-12T05:55:06.000Z",
+                    "mobile": "7292033398",
+                    "blocked": false,
+                    "first_name": "Mahi",
+                    "last_name": "Srivastava",
+                    "bank_detail": {
+                      "bank_account_number": null,
+                      "ifsc_code": null,
+                      "holder_name": null,
+                      "nodal_code": null,
+                      "nodal_status": null
+                    },
+                    "operating_address": {
+                      "address_line": "db jsbhub",
+                      "city": "Lucknow",
+                      "state": "UTTAR PRADESH",
+                      "pincode": 226024
+                    },
+                    "registration_address": {
+                      "address_line": "sdb bjhbd",
+                      "city": "North Delhi",
+                      "state": "DELHI",
+                      "pincode": 110007
+                    },
+                    "business_entity": "Individual",
+                    "status": "live",
+                    "partner_source": "Create Merchant API",
+                    "pan_verification_status": "Success",
+                    "website_approval_status": null,
+                    "notification_email": "test.ob0213457@yomail.com",
+                    "settlement_status": "Active",
+                    "is_service_agreement_accepted": false,
+                    "is_authorisation_letter_required": false,
+                    "monthly_expected_volume": 54600,
+                    "business_category": "Airlines",
+                    "business_sub_category": "Airlines",
+                    "bank_verification_status": null,
+                    "uuid": "11ef-586f-6bca3ef0-8ff1-021ec077a271",
+                    "penny_deposit_status": null,
+                    "document_status": "Docs Approved",
+                    "kyc_status": {
+                      "status": "LOCKED",
+                      "kyc_status": "LOCKED"
+                    },
+                    "agreement_status": "Approved",
+                    "integration_type": "Not Selected",
+                    "service_intent": "default"
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Thu, 04 Sep 2025 10:35:04 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "chunked"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Server": {
+                "schema": {
+                  "type": "string",
+                  "example": "nginx"
+                }
+              },
+              "X-Permitted-Cross-Domain-Policies": {
+                "schema": {
+                  "type": "string",
+                  "example": "none"
+                }
+              },
+              "Referrer-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "strict-origin-when-cross-origin"
+                }
+              },
+              "X-DNS-Prefetch-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "on"
+                }
+              },
+              "x-download-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "x-content-type-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "x-xss-protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1mode=block"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Access-Control-Allow-Methods": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Access-Control-Allow-Headers": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "x-frame-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "DENY"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=31536000; includeSubDomains; preload"
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "X-Request-Id": {
+                "schema": {
+                  "type": "string",
+                  "example": "fbea29b8-8179-444f-9b29-7c7d7adbcb79"
+                }
+              },
+              "X-Runtime": {
+                "schema": {
+                  "type": "number",
+                  "example": "0.025578"
+                }
+              },
+              "vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Accept, Origin"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "example-0": {
+                    "summary": "BusinessCatgeory is not available to find",
+                    "value": {
+                      "error": {
+                        "business_sub_category": "Invalid business sub category"
+                      }
+                    }
+                  },
+                  "example-1": {
+                    "summary": "BusinessNameMismatchHolderName",
+                    "value": {
+                      "errors": {
+                        "bank_detail.holder_name": [
+                          "Bank detail holder name does not match with business name"
+                        ]
+                      }
+                    }
+                  },
+                  "example-2": {
+                    "summary": "GST Mismatch with PAN",
+                    "value": {
+                      "errors": {
+                        "gst_number": [
+                          "Gst number does not match with PAN details provided"
+                        ]
+                      }
+                    }
+                  },
+                  "example-3": {
+                    "summary": "Address Validation",
+                    "value": {
+                      "errors": {
+                        "registration_address.pincode": [
+                          "Registration address pincode is the wrong length (should be 6 characters)",
+                          "Registration address pincode is invalid"
+                        ]
+                      }
+                    }
+                  },
+                  "example-4": {
+                    "summary": "GstMatchWithAddress",
+                    "value": {
+                      "errors": {
+                        "gst_number": [
+                          "Gst number does not match with the State specified here. Kindly review & update your GST details or update your address"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/merchants/11f0-8ee3-5847ce32-bf72-02975f21d323/update": {
+      "put": {
+        "tags": [
+          "Update Merchant API"
+        ],
+        "summary": "Skip vkyc, update udhaym, update cin, update gst",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "merchant[monthly_expected_volume]": {
+                    "type": "integer",
+                    "example": "1400"
+                  },
+                  "merchant[gst_number]": {
+                    "type": "string",
+                    "example": "06AAJCS9091D1Z4HAGSHJK"
+                  },
+                  "merchant[udyam_number]": {
+                    "type": "string",
+                    "example": "UDYAM-UP-19-0002053"
+                  },
+                  "merchant[gst_consent]": {
+                    "type": "boolean",
+                    "example": "false"
+                  },
+                  "merchant[vkyc_exempt_status]": {
+                    "type": "string",
+                    "example": "Dummy value"
+                  },
+                  "merchant[cin_number]": {
+                    "type": "string",
+                    "example": "U93098DL2016PTC300455"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{vault:bearer-token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/merchants/11f0-8976-5bf48f4c-baa1-02975f21d323/signatory_details": {
+      "put": {
+        "tags": [
+          "Add/Update Signatory & UBO"
+        ],
+        "summary": "Add/update UBO",
+        "description": "# **Update UBO Details API Documentation**\n\n## **API Overview**\n\n**Method:** `PUT`  \n**Content-Type:** `multipart/form-data`  \n**Purpose:** Update existing Ultimate Beneficial Owner (UBO) information for a merchant account\n\n---\n\n## **Endpoints**\n\n| Environment | Endpoint | Description | Usage |\n| --- | --- | --- | --- |\n| **Test** | `https://test-partner.payu.in/api/v1/merchants/{product_account_uuid}/signatory_details` | Testing/Sandbox environment | Development, testing, and integration purposes |\n| **Production** | `https://partner.payu.in/api/v1/merchants/{product_account_uuid}/signatory_details` | Live production environment | Live transactions and production use |\n\n---\n\n## **Path Parameters**\n\n| Parameter | Data Type | Required | Description | Example |\n| --- | --- | --- | --- | --- |\n| `product_account_uuid` | String | ✅ Yes | Unique identifier for the merchant's product account. The product_account_uuid is returned as `uuid` in the response of the create merchant API | `11f0-8976-5bf48f4c-baa1-02975f21d323` |\n\n---\n\n## **Headers**\n\n| Header | Data Type | Required | Description | Example |\n| --- | --- | --- | --- | --- |\n| `Authorization` | String | ✅ Yes | Bearer token for authentication. Get the token using the GET token API with the scope refer_merchant | `{{vault:bearer-token}}` |\n\n---\n\n## **UBO Update API Parameter Description Table**\n\n| Parameter | Field Name | Data Type | Example Value | Description |\n| --- | --- | --- | --- | --- |\n| **Ultimate Beneficial Owner (UBO) - Entry 1** |  |  |  |  |\n| `merchant[ubo[0][id]]` | UBO 1 ID | Number | 1178 | **UPDATE ONLY:** Required for UBO updates. Used to identify existing UBO record for update |\n| `merchant[ubo[0][beneficiary_name]]` | UBO 1 Name | String | Harsh Agarwal | Full name of the first ultimate beneficial owner |\n| `merchant[ubo[0][address][address_line]]` | UBO 1 Address | String | C-37, Block 24, Munekollal | Complete address of the first UBO |\n| `merchant[ubo[0][address][pincode]]` | UBO 1 Pincode | String | 560070 | Postal code of the first UBO's address |\n| `merchant[ubo[0][dob]]` | UBO 1 Date of Birth | Date | 1992-10-18 | Date of birth in YYYY-MM-DD format |\n| `merchant[ubo[0][nationality]]` | UBO 1 Nationality | String | IN | Country code (IN for India) |\n| `merchant[ubo[0][ownership_percent]]` | UBO 1 Ownership % | Number | 21.0 | Percentage of ownership in the business. Allowed upto two decimal places |\n| `merchant[ubo[0][ubo_pan_number]]` | UBO 1 PAN Number | String | AUKPA1386M | PAN card number of the first UBO |\n| **Ultimate Beneficial Owner (UBO) - Entry 2** |  |  |  |  |\n| `merchant[ubo[1][id]]` | UBO 2 ID | Number | 1169 | **UPDATE ONLY:** Required for UBO updates. Used to identify existing UBO record for update |\n| `merchant[ubo[1][beneficiary_name]]` | UBO 2 Name | String | Ayantika Pramanick | Full name of the second ultimate beneficial owner |\n| `merchant[ubo[1][address][address_line]]` | UBO 2 Address | String | C-37, Block 24, Munekollal | Complete address of the second UBO |\n| `merchant[ubo[1][address][pincode]]` | UBO 2 Pincode | String | 122001 | Postal code of the second UBO's address |\n| `merchant[ubo[1][dob]]` | UBO 2 Date of Birth | Date | 2000-02-14 | Date of birth in YYYY-MM-DD format |\n| `merchant[ubo[1][nationality]]` | UBO 2 Nationality | String | IN | Country code (IN for India) |\n| `merchant[ubo[1][ownership_percent]]` | UBO 2 Ownership % | Number | 45.0 | Percentage of ownership in the business. Allowed upto two decimal places |\n| `merchant[ubo[1][email]]` | UBO 2 Email | String | [ubo@yopmail.com](https://mailto:ubo@yopmail.com) | Email address of the second UBO (optional field) |\n| `merchant[ubo[1][ubo_pan_number]]` | UBO 2 PAN Number | String | GKVPP9366K | PAN card number of the second UBO |\n| **UBO Configuration** |  |  |  |  |\n| `merchant[ubo_exist]` | UBO Exists Flag | Number | 1 | Indicates whether UBO data need to be added (1 = Yes, 0 = No) |\n\n---\n\n## **API Validation Rules**\n\n### **Update Operation Rules**\n\n| Scenario | UBO Status | ID Requirement | Result |\n| --- | --- | --- | --- |\n| **Update Existing** | Already exists | ✅ Required | ✅ UBO details updated successfully |\n| **Mixed Update** | Some exist, some new | ✅ ID for existing only | ✅ Existing updated, new created |\n\n### **UBO Business Rules**\n\n| Rule | Requirement | Description |\n| --- | --- | --- |\n| **Ownership Threshold** | \\>10% | Only members with more than 10% ownership can be added as UBO |\n| **Maximum Ownership** | ≤100% | Total cumulative ownership of all UBOs must not exceed 100% |\n| **Update Requirement** | All fields | When updating UBO with ID, all UBO fields must be included |\n| **Current Ownership** | 21.0% + 45% = 66% | Total ownership in this example is 66% (valid) |\n\n---\n\n## **Expected Responses**\n\n- **Success:** `200 OK` with updated UBO details\n    \n\n- **Unauthorized:** `401 Unauthorized` (if bearer token is invalid)\n    \n- **Not Found:** `404 Not Found` (if product_account_uuid or UBO IDs don't exist)\n    \n\n## **Sample Response**\n\n``` json\n{\n    \"merchant\": {\n        \"signing_authority_details\": [\n            {\n                \"id\": 2184210,\n                \"uuid\": \"11f0-92bd-13b91ee6-8666-023e56ad7fcb\",\n                \"name\": \"Ayantika\",\n                \"email\": \"uatprod14@yopmail.com\",\n                \"pancard_number\": \"AUKPA1386M\",\n                \"authorised_signatory\": true,\n                \"contact_detail_type\": \"Signing Authority\",\n                \"active\": true\n            }\n        ],\n        \"ultimate_beneficiaries\": [\n            {\n                \"id\": 44004,\n                \"uuid\": \"11f0-92bd-c464590e-87f0-02a5a32ea4dd\",\n                \"name\": \"Spoorthi Mohan Naik\",\n                \"ubo_pan_number\": \"BXWPN2524C\",\n                \"type\": \"UltimateBeneficiary\",\n                \"ownership_percent\": \"10.0\",\n                \"dob\": \"2001-02-24\",\n                \"active\": true,\n                \"address\": {\n                    \"id\": 2707067,\n                    \"address_line\": \"C-37, Block 24, Munekollal\",\n                    \"city\": \"Gurgaon\",\n                    \"state\": \"HARYANA\",\n                    \"pincode\": 122001\n                }\n            },\n            {\n                \"id\": 44005,\n                \"uuid\": \"11f0-92bd-c49a9280-87f0-02a5a32ea4dd\",\n                \"name\": \"Ayantika Pramanick\",\n                \"ubo_pan_number\": \"GKVPP9366K\",\n                \"type\": \"UltimateBeneficiary\",\n                \"ownership_percent\": \"45.0\",\n                \"dob\": \"2000-02-14\",\n                \"active\": true,\n                \"address\": {\n                    \"id\": 2707068,\n                    \"address_line\": \"C-37, Block 24, Munekollal\",\n                    \"city\": \"Gurgaon\",\n                    \"state\": \"HARYANA\",\n                    \"pincode\": 122001\n                }\n            }\n        ]\n    }\n}\n\n ```",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "merchant[ubo[0][id]]": {
+                    "type": "integer",
+                    "description": "if id is sent details are updated else created",
+                    "example": "1178"
+                  },
+                  "merchant[ubo[0][beneficiary_name]]": {
+                    "type": "string",
+                    "example": "Harsh Agarwal"
+                  },
+                  "merchant[ubo[0][address][address_line]]": {
+                    "type": "string",
+                    "example": "C-37, Block 24, Munekollal"
+                  },
+                  "merchant[ubo[0][address][pincode]]": {
+                    "type": "integer",
+                    "example": "560070"
+                  },
+                  "merchant[ubo[0][dob]]": {
+                    "type": "string",
+                    "example": "1992-10-18"
+                  },
+                  "merchant[ubo[0][nationality]]": {
+                    "type": "string",
+                    "example": "IN"
+                  },
+                  "merchant[ubo[0][ownership_percent]]": {
+                    "type": "number",
+                    "example": "21.0"
+                  },
+                  "merchant[ubo[0][ubo_pan_number]]": {
+                    "type": "string",
+                    "example": "AUKPA1386M"
+                  },
+                  "merchant[ubo[1][id]]": {
+                    "type": "integer",
+                    "description": "if id is sent details are updated else created",
+                    "example": "1169"
+                  },
+                  "merchant[ubo[1][beneficiary_name]]": {
+                    "type": "string",
+                    "example": "Ayantika Pramanick"
+                  },
+                  "merchant[ubo[1][address][address_line]]": {
+                    "type": "string",
+                    "example": "C-37, Block 24, Munekollal"
+                  },
+                  "merchant[ubo[1][address][pincode]]": {
+                    "type": "integer",
+                    "example": "122001"
+                  },
+                  "merchant[ubo[1][dob]]": {
+                    "type": "string",
+                    "example": "2000-02-14"
+                  },
+                  "merchant[ubo[1][nationality]]": {
+                    "type": "string",
+                    "example": "IN"
+                  },
+                  "merchant[ubo[1][ownership_percent]]": {
+                    "type": "integer",
+                    "example": "45"
+                  },
+                  "merchant[ubo[1][email]]": {
+                    "type": "string",
+                    "example": "ubo@yopmail.com"
+                  },
+                  "merchant[ubo[1][ubo_pan_number]]": {
+                    "type": "string",
+                    "example": "GKVPP9366K"
+                  },
+                  "merchant[ubo_exist]": {
+                    "type": "integer",
+                    "example": "1"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{vault:bearer-token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/merchants/{uuid}/submit_business_members": {
+      "put": {
+        "tags": [
+          "Business Member APIs"
+        ],
+        "summary": "Add business member API",
+        "description": "# **Submit Business Members API Documentation**\n\n## **API Overview**\n\n**Method:** `PUT`  \n**Content-Type:** `application/json`  \n**Purpose:** Submit or update business member details for a merchant. At least one Director/Partner (basis the entity) & one member for KMP (CEO, CFO, Senior Management, Company Secretory) must be added.\n\n---\n\n## **Endpoints**\n\n| Environment | Endpoint | Description | Usage |\n| --- | --- | --- | --- |\n| **Test** | `https://test-partner.payu.in/api/v1/merchants/{product_account_uuid}/submit_business_members` | Testing/Sandbox environment | Development, testing, and integration purposes |\n| **Production** | `https://partner.payu.in/api/v1/merchants/{product_account_uuid}/submit_business_members` | Live production environment | Live transactions and production use |\n\n---\n\n## **Path Parameters**\n\n| Parameter | Data Type | Required | Description | Example |\n| --- | --- | --- | --- | --- |\n| `product_account_uuid` | String | ✅ Yes | Unique identifier for the merchant's product account. The product_account_uuid is returned in the response of the create merchant API | `{{product_account_uuid}}` |\n\n---\n\n## **Headers**\n\n| Header | Data Type | Required | Description | Example |\n| --- | --- | --- | --- | --- |\n| `Authorization` | String | ✅ Yes | Bearer token for authentication. Get the token using the GET token API with the scope `refer_merchant` | `Bearer {{resellerToken}}` |\n| `Content-Type` | String | ✅ Yes | Request content type | `application/json` |\n\n---\n\n## **Request Body Parameters**\n\n### **Business Member Object**\n\n| Parameter | Data Type | Required | Format | Example | Description |\n| --- | --- | --- | --- | --- | --- |\n| `name` | String | ✅ Yes | Full name | `Spoorthi Mohan Naik` | Full name of the business member |\n| `designation` | String | ✅ Yes | Job title/role | `Director` | Position or designation in the company. Allowed designations - Director (Private & Public limited), Partner (for Partnership & LLP), CEO, CFO, Senior Management, Company Secretory. |\n| `doj` | String | ✅ Yes | MM/YYYY | `09/2025` | Date of joining in MM/YYYY format |\n| `dob` | String | ✅ Yes | DD/MM/YYYY | `24/02/2001` | Date of birth in DD/MM/YYYY format |\n| `pincode` | String | ✅ Yes | 6 digits | `560070` | Postal code (6-digit Indian pincode) |\n| `pan_number` | String | ✅ Yes | PAN format | `XXXXXXXX4C` | PAN card number (10 alphanumeric characters) |\n\n---\n\n## **Complete Request Example**\n\n``` bash\ncurl --location --globoff --request PUT '{{prod_partnerUrl}}/api/v1/merchants/{{product_account_uuid}}/submit_business_members' \\\n--header 'Authorization: Bearer {{resellerToken}}' \\\n--header 'Content-Type: application/json' \\\n--data '{\n    \"business_members\": [\n        {\n            \"name\": \"Spoorthi Mohan Naik\",\n            \"designation\": \"Director\",\n            \"doj\": \"09/2025\",\n            \"dob\": \"24/02/2001\",\n            \"pincode\": \"560070\",\n            \"pan_number\": \"XXXXXXXX4C\"\n        }\n    ]\n}'\n\n ```\n\n---\n\n## **Request Body Schema**\n\n``` json\n{\n    \"business_members\": [\n        {\n            \"name\": \"string\",\n            \"designation\": \"string\", \n            \"doj\": \"string (MM/YYYY)\",\n            \"dob\": \"string (DD/MM/YYYY)\",\n            \"pincode\": \"string (6 digits)\",\n            \"pan_number\": \"string (10 chars)\"\n        }\n    ]\n}\n\n ```\n\n---\n\n## **Validation Rules**\n\n| Field | Rule | Description |\n| --- | --- | --- |\n| `doj` | Format: MM/YYYY | Must be valid month/year combination |\n| `dob` | Format: DD/MM/YYYY | Must be valid date in DD/MM/YYYY format |\n| `pincode` | Length: 6 digits | Must be exactly 6 numeric characters |\n| `pan_number` | Format: PAN | Must follow Indian PAN card format (10 alphanumeric) |\n| `business_members` | Array | Can contain multiple business member objects |\n\n---",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "business_members": [
+                    {
+                      "name": "Spoorthi Mohan Naik",
+                      "designation": "Director",
+                      "doj": "09/2025",
+                      "dob": "24/02/2001",
+                      "pincode": "560070",
+                      "pan_number": "BXWPN2524C",
+                      "uuid": "11f0-88aa-173e0da0-888a-02975f21d323"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{vault:bearer-token}}"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "uuid",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/merchants/11f0-8ee3-5847ce32-bf72-02975f21d323/list_business_members": {
+      "get": {
+        "tags": [
+          "Business Member APIs"
+        ],
+        "summary": "List Business members API",
+        "description": "# **List Business Members API Documentation**\n\n## **API Overview**\n\n**Method:** `GET`  \n**Endpoint:** `/api/v1/merchants/{product_account_uuid}/list_business_members`  \n**Content-Type:** `application/json`  \n**Purpose:** Retrieve a list of all business members associated with a merchant account\n\n---\n\n## **Path Parameters**\n\n| Parameter | Data Type | Required | Description | Example |\n| --- | --- | --- | --- | --- |\n| `product_account_uuid` | String | ✅ Yes | Unique identifier for the merchant's product account. The product_account_uuid is returned as `uuid` in the response of the create merchant API | `{{product_account_uuid}}` |\n\n---\n\n## **Headers**\n\n| Header | Data Type | Required | Description | Example |\n| --- | --- | --- | --- | --- |\n| `Authorization` | String | ✅ Yes | Bearer token for authentication. Get the token using the GET token API with the scope `refer_merchant` | `Bearer {{resellerToken}}` |\n| `Content-Type` | String | ✅ Yes | Request content type | `application/json` |\n\n---\n\n## **Response fields**\n\n| Field | Data Type | Format | Description |\n| --- | --- | --- | --- |\n| `id` | String | UUID | Unique identifier for the business member |\n| `name` | String | Full name | Full name of the business member |\n| `designation` | String | Job title | Position or designation in the company |\n| `doj` | String | MM/YYYY | Date of joining |\n| `dob` | String | DD/MM/YYYY | Date of birth |\n| `pincode` | String | 6 digits | Postal code |\n| `pan_number` | String | PAN format | PAN card number (masked for security) |\n| `created_at` | String | ISO 8601 | Timestamp when record was created |\n| `updated_at` | String | ISO 8601 | Timestamp when record was last updated |\n\n---\n\n## **Authentication**\n\n- **Required:** Bearer token authentication\n    \n- **Header:** `Authorization: Bearer {token}`\n    \n\n---\n\n## **Expected Responses**\n\n- **Success:** `200 OK` with business members data\n    \n- **Empty List:** `200 OK` with empty `business_members` array if no members exist\n    \n- **Unauthorized:** `401 Unauthorized` (if bearer token is invalid)\n    \n- **Not Found:** `404 Not Found` (if product_account_uuid doesn't exist)\n    \n- **Forbidden:** `403 Forbidden` (if token lacks read permissions)\n    \n\n---",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{vault:bearer-token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/merchants/11f0-8ee3-5847ce32-bf72-02975f21d323/delete_business_member/{business_member_uuid}": {
+      "delete": {
+        "tags": [
+          "Business Member APIs"
+        ],
+        "summary": "Delete business members API",
+        "description": "# **Delete Business Member API Documentation**\n\n## **API Overview**\n\n**Method:** `DELETE`  \n**Endpoint:** `/api/v1/merchants/{product_account_uuid}/delete_business_member/{business_member_id}`  \n**Content-Type:** `application/json`  \n**Purpose:** Delete a specific business member from a merchant account.\n\n---\n\n## **Endpoints**\n\n| Environment | Endpoint | Description | Usage |\n| --- | --- | --- | --- |\n| **Test** | `https://test-partner.payu.in/api/v1/merchants/{product_account_uuid}/delete_business_member/{business_member_id}` | Testing/Sandbox environment | Development, testing, and integration purposes |\n| **Production** | `https://partner.payu.in/api/v1/merchants/{product_account_uuid}/delete_business_member/{business_member_id}` | Live production environment | Live transactions and production use |\n\n---\n\n## **Path Parameters**\n\n| Parameter | Data Type | Required | Description | Example |\n| --- | --- | --- | --- | --- |\n| `product_account_uuid` | String | ✅ Yes | Unique identifier for the merchant's product account. The product_account_uuid is returned as `uuid` in the response of the create merchant API | `{{product_account_uuid}}` |\n| `business_member_id` | String | ✅ Yes | Unique identifier for the business member to be deleted. The business member id is returned in the submit business members API | `11f0-88aa-173e0da0-888a-02975f21d323` |\n\n---\n\n## **Headers**\n\n| Header | Data Type | Required | Description | Example |\n| --- | --- | --- | --- | --- |\n| `Authorization` | String | ✅ Yes | Bearer token for authentication. Get the token using the GET token API with the scope `refer_merchant` | `Bearer {{resellerToken}}` |\n| `Content-Type` | String | ✅ Yes | Request content type | `application/json` |\n\n## **Expected Responses**\n\n- **Success:** `200 OK` or `204 No Content`\n    \n- **Not Found:** `404 Not Found` (if business_member_id doesn't exist)\n    \n- **Unauthorized:** `401 Unauthorized` (if bearer token is invalid)\n    \n- **Forbidden:** `403 Forbidden` (if token lacks deletion permissions)",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{vault:bearer-token}}"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "business_member_uuid",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v3/merchants/kyc_document/info": {
+      "get": {
+        "tags": [
+          "Manage KYC documents"
+        ],
+        "summary": "Info KYC document",
+        "description": "# **Get KYC Document Info API Documentation**\n\n## **API Overview**\n\n**Method:** `GET`  \n**Content-Type:** `application/x-www-form-urlencoded`  \n**Purpose:** Retrieve the list of KYC docs required for a specific merchant. This API can be used to get a list of all docs that are needed for onboarding a merchant. This API will return an empty list when all docs are uploaded.\n\n---\n\n## **Endpoints**\n\n| Environment | Endpoint | Description | Usage |\n| --- | --- | --- | --- |\n| **Test** | `https://test-partner.payu.in/api/v3/merchants/kyc_document/info` | Testing/Sandbox environment | Development, testing, and integration purposes |\n| **Production** | `https://partner.payu.in/api/v3/merchants/kyc_document/info` | Live production environment | Live transactions and production use |\n\n---\n\n## **Query Parameters**\n\n| Parameter | Data Type | Required | Description | Example |\n| --- | --- | --- | --- | --- |\n| `merchant_id` | Number | ✅ Yes | Unique identifier for the merchant whose KYC documents need to be retrieved. The MID is returned in the repsonse of the Create merchant API | `760068860` |\n\n---\n\n## **Headers**\n\n| Header | Data Type | Required | Description | Example |\n| --- | --- | --- | --- | --- |\n| `Authorization` | String | ✅ Yes | Bearer token for authentication | `Bearer {your_token_here}` |\n| `Content-Type` | String | ✅ Yes | Content type specification (optional for GET requests) | `application/x-www-form-urlencoded` |\n\n---\n\n---\n\n## **Validation Rules**\n\n- Merchant ID must be a valid numeric identifier\n    \n- Merchant must be referred by the partner\n    \n\n---\n\n## **Expected Responses**\n\n- **Success:** `200 OK` with KYC document information\n    \n- **Unauthorized:** `401 Unauthorized` (if bearer token is invalid or missing)\n    \n- **Not Found:** `404 Not Found` (if merchant_id doesn't exist)\n    \n\n## **Sample Response**\n\nMerchant type - Individual\n\n``` json\n{\n    \"PAN Card of Signing Authority\": [\n        \"PAN Card\"\n    ],\n    \"Address Proof of Signing Authority\": [\n        \"Passport\",\n        \"Aadhar\",\n        \"Voter's ID\",\n        \"Driving Licence\",\n        \"Utilities Bill (electricity, water, landline, gas connection)\",\n        \"Address Verification Letter from Bank\"\n    ],\n    \"Bank Account Proof\": [\n        \"Cancelled Cheque\",\n        \"Bank Verification Letter\",\n        \"Bank Statement\",\n        \"Passbook\"\n    ],\n    \"Service Agreement\": [\n        \"Service Agreement\"\n    ]\n}\n\n ```",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer {{resellerToken}}"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/x-www-form-urlencoded"
+          },
+          {
+            "name": "merchant_id",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "example": "760068860"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Mon, 12 Aug 2024 07:34:13 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "chunked"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Server": {
+                "schema": {
+                  "type": "string",
+                  "example": "nginx"
+                }
+              },
+              "X-DNS-Prefetch-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "on"
+                }
+              },
+              "x-download-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "x-content-type-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "x-xss-protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1mode=block"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Access-Control-Allow-Methods": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Access-Control-Allow-Headers": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "x-frame-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "DENY"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=63072000; includeSubdomains;"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"e85c148364a0bd7dc1e035b816940c21\""
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=0, private, must-revalidate"
+                }
+              },
+              "X-Request-Id": {
+                "schema": {
+                  "type": "string",
+                  "example": "5fad05f8-0409-47a0-a2b7-64ffead9e276"
+                }
+              },
+              "X-Runtime": {
+                "schema": {
+                  "type": "number",
+                  "example": "0.113040"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Origin"
+                }
+              },
+              "Content-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "gzip"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "PAN Card of Signing Authority": [
+                    "PAN Card"
+                  ],
+                  "Address Proof of Signing Authority": [
+                    "Passport",
+                    "Aadhar",
+                    "Voter's ID",
+                    "Driving Licence",
+                    "Utilities Bill (electricity, water, landline, gas connection)",
+                    "Address Verification Letter from Bank"
+                  ],
+                  "Bank Account Proof": [
+                    "Cancelled Cheque",
+                    "Bank Verification Letter",
+                    "Bank Statement",
+                    "Passbook"
+                  ],
+                  "Service Agreement": [
+                    "Service Agreement"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v3/merchants/8390925/kyc_document/required_docs": {
+      "get": {
+        "tags": [
+          "Manage KYC documents"
+        ],
+        "summary": "Documents required for KYC",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{vault:bearer-token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Mon, 12 Aug 2024 07:34:33 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "chunked"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Server": {
+                "schema": {
+                  "type": "string",
+                  "example": "nginx"
+                }
+              },
+              "X-DNS-Prefetch-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "on"
+                }
+              },
+              "x-download-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "x-content-type-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "x-xss-protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1mode=block"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Access-Control-Allow-Methods": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Access-Control-Allow-Headers": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "x-frame-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "DENY"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=63072000; includeSubdomains;"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"986be36aec460334c1605d2b7cd11262\""
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=0, private, must-revalidate"
+                }
+              },
+              "X-Request-Id": {
+                "schema": {
+                  "type": "string",
+                  "example": "e0ff30b8-62df-4e3d-8aa4-8d8f93e90be3"
+                }
+              },
+              "X-Runtime": {
+                "schema": {
+                  "type": "number",
+                  "example": "0.140811"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Origin"
+                }
+              },
+              "Content-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "gzip"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "business_entity": "Individual",
+                  "document_categories": [
+                    {
+                      "id": 81,
+                      "name": "Bank Account Proof",
+                      "uuid": "11e8-748f-297c6048-9081-020aca9875be",
+                      "name_on_frontend": "BANK_PROOF",
+                      "re_fetch": false,
+                      "document_types": [
+                        {
+                          "name": "Passbook",
+                          "id": 92,
+                          "uuid": "11eb-d01a-456b15f8-adc5-0242a53cdb42",
+                          "name_on_frontend": "PB",
+                          "issue_date_req": false,
+                          "expiry_date_req": false
+                        },
+                        {
+                          "name": "Bank Statement",
+                          "id": 91,
+                          "uuid": "11eb-d01a-8322997a-adc5-0242a53cdb42",
+                          "name_on_frontend": "BS",
+                          "issue_date_req": false,
+                          "expiry_date_req": false
+                        },
+                        {
+                          "name": "Cancelled Cheque",
+                          "id": 48,
+                          "uuid": "ca0a-9047-28d705a1-7e97-b530fbec4c41",
+                          "name_on_frontend": "CC",
+                          "issue_date_req": false,
+                          "expiry_date_req": false
+                        },
+                        {
+                          "name": "Bank Verification Letter ",
+                          "id": 49,
+                          "uuid": "f912-b658-610ce46f-796b-14a515e41ad7",
+                          "name_on_frontend": "BC",
+                          "issue_date_req": false,
+                          "expiry_date_req": false
+                        }
+                      ],
+                      "kyc_document": null
+                    },
+                    {
+                      "id": 82,
+                      "name": "PAN Card of Signing Authority",
+                      "uuid": "11e8-748f-297824ce-9081-020aca9875be",
+                      "name_on_frontend": "PANCARD_SIGNED_AUTHORITY",
+                      "re_fetch": false,
+                      "document_types": [
+                        {
+                          "name": "PAN Card",
+                          "id": 50,
+                          "uuid": "11e8-748f-2946799c-9081-020aca9875be",
+                          "name_on_frontend": "PANCARD",
+                          "issue_date_req": false,
+                          "expiry_date_req": false
+                        }
+                      ],
+                      "kyc_document": null
+                    },
+                    {
+                      "id": 89,
+                      "name": "Address Proof of Signing Authority",
+                      "uuid": "11e8-748f-297a15b8-9081-020aca9875be",
+                      "name_on_frontend": "ADDRESS_PROOF_SIGNED_AUTHORITY",
+                      "re_fetch": false,
+                      "document_types": [
+                        {
+                          "name": "Passport",
+                          "id": 51,
+                          "uuid": "11e8-748f-2948a29e-9081-020aca9875be",
+                          "name_on_frontend": "PASSPORT",
+                          "issue_date_req": true,
+                          "expiry_date_req": true
+                        },
+                        {
+                          "name": "Aadhar",
+                          "id": 52,
+                          "uuid": "11e8-748f-294a800a-9081-020aca9875be",
+                          "name_on_frontend": "AADHAR",
+                          "issue_date_req": false,
+                          "expiry_date_req": false
+                        },
+                        {
+                          "name": "Voter's ID",
+                          "id": 53,
+                          "uuid": "11e8-748f-294c6ef6-9081-020aca9875be",
+                          "name_on_frontend": "VOTER",
+                          "issue_date_req": false,
+                          "expiry_date_req": false
+                        },
+                        {
+                          "name": "Driving Licence",
+                          "id": 54,
+                          "uuid": "11e8-748f-294e7dea-9081-020aca9875be",
+                          "name_on_frontend": "DL",
+                          "issue_date_req": true,
+                          "expiry_date_req": true
+                        },
+                        {
+                          "name": "Utilities Bill (electricity, water, landline, gas connection) ",
+                          "id": 55,
+                          "uuid": "11e8-748f-29508112-9081-020aca9875be",
+                          "name_on_frontend": "BMTB",
+                          "issue_date_req": false,
+                          "expiry_date_req": false
+                        },
+                        {
+                          "name": "Address Verification Letter from Bank",
+                          "id": 64,
+                          "uuid": "24d8-a849-14f755a1-d49b-12ca65c5cd7a",
+                          "name_on_frontend": "AVFB",
+                          "issue_date_req": false,
+                          "expiry_date_req": false
+                        }
+                      ],
+                      "kyc_document": null
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v3/merchants/8390925/kyc_document": {
+      "post": {
+        "tags": [
+          "Manage KYC documents"
+        ],
+        "summary": "Create KYC Document",
+        "description": "# **Upload KYC Document API Documentation**\n\n## **API Overview**\n\n**Method:** `POST`  \n**Content-Type:** `multipart/form-data`  \n**Purpose:** Upload KYC documents for merchant verification including document files and metadata\n\n---\n\n## **Endpoints**\n\n| Environment | Endpoint | Description | Usage |\n| --- | --- | --- | --- |\n| **Test** | `https://test-partner.payu.in/api/v3/merchants/{merchant_id}/kyc_document` | Testing/Sandbox environment | Development, testing, and integration purposes |\n| **Production** | `https://partner.payu.in/api/v3/merchants/{merchant_id}/kyc_document` | Live production environment | Live transactions and production use |\n\n---\n\n## **Path Parameters**\n\n| Parameter | Data Type | Required | Description | Example |\n| --- | --- | --- | --- | --- |\n| `merchant_id` | Number | ✅ Yes | Unique identifier for the merchant uploading KYC documents. The MID is returned in the response of the create merchant API. | `8390925` |\n\n---\n\n## **Headers**\n\n| Header | Data Type | Required | Description | Example |\n| --- | --- | --- | --- | --- |\n| `Authorization` | String | ✅ Yes | Bearer token for authentication. Use the Get Token API with the scope 'refer merchant' to obtain the token | `{{vault:bearer-token}}` |\n\n---\n\n## **KYC Document Upload API Parameter Description Table**\n\n| Parameter | Data Type | Example Value | Description |\n| --- | --- | --- | --- |\n| **Document Information** |  |  |  |\n| `merchant[document_category]` | String | PAN Card of Signing Authority | Category classification of the document being uploaded |\n| `merchant[document_type]` | String | PAN Card | Specific type of document (must match category) |\n| `merchant[processed_document]` | File | @\"/Users/Shared/Wallpaper2024/MandatoryComplianceTraining.jpg\" | Physical document file to be uploaded for verification |\n\n## **Document Categories & Types**\n\nFor the KYC docs, thier categories, & types, use the [Info KYC document API](https://myteam-9319.postman.co/workspace/95e119fc-00c3-4a81-849c-e4798133bacb/example/32344985-0ab2a3ea-11b1-4b2a-9045-70606cabd34b?action=share&source=copy-link&creator=32344985&ctx=documentation)\n\nExample of document categories & types are,\n\n| Category | Document Type |\n| --- | --- |\n| `PAN Card of Signing Authority` | PAN card document for authorized signatory |\n| Address Proof of Signing Authority\" | Aadhar |\n| Bank Account Proof | Cancelled Cheque |\n\n## **File Requirements**\n\n| Requirement | Specification |\n| --- | --- |\n| **File Formats** | JPG, JPEG, PNG, PDF |\n| **File Size** | Maximum 5MB per file |\n| **Image Quality** | Clear, readable, well-lit |\n| **File naming** | No spaces or special characters allowed |\n\n---\n\n## **Validation Rules**\n\n- Document category and document type must be compatible\n    \n- File must be in supported format (JPG, PNG, PDF)\n    \n- File size must not exceed maximum limit\n    \n- Document must be clear and readable\n    \n\n---\n\n## **Expected Responses**\n\n- **Success:** `200 OK` with document upload confirmation and reference ID\n    \n- **Validation Error:** `422 Unprocessable Entity` with specific field errors\n    \n- **Unauthorized:** `401 Unauthorized` (if bearer token is invalid)\n    \n- **Not Found:** `404 Not Found` (if merchant_id doesn't exist)\n    \n- **Bad Request:** `400 Bad Request` (if file format is unsupported)\n    \n- **Payload Too Large:** `413 Payload Too Large` (if file exceeds size limit)\n    \n\n## **Sample Response**\n\n``` json\nmerchant\": {\n        \"mid\": \"8390925\",\n        \"kyc_document_name\": \"PAN Card of Signing Authority\",\n        \"kyc_document_uuid\": \"11ef-587e-43837330-95b0-021ec077a271\",\n        \"kyc_document_status\": \"DOCUMENT_SUBMITTED\",\n        \"error_message\": null,\n        \"created_at\": \"2024-08-12T07:41:19.000Z\"\n    }\n\n ```",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "merchant[document_category]": {
+                    "type": "string",
+                    "example": "PAN Card of Signing Authority"
+                  },
+                  "merchant[document_type]": {
+                    "type": "string",
+                    "example": "PAN Card"
+                  },
+                  "merchant[processed_document]": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{vault:bearer-token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Mon, 12 Aug 2024 07:41:19 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "chunked"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Server": {
+                "schema": {
+                  "type": "string",
+                  "example": "nginx"
+                }
+              },
+              "X-DNS-Prefetch-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "on"
+                }
+              },
+              "x-download-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "x-content-type-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "x-xss-protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1mode=block"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Access-Control-Allow-Methods": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Access-Control-Allow-Headers": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "x-frame-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "DENY"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=63072000; includeSubdomains;"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"63a17dba8c14161dd7529859fc0f9394\""
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=0, private, must-revalidate"
+                }
+              },
+              "X-Request-Id": {
+                "schema": {
+                  "type": "string",
+                  "example": "80cddb17-ff07-437f-9225-55823afac95d"
+                }
+              },
+              "X-Runtime": {
+                "schema": {
+                  "type": "number",
+                  "example": "0.518505"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Origin"
+                }
+              },
+              "Content-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "gzip"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "merchant": {
+                    "mid": "8390925",
+                    "kyc_document_name": "PAN Card of Signing Authority",
+                    "kyc_document_uuid": "11ef-587e-43837330-95b0-021ec077a271",
+                    "kyc_document_status": "DOCUMENT_SUBMITTED",
+                    "error_message": null,
+                    "created_at": "2024-08-12T07:41:19.000Z"
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Mon, 08 Sep 2025 06:49:57 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "chunked"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Server": {
+                "schema": {
+                  "type": "string",
+                  "example": "nginx"
+                }
+              },
+              "X-Permitted-Cross-Domain-Policies": {
+                "schema": {
+                  "type": "string",
+                  "example": "none"
+                }
+              },
+              "Referrer-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "strict-origin-when-cross-origin"
+                }
+              },
+              "X-DNS-Prefetch-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "on"
+                }
+              },
+              "x-download-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "x-content-type-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "x-xss-protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1mode=block"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Access-Control-Allow-Methods": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Access-Control-Allow-Headers": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "x-frame-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "DENY"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=31536000; includeSubDomains; preload"
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "X-Request-Id": {
+                "schema": {
+                  "type": "string",
+                  "example": "03161370-1e96-438b-a4f3-d4d6893712ac"
+                }
+              },
+              "X-Runtime": {
+                "schema": {
+                  "type": "number",
+                  "example": "0.061914"
+                }
+              },
+              "vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Accept, Origin"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "example-0": {
+                    "summary": "SizeThreshold",
+                    "value": {
+                      "error": {
+                        "document": "must be less than 5 MB"
+                      }
+                    }
+                  },
+                  "example-1": {
+                    "summary": "DocCategoryNotPresent",
+                    "value": {
+                      "error": {
+                        "document_category": "is not valid"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v3/merchants/8390925/kyc_document/11ef-587e-43837330-95b0-021ec077a271": {
+      "delete": {
+        "tags": [
+          "Manage KYC documents"
+        ],
+        "summary": "Delete KYC document",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{vault:bearer-token}}"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/x-www-form-urlencoded"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Mon, 12 Aug 2024 07:53:36 GMT"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Server": {
+                "schema": {
+                  "type": "string",
+                  "example": "nginx"
+                }
+              },
+              "X-DNS-Prefetch-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "on"
+                }
+              },
+              "x-download-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "x-content-type-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "x-xss-protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1mode=block"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Access-Control-Allow-Methods": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "Access-Control-Allow-Headers": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              },
+              "x-frame-options": {
+                "schema": {
+                  "type": "string",
+                  "example": "DENY"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=63072000; includeSubdomains;"
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "X-Request-Id": {
+                "schema": {
+                  "type": "string",
+                  "example": "27bcf780-d10a-471b-a3a3-a6e7ee912f6a"
+                }
+              },
+              "X-Runtime": {
+                "schema": {
+                  "type": "number",
+                  "example": "0.515174"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Origin"
+                }
+              }
+            },
             "content": {
               "text/plain": {
                 "schema": {
                   "type": "string"
                 },
-                "examples": {
-                  "successQueryString": {
-                    "summary": "Example success postback (truncated; from PayU card-flow docs)",
-                    "value": "mihpayid=403993715531077182&mode=CC&status=success&unmappedstatus=captured&key=JPM7Fg&txnid=ypl938459435dfdfdf&amount=1000.00&cardCategory=domestic&error=E000&error_Message=No+Error&bankcode=CC"
-                  }
+                "example": ""
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/merchants/11f0-8976-5bf48f4c-baa1-02975f21d323/generate_merged_document_for_esign": {
+      "get": {
+        "tags": [
+          "E-Sign APIs"
+        ],
+        "summary": "GenerateMergedDocumentForEsign",
+        "description": "Generated from cURL: curl --location 'https://test10-onboarding.payu.in/api/v3/product_accounts/11ef-11e2-162d9d26-af4b-02975f21d323/generate_merged_document_for_esign' \\\n--header 'sec-ch-ua: \"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\"' \\\n--header 'Source: Web' \\\n--header 'sec-ch-ua-mobile: ?0' \\\n--header 'Authorization: {{vault:bearer-token}}' \\\n--header 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36' \\\n--header 'Accept: application/json' \\\n--header 'Referer: https://test10-onboarding.payu.in/' \\\n--header 'sec-ch-ua-platform: \"macOS\"' \\\n--header 'Cookie: Path=/'",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{vault:bearer-token}}"
+          }
+        ],
+        "responses": {
+          "401": {
+            "description": "Unauthorized",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Mon, 14 Jul 2025 07:23:12 GMT"
                 }
               },
-              "text/html": {
+              "Content-Type": {
                 "schema": {
-                  "type": "string"
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "chunked"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Server": {
+                "schema": {
+                  "type": "string",
+                  "example": "nginx"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "SAMEORIGIN"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1; mode=block"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-Download-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "X-Permitted-Cross-Domain-Policies": {
+                "schema": {
+                  "type": "string",
+                  "example": "none"
+                }
+              },
+              "Referrer-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "strict-origin-when-cross-origin"
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "X-Request-Id": {
+                "schema": {
+                  "type": "string",
+                  "example": "3f5ba407-607e-4b1b-920f-a69a7024bb49"
+                }
+              },
+              "X-Runtime": {
+                "schema": {
+                  "type": "number",
+                  "example": "0.055166"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "https://onboarding.payu.in"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=31536000; includeSubDomains"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "status": "Unauthorized"
                 }
               }
             }
           },
-          "302": {
-            "description": "Redirect to issuer / ACS / bank or merchant **surl** / **furl** (typical browser flow)."
+          "422": {
+            "description": "Unprocessable Entity",
+            "headers": {
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "chunked"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Fri, 23 May 2025 09:59:22 GMT"
+                }
+              },
+              "Server": {
+                "schema": {
+                  "type": "string",
+                  "example": "nginx"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "SAMEORIGIN"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1; mode=block"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-Download-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "X-Permitted-Cross-Domain-Policies": {
+                "schema": {
+                  "type": "string",
+                  "example": "none"
+                }
+              },
+              "Referrer-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "strict-origin-when-cross-origin"
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "X-Request-Id": {
+                "schema": {
+                  "type": "string",
+                  "example": "785b8747-8f1e-4e46-8014-2aff93bedb9a"
+                }
+              },
+              "X-Runtime": {
+                "schema": {
+                  "type": "number",
+                  "example": "0.091863"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=31536000; includeSubDomains"
+                }
+              },
+              "vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Origin"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "example-0": {
+                    "summary": "DetailsStillRemaining",
+                    "value": {
+                      "error": "Your Bank details / Website details / KYC details / Video KYC details / Business Members Details verification is pending. Agreement will be generated once these details are verified."
+                    }
+                  },
+                  "example-1": {
+                    "summary": "Generate Merchant Agreement for E-sign API",
+                    "value": {
+                      "error": "Your Bank details / Website details / Video KYC details verification is pending. Agreement will be generated once these details are verified."
+                    }
+                  },
+                  "example-2": {
+                    "summary": "NoAgreementPresent",
+                    "value": {
+                      "kyc_document": "Agreement Not Found"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
-    }
-  },
-  "components": {
-    "schemas": {
-      "PaymentGateway": {
-        "type": "string",
-        "description": "Payment gateway (**`pg`**) — closed enum matching the **Merchant Hosted Checkout** Postman collection’s `_payment` samples.\n\n| `pg` | Postman folder / use |\n|------|----------------------|\n| **CC** | Cards — credit card (**default** in PayU card docs if omitted) |\n| **DC** | Cards — debit card (same collection variables; use with debit **bankcode**) |\n| **EMI** | EMI — card instalment |\n| **UPI** | UPI (and the collection’s **Wallets** sample, which used **`pg=UPI`**) |\n| **BNPL** | BNPL (e.g. **LAZYPAY** **bankcode** in Postman) |\n| **NB** | Net Banking (**TESTPGNB** **bankcode** in Postman sandbox sample; production **bankcode** from **`getNetBankingStatus`** / PayU docs) |\n\nConfirm live **`pg`/`bankcode`** pairs with PayU docs or your **KAM**.\n",
-        "enum": [
-          "BNPL",
-          "CC",
-          "DC",
-          "EMI",
-          "NB",
-          "UPI"
-        ]
-      },
-      "MerchantHostedPaymentForm": {
-        "type": "object",
-        "additionalProperties": true,
-        "description": "Merchant-hosted **`_payment`** form. **Always required:** `key`, `txnid`, `amount`, `productinfo`, `firstname`, `email`, `phone`, `surl`, `furl`, `hash`, `pg`, `bankcode`.\n\n**Conditional (per `pg` / instrument):** send **`ccnum`**, **`ccexpmon`**, **`ccexpyr`**, **`ccvv`**, **`ccname`** for card and EMI card flows; send **`vpa`** for UPI.\n\n**Note:** Some PayU tables place name-on-card wording beside **`ccvv`**; CVV belongs in **`ccvv`**, cardholder name in **`ccname`**.\n",
-        "required": [
-          "key",
-          "txnid",
-          "amount",
-          "productinfo",
-          "firstname",
-          "email",
-          "phone",
-          "surl",
-          "furl",
-          "hash",
-          "pg",
-          "bankcode"
+    },
+    "/api/v1/merchants/11ef-a26b-8a7eb740-b5cd-02975f21d323/send_signatory_otp/11f0-8e18-72ab4144-a513-02975f21d323": {
+      "post": {
+        "tags": [
+          "E-Sign APIs"
         ],
-        "properties": {
-          "key": {
-            "type": "string",
-            "description": "Unique merchant key issued by PayU for your account (`varchar`).",
-            "example": "Your Test Key"
+        "summary": "SendSignatoryOtp",
+        "description": "Generated from cURL: curl --location -g --request POST '{{onboarding_base_url}}/api/v3/product_accounts/{{product_account_uuid}}/kyc_documents/{{merged_document_uuid}}/send_signatory_otp' \\\n--header 'Authorization: {{vault:bearer-token}}'",
+        "requestBody": {
+          "content": {}
+        },
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{vault:bearer-token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/merchants/11f0-8976-5bf48f4c-baa1-02975f21d323/esign_merged_document/11f0-8e18-72ab4144-a513-02975f21d323": {
+      "post": {
+        "tags": [
+          "E-Sign APIs"
+        ],
+        "summary": "EsignMergedDocument",
+        "description": "Generated from cURL: curl --location -g '{{onboarding_base_url}}/api/v3/product_accounts/{{product_account_uuid}}/kyc_documents/{{merged_document_uuid}}/esign_merged_document' \\\n--header 'Authorization: {{vault:bearer-token}}' \\\n--data-urlencode 'otp=0025'",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "otp": {
+                    "type": "integer",
+                    "example": "4537"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{vault:bearer-token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Fri, 23 May 2025 11:47:33 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json; charset=utf-8"
+                }
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "chunked"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Server": {
+                "schema": {
+                  "type": "string",
+                  "example": "nginx"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "SAMEORIGIN"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1; mode=block"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-Download-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "noopen"
+                }
+              },
+              "X-Permitted-Cross-Domain-Policies": {
+                "schema": {
+                  "type": "string",
+                  "example": "none"
+                }
+              },
+              "Referrer-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "origin"
+                }
+              },
+              "ETag": {
+                "schema": {
+                  "type": "string",
+                  "example": "W/\"39eede3ba10cf583cb19e4f51082744d\""
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-store"
+                }
+              },
+              "Set-Cookie": {
+                "schema": {
+                  "type": "string",
+                  "example": "Path=/; HttpOnly; Secure"
+                }
+              },
+              "X-Request-Id": {
+                "schema": {
+                  "type": "string",
+                  "example": "365e60b8-9e63-443a-9b4b-72ab245c1957"
+                }
+              },
+              "X-Runtime": {
+                "schema": {
+                  "type": "number",
+                  "example": "4.253622"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "https://test10-onboarding.payu.in"
+                }
+              },
+              "Access-Control-Allow-Methods": {
+                "schema": {
+                  "type": "string",
+                  "example": "GET, POST, OPTIONS, PUT"
+                }
+              },
+              "Access-Control-Allow-Headers": {
+                "schema": {
+                  "type": "string",
+                  "example": "User-Agent,X-Requested-With,Content-Type,Authorization,X-Custom-Browser-Property,custombrowserproperty,usersessioncookie,usersessioncookiepageurl,updateSession,hubauthorization,merchantid,authtoken"
+                }
+              },
+              "Access-Control-Expose-Headers": {
+                "schema": {
+                  "type": "string",
+                  "example": "Content-Length,Content-Range"
+                }
+              },
+              "Access-Control-Max-Age": {
+                "schema": {
+                  "type": "integer",
+                  "example": "1728000"
+                }
+              },
+              "Strict-Transport-Security": {
+                "schema": {
+                  "type": "string",
+                  "example": "max-age=31536000; includeSubDomains"
+                }
+              },
+              "Pragma": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "Content-Security-Policy": {
+                "schema": {
+                  "type": "string",
+                  "example": "default-src 'self'; connect-src 'self' https://testoneapi.payu.in https://onepayudev-payuin.cs74.force.com/ https://test-accounts.payu.in/ wss://*.payu.in wss://*.payumoney.com https://test-partner.payu.in/ https://test-dms.payu.in https://payuin--onepayudev.sandbox.my.salesforce.com https://payuin--onepayudev.sandbox.my.salesforce-sites.com https://*.clarity.ms/ https://sentry.payu.in/ https://payu.cdn.prismic.io/ https://payu.prismic.io/ https://payuprod.prismic.io/ https://payuprod.cdn.prismic.io https://stats.g.doubleclick.net/ https://snap.licdn.com/ https://bat.bing.com/ https://bam.nr-data.net/ https://*.adroll.com/ https://hub-accounts-test.s3.ap-south-1.amazonaws.com/ https://document-management-system-test.s3.ap-south-1.amazonaws.com/ https://analytics.google.com/ https://forms.hubspot.com/ http://*.hotjar.com:* https://*.hotjar.com:* https://vc.hotjar.io:* https://surveystats.hotjar.io wss://*.hotjar.com https://www.google.co.in/; frame-src 'self' https://payuin--onepayudev.my.salesforce.com/ https://payuin--onepayudev.sandbox.my.salesforce.com/ https://bid.g.doubleclick.net/ https://accounts.google.com/ https://www.google.com/ https://*.payu.in https://vars.hotjar.com https://tpc.googlesyndication.com/; frame-ancestors 'self' https://payuin--onepayudev.my.salesforce.com/ https://*.force.com/ https://*.visualforce.com/ https://*.documentforce.com/ https://*.payu.in; style-src 'self' 'unsafe-inline' https://onepayudev-payuin.cs74.force.com/ https://payuin--onepayudev.sandbox.my.salesforce.com https://payuin--onepayudev.my.salesforce.com/ https://payuin--onepayudev.sandbox.my.salesforce-sites.com https://cdn.jsdelivr.net/ https://maxcdn.bootstrapcdn.com/ https://*.adroll.com/ https://fonts.googleapis.com/ https://snap.licdn.com/ https://bat.bing.com/ https://www.googleadservices.com/; font-src 'self' 'unsafe-inline' data: *; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.clarity.ms/ https://onepayudev-payuin.cs74.force.com/ https://payuin--onepayudev.sandbox.my.salesforce.com/ https://d.la1-c1cs-ukb.salesforceliveagent.com/ https://d.la2s-core1.sfdc-y37hzm.salesforceliveagent.com https://d.la12s-core1.sfdc-y37hzm.salesforceliveagent.com/ https://in1.clevertap-prod.com/ https://payuin--onepayudev.my.salesforce.com/ https://payuin--onepayudev.sandbox.my.salesforce-sites.com https://static.lightning.force.com/ https://cdn.evgnet.com/ https://bam.nr-data.net/ https://cdn.jsdelivr.net/ https://js-agent.newrelic.com/ https://maxcdn.bootstrapcdn.com/ https://cdn.rawgit.com/ https://ajax.googleapis.com/ https://*.adroll.com/ https://googleads.g.doubleclick.net/ https://in.wzrkt.com/ https://connect.facebook.net https://www.google-analytics.com/ https://www.googleadservices.com/ https://d2r1yp2w7bby2u.cloudfront.net/ https://www.googletagmanager.com/ https://snap.licdn.com/ https://bat.bing.com/ https://www.google.com/ https://www.gstatic.com https://js.hs-scripts.com/ https://js.hscollectedforms.net/ https://js.hs-analytics.net/ https://js.hs-banner.com/ http://static.hotjar.com https://static.hotjar.com https://script.hotjar.com https://tpc.googlesyndication.com/; img-src 'self' data: blob: *"
+                }
+              },
+              "Content-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "gzip"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "kyc_document": {
+                    "id": 33501,
+                    "document_category_id": 107,
+                    "document_type_id": null,
+                    "account_id": null,
+                    "remarks": null,
+                    "status": "Approved",
+                    "uuid": "11f0-37c9-d86cbbc0-afd2-02975f21d323",
+                    "active": true,
+                    "created_at": "2025-05-23T11:34:10.000Z",
+                    "updated_at": "2025-05-23T11:47:30.000Z",
+                    "kyc_document_type": "Agreement",
+                    "document_format": "Soft Copy",
+                    "e_stamp_number": "Dummy-1153",
+                    "temp_account_id": null,
+                    "error": null,
+                    "record_type": null,
+                    "record_id": null,
+                    "issue_date": null,
+                    "expiry_date": null,
+                    "product_record_id": 24380,
+                    "product_record_type": "ProductAccount",
+                    "document_number": null,
+                    "rekyc_doc": false,
+                    "auto_fetched": false,
+                    "processed_document": {
+                      "id": 41425,
+                      "metadata": {
+                        "identified": true
+                      },
+                      "filename": "Service Agreement_33501_e_stamp.pdf",
+                      "byte_size": 1789261,
+                      "path": "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBdWFkIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--cc8cbdf3f5992e2cca7e17a48c17f393a9221507/Service%20Agreement_33501_e_stamp.pdf",
+                      "kyc_document_uuid": "11f0-37c9-d86cbbc0-afd2-02975f21d323"
+                    },
+                    "document_category_name": "Service Agreement",
+                    "document_type_name": null,
+                    "doc_url": "https://test-dms.payu.in/merchants/11f0-37c5-29f10258-afd2-02975f21d323/documents/5eb38555288aa60c3376d9e1984c0b78",
+                    "uploaded_documents": [],
+                    "document_category": {
+                      "id": 107,
+                      "name": "Service Agreement",
+                      "name_on_frontend": "SERVICE_AGREEMENT"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/merchants/30998561": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Get merchant details",
+        "description": "Generated from cURL: curl --location 'https://partner.payu.in/api/v1/merchants/30998561' \\\n--header 'Authorization: bearer 0b95609e2d9922c2db7fd29887de96da4957a8ccb13564fded8f649726274dd0' \\\n--header 'Content-Type: application/json'",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "bearer 0b95609e2d9922c2db7fd29887de96da4957a8ccb13564fded8f649726274dd0"
           },
-          "txnid": {
-            "type": "string",
-            "maxLength": 25,
-            "description": "Transaction ID (order id) generated at your end; used to track the order.\nMust be **unique** for each new attempt — reusing an id that already succeeded returns a duplicate order id error.\n",
-            "example": "fd3e847h2"
-          },
-          "amount": {
-            "type": "string",
-            "description": "Payment amount for the transaction (post as a decimal string; treat numerically as float at integration time).\n\n* May be **0 INR** for some net-banking penny flows or **≥ 1 INR** for cards and UPI in penny use cases (per PayU).\n* First-instalment behaviour applies only to selected flows (see PayU full docs).\n",
-            "example": "1000"
-          },
-          "productinfo": {
-            "type": "string",
-            "maxLength": 100,
-            "description": "Brief product description (`varchar`, max 100 characters).",
-            "example": "Time Magazine Subscription"
-          },
-          "firstname": {
-            "type": "string",
-            "maxLength": 60,
-            "description": "Customer first name (`varchar`, max 60 characters).",
-            "example": "Ashish"
-          },
-          "email": {
-            "type": "string",
-            "maxLength": 50,
-            "description": "Customer email (`varchar`, max 50). Use a valid value — used in fraud/chargeback context and some issuer MIS.\n",
-            "example": "Ashish@test.com"
-          },
-          "phone": {
-            "type": "string",
-            "maxLength": 50,
-            "description": "Customer phone (`varchar`, max 50). Use a valid value — used in fraud/chargeback context and some issuer MIS.\n",
-            "example": "9843176540"
-          },
-          "surl": {
-            "type": "string",
-            "format": "uri",
-            "description": "Success URL — PayU redirects here when the transaction succeeds.",
-            "example": "https://admin.payu.in/test_response"
-          },
-          "furl": {
-            "type": "string",
-            "format": "uri",
-            "description": "Failure URL — PayU redirects here when the transaction fails.",
-            "example": "https://admin.payu.in/test_response"
-          },
-          "hash": {
-            "type": "string",
-            "description": "SHA512 hash so request data is not tampered between your site and PayU.\n\nClassic-style formula (when applicable):  \n`SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|||si_details|SALT)`.\n\nNewer `_payment` versions may require an extended pipe sequence (including **`phone`** and further fields) per PayU documentation.\n"
-          },
-          "pg": {
-            "$ref": "#/components/schemas/PaymentGateway"
-          },
-          "bankcode": {
-            "type": "string",
-            "description": "PayU code for the payment option. Must align with **`pg`** (Postman-style examples: **CC**+**CC**, **UPI**+**UPI**,\n**EMI**+**EMIA3**, **BNPL**+**LAZYPAY**, **NB**+**TESTPGNB**). Card network codes: see PayU **Card number formats**\nand **Card type codes and supported banks**. Wallet/BNPL codes may come from **`get_checkout_details`** or your **KAM**.\n",
-            "example": "CC"
-          },
-          "udf1": {
-            "type": "string",
-            "maxLength": 255,
-            "description": "Optional user-defined field 1 (`varchar`, max 255)."
-          },
-          "udf2": {
-            "type": "string",
-            "maxLength": 255,
-            "description": "Optional user-defined field 2 (`varchar`, max 255)."
-          },
-          "udf3": {
-            "type": "string",
-            "maxLength": 255,
-            "description": "Optional user-defined field 3 (`varchar`, max 255)."
-          },
-          "udf4": {
-            "type": "string",
-            "maxLength": 255,
-            "description": "Optional user-defined field 4 (`varchar`, max 255)."
-          },
-          "udf5": {
-            "type": "string",
-            "maxLength": 255,
-            "description": "Optional user-defined field 5 (`varchar`, max 255)."
-          },
-          "ccnum": {
-            "type": "string",
-            "description": "**Cards / EMI:** card number — typically **13–19** digits (15 for AMEX, 13–19 for Maestro). Validate with **Luhn**.\n"
-          },
-          "ccvv": {
-            "type": "string",
-            "description": "Cards / EMI: card security code (CVV). Name on card belongs in ccname, not ccvv."
-          },
-          "ccexpmon": {
-            "type": "string",
-            "description": "**Cards / EMI:** expiry **month** as **two digits** (`MM`). Months 1–9 as `01`…`09`; 10–12 as `10`, `11`, `12`.\n",
-            "example": "05"
-          },
-          "ccexpyr": {
-            "type": "string",
-            "description": "Cards / EMI: expiry year (four digits in Postman samples; follow PayU field rules for your integration).",
-            "example": "2026"
-          },
-          "ccname": {
-            "type": "string",
-            "description": "Cards / EMI: name on card as entered by the customer.",
-            "example": "Test User"
-          },
-          "vpa": {
-            "type": "string",
-            "description": "UPI: virtual payment address (VPA) collected on your site.",
-            "example": "success@payu"
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
           }
         }
       }
