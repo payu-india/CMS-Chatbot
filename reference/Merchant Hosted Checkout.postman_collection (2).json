@@ -1,8 +1,8 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "PayU UPI Collect Payment API",
-    "description": "PayU Merchant Hosted Checkout - UPI Collect Payment Integration\n\nThis API enables UPI Collect-based payments where customers pay using their UPI ID (VPA). The customer receives a collect request on their UPI app and approves the payment.\n\n**Key Features:**\n- Collect payment from customer's UPI ID\n- Secure hash-based authentication\n- Real-time payment status\n\n**Hash Calculation:**\n```\nSHA512(key|txnid|amount|productinfo|firstname|email|||||||||||salt)\n```\n\n**Documentation:** https://docs.payu.in/docs/custom-checkout-merchant-hosted",
+    "title": "PayU UPI Payment API (Intent Flow)",
+    "description": "# PayU Merchant Hosted Checkout - UPI Intent Payment\n\nThis API enables UPI Intent-based payments for seamless customer experience. The UPI Intent flow redirects customers directly to their UPI app for payment completion.\n\n## Payment Flow\n1. Customer initiates payment on your website\n2. Collect customer details and transaction information\n3. Send payment request with `bankcode=INTENT`\n4. Customer is redirected to their UPI app\n5. Customer completes payment in UPI app\n6. Customer returns to your website (surl/furl)\n\n## Key Configuration\n- **Merchant Key**: `JPM7Fg` (fixed value for this integration)\n- **Bank Code**: `INTENT` (fixed value for UPI Intent flow)\n- **Payment Gateway**: `UPI`\n\n## Hash Calculation\nThe hash parameter ensures transaction integrity and must be calculated as:\n\n```\nSHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)\n```\n\n**Important**: Regenerate the hash whenever request parameters change.\n\n## Documentation\nComplete integration guide: https://docs.payu.in/reference/_payment_s2s_upi_collection\n\n## Support\nFor technical support, visit: https://docs.payu.in",
     "version": "1.0.0",
     "contact": {
       "name": "PayU Support",
@@ -12,25 +12,25 @@
   "servers": [
     {
       "url": "https://secure.payu.in",
-      "description": "Production Server"
+      "description": "Production Server - Use for live transactions"
     },
     {
       "url": "https://test.payu.in",
-      "description": "Sandbox Server"
+      "description": "Sandbox Server - Use for testing with test merchant key"
     }
   ],
   "paths": {
     "/_payment": {
       "post": {
-        "summary": "Initiate UPI Collect Payment",
-        "description": "Initiates a UPI Collect payment transaction. A collect request is sent to the customer's VPA (UPI ID) for payment approval.\n\n**Important:** Set `bankcode=UPI` and provide customer's `vpa` for UPI Collect flow.",
-        "operationId": "createUpiCollectPayment",
+        "summary": "Initiate UPI Intent Payment",
+        "description": "Initiates a UPI Intent payment transaction. The customer is redirected to their UPI app to complete the payment.\n\n**Static Parameters:**\n- `key`: Fixed as `JPM7Fg` (merchant identifier)\n- `bankcode`: Fixed as `INTENT` (enables UPI Intent flow)\n\n**Flow:**\n1. API validates the request parameters and hash\n2. Creates a payment session\n3. Returns response with payment details\n4. Customer redirected to UPI app via Intent URL\n5. After payment, customer redirected to surl (success) or furl (failure)\n\n**Hash Formula:**\n```\nSHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)\n```\n\nNote: Use empty strings for unused UDF fields in hash calculation.",
+        "operationId": "createUpiIntentPayment",
         "tags": [
-          "UPI Collect Payment"
+          "UPI Intent Payment"
         ],
         "requestBody": {
           "required": true,
-          "description": "Payment request payload for UPI Collect flow",
+          "description": "Payment request payload for UPI Intent flow. The key and bankcode parameters have fixed values.",
           "content": {
             "application/json": {
               "schema": {
@@ -47,101 +47,152 @@
                   "furl",
                   "hash",
                   "pg",
-                  "bankcode",
-                  "vpa"
+                  "bankcode"
                 ],
                 "properties": {
                   "key": {
                     "type": "string",
-                    "description": "Your PayU Merchant Key",
-                    "example": "JP***g"
+                    "description": "Merchant key - unique identifier for merchant account in PayU's database. Use your Test key in test environment.",
+                    "default": "JPM7Fg",
+                    "example": "JPM7Fg",
+                    "const": "JPM7Fg"
                   },
                   "txnid": {
                     "type": "string",
-                    "description": "Unique transaction ID - must be unique for each transaction",
+                    "description": "Transaction ID - merchant-generated reference number for a specific order. Must be unique for each transaction.",
                     "example": "TXN1234567890"
                   },
                   "amount": {
                     "type": "string",
-                    "description": "Transaction amount in INR",
+                    "description": "Payment amount for the transaction",
                     "example": "10"
                   },
                   "productinfo": {
                     "type": "string",
-                    "description": "Product or service description",
+                    "description": "Brief description of the product/order",
                     "example": "iPhone"
                   },
                   "firstname": {
                     "type": "string",
-                    "description": "Customer's first name",
+                    "description": "First name of the customer",
                     "example": "PayU User"
+                  },
+                  "lastname": {
+                    "type": "string",
+                    "description": "Last name of the customer (alphabets only)",
+                    "example": "Test"
                   },
                   "email": {
                     "type": "string",
                     "format": "email",
-                    "description": "Customer's email address",
+                    "description": "Email address of the customer",
                     "example": "test@gmail.com"
                   },
                   "phone": {
                     "type": "string",
-                    "description": "Customer's 10-digit mobile number",
-                    "example": "9876543210"
+                    "description": "Phone number of the customer",
+                    "example": "9876543210",
+                    "pattern": "^[0-9]{10}$"
                   },
                   "surl": {
                     "type": "string",
                     "format": "uri",
-                    "description": "Success URL - redirect after successful payment",
+                    "description": "Success URL - the page PayU will redirect to if the transaction is successful",
                     "example": "https://yoursite.com/success"
                   },
                   "furl": {
                     "type": "string",
                     "format": "uri",
-                    "description": "Failure URL - redirect after failed payment",
+                    "description": "Failure URL - the page PayU will redirect to if the transaction fails",
                     "example": "https://yoursite.com/failure"
                   },
                   "hash": {
                     "type": "string",
-                    "description": "SHA512 hash: sha512(key|txnid|amount|productinfo|firstname|email|||||||||||salt)",
-                    "example": "649bc87e0e8ee7bbd1e930d43c99a9165eb9fa7a3f4542a33e8d66bd207a63d6..."
+                    "description": "SHA512 hash to prevent transaction tampering. Calculate as: sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)",
+                    "example": "649bc87e0e8ee7bbd1e930d43c99a9165eb9fa7a..."
                   },
                   "pg": {
                     "type": "string",
-                    "description": "Payment gateway type - use 'UPI' for UPI payments",
-                    "example": "UPI"
+                    "description": "Payment gateway/tab selector - controls which payment tabs are shown. Set to UPI for UPI flow.",
+                    "example": "UPI",
+                    "enum": [
+                      "UPI"
+                    ]
                   },
                   "bankcode": {
                     "type": "string",
-                    "description": "Bank/payment code - use 'UPI' for UPI Collect flow",
-                    "example": "UPI"
+                    "description": "Identifier for payment option. Use INTENT for UPI Intent flow.",
+                    "default": "INTENT",
+                    "example": "INTENT",
+                    "const": "INTENT"
                   },
                   "vpa": {
                     "type": "string",
-                    "description": "Virtual Payment Address (UPI ID) of the customer",
-                    "example": "customer@upi"
+                    "description": "Virtual Payment Address (VPA) to collect payment (e.g., anything@payu). Required for UPI collect flow.",
+                    "example": "anything@payu",
+                    "pattern": "^[A-Za-z0-9._-]+@[A-Za-z]+$"
+                  },
+                  "notifyurl": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "URL to receive transaction notifications. Defaults provided if not set.",
+                    "example": "https://apiplayground-response.herokuapp.com/"
+                  },
+                  "udf1": {
+                    "type": "string",
+                    "description": "User-defined field 1 for storing custom data per transaction",
+                    "example": ""
+                  },
+                  "udf2": {
+                    "type": "string",
+                    "description": "User-defined field 2 for storing custom data per transaction",
+                    "example": ""
+                  },
+                  "udf3": {
+                    "type": "string",
+                    "description": "User-defined field 3 for storing custom data per transaction",
+                    "example": ""
+                  },
+                  "udf4": {
+                    "type": "string",
+                    "description": "User-defined field 4 for storing custom data per transaction",
+                    "example": ""
+                  },
+                  "udf5": {
+                    "type": "string",
+                    "description": "User-defined field 5 for storing custom data per transaction",
+                    "example": ""
                   }
                 }
               },
               "example": {
-                "key": "JP***g",
+                "key": "JPM7Fg",
                 "txnid": "TXN1234567890",
                 "amount": "10",
                 "productinfo": "iPhone",
                 "firstname": "PayU User",
+                "lastname": "Test",
                 "email": "test@gmail.com",
                 "phone": "9876543210",
                 "surl": "https://yoursite.com/success",
                 "furl": "https://yoursite.com/failure",
                 "hash": "649bc87e0e8ee7bbd1e930d43c99a9165eb9fa7a3f4542a33e8d66bd207a63d6...",
                 "pg": "UPI",
-                "bankcode": "UPI",
-                "vpa": "customer@upi"
+                "bankcode": "INTENT",
+                "vpa": "anything@payu",
+                "notifyurl": "https://apiplayground-response.herokuapp.com/",
+                "udf1": "",
+                "udf2": "",
+                "udf3": "",
+                "udf4": "",
+                "udf5": ""
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Payment request successful",
+            "description": "Payment initiated successfully",
             "content": {
               "application/json": {
                 "schema": {
@@ -149,17 +200,17 @@
                   "properties": {
                     "status": {
                       "type": "string",
-                      "description": "Payment status",
+                      "description": "Payment initiation status",
                       "example": "success"
                     },
                     "txnid": {
                       "type": "string",
-                      "description": "Transaction ID",
+                      "description": "Your unique transaction ID",
                       "example": "TXN1234567890"
                     },
                     "mihpayid": {
                       "type": "string",
-                      "description": "PayU payment ID",
+                      "description": "PayU's internal payment ID",
                       "example": "403993715527806055"
                     },
                     "mode": {
@@ -173,12 +224,19 @@
                       "example": "10.00"
                     }
                   }
+                },
+                "example": {
+                  "status": "success",
+                  "txnid": "TXN1234567890",
+                  "mihpayid": "403993715527806055",
+                  "mode": "UPI",
+                  "amount": "10.00"
                 }
               }
             }
           },
           "400": {
-            "description": "Bad Request",
+            "description": "Bad Request - Invalid parameters or hash mismatch",
             "content": {
               "application/json": {
                 "schema": {
@@ -190,7 +248,29 @@
                     },
                     "error": {
                       "type": "string",
-                      "example": "Invalid hash"
+                      "description": "Error code"
+                    },
+                    "error_Message": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  }
+                },
+                "examples": {
+                  "invalidHash": {
+                    "summary": "Invalid Hash",
+                    "value": {
+                      "status": "failed",
+                      "error": "E000",
+                      "error_Message": "Invalid hash"
+                    }
+                  },
+                  "missingParameter": {
+                    "summary": "Missing Required Parameter",
+                    "value": {
+                      "status": "failed",
+                      "error": "E001",
+                      "error_Message": "Missing mandatory parameter"
                     }
                   }
                 }
@@ -198,10 +278,44 @@
             }
           },
           "401": {
-            "description": "Unauthorized"
+            "description": "Unauthorized - Invalid merchant credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "failed"
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid merchant key"
+                    }
+                  }
+                }
+              }
+            }
           },
           "500": {
-            "description": "Internal Server Error"
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "error"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Internal server error"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -209,7 +323,7 @@
   },
   "components": {
     "schemas": {
-      "UpiCollectPaymentRequest": {
+      "UpiIntentPaymentRequest": {
         "type": "object",
         "required": [
           "key",
@@ -223,77 +337,161 @@
           "furl",
           "hash",
           "pg",
-          "bankcode",
-          "vpa"
+          "bankcode"
         ],
         "properties": {
           "key": {
             "type": "string",
-            "description": "Your PayU Merchant Key",
-            "example": "JP***g"
+            "description": "Merchant key - unique identifier for merchant account in PayU's database. Use your Test key in test environment.",
+            "default": "JPM7Fg",
+            "example": "JPM7Fg",
+            "const": "JPM7Fg"
           },
           "txnid": {
             "type": "string",
-            "description": "Unique transaction ID - must be unique for each transaction",
+            "description": "Transaction ID - merchant-generated reference number for a specific order. Must be unique for each transaction.",
             "example": "TXN1234567890"
           },
           "amount": {
             "type": "string",
-            "description": "Transaction amount in INR",
+            "description": "Payment amount for the transaction",
             "example": "10"
           },
           "productinfo": {
             "type": "string",
-            "description": "Product or service description",
+            "description": "Brief description of the product/order",
             "example": "iPhone"
           },
           "firstname": {
             "type": "string",
-            "description": "Customer's first name",
+            "description": "First name of the customer",
             "example": "PayU User"
+          },
+          "lastname": {
+            "type": "string",
+            "description": "Last name of the customer (alphabets only)",
+            "example": "Test"
           },
           "email": {
             "type": "string",
             "format": "email",
-            "description": "Customer's email address",
+            "description": "Email address of the customer",
             "example": "test@gmail.com"
           },
           "phone": {
             "type": "string",
-            "description": "Customer's 10-digit mobile number",
-            "example": "9876543210"
+            "description": "Phone number of the customer",
+            "example": "9876543210",
+            "pattern": "^[0-9]{10}$"
           },
           "surl": {
             "type": "string",
             "format": "uri",
-            "description": "Success URL - redirect after successful payment",
+            "description": "Success URL - the page PayU will redirect to if the transaction is successful",
             "example": "https://yoursite.com/success"
           },
           "furl": {
             "type": "string",
             "format": "uri",
-            "description": "Failure URL - redirect after failed payment",
+            "description": "Failure URL - the page PayU will redirect to if the transaction fails",
             "example": "https://yoursite.com/failure"
           },
           "hash": {
             "type": "string",
-            "description": "SHA512 hash: sha512(key|txnid|amount|productinfo|firstname|email|||||||||||salt)",
-            "example": "649bc87e0e8ee7bbd1e930d43c99a9165eb9fa7a3f4542a33e8d66bd207a63d6..."
+            "description": "SHA512 hash to prevent transaction tampering. Calculate as: sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)",
+            "example": "649bc87e0e8ee7bbd1e930d43c99a9165eb9fa7a..."
           },
           "pg": {
             "type": "string",
-            "description": "Payment gateway type - use 'UPI' for UPI payments",
-            "example": "UPI"
+            "description": "Payment gateway/tab selector - controls which payment tabs are shown. Set to UPI for UPI flow.",
+            "example": "UPI",
+            "enum": [
+              "UPI"
+            ]
           },
           "bankcode": {
             "type": "string",
-            "description": "Bank/payment code - use 'UPI' for UPI Collect flow",
-            "example": "UPI"
+            "description": "Identifier for payment option. Use INTENT for UPI Intent flow.",
+            "default": "INTENT",
+            "example": "INTENT",
+            "const": "INTENT"
           },
           "vpa": {
             "type": "string",
-            "description": "Virtual Payment Address (UPI ID) of the customer",
-            "example": "customer@upi"
+            "description": "Virtual Payment Address (VPA) to collect payment (e.g., anything@payu). Required for UPI collect flow.",
+            "example": "anything@payu",
+            "pattern": "^[A-Za-z0-9._-]+@[A-Za-z]+$"
+          },
+          "notifyurl": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to receive transaction notifications. Defaults provided if not set.",
+            "example": "https://apiplayground-response.herokuapp.com/"
+          },
+          "udf1": {
+            "type": "string",
+            "description": "User-defined field 1 for storing custom data per transaction",
+            "example": ""
+          },
+          "udf2": {
+            "type": "string",
+            "description": "User-defined field 2 for storing custom data per transaction",
+            "example": ""
+          },
+          "udf3": {
+            "type": "string",
+            "description": "User-defined field 3 for storing custom data per transaction",
+            "example": ""
+          },
+          "udf4": {
+            "type": "string",
+            "description": "User-defined field 4 for storing custom data per transaction",
+            "example": ""
+          },
+          "udf5": {
+            "type": "string",
+            "description": "User-defined field 5 for storing custom data per transaction",
+            "example": ""
+          }
+        }
+      },
+      "PaymentSuccessResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "success"
+          },
+          "txnid": {
+            "type": "string",
+            "example": "TXN1234567890"
+          },
+          "mihpayid": {
+            "type": "string",
+            "example": "403993715527806055"
+          },
+          "mode": {
+            "type": "string",
+            "example": "UPI"
+          },
+          "amount": {
+            "type": "string",
+            "example": "10.00"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "failed"
+          },
+          "error": {
+            "type": "string"
+          },
+          "error_Message": {
+            "type": "string"
           }
         }
       }
@@ -301,8 +499,8 @@
   },
   "tags": [
     {
-      "name": "UPI Collect Payment",
-      "description": "UPI Collect payment endpoints (bankcode=UPI)"
+      "name": "UPI Intent Payment",
+      "description": "UPI Intent payment endpoints with bankcode=INTENT for seamless UPI app integration"
     }
   ]
 }
