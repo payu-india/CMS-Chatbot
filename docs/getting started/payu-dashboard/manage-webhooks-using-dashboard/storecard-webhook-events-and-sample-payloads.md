@@ -28,13 +28,13 @@ You can accept customer payments using PayU products. By subscribing to payments
 
 The table below lists the available webhook events.
 
-| **Event Name**            | **Description**                                               | Merchant Action                             |
-| :------------------------ | :------------------------------------------------------------ | ------------------------------------------- |
-| `ACTIVE`                  | Determines that a card token is active.                       | Token activation                            |
-| `DELETED`                 | Triggered when a card token is deleted.                       | Token deleted by a User                     |
-| `SUSPENDED`               | Triggered when a card token is suspended.                     | Token suspended by a user or network        |
-| `Redigitization Complete` | Triggered when a re-digitization of a card token is complete. | Token expiry extended  by a user or network |
-| `UPDATED`                 | Triggered when a card token is updated.                       | Token updated by a User                     |
+| **Event Name**            | **Description**                                               | Merchant Action                      |
+| :------------------------ | :------------------------------------------------------------ | ------------------------------------ |
+| `ACTIVE`                  | Determines that a card token is active.                       | Token activation                     |
+| `DELETED`                 | Triggered when a card token is deleted.                       | Token deleted by a User              |
+| `SUSPENDED`               | Triggered when a card token is suspended.                     | Token suspended by a user or network |
+| `Redigitization Complete` | Triggered when a re-digitization of a card token is complete. | Token expiry extended  by network    |
+| `UPDATED`                 | Triggered when a card token is updated.                       | Token updation request by a user.    |
 
 ***
 
