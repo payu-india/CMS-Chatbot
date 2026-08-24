@@ -16,4 +16,8 @@ Primary categories: Authentication and authorization errors and Payment failures
 
 ## Errors and Fixes
 
-<SearchableTableRemote />
+<SearchableTableRemote
+  tableKey="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/collect-payment.json"
+  placeholder="Search"
+  maxHeight="500px"
+/>
