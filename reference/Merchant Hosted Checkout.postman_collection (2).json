@@ -1,8 +1,8 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Merchant Hosted Checkout",
-    "description": "PayU’s Merchant Hosted Checkout allows you to create a custom payment experience on your website while leveraging PayU’s secure payment processing infrastructure. This approach gives you greater control over the look and feel of your checkout flow, while still benefiting from PayU’s robust security and compliance features. With merchant hosted checkout, you collect the payment details on your website and then securely transmit them to PayU for processing.\n\nMerchant Hosted Checkout supports a wide range of payment methods:\n\n1. Net Banking Integration\n    \n2. Cards Integration\n    \n3. EMI Integration\n    \n4. UPI Integration\n    \n5. Wallets Integration\n    \n6. BNPL Integration\n    \n\n### 📖 Documentation\n\nComplete integration guide: [https://docs.payu.in/docs/custom-checkout-merchant-hosted](https://docs.payu.in/docs/custom-checkout-merchant-hosted)\n\n### 🚀 How to Use\n\nAPI-wise explanations and host configurations are provided in the documentation section alongside each API documentation.\n\n### 🔑 Authentication Setup\n\n#### Step 1: Obtain Merchant Key and Salt\n\nThese credentials are essential for authentication and **must be kept secure**.\n\n**Production Environment:**\n\n- Download from: [Generate Merchant Key and Salt on PayU Dashboard](https://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard)\n    \n\n**Sandbox Environment:**\n\n- Download from: [Generate Test Merchant Key and Salt](https://docs.payu.in/docs/generate-test-merchant-key-and-salt)\n    \n\n#### Step 2: Configure Collection Variables\n\n1. Navigate to the collection variables tab\n    \n2. Update the following variables with your credentials:\n    \n    - `key` - Your PayU Merchant Key\n        \n    - `salt` - Your PayU Merchant Salt\n        \n\n#### ⚠️ Important Notes\n\n- Ensure you use the correct key and salt for your target environment\n    \n- **Sandbox credentials** for testing and development\n    \n- **Production credentials** for live transactions only\n    \n- Never expose these credentials in client-side code or public repositories\n    \n\n### 🛠️ Environment Configuration\n\nMake sure to select the appropriate environment (Sandbox/Production) before running any requests to ensure you're using the correct endpoints and credentials.",
+    "title": "PayU UPI Collect Payment API",
+    "description": "PayU Merchant Hosted Checkout - UPI Collect Payment Integration\n\nThis API enables UPI Collect-based payments where customers pay using their UPI ID (VPA). The customer receives a collect request on their UPI app and approves the payment.\n\n**Key Features:**\n- Collect payment from customer's UPI ID\n- Secure hash-based authentication\n- Real-time payment status\n\n**Hash Calculation:**\n```\nSHA512(key|txnid|amount|productinfo|firstname|email|||||||||||salt)\n```\n\n**Documentation:** https://docs.payu.in/docs/custom-checkout-merchant-hosted",
     "version": "1.0.0",
     "contact": {
       "name": "PayU Support",
@@ -16,58 +16,293 @@
     },
     {
       "url": "https://test.payu.in",
-      "description": "Sandbox/Test Server"
+      "description": "Sandbox Server"
     }
   ],
-  "paths": {},
-  "components": {
-    "securitySchemes": {
-      "merchantAuth": {
-        "type": "apiKey",
-        "in": "header",
-        "name": "Authorization",
-        "description": "Merchant authentication using key and salt"
+  "paths": {
+    "/_payment": {
+      "post": {
+        "summary": "Initiate UPI Collect Payment",
+        "description": "Initiates a UPI Collect payment transaction. A collect request is sent to the customer's VPA (UPI ID) for payment approval.\n\n**Important:** Set `bankcode=UPI` and provide customer's `vpa` for UPI Collect flow.",
+        "operationId": "createUpiCollectPayment",
+        "tags": [
+          "UPI Collect Payment"
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Payment request payload for UPI Collect flow",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "key",
+                  "txnid",
+                  "amount",
+                  "productinfo",
+                  "firstname",
+                  "email",
+                  "phone",
+                  "surl",
+                  "furl",
+                  "hash",
+                  "pg",
+                  "bankcode",
+                  "vpa"
+                ],
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "description": "Your PayU Merchant Key",
+                    "example": "JP***g"
+                  },
+                  "txnid": {
+                    "type": "string",
+                    "description": "Unique transaction ID - must be unique for each transaction",
+                    "example": "TXN1234567890"
+                  },
+                  "amount": {
+                    "type": "string",
+                    "description": "Transaction amount in INR",
+                    "example": "10"
+                  },
+                  "productinfo": {
+                    "type": "string",
+                    "description": "Product or service description",
+                    "example": "iPhone"
+                  },
+                  "firstname": {
+                    "type": "string",
+                    "description": "Customer's first name",
+                    "example": "PayU User"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "Customer's email address",
+                    "example": "test@gmail.com"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "description": "Customer's 10-digit mobile number",
+                    "example": "9876543210"
+                  },
+                  "surl": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "Success URL - redirect after successful payment",
+                    "example": "https://yoursite.com/success"
+                  },
+                  "furl": {
+                    "type": "string",
+                    "format": "uri",
+                    "description": "Failure URL - redirect after failed payment",
+                    "example": "https://yoursite.com/failure"
+                  },
+                  "hash": {
+                    "type": "string",
+                    "description": "SHA512 hash: sha512(key|txnid|amount|productinfo|firstname|email|||||||||||salt)",
+                    "example": "649bc87e0e8ee7bbd1e930d43c99a9165eb9fa7a3f4542a33e8d66bd207a63d6..."
+                  },
+                  "pg": {
+                    "type": "string",
+                    "description": "Payment gateway type - use 'UPI' for UPI payments",
+                    "example": "UPI"
+                  },
+                  "bankcode": {
+                    "type": "string",
+                    "description": "Bank/payment code - use 'UPI' for UPI Collect flow",
+                    "example": "UPI"
+                  },
+                  "vpa": {
+                    "type": "string",
+                    "description": "Virtual Payment Address (UPI ID) of the customer",
+                    "example": "customer@upi"
+                  }
+                }
+              },
+              "example": {
+                "key": "JP***g",
+                "txnid": "TXN1234567890",
+                "amount": "10",
+                "productinfo": "iPhone",
+                "firstname": "PayU User",
+                "email": "test@gmail.com",
+                "phone": "9876543210",
+                "surl": "https://yoursite.com/success",
+                "furl": "https://yoursite.com/failure",
+                "hash": "649bc87e0e8ee7bbd1e930d43c99a9165eb9fa7a3f4542a33e8d66bd207a63d6...",
+                "pg": "UPI",
+                "bankcode": "UPI",
+                "vpa": "customer@upi"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Payment request successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Payment status",
+                      "example": "success"
+                    },
+                    "txnid": {
+                      "type": "string",
+                      "description": "Transaction ID",
+                      "example": "TXN1234567890"
+                    },
+                    "mihpayid": {
+                      "type": "string",
+                      "description": "PayU payment ID",
+                      "example": "403993715527806055"
+                    },
+                    "mode": {
+                      "type": "string",
+                      "description": "Payment mode",
+                      "example": "UPI"
+                    },
+                    "amount": {
+                      "type": "string",
+                      "description": "Transaction amount",
+                      "example": "10.00"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "example": "failed"
+                    },
+                    "error": {
+                      "type": "string",
+                      "example": "Invalid hash"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
       }
-    },
-    "schemas": {}
-  },
-  "security": [
-    {
-      "merchantAuth": []
     }
-  ],
+  },
+  "components": {
+    "schemas": {
+      "UpiCollectPaymentRequest": {
+        "type": "object",
+        "required": [
+          "key",
+          "txnid",
+          "amount",
+          "productinfo",
+          "firstname",
+          "email",
+          "phone",
+          "surl",
+          "furl",
+          "hash",
+          "pg",
+          "bankcode",
+          "vpa"
+        ],
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Your PayU Merchant Key",
+            "example": "JP***g"
+          },
+          "txnid": {
+            "type": "string",
+            "description": "Unique transaction ID - must be unique for each transaction",
+            "example": "TXN1234567890"
+          },
+          "amount": {
+            "type": "string",
+            "description": "Transaction amount in INR",
+            "example": "10"
+          },
+          "productinfo": {
+            "type": "string",
+            "description": "Product or service description",
+            "example": "iPhone"
+          },
+          "firstname": {
+            "type": "string",
+            "description": "Customer's first name",
+            "example": "PayU User"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Customer's email address",
+            "example": "test@gmail.com"
+          },
+          "phone": {
+            "type": "string",
+            "description": "Customer's 10-digit mobile number",
+            "example": "9876543210"
+          },
+          "surl": {
+            "type": "string",
+            "format": "uri",
+            "description": "Success URL - redirect after successful payment",
+            "example": "https://yoursite.com/success"
+          },
+          "furl": {
+            "type": "string",
+            "format": "uri",
+            "description": "Failure URL - redirect after failed payment",
+            "example": "https://yoursite.com/failure"
+          },
+          "hash": {
+            "type": "string",
+            "description": "SHA512 hash: sha512(key|txnid|amount|productinfo|firstname|email|||||||||||salt)",
+            "example": "649bc87e0e8ee7bbd1e930d43c99a9165eb9fa7a3f4542a33e8d66bd207a63d6..."
+          },
+          "pg": {
+            "type": "string",
+            "description": "Payment gateway type - use 'UPI' for UPI payments",
+            "example": "UPI"
+          },
+          "bankcode": {
+            "type": "string",
+            "description": "Bank/payment code - use 'UPI' for UPI Collect flow",
+            "example": "UPI"
+          },
+          "vpa": {
+            "type": "string",
+            "description": "Virtual Payment Address (UPI ID) of the customer",
+            "example": "customer@upi"
+          }
+        }
+      }
+    }
+  },
   "tags": [
     {
-      "name": "BNPL Integration",
-      "description": "Document Link - [https://docs.payu.in/docs/general-flow-bnpl-integration-with-merchant-hosted](https://docs.payu.in/docs/general-flow-bnpl-integration-with-merchant-hosted)"
-    },
-    {
-      "name": "Cards Integration",
-      "description": "Document Link - [https://docs.payu.in/docs/collect-payments-with-cards-seamless](https://docs.payu.in/docs/collect-payments-with-cards-seamless)"
-    },
-    {
-      "name": "EMI Integration",
-      "description": "Document Link - [https://docs.payu.in/docs/collect-payments-with-emi-seamless](https://docs.payu.in/docs/collect-payments-with-emi-seamless)"
-    },
-    {
-      "name": "Integrate with Credit Card",
-      "description": "Document Link - [https://docs.payu.in/docs/collect-payments-with-emi-using-credit-card](https://docs.payu.in/docs/collect-payments-with-emi-using-credit-card)"
-    },
-    {
-      "name": "Integrate with Debit Card",
-      "description": "Document Link - [https://docs.payu.in/docs/collect-payments-with-emi-using-debit-card](https://docs.payu.in/docs/collect-payments-with-emi-using-debit-card)"
-    },
-    {
-      "name": "Net Banking Integration",
-      "description": "Document Link - [https://docs.payu.in/docs/collect-payments-with-net-banking-seamless](https://docs.payu.in/docs/collect-payments-with-net-banking-seamless)"
-    },
-    {
-      "name": "UPI Integration",
-      "description": "Document Link - [https://docs.payu.in/docs/collect-payments-with-upi-seamless](https://docs.payu.in/docs/collect-payments-with-upi-seamless)"
-    },
-    {
-      "name": "Wallets Integration",
-      "description": "Document Link - [https://docs.payu.in/docs/collect-payments-with-wallets-seamless](https://docs.payu.in/docs/collect-payments-with-wallets-seamless)"
+      "name": "UPI Collect Payment",
+      "description": "UPI Collect payment endpoints (bankcode=UPI)"
     }
   ]
 }
