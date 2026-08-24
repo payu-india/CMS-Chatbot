@@ -39,10 +39,10 @@ Below is the sample payment success payload.
 
 Use this response only after:
 
-* Response hash is valid.
-* `txnid` matches your order attempt.
-* `amount` matches your expected payable amount.
-* No later verified webhook/status response contradicts it.
+- Response hash is valid.
+- `txnid` matches your order attempt.
+- `amount` matches your expected payable amount.
+- No later verified webhook/status response contradicts it.
 
 | Success code | Success message as returned by PayU | Next Step                                                                     |
 | ------------ | ----------------------------------- | ----------------------------------------------------------------------------- |
@@ -79,10 +79,10 @@ Below is the sample transaction failure payload.
 
 Recommended fix:
 
-* Verify response hash.
-* Store `mihpayid`, `error`, `error_Message`, `field7`, `field8`, and `field9`.
-* Show a retry option.
-* Use a new `txnid` for a new payment attempt.
+- Verify response hash.
+- Store `mihpayid`, `error`, `error_Message`, `field7`, `field8`, and `field9`.
+- Show a retry option.
+- Use a new `txnid` for a new payment attempt.
 
 | Error code / type | Error message as returned by PayU          | Recommended fix                                                                                                           |
 | ----------------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
@@ -107,10 +107,10 @@ Below is the invalid hash error sample.
 
 Recommended fix:
 
-* Do not retry from the frontend.
-* Fix backend hash generation.
-* Compare raw request values with the hash string.
-* Confirm key, salt, endpoint, and environment.
+- Do not retry from the frontend.
+- Fix backend hash generation.
+- Compare raw request values with the hash string.
+- Confirm key, salt, endpoint, and environment.
 
 | Error code / type | Error message as returned by PayU  | Recommended fix                                                                                            |
 | ----------------- | ---------------------------------- | ---------------------------------------------------------------------------------------------------------- |
@@ -159,32 +159,30 @@ Recommended fix:
 Below is the authentication failure error sample
 
 <Accordion title="Authentication Error Sample" icon="fa-code">
-
-```json Authentication Error
-{
-  "mihpayid": "403993715525080002",
-  "status": "failure",
-  "unmappedstatus": "failed",
-  "txnid": "txn_10008",
-  "amount": "999.00",
-  "error": "E300",
-  "error_Message": "Card failed 3D authentication as 3 D Secure signatures did not match",
-  "PG_TYPE": "CC-PG",
-  "field7": "3DS_CHALLENGE_NEGATIVE",
-  "field8": "Authentication failed",
-  "field9": "SECURE_3D_PASSWORD_ERROR",
-  "hash": "response_hash"
-}
-```
-
+  ```json Authentication Error
+  {
+    "mihpayid": "403993715525080002",
+    "status": "failure",
+    "unmappedstatus": "failed",
+    "txnid": "txn_10008",
+    "amount": "999.00",
+    "error": "E300",
+    "error_Message": "Card failed 3D authentication as 3 D Secure signatures did not match",
+    "PG_TYPE": "CC-PG",
+    "field7": "3DS_CHALLENGE_NEGATIVE",
+    "field8": "Authentication failed",
+    "field9": "SECURE_3D_PASSWORD_ERROR",
+    "hash": "response_hash"
+  }
+  ```
 </Accordion>
 
 Recommended fix:
 
-* Verify hash before trusting the response.
-* Ask customer to retry OTP/3DS.
-* Offer another payment method.
-* Do not expose raw issuer payloads if they are unclear.
+- Verify hash before trusting the response.
+- Ask customer to retry OTP/3DS.
+- Offer another payment method.
+- Do not expose raw issuer payloads if they are unclear.
 
 | Error code / type        | Error message as returned by PayU                                      | Recommended fix                                                                                  |
 | ------------------------ | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
