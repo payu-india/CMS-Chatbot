@@ -59,7 +59,7 @@ The following steps allow you to integrate the PayU Hosted Checkout:
 The following table lists the request parameter descriptions for Partner Payment integration.
 
 <Callout icon="📘" theme="info">
-  **Extra params for Partner integration**: The following params are the extra parameters (optional) used compared to the regular **_payment** API, but with a different endpoint:  partner_udf_3, partner_udf_4, shipping_firstname, shipping_lastname, shipping_address1, shipping_address2, shipping_city, shipping_state, shipping_country, shipping_zipcode,  shipping_phone
+  **Extra params for Partner integration**: The following params are the extra parameters (optional) used compared to the regular **\_payment** API, but with a different endpoint:  partner_udf_3, partner_udf_4, shipping_firstname, shipping_lastname, shipping_address1, shipping_address2, shipping_city, shipping_state, shipping_country, shipping_zipcode,  shipping_phone
 </Callout>
 
 <HTMLBlock>{`
@@ -354,12 +354,12 @@ curl --location --request POST 'https://test-partnerapilayer.payu.in/apilayer/pa
     "amount": 1090.33,
     "productinfo": "whatsapp",
     "firstname": "Manikanta",
-    "partner_uuid": "83fe-eb64-021844d8-9397-26535b1bf0c2",
+    "reseller_id": "83fe-eb64-021844d8-9397-26535b1bf0c2",
     "merchant_id": 8238480,
-    "phone": 7036722360,
+    "phone": 9866123456,
     "hash": "5aadceaf6bec9158ccba8ec0dab32debcacbfd50e3587c077fa11107a5be0ac26712fae230522afb8908d068122c02f2d5c733a46c33ace0f66e5cc9d2ae4714",
-    "lastname": "CHeruku",
-    "email": "manik.cr24@gmail.com",
+    "lastname": "Ashish",
+    "email": "ashish@gmail.com",
     "curl": "https://www.google.com",
     "furl": "https://www.google.com",
     "surl": "https://www.youtube.com",
@@ -492,16 +492,18 @@ This section provides a list of parameters included in the response for PayU Hos
 
 ### Response Parameters
 
-> 📘 Note:
->
-> Verify the **amount** and **txnid** parameters at your end in response from PayU.
+<Callout icon="📘" theme="info">
+  ### Note:
+
+  Verify the **amount** and **txnid** parameters at your end in response from PayU.
+</Callout>
 
 #### Sample Response
 
 PayU responds to the status of the transaction:
 
-* **Success response**: If the transaction is successful, PayU will redirect the customer’s browser to the success URL, which is a URL provided by you using the `surl` parameter.
-* **Failure response**: If the transaction fails, PayU will redirect the customer’s browser to the failure URL, which is a URL provided by you using the `furl` parameter.
+- **Success response**: If the transaction is successful, PayU will redirect the customer’s browser to the success URL, which is a URL provided by you using the `surl` parameter.
+- **Failure response**: If the transaction fails, PayU will redirect the customer’s browser to the failure URL, which is a URL provided by you using the `furl` parameter.
 
 For more information on `surl` or `furl` parameter, refer to the [Collect Payment - Merchant Hosted Checkout](ref:_payment_merchant_hosted).
 
