@@ -3,6 +3,7 @@
 - manage-invoices-or-payment-links
 - partner-payment-integration-apis
 - partner-integration-api-introduction
+- onboarding-and-kyc-apis
 - step-00-authentication
 - step-01-create-merchant-1
 - step-02-update-pan-dob
@@ -23,4 +24,3 @@
 - utilities-1
 - document-categories-and-types
 - partner-category-list
-- onboarding-and-kyc-apis
