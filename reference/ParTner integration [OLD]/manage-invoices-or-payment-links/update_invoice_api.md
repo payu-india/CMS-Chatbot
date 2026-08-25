@@ -4,7 +4,7 @@ api:
   file: partner-apis-6.json
   operationId: update_invoice
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''

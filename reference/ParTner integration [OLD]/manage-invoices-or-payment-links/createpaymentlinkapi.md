@@ -2,7 +2,7 @@
 api:
   file: Create payment links.json
   operationId: post_partners-payment-links
-hidden: true
+hidden: false
 ---
 This API is used to create a payment link for your customer with Partner Integration.
 
