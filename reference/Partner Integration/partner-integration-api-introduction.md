@@ -34,7 +34,11 @@ This documentation includes the APIs related to Partner Program Integration. It 
 
 ## List of APIs
 
-The APIs which must be used in various parts of the above flow diagram are listed in the following table. These map to the **Partner APIs** reference section and follow the 16-step onboarding sequence:
+The APIs which must be used in various parts of the above flow diagram are listed in the following tables.&#x20;
+
+### Onboarding and KYC APIs
+
+These map to the **Partner APIs** reference section and follow the 16-step onboarding sequence:
 
 | Description                                                                                                                     | **API**                                                                   |
 | :------------------------------------------------------------------------------------------------------------------------------ | :------------------------------------------------------------------------ |
