@@ -1,5 +1,5 @@
 ---
-title: StoreCard Webhook Events and Sample Payloads [Internal Review]
+title: StoreCard Webhook Events and Sample Payloads
 excerpt: List of webhook events along with sample payloads.
 deprecated: false
 hidden: false
