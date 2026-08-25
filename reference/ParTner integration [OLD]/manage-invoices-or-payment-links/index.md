@@ -2,7 +2,7 @@
 title: Manage Invoices or Payment Links
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
