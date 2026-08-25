@@ -346,24 +346,25 @@ The following table lists the request parameter descriptions for Partner Payment
 ### Sample Request
 
 ```curl
-curl --location --request POST 'https://test-partnerapilayer.payu.in/apilayer/partner/payments' \
+curl --location --request POST \
+'https://test-partnerapilayer.payu.in/apilayer/partner/payments' \
 --header 'Content-Type: application/json' \
---header 'Authorization: Bearer 9d2ab8e1b99aa02f6b827af5b5000b277d9cb1cd037acb7cb31436a5b0da4f74' \
+--header 'Authorization: Bearer <ROTATED_BEARER_TOKEN>' \
 --data-raw '{
-    "txnid": "nY3tkz3vciHFGTjblyFeycL2Zn1m",
-    "amount": 1090.33,
-    "productinfo": "whatsapp",
-    "firstname": "Manikanta",
-    "partner_uuid": "83fe-eb64-021844d8-9397-26535b1bf0c2",
-    "merchant_id": 8238480,
-    "phone": 7036722360,
-    "hash": "5aadceaf6bec9158ccba8ec0dab32debcacbfd50e3587c077fa11107a5be0ac26712fae230522afb8908d068122c02f2d5c733a46c33ace0f66e5cc9d2ae4714",
-    "lastname": "CHeruku",
-    "email": "manik.cr24@gmail.com",
-    "curl": "https://www.google.com",
-    "furl": "https://www.google.com",
-    "surl": "https://www.youtube.com",
-    "udf1":"whatsapp"
+  "txnid": "nY3tkz3vciHFGTjblyFeycL2Zn1m",
+  "amount": 1090.33,
+  "productinfo": "whatsapp",
+  "firstname": "Manikanta",
+  "reseller_id": "83fe-eb64-021844d8-9397-26535b1bf0c2",
+  "merchant_id": "8238480",
+  "phone": 7036722360,
+  "hash": "52f45927e221a16bd5372709516de5110c06c55e0057f8a18a3b9b9f2c2f176870af276274709910f27d7c5df44822777542e3d4b86f29e8304e17fcb373133c",
+  "lastname": "CHeruku",
+  "email": "manik.cr24@gmail.com",
+  "curl": "<YOUR_CANCEL_URL>",
+  "furl": "<YOUR_FAILURE_URL>",
+  "surl": "<YOUR_SUCCESS_URL>",
+  "udf1": "whatsapp"
 }'
 ```
 
