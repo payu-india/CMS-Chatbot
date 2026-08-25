@@ -45,36 +45,38 @@ Webhooks are **server-to-server notifications** sent independently of the custom
 
 ### Webhooks vs. Verify Payment API
 
-The [Verify Payment API](ref:verify-payment-api) lets you **pull** payment status from PayU on demand. Webhooks **push** status to you automatically when events occur.
+The [Verify Payment API](ref:verify-payment-api) lets you check the payment status by polling an API. Webhooks push status to you automatically when events occur.
 
-**Use Verify Payment API when:**
+<Tabs>
+  <Tab title="Verify Payment API" icon="📎">
+    - To check status at a specific moment
+    - You are reconciling historical transactions
+    - You did not receive a webhook and need to confirm current state
+  </Tab>
 
-- You need to check status at a specific moment (user clicks "Check Status")
-- You're reconciling historical transactions
-- You didn't receive a webhook and need to confirm current state
-
-**Use Webhooks when:**
-
-- You want automatic, real-time notifications as events happen
-- You're handling thousands of transactions and polling would be inefficient
-- You need to trigger immediate actions when payment status changes
+  <Tab title="Webhooks" icon="far fa-webhook">
+    - Automatic, real-time notifications as events happen
+    - Handling thousands of transactions and polling would be inefficient
+    - Trigger immediate actions when payment status changes
+  </Tab>
+</Tabs>
 
 {/* END NEW CONTENT */}
 
-## How PayU Webhooks work
+## How PayU Webhooks Work
 
 {/* Sourced from docs/payouts/payouts-integration/payouts-webhooks.md */}
 
-When an event occurs in your PayU account (a payment succeeds, fails, refund processes, or dispute is raised), PayU sends an HTTPS POST request to the webhook URL you've configured.
+When an event occurs in your PayU account (a payment succeeds, fails, refund processes, or dispute is raised), PayU sends an HTTPS POST request to the webhook URL you have configured.
 
-**End-to-end flow:**
+**Here is an end-to-end flow:**
 
-1. **You register a webhook endpoint** via [PayU Dashboard](https://onboarding.payu.in/) or API
-2. **You select which events** you want to receive (payment success, failure, refund, dispute)
+1. **Setup a webhook** via [PayU Dashboard](https://onboarding.payu.in/)
+2. **Select events** you want to receive (payment success, failure, refund, dispute)
 3. **An event occurs** (customer's payment succeeds, refund processes, etc.)
 4. **PayU sends an HTTPS POST** to your registered URL with event details in the request body
 5. **Your server processes the event** and responds with HTTP 200 status code
-6. **If your server doesn't respond** (timeout or non-200 status), PayU retries delivery
+6. **If your server does not respond** (timeout or non-200 status), PayU retries delivery
 
 {/* NEW CONTENT — not sourced from existing docs, needs SME review */}
 
@@ -87,7 +89,7 @@ Your webhook endpoint must:
 
 {/* END NEW CONTENT */}
 
-## Available webhook events
+## Available Webhook Events
 
 {/* Sourced from docs/getting started/payu-dashboard/manage-webhooks-using-dashboard/webhook-events-and-sample-payloads.md */}
 
@@ -111,28 +113,3 @@ For product-specific events, see:
 Complete payload structures and parameter details are in [Webhook Events Reference](doc:webhook-events-and-sample-payloads).
 
 {/* END NEW CONTENT */}
-
-## Next steps
-
-{/* NEW CONTENT — not sourced from existing docs, needs SME review */}
-
-**New to webhooks?** Start here:
-
-1. [Set Up & Configure Webhooks](doc:set-up-configure-webhooks) — Register your endpoint and select events
-2. [Verify Webhook Requests](doc:verify-webhook-requests) — Secure your endpoint
-3. [Handle Webhook Events](doc:handle-webhook-events) — Process events reliably
-4. [Test & Troubleshoot Webhooks](doc:test-troubleshoot-webhooks) — Test before going live
-
-**Just need the reference?**
-
-- [Webhook Events Reference](doc:webhook-events-and-sample-payloads) — Complete payload structures and parameters
-- [Webhook Configuration API](ref:webhook-configuration-api) — Programmatically manage webhook endpoints
-
-{/* END NEW CONTENT */}
-
-***
-
-**Related:**
-
-- [PayU Dashboard Guide](doc:payu-dashboard) — Overview of dashboard features
-- [API Authentication & Security](doc:api-authentication-and-security) — API key and hash validation basics
