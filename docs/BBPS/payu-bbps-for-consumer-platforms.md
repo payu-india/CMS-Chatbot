@@ -54,7 +54,7 @@ PayU BBPS Consumer Platform integration is ideal if you:
 
 Below is the end-to-end journey for a user paying a bill on your platform:
 
-```
+```mermaid
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                      BBPS Consumer Platform Payment Flow                    │
 └─────────────────────────────────────────────────────────────────────────────┘
