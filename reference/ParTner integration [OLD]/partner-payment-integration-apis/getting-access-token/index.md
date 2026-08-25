@@ -2,7 +2,7 @@
 title: Get Access Token - Partner Integration
 excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   title: ''
   description: ''
