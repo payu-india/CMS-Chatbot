@@ -354,15 +354,16 @@ curl --location --request POST 'https://test-partnerapilayer.payu.in/apilayer/pa
     "amount": 1090.33,
     "productinfo": "whatsapp",
     "firstname": "Manikanta",
-    "reseller_id": "83fe-eb64-021844d8-9397-26535b1bf0c2",
+    "partner_uuid": "83fe-eb64-021844d8-9397-26535b1bf0c2",
     "merchant_id": 8238480,
-    "phone": 9866123456,
+    "phone": 7036722360,
     "hash": "5aadceaf6bec9158ccba8ec0dab32debcacbfd50e3587c077fa11107a5be0ac26712fae230522afb8908d068122c02f2d5c733a46c33ace0f66e5cc9d2ae4714",
-    "lastname": "Ashish",
-    "email": "ashish@gmail.com",
+    "lastname": "CHeruku",
+    "email": "manik.cr24@gmail.com",
     "curl": "https://www.google.com",
     "furl": "https://www.google.com",
     "surl": "https://www.youtube.com",
+    "udf1":"whatsapp"
 }'
 ```
 
