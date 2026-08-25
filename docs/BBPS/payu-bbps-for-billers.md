@@ -8,19 +8,21 @@ hidden: true
 metadata:
   robots: index
 ---
-
-## 1. What is PayU BBPS for Billers?
+## What is PayU BBPS for Billers?
 
 Bharat Bill Payment System (BBPS) — also known as Bharat Connect — is an RBI-mandated, NPCI-operated national infrastructure for recurring bill payments. As a biller (merchant), joining BBPS means your customers can pay your bills from any app, any bank, and any channel in India — without you having to build separate integrations with each of them.
 
 PayU holds a dual BBPS licence — both a **Biller Operating Unit (BOU)** and a **Consumer Operating Unit (COU)**. As your BOU, PayU registers your business on the BBPS network and instantly connects you to **120M+ monthly digital users** and **200M+ monthly physical-channel users** across India — all through a single API integration.
 
-> 💡 **Why BBPS?**
-> Before BBPS, every biller had to integrate individually with each consumer app and payment outlet. BBPS eliminates that entirely — one integration with PayU as your BOU opens your billing system to the entire BBPS consumer ecosystem simultaneously.
+<Callout icon="💡" theme="default">
+  ### **Why BBPS?**
 
----
+  Before BBPS, every biller had to integrate individually with each consumer app and payment outlet. BBPS eliminates that entirely — one integration with PayU as your BOU opens your billing system to the entire BBPS consumer ecosystem simultaneously.
+</Callout>
 
-## 2. Is This Right for You?
+***
+
+## Is This Right for You?
 
 PayU BBPS is the right fit for your business if:
 
@@ -31,14 +33,17 @@ PayU BBPS is the right fit for your business if:
 - You want **automated MIS reports**, a real-time transaction dashboard, and single-point reconciliation.
 - You **do not have a live biller API** and prefer an offline bill data-upload model.
 
-> ⚠️ **Consider alternatives if:**
-> - You only need to accept one-time or ad-hoc payments with no recurring billing cycle.
-> - Your category is **Hospitals** or **Donations** — new biller onboarding has been discontinued by NPCI (Aug 2025).
-> - You are a **non-regulated entity** seeking Loan Repayment category onboarding — a Certificate of Registration from RBI/SEBI/IRDAI is mandatory for this category.
+<Callout icon="⚠️" theme="warn">
+  ### **Consider alternatives if:**
 
----
+  - You only need to accept one-time or ad-hoc payments with no recurring billing cycle.
+  - Your category is **Hospitals** or **Donations** — new biller onboarding has been discontinued by NPCI (Aug 2025).
+  - You are a **non-regulated entity** seeking Loan Repayment category onboarding — a Certificate of Registration from RBI/SEBI/IRDAI is mandatory for this category.
+</Callout>
 
-## 3. What You Get
+***
+
+## What You Get
 
 When you onboard as a biller via PayU BBPS, you unlock:
 
@@ -55,9 +60,9 @@ When you onboard as a biller via PayU BBPS, you unlock:
 - **WhatsApp as a Bill Payment Channel:** Reach 400M+ WhatsApp users via a chatbot-guided bill payment flow — customers receive a BBPS payment link in the chat with bill details pre-filled.
 - **Trusted Brand Credibility:** The BBPS / Bharat Connect brand — created by RBI, driven by NPCI — signals security and reliability to your customers at every payment touchpoint.
 
----
+***
 
-## 4. How It Works
+## How It Works
 
 Once you are onboarded as a biller via PayU BOU, here is how a typical bill payment works for your customer — regardless of which app or channel they use.
 
@@ -77,9 +82,9 @@ Once you are onboarded as a biller via PayU BOU, here is how a typical bill paym
 - **Plan-Based Validation & Pay:** Customer validates identifier and selects a plan — applies to mobile prepaid and DTH recharges.
 - **Offline Fetch & Pay:** For data-upload billers: PayU fetches bill details from its internal offline repository (populated by your uploaded bill data) instead of calling your live API.
 
----
+***
 
-## 5. What You Will Need (Prerequisites)
+## What You Will Need (Prerequisites)
 
 Before going live on BBPS as a biller via PayU, ensure the following are in place:
 
@@ -90,51 +95,56 @@ Before going live on BBPS as a biller via PayU, ensure the following are in plac
 - **UAT Environment Testing:** End-to-end testing — fetch, payment posting, status check, complaint registration — must be completed and verified in the UAT environment before production go-live.
 - **NPCI Sign-Off:** After development and UAT, NPCI review and approval is required before your biller goes live on the BBPS network. PayU coordinates this process on your behalf.
 
-> 💡 **Tip:** If you are already a PayU PG merchant, BBPS onboarding is significantly faster — PayU handles the NPCI biller registration as your authorised BOU, so you focus on testing and go-live, not paperwork.
+<Callout icon="💡" theme="default">
+  ### **Tip:** If you are already a PayU PG merchant, BBPS onboarding is significantly faster — PayU handles the NPCI biller registration as your authorised BOU, so you focus on testing and go-live, not paperwork.
+</Callout>
 
----
+***
 
-## 6. Supported Payment Methods
+## Supported Payment Methods
 
 Your customers can pay your bills using any of the following modes through any BBPS-enabled consumer app or physical agent outlet:
 
-| Payment Method | Details | Status |
-|---|---|---|
-| 💳 Credit Cards | All major networks — Visa, Mastercard, RuPay, Amex | ✅ Active |
-| 💳 Debit Cards | All major networks — Visa, Mastercard, RuPay | ✅ Active |
-| 📱 UPI | Any UPI-enabled app — BHIM, PhonePe, GPay, Paytm, etc. | ✅ Active |
-| 🌐 Internet Banking | All major banks' netbanking portals | ✅ Active |
-| 👛 Prepaid Wallets / PPI | Supported prepaid payment instruments | ✅ Active |
-| 💵 Cash (Agent Outlets) | Physical BBPS agent outlets — cash & AEPS | ✅ Active |
-| ⚡ NEFT / IMPS | Disabled w.e.f. June 5, 2025 (NPCI Circular) | ❌ Disabled |
+| Payment Method           | Details                                                | Status     |
+| ------------------------ | ------------------------------------------------------ | ---------- |
+| 💳 Credit Cards          | All major networks — Visa, Mastercard, RuPay, Amex     | ✅ Active   |
+| 💳 Debit Cards           | All major networks — Visa, Mastercard, RuPay           | ✅ Active   |
+| 📱 UPI                   | Any UPI-enabled app — BHIM, PhonePe, GPay, Paytm, etc. | ✅ Active   |
+| 🌐 Internet Banking      | All major banks' netbanking portals                    | ✅ Active   |
+| 👛 Prepaid Wallets / PPI | Supported prepaid payment instruments                  | ✅ Active   |
+| 💵 Cash (Agent Outlets)  | Physical BBPS agent outlets — cash & AEPS              | ✅ Active   |
+| ⚡ NEFT / IMPS            | Disabled w\.e.f. June 5, 2025 (NPCI Circular)          | ❌ Disabled |
 
-> ⚠️ **Regulatory Update — Action Required**
-> NEFT and IMPS are disabled as eligible BBPS payment modes effective **June 5, 2025**, per NPCI Circular NPCI/2025-26/BBPS/003. If your existing integration routes payments via these modes, update it immediately.
+<Callout icon="⚠️" theme="warn">
+  ### **Regulatory Update — Action Required**
 
----
+  NEFT and IMPS are disabled as eligible BBPS payment modes effective **June 5, 2025**, per NPCI Circular NPCI/2025-26/BBPS/003. If your existing integration routes payments via these modes, update it immediately.
+</Callout>
 
-## 7. Supported Biller Categories
+***
+
+## Supported Biller Categories
 
 BBPS supports 20+ biller categories. Active categories for onboarding as of 2025:
 
-| Category | Includes | Status |
-|---|---|---|
-| Utility | Electricity, Water, Gas (Piped & LPG), Landline | ✅ Open |
-| Telecom & Broadband | Mobile Postpaid, Broadband / Internet, DTH, Cable TV | ✅ Open |
-| Credit Card Payments | Credit card bill payments (~2/3 of BBPS volume by value) | ✅ Open |
-| Loan Repayment | EMIs — regulated entities only (Certificate of Registration mandatory) | ⚠️ Restricted |
-| Insurance Premiums | Renewal premiums for all major insurers | ✅ Open |
-| Education | School, college, and coaching institute fees | ✅ Open |
-| Government & Municipal | Municipal tax, property tax, water tax, traffic challans | ✅ Open |
-| Subscriptions | OTT / streaming services, club memberships | ✅ Open |
-| Housing Societies | Maintenance charges (P2P payments restricted) | ⚠️ Restricted |
-| Hospitals | New biller onboarding discontinued — NPCI Aug 2025 circular | ❌ Closed |
-| Donations | New biller onboarding discontinued — NPCI Aug 2025 circular | ❌ Closed |
-| Recurring Deposits | New onboarding discontinued, incl. Digital Gold | ❌ Closed |
+| Category               | Includes                                                               | Status        |
+| ---------------------- | ---------------------------------------------------------------------- | ------------- |
+| Utility                | Electricity, Water, Gas (Piped & LPG), Landline                        | ✅ Open        |
+| Telecom & Broadband    | Mobile Postpaid, Broadband / Internet, DTH, Cable TV                   | ✅ Open        |
+| Credit Card Payments   | Credit card bill payments (\~2/3 of BBPS volume by value)              | ✅ Open        |
+| Loan Repayment         | EMIs — regulated entities only (Certificate of Registration mandatory) | ⚠️ Restricted |
+| Insurance Premiums     | Renewal premiums for all major insurers                                | ✅ Open        |
+| Education              | School, college, and coaching institute fees                           | ✅ Open        |
+| Government & Municipal | Municipal tax, property tax, water tax, traffic challans               | ✅ Open        |
+| Subscriptions          | OTT / streaming services, club memberships                             | ✅ Open        |
+| Housing Societies      | Maintenance charges (P2P payments restricted)                          | ⚠️ Restricted |
+| Hospitals              | New biller onboarding discontinued — NPCI Aug 2025 circular            | ❌ Closed      |
+| Donations              | New biller onboarding discontinued — NPCI Aug 2025 circular            | ❌ Closed      |
+| Recurring Deposits     | New onboarding discontinued, incl. Digital Gold                        | ❌ Closed      |
 
----
+***
 
-## 8. What Happens After a Payment
+## What Happens After a Payment
 
 Once a customer completes a bill payment on any BBPS channel, here is exactly what happens on your end:
 
@@ -146,12 +156,15 @@ Once a customer completes a bill payment on any BBPS channel, here is exactly wh
 6. **Complaints & Refunds Handled by NPCI:** Customer disputes and refund requests are routed through NPCI's standardised grievance mechanism. Track all complaint statuses in real time from your PayU merchant dashboard.
 7. **Live Dashboard Visibility:** Your PayU dashboard gives you real-time visibility into transaction statuses, settlement timelines, chargeback management, and complaint resolution — all in one place.
 
-> ⚠️ **Important — Server-Side Verification**
-> Always verify payment status using PayU's **Status Check API** on your server side. Do not rely solely on the customer-facing confirmation screen or webhook for bill status updates or order fulfilment.
+<Callout icon="⚠️" theme="warn">
+  ### **Important — Server-Side Verification**
 
----
+  Always verify payment status using PayU's **Status Check API** on your server side. Do not rely solely on the customer-facing confirmation screen or webhook for bill status updates or order fulfilment.
+</Callout>
 
-## 9. Ready to Integrate?
+***
+
+## Ready to Integrate?
 
 Choose the onboarding path that best fits your setup:
 
@@ -177,11 +190,14 @@ Choose the onboarding path that best fits your setup:
 2. Use PayU's Click Pay API to generate pre-filled BBPS payment links.
 3. Push links to customers via WhatsApp, SMS, or email — one tap to pay, all bill details pre-populated, no biller search needed.
 
----
+***
 
-> 🚀 **Get Your Billing System Live on BBPS**
-> Talk to your PayU Account Manager | Explore the API Reference | Test with the Postman Collection | Begin NPCI Biller Registration via PayU
+<Callout icon="🚀" theme="default">
+  ### **Get Your Billing System Live on BBPS**
 
----
+  Talk to your PayU Account Manager | Explore the API Reference | Test with the Postman Collection | Begin NPCI Biller Registration via PayU
+</Callout>
 
-*This document is based on PayU BBPS product materials and NPCI/RBI regulatory guidelines current as of 2025. Biller category availability is subject to NPCI review and regulatory compliance. PayU — Authorised BOU & COU under Bharat Bill Payment System (Bharat Connect).*
+***
+
+_This document is based on PayU BBPS product materials and NPCI/RBI regulatory guidelines current as of 2025. Biller category availability is subject to NPCI review and regulatory compliance. PayU — Authorised BOU & COU under Bharat Bill Payment System (Bharat Connect)._
