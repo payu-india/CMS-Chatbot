@@ -17,7 +17,7 @@ The following steps allow you to integrate the PayU Hosted Checkout:
 1. [Make the transaction request to PayU](#step-1-make-the-transaction-request-to-payu)
 2. [Customer submits payment details on PayU page](#step-2-customer-submits-payment-details-on-payu-page)
 3. [Validate the response from PayU](#step-3-validate-the-response-from-payu)
-4. [Verify the Payment](#step-4-verify-the-payment)t
+4. [Verify the Payment](#step-4-verify-the-payment)
 5. [PayU sends Server-to-Server callback response](#step-5-payu-sends-server-to-server-call-back-response)
 
 ## Step 1: Make the transaction request to PayU
