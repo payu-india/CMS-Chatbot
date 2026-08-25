@@ -67,7 +67,7 @@ This section deescribes how UPI Collect should be integrated on your checkout. *
 **Steps to Integrate:**
 
 <Cards>
-  <Card title="1. Validate the UPI handle" href="https://docs.payu.in/docs/collect-payments-with-upi-seamless#step-1-valiadate-the-upi-handle">
+  <Card title="1. Validate the UPI handle" href="https://docs.payu.in/docs/collect-payments-with-upi-seamless#step-1-validate-the-upi-handle">
     Validate the card type using the Validate VPA API.
   </Card>
 
