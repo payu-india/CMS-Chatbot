@@ -7,6 +7,7 @@ metadata:
   title: APIs used in Partner Integration
   robots: index
 ---
+## Onboarding APIs
 The following APIs are used to onboard and manage merchants through Partner Integration:
 
 | Description                                                                                                                     | **API**                                                                   |
@@ -52,3 +53,29 @@ The following APIs are used to onboard and manage merchants through Partner Inte
 | Generates the merged merchant agreement document for electronic signing (final step).                                           | [Generate Agreement for E-Sign API](ref:generateagreementforesign)        |
 | **Utilities**                                                                                                                   |                                                                           |
 | Retrieves the full merchant profile and verification statuses. Call between any steps to check progress.                        | [Get Merchant Details API](ref:getmerchant)                               |
+
+## Manage Invoices or Payment Links
+The 
+- [Create Payment Link - Partner Integration](https://docs.payu.in/reference/createpaymentlinkapi)
+- [Get Single Payment Link API](https://docs.payu.in/reference/get_single_payment_link_api)
+- [Update Payment Link API](https://docs.payu.in/reference/update_invoice_api)
+
+## Partner Payment Integration APIs
+
+- [Get Access Token - Partner Integration](https://docs.payu.in/reference/getting-access-token)
+- [Hosted Checkout Integration - Partner Integration](https://docs.payu.in/reference/hosted-checkout-api-partner-integration)
+- [UPI S2S Integration API - Partner Integration](https://docs.payu.in/reference/upi-s2s-partner-integration-api)
+- [UPI TPV Integration API - Partner Integration](https://docs.payu.in/reference/upi-tpv-integration-api-partner)
+- [Partner Refund Transaction API](https://docs.payu.in/reference/refund-transaction-api-partner-integration)
+- [Partner Refund Status API](https://docs.payu.in/reference/refund-status-api-partner-integration)
+
+## Using Webhooks for Merchant Status
+
+- [Register Webhooks API to Get Real-Time Merchant Status](https://docs.payu.in/reference/register-webhooks-api-to-get-real-time-merchant-status)
+- [Get Real-Time Merchant Status using Webhooks](https://docs.payu.in/reference/get-real-time-merchant-status-using-webhooks)
+- [KYC Errors and Solutions](https://docs.payu.in/reference/kyc-errors-and-solutions)
+
+## OAuth API
+
+- [Validate Auth Code and Client API](https://docs.payu.in/reference/validate_authcode_and_client_api)
+- [Get Merchant Credentials API](https://docs.payu.in/reference/get_merchant_credentials_api)
