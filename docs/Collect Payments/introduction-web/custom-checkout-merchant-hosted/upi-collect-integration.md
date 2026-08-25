@@ -115,7 +115,9 @@ You can validate your customer's Virtual Payment Address (VPA) using the <Anchor
 <GENERALAPIsEnvironment />
 
 <Accordion title="Sample request" icon="fa-code">
+
   <Validate_VPA />
+
 </Accordion>
 
 <Accordion title="Sample response" icon="fa-reply">
