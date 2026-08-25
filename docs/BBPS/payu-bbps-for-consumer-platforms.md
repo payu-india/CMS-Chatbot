@@ -8,18 +8,21 @@ hidden: true
 metadata:
   robots: index
 ---
-## 1. What is PayU BBPS for Consumer Platforms?
+## What is PayU BBPS for Consumer Platforms?
 
 Bharat Bill Payment System (BBPS) — also known as Bharat Connect — is an RBI-mandated, NPCI-operated national infrastructure for recurring bill payments. As a Consumer Platform (also called an **Agent Institution** or **COU — Consumer Operating Unit**), you give your users the ability to discover and pay bills for any registered BBPS biller in India — directly from within your own app or platform.
 
 PayU holds dual BBPS licences — **Biller Operating Unit (BOU)** and **Consumer Operating Unit (COU)**. As your COU partner, PayU connects your platform to the BBPS network, giving your users instant access to **22,000+ live billers** across **20+ categories** — electricity, loans, insurance, school fees, DTH, government taxes, and more — through a single API integration or a ready-made white-label solution.
 
-> 💡 **Why BBPS for Your Platform?**
-> Previously, consumer platforms had to integrate individually with hundreds of billers — a massive engineering and commercial effort. With BBPS via PayU, one integration gives your platform access to the entire national biller network instantly.
+<Callout icon="💡" theme="default">
+  ### **Why BBPS for Your Platform?**
 
----
+  Previously, consumer platforms had to integrate individually with hundreds of billers — a massive engineering and commercial effort. With BBPS via PayU, one integration gives your platform access to the entire national biller network instantly.
+</Callout>
 
-## 2. Is This Right for You?
+***
+
+## Is This Right for You?
 
 PayU BBPS for Consumer Platforms is the right fit if:
 
@@ -30,13 +33,16 @@ PayU BBPS for Consumer Platforms is the right fit if:
 - You want to offer **UPMS** — letting your users register recurring bills once and automate future payments.
 - You are a **bank** wanting to provide bill payment services on your net banking or mobile banking portal, or to onboard your own or partner billers onto BBPS.
 
-> ⚠️ **Consider alternatives if:**
-> - You do not intend to build any front-end UI — a pure data-pipe arrangement may be needed; speak to your PayU account manager.
-> - Your platform cannot commit to NPCI front-end UI guidelines and the associated screen approval process (required for API-based integration).
+<Callout icon="⚠️" theme="warn">
+  ### **Consider alternatives if:**
 
----
+  - You do not intend to build any front-end UI — a pure data-pipe arrangement may be needed; speak to your PayU account manager.
+  - Your platform cannot commit to NPCI front-end UI guidelines and the associated screen approval process (required for API-based integration).
+</Callout>
 
-## 3. What You Get
+***
+
+## What You Get
 
 When you integrate with PayU BBPS as a Consumer Platform, you unlock:
 
@@ -53,9 +59,9 @@ When you integrate with PayU BBPS as a Consumer Platform, you unlock:
 - **Single Settlement from PayU:** You settle only to PayU. PayU manages all downstream settlements with billers — eliminating the complexity of multiple settlement counterparties.
 - **Bank-Specific Products:** Banks get additional capabilities: enable bill payments on your own net banking / mobile banking app (Bank Applications), onboard your own billers onto BBPS (Bank Billers), or allow partner apps to use your COU pipe (Partner Applications).
 
----
+***
 
-## 4. How It Works
+## How It Works
 
 Once integrated with PayU as your COU partner, here is how a bill payment flows through your platform.
 
@@ -83,9 +89,9 @@ Once integrated with PayU as your COU partner, here is how a bill payment flows 
 3. If autopay is enabled, the payment is processed automatically using the user's saved instrument via PayU PG — no user action required.
 4. User receives a payment notification. Duplicate payment alerts are sent if the bill has already been paid from another registered app, preventing accidental double payment.
 
----
+***
 
-## 5. What You Will Need (Prerequisites)
+## What You Will Need (Prerequisites)
 
 Before going live as a BBPS Consumer Platform via PayU, ensure the following:
 
@@ -98,53 +104,58 @@ Before going live as a BBPS Consumer Platform via PayU, ensure the following:
 - **Callback API — UPMS Only:** To receive push notifications for new bill instances from billers, you must expose and integrate a callback API endpoint.
 - **UAT Completion & NPCI Sign-Off:** Full end-to-end testing of all bill payment flows must be completed in the UAT environment and signed off by NPCI before production go-live.
 
-> 💡 **Tip:** Choosing the TSP White-Label path significantly reduces your time-to-market. PayU's screens are already NPCI-compliant — you skip screen design, submission, and the NPCI approval cycle entirely.
+<Callout icon="💡" theme="default">
+  ### **Tip:** Choosing the TSP White-Label path significantly reduces your time-to-market. PayU's screens are already NPCI-compliant — you skip screen design, submission, and the NPCI approval cycle entirely.
+</Callout>
 
----
+***
 
-## 6. Supported Payment Methods
+## Supported Payment Methods
 
 Your users can pay bills on your platform using any of the following payment modes. The actual instruments displayed depend on the capabilities of your platform:
 
-| Payment Mode | Details | Status |
-|---|---|---|
-| 💳 Credit Cards | All major networks — Visa, Mastercard, RuPay, Amex | ✅ Active |
-| 💳 Debit Cards | All major networks — Visa, Mastercard, RuPay | ✅ Active |
-| 📱 UPI | Any UPI VPA — integrated within your app or redirected | ✅ Active |
-| 🌐 Internet Banking | All major banks' netbanking portals | ✅ Active |
-| 👛 Prepaid Wallets / PPI | Supported prepaid payment instruments | ✅ Active |
-| 💵 Cash (Agent Outlets) | If your platform operates as a physical agent outlet — cash & AEPS | ✅ Active |
-| ⚡ NEFT / IMPS | Disabled w.e.f. June 5, 2025 (NPCI Circular) | ❌ Disabled |
+| Payment Mode             | Details                                                            | Status     |
+| ------------------------ | ------------------------------------------------------------------ | ---------- |
+| 💳 Credit Cards          | All major networks — Visa, Mastercard, RuPay, Amex                 | ✅ Active   |
+| 💳 Debit Cards           | All major networks — Visa, Mastercard, RuPay                       | ✅ Active   |
+| 📱 UPI                   | Any UPI VPA — integrated within your app or redirected             | ✅ Active   |
+| 🌐 Internet Banking      | All major banks' netbanking portals                                | ✅ Active   |
+| 👛 Prepaid Wallets / PPI | Supported prepaid payment instruments                              | ✅ Active   |
+| 💵 Cash (Agent Outlets)  | If your platform operates as a physical agent outlet — cash & AEPS | ✅ Active   |
+| ⚡ NEFT / IMPS            | Disabled w\.e.f. June 5, 2025 (NPCI Circular)                      | ❌ Disabled |
 
-> ⚠️ **Regulatory Update — Action Required**
-> NEFT and IMPS are disabled as eligible BBPS payment modes effective **June 5, 2025**, per NPCI Circular NPCI/2025-26/BBPS/003. Remove these options from your bill payment UI immediately if they are currently displayed as available payment modes.
+<Callout icon="⚠️" theme="warn">
+  ### **Regulatory Update — Action Required**
 
----
+  NEFT and IMPS are disabled as eligible BBPS payment modes effective **June 5, 2025**, per NPCI Circular NPCI/2025-26/BBPS/003. Remove these options from your bill payment UI immediately if they are currently displayed as available payment modes.
+</Callout>
 
-## 7. Supported Biller Categories
+***
+
+## Supported Biller Categories
 
 As a Consumer Platform, your users will have access to all active BBPS biller categories. The following are live as of 2025:
 
-| Category | Includes | Status |
-|---|---|---|
-| Utility | Electricity, Water, Gas (Piped & LPG), Landline | ✅ Live |
-| Telecom & Broadband | Mobile Postpaid, Broadband / Internet, DTH, Cable TV | ✅ Live |
-| Credit Card Payments | Credit card bill payments (~2/3 of BBPS volume by value) | ✅ Live |
-| Loan Repayment | EMIs — regulated entities only (Certificate of Registration required) | ⚠️ Restricted |
-| Insurance Premiums | Renewal premiums for all major insurers | ✅ Live |
-| Education | School, college, and coaching institute fees | ✅ Live |
-| Government & Municipal | Municipal tax, property tax, water tax, traffic challans | ✅ Live |
-| Subscriptions | OTT / streaming services, club memberships | ✅ Live |
-| Housing Societies | Maintenance charges (P2P payments restricted) | ⚠️ Restricted |
-| Hospitals | New biller onboarding discontinued — existing billers remain payable | ⚠️ Partial |
-| Donations | New biller onboarding discontinued — existing billers remain payable | ⚠️ Partial |
-| Prepaid Recharges* | Mobile prepaid recharges via PayU Connect (same API integration) | ✅ Live |
+| Category               | Includes                                                              | Status        |
+| ---------------------- | --------------------------------------------------------------------- | ------------- |
+| Utility                | Electricity, Water, Gas (Piped & LPG), Landline                       | ✅ Live        |
+| Telecom & Broadband    | Mobile Postpaid, Broadband / Internet, DTH, Cable TV                  | ✅ Live        |
+| Credit Card Payments   | Credit card bill payments (\~2/3 of BBPS volume by value)             | ✅ Live        |
+| Loan Repayment         | EMIs — regulated entities only (Certificate of Registration required) | ⚠️ Restricted |
+| Insurance Premiums     | Renewal premiums for all major insurers                               | ✅ Live        |
+| Education              | School, college, and coaching institute fees                          | ✅ Live        |
+| Government & Municipal | Municipal tax, property tax, water tax, traffic challans              | ✅ Live        |
+| Subscriptions          | OTT / streaming services, club memberships                            | ✅ Live        |
+| Housing Societies      | Maintenance charges (P2P payments restricted)                         | ⚠️ Restricted |
+| Hospitals              | New biller onboarding discontinued — existing billers remain payable  | ⚠️ Partial    |
+| Donations              | New biller onboarding discontinued — existing billers remain payable  | ⚠️ Partial    |
+| Prepaid Recharges\*    | Mobile prepaid recharges via PayU Connect (same API integration)      | ✅ Live        |
 
-*Prepaid Recharges are available via PayU Connect — same API, dynamic routing to best success rates and commercial rates across direct and aggregated operator partners.*
+_Prepaid Recharges are available via PayU Connect — same API, dynamic routing to best success rates and commercial rates across direct and aggregated operator partners._
 
----
+***
 
-## 8. What Happens After a Payment
+## What Happens After a Payment
 
 Once a user on your platform completes a bill payment, here is what happens across all parties:
 
@@ -156,17 +167,21 @@ Once a user on your platform completes a bill payment, here is what happens acro
 6. **Duplicate Payment Prevention via UPMS:** If a registered bill has already been paid from another UPMS-linked app, your platform receives a push notification — preventing accidental duplicate payment and improving user trust.
 7. **Reporting & Reconciliation:** All transaction data is available via your PayU dashboard and reporting APIs in real time. Automated settlement statements are provided for end-of-day reconciliation.
 
-> ⚠️ **Important — Server-Side Verification**
-> Always confirm payment status using the PayU **Status Check API** on your server side before updating user records or displaying a final success screen. Do not rely solely on the payment posting API response.
+<Callout icon="⚠️" theme="warn">
+  ### **Important — Server-Side Verification**
 
----
+  Always confirm payment status using the PayU **Status Check API** on your server side before updating user records or displaying a final success screen. Do not rely solely on the payment posting API response.
+</Callout>
 
-## 9. Ready to Integrate?
+***
+
+## Ready to Integrate?
 
 Choose the integration path that best fits your platform:
 
 ### Path 1 — API-Based Integration (Full Control, Custom UI)
-*Best for: Platforms with dedicated tech teams that want complete UI control.*
+
+_Best for: Platforms with dedicated tech teams that want complete UI control._
 
 1. Obtain your `client_id` and `client_secret` from PayU.
 2. Call `POST https://uat-accounts.payu.in/oauth/token` with `grant_type=client_credentials` to get your OAuth 2.0 access token. Use it for all subsequent API calls.
@@ -179,7 +194,8 @@ Choose the integration path that best fits your platform:
 9. Go live — your users can now pay any BBPS bill from within your platform.
 
 ### Path 2 — TSP White-Label Solution (Fastest Time-to-Market)
-*Best for: Banks and platforms that want a ready-made, branded bill payment experience.*
+
+_Best for: Banks and platforms that want a ready-made, branded bill payment experience._
 
 1. Implement SSO-based redirect from your app or portal to PayU's white-label bill payment screens — choose web redirect, mobile web redirect, or native SDK.
 2. Customise the look and feel — colours, logo, fonts — to match your brand precisely. PayU's screens are already NPCI-compliant; no separate screen approval required.
@@ -187,18 +203,22 @@ Choose the integration path that best fits your platform:
 4. Complete integration testing and go live — your users experience a seamless, fully branded bill payment flow without leaving your ecosystem.
 
 ### Path 3 — Bank-Specific Products
-*Best for: Banks wanting to offer BBPS to their customers or onboard their billers.*
+
+_Best for: Banks wanting to offer BBPS to their customers or onboard their billers._
 
 - **Bank Applications:** Enable bill payments for all BBPS billers on your net banking / mobile banking app using your own COU pipe.
 - **Partner Applications:** Allow your partner apps to enable BBPS bill payments using your bank's COU pipe.
 - **Bank Billers:** Onboard your bank's own billers (insurance, loans, etc.) onto BBPS using your bank's BOU pipe.
 - **Partner Billers:** Onboard your bank's partner billers onto BBPS using your BOU pipe.
 
----
+***
 
-> 🚀 **Start Building Bill Payments on Your Platform**
-> Talk to your PayU Account Manager | Explore the API Reference | Download the Postman Collection | Access UAT Credentials | Begin NPCI AI Registration
+<Callout icon="🚀" theme="default">
+  ### **Start Building Bill Payments on Your Platform**
 
----
+  Talk to your PayU Account Manager | Explore the API Reference | Download the Postman Collection | Access UAT Credentials | Begin NPCI AI Registration
+</Callout>
 
-*This document is based on PayU BBPS product materials and NPCI/RBI regulatory guidelines current as of 2025. Biller category availability is subject to NPCI review and regulatory compliance. PayU — Authorised BOU & COU under Bharat Bill Payment System (Bharat Connect).*
+***
+
+_This document is based on PayU BBPS product materials and NPCI/RBI regulatory guidelines current as of 2025. Biller category availability is subject to NPCI review and regulatory compliance. PayU — Authorised BOU & COU under Bharat Bill Payment System (Bharat Connect)._
