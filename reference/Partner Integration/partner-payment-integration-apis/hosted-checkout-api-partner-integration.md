@@ -151,7 +151,7 @@ The following table lists the request parameter descriptions for Partner Payment
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>udf5<br><strong>mandatory</strong></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> This parameter has been made for you to keep any information corresponding to the transaction. Pass <strong>whatsapp</strong> in this field</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> This parameter has been made for you to keep any information corresponding to the transaction. <strong>Note</strong>You must pass <strong>whatsapp</strong> in this field</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>whatsapp</p>
 </td>
