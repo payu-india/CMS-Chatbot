@@ -38,7 +38,7 @@ Creates a new merchant shell account on PayU. Pass display name, email, mobile, 
 
 |                        | URL                                             |
 | :--------------------- | :---------------------------------------------- |
-| Test Environment       | `https://test-partner.payu.in/api/v3/merchants` |
+| Test Environment       | `https://uat-partner.payu.in/api/v3/merchants` |
 | Production Environment | `https://partner.payu.in/api/v3/merchants`      |
 
 <Accordion title="Request parameters" icon="fa-table">
@@ -53,7 +53,7 @@ Creates a new merchant shell account on PayU. Pass display name, email, mobile, 
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-  curl --location 'https://test-partner.payu.in/api/v3/merchants' \
+  curl --location 'https://uat-partner.payu.in/api/v3/merchants' \
   --header 'Authorization: Bearer {{access_token}}' \
   --form 'merchant[display_name]="Acme Stores"' \
   --form 'merchant[email]="merchant@example.com"' \
@@ -83,12 +83,12 @@ Adds business category, sub-category, expected monthly volume, GST, business nam
 
 |                        | URL                                                           |
 | :--------------------- | :------------------------------------------------------------ |
-| Test Environment       | `https://test-partner.payu.in/api/v1/merchants/{uuid}/update` |
+| Test Environment       | `https://uat-partner.payu.in/api/v1/merchants/{uuid}/update` |
 | Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/update`      |
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-    curl --location --request PUT 'https://test-partner.payu.in/api/v1/merchants/{{uuid}}/update' \
+    curl --location --request PUT 'https://uat-partner.payu.in/api/v1/merchants/{{uuid}}/update' \
     --header 'Authorization: Bearer {{access_token}}' \
     --form 'merchant[business_category]="Arts, Gifts & Stationery"' \
     --form 'merchant[business_sub_category]="Art Dealers and Galleries"' \
@@ -122,12 +122,12 @@ Adds the merchant website and/or app store URLs. At least one channel URL is typ
 
 |                        | URL                                                           |
 | :--------------------- | :------------------------------------------------------------ |
-| Test Environment       | `https://test-partner.payu.in/api/v1/merchants/{uuid}/update` |
+| Test Environment       | `https://uat-partner.payu.in/api/v1/merchants/{uuid}/update` |
 | Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/update`      |
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-    curl --location --request PUT 'https://test-partner.payu.in/api/v1/merchants/{{uuid}}/update' \
+    curl --location --request PUT 'https://uat-partner.payu.in/api/v1/merchants/{{uuid}}/update' \
     --header 'Authorization: Bearer {{access_token}}' \
     --form 'merchant[website_details][website_url]="https://www.example.com"' \
     --form 'merchant[website_details][android_url]="https://play.google.com/store/apps/details?id=com.example"' \
@@ -156,12 +156,12 @@ Submits the authorised signatory for the merchant agreement. Complete this step 
 
 |                        | URL                                                                      |
 | :--------------------- | :----------------------------------------------------------------------- |
-| Test Environment       | `https://test-partner.payu.in/api/v1/merchants/{uuid}/signatory_details` |
+| Test Environment       | `https://uat-partner.payu.in/api/v1/merchants/{uuid}/signatory_details` |
 | Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/signatory_details`      |
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-    curl --location --request PUT 'https://test-partner.payu.in/api/v1/merchants/{{uuid}}/signatory_details' \
+    curl --location --request PUT 'https://uat-partner.payu.in/api/v1/merchants/{{uuid}}/signatory_details' \
     --header 'Authorization: Bearer {{access_token}}' \
     --header 'Content-Type: application/x-www-form-urlencoded' \
     --data-urlencode 'merchant[signatory_contact_details_attributes[0][authorised_signatory]]=true' \
@@ -194,12 +194,12 @@ Uploads one KYC document per required category (JPG, PNG, or PDF; max 5 MB). Cal
 
 |                        | URL                                                                |
 | :--------------------- | :----------------------------------------------------------------- |
-| Test Environment       | `https://test-partner.payu.in/api/v3/merchants/{mid}/kyc_document` |
+| Test Environment       | `https://uat-partner.payu.in/api/v3/merchants/{mid}/kyc_document` |
 | Production Environment | `https://partner.payu.in/api/v3/merchants/{mid}/kyc_document`      |
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-    curl --location 'https://test-partner.payu.in/api/v3/merchants/{{mid}}/kyc_document' \
+    curl --location 'https://uat-partner.payu.in/api/v3/merchants/{{mid}}/kyc_document' \
     --header 'Authorization: Bearer {{access_token}}' \
     --form 'merchant[document_category]="PAN Card of Signing Authority"' \
     --form 'merchant[document_type]="PAN Card"' \
@@ -232,12 +232,12 @@ Generates the merged merchant agreement for electronic signing. After successful
 
 |                        | URL                                                                                       |
 | :--------------------- | :---------------------------------------------------------------------------------------- |
-| Test Environment       | `https://test-partner.payu.in/api/v1/merchants/{uuid}/generate_merged_document_for_esign` |
+| Test Environment       | `https://uat-partner.payu.in/api/v1/merchants/{uuid}/generate_merged_document_for_esign` |
 | Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/generate_merged_document_for_esign`      |
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-  curl --location 'https://test-partner.payu.in/api/v1/merchants/{{uuid}}/generate_merged_document_for_esign' \
+  curl --location 'https://uat-partner.payu.in/api/v1/merchants/{{uuid}}/generate_merged_document_for_esign' \
   --header 'Authorization: Bearer {{access_token}}' \
   --header 'Accept: application/json'
   ```
