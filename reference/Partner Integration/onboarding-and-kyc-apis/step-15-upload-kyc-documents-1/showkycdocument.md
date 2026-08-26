@@ -10,16 +10,16 @@ The **Show KYC Document** API returns details for a previously uploaded KYC docu
 
 **Environment**
 
-|                        | URL                                                                                    |
-| :--------------------- | :------------------------------------------------------------------------------------- |
-| Test Environment       | `https://test-partner.payu.in/api/v3/merchants/{mid}/kyc_document/{kyc_document_uuid}` |
-| Production Environment | `https://partner.payu.in/api/v3/merchants/{mid}/kyc_document/{kyc_document_uuid}`      |
+|                        | URL                                                                                   |
+| :--------------------- | :------------------------------------------------------------------------------------ |
+| Test Environment       | `https://uat-partner.payu.in/api/v3/merchants/{mid}/kyc_document/{kyc_document_uuid}` |
+| Production Environment | `https://partner.payu.in/api/v3/merchants/{mid}/kyc_document/{kyc_document_uuid}`     |
 
 ## Sample request
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-  curl --location 'https://test-partner.payu.in/api/v3/merchants/{{mid}}/kyc_document/{{kyc_document_uuid}}' \
+  curl --location 'https://uat-partner.payu.in/api/v3/merchants/{{mid}}/kyc_document/{{kyc_document_uuid}}' \
   --header 'Authorization: Bearer {{access_token}}' \
   --header 'Accept: application/json'
   ```
