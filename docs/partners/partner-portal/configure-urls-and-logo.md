@@ -2,7 +2,7 @@
 title: Configure URLs and Logo
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''

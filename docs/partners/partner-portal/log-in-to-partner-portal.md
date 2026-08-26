@@ -2,7 +2,7 @@
 title: Log in to Partner Portal
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Log in to Partner Portal
   description: >-

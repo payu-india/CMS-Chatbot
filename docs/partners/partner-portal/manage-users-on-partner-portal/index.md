@@ -2,7 +2,7 @@
 title: Manage Users on Partner Portal
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''

@@ -2,7 +2,7 @@
 title: Revoke a user
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''

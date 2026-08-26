@@ -6,7 +6,7 @@ excerpt: >-
   Onboarding. You should create a partner account to get started with the
   partner program.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Register a PayU Partner Account
   description: >-

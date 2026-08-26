@@ -6,7 +6,7 @@ excerpt: >-
   onboarded, merchants can complete their profiles and start enjoying the
   services offered by PayU.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Referral Onboarding using Partner Portal
   description: >-
