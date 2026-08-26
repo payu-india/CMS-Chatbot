@@ -20,14 +20,22 @@ To update an existing webhook:
 
 1. Log in to the [PayU dashboard](https://onboarding.payu.in/app/account/signin) and click **Developers** from the left menu.
 
+
    <Image src="https://files.readme.io/ef485a951c6227cfab10d06d5af1c446849bc5e7048a223384c51f5b49bb5e3f-Screenshot_2026-03-02_at_10.15.10_AM.png" alt="PayU Dashboard Developers section for creating a new webhook" align="center" />
 
-2. Navigate to **Developers** > **Webhooks** on the PayU dashboard.
 
-1) Locate the webhook you want to modify.
-2) Click the **Edit** icon next to the webhook entry.
-3) Modify the webhook URL or event selection as needed.
-4) Click **Update** to save your changes.
+2. Got to the **Webhooks&#x20;**&#x74;ab and click the edit icon next to the webhook entry you want to update.
+
+   <Image src="https://files.readme.io/aad8a0d2c89f9979d6ce5f3c1cc2a53860d02d2a4ad1bd866357dd15553fb481-Screenshot_2026-08-26_at_1.56.30_PM.png" border={true} />
+
+
+3. Modify the webhook URL. You can add multiple URLs separated by comma.
+
+4. Click **Save** to save your changes.
+
+   <Image src="https://files.readme.io/15fc4633f314de0da48635d75ba3089bcf6891053be119c948daa57364336e31-Screenshot_2026-08-26_at_3.01.29_PM.png" border={true} />
+
+
 
 ***
 
@@ -35,26 +43,24 @@ To update an existing webhook:
 
 To delete a webhook:
 
-1. Go to the **Developers** > **Webhooks** section.
-2. Locate the webhook you want to delete.
-3. Click the **Delete** icon (trash icon).
-4. Confirm the deletion when prompted.
+1. Log in to the [PayU dashboard](https://onboarding.payu.in/app/account/signin) and click **Developers** from the left menu.
+
+   <Image src="https://files.readme.io/ef485a951c6227cfab10d06d5af1c446849bc5e7048a223384c51f5b49bb5e3f-Screenshot_2026-03-02_at_10.15.10_AM.png" alt="PayU Dashboard Developers section for creating a new webhook" align="center" />
+
+2. Got to the **Webhooks&#x20;**&#x74;ab and click the delete icon next to the webhook entry you want to update.
+
+   <Image src="https://files.readme.io/4afa8c1835ab6e84dea32009b8ccfdc0c03a37ed24225cdc756b8a7fec188df8-Screenshot_2026-08-26_at_3.56.40_PM.png" border={true} />
+
+3. Click **Delete&#x20;**&#x74;o confirm and delete the webhook.
+
+   <Image src="https://files.readme.io/35e90e7f567123cf0b7279e0b324bab1d5031f9704769852315f41e76cdb6d8c-Screenshot_2026-08-26_at_3.57.44_PM.png" border={true} />
+
 
 <Callout icon="far fa-exclamation" theme="error">
   ### **Watch Out!**
 
   Deleting a webhook is permanent. PayU will immediately stop sending events to that URL. Make sure you no longer need the webhook before deleting it.
 </Callout>
-
-### Rotate webhook secrets (if applicable)
-
-{/* Webhook secrets and rotation are mentioned in Stripe/Razorpay docs but not confirmed in PayU repo */}
-
-{/* NEEDS VALIDATION: Does PayU provide webhook signing secrets? Is secret rotation supported? */}
-
-{/* If yes, add documentation here. If no, remove this section. */}
-
-{/* END NEW CONTENT */}
 
 ***
 
