@@ -7,6 +7,8 @@ metadata:
   title: APIs used in Partner Integration
   robots: index
 ---
+The APIs which must be used in various parts of the above flow diagram are listed in the following tables.&#x20;
+
 ## Onboarding APIs
 
 The following APIs are used to onboard and manage merchants through Partner Integration:
