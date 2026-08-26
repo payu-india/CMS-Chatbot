@@ -16,16 +16,16 @@ The **Upload KYC Document** API uploads one KYC document per required category f
 
 **Environment**
 
-|                        | URL                                                                |
-| :--------------------- | :----------------------------------------------------------------- |
-| Test Environment       | `https://test-partner.payu.in/api/v3/merchants/{mid}/kyc_document` |
-| Production Environment | `https://partner.payu.in/api/v3/merchants/{mid}/kyc_document`      |
+|                        | URL                                                               |
+| :--------------------- | :---------------------------------------------------------------- |
+| Test Environment       | `https://uat-partner.payu.in/api/v3/merchants/{mid}/kyc_document` |
+| Production Environment | `https://partner.payu.in/api/v3/merchants/{mid}/kyc_document`     |
 
 ## Sample request
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-    curl --location 'https://test-partner.payu.in/api/v3/merchants/{{mid}}/kyc_document' \
+    curl --location 'https://uat-partner.payu.in/api/v3/merchants/{{mid}}/kyc_document' \
     --header 'Authorization: Bearer {{access_token}}' \
     --form 'merchant[document_category]="PAN Card of Signing Authority"' \
     --form 'merchant[document_type]="PAN Card"' \
