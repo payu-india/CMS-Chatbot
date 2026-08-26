@@ -296,7 +296,7 @@ You will find an option available on the Partner Dashboard as Refer a Merchant. 
 - [Add a Referral Merchant](#add-a-referral-merchant)
 - [Add Multiple Referral Merchants](#add-multiple-referral-merchants)
 
-## Add a referral merchant
+### Add a referral merchant
 
 This section describes the procedure add a single referral merchant.
 
@@ -350,7 +350,7 @@ The referral merchant gets added to the Home page.
 
 You will be redirected to the _Complete Your KYC_ page as in PayU Dashboard. For more information, refer the to [Activate Account](doc:complete-your-kyc) section of the _PayU Dashboard User Guide_.
 
-## Add multiple referral merchants
+### Add multiple referral merchants
 
 You can upload multiple referral merchants by entering their details in the provided template. If you want to add a merchant (single), refer to [Onboarding APIs](ref:onboarding-apis)
 
@@ -384,7 +384,7 @@ To add multiple referral merchants:
 
 5. Click **Submit**.
 
-## **Complete your Referral Details**
+#### Complete your Referral Details
 
 You have to complete the following sections (in the following sequence) on the KYC page to complete KYC for your merchant with PayU:
 
@@ -402,7 +402,7 @@ The list of referrals are displayed.
 
    A page is displayed with a message, “Your account is active. Complete your full KYC.” The **PAN Verification** section is displayed requesting your PAN details.
 
-## **PAN Verification**
+#### PAN Verification
 
 To verify your PAN on the **PAN verification** section:
 
@@ -414,7 +414,7 @@ To verify your PAN on the **PAN verification** section:
 
 After the PAN is verified, the section name gets updated to “Your PAN is verified. Way yo Go!” and **Tell us a little bit about your business** section is enabled.
 
-## **Tell us a little bit about your business**
+#### Tell us a little bit about your business
 
 To enter information on your business in the **Tell us a little bit about your business** section:
 
@@ -429,7 +429,7 @@ To enter information on your business in the **Tell us a little bit about your b
 
 The section name gets updated to **Business details submitted successfully**. The **Enter Bank details of\<your name>** section is enabled, where \<your name > is substituted with your name as in PAN.
 
-## **Enter Bank Details**
+#### Enter Bank Details
 
 To enter your bank details on the **Enter bank details of\<your name>** section:
 
@@ -440,7 +440,7 @@ To enter your bank details on the **Enter bank details of\<your name>** section:
 2. Enter your bank IFSC code in the **IFSC Code** field. You can find the IFSC code on the cheque book provided by your bank.
 3. Click **Connect Bank Account**.
 
-## **How do you Wish to Accept Payments**
+#### How do you Wish to Accept Payments
 
 To specify how do wish to accept payments from your customers, select any of the following on the **How do you wish to accept payments** section:
 
@@ -468,7 +468,7 @@ Click **Next** to proceed to the **Verify signing authoring details** section.
 
 The section title gets updated to “Signing authority details captured” and the **Verify signing authority details** section is enabled.
 
-## Verify signing authority details
+### Verify signing authority details
 
 To verify your business signing authority details in the **Verify signing authority details** section:
 
@@ -484,7 +484,7 @@ To verify your business signing authority details in the **Verify signing author
 
 The section name gets update to “Signing authority details captured” and the **Complete the KYC** section is enabled.
 
-## Complete the KYC
+### Complete the KYC
 
 To fetch your KYC documents automatically from the cKYC/Aadhaar database or upload the documents manually, select any of the following options:
 
@@ -518,7 +518,7 @@ To fetch your KYC documents automatically from the cKYC/Aadhaar database or uplo
 
 An additional section, **Additional documents required** is displayed. For more information, refer to [Additional Documents Required.](#additional-documents-required)
 
-## Additional documents required
+### Additional documents required
 
 To submit the documents manually:
 
@@ -540,6 +540,7 @@ A message similar to the following is displayed at the bottom right-corner of yo
 
 
 <Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-26-at-9.07.24-PM.png" align="center" width="350px" border={true} />
+
 ## Managing Users
 
 You can invite users and provide permissions to manage or maintain your Partner Portal. You can perform the following to manage users:
