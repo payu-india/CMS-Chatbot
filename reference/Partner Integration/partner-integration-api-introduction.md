@@ -36,9 +36,9 @@ This documentation includes the APIs related to Partner Program Integration. It 
 
 The APIs which must be used in various parts of the above flow diagram are listed in the following tables.&#x20;
 
-### Onboarding and KYC APIs
+## Onboarding APIs
 
-These map to the **Partner APIs** reference section and follow the 16-step onboarding sequence:
+The following APIs are used to onboard and manage merchants through Partner Integration:
 
 | Description                                                                                                                     | **API**                                                                   |
 | :------------------------------------------------------------------------------------------------------------------------------ | :------------------------------------------------------------------------ |
@@ -83,3 +83,37 @@ These map to the **Partner APIs** reference section and follow the 16-step onboa
 | Generates the merged merchant agreement document for electronic signing (final step).                                           | [Generate Agreement for E-Sign API](ref:generateagreementforesign)        |
 | **Utilities**                                                                                                                   |                                                                           |
 | Retrieves the full merchant profile and verification statuses. Call between any steps to check progress.                        | [Get Merchant Details API](ref:getmerchant)                               |
+
+## Manage Invoices or Payment Links
+
+| Description                                                            | **API**                                                                                          |
+| :--------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------- |
+| Creates a new payment link for a customer through Partner Integration. | [Create Payment Link - Partner Integration](https://docs.payu.in/reference/createpaymentlinkapi) |
+| Retrieves a single payment link using its invoice number.              | [Get Single Payment Link API](https://docs.payu.in/reference/get_single_payment_link_api)        |
+| Updates a payment link's status and expiry date.                       | [Update Payment Link API](https://docs.payu.in/reference/update_invoice_api)                     |
+
+## Partner Payment Integration APIs
+
+| Description                                                                                                               | **API**                                                                                                                     |
+| :------------------------------------------------------------------------------------------------------------------------ | :-------------------------------------------------------------------------------------------------------------------------- |
+| Provides the access-token flow for Partner Integration.                                                                   | [Get Access Token - Partner Integration](https://docs.payu.in/reference/getting-access-token)                               |
+| Integrates PayU Hosted Checkout by redirecting customers to PayU's payment page and handling the response.                | [Hosted Checkout Integration - Partner Integration](https://docs.payu.in/reference/hosted-checkout-api-partner-integration) |
+| Initiates server-to-server UPI payments for Partner Integration and supports payment verification and callbacks.          | [UPI S2S Integration API - Partner Integration](https://docs.payu.in/reference/upi-s2s-partner-integration-api)             |
+| Integrates third-party validation through UPI by including the customer's bank account number in the transaction request. | [UPI TPV Integration API - Partner Integration](https://docs.payu.in/reference/upi-tpv-integration-api-partner)             |
+| Cancels an authorised transaction or refunds a captured transaction for Partner Integration.                              | [Partner Refund Transaction API](https://docs.payu.in/reference/refund-transaction-api-partner-integration)                 |
+| Checks the status of a refund transaction.                                                                                | [Partner Refund Status API](https://docs.payu.in/reference/refund-status-api-partner-integration)                           |
+
+## Using Webhooks for Merchant Status
+
+| Description                                                                                 | **API**                                                                                                                                         |
+| :------------------------------------------------------------------------------------------ | :---------------------------------------------------------------------------------------------------------------------------------------------- |
+| Registers a partner webhook URL using a hub token to receive merchant status notifications. | [Register Webhooks API to Get Real-Time Merchant Status](https://docs.payu.in/reference/register-webhooks-api-to-get-real-time-merchant-status) |
+| Receives real-time merchant onboarding status updates through registered webhooks.          | [Get Real-Time Merchant Status using Webhooks](https://docs.payu.in/reference/get-real-time-merchant-status-using-webhooks)                     |
+| Lists KYC errors and corresponding solutions.                                               | [KYC Errors and Solutions](https://docs.payu.in/reference/kyc-errors-and-solutions)                                                             |
+
+## OAuth API
+
+| Description                                                           | **API**                                                                                              |
+| :-------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------- |
+| Validates an authorisation code and client.                           | [Validate Auth Code and Client API](https://docs.payu.in/reference/validate_authcode_and_client_api) |
+| Retrieves merchant credentials used to generate the API key and salt. | [Get Merchant Credentials API](https://docs.payu.in/reference/get_merchant_credentials_api)          |
