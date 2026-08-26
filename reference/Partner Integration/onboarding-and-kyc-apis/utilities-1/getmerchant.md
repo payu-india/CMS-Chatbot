@@ -27,7 +27,7 @@ The **Get Merchant Details** API is used to get the merchant details. You requir
   <summary>Sample request</summary>
 
 ```curl
-curl --location -g --request GET '{{partner_base_url}}/api/v1/merchants/7060013' \
+curl --location -g --request GET 'https://uat-partner.payu.in/api/v3/merchants/7060013' \
 --header 'Authorization: bearer {{access_token}}'
 ```
 
