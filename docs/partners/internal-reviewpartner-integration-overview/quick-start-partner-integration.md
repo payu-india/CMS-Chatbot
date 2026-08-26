@@ -15,9 +15,10 @@ flowchart TD
     B --> C[3. Update Business Details]
     C --> D[4. Submit Signing Authority]
     D --> E[5. Upload KYC Documents]
-    E --> F[KYC Verification]
-    F --> G[6. E-Sign Agreement]
-    G --> H[Merchant Activated]
+    E --> F[6. KYC Verification]
+    F --> G[7. Add/Update UBO]
+    G --> H[8. E-Sign Agreement]
+.   H --> I [Merchant Activated]
     
     style A fill:#e1f5ff
     style H fill:#d4edda
