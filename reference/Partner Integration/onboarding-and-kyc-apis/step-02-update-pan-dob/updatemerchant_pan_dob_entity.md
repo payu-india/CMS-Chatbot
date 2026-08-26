@@ -19,10 +19,10 @@ The **Update Merchant Details** such as PAN + DOB using this API so that the mer
 
 **Environment**
 
-|                        | URL                                                           |
-| :--------------------- | :------------------------------------------------------------ |
-| Test Environment       | `https://test-partner.payu.in/api/v1/merchants/{uuid}/update` |
-| Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/update`      |
+|                        | URL                                                          |
+| :--------------------- | :----------------------------------------------------------- |
+| Test Environment       | `https://uat-partner.payu.in/api/v1/merchants/{uuid}/update` |
+| Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/update`     |
 
 ## Sample Request
 
