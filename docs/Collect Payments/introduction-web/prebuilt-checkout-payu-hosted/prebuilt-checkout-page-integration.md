@@ -417,7 +417,7 @@ Follow the below steps to complete the integration:
   <HashingSample />
 </Accordion>
 
-<Accordion title="Step 1.3a: POST the html form (server renders)" icon="fa-code">
+<Accordion title="Step 1.3: POST the HTML form (server renders)" icon="fa-code">
   <Accordion title="Sample HTML code" icon="fa-code">
     ```html
     <!doctype html>
@@ -452,7 +452,7 @@ Follow the below steps to complete the integration:
   </Accordion>
 </Accordion>
 
-<Accordion title="Step 1.3b: Post request in other language bindings" icon="fa-code">
+### Post request in other language bindings
   Use the sample request according the language binding you integrate:
 
   ```curl
