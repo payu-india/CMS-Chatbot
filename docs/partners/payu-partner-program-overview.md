@@ -43,7 +43,7 @@ next:
 ---
 A partner is a person you refer to PayU and earn incentives. The partner can be resellers or franchisees who can earn incentives for being associated with your business by referral or being part of your platform by offering PayU Payment Platform to the referrals.
 
-PayU Partner Program is a way to grow your business exponentially, raising your profits. PayU’s reliable and secure payment solutions help you with the best customer service efforts. Connect your merchants with PayU with our easy and simple integration methods. By joining this program, you can focus more on business goals to enrich the product experiences and less on maintaining payment systems. To get started, you need to register as a merchant with PayU. For more information, refer to [Register a Partner Account](doc:onboard-merchants-manually#step-1-register-a-partner-account).
+PayU Partner Program is a way to grow your business exponentially, raising your profits. PayU’s reliable and secure payment solutions help you with the best customer service efforts. Connect your merchants with PayU with our easy and simple integration methods. By joining this program, you can focus more on business goals to enrich the product experiences and less on maintaining payment systems. To get started, you need to register as a merchant with PayU. For more information, refer to [Register a Partner Account on PayU website](doc:onboard-merchants-manually#step-1-register-a-partner-account).
 
 Onboard merchants, collect payments, and manage refunds — all from your own platform.
 
@@ -73,7 +73,7 @@ PayU welcomes any small- or large-scale enterprise into their partner program. T
 - **Platform Partner**: Companies who are providing ready-to-use eCommerce websites, software solutions for retailers, and accountants, or restaurants, partnering with PayU helps you create new revenue streams and scale internationally. For example, Shopify, Zoho, ClearTax, etc.
 - **Resellers:** Resellers are freelancers/entrepreneurs looking to accelerate their business by earning incentives through their clients.
 
-After you onboard the merchants, they can start collecting payments from their customers. For more information, refer to [Checkout Solutions](doc:introduction-web).
+After you onboard the merchants, they can start collecting payments from their customers. For more information, refer to [API Reference > Partner Payments Integration.](doc:partner-payments-integration)
 
 ## How it works
 
