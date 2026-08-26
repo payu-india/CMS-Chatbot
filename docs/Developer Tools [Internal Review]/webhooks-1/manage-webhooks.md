@@ -18,7 +18,10 @@ metadata:
 
 To update an existing webhook:
 
-1.
+1. Log in to the [PayU dashboard](https://onboarding.payu.in/app/account/signin) and click **Developers** from the left menu.
+
+   <Image src="https://files.readme.io/ef485a951c6227cfab10d06d5af1c446849bc5e7048a223384c51f5b49bb5e3f-Screenshot_2026-03-02_at_10.15.10_AM.png" alt="PayU Dashboard Developers section for creating a new webhook" align="center" />
+
 2. Navigate to **Developers** > **Webhooks** on the PayU dashboard.
 
 1) Locate the webhook you want to modify.
