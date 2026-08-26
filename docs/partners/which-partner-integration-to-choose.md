@@ -1,7 +1,7 @@
 ---
 title: Which Partner Integration Method to Choose?
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
@@ -147,7 +147,7 @@ flowchart TD
 
 ## Next steps
 
-1. Register as a partner if you have not already — [Register a Partner Account](doc:register-a-partner-account)
+1. Register as a partner if you have not already — [Register a Partner Account](doc:onboard-merchants-manually#step-1-register-a-partner-account)
 2. Follow the guide for your chosen path above
-3. After merchants are onboarded, enable collections — [Web Integration](doc:introduction-web) or [Partner payments integration](doc:partner-payments-integration)
+3. After merchants are onboarded, enable collections —  [Partner Payment Integration](reference:partner-payment-integration-apis)
 4. Before production, review [Testing and go-live](doc:testing-and-go-live-partner-integration) and [Errors and troubleshooting](doc:errors-and-troubleshooting-partner-integration)
