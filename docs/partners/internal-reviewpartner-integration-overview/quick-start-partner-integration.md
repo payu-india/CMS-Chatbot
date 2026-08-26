@@ -18,7 +18,7 @@ flowchart TD
     E --> F[6. KYC Verification]
     F --> G[7. Add/Update UBO]
     G --> H[8. E-Sign Agreement]
-.   H --> I [Merchant Activated]
+    H --> I[Merchant Activated]
     
     style A fill:#e1f5ff
     style H fill:#d4edda
