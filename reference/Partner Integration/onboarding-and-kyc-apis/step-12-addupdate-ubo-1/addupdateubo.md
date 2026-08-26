@@ -19,16 +19,16 @@ Use array indexing (`ubo[0]`, `ubo[1]`, …) for multiple UBOs.
 
 **Environment**
 
-|                        | URL                                                                      |
-| :--------------------- | :----------------------------------------------------------------------- |
-| Test Environment       | `https://test-partner.payu.in/api/v1/merchants/{uuid}/signatory_details` |
-| Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/signatory_details`      |
+|                        | URL                                                                     |
+| :--------------------- | :---------------------------------------------------------------------- |
+| Test Environment       | `https://uat-partner.payu.in/api/v1/merchants/{uuid}/signatory_details` |
+| Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/signatory_details`     |
 
 ## Sample request
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-  curl --location --request PUT 'https://test-partner.payu.in/api/v1/merchants/{{uuid}}/signatory_details' \
+  curl --location --request PUT 'https://uat-partner.payu.in/api/v1/merchants/{{uuid}}/signatory_details' \
   --header 'Authorization: Bearer {{access_token}}' \
   --header 'Content-Type: application/x-www-form-urlencoded' \
   --data-urlencode 'ubo[0][name]=UBO Name' \
