@@ -22,14 +22,10 @@ A simple server-generated redirect that sends customers from your site/app to th
 <Cards columns="3">
   <Card title="1. Start Integration" href="#step-1--start-integration">
     Integrate pre-built checkout solution
-
-
   </Card>
 
   <Card title="2. Test Integration" href="#step-2-test-integration">
     Test the integration by making a test transaction
-
-
   </Card>
 
   <Card title="3. Go live Checklist" href="#step-3-going-live-your-final-checklist">
@@ -405,7 +401,7 @@ Follow the below steps to complete the integration:
 <Accordion title="Step 1.2: Generate Hash" icon="fa-key">
   Concatenate fields in this exact sequence, then <Glossary>SHA</Glossary>-512:
 
-  <HashingRequestParameters />
+    <HashingRequestParameters />
 
   - Use empty strings for missing udf\*.
   - Compute on your server and include the lowercase hex digest as hash.
@@ -414,7 +410,7 @@ Follow the below steps to complete the integration:
 
   ### Sample Code for Hashing
 
-  <HashingSample />
+    <HashingSample />
 </Accordion>
 
 <Accordion title="Step 1.3: POST the HTML form (server renders) or other language bindings" icon="fa-code">
@@ -451,364 +447,365 @@ Follow the below steps to complete the integration:
     </Callout>
   </Accordion>
 
-<Accordion title="Post request in other language bindings" icon="fa-code">
-  Use the sample request according the language binding you integrate:
+  <Accordion title="Post request in other language bindings" icon="fa-code">
+    Use the sample request according the language binding you integrate:
 
-  ```curl
-   curl -X POST "https://test.payu.in/_payment" \
-   -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d \
-   "key=JP***g&txnid=PQI6MqpYrjEefU&amount=10.00 \
-   &firstname=PayU User&email=test@gmail.com&phone=9876543210 \
-   &productinfo=iPhone&surl= \
-   https://apiplayground-response.herokuapp.com/ \
-   &furl=https://apiplayground-response.herokuapp.com/ \
-   &hash=05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072"
-  ```
-  ```python
-  import requests
+    ```curl
+     curl -X POST "https://test.payu.in/_payment" \
+     -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d \
+     "key=JP***g&txnid=PQI6MqpYrjEefU&amount=10.00 \
+     &firstname=PayU User&email=test@gmail.com&phone=9876543210 \
+     &productinfo=iPhone&surl= \
+     https://apiplayground-response.herokuapp.com/ \
+     &furl=https://apiplayground-response.herokuapp.com/ \
+     &hash=05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072"
+    ```
+    ```python
+    import requests
 
-  def make_payu_request():
-  try:
-      url = "https://test.payu.in/_payment"
-      
-      headers = {
-          'accept': 'application/json',
-          'Content-Type': 'application/x-www-form-urlencoded'
-      }
-      
-      data = {
-          'key': 'JP***g',
-          'txnid': 'PQI6MqpYrjEefU',
-          'amount': '10.00',
-          'firstname': 'PayU User',
-          'email': 'test@gmail.com',
-          'phone': '9876543210',
-          'productinfo': 'iPhone',
-          'surl': 'https://apiplayground-response.herokuapp.com/',
-          'furl': 'https://apiplayground-response.herokuapp.com/',
-          'hash': '05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072'
-      }
-      
-      response = requests.post(url, headers=headers, data=data)
-      
-      print(f"Status Code: {response.status_code}")
-      print(f"Response: {response.text}")
-      
-      return {
-          'status_code': response.status_code,
-          'response': response.text
-      }
-      
-  except requests.exceptions.RequestException as e:
-      print(f"Error occurred: {e}")
-      return None
+    def make_payu_request():
+    try:
+        url = "https://test.payu.in/_payment"
+        
+        headers = {
+            'accept': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+        
+        data = {
+            'key': 'JP***g',
+            'txnid': 'PQI6MqpYrjEefU',
+            'amount': '10.00',
+            'firstname': 'PayU User',
+            'email': 'test@gmail.com',
+            'phone': '9876543210',
+            'productinfo': 'iPhone',
+            'surl': 'https://apiplayground-response.herokuapp.com/',
+            'furl': 'https://apiplayground-response.herokuapp.com/',
+            'hash': '05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072'
+        }
+        
+        response = requests.post(url, headers=headers, data=data)
+        
+        print(f"Status Code: {response.status_code}")
+        print(f"Response: {response.text}")
+        
+        return {
+            'status_code': response.status_code,
+            'response': response.text
+        }
+        
+    except requests.exceptions.RequestException as e:
+        print(f"Error occurred: {e}")
+        return None
 
-  # Execute the request
-  result = make_payu_request()
-  ```
-  ```javascript
-  async function makePayURequest() {
-      try {
-          const url = "https://test.payu.in/_payment";
-          
-          const formData = new URLSearchParams({
-              'key': 'JP***g',
-              'txnid': 'PQI6MqpYrjEefU',
-              'amount': '10.00',
-              'firstname': 'PayU User',
-              'email': 'test@gmail.com',
-              'phone': '9876543210',
-              'productinfo': 'iPhone',
-              'surl': 'https://apiplayground-response.herokuapp.com/',
-              'furl': 'https://apiplayground-response.herokuapp.com/',
-              'hash': '05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072'
-          });
-          
-          const response = await fetch(url, {
-              method: 'POST',
-              headers: {
-                  'accept': 'application/json',
-                  'Content-Type': 'application/x-www-form-urlencoded'
-              },
-              body: formData
-          });
-          
-          const responseText = await response.text();
-          
-          console.log(`Status Code: ${response.status}`);
-          console.log(`Response: ${responseText}`);
-          
-          return {
-              status_code: response.status,
-              response: responseText
-          };
-          
-      } catch (error) {
-          console.error(`Error occurred: ${error.message}`);
-          return null;
-      }
-  }
+    # Execute the request
+    result = make_payu_request()
+    ```
+    ```javascript
+    async function makePayURequest() {
+        try {
+            const url = "https://test.payu.in/_payment";
+            
+            const formData = new URLSearchParams({
+                'key': 'JP***g',
+                'txnid': 'PQI6MqpYrjEefU',
+                'amount': '10.00',
+                'firstname': 'PayU User',
+                'email': 'test@gmail.com',
+                'phone': '9876543210',
+                'productinfo': 'iPhone',
+                'surl': 'https://apiplayground-response.herokuapp.com/',
+                'furl': 'https://apiplayground-response.herokuapp.com/',
+                'hash': '05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072'
+            });
+            
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'accept': 'application/json',
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: formData
+            });
+            
+            const responseText = await response.text();
+            
+            console.log(`Status Code: ${response.status}`);
+            console.log(`Response: ${responseText}`);
+            
+            return {
+                status_code: response.status,
+                response: responseText
+            };
+            
+        } catch (error) {
+            console.error(`Error occurred: ${error.message}`);
+            return null;
+        }
+    }
 
-  // Execute the request
-  makePayURequest()
-      .then(result => {
-          if (result) {
-              console.log('Request completed successfully');
-          }
-      })
-      .catch(error => {
-          console.error('Request failed:', error);
-      });
-  ```
-  ```java
-  import java.io.*;
-  import java.net.*;
-  import java.nio.charset.StandardCharsets;
+    // Execute the request
+    makePayURequest()
+        .then(result => {
+            if (result) {
+                console.log('Request completed successfully');
+            }
+        })
+        .catch(error => {
+            console.error('Request failed:', error);
+        });
+    ```
+    ```java
+    import java.io.*;
+    import java.net.*;
+    import java.nio.charset.StandardCharsets;
 
-  public class PayURequest {
-      public static void main(String[] args) {
-          makePayURequest();
-      }
-      
-      public static void makePayURequest() {
-          try {
-              URL url = new URL("https://test.payu.in/_payment");
-              HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-              
-              connection.setRequestMethod("POST");
-              connection.setRequestProperty("accept", "application/json");
-              connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-              connection.setDoOutput(true);
-              
-              String formData = "key=" + URLEncoder.encode("JP***g", StandardCharsets.UTF_8) +
-                  "&txnid=" + URLEncoder.encode("PQI6MqpYrjEefU", StandardCharsets.UTF_8) +
-                  "&amount=" + URLEncoder.encode("10.00", StandardCharsets.UTF_8) +
-                  "&firstname=" + URLEncoder.encode("PayU User", StandardCharsets.UTF_8) +
-                  "&email=" + URLEncoder.encode("test@gmail.com", StandardCharsets.UTF_8) +
-                  "&phone=" + URLEncoder.encode("9876543210", StandardCharsets.UTF_8) +
-                  "&productinfo=" + URLEncoder.encode("iPhone", StandardCharsets.UTF_8) +
-                  "&surl=" + URLEncoder.encode("https://apiplayground-response.herokuapp.com/", StandardCharsets.UTF_8) +
-                  "&furl=" + URLEncoder.encode("https://apiplayground-response.herokuapp.com/", StandardCharsets.UTF_8) +
-                  "&hash=" + URLEncoder.encode("05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072", StandardCharsets.UTF_8);
-              
-              try (OutputStream os = connection.getOutputStream()) {
-                  byte[] input = formData.getBytes(StandardCharsets.UTF_8);
-                  os.write(input, 0, input.length);
-              }
-              
-              int statusCode = connection.getResponseCode();
-              System.out.println("Status Code: " + statusCode);
-              
-              InputStream responseStream = (statusCode >= 200 && statusCode < 300) 
-                  ? connection.getInputStream() 
-                  : connection.getErrorStream();
-              
-              try (BufferedReader br = new BufferedReader(new InputStreamReader(responseStream, StandardCharsets.UTF_8))) {
-                  StringBuilder response = new StringBuilder();
-                  String responseLine;
-                  while ((responseLine = br.readLine()) != null) {
-                      response.append(responseLine.trim());
-                  }
-                  System.out.println("Response: " + response.toString());
-              }
-              
-              connection.disconnect();
-              
-          } catch (IOException e) {
-              System.err.println("Error occurred: " + e.getMessage());
-              e.printStackTrace();
-          }
-      }
-  }
-  ```
-  ```php
-  <?php
-  function makePayURequest() {
-      try {
-          $url = "https://test.payu.in/_payment";
-          
-          $postData = array(
-              'key' => 'JP***g',
-              'txnid' => 'PQI6MqpYrjEefU',
-              'amount' => '10.00',
-              'firstname' => 'PayU User',
-              'email' => 'test@gmail.com',
-              'phone' => '9876543210',
-              'productinfo' => 'iPhone',
-              'surl' => 'https://apiplayground-response.herokuapp.com/',
-              'furl' => 'https://apiplayground-response.herokuapp.com/',
-              'hash' => '05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072'
-          );
-          
-          $ch = curl_init();
-          
-          curl_setopt_array($ch, array(
-              CURLOPT_URL => $url,
-              CURLOPT_POST => true,
-              CURLOPT_POSTFIELDS => http_build_query($postData),
-              CURLOPT_HTTPHEADER => array(
-                  'accept: application/json',
-                  'Content-Type: application/x-www-form-urlencoded'
-              ),
-              CURLOPT_RETURNTRANSFER => true,
-              CURLOPT_TIMEOUT => 30,
-              CURLOPT_SSL_VERIFYPEER => true,
-              CURLOPT_SSL_VERIFYHOST => 2
-          ));
-          
-          $response = curl_exec($ch);
-          $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-          $error = curl_error($ch);
-          
-          curl_close($ch);
-          
-          if ($error) {
-              echo "cURL Error: " . $error . "
-  ";
-              return array('status_code' => 0, 'response' => 'Error: ' . $error);
-          }
-          
-          echo "Status Code: " . $httpCode . "
-  ";
-          echo "Response: " . $response . "
-  ";
-          
-          return array(
-              'status_code' => $httpCode,
-              'response' => $response
-          );
-          
-      } catch (Exception $e) {
-          echo "Error occurred: " . $e->getMessage() . "
-  ";
-          return null;
-      }
-  }
+    public class PayURequest {
+        public static void main(String[] args) {
+            makePayURequest();
+        }
+        
+        public static void makePayURequest() {
+            try {
+                URL url = new URL("https://test.payu.in/_payment");
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                
+                connection.setRequestMethod("POST");
+                connection.setRequestProperty("accept", "application/json");
+                connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                connection.setDoOutput(true);
+                
+                String formData = "key=" + URLEncoder.encode("JP***g", StandardCharsets.UTF_8) +
+                    "&txnid=" + URLEncoder.encode("PQI6MqpYrjEefU", StandardCharsets.UTF_8) +
+                    "&amount=" + URLEncoder.encode("10.00", StandardCharsets.UTF_8) +
+                    "&firstname=" + URLEncoder.encode("PayU User", StandardCharsets.UTF_8) +
+                    "&email=" + URLEncoder.encode("test@gmail.com", StandardCharsets.UTF_8) +
+                    "&phone=" + URLEncoder.encode("9876543210", StandardCharsets.UTF_8) +
+                    "&productinfo=" + URLEncoder.encode("iPhone", StandardCharsets.UTF_8) +
+                    "&surl=" + URLEncoder.encode("https://apiplayground-response.herokuapp.com/", StandardCharsets.UTF_8) +
+                    "&furl=" + URLEncoder.encode("https://apiplayground-response.herokuapp.com/", StandardCharsets.UTF_8) +
+                    "&hash=" + URLEncoder.encode("05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072", StandardCharsets.UTF_8);
+                
+                try (OutputStream os = connection.getOutputStream()) {
+                    byte[] input = formData.getBytes(StandardCharsets.UTF_8);
+                    os.write(input, 0, input.length);
+                }
+                
+                int statusCode = connection.getResponseCode();
+                System.out.println("Status Code: " + statusCode);
+                
+                InputStream responseStream = (statusCode >= 200 && statusCode < 300) 
+                    ? connection.getInputStream() 
+                    : connection.getErrorStream();
+                
+                try (BufferedReader br = new BufferedReader(new InputStreamReader(responseStream, StandardCharsets.UTF_8))) {
+                    StringBuilder response = new StringBuilder();
+                    String responseLine;
+                    while ((responseLine = br.readLine()) != null) {
+                        response.append(responseLine.trim());
+                    }
+                    System.out.println("Response: " + response.toString());
+                }
+                
+                connection.disconnect();
+                
+            } catch (IOException e) {
+                System.err.println("Error occurred: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+    }
+    ```
+    ```php
+    <?php
+    function makePayURequest() {
+        try {
+            $url = "https://test.payu.in/_payment";
+            
+            $postData = array(
+                'key' => 'JP***g',
+                'txnid' => 'PQI6MqpYrjEefU',
+                'amount' => '10.00',
+                'firstname' => 'PayU User',
+                'email' => 'test@gmail.com',
+                'phone' => '9876543210',
+                'productinfo' => 'iPhone',
+                'surl' => 'https://apiplayground-response.herokuapp.com/',
+                'furl' => 'https://apiplayground-response.herokuapp.com/',
+                'hash' => '05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072'
+            );
+            
+            $ch = curl_init();
+            
+            curl_setopt_array($ch, array(
+                CURLOPT_URL => $url,
+                CURLOPT_POST => true,
+                CURLOPT_POSTFIELDS => http_build_query($postData),
+                CURLOPT_HTTPHEADER => array(
+                    'accept: application/json',
+                    'Content-Type: application/x-www-form-urlencoded'
+                ),
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_TIMEOUT => 30,
+                CURLOPT_SSL_VERIFYPEER => true,
+                CURLOPT_SSL_VERIFYHOST => 2
+            ));
+            
+            $response = curl_exec($ch);
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            $error = curl_error($ch);
+            
+            curl_close($ch);
+            
+            if ($error) {
+                echo "cURL Error: " . $error . "
+    ";
+                return array('status_code' => 0, 'response' => 'Error: ' . $error);
+            }
+            
+            echo "Status Code: " . $httpCode . "
+    ";
+            echo "Response: " . $response . "
+    ";
+            
+            return array(
+                'status_code' => $httpCode,
+                'response' => $response
+            );
+            
+        } catch (Exception $e) {
+            echo "Error occurred: " . $e->getMessage() . "
+    ";
+            return null;
+        }
+    }
 
-  // Execute the request
-  $result = makePayURequest();
-  ?>
-  ```
-  ```perl
-  #!/usr/bin/perl
-  use strict;
-  use warnings;
-  use LWP::UserAgent;
-  use HTTP::Request::Common qw(POST);
-  use URI::Escape;
+    // Execute the request
+    $result = makePayURequest();
+    ?>
+    ```
+    ```perl
+    #!/usr/bin/perl
+    use strict;
+    use warnings;
+    use LWP::UserAgent;
+    use HTTP::Request::Common qw(POST);
+    use URI::Escape;
 
-  sub make_payu_request {
-      my $ua = LWP::UserAgent->new;
-      $ua->timeout(30);
-      
-      my $url = "https://test.payu.in/_payment";
-      
-      my %form_data = (
-          'key' => 'JP***g',
-          'txnid' => 'PQI6MqpYrjEefU',
-          'amount' => '10.00',
-          'firstname' => 'PayU User',
-          'email' => 'test@gmail.com',
-          'phone' => '9876543210',
-          'productinfo' => 'iPhone',
-          'surl' => 'https://apiplayground-response.herokuapp.com/',
-          'furl' => 'https://apiplayground-response.herokuapp.com/',
-          'hash' => '05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072'
-      );
-      
-      my $request = POST $url, 
-          'accept' => 'application/json',
-          'Content-Type' => 'application/x-www-form-urlencoded',
-          Content => \%form_data;
-      
-      my $response = $ua->request($request);
-      
-      if ($response->is_success) {
-          print "Status Code: " . $response->code . "
-  ";
-          print "Response: " . $response->decoded_content . "
-  ";
-          
-          return {
-              'status_code' => $response->code,
-              'response' => $response->decoded_content
-          };
-      } else {
-          print "Error occurred: " . $response->status_line . "
-  ";
-          print "Status Code: " . $response->code . "
-  ";
-          print "Error Response: " . $response->decoded_content . "
-  " if $response->decoded_content;
-          return undef;
-      }
-  }
+    sub make_payu_request {
+        my $ua = LWP::UserAgent->new;
+        $ua->timeout(30);
+        
+        my $url = "https://test.payu.in/_payment";
+        
+        my %form_data = (
+            'key' => 'JP***g',
+            'txnid' => 'PQI6MqpYrjEefU',
+            'amount' => '10.00',
+            'firstname' => 'PayU User',
+            'email' => 'test@gmail.com',
+            'phone' => '9876543210',
+            'productinfo' => 'iPhone',
+            'surl' => 'https://apiplayground-response.herokuapp.com/',
+            'furl' => 'https://apiplayground-response.herokuapp.com/',
+            'hash' => '05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072'
+        );
+        
+        my $request = POST $url, 
+            'accept' => 'application/json',
+            'Content-Type' => 'application/x-www-form-urlencoded',
+            Content => \%form_data;
+        
+        my $response = $ua->request($request);
+        
+        if ($response->is_success) {
+            print "Status Code: " . $response->code . "
+    ";
+            print "Response: " . $response->decoded_content . "
+    ";
+            
+            return {
+                'status_code' => $response->code,
+                'response' => $response->decoded_content
+            };
+        } else {
+            print "Error occurred: " . $response->status_line . "
+    ";
+            print "Status Code: " . $response->code . "
+    ";
+            print "Error Response: " . $response->decoded_content . "
+    " if $response->decoded_content;
+            return undef;
+        }
+    }
 
-  # Execute the request
-  my $result = make_payu_request();
-  if ($result) {
-      print "Request completed successfully
-  ";
-  } else {
-      print "Request failed
-  ";
-  }
-  ```
-  ```csharp
-  using System;
-  using System.Collections.Generic;
-  using System.Net.Http;
-  using System.Threading.Tasks;
+    # Execute the request
+    my $result = make_payu_request();
+    if ($result) {
+        print "Request completed successfully
+    ";
+    } else {
+        print "Request failed
+    ";
+    }
+    ```
+    ```csharp
+    using System;
+    using System.Collections.Generic;
+    using System.Net.Http;
+    using System.Threading.Tasks;
 
-  class Program
-  {
-      static async Task Main(string[] args)
-      {
-          await MakePayURequest();
-      }
-      
-      static async Task MakePayURequest()
-      {
-          try
-          {
-              using (var client = new HttpClient())
-              {
-                  var url = "https://test.payu.in/_payment";
-                  
-                  client.DefaultRequestHeaders.Add("accept", "application/json");
-                  
-                  var formParams = new List<KeyValuePair<string, string>>
-                  {
-                      new KeyValuePair<string, string>("key", "JP***g"),
-                      new KeyValuePair<string, string>("txnid", "PQI6MqpYrjEefU"),
-                      new KeyValuePair<string, string>("amount", "10.00"),
-                      new KeyValuePair<string, string>("firstname", "PayU User"),
-                      new KeyValuePair<string, string>("email", "test@gmail.com"),
-                      new KeyValuePair<string, string>("phone", "9876543210"),
-                      new KeyValuePair<string, string>("productinfo", "iPhone"),
-                      new KeyValuePair<string, string>("surl", "https://apiplayground-response.herokuapp.com/"),
-                      new KeyValuePair<string, string>("furl", "https://apiplayground-response.herokuapp.com/"),
-                      new KeyValuePair<string, string>("hash", "05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072")
-                  };
-                  
-                  var formContent = new FormUrlEncodedContent(formParams);
-                  
-                  var response = await client.PostAsync(url, formContent);
-                  var responseContent = await response.Content.ReadAsStringAsync();
-                  
-                  Console.WriteLine($"Status Code: {(int)response.StatusCode}");
-                  Console.WriteLine($"Response: {responseContent}");
-              }
-          }
-          catch (HttpRequestException e)
-          {
-              Console.WriteLine($"Error occurred: {e.Message}");
-          }
-      }
-  }
-  ```
+    class Program
+    {
+        static async Task Main(string[] args)
+        {
+            await MakePayURequest();
+        }
+        
+        static async Task MakePayURequest()
+        {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    var url = "https://test.payu.in/_payment";
+                    
+                    client.DefaultRequestHeaders.Add("accept", "application/json");
+                    
+                    var formParams = new List<KeyValuePair<string, string>>
+                    {
+                        new KeyValuePair<string, string>("key", "JP***g"),
+                        new KeyValuePair<string, string>("txnid", "PQI6MqpYrjEefU"),
+                        new KeyValuePair<string, string>("amount", "10.00"),
+                        new KeyValuePair<string, string>("firstname", "PayU User"),
+                        new KeyValuePair<string, string>("email", "test@gmail.com"),
+                        new KeyValuePair<string, string>("phone", "9876543210"),
+                        new KeyValuePair<string, string>("productinfo", "iPhone"),
+                        new KeyValuePair<string, string>("surl", "https://apiplayground-response.herokuapp.com/"),
+                        new KeyValuePair<string, string>("furl", "https://apiplayground-response.herokuapp.com/"),
+                        new KeyValuePair<string, string>("hash", "05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072")
+                    };
+                    
+                    var formContent = new FormUrlEncodedContent(formParams);
+                    
+                    var response = await client.PostAsync(url, formContent);
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    
+                    Console.WriteLine($"Status Code: {(int)response.StatusCode}");
+                    Console.WriteLine($"Response: {responseContent}");
+                }
+            }
+            catch (HttpRequestException e)
+            {
+                Console.WriteLine($"Error occurred: {e.Message}");
+            }
+        }
+    }
+    ```
+  </Accordion>
 </Accordion>
-</Accordion>
+
 <Accordion title="Step 1.4: Response handling & hash verification" icon="fa-shield-check">
   **Response Handling:**
 
@@ -816,26 +813,25 @@ Follow the below steps to complete the integration:
 
   ### Success Scenarios
 
-Sample response unformatted:"
+  Sample response unformatted:"
 
-    ```plaintext NetBanking
-    mihpayid=403993715537565049&mode=NB&status=success&unmappedstatus=captured&key=PRiQvJ&txnid=756609e32e92add4b5f2&amount=10.00&discount=0.00&net_amount_debit=10&addedon=2026-05-29+18%3A49%3A30&productinfo=Product+Info&firstname=Payu-Admin&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test%40example.com&phone=1234567890&udf1=&udf2=&udf3=&udf4=&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&hash=79d14afc4a3998a627d8fb431b2ee648b16fd6e31252397109ad5f44d77f7630daaaeedf0bbd5b3e7a81342c96bc087beb43125c0619cac1e5408243fdc29a04&field1=&field2=&field3=&field4=&field5=&field6=&field7=&field8=&field9=Transaction+Completed+Successfully&payment_source=payu&PG_TYPE=NB-PG&bank_ref_num=ddb199f9-5f43-4441-8648-ce2bcb244568&bankcode=TESTPGNB&error=E000&error_Message=No+Error
-    ```
-    ```plaintext Credit Card
-    mihpayid=403993715537573401&mode=CC&status=success&unmappedstatus=captured&key=a4vGC2&txnid=TXN_NS_1780294871_5566&amount=1500.00&discount=0.00&net_amount_debit=1500&addedon=2026-06-01%2011%3A51%3A47&productinfo=Subscription&firstname=Sunit&lastname=Kumar&address1=FIRST%20FLOOR&address2=NEW%20ASHOK%20NAGAR&city=Delhi&state=Delhi&country=INDIA&zipcode=201303&email=sunit.kumar%40mail.com&phone=9876543210&udf1=Testing%20UDF%201&udf2=Testing%20UDF2&udf3=&udf4=&udf5=Sample_Invoice_11&udf6=&udf7=&udf8=&udf9=&udf10=&hash=6ee1e1f743089ce38c79473f19af24371fe80e6249968f1bcbc6d31935afa79c0325d649fa7610a642e694475b33d65011b51b5d7d2a6a46e2b38895e4c27a28&field1=888758893639&field2=599738&field3=1500.00&field4=&field5=00&field6=02&field7=AUTHPOSITIVE&field8=AUTHORIZED&field9=Transaction%20is%20Successful&payment_source=payu&PG_TYPE=CC-PG&bank_ref_num=920539478106419300&bankcode=CC&error=E000&error_Message=No%20Error&cardCategory=domestic&cardnum=XXXXXXXXXXXX2346&cardhash=This%20field%20is%20no%20longer%20supported%20in%20postback%20params.&splitInfo=%7B%22splitStatus%22%3A%22splitNotReceived%22%2C%22splitSegments%22%3A%5B%5D%7D
-    ```
-    ```plaintext UPI
-    mihpayid=403993715537577186&mode=UPI&status=success&key=ISgdHG&txnid=cb278c37e5982039ffa0&amount=10.00&addedon=2026-06-01+16%3A30%3A23&productinfo=Product+Info&firstname=CARDHOLDERXXXXXXXXNAME-Admin&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test%40example.com&"phone":"##########"&udf1=&udf2=&udf3=&udf4=&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&card_token=&card_no=&field0=&field1=_mobilenum_%40upi&field2=cb278c37e5982039ffa0&field3=&field4=Payu-Admin&field5=AXIuo5ge4DYgb1spEEp038EuZkdbcm229hR&field6=&field7=Transaction+completed+successfully&field8=generic&field9=Transaction+completed+successfully&payment_source=payu&cardToken=&authenticationMethod=&PG_TYPE=UPI-PG&error=E000&error_Message=No+Error&net_amount_debit=10&discount=0.00&offer_key=&offer_availed=&splitInfo=%7B%22splitStatus%22%3A%22splitNotReceived%22%2C%22splitSegments%22%3A%5B%5D%7D&unmappedstatus=captured&hash=0981fbaf891fdf6384f35b_mobilenum_a91ec205beeb259f65ec45974c1010039efb1d2e3d4a420c1b75121eb88ecbafbb4d9496071dda27f7ffe1ded0af34a1&bank_ref_no=cb278c37e5982039ffa0&bank_ref_num=cb278c37e5982039ffa0&bankcode=UPI-Intent&surl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response&curl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response&furl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response
-    ```
-    ```plaintext Wallet
-    mihpayid=403993715537573912&mode=CASH&status=success&unmappedstatus=captured&key=a4vGC2&txnid=TXN_NS_1780296990_7590&amount=15000.00&discount=0.00&net_amount_debit=15000&addedon=2026-06-01%2012%3A26%3A38&productinfo=DESKTOP&firstname=Sunit&lastname=Kumar&address1=FIRST%20FLOOR&address2=NEW%20ASHOK%20NAGAR&city=Delhi&state=Delhi&country=INDIA&zipcode=201303&email=sunit.kumar%40mail.com&phone=9876543210&udf1=Testing%20UDF%201&udf2=Testing%20UDF2&udf3=&udf4=&udf5=Sample_Invoice_11&udf6=&udf7=&udf8=&udf9=&udf10=&hash=db7052bf227001b9f02aa675b1a161e633eac2b5712f85c0d466d9b1023e739b0a57e8e61926f047c2efcb19279caf834951e3ff3c9cab99353043af1db2a71f&field1=&field2=&field3=&field4=&field5=&field6=&field7=&field8=&field9=Transaction%20Completed%20Successfully&payment_source=payu&PG_TYPE=CASH-PG&bank_ref_num=a92fe2c9-4fc8-4f73-8740-9b292fe4a634&bankcode=FREC&error=E000&error_Message=No%20Error&splitInfo=%7B%22splitStatus%22%3A%22splitNotReceived%22%2C%22splitSegments%22%3A%5B%5D%7D
-    ```
-    ```plaintext BNPL
-    mihpayid=403993715537577231&mode=BNPL&status=success&key=ISgdHG&txnid=6decc0fffa5c60c7cbce&amount=10.00&addedon=2026-06-01+16%3A34%3A20&productinfo=Product+Info&firstname=Payu-Admin&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test%40example.com&phone=1234567890&udf1=&udf2=&udf3=&udf4=&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&card_token=&card_no=&field0=&field1=7715995865&field2=EMI1072289140999791193&field3=Transaction+is+successful&field4=&field5=iMUvX5VOqXMzv5Nq&field6=TXN558633373&field7=PAYMENT_SUCCESSFUL&field8=SUCCESS&field9=Transaction+is+successful&payment_source=payu&cardToken=&authenticationMethod=&PG_TYPE=BNPL-PG&error=E000&error_Message=No+Error&net_amount_debit=10&discount=0.00&offer_key=&offer_availed=&splitInfo=%7B%22splitStatus%22%3A%22splitNotReceived%22%2C%22splitSegments%22%3A%5B%5D%7D&unmappedstatus=captured&hash=caa5b6398fe72ae9a07bc5e2d140fb2872db8f95bfe997de214f7f4cbc14e0933c153db986f029f76b69c12a37589d59ce9fe4c56d1bc713ac9851593563425e&bank_ref_no=TXN558633373&bank_ref_num=TXN558633373&bankcode=LAZYPAY&surl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response&curl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response&furl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response
-    ```
+  ```plaintext NetBanking
+  mihpayid=403993715537565049&mode=NB&status=success&unmappedstatus=captured&key=PRiQvJ&txnid=756609e32e92add4b5f2&amount=10.00&discount=0.00&net_amount_debit=10&addedon=2026-05-29+18%3A49%3A30&productinfo=Product+Info&firstname=Payu-Admin&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test%40example.com&phone=1234567890&udf1=&udf2=&udf3=&udf4=&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&hash=79d14afc4a3998a627d8fb431b2ee648b16fd6e31252397109ad5f44d77f7630daaaeedf0bbd5b3e7a81342c96bc087beb43125c0619cac1e5408243fdc29a04&field1=&field2=&field3=&field4=&field5=&field6=&field7=&field8=&field9=Transaction+Completed+Successfully&payment_source=payu&PG_TYPE=NB-PG&bank_ref_num=ddb199f9-5f43-4441-8648-ce2bcb244568&bankcode=TESTPGNB&error=E000&error_Message=No+Error
+  ```
+  ```plaintext Credit Card
+  mihpayid=403993715537573401&mode=CC&status=success&unmappedstatus=captured&key=a4vGC2&txnid=TXN_NS_1780294871_5566&amount=1500.00&discount=0.00&net_amount_debit=1500&addedon=2026-06-01%2011%3A51%3A47&productinfo=Subscription&firstname=Sunit&lastname=Kumar&address1=FIRST%20FLOOR&address2=NEW%20ASHOK%20NAGAR&city=Delhi&state=Delhi&country=INDIA&zipcode=201303&email=sunit.kumar%40mail.com&phone=9876543210&udf1=Testing%20UDF%201&udf2=Testing%20UDF2&udf3=&udf4=&udf5=Sample_Invoice_11&udf6=&udf7=&udf8=&udf9=&udf10=&hash=6ee1e1f743089ce38c79473f19af24371fe80e6249968f1bcbc6d31935afa79c0325d649fa7610a642e694475b33d65011b51b5d7d2a6a46e2b38895e4c27a28&field1=888758893639&field2=599738&field3=1500.00&field4=&field5=00&field6=02&field7=AUTHPOSITIVE&field8=AUTHORIZED&field9=Transaction%20is%20Successful&payment_source=payu&PG_TYPE=CC-PG&bank_ref_num=920539478106419300&bankcode=CC&error=E000&error_Message=No%20Error&cardCategory=domestic&cardnum=XXXXXXXXXXXX2346&cardhash=This%20field%20is%20no%20longer%20supported%20in%20postback%20params.&splitInfo=%7B%22splitStatus%22%3A%22splitNotReceived%22%2C%22splitSegments%22%3A%5B%5D%7D
+  ```
+  ```plaintext UPI
+  mihpayid=403993715537577186&mode=UPI&status=success&key=ISgdHG&txnid=cb278c37e5982039ffa0&amount=10.00&addedon=2026-06-01+16%3A30%3A23&productinfo=Product+Info&firstname=CARDHOLDERXXXXXXXXNAME-Admin&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test%40example.com&"phone":"##########"&udf1=&udf2=&udf3=&udf4=&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&card_token=&card_no=&field0=&field1=_mobilenum_%40upi&field2=cb278c37e5982039ffa0&field3=&field4=Payu-Admin&field5=AXIuo5ge4DYgb1spEEp038EuZkdbcm229hR&field6=&field7=Transaction+completed+successfully&field8=generic&field9=Transaction+completed+successfully&payment_source=payu&cardToken=&authenticationMethod=&PG_TYPE=UPI-PG&error=E000&error_Message=No+Error&net_amount_debit=10&discount=0.00&offer_key=&offer_availed=&splitInfo=%7B%22splitStatus%22%3A%22splitNotReceived%22%2C%22splitSegments%22%3A%5B%5D%7D&unmappedstatus=captured&hash=0981fbaf891fdf6384f35b_mobilenum_a91ec205beeb259f65ec45974c1010039efb1d2e3d4a420c1b75121eb88ecbafbb4d9496071dda27f7ffe1ded0af34a1&bank_ref_no=cb278c37e5982039ffa0&bank_ref_num=cb278c37e5982039ffa0&bankcode=UPI-Intent&surl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response&curl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response&furl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response
+  ```
+  ```plaintext Wallet
+  mihpayid=403993715537573912&mode=CASH&status=success&unmappedstatus=captured&key=a4vGC2&txnid=TXN_NS_1780296990_7590&amount=15000.00&discount=0.00&net_amount_debit=15000&addedon=2026-06-01%2012%3A26%3A38&productinfo=DESKTOP&firstname=Sunit&lastname=Kumar&address1=FIRST%20FLOOR&address2=NEW%20ASHOK%20NAGAR&city=Delhi&state=Delhi&country=INDIA&zipcode=201303&email=sunit.kumar%40mail.com&phone=9876543210&udf1=Testing%20UDF%201&udf2=Testing%20UDF2&udf3=&udf4=&udf5=Sample_Invoice_11&udf6=&udf7=&udf8=&udf9=&udf10=&hash=db7052bf227001b9f02aa675b1a161e633eac2b5712f85c0d466d9b1023e739b0a57e8e61926f047c2efcb19279caf834951e3ff3c9cab99353043af1db2a71f&field1=&field2=&field3=&field4=&field5=&field6=&field7=&field8=&field9=Transaction%20Completed%20Successfully&payment_source=payu&PG_TYPE=CASH-PG&bank_ref_num=a92fe2c9-4fc8-4f73-8740-9b292fe4a634&bankcode=FREC&error=E000&error_Message=No%20Error&splitInfo=%7B%22splitStatus%22%3A%22splitNotReceived%22%2C%22splitSegments%22%3A%5B%5D%7D
+  ```
+  ```plaintext BNPL
+  mihpayid=403993715537577231&mode=BNPL&status=success&key=ISgdHG&txnid=6decc0fffa5c60c7cbce&amount=10.00&addedon=2026-06-01+16%3A34%3A20&productinfo=Product+Info&firstname=Payu-Admin&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test%40example.com&phone=1234567890&udf1=&udf2=&udf3=&udf4=&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&card_token=&card_no=&field0=&field1=7715995865&field2=EMI1072289140999791193&field3=Transaction+is+successful&field4=&field5=iMUvX5VOqXMzv5Nq&field6=TXN558633373&field7=PAYMENT_SUCCESSFUL&field8=SUCCESS&field9=Transaction+is+successful&payment_source=payu&cardToken=&authenticationMethod=&PG_TYPE=BNPL-PG&error=E000&error_Message=No+Error&net_amount_debit=10&discount=0.00&offer_key=&offer_availed=&splitInfo=%7B%22splitStatus%22%3A%22splitNotReceived%22%2C%22splitSegments%22%3A%5B%5D%7D&unmappedstatus=captured&hash=caa5b6398fe72ae9a07bc5e2d140fb2872db8f95bfe997de214f7f4cbc14e0933c153db986f029f76b69c12a37589d59ce9fe4c56d1bc713ac9851593563425e&bank_ref_no=TXN558633373&bank_ref_num=TXN558633373&bankcode=LAZYPAY&surl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response&curl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response&furl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response
+  ```
 
   <Accordion title="Sample formatted JSON surl/furl payload" icon="fa-reply">
-
     ```plaintext
     mihpayid=403993715537565049
     mode=NB
@@ -949,8 +945,8 @@ Sample response unformatted:"
 </Accordion>
 
 <Accordion title="Step 1.6: Verify the payment" icon="fa-magnifying-glass">
-
   <Verify_Payment_Tabs />
+
 
 </Accordion>
 
