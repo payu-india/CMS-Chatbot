@@ -17,7 +17,9 @@ This section includes the Testing and Go Live checklist for Partner Integration 
 
 ## Postman collection
 
-Import the collection for onboarding APIs (link from PayU Postman workspace: Partners - Merchant Onboarding APIs).
+Import the collection for onboarding APIs:
+
+<br />
 
 ## Go-live checklist
 
