@@ -92,7 +92,7 @@ PayU BBPS Consumer Platform integration is ideal if you:
 
 ## How It Works
 
-```swimlane
+```mermaid
 %%{init: {
   "theme": "base",
   "sequence": {
