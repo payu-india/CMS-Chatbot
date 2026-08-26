@@ -17,16 +17,16 @@ The **Fetch CKYC Data** API fetches CKYC identity data using PAN without OTP (St
 
 **Environment**
 
-|                        | URL                                                                    |
-| :--------------------- | :--------------------------------------------------------------------- |
-| Test Environment       | `https://test-partner.payu.in/api/v3/merchants/kyc_document/ckyc_data` |
-| Production Environment | `https://partner.payu.in/api/v3/merchants/kyc_document/ckyc_data`      |
+|                        | URL                                                                   |
+| :--------------------- | :-------------------------------------------------------------------- |
+| Test Environment       | `https://uat-partner.payu.in/api/v3/merchants/kyc_document/ckyc_data` |
+| Production Environment | `https://partner.payu.in/api/v3/merchants/kyc_document/ckyc_data`     |
 
 ## Sample Request
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-  curl --location 'https://test-partner.payu.in/api/v3/merchants/kyc_document/ckyc_data' \
+  curl --location 'https://uat-partner.payu.in/api/v3/merchants/kyc_document/ckyc_data' \
   --header 'Authorization: Bearer {{access_token}}' \
   --header 'Content-Type: application/json' \
   --data '{
