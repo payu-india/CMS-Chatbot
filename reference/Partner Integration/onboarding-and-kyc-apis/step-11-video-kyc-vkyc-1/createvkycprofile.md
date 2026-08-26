@@ -18,16 +18,16 @@ The **Create VKYC Profile** API creates a Video KYC profile and returns a VCIP c
 
 **Environment**
 
-|                        | URL                                                                              |
-| :--------------------- | :------------------------------------------------------------------------------- |
-| Test Environment       | `https://test-partner.payu.in/api/v3/merchants/kyc_document/create_vkyc_profile` |
-| Production Environment | `https://partner.payu.in/api/v3/merchants/kyc_document/create_vkyc_profile`      |
+|                        | URL                                                                             |
+| :--------------------- | :------------------------------------------------------------------------------ |
+| Test Environment       | `https://uat-partner.payu.in/api/v3/merchants/kyc_document/create_vkyc_profile` |
+| Production Environment | `https://partner.payu.in/api/v3/merchants/kyc_document/create_vkyc_profile`     |
 
 ## Sample request
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-  curl --location 'https://test-partner.payu.in/api/v3/merchants/kyc_document/create_vkyc_profile' \
+  curl --location 'https://uat-partner.payu.in/api/v3/merchants/kyc_document/create_vkyc_profile' \
   --header 'Authorization: Bearer {{access_token}}' \
   --header 'Content-Type: application/json' \
   --data '{
