@@ -11,8 +11,8 @@ Get a merchant onboarded with a small set of API calls: create merchant, update 
 
 ```mermaid
 flowchart TD
-    A[1. Create Merchant] --> B[2. Update Business Details]
-    B --> C[3. Update Website/App Details]
+    A[1. Create Merchant] --> B[2. Update Website/App Details]
+    B --> C[3. Update Business Details]
     C --> D[4. Submit Signing Authority]
     D --> E[5. Upload KYC Documents]
     E --> F[KYC Verification]
