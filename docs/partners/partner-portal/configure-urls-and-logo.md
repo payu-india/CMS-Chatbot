@@ -3,6 +3,9 @@ title: Configure URLs and Logo
 excerpt: ''
 deprecated: false
 hidden: true
+link:
+  url: >-
+    https://docs.payu.in/docs/onboard-merchants-manually#step-2-configure-urls-and-logo
 metadata:
   title: ''
   description: ''
