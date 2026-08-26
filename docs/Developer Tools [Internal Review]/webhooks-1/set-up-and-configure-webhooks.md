@@ -46,8 +46,6 @@ Your webhook endpoint must meet these requirements:
   </Tabs>
 </Accordion>
 
-{/* NEW CONTENT — not sourced from existing docs, needs SME review */}
-
 <Accordion title="Response Time and Acknowledgment" icon="far fa-down-left-and-up-right-to-center">
   PayU expects your endpoint to:
 
@@ -62,8 +60,6 @@ Your webhook endpoint must meet these requirements:
   </Callout>
 </Accordion>
 
-{/* Sourced from docs/payouts/payouts-integration/payouts-webhooks.md */}
-
 <Accordion title="Retry Behavior on Failure" icon="far fa-file-dashed-line">
   If PayU doesn't receive a 200 response within the timeout window, the webhook delivery is retried:
 
@@ -76,8 +72,6 @@ Your webhook endpoint must meet these requirements:
     On failure, the webhook is re-tried maximum 2 more times with the same protocol.
   </Callout>
 </Accordion>
-
-###
 
 <Accordion title="IP Addresses to Whitelist" icon="far fa-laptop-code">
   All webhook requests originate from PayU's IP addresses. If your server is behind a firewall, whitelist these IPs:
@@ -102,11 +96,9 @@ Your webhook endpoint must meet these requirements:
 
 ***
 
-## Configure webhooks via Dashboard
+## Configure Webhooks via Dashboard
 
-{/* Sourced from docs/getting started/payu-dashboard/manage-webhooks-using-dashboard/create-a-new-webhook.md */}
-
-To create a new webhook:
+To setup a new webhook:
 
 1. Log in to the [PayU dashboard](https://onboarding.payu.in/app/account/signin) and click **Developers** from the left menu.
 
@@ -135,15 +127,13 @@ The **Create Webhook** pop-up menu is displayed.
 <Image src="https://files.readme.io/296459b395d36d191679019fc9116ce3ceaadb588da7bb86e3cb7be1c4f501fd-Screenshot_2026-03-02_at_11.20.54_AM.png" alt="PayU Dashboard webhooks - Click Create to create a webhook" align="center" />
 
 
-{/* END */}
-
-{/* NEW CONTENT — not sourced from existing docs, needs SME review */}
-
 After creating the webhook, PayU will start sending events to your registered URL(s) whenever the selected event types occur.
 
-> **Multiple URLs**: If you register multiple webhook URLs for the same event type, PayU sends the event to **all** registered URLs. This is useful for redundancy or sending events to multiple systems.
+<Callout icon="📘" theme="info">
+  ### **Multiple URLs:**
 
-{/* END NEW CONTENT */}
+  If you register multiple webhook URLs for the same event type, PayU sends the event to **all** registered URLs. This is useful for redundancy or sending events to multiple systems.
+</Callout>
 
 ***
 
