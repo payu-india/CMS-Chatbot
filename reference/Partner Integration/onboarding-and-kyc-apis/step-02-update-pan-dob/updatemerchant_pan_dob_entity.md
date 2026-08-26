@@ -28,7 +28,7 @@ The **Update Merchant Details** such as PAN + DOB using this API so that the mer
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-    curl --location --request PUT 'https://test-partner.payu.in/api/v1/merchants/{{uuid}}/update' \
+    curl --location --request PUT 'https://uat-partner.payu.in/api/v1/merchants/{{uuid}}/update' \
     --header 'Authorization: Bearer {{access_token}}' \
     --form 'merchant[pancard_number]="ABCDE1234F"' \
     --form 'merchant[pancard_name]="MERCHANT LEGAL NAME"' \
