@@ -4,12 +4,6 @@ api:
   operationId: CreateMerchant
 hidden: false
 ---
----
-api:
-  file: payu_partner_api_openapi_3.1_enhanced_v1.yaml
-  operationId: CreateMerchant
-hidden: false
----
 The **CreateMerchant** API creates a new merchant shell account on PayU (Step 01 of 16).
 
 <Callout icon="📘" theme="info">
@@ -24,10 +18,10 @@ The **CreateMerchant** API creates a new merchant shell account on PayU (Step 01
 
 **Environment**
 
-|                        | URL                                             |
-| :--------------------- | :---------------------------------------------- |
-| Test Environment       | `https://test-partner.payu.in/api/v3/merchants` |
-| Production Environment | `https://partner.payu.in/api/v3/merchants`      |
+|                        | URL                                            |
+| :--------------------- | :--------------------------------------------- |
+| Test Environment       | `https://uat-partner.payu.in/api/v3/merchants` |
+| Production Environment | `https://partner.payu.in/api/v3/merchants`     |
 
 <Callout icon="📘" theme="info">
   **Note:** `merchant[product]=PayUbiz` is required. Omitting it can cause a backend error in the test environment. Contact your **PayU Key Account Manager (KAM)** if credentials or product enablement are unclear.
@@ -37,7 +31,7 @@ The **CreateMerchant** API creates a new merchant shell account on PayU (Step 01
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-  curl --location 'https://test-partner.payu.in/api/v3/merchants' \
+  curl --location 'https://uat-partner.payu.in/api/v3/merchants' \
   --header 'Authorization: Bearer {{access_token}}' \
   --form 'merchant[display_name]="Acme Stores"' \
   --form 'merchant[email]="merchant@example.com"' \
