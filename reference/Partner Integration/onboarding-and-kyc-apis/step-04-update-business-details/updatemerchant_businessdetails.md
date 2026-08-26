@@ -17,16 +17,16 @@ The **Update Business Details** API adds business category, sub-category, expect
 
 **Environment**
 
-|                        | URL                                                           |
-| :--------------------- | :------------------------------------------------------------ |
-| Test Environment       | `https://test-partner.payu.in/api/v1/merchants/{uuid}/update` |
-| Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/update`      |
+|                        | URL                                                          |
+| :--------------------- | :----------------------------------------------------------- |
+| Test Environment       | `https://uat-partner.payu.in/api/v1/merchants/{uuid}/update` |
+| Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/update`     |
 
 ## Sample Request
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-    curl --location --request PUT 'https://test-partner.payu.in/api/v1/merchants/{{uuid}}/update' \
+    curl --location --request PUT 'https://uat-partner.payu.in/api/v1/merchants/{{uuid}}/update' \
     --header 'Authorization: Bearer {{access_token}}' \
     --form 'merchant[business_category]="Arts, Gifts & Stationery"' \
     --form 'merchant[business_sub_category]="Art Dealers and Galleries"' \
