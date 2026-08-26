@@ -452,7 +452,7 @@ Follow the below steps to complete the integration:
   </Accordion>
 </Accordion>
 
-### Post request in other language bindings
+<Accordion title="Post request in other language bindings" icon="fa-code">
   Use the sample request according the language binding you integrate:
 
   ```curl
