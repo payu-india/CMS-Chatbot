@@ -949,7 +949,9 @@ Sample response unformatted:"
 </Accordion>
 
 <Accordion title="Step 1.6: Verify the payment" icon="fa-magnifying-glass">
+
   <Verify_Payment_Tabs />
+
 </Accordion>
 
 <br />
