@@ -5,13 +5,15 @@ hidden: true
 metadata:
   robots: index
 ---
+This section includes the Testing and Go Live checklist for Partner Integration onboarding and collect payment after onboarding.
+
 ## Test environment
 
 | Resource                       | URL                                        |
 | ------------------------------ | ------------------------------------------ |
 | Authentication (Get Token API) | `https://uat-accounts.payu.in/oauth/token` |
 | Onboarding APIs                | `https://uat-partner.payu.in`              |
-| Collect Payment API            | `https://test.payu.in/_payment`            |
+| Collect Payment                | `https://test.payu.in`                     |
 
 ## Postman collection
 
