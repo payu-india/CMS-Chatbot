@@ -19,10 +19,10 @@ The **Send CKYC OTP** API sends an OTP to the merchant mobile for CKYC verificat
 
 **Environment**
 
-|                        | URL                                                                        |
-| :--------------------- | :------------------------------------------------------------------------- |
-| Test Environment       | `https://test-partner.payu.in/api/v3/merchants/kyc_document/send_ckyc_otp` |
-| Production Environment | `https://partner.payu.in/api/v3/merchants/kyc_document/send_ckyc_otp`      |
+|                        | URL                                                                       |
+| :--------------------- | :------------------------------------------------------------------------ |
+| Test Environment       | `https://uat-partner.payu.in/api/v3/merchants/kyc_document/send_ckyc_otp` |
+| Production Environment | `https://partner.payu.in/api/v3/merchants/kyc_document/send_ckyc_otp`     |
 
 ## Sample Request
 
