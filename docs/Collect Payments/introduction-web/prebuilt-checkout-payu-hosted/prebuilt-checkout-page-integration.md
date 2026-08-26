@@ -82,7 +82,7 @@ A simple server-generated redirect that sends customers from your site/app to th
 </Callout>
 
 <Callout icon="📘" theme="success">
-  ### ## Postman Collection
+## Postman Collection
 
   Accelerate your integration workflow with our Postman collection for PayU Hosted Checkout. Click&#x20;**&#x20;Postman Collection&#x202F;**&#x20;below to download and get started.
 
@@ -990,7 +990,7 @@ Follow the below steps to complete the integration:
 </Accordion>
 
 <Accordion title="Step 1.6: Verify the payment" icon="fa-magnifying-glass">
-  <Verify_Payment_Tabs />
+    <Verify_Payment_Tabs />
 </Accordion>
 
 <br />
