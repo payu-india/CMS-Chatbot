@@ -1,7 +1,7 @@
 ---
 title: Quick Start Partner API Integration
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
