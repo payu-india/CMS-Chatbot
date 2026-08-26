@@ -7,6 +7,8 @@ excerpt: >-
   services offered by PayU.
 deprecated: false
 hidden: true
+link:
+  url: https://docs.payu.in/docs/onboard-merchants-manually#referral-onboarding
 metadata:
   title: Referral Onboarding using Partner Portal
   description: >-
