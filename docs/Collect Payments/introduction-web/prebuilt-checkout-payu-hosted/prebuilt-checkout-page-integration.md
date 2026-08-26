@@ -5,29 +5,6 @@ hidden: false
 metadata:
   robots: index
 ---
----
-title: Web Integration - PayU Hosted
-deprecated: false
-hidden: false
-metadata:
-  description: >-
-    PayU Hosted Checkout web integration: server redirect, SHA-512 hash, payment params, surl/furl, test transaction, and production go-live checklist.
-    - website payment integration payu hosted checkout india
-  keywords:
-    - payu hosted checkout web integration steps india
-    - payment gateway hosted checkout page integration payu
-    - integrate payu payment page website redirect checkout
-    - payu prebuilt checkout web integration hash surl furl
-    - server side redirect payu hosted payment page integration
-    - payment gateway india hosted checkout api integration payu
-    - payu web checkout integration test sandbox go live
-    - merchant website payu hosted checkout integration guide
-    - payu payment page web integration sha512 hash setup
-    - hosted payment gateway checkout integration steps payu
-    - payu collect payments hosted checkout web developer guide
-    - website payment integration payu hosted checkout india
-  robots: index
----
 ## What you're building
 
 A simple server-generated redirect that sends customers from your site/app to the PayU-hosted payment page, then returns them to your success/failure URLs. You pass payment details & customer fields + a server-generated <Glossary>SHA</Glossary>-512 hash for integrity; PayU handles the payment UI and authentication.
@@ -35,22 +12,24 @@ A simple server-generated redirect that sends customers from your site/app to th
 <PayU_Labs />
 
 <Callout icon="❗️" theme="error">
-  **Important UPI Integration Changes as per NPCI Mandate on UPI Collect Disablement**: If you are using PayU Hosted Checkout within a WebView inside your Android or iOS app, you must handle deeplink URL handling in your app. For implementation details, refer to [WebView for Mobile Apps](doc:webview-for-mobile-apps).
+  ### **Important UPI Integration Changes as per NPCI Mandate on UPI Collect Disablement**:&#x20;
+
+  If you are using PayU Hosted Checkout within a WebView inside your Android or iOS app, you must handle deeplink URL handling in your app. For implementation details, refer to [WebView for Mobile Apps](doc:webview-for-mobile-apps).
 </Callout>
 
 **The PayU Hosted Checkout integration involves the following steps:**
 
-<Cards columns={3}>
+<Cards columns="3">
   <Card title="1. Start Integration" href="#step-1--start-integration">
     Integrate pre-built checkout solution
 
-    <br />
+
   </Card>
 
   <Card title="2. Test Integration" href="#step-2-test-integration">
     Test the integration by making a test transaction
 
-    <br />
+
   </Card>
 
   <Card title="3. Go live Checklist" href="#step-3-going-live-your-final-checklist">
@@ -98,13 +77,12 @@ A simple server-generated redirect that sends customers from your site/app to th
 `}</HTMLBlock>
 
 <Callout icon="📘" theme="info">
-  **Pre-requisite**
+  ### **Prerequisites:**
 
-  * Create an <Anchor label="account with PayU" target="_blank" href="https://onboarding.payu.in/app/account/signup">account with PayU</Anchor>
-  * Get your key and salt for test and production environment. For more information, refer to [Access Merchant Key and Salt](doc:generate-merchant-key-and-salt-copy).
-  * Keep https success & failure URLs (surl, furl) ready,  reachable from the public internet.
-  * Ability to generate
-    <Glossary>SHA</Glossary>-512 on the server (not recommended to do it in browser).
+  - Create an <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signup">account with PayU</Anchor>
+  - Get your key and salt for test and production environment. For more information, refer to [Access Merchant Key and Salt](doc:generate-merchant-key-and-salt-copy).
+  - Keep https success & failure URLs (surl, furl) ready,  reachable from the public internet.
+  - Ability to generate <Glossary>SHA</Glossary>-512 on the server (not recommended to do it in browser).
 </Callout>
 
 ## Step 1:  Start Integration
@@ -112,7 +90,7 @@ A simple server-generated redirect that sends customers from your site/app to th
 Follow the below steps to complete the integration:
 
 <Callout icon="📘" theme="info">
-  **Reference**: For **Try-It** experience on the API Reference with the sample code in 16 language bindings, refer to <Anchor label="Collect Payment API - PayU Hosted Checkout" target="_blank" href="https://docs.payu.in/reference/_payment_payu_hosted_checkout">Collect Payment API - PayU Hosted Checkout</Anchor>.
+  **Reference**: For **Try-It** experience on the API Reference with the sample code in 16 language bindings, refer to <Anchor target="_blank" href="https://docs.payu.in/reference/_payment_payu_hosted_checkout">Collect Payment API - PayU Hosted Checkout</Anchor>.
 </Callout>
 
 <PaymentAPIEnvironment />
@@ -425,13 +403,12 @@ Follow the below steps to complete the integration:
 </Accordion>
 
 <Accordion title="Step 1.2: Generate Hash" icon="fa-key">
-  Concatenate fields in this exact sequence, then
-  <Glossary>SHA</Glossary>-512:
+  Concatenate fields in this exact sequence, then <Glossary>SHA</Glossary>-512:
 
   <HashingRequestParameters />
 
-  * Use empty strings for missing udf\*.
-  * Compute on your server and include the lowercase hex digest as hash.
+  - Use empty strings for missing udf\*.
+  - Compute on your server and include the lowercase hex digest as hash.
 
   For more information, refer to  <a href="generate-hash-payu-hosted" target="_blank"> Generate Hash</a>.
 
@@ -838,130 +815,143 @@ Follow the below steps to complete the integration:
 
   After the customer completes or abandons the payment, PayU POSTs back to your return URL with URL-encoded fields (form post). This payload includes the transaction status, txnid, mihpayid, and a hash you must verify (reverse hashing) before trusting the result.
 
-### Success Scenarios
-<Accordion title="Net Banking" icon="fa-reply">
-  **Response Handling:**
-Sample response unformatted:
-```plaintext
-mihpayid=403993715537565049&mode=NB&status=success&unmappedstatus=captured&key=PRiQvJ&txnid=756609e32e92add4b5f2&amount=10.00&discount=0.00&net_amount_debit=10&addedon=2026-05-29+18%3A49%3A30&productinfo=Product+Info&firstname=Payu-Admin&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test%40example.com&phone=1234567890&udf1=&udf2=&udf3=&udf4=&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&hash=79d14afc4a3998a627d8fb431b2ee648b16fd6e31252397109ad5f44d77f7630daaaeedf0bbd5b3e7a81342c96bc087beb43125c0619cac1e5408243fdc29a04&field1=&field2=&field3=&field4=&field5=&field6=&field7=&field8=&field9=Transaction+Completed+Successfully&payment_source=payu&PG_TYPE=NB-PG&bank_ref_num=ddb199f9-5f43-4441-8648-ce2bcb244568&bankcode=TESTPGNB&error=E000&error_Message=No+Error
-```
+  ### Success Scenarios
 
-  Sample formatted JSON surl/furl payload:
+  <Accordion title="Net Banking" icon="fa-reply">
+    **Response Handling:**
+    Sample response unformatted:
 
-  ```plaintext
-mihpayid=403993715537565049
-mode=NB
-status=success
-unmappedstatus=captured
-key=PRiQvJ
-txnid=756609e32e92add4b5f2
-amount=10.00
-discount=0.00
-net_amount_debit=10
-addedon=2026-05-29 18:49:30
-productinfo=Product Info
-firstname=Payu-Admin
-lastname=
-address1=
-address2=
-city=
-state=
-country=
-zipcode=
-email=test@example.com
-phone=1234567890
-udf1=
-udf2=
-udf3=
-udf4=
-udf5=
-udf6=
-udf7=
-udf8=
-udf9=
-udf10=
-hash=79d14afc4a3998a627d8fb431b2ee648b16fd6e31252397109ad5f44d77f7630daaaeedf0bbd5b3e7a81342c96bc087beb43125c0619cac1e5408243fdc29a04
-field1=
-field2=
-field3=
-field4=
-field5=
-field6=
-field7=
-field8=
-field9=Transaction Completed Successfully
-payment_source=payu
-PG_TYPE=NB-PG
-bank_ref_num=ddb199f9-5f43-4441-8648-ce2bcb244568
-bankcode=TESTPGNB
-error=E000
-error_Message=No Error
-  ```
-</Accordion>
+    ```plaintext
+    mihpayid=403993715537565049&mode=NB&status=success&unmappedstatus=captured&key=PRiQvJ&txnid=756609e32e92add4b5f2&amount=10.00&discount=0.00&net_amount_debit=10&addedon=2026-05-29+18%3A49%3A30&productinfo=Product+Info&firstname=Payu-Admin&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test%40example.com&phone=1234567890&udf1=&udf2=&udf3=&udf4=&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&hash=79d14afc4a3998a627d8fb431b2ee648b16fd6e31252397109ad5f44d77f7630daaaeedf0bbd5b3e7a81342c96bc087beb43125c0619cac1e5408243fdc29a04&field1=&field2=&field3=&field4=&field5=&field6=&field7=&field8=&field9=Transaction+Completed+Successfully&payment_source=payu&PG_TYPE=NB-PG&bank_ref_num=ddb199f9-5f43-4441-8648-ce2bcb244568&bankcode=TESTPGNB&error=E000&error_Message=No+Error
+    ```
 
-<Accordion title="Credit Card" icon="fa-card">
-```plaintext
-mihpayid=403993715537573401&mode=CC&status=success&unmappedstatus=captured&key=a4vGC2&txnid=TXN_NS_1780294871_5566&amount=1500.00&discount=0.00&net_amount_debit=1500&addedon=2026-06-01%2011%3A51%3A47&productinfo=Subscription&firstname=Sunit&lastname=Kumar&address1=FIRST%20FLOOR&address2=NEW%20ASHOK%20NAGAR&city=Delhi&state=Delhi&country=INDIA&zipcode=201303&email=sunit.kumar%40mail.com&phone=9876543210&udf1=Testing%20UDF%201&udf2=Testing%20UDF2&udf3=&udf4=&udf5=Sample_Invoice_11&udf6=&udf7=&udf8=&udf9=&udf10=&hash=6ee1e1f743089ce38c79473f19af24371fe80e6249968f1bcbc6d31935afa79c0325d649fa7610a642e694475b33d65011b51b5d7d2a6a46e2b38895e4c27a28&field1=888758893639&field2=599738&field3=1500.00&field4=&field5=00&field6=02&field7=AUTHPOSITIVE&field8=AUTHORIZED&field9=Transaction%20is%20Successful&payment_source=payu&PG_TYPE=CC-PG&bank_ref_num=920539478106419300&bankcode=CC&error=E000&error_Message=No%20Error&cardCategory=domestic&cardnum=XXXXXXXXXXXX2346&cardhash=This%20field%20is%20no%20longer%20supported%20in%20postback%20params.&splitInfo=%7B%22splitStatus%22%3A%22splitNotReceived%22%2C%22splitSegments%22%3A%5B%5D%7D
-```
-</Accordion>
-<Accordion title="UPI" icon="fa-reply">
-```plaintext
-mihpayid=403993715537577186&mode=UPI&status=success&key=ISgdHG&txnid=cb278c37e5982039ffa0&amount=10.00&addedon=2026-06-01+16%3A30%3A23&productinfo=Product+Info&firstname=CARDHOLDERXXXXXXXXNAME-Admin&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test%40example.com&"phone":"##########"&udf1=&udf2=&udf3=&udf4=&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&card_token=&card_no=&field0=&field1=_mobilenum_%40upi&field2=cb278c37e5982039ffa0&field3=&field4=Payu-Admin&field5=AXIuo5ge4DYgb1spEEp038EuZkdbcm229hR&field6=&field7=Transaction+completed+successfully&field8=generic&field9=Transaction+completed+successfully&payment_source=payu&cardToken=&authenticationMethod=&PG_TYPE=UPI-PG&error=E000&error_Message=No+Error&net_amount_debit=10&discount=0.00&offer_key=&offer_availed=&splitInfo=%7B%22splitStatus%22%3A%22splitNotReceived%22%2C%22splitSegments%22%3A%5B%5D%7D&unmappedstatus=captured&hash=0981fbaf891fdf6384f35b_mobilenum_a91ec205beeb259f65ec45974c1010039efb1d2e3d4a420c1b75121eb88ecbafbb4d9496071dda27f7ffe1ded0af34a1&bank_ref_no=cb278c37e5982039ffa0&bank_ref_num=cb278c37e5982039ffa0&bankcode=UPI-Intent&surl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response&curl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response&furl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response
-```
-</Accordion>
-<Accordion title="Wallet" icon="fa-reply">
-```plaintext
-mihpayid=403993715537573912&mode=CASH&status=success&unmappedstatus=captured&key=a4vGC2&txnid=TXN_NS_1780296990_7590&amount=15000.00&discount=0.00&net_amount_debit=15000&addedon=2026-06-01%2012%3A26%3A38&productinfo=DESKTOP&firstname=Sunit&lastname=Kumar&address1=FIRST%20FLOOR&address2=NEW%20ASHOK%20NAGAR&city=Delhi&state=Delhi&country=INDIA&zipcode=201303&email=sunit.kumar%40mail.com&phone=9876543210&udf1=Testing%20UDF%201&udf2=Testing%20UDF2&udf3=&udf4=&udf5=Sample_Invoice_11&udf6=&udf7=&udf8=&udf9=&udf10=&hash=db7052bf227001b9f02aa675b1a161e633eac2b5712f85c0d466d9b1023e739b0a57e8e61926f047c2efcb19279caf834951e3ff3c9cab99353043af1db2a71f&field1=&field2=&field3=&field4=&field5=&field6=&field7=&field8=&field9=Transaction%20Completed%20Successfully&payment_source=payu&PG_TYPE=CASH-PG&bank_ref_num=a92fe2c9-4fc8-4f73-8740-9b292fe4a634&bankcode=FREC&error=E000&error_Message=No%20Error&splitInfo=%7B%22splitStatus%22%3A%22splitNotReceived%22%2C%22splitSegments%22%3A%5B%5D%7D
-```
-</Accordion>
-<Accordion title="BNPL" icon="fa-reply">
-```plaintext
-mihpayid=403993715537577231&mode=BNPL&status=success&key=ISgdHG&txnid=6decc0fffa5c60c7cbce&amount=10.00&addedon=2026-06-01+16%3A34%3A20&productinfo=Product+Info&firstname=Payu-Admin&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test%40example.com&phone=1234567890&udf1=&udf2=&udf3=&udf4=&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&card_token=&card_no=&field0=&field1=7715995865&field2=EMI1072289140999791193&field3=Transaction+is+successful&field4=&field5=iMUvX5VOqXMzv5Nq&field6=TXN558633373&field7=PAYMENT_SUCCESSFUL&field8=SUCCESS&field9=Transaction+is+successful&payment_source=payu&cardToken=&authenticationMethod=&PG_TYPE=BNPL-PG&error=E000&error_Message=No+Error&net_amount_debit=10&discount=0.00&offer_key=&offer_availed=&splitInfo=%7B%22splitStatus%22%3A%22splitNotReceived%22%2C%22splitSegments%22%3A%5B%5D%7D&unmappedstatus=captured&hash=caa5b6398fe72ae9a07bc5e2d140fb2872db8f95bfe997de214f7f4cbc14e0933c153db986f029f76b69c12a37589d59ce9fe4c56d1bc713ac9851593563425e&bank_ref_no=TXN558633373&bank_ref_num=TXN558633373&bankcode=LAZYPAY&surl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response&curl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response&furl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response
-```
-</Accordion>
+    Sample formatted JSON surl/furl payload:
 
-> 📘
->
-> **Note on NEFT/RTGS Response**: For security reasons, the sample response or URL is not included here.
+    ```plaintext
+    mihpayid=403993715537565049
+    mode=NB
+    status=success
+    unmappedstatus=captured
+    key=PRiQvJ
+    txnid=756609e32e92add4b5f2
+    amount=10.00
+    discount=0.00
+    net_amount_debit=10
+    addedon=2026-05-29 18:49:30
+    productinfo=Product Info
+    firstname=Payu-Admin
+    lastname=
+    address1=
+    address2=
+    city=
+    state=
+    country=
+    zipcode=
+    email=test@example.com
+    phone=1234567890
+    udf1=
+    udf2=
+    udf3=
+    udf4=
+    udf5=
+    udf6=
+    udf7=
+    udf8=
+    udf9=
+    udf10=
+    hash=79d14afc4a3998a627d8fb431b2ee648b16fd6e31252397109ad5f44d77f7630daaaeedf0bbd5b3e7a81342c96bc087beb43125c0619cac1e5408243fdc29a04
+    field1=
+    field2=
+    field3=
+    field4=
+    field5=
+    field6=
+    field7=
+    field8=
+    field9=Transaction Completed Successfully
+    payment_source=payu
+    PG_TYPE=NB-PG
+    bank_ref_num=ddb199f9-5f43-4441-8648-ce2bcb244568
+    bankcode=TESTPGNB
+    error=E000
+    error_Message=No Error
+    ```
+  </Accordion>
 
+  <Accordion title="Credit Card" icon="fa-card">
+    ```plaintext
+    mihpayid=403993715537573401&mode=CC&status=success&unmappedstatus=captured&key=a4vGC2&txnid=TXN_NS_1780294871_5566&amount=1500.00&discount=0.00&net_amount_debit=1500&addedon=2026-06-01%2011%3A51%3A47&productinfo=Subscription&firstname=Sunit&lastname=Kumar&address1=FIRST%20FLOOR&address2=NEW%20ASHOK%20NAGAR&city=Delhi&state=Delhi&country=INDIA&zipcode=201303&email=sunit.kumar%40mail.com&phone=9876543210&udf1=Testing%20UDF%201&udf2=Testing%20UDF2&udf3=&udf4=&udf5=Sample_Invoice_11&udf6=&udf7=&udf8=&udf9=&udf10=&hash=6ee1e1f743089ce38c79473f19af24371fe80e6249968f1bcbc6d31935afa79c0325d649fa7610a642e694475b33d65011b51b5d7d2a6a46e2b38895e4c27a28&field1=888758893639&field2=599738&field3=1500.00&field4=&field5=00&field6=02&field7=AUTHPOSITIVE&field8=AUTHORIZED&field9=Transaction%20is%20Successful&payment_source=payu&PG_TYPE=CC-PG&bank_ref_num=920539478106419300&bankcode=CC&error=E000&error_Message=No%20Error&cardCategory=domestic&cardnum=XXXXXXXXXXXX2346&cardhash=This%20field%20is%20no%20longer%20supported%20in%20postback%20params.&splitInfo=%7B%22splitStatus%22%3A%22splitNotReceived%22%2C%22splitSegments%22%3A%5B%5D%7D
+    ```
+  </Accordion>
 
-#### Unmapped Status is Pending
-NEFT and RTGS are bank transfer methods that require:
-- Manual verification by the bank
-- Settlement time (NEFT operates in batches, RTGS is real-time but still needs bank processing)
-- Customer needs to complete the bank transfer from their bank account
+  <Accordion title="UPI" icon="fa-reply">
+    ```plaintext
+    mihpayid=403993715537577186&mode=UPI&status=success&key=ISgdHG&txnid=cb278c37e5982039ffa0&amount=10.00&addedon=2026-06-01+16%3A30%3A23&productinfo=Product+Info&firstname=CARDHOLDERXXXXXXXXNAME-Admin&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test%40example.com&"phone":"##########"&udf1=&udf2=&udf3=&udf4=&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&card_token=&card_no=&field0=&field1=_mobilenum_%40upi&field2=cb278c37e5982039ffa0&field3=&field4=Payu-Admin&field5=AXIuo5ge4DYgb1spEEp038EuZkdbcm229hR&field6=&field7=Transaction+completed+successfully&field8=generic&field9=Transaction+completed+successfully&payment_source=payu&cardToken=&authenticationMethod=&PG_TYPE=UPI-PG&error=E000&error_Message=No+Error&net_amount_debit=10&discount=0.00&offer_key=&offer_availed=&splitInfo=%7B%22splitStatus%22%3A%22splitNotReceived%22%2C%22splitSegments%22%3A%5B%5D%7D&unmappedstatus=captured&hash=0981fbaf891fdf6384f35b_mobilenum_a91ec205beeb259f65ec45974c1010039efb1d2e3d4a420c1b75121eb88ecbafbb4d9496071dda27f7ffe1ded0af34a1&bank_ref_no=cb278c37e5982039ffa0&bank_ref_num=cb278c37e5982039ffa0&bankcode=UPI-Intent&surl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response&curl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response&furl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response
+    ```
+  </Accordion>
 
-The transaction remains in pending state until:
-- The customer completes the bank transfer
-- The bank confirms the payment
-- PayU receives confirmation from the bank
+  <Accordion title="Wallet" icon="fa-reply">
+    ```plaintext
+    mihpayid=403993715537573912&mode=CASH&status=success&unmappedstatus=captured&key=a4vGC2&txnid=TXN_NS_1780296990_7590&amount=15000.00&discount=0.00&net_amount_debit=15000&addedon=2026-06-01%2012%3A26%3A38&productinfo=DESKTOP&firstname=Sunit&lastname=Kumar&address1=FIRST%20FLOOR&address2=NEW%20ASHOK%20NAGAR&city=Delhi&state=Delhi&country=INDIA&zipcode=201303&email=sunit.kumar%40mail.com&phone=9876543210&udf1=Testing%20UDF%201&udf2=Testing%20UDF2&udf3=&udf4=&udf5=Sample_Invoice_11&udf6=&udf7=&udf8=&udf9=&udf10=&hash=db7052bf227001b9f02aa675b1a161e633eac2b5712f85c0d466d9b1023e739b0a57e8e61926f047c2efcb19279caf834951e3ff3c9cab99353043af1db2a71f&field1=&field2=&field3=&field4=&field5=&field6=&field7=&field8=&field9=Transaction%20Completed%20Successfully&payment_source=payu&PG_TYPE=CASH-PG&bank_ref_num=a92fe2c9-4fc8-4f73-8740-9b292fe4a634&bankcode=FREC&error=E000&error_Message=No%20Error&splitInfo=%7B%22splitStatus%22%3A%22splitNotReceived%22%2C%22splitSegments%22%3A%5B%5D%7D
+    ```
+  </Accordion>
 
-For example, the response is similar to the following
-<Accordion title="NEFT/RTGS-Pending" icon="fa-reply">
-mihpayid=403993715537574750&mode=NEFTRTGS&status=pending&unmappedstatus=pending&key=a4vGC2&txnid=TXN_NS_1780300270_2797&amount=10.00&discount=0.00&net_amount_debit=0.00&addedon=2026-06-01%2013%3A21%3A24&productinfo=DESKTOP&firstname=Sunit&lastname=Kumar&address1=FIRST%20FLOOR&address2=NEW%20ASHOK%20NAGAR&city=Delhi&state=Delhi&country=INDIA&zipcode=201303&email=sunit.kumar%40mail.com&phone=9876543210&udf1=Testing%20UDF%201&udf2=Testing%20UDF2&udf3=&udf4=&udf5=Sample_Invoice_11&udf6=&udf7=&udf8=&udf9=&udf10=&hash=ed4dbb911f9bfee507362e2e053c16c07063a55302ea58cf3f026f5daeefbd52da8f316d51911c891a13a1bb648a26b24b8005a84af30904d78c13a54b4d35bf&field1=&field2=&field3=&field4=&field5=&field6=&field7=&field8=02&field9=Transaction%20is%20pending&payment_source=payu&PG_TYPE=NEFTRTGS-PG&bank_ref_num=&bankcode=EFTAXIS&error=E227&error_Message=Transaction%20is%20Pending&splitInfo=%7B%22splitStatus%22%3A%22%22%2C%22splitSegments%22%3A%5B%5D%7D
-</Accordion>
+  <Accordion title="BNPL" icon="fa-reply">
+    ```plaintext
+    mihpayid=403993715537577231&mode=BNPL&status=success&key=ISgdHG&txnid=6decc0fffa5c60c7cbce&amount=10.00&addedon=2026-06-01+16%3A34%3A20&productinfo=Product+Info&firstname=Payu-Admin&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=test%40example.com&phone=1234567890&udf1=&udf2=&udf3=&udf4=&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&card_token=&card_no=&field0=&field1=7715995865&field2=EMI1072289140999791193&field3=Transaction+is+successful&field4=&field5=iMUvX5VOqXMzv5Nq&field6=TXN558633373&field7=PAYMENT_SUCCESSFUL&field8=SUCCESS&field9=Transaction+is+successful&payment_source=payu&cardToken=&authenticationMethod=&PG_TYPE=BNPL-PG&error=E000&error_Message=No+Error&net_amount_debit=10&discount=0.00&offer_key=&offer_availed=&splitInfo=%7B%22splitStatus%22%3A%22splitNotReceived%22%2C%22splitSegments%22%3A%5B%5D%7D&unmappedstatus=captured&hash=caa5b6398fe72ae9a07bc5e2d140fb2872db8f95bfe997de214f7f4cbc14e0933c153db986f029f76b69c12a37589d59ce9fe4c56d1bc713ac9851593563425e&bank_ref_no=TXN558633373&bank_ref_num=TXN558633373&bankcode=LAZYPAY&surl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response&curl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response&furl=https%3A%2F%2Ftest.payu.in%2Fadmin%2Ftest_response
+    ```
+  </Accordion>
 
-### Failure Scenarios (Partial List) 
-<Accordion title="Cards when 3DS challenge is negative" icon="fa-card">
-```plaintext 
-mihpayid=403993715537573353&mode=CC&status=failure&unmappedstatus=failed&key=a4vGC2&txnid=TXN_NS_1780294680_1316&amount=15000.00&discount=0.00&net_amount_debit=0.00&addedon=2026-06-01%2011%3A48%3A38&productinfo=DESKTOP&firstname=Sunit&lastname=Kumar&address1=FIRST%20FLOOR&address2=NEW%20ASHOK%20NAGAR&city=Delhi&state=Delhi&country=INDIA&zipcode=201303&email=sunit.kumar%40mail.com&phone=9876543210&udf1=Testing%20UDF%201&udf2=Testing%20UDF2&udf3=&udf4=&udf5=Sample_Invoice_11&udf6=&udf7=&udf8=&udf9=&udf10=&hash=9ae9baa17a0ca25fd1f860f49022606d1d9d3d9650a639a8656f843a02acc3282157e7997e03734547027789599832e9ac8366dc7c21815e0e226ce6ebe216d4&field1=677160001457370800&field2=&field3=&field4=&field5=&field6=00&field7=3DS_CHALLENGE_NEGATIVE&field8=Transaction%20failed%20in%20Authorization&field9=Transaction%20Failed%20at%20bank%20end.&payment_source=payu&PG_TYPE=CC-PG&bank_ref_num=&bankcode=CC&error=E308&error_Message=Transaction%20Failed%20at%20bank%20end.&cardCategory=domestic&cardnum=XXXXXXXXXXXX2346&cardhash=This%20field%20is%20no%20longer%20supported%20in%20postback%20params.&splitInfo=%7B%22splitStatus%22%3A%22%22%2C%22splitSegments%22%3A%5B%5D%7D
+  <Callout icon="📘" theme="info">
+    **Note on NEFT/RTGS Response**: For security reasons, the sample response or URL is not included here.
+  </Callout>
 
-```
-</Accordion>
-<Accordion title="UPI Transaction Cancellation by customer or dropped in between" icon="fa-reply">
-```plaintext 
-mihpayid=403993715537573890&mode=UPI&status=failure&unmappedstatus=userCancelled&key=a4vGC2&txnid=TXN_NS_1780296905_7692&amount=15000.00&discount=0.00&net_amount_debit=0.00&addedon=2026-06-01%2012%3A25%3A18&productinfo=DESKTOP&firstname=Sunit&lastname=Kumar&address1=FIRST%20FLOOR&address2=NEW%20ASHOK%20NAGAR&city=Delhi&state=Delhi&country=INDIA&zipcode=201303&email=sunit.kumar%40mail.com&phone=9876543210&udf1=Testing%20UDF%201&udf2=Testing%20UDF2&udf3=&udf4=&udf5=Sample_Invoice_11&udf6=&udf7=&udf8=&udf9=&udf10=&hash=fd3149767139dfda1146aef578cdfef38da79bffe81db64ab8a046de3d349014eb95e9848a003616b79aa6ee61b9c46e5f47403463ae4434ede19e7b6caa71f3&field1=anything%40payu&field2=&field3=&field4=&field5=&field6=&field7=&field8=generic&field9=User%20interrupted%20by%20pressing%20back%20button&payment_source=payu&PG_TYPE=UPI-PG&bank_ref_num=&bankcode=UPI-Intent&error=E1206&error_Message=Transaction%20interrupted%20by%20pressing%20back%20button&splitInfo=%7B%22splitStatus%22%3A%22%22%2C%22splitSegments%22%3A%5B%5D%7D
-```
-</Accordion>
-<Accordion title="BNPL transaction cancelled by user during OTP flow" icon="fa-reply">
-```plaintext 
-mihpayid=403993715537573947&mode=BNPL&status=failure&unmappedstatus=userCancelled&key=a4vGC2&txnid=TXN_NS_1780297112_4289&amount=1500.00&discount=0.00&net_amount_debit=0.00&addedon=2026-06-01%2012%3A28%3A44&productinfo=Test&firstname=Sunit&lastname=Kumar&address1=FIRST%20FLOOR&address2=NEW%20ASHOK%20NAGAR&city=Delhi&state=Delhi&country=INDIA&zipcode=201303&email=sunit.kumar%40mail.com&phone=9876543210&udf1=Testing%20UDF%201&udf2=Testing%20UDF2&udf3=&udf4=&udf5=Sample_Invoice_11&udf6=&udf7=&udf8=&udf9=&udf10=&hash=79c624327255af38af22d10005f43a6afaaa9cf212ddb2998becd56d1dd9c1f5eae1d587ab82543f53ed005eb3d752f67b445a8523153f4bea969cb3e765b5dd&field1=9876543210&field2=EMI775701587506297063&field3=Hola%21%21%20Avail%20LazyPay%20Credit%20with%20just%20an%20OTP&field4=&field5=zA0oORMOEt3RrWHg&field6=TXN983658033&field7=OTP_GENERATION_SUCCESSFUL&field8=LP_ELIGIBLE&field9=cancelled%20by%20user&payment_source=payu&PG_TYPE=BNPL-PG&bank_ref_num=TXN983658033&bankcode=LAZYPAY&error=&error_Message=&splitInfo=%7B%22splitStatus%22%3A%22%22%2C%22splitSegments%22%3A%5B%5D%7D
-```
-</Accordion>
-> 📘
->
-> **Error Codes**: For complete list of error codes, refer to [Error Codes](https://docs.payu.in/reference/error-codes)
-### Step 1.4.1: Response verification using reverse hashing**
+  #### Unmapped Status is Pending
+
+  NEFT and RTGS are bank transfer methods that require:
+
+  - Manual verification by the bank
+  - Settlement time (NEFT operates in batches, RTGS is real-time but still needs bank processing)
+  - Customer needs to complete the bank transfer from their bank account
+
+  The transaction remains in pending state until:
+
+  - The customer completes the bank transfer
+  - The bank confirms the payment
+  - PayU receives confirmation from the bank
+
+  For example, the response is similar to the following
+
+  <Accordion title="NEFT/RTGS-Pending" icon="fa-reply">
+    mihpayid=403993715537574750\&mode=NEFTRTGS\&status=pending\&unmappedstatus=pending\&key=a4vGC2\&txnid=TXN_NS_1780300270_2797\&amount=10.00\&discount=0.00\&net_amount_debit=0.00\&addedon=2026-06-01%2013%3A21%3A24\&productinfo=DESKTOP\&firstname=Sunit\&lastname=Kumar\&address1=FIRST%20FLOOR\&address2=NEW%20ASHOK%20NAGAR\&city=Delhi\&state=Delhi\&country=INDIA\&zipcode=201303\&email=sunit.kumar%40mail.com\&phone=9876543210\&udf1=Testing%20UDF%201\&udf2=Testing%20UDF2\&udf3=\&udf4=\&udf5=Sample_Invoice_11\&udf6=\&udf7=\&udf8=\&udf9=\&udf10=\&hash=ed4dbb911f9bfee507362e2e053c16c07063a55302ea58cf3f026f5daeefbd52da8f316d51911c891a13a1bb648a26b24b8005a84af30904d78c13a54b4d35bf\&field1=\&field2=\&field3=\&field4=\&field5=\&field6=\&field7=\&field8=02\&field9=Transaction%20is%20pending\&payment_source=payu\&PG_TYPE=NEFTRTGS-PG\&bank_ref_num=\&bankcode=EFTAXIS\&error=E227\&error_Message=Transaction%20is%20Pending\&splitInfo=%7B%22splitStatus%22%3A%22%22%2C%22splitSegments%22%3A%5B%5D%7D
+  </Accordion>
+
+  ### Failure Scenarios (Partial List)
+
+  <Accordion title="Cards when 3DS challenge is negative" icon="fa-card">
+    ```plaintext
+    mihpayid=403993715537573353&mode=CC&status=failure&unmappedstatus=failed&key=a4vGC2&txnid=TXN_NS_1780294680_1316&amount=15000.00&discount=0.00&net_amount_debit=0.00&addedon=2026-06-01%2011%3A48%3A38&productinfo=DESKTOP&firstname=Sunit&lastname=Kumar&address1=FIRST%20FLOOR&address2=NEW%20ASHOK%20NAGAR&city=Delhi&state=Delhi&country=INDIA&zipcode=201303&email=sunit.kumar%40mail.com&phone=9876543210&udf1=Testing%20UDF%201&udf2=Testing%20UDF2&udf3=&udf4=&udf5=Sample_Invoice_11&udf6=&udf7=&udf8=&udf9=&udf10=&hash=9ae9baa17a0ca25fd1f860f49022606d1d9d3d9650a639a8656f843a02acc3282157e7997e03734547027789599832e9ac8366dc7c21815e0e226ce6ebe216d4&field1=677160001457370800&field2=&field3=&field4=&field5=&field6=00&field7=3DS_CHALLENGE_NEGATIVE&field8=Transaction%20failed%20in%20Authorization&field9=Transaction%20Failed%20at%20bank%20end.&payment_source=payu&PG_TYPE=CC-PG&bank_ref_num=&bankcode=CC&error=E308&error_Message=Transaction%20Failed%20at%20bank%20end.&cardCategory=domestic&cardnum=XXXXXXXXXXXX2346&cardhash=This%20field%20is%20no%20longer%20supported%20in%20postback%20params.&splitInfo=%7B%22splitStatus%22%3A%22%22%2C%22splitSegments%22%3A%5B%5D%7D
+
+    ```
+  </Accordion>
+
+  <Accordion title="UPI Transaction Cancellation by customer or dropped in between" icon="fa-reply">
+    ```plaintext
+    mihpayid=403993715537573890&mode=UPI&status=failure&unmappedstatus=userCancelled&key=a4vGC2&txnid=TXN_NS_1780296905_7692&amount=15000.00&discount=0.00&net_amount_debit=0.00&addedon=2026-06-01%2012%3A25%3A18&productinfo=DESKTOP&firstname=Sunit&lastname=Kumar&address1=FIRST%20FLOOR&address2=NEW%20ASHOK%20NAGAR&city=Delhi&state=Delhi&country=INDIA&zipcode=201303&email=sunit.kumar%40mail.com&phone=9876543210&udf1=Testing%20UDF%201&udf2=Testing%20UDF2&udf3=&udf4=&udf5=Sample_Invoice_11&udf6=&udf7=&udf8=&udf9=&udf10=&hash=fd3149767139dfda1146aef578cdfef38da79bffe81db64ab8a046de3d349014eb95e9848a003616b79aa6ee61b9c46e5f47403463ae4434ede19e7b6caa71f3&field1=anything%40payu&field2=&field3=&field4=&field5=&field6=&field7=&field8=generic&field9=User%20interrupted%20by%20pressing%20back%20button&payment_source=payu&PG_TYPE=UPI-PG&bank_ref_num=&bankcode=UPI-Intent&error=E1206&error_Message=Transaction%20interrupted%20by%20pressing%20back%20button&splitInfo=%7B%22splitStatus%22%3A%22%22%2C%22splitSegments%22%3A%5B%5D%7D
+    ```
+  </Accordion>
+
+  <Accordion title="BNPL transaction cancelled by user during OTP flow" icon="fa-reply">
+    ```plaintext
+    mihpayid=403993715537573947&mode=BNPL&status=failure&unmappedstatus=userCancelled&key=a4vGC2&txnid=TXN_NS_1780297112_4289&amount=1500.00&discount=0.00&net_amount_debit=0.00&addedon=2026-06-01%2012%3A28%3A44&productinfo=Test&firstname=Sunit&lastname=Kumar&address1=FIRST%20FLOOR&address2=NEW%20ASHOK%20NAGAR&city=Delhi&state=Delhi&country=INDIA&zipcode=201303&email=sunit.kumar%40mail.com&phone=9876543210&udf1=Testing%20UDF%201&udf2=Testing%20UDF2&udf3=&udf4=&udf5=Sample_Invoice_11&udf6=&udf7=&udf8=&udf9=&udf10=&hash=79c624327255af38af22d10005f43a6afaaa9cf212ddb2998becd56d1dd9c1f5eae1d587ab82543f53ed005eb3d752f67b445a8523153f4bea969cb3e765b5dd&field1=9876543210&field2=EMI775701587506297063&field3=Hola%21%21%20Avail%20LazyPay%20Credit%20with%20just%20an%20OTP&field4=&field5=zA0oORMOEt3RrWHg&field6=TXN983658033&field7=OTP_GENERATION_SUCCESSFUL&field8=LP_ELIGIBLE&field9=cancelled%20by%20user&payment_source=payu&PG_TYPE=BNPL-PG&bank_ref_num=TXN983658033&bankcode=LAZYPAY&error=&error_Message=&splitInfo=%7B%22splitStatus%22%3A%22%22%2C%22splitSegments%22%3A%5B%5D%7D
+    ```
+  </Accordion>
+
+  <Callout icon="📘" theme="info">
+    **Error Codes**: For complete list of error codes, refer to [Error Codes](https://docs.payu.in/reference/error-codes)
+  </Callout>
+
+  ### Step 1.4.1: Response verification using reverse hashing\*\*
 
   Verify the response received above by recomputing SHA-512 using the reverse sequence:
 
@@ -969,8 +959,8 @@ mihpayid=403993715537573947&mode=BNPL&status=failure&unmappedstatus=userCancelle
   sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
   ```
 
-  * Compare the computed digest to hash from the POST payload (**case-sensitive**).
-  * Trust the result only if the hash matches. Then update your order state.
+  - Compare the computed digest to hash from the POST payload (**case-sensitive**).
+  - Trust the result only if the hash matches. Then update your order state.
 </Accordion>
 
 <Accordion title="Step 1.6: Verify the payment" icon="fa-magnifying-glass">
@@ -1058,45 +1048,43 @@ You've successfully tested your integration. Now, follow these critical steps to
 
   ### Generate Live Keys\*\*
 
-  * Log in to your **[PayU Dashboard](https://onboarding.payu.in/app/account/signin)**.
-  * Use the toggle at the top to switch from **Test Mode** to **Live Mode**.
-  * Navigate to **Developer Tools** → **API Keys** from the sidebar.
-  * Copy the **Live Merchant Key** and **Live Salt**.
+  - Log in to your **[PayU Dashboard](https://onboarding.payu.in/app/account/signin)**.
+  - Use the toggle at the top to switch from **Test Mode** to **Live Mode**.
+  - Navigate to **Developer Tools** → **API Keys** from the sidebar.
+  - Copy the **Live Merchant Key** and **Live Salt**.
 
   ***
 
   ### Update Your Code\*\*
 
-  * In your integration code, replace the test `key` and `salt` with your new live credentials.
+  - In your integration code, replace the test `key` and `salt` with your new live credentials.
 
   ***
 
   ### Update the Endpoint URLs\*\*
 
-  * Ensure all API requests are now being sent to the correct production endpoints:
-    * **For`_payment` API:** `https://secure.payu.in/_payment`
-    * **For Verify Payments API:** `https://info.payu.in/merchant/postservice.php?form=2`
+  - Ensure all API requests are now being sent to the correct production endpoints:
+    - **For**`_payment`**&#x20;API:** `https://secure.payu.in/_payment`
+    - **For Verify Payments API:** `https://info.payu.in/merchant/postservice.php?form=2`
 </Accordion>
 
 <Accordion title="Step 3.2. Final Integration Verification" icon="fa-clipboard-check">
   Before you announce that you're live, run through this checklist to ensure everything is configured correctly.
 
-  * **✅ Conduct a Live Transaction:** Make a small, real transaction with a genuine credit card or UPI ID. This is the best way to confirm that your production credentials are correct and that the end-to-end flow is working.
+  - **✅ Conduct a Live Transaction:** Make a small, real transaction with a genuine credit card or UPI ID. This is the best way to confirm that your production credentials are correct and that the end-to-end flow is working.
 
-  * **✅ Verify the Server-to-Server (S2S) Webhook:** This is the most crucial step for confirming transaction status reliably.
-    * After your live test transaction, check your server logs to confirm that you received the webhook from PayU.
-    * Ensure your system correctly processes this webhook and updates the order status in your database.
-    * **Important:** Your system should rely on this S2S webhook as the primary source of truth for a transaction's final status, not the browser redirect. For more details, refer to **Webhooks**.
+  - **✅ Verify the Server-to-Server (S2S) Webhook:** This is the most crucial step for confirming transaction status reliably.
+    - After your live test transaction, check your server logs to confirm that you received the webhook from PayU.
+    - Ensure your system correctly processes this webhook and updates the order status in your database.
+    - **Important:** Your system should rely on this S2S webhook as the primary source of truth for a transaction's final status, not the browser redirect. For more details, refer to **Webhooks**.
 
-  * **✅ Validate the Response Hash:**
-    * Confirm that your code correctly validates the hash for the response sent to your return URL (`surl`/`furl`) and for the S2S webhook. This security measure prevents tampering and confirms the response is genuinely from PayU. For more information, refer to **Hashing Request and Response**.
+  - **✅ Validate the Response Hash:**
+    - Confirm that your code correctly validates the hash for the response sent to your return URL (`surl`/`furl`) and for the S2S webhook. This security measure prevents tampering and confirms the response is genuinely from PayU. For more information, refer to **Hashing Request and Response**.
 
-  * **✅ Check Success and Failure Pages (`surl` / `furl`):**
-    * Ensure that after a successful payment, your customer is redirected to your success page and sees a clear confirmation message.
-    * Simulate a failed live payment (if possible, with a card that has insufficient funds) to ensure the customer is redirected to your failure page and given instructions to retry.
+  - **✅ Check Success and Failure Pages (**`surl`**&#x20;/&#x20;**`furl`**):**
+    - Ensure that after a successful payment, your customer is redirected to your success page and sees a clear confirmation message.
+    - Simulate a failed live payment (if possible, with a card that has insufficient funds) to ensure the customer is redirected to your failure page and given instructions to retry.
 
-  * **✅ Implement a Reconciliation Plan:**
-    * In case of any discrepancy (e.g., a webhook is missed), use the **Verify Payment API** to programmatically fetch the status of a transaction from PayU and reconcile your records.
+  - **✅ Implement a Reconciliation Plan:**
+    - In case of any discrepancy (e.g., a webhook is missed), use the **Verify Payment API** to programmatically fetch the status of a transaction from PayU and reconcile your records.
 </Accordion>
-
-<br />
