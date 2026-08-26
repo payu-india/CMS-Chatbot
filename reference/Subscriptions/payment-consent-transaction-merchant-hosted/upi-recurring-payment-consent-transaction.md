@@ -33,7 +33,10 @@ next:
 This section provides the request parameters, sample request and response for a UPI Recurring Payment Consent transaction.
 
 <Callout icon="📘" theme="info">
-  **Note**: During integration with PayU, first integrate with the Test Server environment. PayU will provide you the necessary Merchant Key for the test serve. After testing is done, you are ready to move to the Production server.
+  ### **Notes**:&#x20;
+
+  - During integration with PayU, first integrate with the Test Server environment. PayU will provide you the necessary Merchant Key for the test serve. After testing is done, you are ready to move to the Production server.
+  - In the UPI AutoPay ecosystem, the pre-debit and execution cycle for a mandate must complete in full before a new pre-debit can be initiated.
 </Callout>
 
 <br />
