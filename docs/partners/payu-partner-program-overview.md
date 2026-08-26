@@ -45,51 +45,76 @@ A partner is a person you refer to PayU and earn incentives. The partner can be 
 
 PayU Partner Program is a way to grow your business exponentially, raising your profits. PayU’s reliable and secure payment solutions help you with the best customer service efforts. Connect your merchants with PayU with our easy and simple integration methods. By joining this program, you can focus more on business goals to enrich the product experiences and less on maintaining payment systems. To get started, you need to register as a merchant with PayU. For more information, refer to [Register a Partner Account](doc:register-a-partner-account).
 
+Onboard merchants, collect payments, and manage refunds — all from your own platform.
+
 ## Advantages
 
-* Quick and easy integration
-* Refer merchants and get rewarded
-* Easy Account reconciliation
-* Real-time merchant onboarding status updates
-* Onboard merchants quickly using Partner Partner Integration APIs
-* Onboard merchants and validate KYC automatically on the Partner Portal
-* Customize Partner Portal with OAuth and onboard merchants with a branded portal.
+- Quick and easy integration
+- Refer merchants and get rewarded
+- Easy Account reconciliation
+- Real-time merchant onboarding status updates
+- Onboard merchants quickly using Partner Partner Integration APIs
+- Onboard merchants and validate KYC automatically on the Partner Portal
+- Customize Partner Portal with OAuth and onboard merchants with a branded portal.
 
 ## Who can become a partner?
 
 PayU welcomes any small- or large-scale enterprise into their partner program. The following list demonstrates LOBs that have partnered with PayU:
 
-* Web Designers and Developers
-* Digital Service Providers
-* Web Hosting Services
-* Freelancers & Small-scale Businesses
-* Accelerator Firms
-* E-commerce Businesses
+- Web Designers and Developers
+- Digital Service Providers
+- Web Hosting Services
+- Freelancers & Small-scale Businesses
+- Accelerator Firms
+- E-commerce Businesses
 
 ## Types of partner
 
-* **Platform Partner**: Companies who are providing ready-to-use eCommerce websites, software solutions for retailers, and accountants, or restaurants, partnering with PayU helps you create new revenue streams and scale internationally. For example, Shopify, Zoho, ClearTax, etc.
-* **Resellers:** Resellers are freelancers/entrepreneurs looking to accelerate their business by earning incentives through their clients.
+- **Platform Partner**: Companies who are providing ready-to-use eCommerce websites, software solutions for retailers, and accountants, or restaurants, partnering with PayU helps you create new revenue streams and scale internationally. For example, Shopify, Zoho, ClearTax, etc.
+- **Resellers:** Resellers are freelancers/entrepreneurs looking to accelerate their business by earning incentives through their clients.
 
 After you onboard the merchants, they can start collecting payments from their customers. For more information, refer to [Web Integration](doc:introduction-web).
 
-## Methods of onboarding merchants
+## How it works
 
-The following table explains methods of merchant onboarding from various constraints:
+You integrate with PayU as a partner to bring merchants onto our payment platform. Depending on your needs, you can share a simple referral link or run the entire onboarding journey through APIs.
 
-| **Parameters**                   | **Refer using PayU APIs**                               | **Co-Branded** **Onboarding**                                    | **Referral**  **Link**                                  | **Refer using Portal**                 |
-| -------------------------------- | ------------------------------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------- | -------------------------------------- |
-| **Custom Onboarding Journey**    | Yes                                                     | Yes                                                              | Limited                                                 | Yes                                    |
-| **Integration**  **Method**      | [API](/reference/partner-integration-api-introduction/) | [Oauth](/docs/refer-merchants-using-co-branded-oauth-onboarding) | [Hyperlink](/docs/refer-merchants-using-referral-links) | [Partner Portal](/docs/partner-portal) |
-| **Integration**  **Effort**      | High                                                    | Low                                                              | Lowest                                                  | Low                                    |
-| **User Experience**              | Partner  Control                                        | Co-Branded Onboarding                                            | PayU  Control                                           | PayU  Control                          |
-| **Redirection to PayU**          | No                                                      | Yes                                                              | Yes                                                     | Yes                                    |
-| **Pre-fill Fields**              | Yes                                                     | Yes                                                              | No                                                      | No                                     |
-| **Authorization**                | OTP  Verification through  API                          | Merchant Consent  for Authorisation                              | NA                                                      | NA                                     |
-| **Redirection back to Platform** | NA                                                      | Yes                                                              | NA                                                      | NA                                     |
-| **Ideal For**                    | Platforms                                               | Mid-sized Businesses                                             | Freelancers or Small Businesses                         | Freelancers or Small Businesses        |
-| **Status**                       | Ready                                                   | In Dev                                                           | Ready                                                   | Ready                                  |
+PayU handles verification (KYC, CKYC, VKYC), compliance, and activation. You collect merchant details, call our APIs, and receive status updates via webhooks.
 
-<Partner_Postman />
+```mermaid
+flowchart LR
+    A[Your Platform] -->|API| B[PayU]
+    B --> C[KYC Registries]
+    B --> D[E-Sign]
+    B --> E[Banking Partners]
+    B -.->|Webhook| A
+    
+    style B fill:#e1f5ff
+    style A fill:#fff4e1
 
-<br />
+```
+
+## Choose your integration
+
+The following table helps you how to choose the method for onboarding partners. For detailed information, refer to [Which Partner Integration Method to Choose?.](doc:which-partner-integration-to-choose)
+
+|                                     | Referral Link        | Partner Portal    | Co-Branded OAuth   | API             |
+| ----------------------------------- | -------------------- | ----------------- | ------------------ | --------------- |
+| **You build UI**                    | No                   | No                | No                 | Yes             |
+| **Brand control**                   | None                 | None              | Your logo + colors | Full            |
+| **Technical effort**                | None                 | None              | Low                | High            |
+| **Merchant stays on your platform** | No                   | No                | No                 | Yes             |
+| **Best for**                        | Individual resellers | Manual onboarding | Mid-size platforms | Large platforms |
+
+If you need merchants to stay in your platform with an end-to-end controlled experience, use **API integration**. For a quick start with your branding, use **Co-Branded OAuth**.
+
+## Next Steps
+
+In this part of the document, the following sections provide the steps to integrate using various integration methods:
+
+- [Quick start — five API calls](doc:quick-start-partner-integration)
+- [Integration paths](doc:referral-link) (referral link, portal, OAuth, API)
+- [API reference](doc:partner-api-authentication) (auth, onboarding, KYC, payments, webhooks)
+- [Errors and troubleshooting](doc:errors-partner-integration)
+- [Testing and go-live](doc:testing-go-live-partner-integration)
+- [Endpoint reference](doc:endpoint-reference)
