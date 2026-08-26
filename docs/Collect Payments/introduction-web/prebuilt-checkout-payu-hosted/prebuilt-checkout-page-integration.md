@@ -81,10 +81,6 @@ A simple server-generated redirect that sends customers from your site/app to th
   - Ability to generate <Glossary>SHA</Glossary>-512 on the server (not recommended to do it in browser).
 </Callout>
 
-Accelerate your integration workflow with our Postman collection for PayU Hosted Checkout. Click the Download Postman Collection button below to download and get started.
-
-<br />
-
 <HTMLBlock>{`
                 <style>
                 .tooltip-btn {
@@ -112,7 +108,7 @@ Accelerate your integration workflow with our Postman collection for PayU Hosted
                     z-index: 1;
                 }
                 </style>
-
+Accelerate your integration workflow with our Postman collection for PayU Hosted Checkout. Click the Download Postman Collection button below to download and get started.
                 <button onclick="window.open('https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/collection/rocz44o/payu-hosted-checkout-collection-complete-integration', '_blank')" 
                         class="tooltip-btn" 
                         data-tooltip="Click to download the Postman collection and explore APIs.">
@@ -990,7 +986,7 @@ Follow the below steps to complete the integration:
 </Accordion>
 
 <Accordion title="Step 1.6: Verify the payment" icon="fa-magnifying-glass">
-    <Verify_Payment_Tabs />
+  <Verify_Payment_Tabs />
 </Accordion>
 
 <br />
