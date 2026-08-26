@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://test-accounts.payu.in"
+      "url": "https://uat-accounts.payu.in"
     }
   ],
   "components": {
