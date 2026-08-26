@@ -9,7 +9,7 @@ metadata:
   robots: index
 ---
 <Cards columns={3}>
-  <Card title="1. Register as a Biller with PayU" href="https://docs.payu.in/docs/bbps-biller-integration#register-as-a-biller-with-payu">
+  <Card title="1. Register as a Biller with PayU" href="https://docs.payu.in/docs/bbps-biller-integration#register-as06-a-biller-with-payu">
     Submit your **Biller Consent Form** to get onboarded by PayU as the Biller Operating Unit (BOU) and receive your biller credentials.
 
     <br />
@@ -154,7 +154,7 @@ sequenceDiagram
     end
 
     Biller->>PayUBOU: 1. Onboard with PayU as BOU
-    Note over BillerSys,PayUBOU: 2. Connect Biller System to PayU BOU (online/offline)
+    Note over PayUBOU,BillerSys: 2. Connect Biller System to PayU BOU (online/offline)
 
     COU->>NPCI: 3. Bill Fetch Request
     NPCI->>PayUBOU: Forward request
@@ -169,7 +169,7 @@ sequenceDiagram
     PayUBOU->>BillerSys: 8. Notify successful payment
     BillerSys->>BillerSys: 9. Mark bill as paid and update records
 
-    Note over PayUBOU,SponsorBank,BillerBank: 10. T+1 Settlement (next business day)
+    Note over PayUBOU,BillerBank: 10. T+1 Settlement (next business day)
     PayUBOU->>SponsorBank: Settle funds to Biller's bank via Axis Bank
     SponsorBank-->>BillerBank: Credit to Biller's account
 ```
