@@ -82,9 +82,9 @@ A simple server-generated redirect that sends customers from your site/app to th
 </Callout>
 
 <Callout icon="📘" theme="success">
-  ### `Click the Download Postman Collection button below to download and get started.`
+  ### Download Postman Collection
 
-
+  Click the Download Postman Collection button below to download and get started.
 </Callout>
 
 <HTMLBlock>{`
@@ -992,7 +992,7 @@ Follow the below steps to complete the integration:
 </Accordion>
 
 <Accordion title="Step 1.6: Verify the payment" icon="fa-magnifying-glass">
-    <Verify_Payment_Tabs />
+  <Verify_Payment_Tabs />
 </Accordion>
 
 <br />
