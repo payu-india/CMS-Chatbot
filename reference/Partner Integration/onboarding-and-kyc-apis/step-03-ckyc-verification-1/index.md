@@ -23,7 +23,6 @@ If entity_type IN (Individual, Sole Proprietorship):
 - Name- Date of Birth / Date of Incorporation- Address (city, state, pincode)- Masked mobile number
 
 ## Downstream Impact
-
 | CKYC Outcome | Entity Type | DigiLocker (Step 09) |
 |-------------|-------------|---------------------|| Succeeded | Individual / Sole Prop | **Optional** (can skip) || Succeeded | All others | **Required** |
 | Skipped | Individual / Sole Prop | **Required** || Skipped | All others | **Required** |
