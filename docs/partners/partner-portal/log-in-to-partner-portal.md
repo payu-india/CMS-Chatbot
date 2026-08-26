@@ -3,6 +3,9 @@ title: Log in to Partner Portal
 excerpt: ''
 deprecated: false
 hidden: true
+link:
+  url: >-
+    https://docs.payu.in/docs/onboard-merchants-manually#step-3-log-in-to-partner-portal
 metadata:
   title: Log in to Partner Portal
   description: >-
