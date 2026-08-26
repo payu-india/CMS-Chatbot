@@ -3,7 +3,7 @@ api:
   file: partner-apis-6.json
   operationId: ReadInvoiceAPI
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:
