@@ -18,11 +18,13 @@ metadata:
 
 To update an existing webhook:
 
-1. Navigate to **Developers** > **Webhooks** on the PayU dashboard.
-2. Locate the webhook you want to modify.
-3. Click the **Edit** icon next to the webhook entry.
-4. Modify the webhook URL or event selection as needed.
-5. Click **Update** to save your changes.
+1.
+2. Navigate to **Developers** > **Webhooks** on the PayU dashboard.
+
+1) Locate the webhook you want to modify.
+2) Click the **Edit** icon next to the webhook entry.
+3) Modify the webhook URL or event selection as needed.
+4) Click **Update** to save your changes.
 
 ***
 
