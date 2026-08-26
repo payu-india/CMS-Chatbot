@@ -82,47 +82,45 @@ A simple server-generated redirect that sends customers from your site/app to th
 </Callout>
 
 <Callout icon="📘" theme="success">
-  ### Download Postman Collection
+  ### ## Postman Collection
 
   Accelerate your integration workflow with our Postman collection for PayU Hosted Checkout. Click&#x20;**&#x20;Postman Collection&#x202F;**&#x20;below to download and get started.
+
+  <HTMLBlock>{`
+                  <style>
+                  .tooltip-btn {
+                      position: relative;
+                      background-color: #4CAF50;
+                      color: white;
+                      padding: 10px 20px;
+                      border: none;
+                      border-radius: 5px;
+                      cursor: pointer;
+                      font-weight: bold; /* Added this line */
+                  }
+                  .tooltip-btn:hover::after {
+                      content: attr(data-tooltip);
+                      position: absolute;
+                      bottom: 125%;
+                      left: 50%;
+                      transform: translateX(-50%);
+                      background-color: #333;
+                      color: white;
+                      padding: 5px 10px;
+                      border-radius: 4px;
+                      white-space: nowrap;
+                      font-size: 12px;
+                      z-index: 1;
+                  }
+                  </style>
+   
+                  <button onclick="window.open('https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/collection/rocz44o/payu-hosted-checkout-collection-complete-integration', '_blank')" 
+                          class="tooltip-btn" 
+                          data-tooltip="Click to download the Postman collection and explore APIs.">
+                      Access Postman Collection
+                  </button>
+  `}</HTMLBlock>
 </Callout>
-
-<HTMLBlock>{`
-                <style>
-                .tooltip-btn {
-                    position: relative;
-                    background-color: #4CAF50;
-                    color: white;
-                    padding: 10px 20px;
-                    border: none;
-                    border-radius: 5px;
-                    cursor: pointer;
-                    font-weight: bold; /* Added this line */
-                }
-                .tooltip-btn:hover::after {
-                    content: attr(data-tooltip);
-                    position: absolute;
-                    bottom: 125%;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    background-color: #333;
-                    color: white;
-                    padding: 5px 10px;
-                    border-radius: 4px;
-                    white-space: nowrap;
-                    font-size: 12px;
-                    z-index: 1;
-                }
-                </style>
- 
-                <button onclick="window.open('https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/collection/rocz44o/payu-hosted-checkout-collection-complete-integration', '_blank')" 
-                        class="tooltip-btn" 
-                        data-tooltip="Click to download the Postman collection and explore APIs.">
-                    Access Postman Collection
-                </button>
-`}</HTMLBlock>
-
-<br />
 
 <br />
 
@@ -992,7 +990,7 @@ Follow the below steps to complete the integration:
 </Accordion>
 
 <Accordion title="Step 1.6: Verify the payment" icon="fa-magnifying-glass">
-    <Verify_Payment_Tabs />
+  <Verify_Payment_Tabs />
 </Accordion>
 
 <br />
