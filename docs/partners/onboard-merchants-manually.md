@@ -388,7 +388,7 @@ To add multiple referral merchants:
 
 You have to complete the following sections (in the following sequence) on the KYC page to complete KYC for your merchant with PayU:
 
-## **Navigate to the KYC page for a Referral**
+#### Navigate to the KYC page for a Referral
 
 To open the KYC page for a referral:
 
