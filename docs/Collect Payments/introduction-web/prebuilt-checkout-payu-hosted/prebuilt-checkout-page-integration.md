@@ -417,7 +417,7 @@ Follow the below steps to complete the integration:
   <HashingSample />
 </Accordion>
 
-<Accordion title="Step 1.3: POST the HTML form (server renders)" icon="fa-code">
+<Accordion title="Step 1.3: POST the HTML form (server renders) or other language bindings" icon="fa-code">
   <Accordion title="Sample HTML code" icon="fa-code">
     ```html
     <!doctype html>
@@ -450,7 +450,6 @@ Follow the below steps to complete the integration:
       When you POST the form to [https://test.payu.in/\_payment](https://test.payu.in/_payment) or [https://secure.payu.in/\_payment](https://secure.payu.in/_payment), we will redirect the user to PayU checkout page.
     </Callout>
   </Accordion>
-</Accordion>
 
 <Accordion title="Post request in other language bindings" icon="fa-code">
   Use the sample request according the language binding you integrate:
@@ -809,7 +808,7 @@ Follow the below steps to complete the integration:
   }
   ```
 </Accordion>
-
+</Accordion>
 <Accordion title="Step 1.4: Response handling & hash verification" icon="fa-shield-check">
   **Response Handling:**
 
