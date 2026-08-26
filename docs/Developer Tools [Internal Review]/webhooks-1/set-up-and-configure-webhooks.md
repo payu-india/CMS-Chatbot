@@ -1,5 +1,5 @@
 ---
-title: Set Up and Configure Webhooks
+title: Configure and Manage Webhooks
 deprecated: false
 hidden: true
 metadata:
@@ -120,8 +120,9 @@ The **Create Webhook** pop-up menu is displayed.
    - **Failed** — Payment fails
    - **Refund** — Refund succeeds or fails
    - **Dispute** — Chargeback or dispute is raised
-5. Enter the webhook URL in the **Webhook URL** field. You can enter multiple URLs separated by commas.
-6. Click **Create** to create the webhook.
+
+3) Enter the webhook URL in the **Webhook URL** field. You can enter multiple URLs separated by commas.
+4) Click **Create** to create the webhook.
 
 
 <Image src="https://files.readme.io/296459b395d36d191679019fc9116ce3ceaadb588da7bb86e3cb7be1c4f501fd-Screenshot_2026-03-02_at_11.20.54_AM.png" alt="PayU Dashboard webhooks - Click Create to create a webhook" align="center" />
@@ -135,27 +136,13 @@ After creating the webhook, PayU will start sending events to your registered UR
   If you register multiple webhook URLs for the same event type, PayU sends the event to **all** registered URLs. This is useful for redundancy or sending events to multiple systems.
 </Callout>
 
+Refer to the Webhook Events page for product-wise event payload samples.
+
 ***
 
-## Configure webhooks via API
+## Configure Payout Webhooks via API
 
-{/* NEW CONTENT — not sourced from existing docs, needs SME review */}
-
-You can also create and manage webhooks programmatically using PayU's Webhook Configuration APIs.
-
-**See the complete API reference:**
-
-- [Webhook Configuration API](ref:webhook-configuration-api) — Create, update, list, and delete webhook endpoints via API
-
-**Common use cases for API configuration:**
-
-- Automating webhook setup as part of merchant onboarding
-- Managing webhooks across multiple merchant accounts (for partners or aggregators)
-- Rotating webhook URLs or secrets programmatically
-
-Refer to the API documentation for request/response formats, authentication, and parameter details.
-
-{/* END NEW CONTENT */}
+You can also create webhooks for Payouts programmatically using an API. Refer to the Set Webhook API - Payouts API for more information.
 
 ***
 
