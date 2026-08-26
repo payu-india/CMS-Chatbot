@@ -10,16 +10,16 @@ The **GetToken** API obtains an OAuth bearer token for Partner Onboarding APIs. 
 
 **Environment**
 
-|                        | URL                                         |
-| :--------------------- | :------------------------------------------ |
-| Test Environment       | `https://test-accounts.payu.in/oauth/token` |
-| Production Environment | `https://accounts.payu.in/oauth/token`      |
+|                        | URL                                        |
+| :--------------------- | :----------------------------------------- |
+| Test Environment       | `https://uat-accounts.payu.in/oauth/token` |
+| Production Environment | `https://accounts.payu.in/oauth/token`     |
 
 ## Sample Request
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-  curl --location 'https://test-accounts.payu.in/oauth/token' \
+  curl --location 'https://uat-accounts.payu.in/oauth/token' \
   --header 'Content-Type: application/x-www-form-urlencoded' \
   --data-urlencode 'client_id={{client_id}}' \
   --data-urlencode 'client_secret={{client_secret}}' \
