@@ -17,10 +17,10 @@ The **Generate Agreement for E-Sign** API generates the merged merchant agreemen
 
 **Environment**
 
-|                        | URL                                                                                       |
-| :--------------------- | :---------------------------------------------------------------------------------------- |
-| Test Environment       | `https://test-partner.payu.in/api/v1/merchants/{uuid}/generate_merged_document_for_esign` |
-| Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/generate_merged_document_for_esign`      |
+|                        | URL                                                                                      |
+| :--------------------- | :--------------------------------------------------------------------------------------- |
+| Test Environment       | `https://uat-partner.payu.in/api/v1/merchants/{uuid}/generate_merged_document_for_esign` |
+| Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/generate_merged_document_for_esign`     |
 
 <Callout icon="📘" theme="info">
   **Note:** Ensure the token includes `refer_merchant` and either `client_manage_agreement` or `client_manage_kyc_details`. Contact your **PayU Key Account Manager (KAM)** if scopes need enablement.
@@ -30,7 +30,7 @@ The **Generate Agreement for E-Sign** API generates the merged merchant agreemen
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-  curl --location 'https://test-partner.payu.in/api/v1/merchants/{{uuid}}/generate_merged_document_for_esign' \
+  curl --location 'https://uat-partner.payu.in/api/v1/merchants/{{uuid}}/generate_merged_document_for_esign' \
   --header 'Authorization: Bearer {{access_token}}' \
   --header 'Accept: application/json'
   ```
