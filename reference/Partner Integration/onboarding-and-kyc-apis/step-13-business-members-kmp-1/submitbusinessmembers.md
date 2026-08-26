@@ -12,16 +12,16 @@ The **Submit Business Members** API submits directors, partners, or designated p
 
 **Environment**
 
-|                        | URL                                                                            |
-| :--------------------- | :----------------------------------------------------------------------------- |
-| Test Environment       | `https://test-partner.payu.in/api/v1/merchants/{uuid}/submit_business_members` |
-| Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/submit_business_members`      |
+|                        | URL                                                                           |
+| :--------------------- | :---------------------------------------------------------------------------- |
+| Test Environment       | `https://uat-partner.payu.in/api/v1/merchants/{uuid}/submit_business_members` |
+| Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/submit_business_members`     |
 
 ## Sample request
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-  curl --location --request PUT 'https://test-partner.payu.in/api/v1/merchants/{{uuid}}/submit_business_members' \
+  curl --location --request PUT 'https://uat-partner.payu.in/api/v1/merchants/{{uuid}}/submit_business_members' \
   --header 'Authorization: Bearer {{access_token}}' \
   --header 'Content-Type: application/json' \
   --data '{
