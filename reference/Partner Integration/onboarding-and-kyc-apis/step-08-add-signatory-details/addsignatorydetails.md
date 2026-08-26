@@ -20,10 +20,10 @@ The **Add Signatory Details** API submits the authorised signatory for the merch
 
 **Environment**
 
-|                        | URL                                                                      |
-| :--------------------- | :----------------------------------------------------------------------- |
-| Test Environment       | `https://test-partner.payu.in/api/v1/merchants/{uuid}/signatory_details` |
-| Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/signatory_details`      |
+|                        | URL                                                                     |
+| :--------------------- | :---------------------------------------------------------------------- |
+| Test Environment       | `https://uat-partner.payu.in/api/v1/merchants/{uuid}/signatory_details` |
+| Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/signatory_details`     |
 
 <Callout icon="📘" theme="info">
   **Note:** DigiLocker (Step 09) and VKYC (Step 11) fail if signatory details are missing. Complete this step before those APIs.
@@ -33,7 +33,7 @@ The **Add Signatory Details** API submits the authorised signatory for the merch
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-    curl --location --request PUT 'https://test-partner.payu.in/api/v1/merchants/{{uuid}}/signatory_details' \
+    curl --location --request PUT 'https://uat-partner.payu.in/api/v1/merchants/{{uuid}}/signatory_details' \
     --header 'Authorization: Bearer {{access_token}}' \
     --header 'Content-Type: application/x-www-form-urlencoded' \
     --data-urlencode 'merchant[signatory_contact_details_attributes[0][authorised_signatory]]=true' \
