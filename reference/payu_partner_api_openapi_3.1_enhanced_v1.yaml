@@ -32,7 +32,7 @@ info:
 
     |-------------|----------|-----------------|
 
-    | Test | `https://test-accounts.payu.in` | `https://test-partner.payu.in` |
+    | Test | `https://uat-accounts.payu.in` | `https://uat-partner.payu.in` |
 
     | Production | `https://accounts.payu.in` | `https://partner.payu.in` |
 
@@ -288,14 +288,14 @@ info:
     ### E-Sign Correct Endpoint (Discovered March 2026)
 
     - **URL:** `GET /api/v1/merchants/{uuid}/generate_merged_document_for_esign`
-    on `test-partner.payu.in`
+    on `uat-partner.payu.in`
 
     - **Scope:** `refer_merchant` + at least one of (`client_manage_agreement`
     or `client_manage_kyc_details`). `refer_merchant` alone returns `401`.
 servers:
-  - url: https://test-accounts.payu.in
+  - url: https://uat-accounts.payu.in
     description: Authentication Server (Test)
-  - url: https://test-partner.payu.in
+  - url: https://uat-partner.payu.in
     description: Test/Sandbox Environment
   - url: https://partner.payu.in
     description: Production Environment
@@ -1492,7 +1492,7 @@ paths:
 
         ## Base URL
 
-        - Test: `https://test-partner.payu.in`
+        - Test: `https://uat-partner.payu.in`
 
         - Production: `https://partner.payu.in`
 
@@ -1714,7 +1714,7 @@ paths:
 
         ## Base URL
 
-        - Test: `https://test-partner.payu.in`
+        - Test: `https://uat-partner.payu.in`
 
         - Production: `https://partner.payu.in`
 
@@ -1860,7 +1860,7 @@ components:
       type: oauth2
       flows:
         clientCredentials:
-          tokenUrl: https://test-accounts.payu.in/oauth/token
+          tokenUrl: https://uat-accounts.payu.in/oauth/token
           scopes:
             refer_merchant: Merchant referral operations
             client_manage_agreement: Manage merchant agreements
@@ -1886,7 +1886,7 @@ tags:
 
       |-------------|-----|
 
-      | Test | `https://test-accounts.payu.in/oauth/token` |
+      | Test | `https://uat-accounts.payu.in/oauth/token` |
 
       | Production | `https://accounts.payu.in/oauth/token` |
 
@@ -2851,7 +2851,7 @@ tags:
       | **URL** | `GET
       /api/v1/merchants/{uuid}/generate_merged_document_for_esign` |
 
-      | **Base** | `test-partner.payu.in` (Test) / `partner.payu.in` (Prod) |
+      | **Base** | `uat-partner.payu.in` (Test) / `partner.payu.in` (Prod) |
 
       | **Scope** | Must include BOTH `refer_merchant` AND
       `client_manage_agreement` |
