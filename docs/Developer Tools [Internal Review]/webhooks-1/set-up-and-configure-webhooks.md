@@ -1,5 +1,5 @@
 ---
-title: Configure and Manage Webhooks
+title: Configure Webhooks
 deprecated: false
 hidden: true
 metadata:
@@ -299,7 +299,21 @@ For detailed troubleshooting guidance, see [Test & Troubleshoot Webhooks](doc:te
 
 Now that your webhook endpoint is configured:
 
-1. **[Verify Webhook Requests](doc:verify-webhook-requests)** — Implement signature verification to ensure requests are genuinely from PayU
+<Cards>
+  <Card title="Manage Webhooks" icon="fa-rocket">
+
+  </Card>
+
+  <Card title="Card Two" icon="fa-code">
+
+  </Card>
+
+  <Card title="Card Three" icon="fa-comments">
+
+  </Card>
+</Cards>
+
+1. **Manage Webhooks: ​**
 2. **[Handle Webhook Events](doc:handle-webhook-events)** — Learn best practices for processing events, handling duplicates, and managing errors
 3. **[Webhook Events Reference](doc:webhook-events-and-sample-payloads)** — Review complete payload structures and parameters for each event type
 4. **[Test & Troubleshoot Webhooks](doc:test-troubleshoot-webhooks)** — Test your integration before going live
