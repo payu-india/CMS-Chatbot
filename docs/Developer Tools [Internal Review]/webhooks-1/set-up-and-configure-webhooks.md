@@ -48,11 +48,7 @@ Your webhook endpoint must meet these requirements:
 
 {/* NEW CONTENT — not sourced from existing docs, needs SME review */}
 
-### Response Time and Acknowledgment
-
-{/* Sourced from docs/payouts/payouts-integration/payouts-webhooks.md */}
-
-<Accordion title="Endpoint Checklist" icon="fa-info-circle">
+<Accordion title="Response Time and Acknowledgment" icon="far fa-down-left-and-up-right-to-center">
   PayU expects your endpoint to:
 
   - **Return HTTP status code 200** to acknowledge receipt
@@ -66,78 +62,43 @@ Your webhook endpoint must meet these requirements:
   </Callout>
 </Accordion>
 
-{/* NEW CONTENT — not sourced from existing docs, needs SME review */}
-
-**Best practice:** Use an asynchronous queue (like Redis, RabbitMQ, or AWS SQS) to handle webhook events:
-
-```
-Webhook arrives → Validate signature → Save to queue → Return 200
-                                          ↓
-                        Background worker picks up event → Process business logic
-```
-
-This ensures you respond to PayU quickly while safely processing time-intensive operations.
-
-{/* END NEW CONTENT */}
-
-### Retry behavior on failure
-
 {/* Sourced from docs/payouts/payouts-integration/payouts-webhooks.md */}
 
-If PayU doesn't receive a 200 response within the timeout window, the webhook delivery is retried:
+<Accordion title="Retry Behavior on Failure" icon="far fa-file-dashed-line">
+  If PayU doesn't receive a 200 response within the timeout window, the webhook delivery is retried:
 
-- **Maximum retry attempts**: 2 additional retries (3 total delivery attempts)
-- **Retry schedule**: PayU retries with exponential backoff
+  - **Maximum retry attempts**: 2 additional retries (3 total delivery attempts)
+  - **Retry schedule**: PayU retries with exponential backoff
 
-> **Important**: On failure, the webhook is re-tried maximum 2 more times with the same protocol.
+  <Callout icon="📘" theme="info">
+    ### **Important:**
 
-{/* END */}
+    On failure, the webhook is re-tried maximum 2 more times with the same protocol.
+  </Callout>
+</Accordion>
 
-{/* NEW CONTENT — not sourced from existing docs, needs SME review */}
+###
 
-**Implication**: Your endpoint might receive the same event multiple times if:
+<Accordion title="IP Addresses to Whitelist" icon="far fa-laptop-code">
+  All webhook requests originate from PayU's IP addresses. If your server is behind a firewall, whitelist these IPs:
 
-- Your first response times out but later retries succeed
-- Your server returns an error the first time, then succeeds on retry
+  | **Environment**            | **DC IPs**                                                           | **DR IPs**                                                            |
+  | -------------------------- | -------------------------------------------------------------------- | --------------------------------------------------------------------- |
+  | **Test Environment**       | <ul><li>180.179.174.1</li><li>3.6.73.183</li><li>3.6.83.44</li></ul> | NA                                                                    |
+  | **Production Environment** | <ul><li>3.7.89.1</li><li>3.7.89.2</li><li>3.7.89.3</li></ul>         | <ul><li>52.140.8.88</li><li>52.140.8.89</li><li>52.140.8.64</li></ul> |
 
-Always implement **idempotency** — use the event ID or `mihpayid` (PayU transaction ID) to detect and ignore duplicate events. See [Handle Webhook Events](doc:handle-webhook-events) for implementation patterns.
+  <Accordion title="Additional IPs for Payout Webhooks" icon="far fa-table-rows-add-below">
+    **Production:**
 
-{/* END NEW CONTENT */}
+    - Existing IPs: 180.179.168.225
+    - New IPs: 180.179.168.225, 13.71.57.148, 52.140.8.68, 180.179.174.1
 
-### IP addresses to whitelist
+    **Test:**
 
-{/* Sourced from docs/getting started/payu-dashboard/manage-webhooks-using-dashboard/webhook-events-and-sample-payloads.md */}
-
-All webhook requests originate from PayU's IP addresses. If your server is behind a firewall, whitelist these IPs:
-
-| **Environment**            | **DC IPs**                                                           | **DR IPs**                                                            |
-| -------------------------- | -------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| **Test Environment**       | <ul><li>180.179.174.1</li><li>3.6.73.183</li><li>3.6.83.44</li></ul> | NA                                                                    |
-| **Production Environment** | <ul><li>3.7.89.1</li><li>3.7.89.2</li><li>3.7.89.3</li></ul>         | <ul><li>52.140.8.88</li><li>52.140.8.89</li><li>52.140.8.64</li></ul> |
-
-{/* END */}
-
-{/* Sourced from docs/payouts/payouts-integration/payouts-webhooks.md (additional IPs for payouts) */}
-
-**Additional IPs for payout webhooks:**
-
-**Production:**
-
-- Existing IPs: 180.179.168.225
-- New IPs: 180.179.168.225, 13.71.57.148, 52.140.8.68, 180.179.174.1
-
-**Test:**
-
-- Existing IPs: 180.179.165.250, 13.71.57.148
-- New IPs: 13.235.110.253
-
-{/* END */}
-
-{/* NEW CONTENT — not sourced from existing docs, needs SME review */}
-
-> **Note**: Whitelist **all** IPs for your environment. PayU may route webhook requests from any of these addresses depending on load balancing and failover configurations.
-
-{/* END NEW CONTENT */}
+    - Existing IPs: 180.179.165.250, 13.71.57.148
+    - New IPs: 13.235.110.253
+  </Accordion>
+</Accordion>
 
 ***
 
