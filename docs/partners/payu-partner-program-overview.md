@@ -98,13 +98,13 @@ flowchart LR
 
 The following table helps you how to choose the method for onboarding partners. For detailed information, refer to [Which Partner Integration Method to Choose?.](doc:which-partner-integration-to-choose)
 
-|                                     | Referral Link        | Partner Portal    | Co-Branded OAuth   | API             |
-| ----------------------------------- | -------------------- | ----------------- | ------------------ | --------------- |
-| **You build UI**                    | No                   | No                | No                 | Yes             |
-| **Brand control**                   | None                 | None              | Your logo + colors | Full            |
-| **Technical effort**                | None                 | None              | Low                | High            |
-| **Merchant stays on your platform** | No                   | No                | No                 | Yes             |
-| **Best for**                        | Individual resellers | Manual onboarding | Mid-size platforms | Large platforms |
+|                                     | [API](doc:apis-used-in-partner-integration) | [Partner Portal](docs:onboard-merchants-manually) | [Co-Branded OAuth](doc:refer-merchants-using-co-branded-oauth-onboarding) | [Referral Link](docs:refer-merchants-using-referral-links) |
+| ----------------------------------- | ------------------------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| **You build UI**                    | Yes                                         | No                                                | No                                                                        | No                                                         |
+| **Brand control**                   | Full                                        | None                                              | Your logo + colors                                                        | None                                                       |
+| **Technical effort**                | High                                        | None                                              | Low                                                                       | None                                                       |
+| **Merchant stays on your platform** | Yes                                         | No                                                | No                                                                        | No                                                         |
+| **Best for**                        | Large platforms                             | Manual onboarding                                 | Mid-size platforms                                                        | Individual resellers                                       |
 
 If you need merchants to stay in your platform with an end-to-end controlled experience, use **API integration**. For a quick start with your branding, use **Co-Branded OAuth**.
 
