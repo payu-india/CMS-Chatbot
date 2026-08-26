@@ -20,10 +20,10 @@ The **Generate DigiLocker Link** API creates a DigiLocker authentication URL for
 
 **Environment**
 
-|                        | URL                                                                                         |
-| :--------------------- | :------------------------------------------------------------------------------------------ |
-| Test Environment       | `https://test-partner.payu.in/api/v3/merchants/{mid}/kyc_document/generate_digilocker_link` |
-| Production Environment | `https://partner.payu.in/api/v3/merchants/{mid}/kyc_document/generate_digilocker_link`      |
+|                        | URL                                                                                        |
+| :--------------------- | :----------------------------------------------------------------------------------------- |
+| Test Environment       | `https://uat-partner.payu.in/api/v3/merchants/{mid}/kyc_document/generate_digilocker_link` |
+| Production Environment | `https://partner.payu.in/api/v3/merchants/{mid}/kyc_document/generate_digilocker_link`     |
 
 <Callout icon="📘" theme="info">
   **Note:** DigiLocker fails without Step 08 (Signatory Details). Use **GetMerchant** to check `entity_type` and `ckyc_status` before deciding whether DigiLocker is required.
@@ -33,7 +33,7 @@ The **Generate DigiLocker Link** API creates a DigiLocker authentication URL for
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-  curl --location 'https://test-partner.payu.in/api/v3/merchants/{{mid}}/kyc_document/generate_digilocker_link' \
+  curl --location 'https://uat-partner.payu.in/api/v3/merchants/{{mid}}/kyc_document/generate_digilocker_link' \
   --header 'Authorization: Bearer {{access_token}}' \
   --header 'Content-Type: application/json' \
   --data '{
