@@ -1,9 +1,7 @@
 ---
 title: Step 08 — Add Signatory Details
-excerpt: >-
-  # Step 08 — Add Signatory Details
-
-
+hidden: false
+---
   Adds the authorised signatory who will sign the merchant agreement (Step 16).
 
 
