@@ -20,7 +20,7 @@ metadata:
 
     <br />
   </Card>
-
+0
   <Card title="3. Build Your Bill Payment UI" href="https://docs.payu.in/docs/bbps-cou-integration#3-build-your-bill-payment-ui">
     Implement category selection, biller search, identifier entry, and bill fetch screens in compliance with NPCI UI guidelines.
 
@@ -92,7 +92,7 @@ PayU BBPS Consumer Platform integration is ideal if you:
 
 ## How It Works
 
-```mermaid
+```
 %%{init: {
   "theme": "base",
   "sequence": {
@@ -135,54 +135,54 @@ PayU BBPS Consumer Platform integration is ideal if you:
   }
 }}%%
 sequenceDiagram
-    box Consumer App
+    box Consumer Side
+        participant User
         participant App as Consumer App
     end
-    box PayU COU
-        participant COU as PayU COU
+    box Agent / COU Rails
+        participant PayU as PayU COU
     end
-    box NPCI
+    box Central Switch
         participant NPCI as NPCI Switch
     end
-    box Biller Operating Unit
-        participant BOU as Biller Operating Unit (BOU)
-    end
-    box Biller System
+    box Biller Side
+        participant BOU as Biller Operating Unit
         participant Biller as Biller System
     end
-    box Banking
-        participant Sponsor as Sponsor Bank
+    box Banking & Settlement
+        participant Sponsor as Axis Bank (Sponsor)
     end
 
-    Note over App: 1. Customer opens Consumer App (e.g. PayU, Google Pay)
-    App->>App: 2. Select Bill Category (Electricity, Water, Gas, etc.)
-    App->>App: 3. Select Biller & enter account/identifier
+    Note over User: 1. User opens app & selects Bill Category<br/>(Electricity, Gas, Water, Loans, etc.)
 
-    App->>COU: 4. Bill Fetch Request
-    COU->>NPCI: Forward fetch request
-    NPCI->>BOU: Route to BOU
-    BOU->>Biller: Get bill details
+    User->>App: 2. Input Biller & Account Identifier<br/>(Account No / Mobile / Consumer ID)
+    
+    App->>PayU: 3. Initiate Bill Fetch
+    PayU->>NPCI: Forward Fetch Request
+    NPCI->>BOU: Route Fetch Request
+    BOU->>Biller: Query Biller System
+    
+    Biller-->>BOU: Return Bill Data
+    BOU-->>NPCI: Send Bill Details
+    NPCI-->>PayU: Forward Bill Details
+    PayU-->>App: 4. Deliver Bill Details
+    
+    Note over App: 5. Display Amount, Due Date,<br/>Bill Number, & Fees to User
 
-    Biller-->>BOU: Bill details (amount, due date)
-    BOU-->>NPCI: Return bill details
-    NPCI-->>COU: Return bill details
-    COU-->>App: 5. Display bill to customer
+    User->>App: 6. Review & Confirm Payment
+    App->>PayU: Submit Payment Request
+    PayU->>NPCI: Process via NPCI Rails (On-Us via BOU / Off-Us)
+    NPCI->>BOU: Pass Payment Confirmation
+    BOU->>Biller: 7. Payment Confirmation Sent
+    
+    Biller-->>BOU: Ack Confirmation
+    BOU-->>NPCI: Ack Confirmation
+    NPCI-->>PayU: Payment Success
+    PayU-->>App: Payment Success
+    App-->>User: 8. User receives receipt & confirmation
 
-    Note over App: 6. Customer confirms and initiates Payment
-    App->>COU: Initiate payment
-
-    COU->>NPCI: 7. Route payment (On-Us or Off-Us)
-    Note over NPCI: NPCI Switch routes the payment
-
-    NPCI->>BOU: Send payment instruction
-    BOU->>Biller: 8. Payment confirmation to biller
-
-    NPCI-->>COU: Payment status
-    COU-->>App: 9. Payment receipt & confirmation to customer
-
-    NPCI-->>Sponsor: 10. T+1 Settlement via Sponsor Bank
+    Note over NPCI, Sponsor: 9. T+1 Settlement via Sponsor Bank (Axis Bank)
 ```
-
 > **Developer Note:** The fetch-and-pay cycle involves a 10-step round trip (5 hops request + 5 hops response) between your app, PayU COU, NPCI switch, and the biller's BOU. PayU handles all routing and switch communication on your behalf.
 
 ---
@@ -244,4 +244,3 @@ Before you start integrating, make sure you have the following in place:
 6. **AutoPay (UPMS)** — If the user has registered for AutoPay, future bills are automatically fetched and paid on due dates; duplicate payment prevention is built in
 
 > ⚠️ **Important:** Always verify payment status server-side using the Status Check API. Do not rely solely on client-side redirects or callbacks for payment confirmation.
-
