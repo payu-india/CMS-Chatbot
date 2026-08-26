@@ -6,9 +6,15 @@ hidden: true
 metadata:
   robots: index
 ---
-## Update a webhook
+## Update a Webhook
 
-{/* Sourced from docs/getting started/payu-dashboard/manage-webhooks-using-dashboard/update-a-webhook.md */}
+<Accordion title="When to update" icon="far fa-question">
+  - Your server's webhook URL changes (domain migration, new endpoint path)
+
+  - You want to add or remove event types from an existing webhook
+
+  - You need to enable/disable a webhook temporarily without deleting it
+</Accordion>
 
 To update an existing webhook:
 
@@ -18,19 +24,9 @@ To update an existing webhook:
 4. Modify the webhook URL or event selection as needed.
 5. Click **Update** to save your changes.
 
-{/* NEW CONTENT — not sourced from existing docs, needs SME review */}
+***
 
-**When to update:**
-
-- Your server's webhook URL changes (domain migration, new endpoint path)
-- You want to add or remove event types from an existing webhook
-- You need to enable/disable a webhook temporarily without deleting it
-
-{/* END NEW CONTENT */}
-
-### Delete a webhook
-
-{/* Sourced from docs/getting started/payu-dashboard/manage-webhooks-using-dashboard/delete-a-webhook-on-dashboard.md */}
+## Delete a Webhook
 
 To delete a webhook:
 
@@ -39,15 +35,11 @@ To delete a webhook:
 3. Click the **Delete** icon (trash icon).
 4. Confirm the deletion when prompted.
 
-{/* NEW CONTENT — not sourced from existing docs, needs SME review */}
+<Callout icon="far fa-exclamation" theme="error">
+  ### **Watch Out!**
 
-> **Warning**: Deleting a webhook is permanent. PayU will immediately stop sending events to that URL. Make sure you no longer need the webhook before deleting it.
-
-{/* END NEW CONTENT */}
-
-{/* END */}
-
-{/* NEW CONTENT — not sourced from existing docs, needs SME review */}
+  Deleting a webhook is permanent. PayU will immediately stop sending events to that URL. Make sure you no longer need the webhook before deleting it.
+</Callout>
 
 ### Rotate webhook secrets (if applicable)
 
