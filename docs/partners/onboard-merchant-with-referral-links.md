@@ -2,6 +2,8 @@
 title: Onboard Merchant with Referral Links
 deprecated: false
 hidden: true
+link:
+  url: https://docs.payu.in/update/docs/refer-merchants-using-referral-links
 metadata:
   robots: index
 ---
