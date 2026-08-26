@@ -17,10 +17,10 @@ The **Fetch Required KYC Documents** API returns document categories and accepte
 
 **Environment**
 
-|                        | URL                                                                              |
-| :--------------------- | :------------------------------------------------------------------------------- |
-| Test Environment       | `https://test-partner.payu.in/api/v3/merchants/{mid}/kyc_document/required_docs` |
-| Production Environment | `https://partner.payu.in/api/v3/merchants/{mid}/kyc_document/required_docs`      |
+|                        | URL                                                                             |
+| :--------------------- | :------------------------------------------------------------------------------ |
+| Test Environment       | `https://uat-partner.payu.in/api/v3/merchants/{mid}/kyc_document/required_docs` |
+| Production Environment | `https://partner.payu.in/api/v3/merchants/{mid}/kyc_document/required_docs`     |
 
 <Callout icon="📘" theme="info">
   ### **Mapping to Step 15 - Upload KYC Documents:**&#x20;
@@ -32,7 +32,7 @@ The **Fetch Required KYC Documents** API returns document categories and accepte
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-    curl --location 'https://test-partner.payu.in/api/v3/merchants/{{mid}}/kyc_document/required_docs' \
+    curl --location 'https://uat-partner.payu.in/api/v3/merchants/{{mid}}/kyc_document/required_docs' \
     --header 'Authorization: Bearer {{access_token}}' \
     --header 'Accept: application/json'
   ```
