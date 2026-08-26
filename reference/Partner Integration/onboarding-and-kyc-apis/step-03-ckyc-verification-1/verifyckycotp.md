@@ -18,10 +18,10 @@ The **Verify CKYC OTP** API verifies the OTP from Step 03A and returns CKYC iden
 
 **Environment**
 
-|                        | URL                                                                          |
-| :--------------------- | :--------------------------------------------------------------------------- |
-| Test Environment       | `https://test-partner.payu.in/api/v3/merchants/kyc_document/verify_ckyc_otp` |
-| Production Environment | `https://partner.payu.in/api/v3/merchants/kyc_document/verify_ckyc_otp`      |
+|                        | URL                                                                         |
+| :--------------------- | :-------------------------------------------------------------------------- |
+| Test Environment       | `https://uat-partner.payu.in/api/v3/merchants/kyc_document/verify_ckyc_otp` |
+| Production Environment | `https://partner.payu.in/api/v3/merchants/kyc_document/verify_ckyc_otp`     |
 
 <Callout icon="📘" theme="info">
   **Note:** Send `otp` as a JSON string, not a number. Parsing with `parseInt()` strips leading zeros and causes validation errors.
