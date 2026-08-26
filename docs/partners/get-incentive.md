@@ -6,6 +6,8 @@ excerpt: >-
   Value**
 deprecated: false
 hidden: true
+link:
+  url: https://docs.payu.in/docs/onboard-merchants-manually#step-4-track-incentives
 metadata:
   title: ''
   description: ''
