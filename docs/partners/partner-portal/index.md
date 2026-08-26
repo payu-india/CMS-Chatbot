@@ -2,7 +2,7 @@
 title: Refer Merchants using Portal
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Refer Merchants using Partner Portal
   description: >-
