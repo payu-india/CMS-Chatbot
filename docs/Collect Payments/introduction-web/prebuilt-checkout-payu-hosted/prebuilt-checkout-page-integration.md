@@ -84,7 +84,7 @@ A simple server-generated redirect that sends customers from your site/app to th
 <Callout icon="📘" theme="success">
   ### Download Postman Collection
 
-  Accelerate your integration workflow with our Postman collection for PayU Hosted Checkout. Click the Download Postman Collection button below to download and get started.
+  Accelerate your integration workflow with our Postman collection for PayU Hosted Checkout. Click&#x20;**&#x20;Postman Collection&#x202F;**&#x20;below to download and get started.
 </Callout>
 
 <HTMLBlock>{`
