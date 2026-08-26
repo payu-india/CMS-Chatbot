@@ -8,6 +8,46 @@ hidden: true
 metadata:
   robots: index
 ---
+<Cards columns={3}>
+  <Card title="1. Create Your PayU Account" href="https://docs.payu.in/docs/bbps-cou-integration#1-create-your-payu-account">
+    Sign up for a PayU account, obtain your API credentials, and get your COU access approved by NPCI to begin bill payment integration.
+
+    <br />
+  </Card>
+
+  <Card title="2. Choose Your Integration Type" href="https://docs.payu.in/docs/bbps-cou-integration#2-choose-your-integration-type">
+    Select the right path for your platform — opt for API-based integration for full control, or the White-label TSP solution for ready-made UI screens.
+
+    <br />
+  </Card>
+
+  <Card title="3. Build Your Bill Payment UI" href="https://docs.payu.in/docs/bbps-cou-integration#3-build-your-bill-payment-ui">
+    Implement category selection, biller search, identifier entry, and bill fetch screens in compliance with NPCI UI guidelines.
+
+    <br />
+  </Card>
+
+  <Card title="4. Integrate BBPS APIs" href="https://docs.payu.in/docs/bbps-cou-integration#4-integrate-bbps-apis">
+    Connect key APIs — Get Categories, Get Billers, Fetch Bill, Validate, Payment Posting, and Status Check — to enable end-to-end bill payments.
+
+    <br />
+  </Card>
+
+  <Card title="5. Get NPCI Approval and Test" href="https://docs.payu.in/docs/bbps-cou-integration#5-get-npci-approval-and-test">
+    Submit your UI screens for NPCI approval, complete thorough testing in the NPCI Sandbox environment, and obtain final sign-off before going live.
+
+    <br />
+  </Card>
+
+  <Card title="6. Go Live" href="https://docs.payu.in/docs/bbps-cou-integration#6-go-live">
+    Launch your BBPS-enabled bill payment experience and start processing live payments for your customers.
+  </Card>
+
+  <br />
+</Cards>
+
+---
+
 ## What is PayU BBPS for Consumer Platforms?
 
 **BBPS (Bharat Bill Payment System)** — now branded as **Bharat Connect** — is India's official, RBI-regulated interoperable bill payment network, governed by NPCI. It connects consumers with thousands of billers across every major category through a single, standardised fetch-and-pay experience.
@@ -30,7 +70,7 @@ PayU BBPS Consumer Platform integration is ideal if you:
 
 **This may not be for you if:**
 - ❌ You are a biller who wants to receive payments — see the [Biller (BOU) Overview](#) instead
-- ❌ You only want to collect one-time payments and do not need bill presentment (fetch) — consider [PayU Payment Gateway](#)
+- ❌ You only want to collect one-time payments — consider [PayU Payment Gateway](#)
 
 ---
 
@@ -42,7 +82,7 @@ PayU BBPS Consumer Platform integration is ideal if you:
 | 🔄 **Standardised Fetch & Pay** | Consistent bill fetch → view → pay flow across all categories and billers |
 | 🔁 **AutoPay / UPMS** | Let users register recurring bills, receive bill push notifications, and auto-pay on due dates |
 | 🔔 **Click Pay Support** | Handle deep-link payment URLs sent by billers via WhatsApp/SMS — bill pre-filled, one tap to pay |
-| 🎨 **White-Label UI** | Fully customisable screens via TSP white-label or your own UI with API integration |
+| 🎨 **White-Label UI** | Fully customisable screens via TSP white-label or your own UI built on BBPS APIs |
 | 🛡️ **RBI / NPCI Backed** | Operate on regulated, trusted national rails with standardised grievance handling |
 | 📊 **MIS & Reporting** | Access transaction reports, settlement data, and reconciliation dashboards |
 | ⚡ **T+1 Settlement** | Predictable next-day settlement cycles via PayU's sponsor bank (Axis Bank) |
@@ -52,46 +92,98 @@ PayU BBPS Consumer Platform integration is ideal if you:
 
 ## How It Works
 
-Below is the end-to-end journey for a user paying a bill on your platform:
-
 ```mermaid
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                      BBPS Consumer Platform Payment Flow                    │
-└─────────────────────────────────────────────────────────────────────────────┘
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "mirrorActors": false,
+    "rightAngles": true,
+    "messageAlign": "left",
+    "fontSize": 10,
+    "actorFontSize": 10,
+    "noteFontSize": 10,
+    "actorMargin": 88,
+    "width": 168,
+    "boxMargin": 10,
+    "messageMargin": 38,
+    "diagramMarginX": 60,
+    "diagramMarginY": 18
+  },
+  "themeVariables": {
+    "fontFamily": "Arial, Helvetica, sans-serif",
+    "fontSize": "10px",
+    "background": "#FFFFFF",
+    "primaryColor": "#A6C307",
+    "primaryTextColor": "#002843",
+    "primaryBorderColor": "#002843",
+    "secondaryColor": "#F4F9E0",
+    "lineColor": "#002843",
+    "textColor": "#002843",
+    "actorBkg": "#A6C307",
+    "actorBorder": "#002843",
+    "actorTextColor": "#002843",
+    "actorLineColor": "#002843",
+    "signalColor": "#002843",
+    "signalTextColor": "#002843",
+    "labelBoxBkgColor": "#F4F9E0",
+    "labelBoxBorderColor": "#A6C307",
+    "noteBkgColor": "#F4F9E0",
+    "noteTextColor": "#002843",
+    "noteBorderColor": "#A6C307",
+    "activationBkgColor": "#E8F0C4",
+    "activationBorderColor": "#002843"
+  }
+}}%%
+sequenceDiagram
+    box Consumer App
+        participant App as Consumer App
+    end
+    box PayU COU
+        participant COU as PayU COU
+    end
+    box NPCI
+        participant NPCI as NPCI Switch
+    end
+    box Biller Operating Unit
+        participant BOU as Biller Operating Unit (BOU)
+    end
+    box Biller System
+        participant Biller as Biller System
+    end
+    box Banking
+        participant Sponsor as Sponsor Bank
+    end
 
-  [User opens your app]
-         │
-         ▼
-  [Selects Bill Category]          ◄──  Electricity / Gas / Water / Loans / etc.
-         │
-         ▼
-  [Selects Biller & enters         ◄──  Account number / Mobile / Consumer ID
-   account identifier]
-         │
-         ▼
-  [Bill Fetch Request sent]
-    Your App → PayU COU → NPCI Switch → Biller Operating Unit → Biller System
-         │
-         ▼
-  [Bill details returned]          ◄──  Amount, Due Date, Bill Number, Fees
-         │
-         ▼
-  [User reviews & confirms payment]
-         │
-         ▼
-  [Payment processed via NPCI]    ◄──  On-Us (via BOU) or Off-Us (via NPCI rails)
-         │
-         ▼
-  [Payment confirmation sent to Biller System]
-         │
-         ▼
-  [User receives receipt & confirmation]
-         │
-         ▼
-  [T+1 Settlement via Sponsor Bank (Axis Bank)]
+    Note over App: 1. Customer opens Consumer App (e.g. PayU, Google Pay)
+    App->>App: 2. Select Bill Category (Electricity, Water, Gas, etc.)
+    App->>App: 3. Select Biller & enter account/identifier
+
+    App->>COU: 4. Bill Fetch Request
+    COU->>NPCI: Forward fetch request
+    NPCI->>BOU: Route to BOU
+    BOU->>Biller: Get bill details
+
+    Biller-->>BOU: Bill details (amount, due date)
+    BOU-->>NPCI: Return bill details
+    NPCI-->>COU: Return bill details
+    COU-->>App: 5. Display bill to customer
+
+    Note over App: 6. Customer confirms and initiates Payment
+    App->>COU: Initiate payment
+
+    COU->>NPCI: 7. Route payment (On-Us or Off-Us)
+    Note over NPCI: NPCI Switch routes the payment
+
+    NPCI->>BOU: Send payment instruction
+    BOU->>Biller: 8. Payment confirmation to biller
+
+    NPCI-->>COU: Payment status
+    COU-->>App: 9. Payment receipt & confirmation to customer
+
+    NPCI-->>Sponsor: 10. T+1 Settlement via Sponsor Bank
 ```
 
-> **Developer Note:** The fetch-and-pay cycle involves a 10-step round trip (5 hops request + 5 hops response) between your app, PayU COU, NPCI switch, and the biller's BOU. PayU handles the routing and switch communication.
+> **Developer Note:** The fetch-and-pay cycle involves a 10-step round trip (5 hops request + 5 hops response) between your app, PayU COU, NPCI switch, and the biller's BOU. PayU handles all routing and switch communication on your behalf.
 
 ---
 
@@ -106,7 +198,7 @@ Before you start integrating, make sure you have the following in place:
 - ☑️ **App Registration with NPCI** — Required if you want to support Click Pay deep links (Android / iOS)
 - ☑️ **Callback Handling Infrastructure** — For UPMS bill push notifications and AutoPay flows
 - ☑️ **NPCI Sandbox Access** — For testing and certification before production launch
-- ☑️ **Compliance Sign-Off** — NPCI testing and sign-off required for all BBPS functionality
+- ☑️ **Compliance Sign-Off** — NPCI testing and sign-off required for all BBPS functionality before go-live
 
 ---
 
@@ -130,7 +222,6 @@ Before you start integrating, make sure you have the following in place:
 | 🛡️ Insurance Premium | LIC, general insurance |
 | 📈 Mutual Funds | SIP payments |
 | 📡 Cable TV | Local cable operators |
-| 🏢 Housing Society | Maintenance dues |
 | 💳 Credit Card Bills | Major banks |
 | 🏛️ Government / E-Challan | Tax and penalty payments |
 | And more... | 22,000+ billers across all categories |
@@ -154,19 +245,3 @@ Before you start integrating, make sure you have the following in place:
 
 > ⚠️ **Important:** Always verify payment status server-side using the Status Check API. Do not rely solely on client-side redirects or callbacks for payment confirmation.
 
----
-
-## Ready to Integrate?
-
-| | |
-|---|---|
-| 📘 **Step 1** | [Create your PayU account and get COU credentials →](#) |
-| 🛠️ **Step 2** | [Choose your integration type (API or White-label TSP) →](#) |
-| 🎨 **Step 3** | [Build your BBPS UI screens per NPCI guidelines →](#) |
-| 🔌 **Step 4** | [Integrate BBPS APIs (Categories, Billers, Fetch, Pay, Status) →](#) |
-| ✅ **Step 5** | [Complete NPCI Sandbox testing and get approval →](#) |
-| 🚀 **Step 6** | [Go Live and start offering bill payments to your users →](#) |
-
----
-
-*Powered by PayU · Regulated by RBI · Operated on NPCI BBPS Rails*
