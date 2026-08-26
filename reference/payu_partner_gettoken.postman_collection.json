@@ -56,7 +56,7 @@
                   "scope": {
                     "type": "string",
                     "description": "Space-separated scopes. Include `refer_merchant` at minimum.",
-                    "example": "refer_merchant client_manage_kyc_details client_manage_agreement"
+                    "example": "refer_merchant"
                   }
                 }
               }
