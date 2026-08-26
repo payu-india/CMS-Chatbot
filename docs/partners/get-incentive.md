@@ -5,7 +5,7 @@ excerpt: >-
   following:  **Your Net Incentive =(Client TDR – Base Rate) \* Transaction
   Value**
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
