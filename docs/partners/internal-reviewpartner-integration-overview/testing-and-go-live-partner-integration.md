@@ -7,10 +7,12 @@ metadata:
 ---
 ## Test environment
 
-| Resource        | URL                                        |
-| --------------- | ------------------------------------------ |
-| Onboarding APIs | `https://uat-accounts.payu.in/oauth/token` |
-| Payment         | `https://test.payu.in/_payment`            |
+| Resource                       | URL                                        |
+| ------------------------------ | ------------------------------------------ |
+| Authentication (Get Token API) | `https://uat-accounts.payu.in/oauth/token` |
+| Onboarding APIs                | `https://uat-partner.payu.in`              |
+| Collect Payment API            | `https://test.payu.in/_payment`            |
+|                                |                                            |
 
 ## Postman collection
 
