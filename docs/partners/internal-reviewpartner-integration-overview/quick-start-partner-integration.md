@@ -21,7 +21,7 @@ flowchart TD
     H --> I[Merchant Activated]
     
     style A fill:#e1f5ff
-    style H fill:#d4edda
+    style I fill:#d4edda
 ```
 
 ## Steps to integrate
