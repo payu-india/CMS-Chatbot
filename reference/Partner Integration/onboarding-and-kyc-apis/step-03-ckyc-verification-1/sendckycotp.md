@@ -28,7 +28,7 @@ The **Send CKYC OTP** API sends an OTP to the merchant mobile for CKYC verificat
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
-  curl --location 'https://test-partner.payu.in/api/v3/merchants/kyc_document/send_ckyc_otp' \
+  curl --location 'https://uat-partner.payu.in/api/v3/merchants/kyc_document/send_ckyc_otp' \
   --header 'Authorization: Bearer {{access_token}}' \
   --header 'Content-Type: application/json' \
   --data '{
