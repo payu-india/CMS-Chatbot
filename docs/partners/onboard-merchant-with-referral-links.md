@@ -1,7 +1,7 @@
 ---
 title: Onboard Merchant with Referral Links
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
