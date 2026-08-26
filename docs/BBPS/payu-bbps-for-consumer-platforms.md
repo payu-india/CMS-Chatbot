@@ -95,19 +95,9 @@ PayU BBPS Consumer Platform integration is ideal if you:
 ```mermaid
 %%{init: {
   "theme": "base",
-  "sequence": {
-    "mirrorActors": false,
-    "rightAngles": true,
-    "messageAlign": "left",
-    "fontSize": 10,
-    "actorFontSize": 10,
-    "noteFontSize": 10,
-    "actorMargin": 88,
-    "width": 168,
-    "boxMargin": 10,
-    "messageMargin": 38,
-    "diagramMarginX": 60,
-    "diagramMarginY": 18
+  "flowchart": {
+    "curve": "basis",
+    "padding": 15
   },
   "themeVariables": {
     "fontFamily": "Arial, Helvetica, sans-serif",
@@ -118,70 +108,61 @@ PayU BBPS Consumer Platform integration is ideal if you:
     "primaryBorderColor": "#002843",
     "secondaryColor": "#F4F9E0",
     "lineColor": "#002843",
-    "textColor": "#002843",
-    "actorBkg": "#A6C307",
-    "actorBorder": "#002843",
-    "actorTextColor": "#002843",
-    "actorLineColor": "#002843",
-    "signalColor": "#002843",
-    "signalTextColor": "#002843",
-    "labelBoxBkgColor": "#F4F9E0",
-    "labelBoxBorderColor": "#A6C307",
-    "noteBkgColor": "#F4F9E0",
-    "noteTextColor": "#002843",
-    "noteBorderColor": "#A6C307",
-    "activationBkgColor": "#E8F0C4",
-    "activationBorderColor": "#002843"
+    "textColor": "#002843"
   }
 }}%%
-sequenceDiagram
-    box Consumer Side
-        participant User
-        participant App as Consumer App
-    end
-    box Agent / COU Rails
-        participant PayU as PayU COU
-    end
-    box Central Switch
-        participant NPCI as NPCI Switch
-    end
-    box Biller Side
-        participant BOU as Biller Operating Unit
-        participant Biller as Biller System
-    end
-    box Banking & Settlement
-        participant Sponsor as Axis Bank (Sponsor)
+flowchart TD
+    subgraph TitleBox ["BBPS Consumer Platform Payment Flow"]
+        direction TD
+        
+        A["User opens your app"] --> B["Selects Bill Category"]
+        
+        subgraph CatNote ["Category Options"]
+            B1["Electricity / Gas / Water / Loans / etc."]
+        end
+        B -.- B1
+
+        B --> C["Selects Biller & enters account identifier"]
+        
+        subgraph IdNote ["Identifier Options"]
+            C1["Account number / Mobile / Consumer ID"]
+        end
+        C -.- C1
+
+        C --> D["Bill Fetch Request sent"]
+
+        subgraph FetchPath ["Bill Fetch Routing"]
+            D1["Your App ➔ PayU COU ➔ NPCI Switch ➔ Biller Operating Unit ➔ Biller System"]
+        end
+        D --- FetchPath
+
+        D --> E["Bill details returned"]
+
+        subgraph DetailsNote ["Returned Details"]
+            E1["Amount, Due Date, Bill Number, Fees"]
+        end
+        E -.- E1
+
+        E --> F["User reviews & confirms payment"]
+        F --> G["Payment processed via NPCI"]
+
+        subgraph ProcessNote ["Processing Rails"]
+            G1["On-Us (via BOU) or Off-Us (via NPCI rails)"]
+        end
+        G -.- G1
+
+        G --> H["Payment confirmation sent to Biller System"]
+        H --> I["User receives receipt & confirmation"]
+        I --> J["T+1 Settlement via Sponsor Bank (Axis Bank)"]
     end
 
-    Note over User: 1. User opens app & selects Bill Category<br/>(Electricity, Gas, Water, Loans, etc.)
+    classDef default fill:#F4F9E0,stroke:#002843,stroke-width:1px,color:#002843;
+    classDef titleStyle fill:#A6C307,stroke:#002843,stroke-width:2px,color:#002843,font-weight:bold;
+    classDef noteStyle fill:#FFFFFF,stroke:#A6C307,stroke-width:1px,stroke-dasharray: 3 3,color:#002843;
 
-    User->>App: 2. Input Biller & Account Identifier<br/>(Account No / Mobile / Consumer ID)
-    
-    App->>PayU: 3. Initiate Bill Fetch
-    PayU->>NPCI: Forward Fetch Request
-    NPCI->>BOU: Route Fetch Request
-    BOU->>Biller: Query Biller System
-    
-    Biller-->>BOU: Return Bill Data
-    BOU-->>NPCI: Send Bill Details
-    NPCI-->>PayU: Forward Bill Details
-    PayU-->>App: 4. Deliver Bill Details
-    
-    Note over App: 5. Display Amount, Due Date,<br/>Bill Number, & Fees to User
-
-    User->>App: 6. Review & Confirm Payment
-    App->>PayU: Submit Payment Request
-    PayU->>NPCI: Process via NPCI Rails (On-Us via BOU / Off-Us)
-    NPCI->>BOU: Pass Payment Confirmation
-    BOU->>Biller: 7. Payment Confirmation Sent
-    
-    Biller-->>BOU: Ack Confirmation
-    BOU-->>NPCI: Ack Confirmation
-    NPCI-->>PayU: Payment Success
-    PayU-->>App: Payment Success
-    App-->>User: 8. User receives receipt & confirmation
-
-    Note over NPCI, Sponsor: 9. T+1 Settlement via Sponsor Bank (Axis Bank)
+    class A,B,C,D,E,F,G,H,I,J default;
+    class TitleBox titleStyle;
+    class B1,C1,D1,E1,G1 noteStyle;
 ```
 > **Developer Note:** The fetch-and-pay cycle involves a 10-step round trip (5 hops request + 5 hops response) between your app, PayU COU, NPCI switch, and the biller's BOU. PayU handles all routing and switch communication on your behalf.
 
