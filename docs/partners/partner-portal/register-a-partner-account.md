@@ -7,6 +7,9 @@ excerpt: >-
   partner program.
 deprecated: false
 hidden: true
+link:
+  url: >-
+    https://docs.payu.in/docs/onboard-merchants-manually#step-1-register-a-partner-account
 metadata:
   title: Register a PayU Partner Account
   description: >-
