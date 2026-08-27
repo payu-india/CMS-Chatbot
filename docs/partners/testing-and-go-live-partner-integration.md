@@ -541,20 +541,3 @@ hash = sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|u
 
 ---
 
-
-## Go-live checklist
-
-- [ ] Partner Reseller Agreement signed
-- [ ] Data Processing Addendum in place
-- [ ] Production `resellerToken` obtained
-- [ ] Full onboarding flow tested end-to-end
-- [ ] Webhook endpoint deployed; **200 OK** within SLA
-- [ ] Idempotent webhook handling verified
-- [ ] Error handling and retry logic
-- [ ] Status polling fallback
-- [ ] PII handling compliant (minimize persistent PAN/bank storage)
-- [ ] Consent captured at CKYC / DigiLocker / VKYC steps
-- [ ] Payment hash generation tested
-- [ ] Refund flow tested (full + partial)
-- [ ] Production URLs and credentials
-
