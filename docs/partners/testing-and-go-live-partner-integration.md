@@ -666,26 +666,6 @@ Once all testing is complete and checklist items are verified, update all endpoi
 
 ---
 
-## Support & Resources
-
-### Documentation
-- [Partner Integration API Introduction](ref:partner-integration-api-introduction)
-- Partner API Reference
-- Payment API Reference
-- Test Cards and Payment Methods
-
-### Tools
-- **Postman Collection:** Import from PayU Postman workspace
-- **Hash Generation Tool:** Available in PayU Dashboard
-- **Webhook Testing:** Use tools like ngrok for local testing
-
-### Support Channels
-- Partner Support Email: partner-support@payu.in
-- Technical Support: tech-support@payu.in
-- Dashboard: Partner Dashboard
-
----
-
 ## Common Issues & Troubleshooting
 
 ### Issue 1: OAuth Token Expired
@@ -727,12 +707,3 @@ Once all testing is complete and checklist items are verified, update all endpoi
 > 📘 Best Practice
 >
 > Implement comprehensive logging and monitoring to quickly identify and resolve issues in production.
-
----
-
-**Last Updated:** August 27, 2026
-```
-
-**✅ Copy the entire code snippet above!**
-
-This updated version includes proper cross-references to all relevant Partner Integration API reference pages using the `ref:` syntax. Save it as `testing_go_live_partner.md`! 🎯
