@@ -36,10 +36,10 @@ Creates a new merchant shell account on PayU. Pass display name, email, mobile, 
 
 **Environment**
 
-|                        | URL                                             |
-| :--------------------- | :---------------------------------------------- |
+|                        | URL                                            |
+| :--------------------- | :--------------------------------------------- |
 | Test Environment       | `https://uat-partner.payu.in/api/v3/merchants` |
-| Production Environment | `https://partner.payu.in/api/v3/merchants`      |
+| Production Environment | `https://partner.payu.in/api/v3/merchants`     |
 
 <Accordion title="Request parameters" icon="fa-table">
   | Parameter                                                                      | Description                                                     | Example                |
@@ -81,10 +81,10 @@ Adds business category, sub-category, expected monthly volume, GST, business nam
 
 **Environment**
 
-|                        | URL                                                           |
-| :--------------------- | :------------------------------------------------------------ |
+|                        | URL                                                          |
+| :--------------------- | :----------------------------------------------------------- |
 | Test Environment       | `https://uat-partner.payu.in/api/v1/merchants/{uuid}/update` |
-| Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/update`      |
+| Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/update`     |
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
@@ -120,10 +120,10 @@ Adds the merchant website and/or app store URLs. At least one channel URL is typ
 
 **Environment**
 
-|                        | URL                                                           |
-| :--------------------- | :------------------------------------------------------------ |
+|                        | URL                                                          |
+| :--------------------- | :----------------------------------------------------------- |
 | Test Environment       | `https://uat-partner.payu.in/api/v1/merchants/{uuid}/update` |
-| Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/update`      |
+| Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/update`     |
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
@@ -154,10 +154,10 @@ Submits the authorised signatory for the merchant agreement. Complete this step 
 
 **Environment**
 
-|                        | URL                                                                      |
-| :--------------------- | :----------------------------------------------------------------------- |
+|                        | URL                                                                     |
+| :--------------------- | :---------------------------------------------------------------------- |
 | Test Environment       | `https://uat-partner.payu.in/api/v1/merchants/{uuid}/signatory_details` |
-| Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/signatory_details`      |
+| Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/signatory_details`     |
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
@@ -192,10 +192,10 @@ Uploads one KYC document per required category (JPG, PNG, or PDF; max 5 MB). Cal
 
 **Environment**
 
-|                        | URL                                                                |
-| :--------------------- | :----------------------------------------------------------------- |
+|                        | URL                                                               |
+| :--------------------- | :---------------------------------------------------------------- |
 | Test Environment       | `https://uat-partner.payu.in/api/v3/merchants/{mid}/kyc_document` |
-| Production Environment | `https://partner.payu.in/api/v3/merchants/{mid}/kyc_document`      |
+| Production Environment | `https://partner.payu.in/api/v3/merchants/{mid}/kyc_document`     |
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
@@ -230,10 +230,10 @@ Generates the merged merchant agreement for electronic signing. After successful
 
 **Environment**
 
-|                        | URL                                                                                       |
-| :--------------------- | :---------------------------------------------------------------------------------------- |
+|                        | URL                                                                                      |
+| :--------------------- | :--------------------------------------------------------------------------------------- |
 | Test Environment       | `https://uat-partner.payu.in/api/v1/merchants/{uuid}/generate_merged_document_for_esign` |
-| Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/generate_merged_document_for_esign`      |
+| Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/generate_merged_document_for_esign`     |
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
@@ -252,3 +252,13 @@ Generates the merged merchant agreement for electronic signing. After successful
   }
   ```
 </Accordion>
+
+## Step 7: Collect Payments
+
+After you complete the steps 6, you can start collecting payments. You need to include&#x20;
+
+## Next Steps
+
+Refer to the APIs in the [APIs used in Partner Integration](doc:apis-used-in-partner-integration) for detailed API reference. After you complete the integration in the Test environment, refer to [Testing and Go Live - Partner Integration.](doc:testing-and-go-live-partner-integration)
+
+<br />
