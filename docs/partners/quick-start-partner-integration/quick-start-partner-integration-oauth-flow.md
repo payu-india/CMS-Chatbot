@@ -60,19 +60,7 @@ flowchart TD
     <br />
   </Card>
 
-  <Card title="5. Store Merchant Credentials Securely" href="https://docs.payu.in/docs/refer-merchants-using-co-branded-oauth-onboarding#step-5-store-merchant-credentials-securely">
-    Persist merchant_key and salt securely on your server and never expose them client-side
-
-    <br />
-  </Card>
-
-  <Card title="6. Retrieve Merchant Credentials Later" href="https://docs.payu.in/docs/refer-merchants-using-co-branded-oauth-onboarding#step-6-optional-retrieve-merchant-credentials-later">
-    Use the Get Merchant Credentials API to fetch merchant_key and salt if needed later
-
-    <br />
-  </Card>
-
-  <Card title="7. Collect Payments" href="https://docs.payu.in/docs/refer-merchants-using-co-branded-oauth-onboarding#step-7-collect-payments">
+  <Card title="5. Collect Payments" href="https://docs.payu.in/docs/refer-merchants-using-co-branded-oauth-onboarding#step-5-collect-payments">
     Use the obtained merchant credentials to integrate payment flows via Hosted Checkout, Pre-Built Checkout, or UPI S2S
   </Card>
 
@@ -167,10 +155,13 @@ Exchange the authorization code for merchant credentials using the **Validate Au
 <Accordion title="Sample Response (Success)" icon="fa-shield-check">
   ```json
   {
-      "status": 1,
-      "msg": "Success",
-      "merchant_key": "mK3j2L9p",
-      "salt": "sA7x9B2c"
+      "access_token": "e6ff7e34b704be2b14c8ae3c0e776597df4ae7de9e12d3e4c79781fcbbf2c4bb",
+      "token_type": "Bearer",
+      "expires_in": 7199,
+      "refresh_token": "356fe080daa69438e0c2d3b0a80b3fe4aa3f78b264e6092e95e4429ae59486a7",
+      "scope": "credentials_using_oauth create_payment_links read_payment_links update_payment_links delete_payment_links",
+      "created_at": 1709198191,
+      "user_uuid": "11ed-933c-d307ba06-b71a-0a64ecf8a4cc"
   }
   ```
 </Accordion>
@@ -195,58 +186,7 @@ Exchange the authorization code for merchant credentials using the **Validate Au
 
 ***
 
-### Step 5: Store Merchant Credentials Securely
-
-Once you receive the `merchant_key` and `salt`:
-
-1. **Store them securely** in your database associated with the merchant.
-2. **Never expose** these credentials in client-side code.
-3. Use them to generate payment hashes on your server.
-
-<Callout icon="🔒" theme="default">
-  ### **Security Best Practice**: Encrypt sensitive credentials at rest and in transit.
-</Callout>
-
-***
-
-### Step 6: Retrieve Merchant Credentials Later (Optional)
-
-If you need to retrieve merchant credentials at a later time, use the **Get Merchant Credentials** API.
-
-**HTTP Method:** `POST`
-
-| Environment    | Endpoint                                                       |
-| -------------- | -------------------------------------------------------------- |
-| **Test**       | `https://testdashboard.payu.in/oauth/get-merchant-credentials` |
-| **Production** | `https://dashboard.payu.in/oauth/get-merchant-credentials`     |
-
-For detailed information, refer to [Get Merchant Details API.](ref:getmerchant)
-
-<Accordion title="Sample Request" icon="fa-code">
-  ```bash
-  curl --location 'https://testdashboard.payu.in/oauth/get-merchant-credentials' \
-  --header 'Content-Type: application/json' \
-  --data '{
-      "client_id": "ABC123",
-      "client_secret": "your_client_secret"
-  }'
-  ```
-</Accordion>
-
-<Accordion title="Sample Response" icon="fa-shield-check">
-  ```json
-  {
-      "status": 1,
-      "msg": "Success",
-      "merchant_key": "mK3j2L9p",
-      "salt": "sA7x9B2c"
-  }
-  ```
-</Accordion>
-
-***
-
-### Step 7: Collect Payments
+### Step 5: Collect Payments
 
 After you complete the above steps, the merchant can start collecting payments. You can integrate using:
 
