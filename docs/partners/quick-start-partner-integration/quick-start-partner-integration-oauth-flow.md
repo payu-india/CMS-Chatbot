@@ -254,8 +254,7 @@ For detailed information, refer to [Get Merchant Details API.](ref:getmerchant)
 
 After you complete the above steps, the merchant can start collecting payments. You can integrate using:
 
-- **PayU Hosted Checkout** - Redirect customers to PayU's payment page
-- **Pre-Built Checkout** - Embed PayU's checkout interface on your website
+- **Hosted Checkout** - Redirect customers to PayU's payment page
 - **UPI S2S (Server-to-Server)** - Direct UPI integration for seamless payments
 
 Choose the integration method based on your requirements.
