@@ -6,21 +6,8 @@ metadata:
   title: Quick Start Partner Integration - OAuth Flow
   robots: index
 ---
+
 Onboard a merchant using Co-Branded OAuth flow with a small set of API calls.
-
-```mermaid
-flowchart TD
-    A[Start: Partner obtains <br> Client ID & Secret] --> B[Redirect merchant to <br> PayU Authorization Page]
-    B --> C[Merchant logs in <br> & <br> grants consent]
-    C --> D[PayU redirects to Partner <br> with auth_code]
-    D --> E[Partner validates <br> auth_code]
-    E --> F[Receive merchant <br> key & salt]
-    F --> G[Merchant can now <br> collect payments]
-    
-    style A fill:#e1f5ff
-    style G fill:#d4edda
-```
-
 ## Overview
 
 The Co-Branded OAuth onboarding flow allows partners to onboard merchants seamlessly using OAuth 2.0 authorization. This approach provides a branded experience where merchants authenticate directly with PayU, and partners receive the merchant credentials securely.
@@ -35,6 +22,21 @@ Before you begin, ensure you have:
 > 📝 **Note**: To download your Client ID and Secret, navigate to **Merchant Integration** → **Partner Integration** → **Download Credentials** on the PayU Partner Portal.
 
 ---
+## Integration Flow
+
+```mermaid
+flowchart TD
+    A[Start: Partner obtains <br> Client ID & Secret] --> B[Redirect merchant to <br> PayU Authorization Page]
+    B --> C[Merchant logs in <br> & <br> grants consent]
+    C --> D[PayU redirects to Partner <br> with auth_code]
+    D --> E[Partner validates <br> auth_code]
+    E --> F[Receive merchant <br> key & salt]
+    F --> G[Merchant can now <br> collect payments]
+    
+    style A fill:#e1f5ff
+    style G fill:#d4edda
+```
+
 
 ## Steps to Integrate
 <Cards columns={3}>
@@ -80,6 +82,7 @@ Before you begin, ensure you have:
 
   <br />
 </Cards>
+
 
 
 ### Step 1: Build the Authorization URL
