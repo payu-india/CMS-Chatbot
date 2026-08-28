@@ -181,11 +181,6 @@ You advise small businesses. When they need payment solutions:
 
 ## Support & Resources
 
-### 📚 **Documentation**
-- Full API documentation at [docs.payu.in](https://docs.payu.in)
-- Step-by-step integration guides
-- Sample code and SDKs
-
 ### 🛠️ **Test Environment**
 Practice and test everything before going live with real merchants.
 
