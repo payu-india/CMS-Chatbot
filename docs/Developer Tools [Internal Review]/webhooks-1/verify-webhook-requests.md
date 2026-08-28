@@ -45,91 +45,121 @@ Payment and refund webhooks carry a `hash` field in the body. PayU computes this
   </Callout>
 </Accordion>
 
-Some integrations change the field order:
+Some integrations change the hash formula order. Here is the complete list:
 
-| Scenario                   | String to hash                                                                                            |
-| -------------------------- | --------------------------------------------------------------------------------------------------------- |
-| Regular                    | `SALT\|status\|\|\|\|\|\|udf5\|udf4\|udf3\|udf2\|udf1\|email\|firstname\|productinfo\|amount\|txnid\|key` |
-| With additional charges    | `additional_charges\|SALT\|status\|\|\|\|\|\|udf5\|…\|key`                                                |
-| With split payments        | `SALT\|status\|splitInfo\|\|\|\|\|\|udf5\|…\|key`                                                         |
-| Split + additional charges | `additional_charges\|SALT\|status\|splitInfo\|\|\|\|\|\|udf5\|…\|key`                                     |
+<Tabs>
+  <Tab title="Standard Integration">
+    **Products:**
 
-These variants are maintained in the shared `Reverse_Hash_Types` block, so they stay consistent with the rest of the docs:
+    - PayU Hosted Checkout
 
-<Reverse_Hash_Types />
+    **Hash Formula**
 
-### Steps
+    ```text Formula
+    SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key
+    ```
+  </Tab>
 
-1. **Read the raw request body** exactly as received. Do not let a framework re-serialize or re-order fields before you hash (see [failure causes](#verification-is-failing--common-causes)).
-2. **Extract the&#x20;**`hash`**&#x20;field** that PayU sent in the payload.
-3. **Build the reverse-hash string** using your merchant **salt** and the response fields, in the order above. Use `""` for any unused UDF and keep every pipe.
-4. **Compute SHA-512** over the UTF-8 string.
-5. **Compare** your computed digest to the `hash` from the payload. If they are equal, the webhook is authentic — proceed to [Handle Webhook Events](doc:events-and-payloads). If not, reject it.
+  <Tab title="With Additional Charges">
+    **Products:**
 
-{/* NEW CONTENT — code samples implement the repo's documented reverse-hash formula but are not lifted verbatim from an existing multi-language block; verify against PayU node SDK before publishing. */}
+    ```text Hash Formula
+    additional_charges|SALT|status||||||udf5|…|key
+    ```
+  </Tab>
 
-```javascript
-// Node.js — reverse-hash verification for a payment/refund webhook
-const crypto = require("crypto");
+  <Tab title="With Split Payments">
+    **Products:**
 
-function isValidPayuWebhook(body, salt) {
-  const udf = (n) => body[`udf${n}`] || "";
-  const reverseString = [
-    salt, body.status, "", "", "", "", "",
-    udf(5), udf(4), udf(3), udf(2), udf(1),
-    body.email || "", body.firstname || "", body.productinfo || "",
-    body.amount, body.txnid, body.key,
-  ].join("|");
+    ```text Hash Formula
+    SALT|status|splitInfo||||||udf5|…|key
+    ```
+  </Tab>
 
-  const computed = crypto.createHash("sha512").update(reverseString, "utf8").digest("hex");
-  // constant-time comparison
-  const a = Buffer.from(computed);
-  const b = Buffer.from((body.hash || "").toLowerCase());
-  return a.length === b.length && crypto.timingSafeEqual(a, b);
-}
-```
+  <Tab title="Split Settlements + Additional Charges">
+    **Products:**
 
-```python
-# Python — reverse-hash verification for a payment/refund webhook
-import hashlib, hmac
+    ```text Hash Formula
+    additional_charges|SALT|status|splitInfo||||||udf5|…|key
+    ```
+  </Tab>
+</Tabs>
 
-def is_valid_payu_webhook(body: dict, salt: str) -> bool:
-    udf = lambda n: body.get(f"udf{n}", "") or ""
-    parts = [
-        salt, body.get("status", ""), "", "", "", "", "",
-        udf(5), udf(4), udf(3), udf(2), udf(1),
-        body.get("email", ""), body.get("firstname", ""), body.get("productinfo", ""),
-        body.get("amount", ""), body.get("txnid", ""), body.get("key", ""),
-    ]
-    computed = hashlib.sha512("|".join(parts).encode("utf-8")).hexdigest()
-    return hmac.compare_digest(computed, (body.get("hash", "") or "").lower())
-```
+<Accordion title="Reverse-hash Formula in Different Language Bindings" icon="far fa-code">
+  ```javascript
+  // Node.js — reverse-hash verification for a payment/refund webhook
+  const crypto = require("crypto");
 
-```php
-<?php
-// PHP — reverse-hash verification for a payment/refund webhook
-function is_valid_payu_webhook(array $body, string $salt): bool {
-    $udf = fn($n) => $body["udf$n"] ?? "";
-    $parts = [
-        $salt, $body["status"] ?? "", "", "", "", "", "",
-        $udf(5), $udf(4), $udf(3), $udf(2), $udf(1),
-        $body["email"] ?? "", $body["firstname"] ?? "", $body["productinfo"] ?? "",
-        $body["amount"] ?? "", $body["txnid"] ?? "", $body["key"] ?? "",
-    ];
-    $computed = hash("sha512", implode("|", $parts));
-    return hash_equals($computed, strtolower($body["hash"] ?? ""));
-}
-```
+  function isValidPayuWebhook(body, salt) {
+    const udf = (n) => body[`udf${n}`] || "";
+    const reverseString = [
+      salt, body.status, "", "", "", "", "",
+      udf(5), udf(4), udf(3), udf(2), udf(1),
+      body.email || "", body.firstname || "", body.productinfo || "",
+      body.amount, body.txnid, body.key,
+    ].join("|");
+
+    const computed = crypto.createHash("sha512").update(reverseString, "utf8").digest("hex");
+    // constant-time comparison
+    const a = Buffer.from(computed);
+    const b = Buffer.from((body.hash || "").toLowerCase());
+    return a.length === b.length && crypto.timingSafeEqual(a, b);
+  }
+  ```
+  ```python
+  # Python — reverse-hash verification for a payment/refund webhook
+  import hashlib, hmac
+
+  def is_valid_payu_webhook(body: dict, salt: str) -> bool:
+      udf = lambda n: body.get(f"udf{n}", "") or ""
+      parts = [
+          salt, body.get("status", ""), "", "", "", "", "",
+          udf(5), udf(4), udf(3), udf(2), udf(1),
+          body.get("email", ""), body.get("firstname", ""), body.get("productinfo", ""),
+          body.get("amount", ""), body.get("txnid", ""), body.get("key", ""),
+      ]
+      computed = hashlib.sha512("|".join(parts).encode("utf-8")).hexdigest()
+      return hmac.compare_digest(computed, (body.get("hash", "") or "").lower())
+  ```
+  ```php
+  <?php
+  // PHP — reverse-hash verification for a payment/refund webhook
+  function is_valid_payu_webhook(array $body, string $salt): bool {
+      $udf = fn($n) => $body["udf$n"] ?? "";
+      $parts = [
+          $salt, $body["status"] ?? "", "", "", "", "", "",
+          $udf(5), $udf(4), $udf(3), $udf(2), $udf(1),
+          $body["email"] ?? "", $body["firstname"] ?? "", $body["productinfo"] ?? "",
+          $body["amount"] ?? "", $body["txnid"] ?? "", $body["key"] ?? "",
+      ];
+      $computed = hash("sha512", implode("|", $parts));
+      return hash_equals($computed, strtolower($body["hash"] ?? ""));
+  }
+  ```
+</Accordion>
+
+<Accordion title="Reverse Hashing Steps" icon="far fa-list-ol">
+  1. Extract th&#x65;**&#x20;**`hash`**&#x20;**&#x66;ield PayU sent in the payload.
+  2. Build the reverse-hash string using the above mentioned formula. Use `""` for any unused UDF and keep every pipe.
+  3. Compute SHA-512 over the UTF-8 string.
+  4. Compare your computed digest to the `hash` from the payload. If they are equal, the webhook is authentic.
+</Accordion>
 
 <Callout icon="📘" theme="info">
-  ### Use the PayU SDK
+  ### PayU SDK Github Resource for Hashing:
 
   The PayU Node SDK exposes a Hash API that performs reverse hashing for you. See the [PayU node SDK README](https://github.com/payu-india/payu-sdk-node/blob/main/README.md).
 </Callout>
 
-### Check it by hand first
+### Reverse-hash Verification Tool
 
-Before wiring this into code, you can confirm a single payload with PayU's [Hash Verification Tool](doc:using-payu-hash-verification-tool): paste the callback body, parse the fields, enter your salt, and compare **Calculated Hash** against **Response Hash**. This is the fastest way to tell whether a mismatch is a data problem or a code problem.
+<br />
+
+Before wiring this into code, you can confirm a single payload using the PayU's [Hash Verification Tool](doc:using-payu-hash-verification-tool)
+
+<br />
+
+Paste the callback body, parse the fields, enter your salt, and compare th&#x65;**&#x20;Calculated Hash** against the **Response Hash**. This is the fastest way to tell whether a mismatch is a data problem or a code problem.
 
 ***
 
