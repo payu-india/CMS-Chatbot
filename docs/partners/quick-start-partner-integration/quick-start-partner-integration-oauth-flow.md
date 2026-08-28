@@ -3,6 +3,7 @@ title: Quick Start Partner Integration - OAuth Flow
 deprecated: false
 hidden: true
 metadata:
+  title: Quick Start Partner Integration - OAuth Flow
   robots: index
 ---
 Onboard a merchant using Co-Branded OAuth flow with a small set of API calls.
