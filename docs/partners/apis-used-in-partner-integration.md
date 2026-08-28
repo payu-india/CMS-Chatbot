@@ -57,14 +57,6 @@ The following APIs are used to onboard and manage merchants through Partner Inte
 | **Utilities**                                                                                                                   |                                                                           |
 | Retrieves the full merchant profile and verification statuses. Call between any steps to check progress.                        | [Get Merchant Details API](ref:getmerchant)                               |
 
-## Manage Invoices or Payment Links
-
-| Description                                                            | **API**                                                                                          |
-| :--------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------- |
-| Creates a new payment link for a customer through Partner Integration. | [Create Payment Link - Partner Integration](https://docs.payu.in/reference/createpaymentlinkapi) |
-| Retrieves a single payment link using its invoice number.              | [Get Single Payment Link API](https://docs.payu.in/reference/get_single_payment_link_api)        |
-| Updates a payment link's status and expiry date.                       | [Update Payment Link API](https://docs.payu.in/reference/update_invoice_api)                     |
-
 ## Partner Payment Integration APIs
 
 | Description                                                                                                               | **API**                                                                                                                     |
