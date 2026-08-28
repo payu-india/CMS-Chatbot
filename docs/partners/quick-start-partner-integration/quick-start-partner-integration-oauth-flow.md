@@ -113,9 +113,11 @@ Construct the authorization URL to redirect merchants to the PayU login page.
 
 Redirect the merchant to the authorization URL constructed in Step 1. The merchant will:
 
-1. Log in to PayU (or create a new account)
-2. Complete KYC if not already done
-3. Grant authorization to your partner application
+1. Log in to PayU (or create a new account).
+2. Complete KYC if not already done.
+3. Grant authorization to your partner application.
+
+For detailed steps, refer to [Activate Account.](doc:complete-your-kyc)
 
 ***
 
@@ -152,7 +154,7 @@ Exchange the authorization code for merchant credentials using the **Validate Au
 | **Test**       | `https://testdashboard.payu.in/oauth/validate-auth-code` |
 | **Production** | `https://dashboard.payu.in/oauth/validate-auth-code`     |
 
-🔗 [Try it - Validate Auth Code API](/reference/validate_authcode_and_client_api)
+​For more details, refer to[ Validate Auth Code API](/reference/validate_authcode_and_client_api)
 
 <Accordion title="Sample Request" icon="fa-code">
   ```bash
@@ -201,9 +203,9 @@ Exchange the authorization code for merchant credentials using the **Validate Au
 
 Once you receive the `merchant_key` and `salt`:
 
-1. **Store them securely** in your database associated with the merchant
-2. **Never expose** these credentials in client-side code
-3. Use them to generate payment hashes on your server
+1. **Store them securely** in your database associated with the merchant.
+2. **Never expose** these credentials in client-side code.
+3. Use them to generate payment hashes on your server.
 
 <Callout icon="🔒" theme="default">
   ### **Security Best Practice**: Encrypt sensitive credentials at rest and in transit.
@@ -211,7 +213,7 @@ Once you receive the `merchant_key` and `salt`:
 
 ***
 
-### Step 6: (Optional) Retrieve Merchant Credentials Later
+### Step 6: Retrieve Merchant Credentials Later (Optional)
 
 If you need to retrieve merchant credentials at a later time, use the **Get Merchant Credentials** API.
 
@@ -222,7 +224,7 @@ If you need to retrieve merchant credentials at a later time, use the **Get Merc
 | **Test**       | `https://testdashboard.payu.in/oauth/get-merchant-credentials` |
 | **Production** | `https://dashboard.payu.in/oauth/get-merchant-credentials`     |
 
-🔗 [Try it - Get Merchant Credentials API](/reference/get_merchant_credentials_api)
+For detailed information, refer to [Get Merchant Details API.](ref:getmerchant)
 
 <Accordion title="Sample Request" icon="fa-code">
   ```bash
