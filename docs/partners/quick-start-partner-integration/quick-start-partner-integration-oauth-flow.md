@@ -290,14 +290,11 @@ For detailed steps, refer to [UPI S2S Integration API.](ref:upi-s2s-partner-inte
 
 <Verify_Payment_Tabs />
 
-<br />
-
 ***
 
 ## Next Steps
 
-✅ **Test your integration**: Use the test environment credentials to verify the OAuth flow
-✅ **Review API documentation**: [Validate Auth Code API](/reference/validate_authcode_and_client_api) | [Get Merchant Credentials API](/reference/get_merchant_credentials_api)
+✅ **Test your integration**: Use the test environment credentials to verify the OAuth flow. For more information, refer to [Testing and Go Live - Partner Integration](doc:testing-and-go-live-partner-integration)<br />✅ **Review API documentation**: [Validate Auth Code API](/reference/validate_authcode_and_client_api) | [Get Merchant Credentials API](/reference/get_merchant_credentials_api)
 ✅ **Go Live**: Contact your KAM to enable production OAuth and whitelist your redirect URLs
 
 📚 For complete details on OAuth onboarding, see the [Co-Branded OAuth Documentation](/docs/refer-merchants-using-co-branded-oauth-onboarding).
