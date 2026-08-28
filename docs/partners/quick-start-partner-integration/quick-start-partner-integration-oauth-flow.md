@@ -53,13 +53,13 @@ Construct the authorization URL to redirect merchants to the PayU login page.
 - `client_id`: Your partner client ID
 - `redirect_url`: Your whitelisted callback URL (must be URL-encoded)
 
-<details>
-<summary><strong>Sample Authorization URL</strong></summary>
+<Accordion title="Sample Authorization URL" icon="fa-code">
 
 ```
 https://onboardingtest.payu.in/merchant/partner-oauth?client_id=ABC123&redirect_url=https%3A%2F%2Fpartner.example.com%2Fcallback
 ```
-</details>
+
+</Accordion>
 
 ---
 
@@ -103,8 +103,7 @@ Exchange the authorization code for merchant credentials using the **Validate Au
 
 🔗 [Try it - Validate Auth Code API](/reference/validate_authcode_and_client_api)
 
-<details>
-<summary><strong>Sample Request</strong></summary>
+<Accordion title="Sample Request" icon="fa-code">
 
 ```bash
 curl --location 'https://testdashboard.payu.in/oauth/validate-auth-code' \
@@ -115,10 +114,10 @@ curl --location 'https://testdashboard.payu.in/oauth/validate-auth-code' \
     "auth_code": "XYZ789ABC123"
 }'
 ```
-</details>
 
-<details>
-<summary><strong>Sample Response (Success)</strong></summary>
+</Accordion>
+
+<Accordion title="Sample Response (Success)" icon="fa-shield-check">
 
 ```json
 {
@@ -128,10 +127,10 @@ curl --location 'https://testdashboard.payu.in/oauth/validate-auth-code' \
     "salt": "sA7x9B2c"
 }
 ```
-</details>
 
-<details>
-<summary><strong>Sample Response (Failure)</strong></summary>
+</Accordion>
+
+<Accordion title="Sample Response (Failure)" icon="fa-times-circle">
 
 ```json
 {
@@ -139,7 +138,8 @@ curl --location 'https://testdashboard.payu.in/oauth/validate-auth-code' \
     "msg": "Invalid auth code"
 }
 ```
-</details>
+
+</Accordion>
 
 **Response Parameters:**
 | Parameter | Description |
@@ -175,8 +175,7 @@ If you need to retrieve merchant credentials at a later time, use the **Get Merc
 
 🔗 [Try it - Get Merchant Credentials API](/reference/get_merchant_credentials_api)
 
-<details>
-<summary><strong>Sample Request</strong></summary>
+<Accordion title="Sample Request" icon="fa-code">
 
 ```bash
 curl --location 'https://testdashboard.payu.in/oauth/get-merchant-credentials' \
@@ -186,10 +185,10 @@ curl --location 'https://testdashboard.payu.in/oauth/get-merchant-credentials' \
     "client_secret": "your_client_secret"
 }'
 ```
-</details>
 
-<details>
-<summary><strong>Sample Response</strong></summary>
+</Accordion>
+
+<Accordion title="Sample Response" icon="fa-shield-check">
 
 ```json
 {
@@ -199,7 +198,8 @@ curl --location 'https://testdashboard.payu.in/oauth/get-merchant-credentials' \
     "salt": "sA7x9B2c"
 }
 ```
-</details>
+
+</Accordion>
 
 ---
 
