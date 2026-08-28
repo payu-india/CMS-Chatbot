@@ -16,10 +16,6 @@ Before you begin, ensure you have:
 - **Whitelisted redirect URL**: Your callback URL registered with PayU
 - **OAuth scope enabled**: Contact your Key Account Manager (KAM) to enable OAuth onboarding
 
-<Callout icon="📝" theme="default">
-  ### **Note**: To download your Client ID and Secret, navigate to **Merchant Integration** → **Partner Integration** → **Download Credentials** on the PayU Partner Portal.
-</Callout>
-
 ***
 
 ## Integration Flow
