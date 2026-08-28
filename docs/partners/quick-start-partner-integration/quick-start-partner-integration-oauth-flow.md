@@ -37,6 +37,50 @@ Before you begin, ensure you have:
 ---
 
 ## Steps to Integrate
+<Cards columns={3}>
+  <Card title="1. Build the Authorization URL" href="https://docs.payu.in/docs/refer-merchants-using-co-branded-oauth-onboarding#step-1-build-the-authorization-url">
+    Construct the OAuth authorization URL with client_id and encoded redirect_url to send merchants to PayU
+
+    <br />
+  </Card>
+
+  <Card title="2. Redirect Merchant to Authorization Page" href="https://docs.payu.in/docs/refer-merchants-using-co-branded-oauth-onboarding#step-2-redirect-merchant-to-authorization-page">
+    Redirect the merchant to PayU where they log in, complete KYC, and grant consent
+
+    <br />
+  </Card>
+
+  <Card title="3. Receive Authorization Code" href="https://docs.payu.in/docs/refer-merchants-using-co-branded-oauth-onboarding#step-3-receive-authorization-code">
+    Receive a single-use auth_code on your redirect_url after merchant authorization
+
+    <br />
+  </Card>
+
+  <Card title="4. Validate Authorization Code" href="https://docs.payu.in/docs/refer-merchants-using-co-branded-oauth-onboarding#step-4-validate-authorization-code">
+    POST the auth_code with client credentials to the Validate Auth Code API to obtain merchant_key and salt
+
+    <br />
+  </Card>
+
+  <Card title="5. Store Merchant Credentials Securely" href="https://docs.payu.in/docs/refer-merchants-using-co-branded-oauth-onboarding#step-5-store-merchant-credentials-securely">
+    Persist merchant_key and salt securely on your server and never expose them client-side
+
+    <br />
+  </Card>
+
+  <Card title="6. Retrieve Merchant Credentials Later" href="https://docs.payu.in/docs/refer-merchants-using-co-branded-oauth-onboarding#step-6-optional-retrieve-merchant-credentials-later">
+    Use the Get Merchant Credentials API to fetch merchant_key and salt if needed later
+
+    <br />
+  </Card>
+
+  <Card title="7. Collect Payments" href="https://docs.payu.in/docs/refer-merchants-using-co-branded-oauth-onboarding#step-7-collect-payments">
+    Use the obtained merchant credentials to integrate payment flows via Hosted Checkout, Pre-Built Checkout, or UPI S2S
+  </Card>
+
+  <br />
+</Cards>
+
 
 ### Step 1: Build the Authorization URL
 
