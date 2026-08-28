@@ -1,7 +1,7 @@
 ---
 title: Testing and Go Live - OAuth Flow Partner Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
