@@ -153,11 +153,42 @@ Some integrations change the hash formula order. Here is the complete list:
 
 ### Reverse-hash Verification Tool
 
-<br />
-
 Before wiring this into code, you can confirm a single payload using the PayU's [Hash Verification Tool](doc:using-payu-hash-verification-tool)
 
-<br />
+<HTMLBlock>{`
+                <style>
+                .tooltip-btn {
+                    position: relative;
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-weight: bold; /* Added this line */
+                }
+                .tooltip-btn:hover::after {
+                    content: attr(data-tooltip);
+                    position: absolute;
+                    bottom: 125%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background-color: #333;
+                    color: white;
+                    padding: 5px 10px;
+                    border-radius: 4px;
+                    white-space: nowrap;
+                    font-size: 12px;
+                    z-index: 1;
+                }
+                </style>
+
+                <button onclick="window.open('https://payu-hashverificationtool.onrender.com/', '_blank')" 
+                        class="tooltip-btn" 
+                        data-tooltip="Click to use the tool for reverse-hashing link.">
+                    Reverse-hash Verification Tool →
+                </button>
+`}</HTMLBlock>
 
 Paste the callback body, parse the fields, enter your salt, and compare th&#x65;**&#x20;Calculated Hash** against the **Response Hash**. This is the fastest way to tell whether a mismatch is a data problem or a code problem.
 
