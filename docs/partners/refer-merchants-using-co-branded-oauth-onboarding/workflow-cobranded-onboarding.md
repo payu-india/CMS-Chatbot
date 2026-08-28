@@ -12,7 +12,9 @@ next:
 ---
 Co-Branded (OAuth) Onboarding or OAuth Workflow (technical workflow) involves the steps as illustrated in the following diagram:
 
-<Image align="center" border={true} src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/12/diagram-description-automatically-generated.png" className="border" />
+
+<Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/12/diagram-description-automatically-generated.png" align="center" border={true} />
+
 
 The merchant’s workflow involves the following steps:
 
@@ -22,19 +24,19 @@ The merchant’s workflow involves the following steps:
 
 > **Example**: If the redirect URL is [https://abc.com](https://abc.com), the merchant will be redirected to the following URL:
 
-[https://abc.com?auth_code=$\{code}&merchantId=$\{mid}](https://abc.com?auth_code=$\{code}\&merchantId=$\{mid})
+[https://abc.com?auth_code=$\{code\}\&merchantId=$\{mid\}](https://abc.com?auth_code=$\{code\}\&merchantId=$\{mid\})
 
 > **Note**: The steps to get the merchant credentials require only two APIs. This removes the entry of merchant key and salt on a partner website. PayU recommends this for the seamless onboarding of merchants.
 
-4. From the above authorization code, call valid Auth code and client API_**.**_ For more information, refer [Validate Auth Code and Client](ref:validate_authcode_and_client_api).
+4. From the above authorization code, call valid Auth code and client API\_**.**\_ For more information, refer [Validate Auth Code and Client](ref:validate_authcode_and_client_api).
 
-\{\{hub_base_url}}/oauth/token
+\{\{hub_base_url\}\}/oauth/token
 
 Partner will get access token in response
 
 5. Call the Credential API using the access token from Step 4. For more information, refer to [Get Merchant Credentials API](ref:get_merchant_credentials_api)
 
-\{\{partner_base_url}}/api/v1/merchants/\{\{mid}}/credential
+\{\{partner_base_url\}\}/api/v1/merchants/\{\{mid\}\}/credential
 
 ## Merchant Sign-Up Workflow with Co-Branded Onboarding
 
@@ -42,13 +44,13 @@ To sign up a merchant using OAuth:
 
 1. Navigate to the OAuth link appended with the new email id in the following format:
 
-`https://onboarding.payu.in/app/account/signup?reseller_id=<Merc ID>&email=<Merchant mail ID to sign-up>`
+`https://onboarding.payu.in/app/account/signup?reseller_id={PayU partner identifier}&state={state}`
 
-Where \<`Merchant ID`> is substituted with reseller ID and \<`Merchant mail ID to sign-up`> is substituted with merchant mail ID to sign-up.
+Where \<`Merchant ID`> is substituted with PayU partner identifier and state with current state of the session.
 
 For example:
 
-`[https://onboarding.payu.in/app/account/signup?reseller_id=66ed-fc3c-512f47ed-ac95-4319452fbd89&state=Uqnr5ge22U](https://onboarding.payu.in/app/account/signup?reseller_id=66ed-fc3c-512f47ed-ac95-4319452fbd89\&state=Uqnr5ge22U)
+\`[https://onboarding.payu.in/app/account/signup?reseller_id=66ed-fc3c-512f47ed-ac95-4319452fbd89\&state=Uqnr5ge22U](https://onboarding.payu.in/app/account/signup?reseller_id=66ed-fc3c-512f47ed-ac95-4319452fbd89\&state=Uqnr5ge22U)
 
 The Merchant Sign-up page is displayed.
 
@@ -70,9 +72,9 @@ The Merchant Sign-up page is displayed.
 ![Picture 7](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/12/picture-7.png)
 
 5. Select any of the following roles:
-   * Business Owner
-   * Developer
-   * Customer
+   - Business Owner
+   - Developer
+   - Customer
 
 ![Picture 8](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/12/picture-8.png)
 
@@ -104,7 +106,7 @@ Where \<`Merchant ID`> is substituted with reseller ID and \<`Merchant mail ID t
 
 For example:
 
-[https://onboarding.payu.in/app/account/signup?reseller_id=66ed-fc3c-512f47ed-ac95-4319452fbd89&state=Uqnr5ge22U](https://onboarding.payu.in/app/account/signup?reseller_id=66ed-fc3c-512f47ed-ac95-4319452fbd89\&state=Uqnr5ge22U)
+[https://onboarding.payu.in/app/account/signup?reseller_id=66ed-fc3c-512f47ed-ac95-4319452fbd89\&state=Uqnr5ge22U](https://onboarding.payu.in/app/account/signup?reseller_id=66ed-fc3c-512f47ed-ac95-4319452fbd89\&state=Uqnr5ge22U)
 
 The Merchant Login page is displayed.
 
