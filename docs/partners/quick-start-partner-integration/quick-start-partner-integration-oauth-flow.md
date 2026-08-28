@@ -12,7 +12,7 @@ Onboard a merchant using Co-Branded OAuth flow with a few API calls. The Co-Bran
 
 Before you begin, ensure you have:
 
-- **Partner credentials**: Client ID and Client Secret
+- **Partner credentials**: Client ID and Client Secret.  For more information, refer to [Get Client ID and Secret from Dashboard.](doc:get-client-id-and-secret-from-dashboard)
 - **Whitelisted redirect URL**: Your callback URL registered with PayU
 - **OAuth scope enabled**: Contact your Key Account Manager (KAM) to enable OAuth onboarding
 
