@@ -194,17 +194,19 @@ Paste the callback body, parse the fields, enter your salt, and compare th&#x65;
 
 ***
 
-## Dispute signature verification
+## Dispute Signature Verification
 
-Dispute (chargeback) webhooks can carry cryptographic signatures in HTTP **headers** rather than a hash in the body. This is a **different mechanism** from reverse hashing — do not apply the reverse-hash logic above to dispute webhooks.
+Dispute (chargeback) webhooks can carry cryptographic signatures in HTTP **headers** rather than a hash in the body. This is a **different mechanism** from reverse hashing. Do not apply the reverse-hash logic above to dispute webhooks.
 
 <Callout icon="📘" theme="info">
-  ### Signing is opt-in
+  ### Signing is Opt-in
 
-  Signed dispute webhooks are **not enabled by default**. If the signature headers are absent, the webhook is not necessarily invalid — signing may simply not be turned on for your account. To enable it, contact your PayU Key Account Manager (KAM) or [PayU Support](https://help.payu.in).
+  Signed dispute webhooks are **not enabled by default**. If the signature headers are absent, the webhook is not necessarily invalid. Check if the signing is turned on for your account. To enable it, contact your PayU Key Account Manager (KAM) or [PayU Support](https://help.payu.in).
 </Callout>
 
-### Headers
+### Signature Headers
+
+These are the signature headers.
 
 | Header                                       | Meaning                                                 |
 | -------------------------------------------- | ------------------------------------------------------- |
@@ -212,25 +214,23 @@ Dispute (chargeback) webhooks can carry cryptographic signatures in HTTP **heade
 | `X-PayU-Dispute-Webhook-Signature-V2`        | SHA-512 digest, version 2 — **verify against this one** |
 | `X-PayU-Dispute-Webhook-Signature-Algorithm` | `SHA512`                                                |
 
-### The signed string
+<Accordion title="The Signed String" icon="far fa-distribute-spacing-vertical">
+  PayU builds one UTF-8 string, pipe-delimited, with no leading or trailing pipe, hashes it with SHA-512, and sends the lowercase-hex digest in the headers:
 
-PayU builds one UTF-8 string, pipe-delimited, with no leading or trailing pipe, hashes it with SHA-512, and sends the lowercase-hex digest in the headers:
+  ```
+  <merchantKey>|<txn_id>|<cb_amount>|<cb_id>|<cb_type>|<cb_status>|<merchantSalt>
+  ```
 
-```
-<merchantKey>|<txn_id>|<cb_amount>|<cb_id>|<cb_type>|<cb_status>|<merchantSalt>
-```
+  - Only these six values and salt will be present in the string.
+  - `cb_status` may be a **mapped** value at signing time. In PayU's worked example the body contains `"cb_status":"Pending Response"` but the signed string uses `PendingResponse` (spaces removed). If verification fails on the raw JSON value, apply PayU's signing-time mapping or confirm it with support.
+</Accordion>
 
-- Only these six values plus the salt participate — other body fields (`type`, `event`, `mid`, `reason_code`, …) do not.
-- `merchantSalt` is always the **last** segment.
-- `cb_status` may be a **mapped** value at signing time. In PayU's worked example the body contains `"cb_status":"Pending Response"` but the signed string uses `PendingResponse` (spaces removed). If verification fails on the raw JSON value, apply PayU's signing-time mapping or confirm it with support.
-
-### Steps
-
-1. Read the **raw** body bytes and parse JSON from that buffer — do not re-serialize the body to build the signed string.
-2. Take `txn_id`, `cb_amount`, `cb_id`, `cb_type` as they appear; resolve `cb_status` to its signed form.
-3. Concatenate: `merchantKey|txn_id|cb_amount|cb_id|cb_type|cb_status|merchantSalt`.
-4. Compute SHA-512 over the UTF-8 string, lowercase hex.
-5. Compare to `X-PayU-Dispute-Webhook-Signature-V2` using a **constant-time** comparison (`hmac.compare_digest` in Python, `crypto.timingSafeEqual` on equal-length buffers in Node.js). Match → accept; otherwise reject.
+<Accordion title="Reverse Hashing Steps" icon="far fa-list-ol">
+  1. Take `txn_id`, `cb_amount`, `cb_id`, `cb_type` as they appear. Resolve `cb_status` to its signed form.
+  2. Concatenate: `merchantKey|txn_id|cb_amount|cb_id|cb_type|cb_status|merchantSalt`.
+  3. Compute SHA-512 over the UTF-8 string, lowercase hex.
+  4. Compare to `X-PayU-Dispute-Webhook-Signature-V2` using a **constant-time** comparison (`hmac.compare_digest` in Python, `crypto.timingSafeEqual` on equal-length buffers in Node.js). Match → accept; otherwise reject.
+</Accordion>
 
 ### Aggregator (child) merchants
 
