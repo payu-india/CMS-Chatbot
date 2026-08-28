@@ -26,7 +26,7 @@ Scope name: credentials_using_oauth
 
 5. Show case the onboarding URL details at your website so that your merchants can sign up:
 
-   https\://onboarding.payu.in/app/account/signup?reseller_id=\{\{reseller_id\}\}\&state=\{\{state\}\}
+   `https://onboarding.payu.in/app/account/signup?reseller_id={{reseller_id}}&state={{state}}`
 
 <Callout icon="📘" theme="info">
   **Note**: The following environment or base URLs must be used based on the Test or Production environment:
