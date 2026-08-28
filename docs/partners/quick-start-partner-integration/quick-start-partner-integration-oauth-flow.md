@@ -75,19 +75,19 @@ Construct the authorization URL to redirect merchants to the PayU login page.
 
 **URL Format:**
 
-| Environment    | URL                                                                                                                                                                                                                         |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Test**       | `https://onboardingtest.payu.in/app/account/signup?reseller_id={reseller_id}`<br /><br />**Example**: https\://onboardingtest.payu.in/app/account/signup?reseller_id=89ed-fc3c-612f47ed-ac95-2159092yud89\&state=Uqnr5ge22U |
-| **Production** | `https://onboarding.payu.in/app/account/signup?reseller_id={reseller_id}`<br /><br />**Example**: https\://onboarding.payu.in/app/account/signup?reseller_id=66ed-fc3c-512f47ed-ac95-4319452fbd89\&state=Uqnr5ge22U         |
+| Environment    | URL                                                                                             |
+| -------------- | ----------------------------------------------------------------------------------------------- |
+| **Test**       | `https://onboardingtest.payu.in/app/account/signup?reseller_id={reseller_id}&state={state}`     |
+| **Production** | `https://onboarding.payu.in/app/account/signup?reseller_id={reseller_id}&state={session state}` |
 
 **Required Parameters:**
 
-- `client_id`: Your partner client ID
-- `redirect_url`: Your whitelisted callback URL (must be URL-encoded)
+- `reseller_id`: Your reseller  ID
+- `state`: Session state
 
-<Accordion title="Sample Authorization URL" icon="fa-code">
+<Accordion title="Sample OAuth URL" icon="fa-code">
   ```
-  https://onboardingtest.payu.in/merchant/partner-oauth?client_id=ABC123&redirect_url=https%3A%2F%2Fpartner.example.com%2Fcallback
+  https://onboarding.payu.in/app/account/signup?reseller_id=66ed-fc3c-512f47ed-ac95-4319452fbd89&state=Uqnr5ge22U
   ```
 </Accordion>
 
@@ -112,7 +112,7 @@ After successful authorization, PayU redirects the merchant back to your `redire
 **Callback URL Format:**
 
 ```
-https://onboarding.payu.in/app/account/signup?reseller_id={{reseller_id}}
+https://onboarding.payu.in/app/account/signup?reseller_id={{reseller_id}}&state={session state}
 ```
 
 **Example:**
