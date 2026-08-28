@@ -19,8 +19,6 @@ PayU supports the following debit cards and credit cards:
 - Rupay
 
 <Callout icon="📘" theme="info">
-  ###
-
   **Notes**:
 
   - PayU accepts domestic and international transactions, but international transactions need to be enabled by writing to PayU Integration Team (<Anchor target="_blank" href="mailto:integration@pay.in">integration@pay.in</Anchor>).
@@ -51,7 +49,7 @@ PayU supports the following debit cards and credit cards:
   </Card>
 
   <Card title="4. Verify the payment" href="https://docs.payu.in/docs/collect-payments-with-cards-seamless#step-4-verify-the-payment">
-    Verify the payment using verify\_payment and monitor using webhooks
+    Verify the payment using verify_payment and monitor using webhooks
   </Card>
 </Cards>
 
@@ -68,11 +66,9 @@ PayU supports the following debit cards and credit cards:
 </Cards>
 
 <Callout icon="📘" theme="info">
-  ###
-
   **Postman Collection**
 
-  <Postman_collection />
+    <Postman_collection />
 </Callout>
 
 ## Step 1: Validate the card type
@@ -89,9 +85,9 @@ When customers use debit cards or credit cards on your website, you can validate
 
   The following values are specified in the var1, var2, and var5 for this scenario:
 
-  * var1 = 1
-  * var2 = 512345
-  * var5 = 1
+  - var1 = 1
+  - var2 = 512345
+  - var5 = 1
 
   ```cURL
   curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
@@ -109,7 +105,7 @@ When customers use debit cards or credit cards on your website, you can validate
 
   ### Hashing Logic
 
-  <KeyHashForGeneralParametersDescription />
+    <KeyHashForGeneralParametersDescription />
 </Accordion>
 
 <Accordion title="Sample response" icon="fa-reply">
@@ -178,7 +174,7 @@ When customers use debit cards or credit cards on your website, you can validate
   | **Production Environment** | \<[https://secure.payu.in/\_payment>](https://secure.payu.in/_payment>) |
 
   <Callout icon="📘" theme="info">
-    **Reference**: For the **Try It** experience and response, refer to <Anchor label="Collect Payment API - Merchant Hosted Checkout" target="_blank" href="https://docs.payu.in/reference/_payment_merchant_hosted">Collect Payment API - Merchant Hosted Checkout</Anchor> under API Reference.
+    **Reference**: For the **Try It** experience and response, refer to <Anchor target="_blank" href="https://docs.payu.in/reference/_payment_merchant_hosted">Collect Payment API - Merchant Hosted Checkout</Anchor> under API Reference.
   </Callout>
 
   <Table align={["left","left","left"]}>
@@ -419,7 +415,9 @@ When customers use debit cards or credit cards on your website, you can validate
           `String`The failure URL, which is the page PayU will redirect to if the transaction is failure.
         </td>
 
-        <td></td>
+        <td>
+
+        </td>
       </tr>
 
       <tr>
@@ -432,7 +430,9 @@ When customers use debit cards or credit cards on your website, you can validate
           `String`The success URL, which is the page PayU will redirect to if the transaction is successful.
         </td>
 
-        <td></td>
+        <td>
+
+        </td>
       </tr>
 
       <tr>
@@ -446,7 +446,9 @@ When customers use debit cards or credit cards on your website, you can validate
           `sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)`
         </td>
 
-        <td></td>
+        <td>
+
+        </td>
       </tr>
 
       <tr>
@@ -458,10 +460,12 @@ When customers use debit cards or credit cards on your website, you can validate
         <td>
           `String` The first line of the billing address.
 
-          * *For Fraud Detection*\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
+          - _For Fraud Detection_\*: This information is helpful when it comes to issues related to fraud detection and chargebacks. Hence, it is must to provide the correct information.
         </td>
 
-        <td></td>
+        <td>
+
+        </td>
       </tr>
 
       <tr>
@@ -474,7 +478,9 @@ When customers use debit cards or credit cards on your website, you can validate
           `String` The second line of the billing address.
         </td>
 
-        <td></td>
+        <td>
+
+        </td>
       </tr>
 
       <tr>
@@ -487,7 +493,9 @@ When customers use debit cards or credit cards on your website, you can validate
           `String` The city where your customer resides as part of the billing address.
         </td>
 
-        <td></td>
+        <td>
+
+        </td>
       </tr>
 
       <tr>
@@ -500,7 +508,9 @@ When customers use debit cards or credit cards on your website, you can validate
           `String` The state where your customer resides as part of the billing address,
         </td>
 
-        <td></td>
+        <td>
+
+        </td>
       </tr>
 
       <tr>
@@ -513,7 +523,9 @@ When customers use debit cards or credit cards on your website, you can validate
           `String` The country where your customer resides.
         </td>
 
-        <td></td>
+        <td>
+
+        </td>
       </tr>
 
       <tr>
@@ -527,7 +539,9 @@ When customers use debit cards or credit cards on your website, you can validate
           `Character Limit`-20
         </td>
 
-        <td></td>
+        <td>
+
+        </td>
       </tr>
 
       <tr>
@@ -540,7 +554,9 @@ When customers use debit cards or credit cards on your website, you can validate
           `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.
         </td>
 
-        <td></td>
+        <td>
+
+        </td>
       </tr>
 
       <tr>
@@ -553,7 +569,9 @@ When customers use debit cards or credit cards on your website, you can validate
           `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5.
         </td>
 
-        <td></td>
+        <td>
+
+        </td>
       </tr>
 
       <tr>
@@ -566,7 +584,9 @@ When customers use debit cards or credit cards on your website, you can validate
           `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction.
         </td>
 
-        <td></td>
+        <td>
+
+        </td>
       </tr>
 
       <tr>
@@ -579,7 +599,9 @@ When customers use debit cards or credit cards on your website, you can validate
           `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction.
         </td>
 
-        <td></td>
+        <td>
+
+        </td>
       </tr>
 
       <tr>
@@ -592,17 +614,19 @@ When customers use debit cards or credit cards on your website, you can validate
           `String` User-defined fields (udf) are used to store any information corresponding to a particular transaction.
         </td>
 
-        <td></td>
+        <td>
+
+        </td>
       </tr>
     </tbody>
   </Table>
 
   <Accordion title="Understanding Hashing and sample code" icon="fa-code">
-    <HashingRequestParameters />
+      <HashingRequestParameters />
 
     #### Hashing Sample Code
 
-    <HashingSample />
+      <HashingSample />
   </Accordion>
 </Accordion>
 
@@ -1645,7 +1669,7 @@ When customers use debit cards or credit cards on your website, you can validate
 
     ```
 
-    <br />
+
   </Accordion>
 </Accordion>
 
@@ -1654,7 +1678,7 @@ When customers use debit cards or credit cards on your website, you can validate
 <ReverseHashing />
 
 <Accordion title="Sample response (parsed)" icon="fa-code">
-  * Success scenario
+  - Success scenario
 
   ```
   Array
@@ -1712,7 +1736,7 @@ When customers use debit cards or credit cards on your website, you can validate
   )
   ```
 
-  * Failure scenario
+  - Failure scenario
 
   ```
   Array
@@ -1771,20 +1795,20 @@ When customers use debit cards or credit cards on your website, you can validate
   )
   ```
 
-  <br />
+
 </Accordion>
 
 ## Step 4: Verify the Payment
 
 <Verify_Payment_Tabs />
 
+<br />
+
 ## Handling Guest Checkout Transactions
 
 Guest Checkout is a valuable feature that can provided be enabled for your e-commerce websites. It allows your customers to make purchases without the need to sign in or create a user account. This streamlined process benefits one-time or occasional shoppers, as it eliminates the registration step, leading to faster transactions and enhanced customer satisfaction.
 
 <Callout icon="📘" theme="info">
-  ###
-
   **Enable Guest Checkout**: To enable this feature, contact your PayU Key Account Manager or PayU Integration Support.
 </Callout>
 
@@ -1803,10 +1827,10 @@ There are three scenarios with Alternative ID:
 <Accordion title="Scenario 2: Provision Alt ID outside PayU and use PayU to Process Transaction" icon="fa-code">
   #### Request parameters
 
-  Along with the parameters listed in the <Anchor label="Collect Payment API - Cards (Merchant Hosted Checkout)" target="_blank" href="https://docs.payu.in/reference/_payment_merchant_hosted_cards">Collect Payment API - Cards (Merchant Hosted Checkout)</Anchor>, you have to pass alt ID as a variable and pass TAVV (Cryptogram), last four digits and **par** parameter as part of **additional\_info** JSON. There is no change in the response and it remains the same.
+  Along with the parameters listed in the <Anchor target="_blank" href="https://docs.payu.in/reference/_payment_merchant_hosted_cards">Collect Payment API - Cards (Merchant Hosted Checkout)</Anchor>, you have to pass alt ID as a variable and pass TAVV (Cryptogram), last four digits and **par** parameter as part of **additional_info** JSON. There is no change in the response and it remains the same.
 
   <Callout icon="📘" theme="info">
-    **Note**: The **par** parameter is optional as part of **additional\_info** JSON.
+    **Note**: The **par** parameter is optional as part of **additional_info** JSON.
   </Callout>
 
   <HTMLBlock>{`
@@ -1969,10 +1993,10 @@ There are three scenarios with Alternative ID:
   `}</HTMLBlock>
 
   <Callout icon="📘" theme="info">
-    **Note**: **tokenReferenceid** field is required in the additional\_info parameter if you are provisioning Alt ID outside PayU for Diners card.
+    **Note**: **tokenReferenceid** field is required in the additional_info parameter if you are provisioning Alt ID outside PayU for Diners card.
   </Callout>
 
-  #### additional\_info JSON sample and field description
+  #### additional_info JSON sample and field description
 
   ```
   {  
@@ -1983,7 +2007,7 @@ There are three scenarios with Alternative ID:
   }
   ```
 
-  The description of the fields in the additional\_info JSON.
+  The description of the fields in the additional_info JSON.
 
   | Field            | Description                                                                                                                                                                   |
   | :--------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -2018,14 +2042,16 @@ There are three scenarios with Alternative ID:
 </Accordion>
 
 <Accordion title="Sample response" icon="fa-code">
-  > 📘 Notes:
-  >
-  > The **authRefNo** response parameter contains:
-  >
-  > * <Glossary>AEVV</Glossary> number for an AMEX card transaction. This is mandatory for AMEX for compliance for token (<Glossary>CoFT</Glossary>) provisioning.
-  > * rupayAuthRefId for a Rupay card transaction
-  >
-  > To enable the  **authRefNo** response parameter in response, contact your PayU Key Account Manager or [PayU Support](https://help.payu.in).
+  <Callout icon="📘" theme="info">
+    ### Notes:
+
+    The **authRefNo** response parameter contains:
+
+    - <Glossary>AEVV</Glossary> number for an AMEX card transaction. This is mandatory for AMEX for compliance for token (<Glossary>CoFT</Glossary>) provisioning.
+    - rupayAuthRefId for a Rupay card transaction
+
+    To enable the  **authRefNo** response parameter in response, contact your PayU Key Account Manager or [PayU Support](https://help.payu.in).
+  </Callout>
 
   ```json
   Array
@@ -2088,11 +2114,11 @@ There are three scenarios with Alternative ID:
   )
   ```
 
-  <br />
+
 </Accordion>
 
 <Accordion title="Scenario 3: Provision Alt ID from PayU" icon="fa-code">
-  The Provision Alt ID API is used to provision Alt ID from PayU, but process transaction outside PayU. For more information, refer to <Anchor label="Provision Alt ID API" target="_blank" href="https://docs.payu.in/reference/provision-alt-id-api">Provision Alt ID API</Anchor>.
+  The Provision Alt ID API is used to provision Alt ID from PayU, but process transaction outside PayU. For more information, refer to <Anchor target="_blank" href="https://docs.payu.in/reference/provision-alt-id-api">Provision Alt ID API</Anchor>.
 </Accordion>
 
 ## Handling 3DS Secure 2.0 Transaction
@@ -2294,5 +2320,3 @@ PayU supports 3DS Secure 2.0 transaction with Merchant Hosted Checkout integrati
   }'
   ```
 </Accordion>
-
-<br />
