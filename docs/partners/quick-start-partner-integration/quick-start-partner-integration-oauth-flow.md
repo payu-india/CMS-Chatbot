@@ -36,7 +36,7 @@ flowchart TD
 ## Steps to Integrate
 
 <Cards columns={3}>
-  <Card title="1. Build the Authorization URL" href="https://docs.payu.in/docs/refer-merchants-using-co-branded-oauth-onboarding#step-1-build-the-authorization-url">
+  <Card title="1. Build the OAuth URL" href="https://docs.payu.in/docs/refer-merchants-using-co-branded-oauth-onboarding#step-1-build-the-oauth-url">
     Construct the OAuth authorization URL with client_id and encoded redirect_url to send merchants to PayU
 
     <br />
@@ -69,16 +69,16 @@ flowchart TD
 
 <br />
 
-### Step 1: Build the Authorization URL
+### Step 1: Build the OAuth URL
 
 Construct the authorization URL to redirect merchants to the PayU login page.
 
 **URL Format:**
 
-| Environment    | URL                                                                                                           |
-| -------------- | ------------------------------------------------------------------------------------------------------------- |
-| **Test**       | `https://onboardingtest.payu.in/merchant/partner-oauth?client_id={{client_id}}&redirect_url={{redirect_url}}` |
-| **Production** | `https://onboarding.payu.in/merchant/partner-oauth?client_id={{client_id}}&redirect_url={{redirect_url}}`     |
+| Environment    | URL                                                                                                                                                                                                                         |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Test**       | `https://onboardingtest.payu.in/app/account/signup?reseller_id={reseller_id}`<br /><br />**Example**: https\://onboardingtest.payu.in/app/account/signup?reseller_id=89ed-fc3c-612f47ed-ac95-2159092yud89\&state=Uqnr5ge22U |
+| **Production** | `https://onboarding.payu.in/app/account/signup?reseller_id={reseller_id}`<br /><br />**Example**: https\://onboarding.payu.in/app/account/signup?reseller_id=66ed-fc3c-512f47ed-ac95-4319452fbd89\&state=Uqnr5ge22U         |
 
 **Required Parameters:**
 
@@ -118,7 +118,7 @@ After successful authorization, PayU redirects the merchant back to your `redire
 **Example:**
 
 ```
-https://partner.example.com/callback?auth_code=XYZ789ABC123
+https://onboarding.payu.in/app/account/signup?reseller_id=11f1-1078-ee249a86-9fdf-0aad783eb813&state=1513493
 ```
 
 <Callout icon="⚠️" theme="warn">
