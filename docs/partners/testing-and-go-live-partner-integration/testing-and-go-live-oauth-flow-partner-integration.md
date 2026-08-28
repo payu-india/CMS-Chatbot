@@ -1178,7 +1178,7 @@ Contact PayU support in these scenarios:
 <Accordion title="Contact Information" icon="fa-list-check">
 
 - **Partner Support Email:** partner-support@payu.in
-- **Technical Support:** tech-support@payu.in
+- **Technical Support:** Navigate to help.payu.in or send an mail with complete issue details (including mid) to integration@payu.in
 - **Key Account Manager:** (provided during onboarding)
 
 </Accordion>
