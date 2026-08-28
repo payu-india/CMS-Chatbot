@@ -10,7 +10,7 @@ Onboard a merchant using Co-Branded OAuth flow with a small set of API calls.
 
 ```mermaid
 flowchart TD
-    A[Start: Partner obtains <br> Client ID & Secret] --> B[Redirect merchant to \n PayU Authorization Page]
+    A[Start: Partner obtains <br> Client ID & Secret] --> B[Redirect merchant to <br> PayU Authorization Page]
     B --> C[Merchant logs in <br> & <br> grants consent]
     C --> D[PayU redirects to Partner <br> with auth_code]
     D --> E[Partner validates <br> auth_code]
