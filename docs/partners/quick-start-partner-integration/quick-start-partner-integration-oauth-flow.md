@@ -83,7 +83,7 @@ Construct the authorization URL to redirect merchants to the PayU login page.
 **Required Parameters:**
 
 - `reseller_id`: It contains encoded values of Merchant ID & Merchant mail ID used while sign up.
-- `state`: Encoded session state
+- `state`: It contains encoded session state
 
 <Accordion title="Sample OAuth URL" icon="fa-code">
   ```
