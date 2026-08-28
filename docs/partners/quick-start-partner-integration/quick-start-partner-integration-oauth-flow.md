@@ -256,96 +256,103 @@ After you complete the above steps, the merchant can start collecting payments. 
 - **Pre-Built Checkout** - Embed PayU's checkout interface on your website
 - **UPI S2S (Server-to-Server)** - Direct UPI integration for seamless payments
 
-Choose the integration method based on your requirements.&#x20;
-
-<br />
+Choose the integration method based on your requirements.
 
 #### Hosted Checkout Integration
 
 For detailed steps to integrate, refer to [Hosted Checkout Integration](ref:hosted-checkout-api-partner-integration)
 
 <Accordion title="Sample Request" icon="fa-code">
-```curl
-curl --location --request POST \
-'https://test-partnerapilayer.payu.in/apilayer/partner/payments' \
---header 'Content-Type: application/json' \
---header 'Authorization: Bearer <ROTATED_BEARER_TOKEN>' \
---data-raw '{
-  "txnid": "nY3tkz3vciHFGTjblyFeycL2Zn1m",
-  "amount": 1090.33,
-  "productinfo": "whatsapp",
-  "firstname": "Manikanta",
-  "reseller_id": "83fe-eb64-021844d8-9397-26535b1bf0c2",
-  "merchant_id": "8238480",
-  "phone": 7036722360,
-  "hash": "52f45927e221a16bd5372709516de5110c06c55e0057f8a18a3b9b9f2c2f176870af276274709910f27d7c5df44822777542e3d4b86f29e8304e17fcb373133c",
-  "lastname": "CHeruku",
-  "email": "manik.cr24@gmail.com",
-  "curl": "<YOUR_CANCEL_URL>",
-  "furl": "<YOUR_FAILURE_URL>",
-  "surl": "<YOUR_SUCCESS_URL>",
-  "udf1": "whatsapp"
-}'
-```
-</Accordion>
-<Accordion title="Sample Response" icon="fa-reply">
-```text
-{
-    "redirectUri": "https://apitest.payu.in/public/#/35de666bac018494a06205addba2962cdb8d03ca9c2fa7954807098709f1b6dc"
-}
-```
-</Accordion>
-#### UPI S2S Integration
-
-For detailed steps, refer to [UPI S2S Integration API.](ref:upi-s2s-partner-integration-api)
-<Accordion title="Sample Request" icon="fa-code">
-```curl
-curl --location --request POST 'https://test-partnerapilayer.payu.in/apilayer/partner/payments' \
---header 'Content-Type: application/json' \
---header 'Authorization: Bearer 9d2ab8e1b99aa02f6b827af5b5000b277d9cb1cd037acb7cb31436a5b0da4f74' \
---data-raw '{
+  ```curl
+  curl --location --request POST \
+  'https://test-partnerapilayer.payu.in/apilayer/partner/payments' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Bearer <ROTATED_BEARER_TOKEN>' \
+  --data-raw '{
     "txnid": "nY3tkz3vciHFGTjblyFeycL2Zn1m",
     "amount": 1090.33,
     "productinfo": "whatsapp",
     "firstname": "Manikanta",
     "reseller_id": "83fe-eb64-021844d8-9397-26535b1bf0c2",
-    "merchant_id": 8238480,
+    "merchant_id": "8238480",
     "phone": 7036722360,
-    "hash": "5aadceaf6bec9158ccba8ec0dab32debcacbfd50e3587c077fa11107a5be0ac26712fae230522afb8908d068122c02f2d5c733a46c33ace0f66e5cc9d2ae4714",
+    "hash": "52f45927e221a16bd5372709516de5110c06c55e0057f8a18a3b9b9f2c2f176870af276274709910f27d7c5df44822777542e3d4b86f29e8304e17fcb373133c",
     "lastname": "CHeruku",
     "email": "manik.cr24@gmail.com",
-    "curl": "https://www.google.com",
-    "furl": "https://www.google.com",
-    "surl": "https://www.youtube.com",
-    "txn_s2s_flow": "4",
-    "s2s_device_info": "ewew",
-    "s2s_client_ip": "ewew"
-}'
-```
+    "curl": "<YOUR_CANCEL_URL>",
+    "furl": "<YOUR_FAILURE_URL>",
+    "surl": "<YOUR_SUCCESS_URL>",
+    "udf1": "whatsapp"
+  }'
+  ```
 </Accordion>
+
 <Accordion title="Sample Response" icon="fa-reply">
-```text
-{
-    "metaData": {
-        "message": null,
-        "referenceId": "024d9afbdbf85bd35b25649ccf983e16ee3d4646c2cdcffada88bd2df371fd43",
-        "statusCode": null,
-        "txnId": "nY3tkz3vciHFGTjblyFeycL2Zn1m",
-        "txnStatus": "pending",
-        "unmappedStatus": "pending"
-    },
-    "result": {
-        "paymentId": 403993715529028543,
-        "merchantName": "Merchant",
-        "merchantVpa": null,
-        "amount": "1090.33",
-        "intentURIData": "pa=&pn=&tr=403993715529028543&tid=PPPL403993715529028543290523133325&am=1090.33&cu=INR&tn=UPI Transaction for PPPL403993715529028543290523133325",
-        "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vdGVzdC5wYXl1LmluLzAyNGQ5YWZiZGJmODViZDM1YjI1NjQ5Y2NmOTgzZTE2NGQ0YTUxYzYzNjcyODAxNjRkMDlkNDg2YjRkYWI1ZmEvaW50ZW50U2VhbWxlc3NIYW5kbGVyLnBocCIgbWV0aG9kPSJwb3N0Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0b2tlbiIgdmFsdWU9IjE2NTIyQTgxLTUwMjYtMUUyRi0zNDFCLTJFQ0MyQ0Y5RTE1QyI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iYW1vdW50IiB2YWx1ZT0iMTA5MC4zMyI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0ibWlocGF5aWQiIHZhbHVlPSIwMjRkOWFmYmRiZjg1YmQzNWIyNTY0OWNjZjk4M2UxNmVlM2Q0NjQ2YzJjZGNmZmFkYTg4YmQyZGYzNzFmZDQzIj48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJkaXNhYmxlSW50ZW50U2VhbWxlc3NGYWlsdXJlIiB2YWx1ZT0iMSI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0icGF5ZWVWcGEiIHZhbHVlPSIiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InBheWVlTmFtZSIgdmFsdWU9Ik1lcmNoYW50Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJhZGRpdGlvbmFsQ2hhcmdlcyIgdmFsdWU9IjAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InRyYW5zYWN0aW9uRmVlIiB2YWx1ZT0iMTA5MC4zMyI+PC9mb3JtPjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0Jz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbmxvYWQ9ZnVuY3Rpb24oKXsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5mb3Jtc1sncGF5bWVudF9wb3N0J10uc3VibWl0KCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDwvc2NyaXB0PjwvYm9keT48L2h0bWw+",
-        "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
-    }
-}
-```
+  ```text
+  {
+      "redirectUri": "https://apitest.payu.in/public/#/35de666bac018494a06205addba2962cdb8d03ca9c2fa7954807098709f1b6dc"
+  }
+  ```
 </Accordion>
+
+#### UPI S2S Integration
+
+For detailed steps, refer to [UPI S2S Integration API.](ref:upi-s2s-partner-integration-api)
+
+<Accordion title="Sample Request" icon="fa-code">
+  ```curl
+  curl --location --request POST 'https://test-partnerapilayer.payu.in/apilayer/partner/payments' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Bearer 9d2ab8e1b99aa02f6b827af5b5000b277d9cb1cd037acb7cb31436a5b0da4f74' \
+  --data-raw '{
+      "txnid": "nY3tkz3vciHFGTjblyFeycL2Zn1m",
+      "amount": 1090.33,
+      "productinfo": "whatsapp",
+      "firstname": "Manikanta",
+      "reseller_id": "83fe-eb64-021844d8-9397-26535b1bf0c2",
+      "merchant_id": 8238480,
+      "phone": 7036722360,
+      "hash": "5aadceaf6bec9158ccba8ec0dab32debcacbfd50e3587c077fa11107a5be0ac26712fae230522afb8908d068122c02f2d5c733a46c33ace0f66e5cc9d2ae4714",
+      "lastname": "CHeruku",
+      "email": "manik.cr24@gmail.com",
+      "curl": "https://www.google.com",
+      "furl": "https://www.google.com",
+      "surl": "https://www.youtube.com",
+      "txn_s2s_flow": "4",
+      "s2s_device_info": "ewew",
+      "s2s_client_ip": "ewew"
+  }'
+  ```
+</Accordion>
+
+<Accordion title="Sample Response" icon="fa-reply">
+  ```text
+  {
+      "metaData": {
+          "message": null,
+          "referenceId": "024d9afbdbf85bd35b25649ccf983e16ee3d4646c2cdcffada88bd2df371fd43",
+          "statusCode": null,
+          "txnId": "nY3tkz3vciHFGTjblyFeycL2Zn1m",
+          "txnStatus": "pending",
+          "unmappedStatus": "pending"
+      },
+      "result": {
+          "paymentId": 403993715529028543,
+          "merchantName": "Merchant",
+          "merchantVpa": null,
+          "amount": "1090.33",
+          "intentURIData": "pa=&pn=&tr=403993715529028543&tid=PPPL403993715529028543290523133325&am=1090.33&cu=INR&tn=UPI Transaction for PPPL403993715529028543290523133325",
+          "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vdGVzdC5wYXl1LmluLzAyNGQ5YWZiZGJmODViZDM1YjI1NjQ5Y2NmOTgzZTE2NGQ0YTUxYzYzNjcyODAxNjRkMDlkNDg2YjRkYWI1ZmEvaW50ZW50U2VhbWxlc3NIYW5kbGVyLnBocCIgbWV0aG9kPSJwb3N0Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0b2tlbiIgdmFsdWU9IjE2NTIyQTgxLTUwMjYtMUUyRi0zNDFCLTJFQ0MyQ0Y5RTE1QyI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iYW1vdW50IiB2YWx1ZT0iMTA5MC4zMyI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0ibWlocGF5aWQiIHZhbHVlPSIwMjRkOWFmYmRiZjg1YmQzNWIyNTY0OWNjZjk4M2UxNmVlM2Q0NjQ2YzJjZGNmZmFkYTg4YmQyZGYzNzFmZDQzIj48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJkaXNhYmxlSW50ZW50U2VhbWxlc3NGYWlsdXJlIiB2YWx1ZT0iMSI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0icGF5ZWVWcGEiIHZhbHVlPSIiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InBheWVlTmFtZSIgdmFsdWU9Ik1lcmNoYW50Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJhZGRpdGlvbmFsQ2hhcmdlcyIgdmFsdWU9IjAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InRyYW5zYWN0aW9uRmVlIiB2YWx1ZT0iMTA5MC4zMyI+PC9mb3JtPjxzY3JpcHQgdHlwZT0ndGV4dC9qYXZhc2NyaXB0Jz4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHdpbmRvdy5vbmxvYWQ9ZnVuY3Rpb24oKXsKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5mb3Jtc1sncGF5bWVudF9wb3N0J10uc3VibWl0KCk7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgICAgIDwvc2NyaXB0PjwvYm9keT48L2h0bWw+",
+          "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
+      }
+  }
+  ```
+</Accordion>
+
+#### Verify Payment
+
+<Verify_Payment_Tabs />
+
 <br />
 
 ***
