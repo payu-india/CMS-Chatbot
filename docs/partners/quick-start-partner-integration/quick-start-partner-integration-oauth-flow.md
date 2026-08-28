@@ -112,7 +112,7 @@ After successful authorization, PayU redirects the merchant back to your `redire
 **Callback URL Format:**
 
 ```
-{{redirect_url}}?auth_code={{authorization_code}}
+https://onboarding.payu.in/app/account/signup?reseller_id={{reseller_id}}
 ```
 
 **Example:**
