@@ -5,9 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-# Testing and Go-Live Checklist: OAuth Integration
-
-> This checklist covers everything you need to test and validate the Co-Branded OAuth flow before going live.
+This checklist covers everything you need to test and validate the Co-Branded OAuth flow before going live.
 
 ## Postman Collection
 
@@ -58,10 +56,10 @@ Use the following test environment endpoints for OAuth Integration:
 
 | Resource | Test Environment URL | Production Environment URL |
 |----------|---------------------|---------------------------|
-| Authorization Page | `https://onboardingtest.payu.in/merchant/partner-oauth` | `https://onboarding.payu.in/merchant/partner-oauth` |
+| Authorization Page | `https://onboardingtest.payu.in/app/account/signup?reseller_id={<Merchant ID>&email=<Merchant mail ID to sign-up>}&state={state}` | `https://onboarding.payu.in/app/account/signup?reseller_id={reseller_id}&state={session state}` |
 | Validate Auth Code | `https://testdashboard.payu.in/oauth/validate-auth-code` | `https://dashboard.payu.in/oauth/validate-auth-code` |
 | Get Merchant Credentials | `https://testdashboard.payu.in/oauth/get-merchant-credentials` | `https://dashboard.payu.in/oauth/get-merchant-credentials` |
-| Payment APIs (Hosted Checkout) | `https://test.payu.in/_payment` | `https://secure.payu.in/_payment` |
+| Payment APIs (Partner API Layer) | `https://test-partnerapilayer.payu.in/apilayer/partner/payments` | `https://partnerapilayer.payu.in/apilayer/partner/payments` |
 
 > **Note:** All OAuth endpoints use test environment URLs with `test` subdomain for testing.
 
@@ -95,28 +93,29 @@ Follow these steps to test the complete OAuth onboarding flow:
 
   <Accordion title="Step 1: Build Authorization URL" icon="fa-list-check">
 
-Construct the authorization URL with proper URL encoding:
+Construct the authorization URL with the required parameters:
 
 **Test URL Format:**
 ```
-https://onboardingtest.payu.in/merchant/partner-oauth?client_id={{client_id}}&redirect_url={{encoded_redirect_url}}
+https://onboardingtest.payu.in/app/account/signup?reseller_id={<Merchant ID>&email=<Merchant mail ID to sign-up>}&state={state}
 ```
 
-**Sample Authorization URLs:**
+**Required Parameters:**
 
+| Parameter | Description |
+|-----------|-------------|
+| `reseller_id` | Contains encoded values of Merchant ID & Merchant mail ID used while sign up |
+| `state` | Contains encoded session state |
+
+**Sample Authorization URL:**
 ```
-# Basic redirect URL
-https://onboardingtest.payu.in/merchant/partner-oauth?client_id=ABC123&redirect_url=https%3A%2F%2Fpartner.example.com%2Fcallback
-
-# Redirect URL with parameters
-https://onboardingtest.payu.in/merchant/partner-oauth?client_id=ABC123&redirect_url=https%3A%2F%2Fpartner.example.com%2Fcallback%3Fsession_id%3D12345
+https://onboarding.payu.in/app/account/signup?reseller_id=66ed-fc3c-512f47ed-ac95-4319452fbd89&state=Uqnr5ge22U
 ```
 
 **Validation Points:**
-- [ ] Client ID is correct
-- [ ] Redirect URL is properly URL-encoded
-- [ ] Redirect URL matches whitelisted URL in Partner Portal
-- [ ] URL opens PayU authorization page
+- [ ] `reseller_id` is correctly populated with encoded Merchant ID and email
+- [ ] `state` parameter carries a unique session state value
+- [ ] URL opens the PayU authorization/sign-up page
 - [ ] No browser errors or warnings
 
   </Accordion>
@@ -220,23 +219,29 @@ Verify URL encoding is correct:
 
 <Accordion title="4. Test Authorization Code Exchange" icon="fa-key">
 
-**API:** [Validate Auth Code and Client API](ref:validate_authcode_and_client_api)
+**API:** [Validate Auth Code and Client API](/reference/validate_authcode_and_client_api)
 
   <Accordion title="Step 1: Capture Authorization Code" icon="fa-list-check">
 
-From the redirect URL, extract the `auth_code` parameter:
+From the callback URL, extract the `auth_code` parameter:
 
+**Callback URL Format:**
 ```
-https://partner.example.com/callback?auth_code=ABC123XYZ789DEF456
+https://onboarding.payu.in/app/account/signup?reseller_id={{reseller_id}}&state={session state}
 ```
 
-Extract: `auth_code=ABC123XYZ789DEF456`
+**Example:**
+```
+https://onboarding.payu.in/app/account/signup?reseller_id=11f1-1078-ee249a86-9fdf-0aad783eb813&state=1513493
+```
+
+> **Important:** The `auth_code` is single-use and expires after a short period. Exchange it immediately for merchant credentials.
 
   </Accordion>
 
   <Accordion title="Step 2: Exchange Code for Credentials" icon="fa-code">
 
-Call the Validate Auth Code API immediately:
+Call the Validate Auth Code API immediately after receiving the `auth_code`:
 
 **Sample Request:**
 ```bash
@@ -245,26 +250,41 @@ curl --location 'https://testdashboard.payu.in/oauth/validate-auth-code' \
 --data '{
     "client_id": "ABC123",
     "client_secret": "your_client_secret",
-    "auth_code": "ABC123XYZ789DEF456"
+    "auth_code": "XYZ789ABC123"
 }'
 ```
 
 **Expected Success Response:**
 ```json
 {
-    "status": 1,
-    "msg": "Success",
-    "merchant_key": "mK3j2L9p",
-    "salt": "sA7x9B2c"
+    "access_token": "e6ff7e34b704be2b14c8ae3c0e776597df4ae7de9e12d3e4c79781fcbbf2c4bb",
+    "token_type": "Bearer",
+    "expires_in": 7199,
+    "refresh_token": "356fe080daa69438e0c2d3b0a80b3fe4aa3f78b264e6092e95e4429ae59486a7",
+    "scope": "credentials_using_oauth create_payment_links read_payment_links update_payment_links delete_payment_links",
+    "created_at": 1709198191,
+    "user_uuid": "11ed-933c-d307ba06-b71a-0a64ecf8a4cc"
 }
 ```
 
+**Response Parameters:**
+
+| Parameter | Description |
+|-----------|-------------|
+| `access_token` | Bearer token to authorize payment API calls |
+| `token_type` | Always `Bearer` |
+| `expires_in` | Token validity in seconds |
+| `refresh_token` | Token used to obtain a new access token |
+| `scope` | Permissions granted |
+| `created_at` | Unix timestamp of token creation |
+| `user_uuid` | Unique identifier of the onboarded merchant |
+
 **Validation Points:**
 - [ ] API responds within 2 seconds
-- [ ] `status` is `1` for success
-- [ ] `merchant_key` received (8 characters)
-- [ ] `salt` received (8 characters)
-- [ ] Both values are alphanumeric
+- [ ] `access_token` received and is a valid hex string
+- [ ] `token_type` is `Bearer`
+- [ ] `expires_in` value is present
+- [ ] `user_uuid` received and associated with correct merchant
 
   </Accordion>
 
@@ -351,14 +371,14 @@ curl --location 'https://testdashboard.payu.in/oauth/validate-auth-code' \
 
 **Test Steps:**
 1. Generate auth code
-2. Wait 10 minutes (or configured expiry time)
-3. Attempt to exchange expired code
+2. Wait for the configured expiry period
+3. Attempt to exchange the expired code
 4. Verify rejection
 
 **Validation Points:**
 - [ ] Expired codes rejected
-- [ ] Appropriate error message
-- [ ] Must generate new auth code
+- [ ] Appropriate error message returned
+- [ ] Must generate a new auth code by restarting the OAuth flow
 
   </Accordion>
 
@@ -369,10 +389,10 @@ curl --location 'https://testdashboard.payu.in/oauth/validate-auth-code' \
   <Accordion title="Test 1: Secure Storage" icon="fa-shield-check">
 
 **Validation Points:**
-- [ ] `merchant_key` stored encrypted in database
-- [ ] `salt` stored encrypted in database
-- [ ] Credentials never logged in plain text
-- [ ] Credentials not exposed in client-side code
+- [ ] `access_token` stored encrypted in database
+- [ ] `refresh_token` stored encrypted in database
+- [ ] Tokens never logged in plain text
+- [ ] Tokens not exposed in client-side code
 - [ ] Database access controlled and audited
 
   </Accordion>
@@ -380,15 +400,15 @@ curl --location 'https://testdashboard.payu.in/oauth/validate-auth-code' \
   <Accordion title="Test 2: Credential Retrieval" icon="fa-key">
 
 **Test Steps:**
-1. Store credentials after receiving from API
-2. Associate with partner's internal merchant ID
-3. Retrieve credentials for payment processing
-4. Decrypt and use for hash generation
+1. Store tokens after receiving from the Validate Auth Code API
+2. Associate with partner's internal merchant ID using `user_uuid`
+3. Retrieve access token for payment processing
+4. Decrypt and use as Bearer token in payment API calls
 
 **Validation Points:**
-- [ ] Credentials retrieved successfully
+- [ ] Tokens retrieved successfully
 - [ ] Decryption works correctly
-- [ ] Associated with correct merchant
+- [ ] Associated with correct merchant via `user_uuid`
 - [ ] Audit log created for retrieval
 
   </Accordion>
@@ -397,15 +417,15 @@ curl --location 'https://testdashboard.payu.in/oauth/validate-auth-code' \
 
 **Test Steps:**
 1. Implement role-based access control
-2. Test admin access to credentials
+2. Test admin access to stored tokens
 3. Test non-admin access denied
 4. Test API-level access restrictions
 
 **Validation Points:**
-- [ ] Only authorized roles can access credentials
+- [ ] Only authorized roles can access tokens
 - [ ] Access attempts logged
 - [ ] Failed access attempts trigger alerts
-- [ ] No credentials visible in application logs
+- [ ] No tokens visible in application logs
 
   </Accordion>
 
@@ -413,7 +433,7 @@ curl --location 'https://testdashboard.payu.in/oauth/validate-auth-code' \
 
 <Accordion title="6. Test Get Merchant Credentials API" icon="fa-magnifying-glass">
 
-**API:** [Get Merchant Credentials API](ref:get_merchant_credentials_api)
+**API:** [Get Merchant Credentials API](/reference/get_merchant_credentials_api)
 
 **Use Case:** Retrieve credentials at a later time if needed
 
@@ -478,7 +498,7 @@ For a valid partner client that hasn't onboarded any merchant via OAuth:
 
 **Validation Points:**
 - [ ] Invalid credentials rejected
-- [ ] Appropriate error messages
+- [ ] Appropriate error messages returned
 - [ ] No sensitive data in error responses
 
   </Accordion>
@@ -487,143 +507,123 @@ For a valid partner client that hasn't onboarded any merchant via OAuth:
 
 <Accordion title="7. Test Payment Integration with OAuth Credentials" icon="fa-check-circle">
 
-After receiving merchant credentials via OAuth, test payment collection:
+After receiving merchant credentials via OAuth, test payment collection using the Partner API Layer. Use the `access_token` received from the Validate Auth Code API as the Bearer token.
 
-  <Accordion title="Step 1: Generate Payment Hash" icon="fa-key">
+  <Accordion title="Step 1: Test Hosted Checkout Payment Request" icon="fa-code">
 
-Use the received `merchant_key` and `salt` to generate payment hash:
+Submit a payment using the Partner Payments API:
 
-**Hash Formula:**
+**Sample Request:**
+```curl
+curl --location --request POST \
+'https://test-partnerapilayer.payu.in/apilayer/partner/payments' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer <access_token>' \
+--data-raw '{
+  "txnid": "nY3tkz3vciHFGTjblyFeycL2Zn1m",
+  "amount": 1090.33,
+  "productinfo": "whatsapp",
+  "firstname": "Manikanta",
+  "reseller_id": "83fe-eb64-021844d8-9397-26535b1bf0c2",
+  "merchant_id": "8238480",
+  "phone": 7036722360,
+  "hash": "52f45927e221a16bd5372709516de5110c06c55e0057f8a18a3b9b9f2c2f176870af276274709910f27d7c5df44822777542e3d4b86f29e8304e17fcb373133c",
+  "lastname": "CHeruku",
+  "email": "manik.cr24@gmail.com",
+  "curl": "<YOUR_CANCEL_URL>",
+  "furl": "<YOUR_FAILURE_URL>",
+  "surl": "<YOUR_SUCCESS_URL>",
+  "udf1": "whatsapp"
+}'
 ```
-hash = sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
-```
 
-**Sample Hash Generation (PHP):**
-```php
-<?php
-$key = "mK3j2L9p"; // From OAuth
-$salt = "sA7x9B2c"; // From OAuth
-$txnid = "TEST" . time();
-$amount = "10.00";
-$productinfo = "Test Product";
-$firstname = "Test User";
-$email = "test@example.com";
-$udf1 = $udf2 = $udf3 = $udf4 = $udf5 = "";
-
-$hashString = $key.'|'.$txnid.'|'.$amount.'|'.$productinfo.'|'.$firstname.'|'.$email.'|'.$udf1.'|'.$udf2.'|'.$udf3.'|'.$udf4.'|'.$udf5.'||||||'.$salt;
-
-$hash = strtolower(hash('sha512', $hashString));
-?>
-```
-
-**Sample Hash Generation (Python):**
-```python
-import hashlib
-
-key = "mK3j2L9p"  # From OAuth
-salt = "sA7x9B2c"  # From OAuth
-txnid = f"TEST{int(time.time())}"
-amount = "10.00"
-productinfo = "Test Product"
-firstname = "Test User"
-email = "test@example.com"
-udf1 = udf2 = udf3 = udf4 = udf5 = ""
-
-hash_string = f"{key}|{txnid}|{amount}|{productinfo}|{firstname}|{email}|{udf1}|{udf2}|{udf3}|{udf4}|{udf5}||||||{salt}"
-
-hash_value = hashlib.sha512(hash_string.encode('utf-8')).hexdigest().lower()
+**Expected Response:**
+```text
+{
+    "redirectUri": "https://apitest.payu.in/public/#/35de666bac018494a06205addba2962cdb8d03ca9c2fa7954807098709f1b6dc"
+}
 ```
 
 **Validation Points:**
-- [ ] Hash generated correctly using OAuth credentials
-- [ ] Hash is 128 characters (SHA-512)
-- [ ] Hash is lowercase
-- [ ] No extra spaces in hash string
+- [ ] API call succeeds with valid Bearer token
+- [ ] `redirectUri` received in response
+- [ ] Redirect URI opens the PayU payment page
+- [ ] Merchant name displayed correctly on payment page
+- [ ] Test transaction completes successfully
+- [ ] Redirected to success URL (SURL) after payment
 
   </Accordion>
 
-  <Accordion title="Step 2: Test Payment Request" icon="fa-code">
+  <Accordion title="Step 2: Test UPI S2S Payment Request" icon="fa-code">
 
-Submit payment to PayU Hosted Checkout:
+For UPI S2S flow, use the same Partner Payments API endpoint with `txn_s2s_flow`:
 
-**Sample HTML Form:**
-```html
-<form action="https://test.payu.in/_payment" method="post">
-    <input type="hidden" name="key" value="mK3j2L9p" />
-    <input type="hidden" name="txnid" value="TEST123456789" />
-    <input type="hidden" name="amount" value="10.00" />
-    <input type="hidden" name="productinfo" value="Test Product" />
-    <input type="hidden" name="firstname" value="Test User" />
-    <input type="hidden" name="email" value="test@example.com" />
-    <input type="hidden" name="phone" value="9999999999" />
-    <input type="hidden" name="surl" value="https://partner.example.com/success" />
-    <input type="hidden" name="furl" value="https://partner.example.com/failure" />
-    <input type="hidden" name="hash" value="{{generated_hash}}" />
-    <input type="submit" value="Pay Now" />
-</form>
+**Sample Request:**
+```curl
+curl --location --request POST 'https://test-partnerapilayer.payu.in/apilayer/partner/payments' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer 9d2ab8e1b99aa02f6b827af5b5000b277d9cb1cd037acb7cb31436a5b0da4f74' \
+--data-raw '{
+    "txnid": "nY3tkz3vciHFGTjblyFeycL2Zn1m",
+    "amount": 1090.33,
+    "productinfo": "whatsapp",
+    "firstname": "Manikanta",
+    "reseller_id": "83fe-eb64-021844d8-9397-26535b1bf0c2",
+    "merchant_id": 8238480,
+    "phone": 7036722360,
+    "hash": "5aadceaf6bec9158ccba8ec0dab32debcacbfd50e3587c077fa11107a5be0ac26712fae230522afb8908d068122c02f2d5c733a46c33ace0f66e5cc9d2ae4714",
+    "lastname": "CHeruku",
+    "email": "manik.cr24@gmail.com",
+    "curl": "https://www.google.com",
+    "furl": "https://www.google.com",
+    "surl": "https://www.youtube.com",
+    "txn_s2s_flow": "4",
+    "s2s_device_info": "ewew",
+    "s2s_client_ip": "ewew"
+}'
 ```
 
-**Test Payment Methods:**
-
-**Credit Card (Test):**
-- Card Number: `5123456789012346`
-- CVV: `123`
-- Expiry: `12/2025`
-- Name: `Test User`
-- OTP: `123456`
-
-**Net Banking:**
-- Bank: ICICI (Test)
-- User will be redirected to test bank page
-- Auto-success in test mode
-
-**UPI:**
-- UPI ID: `success@payu`
-- Auto-success in test mode
+**Expected Response:**
+```text
+{
+    "metaData": {
+        "message": null,
+        "referenceId": "024d9afbdbf85bd35b25649ccf983e16ee3d4646c2cdcffada88bd2df371fd43",
+        "statusCode": null,
+        "txnId": "nY3tkz3vciHFGTjblyFeycL2Zn1m",
+        "txnStatus": "pending",
+        "unmappedStatus": "pending"
+    },
+    "result": {
+        "paymentId": 403993715529028543,
+        "merchantName": "Merchant",
+        "merchantVpa": null,
+        "amount": "1090.33",
+        "intentURIData": "pa=&pn=&tr=403993715529028543&tid=PPPL403993715529028543290523133325&am=1090.33&cu=INR&tn=UPI Transaction for PPPL403993715529028543290523133325",
+        "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
+    }
+}
+```
 
 **Validation Points:**
-- [ ] Payment page loads successfully
-- [ ] Merchant name displayed correctly
-- [ ] Payment methods available
-- [ ] Test transaction succeeds
-- [ ] Redirected to success URL (SURL)
-- [ ] Transaction details match request
+- [ ] `txnStatus` is `pending` on initial response
+- [ ] `intentURIData` received for UPI deep link
+- [ ] `otpPostUrl` present for OTP handling
+- [ ] Transaction completes after UPI confirmation
 
   </Accordion>
 
   <Accordion title="Step 3: Verify Payment Response" icon="fa-shield-check">
 
-Handle the callback from PayU:
-
-**Success Response (POST to SURL):**
-```php
-<?php
-$mihpayid = $_POST['mihpayid'];
-$status = $_POST['status'];
-$txnid = $_POST['txnid'];
-$amount = $_POST['amount'];
-$hash = $_POST['hash'];
-
-// Reverse hash verification
-$reverseHashString = $salt.'|'.$status.'|||||||||||'.$email.'|'.$firstname.'|'.$productinfo.'|'.$amount.'|'.$txnid.'|'.$key;
-$reverseHash = strtolower(hash('sha512', $reverseHashString));
-
-if ($reverseHash == $hash) {
-    // Hash verified - payment is genuine
-    if ($status == 'success') {
-        // Payment successful
-    }
-}
-?>
-```
+After payment completes, verify the transaction via PayU's callback:
 
 **Validation Points:**
-- [ ] Reverse hash calculated correctly
-- [ ] Reverse hash matches received hash
-- [ ] Payment status is 'success'
-- [ ] Transaction ID matches request
-- [ ] Amount matches request
-- [ ] PayU ID (mihpayid) received
+- [ ] SURL/FURL receives POST callback from PayU
+- [ ] `txnid` in callback matches the original request
+- [ ] `amount` in callback matches the original request
+- [ ] `status` field correctly reflects payment outcome (`success`/`failure`)
+- [ ] `mihpayid` (PayU transaction ID) is present
+- [ ] Reverse hash validation passes to confirm authenticity
 
   </Accordion>
 
@@ -635,16 +635,16 @@ Test onboarding multiple merchants through OAuth:
 
 **Test Steps:**
 1. Onboard Merchant A via OAuth
-2. Store Merchant A credentials
+2. Store Merchant A's `access_token` and `user_uuid`
 3. Onboard Merchant B via OAuth
-4. Store Merchant B credentials
+4. Store Merchant B's `access_token` and `user_uuid`
 5. Verify both sets of credentials work independently
 
 **Validation Points:**
-- [ ] Each merchant has unique `merchant_key` and `salt`
-- [ ] Credentials stored separately and correctly associated
-- [ ] Payments for Merchant A use Merchant A credentials
-- [ ] Payments for Merchant B use Merchant B credentials
+- [ ] Each merchant has a unique `access_token` and `user_uuid`
+- [ ] Tokens stored separately and correctly associated via `user_uuid`
+- [ ] Payments for Merchant A use Merchant A's Bearer token
+- [ ] Payments for Merchant B use Merchant B's Bearer token
 - [ ] No credential cross-contamination
 
 </Accordion>
@@ -668,8 +668,8 @@ Test onboarding multiple merchants through OAuth:
   <Accordion title="Scenario 2: Missing Parameters" icon="fa-times-circle">
 
 **Test Steps:**
-1. Build auth URL without `client_id`
-2. Build auth URL without `redirect_url`
+1. Build auth URL without `reseller_id`
+2. Build auth URL without `state`
 3. Attempt authorization
 
 **Expected Result:**
@@ -718,23 +718,22 @@ Test the complete integration flow from OAuth authorization to payment collectio
 
 <Accordion title="Scenario 1: Complete OAuth Flow + First Payment" icon="fa-thumbs-up">
 
-1. Build and open authorization URL
-2. Register new test merchant or login existing
+1. Build and open the authorization URL
+2. Register new test merchant or login with existing credentials
 3. Grant authorization to partner app
 4. Receive auth code in redirect
-5. Exchange auth code for credentials via [Validate Auth Code API](ref:validate_authcode_and_client_api)
-6. Store credentials securely
-7. Generate payment hash using credentials
-8. Submit test payment to PayU
-9. Verify payment success
-10. Validate payment callback and reverse hash
+5. Exchange auth code for credentials via [Validate Auth Code API](/reference/validate_authcode_and_client_api)
+6. Store `access_token` and `user_uuid` securely
+7. Submit test payment to Partner Payments API using Bearer token
+8. Verify payment success via `redirectUri`
+9. Validate payment callback on SURL
 
 **Expected Duration:** 3–5 minutes
 
 **Validation Points:**
 - [ ] All steps complete without errors
-- [ ] Credentials received and stored
-- [ ] Payment successful
+- [ ] `access_token` received and stored
+- [ ] Payment successful with Bearer token auth
 - [ ] Callback received with valid data
 
 </Accordion>
@@ -746,12 +745,12 @@ Test the complete integration flow from OAuth authorization to payment collectio
 3. Later, initiate OAuth flow again for same merchant
 4. Verify auto-redirect with new auth code
 5. Exchange new auth code for credentials
-6. Verify credentials match previously stored
+6. Verify `user_uuid` matches previously stored record
 
 **Validation Points:**
 - [ ] Re-authorization works smoothly
 - [ ] Merchant not asked for consent again
-- [ ] Same credentials returned
+- [ ] Same `user_uuid` returned
 - [ ] No duplicate merchant records
 
 </Accordion>
@@ -761,12 +760,12 @@ Test the complete integration flow from OAuth authorization to payment collectio
 1. Prepare list of 10 test merchants
 2. Send OAuth links to each
 3. Track completion status
-4. Store all credentials
-5. Test payment for each merchant
+4. Store all `access_token` and `user_uuid` values
+5. Test payment for each merchant using their respective Bearer token
 
 **Validation Points:**
 - [ ] All merchants onboarded successfully
-- [ ] Each has unique credentials
+- [ ] Each has a unique `access_token` and `user_uuid`
 - [ ] Parallel processing works
 - [ ] No credential mix-ups
 
@@ -783,7 +782,7 @@ Test the complete integration flow from OAuth authorization to payment collectio
 **Validation Points:**
 - [ ] Retry successful
 - [ ] Auth code still valid within expiry
-- [ ] Credentials received
+- [ ] `access_token` received
 - [ ] No duplicate processing
 
 </Accordion>
@@ -810,19 +809,18 @@ Use this checklist before moving to production:
 
 - [ ] **OAuth Configuration**
   - [ ] OAuth scope enabled by PayU KAM for production
-  - [ ] Production authorization URL configured: `https://onboarding.payu.in/merchant/partner-oauth`
+  - [ ] Production authorization URL configured: `https://onboarding.payu.in/app/account/signup?reseller_id={reseller_id}&state={session state}`
   - [ ] Production API endpoints configured
   - [ ] Redirect URLs use HTTPS
   - [ ] All redirect URLs whitelisted in Partner Portal
 
 - [ ] **Authorization Flow**
-  - [ ] Authorization URL construction tested
-  - [ ] URL encoding implemented correctly
+  - [ ] Authorization URL construction tested with correct `reseller_id` and `state` parameters
   - [ ] Merchant login and registration tested
   - [ ] Authorization grant screen tested
   - [ ] Callback handling implemented
   - [ ] Auth code extraction working
-  - [ ] State parameter used (recommended for security)
+  - [ ] `state` parameter used for session binding (recommended for security)
 
 - [ ] **API Integration**
   - [ ] Validate Auth Code API integration complete
@@ -834,26 +832,26 @@ Use this checklist before moving to production:
 
 - [ ] **Credential Management**
   - [ ] Auth code exchange happens immediately after redirect
-  - [ ] Merchant key and salt stored securely
-  - [ ] Credentials encrypted at rest
-  - [ ] Credentials associated with correct merchant
-  - [ ] Credential retrieval tested
-  - [ ] No credentials logged in plain text
-  - [ ] No credentials exposed to client-side
+  - [ ] `access_token` and `refresh_token` stored securely
+  - [ ] Tokens encrypted at rest
+  - [ ] Tokens associated with correct merchant via `user_uuid`
+  - [ ] Token refresh flow implemented before expiry
+  - [ ] No tokens logged in plain text
+  - [ ] No tokens exposed to client-side
 
 - [ ] **Payment Integration**
-  - [ ] Hash generation using OAuth credentials tested
-  - [ ] Test payments successful with OAuth merchant keys
+  - [ ] Partner Payments API integration tested with Bearer token auth
+  - [ ] Hosted Checkout flow tested end-to-end
+  - [ ] UPI S2S flow tested end-to-end (if applicable)
   - [ ] Success callback (SURL) implemented
   - [ ] Failure callback (FURL) implemented
-  - [ ] Reverse hash validation implemented
+  - [ ] Cancel callback (CURL) implemented
   - [ ] Transaction verification integrated
-  - [ ] All payment methods tested
 
 - [ ] **Security Best Practices**
   - [ ] HTTPS enforced on all endpoints
   - [ ] Redirect URLs validated before use
-  - [ ] State parameter used to prevent CSRF
+  - [ ] `state` parameter used to prevent CSRF
   - [ ] Auth codes used only once
   - [ ] Auth code expiry handled
   - [ ] Client secret never exposed to client
@@ -880,7 +878,7 @@ Use this checklist before moving to production:
 - [ ] **Monitoring & Logging**
   - [ ] OAuth flow events logged
   - [ ] API requests/responses logged (excluding secrets)
-  - [ ] Credential storage/retrieval audited
+  - [ ] Token storage/retrieval audited
   - [ ] Error tracking system integrated
   - [ ] Performance monitoring setup
   - [ ] Alert notifications configured
@@ -889,7 +887,7 @@ Use this checklist before moving to production:
 - [ ] **Testing Completed**
   - [ ] End-to-end OAuth flow tested in production (test merchants)
   - [ ] Multiple merchant onboarding tested
-  - [ ] Payment with OAuth credentials tested
+  - [ ] Payment with OAuth Bearer token tested
   - [ ] Error scenarios tested
   - [ ] Edge cases validated
   - [ ] Load testing completed
@@ -909,10 +907,10 @@ Once all testing is complete and checklist items are verified, update all endpoi
 
 | Resource | Production URL |
 |----------|---------------|
-| Authorization Page | `https://onboarding.payu.in/merchant/partner-oauth` |
+| Authorization Page | `https://onboarding.payu.in/app/account/signup?reseller_id={reseller_id}&state={session state}` |
 | Validate Auth Code | `https://dashboard.payu.in/oauth/validate-auth-code` |
 | Get Merchant Credentials | `https://dashboard.payu.in/oauth/get-merchant-credentials` |
-| Payment (Hosted Checkout) | `https://secure.payu.in/_payment` |
+| Payment (Partner API Layer) | `https://partnerapilayer.payu.in/apilayer/partner/payments` |
 | Verify Payment | `https://info.payu.in/merchant/postservice?form=2` |
 
 ---
@@ -924,16 +922,16 @@ Once all testing is complete and checklist items are verified, update all endpoi
 **Symptoms:** Authorization page shows error or doesn't load
 
 **Possible Causes:**
-- Invalid Client ID
-- Client ID not enabled for OAuth
-- Redirect URL not properly encoded
+- Invalid or missing `reseller_id`
+- Client account not enabled for OAuth
+- `state` parameter malformed or missing
 - OAuth not enabled for partner account
 
 **Solution:**
-1. Verify Client ID is correct
+1. Verify `reseller_id` is correctly constructed with encoded Merchant ID and email
 2. Contact PayU KAM to confirm OAuth is enabled
-3. Check redirect URL encoding: use `encodeURIComponent()` or equivalent
-4. Verify using test environment URL for testing
+3. Ensure `state` carries a valid encoded session value
+4. Verify using the test environment URL for testing
 
 </Accordion>
 
@@ -977,7 +975,7 @@ Once all testing is complete and checklist items are verified, update all endpoi
 
 **Solution:**
 1. Extract auth code immediately from redirect URL
-2. Exchange auth code within 5 minutes of receiving it
+2. Exchange auth code within the expiry window of receiving it
 3. Use auth code only once
 4. Handle URL decoding properly if auth code contains special characters
 5. Generate new auth code by repeating OAuth flow
@@ -986,7 +984,7 @@ Once all testing is complete and checklist items are verified, update all endpoi
 
 <Accordion title="Issue 4: Merchant Credentials Not Received" icon="fa-times-circle">
 
-**Symptoms:** API returns success but no merchant_key or salt
+**Symptoms:** API returns success but no `access_token` or `user_uuid`
 
 **Possible Causes:**
 - Merchant not fully onboarded
@@ -997,31 +995,29 @@ Once all testing is complete and checklist items are verified, update all endpoi
 1. Check merchant status in PayU dashboard
 2. Ensure merchant completed KYC
 3. Wait for merchant approval (if under review)
-4. Contact PayU support if merchant shows as active but credentials not received
+4. Contact PayU support if merchant shows as active but tokens not received
 
 </Accordion>
 
-<Accordion title="Issue 5: Hash Mismatch in Payment" icon="fa-times-circle">
+<Accordion title="Issue 5: Payment API Authorization Failure" icon="fa-times-circle">
 
-**Symptoms:** Payment page shows "Invalid hash" error
+**Symptoms:** Partner Payments API returns `401 Unauthorized` or hash mismatch error
 
 **Possible Causes:**
-- Using incorrect merchant_key or salt
-- Parameter order wrong in hash string
+- Using an expired or invalid `access_token` as Bearer token
+- Incorrect `Authorization` header format
+- Hash string parameter order incorrect
 - Extra spaces in hash string
-- Incorrect salt retrieved
-- Using test credentials in production
 
 **Solution:**
-1. Verify merchant_key and salt from OAuth are correct
-2. Check hash string parameter order:
+1. Verify the `access_token` from OAuth is valid and not expired
+2. Use the format: `Authorization: Bearer <access_token>`
+3. Check hash string parameter order:
    ```
    key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT
    ```
-3. Use lowercase hash: `strtolower(hash('sha512', $hashString))`
 4. Trim all parameters to remove spaces
-5. Verify using production credentials in production environment
-6. Use [PayU Hash Verification Tool](https://test.payu.in/merchant/postservice?form=2) to test
+5. Refresh the access token using the `refresh_token` if expired
 
 </Accordion>
 
@@ -1051,18 +1047,18 @@ Once all testing is complete and checklist items are verified, update all endpoi
 
 **Possible Causes:**
 - Session management issues
-- State parameter not used
+- `state` parameter not used or not validated
 - Concurrent OAuth flows not handled
 - Cache issues
 
 **Solution:**
-1. Use `state` parameter in authorization URL:
+1. Use `state` parameter in authorization URL to bind sessions:
    ```
-   https://onboarding.payu.in/merchant/partner-oauth?client_id=ABC&redirect_url=...&state=SESSION_ID
+   https://onboarding.payu.in/app/account/signup?reseller_id={{reseller_id}}&state=SESSION_ID
    ```
-2. Verify state parameter in callback matches session
-3. Store credentials immediately after receiving
-4. Use unique identifiers to track each OAuth flow
+2. Verify `state` parameter in callback matches the original session
+3. Store `access_token` immediately after receiving, keyed to `user_uuid`
+4. Use unique `state` values to track each OAuth flow
 5. Implement proper session management
 
 </Accordion>
@@ -1072,14 +1068,13 @@ Once all testing is complete and checklist items are verified, update all endpoi
 **Symptoms:** Auth code rejected even when exchanged quickly
 
 **Possible Causes:**
-- Auth code expired (5-minute window)
+- Auth code expired (short expiry window)
 - Clock skew between servers
 
 **Solution:**
 1. Exchange auth code immediately after redirect — do not store or delay
-2. Auth codes are valid for 5 minutes only
-3. Ensure server clocks are synchronized (NTP)
-4. Generate a new auth code by restarting the OAuth flow
+2. Ensure server clocks are synchronized (NTP)
+3. Generate a new auth code by restarting the OAuth flow
 
 </Accordion>
 
@@ -1092,28 +1087,28 @@ Once all testing is complete and checklist items are verified, update all endpoi
 1. **Parallel Processing**
    - Process multiple OAuth flows concurrently
    - Use asynchronous API calls where possible
-   - Implement queuing for credential storage
+   - Implement queuing for token storage
 
-2. **Caching**
-   - Cache merchant credentials securely
-   - Cache frequently accessed data
-   - Use Redis or similar for session management
+2. **Token Caching**
+   - Cache `access_token` securely for its `expires_in` duration
+   - Use `refresh_token` to obtain new access tokens without re-authorizing
+   - Use Redis or similar for session and token management
 
 3. **Database Optimization**
-   - Index merchant_key and client_id columns
+   - Index `user_uuid` and `client_id` columns
    - Use connection pooling
-   - Optimize credential retrieval queries
+   - Optimize token retrieval queries
 
 4. **API Call Optimization**
-   - Batch credential retrievals if possible
-   - Implement exponential backoff for retries
+   - Implement exponential backoff for retries on the Partner Payments API
    - Set appropriate timeouts (30 seconds recommended)
+   - Handle `429 Too Many Requests` with backoff logic
 
 5. **Monitoring**
    - Track OAuth flow completion rates
    - Monitor API response times
    - Set up alerts for high error rates
-   - Track credential storage success rates
+   - Track token refresh success rates
 
 </Accordion>
 
@@ -1129,10 +1124,10 @@ Once all testing is complete and checklist items are verified, update all endpoi
 
 - [ ] **Data Protection**
   - [ ] Client secret stored in secrets manager (AWS Secrets Manager, HashiCorp Vault, etc.)
-  - [ ] Merchant credentials encrypted at rest (AES-256)
+  - [ ] `access_token` and `refresh_token` encrypted at rest (AES-256)
   - [ ] Encryption keys rotated regularly
-  - [ ] No credentials in application logs
-  - [ ] No credentials in error messages
+  - [ ] No tokens in application logs
+  - [ ] No tokens in error messages
 
 - [ ] **Access Control**
   - [ ] Role-based access control (RBAC) implemented
@@ -1141,8 +1136,8 @@ Once all testing is complete and checklist items are verified, update all endpoi
   - [ ] Principle of least privilege applied
 
 - [ ] **CSRF Protection**
-  - [ ] State parameter used in OAuth flow
-  - [ ] State parameter validated in callback
+  - [ ] `state` parameter used in OAuth flow
+  - [ ] `state` parameter validated in callback
   - [ ] CSRF tokens on all forms
   - [ ] SameSite cookie attribute set
 
@@ -1160,7 +1155,7 @@ Once all testing is complete and checklist items are verified, update all endpoi
 
 - [ ] **Audit Logging**
   - [ ] All OAuth events logged
-  - [ ] Credential access logged
+  - [ ] Token access logged
   - [ ] Failed authentication attempts logged
   - [ ] Logs retained according to policy
   - [ ] Log tampering protection
@@ -1174,7 +1169,7 @@ Once all testing is complete and checklist items are verified, update all endpoi
 Contact PayU support in these scenarios:
 - OAuth not enabled for your partner account
 - Redirect URL whitelisting issues
-- Merchant credentials not received despite successful OAuth
+- Merchant tokens not received despite successful OAuth flow
 - Repeated API failures (not related to your implementation)
 - Security concerns or suspected compromise
 
@@ -1194,7 +1189,7 @@ When contacting support, include:
 1. Partner Client ID (never share Client Secret)
 2. Timestamp of issue
 3. Error messages received
-4. API request/response (redact sensitive data)
+4. API request/response (redact sensitive data such as tokens)
 5. Steps to reproduce
 6. Environment (test/production)
 
@@ -1212,4 +1207,4 @@ When contacting support, include:
 
 > 🔒 **Security Reminder**
 >
-> Never share your Client Secret, merchant keys, or salts in logs, error messages, or support tickets. Treat them as passwords.
+> Never share your Client Secret, access tokens, or refresh tokens in logs, error messages, or support tickets. Treat them as passwords.
