@@ -56,14 +56,12 @@ This checklist covers everything you need to test and validate the Co-Branded OA
 
 Use the following test environment endpoints for OAuth Integration:
 
-| Resource                         | Test Environment URL                                                                                    | Production Environment URL                                                                      |
-| -------------------------------- | ------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| Authorization Page               | `https://onboardingtest.payu.in/app/account/signup?reseller_id={PayU partner identifier}&state={state}` | `https://onboarding.payu.in/app/account/signup?reseller_id={reseller_id}&state={session state}` |
-| Validate Auth Code               | `https://testdashboard.payu.in/oauth/validate-auth-code`                                                | `https://dashboard.payu.in/oauth/validate-auth-code`                                            |
-| Get Merchant Credentials         | `https://testdashboard.payu.in/oauth/get-merchant-credentials`                                          | `https://dashboard.payu.in/oauth/get-merchant-credentials`                                      |
-| Payment APIs (Partner API Layer) | `https://test-partnerapilayer.payu.in/apilayer/partner/payments`                                        | `https://partnerapilayer.payu.in/apilayer/partner/payments`                                     |
-
-> **Note:** All OAuth endpoints use test environment URLs with `test` subdomain for testing.
+| Resource                         | Test Environment URL                                                                                 | Production Environment URL                                                                      |
+| -------------------------------- | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Authorization Page               | `https://uat-onepayuonboarding.payu.in/app/account/signup&reseller_id={Reseller UUID}&state={state}` | `https://onboarding.payu.in/app/account/signup?reseller_id={reseller_id}&state={session state}` |
+| Validate Auth Code               | `https://testdashboard.payu.in/oauth/validate-auth-code`                                             | `https://dashboard.payu.in/oauth/validate-auth-code`                                            |
+| Get Merchant Credentials         | `https://testdashboard.payu.in/oauth/get-merchant-credentials`                                       | `https://dashboard.payu.in/oauth/get-merchant-credentials`                                      |
+| Payment APIs (Partner API Layer) | `https://test-partnerapilayer.payu.in/apilayer/partner/payments`                                     | `https://partnerapilayer.payu.in/apilayer/partner/payments`                                     |
 
 ***
 
@@ -99,15 +97,16 @@ Follow these steps to test the complete OAuth onboarding flow:
     **Test URL Format:**
 
     ```
-    https://onboardingtest.payu.in/app/account/signup?reseller_id={PayU partner identifier}&state={state}
+    https://uat-onepayuonboarding.payu.in/app/account/signup?reseller_id={Reseller UUID}&state={state}&email=(reseller email ID)
     ```
 
     **Required Parameters:**
 
-    | Parameter     | Description                                        |
-    | ------------- | -------------------------------------------------- |
-    | `reseller_id` | Contains encoded values of PayU partner identifier |
-    | `state`       | Contains encoded session state                     |
+    | Parameter          | Description                                                                                                                                        |
+    | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | reseller_id        | Contains encoded values of PayU partner identifier. For more information, refer to [Download Client Credentials.](doc:download-client-credentials) |
+    | state              | Contains encoded session state                                                                                                                     |
+    | email `(optional)` | Contains reseller email ID                                                                                                                         |
 
     **Sample Authorization URL:**
 
