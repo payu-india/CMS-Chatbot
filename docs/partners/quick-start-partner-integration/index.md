@@ -127,65 +127,6 @@ https://onboarding.payu.in/app/account/signup?reseller_id=11f1-1078-ee249a86-9fd
 
 ***
 
-### Step 4: Validate Authorization Code
-
-Exchange the authorization code for merchant credentials using the **Validate Auth Code** API.
-
-**HTTP Method:** `POST`
-
-| Environment    | Endpoint                                                 |
-| -------------- | -------------------------------------------------------- |
-| **Test**       | `https://testdashboard.payu.in/oauth/validate-auth-code` |
-| **Production** | `https://dashboard.payu.in/oauth/validate-auth-code`     |
-
-​For more details, refer to[ Validate Auth Code API](/reference/validate_authcode_and_client_api)
-
-<Accordion title="Sample Request" icon="fa-code">
-  ```bash
-  curl --location 'https://testdashboard.payu.in/oauth/validate-auth-code' \
-  --header 'Content-Type: application/json' \
-  --data '{
-      "client_id": "ABC123",
-      "client_secret": "your_client_secret",
-      "auth_code": "XYZ789ABC123"
-  }'
-  ```
-</Accordion>
-
-<Accordion title="Sample Response (Success)" icon="fa-shield-check">
-  ```json
-  {
-      "access_token": "e6ff7e34b704be2b14c8ae3c0e776597df4ae7de9e12d3e4c79781fcbbf2c4bb",
-      "token_type": "Bearer",
-      "expires_in": 7199,
-      "refresh_token": "356fe080daa69438e0c2d3b0a80b3fe4aa3f78b264e6092e95e4429ae59486a7",
-      "scope": "credentials_using_oauth create_payment_links read_payment_links update_payment_links delete_payment_links",
-      "created_at": 1709198191,
-      "user_uuid": "11ed-933c-d307ba06-b71a-0a64ecf8a4cc"
-  }
-  ```
-</Accordion>
-
-<Accordion title="Sample Response (Failure)" icon="fa-times-circle">
-  ```json
-  {
-      "status": 0,
-      "msg": "Invalid auth code"
-  }
-  ```
-</Accordion>
-
-**Response Parameters:**
-
-| Parameter      | Description                                               |
-| -------------- | --------------------------------------------------------- |
-| `status`       | `1` for success, `0` for failure                          |
-| `msg`          | Success or error message                                  |
-| `merchant_key` | Merchant's API key (returned on success)                  |
-| `salt`         | Merchant's salt for hash generation (returned on success) |
-
-***
-
 ### Step 5: Collect Payments
 
 After you complete the above steps, the merchant can start collecting payments. You can integrate using:
