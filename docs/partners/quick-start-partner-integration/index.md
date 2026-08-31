@@ -77,12 +77,14 @@ Construct the authorization URL to redirect merchants to the PayU login page.
 | Environment    | URL                                                                                                        |
 | -------------- | ---------------------------------------------------------------------------------------------------------- |
 | **Test**       | `https://onboardingtest.payu.in/app/account/signup?reseller_id={PayU partner identifier ID}&state={state}` |
-| **Production** | `https://onboarding.payu.in/app/account/signup?reseller_id={reseller_id}&state={session state}`            |
+| **Production** | `https://onboarding.payu.in/app/account/signup?reseller_id={reseller_id}&state={session state}&email={partner email address}`            |
 
 **Required Parameters:**
 
-- `reseller_id`: It contains encoded values of Merchant ID & Merchant mail ID used while sign up.
+- `reseller_id`: It contains partner identifier issued by PayU.
 - `state`: It contains encoded session state
+- `email` (optional): It contains the partner email adddress. It is optional.
+
 
 <Accordion title="Sample OAuth URL" icon="fa-code">
   ```
