@@ -789,8 +789,6 @@ Test the complete integration flow from OAuth authorization to payment collectio
 
 Use this checklist before moving to production:
 
-### OAuth Integration — Go-Live Checklist
-
 - [ ] **Legal Agreements**
   - [ ] Partner Reseller Agreement signed
   - [ ] OAuth integration terms accepted
