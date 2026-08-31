@@ -102,11 +102,11 @@ Follow these steps to test the complete OAuth onboarding flow:
 
     **Required Parameters:**
 
-    | Parameter          | Description                                                                                                                                        |
-    | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | reseller_id        | Contains encoded values of PayU partner identifier. For more information, refer to [Download Client Credentials.](doc:download-client-credentials) |
-    | state              | Contains encoded session state                                                                                                                     |
-    | email `(optional)` | Contains reseller email ID                                                                                                                         |
+    | Parameter          | Description                                                                                                                                       |
+    | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | reseller_id        | Contains the reseller UUID. For more information on how to get the UUID, refer to [Download Client Credentials.](doc:download-client-credentials) |
+    | state              | Contains encoded session state.                                                                                                                   |
+    | email `(optional)` | Contains reseller email ID.                                                                                                                       |
 
     **Sample Authorization URL:**
 
