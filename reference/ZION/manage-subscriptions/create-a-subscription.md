@@ -1,14 +1,13 @@
 ---
 title: Define Subscription API
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
 After the Subscription is created, Zion generates a unique subscription ID and returns it to you over the server-to-server connection. This Subscription ID needs to be sent in the payment request of the Consent transaction so that the PayU can associate the customer’s card information with the subscription created and start charging automatically over a recurring basis without your or customer’s intervention.
 
@@ -487,5 +486,3 @@ curl --location 'https://subscription.payu.in/api/sub/v1/merchant/subscriptions'
 </tbody>
 </table>
 `}</HTMLBlock>
-
-<br />
