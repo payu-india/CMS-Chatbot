@@ -182,7 +182,7 @@ To edit a plan:
 
 
    <Callout icon="⚠️" theme="warning">
-     **Edit Restrictions**
+     ### **Edit Restrictions**
 
      The following fields **cannot be edited** after plan creation:
 
