@@ -30,21 +30,29 @@ To create a plan:
    The **Create Plan&#x20;**&#x70;op-up menu appears.
 
 3. Provide the following details:
-   - **Plan ID:&#x20;**&#x41; unique ID of a plan.
-   - **Plan Name:&#x20;**&#x54;he name of the plan visible to customers.
-   - **Description:&#x20;**&#x41; short description of the plan.
-   - **Billing Type:&#x20;**&#x44;etermines the billing type. Below are the available options.
-     - **Recurring:&#x20;**&#x43;hoose this optio&#x6E;**&#x20;**&#x69;f you wan&#x74;**&#x20;**&#x72;ecurring debits at set intervals.
-       - **Billing Cycle:&#x20;**&#x54;he intervals at which the recurring debits should happen. You will get this option only if you choose the **Billing Type** as **Recurring**. Below are the available options:
-         - Enter the interval at which the recurring debits should happen in the **every&#x20;**&#x74;ext box under the **Billing Cycle&#x20;**&#x73;ection.
-         - Select the frequency you want the recurring debit to happen from the drop-down that has following options under the **Billing Cycle&#x20;**&#x73;ection.
-           - **Day:&#x20;**&#x52;ecurring debit happens daily.
-           - **Week:&#x20;**&#x52;ecurring debit happen weekly.
-           - **Month:&#x20;**&#x52;ecurring debit happens monthly.
-           - **Year:&#x20;**&#x52;ecurring debit happens yearly.
-     - **One-time:&#x20;**&#x43;hoose this option if you want to make a one-time payment using a link.
-   - **Billing Amount:&#x20;**&#x54;he recurring amount you want to debit from the customers account.
-   - **Upfront Amount:&#x20;**&#x59;ou can add any additional amount as upfront amount. This is one-time a one-time registration amount paid by the customer.
+
+   | Field                                       | Description                                                                 | Required/Optional        | Notes                                                                                                                                             |
+   | ------------------------------------------- | --------------------------------------------------------------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+   | **Plan ID**                                 | A unique identifier for the plan                                            | Optional                 | Maximum 32 characters. Cannot be changed after plan creation. Auto-generated if not provided.                                                     |
+   | **Plan Name**                               | The name of the plan visible to customers                                   | Mandatory                | No character limit.                                                                                                                               |
+   | **Description**                             | A short description of the plan                                             | Mandatory                | Maximum 100 characters.                                                                                                                           |
+   | **Billing Type**                            | Determines whether the plan is for recurring or one-time payments           | Mandatory                | Choose **Recurring** or **One-time**                                                                                                              |
+   | **Billing Cycle** _(for Recurring only)_    | The frequency at which recurring debits should happen                       | Mandatory for Recurring  | Options: Day, Week, Month, Year                                                                                                                   |
+   | **Billing Interval** _(for Recurring only)_ | The number of billing cycles between each debit                             | Mandatory for Recurring  | Positive integer (e.g., 1 for every cycle, 3 for every 3 cycles)                                                                                  |
+   | **Billing Amount**                          | The amount to debit from the customer's account                             | Mandatory                | Minimum ₹1. Up to 2 decimal places. **Note:** For free trial (FreeTrial=1), upfront amount is auto-populated as ₹2 for Cards/UPI or ₹0 for ENach. |
+   | **Upfront Amount**                          | One-time registration amount paid by the customer during subscription setup | Mandatory (except ENach) | Same format as Billing Amount. For free trials, this is auto-populated.                                                                           |
+
+   **Billing Type Options:**
+
+   - **Recurring:** Choose this option for recurring debits at set intervals. You must configure the Billing Cycle and Billing Interval.
+     - **Billing Cycle Examples:**
+       - **Day:** Recurring debit happens daily
+       - **Week:** Recurring debit happens weekly
+       - **Month:** Recurring debit happens monthly
+       - **Year:** Recurring debit happens yearly
+     - **Billing Interval:** Enter how many cycles should pass between debits (e.g., 1 for every month, 3 for every 3 months)
+
+   - **One-time:** Choose this option to create a one-time payment link without recurring charges.
 
 
      <Image src="https://files.readme.io/f5a3311e42e877996349c8d1b3c441e064c47672b44f91791c1cc488783cce95-Screenshot_2026-05-27_at_11.18.47_AM.png" align="center" caption="_Create Plan Fields_" border={true} />
@@ -53,22 +61,6 @@ To create a plan:
 4. Click any of the following:
    - **Save as Draft:&#x20;**&#x54;o save the plan as a draft.
    - **Activate Plan:&#x20;**&#x54;o create and activate plan.
-
-### Field Validation
-
-These are the plan creation field validations.
-
-| Field                                    | Mandatory/Optional                     | Validation / Allowed Values                                                                                                                    |
-| ---------------------------------------- | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Plan ID** (`merchantPlanId`)           | Optional                               | 32 (Should be unique. Cannot be changed after plan creation.)                                                                                  |
-| **Plan Name**                            | Mandatory                              | No Limit.                                                                                                                                      |
-| **Description**                          | Mandatory                              | 100 (Description of the plan)                                                                                                                  |
-| **Plan Type (Billing Type)**             | Mandatory                              | Allowed values: `RECURRING` and `ONE_TIME`                                                                                                     |
-| **Currency**                             | Mandatory                              | From allowed merchant currencies (e.g. INR, USD, EUR, GBP).                                                                                    |
-| **Billing Amount&#x20;**(`autopayLimit`) | Mandatory                              | No Limit. Digits with up to 2 decimals; min 1.<br /><br />**Note:** In case FreeTrial value = 1, amount needs to be Rs 2 for mandate creation. |
-| **Upfront Amount**                       | Mandatory (Except Enach)               | Same as Billing Amount format if provided (digits, up to 2 decimals; min 1). One-time registration amount.                                     |
-| **Billing Cycle** (`billingFrequency`)   | Mandatory when Plan Type = RECURRING   | Allowed values: `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`. For ONE_TIME set to ADHOC.                                                             |
-| **Billing Interval**                     | Mandatory when Plan Type = `RECURRING` | Positive integer; minimum 1. (e.g. every 1 Month, every 3 Weeks.)                                                                              |
 
 ## Create Subscriptions for a Plan
 
@@ -82,39 +74,27 @@ To create a subscription for a plan:
 
    ![](https://files.readme.io/150db535eaadf15ae2c3fbd3c9dc02a33e890b1371a7beeb652da9f651b74122-Screenshot_2026-05-27_at_3.12.24_PM.png)
 
-   Plan and **Payment details**  are auto-populated. You can edit the plan details as per your requirement.
+   The subscription creation form appears with **Plan Details** and **Payment Details** sections auto-populated from the selected plan.
 
-3. Enter the **Customer details**. Below are the available options:
+   **Plan Details:** Shows the plan name, billing amount, billing cycle, and upfront amount from the selected plan. You can edit these values for this specific subscription if needed.
 
-   - **Enable Third Party Validation:&#x20;**&#x45;nable this to skip checkout and take your customers directly to the bank page with **Enach** pre-selected.
-   - **Customer Name**
-   - **Email:&#x20;**&#x54;he customer email address. Enable **Notify via Email&#x20;**&#x72;adio button to send the subscription link via email.
-   - **Phone Number:&#x20;**&#x54;he customer phone number. Enable **Notify via Phone&#x20;**&#x72;adio button to send the subscription link to a phone number.
-   - **Allow Reminder:&#x20;**&#x53;elect this checkbox to allow reminders.
+   **Payment Details:** Configure the payment schedule and preferences:
 
-4. Click **Additional details&#x20;**&#x74;o expand and add additional information to the checkout. Below are the available options:
+   - **Start Date:** The date from which the subscription becomes active and recurring charges begin
+   - **End Date:** The last date through which the subscription remains active
+   - **Payment Methods:** Select which payment modes are available for the customer (Cards, UPI, Net Banking)
 
-   - **Show Additional Information:&#x20;**&#x41;dd the below options to collect the additional information.
-     - **Shipping Charge**
-     - **Customer Address**
-     - **Add More Details:&#x20;**&#x43;lick this to add or remove the following custom fields.
-       - **Payment Due Date**
-       - **Add Tax Amount**
-       - **Add Shipping Charges**
-       - **Address Details**
-       - **UDF&#x20;**(User Defined Fields)
-   - **Show Custom Information:&#x20;**&#x55;se this section to display the following information in the checkout.
-     - **Customer Email**
-     - **Customer Phone**
-     - **Customer Name**
-     - **Customer Address**
-   - **Add Fields:&#x20;**&#x55;se this option to add any other custom field.
+3. Enter **Customer Details** including name, email, and phone number. You can enable email/SMS notifications to send the subscription link directly to the customer.
+
+4. _(Optional)_ Click **Additional Details** to add custom fields, shipping information, tax amounts, or other checkout customizations.
+
+   For complete details on configuring customer information and additional fields, refer to [Create a Subscription Payment Link](doc:create-a-subscription-payment-link-using-dashboard).
 
 
    <Image src="https://files.readme.io/8bc52c6890605dbfce90a7f4974faf7c1f7bf6c4a64722faf5143bead55984a5-create-sub.gif" align="center" caption="_Subscription Fields_" border={true} />
 
 
-5. Check the preview in the **Payment Request Preview&#x20;**&#x64;isplayed section and click **Create Link**.
+5. Check the preview in the **Payment Request Preview** section and click **Create Link**.
 
 ## View Plans
 
@@ -168,6 +148,15 @@ To view plan details:
    <Image src="https://files.readme.io/8a5ecd36ab4e00206b6abc46cb8b8d14e03b1bc91251b8c76f760e8e76141a9e-plan_details.png" align="center" caption="_Plan Details_" border={true} framed={true} />
 
 
+   The Plan Details page displays:
+
+   - **Plan Information:** Plan ID, name, description, billing type, billing amount, and upfront amount
+   - **Pricing:** Billing cycle and interval configuration
+   - **Created On:** Date when the plan was created
+   - **Updated On:** Date when the plan was last modified
+   - **Active Subscribers:** Number of subscriptions currently active under this plan (customers with active mandates who are being charged)
+   - **Inactive Subscribers:** Number of subscriptions that were created from this plan but are no longer active (cancelled, expired, or failed mandates)
+
 ## Edit a Plan
 
 To edit a plan:
@@ -184,13 +173,24 @@ To edit a plan:
    <Image src="https://files.readme.io/7b2f07679fc29e9d8c53d297921cc2b66fe3ab1cfba9496bfe6734b7a4ed019a-click_edit_plan.png" align="center" caption="_Edit a Plan_" border={true} framed={true} />
 
 
-The **Edit Plan&#x20;**&#x70;op-up menu appears.
+   The **Edit Plan** pop-up menu appears.
 
 3. Edit the required details and click **Activate Plan**.
 
 
    <Image src="https://files.readme.io/f5995efb86c7ef669db14120eb5c0e2778a247d297dc217add02ab77a4cac589-click_activate_plan_edit.png" align="center" caption="_Edit Plan Fields_" border={true} framed={true} />
 
+
+   <Callout icon="⚠️" theme="warning">
+     **Edit Restrictions**
+
+     The following fields **cannot be edited** after plan creation:
+
+     - **Plan ID:** The unique identifier cannot be changed once the plan is created
+     - **Billing Cycle and Interval** _(for plans with active subscriptions)_: Cannot be modified if the plan has active subscribers
+
+     All other fields including Plan Name, Description, Billing Amount, and Upfront Amount can be edited. Note that changes may only apply to new subscriptions created after the edit.
+   </Callout>
 
 ## Duplicate a Plan
 
