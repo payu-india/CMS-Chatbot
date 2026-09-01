@@ -32,56 +32,100 @@ metadata:
     - recurring billing integration
   robots: index
 ---
-A plan defines the subscription terms that the customer accepts before a Standing Instruction (SI) mandate is registered. In API-based SI integrations, the plan is managed by your system and shared with PayU during the consent transaction through `si_details`.
+## What is a Plan?
 
-PayU does not require you to create a separate plan object before registering an SI mandate. Your frontend should maintain the plan configuration, show it to the customer, pass the approved values to PayU during consent, and use the returned mandate identifiers for future pre-debit notifications, recurring debits, and mandate management.
+A **plan** is a predefined subscription template that defines the billing terms for recurring payments. It includes:
 
-You can create a plan:
+- Billing amount (how much to charge)
+- Billing frequency (daily, weekly, monthly, yearly)
+- Billing interval (every X days/weeks/months/years)
+- Plan description and merchant reference
 
-- From PayU dashboard.
-- Using APIs.
+Plans are created and managed by merchants either through the PayU Dashboard or via APIs. Once created, a plan can be used to generate multiple subscription payment links for different customers.
 
 <Callout icon="📘" theme="info">
   ### **Handy Tips**
 
-  - Creating a plan is optional. You can create a subscription without creating a plan.
-  - You can create multiple subscriptions for a plan.
+  - Creating a plan is optional - you can create a subscription without creating a plan
+  - You can create multiple subscriptions for a plan
 </Callout>
+
+## Plan vs Mandate
+
+| Aspect                          | Plan                                                     | Mandate                                                        |
+| ------------------------------- | -------------------------------------------------------- | -------------------------------------------------------------- |
+| **What is it?**                 | Subscription billing template defining terms and pricing | Customer's authorization to debit their account automatically  |
+| **Who creates it?**             | Merchant (via Dashboard or API)                          | Customer (by providing consent during payment)                 |
+| **When is it created?**         | Before customer sees the subscription offer              | After customer approves the subscription terms                 |
+| **What does it contain?**       | Billing amount, frequency, interval, description         | Customer consent, payment instrument token, mandate ID, status |
+| **Can it exist independently?** | Yes, as a reusable template                              | No, must be linked to a customer and payment method            |
+| **Purpose**                     | Define what and when to charge                           | Authorize PayU to execute recurring charges                    |
+
+### When Should You Create Plans?
+
+You should create plans when:
+
+- **You offer subscription-based services**: SaaS products, OTT platforms, memberships, digital content subscriptions
+- **You have recurring billing cycles**: Monthly fees, annual renewals, quarterly payments
+- **You need reusable billing templates**: Same plan used for multiple customers (e.g., "Premium Monthly ₹499")
+- **You want dashboard-based subscription management**: Non-technical teams managing subscriptions via PayU Dashboard
+- **You generate subscription payment links**: Creating shareable links for customers to subscribe
+
+### Use Cases for Plan-Based Subscriptions
+
+<Cards>
+  <Card title="SaaS & Digital Services" icon="fa-laptop-code">
+    Create plans for different subscription tiers (Basic, Pro, Enterprise) with monthly or annual billing cycles.
+  </Card>
+
+  <Card title="OTT & Streaming Platforms" icon="fa-tv">
+    Define plans for different content packages with recurring charges for continued access.
+  </Card>
+
+  <Card title="Membership & Clubs" icon="fa-users">
+    Set up plans for gym memberships, club subscriptions, or loyalty programs with fixed recurring fees.
+  </Card>
+
+  <Card title="Utility & Service Providers" icon="fa-bolt">
+    Create plans for recurring utility payments, insurance premiums, or maintenance fees.
+  </Card>
+</Cards>
 
 ## Prerequisites
 
 - Enable Subscriptions for your PayU merchant account. Contact your PayU Key Account Manager or onboarding team before integrating SI plans.
 
-## Benefits of a Plan
+## Benefits of Using Plans
 
-Using a plan gives merchants a structured way to manage SI subscriptions.
+Using plans provides merchants with a structured approach to managing subscription-based recurring payments.
 
 <Accordion title="Plan Benefits" icon="fa-list-check">
-<ul><li><strong>Clear customer consent:</strong> The customer sees the amount, frequency, start date, and end date before approving the mandate.</li>
-<li><strong>Consistent billing schedule:</strong> Your system can calculate upcoming debit dates from the plan instead of relying on manual inputs for every cycle.</li>
-<li><strong>Easier pre-debit management:</strong> The plan provides the amount and due date needed to trigger pre-debit notifications on time.</li>
-<li><strong>Faster recurring payment operations:</strong> Merchants can trigger debits from a saved plan and mandate mapping instead of recreating payment details.</li>
-<li><strong>Better dashboard controls:</strong> The frontend can show plan status, next debit date, last debit status, and allowed actions in one place.</li>
-<li><strong>Improved reconciliation:</strong> Plan ID or merchant reference, mandate ID, invoice number, and transaction IDs can be mapped together for reports.</li>
-<li><strong>Safer modifications and cancellations:</strong> Merchants can separate draft edits from active mandate changes and use the correct PayU APIs for supported updates.</li>
-<li><strong>Reusable subscription setup:</strong> Common plan templates can reduce errors when merchants create similar subscriptions for multiple customers.</li>
-<li><strong>Better customer support:</strong> Support teams can quickly see what the customer approved, when the next charge is due, and why a debit succeeded or failed.</li></ul>
-
+  <ul><li><strong>Reusable subscription templates:</strong> Create once, use for multiple customers with the same billing terms, reducing setup errors and saving time.</li>
+  <li><strong>Better dashboard controls:</strong> Manage all subscriptions from a centralized dashboard with clear visibility into plan status and associated subscriptions.</li>
+  <li><strong>Improved reconciliation:</strong> Plan ID or merchant reference, mandate ID, and transaction IDs can be mapped together for easier reporting and tracking.</li>
+  <li><strong>Safer modifications:</strong> Separate draft plan edits from active subscription changes, ensuring you don't accidentally modify live billing arrangements.</li>
+  <li><strong>Simplified subscription link generation:</strong> Quickly create payment links for customers to subscribe to predefined plans without recreating billing details each time.</li></ul>
 </Accordion>
 
-## Plan Status
+## Plan Lifecycle and Statuses
 
-Every plan goes through the following statuses:
+Plans in PayU can have the following statuses during their lifecycle:
 
 <Cards>
   <Card title="Draft" icon="fa-file-pen" iconColor="#0c6150">
-    Plans are saved in the system but not active. You cannot use draft plans for subscriptions until they are activated.
+    Plans saved in the system but not yet activated. Draft plans cannot be used to create subscriptions. Use this status to prepare plans before making them available.
   </Card>
 
   <Card title="Active" icon="fa-circle-check" iconColor="#0c6150">
-    A plan becomes active once it is created and immediately available for creating subscriptions.
+    Plans that are activated and immediately available for creating subscription payment links. Active plans can have subscriptions associated with them.
+  </Card>
+
+  <Card title="Archived" icon="fa-box-archive" iconColor="#666">
+    Plans that have been deactivated. Archived plans cannot be used for new subscriptions but can be duplicated to create new plans with similar settings.
   </Card>
 </Cards>
+
+**Status Workflow:** Draft → Active → Archived (via deactivation)
 
 ## Access Plans
 
@@ -91,97 +135,98 @@ You can access **Plans** under **Subscriptions&#x20;**&#x66;rom the left navigat
 <Image src="https://files.readme.io/ceab99a98c18eb24f14d434f5159d4a6ae066d810e940e9f32828515fee74cc7-plan-management.gif" alt="Access Plans" align="center" caption="_Access Plans_" border={true} />
 
 
-## Dashboard Actions
+## Plan Management Actions
 
-- Create a plan
-- Duplicate a plan
-- Edit a plan
-- Deactivate a plan
-- Create a Subscription
+From the PayU Dashboard, you can perform the following plan management actions:
+
+- [Create a plan](doc:internal-review-create-and-manage-plans#create-a-plan)
+- [Duplicate a plan](doc:internal-review-create-and-manage-plans#duplicate-a-plan)
+- [Edit a plan](doc:internal-review-create-and-manage-plans#edit-a-plan)
+- [Deactivate a plan](doc:internal-review-create-and-manage-plans#deactivate-a-plan)
+- [Create a subscription from a plan](doc:internal-review-create-and-manage-plans#create-subscriptions-for-a-plan)
+
+For detailed step-by-step instructions, refer to [Create and Manage Plans](doc:internal-review-create-and-manage-plans).
 
 # Frequently Asked Questions (FAQs)
 
-Find answers to frequently asked questions about SI plans.
+Find answers to frequently asked questions about plans and subscription management.
 
-### SI Plan Basics
+### Understanding Plans
 
-1. #### What is an SI plan?
+1. #### What is a plan?
    <Accordion title="Answer" icon="fa-comment-dots">
-   An SI Plan is the billing schedule and amount that your customer agrees to before a Standing Instruction mandate is registered. In this API-based flow, the plan is maintained in your system and passed to PayU as `si_details` during consent.<br/>
-   <strong>Best Practice:</strong> Keep a unique merchant-side plan reference so support, reconciliation, and retries can be traced back to the exact plan shown to the customer
+     A plan is a reusable subscription template that defines billing terms for recurring payments. It specifies the billing amount, frequency (daily, weekly, monthly, yearly), and interval for charging customers. Plans are created by merchants via the PayU Dashboard or APIs and can be used to generate multiple subscription payment links.
    </Accordion>
-2. #### When should I create a plan?
+
+2. #### When should I create plans?
    <Accordion title="Answer" icon="fa-comment-dots">
-   Create the plan before initiating consent, after the customer has selected the subscription terms but before calling the consent transaction API.<br/>
-   **Best Practice:** Move a plan from Draft to activate only when the exact amount, frequency, start date, end date, and customer details are frozen for the consent attempt.
+     Create plans when you offer subscription-based services with recurring billing cycles. Plans are ideal for:
+
+     <ul>
+     <li><strong>SaaS platforms and digital services:</strong> Software subscriptions with monthly/annual billing</li>
+     <li><strong>OTT and streaming platforms:</strong> Content access with recurring charges</li>
+     <li><strong>Membership programs:</strong> Gym memberships, club subscriptions, loyalty programs</li>
+     <li><strong>Utility and service providers:</strong> Insurance premiums, utility bills, maintenance fees</li>
+     </ul>
+
+     Plans work best when you need reusable billing templates or want non-technical teams to manage subscriptions via the Dashboard.
    </Accordion>
+
 3. #### What is the difference between a plan and a mandate?
    <Accordion title="Answer" icon="fa-comment-dots">
-   A plan is your business configuration for what to charge and when. A mandate is the customer's authorized payment instruction created after successful consent through PayU and the issuer/payment ecosystem.<br/>
-   <blockquote class="callout callout_info" theme="📘">
-     <h3>📘 Handy Tips</h3>
-     <p>Your plan can exist before consent. The mandate exists only after successful registration.</p>
-   </blockquote>
+     <strong>Plan:</strong> A subscription template defining what to charge and how often (created by merchant before customer sees the offer).<br /> <strong>Mandate:</strong> Customer's authorization to automatically debit their payment method (created after customer provides consent).<br /><br /> <strong>Example:</strong> You create a "Premium Monthly" plan for ₹499/month. When a customer subscribes and completes payment consent, a mandate is created that authorizes PayU to charge ₹499 from their card every month.
    </Accordion>
+
 4. #### Can a customer have multiple plans?
    <Accordion title="Answer" icon="fa-comment-dots">
-   Yes, your system can maintain multiple plans for a customer. Each plan should have its own merchant reference and should be mapped to the correct mandate and debit schedule.<br/>
-   <blockquote class="callout callout_info" theme="📘">
-     <h3>📘 Handy Tips</h3>
-     <p>Avoid reusing the same merchant transaction ID or invoice number across plans.</p>
-   </blockquote>
+     Yes, a customer can subscribe to multiple plans. Each subscription creates a separate mandate linked to that specific plan. For example, a customer might have an "OTT Basic" plan and a "Cloud Storage" plan, each with its own mandate and billing schedule.
    </Accordion>
+
 5. #### Is plan status the same as mandate status?
    <Accordion title="Answer" icon="fa-comment-dots">
-   No. Plan status is usually merchant-managed, such as **Draft** or **Active**. Mandate status is returned by PayU or the payment ecosystem and indicates whether debits are allowed.
-   </Accordion>
-6. #### How does billing cycle behavior work?
-   <Accordion title="Answer" icon="fa-comment-dots">
-   `billingCycle` defines the unit, such as DAILY, WEEKLY, MONTHLY, or YEARLY. `billingInterval` defines how many units must pass between debits.<br/>
-   <blockquote class="callout callout_info" theme="📘">
-     <h3>📘 Example</h3>
-     <p><code>billingCycle=MONTHLY</code> and <code>billingInterval=1</code> means once every month. <code>billingCycle=DAILY</code> and <code>billingInterval=3</code> means once every 3 days.</p>
-   </blockquote>
+     No. Plan status is merchant-controlled (Draft, Active, Archived) and indicates template availability. Mandate status is ecosystem-controlled (Active, Cancelled, Paused) and indicates whether automatic debits are authorized for a specific customer subscription.
    </Accordion>
 
-### Plan Management
+6. #### How does billing cycle configuration work?
+   <Accordion title="Answer" icon="fa-comment-dots">
+     Billing cycle is configured using two parameters:<br /> <strong>Billing Cycle:</strong> The unit of time (DAILY, WEEKLY, MONTHLY, YEARLY)<br /> <strong>Billing Interval:</strong> How many units between charges<br /><br /> <strong>Examples:</strong>
 
-1. #### How should I set start date and end date?
-   <Accordion title="Answer" icon="fa-comment-dots">
-   Use the start date as the first date from which recurring debits may begin and the end date as the last date through which the mandate can be used.<br/>
-   **Best Practice:** Do not schedule pre-debit or recurring debit attempts outside the approved start and end date range.
-   </Accordion>
-2. #### Can the start date be the current date?
-   <Accordion title="Answer" icon="fa-comment-dots">
-   It depends on payment mode and issuer rules. Even if consent completes today, subsequent recurring debits may require a pre-debit notification window before the actual charge.<br/>
-   **Best Practice:** Build date validation that accounts for pre-debit lead time, especially for Cards and UPI.
-   </Accordion>
-3. #### Can I create duplicate plans?
-   <Accordion title="Answer" icon="fa-comment-dots">
-   You can duplicate a draft plan as a convenience feature, but every consent attempt should use unique transaction and invoice identifiers.
+     <ul>
+     <li>Monthly subscription: billingCycle=MONTHLY, billingInterval=1</li>
+     <li>Quarterly subscription: billingCycle=MONTHLY, billingInterval=3</li>
+     <li>Every 3 days: billingCycle=DAILY, billingInterval=3</li>
+     <li>Bi-weekly: billingCycle=WEEKLY, billingInterval=2</li>
+     </ul>
    </Accordion>
 
-### Plan Lifecycle and Statuses
+### Managing Plans
 
 1. #### What is the difference between Draft and Active plans?
    <Accordion title="Answer" icon="fa-comment-dots">
-   Draft means the plan exists only in your system and has not activated. Active means the plan is activated and ready to use.
-   </Accordion>
-2. #### Can I edit a plan?
-   <Accordion title="Answer" icon="fa-comment-dots">
-   Yes, you can edit a plan.
-   </Accordion>
-3. #### Can i delete a plan?
-   <Accordion title="Answer" icon="fa-comment-dots">
-   No, you cannot delete a plan. However, you can deactivate a plan. Once deactivated, a plan moves to the **Archived** state. You can dupliacte it to create a new plan.
-   </Accordion>
-4. #### Can I pause and resume a plan?
-   <Accordion title="Answer" icon="fa-comment-dots">
-   No, you cannot pause or resume a plan.
-   </Accordion>
-5. #### Can I update a plan mid-cycle?
-   <Accordion title="Answer" icon="fa-comment-dots">
-   To be included
+     <strong>Draft:</strong> Plans that are saved but not activated. Cannot be used to create subscriptions. Use this status to prepare plans before making them available.<br /> <strong>Active:</strong> Plans that are activated and ready to use. Can be used to create subscription payment links immediately.
    </Accordion>
 
-<br />
+2. #### Can I edit a plan?
+   <Accordion title="Answer" icon="fa-comment-dots">
+     Yes, you can edit plans through the PayU Dashboard. However, certain fields may have editing restrictions depending on whether the plan has active subscriptions. For details, refer to [Edit a Plan](doc:internal-review-create-and-manage-plans#edit-a-plan).
+   </Accordion>
+
+3. #### Can I delete a plan?
+   <Accordion title="Answer" icon="fa-comment-dots">
+     No, you cannot permanently delete a plan. However, you can deactivate it, which moves the plan to <strong>Archived</strong> status. Archived plans cannot be used for new subscriptions but can be duplicated to create new plans with similar settings.
+   </Accordion>
+
+4. #### Can I duplicate a plan?
+   <Accordion title="Answer" icon="fa-comment-dots">
+     Yes, you can duplicate any plan (Draft, Active, or Archived) to create a new plan with the same configuration. When duplicating, you must provide a unique Plan ID for the new plan. This is useful for creating similar plans with minor variations.
+   </Accordion>
+
+5. #### Can I pause or resume a plan?
+   <Accordion title="Answer" icon="fa-comment-dots">
+     No, plans do not have pause/resume functionality. Plans can only be in Draft, Active, or Archived status. To temporarily stop using a plan, deactivate it (moves to Archived). To use it again, duplicate it to create a new active plan.
+   </Accordion>
+
+6. #### Can I edit a plan that has active subscriptions?
+   <Accordion title="Answer" icon="fa-comment-dots">
+     Yes, you can edit plans with active subscriptions, but changes to certain fields like billing amount or billing cycle may only apply to new subscriptions created after the edit. Existing active subscriptions typically continue with their original plan terms. For specific field-level edit restrictions, refer to the plan management documentation.
+   </Accordion>
