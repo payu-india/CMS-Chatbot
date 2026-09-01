@@ -82,9 +82,11 @@ A simple server-generated redirect that sends customers from your site/app to th
 </Callout>
 
 <Callout icon="📘" theme="success">
-## Postman Collection
+  ## Postman Collection
 
   Accelerate your integration workflow with our Postman collection for PayU Hosted Checkout. Click&#x20;**&#x20;Postman Collection&#x202F;**&#x20;below to download and get started.
+
+    
 
   <HTMLBlock>{`
                   <style>
@@ -133,6 +135,16 @@ Follow the below steps to complete the integration:
 </Callout>
 
 <PaymentAPIEnvironment />
+
+<Tabs>
+  <Tab title="Request Parameters">
+
+  </Tab>
+
+  <Tab title="Sample Request">
+
+  </Tab>
+</Tabs>
 
 <Accordion title="Step 1.1: Prepare the request parameters" icon="fa-list-check">
   First, you need to collect all the necessary information for the transaction. Below is the list of parameters where some are mandatory and others are optional.
@@ -446,7 +458,7 @@ Follow the below steps to complete the integration:
 <Accordion title="Step 1.2: Generate Hash" icon="fa-key">
   Concatenate fields in this exact sequence, then <Glossary>SHA</Glossary>-512:
 
-    <HashingRequestParameters />
+  <HashingRequestParameters />
 
   - Use empty strings for missing udf\*.
   - Compute on your server and include the lowercase hex digest as hash.
@@ -455,7 +467,7 @@ Follow the below steps to complete the integration:
 
   ### Sample Code for Hashing
 
-    <HashingSample />
+  <HashingSample />
 </Accordion>
 
 <Accordion title="Step 1.3: POST the HTML form (server renders) or other language bindings" icon="fa-code">
@@ -990,7 +1002,7 @@ Follow the below steps to complete the integration:
 </Accordion>
 
 <Accordion title="Step 1.6: Verify the payment" icon="fa-magnifying-glass">
-    <Verify_Payment_Tabs />
+  <Verify_Payment_Tabs />
 </Accordion>
 
 <br />
@@ -1074,7 +1086,7 @@ You've successfully tested your integration. Now, follow these critical steps to
 
   ### Generate Live Keys\*\*
 
-  - Log in to your **[PayU Dashboard](https://onboarding.payu.in/app/account/signin)**.
+  - Log in to your [PayU Dashboard](https://onboarding.payu.in/app/account/signin).
   - Use the toggle at the top to switch from **Test Mode** to **Live Mode**.
   - Navigate to **Developer Tools** → **API Keys** from the sidebar.
   - Copy the **Live Merchant Key** and **Live Salt**.
