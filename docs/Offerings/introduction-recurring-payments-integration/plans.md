@@ -100,11 +100,11 @@ You should create plans when:
 Using plans provides merchants with a structured approach to managing subscription-based recurring payments.
 
 <Accordion title="Plan Benefits" icon="fa-list-check">
-  <ul><li><strong>Reusable subscription templates:</strong> Create once, use for multiple customers with the same billing terms, reducing setup errors and saving time.</li>
-  <li><strong>Better dashboard controls:</strong> Manage all subscriptions from a centralized dashboard with clear visibility into plan status and associated subscriptions.</li>
-  <li><strong>Improved reconciliation:</strong> Plan ID or merchant reference, mandate ID, and transaction IDs can be mapped together for easier reporting and tracking.</li>
-  <li><strong>Safer modifications:</strong> Separate draft plan edits from active subscription changes, ensuring you don't accidentally modify live billing arrangements.</li>
-  <li><strong>Simplified subscription link generation:</strong> Quickly create payment links for customers to subscribe to predefined plans without recreating billing details each time.</li></ul>
+    <ul><li><strong>Reusable subscription templates:</strong> Create once, use for multiple customers with the same billing terms, reducing setup errors and saving time.</li>
+    <li><strong>Better dashboard controls:</strong> Manage all subscriptions from a centralized dashboard with clear visibility into plan status and associated subscriptions.</li>
+    <li><strong>Improved reconciliation:</strong> Plan ID or merchant reference, mandate ID, and transaction IDs can be mapped together for easier reporting and tracking.</li>
+    <li><strong>Safer modifications:</strong> Separate draft plan edits from active subscription changes, ensuring you don't accidentally modify live billing arrangements.</li>
+    <li><strong>Simplified subscription link generation:</strong> Quickly create payment links for customers to subscribe to predefined plans without recreating billing details each time.</li></ul>
 </Accordion>
 
 ## Plan Lifecycle and Statuses
@@ -147,7 +147,7 @@ From the PayU Dashboard, you can perform the following plan management actions:
 
 For detailed step-by-step instructions, refer to [Create and Manage Plans](doc:internal-review-create-and-manage-plans).
 
-# Frequently Asked Questions (FAQs)
+## Frequently Asked Questions (FAQs)
 
 Find answers to frequently asked questions about plans and subscription management.
 
@@ -162,12 +162,12 @@ Find answers to frequently asked questions about plans and subscription manageme
    <Accordion title="Answer" icon="fa-comment-dots">
      Create plans when you offer subscription-based services with recurring billing cycles. Plans are ideal for:
 
-     <ul>
-     <li><strong>SaaS platforms and digital services:</strong> Software subscriptions with monthly/annual billing</li>
-     <li><strong>OTT and streaming platforms:</strong> Content access with recurring charges</li>
-     <li><strong>Membership programs:</strong> Gym memberships, club subscriptions, loyalty programs</li>
-     <li><strong>Utility and service providers:</strong> Insurance premiums, utility bills, maintenance fees</li>
-     </ul>
+       <ul>
+       <li><strong>SaaS platforms and digital services:</strong> Software subscriptions with monthly/annual billing</li>
+       <li><strong>OTT and streaming platforms:</strong> Content access with recurring charges</li>
+       <li><strong>Membership programs:</strong> Gym memberships, club subscriptions, loyalty programs</li>
+       <li><strong>Utility and service providers:</strong> Insurance premiums, utility bills, maintenance fees</li>
+       </ul>
 
      Plans work best when you need reusable billing templates or want non-technical teams to manage subscriptions via the Dashboard.
    </Accordion>
@@ -191,12 +191,12 @@ Find answers to frequently asked questions about plans and subscription manageme
    <Accordion title="Answer" icon="fa-comment-dots">
      Billing cycle is configured using two parameters:<br /> <strong>Billing Cycle:</strong> The unit of time (DAILY, WEEKLY, MONTHLY, YEARLY)<br /> <strong>Billing Interval:</strong> How many units between charges<br /><br /> <strong>Examples:</strong>
 
-     <ul>
-     <li>Monthly subscription: billingCycle=MONTHLY, billingInterval=1</li>
-     <li>Quarterly subscription: billingCycle=MONTHLY, billingInterval=3</li>
-     <li>Every 3 days: billingCycle=DAILY, billingInterval=3</li>
-     <li>Bi-weekly: billingCycle=WEEKLY, billingInterval=2</li>
-     </ul>
+       <ul>
+       <li>Monthly subscription: billingCycle=MONTHLY, billingInterval=1</li>
+       <li>Quarterly subscription: billingCycle=MONTHLY, billingInterval=3</li>
+       <li>Every 3 days: billingCycle=DAILY, billingInterval=3</li>
+       <li>Bi-weekly: billingCycle=WEEKLY, billingInterval=2</li>
+       </ul>
    </Accordion>
 
 ### Managing Plans
