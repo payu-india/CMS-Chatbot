@@ -53,13 +53,7 @@ flowchart TD
     <br />
   </Card>
 
-  <Card title="4. Validate Authorization Code" href="https://docs.payu.in/docs/refer-merchants-using-co-branded-oauth-onboarding#step-4-validate-authorization-code">
-    POST the auth_code with client credentials to the Validate Auth Code API to obtain merchant_key and salt
-
-    <br />
-  </Card>
-
-  <Card title="5. Collect Payments" href="https://docs.payu.in/docs/refer-merchants-using-co-branded-oauth-onboarding#step-5-collect-payments">
+  <Card title="4. Collect Payments" href="https://docs.payu.in/docs/refer-merchants-using-co-branded-oauth-onboarding#step-4-collect-payments">
     Use the obtained merchant credentials to integrate payment flows via Hosted Checkout, Pre-Built Checkout, or UPI S2S
   </Card>
 
@@ -127,7 +121,7 @@ https://onboarding.payu.in/app/account/signup?reseller_id=11f1-1078-ee249a86-9fd
 
 ***
 
-### Step 5: Collect Payments
+### Step 4: Collect Payments
 
 After you complete the above steps, the merchant can start collecting payments. You can integrate using:
 
