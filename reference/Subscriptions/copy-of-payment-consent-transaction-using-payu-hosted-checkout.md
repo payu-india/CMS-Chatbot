@@ -4,6 +4,8 @@ title: >-
   Plan
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
   title: Payment Consent Transaction using PayU Hosted Checkout
   description: >-
@@ -35,7 +37,7 @@ next:
       type: basic
 ---
 <Callout icon="✅" theme="okay">
-  <FreshTag heading="What's New!" asHeading={false} />
+    <FreshTag heading="What's New!" asHeading={false} />
 
   - Introducing <Anchor target="_blank" href="https://docs.payu.in/docs/plans">subscription Plans</Anchor>.<br />
 </Callout>
