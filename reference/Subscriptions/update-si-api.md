@@ -197,8 +197,9 @@ The description for the fields in the JSON are:
         * **expiry_year**: This is the expiry year of the token. For example, 2022, 2023, 2028.
           tsp: This is the type of scheme/ network and you need to pass the values according to card network:
           * VISA: Pass 001 for this card network
-            * Mastercard: Pass 002 for this card network
-        * _Note_\*: The above fields are mandatory for cards.
+          * Mastercard: Pass 002 for this card network
+          * AMEX: Pass 003 for this card network
+          **Note:** RuPay and Diner cards are not supported.
       </td>
     </tr>
 
