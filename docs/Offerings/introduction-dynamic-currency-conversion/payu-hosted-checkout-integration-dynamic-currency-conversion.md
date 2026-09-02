@@ -1,8 +1,9 @@
 ---
-title: PayU Hosted Checkout Integration
-excerpt: ''
+title: PayU Hosted Checkout Integration - International Payments
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   title: >-
     PayU Hosted Checkout integration for International Payments or Dynamic
@@ -16,15 +17,15 @@ metadata:
   keywords:
     - Dynamic Currency Conversion with PayU Hosted Checkout
     - DCC with Non-Seamless Integration
-    - ' Currency Conversion with PayU Hosted Checkout'
+    - Currency Conversion with PayU Hosted Checkout
     - Non-Seamless Integration for Currency Conversion
     - >-
       Multi-Currency Payment Integration with PayU Hosted Checkout.International
       Payments with PayU Hosted Integration
     - Foreign Currency Payment with PayU Hosted Integration
+    - Prebuilt Checkout with International Payments
+    - PayU Hosted Checkout with International Payments
   robots: index
-next:
-  description: ''
 ---
 The following diagram depicts the steps involved in the end-to-end integration process of International payments.
 
@@ -45,17 +46,17 @@ The following diagram depicts the steps involved in the end-to-end integration p
 
 **Steps to integrate**
 
-<Cards columns={3}>
+<Cards columns="3">
   <Card title="1. Make the Transaction Request to PayU" href="#step-1-make-the-transaction-request-to-payu">
     Send the transaction request to PayU and handle the initial response from the payment gateway
 
-    <br />
+
   </Card>
 
   <Card title="2. Check the Response from PayU" href="#step-2-check-the-response-from-payu">
     Process and validate the detailed response received from PayU after transaction submission
 
-    <br />
+
   </Card>
 
   <Card title="3. Verify the Payment" href="#step-3-verify-the-payment">
@@ -73,11 +74,13 @@ PayU marks the transaction status based on the response received from the bank. 
   **Reference**: For a list of card details for testing dynamic currency conversion, refer to [Test Cards, UPI ID and Wallets](doc:test-cards-upi-id-and-wallets).
 </Callout>
 
-> 📘 Notes:
->
-> * For DCC eligible transactions, no changes are required in the existing integration of Query transactions or Refund transactions. In case of refunds, the merchant can initiate refunds in INR (original amount and currency) only. PayU will internally convert the same into the final amount and currency charged to the consumer using the FX rate, which was applied on the date of sale.
-> * There is no change required in handling the response from PayU as the response parameters are similar to the regular transaction
-> * It is recommended to collect the customer's e-mail address, phone, address, city, state, and country and then post those details along with the payment request with PayU. This will help in checking the risk of the transaction based on these data.
+<Callout icon="📘" theme="info">
+  ### Notes:
+
+  * For DCC eligible transactions, no changes are required in the existing integration of Query transactions or Refund transactions. In case of refunds, the merchant can initiate refunds in INR (original amount and currency) only. PayU will internally convert the same into the final amount and currency charged to the consumer using the FX rate, which was applied on the date of sale.
+  * There is no change required in handling the response from PayU as the response parameters are similar to the regular transaction
+  * It is recommended to collect the customer's e-mail address, phone, address, city, state, and country and then post those details along with the payment request with PayU. This will help in checking the risk of the transaction based on these data.
+</Callout>
 
 <Accordion title="Request parameters" icon="fa-code">
   | Parameter                                                                    | Description                                                                                                                                                                                                                                                               | Example                                                                                        |          |               |             |         |        |        |        |        |        |    |    |    |    |    |         |                                                                                                                                    |
