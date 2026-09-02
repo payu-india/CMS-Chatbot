@@ -55,8 +55,158 @@ This section provides answers for frequently asked questions about integrating P
   During configuration, you can select or clear check boxes for the payment modes and card types you want to support. Uncheck modes you do not wish to offer to customers.
 </Accordion>
 
-<Accordion title="4. How do I verify transactions after integrating PayU on Shopify?" icon="fa-info-circle">
+<Accordion title="4. How do configure webhooks on Shopify?" icon="fa-info-circle">
+  1. Log in to your **Shopify Admin Panel**
+  2. Navigate to **Settings > Notifications**
+  3. Scroll down to the **Webhooks** section.
+  4. Click **Create webhook.**
+
+     ![](https://files.readme.io/8439756b511c546d96fc469847ecb9c69cead366b0185221769fecc3b48d5070-image_20260902053926_u2l.png)
+
+
+
+  5) Configure the webhook with the following details:
+     * **Event**: Select `Order updated`
+     * **Format**: JSON
+     * **URL**: `https://info.payu.in/merchant/shopify/webhook/refund`
+     * **API Version**: Use the latest available version
+
+  6) Click **Save webhook**
+</Accordion>
+
+<Accordion title="5. How do I verify transactions after integrating PayU on Shopify?" icon="fa-info-circle">
   Use the [Verify Payment API](ref:verify_payment_api) or reconcile using Shopify and PayU transaction exports. Refer to [Reconcile Shopify Transactions](doc:reconcile-shopify-transactions).
+</Accordion>
+
+## Refunds for Transactions on Shopify
+
+<Accordion title="1. How to initiate refund for transactions made on Shopify?" icon="fa-info-circle">
+  ### Method 1: Refund from Shopify Dashboard
+
+  Shopify can automatically notify PayU when you process a refund directly from the Shopify admin panel.
+
+  1. Log in to your **Shopify Admin Panel**
+  2. Navigate to **Orders**
+  3. Right-click the order you want to refund and select **Cancel orders**.
+
+     <Image src="https://files.readme.io/5b19f52eb28f350798e573f5803395ced9d81375d3469921258d6f2039bfddd6-shopify_cancel_order.png" framed={true} />
+
+     The Cancel order \\<order number> pop-up page is displayed.
+
+     ![](https://files.readme.io/3bc0b033ef59916d9efae4a39bdbe04de39f3d92d49003d5cec6921a496facfb-shopify_cancel_order_dialog_order.png)
+
+
+
+  5) Select the required option in the **Refund payments** field based on refund.
+  6) Select the reason for cancelling the transaction from the **Reason for cancellation&#x20;**&#x66;ield.
+  7) Enter the reason for cancelling the order in the **Staff note** field.
+  8) Enter the refund amount and select the items (for partial refunds).
+  9) Click **Cancel order** to process.
+
+  If webhooks are configured correctly, PayU will receive the refund notification and process it automatically. For more information, refer to [Webhooks for Refunds.](doc:webhooks-for-refunds)
+
+  ### Method 2: Refund from PayU Dashboard
+
+  You can also initiate refunds directly from the PayU Dashboard for Shopify transactions.
+
+  1. Log in to the **PayU Merchant Dashboard**
+  2. Navigate to **Track > Transactions**
+  3. Use the search function to find the transaction using:
+     - PayU Transaction ID
+     - Shopify Order ID (if mapped correctly)
+     - Customer email or phone number
+
+  4) Click the transaction ID to view transaction details
+
+  The transaction details page is displayed.
+
+
+  <Image src="https://files.readme.io/87507999bbaea97706db60af650cc61e1e072ec46c2dbd47d0efcc0fc9b0bd60-Dashboard_Transaction_Details_Page_Issue_Refund.png" framed={true} />
+
+
+
+
+  5. Click **Issue Refund** at the top-right corner
+
+  The _Refund Payment_ pop-up is displayed.
+
+
+  <Image src="https://files.readme.io/e7d438d8ff968456d49419f4f6a5e3f7c4d418d2cabba56f04d81f2702f91b12-Dashboard_Transaction_Refund_Dialog.png" width="350px" framed={true} />
+
+
+
+
+  6. Enter the amount to be refunded in the **Refund Amount** field
+  7. Add an optional note describing the reason for refund in th&#x65;**&#x20;Enter remark f**ield.
+  8. Click **Send Full Refund** for full amount or **Send Partial Refund** for partial amount
+</Accordion>
+
+<Accordion title="2. How long does it take for automated refunds to process?" icon="fa-info-circle">
+  Once the automated refund is triggered, it typically takes 5-7 working days for the refund amount to reflect in the customer's bank account. The timeline may vary based on the payment method:
+
+  * **Credit Cards**: 5-7 working days
+  * **Debit Cards**: 7-10 working days
+  * **Net Banking**: 5-7 working days
+  * **UPI**: 3-5 working days
+  * **Wallets**: Instant to 24 hours
+</Accordion>
+
+<Accordion title="3. Can I configure different refund rules for different order tags?" icon="fa-info-circle">
+  Yes, you can create multiple automated refund rules, each triggered by different Shopify order tags. For example:
+
+  * Tag "Defective-Product" → Full refund
+  * Tag "Partial-Return" → Partial refund based on items returned
+  * Tag "Customer-Cancelled" → Full refund minus processing fee
+</Accordion>
+
+<Accordion title="4. What happens if a customer disputes after an automated refund?" icon="fa-info-circle">
+  If a chargeback or dispute is raised after an automated refund has been processed:
+
+  1. Contact PayU support immediately.
+  2. Provide evidence of the refund, including the transaction ID and refund ARN.
+  3. PayU will coordinate with the bank to resolve the dispute.
+  4. Duplicate refunds will be recovered from the customer's bank account.
+</Accordion>
+
+<Accordion title="5. Can I set refund limits for automated rules?" icon="fa-info-circle">
+  Yes, you can configure maximum refund amounts per rule to prevent accidental large refunds:
+
+  1. Edit your automated refund rule.
+  2. Set the **Maximum Refund Amount** field.
+  3. Refunds exceeding this amount will require manual approval.
+</Accordion>
+
+<Accordion title="6. How do I handle partial refunds for specific line items?" icon="fa-info-circle">
+  For partial refunds based on specific items returned:
+
+  1. Configure your Shopify refund to specify which items are being refunded.
+  2. The webhook will include line item details.
+  3. PayU will calculate the refund amount based on the refunded items.
+  4. Ensure your automated rule is set to **Partial Refund** mode.
+</Accordion>
+
+<Accordion title="7. Can I use automated refunds with Shopify subscriptions?" icon="fa-info-circle">
+  Yes, automated refunds work with Shopify subscription orders. However:
+
+  * Ensure each subscription charge has a unique transaction ID.
+  * Configure rules to handle recurring and one-time charges differently.
+  * Consider setting up separate rules for subscription cancellations.
+</Accordion>
+
+<Accordion title="8. What are the transaction mapping options?" icon="fa-info-circle">
+  You can map Shopify orders to PayU transactions using:
+
+  * `txnid` parameter (recommended): Pass the Shopify order ID as the transaction ID.
+  * `udf1` to `udf5` fields: Store the Shopify order ID in user-defined fields.
+  * Order reference number: Use the Shopify order name, such as `#1001`.
+</Accordion>
+
+<Accordion title="9. Do automated refunds work for cross-border payments?" icon="fa-info-circle">
+  Yes, automated refunds are supported for cross-border payments made through PayU. However:
+
+  * Currency conversion rates at the time of the refund apply.
+  * Processing times may be longer, typically 7-14 working days.
+  * Additional documentation may be required for certain countries.
 </Accordion>
 
 ## Enable Offers on your Shopify Page
@@ -230,5 +380,3 @@ This section provides answers for frequently asked questions about integrating P
 <Accordion title="6. Where do I find settlement status, currency, and FX rate for cross-border transactions?" icon="fa-info-circle">
   Settlement information is available in the settlement tab on PayU merchant dashboard. APIs can be provided on request through your PayU Key Account Manager (KAM).
 </Accordion>
-
-<br />
