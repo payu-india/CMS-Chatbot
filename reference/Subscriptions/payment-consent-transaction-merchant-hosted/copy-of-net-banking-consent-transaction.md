@@ -2,6 +2,8 @@
 title: '[Internal Review] Net Banking Consent Transaction - Plans'
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
   title: Net Banking Recurring Payment Consent Transaction
   description: >-
