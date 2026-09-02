@@ -50,6 +50,8 @@ Plans are created and managed by merchants either through the PayU Dashboard or 
   - You can create multiple subscriptions for a plan
 </Callout>
 
+***
+
 ## Plan vs Mandate
 
 | Aspect                          | Plan                                                     | Mandate                                                        |
@@ -71,7 +73,9 @@ You should create plans when:
 - **You want dashboard-based subscription management**: Non-technical teams managing subscriptions via PayU Dashboard
 - **You generate subscription payment links**: Creating shareable links for customers to subscribe
 
-### Use Cases for Plan-Based Subscriptions
+***
+
+### Use Cases for Plan-based Subscriptions
 
 <Cards>
   <Card title="SaaS & Digital Services" icon="fa-laptop-code">
@@ -91,21 +95,27 @@ You should create plans when:
   </Card>
 </Cards>
 
+***
+
 ## Prerequisites
 
-- Enable Subscriptions for your PayU merchant account. Contact your PayU Key Account Manager or onboarding team before integrating SI plans.
+Enable Subscriptions for your PayU merchant account. Contact your PayU Key Account Manager or onboarding team before integrating SI plans.
+
+***
 
 ## Benefits of Using Plans
 
 Using plans provides merchants with a structured approach to managing subscription-based recurring payments.
 
 <Accordion title="Plan Benefits" icon="fa-list-check">
-  <ul><li><strong>Reusable subscription templates:</strong> Create once, use for multiple customers with the same billing terms, reducing setup errors and saving time.</li>
-  <li><strong>Better dashboard controls:</strong> Manage all subscriptions from a centralized dashboard with clear visibility into plan status and associated subscriptions.</li>
-  <li><strong>Improved reconciliation:</strong> Plan ID or merchant reference, mandate ID, and transaction IDs can be mapped together for easier reporting and tracking.</li>
-  <li><strong>Safer modifications:</strong> Separate draft plan edits from active subscription changes, ensuring you don't accidentally modify live billing arrangements.</li>
-  <li><strong>Simplified subscription link generation:</strong> Quickly create payment links for customers to subscribe to predefined plans without recreating billing details each time.</li></ul>
+    <ul><li><strong>Reusable subscription templates:</strong> Create once, use for multiple customers with the same billing terms, reducing setup errors and saving time.</li>
+    <li><strong>Better dashboard controls:</strong> Manage all subscriptions from a centralized dashboard with clear visibility into plan status and associated subscriptions.</li>
+    <li><strong>Improved reconciliation:</strong> Plan ID or merchant reference, mandate ID, and transaction IDs can be mapped together for easier reporting and tracking.</li>
+    <li><strong>Safer modifications:</strong> Separate draft plan edits from active subscription changes, ensuring you don't accidentally modify live billing arrangements.</li>
+    <li><strong>Simplified subscription link generation:</strong> Quickly create payment links for customers to subscribe to predefined plans without recreating billing details each time.</li></ul>
 </Accordion>
+
+***
 
 ## Plan Lifecycle and Statuses
 
@@ -127,6 +137,8 @@ Plans in PayU can have the following statuses during their lifecycle:
 
 **Status Workflow:** Draft → Active → Archived (via deactivation)
 
+***
+
 ## Access Plans
 
 You can access **Plans** under **Subscriptions&#x20;**&#x66;rom the left navigation as shown below.
@@ -134,6 +146,8 @@ You can access **Plans** under **Subscriptions&#x20;**&#x66;rom the left navigat
 
 <Image src="https://files.readme.io/ceab99a98c18eb24f14d434f5159d4a6ae066d810e940e9f32828515fee74cc7-plan-management.gif" alt="Access Plans" align="center" caption="_Access Plans_" border={true} />
 
+
+***
 
 ## Plan Management Actions
 
@@ -146,6 +160,8 @@ From the PayU Dashboard, you can perform the following plan management actions:
 - <Anchor target="_blank" href="https://docs.payu.in/docs/internal-review-create-and-manage-plans#create-subscriptions-for-a-plan">Create a subscription from a plan</Anchor>
 
 For detailed step-by-step instructions, refer to <Anchor target="_blank" href="https://docs.payu.in/docs/internal-review-create-and-manage-plans">Create and Manage Plans</Anchor>.
+
+***
 
 ## Frequently Asked Questions (FAQs)
 
@@ -198,6 +214,10 @@ Find answers to frequently asked questions about plans and subscription manageme
        <li>Bi-weekly: billingCycle=WEEKLY, billingInterval=2</li>
        </ul>
    </Accordion>
+
+<br />
+
+***
 
 ### Managing Plans
 
