@@ -113,9 +113,9 @@ Understanding why payments fail helps you configure appropriate retry strategies
 
 To access the retry configuration page:
 
-1. Log in to the PayU Dashboard
-2. Navigate to **Subscriptions** from the left sidebar
-3. Click **Revenue Recovery**
+1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin">PayU Dashboard.</Anchor>
+2. Navigate to **Subscriptions** from the left sidebar.
+3. Click **Revenue Recovery.**
 
 
 <Image src="https://files.readme.io/e0c4066c46015cd568fcf6dea4131e54aa506aac522d9efc5cbda72f1fc655b1-revenue-recovery-retry-settings.gif" align="center" caption="_Navigate to Revenue Recovery_" border={true} />
