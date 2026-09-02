@@ -34,14 +34,9 @@ metadata:
 ---
 ## What is a Plan?
 
-A **plan** is a predefined subscription template that defines the billing terms for recurring payments. It includes:
+A plan defines the subscription terms that the customer accepts before a Standing Instruction (SI) mandate is registered. In API-based SI integrations, the plan is managed by your system and shared with PayU during the consent transaction through `si_details`.
 
-- Billing amount (how much to charge)
-- Billing frequency (daily, weekly, monthly, yearly)
-- Billing interval (every X days/weeks/months/years)
-- Plan description and merchant reference
-
-Plans are created and managed by merchants either through the PayU Dashboard or via APIs. Once created, a plan can be used to generate multiple subscription payment links for different customers.
+PayU does not require you to create a separate plan object before registering an SI mandate. Your frontend should maintain the plan configuration, show it to the customer, pass the approved values to PayU during consent, and use the returned mandate identifiers for future pre-debit notifications, recurring debits, and mandate management.
 
 <Callout icon="📘" theme="info">
   ### **Handy Tips**
@@ -108,11 +103,11 @@ Enable Subscriptions for your PayU merchant account. Contact your PayU Key Accou
 Using plans provides merchants with a structured approach to managing subscription-based recurring payments.
 
 <Accordion title="Plan Benefits" icon="fa-list-check">
-    <ul><li><strong>Reusable subscription templates:</strong> Create once, use for multiple customers with the same billing terms, reducing setup errors and saving time.</li>
-    <li><strong>Better dashboard controls:</strong> Manage all subscriptions from a centralized dashboard with clear visibility into plan status and associated subscriptions.</li>
-    <li><strong>Improved reconciliation:</strong> Plan ID or merchant reference, mandate ID, and transaction IDs can be mapped together for easier reporting and tracking.</li>
-    <li><strong>Safer modifications:</strong> Separate draft plan edits from active subscription changes, ensuring you don't accidentally modify live billing arrangements.</li>
-    <li><strong>Simplified subscription link generation:</strong> Quickly create payment links for customers to subscribe to predefined plans without recreating billing details each time.</li></ul>
+  <ul><li><strong>Reusable subscription templates:</strong> Create once, use for multiple customers with the same billing terms, reducing setup errors and saving time.</li>
+  <li><strong>Better dashboard controls:</strong> Manage all subscriptions from a centralized dashboard with clear visibility into plan status and associated subscriptions.</li>
+  <li><strong>Improved reconciliation:</strong> Plan ID or merchant reference, mandate ID, and transaction IDs can be mapped together for easier reporting and tracking.</li>
+  <li><strong>Safer modifications:</strong> Separate draft plan edits from active subscription changes, ensuring you don't accidentally modify live billing arrangements.</li>
+  <li><strong>Simplified subscription link generation:</strong> Quickly create payment links for customers to subscribe to predefined plans without recreating billing details each time.</li></ul>
 </Accordion>
 
 ***
