@@ -14,7 +14,7 @@ Payment retry is an automated mechanism that attempts to re-process failed recur
 Failed recurring payments are a common challenge for subscription-based businesses. Payment retries help merchants:
 
 <Tabs>
-  <Tab title="Revenue Recovery">
+  <Tab title="Revenue Recovery" icon="fa-solid fa-money-bill-trend-up">
     - Recover revenue from failed transactions that would otherwise be lost
     - Increase successful payment collection rates by 15-30% on average
     - Reduce revenue churn from temporary payment failures
