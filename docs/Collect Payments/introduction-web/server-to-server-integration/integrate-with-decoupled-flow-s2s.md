@@ -43,7 +43,7 @@ The S2S decoupled flow for cards with authentication only involves the following
     | hash                | `String` <glossary>key</SHA>-512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|Salt) |
     | txn_s2s_flow        | `String` Must be passed with value 4 for Legacy Decoupled flow.                                                                   |
     | auth_only           | `String` Must be passed with value 2 for authentication-only flow.                                                                |
-    | authentication_flow | `String` The <Glossary>authentication</Glossary> flow type. Use "decoupled" for decoupled flow.                                       |
+    | authentication_flow | `String` <Glossary>authentication</Glossary> flow type. Use "decoupled" for decoupled flow.                                       |
 
     **Optional Parameters**
 
