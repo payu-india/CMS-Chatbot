@@ -32,14 +32,10 @@ This section describes step-by-step procedure to integrate Apple Pay as a paymen
 <Cards columns="3">
   <Card title="1. Authorize transaction" href="#step-1-authorize-transaction">
     Post the required parameters to PayU for Apple Pay integration
-
-
   </Card>
 
   <Card title="2. Check response from PayU" href="https://docs.payu.in/docs/apple-pay-integration#step-2-check-response-from-payu">
     Check and handle the response received from PayU after posting parameters
-
-
   </Card>
 
   <Card title="3. Verify the payment" href="https://docs.payu.in/docs/apple-pay-integration#step-3-verify-the-payment">
@@ -81,6 +77,27 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
 ### Step 1a. Merchant-side Decryption
 
 <Accordion title="Authentication info for Apple Pay" icon="fa-code">
+  #### Sample Request
+
+  ```curl
+  curl --location 'https://secure.payu.in/AuthorizeTransaction.php' \
+    --header 'Content-Type: application/x-www-form-urlencoded' \
+    --data-urlencode 'key=YOUR_MERCHANT_KEY' \
+    --data-urlencode 'txnid=TXN12345671891' \
+    --data-urlencode 'pg=ApplePay' \
+    --data-urlencode 'bankcode=CCAP' \
+    --data-urlencode 'hash=YOUR_SHA512_HASH' \
+    --data-urlencode 'storecard_token_type=1' \
+    --data-urlencode 'store_card_token=4547893134573096' \
+    --data-urlencode 'ccexpmon=09' \
+    --data-urlencode 'ccexpyr=30' \
+    --data-urlencode 'firstname=John' \
+    --data-urlencode 'email=john@example.com' \
+    --data-urlencode 'phone=9876543210' \
+    --data-urlencode 'productinfo=Order 123' \
+    --data-urlencode 'authentication_info={"applicationPrimaryAccountNumber":"4832086841071751","applicationExpirationDate":"290228","currencyCode":"356","transactionAmount":1000,"deviceManufacturerIdentifier":"040010030273","paymentDataType":"3DSecure","paymentData":{"onlinePaymentCryptogram":"KgAAAAoDK12xsrcAAAAAgTtgE4A=","eciIndicator":"5"}, "paymentMethod":{"displayName":"MasterCard 0049","network":"MasterCard","type":"credit"}}'
+  ```
+
   **Sample Authentication Info**
 
   ```Json
@@ -464,8 +481,6 @@ To initiate an Apple Pay payment, post the payment parameters to PayU's transact
   }
   ?>
   ```
-
-
 </Accordion>
 
 ***
