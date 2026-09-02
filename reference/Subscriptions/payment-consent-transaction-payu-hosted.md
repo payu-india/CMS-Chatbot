@@ -385,7 +385,9 @@ curl --location 'https://secure.payu.in/_payment' \
 --data-urlencode 'email=test@gmail.com' \
 --data-urlencode 'phone=9876543210' \
 --data-urlencode 'productinfo=my_order_49428' \
---data-urlencode 'pg=cc#bankcode=AIRPENCC' \
+--data-urlencode 'api_version=7' \
+--data-urlencode 'pg=cc' \
+--data-urlencode 'bankcode=AIRPENCC' \
 --data-urlencode 'si=1' \
 --data-urlencode 'surl=https://yourapp.com/payu/success' \
 --data-urlencode 'furl=https://yourapp.com/payu/failure' \
