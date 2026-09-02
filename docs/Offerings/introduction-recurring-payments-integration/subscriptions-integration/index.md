@@ -1,7 +1,9 @@
 ---
-title: Subscriptions Integration
+title: Subscriptions API Integration
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
