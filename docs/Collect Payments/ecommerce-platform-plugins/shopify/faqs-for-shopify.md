@@ -65,13 +65,13 @@ This section provides answers for frequently asked questions about integrating P
 
 
 
-  5) Configure the webhook with the following details:
+  5. Configure the webhook with the following details:
      * **Event**: Select `Order updated`
      * **Format**: JSON
      * **URL**: `https://info.payu.in/merchant/shopify/webhook/refund`
      * **API Version**: Use the latest available version
 
-  6) Click **Save webhook**
+  6. Click **Save webhook**
 </Accordion>
 
 <Accordion title="5. How do I verify transactions after integrating PayU on Shopify?" icon="fa-info-circle">
@@ -97,11 +97,11 @@ This section provides answers for frequently asked questions about integrating P
 
 
 
-  5) Select the required option in the **Refund payments** field based on refund.
-  6) Select the reason for cancelling the transaction from the **Reason for cancellation&#x20;**&#x66;ield.
-  7) Enter the reason for cancelling the order in the **Staff note** field.
-  8) Enter the refund amount and select the items (for partial refunds).
-  9) Click **Cancel order** to process.
+  4. Select the required option in the **Refund payments** field based on refund.
+  5. Select the reason for cancelling the transaction from the **Reason for cancellation&#x20;**&#x66;ield.
+  6. Enter the reason for cancelling the order in the **Staff note** field.
+  7. Enter the refund amount and select the items (for partial refunds).
+  8. Click **Cancel order** to process.
 
   If webhooks are configured correctly, PayU will receive the refund notification and process it automatically. For more information, refer to [Webhooks for Refunds.](doc:webhooks-for-refunds)
 
@@ -116,7 +116,7 @@ This section provides answers for frequently asked questions about integrating P
      - Shopify Order ID (if mapped correctly)
      - Customer email or phone number
 
-  4) Click the transaction ID to view transaction details
+  4. Click the transaction ID to view transaction details
 
   The transaction details page is displayed.
 
@@ -131,7 +131,7 @@ This section provides answers for frequently asked questions about integrating P
   The _Refund Payment_ pop-up is displayed.
 
 
-  <Image src="https://files.readme.io/e7d438d8ff968456d49419f4f6a5e3f7c4d418d2cabba56f04d81f2702f91b12-Dashboard_Transaction_Refund_Dialog.png" width="350px" framed={true} />
+  <Image src="https://files.readme.io/e7d438d8ff968456d49419f4f6a5e3f7c4d418d2cabba56f04d81f2702f91b12-Dashboard_Transaction_Refund_Dialog.png" align="center" width="350px" framed={true} />
 
 
 
