@@ -11,12 +11,12 @@ You can accept customer payments using PayU products. By subscribing to payments
 
 The table below lists the available webhook events.
 
-| **Event Name** | **Event Type** | **Description**                                            |
-| :------------- | :------------- | :--------------------------------------------------------- |
-| `Successful`   | `Payment`      | Triggered when a payment is successful.                    |
-| `Failed`       | `Payment`      | Triggered when a payment is failed.                        |
-| `Refund`       | `Payment`      | Triggered when a payment refund is successful and failure. |
-| `Dispute`      | `Payment`      | Triggered when a dispute is raised for a payment.          |
+| Product      | **Event Name** | **Description**                                            |
+| :----------- | -------------- | :--------------------------------------------------------- |
+| **Payments** | `Successful`   | Triggered when a payment is successful.                    |
+| **Payments** | `Failed`       | Triggered when a payment is failed.                        |
+| **Refunds**  | `Refund`       | Triggered when a payment refund is successful and failure. |
+| **Disputes** | `Dispute`      | Triggered when a dispute is raised for a payment.          |
 
 ## Sample Payloads
 
