@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PayU Hash Generator - All Product Logics</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+      background: #f0f2f5;
+      color: #2d3748;
+      line-height: 1.45;
+    }
+    .header {
+      background: linear-gradient(135deg, #234e52 0%, #285e61 50%, #2c7a7b 100%);
+      color: #fff;
+      padding: 24px;
+      margin-bottom: 22px;
+    }
+    .header-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .header-logo {
+      height: 34px;
+      width: auto;
+      display: block;
+      flex-shrink: 0;
+    }
+    h1 {
+      margin: 0 0 4px;
+      font-size: 1.55rem;
+      letter-spacing: -0.02em;
+    }
+    .sub {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.86);
+      font-size: 0.92rem;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 20px 26px;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 18px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    }
+    .row {
+      margin-bottom: 14px;
+    }
+    label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #4a5568;
+      margin-bottom: 6px;
+    }
+    select,
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      border: 1px solid #cbd5e0;
+      border-radius: 6px;
+      padding: 9px 11px;
+      font-size: 0.9rem;
+      color: #2d3748;
+      background: #fff;
+    }
+    select:focus,
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      outline: none;
+      border-color: #38a169;
+      box-shadow: 0 0 0 2px rgba(56, 161, 105, 0.24);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .field {
+      min-width: 0;
+    }
+    .field.full {
+      grid-column: 1 / -1;
+    }
+    @media (max-width: 760px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .formula {
+      background: #2d3748;
+      border: 1px solid #4a5568;
+      color: #edf2f7;
+      border-radius: 8px;
+      padding: 11px 12px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.8rem;
+      word-break: break-word;
+      margin-bottom: 10px;
+    }
+    .intro {
+      margin: 0 0 12px;
+      color: #4a5568;
+      font-size: 0.86rem;
+    }
+    .field-error {
+      color: #c53030;
+      font-size: 0.74rem;
+      margin-top: 4px;
+      min-height: 1.1em;
+      display: block;
+    }
+    .field-error:empty {
+      display: none;
+    }
+    .input-invalid {
+      border-color: #e53e3e !important;
+      box-shadow: 0 0 0 2px rgba(229, 62, 62, 0.2) !important;
+    }
+    .salt-wrap {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .salt-wrap input[type="password"],
+    .salt-wrap input[type="text"] {
+      flex: 1 1 260px;
+    }
+    .show-salt {
+      font-weight: 500;
+      font-size: 0.82rem;
+      color: #4a5568;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin: 0;
+      cursor: pointer;
+    }
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+    .btn {
+      border: none;
+      border-radius: 6px;
+      padding: 10px 16px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    .btn.primary {
+      background: #38a169;
+      color: #fff;
+    }
+    .btn.primary:hover {
+      background: #2f855a;
+    }
+    .btn.secondary {
+      background: #e2e8f0;
+      color: #4a5568;
+    }
+    .btn.secondary:hover {
+      background: #cbd5e0;
+    }
+    .error-box {
+      display: none;
+      margin-top: 12px;
+      border: 1px solid #feb2b2;
+      background: #fff5f5;
+      color: #c53030;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 0.86rem;
+    }
+    .output {
+      display: none;
+      margin-top: 16px;
+    }
+    .out-label {
+      font-size: 0.8rem;
+      color: #4a5568;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    .out-wrap {
+      position: relative;
+      border-radius: 8px;
+      border: 1px solid #9ae6b4;
+      background: #f0fff4;
+      padding: 12px;
+      padding-top: 38px;
+      word-break: break-all;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.84rem;
+      color: #276749;
+    }
+    .copy-wrap {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+    }
+    .copy-btn {
+      border: 1px solid #cbd5e0;
+      border-radius: 6px;
+      background: #fff;
+      color: #4a5568;
+      font-size: 0.78rem;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    .copy-btn:hover {
+      background: #edf2f7;
+    }
+    details {
+      margin-top: 10px;
+    }
+    summary {
+      cursor: pointer;
+      color: #4a5568;
+      font-size: 0.84rem;
+    }
+    .out-string {
+      margin-top: 8px;
+      position: relative;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      background: #f7fafc;
+      padding: 12px;
+      padding-top: 38px;
+      font-size: 0.76rem;
+      white-space: pre-wrap;
+      word-break: break-all;
+      color: #4a5568;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+    .note {
+      margin-top: 16px;
+      border: 1px solid #ecc94b;
+      background: #fffff0;
+      color: #744210;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 0.83rem;
+    }
+    .tt {
+      position: relative;
+      width: 14px;
+      height: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: #a0aec0;
+      color: #fff;
+      font-size: 10px;
+      cursor: help;
+      flex-shrink: 0;
+    }
+    .tt span {
+      position: absolute;
+      left: 50%;
+      top: calc(100% + 6px);
+      transform: translateX(-50%);
+      width: 240px;
+      max-width: 84vw;
+      background: #2d3748;
+      color: #edf2f7;
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      line-height: 1.35;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+      z-index: 40;
+      pointer-events: none;
+      text-align: left;
+    }
+    .tt:hover span {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <img
+        class="header-logo"
+        src="https://files.readme.io/075e203a7afeed9abd59397d42dc95f5be59e5b6dd330ca9a5dbb32a0b45404b-logo.png"
+        alt="PayU"
+      />
+      <div>
+        <h1>PayU Integration Lab - Hash Generator</h1>
+        <p class="sub">All hash logics discovered from this repository grouped by product/flow</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <div class="row">
+        <label for="logic-select">
+          Hash logic
+          <span class="tt">i<span>Select a product-specific hash logic. Fields update to only those needed for that formula.</span></span>
+        </label>
+        <select id="logic-select"></select>
+      </div>
+
+      <div class="formula" id="formula-text"></div>
+      <p class="intro" id="intro-text"></p>
+
+      <div class="grid" id="fields-grid"></div>
+
+      <div class="actions">
+        <button class="btn primary" id="btn-generate" type="button">Generate hash</button>
+        <button class="btn secondary" id="btn-clear" type="button">Clear fields</button>
+      </div>
+
+      <div class="error-box" id="error-box"></div>
+
+      <div class="output" id="output-wrap">
+        <div class="out-label">Generated hash (SHA-512 hex)</div>
+        <div class="out-wrap">
+          <div class="copy-wrap">
+            <button class="copy-btn" id="copy-hash" type="button">Copy</button>
+          </div>
+          <div id="hash-out"></div>
+        </div>
+
+        <details>
+          <summary>Show concatenated string (for debugging)</summary>
+          <div class="out-string">
+            <div class="copy-wrap">
+              <button class="copy-btn" id="copy-string" type="button">Copy</button>
+            </div>
+            <div id="str-out"></div>
+          </div>
+        </details>
+      </div>
+
+      <p class="note">
+        <strong>Security:</strong> Use this tool only for debug/documentation. In production, generate hashes on your server and do not expose salt/client secret.
+      </p>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      var FIELD_META = {
+        key: { label: "Merchant key", required: true, kind: "text", help: "PayU merchant key." },
+        salt: { label: "SALT / secret", required: true, kind: "salt", help: "Merchant salt or secret used only for hashing." },
+        txnid: { label: "Transaction ID (txnid)", required: true, kind: "text", help: "Unique merchant transaction identifier." },
+        amount: { label: "Amount", required: true, kind: "amount", help: "Amount as decimal value." },
+        productinfo: { label: "Product info", required: true, kind: "text", help: "Product/payment description." },
+        firstname: { label: "First name", required: true, kind: "text", help: "Customer first name used in request." },
+        email: { label: "Email", required: true, kind: "email", help: "Customer email used in request." },
+        udf1: { label: "UDF1", required: false, kind: "text", help: "Optional user-defined field." },
+        udf2: { label: "UDF2", required: false, kind: "text", help: "Optional user-defined field." },
+        udf3: { label: "UDF3", required: false, kind: "text", help: "Optional user-defined field." },
+        udf4: { label: "UDF4", required: false, kind: "text", help: "Optional user-defined field." },
+        udf5: { label: "UDF5", required: false, kind: "text", help: "Optional user-defined field." },
+        udf6: { label: "UDF6", required: false, kind: "text", help: "Used in api_version=19 and PACB patterns." },
+        udf7: { label: "UDF7", required: false, kind: "text", help: "Used in api_version=19 and PACB patterns." },
+        udf8: { label: "UDF8", required: false, kind: "text", help: "Used in api_version=19 and PACB patterns." },
+        udf9: { label: "UDF9", required: false, kind: "text", help: "Used in api_version=19 and PACB patterns." },
+        udf10: { label: "UDF10", required: false, kind: "text", help: "Used in api_version=19 and PACB patterns." },
+        user_token: { label: "user_token", required: false, kind: "text", help: "Optional api_version=19 field." },
+        offer_key: { label: "offer_key", required: false, kind: "text", help: "Offer key in offer flows." },
+        offer_auto_apply: { label: "offer_auto_apply", required: false, kind: "text", help: "Offer auto-apply flag/value." },
+        cart_details: { label: "cart_details", required: false, kind: "text", help: "Cart details payload/string." },
+        extra_charges: { label: "extra_charges", required: false, kind: "text", help: "Extra charges field for v19." },
+        phone: { label: "Phone", required: false, kind: "text", help: "Customer phone in v19 formula." },
+        products: { label: "products", required: true, kind: "text", help: "Products payload used in mutual-fund hashes." },
+        free_trial: { label: "free_trial", required: true, kind: "text", help: "SI free trial flag/value." },
+        splitRequest: { label: "splitRequest", required: true, kind: "text", help: "Split JSON payload used during transaction." },
+        SubventionAmount: { label: "SubventionAmount", required: true, kind: "amount", help: "Subvention amount posted in request." },
+        si_details: { label: "si_details", required: true, kind: "text", help: "Standing instruction details payload." },
+        siDetail: { label: "siDetail", required: true, kind: "text", help: "iOS naming variant of SI details." },
+        beneficiarydetail: { label: "beneficiarydetail", required: true, kind: "text", help: "TPV beneficiary JSON payload." },
+        beneficiaryDetail: { label: "beneficiaryDetail", required: true, kind: "text", help: "iOS naming variant of beneficiary details." },
+        additional_charges: { label: "additional_charges", required: true, kind: "amount", help: "Additional charges returned/posted by some flows." },
+        buyer_type_business: { label: "buyer_type_business", required: true, kind: "text", help: "Cross-border buyer type flag." },
+        udf_params: { label: "udf_params", required: true, kind: "text", help: "Cross-border UDF params payload." },
+        status: { label: "status", required: true, kind: "text", help: "Response/webhook status." },
+        splitInfo: { label: "splitInfo", required: true, kind: "text", help: "Split info returned in response." },
+        command: { label: "command", required: true, kind: "text", help: "Postservice command value." },
+        var1: { label: "var1", required: true, kind: "text", help: "Postservice var1 payload." },
+        mihpayid: { label: "mihpayid", required: true, kind: "text", help: "PayU transaction ID used in command hash." },
+        admin: { label: "admin", required: true, kind: "text", help: "Usually literal 'admin' for merchant transaction info hash." },
+        date: { label: "date", required: true, kind: "text", help: "Date string used in merchant transaction info hash." },
+        authenticationStatus: { label: "authenticationStatus", required: true, kind: "text", help: "Auth status in decoupled callback." },
+        bankData: { label: "bankData", required: true, kind: "text", help: "Bank response data in decoupled callback." },
+        rawBankData: { label: "rawBankData", required: true, kind: "text", help: "Raw bank response payload." },
+        referenceId: { label: "referenceId", required: true, kind: "text", help: "Reference ID from callback." },
+        baseAmountValue: { label: "baseAmount.value", required: true, kind: "amount", help: "MCP base amount value." },
+        baseAmountCurrency: { label: "baseAmount.currency", required: true, kind: "text", help: "MCP base amount currency." },
+        ccNum: { label: "ccNum", required: true, kind: "text", help: "Card number value used in MCP lookup signature." },
+        merchantOrderId: { label: "merchantOrderId", required: true, kind: "text", help: "Merchant order ID in MCP lookup." },
+        productType: { label: "productType", required: true, kind: "text", help: "Must be MCP for MCP lookup flow." },
+        merchant_id: { label: "merchant_id", required: true, kind: "text", help: "Partner integration merchant_id." },
+        client_secret: { label: "client_secret", required: true, kind: "salt", help: "Partner integration client secret." },
+        payu_id: { label: "payu_id", required: true, kind: "text", help: "PayU ID used in partner refund status hash." },
+        refund_id: { label: "refund_id", required: true, kind: "text", help: "Refund token/request ID for partner refund hash." },
+        merchantId: { label: "merchantId", required: true, kind: "text", help: "Zion merchant ID/key." },
+        merchantSalt: { label: "merchantSalt", required: true, kind: "salt", help: "Zion merchant salt." },
+        subscriptionPlanIds: { label: "subscriptionPlanIds", required: true, kind: "text", help: "E.g. [plan1|plan2] for create subscription." },
+        subscriptionId: { label: "subscriptionId", required: true, kind: "text", help: "Subscription identifier." },
+        planId: { label: "planId", required: true, kind: "text", help: "Plan identifier." },
+        refId: { label: "refId", required: true, kind: "text", help: "Merchant reference ID for invoice creation." },
+        currency: { label: "currency", required: true, kind: "text", help: "Currency code (e.g. INR)." },
+        authpayuId: { label: "authpayuId", required: true, kind: "text", help: "Auth PayU ID from recurring webhook payload." },
+        notificationType: { label: "notificationType", required: true, kind: "text", help: "Webhook event type." },
+        billingAmount: { label: "billingAmount", required: true, kind: "amount", help: "Billing amount from webhook payload." },
+        paymentStartDate: { label: "paymentStartDate", required: true, kind: "text", help: "Recurring payment start date." },
+        paymentEndDate: { label: "paymentEndDate", required: true, kind: "text", help: "Recurring payment end date." },
+        message: { label: "message", required: true, kind: "text", help: "Webhook message." },
+        eventDate: { label: "eventDate", required: true, kind: "text", help: "Webhook event date/time." }
+      };
+
+      function get(v, k) {
+        return (v && v[k] != null ? String(v[k]) : "").trim();
+      }
+
+      function buildBySeq(seq) {
+        return function (v) {
+          return seq.map(function (token) {
+            return token === "" ? "" : get(v, token);
+          }).join("|");
+        };
+      }
+
+      function fields(names) {
+        return names.map(function (name) {
+          var meta = FIELD_META[name] || { label: name, required: false, kind: "text", help: "" };
+          return {
+            name: name,
+            label: meta.label,
+            required: !!meta.required,
+            kind: meta.kind,
+            help: meta.help
+          };
+        });
+      }
+
+      var LOGICS = [
+        {
+          id: "forward-hosted-standard",
+          name: "Collect Payments (Hosted / Merchant / S2S) - Forward hash (standard udf1-udf5)",
+          formula: "sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)",
+          intro: "Used in standard _payment requests across hosted, merchant-hosted and S2S docs.",
+          fields: fields(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "salt"]),
+          build: buildBySeq(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "", "", "", "", "", "", "salt"])
+        },
+        {
+          id: "forward-v19",
+          name: "Collect Payments (_payment api_version=19) - Forward hash",
+          formula: "sha512(key|txnid|amount|productinfo|firstname|email|udf1|...|udf10|user_token|offer_key|offer_auto_apply|cart_details|extra_charges|phone||||||SALT)",
+          intro: "Hash chain documented for _payment API when api_version=19.",
+          fields: fields(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "udf6", "udf7", "udf8", "udf9", "udf10", "user_token", "offer_key", "offer_auto_apply", "cart_details", "extra_charges", "phone", "salt"]),
+          build: buildBySeq(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "udf6", "udf7", "udf8", "udf9", "udf10", "user_token", "offer_key", "offer_auto_apply", "cart_details", "extra_charges", "phone", "", "", "", "", "", "", "salt"])
+        },
+        {
+          id: "forward-offers-v10",
+          name: "Offers / Affordability (_payment v10+) - Forward hash with offer_key + offer_auto_apply",
+          formula: "sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|offer_key|offer_auto_apply|SALT)",
+          intro: "Hash chain documented for offers integrations where offer_key and offer_auto_apply are posted.",
+          fields: fields(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "udf6", "udf7", "udf8", "udf9", "udf10", "offer_key", "offer_auto_apply", "salt"]),
+          build: buildBySeq(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "udf6", "udf7", "udf8", "udf9", "udf10", "offer_key", "offer_auto_apply", "salt"])
+        },
+        {
+          id: "forward-split-request",
+          name: "Split Settlements (during _payment) - Forward hash with splitRequest",
+          formula: "sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT|splitRequest)",
+          intro: "Used when splitRequest is posted during transaction.",
+          fields: fields(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "salt", "splitRequest"]),
+          build: buildBySeq(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "", "", "", "", "", "", "salt", "splitRequest"])
+        },
+        {
+          id: "forward-subvention",
+          name: "Affordability/Subvention - Forward hash with SubventionAmount",
+          formula: "sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT|SubventionAmount)",
+          intro: "Used when SubventionAmount is passed in request.",
+          fields: fields(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "salt", "SubventionAmount"]),
+          build: buildBySeq(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "", "", "", "", "", "", "salt", "SubventionAmount"])
+        },
+        {
+          id: "forward-si-details",
+          name: "Recurring / Subscription (SI) - Forward hash with si_details",
+          formula: "sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|SALT)",
+          intro: "Used in recurring/standing instruction payment request flows.",
+          fields: fields(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "si_details", "salt"]),
+          build: buildBySeq(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "", "", "", "", "", "", "si_details", "salt"])
+        },
+        {
+          id: "forward-si-free-trial",
+          name: "Recurring / Subscription SDK - Forward hash with si_details + free_trial",
+          formula: "sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|si_details|free_trial|SALT)",
+          intro: "SDK docs variant for recurring setup where free_trial is part of hash chain.",
+          fields: fields(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "udf6", "udf7", "udf8", "udf9", "udf10", "si_details", "free_trial", "salt"]),
+          build: buildBySeq(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "udf6", "udf7", "udf8", "udf9", "udf10", "si_details", "free_trial", "salt"])
+        },
+        {
+          id: "forward-beneficiary-tpv",
+          name: "TPV (beneficiary verification) - Forward hash with beneficiarydetail",
+          formula: "sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||beneficiarydetail|SALT)",
+          intro: "Used in TPV flows where beneficiarydetail is posted.",
+          fields: fields(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "beneficiarydetail", "salt"]),
+          build: buildBySeq(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "", "", "", "", "", "", "beneficiarydetail", "salt"])
+        },
+        {
+          id: "forward-si-beneficiary-ios",
+          name: "iOS Core SDK variant - Forward hash with siDetail + beneficiaryDetail",
+          formula: "sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||siDetail|beneficiaryDetail|SALT)",
+          intro: "SDK docs variant where both siDetail and beneficiaryDetail are included.",
+          fields: fields(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "siDetail", "beneficiaryDetail", "salt"]),
+          build: buildBySeq(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "", "", "", "", "", "", "siDetail", "beneficiaryDetail", "salt"])
+        },
+        {
+          id: "forward-mutual-funds-basic",
+          name: "Mutual Funds - Forward hash with beneficiarydetail + products",
+          formula: "sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||beneficiarydetail||||||products|salt)",
+          intro: "Mutual-funds docs sequence with beneficiarydetail and products.",
+          fields: fields(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "beneficiarydetail", "products", "salt"]),
+          build: buildBySeq(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "", "", "", "", "", "", "beneficiarydetail", "", "", "", "", "", "products", "salt"])
+        },
+        {
+          id: "forward-mutual-funds-si",
+          name: "Mutual Funds recurring - Forward hash with beneficiarydetail + si_details + products",
+          formula: "sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||beneficiarydetail|si_details|||||products|salt)",
+          intro: "Mutual-funds recurring docs sequence with SI details.",
+          fields: fields(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "beneficiarydetail", "si_details", "products", "salt"]),
+          build: buildBySeq(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "", "", "", "", "", "", "beneficiarydetail", "si_details", "", "", "", "", "products", "salt"])
+        },
+        {
+          id: "forward-pacb-additional",
+          name: "Cross-border (PACB one-time) - Forward hash with additional_charges + buyer_type_business",
+          formula: "sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|salt|additional_charges|buyer_type_business)",
+          intro: "PACB one-time docs pattern with udf1-udf10 + cross-border flags.",
+          fields: fields(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "udf6", "udf7", "udf8", "udf9", "udf10", "salt", "additional_charges", "buyer_type_business"]),
+          build: buildBySeq(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "udf6", "udf7", "udf8", "udf9", "udf10", "salt", "additional_charges", "buyer_type_business"])
+        },
+        {
+          id: "forward-pacb-si-udfparams",
+          name: "Cross-border (PACB recurring) - Forward hash with si_details + udf_params + buyer_type_business",
+          formula: "sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|si_details|salt|udf_params|buyer_type_business)",
+          intro: "PACB recurring docs pattern with SI details and cross-border metadata.",
+          fields: fields(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "udf6", "udf7", "udf8", "udf9", "udf10", "si_details", "salt", "udf_params", "buyer_type_business"]),
+          build: buildBySeq(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "udf6", "udf7", "udf8", "udf9", "udf10", "si_details", "salt", "udf_params", "buyer_type_business"])
+        },
+        {
+          id: "forward-pacb-v7-additional",
+          name: "Cross-border (legacy PACB v7) - Forward hash with si_details + additional_charges + buyer_type_business",
+          formula: "sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|salt|additional_charges|buyer_type_business)",
+          intro: "Legacy PACB hashing sequence documented in repo custom blocks.",
+          fields: fields(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "si_details", "salt", "additional_charges", "buyer_type_business"]),
+          build: buildBySeq(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "", "", "", "", "", "", "si_details", "salt", "additional_charges", "buyer_type_business"])
+        },
+        {
+          id: "forward-pacb-v7-udfparams",
+          name: "Cross-border (legacy PACB v7) - Forward hash with si_details + udf_params + buyer_type_business",
+          formula: "sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|salt|udf_params|buyer_type_business)",
+          intro: "Legacy PACB hashing sequence with udf_params and buyer_type_business.",
+          fields: fields(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "si_details", "salt", "udf_params", "buyer_type_business"]),
+          build: buildBySeq(["key", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "", "", "", "", "", "", "si_details", "salt", "udf_params", "buyer_type_business"])
+        },
+        {
+          id: "reverse-standard",
+          name: "Response verification - Regular reverse hash",
+          formula: "sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)",
+          intro: "Standard reverse-hash verification for payment response/callback.",
+          fields: fields(["salt", "status", "udf5", "udf4", "udf3", "udf2", "udf1", "email", "firstname", "productinfo", "amount", "txnid", "key"]),
+          build: buildBySeq(["salt", "status", "", "", "", "", "", "udf5", "udf4", "udf3", "udf2", "udf1", "email", "firstname", "productinfo", "amount", "txnid", "key"])
+        },
+        {
+          id: "reverse-additional",
+          name: "Response verification - additional_charges",
+          formula: "sha512(additional_charges|SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)",
+          intro: "Reverse hash when additional charges are present.",
+          fields: fields(["additional_charges", "salt", "status", "udf5", "udf4", "udf3", "udf2", "udf1", "email", "firstname", "productinfo", "amount", "txnid", "key"]),
+          build: buildBySeq(["additional_charges", "salt", "status", "", "", "", "", "", "udf5", "udf4", "udf3", "udf2", "udf1", "email", "firstname", "productinfo", "amount", "txnid", "key"])
+        },
+        {
+          id: "reverse-split",
+          name: "Response verification - splitInfo",
+          formula: "sha512(SALT|status|splitInfo||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)",
+          intro: "Reverse hash when splitInfo is present.",
+          fields: fields(["salt", "status", "splitInfo", "udf5", "udf4", "udf3", "udf2", "udf1", "email", "firstname", "productinfo", "amount", "txnid", "key"]),
+          build: buildBySeq(["salt", "status", "splitInfo", "", "", "", "", "", "udf5", "udf4", "udf3", "udf2", "udf1", "email", "firstname", "productinfo", "amount", "txnid", "key"])
+        },
+        {
+          id: "reverse-split-additional",
+          name: "Response verification - splitInfo + additional_charges",
+          formula: "sha512(additional_charges|SALT|status|splitInfo||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)",
+          intro: "Reverse hash when both splitInfo and additional_charges are present.",
+          fields: fields(["additional_charges", "salt", "status", "splitInfo", "udf5", "udf4", "udf3", "udf2", "udf1", "email", "firstname", "productinfo", "amount", "txnid", "key"]),
+          build: buildBySeq(["additional_charges", "salt", "status", "splitInfo", "", "", "", "", "", "udf5", "udf4", "udf3", "udf2", "udf1", "email", "firstname", "productinfo", "amount", "txnid", "key"])
+        },
+        {
+          id: "reverse-si-details",
+          name: "Response verification (SI / Autopay) - reverse hash with si_details",
+          formula: "sha512(SALT|si_details|status||||||udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)",
+          intro: "Reverse hash variant used in recurring SI/autopay docs.",
+          fields: fields(["salt", "si_details", "status", "udf3", "udf2", "udf1", "email", "firstname", "productinfo", "amount", "txnid", "key"]),
+          build: buildBySeq(["salt", "si_details", "status", "", "", "", "", "", "", "udf3", "udf2", "udf1", "email", "firstname", "productinfo", "amount", "txnid", "key"])
+        },
+        {
+          id: "reverse-beneficiary",
+          name: "Response verification (TPV) - reverse hash with beneficiarydetail",
+          formula: "sha512(SALT|beneficiarydetail|status||||||udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)",
+          intro: "Reverse hash variant used in TPV beneficiary flows.",
+          fields: fields(["salt", "beneficiarydetail", "status", "udf3", "udf2", "udf1", "email", "firstname", "productinfo", "amount", "txnid", "key"]),
+          build: buildBySeq(["salt", "beneficiarydetail", "status", "", "", "", "", "", "", "udf3", "udf2", "udf1", "email", "firstname", "productinfo", "amount", "txnid", "key"])
+        },
+        {
+          id: "api-command-var1",
+          name: "General APIs (validateVPA / verify_payment / refunds / split postservice) - key|command|var1|salt",
+          formula: "sha512(key|command|var1|salt)",
+          intro: "Common hash pattern used by many postservice and verify/refund APIs.",
+          fields: fields(["key", "command", "var1", "salt"]),
+          build: buildBySeq(["key", "command", "var1", "salt"])
+        },
+        {
+          id: "partner-forward-hosted",
+          name: "Partner Integration (Hosted/UPI S2S) - Forward hash with merchant_id + CLIENT_SECRET",
+          formula: "sha512(merchant_id|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||CLIENT_SECRET)",
+          intro: "Partner integration forward hash for payments using merchant_id and client_secret.",
+          fields: fields(["merchant_id", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "client_secret"]),
+          build: buildBySeq(["merchant_id", "txnid", "amount", "productinfo", "firstname", "email", "udf1", "udf2", "udf3", "udf4", "udf5", "", "", "", "", "", "", "client_secret"])
+        },
+        {
+          id: "partner-verify-payment",
+          name: "Partner Integration - Verify payment hash (merchant_id|command|txnid|client_secret)",
+          formula: "sha512(merchant_id|command|txnid|client_secret)",
+          intro: "Partner verify-payment hash where command is typically verify_payment.",
+          fields: fields(["merchant_id", "command", "txnid", "client_secret"]),
+          defaults: { command: "verify_payment" },
+          build: buildBySeq(["merchant_id", "command", "txnid", "client_secret"])
+        },
+        {
+          id: "partner-refund-status",
+          name: "Partner Integration - Refund status hash (merchant_id|payu_id|client_secret)",
+          formula: "sha512(merchant_id|payu_id|client_secret)",
+          intro: "Partner refund status API hash.",
+          fields: fields(["merchant_id", "payu_id", "client_secret"]),
+          build: buildBySeq(["merchant_id", "payu_id", "client_secret"])
+        },
+        {
+          id: "partner-refund-transaction",
+          name: "Partner Integration - Refund transaction hash (merchant_id|refund_id|amount|client_secret)",
+          formula: "sha512(merchant_id|refund_id|amount|client_secret)",
+          intro: "Partner refund transaction API hash.",
+          fields: fields(["merchant_id", "refund_id", "amount", "client_secret"]),
+          build: buildBySeq(["merchant_id", "refund_id", "amount", "client_secret"])
+        },
+        {
+          id: "api-mihpayid-admin-date",
+          name: "Transaction detail API variant - key|mihpayid|admin|date",
+          formula: "sha512(key|mihpayid|admin|date)",
+          intro: "Hash pattern documented for merchant transaction detail command.",
+          fields: fields(["key", "mihpayid", "admin", "date"]),
+          defaults: { admin: "admin" },
+          build: buildBySeq(["key", "mihpayid", "admin", "date"])
+        },
+        {
+          id: "callback-decoupled",
+          name: "Decoupled flow callback verification - authenticationStatus|bankData|rawBankData|referenceId|salt",
+          formula: "sha512(authenticationStatus|bankData|rawBankData|referenceId|salt)",
+          intro: "Callback hash used in decoupled authentication flow docs.",
+          fields: fields(["authenticationStatus", "bankData", "rawBankData", "referenceId", "salt"]),
+          build: buildBySeq(["authenticationStatus", "bankData", "rawBankData", "referenceId", "salt"])
+        },
+        {
+          id: "mcp-lookup-v2",
+          name: "International Payments (MCP Lookup V2) - signature hash",
+          formula: "SHA512(key|baseAmount.value|baseAmount.currency|ccNum|merchantOrderId|productType|salt)",
+          intro: "Signature formula used by MCP Lookup V2 API.",
+          fields: fields(["key", "baseAmountValue", "baseAmountCurrency", "ccNum", "merchantOrderId", "productType", "salt"]),
+          defaults: { productType: "MCP" },
+          build: buildBySeq(["key", "baseAmountValue", "baseAmountCurrency", "ccNum", "merchantOrderId", "productType", "salt"])
+        },
+        {
+          id: "zion-create-subscription",
+          name: "Subscriptions (Zion) - Create subscription signature",
+          formula: "SHA512(\"merchantId:\" + merchantId + \"|subscriptionPlanIds:\" + subscriptionPlanIds + \"|\" + merchantSalt)",
+          intro: "X-PayU-Subscription-Signature for create subscription APIs.",
+          fields: fields(["merchantId", "subscriptionPlanIds", "merchantSalt"]),
+          build: function (v) {
+            return "merchantId:" + get(v, "merchantId") + "|subscriptionPlanIds:" + get(v, "subscriptionPlanIds") + "|" + get(v, "merchantSalt");
+          }
+        },
+        {
+          id: "zion-manage-subscription",
+          name: "Subscriptions (Zion) - Update/Cancel/Get list signature",
+          formula: "SHA512(\"merchantId:\" + merchantId + \"|subscriptionId:\" + subscriptionId + \"|\" + merchantSalt)",
+          intro: "X-PayU-Subscription-Signature used by multiple subscription management APIs.",
+          fields: fields(["merchantId", "subscriptionId", "merchantSalt"]),
+          build: function (v) {
+            return "merchantId:" + get(v, "merchantId") + "|subscriptionId:" + get(v, "subscriptionId") + "|" + get(v, "merchantSalt");
+          }
+        },
+        {
+          id: "zion-create-invoice",
+          name: "Subscriptions (Zion) - Create invoice signature",
+          formula: "SHA512(\"merchantId:\"+merchantId+\"|subscriptionId:\"+subscriptionId+\"|planId:\"+planId+\"|refId:\"+refId+\"|amount:\"+amount+\"|currency:\"+currency+\"|\"+merchantSalt)",
+          intro: "X-PayU-Subscription-Signature for Create Invoice API.",
+          fields: fields(["merchantId", "subscriptionId", "planId", "refId", "amount", "currency", "merchantSalt"]),
+          build: function (v) {
+            return "merchantId:" + get(v, "merchantId") +
+              "|subscriptionId:" + get(v, "subscriptionId") +
+              "|planId:" + get(v, "planId") +
+              "|refId:" + get(v, "refId") +
+              "|amount:" + get(v, "amount") +
+              "|currency:" + get(v, "currency") +
+              "|" + get(v, "merchantSalt");
+          }
+        },
+        {
+          id: "subscriptions-webhook",
+          name: "Subscriptions webhook - notification hash",
+          formula: "sha512(status|authpayuId|notificationType|billingAmount|paymentStartDate|paymentEndDate|message|eventDate|key|udf1|udf2|udf3|udf4|udf5|salt)",
+          intro: "Webhook authenticity hash for subscription cancellation/modification notifications.",
+          fields: fields(["status", "authpayuId", "notificationType", "billingAmount", "paymentStartDate", "paymentEndDate", "message", "eventDate", "key", "udf1", "udf2", "udf3", "udf4", "udf5", "salt"]),
+          build: buildBySeq(["status", "authpayuId", "notificationType", "billingAmount", "paymentStartDate", "paymentEndDate", "message", "eventDate", "key", "udf1", "udf2", "udf3", "udf4", "udf5", "salt"])
+        }
+      ];
+
+      var logicById = {};
+      LOGICS.forEach(function (l) { logicById[l.id] = l; });
+
+      var valuesByLogic = {};
+      var errorsByField = {};
+      var selectEl = document.getElementById("logic-select");
+      var formulaEl = document.getElementById("formula-text");
+      var introEl = document.getElementById("intro-text");
+      var fieldsGrid = document.getElementById("fields-grid");
+      var errorBox = document.getElementById("error-box");
+      var outWrap = document.getElementById("output-wrap");
+      var hashOut = document.getElementById("hash-out");
+      var strOut = document.getElementById("str-out");
+
+      function currentLogic() {
+        return logicById[selectEl.value] || LOGICS[0];
+      }
+
+      function showError(msg) {
+        errorBox.textContent = msg || "";
+        errorBox.style.display = msg ? "block" : "none";
+      }
+
+      function ensureDefaults(logic) {
+        if (!valuesByLogic[logic.id]) valuesByLogic[logic.id] = {};
+        if (logic.defaults) {
+          Object.keys(logic.defaults).forEach(function (k) {
+            if (!valuesByLogic[logic.id][k]) valuesByLogic[logic.id][k] = logic.defaults[k];
+          });
+        }
+      }
+
+      function renderFields() {
+        var logic = currentLogic();
+        ensureDefaults(logic);
+        formulaEl.textContent = logic.formula;
+        introEl.textContent = logic.intro;
+        fieldsGrid.innerHTML = "";
+        errorsByField = {};
+
+        logic.fields.forEach(function (f, idx) {
+          var wrap = document.createElement("div");
+          wrap.className = "field" + ((idx % 2 === 0 && idx === logic.fields.length - 1) ? " full" : "");
+
+          var lab = document.createElement("label");
+          lab.setAttribute("for", "f_" + f.name);
+          lab.innerHTML = f.label + (f.required ? " *" : "") +
+            ' <span class="tt">i<span>' + (f.help || "") + "</span></span>";
+          wrap.appendChild(lab);
+
+          var input;
+          if (f.kind === "salt") {
+            var saltWrap = document.createElement("div");
+            saltWrap.className = "salt-wrap";
+
+            input = document.createElement("input");
+            input.type = "password";
+            input.id = "f_" + f.name;
+            input.value = valuesByLogic[logic.id][f.name] || "";
+            saltWrap.appendChild(input);
+
+            var toggle = document.createElement("label");
+            toggle.className = "show-salt";
+            toggle.innerHTML = '<input type="checkbox" id="s_' + f.name + '" /> Show';
+            saltWrap.appendChild(toggle);
+
+            wrap.appendChild(saltWrap);
+
+            toggle.querySelector("input").addEventListener("change", function (e) {
+              input.type = e.target.checked ? "text" : "password";
+            });
+          } else {
+            input = document.createElement("input");
+            input.type = "text";
+            input.id = "f_" + f.name;
+            input.value = valuesByLogic[logic.id][f.name] || "";
+            wrap.appendChild(input);
+          }
+
+          var err = document.createElement("span");
+          err.className = "field-error";
+          err.id = "err_" + f.name;
+          wrap.appendChild(err);
+
+          input.addEventListener("input", function () {
+            valuesByLogic[logic.id][f.name] = input.value;
+            clearFieldError(f.name);
+          });
+          input.addEventListener("blur", function () {
+            valuesByLogic[logic.id][f.name] = input.value;
+            validateField(logic, f);
+          });
+
+          fieldsGrid.appendChild(wrap);
+        });
+      }
+
+      function clearFieldError(fieldName) {
+        var e = document.getElementById("err_" + fieldName);
+        var i = document.getElementById("f_" + fieldName);
+        if (e) e.textContent = "";
+        if (i) i.classList.remove("input-invalid");
+        delete errorsByField[fieldName];
+      }
+
+      function setFieldError(fieldName, msg) {
+        var e = document.getElementById("err_" + fieldName);
+        var i = document.getElementById("f_" + fieldName);
+        if (e) e.textContent = msg || "";
+        if (i) {
+          if (msg) i.classList.add("input-invalid");
+          else i.classList.remove("input-invalid");
+        }
+        if (msg) errorsByField[fieldName] = msg;
+        else delete errorsByField[fieldName];
+      }
+
+      function validateField(logic, field) {
+        var v = get(valuesByLogic[logic.id], field.name);
+        if (field.required && !v) {
+          setFieldError(field.name, field.label + " is required.");
+          return false;
+        }
+        if (v && field.kind === "email" && !EMAIL_RE.test(v)) {
+          setFieldError(field.name, "Enter a valid email address.");
+          return false;
+        }
+        if (v && field.kind === "amount") {
+          var n = parseFloat(v);
+          if (isNaN(n) || n < 0) {
+            setFieldError(field.name, "Enter a valid decimal amount >= 0.");
+            return false;
+          }
+        }
+        setFieldError(field.name, "");
+        return true;
+      }
+
+      function validateLogic(logic) {
+        var ok = true;
+        logic.fields.forEach(function (f) {
+          if (!validateField(logic, f)) ok = false;
+        });
+        return ok;
+      }
+
+      function hashSha512Hex(str) {
+        var bytes = new TextEncoder().encode(str);
+        return crypto.subtle.digest("SHA-512", bytes).then(function (buf) {
+          return Array.prototype.map.call(new Uint8Array(buf), function (x) {
+            return x.toString(16).padStart(2, "0");
+          }).join("");
+        });
+      }
+
+      function withButtonFeedback(btn, okText) {
+        var old = btn.textContent;
+        btn.textContent = okText;
+        setTimeout(function () { btn.textContent = old; }, 1800);
+      }
+
+      function copy(text, btn) {
+        if (!text) return;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () {
+            withButtonFeedback(btn, "Copied!");
+          }).catch(function () {
+            withButtonFeedback(btn, "Copy failed");
+          });
+          return;
+        }
+        var ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed";
+        ta.style.left = "-9999px";
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand("copy");
+          withButtonFeedback(btn, "Copied!");
+        } catch (e) {
+          withButtonFeedback(btn, "Copy failed");
+        }
+        document.body.removeChild(ta);
+      }
+
+      function initSelect() {
+        LOGICS.forEach(function (logic) {
+          var opt = document.createElement("option");
+          opt.value = logic.id;
+          opt.textContent = logic.name;
+          selectEl.appendChild(opt);
+          ensureDefaults(logic);
+        });
+      }
+
+      document.getElementById("btn-generate").addEventListener("click", function () {
+        var logic = currentLogic();
+        showError("");
+        outWrap.style.display = "none";
+
+        if (!validateLogic(logic)) {
+          var first = Object.keys(errorsByField)[0];
+          if (first) {
+            var el = document.getElementById("f_" + first);
+            if (el) el.focus();
+          }
+          return;
+        }
+
+        var plain = logic.build(valuesByLogic[logic.id]);
+        var btn = this;
+        btn.disabled = true;
+
+        hashSha512Hex(plain).then(function (h) {
+          hashOut.textContent = h;
+          strOut.textContent = plain;
+          outWrap.style.display = "block";
+          btn.disabled = false;
+        }).catch(function (err) {
+          showError((err && err.message) ? err.message : "Hash generation failed.");
+          btn.disabled = false;
+        });
+      });
+
+      document.getElementById("btn-clear").addEventListener("click", function () {
+        valuesByLogic[currentLogic().id] = {};
+        ensureDefaults(currentLogic());
+        showError("");
+        outWrap.style.display = "none";
+        renderFields();
+      });
+
+      document.getElementById("copy-hash").addEventListener("click", function () {
+        copy(hashOut.textContent || "", this);
+      });
+      document.getElementById("copy-string").addEventListener("click", function () {
+        copy(strOut.textContent || "", this);
+      });
+
+      selectEl.addEventListener("change", function () {
+        showError("");
+        outWrap.style.display = "none";
+        renderFields();
+      });
+
+      initSelect();
+      selectEl.value = LOGICS[0].id;
+      renderFields();
+    })();
+  </script>
+</body>
+</html>
