@@ -227,7 +227,7 @@ curl --location 'https://info.payu.in/merchant/postservice.php' \
     "status": "active",
     "action": "check_mandate_status",
     "authpayuid": 25599222315,
-    "amount": "1",
+    "amount": "10.00",
     "mandateStartDate": "2025-10-14",
     "mandateEndDate": "2027-12-01"
 }
@@ -242,7 +242,7 @@ curl --location 'https://info.payu.in/merchant/postservice.php' \
   "status": "cancelled",
   "action": "check_mandate_status",
   "authpayuid": "19122384119",
-  "amount": 18029,
+  "amount": 180.00,
   "mandateStartDate": "2024-02-06",
   "mandateEndDate": "2030-02-06"
 }
@@ -266,7 +266,7 @@ curl --location 'https://info.payu.in/merchant/postservice.php' \
   "status": "discarded",
   "action": "check_mandate_status",
   "authpayuid": "16696314880",
-  "amount": 599,
+  "amount": 599.00,
   "mandateStartDate": "2024-01-30",
   "mandateEndDate": "2029-01-30"
 }
