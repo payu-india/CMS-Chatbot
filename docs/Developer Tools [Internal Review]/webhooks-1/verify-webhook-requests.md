@@ -269,6 +269,8 @@ Treat IPs as **subject to change** and always keep hash/signature verification a
   **Recommended Fix:&#x20;**&#x45;nsure to pass empty pipes even if you are not passing any values.
 </Accordion>
 
-## After verification
+***
+
+## After Verification
 
 Once a webhook is verified, hand it to your handler for parsing, acknowledgment, idempotency, and processing. Continue to [Handle Webhook Events](doc:events-and-payloads).
