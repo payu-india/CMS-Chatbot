@@ -8,19 +8,27 @@ metadata:
     Payments
   robots: index
 ---
-This section describes how to set up a Payment Consent or Registration transaction for Cross-Border Subscriptions using PayU Hosted Checkout integration with **_payment** API.
+---
+title: '[Redirect] Subscriptions on PayU Hosted Page - Cross-Border'
+deprecated: false
+hidden: false
+metadata:
+  title: >-
+    PayU Hosted Integration -Subscriptions Integration with Cross-Border
+    Payments
+  robots: index
+---
+This section describes how to set up a Payment Consent or <Glossary>Registration transaction</Glossary> for <Glossary>Cross-border Payments</Glossary> Subscriptions using PayU Hosted Checkout integration with **_payment** API.
 
 **Payment Consent Flow**
 
 <Cards columns={2}>
-  <Card title="1. Payment Consent Transaction using PayU Hosted Chackout" href="#step-1-payment-consent-transaction-using-payu-hosted-checkout">
+  <Card title="1. Payment Consent Transaction using PayU Hosted Checkout" href="#step-1-payment-consent-transaction-using-payu-hosted-checkout">
+    Send the <Glossary>ENACH</Glossary> <Glossary>Consent transaction</Glossary> request with S2S parameters.
+  </Card>
+  <Card title="2. Verify the <Glossary>Mandate</Glossary>" href="#step-2-verify-the-mandate">
     Send the ENACH consent transaction request with S2S parameters.
   </Card>
-
-  <Card title="2. Verify the Mandate" href="#step-2-verify-the-mandate">
-    Send the ENACH consent transaction request with S2S parameters.
-  </Card>
-
   <Card title="3. Verify Payment" href="#step-3-verify_the_payment">
     Handle the response for Net Banking flow.
   </Card>
@@ -32,7 +40,6 @@ This section describes how to set up a Payment Consent or Registration transacti
   <Card title="1. Pre-Debit SI Notification" href="#step-1-pre-debit-si-notification">
     Send pre-debit notifications for upcoming recurring debits.
   </Card>
-
   <Card title="2. Recurring Payment Transaction" href="#step-2-recurring-payment-transaction">
     Execute recurring payment transactions using the registered mandate.
   </Card>
@@ -48,46 +55,56 @@ For detailed information about the Payment Consent Transaction using PayU Hosted
   **Note**: For Cross-Border Payments, the UDF parameters (udf1, udf2, udf3, udf4, and udf5) have specific requirements as described in the Request parameters table below.
 </Callout>
 
-<Accordion title="Request parameters" icon="fa-info-circle">
-  In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is critical to calculate the hash correctly and post it to PayU in the request.
+In the merchant-initiated POST REQUEST, <Glossary>hash</Glossary> is a mandatory parameter. It is critical to calculate the hash correctly and post it to PayU in the request.
 
-  | Parameter                                                                                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                   |
-  | :----------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-  | key<br /><code>mandatory</code>                                                            | <code>varchar</code> This parameter is the unique Merchant Key provided by PayU for your merchant account.                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Your Test Key                                                                                                                                                             |
-  | txnid<br /><code>mandatory</code>                                                          | <code>varchar</code> This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant's) end. It is an identifier you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post a unique transaction ID for every new transaction. <code>Character limit</code>: 25<br /><strong>Note:</strong> Ensure this transaction ID hasn't been processed successfully before. | fd3e847h2                                                                                                                                                                 |
-  | amount<br /><code>mandatory</code>                                                         | <code>float</code> This parameter should contain the payment amount for the specific transaction.<br /><strong>Note:</strong> Typecast the amount to a float type. The amount can vary based on use cases:<br />• For Net Banking, 0 INR<br />• For Cards & UPI, a minimum of 1 INR (penny transactions)                                                                                                                                                                                                                                                                               | 1000                                                                                                                                                                      |
-  | productinfo<br /><code>mandatory</code>                                                    | <code>varchar</code> A brief product description. Short information about the product/service. Character limit: 100                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | Time Magazine Subscription                                                                                                                                                |
-  | firstname<br /><code>mandatory</code>                                                      | <code>varchar</code> The customer's first name.<br />Character limit is 60.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Ashish                                                                                                                                                                    |
-  | lastname<br /><code>mandatory</code>                                                       | <code>varchar</code> The customer's last name.<br />Character limit is 60.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Kumar                                                                                                                                                                     |
-  | email<br /><code>mandatory</code>                                                          | <code>varchar</code> Contains the email of the customer; highly recommended accuracy as fraud detection relies on this. Character limit: 50.                                                                                                                                                                                                                                                                                                                                                                                                                                           | [Ashish@test.com](mailto:Ashish@test.com)                                                                                                                                 |
-  | phone<br /><code>mandatory</code>                                                          | <code>varchar</code> Customer phone number for fraud detection and user tracking. Character limit: 50.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | 9843176540                                                                                                                                                                |
-  | address1<br /><code>optional but recommended for higher approval rate</code>               | <code>varchar</code> The customer's primary billing address line. This field is required for billing and fraud prevention purposes. Character limit: 255.                                                                                                                                                                                                                                                                                                                                                                                                                              | 123 Main Street                                                                                                                                                           |
-  | address2<br /><code>optional</code>               | <code>varchar</code> The customer's secondary billing address line. This field is required for billing and fraud prevention purposes. Character limit: 255.                                                                                                                                                                                                                                                                                                                                                                                                                              | Anytown                                                                                                                                                           |
-  | city<br /><code>optional but recommended for higher approval rate</code>                   | <code>varchar</code> The customer's billing city. This field is required for billing and fraud prevention purposes. Character limit: 50.                                                                                                                                                                                                                                                                                                                                                                                                                                               | New York                                                                                                                                                                  |
-  | state<br /><code>optional but recommended for higher approval rate</code>                  | <code>varchar</code> The customer's billing state or province. This field is required for billing and fraud prevention purposes. Character limit: 50.                                                                                                                                                                                                                                                                                                                                                                                                                                  | NY                                                                                                                                                                        |
-  | country<br /><code>optional but recommended for higher approval rate</code>                | <code>varchar</code> The customer's billing country code. This field is required for billing and fraud prevention purposes. Use ISO 3166-1 alpha-2 country codes. Character limit: 2.                                                                                                                                                                                                                                                                                                                                                                                                  | US                                                                                                                                                                        |
-  | zipcode<br /><code>mandatory</code>                                                        | <code>varchar</code> The customer's billing postal/zip code. This field is required for billing and fraud prevention purposes. Character limit: 20.                                                                                                                                                                                                                                                                                                                                                                                                                                    | 10001                                                                                                                                                                     |
-  | surl<br /><code>mandatory</code>                                                           | <code>URL</code> The success URL to which PayU redirects after a successful transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | [https://example.com/success](https://example.com/success)                                                                                                                |
-  | furl<br /><code>mandatory</code>                                                           | <code>URL</code> The failure URL to which PayU redirects after a failed transaction.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | [https://example.com/failure](https://example.com/failure)                                                                                                                |
-  | api\_version<br /><code>mandatory</code>                                                   | <code>int</code> Constant value to indicate the API version. Always pass as 7.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | 7                                                                                                                                                                         |
-  | si<br /><code>mandatory</code>                                                             | <code>int</code> Signifies user consent for subscriptions. Must be 1 for a valid subscription setup.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | 1                                                                                                                                                                         |
-  | free\_trial<br /><code>optional</code>                                                     | <code>int</code> Enables free trials (adjusts transaction amount to INR 0.00 for Net Banking, INR 2.00 for others).                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | 1                                                                                                                                                                         |
-  | si\_details<br /><code>mandatory</code>                                                    | <code>JSON</code> Details required for subscription registration as per RBI guidelines. Must include billingAmount, billingCurrency, billingCycle, billingInterval, paymentStartDate, and paymentEndDate.                                                                                                                                                                                                                                                                                                                                                                              | \{"billingAmount": "100.00", "billingCurrency": "INR", "billingCycle": "MONTHLY", "billingInterval": 1, "paymentStartDate": "2019-09-01", "paymentEndDate": "2019-12-01"} |
-  | udf1<br /><code>optional but recommended for higher approval rate</code>                   | <code>String</code> If needed, contains the buyer's PAN. For UPI recurring, format is "Buyer's PAN\\\|\\\|Buyer's DOB". Character limit: 255.                                                                                                                                                                                                                                                                                                                                                                                                                                          | AELPR1234E or AELPR1234E\\\|\\\|02-02-1980                                                                                                                                |
-  | udf2<br /><code>optional</code>                                                            | <code>String</code> User-defined field for storing transaction-specific data. Character limit: 255.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | Additional transaction data                                                                                                                                               |
-  | udf3<br />`optional but recommended for higher approval rate`                              | `String` Date of Birth (DOB) of buyer in DD-MM-YYYY                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | 02-02-1980                                                                                                                                                                |
-  | udf4<br />`mandatory for payment aggregators`                                              | `String` End merchant legal entity name. For UPI, this field should not be passed. Character limit: 255.                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | XYZ Pvt. Ltd.                                                                                                                                                             |
-  | udf5<br />`mandatory for cross-border payments`                                            | `String` Contains invoice ID for the merchant. Character limit: 255.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | INV123456                                                                                                                                                                 |
-  | buyer\_type\_business<br />`optional in case of B2B transaction for cross-border payments` | `Binary` To be sent as "1" in case the buyer is a business. In case of individual buyers, it can be skipped. Default is "0".<br />**Note**: This will be included in hash if posted (covered in next section).                                                                                                                                                                                                                                                                                                                                                                         | 1                                                                                                                                                                         |
-  | udf\_params<br />`optional`                                                                | `String JSON`<br /><br />UDF7 value to capture "Import or Export Code" of the buyer<br /><br />UDF8 value to capture Airway Bill Number / Consignment Number (in case of goods imports)                                                                                                                                                                                                                                                                                                                                                                                                | \{"udf7":"0100000029",<br />"udf8":"99953729071"}                                                                                                                         |
-  | hash<br />`mandatory`                                                                      | `String` Crucial security parameter using SHA512 hash encryption. Formula incorporates key, txnid, amount, productinfo, firstname, email, udf fields, si\_details, and merchant salt.                                                                                                                                                                                                                                                                                                                                                                                                  | \<Generated Hash>                                                                                                                                                         |
-</Accordion>
+<Tabs>
+  <Tab title="Request Parameters">
+
+### Mandatory Parameters
+
+| Parameter | Description | Example |
+| :--- | :--- | :--- |
+| <Glossary>key</Glossary> | `varchar` This parameter is the unique Merchant Key provided by PayU for your merchant account. | Your Test Key |
+| <Glossary>txnid</Glossary> | `varchar` This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant's) end. It is an identifier you (merchant) would use to track a particular order. If a transaction using a particular transaction ID has already been successful at PayU, the usage of the same Transaction ID again would fail. Hence, you must post a unique transaction ID for every new transaction. `Character limit`: 25<br />**Note:** Ensure this transaction ID hasn't been processed successfully before. | fd3e847h2 |
+| amount | `float` This parameter should contain the payment amount for the specific transaction.<br />**Note:** Typecast the amount to a float type. The amount can vary based on use cases:<br />• For Net Banking, 0 INR<br />• For Cards & <Glossary>UPI</Glossary>, a minimum of 1 INR (penny transactions) | 1000 |
+| <Glossary>productinfo</Glossary> | `varchar` A brief product description. Short information about the product/service. Character limit: 100 | Time Magazine <Glossary>Subscription</Glossary> |
+| firstname | `varchar` The customer's first name. Character limit is 60. | Ashish |
+| lastname | `varchar` The customer's last name. Character limit is 60. | Kumar |
+| email | `varchar` Contains the email of the customer; highly recommended accuracy as <Glossary>Fraud Detection</Glossary> relies on this. Character limit: 50. | Ashish@test.com |
+| phone | `varchar` Customer phone number for fraud detection and user tracking. Character limit: 50. | 9843176540 |
+| zipcode | `varchar` The customer's billing postal/zip code. Character limit: 20. | 10001 |
+| <Glossary>surl</Glossary> | `URL` The success URL to which PayU redirects after a successful transaction. | https://example.com/success |
+| <Glossary>furl</Glossary> | `URL` The failure URL to which PayU redirects after a failed transaction. | https://example.com/failure |
+| api_version | `int` Constant value to indicate the API version. Always pass as 7. | 7 |
+| <Glossary>SI</Glossary> | `int` Signifies user consent for subscriptions. Must be 1 for a valid subscription setup. | 1 |
+| si_details | `JSON` Details required for subscription registration as per RBI guidelines. Must include billingAmount, billingCurrency, <Glossary>Billing Cycle</Glossary>, billingInterval, paymentStartDate, and paymentEndDate. | {"billingAmount": "100.00", "billingCurrency": "INR", "billingCycle": "MONTHLY", "billingInterval": 1, "paymentStartDate": "2019-09-01", "paymentEndDate": "2019-12-01"} |
+| hash | `String` Crucial security parameter using <Glossary>SHA-512</Glossary> hash encryption. Formula incorporates key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|si_details\|<Glossary>Salt</Glossary> | <Generated Hash> |
+
+### Optional Parameters
+
+| Parameter | Description | Example |
+| :--- | :--- | :--- |
+| address1 | `varchar` The customer's primary billing address line. This field is required for billing and fraud prevention purposes. Character limit: 255. | 123 Main Street |
+| address2 | `varchar` The customer's secondary billing address line. Character limit: 255. | Anytown |
+| city | `varchar` The customer's billing city. Character limit: 50. | New York |
+| state | `varchar` The customer's billing state or province. Character limit: 50. | NY |
+| country | `varchar` The customer's billing country code. Use ISO 3166-1 alpha-2 country codes. Character limit: 2. | US |
+| free_trial | `int` Enables free trials (adjusts transaction amount to INR 0.00 for Net Banking, INR 2.00 for others). | 1 |
+| udf1 | `String` If needed, contains the buyer's <Glossary>PAN</Glossary>. For UPI recurring, format is "Buyer's PAN\|\|Buyer's DOB". Character limit: 255. | AELPR1234E or AELPR1234E\|\|02-02-1980 |
+| udf2 | `String` User-defined field for storing transaction-specific data. Character limit: 255. | Additional transaction data |
+| udf3 | `String` Date of Birth (DOB) of buyer in DD-MM-YYYY | 02-02-1980 |
+| udf4 | `String` End merchant legal entity name. For UPI, this field should not be passed. Character limit: 255. | XYZ Pvt. Ltd. |
+| udf5 | `String` Contains invoice ID for the merchant. Character limit: 255. | INV123456 |
+| buyer_type_business | `Binary` To be sent as "1" in case the buyer is a business. In case of individual buyers, it can be skipped. Default is "0".<br />**Note**: This will be included in hash if posted (covered in next section). | 1 |
+| udf_params | `String JSON`<br /><br />UDF7 value to capture "Import or Export Code" of the buyer<br /><br />UDF8 value to capture Airway Bill Number / Consignment Number (in case of goods imports) | {"udf7":"0100000029","udf8":"99953729071"} |
 
 <Accordion title="Hash Logic" icon="fa-info-circle">
   <PACB_Hashing />
 </Accordion>
 
-#### Sample request
+  </Tab>
+
+  <Tab title="Sample Request">
 
 ```bash
 curl -X POST "https://test.payu.in/_payment" \
@@ -99,7 +116,6 @@ import requests
 
 def payu_payment():
     url = "https://test.payu.in/_payment"
-    
     form_data = {
         'key': 'JP***g',
         'txnid': 'fM3O2HnkpJ8XEC',
@@ -125,11 +141,7 @@ def payu_payment():
         'si_details': '{"billingAmount": "100.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2022-09-01","paymentEndDate": "2022-12-01"}',
         'hash': '2ad878f64de47c7c1149ff554cd00ee44555a8512a1d2cff9690d6ea3c9d9de0bc44b0e77c61dd60a3c64ef970612a9b71761559aa202d2a278d29dc87b998c5'
     }
-    
-    headers = {
-        'Content-Type': 'application/x-www-form-urlencoded'
-    }
-    
+    headers = {'Content-Type': 'application/x-www-form-urlencoded'}
     try:
         response = requests.post(url, data=form_data, headers=headers)
         print(f"Status Code: {response.status_code}")
@@ -148,18 +160,12 @@ using System.Threading.Tasks;
 public class PayUPayment
 {
     private static readonly HttpClient client = new HttpClient();
-
-    public static async Task Main(string[] args)
-    {
-        await ProcessPayment();
-    }
-
+    public static async Task Main(string[] args) { await ProcessPayment(); }
     public static async Task ProcessPayment()
     {
         try
         {
             string url = "https://test.payu.in/_payment";
-            
             var formParams = new List<KeyValuePair<string, string>>()
             {
                 new KeyValuePair<string, string>("key", "JP***g"),
@@ -184,29 +190,21 @@ public class PayUPayment
                 new KeyValuePair<string, string>("buyer_type_business", "1"),
                 new KeyValuePair<string, string>("udf_params", "{\"udf7\":\"0100000029\",\"udf8\":\"99953729071\"}"),
                 new KeyValuePair<string, string>("si_details", "{\"billingAmount\": \"100.00\",\"billingCurrency\": \"INR\",\"billingCycle\": \"MONTHLY\",\"billingInterval\": 1,\"paymentStartDate\": \"2022-09-01\",\"paymentEndDate\": \"2022-12-01\"}"),
-                new KeyValuePair<string, string>("hash", "2ad878f64de47c7c1149ff554cd00ee44555a8512a1d2cff9690d6ea3c9d9de0bc44b0e77c61dd60a3c64ef970612a9b71761559aa202d2a278d29dc87b998c5")
+                new KeyValuePair<string, string>("hash", "2ad878f64de47c7c...")
             };
-
             HttpContent formContent = new FormUrlEncodedContent(formParams);
-            formContent.Headers.ContentType.MediaType = "application/x-www-form-urlencoded";
-
             HttpResponseMessage response = await client.PostAsync(url, formContent);
             string responseContent = await response.Content.ReadAsStringAsync();
-
             Console.WriteLine($"Status Code: {(int)response.StatusCode}");
             Console.WriteLine($"Response: {responseContent}");
         }
-        catch (HttpRequestException ex)
-        {
-            Console.WriteLine($"Error: {ex.Message}");
-        }
+        catch (HttpRequestException ex) { Console.WriteLine($"Error: {ex.Message}"); }
     }
 }
 ```
 ```javascript
 async function processPayment() {
     const url = "https://test.payu.in/_payment";
-    
     const formData = new URLSearchParams();
     formData.append('key', 'JP***g');
     formData.append('txnid', 'fM3O2HnkpJ8XEC');
@@ -230,113 +228,55 @@ async function processPayment() {
     formData.append('buyer_type_business', '1');
     formData.append('udf_params', '{"udf7":"0100000029","udf8":"99953729071"}');
     formData.append('si_details', '{"billingAmount": "100.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2022-09-01","paymentEndDate": "2022-12-01"}');
-    formData.append('hash', '2ad878f64de47c7c1149ff554cd00ee44555a8512a1d2cff9690d6ea3c9d9de0bc44b0e77c61dd60a3c64ef970612a9b71761559aa202d2a278d29dc87b998c5');
-
+    formData.append('hash', '2ad878f64de47c7c...');
     try {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: formData
-        });
-
-        const responseText = await response.text();
+        const response = await fetch(url, { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: formData });
         console.log(`Status Code: ${response.status}`);
-        console.log(`Response: ${responseText}`);
-    } catch (error) {
-        console.error(`Error: ${error.message}`);
-    }
+        console.log(`Response: ${await response.text()}`);
+    } catch (error) { console.error(`Error: ${error.message}`); }
 }
-
 processPayment();
 ```
 ```java
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
+import java.net.*;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class PayUPayment {
-    public static void main(String[] args) {
-        processPayment();
-    }
-
+    public static void main(String[] args) { processPayment(); }
     public static void processPayment() {
         try {
             String apiUrl = "https://test.payu.in/_payment";
             URL url = new URL(apiUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             connection.setDoOutput(true);
-
             Map<String, String> parameters = new HashMap<>();
             parameters.put("key", "JP***g");
             parameters.put("txnid", "fM3O2HnkpJ8XEC");
             parameters.put("amount", "100.00");
             parameters.put("firstname", "PayU User");
-            parameters.put("lastname", "Kumar");
-            parameters.put("email", "test@gmail.com");
-            parameters.put("phone", "9876543210");
-            parameters.put("productinfo", "iPhone Subscription");
-            parameters.put("address1", "123 Main Street");
-            parameters.put("city", "New Delhi");
-            parameters.put("state", "Delhi");
-            parameters.put("country", "India");
             parameters.put("si", "1");
-            parameters.put("surl", "https://apiplayground-response.herokuapp.com/");
-            parameters.put("furl", "https://apiplayground-response.herokuapp.com/");
-            parameters.put("udf1", "AELPR1234E");
-            parameters.put("udf3", "02-02-1980");
-            parameters.put("udf4", "XYZ Pvt. Ltd.");
-            parameters.put("udf5", "INV123456");
-            parameters.put("buyer_type_business", "1");
-            parameters.put("udf_params", "{\"udf7\":\"0100000029\",\"udf8\":\"99953729071\"}");
             parameters.put("si_details", "{\"billingAmount\": \"100.00\",\"billingCurrency\": \"INR\",\"billingCycle\": \"MONTHLY\",\"billingInterval\": 1,\"paymentStartDate\": \"2022-09-01\",\"paymentEndDate\": \"2022-12-01\"}");
-            parameters.put("hash", "2ad878f64de47c7c1149ff554cd00ee44555a8512a1d2cff9690d6ea3c9d9de0bc44b0e77c61dd60a3c64ef970612a9b71761559aa202d2a278d29dc87b998c5");
-
+            parameters.put("hash", "2ad878f64de47c7c...");
             StringBuilder postData = new StringBuilder();
             for (Map.Entry<String, String> param : parameters.entrySet()) {
-                if (postData.length() != 0) {
-                    postData.append('&');
-                }
+                if (postData.length() != 0) postData.append('&');
                 postData.append(URLEncoder.encode(param.getKey(), StandardCharsets.UTF_8));
                 postData.append('=');
                 postData.append(URLEncoder.encode(String.valueOf(param.getValue()), StandardCharsets.UTF_8));
             }
-
-            byte[] postDataBytes = postData.toString().getBytes(StandardCharsets.UTF_8);
-            connection.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
-
-            try (DataOutputStream wr = new DataOutputStream(connection.getOutputStream())) {
-                wr.write(postDataBytes);
-            }
-
+            try (DataOutputStream wr = new DataOutputStream(connection.getOutputStream())) { wr.writeBytes(postData.toString()); }
             int responseCode = connection.getResponseCode();
             System.out.println("Status Code: " + responseCode);
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(
-                responseCode >= 200 && responseCode < 300 ? 
-                connection.getInputStream() : connection.getErrorStream()
-            ));
-            
-            String inputLine;
-            StringBuilder response = new StringBuilder();
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String inputLine; StringBuilder response = new StringBuilder();
+            while ((inputLine = in.readLine()) != null) response.append(inputLine);
             in.close();
-
             System.out.println("Response: " + response.toString());
-
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
-        }
+        } catch (Exception e) { System.err.println("Error: " + e.getMessage()); }
     }
 }
 ```
@@ -344,64 +284,30 @@ public class PayUPayment {
 <?php
 function processPayment() {
     $url = "https://test.payu.in/_payment";
-    
     $postData = array(
-        'key' => 'JP***g',
-        'txnid' => 'fM3O2HnkpJ8XEC',
-        'amount' => '100.00',
-        'firstname' => 'PayU User',
-        'lastname' => 'Kumar',
-        'email' => 'test@gmail.com',
-        'phone' => '9876543210',
-        'productinfo' => 'iPhone Subscription',
-        'address1' => '123 Main Street',
-        'city' => 'New Delhi',
-        'state' => 'Delhi',
-        'country' => 'India',
-        'si' => '1',
-        'surl' => 'https://apiplayground-response.herokuapp.com/',
+        'key' => 'JP***g', 'txnid' => 'fM3O2HnkpJ8XEC', 'amount' => '100.00',
+        'firstname' => 'PayU User', 'lastname' => 'Kumar', 'email' => 'test@gmail.com',
+        'phone' => '9876543210', 'productinfo' => 'iPhone Subscription',
+        'si' => '1', 'surl' => 'https://apiplayground-response.herokuapp.com/',
         'furl' => 'https://apiplayground-response.herokuapp.com/',
-        'udf1' => 'AELPR1234E',
-        'udf3' => '02-02-1980',
-        'udf4' => 'XYZ Pvt. Ltd.',
-        'udf5' => 'INV123456',
-        'buyer_type_business' => '1',
+        'udf1' => 'AELPR1234E', 'udf3' => '02-02-1980', 'udf4' => 'XYZ Pvt. Ltd.',
+        'udf5' => 'INV123456', 'buyer_type_business' => '1',
         'udf_params' => '{"udf7":"0100000029","udf8":"99953729071"}',
         'si_details' => '{"billingAmount": "100.00","billingCurrency": "INR","billingCycle": "MONTHLY","billingInterval": 1,"paymentStartDate": "2022-09-01","paymentEndDate": "2022-12-01"}',
-        'hash' => '2ad878f64de47c7c1149ff554cd00ee44555a8512a1d2cff9690d6ea3c9d9de0bc44b0e77c61dd60a3c64ef970612a9b71761559aa202d2a278d29dc87b998c5'
+        'hash' => '2ad878f64de47c7c...'
     );
-
-    $options = array(
-        CURLOPT_URL => $url,
-        CURLOPT_POST => true,
-        CURLOPT_POSTFIELDS => http_build_query($postData),
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_HTTPHEADER => array(
-            'Content-Type: application/x-www-form-urlencoded'
-        ),
-        CURLOPT_SSL_VERIFYPEER => false,
-        CURLOPT_SSL_VERIFYHOST => false
-    );
-
-    $ch = curl_init();
-    curl_setopt_array($ch, $options);
-
-    $response = curl_exec($ch);
-    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    
-    if ($response === false) {
-        echo "Error: " . curl_error($ch) . "\n";
-    } else {
-        echo "Status Code: " . $httpCode . "\n";
-        echo "Response: " . $response . "\n";
-    }
-    
+    $options = array(CURLOPT_URL => $url, CURLOPT_POST => true, CURLOPT_POSTFIELDS => http_build_query($postData), CURLOPT_RETURNTRANSFER => true);
+    $ch = curl_init(); curl_setopt_array($ch, $options);
+    $response = curl_exec($ch); $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    echo "Status Code: " . $httpCode . "\nResponse: " . $response . "\n";
     curl_close($ch);
 }
-
 processPayment();
 ?>
 ```
+
+  </Tab>
+</Tabs>
 
 ### Step 2: Verify the Mandate
 
@@ -422,7 +328,7 @@ processPayment();
             "unmappedStatus": "pending"
         },
         "result": {
-            "acsTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vcGdzaW0wMS5wYXl1LmluL2luaXRpYXRlIiBtZXRob2Q9InBvc3QiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1lcmNoYW50TmFtZSIgdmFsdWU9IlBBWVUiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1lcmNoYW50Q29kZSIgdmFsdWU9IlNsRXNjdUpBOTgiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1lck5hbWUiIHZhbHVlPSJTdWRoYW5zaHUiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InR4bkFtb3VudCIgdmFsdWU9IjIuMDAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InR4bkRhdGUiIHZhbHVlPSIyMDI1LTEyLTI2Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0eG5DdXJyZW5jeSIgdmFsdWU9IklOUiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iY3VzdE5hbWUiIHZhbHVlPSJzdWRoYW5zaHUiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9ImN1c3RFbWFpbCIgdmFsdWU9InRlc3RAdGVzdC5jb20iPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9ImN1c3RNb2JpbGUiIHZhbHVlPSI5OTk5OTk5OTk5Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0eG5SZWZJZCIgdmFsdWU9Im15X29yZGVyXzI1NDIiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9ImxpdmVtb2RlIiB2YWx1ZT0iZmFsc2UiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9InNvdXJjZSIgdmFsdWU9IiI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iUlUiIHZhbHVlPSJodHRwczovL3Rlc3QucGF5dS5pbi9jZjBmNDliYjIxODkzMDU1YzVhZDcxODI2NDJmYzRjZjMyYTNkNjQ3YWUwODA5ZDJhMDM0MzJmOTIxOTg4NzIxL1Rlc3RQZ19yZXNwb25zZS5waHAiPjxpbnB1dCB0eXBlPSJoaWRkZW4iIG5hbWU9Im1vZGUiIHZhbHVlPSJUa0k9Ij48aW5wdXQgdHlwZT0iaGlkZGVuIiBuYW1lPSJ0eG5EZXNjcmlwdGlvbiIgdmFsdWU9IlRlc3QgTmV0IEJhbmtpbmcgUGF5bWVudCI+PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iaWJpYm9fY29kZSIgdmFsdWU9IkFYSUIiPjwvZm9ybT48c2NyaXB0IHR5cGU9J3RleHQvamF2YXNjcmlwdCc+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICB3aW5kb3cub25sb2FkPWZ1bmN0aW9uKCl7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZG9jdW1lbnQuZm9ybXNbJ3BheW1lbnRfcG9zdCddLnN1Ym1pdCgpOwogICAgICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgICAgICA8L3NjcmlwdD48L2JvZHk+PC9odG1sPg==",
+            "acsTemplate": "PGh0bWw+PGJvZHk+...",
             "otpPostUrl": "https://test.payu.in/ResponseHandler.php"
         }
     }
@@ -432,11 +338,11 @@ processPayment();
   <Accordion title="Response Handling Logic" icon="fa-info-circle">
     ### Expected Values for Successful Registration
 
-    | Response Parameter | Expected Value | Description                                                                       |
-    | ------------------ | -------------- | --------------------------------------------------------------------------------- |
-    | status             | `success`      | Indicates that the transaction is successful with the Net Banking provider        |
-    | payment\_source    | `sist`         | Indicates Net Banking details have been marked correctly for Standing Instruction |
-    | mihpayid           | `<mihpayid>`   | PayU's transaction acknowledgment for a Consent transaction                       |
+    | Response Parameter | Expected Value | Description |
+    | ------------------ | -------------- | ----------- |
+    | <Glossary>status</Glossary> | `success` | Indicates that the transaction is successful with the Net Banking provider |
+    | <Glossary>payment_source</Glossary> | `sist` | Indicates Net Banking details have been marked correctly for Standing Instruction |
+    | <Glossary>mihpayid</Glossary> | `<mihpayid>` | PayU's transaction acknowledgment for a Consent transaction |
   </Accordion>
 </Accordion>
 
@@ -445,16 +351,16 @@ processPayment();
 
   1. **Check Response Parameters**:
 
-  | **Response Parameter** | **Expected Value**              | **Description**                                                                         |
-  | ---------------------- | ------------------------------- | --------------------------------------------------------------------------------------- |
-  | status                 | success                         | Indicates that the transaction is successful with the UPI provider                      |
-  | payment\_source        | SIST                            | Indicates that UPI details have been marked correctly for Standing Instruction          |
-  | mihpayid               | \<mihpayid number> sent by PayU | Indicates PayU’s transaction acknowledgment for a Consent transaction                   |
-  | cardToken              | Alphanumeric string             | Mandatory to be validated if mode is CC or DC returned in response. Should not be empty |
+  | **Response Parameter** | **Expected Value** | **Description** |
+  | ---------------------- | ------------------ | --------------- |
+  | status | success | Indicates that the transaction is successful with the UPI provider |
+  | payment\_source | SIST | Indicates that UPI details have been marked correctly for Standing Instruction |
+  | mihpayid | \<mihpayid number> sent by PayU | Indicates PayU's transaction acknowledgment for a Consent transaction |
+  | <Glossary>cardToken</Glossary> | Alphanumeric string | Mandatory to be validated if mode is CC or DC returned in response. Should not be empty |
 
   2. **Store Mandate Details**:
      * Save `mihpayid` for future recurring payments
-     * Store `cardToken` if tokenization is enabled
+     * Store `cardToken` if <Glossary>Tokenization</Glossary> is enabled
      * Save mandate expiry dates from `si_details`
 
   3. **Test Recurring Payment**:
