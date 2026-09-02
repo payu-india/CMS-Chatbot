@@ -9,11 +9,11 @@ metadata:
 You can manage plans by performing the following actions from PayU dashboard.
 
 - [Create a plan](https://docs.payu.in/docs/internal-review-create-and-manage-plans#create-a-plan)
-- Create subscriptions for a plan
-- View plans
-- Duplicate plans
-- Edit plans
-- Deactivate plans
+- [Create subscriptions for a plan](https://docs.payu.in/docs/internal-review-create-and-manage-plans#create-subscriptions-for-a-plan)
+- [View plans](https://docs.payu.in/docs/internal-review-create-and-manage-plans#view-plans)
+- [Duplicate plans](https://docs.payu.in/docs/internal-review-create-and-manage-plans#duplicate-a-plan)
+- [Edit plans](https://docs.payu.in/docs/internal-review-create-and-manage-plans#edit-a-plan)
+- [Deactivate plans](https://docs.payu.in/docs/internal-review-create-and-manage-plans#deactivate-a-plan)
 
 ## Create a Plan
 
