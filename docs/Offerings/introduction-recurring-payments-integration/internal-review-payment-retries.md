@@ -13,31 +13,41 @@ Payment retry is an automated mechanism that attempts to re-process failed recur
 
 Failed recurring payments are a common challenge for subscription-based businesses. Payment retries help merchants:
 
-**Revenue Recovery**
+<Tabs>
+  <Tab title="Revenue Recovery">
+    - Recover revenue from failed transactions that would otherwise be lost
+    - Increase successful payment collection rates by 15-30% on average
+    - Reduce revenue churn from temporary payment failures
+  </Tab>
 
-- Recover revenue from failed transactions that would otherwise be lost
-- Increase successful payment collection rates by 15-30% on average
-- Reduce revenue churn from temporary payment failures
+  <Tab title="Common Payment Failure Scenarios">
+    - Customer's card has expired
 
-**Common Payment Failure Scenarios:**
+    - Insufficient balance at the time of debit
 
-- Customer's card has expired
-- Insufficient balance at the time of debit
-- Temporary bank system issues or downtime
-- Card blocked by bank for security reasons
-- Network connectivity issues during transaction
+    - Temporary bank system issues or downtime
 
-**Operational Efficiency**
+    - Card blocked by bank for security reasons
 
-- Automate re-attempts instead of manual follow-up
-- Reduce support team workload handling failed payment queries
-- Minimize customer intervention for temporary issues
+    - Network connectivity issues during transaction
+  </Tab>
 
-**Better Customer Experience**
+  <Tab title="Operational Efficiency">
+    - Automate re-attempts instead of manual follow-up
 
-- Seamless subscription continuity without manual customer action
-- Reduced service interruptions from temporary payment issues
-- Proactive resolution before customers notice the problem
+    - Reduce support team workload handling failed payment queries
+
+    - Minimize customer intervention for temporary issues
+  </Tab>
+
+  <Tab title="Better Customer Experience">
+    - Seamless subscription continuity without manual customer action
+
+    - Reduced service interruptions from temporary payment issues
+
+    - Proactive resolution before customers notice the problem
+  </Tab>
+</Tabs>
 
 ## How to Configure Retries
 
