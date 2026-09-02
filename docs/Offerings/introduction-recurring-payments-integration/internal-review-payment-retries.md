@@ -182,9 +182,11 @@ Select one of the following retry types:
 
 After saving, your retry settings are applied immediately to all future failed subscription transactions. Existing failed transactions are not retroactively retried.
 
+***
+
 ## Field Validations
 
-The Retry Configuration page validates each field before saving. Use the following reference when configuring Custom Retry settings:
+The **Retry Configuration** page validates each field before saving. Use the following reference when configuring Custom Retry settings:
 
 <Callout icon="📘" theme="info">
   ### **Technical Validation**
@@ -204,6 +206,8 @@ The Retry Configuration page validates each field before saving. Use the followi
 | Start Time (`startTime`)                         | Mandatory                           | 12-hour format with AM/PM. If Start Time is set, End Time is required.                                                               |
 | End Time (`endTime`)                             | Mandatory                           | 12-hour format with AM/PM. If End Time is set, Start Time is required. End must be after Start. Example: Start = 11 PM → End = 12 AM |
 | Max Number of Retries                            | Mandatory                           | Maximum **7 retries** per subscription type                                                                                          |
+
+***
 
 ## Frequently Asked Questions
 
