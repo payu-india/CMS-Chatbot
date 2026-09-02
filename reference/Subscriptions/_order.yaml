@@ -1,7 +1,7 @@
 - si-transaction-api-parallel-sequencing
 - pre-debit-si-api-parallel-sequencing
 - payment-consent-transaction-payu-hosted
-- copy-of-payment-consent-transaction-using-payu-hosted-checkout
+- payment-consent-transaction-using-payu-hosted-checkout-plan
 - pay-and-subscribe-consent-transaction
 - payment-consent-transaction-merchant-hosted
 - pre_debit_notification_api
