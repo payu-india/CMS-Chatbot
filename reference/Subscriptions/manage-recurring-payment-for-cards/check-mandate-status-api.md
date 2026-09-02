@@ -95,8 +95,8 @@ HTTP Method: **POST**
       <td>
         `JSON` This parameter is in JSON format where:
 
-        * **authPayuId** (mandatory): The value of mihpayid is returned in the payment response of the Registration transaction when the transaction is successfully completed. As described earlier, the merchant needs to map this value against the customer profile at his end so that correct authPayuid will be passed in the request.
-        * **requestId** (mandatory): Unique request value generated at merchant’s end to distinguish independent request call.
+        * `authPayuId` (mandatory): The value of mihpayid is returned in the payment response of the Registration transaction when the transaction is successfully completed. As described earlier, the merchant needs to map this value against the customer profile at his end so that correct authPayuid will be passed in the request.
+        * `requestId` (mandatory): Unique request value generated at merchant’s end to distinguish independent request call.
       </td>
 
       <td>
