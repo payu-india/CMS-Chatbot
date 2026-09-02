@@ -2,6 +2,8 @@
 title: '[Internal Review] UPI Consent Transaction - Plans'
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
   title: UPI Recurring Payment Consent Transaction
   description: >-
