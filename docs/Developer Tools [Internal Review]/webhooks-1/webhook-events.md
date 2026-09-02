@@ -31,7 +31,6 @@ The following are the sample payloads for webhook events.
 ### Payment Successful
 
 ```text
-# PayU sample output or reference
 mihpayid=27553369917
 &mode=SBQR
 &status=success
