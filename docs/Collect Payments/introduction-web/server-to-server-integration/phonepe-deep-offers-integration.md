@@ -10,7 +10,19 @@ metadata:
 next:
   description: ''
 ---
-The following are the sequence of API calls for SDK-less Deep-Offer integration on PhonePe:
+---
+title: PhonePe Deep Offers S2S Integration
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
+The following are the sequence of API calls for <Glossary>SDK</Glossary>-less Deep-Offer integration on PhonePe:
 
 <Cards columns={3}>
   <Card title="1. Initiate S2S Transaction with PayU and Check Response" href="https://docs.payu.in/docs/phonepe-deep-offers-integration#step-1-initiate-s2s-transaction-with-payu-and-check-the-response">
@@ -32,13 +44,13 @@ The following are the sequence of API calls for SDK-less Deep-Offer integration 
   </Card>
 
   <Card title="4. S2S Call Back Response" href="https://docs.payu.in/docs/phonepe-deep-offers-integration#step-4-s2s-call-back-response">
-    Handle the server-to-server callback response from PayU
+    Handle the server-to-server <Glossary>Callback</Glossary> response from PayU
 
     <br />
   </Card>
 
   <Card title="5. Verify the payment" href="https://docs.payu.in/docs/phonepe-deep-offers-integration#step-5-verify-the-payment">
-    Verify the payment status and ensure successful transaction completion
+    Verify the payment <Glossary>status</Glossary> and ensure successful transaction completion
   </Card>
 
   <br />
@@ -50,7 +62,7 @@ The following are the sequence of API calls for SDK-less Deep-Offer integration 
 
 ## Step 1: Initiate S2S transaction with PayU and check the response
 
-First request from Merchant to PayU with the required transaction mandatory/ optional parameters. This needs to be a server-to-server curl call request. For the sample request and response, refer to [Collect Payment API - Server-to-Server](ref:_payment_server_to_server).
+First request from Merchant to PayU with the required transaction mandatory/ optional parameters. This needs to be a server-to-server <Glossary>curl</Glossary> call request. For the sample request and response, refer to [Collect Payment API - Server-to-Server](ref:_payment_server_to_server).
 
 <PaymentAPIEnvironment />
 
@@ -134,10 +146,10 @@ PayU can also send a Server to server call back response whenever the transactio
   unmappedstatus=success&phone=9999999999&txnid=FCDA1R100870163781&hash=84e3 35094bbcb2ddaa0f9a488eb338e143b273765d89c9dfa502402562d0b6f3c7935e28194ca92f7 380be7c84c3695415b106dcf52cb016a15fcf6adc98d724&status=success&curl=https://www. abc.in/payment/handlepayuresposne&firstname=NA&card_no=519619XXXXXX5049&furl= https://www.abc.in/payment/handlepayuresposne&productinfo=2&mode=DC&amount=800.  00&field4=6807112311042810&field3=6807112311042810&field2=838264&field9=SUCC ESS&email=NA&mihpayid=175477248&surl=https://www.ABC.in/payment/handlepayuresp osne&card_hash=9e88cb0573d4a826b61d808c0a870ed4a990682459b0ec9e95ea421e8e47b e8c&field1=42812 
   ```
 
-  The parameter list includes: mihpayid, mode, status, key, txnid, amount, productinfo, firstname, lastname, address1, address2, city, state, country, zipcode, email, phone, udf1, udf2, udf3, udf4, udf5, udf6, udf7, udf8, udf9, udf10, card\_token, card\_no, field0, field1, field2, field3, field4, field5, field6, field7, field8, field9, offer, discount, offer\_availed, unmappedstatus, hash, bank\_ref\_no, surl, curl, furl, and card\_hash
+  The parameter list includes: <Glossary>mihpayid</Glossary>, <Glossary>mode</Glossary>, status, <Glossary>key</Glossary>, <Glossary>txnid</Glossary>, amount, <Glossary>productinfo</Glossary>, firstname, lastname, address1, address2, city, state, country, zipcode, email, phone, udf1, udf2, udf3, udf4, udf5, udf6, udf7, udf8, udf9, udf10, card\_token, card\_no, field0, field1, field2, field3, field4, field5, field6, field7, field8, field9, offer, discount, offer\_availed, <Glossary>unmappedstatus</Glossary>, <Glossary>hash</Glossary>, bank\_ref\_no, <Glossary>surl</Glossary>, curl, <Glossary>furl</Glossary>, and card\_hash
 </Accordion>
 
-<Accordion title="Whitelisting Required" icon="fa-shield">
+<Accordion title="<Glossary>Whitelist</Glossary> Required" icon="fa-shield">
   Whitelisting is required at both merchant's and PayU's end to establish this connection.
 
   * You need to white list the following IP address on your Firewall:
