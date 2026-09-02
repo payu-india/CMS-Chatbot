@@ -165,17 +165,18 @@ Select one of the following retry types:
      | **Cancelled**        | Subscription automatically cancelled           | **Mandate is revoked** | Permanent failures - clean up inactive subscriptions |
 
      <Callout icon="⚠️" theme="warning">
-       **Important:** The **Cancelled** action is **not supported** for AMEX and RUPAY cards. Use **Unpaid** for these card types.
+       ### **Important**
+
+       The **Cancelled** action is **not supported** for AMEX and RUPAY cards. Use **Unpaid** for these card types.
      </Callout>
 
   4. **Weekend Handling:** Enable **Skip weekends** to prevent retry attempts on Saturdays and Sundays.
 
   5. **Save Configuration:** Click **Update** to apply retry settings to your merchant account.
+
+     <Image src="https://files.readme.io/d2ed1e95a18d547a3a650e08a38b7fc524b9aa0a0a38452666aeedc7ccf374d7-payment-retry.gif" align="center" caption="Configure Custom Retry Settings" border={true} />
+
 </Accordion>
-
-
-<Image src="https://files.readme.io/fa9c5b39790b10440b76dbd1b35f5bb589d0add5fbd1ae994f28f23c7eddcfdb-payment-retry.gif" align="center" caption="_Configure Custom Retry Settings_" border={true} framed={true} />
-
 
 ### Step 2: Verify Configuration
 
@@ -186,7 +187,9 @@ After saving, your retry settings are applied immediately to all future failed s
 The Retry Configuration page validates each field before saving. Use the following reference when configuring Custom Retry settings:
 
 <Callout icon="📘" theme="info">
-  **Technical Validation:** Field specifications have been verified against PayU's retry management system. For the latest validation rules, contact PayU Support or refer to internal documentation.
+  ### **Technical Validation**
+
+  Field specifications have been verified against PayU's retry management system. For the latest validation rules, contact PayU Support or refer to internal documentation.
 </Callout>
 
 | Column Name                                      | Field Type                          | Validation / Allowed Values                                                                                                          |
