@@ -232,7 +232,9 @@ These are the signature headers.
   4. Compare to `X-PayU-Dispute-Webhook-Signature-V2` using a **constant-time** comparison (`hmac.compare_digest` in Python, `crypto.timingSafeEqual` on equal-length buffers in Node.js). Match → accept; otherwise reject.
 </Accordion>
 
-### Aggregator (child) merchants
+***
+
+### Aggregator (child) Merchants
 
 If you are an aggregator, dispute webhooks for a child merchant are signed with the **parent aggregator's** merchant key (first segment) and the parent's `merchantSalt` (last segment) — not the child's. Build the string with the parent's credentials.
 
@@ -245,39 +247,27 @@ If you are an aggregator, dispute webhooks for a child merchant are signed with 
 
 ***
 
-## IP allowlisting (secondary hardening)
+## IP Allowlisting
 
-IP allowlisting is a **defense-in-depth** measure, not a replacement for hash/signature verification. Its main purpose: if your webhook URL sits behind a firewall, allowlist PayU's source IPs so deliveries are not blocked. It also lets you drop traffic from unexpected sources early.
+IP allowlisting is a **defense-in-depth** measure, not a replacement for hash/signature verification. Its main purpose is, if your webhook URL sits behind a firewall, allowlist PayU's source IPs so deliveries are not blocked. It also lets you drop traffic from unexpected sources early.
 
 Treat IPs as **subject to change** and always keep hash/signature verification as your primary control.
 
-<Callout icon="🚧" theme="warn">
-  ### The published IP lists are inconsistent across the current docs
-
-  Different existing pages label the same addresses (for example the `3.7.89.x` range) as **Test** on one page and **Production** on another, and the payout IP set differs again. Because an incorrect allowlist can silently drop live webhooks, this page intentionally does **not** reproduce a single list. Confirm the current, authoritative IP set with PayU before allowlisting, and see _Gaps / Needs Validation_ in the accompanying audit notes. The canonical list should live on [Set Up & Configure Webhooks](doc:create-and-manage-webhooks) once reconciled.
-</Callout>
-
 ***
 
-## Verification is failing — common causes
+## Common Causes of Verification Failure
 
-Work down this list; these account for most mismatches.
+<Accordion title="Wrong or Swapped Key or Salt" icon="❎">
+  **Cause:&#x20;**&#x54;he single most common cause of hash mismatch is an incorrect merchant key. For example inserting the MID instead of the merchant **key**, or swapping **key** and **salt** positions in the string.
 
-1. **Wrong or swapped key/salt.** The single most common cause of hash mismatch is an incorrect merchant key — for example inserting the MID instead of the merchant **key**, or swapping **key** and **salt** positions in the string. Double-check both, and that you are using the credentials for the correct environment (Test vs Production).
-2. **Body mutated before hashing.** A framework or middleware that JSON-parses and re-serializes (re-ordering keys, changing number/string formatting, trimming whitespace) will change the bytes you hash. Capture the **raw** body and hash that, before any parsing layer touches it.
-3. **Missing or misplaced pipes / UDFs.** The reverse-hash string must keep **exactly five UDF positions** and all delimiters, even when UDFs are empty. Dropping a pipe or omitting an empty UDF shifts every field and breaks the hash.
-4. **Encoding issues.** Hash over the **UTF-8** bytes. For payment/refund webhooks delivered as `application/x-www-form-urlencoded`, URL-decode values before building the string; mismatched decoding (or double-decoding) changes the input.
-5. **Case or field mismatch on the digest.** Compare against a **lowercase hex** digest. Compare the computed value to the exact `hash`/signature PayU sent.
-6. **Dispute&#x20;**`cb_status`**&#x20;mapping.** For dispute signatures, the signed `cb_status` may differ from the raw JSON value (e.g. `Pending Response` → `PendingResponse`). Apply the signing-time mapping.
-7. **Applying the wrong method.** Reverse hashing is for payment/refund webhooks (hash in body); signature-header verification is for dispute webhooks (header). Using one scheme on the other family will always fail.
+  **Recommended Fix:&#x20;**&#x44;ouble-check both, and that you are using the credentials for the correct environment (Test vs Production).
+</Accordion>
 
-<Callout icon="🚧" theme="warn">
-  ### Not all "verification" advice in older docs is correct
+<Accordion title="Missing or Misplaced Pipes or UDF Parameters" icon="far fa-pipe">
+  **Cause:&#x20;**&#x54;he reverse-hash string should have exactly five UDF positions and all delimiters, even when UDFs are empty. Dropping a pipe or omitting an empty UDF shifts every field and breaks the hash.
 
-  A generic HMAC-SHA256 sample appears on the OverWatch monitoring-alerts page. That is **not** the scheme PayU uses for payment or dispute webhooks — use the reverse-hash and dispute-signature methods on this page. (Flagged for cleanup; see the duplicate-content list in the audit notes.)
-</Callout>
-
-If the request is genuinely reaching you but you still cannot make the hash match, verify one payload by hand with the [Hash Verification Tool](doc:using-payu-hash-verification-tool). If webhooks are **not arriving at all**, that is a delivery problem, not a verification problem — see [Test & Troubleshoot Webhooks](doc:using-webhook-logs).
+  **Recommended Fix:&#x20;**&#x45;nsure to pass empty pipes even if you are not passing any values.
+</Accordion>
 
 ## After verification
 
