@@ -14,8 +14,22 @@ metadata:
     - Stock Keeping Units-based Offer Integration with Seamless Integration
   robots: index
 ---
-<br />
-
+---
+title: SKU-Based Offer using Merchant Hosted Checkout
+deprecated: false
+hidden: false
+metadata:
+  title: SKU-Based Offer using Merchant Hosted Checkout - Offers Integration
+  keywords:
+    - Integrate an SKU-Based Offer with Merchant Hosted Checkout
+    - Integrate Merchant Hosted Checkout with Cashback Offer
+    - Integrate Cashback Offer with Seamless Integration
+    - SKU-Based Offer with Seamless Integration
+    - Integrating SKU-Based Offers with Merchant Hosted Checkout
+    - Stock Keeping Units-based Offer Integration with Merchant Hosted Checkout
+    - Stock Keeping Units-based Offer Integration with Seamless Integration
+  robots: index
+---
 After you create a SKU-based offer on PayU Dashboard, you can start collecting payments for products with SKU-based offer.  For more information on creating a SKU-based offer, refer to [Create a SKU-Based Offer](doc:create-a-sku-based-offer).
 
 <Callout icon="📘" theme="info">
@@ -203,217 +217,49 @@ After you create a SKU-based offer on PayU Dashboard, you can start collecting p
 
 ## Step 3: Payment request
 
-<Accordion title="Additional request parameters for SKU-Based offer" icon="fa-code">
-  <Callout icon="📘" theme="info">
-    **Reference**: For the checkout flow and list of request parameters required for the Offer integration, refer to [Instant Discount or Cashback using Merchant Hosted Checkout](doc:instant-discount-or-cashback-offers-integration-using-merchant-hosted-checkout).
-  </Callout>
 
-  #### cart_details JSON Object Fields Description
+<Tabs>
+  <Tab title="Request Parameters">
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        **Field**
-      </th>
+#### cart_details JSON Object Fields
 
-      <th>
-        **Description**
-      </th>
-    </tr>
-  </thead>
+**Mandatory Parameters**
 
-  <tbody>
-    <tr>
-      <td>
-        amount
-        `mandatory`
-      </td>
+| Parameter | Description | Example |
+| :--- | :--- | :--- |
+| amount `mandatory` | `String` The amount for the SKU-based offer. | — |
+| items `mandatory` | `String` The number of items for the SKU-based offer. | — |
+| sku_details `mandatory` | `JSON Object` The SKU details in a JSON format. Refer to [sku_details JSON Object Field descriptions](#sku_details-json-object-field-descriptions). | — |
 
-      <td>
-        `String` The amount for the SKU-based offer.
-      </td>
-    </tr>
+**Optional Parameters**
 
-    <tr>
-      <td>
-        items
-        `mandatory`
-      </td>
+| Parameter | Description | Example |
+| :--- | :--- | :--- |
+| surcharges | `String` Total txn amount is increased but cart_details.amount is lesser; pass additional amount in surcharges. | — |
+| pre_discount | `String` If the merchant gives a pre-discount on checkout, total txn amount is now reduced; pass the discount amount in pre_discount. | — |
 
-      <td>
-        `String` The number of the items for the SKU-based offer.
-      </td>
-    </tr>
+#### sku_details JSON Object Field Descriptions
 
-    <tr>
-      <td>
-        surcharges
-        `conditional`
-      </td>
+**Mandatory Parameters**
 
-      <td>
-        `String` Total txn amount is now increased, but the cart_details.amount is lesser, to handle the difference, the additional amount added by the merchant should be passed in surcharges field
-      </td>
-    </tr>
+| Parameter | Description | Example |
+| :--- | :--- | :--- |
+| sku_id `mandatory` | `String` Unique identifier for SKU. The Product ID in the Excel file and the **skuId** parameter have the same function. After creating Product IDs on Dashboard, use them as values for the skuId parameter. | — |
+| sku_name `mandatory` | `String` This parameter contains the SKU name. | — |
+| sku_details.quantity `mandatory` | `String` The quantity of SKU added in cart. | — |
+| sku_details.amount_per_sku `mandatory` | `String` The per SKU amount. | — |
 
-    <tr>
-      <td>
-        pre_discount
-        `conditional`
-      </td>
+**Optional Parameters**
 
-      <td>
-        `String` If there are any pre discount given by merchant on their checkout page. Total txn amount is now reduced, but the cart_details.amount is higher, to handle the difference, the discount given by the merchant should be passed in pre_discount field
-      </td>
-    </tr>
+| Parameter | Description | Example |
+| :--- | :--- | :--- |
+| sku_details.offer_key | `String` The Offer Key(s) which can be used for this transaction. | — |
+| sku_details.offer_auto_apply | `String` Flag for when to enable auto application of best offer on this SKU. | — |
 
-    <tr>
-      <td>
-        sku_details
-        `mandatory`
-      </td>
+  </Tab>
 
-      <td>
-        `JSON Object` The SKU details is specified in this parameter in a JSON format. Refer to[ sku_details JSON Object Field descriptions](#sku_details-json-object-field-descriptions) (next table).
-      </td>
-    </tr>
+  <Tab title="Sample Request">
 
-    <tr>
-      <td>
-
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-#### sku_details JSON Object Field descriptions
-
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Field
-      </th>
-
-      <th>
-        Description
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        sku_id
-        `mandatory`
-      </td>
-
-      <td>
-        String_ This parameter contains the unique identifier for SKU.
-
-        * _Note_*: The Product ID in the Excel file as described in the[Create a SKU-Based Offer](doc:create-a-sku-based-offer) section and the **skuId** request parameter used in the Merchant Hosted Checkout Integration for SKU-based offer have the same function, Hence, after you create Product IDs on Dashboard, use them as values for the skuId parameter.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        sku_name
-        `mandatory`
-      </td>
-
-      <td>
-        * String _ This parameter contains the SKU name.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        sku_details.quantity
-        `mandatory`
-      </td>
-
-      <td>
-        * String _ The parameter must contain the quantity of SKU added in cart.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        sku_details.amount_per_sku
-        `mandatory`
-      </td>
-
-      <td>
-        * String _ The parameter must contain the per SKU amount.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        sku_details.offer_key
-        `optional`
-      </td>
-
-      <td>
-        * String_ This parameter must contain the Offer Key(s) which can be used for this transaction. |
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        sku_details.offer_auto_apply
-        `optional`
-      </td>
-
-      <td>
-        * String_This parameter contains the flag for when to enable auto application of best offer on this SKU.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-  > **Notes**:
-  >
-  > * The following order must be used for hashing:
-  >   `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10|offer_key|offer_auto_apply|SALT`
-  >   For more information on hash generation process, refer to [Hashing Request and Response](ref:generate-hash-merchant-hosted).
-  > * If any of the keys is null/not configured, "|" character must be concatenated.
-  > * The above hash logic is for \_payment API version 10 or later.
-</Accordion>
-
-<Accordion title="cart_details Object in sample request" icon="fa-code">
-  ```json
-  "cart_details": {
-      "amount": 55000,
-      "items": 2,
-      "surcharges":"100",
-      "pre_discount":"10"
-      "sku_details": [
-        {
-          "sku_id": "smartphone234",
-          "sku_name": "Smartphone",
-          "amount_per_sku": "45000",
-          "quantity": 1,
-          "offer_key": null,
-          "offer_auto_apply": true
-        },
-        {
-          "sku_id": "smartwatch132",
-          "sku_name": "Smartwatch",
-          "amount_per_sku": "10000",
-          "quantity": 1,
-          "offer_key": [
-            "flat500@2022"
-          ],
-          "offer_auto_apply": false
-        }
-      ]
-    }
-  ```
-</Accordion>
-
-<Accordion title="Sample Request with **cart_details** JSON object:" icon="fa-code">
   ```curl
   curl -X POST "https://test.payu.in/_payment" \
   -H "accept: application/json" \
@@ -637,7 +483,10 @@ After you create a SKU-based offer on PayU Dashboard, you can start collecting p
               "response": "An error occurred during payment processing"
           }
 
-  </Accordion>
+
+  </Tab>
+</Tabs>
+
   # Example usage
   if __name__ == "__main__":
   result = process_card_payment_with_cart_details()
