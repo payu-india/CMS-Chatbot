@@ -29,7 +29,7 @@ next:
       slug: cancel-the-recurring-payment-for-cards
       title: Cancel the Recurring Payment for a Card
 ---
-This section describes how to use the **_payment** API to update an existing recurring payment for a card in case the card belongs to VISA or Mastercard
+This section describes how to use the **\_payment** API to update an existing recurring payment for a card in case the card belongs to VISA or Mastercard
 
 <Callout icon="📘" theme="info">
   **Note**: As per RBI guidelines while modifying the recurring payment, taking consent from the customer and doing an additional factor of authentication is mandatory. You must ensure this is done before using this API. You need to pass **authPayuId** and **action** fields to modify the billing details as part of JSON using this API as described in this section.
@@ -303,7 +303,7 @@ The following table describes the parameters for modifying the recurring payment
       <td>
         This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU.
 
-        **Note**: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer – [https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0) )
+        **Note**: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers ( for more details refer – [https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0) )
 
         This is a JSON object and it includes a set of parameters are described in the the si_details Parameter Description table.
       </td>
@@ -342,99 +342,45 @@ This is applicable for the following scenarios:
 * Merchant has the card token, TAVV(Cryptogram), and the last four digits of the card
 * The token could be created by the merchant or through another partner
 
-> 📘 Note:
->
-> This scenario is applicable if you are PCI compliant and got the network token and TAVV from any other aggregator or schemes and then sent the card transaction request in the form of authentication.
+<Callout icon="📘" theme="info">
+  ### Note:
+
+  This scenario is applicable if you are PCI compliant and got the network token and TAVV from any other aggregator or schemes and then sent the card transaction request in the form of authentication.
+</Callout>
 
 {/* Properly formatted JSX Table */}
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        **Parameter**
-      </th>
+| **Parameter**                         | **Description**                                                                                                                                                                                  | **Value**                                                                                     |
+| :------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------- |
+| store_card_token<br />`mandatory`     | `String` This must include the Network token generated at your end.                                                                                                                              | 1234 4567 2456 3566                                                                           |
+| storecard_token_type<br />`mandatory` | `integer` This parameter is used to specify the store card token type. For this scenario, you must include **1**.                                                                                | 1                                                                                             |
+| additional_info<br />`mandatory`      | `String` This parameter will contain the additional information in the following JSON format:<br />`{"last4Digits": "1234", "tavv": "ABCDEFGH","trid":"1234567890", "tokenRefNo":"abcde123456"}` | `{"last4Digits": "1234", "tavv": "ABCDEFGH","trid":"1234567890", "tokenRefNo":"abcde123456"}` |
 
-      <th>
-        **Description**
-      </th>
+<Callout icon="📘" theme="info">
+  ### Notes for **additional_info** parameter:
 
-      <th>
-        **Value**
-      </th>
-    </tr>
-  </thead>
+  The JSON format contains the following fields:
 
-  <tbody>
-    <tr>
-      <td>
-        store_card_token
-        `mandatory`
-      </td>
+  * **trid** (Token Requestor ID) is the identity given by the networks for creating the tokens. You should be able to get the same from your token provider.
+  * **tokenRefNo** (Token Reference Number) is generated along with the network token. . You should be able to get the same from your token provider.
+  * **TAVV** is a token authentication verification value given by schemes or interchange. Also, known as cryptogram.
 
-      <td>
-        `String` This must include the Network token generated at your end.
-      </td>
+  Additional notes:
 
-      <td>
-        1234 4567 2456 3566
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        storecard_token_type
-        `mandatory`
-      </td>
-
-      <td>
-        `integer` This parameter is used to specify the store card token type. For this scenario, you must include **1**.
-      </td>
-
-      <td>
-        1
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        additional_info
-        `mandatory`
-      </td>
-
-      <td>
-        `String` This parameter will contain the additional information in the following JSON format:
-        `{"last4Digits": "1234", "tavv": "ABCDEFGH","trid":"1234567890", "tokenRefNo":"abcde123456"}`
-      </td>
-
-      <td>
-        `{"last4Digits": "1234", "tavv": "ABCDEFGH","trid":"1234567890", "tokenRefNo":"abcde123456"}`
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-> 📘 Notes for **additional_info** parameter:
->
-> The JSON format contains the following fields:
->
-> * **trid** (Token Requestor ID) is the identity given by the networks for creating the tokens. You should be able to get the same from your token provider.
-> * **tokenRefNo** (Token Reference Number) is generated along with the network token. . You should be able to get the same from your token provider.
-> * **TAVV** is a token authentication verification value given by schemes or interchange. Also, known as cryptogram.
->
-> Additional notes:
->
-> * The last 4 digits of cards is mandatory for all transactions.
-> * Some payment gateways require the Token Requester ID (trid) and Token Reference Number (tokenRefNo) to be passed for processing the transaction. Not passing these values will restrict the number of payment gateways available for processing the transaction.
-> * Token Requester ID (trid) and Token Reference Number (tokenRefNo) are mandatory for Diners token transactions.
+  * The last 4 digits of cards is mandatory for all transactions.
+  * Some payment gateways require the Token Requester ID (trid) and Token Reference Number (tokenRefNo) to be passed for processing the transaction. Not passing these values will restrict the number of payment gateways available for processing the transaction.
+  * Token Requester ID (trid) and Token Reference Number (tokenRefNo) are mandatory for Diners token transactions.
+</Callout>
 
 #### si_details Parameter – JSON Details
 
 The description for the **si_details** parameter (JSON format):
 
-> 📘 **Note**:
->
-> If the request was to modify a subscription,  **si_consent_action** parameter needs to be validated in the response. The field must return values modify based on the action sent in billing details JSON. Also, the payment source returned in such cases will be payu.
+<Callout icon="📘" theme="info">
+  ### **Note**:
+
+  If the request was to modify a subscription,  **si_consent_action** parameter needs to be validated in the response. The field must return values modify based on the action sent in billing details JSON. Also, the payment source returned in such cases will be payu.
+</Callout>
 
 {/* Properly formatted JSX Table */}
 
@@ -612,7 +558,6 @@ Array
     [field8] => 0 | Transaction Completed
     [field9] => Transaction Completed
     [payment_source] => payu
-    [meCode] => {"wibmo_merchant_id":"16329672","hash_key":"b5b013c18d762b6ccbe8d2e8b1e9ec02fe642013524ed02b91846978f8eafa70","acquirer_merchant_id":"175645866049780","mcc":"5499"}
     [PG_TYPE] => CC-PG
     [bank_ref_num] => 528710004895
     [bankcode] => CC
