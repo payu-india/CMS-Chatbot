@@ -2,6 +2,8 @@
 title: '[Internal Review] Cards Consent Transaction - Plans'
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
   description: >-
     Explore how to set up a Cards (Debit or Credit) Recurring Payment Consent
