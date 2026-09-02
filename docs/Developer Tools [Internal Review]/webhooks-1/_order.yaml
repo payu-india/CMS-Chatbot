@@ -2,3 +2,4 @@
 - manage-webhooks
 - verify-webhook-requests
 - handle-webhook-events
+- webhook-events
