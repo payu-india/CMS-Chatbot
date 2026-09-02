@@ -13,13 +13,15 @@ next:
 The **Update SI** API allows you to perform the following:
 
 * RBI Tokenization guideline for 30th June requires every subscription card to be tokenized. Hence, this API must be used to update the subscription with the network token. 
-* This API updates subscriptions with network tokens when PayU is not the token requestor. Merchants must tokenize the card (within T+4 where T is the date of transaction) and share the token through this API after receiving the authorization response**.**
+* This API updates subscriptions with network tokens when PayU is not the token requestor. Merchants must tokenize the card (within T+4 where T is the date of transaction) and share the token through this API after receiving the authorization response\*\*.\*\*
 * For cases where PayU is the token requestor, PayU will do the bulk migration on behalf of merchant. So, this API should not be implemented for such cases. PayU will share the migration result in an excel format to merchants.
 
-> 📘 Notes:
->
-> * This API is helpful for migrating mandates to achieve the 30th June deadline to update card numbers with tokens for subscription setups. 
-> * This API should be used where tokenizing the subscription card is not done by PayU but rather by a different token requestor.
+<Callout icon="📘" theme="info">
+  ### Notes:
+
+  * This API is helpful for migrating mandates to achieve the 30th June deadline to update card numbers with tokens for subscription setups. 
+  * This API should be used where tokenizing the subscription card is not done by PayU but rather by a different token requestor.
+</Callout>
 
 ## Request Parameters
 
@@ -196,7 +198,7 @@ The description for the fields in the JSON are:
           tsp: This is the type of scheme/ network and you need to pass the values according to card network:
           * VISA: Pass 001 for this card network
             * Mastercard: Pass 002 for this card network
-        * _Note_*: The above fields are mandatory for cards.
+        * _Note_\*: The above fields are mandatory for cards.
       </td>
     </tr>
 
@@ -219,7 +221,7 @@ The description for the fields in the JSON are:
 ## Sample request
 
 ```curl
-curl --location 'https://secure.payu.in/merchant/postservice' \
+curl --location 'https://info.payu.in/merchant/postservice.php' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --header 'Cookie: PHPSESSID=jp38t4gvop7ami1ksncksj398v; USERTXNINFO=68ed4df291d9b7.27710642; PHPSESSID=68edd726c95b4' \
 --data-urlencode 'form=2' \
