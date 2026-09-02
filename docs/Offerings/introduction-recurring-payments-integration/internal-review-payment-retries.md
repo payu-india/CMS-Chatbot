@@ -9,6 +9,8 @@ metadata:
 
 Payment retry is an automated mechanism that attempts to re-process failed recurring payment transactions for subscriptions (Standing Instructions). When a scheduled recurring payment fails, the retry system automatically attempts the payment again at configured intervals, improving the chances of successful collection.
 
+***
+
 ## Why Use Payment Retries?
 
 Failed recurring payments are a common challenge for subscription-based businesses. Payment retries help merchants:
@@ -49,6 +51,8 @@ Failed recurring payments are a common challenge for subscription-based business
   </Tab>
 </Tabs>
 
+***
+
 ## How to Configure Retries
 
 PayU provides two approaches to configure payment retries for subscription transactions:
@@ -69,6 +73,8 @@ Smart Retry is fully controlled by PayU using machine learning and historical tr
 
 **When to use:** Merchants who want a hands-off approach with PayU-optimized retry logic.
 
+***
+
 ### Custom Retry (Merchant Configured)
 
 Custom Retry gives you complete control over retry configuration. You can define:
@@ -80,6 +86,8 @@ Custom Retry gives you complete control over retry configuration. You can define
 - **Weekend exclusion:** Skip retry attempts on Saturdays and Sundays
 
 **When to use:** Merchants who need specific retry timing aligned with their business logic or customer payment patterns.
+
+***
 
 ## Common Payment Failure Reasons
 
@@ -93,7 +101,13 @@ Understanding why payments fail helps you configure appropriate retry strategies
 | **Mandate Cancelled**    | Customer has cancelled the mandate from their bank/app              | ❌ No - Customer action required to reinstate            |
 | **Technical Failure**    | Network issues, gateway timeout, or temporary system unavailability | ✅ Yes - Usually resolves automatically                  |
 
-**Best Practice:** Configure 2-3 retry attempts with 24-48 hour intervals for temporary failures like insufficient balance or technical issues.
+<Callout icon="👍" theme="success">
+  ### **Best Practice**
+
+  Configure 2-3 retry attempts with 24-48 hour intervals for temporary failures like insufficient balance or technical issues.
+</Callout>
+
+***
 
 ## Navigate to Retry Settings
 
@@ -112,6 +126,8 @@ To access the retry configuration page:
 
   By default, payment retry is **disabled** on your merchant account. Failed subscription transactions will not be automatically retried until you configure and enable a retry strategy below.
 </Callout>
+
+***
 
 ## Configure Retry Strategy
 
