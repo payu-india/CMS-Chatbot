@@ -100,11 +100,11 @@ You should create plans when:
 Using plans provides merchants with a structured approach to managing subscription-based recurring payments.
 
 <Accordion title="Plan Benefits" icon="fa-list-check">
-    <ul><li><strong>Reusable subscription templates:</strong> Create once, use for multiple customers with the same billing terms, reducing setup errors and saving time.</li>
-    <li><strong>Better dashboard controls:</strong> Manage all subscriptions from a centralized dashboard with clear visibility into plan status and associated subscriptions.</li>
-    <li><strong>Improved reconciliation:</strong> Plan ID or merchant reference, mandate ID, and transaction IDs can be mapped together for easier reporting and tracking.</li>
-    <li><strong>Safer modifications:</strong> Separate draft plan edits from active subscription changes, ensuring you don't accidentally modify live billing arrangements.</li>
-    <li><strong>Simplified subscription link generation:</strong> Quickly create payment links for customers to subscribe to predefined plans without recreating billing details each time.</li></ul>
+  <ul><li><strong>Reusable subscription templates:</strong> Create once, use for multiple customers with the same billing terms, reducing setup errors and saving time.</li>
+  <li><strong>Better dashboard controls:</strong> Manage all subscriptions from a centralized dashboard with clear visibility into plan status and associated subscriptions.</li>
+  <li><strong>Improved reconciliation:</strong> Plan ID or merchant reference, mandate ID, and transaction IDs can be mapped together for easier reporting and tracking.</li>
+  <li><strong>Safer modifications:</strong> Separate draft plan edits from active subscription changes, ensuring you don't accidentally modify live billing arrangements.</li>
+  <li><strong>Simplified subscription link generation:</strong> Quickly create payment links for customers to subscribe to predefined plans without recreating billing details each time.</li></ul>
 </Accordion>
 
 ## Plan Lifecycle and Statuses
@@ -139,13 +139,13 @@ You can access **Plans** under **Subscriptions&#x20;**&#x66;rom the left navigat
 
 From the PayU Dashboard, you can perform the following plan management actions:
 
-- [Create a plan](doc:internal-review-create-and-manage-plans#create-a-plan)
-- [Duplicate a plan](doc:internal-review-create-and-manage-plans#duplicate-a-plan)
-- [Edit a plan](doc:internal-review-create-and-manage-plans#edit-a-plan)
-- [Deactivate a plan](doc:internal-review-create-and-manage-plans#deactivate-a-plan)
-- [Create a subscription from a plan](doc:internal-review-create-and-manage-plans#create-subscriptions-for-a-plan)
+- <Anchor target="_blank" href="https://docs.payu.in/docs/internal-review-create-and-manage-plans#create-a-plan">Create a plan</Anchor>
+- <Anchor target="_blank" href="https://docs.payu.in/docs/internal-review-create-and-manage-plans#duplicate-a-plan">Duplicate a plan</Anchor>
+- <Anchor target="_blank" href="https://docs.payu.in/docs/internal-review-create-and-manage-plans#edit-a-plan">Edit a plan</Anchor>
+- <Anchor target="_blank" href="https://docs.payu.in/docs/internal-review-create-and-manage-plans#deactivate-a-plan">Deactivate a plan</Anchor>
+- <Anchor target="_blank" href="https://docs.payu.in/docs/internal-review-create-and-manage-plans#create-subscriptions-for-a-plan">Create a subscription from a plan</Anchor>
 
-For detailed step-by-step instructions, refer to [Create and Manage Plans](doc:internal-review-create-and-manage-plans).
+For detailed step-by-step instructions, refer to <Anchor target="_blank" href="https://docs.payu.in/docs/internal-review-create-and-manage-plans">Create and Manage Plans</Anchor>.
 
 ## Frequently Asked Questions (FAQs)
 
