@@ -20,7 +20,7 @@ Failed recurring payments are a common challenge for subscription-based business
     - Reduce revenue churn from temporary payment failures
   </Tab>
 
-  <Tab title="Common Payment Failure Scenarios">
+  <Tab title="Common Payment Failure Scenarios" icon="fa-solid fa-triangle-exclamation">
     - Customer's card has expired
 
     - Insufficient balance at the time of debit
@@ -32,7 +32,7 @@ Failed recurring payments are a common challenge for subscription-based business
     - Network connectivity issues during transaction
   </Tab>
 
-  <Tab title="Operational Efficiency">
+  <Tab title="Operational Efficiency" icon="fa-solid fa-gears">
     - Automate re-attempts instead of manual follow-up
 
     - Reduce support team workload handling failed payment queries
@@ -40,7 +40,7 @@ Failed recurring payments are a common challenge for subscription-based business
     - Minimize customer intervention for temporary issues
   </Tab>
 
-  <Tab title="Better Customer Experience">
+  <Tab title="Better Customer Experience" icon="fa-solid fa-face-smile">
     - Seamless subscription continuity without manual customer action
 
     - Reduced service interruptions from temporary payment issues
