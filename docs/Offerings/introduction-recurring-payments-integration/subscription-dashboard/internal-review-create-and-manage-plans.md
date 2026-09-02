@@ -8,7 +8,7 @@ metadata:
 ---
 You can manage plans by performing the following actions from PayU dashboard.
 
-- Create a plan
+- [Create a plan](https://docs.payu.in/docs/internal-review-create-and-manage-plans#create-a-plan)
 - Create subscriptions for a plan
 - View plans
 - Duplicate plans
