@@ -226,7 +226,7 @@ curl --location 'https://info.payu.in/merchant/postservice.php' \
 {
     "status": "active",
     "action": "check_mandate_status",
-    "authpayuid": 25599222315,
+    "authpayuid": "25599222315",
     "amount": "10.00",
     "mandateStartDate": "2025-10-14",
     "mandateEndDate": "2027-12-01"
@@ -242,7 +242,7 @@ curl --location 'https://info.payu.in/merchant/postservice.php' \
   "status": "cancelled",
   "action": "check_mandate_status",
   "authpayuid": "19122384119",
-  "amount": 180.00,
+  "amount": "180.00",
   "mandateStartDate": "2024-02-06",
   "mandateEndDate": "2030-02-06"
 }
@@ -266,7 +266,7 @@ curl --location 'https://info.payu.in/merchant/postservice.php' \
   "status": "discarded",
   "action": "check_mandate_status",
   "authpayuid": "16696314880",
-  "amount": 599.00,
+  "amount": "599.00",
   "mandateStartDate": "2024-01-30",
   "mandateEndDate": "2029-01-30"
 }
@@ -289,7 +289,7 @@ curl --location 'https://info.payu.in/merchant/postservice.php' \
   "status": "failed",
   "action": "check_mandate_status",
   "authpayuid": "15598035386",
-  "amount": 149,
+  "amount": "149.00",
   "mandateStartDate": "2022-08-30",
   "mandateEndDate": "2027-08-30"
 }
@@ -302,7 +302,7 @@ curl --location 'https://info.payu.in/merchant/postservice.php' \
   "status": "deleted",
   "action": "check_mandate_status",
   "authpayuid": "21830274499",
-  "amount": 23888,
+  "amount": "238.88",
   "mandateStartDate": "2025-02-07",
   "mandateEndDate": "2026-01-07",
   "deletedon": "2025-01-26T01:00:33+05:30"
@@ -316,7 +316,7 @@ curl --location 'https://info.payu.in/merchant/postservice.php' \
   "status": "expired",
   "action": "check_mandate_status",
   "authpayuid": "20962358568",
-  "amount": 63000,
+  "amount": "630.00",
   "mandateStartDate": "2024-11-07",
   "mandateEndDate": "2025-01-07"
 }
@@ -349,8 +349,8 @@ curl --location 'https://info.payu.in/merchant/postservice.php' \
 {
   "status": "paused",
   "action": "check_mandate_status",
-  "authpayuid": 21652087097,
-  "amount": "5",
+  "authpayuid": "21652087097",
+  "amount": "500.00",
   "mandateStartDate": "2024-11-24",
   "mandateEndDate": "2025-12-07"
 }
