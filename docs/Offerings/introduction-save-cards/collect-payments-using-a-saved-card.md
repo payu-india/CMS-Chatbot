@@ -976,9 +976,7 @@ This scenario is applicable if you wanted to collect payments using issuer token
   | ccvv | `varchar` This parameter must contain the CVV number of the card – as entered by the customer for the transaction. | 123 |
     </Tab>
       <Tab title="Sample Request">
-
-    </Tab>
-  ```bash
+  ```curl
   curl -X POST "https://test.payu.in/_payment" \
     -H "Content-Type: application/x-www-form-urlencoded" \
     -d "key=Your Test Key" \
