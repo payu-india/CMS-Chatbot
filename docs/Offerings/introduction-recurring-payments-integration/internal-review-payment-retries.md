@@ -46,7 +46,9 @@ PayU provides two approaches to configure payment retries for subscription trans
 ### Smart Retry (PayU Managed)
 
 <Callout icon="🤖" theme="info">
-  **Note:** Verify with PayU Support or your Key Account Manager if Smart Retry is available for your merchant account.
+  ### **Note**
+
+  Verify with PayU Support or your Key Account Manager if Smart Retry is available for your merchant account.
 </Callout>
 
 Smart Retry is fully controlled by PayU using machine learning and historical transaction data. PayU automatically:
