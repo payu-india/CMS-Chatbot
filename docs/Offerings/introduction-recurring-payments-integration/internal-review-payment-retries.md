@@ -118,7 +118,7 @@ To access the retry configuration page:
 3. Click **Revenue Recovery**
 
 
-<Image src="https://files.readme.io/e0c4066c46015cd568fcf6dea4131e54aa506aac522d9efc5cbda72f1fc655b1-revenue-recovery-retry-settings.gif" align="center" caption="_Navigate to Revenue Recovery_" border={true} framed={true} />
+<Image src="https://files.readme.io/e0c4066c46015cd568fcf6dea4131e54aa506aac522d9efc5cbda72f1fc655b1-revenue-recovery-retry-settings.gif" align="center" caption="_Navigate to Revenue Recovery_" border={true} />
 
 
 <Callout icon="⚠️" theme="warning">
@@ -173,6 +173,7 @@ Select one of the following retry types:
   4. **Weekend Handling:** Enable **Skip weekends** to prevent retry attempts on Saturdays and Sundays.
 
   5. **Save Configuration:** Click **Update** to apply retry settings to your merchant account.
+
 
      <Image src="https://files.readme.io/d2ed1e95a18d547a3a650e08a38b7fc524b9aa0a0a38452666aeedc7ccf374d7-payment-retry.gif" align="center" caption="Configure Custom Retry Settings" border={true} />
 
