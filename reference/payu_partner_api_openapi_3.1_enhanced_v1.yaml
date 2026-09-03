@@ -333,6 +333,12 @@ paths:
                   description: >-
                     `string` — Entity type; determines CKYC method and later
                     steps
+              required:
+                - merchant[display_name]
+                - merchant[email]
+                - merchant[mobile]
+                - merchant[product]
+                - merchant[business_details][business_entity_type]
       responses:
         '200':
           description: Successful response
