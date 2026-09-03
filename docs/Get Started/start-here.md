@@ -20,6 +20,8 @@ metadata:
     - payu hosted checkout
     - payu merchant hosted checkout
   robots: index
+next:
+  description: Explore related topics and resources.
 ---
 {/*
 =============================================================================
