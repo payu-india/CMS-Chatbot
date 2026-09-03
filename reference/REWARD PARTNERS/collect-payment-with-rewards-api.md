@@ -1,11 +1,11 @@
 ---
 title: Collect Payment with Rewards API
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:
-  robots: index
+  robots: noindex
 ---
 The **Collect Payment using Rewards** API (**\_payment** API) is used to initiate a payment transaction that combines reward points (TWID/Zillion) with other payment methods like Cards or UPI.
 
