@@ -981,6 +981,10 @@ paths:
                   type: string
                   format: binary
                   description: '`file` — JPG/PNG/PDF, max 5 MB'
+              required:
+                - merchant[document_category]
+                - merchant[document_type]
+                - merchant[processed_document]
       responses:
         '200':
           description: Successful response
