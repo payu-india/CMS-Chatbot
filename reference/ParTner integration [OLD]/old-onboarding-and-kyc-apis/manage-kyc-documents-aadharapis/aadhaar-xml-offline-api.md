@@ -2,7 +2,9 @@
 api:
   file: Partner_Onboarding_APIs_with_Aadhaar_APIs.json
   operationId: post_api-v3-merchants-kyc-document-aadhaar-xml-offline
-hidden: false
+hidden: true
+link:
+  new_tab: false
 ---
 The **Aadhar XML Offline** API allows merchants to submit Aadhaar XML files (obtained from DigiLocker or UIDAI) for KYC verification purposes.
 
@@ -16,70 +18,11 @@ Authorization Bearer token must be generated using **Aadhaar OTP Generation API*
 
 ### Body parameters
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
-
-      <th>
-        Description
-      </th>
-
-      <th>
-        Example
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        aadhaar\_share\_code
-        `mandatory`
-      </td>
-
-      <td>
-        The share code provided when downloading the Aadhaar XML file
-      </td>
-
-      <td>
-        3456
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        merchant\_id
-        `mandatory`
-      </td>
-
-      <td>
-        Unique identifier for the merchant
-      </td>
-
-      <td>
-        8390925
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        aadhaar\_file
-        `mandatory`
-      </td>
-
-      <td>
-        The XML file downloaded from DigiLocker or UIDAI website
-      </td>
-
-      <td>
-        \[FILE]
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| Parameter                           | Description                                                   | Example |
+| :---------------------------------- | :------------------------------------------------------------ | :------ |
+| aadhaar_share_code<br />`mandatory` | The share code provided when downloading the Aadhaar XML file | 3456    |
+| merchant_id<br />`mandatory`        | Unique identifier for the merchant                            | 8390925 |
+| aadhaar_file<br />`mandatory`       | The XML file downloaded from DigiLocker or UIDAI website      | \[FILE] |
 
 ## Sample request
 
@@ -148,5 +91,3 @@ curl --location 'https://partner.payu.in/api/v3/merchants/kyc_document/aadhaar_x
 }
 
 ```
-
-<br />
