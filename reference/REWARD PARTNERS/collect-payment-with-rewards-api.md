@@ -1,7 +1,7 @@
 ---
 title: Collect Payment with Rewards API
 deprecated: false
-hidden: true
+hidden: false
 link:
   new_tab: false
 metadata:
