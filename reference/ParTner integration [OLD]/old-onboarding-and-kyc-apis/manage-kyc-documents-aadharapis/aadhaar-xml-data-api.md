@@ -1,9 +1,10 @@
 ---
-title: Aadhaar XML Data API
 api:
   file: Partner_Onboarding_APIs_with_Aadhaar_APIs.json
   operationId: post_api-v3-merchants-kyc-document-aadhaar-xml-data
-hidden: false
+hidden: true
+link:
+  new_tab: false
 ---
 The Aadhaar XML Data API allows merchants to retrieve Aadhaar data after OTP verification. This API is used in the Aadhaar e-KYC process to fetch the XML data from UIDAI after the user has provided the OTP sent to their registered mobile number.
 
@@ -13,59 +14,14 @@ The Aadhaar XML Data API allows merchants to retrieve Aadhaar data after OTP ver
 
 ### Authorization header
 
-Authorization Bearer token must be generated using \*\*Aadhaar OTP Generation API \*\* with the scope as . For more information, refer to [Aadhaar OTP Generation API](ref:aadhaar-otp-generation-api).
+Authorization Bearer token must be generated using **Aadhaar OTP Generation API** with the scope as . For more information, refer to [Aadhaar OTP Generation API](ref:aadhaar-otp-generation-api).
 
 ### Body
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
-
-      <th>
-        Description
-      </th>
-
-      <th>
-        Example
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        merchant\_id
-        `mandatory`
-      </td>
-
-      <td>
-        Unique identifier for the merchant
-      </td>
-
-      <td>
-        20997866
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        otp
-        `mandatory`
-      </td>
-
-      <td>
-        One-time password received on the user's registered mobile number
-      </td>
-
-      <td>
-        123456
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| Parameter                    | Description                                                       | Example  |
+| :--------------------------- | :---------------------------------------------------------------- | :------- |
+| merchant_id<br />`mandatory` | Unique identifier for the merchant                                | 20997866 |
+| otp<br />`mandatory`         | One-time password received on the user's registered mobile number | 123456   |
 
 ## Sample request
 
