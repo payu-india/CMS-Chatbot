@@ -764,7 +764,7 @@
         "tags": [
           "Manage KYC documents > AadharApis"
         ],
-        "summary": "Aadhar XML Data",
+        "summary": "Aadhaar XML Data API",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -807,7 +807,8 @@
               "application/json": {}
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/api/v3/product_accounts/11ef-11e2-162d9d26-af4b-02975f21d323/generate_merged_document_for_esign": {
