@@ -1,9 +1,10 @@
 ---
-title: Aadhar OTP Generation API
 api:
   file: Partner_Onboarding_APIs_with_Aadhaar_APIs.json
   operationId: post_api-v3-merchants-kyc-document-aadhaar-xml-consent
-hidden: false
+hidden: true
+link:
+  new_tab: false
 ---
 The Aadhar OTP Generation API allows merchants to generate OTP for Aadhaar verification purposes. This API is used to initiate the authentication process by sending an OTP to the mobile number registered with the Aadhaar.
 
@@ -13,59 +14,14 @@ The Aadhar OTP Generation API allows merchants to generate OTP for Aadhaar verif
 
 ### Authorization header
 
-Authorization Bearer token must be generated using \*\*Get Token API \*\* with the scope as . For more information, refer to [Get Token API - Partner Integration](ref:get_token_api).
+Authorization Bearer token must be generated using **Get Token API** with the scope as . For more information, refer to [Get Token API - Partner Integration](ref:get_token_api).
 
 ### Body
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
-
-      <th>
-        Description
-      </th>
-
-      <th>
-        Example
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        merchant\_id
-        `mandatory`
-      </td>
-
-      <td>
-        Unique identifier for the merchant
-      </td>
-
-      <td>
-        20997866
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        aadhar\_number
-        `mandatory`
-      </td>
-
-      <td>
-        12-digit Aadhaar number of the user
-      </td>
-
-      <td>
-        bbbbbbbbbbbb
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| Parameter                      | Description                         | Example      |
+| :----------------------------- | :---------------------------------- | :----------- |
+| merchant_id<br />`mandatory`   | Unique identifier for the merchant  | 20997866     |
+| aadhar_number<br />`mandatory` | 12-digit Aadhaar number of the user | bbbbbbbbbbbb |
 
 ## Sample request
 
