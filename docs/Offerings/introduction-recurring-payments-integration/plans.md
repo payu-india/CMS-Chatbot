@@ -246,17 +246,17 @@ Find answers to frequently asked questions about plans and subscription manageme
 
 2. #### Can I edit a plan?
    <Accordion title="Answer" icon="fa-comment-dots">
-     Yes, you can edit plans through the PayU Dashboard. However, certain fields may have editing restrictions depending on whether the plan has active subscriptions. For details, refer to [Edit a Plan](doc:internal-review-create-and-manage-plans#edit-a-plan).
+     Yes, you can <Anchor target="_blank" href="https://docs.payu.in/docs/internal-review-create-and-manage-plans#edit-a-plan">edit plans</Anchor> through the PayU Dashboard. However, certain fields may have editing restrictions depending on whether the plan has active subscriptions.
    </Accordion>
 
 3. #### Can I delete a plan?
    <Accordion title="Answer" icon="fa-comment-dots">
-     No, you cannot permanently delete a plan. However, you can deactivate it, which moves the plan to <strong>Archived</strong> status. Archived plans cannot be used for new subscriptions but can be duplicated to create new plans with similar settings.
+     No, you cannot permanently <Anchor target="_blank" href="https://docs.payu.in/docs/internal-review-create-and-manage-plans#deactivate-a-plan">delete a plan</Anchor>. However, you can deactivate it, which moves the plan to <strong>Archived</strong> status. Archived plans cannot be used for new subscriptions but can be duplicated to create new plans with similar settings.
    </Accordion>
 
 4. #### Can I duplicate a plan?
    <Accordion title="Answer" icon="fa-comment-dots">
-     Yes, you can duplicate any plan (Draft, Active, or Archived) to create a new plan with the same configuration. When duplicating, you must provide a unique Plan ID for the new plan. This is useful for creating similar plans with minor variations.
+     Yes, you can <Anchor target="_blank" href="https://docs.payu.in/docs/internal-review-create-and-manage-plans#duplicate-a-plan">duplicate any plan</Anchor> (Draft, Active, or Archived) to create a new plan with the same configuration. When duplicating, you must provide a unique Plan ID for the new plan. This is useful for creating similar plans with minor variations.
    </Accordion>
 
 5. #### Can I pause or resume a plan?
@@ -266,5 +266,5 @@ Find answers to frequently asked questions about plans and subscription manageme
 
 6. #### Can I edit a plan that has active subscriptions?
    <Accordion title="Answer" icon="fa-comment-dots">
-     Yes, you can edit plans with active subscriptions, but changes to certain fields like billing amount or billing cycle may only apply to new subscriptions created after the edit. Existing active subscriptions typically continue with their original plan terms. For specific field-level edit restrictions, refer to the plan management documentation.
+     Yes, you can <Anchor target="_blank" href="https://docs.payu.in/docs/internal-review-create-and-manage-plans#edit-a-plan">edit plans</Anchor> with active subscriptions, but changes to certain fields like billing amount or billing cycle may only apply to new subscriptions created after the edit. Existing active subscriptions typically continue with their original plan terms. For specific field-level edit restrictions, refer to the plan management documentation.
    </Accordion>
