@@ -3,6 +3,8 @@ api:
   file: payu_partner_api_openapi_3.1_enhanced_v1.yaml
   operationId: CreateMerchant
 hidden: false
+link:
+  new_tab: false
 ---
 The **CreateMerchant** API creates a new merchant shell account on PayU (Step 01 of 16).
 
