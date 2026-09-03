@@ -3,6 +3,8 @@ api:
   file: payu_partner_api_openapi_3.1_enhanced_v1.yaml
   operationId: UpdateMerchant_BankDetails
 hidden: false
+link:
+  new_tab: false
 ---
 The **UpdateMerchant Business Details** API adds business category, sub-category, expected volume, GST, business name, and CIN where required (Step 04 of 16).
 
