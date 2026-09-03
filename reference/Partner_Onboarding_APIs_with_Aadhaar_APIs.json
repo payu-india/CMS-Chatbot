@@ -711,7 +711,7 @@
         "tags": [
           "Manage KYC documents > AadharApis"
         ],
-        "summary": "Aadhar OTP generation",
+        "summary": "Aadhar OTP Generation API",
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -755,7 +755,8 @@
               "application/json": {}
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/api/v3/merchants/kyc_document/aadhaar_xml_data": {
