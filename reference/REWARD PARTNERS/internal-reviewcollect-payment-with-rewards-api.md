@@ -1,26 +1,20 @@
 ---
-title: '[Internal Review]Collect Payment with Rewards API'
-deprecated: false
-hidden: true
-metadata:
-  robots: index
----
----
 title: Collect Payment with Rewards API
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
-The **Collect Payment using Rewards** API (**_payment** API) is used to initiate a payment transaction that combines reward points (TWID/Zillion) with other payment methods like Cards or UPI.
-
+The **Collect Payment using Rewards** API (**\_payment** API) is used to initiate a payment transaction that combines reward points (TWID/Zillion) with other payment methods like Cards or UPI.
 
 **Environment**
 
-|            |                                                                    |
-| :--------- | :----------------------------------------------------------------- |
-| Test       | [https://test.payu.in/_payment](https://test.payu.in/_payment)     |
-| Production | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
+|            |                                                                     |
+| :--------- | :------------------------------------------------------------------ |
+| Test       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
+| Production | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
 HTTP Method: **POST**
 
@@ -39,6 +33,7 @@ HTTP Method: **POST**
   white-space: nowrap;
 }
 </style>
+
 <Table align={["left","left","left"]}>
   <thead>
     <tr>
@@ -190,9 +185,10 @@ HTTP Method: **POST**
 </Table>
 `}</HTMLBlock>
 
-
+<br />
 
 > **Notes:**
+>
 > - The reward child (RD/TWID) **cannot be the first transaction**
 > - RD is always the **second child** in the split workflow
 > - Bank rewards do not work with saved-card or network-token flows unless `cardBin` and `cardLastFour` are passed
@@ -216,85 +212,90 @@ The `split-info` parameter must be a valid JSON string with the following struct
 
 ### loyaltyDetails Object
 
-| Parameter         | Type   | Description                                                           | Example              |
-|-------------------|--------|-----------------------------------------------------------------------|----------------------|
-| loyaltyApiVersion | Number | Identifies TWID API flow. 0 = legacy; 1 = new routing                | `1`                  |
-| sessionId         | String | Session identifier from Fetch Balance API. TWID validates on redeem   | `"sessionId11323"`   |
-
+| Parameter         | Type   | Description                                                         | Example            |
+| ----------------- | ------ | ------------------------------------------------------------------- | ------------------ |
+| loyaltyApiVersion | Number | Identifies TWID API flow. 0 = legacy; 1 = new routing               | `1`                |
+| sessionId         | String | Session identifier from Fetch Balance API. TWID validates on redeem | `"sessionId11323"` |
 
 ### childPaymentInstruments Parameters
 
 ### For Credit/Debit Card Child
 
-| Parameter           | Description                                                                      | Example                   |
-|---------------------|----------------------------------------------------------------------------------|---------------------------|
-| name                | Payment instrument type                                                          | `"CC"`                    |
-| bankCode            | Bank code for the payment method                                                 | `"CC"`                    |
-| cardNumber          | Card number (for new cards not saved)                                            | `"5123456789012346"`      |
-| storeCardToken      | PayU saved card token (when storecardTokenType = 0)                              | `"c4dba91483c91772bb23c"` |
-| networkToken        | Network token (when storecardTokenType = 1)                                      | `"5123456789012346"`      |
-| altId               | Alternative identifier for the card                                              | `"5123456789012346"`      |
-| storecardTokenType  | 0 = PayU saved card; 1 = Network token (non-PayU)                                | `0` or `1`                |
-| cvv                 | Card CVV                                                                         | `"345"`                   |
-| validThrough        | Card expiry date (MM/YY)                                                         | `"12/27"`                 |
-| ownerName           | Cardholder name                                                                  | `"test"`                  |
-| transactionAmount   | Amount to be charged on this payment instrument                                  | `"997"`                   |
-| userCredentials     | Merchant ID and mobile number (for saved cards)                                  | `"180012:9304204920"`     |
-| additionalInfo      | Additional information object (for network tokens)                               | See below                 |
+| Parameter          | Description                                         | Example                   |
+| ------------------ | --------------------------------------------------- | ------------------------- |
+| name               | Payment instrument type                             | `"CC"`                    |
+| bankCode           | Bank code for the payment method                    | `"CC"`                    |
+| cardNumber         | Card number (for new cards not saved)               | `"5123456789012346"`      |
+| storeCardToken     | PayU saved card token (when storecardTokenType = 0) | `"c4dba91483c91772bb23c"` |
+| networkToken       | Network token (when storecardTokenType = 1)         | `"5123456789012346"`      |
+| altId              | Alternative identifier for the card                 | `"5123456789012346"`      |
+| storecardTokenType | 0 = PayU saved card; 1 = Network token (non-PayU)   | `0` or `1`                |
+| cvv                | Card CVV                                            | `"345"`                   |
+| validThrough       | Card expiry date (MM/YY)                            | `"12/27"`                 |
+| ownerName          | Cardholder name                                     | `"test"`                  |
+| transactionAmount  | Amount to be charged on this payment instrument     | `"997"`                   |
+| userCredentials    | Merchant ID and mobile number (for saved cards)     | `"180012:9304204920"`     |
+| additionalInfo     | Additional information object (for network tokens)  | See below                 |
 
 ### additionalInfo Object (for Network Tokens)
 
-| Parameter   | Description                              | Example                           |
-|-------------|------------------------------------------|-----------------------------------|
-| tavv        | Token Authentication Verification Value  | `"wAAAAAAPtP+g6IAmbSeg1gAAAA="`    |
-| last4digits | Last 4 digits of the card                | `"2346"`                          |
+| Parameter   | Description                             | Example                         |
+| ----------- | --------------------------------------- | ------------------------------- |
+| tavv        | Token Authentication Verification Value | `"wAAAAAAPtP+g6IAmbSeg1gAAAA="` |
+| last4digits | Last 4 digits of the card               | `"2346"`                        |
 
 #### For UPI Child
 
-| Parameter         | Description                                      | Example            |
-|-------------------|--------------------------------------------------|--------------------|
-| name              | Payment instrument type                          | `"UPI"`            |
-| bankCode          | Bank code for UPI                                | `"UPI"`            |
-| vpa               | Virtual Payment Address (UPI ID)                 | `"customer@psp"`   |
-| transactionAmount | Amount to be charged on this payment instrument  | `"995"`            |
+| Parameter         | Description                                     | Example          |
+| ----------------- | ----------------------------------------------- | ---------------- |
+| name              | Payment instrument type                         | `"UPI"`          |
+| bankCode          | Bank code for UPI                               | `"UPI"`          |
+| vpa               | Virtual Payment Address (UPI ID)                | `"customer@psp"` |
+| transactionAmount | Amount to be charged on this payment instrument | `"995"`          |
 
 #### For Reward (RD) Child
 
-| Parameter         | Description                                                                      | Example         |
-|-------------------|----------------------------------------------------------------------------------|-----------------|
-| name              | Payment instrument type (always "RD" for rewards)                                | `"RD"`          |
-| bankCode          | Bank code for reward provider                                                    | `"TWIDLS"`      |
-| transactionAmount | Reward amount to be redeemed                                                     | `"3"`           |
-| rewardId          | Reward identifier from Fetch Balance API response                                | `270943`        |
-| rewardName        | Brand name from `issuerDetailDTO.brandName` in Fetch Balance response (for TWID) | `"twid Cash"`   |
-| cardBin           | Card BIN (first 6 digits). Use "000000" for non-card rewards                     | `"512345"`      |
-| cardLastFour      | Last 4 digits of card. Use "0000" for non-card rewards                           | `"2346"`        |
+| Parameter         | Description                                                                      | Example       |
+| ----------------- | -------------------------------------------------------------------------------- | ------------- |
+| name              | Payment instrument type (always "RD" for rewards)                                | `"RD"`        |
+| bankCode          | Bank code for reward provider                                                    | `"TWIDLS"`    |
+| transactionAmount | Reward amount to be redeemed                                                     | `"3"`         |
+| rewardId          | Reward identifier from Fetch Balance API response                                | `270943`      |
+| rewardName        | Brand name from `issuerDetailDTO.brandName` in Fetch Balance response (for TWID) | `"twid Cash"` |
+| cardBin           | Card BIN (first 6 digits). Use "000000" for non-card rewards                     | `"512345"`    |
+| cardLastFour      | Last 4 digits of card. Use "0000" for non-card rewards                           | `"2346"`      |
 
-> 📘 **Reward Name Mapping**
->
-> The `rewardName` value must match the `issuerDetailDTO.brandName` from the Fetch Balance API response when using TWID rewards. This field is **NOT applicable for Zillion** rewards.
+<Callout icon="📘" theme="info">
+  ### **Reward Name Mapping**
+
+  The `rewardName` value must match the `issuerDetailDTO.brandName` from the Fetch Balance API response when using TWID rewards. This field is **NOT applicable for Zillion** rewards.
+</Callout>
 
 ### Notes
 
 #### Transaction Ordering
+
 - ❌ **The reward child (RD/TWID) CANNOT be the first transaction**
 - ✅ RD must always be the **second child** in the `childPaymentInstruments` array
 - Flow sequence: Core payment → Split-payment → Core payment → Loyalty
 
 #### Bank Rewards Limitation
+
 - ❌ Bank reward redemption does **not work** with:
   - PayU saved-card flows (when card BIN is unavailable)
   - Network-token flows (when card BIN is unavailable)
 - ✅ **Workaround:** Pass `cardBin` and `cardLastFour` in the reward child object
 
 #### Session Consistency
+
 - ⚠️ **CRITICAL:** The `sessionId` in `loyaltyDetails` must be **identical** to the `sessionId` used in the Fetch Balance API request
 - TWID validates this sessionId during the redemption process
 
-
 ## Sample Request
-### Burn Points with Card (TWID) 
-```bash
+
+### Burn Points with Card (TWID)
+
+````bash
 curl -X POST "https://test.payu.in/_payment" \
   -H "Content-Type: application/x-www-form-urlencoded" \
   -d "key=YOUR_MERCHANT_KEY" \
@@ -383,7 +384,7 @@ curl -X POST "https://test.payu.in/_payment" \
   "totalAmount": "1000.00",
   "consent": false
   }
-```
+````
 
 ### Burn Points with Saved Card Flow Network Token Flow (TWID with storecardTokenType = 1)
 
@@ -532,6 +533,7 @@ curl -X POST "https://test.payu.in/_payment" \
   "consent": false
   }
 ```
+
 ## Sample response
 
 ### Success scenario (TWID + Cards)
