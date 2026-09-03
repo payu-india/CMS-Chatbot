@@ -702,7 +702,8 @@
               "application/json": {}
             }
           }
-        }
+        },
+        "x-internal": true
       }
     },
     "/api/v3/merchants/kyc_document/aadhaar_xml_consent": {
