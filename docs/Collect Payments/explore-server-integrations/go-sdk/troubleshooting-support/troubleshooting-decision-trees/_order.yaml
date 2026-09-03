@@ -1,0 +1,5 @@
+- sdk-wont-initialize
+- payment-request-fails
+- hash-verification-fails
+- callback-not-received-tree
+- payment-stuck-pending

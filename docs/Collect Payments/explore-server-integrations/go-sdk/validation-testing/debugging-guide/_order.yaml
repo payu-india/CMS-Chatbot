@@ -1,0 +1,5 @@
+- enable-logging
+- debug-payment-requests
+- debug-hash-generation
+- debug-callbacks
+- use-test-dashboard
