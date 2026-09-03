@@ -5,14 +5,14 @@ hidden: false
 metadata:
   robots: index
 ---
-The **Collect Payment using Rewards** API (**_payment** API) is used to initiate a payment transaction that combines reward points (TWID/Zillion) with other payment methods like Cards or UPI.
+The **Collect Payment using Rewards** API (**\_payment** API) is used to initiate a payment transaction that combines reward points (TWID/Zillion) with other payment methods like Cards or UPI.
 
 **Environment**
 
-|            |                                                                    |
-| :--------- | :----------------------------------------------------------------- |
-| Test       | [https://test.payu.in/_payment](https://test.payu.in/_payment)     |
-| Production | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
+|            |                                                                     |
+| :--------- | :------------------------------------------------------------------ |
+| Test       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
+| Production | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
 HTTP Method: **POST**
 
@@ -31,6 +31,7 @@ HTTP Method: **POST**
   white-space: nowrap;
 }
 </style>
+
 <Table align={["left","left","left"]}>
   <thead>
     <tr>
@@ -79,7 +80,7 @@ HTTP Method: **POST**
         <code>String</code> The payment amount for the transaction.
       </td>
       <td style={{ textAlign: "left" }}>
-        100
+        1000
       </td>
     </tr>
     <tr>
@@ -115,7 +116,7 @@ HTTP Method: **POST**
         <code>String</code> The email address of the customer.
       </td>
       <td style={{ textAlign: "left" }}>
-        test@example.com
+        test@gmail.com
       </td>
     </tr>
     <tr>
@@ -132,50 +133,14 @@ HTTP Method: **POST**
     </tr>
     <tr>
       <td style={{ textAlign: "left" }}>
-        pg <br/>
-        <code>mandatory</code>
-      </td>
-      <td style={{ textAlign: "left" }}>
-        <code>String</code> The pg parameter must contain <code>SPLITPAY</code> for Rewards transactions.
-      </td>
-      <td style={{ textAlign: "left" }}>
-        SPLITPAY
-      </td>
-    </tr>
-    <tr>
-      <td style={{ textAlign: "left" }}>
-        bankcode <br/>
-        <code>mandatory</code>
-      </td>
-      <td style={{ textAlign: "left" }}>
-        <code>String</code> The bankcode parameter. Use <code>TWIDX</code> for TWID Rewards or <code>ZRD</code> for Zillion Rewards.
-      </td>
-      <td style={{ textAlign: "left" }}>
-        TWIDX
-      </td>
-    </tr>
-    <tr>
-      <td style={{ textAlign: "left" }}>
-        splitInfo <br/>
-        <code>mandatory</code>
-      </td>
-      <td style={{ textAlign: "left" }}>
-        <code>JSON</code> This parameter must contain the split payment information including child payment instruments and earn payment instruments.
-      </td>
-      <td style={{ textAlign: "left" }}>
-        See splitInfo structure below
-      </td>
-    </tr>
-    <tr>
-      <td style={{ textAlign: "left" }}>
         surl <br/>
         <code>mandatory</code>
       </td>
       <td style={{ textAlign: "left" }}>
-        <code>String</code> The success URL, which is the page PayU will redirect to if the transaction is successful.
+        <code>String</code> The success URL where the customer is redirected after a successful payment.
       </td>
       <td style={{ textAlign: "left" }}>
-        https://example.com/success
+        https://www.merchant-surl.com
       </td>
     </tr>
     <tr>
@@ -184,10 +149,10 @@ HTTP Method: **POST**
         <code>mandatory</code>
       </td>
       <td style={{ textAlign: "left" }}>
-        <code>String</code> The failure URL, which is the page PayU will redirect to if the transaction fails.
+        <code>String</code> The failure URL where the customer is redirected after a failed payment.
       </td>
       <td style={{ textAlign: "left" }}>
-        https://example.com/failure
+        https://www.merchant-furl.com
       </td>
     </tr>
     <tr>
@@ -196,567 +161,376 @@ HTTP Method: **POST**
         <code>mandatory</code>
       </td>
       <td style={{ textAlign: "left" }}>
-        <code>String</code> The hash calculated by the merchant using: <code>sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|||||SALT)</code>
+        <code>String</code> The hash generated for the transaction.
       </td>
       <td style={{ textAlign: "left" }}>
-        
+        generated_hash_value
       </td>
     </tr>
     <tr>
       <td style={{ textAlign: "left" }}>
-        txn_s2s_flow <br/>
+        split-info <br/>
         <code>mandatory</code>
       </td>
       <td style={{ textAlign: "left" }}>
-        <code>String</code> This parameter must be passed with the value as <strong>4</strong> for Legacy Decoupled flow.
+        <code>JSON String</code> Contains split payment details including childPaymentInstruments, loyaltyDetails, and earnPaymentInstruments. <strong>For new TWID flow, must include loyaltyDetails block with loyaltyApiVersion and sessionId.</strong>
       </td>
       <td style={{ textAlign: "left" }}>
-        4
-      </td>
-    </tr>
-    <tr>
-      <td style={{ textAlign: "left" }}>
-        udf1 - udf5 <br/>
-        <code>optional</code>
-      </td>
-      <td style={{ textAlign: "left" }}>
-        <code>String</code> User-defined fields used to store any information corresponding to a particular transaction.
-      </td>
-      <td style={{ textAlign: "left" }}>
-        
+        See examples below
       </td>
     </tr>
   </tbody>
 </Table>
 `}</HTMLBlock>
 
-## splitInfo JSON Object
+<br />
 
-The `splitInfo` parameter contains the payment instrument details for split payments with rewards.
+> **Notes:**
+>
+> - The reward child (RD/TWID) **cannot be the first transaction**
+> - RD is always the **second child** in the split workflow
+> - Bank rewards do not work with saved-card or network-token flows unless `cardBin` and `cardLastFour` are passed
 
-### Structure
+## Split-Info JSON Structure
+
+The `split-info` parameter must be a valid JSON string with the following structure:
 
 ```json
 {
   "childPaymentInstruments": [...],
-  "earnPaymentInstruments": [...],
+  "loyaltyDetails": {
+    "loyaltyApiVersion": 1,
+    "sessionId": "sessionId11323"
+  },
+  "earnPaymentInstruments": [],
   "totalAmount": "1000.00",
   "consent": false
 }
 ```
 
-### childPaymentInstruments Fields
+### loyaltyDetails Object
 
-<HTMLBlock>{`
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th style={{ textAlign: "left" }}>Field</th>
-      <th style={{ textAlign: "left" }}>Description</th>
-      <th style={{ textAlign: "left" }}>Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style={{ textAlign: "left" }}>name</td>
-      <td style={{ textAlign: "left" }}>The name of the payment method: <strong>CC</strong> for Cards, <strong>RD</strong> for Rewards, <strong>UPI</strong> for UPI</td>
-      <td style={{ textAlign: "left" }}>CC</td>
-    </tr>
-    <tr>
-      <td style={{ textAlign: "left" }}>bankCode</td>
-      <td style={{ textAlign: "left" }}>The bank code identifier. Use <code>TWIDLS</code> for TWID or <code>ZLS</code> for Zillion</td>
-      <td style={{ textAlign: "left" }}>CC</td>
-    </tr>
-    <tr>
-      <td style={{ textAlign: "left" }}>cardNumber <br/><code>mandatory for cards</code></td>
-      <td style={{ textAlign: "left" }}>The credit/debit card number for the transaction</td>
-      <td style={{ textAlign: "left" }}>5123456789012346</td>
-    </tr>
-    <tr>
-      <td style={{ textAlign: "left" }}>cvv <br/><code>mandatory for cards</code></td>
-      <td style={{ textAlign: "left" }}>The Card Verification Value (CVV)</td>
-      <td style={{ textAlign: "left" }}>345</td>
-    </tr>
-    <tr>
-      <td style={{ textAlign: "left" }}>validThrough <br/><code>mandatory for cards</code></td>
-      <td style={{ textAlign: "left" }}>The card expiry date in MM/YY format</td>
-      <td style={{ textAlign: "left" }}>07/25</td>
-    </tr>
-    <tr>
-      <td style={{ textAlign: "left" }}>vpa <br/><code>mandatory for UPI</code></td>
-      <td style={{ textAlign: "left" }}>The Virtual Payment Address for UPI transactions</td>
-      <td style={{ textAlign: "left" }}>kk@okaxis</td>
-    </tr>
-    <tr>
-      <td style={{ textAlign: "left" }}>rewardId <br/><code>mandatory for TWID</code></td>
-      <td style={{ textAlign: "left" }}>The TWID Rewards card holder ID</td>
-      <td style={{ textAlign: "left" }}>269434</td>
-    </tr>
-    <tr>
-      <td style={{ textAlign: "left" }}>cardBin <br/><code>mandatory for TWID</code></td>
-      <td style={{ textAlign: "left" }}>The TWID Rewards card BIN</td>
-      <td style={{ textAlign: "left" }}>512345</td>
-    </tr>
-    <tr>
-      <td style={{ textAlign: "left" }}>cardLastFour <br/><code>mandatory for TWID</code></td>
-      <td style={{ textAlign: "left" }}>The TWID Rewards card last four digits</td>
-      <td style={{ textAlign: "left" }}>2346</td>
-    </tr>
-    <tr>
-      <td style={{ textAlign: "left" }}>transactionAmount</td>
-      <td style={{ textAlign: "left" }}>The amount to be processed for this payment instrument</td>
-      <td style={{ textAlign: "left" }}>512</td>
-    </tr>
-  </tbody>
-</Table>
-`}</HTMLBlock>
+| Parameter         | Type   | Description                                                         | Example            |
+| ----------------- | ------ | ------------------------------------------------------------------- | ------------------ |
+| loyaltyApiVersion | Number | Identifies TWID API flow. 0 = legacy; 1 = new routing               | `1`                |
+| sessionId         | String | Session identifier from Fetch Balance API. TWID validates on redeem | `"sessionId11323"` |
 
-## Sample request
+### childPaymentInstruments Parameters
+
+### For Credit/Debit Card Child
+
+| Parameter          | Description                                         | Example                   |
+| ------------------ | --------------------------------------------------- | ------------------------- |
+| name               | Payment instrument type                             | `"CC"`                    |
+| bankCode           | Bank code for the payment method                    | `"CC"`                    |
+| cardNumber         | Card number (for new cards not saved)               | `"5123456789012346"`      |
+| storeCardToken     | PayU saved card token (when storecardTokenType = 0) | `"c4dba91483c91772bb23c"` |
+| networkToken       | Network token (when storecardTokenType = 1)         | `"5123456789012346"`      |
+| altId              | Alternative identifier for the card                 | `"5123456789012346"`      |
+| storecardTokenType | 0 = PayU saved card; 1 = Network token (non-PayU)   | `0` or `1`                |
+| cvv                | Card CVV                                            | `"345"`                   |
+| validThrough       | Card expiry date (MM/YY)                            | `"12/27"`                 |
+| ownerName          | Cardholder name                                     | `"test"`                  |
+| transactionAmount  | Amount to be charged on this payment instrument     | `"997"`                   |
+| userCredentials    | Merchant ID and mobile number (for saved cards)     | `"180012:9304204920"`     |
+| additionalInfo     | Additional information object (for network tokens)  | See below                 |
+
+### additionalInfo Object (for Network Tokens)
+
+| Parameter   | Description                             | Example                         |
+| ----------- | --------------------------------------- | ------------------------------- |
+| tavv        | Token Authentication Verification Value | `"wAAAAAAPtP+g6IAmbSeg1gAAAA="` |
+| last4digits | Last 4 digits of the card               | `"2346"`                        |
+
+#### For UPI Child
+
+| Parameter         | Description                                     | Example          |
+| ----------------- | ----------------------------------------------- | ---------------- |
+| name              | Payment instrument type                         | `"UPI"`          |
+| bankCode          | Bank code for UPI                               | `"UPI"`          |
+| vpa               | Virtual Payment Address (UPI ID)                | `"customer@psp"` |
+| transactionAmount | Amount to be charged on this payment instrument | `"995"`          |
+
+#### For Reward (RD) Child
+
+| Parameter         | Description                                                                      | Example       |
+| ----------------- | -------------------------------------------------------------------------------- | ------------- |
+| name              | Payment instrument type (always "RD" for rewards)                                | `"RD"`        |
+| bankCode          | Bank code for reward provider                                                    | `"TWIDLS"`    |
+| transactionAmount | Reward amount to be redeemed                                                     | `"3"`         |
+| rewardId          | Reward identifier from Fetch Balance API response                                | `270943`      |
+| rewardName        | Brand name from `issuerDetailDTO.brandName` in Fetch Balance response (for TWID) | `"twid Cash"` |
+| cardBin           | Card BIN (first 6 digits). Use "000000" for non-card rewards                     | `"512345"`    |
+| cardLastFour      | Last 4 digits of card. Use "0000" for non-card rewards                           | `"2346"`      |
+
+<Callout icon="📘" theme="info">
+  ### **Reward Name Mapping**
+
+  The `rewardName` value must match the `issuerDetailDTO.brandName` from the Fetch Balance API response when using TWID rewards. This field is **NOT applicable for Zillion** rewards.
+</Callout>
+
+### Notes
+
+#### Transaction Ordering
+
+- ❌ **The reward child (RD/TWID) CANNOT be the first transaction**
+- ✅ RD must always be the **second child** in the `childPaymentInstruments` array
+- Flow sequence: Core payment → Split-payment → Core payment → Loyalty
+
+#### Bank Rewards Limitation
+
+- ❌ Bank reward redemption does **not work** with:
+  - PayU saved-card flows (when card BIN is unavailable)
+  - Network-token flows (when card BIN is unavailable)
+- ✅ **Workaround:** Pass `cardBin` and `cardLastFour` in the reward child object
+
+#### Session Consistency
+
+- ⚠️ **CRITICAL:** The `sessionId` in `loyaltyDetails` must be **identical** to the `sessionId` used in the Fetch Balance API request
+- TWID validates this sessionId during the redemption process
+
+## Sample Request
 
 ### Burn Points with Card (TWID)
 
-```curl
+````bash
 curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "key": "KOEfPI",
-    "txnid": "ram1234",
-    "productinfo": "Product Info",
-    "amount": "100",
-    "email": "test@example.com",
-    "firstname": "Payu-Admin",
-    "lastname": "",
-    "phone": "880**08522",
-    "surl": "https://pp56admin.payu.in/test_response",
-    "furl": "https://pp56admin.payu.in/test_response",
-    "pg": "SPLITPAY",
-    "bankcode": "TWIDX",
-    "txn_s2s_flow": "4",
-    "splitInfo": {
-      "childPaymentInstruments": [
-        {
-          "name": "CC",
-          "bankCode": "CC",
-          "cardNumber": "5123456789012346",
-          "cvv": "345",
-          "validThrough": "07/25",
-          "ownerName": "Payu",
-          "transactionAmount": "412"
-        },
-        {
-          "name": "RD",
-          "bankCode": "TWIDLS",
-          "transactionAmount": "100",
-          "rewardId": 269434,
-          "cardBin": "512345",
-          "cardLastFour": "2346"
-        }
-      ]
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "key=YOUR_MERCHANT_KEY" \
+  -d "txnid=TXN123456" \
+  -d "amount=1000" \
+  -d "productinfo=Product Info" \
+  -d "firstname=Ashish" \
+  -d "email=test@gmail.com" \
+  -d "phone=9876543210" \
+  -d "surl=https://www.merchant-surl.com" \
+  -d "furl=https://www.merchant-furl.com" \
+  -d "hash=generated_hash_value" \
+  --data-urlencode 'split-info={
+    "childPaymentInstruments": [
+      {
+        "name": "CC",
+        "bankCode": "CC",
+        "cardNumber": "5123456789012346",
+        "cvv": "345",
+        "validThrough": "05/29",
+        "ownerName": "Payu",
+        "transactionAmount": "997"
+      },
+      {
+        "name": "RD",
+        "bankCode": "TWIDLS",
+        "transactionAmount": "3",
+        "rewardId": 270943,
+        "rewardName": "twid Cash",
+        "cardBin": "512345",
+        "cardLastFour": "2346"
+      }
+    ],
+    "loyaltyDetails": {
+      "loyaltyApiVersion": 1,
+      "sessionId": "sessionId11323"
     },
-    "hash": "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741"
+    "earnPaymentInstruments": [],
+    "totalAmount": "1000.00",
+    "consent": false
   }'
-```
-```python
-import requests
-import json
+### Burn Points with Saved Card Flow (TWID and storecardTokenType = 0)
 
-url = "https://test.payu.in/_payment"
+**Use Case:** PayU saved card with reward redemption
 
-data = {
-    "key": "KOEfPI",
-    "txnid": "ram1234",
-    "productinfo": "Product Info",
-    "amount": "100",
-    "email": "test@example.com",
-    "firstname": "Payu-Admin",
-    "lastname": "",
-    "phone": "880**08522",
-    "surl": "https://pp56admin.payu.in/test_response",
-    "furl": "https://pp56admin.payu.in/test_response",
-    "pg": "SPLITPAY",
-    "bankcode": "TWIDX",
-    "txn_s2s_flow": "4",
-    "splitInfo": {
-        "childPaymentInstruments": [
-            {
-                "name": "CC",
-                "bankCode": "CC",
-                "cardNumber": "5123456789012346",
-                "cvv": "345",
-                "validThrough": "07/25",
-                "ownerName": "Payu",
-                "transactionAmount": "412"
-            },
-            {
-                "name": "RD",
-                "bankCode": "TWIDLS",
-                "transactionAmount": "100",
-                "rewardId": 269434,
-                "cardBin": "512345",
-                "cardLastFour": "2346"
-            }
-        ]
-    },
-    "hash": "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741"
-}
-
-headers = {
-    "Content-Type": "application/json"
-}
-
-response = requests.post(url, headers=headers, json=data)
-print(f"Status Code: {response.status_code}")
-print(f"Response: {response.text}")
-```
-```javascript
-const url = "https://test.payu.in/_payment";
-
-const data = {
-    key: "KOEfPI",
-    txnid: "ram1234",
-    productinfo: "Product Info",
-    amount: "100",
-    email: "test@example.com",
-    firstname: "Payu-Admin",
-    lastname: "",
-    phone: "880**08522",
-    surl: "https://pp56admin.payu.in/test_response",
-    furl: "https://pp56admin.payu.in/test_response",
-    pg: "SPLITPAY",
-    bankcode: "TWIDX",
-    txn_s2s_flow: "4",
-    splitInfo: {
-        childPaymentInstruments: [
-            {
-                name: "CC",
-                bankCode: "CC",
-                cardNumber: "5123456789012346",
-                cvv: "345",
-                validThrough: "07/25",
-                ownerName: "Payu",
-                transactionAmount: "412"
-            },
-            {
-                name: "RD",
-                bankCode: "TWIDLS",
-                transactionAmount: "100",
-                rewardId: 269434,
-                cardBin: "512345",
-                cardLastFour: "2346"
-            }
-        ]
-    },
-    hash: "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741"
-};
-
-async function makePayment() {
-    try {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-        
-        const responseText = await response.text();
-        console.log(`Status Code: ${response.status}`);
-        console.log(`Response: ${responseText}`);
-    } catch (error) {
-        console.log(`Error: ${error.message}`);
-    }
-}
-
-makePayment();
-```
-```java
-import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Arrays;
-
-public class PaymentRequest {
-    public static void main(String[] args) {
-        String url = "https://test.payu.in/_payment";
-        
-        Map<String, Object> childInstrument = new HashMap<>();
-        childInstrument.put("name", "CC");
-        childInstrument.put("bankCode", "CC");
-        childInstrument.put("cardNumber", "5123456789012346");
-        childInstrument.put("cvv", "345");
-        childInstrument.put("validThrough", "07/25");
-        childInstrument.put("ownerName", "Payu");
-        childInstrument.put("transactionAmount", "412");
-        
-        Map<String, Object> rewardInstrument = new HashMap<>();
-        rewardInstrument.put("name", "RD");
-        rewardInstrument.put("bankCode", "TWIDLS");
-        rewardInstrument.put("transactionAmount", "100");
-        rewardInstrument.put("rewardId", 269434);
-        rewardInstrument.put("cardBin", "512345");
-        rewardInstrument.put("cardLastFour", "2346");
-        
-        Map<String, Object> splitInfo = new HashMap<>();
-        splitInfo.put("childPaymentInstruments", Arrays.asList(childInstrument, rewardInstrument));
-        
-        Map<String, Object> data = new HashMap<>();
-        data.put("key", "KOEfPI");
-        data.put("txnid", "ram1234");
-        data.put("productinfo", "Product Info");
-        data.put("amount", "100");
-        data.put("email", "test@example.com");
-        data.put("firstname", "Payu-Admin");
-        data.put("lastname", "");
-        data.put("phone", "880**08522");
-        data.put("surl", "https://pp56admin.payu.in/test_response");
-        data.put("furl", "https://pp56admin.payu.in/test_response");
-        data.put("pg", "SPLITPAY");
-        data.put("bankcode", "TWIDX");
-        data.put("txn_s2s_flow", "4");
-        data.put("splitInfo", splitInfo);
-        data.put("hash", "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741");
-        
-        Gson gson = new GsonBuilder().create();
-        String jsonData = gson.toJson(data);
-        
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(jsonData))
-                .build();
-        
-        try {
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println("Status Code: " + response.statusCode());
-            System.out.println("Response: " + response.body());
-        } catch (IOException | InterruptedException e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-    }
-}
-```
-```php
-<?php
-$url = "https://test.payu.in/_payment";
-
-$data = array(
-    "key" => "KOEfPI",
-    "txnid" => "ram1234",
-    "productinfo" => "Product Info",
-    "amount" => "100",
-    "email" => "test@example.com",
-    "firstname" => "Payu-Admin",
-    "lastname" => "",
-    "phone" => "880**08522",
-    "surl" => "https://pp56admin.payu.in/test_response",
-    "furl" => "https://pp56admin.payu.in/test_response",
-    "pg" => "SPLITPAY",
-    "bankcode" => "TWIDX",
-    "txn_s2s_flow" => "4",
-    "splitInfo" => array(
-        "childPaymentInstruments" => array(
-            array(
-                "name" => "CC",
-                "bankCode" => "CC",
-                "cardNumber" => "5123456789012346",
-                "cvv" => "345",
-                "validThrough" => "07/25",
-                "ownerName" => "Payu",
-                "transactionAmount" => "412"
-            ),
-            array(
-                "name" => "RD",
-                "bankCode" => "TWIDLS",
-                "transactionAmount" => "100",
-                "rewardId" => 269434,
-                "cardBin" => "512345",
-                "cardLastFour" => "2346"
-            )
-        )
-    ),
-    "hash" => "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741"
-);
-
-$ch = curl_init($url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-
-$response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-curl_close($ch);
-
-echo "Status Code: " . $httpCode . "\n";
-echo "Response: " . $response . "\n";
-?>
-```
-
-### Burn Points with Card (Zillion)
-
-```curl
+```bash
 curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "key": "KOEfPI",
-    "txnid": "ram1234",
-    "productinfo": "Product Info",
-    "amount": "100",
-    "email": "test@example.com",
-    "firstname": "Payu-Admin",
-    "lastname": "",
-    "phone": "880**08522",
-    "surl": "https://pp56admin.payu.in/test_response",
-    "furl": "https://pp56admin.payu.in/test_response",
-    "pg": "SPLITPAY",
-    "bankcode": "ZRD",
-    "txn_s2s_flow": "4",
-    "splitInfo": {
-      "childPaymentInstruments": [
-        {
-          "name": "CC",
-          "bankCode": "CC",
-          "cardNumber": "5123456789012346",
-          "cvv": "345",
-          "validThrough": "07/25",
-          "ownerName": "Payu",
-          "transactionAmount": "99"
-        },
-        {
-          "name": "RD",
-          "bankCode": "ZLS",
-          "transactionAmount": "1"
-        }
-      ]
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "key=YOUR_MERCHANT_KEY" \
+  -d "txnid=TXN123456" \
+  -d "amount=1000" \
+  -d "productinfo=Product Info" \
+  -d "firstname=Ashish" \
+  -d "email=test@gmail.com" \
+  -d "phone=9876543210" \
+  -d "surl=https://www.merchant-surl.com" \
+  -d "furl=https://www.merchant-furl.com" \
+  -d "hash=generated_hash_value" \
+  --data-urlencode 'split-info={
+    "childPaymentInstruments": [
+    {
+      "name": "CC",
+      "bankCode": "CC",
+      "storeCardToken": "c4dba91483c91772bb23c",
+      "userCredentials": "180012:9304204920",
+      "cvv": "345",
+      "ownerName": "test",
+      "transactionAmount": "997",
+      "storecardTokenType": 0
     },
-    "hash": "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741"
-  }'
+    {
+      "name": "RD",
+      "bankCode": "TWIDLS",
+      "transactionAmount": "3",
+      "rewardId": 270943,
+      "rewardName": "twid Cash",
+      "cardBin": "000000",
+      "cardLastFour": "0000"
+    }
+  ],
+  "loyaltyDetails": {
+    "loyaltyApiVersion": 1,
+    "sessionId": "84664h99870030988ccr"
+  },
+  "earnPaymentInstruments": [],
+  "totalAmount": "1000.00",
+  "consent": false
+  }
+````
+
+### Burn Points with Saved Card Flow Network Token Flow (TWID with storecardTokenType = 1)
+
+**Use Case:** Network token (non-PayU saved card) with TAVV/cryptogram
+
+```bash
+curl -X POST "https://test.payu.in/_payment" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "key=YOUR_MERCHANT_KEY" \
+  -d "txnid=TXN123456" \
+  -d "amount=1000" \
+  -d "productinfo=Product Info" \
+  -d "firstname=Ashish" \
+  -d "email=test@gmail.com" \
+  -d "phone=9876543210" \
+  -d "surl=https://www.merchant-surl.com" \
+  -d "furl=https://www.merchant-furl.com" \
+  -d "hash=generated_hash_value" \
+  --data-urlencode 'split-info={
+    "childPaymentInstruments": [
+    {
+      "name": "CC",
+      "bankCode": "CC",
+      "networkToken": "5123456789012346",
+      "storecardTokenType": 1,
+      "cvv": "345",
+      "validThrough": "12/27",
+      "ownerName": "test",
+      "transactionAmount": "997",
+      "additionalInfo": {
+        "tavv": "wAAAAAAPtP+g6IAmbSeg1gAAAA=",
+        "last4digits": "2346"
+      }
+    },
+    {
+      "name": "RD",
+      "bankCode": "TWIDLS",
+      "transactionAmount": "3",
+      "rewardId": 270943,
+      "rewardName": "twid Cash",
+      "cardBin": "000000",
+      "cardLastFour": "0000"
+    }
+  ],
+  "loyaltyDetails": {
+    "loyaltyApiVersion": 1,
+    "sessionId": "84664h99870030988yyr"
+  },
+  "earnPaymentInstruments": [],
+  "totalAmount": "1000.00",
+  "consent": false
+  }
+```
+
+### Burn Points with ALT ID Flow (TWID)
+
+**Use Case:** Alternative identifier flow with additionalInfo
+
+```bash
+curl -X POST "https://test.payu.in/_payment" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "key=YOUR_MERCHANT_KEY" \
+  -d "txnid=TXN123456" \
+  -d "amount=1000" \
+  -d "productinfo=Product Info" \
+  -d "firstname=Ashish" \
+  -d "email=test@gmail.com" \
+  -d "phone=9876543210" \
+  -d "surl=https://www.merchant-surl.com" \
+  -d "furl=https://www.merchant-furl.com" \
+  -d "hash=generated_hash_value" \
+  --data-urlencode 'split-info={
+    "childPaymentInstruments": [
+    {
+      "name": "CC",
+      "bankCode": "CC",
+      "altId": "5123456789012346",
+      "cvv": "345",
+      "validThrough": "12/27",
+      "ownerName": "test",
+      "transactionAmount": "997",
+      "additionalInfo": {
+        "tavv": "wAAAAAAPtP+g6IAmbSeg1gAAAA=",
+        "last4digits": "2346"
+      }
+    },
+    {
+      "name": "RD",
+      "bankCode": "TWIDLS",
+      "transactionAmount": "3",
+      "rewardId": 270943,
+      "rewardName": "twid Cash",
+      "cardBin": "000000",
+      "cardLastFour": "0000"
+    }
+  ],
+  "loyaltyDetails": {
+    "loyaltyApiVersion": 1,
+    "sessionId": "84664h99870030988yyr"
+  },
+  "earnPaymentInstruments": [],
+  "totalAmount": "1000.00",
+  "consent": false
+}
 ```
 
 ### Burn Points with UPI (TWID)
 
-```curl
+**Use Case:** UPI VPA with reward redemption (Zillion example)
+
+```bash
 curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "key": "KOEfPI",
-    "txnid": "ram1234",
-    "productinfo": "Product Info",
-    "amount": "100",
-    "email": "test@example.com",
-    "firstname": "Payu-Admin",
-    "lastname": "",
-    "phone": "9999999999",
-    "surl": "https://pp56admin.payu.in/test_response",
-    "furl": "https://pp56admin.payu.in/test_response",
-    "pg": "SPLITPAY",
-    "bankcode": "TWIDX",
-    "txn_s2s_flow": "4",
-    "splitInfo": {
-      "childPaymentInstruments": [
-        {
-          "name": "UPI",
-          "bankCode": "UPI",
-          "vpa": "kk@okaxis",
-          "transactionAmount": "412"
-        },
-        {
-          "name": "RD",
-          "bankCode": "TWIDLS",
-          "transactionAmount": "100",
-          "rewardId": 269434,
-          "cardBin": "512345",
-          "cardLastFour": "2346"
-        }
-      ]
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "key=YOUR_MERCHANT_KEY" \
+  -d "txnid=TXN123456" \
+  -d "amount=1000" \
+  -d "productinfo=Product Info" \
+  -d "firstname=Ashish" \
+  -d "email=test@gmail.com" \
+  -d "phone=9876543210" \
+  -d "surl=https://www.merchant-surl.com" \
+  -d "furl=https://www.merchant-furl.com" \
+  -d "hash=generated_hash_value" \
+  --data-urlencode 'split-info={
+    "childPaymentInstruments": [
+    {
+      "name": "UPI",
+      "bankCode": "UPI",
+      "vpa": "customer@psp",
+      "transactionAmount": "995"
     },
-    "hash": "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741"
-  }'
+    {
+      "name": "RD",
+      "bankCode": "TWIDLS",
+      "rewardId": 271508,
+      "rewardName": "Zillion",
+      "transactionAmount": "5"
+    }
+  ],
+  "loyaltyDetails": {
+    "loyaltyApiVersion": 1,
+    "sessionId": "session_placeholder"
+  },
+  "earnPaymentInstruments": [],
+  "totalAmount": "1000.00",
+  "consent": false
+  }
 ```
-
-### Burn Points with UPI (Zillion)
-
-```curl
-curl -X POST "https://test.payu.in/_payment" \
-  -H "accept: application/json" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "key": "KOEfPI",
-    "txnid": "ram1234",
-    "productinfo": "Product Info",
-    "amount": "100",
-    "email": "test@example.com",
-    "firstname": "Payu-Admin",
-    "lastname": "",
-    "phone": "9999999999",
-    "surl": "https://pp56admin.payu.in/test_response",
-    "furl": "https://pp56admin.payu.in/test_response",
-    "pg": "SPLITPAY",
-    "bankcode": "ZRD",
-    "txn_s2s_flow": "4",
-    "splitInfo": {
-      "childPaymentInstruments": [
-        {
-          "name": "UPI",
-          "bankCode": "UPI",
-          "vpa": "kk@okaxis",
-          "transactionAmount": "99"
-        },
-        {
-          "name": "RD",
-          "bankCode": "ZLS",
-          "transactionAmount": "1"
-        }
-      ]
-    },
-    "hash": "3842a54c294792e9c8c37c7eba8d9693a85517cb7a47aea33a0368a8f6b337e8343f5ef4f726af206ef68549b542ff75dc66fb3b8e8fd5786733131a74cbe741"
-  }'
-```
-
-## Response parameters
-
-| Parameter      | Description                                                                                                                                                          | Example          |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
-| mihpayid       | `String` - Unique reference number created for each transaction at PayU                                                                                              | 999091000010475  |
-| mode           | `String` - Payment mode used for the transaction                                                                                                                     | SPLITPAY         |
-| status         | `String` - Transaction status: `success`, `failure`, or `pending`                                                                                                    | success          |
-| unmappedstatus | `String` - Internal transaction status                                                                                                                               | success          |
-| txnid          | `String` - Transaction ID provided by merchant                                                                                                                       | ram1234          |
-| amount         | `String` - Transaction amount                                                                                                                                        | 100              |
-| bankcode       | `String` - Bank code used for the transaction                                                                                                                        | ZRD              |
-| error          | `String` - Error code                                                                                                                                                | E000             |
-| error_Message  | `String` - Error message description                                                                                                                                 | No Error         |
-| splitPayInfo   | `Object` - Contains details of split payment instruments and their respective amounts. For field descriptions, refer to [splitPayInfo Fields](#splitpayinfo-fields). | See sample below |
-
-### splitPayInfo Fields
-
-The `splitPayInfo` object contains the details of each payment instrument used in the split payment transaction. It includes separate objects for each payment method (e.g., `cc` for Cards, `upi` for UPI, `rd` for Rewards).
-
-| Field                 | Description                                                                        | Example   |
-| --------------------- | ---------------------------------------------------------------------------------- | --------- |
-| cc                    | `Object` - Card payment instrument details (present when card is used)             |           |
-| cc.name               | `String` - Name of the payment method                                              | CC        |
-| cc.bankCode           | `String` - Bank code identifier for the card                                       | CC        |
-| cc.transactionAmount  | `String` - Amount processed via card                                               | 412       |
-| upi                   | `Object` - UPI payment instrument details (present when UPI is used)               |           |
-| upi.name              | `String` - Name of the payment method                                              | UPI       |
-| upi.bankCode          | `String` - Bank code identifier for UPI                                            | UPI       |
-| upi.vpa               | `String` - Virtual Payment Address used for the transaction                        | kk@okaxis |
-| upi.transactionAmount | `String` - Amount processed via UPI                                                | 99        |
-| rd                    | `Object` - Reward payment instrument details                                       |           |
-| rd.name               | `String` - Name of the payment method                                              | RD        |
-| rd.bankCode           | `String` - Bank code identifier for rewards (`TWIDLS` for TWID, `ZLS` for Zillion) | TWIDLS    |
-| rd.transactionAmount  | `String` - Amount redeemed via reward points                                       | 100       |
 
 ## Sample response
 
