@@ -155,8 +155,6 @@ Plans in PayU can have the following statuses during their lifecycle:
   </Card>
 </Cards>
 
-**Status Workflow:** Draft → Active → Archived (via deactivation)
-
 ***
 
 ## Access Plans
@@ -191,48 +189,48 @@ Find answers to frequently asked questions about plans and subscription manageme
 
 1. #### What is a plan?
    <Accordion title="Answer" icon="fa-comment-dots">
-     A plan is a reusable subscription template that defines billing terms for recurring payments. It specifies the billing amount, frequency (daily, weekly, monthly, yearly), and interval for charging customers. Plans are created by merchants via the PayU Dashboard or APIs and can be used to generate multiple subscription payment links.
+     A plan is a subscription template that contains all subscription billing details except customer and payment method information. It includes billing amount, billing type (recurring or one-time), and plan description. When a plan is associated with a customer and their payment method, it becomes a subscription. Plans are created by merchants via the PayU Dashboard or APIs and can be reused for multiple customer subscriptions.
    </Accordion>
 
 2. #### When should I create plans?
    <Accordion title="Answer" icon="fa-comment-dots">
      Create plans when you offer subscription-based services with recurring billing cycles. Plans are ideal for:
 
-       <ul>
-       <li><strong>SaaS platforms and digital services:</strong> Software subscriptions with monthly/annual billing</li>
-       <li><strong>OTT and streaming platforms:</strong> Content access with recurring charges</li>
-       <li><strong>Membership programs:</strong> Gym memberships, club subscriptions, loyalty programs</li>
-       <li><strong>Utility and service providers:</strong> Insurance premiums, utility bills, maintenance fees</li>
-       </ul>
+     <ul>
+     <li><strong>SaaS platforms and digital services:</strong> Software subscriptions with monthly/annual billing</li>
+     <li><strong>OTT and streaming platforms:</strong> Content access with recurring charges</li>
+     <li><strong>Membership programs:</strong> Gym memberships, club subscriptions, loyalty programs</li>
+     <li><strong>Utility and service providers:</strong> Insurance premiums, utility bills, maintenance fees</li>
+     </ul>
 
      Plans work best when you need reusable billing templates or want non-technical teams to manage subscriptions via the Dashboard.
    </Accordion>
 
-3. #### What is the difference between a plan and a mandate?
+3. #### What is the difference between a plan and a subscription?
    <Accordion title="Answer" icon="fa-comment-dots">
-     <strong>Plan:</strong> A subscription template defining what to charge and how often (created by merchant before customer sees the offer).<br /> <strong>Mandate:</strong> Customer's authorization to automatically debit their payment method (created after customer provides consent).<br /><br /> <strong>Example:</strong> You create a "Premium Monthly" plan for ₹499/month. When a customer subscribes and completes payment consent, a mandate is created that authorizes PayU to charge ₹499 from their card every month.
+     <strong>Plan:</strong> A billing template containing subscription details minus customer and payment method information (created by merchant).<br /> <strong>Subscription:</strong> Plan + Customer details + Payment method (created when customer subscribes).<br /><br /> <strong>Example:</strong> You create a "Premium Monthly ₹499" plan. When Customer A subscribes by providing their card details and consent, a subscription is created linking the plan to Customer A's card. The same plan can be used when Customer B subscribes with their own payment details, creating a separate subscription.
    </Accordion>
 
-4. #### Can a customer have multiple plans?
+4. #### Can a customer have multiple subscriptions?
    <Accordion title="Answer" icon="fa-comment-dots">
-     Yes, a customer can subscribe to multiple plans. Each subscription creates a separate mandate linked to that specific plan. For example, a customer might have an "OTT Basic" plan and a "Cloud Storage" plan, each with its own mandate and billing schedule.
+     Yes, a customer can subscribe to multiple plans. Each time they subscribe, a new subscription is created that links the plan to their payment method. For example, a customer might subscribe to both an "OTT Basic ₹199" plan and a "Cloud Storage ₹99" plan, creating two separate subscriptions with their own billing schedules.
    </Accordion>
 
-5. #### Is plan status the same as mandate status?
+5. #### Is plan status the same as subscription status?
    <Accordion title="Answer" icon="fa-comment-dots">
-     No. Plan status is merchant-controlled (Draft, Active, Archived) and indicates template availability. Mandate status is ecosystem-controlled (Active, Cancelled, Paused) and indicates whether automatic debits are authorized for a specific customer subscription.
+     No. Plan status is merchant-controlled (Draft, Active, Archived) and indicates whether the billing template is available for creating new subscriptions. Subscription status is customer-specific and indicates the state of an individual customer's subscription (Active, Paused, Cancelled, Expired).
    </Accordion>
 
 6. #### How does billing cycle configuration work?
    <Accordion title="Answer" icon="fa-comment-dots">
      Billing cycle is configured using two parameters:<br /> <strong>Billing Cycle:</strong> The unit of time (DAILY, WEEKLY, MONTHLY, YEARLY)<br /> <strong>Billing Interval:</strong> How many units between charges<br /><br /> <strong>Examples:</strong>
 
-       <ul>
-       <li>Monthly subscription: billingCycle=MONTHLY, billingInterval=1</li>
-       <li>Quarterly subscription: billingCycle=MONTHLY, billingInterval=3</li>
-       <li>Every 3 days: billingCycle=DAILY, billingInterval=3</li>
-       <li>Bi-weekly: billingCycle=WEEKLY, billingInterval=2</li>
-       </ul>
+     <ul>
+     <li>Monthly subscription: billingCycle=MONTHLY, billingInterval=1</li>
+     <li>Quarterly subscription: billingCycle=MONTHLY, billingInterval=3</li>
+     <li>Every 3 days: billingCycle=DAILY, billingInterval=3</li>
+     <li>Bi-weekly: billingCycle=WEEKLY, billingInterval=2</li>
+     </ul>
    </Accordion>
 
 <br />
@@ -248,17 +246,17 @@ Find answers to frequently asked questions about plans and subscription manageme
 
 2. #### Can I edit a plan?
    <Accordion title="Answer" icon="fa-comment-dots">
-     Yes, you can <Anchor target="_blank" href="https://docs.payu.in/docs/internal-review-create-and-manage-plans#edit-a-plan">edit plans</Anchor> through the PayU Dashboard. However, certain fields may have editing restrictions depending on whether the plan has active subscriptions. For details, refer to [Edit a Plan](doc:internal-review-create-and-manage-plans#edit-a-plan).
+     Yes, you can edit plans through the PayU Dashboard. However, certain fields may have editing restrictions depending on whether the plan has active subscriptions. For details, refer to [Edit a Plan](doc:internal-review-create-and-manage-plans#edit-a-plan).
    </Accordion>
 
 3. #### Can I delete a plan?
    <Accordion title="Answer" icon="fa-comment-dots">
-     No, you cannot permanently <Anchor target="_blank" href="https://docs.payu.in/docs/internal-review-create-and-manage-plans#deactivate-a-plan">delete a plan</Anchor>. However, you can deactivate it, which moves the plan to <strong>Archived</strong> status. Archived plans cannot be used for new subscriptions but can be duplicated to create new plans with similar settings.
+     No, you cannot permanently delete a plan. However, you can deactivate it, which moves the plan to <strong>Archived</strong> status. Archived plans cannot be used for new subscriptions but can be duplicated to create new plans with similar settings.
    </Accordion>
 
 4. #### Can I duplicate a plan?
    <Accordion title="Answer" icon="fa-comment-dots">
-     Yes, you can <Anchor target="_blank" href="https://docs.payu.in/docs/internal-review-create-and-manage-plans#duplicate-a-plan">duplicate any plan</Anchor> (Draft, Active, or Archived) to create a new plan with the same configuration. When duplicating, you must provide a unique Plan ID for the new plan. This is useful for creating similar plans with minor variations.
+     Yes, you can duplicate any plan (Draft, Active, or Archived) to create a new plan with the same configuration. When duplicating, you must provide a unique Plan ID for the new plan. This is useful for creating similar plans with minor variations.
    </Accordion>
 
 5. #### Can I pause or resume a plan?
@@ -268,5 +266,5 @@ Find answers to frequently asked questions about plans and subscription manageme
 
 6. #### Can I edit a plan that has active subscriptions?
    <Accordion title="Answer" icon="fa-comment-dots">
-     Yes, you can <Anchor target="_blank" href="https://docs.payu.in/docs/internal-review-create-and-manage-plans#edit-a-plan">edit plans</Anchor> with active subscriptions, but changes to certain fields like billing amount or billing cycle may only apply to new subscriptions created after the edit. Existing active subscriptions typically continue with their original plan terms. For specific field-level edit restrictions, refer to the plan management documentation.
+     Yes, you can edit plans with active subscriptions, but changes to certain fields like billing amount or billing cycle may only apply to new subscriptions created after the edit. Existing active subscriptions typically continue with their original plan terms. For specific field-level edit restrictions, refer to the plan management documentation.
    </Accordion>
