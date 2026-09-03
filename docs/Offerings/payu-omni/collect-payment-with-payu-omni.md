@@ -6,14 +6,24 @@ icon: far fa-arrow-left-from-dotted-line
 metadata:
   robots: index
 ---
-This section walks you through integrating the Collect Payment API to push payment requests from your billing system to PayU-enabled devices (Android POS, All-in-One, or DBQR Display).
+# Integrate PayU Omni — Complete Integration Guide
+
+This comprehensive guide walks you through the complete PayU Omni Integrated Flow: from initiating payment requests to verifying transaction status and reconciliation.
+
+By the end of this guide, you'll be able to:
+- Send order-specific payment requests to your PayU devices
+- Handle webhooks for payment notifications
+- Verify payment status and retrieve transaction details
+- Test your complete integration before going live
+- Build automated reconciliation systems
 
 <Note>
 **Prerequisites**
 
 Before you begin, ensure you have:
 - ✅ A PayU merchant account with Omni product enabled
-- ✅ Partner credentials (`clientId`, `clientSecret`, Partner UUID)
+- ✅ Partner credentials (`clientId`, `clientSecret`, Partner UUID) for Initiate Payment API
+- ✅ Merchant credentials (`mid`, merchant key, merchant salt) for Check Status API
 - ✅ At least one registered PayU device (POS terminal or DBQR display)
 - ✅ Device ID(s) from your PayU account dashboard
 - ✅ OAuth token obtained from PayU Token API (⚠️ Info Gap: Token API endpoint not documented — contact PayU support)
@@ -24,7 +34,7 @@ Before you begin, ensure you have:
 
 ## Step 1: Start Integration
 
-### Step 1.1: Prepare the Request Parameters
+### Step 1.1: Initiate Payment — Prepare Request Parameters
 
 The Initiate Payment API requires both request headers and a JSON body with order details.
 
@@ -262,7 +272,7 @@ The Initiate Payment API requires both request headers and a JSON body with orde
 
 ---
 
-### Step 1.2: Generate HMAC Authorization
+### Step 1.2: Initiate Payment — Generate HMAC Authorization
 
 The `authorization` header requires an HMAC-SHA512 signature computed using your partner credentials.
 
@@ -346,7 +356,7 @@ console.log(`authorization: ${authorizationHeader}`);
 
 ---
 
-### Step 1.3: POST the Payment Request
+### Step 1.3: Initiate Payment — POST the Request
 
 Once you have prepared all parameters and generated the HMAC signature, POST the request to the Initiate Payment endpoint.
 
@@ -400,18 +410,19 @@ curl --location 'https://api.payu.in/partner/initiatePayment' \
 }'
 ```
 
-> **Note:** Replace all placeholder values (`X-Partner-Token`, `X-PayU-Reseller-UUID`, `date`, `authorization`, `accountId`, `posDeviceId`) with your actual credentials and device details before use.
+> **Note:** Replace all placeholder values with your actual credentials and device details before use.
 
 </Accordion>
 
-<Accordion title="Sample Request - Python" icon="fa-code">
+<Accordion title="Sample Request - Other Languages" icon="fa-code">
+
+**Python**
 
 ```python
 import requests
 import json
 
 url = "https://api.payu.in/partner/initiatePayment"
-
 headers = {
     "Content-Type": "application/json",
     "X-Partner-Token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
@@ -419,109 +430,30 @@ headers = {
     "date": "Tue, 15 Nov 2023 08:12:31 GMT",
     "authorization": "hmac username=\"payu_client_id\", algorithm=\"sha512\", headers=\"date\", signature=\"a1b2c3d4e5f6...\""
 }
-
 payload = {
     "accountId": "merchant_12345",
     "txnId": "ORD_20231115_001",
     "amount": 1500.00,
-    "currency": "INR",
-    "paymentSource": "WEB",
-    "paymentMethod": {
-        "name": "POS",
-        "bankCode": "POS"
-    },
-    "additionalInfo": {
-        "txnFlow": "seamless",
-        "txnS2sFlow": "4"
-    },
-    "callBackActions": {
-        "successAction": "https://yoursite.com/webhook/success",
-        "failureAction": "https://yoursite.com/webhook/failure"
-    },
-    "order": {
-        "productInfo": "Coffee and Pastry",
-        "paymentChargeSpecification": {
-            "price": 1500.00
-        }
-    },
-    "omniChannelDetails": {
-        "posDeviceId": "DEVICE_POS_12345",
-        "posPaymentMethod": "sale"
-    },
-    "gstParams": {
-        "gstIn": "29ABCDE1234F1Z5",
-        "gst": "18.00",
-        "cgst": "9.00",
-        "sgst": "9.00"
-    },
-    "printInfo": {
-        "field1": "Table 5",
-        "field2": "Server: John"
-    }
+    # ... (rest of payload)
 }
 
-try:
-    response = requests.post(url, headers=headers, json=payload)
-    print(f"Status Code: {response.status_code}")
-    print(f"Response: {response.text}")
-except Exception as e:
-    print(f"Error: {str(e)}")
+response = requests.post(url, headers=headers, json=payload)
+print(response.text)
 ```
 
-</Accordion>
-
-<Accordion title="Sample Request - PHP" icon="fa-code">
+**PHP**
 
 ```php
 <?php
 $url = "https://api.payu.in/partner/initiatePayment";
-
 $headers = [
     "Content-Type: application/json",
     "X-Partner-Token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-    "X-PayU-Reseller-UUID: 550e8400-e29b-41d4-a716-446655440000",
-    "date: Tue, 15 Nov 2023 08:12:31 GMT",
-    "authorization: hmac username=\"payu_client_id\", algorithm=\"sha512\", headers=\"date\", signature=\"a1b2c3d4e5f6...\""
+    // ... other headers
 ];
-
 $payload = json_encode([
     "accountId" => "merchant_12345",
-    "txnId" => "ORD_20231115_001",
-    "amount" => 1500.00,
-    "currency" => "INR",
-    "paymentSource" => "WEB",
-    "paymentMethod" => [
-        "name" => "POS",
-        "bankCode" => "POS"
-    ],
-    "additionalInfo" => [
-        "txnFlow" => "seamless",
-        "txnS2sFlow" => "4"
-    ],
-    "callBackActions" => [
-        "successAction" => "https://yoursite.com/webhook/success",
-        "failureAction" => "https://yoursite.com/webhook/failure"
-    ],
-    "order" => [
-        "productInfo" => "Coffee and Pastry",
-        "paymentChargeSpecification" => [
-            "price" => 1500.00
-        ]
-    ],
-    "omniChannelDetails" => [
-        "posDeviceId" => "DEVICE_POS_12345",
-        "posPaymentMethod" => "sale"
-    ],
-    "gstParams" => [
-        "gstIn" => "29ABCDE1234F1Z5",
-        "gst" => "18.00",
-        "cgst" => "9.00",
-        "sgst" => "9.00"
-    ],
-    "printInfo" => [
-        "field1" => "Table 5",
-        "field2" => "Server: John"
-    ]
+    // ... rest of payload
 ]);
 
 $ch = curl_init($url);
@@ -529,98 +461,21 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-
 $response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
 curl_close($ch);
-
-echo "Status Code: " . $httpCode . "\n";
-echo "Response: " . $response . "\n";
+echo $response;
 ?>
 ```
 
-</Accordion>
-
-<Accordion title="Sample Request - Java" icon="fa-code">
-
-```java
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-
-public class InitiatePayment {
-    public static void main(String[] args) throws Exception {
-        String url = "https://api.payu.in/partner/initiatePayment";
-        
-        String payload = """
-        {
-          "accountId": "merchant_12345",
-          "txnId": "ORD_20231115_001",
-          "amount": 1500.00,
-          "currency": "INR",
-          "paymentSource": "WEB",
-          "paymentMethod": {
-            "name": "POS",
-            "bankCode": "POS"
-          },
-          "additionalInfo": {
-            "txnFlow": "seamless",
-            "txnS2sFlow": "4"
-          },
-          "callBackActions": {
-            "successAction": "https://yoursite.com/webhook/success",
-            "failureAction": "https://yoursite.com/webhook/failure"
-          },
-          "order": {
-            "productInfo": "Coffee and Pastry",
-            "paymentChargeSpecification": {
-              "price": 1500.00
-            }
-          },
-          "omniChannelDetails": {
-            "posDeviceId": "DEVICE_POS_12345",
-            "posPaymentMethod": "sale"
-          },
-          "gstParams": {
-            "gstIn": "29ABCDE1234F1Z5",
-            "gst": "18.00",
-            "cgst": "9.00",
-            "sgst": "9.00"
-          },
-          "printInfo": {
-            "field1": "Table 5",
-            "field2": "Server: John"
-          }
-        }
-        """;
-
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create(url))
-            .header("Content-Type", "application/json")
-            .header("X-Partner-Token", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...")
-            .header("X-PayU-Reseller-UUID", "550e8400-e29b-41d4-a716-446655440000")
-            .header("date", "Tue, 15 Nov 2023 08:12:31 GMT")
-            .header("authorization", "hmac username=\"payu_client_id\", algorithm=\"sha512\", headers=\"date\", signature=\"a1b2c3d4e5f6...\"")
-            .POST(HttpRequest.BodyPublishers.ofString(payload))
-            .build();
-
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println("Status Code: " + response.statusCode());
-        System.out.println("Response: " + response.body());
-    }
-}
-```
+> **Full code samples available in the [Initiate Payment API Reference](#initiate-payment-api)**
 
 </Accordion>
 
 ---
 
-### Step 1.4: Response Handling & Webhook
+### Step 1.4: Initiate Payment — Handle Response & Webhook
 
-The Initiate Payment API typically returns a `pending` status immediately, as the actual payment happens asynchronously on the device. PayU will send a webhook to your `successAction` or `failureAction` URL once the payment completes.
+The Initiate Payment API typically returns a `pending` status immediately. PayU will send a webhook to your `successAction` URL once the payment completes.
 
 <Accordion title="Success Response (Initiation)" icon="fa-check-circle">
 
@@ -642,85 +497,38 @@ The Initiate Payment API typically returns a `pending` status immediately, as th
 }
 ```
 
-**Key Fields:**
-- `statusCode: "E000"` — Payment initiation succeeded
-- `txnStatus: "pending"` — Payment is awaiting customer action on device
-- `paymentId` — PayU's unique payment identifier (use this for reconciliation)
-
 **What happens next:**
-1. The specified device (`posDeviceId`) activates and displays the payment request
-2. Customer pays on the device (card swipe/tap or DBQR scan)
-3. PayU sends a webhook to your `successAction` or `failureAction` URL
-4. You call the Check Transaction Status API to retrieve final details
+1. Device activates and displays the payment request
+2. Customer pays on the device (card or DBQR scan)
+3. PayU sends webhook to your `successAction` URL
+4. You call Check Transaction Status API (Step 1.5)
 
 </Accordion>
 
-<Accordion title="Failure Response (Initiation)" icon="fa-times-circle">
+<Accordion title="Failure Response Examples" icon="fa-times-circle">
 
-**Example 1: Invalid Device ID**
-
+**Invalid Device ID:**
 ```json
 {
   "metaData": {
     "message": "Invalid Device Id",
-    "referenceId": "REF_20231115_12346",
     "statusCode": "E2081",
-    "txnId": "ORD_20231115_002",
-    "txnStatus": "failed",
-    "unmappedStatus": "failure"
-  },
-  "result": null
+    "txnStatus": "failed"
+  }
 }
 ```
 
-**Example 2: Invalid PG & Bank Code**
+**Common Error Codes:**
 
-```json
-{
-  "metaData": {
-    "message": "Invalid PG & Bank Code Combination",
-    "referenceId": "REF_20231115_12347",
-    "statusCode": "E1101",
-    "txnId": "ORD_20231115_003",
-    "txnStatus": "failed",
-    "unmappedStatus": "failure"
-  },
-  "result": null
-}
-```
-
-**Example 3: Inactive Payment Option**
-
-```json
-{
-  "metaData": {
-    "message": "Merchant Integration Exception - Inactive payment option",
-    "referenceId": "REF_20231115_12348",
-    "statusCode": "EX158",
-    "txnId": "ORD_20231115_004",
-    "txnStatus": "failed",
-    "unmappedStatus": "failure"
-  },
-  "result": null
-}
-```
-
-**Common Failure Error Codes:**
-
-| Code | Meaning | Action Required |
-|------|---------|-----------------|
-| `E2081` | Invalid Device ID | Verify `posDeviceId` exists in your PayU dashboard |
-| `E1101` | Invalid PG & Bank Code | Ensure `paymentMethod.name` and `paymentMethod.bankCode` are both set to "POS" |
-| `EX158` | Inactive payment option | Contact PayU support to enable Omni product for your account |
-| `E342` | Transaction not initiated | Check all mandatory parameters; review API logs |
+| Code | Meaning | Action |
+|------|---------|--------|
+| `E2081` | Invalid Device ID | Verify `posDeviceId` in dashboard |
+| `E1101` | Invalid PG & Bank Code | Use `"POS"` for both name and bankCode |
+| `EX158` | Inactive payment option | Contact PayU to enable Omni |
 
 </Accordion>
 
-<Accordion title="Webhook Payload (Payment Completion)" icon="fa-bell">
-
-When the customer completes payment on the device, PayU sends a webhook to your `successAction` or `failureAction` URL.
-
-**Sample Webhook Payload:**
+<Accordion title="Webhook Payload" icon="fa-bell">
 
 ```json
 {
@@ -728,167 +536,367 @@ When the customer completes payment on the device, PayU sends a webhook to your 
   "txnId": "ORD_20231115_001",
   "mihpayId": "403993715534895620",
   "flowType": "ominichannel",
-  "message": "Please use the checkBqrStatusAPI to fetch the final status of the transaction",
+  "message": "Please use the checkBqrStatusAPI to fetch the final status",
   "status": "pending"
 }
 ```
 
-**Webhook Fields:**
-- `vendorTxnId` / `txnId` — Your original order ID
-- `mihpayId` — PayU's internal transaction ID
-- `flowType` — Always "ominichannel" for Omni payments
-- `status` — May still be "pending" (not final)
-- `message` — Instruction to call Check Status API
-
 <Warning>
-⚠️ **Important:** The webhook status may not be final. Always call the **Check Transaction Status API** to retrieve authoritative payment details before updating your order status or delivering goods/services.
+⚠️ **Critical:** The webhook status may be "pending". Always call Check Transaction Status API (Step 1.5) to get final payment details.
 </Warning>
-
-**How to Handle Webhooks:**
-
-1. Expose a publicly accessible HTTPS endpoint (the URL you passed in `successAction`)
-2. Accept POST requests with JSON payload
-3. Extract `mihpayId` or `txnId`
-4. Call Check Transaction Status API using the `txnId`
-5. Verify the response status is `success` (not `pending` or `failed`)
-6. Update your order status accordingly
-7. Return HTTP 200 to acknowledge receipt
 
 </Accordion>
 
 ---
 
-### Step 1.5: Verify the Payment
+### Step 1.5: Check Transaction Status — Prepare Request
 
-Always verify the payment using the Check Transaction Status API before marking an order as paid.
+After receiving the webhook, immediately call the Check Transaction Status API to retrieve final payment details.
+
+<Accordion title="Status API - Request Headers" icon="fa-list">
+
+| Parameter | Type | Description | Example |
+| :--- | :--- | :--- | :--- |
+| `mid` | String | Merchant identifier | `merchant_12345` |
+| `Content-Type` | String | Must be `application/json` | `application/json` |
+| `Info-Command` | String | Must be `check_bqr_txn_status` | `check_bqr_txn_status` |
+| `date` | String | Current GMT date (RFC 7231) | `Tue, 15 Nov 2023 08:12:31 GMT` |
+| `authorization` | String | HMAC-SHA512 signature (using **merchant credentials**, not partner credentials) | `hmac username="merchant_key", algorithm="sha512", headers="date", signature="..."` |
 
 <Info>
-📘 **See the complete guide:** [Integrate PayU Omni — Check Transaction Status](#)
-
-This ensures you're acting on authoritative, verified transaction data, not just the webhook notification.
+**Important:** This API uses **merchant credentials** (merchant key + salt), NOT partner credentials.
 </Info>
+
+</Accordion>
+
+<Accordion title="Status API - Request Body" icon="fa-list">
+
+| Parameter | Type | Description | Example |
+| :--- | :--- | :--- | :--- |
+| `txnId` | Array of Strings | Transaction IDs to check (up to 10 per request) | `["ORD_20231115_001"]` |
+
+</Accordion>
+
+<Accordion title="Status API - Generate HMAC (Merchant Credentials)" icon="fa-key">
+
+**Important:** Use your **merchant key** and **merchant salt** (different from partner credentials).
+
+```python
+import hashlib
+import hmac
+from email.utils import formatdate
+
+# Your MERCHANT credentials (not partner credentials)
+merchant_key = "your_merchant_key"
+merchant_salt = "your_merchant_salt"
+
+# Generate GMT date
+date_header = formatdate(timeval=None, localtime=False, usegmt=True)
+
+# Create HMAC signature
+signature = hmac.new(
+    merchant_salt.encode('utf-8'),
+    date_header.encode('utf-8'),
+    hashlib.sha512
+).hexdigest()
+
+# Build authorization header
+authorization_header = f'hmac username="{merchant_key}", algorithm="sha512", headers="date", signature="{signature}"'
+```
+
+</Accordion>
+
+---
+
+### Step 1.6: Check Transaction Status — POST the Request
+
+<Accordion title="Sample Request - cURL" icon="fa-code">
+
+```bash
+curl --location 'https://info.payu.in/v1/transaction/?mode=bqr' \
+--header 'mid: merchant_12345' \
+--header 'Content-Type: application/json' \
+--header 'Info-Command: check_bqr_txn_status' \
+--header 'date: Tue, 15 Nov 2023 08:12:31 GMT' \
+--header 'authorization: hmac username="your_merchant_key", algorithm="sha512", headers="date", signature="a1b2c3d4e5f6..."' \
+--data '{
+  "txnId": ["ORD_20231115_001"]
+}'
+```
+
+</Accordion>
+
+<Accordion title="Sample Request - Other Languages" icon="fa-code">
+
+**Python**
+
+```python
+import requests
+
+url = "https://info.payu.in/v1/transaction/?mode=bqr"
+headers = {
+    "mid": "merchant_12345",
+    "Content-Type": "application/json",
+    "Info-Command": "check_bqr_txn_status",
+    "date": "Tue, 15 Nov 2023 08:12:31 GMT",
+    "authorization": "hmac username=\"merchant_key\", algorithm=\"sha512\", headers=\"date\", signature=\"...\""
+}
+payload = {"txnId": ["ORD_20231115_001"]}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.text)
+```
+
+> **Full code samples in [Check Transaction Status API Reference](#check-transaction-status-api)**
+
+</Accordion>
+
+---
+
+### Step 1.7: Check Transaction Status — Verify Response
+
+<Accordion title="Success Response - DBQR Payment" icon="fa-check-circle">
+
+```json
+{
+  "status": 1,
+  "message": "Success",
+  "result": [
+    {
+      "txnId": "ORD_20231115_001",
+      "mihpayId": "403993715534895620",
+      "bankReferenceNumber": "332116831375",
+      "amount": "1500.00",
+      "mode": "DBQR",
+      "status": "success",
+      "unmappedStatus": "captured",
+      "errorCode": "E000",
+      "errorMessage": "No Error",
+      "productInfo": "Coffee and Pastry",
+      "merchantUTR": "332116831375",
+      "field0": "b5f29799-9999-8798-9990-012345678901",
+      "field1": "Table 5",
+      "field6": "success@payu",
+      "reverseHash": "abcdef123...",
+      "omniChannelDetails": {
+        "posDeviceId": "DEVICE_POS_12345",
+        "posPaymentMethod": "qr"
+      }
+    }
+  ]
+}
+```
+
+**Success Indicators:**
+- ✅ `status: 1` (API call succeeded)
+- ✅ `result[].status: "success"` (Payment succeeded)
+- ✅ `result[].unmappedStatus: "captured"` (Funds captured)
+- ✅ `result[].errorCode: "E000"` (No errors)
+
+</Accordion>
+
+<Accordion title="Success Response - Card Payment" icon="fa-credit-card">
+
+```json
+{
+  "status": 1,
+  "result": [
+    {
+      "txnId": "ORD_20231115_002",
+      "mode": "CARD",
+      "status": "success",
+      "unmappedStatus": "captured",
+      "nameOnCard": "JOHN DOE",
+      "cardNo": "XXXXXXXXXXXX1234",
+      "bankcode": "VISA",
+      "field5": "JOHN DOE",
+      "field8": "XXXXXXXXXXXX1234",
+      "field9": "VISA"
+    }
+  ]
+}
+```
+
+</Accordion>
+
+<Accordion title="Transaction Verification Checklist" icon="fa-clipboard-check">
+
+Before marking an order as paid, verify:
+
+**✅ Payment Status**
+- [ ] `status: 1` (top-level API success)
+- [ ] `result[].status: "success"` (not "pending" or "failed")
+- [ ] `result[].unmappedStatus: "captured"` (not "in progress" or "initiated")
+- [ ] `result[].errorCode: "E000"`
+
+**✅ Amount & Order Matching**
+- [ ] `amount` matches your order amount exactly
+- [ ] `txnId` matches your order ID
+- [ ] `productInfo` matches your order description
+
+**✅ Bank Reconciliation Fields**
+- [ ] `bankReferenceNumber` is present (not empty)
+- [ ] `merchantUTR` is present
+- [ ] `mihpayId` is present
+
+**✅ Reverse Hash Validation (Recommended)**
+- [ ] Compute reverse hash using merchant salt
+- [ ] Compare with `reverseHash` field
+- [ ] Proceed only if hash matches
+
+<Warning>
+⚠️ **Only mark order as PAID if ALL checks pass.** If status is "pending", poll the API again after 10-15 seconds.
+</Warning>
+
+</Accordion>
+
+<Accordion title="Field Mapping: field0-field9" icon="fa-table">
+
+Fields contain different data based on payment mode:
+
+**DBQR/UPI Mode:**
+- `field0`: UPI Transaction ID
+- `field1-5`: Custom UDFs (from `printInfo`)
+- `field6`: Customer UPI VPA
+- `field7`: Flow type
+- `field9`: "DBQR"
+
+**Card Mode:**
+- `field1-4`: Custom UDFs
+- `field5`: Cardholder name
+- `field7`: "CARD"
+- `field8`: Masked card number
+- `field9`: Card network (VISA/MASTERCARD/RUPAY)
+
+> **Full mapping in [Check Transaction Status API Reference](#check-transaction-status-api)**
+
+</Accordion>
 
 ---
 
 ## Step 2: Test Integration
 
-### Step 2.1: Pre-Payment Validation
+### Step 2.1: Pre-Integration Validation
 
-Before initiating test transactions, verify your setup:
+<Accordion title="Pre-Integration Checklist" icon="fa-check-square">
 
-<Accordion title="Pre-Payment Validation Checklist" icon="fa-check-square">
+**✅ Partner Credentials (for Initiate Payment API)**
+- [ ] Valid `X-Partner-Token` (OAuth Bearer token)
+- [ ] `X-PayU-Reseller-UUID`
+- [ ] Partner `clientId` and `clientSecret`
 
-**✅ Credentials**
-- [ ] You have a valid `X-Partner-Token` (OAuth Bearer token)
-- [ ] You have your `X-PayU-Reseller-UUID`
-- [ ] You have partner credentials (`clientId`, `clientSecret`)
-- [ ] You have your merchant `accountId`
+**✅ Merchant Credentials (for Check Status API)**
+- [ ] Merchant ID (`mid`)
+- [ ] Merchant key
+- [ ] Merchant salt
 
 **✅ Device Setup**
-- [ ] Your POS device or DBQR display is registered in your PayU dashboard
-- [ ] You have noted the exact `posDeviceId` for your test device
-- [ ] The device is powered on and connected to the internet
+- [ ] Device registered in PayU dashboard
+- [ ] `posDeviceId` noted
+- [ ] Device powered on and connected
 
 **✅ Webhook Endpoint**
-- [ ] Your `successAction` URL is publicly accessible via HTTPS
-- [ ] Your server can receive and log POST requests
-- [ ] You've tested the endpoint with a dummy POST request
+- [ ] HTTPS endpoint publicly accessible
+- [ ] Can receive POST requests
+- [ ] Returns HTTP 200 to acknowledge
 
 **✅ HMAC Generation**
-- [ ] Your HMAC signature code runs without errors
-- [ ] The `date` header format matches RFC 7231 GMT format
-- [ ] The signature is lowercase hexadecimal
-- [ ] You're generating a fresh signature for each request (not reusing old ones)
+- [ ] Partner HMAC code works (for Initiate Payment)
+- [ ] Merchant HMAC code works (for Check Status)
+- [ ] Both generate fresh signatures per request
 
 </Accordion>
 
 ---
 
-### Step 2.2: Simulate a Successful Transaction
+### Step 2.2: End-to-End Success Flow
 
-<Accordion title="Step-by-Step Success Simulation" icon="fa-play-circle">
+<Accordion title="Complete Success Test (8 Steps)" icon="fa-play-circle">
 
-**Step 1:** Generate a unique `txnId` for this test (e.g., `TEST_20231115_001`)
+**Step 1:** Generate a unique test `txnId` (e.g., `TEST_20231115_001`)
 
-**Step 2:** Compute a fresh HMAC signature using your credentials and current GMT date
+**Step 2:** Generate partner HMAC signature with current GMT date
 
-**Step 3:** POST the request with all mandatory parameters:
-- Use a small amount (e.g., `10.00 INR`) for testing
-- Set `posPaymentMethod` to `"sale"` to test card payments
+**Step 3:** POST Initiate Payment request with test amount (e.g., `10.00 INR`)
 
-**Step 4:** Verify you receive HTTP 200 with `statusCode: "E000"` and `txnStatus: "pending"`
+**Step 4:** Verify HTTP 200 response with `statusCode: "E000"` and `txnStatus: "pending"`
 
-**Step 5:** Check your test device — it should display the payment amount and prompt for card input
+**Step 5:** Check device — it should display the amount and await payment
 
-**Step 6:** Use a test card (⚠️ Info Gap: Test card numbers not documented — contact PayU support for test cards) or a real card for a small amount
+**Step 6:** Complete payment on device (card or DBQR scan)
 
-**Step 7:** Complete the payment on the device
+**Step 7:** Receive webhook within 10 seconds at your `successAction` URL
 
-**Step 8:** Within 5-10 seconds, you should receive a webhook at your `successAction` URL
+**Step 8:** Extract `txnId` from webhook, generate merchant HMAC, call Check Status API
 
-**Step 9:** Call the Check Transaction Status API with your `txnId`
+**Step 9:** Verify Status API returns `status: "success"`, `unmappedStatus: "captured"`
 
-**Step 10:** Verify the status API returns `status: "success"` and `unmappedStatus: "captured"`
+**Step 10:** Verify `amount`, `bankReferenceNumber`, and all custom fields are correct
 
-**Checkpoint:** ✅ You should see a successful transaction in your PayU dashboard and receive a printed receipt (if device has a printer)
+**Checkpoint:** ✅ Transaction appears in PayU dashboard with "Success" status
 
 </Accordion>
 
 ---
 
-### Step 2.3: Simulate a Failed Transaction
+### Step 2.3: Failure & Edge Case Testing
 
-<Accordion title="Failure Scenario Testing" icon="fa-exclamation-triangle">
-
-Test the following failure scenarios to ensure robust error handling:
+<Accordion title="Failure Scenarios to Test" icon="fa-exclamation-triangle">
 
 **Scenario 1: Invalid Device ID**
-- Set `posDeviceId` to a non-existent value (e.g., `INVALID_DEVICE`)
-- Expected response: `statusCode: "E2081"`, `txnStatus: "failed"`
+- Set `posDeviceId` to `INVALID_DEVICE_123`
+- Expected: `statusCode: "E2081"`, `txnStatus: "failed"`
 
-**Scenario 2: Invalid Payment Method**
-- Set `paymentMethod.name` to `"NETBANKING"` instead of `"POS"`
-- Expected response: `statusCode: "E1101"` or `"EX158"`
+**Scenario 2: Customer Cancels Payment**
+- Initiate payment → Press cancel on device before paying
+- Expected: Webhook to `failureAction` URL
+- Status API shows: `status: "failed"`
 
-**Scenario 3: Customer Cancels Payment**
-- Initiate a valid payment request
-- Press the "Cancel" button on the POS device before paying
-- Expected webhook: `status: "failed"` (webhook sent to `failureAction` URL)
+**Scenario 3: Pending Transaction Polling**
+- Initiate payment → Call Status API immediately (before customer pays)
+- Expected: `status: "pending"` or `"in progress"`
+- Poll every 15 seconds until status changes
 
-**Scenario 4: Duplicate Transaction ID**
-- Send the same `txnId` twice
-- Expected response: Duplicate transaction error (exact code may vary — document what you observe)
+**Scenario 4: Batch Status Check**
+- Initiate 3 test transactions
+- Call Status API with all 3 `txnId` values
+- Expected: `result[]` array with 3 transaction objects
 
-**Checkpoint:** ✅ Your system should gracefully handle all failure scenarios without crashing, and log meaningful error messages for debugging
+**Scenario 5: HMAC Signature Mismatch**
+- Use incorrect `clientSecret` / `merchantSalt`
+- Expected: HTTP 401 or 403 authentication error
+
+**Checkpoint:** ✅ All failure scenarios handled gracefully without system crashes
 
 </Accordion>
 
 ---
 
-### Step 2.4: Post-Transaction Verification
+### Step 2.4: Reconciliation Testing
 
-<Accordion title="Post-Transaction Checks" icon="fa-clipboard-check">
+<Accordion title="Reconciliation Validation" icon="fa-balance-scale">
 
-After each test transaction, verify:
-
-**✅ Webhook Receipt**
-- [ ] Your server received the webhook within 10 seconds of payment completion
-- [ ] The webhook payload contains `mihpayId`, `txnId`, and `flowType: "ominichannel"`
-
-**✅ Status API Cross-Check**
-- [ ] Calling Check Status API returns the same `mihpayId` as the webhook
-- [ ] The `status` field matches the payment outcome (success/failure)
-- [ ] All transaction metadata (amount, productInfo, etc.) is accurate
+**✅ Webhook vs. Status API Cross-Check**
+- [ ] Webhook `mihpayId` matches Status API `mihpayId`
+- [ ] Both show the same final status
 
 **✅ Dashboard Reconciliation**
-- [ ] The transaction appears in your PayU dashboard within 1 minute
-- [ ] The dashboard status matches your API response
-- [ ] The `txnId` and amount are correct
+- [ ] Transaction appears in PayU dashboard within 1 minute
+- [ ] Dashboard amount matches API response
+- [ ] Dashboard status matches Status API status
 
-**✅ Receipt Verification (if applicable)**
-- [ ] The printed receipt contains the correct amount and order details
-- [ ] Custom fields from `printInfo` appear on the receipt
-- [ ] GST details appear correctly (if `gstParams` were included)
+**✅ Field Mapping Verification**
+- [ ] For DBQR: `field0` has UPI txn ID, `field6` has VPA
+- [ ] For Card: `field5` has cardholder name, `field8` has masked card
+
+**✅ Receipt Verification (if device has printer)**
+- [ ] Printed receipt has correct amount
+- [ ] Custom fields (`printInfo`) appear on receipt
+- [ ] GST details printed correctly (if `gstParams` used)
+
+**✅ Reverse Hash Validation (if implemented)**
+- [ ] Computed hash matches `reverseHash` from API
+- [ ] No hash mismatches detected
 
 </Accordion>
 
@@ -898,105 +906,133 @@ After each test transaction, verify:
 
 ### Step 3.1: Update to Production Credentials
 
-<Accordion title="Production Credential Migration" icon="fa-rocket">
+<Accordion title="Production Migration Steps" icon="fa-rocket">
 
-**Step 1:** Obtain production credentials from PayU
-- Production `clientId` and `clientSecret`
-- Production OAuth token endpoint and `X-Partner-Token`
-- Production `X-PayU-Reseller-UUID`
+**Step 1:** Obtain Production Credentials from PayU
+- Production partner credentials (`clientId`, `clientSecret`, UUID, OAuth token)
+- Production merchant credentials (`mid`, key, salt)
 - Production `accountId`
+- Production device IDs
 
-**Step 2:** Update your code
+**Step 2:** Update Code
 - Replace all test credentials with production credentials
-- Ensure HMAC signature computation uses production `clientSecret`
+- Update both HMAC generation functions (partner + merchant)
 
-**Step 3:** Update the API endpoint
-- Change `https://apitest.payu.in/...` to `https://api.payu.in/...` (if test endpoint exists)
-- Verify the production endpoint URL with PayU support
+**Step 3:** Update API Endpoints (if different)
+- Confirm production endpoints with PayU support
+- Update Initiate Payment URL (currently: `https://api.payu.in/partner/initiatePayment`)
+- Update Check Status URL (currently: `https://info.payu.in/v1/transaction/?mode=bqr`)
 
-**Step 4:** Register production devices
-- Ensure your live POS devices are registered in your production PayU account
-- Note the production `posDeviceId` values
+**Step 4:** Update Webhook URLs
+- Point `successAction` to production webhook endpoint
+- Ensure production webhook URL is HTTPS and publicly accessible
 
-**Step 5:** Update webhook URLs
-- Point `successAction` and `failureAction` to production webhook endpoints
-- Ensure these URLs are HTTPS and publicly accessible
+**Step 5:** Test with Production Credentials in Staging
+- Perform 1-2 small-value real transactions in a controlled environment
 
-**Step 6:** Test with production credentials in a controlled environment
-- Perform 1-2 small-value transactions with real cards before full launch
+**Step 6:** Monitor First Live Transactions Closely
+- Watch for any authentication errors
+- Verify webhooks arrive correctly
+- Confirm dashboard updates
 
 </Accordion>
 
 ---
 
-### Step 3.2: Final Integration Verification
+### Step 3.2: Production Readiness Checklist
 
-<Accordion title="Production Readiness Checklist" icon="fa-tasks">
+<Accordion title="Final Go-Live Checklist (15 Points)" icon="fa-tasks">
 
-**✅ Conduct a Live Transaction**
-- [ ] Initiate a real transaction with a small amount
-- [ ] Verify the device activates correctly
-- [ ] Complete payment with a real card or UPI
-- [ ] Confirm you receive a success webhook
-- [ ] Verify transaction appears in production dashboard
+**✅ Credentials & Authentication**
+- [ ] Production partner credentials configured (Initiate Payment)
+- [ ] Production merchant credentials configured (Check Status)
+- [ ] HMAC signatures use correct production secrets
+- [ ] OAuth token refresh logic implemented (if token expires)
 
-**✅ Verify the Webhook Endpoint**
-- [ ] Your production webhook endpoint is HTTPS (not HTTP)
-- [ ] The endpoint can handle 100+ requests per minute (if you have high transaction volume)
-- [ ] Webhook responses are returned within 2 seconds
+**✅ Integration Testing**
+- [ ] End-to-end flow tested with production credentials
+- [ ] Payment initiated successfully on production device
+- [ ] Webhook received at production endpoint
+- [ ] Status API verified payment successfully
 
-**✅ Validate HMAC Signatures**
-- [ ] Every request uses a freshly computed HMAC signature
-- [ ] The `date` header is within ±5 minutes of actual time (some servers validate this)
-- [ ] Signatures are lowercase hexadecimal (not uppercase or base64)
+**✅ Webhook Reliability**
+- [ ] Webhook endpoint returns HTTP 200 within 2 seconds
+- [ ] Can handle 100+ webhooks per minute (if high volume)
+- [ ] Webhook failures trigger retry logic
 
-**✅ Check Callback URLs**
-- [ ] `successAction` URL is correct and tested
-- [ ] `failureAction` URL is correct and tested (if used)
-- [ ] Both URLs return HTTP 200 to acknowledge PayU webhooks
+**✅ Status API Polling**
+- [ ] Pending transactions polled every 10-15 seconds
+- [ ] Polling stops after status becomes "success" or "failed"
+- [ ] Transactions stuck in "pending" > 15 minutes trigger alerts
 
-**✅ Implement Error Handling**
-- [ ] Your system retries failed API calls (network timeouts, 5xx errors)
-- [ ] You log all API requests and responses for debugging
-- [ ] Users see meaningful error messages (not raw API error codes)
+**✅ Error Handling**
+- [ ] Network timeouts trigger automatic retry (max 3 attempts)
+- [ ] All API errors logged with full request/response
+- [ ] User-friendly error messages displayed (not raw API codes)
 
-**✅ Set Up Monitoring**
-- [ ] You have alerts for webhook failures (no webhook received within 30 seconds)
-- [ ] You monitor API error rates (> 5% failure rate triggers alert)
-- [ ] You track transaction success rates in your analytics dashboard
+**✅ Security**
+- [ ] Credentials stored in environment variables or secrets manager
+- [ ] API calls made server-side only (never client-side)
+- [ ] Reverse hash validation implemented (recommended)
+- [ ] Customer card data never logged or stored
 
-**✅ Implement a Reconciliation Plan**
-- [ ] Daily reconciliation job compares your orders with PayU settlement reports
-- [ ] Discrepancies trigger manual review
-- [ ] You call Check Status API for any "pending" transactions older than 15 minutes
+**✅ Reconciliation**
+- [ ] Daily reconciliation compares orders with PayU settlement reports
+- [ ] Uses `merchantUTR` / `bankReferenceNumber` for bank matching
+- [ ] Uses `mihpayId` for PayU settlement matching
+- [ ] Discrepancies flagged for manual review
 
-**✅ Document Your Integration**
-- [ ] Internal wiki/docs explain how to add new devices
-- [ ] Runbooks exist for common error scenarios
-- [ ] On-call engineers know how to debug webhook failures
-
-**✅ Security Checklist**
-- [ ] `clientSecret` is stored in environment variables or secrets manager (not hardcoded)
-- [ ] API calls are made server-side only (never from client/browser)
-- [ ] Webhook endpoint validates the source IP or signature (if PayU provides one)
-
-**✅ Test Edge Cases**
-- [ ] What happens if the device loses internet mid-transaction?
-- [ ] What if your webhook endpoint is down when PayU sends the notification?
-- [ ] What if a customer pays but you never receive a webhook? (Answer: Polling via Check Status API)
-
-**✅ Regulatory Compliance**
-- [ ] You store transaction logs for the required duration (e.g., 7 years for tax audits)
-- [ ] Customer card details are never logged or stored (PCI-DSS compliance)
-- [ ] GST invoices are generated correctly (if applicable)
+**✅ Monitoring & Alerts**
+- [ ] API error rate alerts (trigger if > 5%)
+- [ ] Webhook failure alerts (no webhook received within 30 seconds)
+- [ ] Transaction success rate monitoring
+- [ ] Device connectivity monitoring
 
 **✅ Business Continuity**
-- [ ] You have a backup plan if the primary device fails (secondary device or manual payment method)
-- [ ] Your team knows how to issue refunds (via PayU dashboard or refund API)
+- [ ] Backup plan if primary device fails (secondary device or manual payment)
+- [ ] Process documented for refunds (via dashboard or refund API)
+- [ ] On-call support knows how to debug common issues
+
+**✅ Documentation**
+- [ ] Internal wiki explains how to add new devices
+- [ ] Runbooks for common error scenarios
+- [ ] Contact information for PayU support
+
+**✅ Compliance**
+- [ ] Transaction logs stored for required duration (e.g., 7 years)
+- [ ] PCI-DSS compliance verified (no card data storage)
+- [ ] GST invoices generated correctly (if applicable)
+
+**✅ Performance**
+- [ ] API response time acceptable (< 3 seconds for initiate, < 2 seconds for status)
+- [ ] Database queries optimized for reconciliation
+- [ ] No bottlenecks during peak transaction hours
+
+**✅ Testing Edge Cases**
+- [ ] Device offline during transaction — what happens?
+- [ ] Webhook endpoint down — does Status API polling work?
+- [ ] Duplicate `txnId` rejection tested
+
+**✅ User Experience**
+- [ ] Clear on-screen messages for all states (success, pending, failed)
+- [ ] Receipt printing works reliably (if applicable)
+- [ ] Customer receives confirmation (SMS/email) for successful payments
+
+**✅ Rollback Plan**
+- [ ] Can switch back to test environment if critical issues arise
+- [ ] Database backup available before go-live
+- [ ] Rollback runbook documented
 
 </Accordion>
 
 ---
 
-**Congratulations!** 🎉 You've successfully integrated the PayU Omni Initiate Payment API. For status checks and reconciliation, proceed to the [Check Transaction Status Integration Guide](#).
+You've successfully integrated the complete PayU Omni Integrated Flow. Your system can now:
+- ✅ Initiate payments on devices
+- ✅ Receive real-time webhooks
+- ✅ Verify payment status
+- ✅ Reconcile transactions automatically
 
+For detailed API specifications, refer to:
+- [Initiate Payment API Reference](#initiate-payment-api)
+- [Check Transaction Status API Reference](#check-transaction-status-api)
