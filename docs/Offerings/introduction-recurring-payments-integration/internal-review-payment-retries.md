@@ -13,81 +13,19 @@ Payment retry is an automated mechanism that attempts to re-process failed recur
 
 ## Why Use Payment Retries?
 
-Failed recurring payments are a common challenge for subscription-based businesses. Payment retries help merchants:
-
-<Tabs>
-  <Tab title="Revenue Recovery" icon="fa-solid fa-money-bill-trend-up">
-    - Recover revenue from failed transactions that would otherwise be lost
-    - Increase successful payment collection rates by 15-30% on average
-    - Reduce revenue churn from temporary payment failures
-  </Tab>
-
-  <Tab title="Common Payment Failure Scenarios" icon="fa-solid fa-triangle-exclamation">
-    - Customer's card has expired
-
-    - Insufficient balance at the time of debit
-
-    - Temporary bank system issues or downtime
-
-    - Card blocked by bank for security reasons
-
-    - Network connectivity issues during transaction
-  </Tab>
-
-  <Tab title="Operational Efficiency" icon="fa-solid fa-gears">
-    - Automate re-attempts instead of manual follow-up
-
-    - Reduce support team workload handling failed payment queries
-
-    - Minimize customer intervention for temporary issues
-  </Tab>
-
-  <Tab title="Better Customer Experience" icon="fa-solid fa-face-smile">
-    - Seamless subscription continuity without manual customer action
-
-    - Reduced service interruptions from temporary payment issues
-
-    - Proactive resolution before customers notice the problem
-  </Tab>
-</Tabs>
+Failed recurring payments are a common challenge for subscription-based businesses. Payment retries help merchants recover revenue from failed transactions that would otherwise be lost, automate re-attempts instead of manual follow-up, and provide seamless subscription continuity without requiring customer intervention for temporary payment issues.
 
 ***
 
-## How to Configure Retries
+## Retry Configuration Options
 
-PayU provides two approaches to configure payment retries for subscription transactions:
+PayU provides three approaches to configure payment retries. For detailed configuration steps, refer to [Configure Retry Strategy](#configure-retry-strategy) section below.
 
-### Smart Retry (PayU Managed)
+**Available Options:**
 
-<Callout icon="🤖" theme="info">
-  ### **Note**
-
-  Verify with PayU Support or your Key Account Manager if Smart Retry is available for your merchant account.
-</Callout>
-
-Smart Retry is fully controlled by PayU using machine learning and historical transaction data. PayU automatically:
-
-- Decides the optimal time to retry based on success patterns
-- Determines how many attempts to make
-- Adjusts retry strategy based on failure reason
-
-**When to use:** Merchants who want a hands-off approach with PayU-optimized retry logic.
-
-***
-
-### Custom Retry (Merchant Configured)
-
-Custom Retry gives you complete control over retry configuration. You can define:
-
-- **Number of retries:** Up to 7 retry attempts per subscription cycle
-- **Retry intervals:** Minutes, hours, or days between attempts
-- **Applicable subscription cycles:** Daily, Weekly, Monthly, Yearly, Once, or Adhoc
-- **Post-retry action:** What happens after all retries fail (Unpaid or Cancelled)
-- **Weekend exclusion:** Skip retry attempts on Saturdays and Sundays
-
-**When to use:** Merchants who need specific retry timing aligned with their business logic or customer payment patterns.
-
-***
+1. **Smart Retry** - PayU-managed retry using machine learning (verify availability with PayU Support)
+2. **Custom Retry** - Merchant-configured retry with full control over timing and behavior
+3. **Don't Enable Retry** - Disable automatic retry attempts for failed payments
 
 ## Common Payment Failure Reasons
 
@@ -179,6 +117,14 @@ Select one of the following retry types:
 
 </Accordion>
 
+<Accordion title="Don't Enable Retry" icon="fa-ban">
+  Select this option to disable automatic retry attempts for failed recurring payments. Failed transactions will not be retried and will require manual intervention or customer action to resolve.
+
+  **Configuration:** None required - retry is disabled.
+
+  **When to use:** When you want to handle failed payments manually or have your own retry mechanism outside of PayU.
+</Accordion>
+
 ### Step 2: Verify Configuration
 
 After saving, your retry settings are applied immediately to all future failed subscription transactions. Existing failed transactions are not retroactively retried.
@@ -195,18 +141,173 @@ The **Retry Configuration** page validates each field before saving. Use the fol
   Field specifications have been verified against PayU's retry management system. For the latest validation rules, contact PayU Support or refer to internal documentation.
 </Callout>
 
-| Column Name                                      | Field Type                          | Validation / Allowed Values                                                                                                          |
-| ------------------------------------------------ | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| Retry Preference (`retryType`)                   | Mandatory                           | Allowed values: `SMART`, `CUSTOM`, `NO_RETRY`                                                                                        |
-| Max Retry Action (`retryActionOnMax`)            | Mandatory                           | Allowed values: `UNPAID`, `CANCEL`. <br /><br />**Note:** Not supported for AMEX and RUPAY cards.                                    |
-| Skip Weekends (`skipWeekends`)                   | Optional                            | —                                                                                                                                    |
-| Custom Toggle (when Retry Preference = `CUSTOM`) | Mandatory when `CUSTOM`             | `BY_INTERVAL` or `SPECIFIC_DATES`. <br /><br />**Note:** Specific Dates feature coming soon.                                         |
-| Subscription Types (`selectedSubscriptionTypes`) | Mandatory when `CUSTOM`             | At least one required. Allowed values: `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ONCE`, `ADHOC`. Option to select All Subscriptions.  |
-| Interval Value (`intervalValue`)                 | Mandatory when `CUSTOM BY_INTERVAL` | Positive integers only. Required for each retry row.                                                                                 |
-| Interval Unit (`intervalUnit`)                   | Mandatory when `CUSTOM BY_INTERVAL` | Allowed values: `HOURS`, `MINUTES`, `DAYS`                                                                                           |
-| Start Time (`startTime`)                         | Mandatory                           | 12-hour format with AM/PM. If Start Time is set, End Time is required.                                                               |
-| End Time (`endTime`)                             | Mandatory                           | 12-hour format with AM/PM. If End Time is set, Start Time is required. End must be after Start. Example: Start = 11 PM → End = 12 AM |
-| Max Number of Retries                            | Mandatory                           | Maximum **7 retries** per subscription type                                                                                          |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Functionality
+      </th>
+
+      <th>
+        Mandatory/Optional
+      </th>
+
+      <th>
+        Validation / Allowed Values
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        **Retry Type**
+      </td>
+
+      <td>
+        Mandatory
+      </td>
+
+      <td>
+        Allowed values: **Smart Retry**, **Custom,&#x20;**&#x61;nd **Don't Ena**Adhoc Subscription**ble Retry**
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **Mark Subscription as**
+      </td>
+
+      <td>
+        Mandatory
+      </td>
+
+      <td>
+        Allowed values: **Unpaid** and **Cancelled**. <br /><br />**Note:** Not supported for AMEX and RUPAY cards.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **Skip weekends**
+      </td>
+
+      <td>
+        Optional
+      </td>
+
+      <td>
+        A radio button to enable or disable the option.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **Custom Toggle (when Retry Preference = Custom)**
+      </td>
+
+      <td>
+        Mandatory when **Retry Preference = Custom**
+      </td>
+
+      <td>
+        **By Interval** or **On Specific dates**. <br /><br />**Note:** Specific Dates feature coming soon.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **Subscription Types**&#x20;
+      </td>
+
+      <td>
+        Mandatory when **Retry Preference = Custom**
+      </td>
+
+      <td>
+        At least one required. Allowed values:
+
+        - **All Subscriptions**
+        - **Daily Subscription**
+        - **Weekly Subscription**
+        - **Monthly Subscription**
+        - **Yearly Subscription**
+        - **Once Subscription**
+        - **Adhoc Subscription**
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **Interval Value**
+      </td>
+
+      <td>
+        Mandatory when **Retry Preference = Custom&#x20;**&#x61;nd **Custom Toggle = By Interval**
+      </td>
+
+      <td>
+        Positive integers only. Required for each retry row.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **Interval Unit**
+      </td>
+
+      <td>
+        Mandatory when **Retry Preference = Custom&#x20;**&#x61;nd **Custom Toggle = By Interval**
+      </td>
+
+      <td>
+        Allowed values: **Hours, Minutes,&#x20;**&#x61;nd **Days.**
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **Time of retry (start time)**
+      </td>
+
+      <td>
+        Mandatory when **Retry Preference = Custom&#x20;**&#x61;nd **Custom Toggle = By Interval**
+      </td>
+
+      <td>
+        12-hour format with AM/PM. If Start Time is set, End Time is required.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **Time of retry (end time)**
+      </td>
+
+      <td>
+        Mandatory when **Retry Preference = Custom&#x20;**&#x61;nd **Custom Toggle = By Interval**
+      </td>
+
+      <td>
+        12-hour format with AM/PM. If End Time is set, Start Time is required. End must be after Start. Example: Start = 11 PM → End = 12 AM
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        **Max Number of Retries**
+      </td>
+
+      <td>
+        Mandatory when **Retry Preference = Custom&#x20;**&#x61;nd **Custom Toggle = By Interval**
+      </td>
+
+      <td>
+        Maximum **7 retries** per subscription type
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ***
 
