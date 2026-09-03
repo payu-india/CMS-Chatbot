@@ -3,6 +3,8 @@ api:
   file: payu_partner_api_openapi_3.1_enhanced_v1.yaml
   operationId: UploadKYCDocument
 hidden: false
+link:
+  new_tab: false
 ---
 The **Upload KYC Document** API uploads one KYC document per required category from Step 14 (Step 15 of 16).
 
