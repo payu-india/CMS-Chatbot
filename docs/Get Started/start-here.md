@@ -42,7 +42,35 @@ NEW CONTENT  — written fresh; no equivalent exists in the repo.
 
 PayU lets you accept payments from customers across India — UPI, cards, net banking, wallets, EMI, and more. Whether you want to share a payment link with no technical setup, add a checkout to your website, or build a fully custom payment flow, PayU has an integration that fits.
 
-Not sure which one is right for you? Answer three quick questions and we'll point you to the right path.
+{/* NEW CONTENT — cards block showing what you can do with PayU.
+     Use case labels and capabilities are drawn from product docs across the repo.
+     Card descriptions are new editorial copy. Needs SME review for accuracy and completeness. */}
+
+<Cards>
+  <Card title="Collect one-time payments" icon="credit-card">
+    Accept UPI, cards, net banking, wallets, and EMI on your website or app — via a PayU-hosted page or your own custom checkout.
+  </Card>
+
+  <Card title="Share a payment link" icon="link">
+    Send a payment link over WhatsApp, email, or SMS. No website or technical setup required.
+  </Card>
+
+  <Card title="Set up recurring billing" icon="refresh-cw">
+    Charge customers on a schedule — subscriptions, mandates, and EMI plans with automated retry handling.
+  </Card>
+
+  <Card title="Accept in-person payments" icon="qr-code">
+    Generate a UPI QR code for face-to-face or digital in-store payments.
+  </Card>
+
+  <Card title="Add checkout to your store" icon="shopping-cart">
+    Ready-made plugins for Shopify, WooCommerce, and Magento — no custom code needed.
+  </Card>
+
+  <Card title="Build for mobile" icon="smartphone">
+    Native SDKs for Android and iOS, plus React Native, Flutter, and Cordova wrappers.
+  </Card>
+</Cards>
 
 ***
 
@@ -52,6 +80,14 @@ Not sure which one is right for you? Answer three quick questions and we'll poin
      The component handles the full decision tree, product recommendation,
      effort labelling, prerequisites, and "how do you want to proceed" panels.
      It should be rendered inline here (not as a modal launch button). */}
+
+## Find the Right Product for You
+
+{/* NEW CONTENT — wizard heading and description are new. No equivalent label exists
+     on the wizard component or the Quick Start page it is sourced from.
+     Needs SME review for tone. */}
+
+Not sure which integration fits your use case? Answer three quick questions and we'll point you to the right path — takes about a minute.
 
 <PayUQuickStartWizard />
 
