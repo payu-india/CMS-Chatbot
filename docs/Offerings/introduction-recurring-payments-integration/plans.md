@@ -66,24 +66,32 @@ When you associate a plan with a customer and their payment method, it becomes a
 
 ## Plan vs Subscription
 
-| Aspect                          | Plan                                                     | Mandate                                                        |
-| ------------------------------- | -------------------------------------------------------- | -------------------------------------------------------------- |
-| **What is it?**                 | Subscription billing template defining terms and pricing | Customer's authorization to debit their account automatically  |
-| **Who creates it?**             | Merchant (via Dashboard or API)                          | Customer (by providing consent during payment)                 |
-| **When is it created?**         | Before customer sees the subscription offer              | After customer approves the subscription terms                 |
-| **What does it contain?**       | Billing amount, frequency, interval, description         | Customer consent, payment instrument token, mandate ID, status |
-| **Can it exist independently?** | Yes, as a reusable template                              | No, must be linked to a customer and payment method            |
-| **Purpose**                     | Define what and when to charge                           | Authorize PayU to execute recurring charges                    |
+| Aspect                          | Plan                                               | Subscription                                                       |
+| ------------------------------- | -------------------------------------------------- | ------------------------------------------------------------------ |
+| **What is it?**                 | Subscription template with billing details only    | Plan + Customer details + Payment method                           |
+| **Who creates it?**             | Merchant (via Dashboard or API)                    | Customer (by subscribing to a plan with their payment details)     |
+| **When is it created?**         | Before customer sees the offer                     | After customer provides payment details and consent                |
+| **What does it contain?**       | Billing amount, billing type, plan description     | Plan details + Customer information + Payment method + Mandate     |
+| **Can it exist independently?** | Yes, as a reusable template for multiple customers | No, must be linked to a specific customer and their payment method |
+| **Purpose**                     | Define the billing terms that can be reused        | Active billing arrangement for a specific customer                 |
+| **Example**                     | "Premium Monthly ₹499" plan                        | Customer A subscribed to "Premium Monthly ₹499" using their card   |
+
+***
 
 ### When Should You Create Plans?
 
-You should create plans when:
+You should create plans when you want to:
 
-- **You offer subscription-based services**: SaaS products, OTT platforms, memberships, digital content subscriptions
-- **You have recurring billing cycles**: Monthly fees, annual renewals, quarterly payments
-- **You need reusable billing templates**: Same plan used for multiple customers (e.g., "Premium Monthly ₹499")
-- **You want dashboard-based subscription management**: Non-technical teams managing subscriptions via PayU Dashboard
-- **You generate subscription payment links**: Creating shareable links for customers to subscribe
+- **Offer standardized subscription packages**: Create reusable billing templates (e.g., "Basic ₹199/month", "Premium ₹499/month", "Enterprise ₹999/month") that multiple customers can subscribe to
+- **Enable self-service subscriptions**: Allow customers to choose and subscribe to pre-defined plans without manual setup for each customer
+- **Simplify subscription management**: Manage billing terms centrally - update a plan once, and it applies to all new subscriptions
+- **Generate payment links for subscriptions**: Create shareable links where customers select a plan, provide their details, and complete payment to create their subscription
+
+<Callout icon="📘" theme="info">
+  ### **Note**
+
+  Plans are templates. You do not need plans if you are creating a unique, one-off billing arrangements for each customer via API.
+</Callout>
 
 ***
 
@@ -91,19 +99,19 @@ You should create plans when:
 
 <Cards>
   <Card title="SaaS & Digital Services" icon="fa-laptop-code">
-    Create plans for different subscription tiers (Basic, Pro, Enterprise) with monthly or annual billing cycles.
+    Define tiered plans (Basic, Pro, Enterprise). Customers subscribe by selecting a plan and providing payment details.
   </Card>
 
   <Card title="OTT & Streaming Platforms" icon="fa-tv">
-    Define plans for different content packages with recurring charges for continued access.
+    Create content package plans. Each customer subscription links to the plan with their specific payment method.
   </Card>
 
   <Card title="Membership & Clubs" icon="fa-users">
-    Set up plans for gym memberships, club subscriptions, or loyalty programs with fixed recurring fees.
+    Set up membership plans. Multiple customers subscribe to the same plan with their individual payment methods.
   </Card>
 
   <Card title="Utility & Service Providers" icon="fa-bolt">
-    Create plans for recurring utility payments, insurance premiums, or maintenance fees.
+    Define recurring payment plans for utilities or services. Each subscription created when customer provides payment details.
   </Card>
 </Cards>
 
