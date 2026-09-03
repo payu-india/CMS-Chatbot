@@ -6,9 +6,7 @@ icon: far fa-arrow-left-from-dotted-line
 metadata:
   robots: index
 ---
-# Integrate PayU Omni — Complete Integration Guide
-
-This comprehensive guide walks you through the complete PayU Omni Integrated Flow: from initiating payment requests to verifying transaction status and reconciliation.
+This section walks you through the complete PayU Omni Integrated Flow: from initiating payment requests to verifying transaction status and reconciliation.
 
 By the end of this guide, you'll be able to:
 
@@ -548,9 +546,9 @@ After receiving the webhook, immediately call the Check Transaction Status API t
   | `date`          | String | Current GMT date (RFC 7231)                                                     | `Tue, 15 Nov 2023 08:12:31 GMT`                                                     |
   | `authorization` | String | HMAC-SHA512 signature (using **merchant credentials**, not partner credentials) | `hmac username="merchant_key", algorithm="sha512", headers="date", signature="..."` |
 
-  <Info>
-  **Important:** This API uses **merchant credentials** (merchant key + salt), NOT partner credentials.
-  </Info>
+    <Info>
+    **Important:** This API uses **merchant credentials** (merchant key + salt), NOT partner credentials.
+    </Info>
 </Accordion>
 
 <Accordion title="Status API - Request Body" icon="fa-list">
@@ -720,9 +718,9 @@ After receiving the webhook, immediately call the Check Transaction Status API t
   - [ ] Compare with `reverseHash` field
   - [ ] Proceed only if hash matches
 
-  <Warning>
-  ⚠️ **Only mark order as PAID if ALL checks pass.** If status is "pending", poll the API again after 10-15 seconds.
-  </Warning>
+    <Warning>
+    ⚠️ **Only mark order as PAID if ALL checks pass.** If status is "pending", poll the API again after 10-15 seconds.
+    </Warning>
 </Accordion>
 
 <Accordion title="Field Mapping: field0-field9" icon="fa-table">
