@@ -34,7 +34,13 @@ metadata:
 ---
 ## What is a Plan?
 
-A plan defines the subscription terms that the customer accepts before a Standing Instruction (SI) mandate is registered. In API-based SI integrations, the plan is managed by your system and shared with PayU during the consent transaction through `si_details`.
+A plan defines the subscription terms that the customer accepts before a Standing Instruction (SI) mandate is registered. In API-based SI integrations, the plan is managed by your system and shared with PayU during the consent transaction through `si_details`.&#x20;
+
+A **plan** contains all subscription details except customer and payment method information. It defines:
+
+- Billing amount (how much to charge)
+- Billing type (recurring or one-time)
+- Plan description and merchant reference
 
 PayU does not require you to create a separate plan object before registering an SI mandate. Your frontend should maintain the plan configuration, show it to the customer, pass the approved values to PayU during consent, and use the returned mandate identifiers for future pre-debit notifications, recurring debits, and mandate management.
 
@@ -45,9 +51,20 @@ PayU does not require you to create a separate plan object before registering an
   - You can create multiple subscriptions for a plan
 </Callout>
 
+**How Plan Becomes a Subscription:**
+When you associate a plan with a customer and their payment method, it becomes a **subscription**. The merchant defines the subscription plan, and the customer subscribes to it by providing their payment details and consent.
+
+<Callout icon="far fa-tick" theme="success">
+  ### For Example
+
+  - You create a **Premium Monthly ₹499** plan (just a billing template)
+  - Customer A subscribes → Plan + Customer A's details + Payment Method = Subscription A
+  - Customer B subscribes → Same Plan + Customer B's details + Payment Method = Subscription B
+</Callout>
+
 ***
 
-## Plan vs Mandate
+## Plan vs Subscription
 
 | Aspect                          | Plan                                                     | Mandate                                                        |
 | ------------------------------- | -------------------------------------------------------- | -------------------------------------------------------------- |
