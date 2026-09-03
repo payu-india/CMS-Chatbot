@@ -8,14 +8,6 @@ metadata:
 ---
 This section walks you through the complete PayU Omni Integrated Flow: from initiating payment requests to verifying transaction status and reconciliation.
 
-By the end of this guide, you'll be able to:
-
-- Send order-specific payment requests to your PayU devices
-- Handle webhooks for payment notifications
-- Verify payment status and retrieve transaction details
-- Test your complete integration before going live
-- Build automated reconciliation systems
-
 <Note>
 **Prerequisites**
 
