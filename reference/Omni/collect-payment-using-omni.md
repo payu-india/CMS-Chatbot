@@ -1,7 +1,9 @@
 ---
 title: Collect Payment using Omni
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
@@ -9,7 +11,7 @@ metadata:
 
 The Initiate Payment API allows merchants to push payment requests from their billing system to PayU-enabled devices (POS terminals or DBQR displays). This API is the core of the PayU Omni Integrated Flow.
 
----
+***
 
 ## Endpoint
 
@@ -19,19 +21,19 @@ The Initiate Payment API allows merchants to push payment requests from their bi
 
 **Content-Type:** `application/json`
 
----
+***
 
 ## Environment URLs
 
-| Environment | URL |
-| ----------- | ------------------------------------------------------------------------ |
+| Environment | URL                                           |
+| ----------- | --------------------------------------------- |
 | Production  | `https://api.payu.in/partner/initiatePayment` |
 
 <Warning>
 ⚠️ **Info Gap:** Test/sandbox environment URL not documented. Contact PayU support for test endpoint details and test credentials.
 </Warning>
 
----
+***
 
 ## Sample Request
 
@@ -293,7 +295,7 @@ public class InitiatePayment {
 }
 ```
 
----
+***
 
 ## Sample Response
 
@@ -368,17 +370,17 @@ After the payment completes on the device, PayU sends a webhook:
 ⚠️ **Important:** The webhook status may still be "pending". Always call the **Check Transaction Status API** to retrieve final, authoritative payment details.
 </Warning>
 
----
+***
 
 ## Request Headers
 
-| Parameter | Type | Description | Example |
-| :--- | :--- | :--- | :--- |
-| `Content-Type` | String | Must be `application/json` | `application/json` |
-| `X-Partner-Token` | String | Bearer OAuth token obtained from PayU token API | `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...` |
-| `X-PayU-Reseller-UUID` | String | Partner UUID provided by PayU during onboarding | `550e8400-e29b-41d4-a716-446655440000` |
-| `date` | String | Current request date and time in GMT format (RFC 7231) | `Tue, 15 Nov 2023 08:12:31 GMT` |
-| `authorization` | String | HMAC-SHA512 signature header. Format: `hmac username="<clientId>", algorithm="sha512", headers="date", signature="<hex-signature>"` | `hmac username="your_client_id", algorithm="sha512", headers="date", signature="a1b2c3..."` |
+| Parameter              | Type   | Description                                                                                                                         | Example                                                                                     |
+| :--------------------- | :----- | :---------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------ |
+| `Content-Type`         | String | Must be `application/json`                                                                                                          | `application/json`                                                                          |
+| `X-Partner-Token`      | String | Bearer OAuth token obtained from PayU token API                                                                                     | `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...`                                            |
+| `X-PayU-Reseller-UUID` | String | Partner UUID provided by PayU during onboarding                                                                                     | `550e8400-e29b-41d4-a716-446655440000`                                                      |
+| `date`                 | String | Current request date and time in GMT format (RFC 7231)                                                                              | `Tue, 15 Nov 2023 08:12:31 GMT`                                                             |
+| `authorization`        | String | HMAC-SHA512 signature header. Format: `hmac username="<clientId>", algorithm="sha512", headers="date", signature="<hex-signature>"` | `hmac username="your_client_id", algorithm="sha512", headers="date", signature="a1b2c3..."` |
 
 <Info>
 **HMAC Signature Generation:**
@@ -389,7 +391,7 @@ After the payment completes on the device, PayU sends a webhook:
 5. Format: `hmac username="<clientId>", algorithm="sha512", headers="date", signature="<hex>"`
 </Info>
 
----
+***
 
 ## Request Parameters
 
@@ -609,61 +611,61 @@ After the payment completes on the device, PayU sends a webhook:
   </tbody>
 </table>
 
----
+***
 
 ## Response Schema
 
 ### metaData Object
 
-| Field | Type | Description | Example |
-| :--- | :--- | :--- | :--- |
-| `message` | String | Human-readable message describing the result | `Payment initiated successfully` |
-| `referenceId` | String | PayU's internal reference ID for this request | `REF_20231115_12345` |
-| `statusCode` | String | Result status code (see Error Codes section) | `E000` |
-| `txnId` | String | Your transaction ID (echoed back) | `ORD_20231115_001` |
-| `txnStatus` | String | Transaction status: `pending` or `failed` | `pending` |
-| `unmappedStatus` | String | Internal PayU status: `pending` or `failure` | `pending` |
+| Field            | Type   | Description                                   | Example                          |
+| :--------------- | :----- | :-------------------------------------------- | :------------------------------- |
+| `message`        | String | Human-readable message describing the result  | `Payment initiated successfully` |
+| `referenceId`    | String | PayU's internal reference ID for this request | `REF_20231115_12345`             |
+| `statusCode`     | String | Result status code (see Error Codes section)  | `E000`                           |
+| `txnId`          | String | Your transaction ID (echoed back)             | `ORD_20231115_001`               |
+| `txnStatus`      | String | Transaction status: `pending` or `failed`     | `pending`                        |
+| `unmappedStatus` | String | Internal PayU status: `pending` or `failure`  | `pending`                        |
 
 ### result Object
 
-| Field | Type | Description | Example |
-| :--- | :--- | :--- | :--- |
-| `paymentId` | String | PayU's unique payment identifier | `PAY_abc123xyz789` |
-| `authAction` | String | Authentication action URL (null for Omni) | `null` |
-| `otpPostUrl` | String | OTP post URL (null for Omni) | `null` |
+| Field        | Type   | Description                               | Example            |
+| :----------- | :----- | :---------------------------------------- | :----------------- |
+| `paymentId`  | String | PayU's unique payment identifier          | `PAY_abc123xyz789` |
+| `authAction` | String | Authentication action URL (null for Omni) | `null`             |
+| `otpPostUrl` | String | OTP post URL (null for Omni)              | `null`             |
 
----
+***
 
 ## Error Codes
 
-| Code | Status | Message | Meaning | Action Required |
-| :--- | :--- | :--- | :--- | :--- |
-| `E000` | Success | Payment initiated successfully | Payment request accepted. Device activated. Customer can now pay. | Wait for webhook. Then call Check Status API to verify final status. |
-| `E2081` | Failed | Invalid Device Id | The `posDeviceId` does not exist or is not linked to your account. | Verify the device ID in your PayU dashboard. Ensure the device is registered and active. |
-| `E1101` | Failed | Invalid PG & Bank Code Combination | The `paymentMethod` values are incorrect. | Ensure `paymentMethod.name` and `paymentMethod.bankCode` are both set to `"POS"`. |
-| `EX158` | Failed | Merchant Integration Exception - Inactive payment option | Omni product is not enabled for your merchant account. | Contact PayU support to enable the Omni product for your account. |
-| `E342` | Failed | Transaction not initiated | Generic failure. Payment request could not be processed. | Check all mandatory parameters. Review API logs for validation errors. Retry with corrected parameters. |
+| Code    | Status  | Message                                                  | Meaning                                                            | Action Required                                                                                         |
+| :------ | :------ | :------------------------------------------------------- | :----------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------ |
+| `E000`  | Success | Payment initiated successfully                           | Payment request accepted. Device activated. Customer can now pay.  | Wait for webhook. Then call Check Status API to verify final status.                                    |
+| `E2081` | Failed  | Invalid Device Id                                        | The `posDeviceId` does not exist or is not linked to your account. | Verify the device ID in your PayU dashboard. Ensure the device is registered and active.                |
+| `E1101` | Failed  | Invalid PG & Bank Code Combination                       | The `paymentMethod` values are incorrect.                          | Ensure `paymentMethod.name` and `paymentMethod.bankCode` are both set to `"POS"`.                       |
+| `EX158` | Failed  | Merchant Integration Exception - Inactive payment option | Omni product is not enabled for your merchant account.             | Contact PayU support to enable the Omni product for your account.                                       |
+| `E342`  | Failed  | Transaction not initiated                                | Generic failure. Payment request could not be processed.           | Check all mandatory parameters. Review API logs for validation errors. Retry with corrected parameters. |
 
----
+***
 
 ## Webhook Schema
 
 After the customer completes payment on the device, PayU sends a webhook to your `successAction` or `failureAction` URL.
 
-| Field | Type | Description | Example |
-| :--- | :--- | :--- | :--- |
-| `vendorTxnId` | String | Your transaction ID | `ORD_20231115_001` |
-| `txnId` | String | Your transaction ID (duplicate of vendorTxnId) | `ORD_20231115_001` |
-| `mihpayId` | String | PayU's internal transaction ID | `403993715534895620` |
-| `flowType` | String | Always "ominichannel" for Omni payments | `ominichannel` |
-| `message` | String | Instruction to call Status API | `Please use the checkBqrStatusAPI to fetch the final status` |
-| `status` | String | May be "pending" (not final) | `pending` |
+| Field         | Type   | Description                                    | Example                                                      |
+| :------------ | :----- | :--------------------------------------------- | :----------------------------------------------------------- |
+| `vendorTxnId` | String | Your transaction ID                            | `ORD_20231115_001`                                           |
+| `txnId`       | String | Your transaction ID (duplicate of vendorTxnId) | `ORD_20231115_001`                                           |
+| `mihpayId`    | String | PayU's internal transaction ID                 | `403993715534895620`                                         |
+| `flowType`    | String | Always "ominichannel" for Omni payments        | `ominichannel`                                               |
+| `message`     | String | Instruction to call Status API                 | `Please use the checkBqrStatusAPI to fetch the final status` |
+| `status`      | String | May be "pending" (not final)                   | `pending`                                                    |
 
 <Warning>
 ⚠️ **Critical:** Do NOT rely solely on the webhook status. Always call the **Check Transaction Status API** to retrieve authoritative payment details before marking an order as paid.
 </Warning>
 
----
+***
 
 ## Related Resources
 
