@@ -639,6 +639,10 @@ paths:
                 merchant[bank_detail][ifsc_code]:
                   type: string
                   description: '`string` — Bank IFSC code'
+              required:
+                - merchant[bank_detail][bank_account_number]
+                - merchant[bank_detail][holder_name]
+                - merchant[bank_detail][ifsc_code]
             example:
               merchant[bank_detail][bank_account_number]: '1234567890'
               merchant[bank_detail][holder_name]: ACCOUNT HOLDER NAME
