@@ -6,44 +6,48 @@ icon: far fa-arrow-left-from-dotted-line
 metadata:
   robots: index
 ---
----
-title: "Payment Links â€” Hosted Checkout Integration"
-excerpt: "Learn how to create and manage hosted checkout payment links using PayU Partner Payments API with OAuth authentication."
-category: "65dd9cf7bc5a4a001d4e160d"
----
+Partner Payments Hosted Checkout enables partners to redirect customers to PayU's secure, PCI-compliant payment gateway where they can complete payments using multiple payment methods—all without handling sensitive card data or building custom payment forms.
 
-Payment Links Hosted Checkout enables partners to create secure, shareable payment links that redirect customers to PayU's hosted checkout page. Customers can complete payments using multiple payment methods including credit/debit cards, UPI, net banking, and walletsâ€”all within PayU's PCI-compliant checkout interface.
+Unlike Payment Links (which create shareable URLs for remote payments), Partner Payments Hosted Checkout is designed for **direct integration** into your platform's checkout flow. When a customer initiates checkout on your website or app, you create a payment session via the Partner Payments API and immediately redirect them to PayU's hosted checkout page.
 
-Unlike UPI Intent flows that directly invoke UPI apps, hosted checkout payment links provide a complete payment gateway experience through a web-based interface, making them ideal for:
+**Key Benefits:**
 
-- **E-commerce checkout** â€” Send payment links via email or SMS after order confirmation
-- **Invoice payments** â€” Share payment links for bill settlements
-- **Remote/contactless payments** â€” Enable customers to pay without physical interaction
-- **Request money scenarios** â€” Collect payments from customers who don't have your payment integration
+- **Multi-method payment support** — Cards, UPI, net banking, wallets in a single integration
+- **PCI-DSS compliance** — PayU handles all card data; you never touch sensitive information
+- **Proven conversion** — Optimized checkout UI tested across millions of transactions
+- **Zero maintenance** — PayU manages payment method updates, bank integrations, and compliance
+- **Brand consistency** — Customizable checkout page with your merchant branding
 
-This guide covers the complete integration flow using **OAuth 2.0 authentication** and the PayU Partner Payments API.
+This integration is ideal for:
 
----
+- **E-commerce platforms** managing payments for multiple merchants
+- **Subscription services** requiring recurring payment collection
+- **B2B platforms** enabling business-to-business transactions
+- **Marketplaces** facilitating buyer-seller payments
+
+***
 
 ## How It Works
 
-The Payment Links Hosted Checkout flow follows these steps:
+The Partner Payments Hosted Checkout flow follows these steps:
 
-1. **OAuth Authentication** â€” Obtain an access token using your OAuth client credentials with required scopes (`create_payment_links`, `partner_payment_links`, `partner_payments`)
+1. **OAuth Authentication** — Obtain an access token with scopes: `create_payment_links`, `partner_payment_links`, `partner_payments`
 
-2. **Create Payment Link** â€” POST a payment request to the Partner Payments API with transaction details, callback URLs, and a computed hash
+2. **Initiate Payment** — POST a payment request to the Partner Payments API with transaction details, callback URLs (`surl`, `furl`, `curl`), and a computed hash
 
-3. **Receive redirectUri** â€” PayU returns a hosted checkout URL (`https://secure.payu.in/_payment?...`)
+3. **Receive Redirect URL** — PayU returns a `redirectUri` pointing to the hosted checkout page
 
-4. **Share Link** â€” Send the redirectUri to your customer via SMS, WhatsApp, email, or any other channel
+4. **Redirect Customer** — Immediately redirect the customer to the `redirectUri` in their browser
 
-5. **Customer Completes Payment** â€” Customer opens the link, selects a payment method on PayU's hosted page, and completes the transaction
+5. **Customer Completes Payment** — Customer selects a payment method on PayU's hosted page, authenticates, and completes the transaction
 
-6. **Receive Webhook** â€” PayU sends a payment notification to your configured partner webhook URL with transaction status and details
+6. **Customer Redirected Back** — PayU redirects the customer to your success/failure/cancel URL based on payment outcome
 
-7. **Verify Payment** â€” Call the Verify Payment API to confirm the final transaction status and reconcile
+7. **Receive Webhook** — PayU sends payment status notification to your configured partner webhook URL
 
----
+8. **Verify Payment** — Call the Verify Payment API to confirm final transaction status
+
+***
 
 ## Prerequisites
 
@@ -59,6 +63,10 @@ Before you begin, ensure you have:
 - **Partner OAuth Application** registered with PayU with the above scopes enabled
 - **OAuth Credentials:** `client_id` and `client_secret`
 - **Merchant Credentials:** `merchant_id` (PayU merchant ID) and `reseller_id` (partner UUID)
+- **Callback URLs Ready:**
+  - `surl` — Success redirect URL (where PayU sends customers after successful payment)
+  - `furl` — Failure redirect URL (where PayU sends customers after failed payment)
+  - `curl` — Cancel redirect URL (where PayU sends customers if they cancel payment)
 - **Partner Webhook URLs** configured in PayU's system (`partner_webhook_success`, `partner_webhook_failure`, `partner_webhook_cancelled`)
 - **Test Environment Access** to `https://test-partnerapilayer.payu.in`
 
@@ -66,34 +74,322 @@ Before you begin, ensure you have:
 **Important:** All hash computations for partner payments use your OAuth `client_secret`, NOT the merchant salt used in direct merchant integrations.
 </Warning>
 
----
+***
 
 ## Step 1: Generate OAuth Access Token
 
-Partner Payments API requires OAuth 2.0 Bearer token authentication. Follow this two-step process to obtain your access token.
+Partner Payments API requires a 3-step OAuth 2.0 authentication flow to obtain the final Bearer token.
 
-### Step 1.1: Request Authorization Code
+<Warning>
+**Important Differences from Direct Merchant Integration:**
+- Partner Payments uses a **3-step OAuth flow** (reseller password grant → merchant auth code → final token)
+- First token uses `scope=hub_session`, merchant auth code uses `scopes=create_payment_links partner_payment_links partner_payments`
+- Content-Type is `application/x-www-form-urlencoded` (not `application/json`)
+- Authorization code request requires the reseller's initial access token
+</Warning>
 
-First, obtain an authorization code using the password grant type with your merchant credentials:
+### Step 1.1: Obtain Initial Access Token (Reseller Password Grant)
 
-**Endpoint:** 
-Test: `POST https://uat-partner.payu.in/api/v1/merchants/auth_code`
-Production: `POST https://partner.payu.in/api/v1/merchants/auth_code`
+The first step obtains an access token using your reseller credentials with the `hub_session` scope.
 
+**Endpoint:** `POST https://uat-accounts.payu.in/oauth/token`
+
+**Headers:**
+
+```
+Content-Type: application/x-www-form-urlencoded
+```
+
+**Request:**
+
+```bash
+curl --location 'https://uat-accounts.payu.in/oauth/token' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'client_id=your_client_id' \
+--data-urlencode 'client_secret=your_client_secret' \
+--data-urlencode 'grant_type=password' \
+--data-urlencode 'username=your_reseller_username' \
+--data-urlencode 'password=your_reseller_password' \
+--data-urlencode 'scope=hub_session'
+```
+
+```python
+import requests
+
+url = "https://uat-accounts.payu.in/oauth/token"
+
+headers = {
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {
+    "client_id": "your_client_id",
+    "client_secret": "your_client_secret",
+    "grant_type": "password",
+    "username": "your_reseller_username",
+    "password": "your_reseller_password",
+    "scope": "hub_session"
+}
+
+response = requests.post(url, headers=headers, data=payload)
+
+print(f"Status Code: {response.status_code}")
+print(f"Response: {response.text}")
+
+# Extract access token for Step 1.2
+if response.status_code == 200:
+    initial_access_token = response.json()["access_token"]
+    print(f"
+Initial Access Token: {initial_access_token}")
+```
+
+```java
+import java.net.URI;
+import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+
+public class Step1_ObtainInitialToken {
+    public static void main(String[] args) throws Exception {
+        String url = "https://uat-accounts.payu.in/oauth/token";
+        
+        // Build form-encoded body
+        String formBody = "client_id=" + URLEncoder.encode("your_client_id", StandardCharsets.UTF_8) +
+                         "&client_secret=" + URLEncoder.encode("your_client_secret", StandardCharsets.UTF_8) +
+                         "&grant_type=password" +
+                         "&username=" + URLEncoder.encode("your_reseller_username", StandardCharsets.UTF_8) +
+                         "&password=" + URLEncoder.encode("your_reseller_password", StandardCharsets.UTF_8) +
+                         "&scope=hub_session";
+        
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create(url))
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formBody))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println("Status Code: " + response.statusCode());
+        System.out.println("Response: " + response.body());
+        
+        // Extract access_token (use a JSON library like Gson in production)
+        if (response.statusCode() == 200) {
+            String responseBody = response.body();
+            String accessToken = responseBody.split("\"access_token\":\"")[1].split("\"")[0];
+            System.out.println("
+Initial Access Token: " + accessToken);
+        }
+    }
+}
+```
+
+```php
+<?php
+$url = "https://uat-accounts.payu.in/oauth/token";
+
+$headers = array(
+    "Content-Type: application/x-www-form-urlencoded"
+);
+
+$payload = http_build_query(array(
+    "client_id" => "your_client_id",
+    "client_secret" => "your_client_secret",
+    "grant_type" => "password",
+    "username" => "your_reseller_username",
+    "password" => "your_reseller_password",
+    "scope" => "hub_session"
+));
+
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+$statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+if (curl_errno($ch)) {
+    echo "Error: " . curl_error($ch);
+} else {
+    echo "Status Code: " . $statusCode . "
+";
+    echo "Response: " . $response . "
+";
+    
+    // Extract access token for Step 1.2
+    if ($statusCode == 200) {
+        $responseData = json_decode($response, true);
+        $initialAccessToken = $responseData["access_token"];
+        echo "
+Initial Access Token: " . $initialAccessToken;
+    }
+}
+
+curl_close($ch);
+?>
+```
+
+**Response:**
+
+```json
+{
+  "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "token_type": "Bearer",
+  "expires_in": 3600,
+  "scope": "hub_session"
+}
+```
+
+<Info>
+**Note:** Save the `access_token` from this response. You'll need it in Step 1.2 to request the merchant authorization code.
+</Info>
+
+### Step 1.2: Request Merchant Authorization Code
+
+Use the access token from Step 1.1 to request an authorization code for the specific merchant.
+
+**Endpoint:** `POST https://uat-partner.payu.in/api/v1/merchants/auth_code`
+
+**Headers:**
+
+```
+Authorization: Bearer <access_token_from_step_1.1>
+Content-Type: application/x-www-form-urlencoded
+```
 
 **Request:**
 
 ```bash
 curl --location 'https://uat-partner.payu.in/api/v1/merchants/auth_code' \
---header 'Content-Type: application/json' \
---data '{
-  "client_id": "your_client_id",
-  "client_secret": "your_client_secret",
-  "grant_type": "password",
-  "username": "your_merchant_username",
-  "password": "your_merchant_password",
-  "scope": "create_payment_links partner_payment_links partner_payments"
-}'
+--header 'Authorization: Bearer access_token_from_step_1' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'merchant_id=8739528' \
+--data-urlencode 'reseller_uuid=11ee-0e7e-5403fde2-9523-0a696b110fde' \
+--data-urlencode 'redirect_uri=https://uat-partner.payu.in' \
+--data-urlencode 'scopes=create_payment_links partner_payment_links partner_payments'
+```
+
+```python
+import requests
+
+url = "https://uat-partner.payu.in/api/v1/merchants/auth_code"
+
+headers = {
+    "Authorization": f"Bearer {initial_access_token}",  # From Step 1.1
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {
+    "merchant_id": "8739528",
+    "reseller_uuid": "11ee-0e7e-5403fde2-9523-0a696b110fde",
+    "redirect_uri": "https://uat-partner.payu.in",
+    "scopes": "create_payment_links partner_payment_links partner_payments"
+}
+
+response = requests.post(url, headers=headers, data=payload)
+
+print(f"Status Code: {response.status_code}")
+print(f"Response: {response.text}")
+
+# Extract authorization code for Step 1.3
+if response.status_code == 200:
+    authorization_code = response.json()["code"]
+    print(f"
+Authorization Code: {authorization_code}")
+```
+
+```java
+import java.net.URI;
+import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+
+public class Step2_RequestAuthCode {
+    public static void main(String[] args) throws Exception {
+        String url = "https://uat-partner.payu.in/api/v1/merchants/auth_code";
+        String initialAccessToken = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..."; // From Step 1.1
+        
+        // Build form-encoded body
+        String formBody = "merchant_id=8739528" +
+                         "&reseller_uuid=" + URLEncoder.encode("11ee-0e7e-5403fde2-9523-0a696b110fde", StandardCharsets.UTF_8) +
+                         "&redirect_uri=" + URLEncoder.encode("https://uat-partner.payu.in", StandardCharsets.UTF_8) +
+                         "&scopes=" + URLEncoder.encode("create_payment_links partner_payment_links partner_payments", StandardCharsets.UTF_8);
+        
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create(url))
+            .header("Authorization", "Bearer " + initialAccessToken)
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formBody))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println("Status Code: " + response.statusCode());
+        System.out.println("Response: " + response.body());
+        
+        // Extract authorization code
+        if (response.statusCode() == 200) {
+            String responseBody = response.body();
+            String authCode = responseBody.split("\"code\":\"")[1].split("\"")[0];
+            System.out.println("
+Authorization Code: " + authCode);
+        }
+    }
+}
+```
+
+```php
+<?php
+$url = "https://uat-partner.payu.in/api/v1/merchants/auth_code";
+$initialAccessToken = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9..."; // From Step 1.1
+
+$headers = array(
+    "Authorization: Bearer " . $initialAccessToken,
+    "Content-Type: application/x-www-form-urlencoded"
+);
+
+$payload = http_build_query(array(
+    "merchant_id" => "8739528",
+    "reseller_uuid" => "11ee-0e7e-5403fde2-9523-0a696b110fde",
+    "redirect_uri" => "https://uat-partner.payu.in",
+    "scopes" => "create_payment_links partner_payment_links partner_payments"
+));
+
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+$statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+if (curl_errno($ch)) {
+    echo "Error: " . curl_error($ch);
+} else {
+    echo "Status Code: " . $statusCode . "
+";
+    echo "Response: " . $response . "
+";
+    
+    // Extract authorization code for Step 1.3
+    if ($statusCode == 200) {
+        $responseData = json_decode($response, true);
+        $authorizationCode = $responseData["code"];
+        echo "
+Authorization Code: " . $authorizationCode;
+    }
+}
+
+curl_close($ch);
+?>
 ```
 
 **Response:**
@@ -105,24 +401,157 @@ curl --location 'https://uat-partner.payu.in/api/v1/merchants/auth_code' \
 }
 ```
 
-### Step 1.2: Exchange Authorization Code for Access Token
+<Warning>
+**Critical Scope Parameter:**
+The `scopes` parameter must include all three scopes for Partner Payments:
+- `create_payment_links` — Create payment links
+- `partner_payment_links` — Manage partner payment links
+- `partner_payments` — **Required for payment initiation and verification APIs**
 
-Use the authorization code to obtain your final access token:
+Format: `scopes=create_payment_links partner_payment_links partner_payments` (space-separated, no commas)
+</Warning>
+
+### Step 1.3: Exchange Authorization Code for Final Access Token
+
+Exchange the authorization code from Step 1.2 for the final access token you'll use for all Partner Payments API calls.
 
 **Endpoint:** `POST https://uat-accounts.payu.in/oauth/token`
+
+**Headers:**
+
+```
+Content-Type: application/x-www-form-urlencoded
+```
 
 **Request:**
 
 ```bash
 curl --location 'https://uat-accounts.payu.in/oauth/token' \
---header 'Content-Type: application/json' \
---data '{
-  "client_id": "your_client_id",
-  "client_secret": "your_client_secret",
-  "grant_type": "authorization_code",
-  "code": "auth_code_from_previous_step",
-  "redirect_uri": "https://yoursite.com/oauth/callback"
-}'
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'client_id=your_client_id' \
+--data-urlencode 'client_secret=your_client_secret' \
+--data-urlencode 'grant_type=authorization_code' \
+--data-urlencode 'code=authorization_code_from_step_2' \
+--data-urlencode 'redirect_uri=https://uat-partner.payu.in'
+```
+
+```python
+import requests
+
+url = "https://uat-accounts.payu.in/oauth/token"
+
+headers = {
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {
+    "client_id": "your_client_id",
+    "client_secret": "your_client_secret",
+    "grant_type": "authorization_code",
+    "code": authorization_code,  # From Step 1.2
+    "redirect_uri": "https://uat-partner.payu.in"
+}
+
+response = requests.post(url, headers=headers, data=payload)
+
+print(f"Status Code: {response.status_code}")
+print(f"Response: {response.text}")
+
+# Extract final access token
+if response.status_code == 200:
+    final_access_token = response.json()["access_token"]
+    print(f"
+✅ Final Access Token (use for all API calls): {final_access_token}")
+```
+
+```java
+import java.net.URI;
+import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+
+public class Step3_ExchangeForFinalToken {
+    public static void main(String[] args) throws Exception {
+        String url = "https://uat-accounts.payu.in/oauth/token";
+        String authorizationCode = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."; // From Step 1.2
+        
+        // Build form-encoded body
+        String formBody = "client_id=" + URLEncoder.encode("your_client_id", StandardCharsets.UTF_8) +
+                         "&client_secret=" + URLEncoder.encode("your_client_secret", StandardCharsets.UTF_8) +
+                         "&grant_type=authorization_code" +
+                         "&code=" + URLEncoder.encode(authorizationCode, StandardCharsets.UTF_8) +
+                         "&redirect_uri=" + URLEncoder.encode("https://uat-partner.payu.in", StandardCharsets.UTF_8);
+        
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create(url))
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formBody))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println("Status Code: " + response.statusCode());
+        System.out.println("Response: " + response.body());
+        
+        // Extract final access token
+        if (response.statusCode() == 200) {
+            String responseBody = response.body();
+            String finalAccessToken = responseBody.split("\"access_token\":\"")[1].split("\"")[0];
+            System.out.println("
+✅ Final Access Token: " + finalAccessToken);
+        }
+    }
+}
+```
+
+```php
+<?php
+$url = "https://uat-accounts.payu.in/oauth/token";
+$authorizationCode = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."; // From Step 1.2
+
+$headers = array(
+    "Content-Type: application/x-www-form-urlencoded"
+);
+
+$payload = http_build_query(array(
+    "client_id" => "your_client_id",
+    "client_secret" => "your_client_secret",
+    "grant_type" => "authorization_code",
+    "code" => $authorizationCode,
+    "redirect_uri" => "https://uat-partner.payu.in"
+));
+
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+$statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+if (curl_errno($ch)) {
+    echo "Error: " . curl_error($ch);
+} else {
+    echo "Status Code: " . $statusCode . "
+";
+    echo "Response: " . $response . "
+";
+    
+    // Extract final access token
+    if ($statusCode == 200) {
+        $responseData = json_decode($response, true);
+        $finalAccessToken = $responseData["access_token"];
+        echo "
+✅ Final Access Token (use for all API calls): " . $finalAccessToken;
+    }
+}
+
+curl_close($ch);
+?>
 ```
 
 **Response:**
@@ -136,22 +565,34 @@ curl --location 'https://uat-accounts.payu.in/oauth/token' \
 }
 ```
 
+<Success>
+**OAuth Flow Complete!** Use the `access_token` from this response as your Bearer token for all Partner Payments API calls:
+
+```
+Authorization: Bearer <final_access_token>
+```
+</Success>
+
 <Info>
-**Access Token Validity:** OAuth tokens typically expire after 1 hour. Implement token refresh logic to handle expiration gracefully.
+**Token Management Best Practices:**
+- Store the final access token securely (encrypted database, secure environment variables)
+- Monitor token expiry (typically 3600 seconds = 1 hour)
+- Implement automatic token refresh before expiry
+- Never expose tokens in client-side code or logs
 </Info>
 
----
+***
 
-## Step 2: Create Payment Link
+## Step 2: Initiate Hosted Checkout Payment
 
 ### Step 2.1: Prepare Request Parameters
 
 **Endpoint URLs:**
 
-| Environment | URL |
-|-------------|-----|
-| Test | `https://test-partnerapilayer.payu.in/apilayer/partner/payments` |
-| Production | `https://api.payu.in/partner/payments` |
+| Environment | URL                                                              |
+| ----------- | ---------------------------------------------------------------- |
+| Test        | `https://test-partnerapilayer.payu.in/apilayer/partner/payments` |
+| Production  | `https://api.payu.in/partner/payments`                           |
 
 **HTTP Method:** `POST`
 
@@ -178,17 +619,17 @@ Content-Type: application/json
     <tr>
       <td>txnid</td>
       <td><strong>String</strong><br>Unique transaction ID generated by the partner.</td>
-      <td>TXNPL20240315001</td>
+      <td>PPHOST20240315001</td>
     </tr>
     <tr>
       <td>amount</td>
       <td><strong>String</strong><br>Transaction amount in decimal format.</td>
-      <td>500.00</td>
+      <td>1500.00</td>
     </tr>
     <tr>
       <td>productinfo</td>
       <td><strong>String</strong><br>Product or service description.</td>
-      <td>Payment for Order #12345</td>
+      <td>Premium Subscription - Monthly</td>
     </tr>
     <tr>
       <td>phone</td>
@@ -207,24 +648,24 @@ Content-Type: application/json
     </tr>
     <tr>
       <td>surl</td>
-      <td><strong>String</strong><br>Success callback URL redirected to after a successful payment.</td>
-      <td>https://yoursite.com/payment/success</td>
+      <td><strong>String</strong><br>Success callback URL. Customer is redirected here after successful payment.</td>
+      <td>https://yourplatform.com/payment/success</td>
     </tr>
     <tr>
       <td>furl</td>
-      <td><strong>String</strong><br>Failure callback URL redirected to after a failed payment.</td>
-      <td>https://yoursite.com/payment/failure</td>
+      <td><strong>String</strong><br>Failure callback URL. Customer is redirected here after failed payment.</td>
+      <td>https://yourplatform.com/payment/failure</td>
     </tr>
     <tr>
       <td>curl</td>
-      <td><strong>String</strong><br>Cancel callback URL redirected to when a payment is cancelled.</td>
-      <td>https://yoursite.com/payment/cancel</td>
+      <td><strong>String</strong><br>Cancel callback URL. Customer is redirected here when payment is cancelled.</td>
+      <td>https://yourplatform.com/payment/cancel</td>
     </tr>
     <tr>
       <td>hash</td>
       <td><strong>String</strong><br>SHA-512 hash (lowercase hex) used to authenticate the request. Computed as:
       merchant_id|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||client_secret</td>
-      <td>â€”</td>
+      <td>—</td>
     </tr>
   </tbody>
 </table>
@@ -243,56 +684,57 @@ Content-Type: application/json
     <tr>
       <td>firstname</td>
       <td><strong>String</strong><br>Customer's first name.</td>
-      <td>John</td>
+      <td>Priya</td>
     </tr>
     <tr>
       <td>lastname</td>
       <td><strong>String</strong><br>Customer's last name.</td>
-      <td>Doe</td>
+      <td>Sharma</td>
     </tr>
     <tr>
       <td>email</td>
       <td><strong>String</strong><br>Customer's email address.</td>
-      <td>john.doe@example.com</td>
+      <td>priya.sharma@example.com</td>
     </tr>
     <tr>
       <td>udf1</td>
       <td><strong>String</strong><br>User-defined field 1 for storing custom data.</td>
-      <td>â€”</td>
+      <td>subscription_plan_premium</td>
     </tr>
     <tr>
       <td>udf2</td>
       <td><strong>String</strong><br>User-defined field 2 for storing custom data.</td>
-      <td>â€”</td>
+      <td>monthly_billing</td>
     </tr>
     <tr>
       <td>udf3</td>
       <td><strong>String</strong><br>User-defined field 3 for storing custom data.</td>
-      <td>â€”</td>
+      <td>customer_segment_B</td>
     </tr>
     <tr>
       <td>udf4</td>
       <td><strong>String</strong><br>User-defined field 4 for storing custom data.</td>
-      <td>â€”</td>
+      <td>campaign_spring2024</td>
     </tr>
     <tr>
       <td>udf5</td>
       <td><strong>String</strong><br>User-defined field 5, often used for partner or channel ID.</td>
-      <td>â€”</td>
+      <td>partner_web_checkout</td>
     </tr>
   </tbody>
 </table>
 
 <Warning>
-**Important Notes:**
-- **NO** `txn_s2s_flow` parameter â€” this is for UPI Intent S2S flows only
-- **NO** `s2s_client_ip` or `s2s_device_info` â€” not required for hosted checkout redirect flows
-- `surl`, `furl`, and `curl` are **mandatory** for redirect-based payment links
+**Hosted Checkout-Specific Notes:**
+- **NO** `txn_s2s_flow` parameter — This is for UPI Intent S2S flows only
+- **NO** `s2s_client_ip` or `s2s_device_info` — Not required for redirect-based flows
+- `surl`, `furl`, and `curl` are **mandatory** — These URLs receive the customer after payment completion
+- The `redirectUri` in the response is NOT shareable — It should be used for immediate redirect only
 </Warning>
 
 ### Step 2.2: Generate Payment Request Hash
 
-The payment request hash authenticates your API call. Compute it using SHA-512 with this exact sequence:
+The payment request hash authenticates your API call using SHA-512.
 
 **Hash Formula:**
 
@@ -304,7 +746,7 @@ merchant_id|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|||
 **Critical Hash Rules:**
 - There are **six consecutive pipes** (`||||||`) between `udf5` and `client_secret`
 - Use your OAuth **client_secret** (NOT merchant salt)
-- Use empty strings for any missing optional fields (which results in consecutive pipes)
+- Use empty strings for any missing optional fields (results in consecutive pipes)
 - Compute SHA-512 and output as **lowercase hexadecimal**
 - Do NOT add a trailing pipe after `client_secret`
 </Warning>
@@ -317,25 +759,22 @@ merchant_id|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|||
 import hashlib
 
 def generate_payment_hash(merchant_id, txnid, amount, productinfo, firstname, email, udf1, udf2, udf3, udf4, udf5, client_secret):
-    # Build hash string with exact pipe sequence
     hash_string = f"{merchant_id}|{txnid}|{amount}|{productinfo}|{firstname}|{email}|{udf1}|{udf2}|{udf3}|{udf4}|{udf5}||||||{client_secret}"
-    
-    # Compute SHA-512 and return lowercase hex
     return hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
 
 # Example usage
 payment_hash = generate_payment_hash(
     merchant_id=8739528,
-    txnid="TXNPL20240315001",
-    amount="500.00",
-    productinfo="Payment for Order #12345",
-    firstname="John",
-    email="john.doe@example.com",
-    udf1="",
-    udf2="",
+    txnid="PPHOST20240315001",
+    amount="1500.00",
+    productinfo="Premium Subscription - Monthly",
+    firstname="Priya",
+    email="priya.sharma@example.com",
+    udf1="subscription_plan_premium",
+    udf2="monthly_billing",
     udf3="",
     udf4="",
-    udf5="partner_channel_001",
+    udf5="partner_web_checkout",
     client_secret="your_client_secret_here"
 )
 
@@ -348,8 +787,8 @@ print(f"Payment Hash: {payment_hash}")
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class PaymentHashGenerator {
-    public static String generatePaymentHash(
+public class HostedCheckoutHashGenerator {
+    public static String generateHash(
         int merchantId, String txnid, String amount, String productinfo,
         String firstname, String email, String udf1, String udf2, 
         String udf3, String udf4, String udf5, String clientSecret
@@ -372,25 +811,6 @@ public class PaymentHashGenerator {
         
         return hexString.toString();
     }
-    
-    public static void main(String[] args) throws NoSuchAlgorithmException {
-        String hash = generatePaymentHash(
-            8739528,
-            "TXNPL20240315001",
-            "500.00",
-            "Payment for Order #12345",
-            "John",
-            "john.doe@example.com",
-            "",
-            "",
-            "",
-            "",
-            "partner_channel_001",
-            "your_client_secret_here"
-        );
-        
-        System.out.println("Payment Hash: " + hash);
-    }
 }
 ```
 
@@ -398,9 +818,9 @@ public class PaymentHashGenerator {
 
 ```php
 <?php
-function generatePaymentHash($merchantId, $txnid, $amount, $productinfo, 
-                             $firstname, $email, $udf1, $udf2, $udf3, 
-                             $udf4, $udf5, $clientSecret) {
+function generateHostedCheckoutHash($merchantId, $txnid, $amount, $productinfo, 
+                                    $firstname, $email, $udf1, $udf2, $udf3, 
+                                    $udf4, $udf5, $clientSecret) {
     
     $hashString = $merchantId . "|" . $txnid . "|" . $amount . "|" . 
                   $productinfo . "|" . $firstname . "|" . $email . "|" .
@@ -410,23 +830,23 @@ function generatePaymentHash($merchantId, $txnid, $amount, $productinfo,
     return hash('sha512', $hashString);
 }
 
-// Example usage
-$paymentHash = generatePaymentHash(
+// Example
+$hash = generateHostedCheckoutHash(
     8739528,
-    "TXNPL20240315001",
-    "500.00",
-    "Payment for Order #12345",
-    "John",
-    "john.doe@example.com",
+    "PPHOST20240315001",
+    "1500.00",
+    "Premium Subscription - Monthly",
+    "Priya",
+    "priya.sharma@example.com",
+    "subscription_plan_premium",
+    "monthly_billing",
     "",
     "",
-    "",
-    "",
-    "partner_channel_001",
+    "partner_web_checkout",
     "your_client_secret_here"
 );
 
-echo "Payment Hash: " . $paymentHash;
+echo "Payment Hash: " . $hash;
 ?>
 ```
 
@@ -439,18 +859,20 @@ curl --location 'https://test-partnerapilayer.payu.in/apilayer/partner/payments'
 --header 'Authorization: Bearer your_access_token_here' \
 --header 'Content-Type: application/json' \
 --data '{
-  "txnid": "TXNPL20240315001",
-  "amount": "500.00",
-  "productinfo": "Payment for Order #12345",
-  "firstname": "John",
-  "email": "john.doe@example.com",
+  "txnid": "PPHOST20240315001",
+  "amount": "1500.00",
+  "productinfo": "Premium Subscription - Monthly",
+  "firstname": "Priya",
+  "email": "priya.sharma@example.com",
   "phone": "919876543210",
   "merchant_id": 8739528,
   "reseller_id": "11ee-0e7e-5403fde2-9523-0a696b110fde",
-  "surl": "https://yoursite.com/payment/success",
-  "furl": "https://yoursite.com/payment/failure",
-  "curl": "https://yoursite.com/payment/cancel",
-  "udf5": "partner_channel_001",
+  "surl": "https://yourplatform.com/payment/success",
+  "furl": "https://yourplatform.com/payment/failure",
+  "curl": "https://yourplatform.com/payment/cancel",
+  "udf1": "subscription_plan_premium",
+  "udf2": "monthly_billing",
+  "udf5": "partner_web_checkout",
   "hash": "computed_sha512_hash_here"
 }'
 ```
@@ -469,18 +891,20 @@ headers = {
 }
 
 payload = {
-    "txnid": "TXNPL20240315001",
-    "amount": "500.00",
-    "productinfo": "Payment for Order #12345",
-    "firstname": "John",
-    "email": "john.doe@example.com",
+    "txnid": "PPHOST20240315001",
+    "amount": "1500.00",
+    "productinfo": "Premium Subscription - Monthly",
+    "firstname": "Priya",
+    "email": "priya.sharma@example.com",
     "phone": "919876543210",
     "merchant_id": 8739528,
     "reseller_id": "11ee-0e7e-5403fde2-9523-0a696b110fde",
-    "surl": "https://yoursite.com/payment/success",
-    "furl": "https://yoursite.com/payment/failure",
-    "curl": "https://yoursite.com/payment/cancel",
-    "udf5": "partner_channel_001",
+    "surl": "https://yourplatform.com/payment/success",
+    "furl": "https://yourplatform.com/payment/failure",
+    "curl": "https://yourplatform.com/payment/cancel",
+    "udf1": "subscription_plan_premium",
+    "udf2": "monthly_billing",
+    "udf5": "partner_web_checkout",
     "hash": "computed_sha512_hash_here"
 }
 
@@ -498,11 +922,11 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class CreatePaymentLinkHostedCheckout {
+public class InitiateHostedCheckout {
     public static void main(String[] args) throws Exception {
         String url = "https://test-partnerapilayer.payu.in/apilayer/partner/payments";
         
-        String payload = "{\"txnid\":\"TXNPL20240315001\",\"amount\":\"500.00\",\"productinfo\":\"Payment for Order #12345\",\"firstname\":\"John\",\"email\":\"john.doe@example.com\",\"phone\":\"919876543210\",\"merchant_id\":8739528,\"reseller_id\":\"11ee-0e7e-5403fde2-9523-0a696b110fde\",\"surl\":\"https://yoursite.com/payment/success\",\"furl\":\"https://yoursite.com/payment/failure\",\"curl\":\"https://yoursite.com/payment/cancel\",\"udf5\":\"partner_channel_001\",\"hash\":\"computed_sha512_hash_here\"}";
+        String payload = "{\"txnid\":\"PPHOST20240315001\",\"amount\":\"1500.00\",\"productinfo\":\"Premium Subscription - Monthly\",\"firstname\":\"Priya\",\"email\":\"priya.sharma@example.com\",\"phone\":\"919876543210\",\"merchant_id\":8739528,\"reseller_id\":\"11ee-0e7e-5403fde2-9523-0a696b110fde\",\"surl\":\"https://yourplatform.com/payment/success\",\"furl\":\"https://yourplatform.com/payment/failure\",\"curl\":\"https://yourplatform.com/payment/cancel\",\"udf1\":\"subscription_plan_premium\",\"udf2\":\"monthly_billing\",\"udf5\":\"partner_web_checkout\",\"hash\":\"computed_sha512_hash_here\"}";
         
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -532,18 +956,20 @@ $headers = array(
 );
 
 $payload = json_encode(array(
-    "txnid" => "TXNPL20240315001",
-    "amount" => "500.00",
-    "productinfo" => "Payment for Order #12345",
-    "firstname" => "John",
-    "email" => "john.doe@example.com",
+    "txnid" => "PPHOST20240315001",
+    "amount" => "1500.00",
+    "productinfo" => "Premium Subscription - Monthly",
+    "firstname" => "Priya",
+    "email" => "priya.sharma@example.com",
     "phone" => "919876543210",
     "merchant_id" => 8739528,
     "reseller_id" => "11ee-0e7e-5403fde2-9523-0a696b110fde",
-    "surl" => "https://yoursite.com/payment/success",
-    "furl" => "https://yoursite.com/payment/failure",
-    "curl" => "https://yoursite.com/payment/cancel",
-    "udf5" => "partner_channel_001",
+    "surl" => "https://yourplatform.com/payment/success",
+    "furl" => "https://yourplatform.com/payment/failure",
+    "curl" => "https://yourplatform.com/payment/cancel",
+    "udf1" => "subscription_plan_premium",
+    "udf2" => "monthly_billing",
+    "udf5" => "partner_web_checkout",
     "hash" => "computed_sha512_hash_here"
 ));
 
@@ -563,82 +989,142 @@ echo "Response: " . $response;
 ?>
 ```
 
-### Step 2.4: Handle Payment Response
+### Step 2.4: Handle Payment Response & Redirect Customer
 
 **Success Response:**
 
 ```json
 {
-  "redirectUri": "https://secure.payu.in/_payment?mihpayid=403993715521855096&amount=500.00&txnid=TXNPL20240315001&key=JPM7Fg&productinfo=Payment+for+Order+%2312345&phone=919876543210&firstname=John&email=john.doe%40example.com&surl=https%3A%2F%2Fyoursite.com%2Fpayment%2Fsuccess&furl=https%3A%2F%2Fyoursite.com%2Fpayment%2Ffailure&curl=https%3A%2F%2Fyoursite.com%2Fpayment%2Fcancel&udf5=partner_channel_001&hash=..."
+  "redirectUri": "https://secure.payu.in/_payment?mihpayid=403993715521899234&amount=1500.00&txnid=PPHOST20240315001&key=JPM7Fg&productinfo=Premium+Subscription+-+Monthly&phone=919876543210&firstname=Priya&email=priya.sharma%40example.com&surl=https%3A%2F%2Fyourplatform.com%2Fpayment%2Fsuccess&furl=https%3A%2F%2Fyourplatform.com%2Fpayment%2Ffailure&curl=https%3A%2F%2Fyourplatform.com%2Fpayment%2Fcancel&hash=..."
 }
 ```
 
 **Key Response Field:**
 
-- **redirectUri** â€” The complete PayU hosted checkout URL. Share this link with your customer via SMS, WhatsApp, email, or any other channel.
+- **redirectUri** — The PayU hosted checkout URL. **Immediately redirect the customer to this URL.**
 
-**Customer Experience:**
+**Redirect Implementation:**
 
-When the customer opens the `redirectUri`:
+**Server-side redirect (recommended):**
 
-1. They are taken to PayU's secure hosted checkout page (`secure.payu.in`)
-2. The page displays transaction details (amount, product info, merchant name)
-3. Customer selects a payment method:
-   - Credit/Debit Cards
-   - UPI (Intent or Collect)
-   - Net Banking
-   - Wallets (PayU Money, PhonePe, etc.)
-4. Customer completes authentication (OTP, PIN, biometric)
-5. PayU processes the payment and redirects the customer to:
-   - `surl` (success callback URL) if payment succeeds
-   - `furl` (failure callback URL) if payment fails
-   - `curl` (cancel callback URL) if customer cancels
+```python
+# Python Flask example
+from flask import redirect
+
+@app.route('/checkout', methods=['POST'])
+def initiate_checkout():
+    # Create payment via Partner API (steps above)
+    response = requests.post(payu_url, headers=headers, data=json.dumps(payload))
+    
+    if response.status_code == 200:
+        redirect_uri = response.json().get('redirectUri')
+        return redirect(redirect_uri, code=302)
+    else:
+        return "Payment initiation failed", 500
+```
+
+```php
+// PHP redirect
+<?php
+// Create payment via Partner API
+$response = json_decode($apiResponse, true);
+
+if ($response['redirectUri']) {
+    header("Location: " . $response['redirectUri']);
+    exit();
+}
+?>
+```
+
+**Client-side redirect (JavaScript):**
+
+```javascript
+// After receiving API response
+fetch('/api/create-payment', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(paymentData)
+})
+.then(response => response.json())
+.then(data => {
+    if (data.redirectUri) {
+        // Redirect customer to PayU checkout
+        window.location.href = data.redirectUri;
+    }
+});
+```
+
+**Customer Experience on Hosted Checkout:**
+
+Once redirected to `redirectUri`, the customer will:
+
+1. **See PayU's hosted checkout page** with:
+   - Your merchant branding (logo, colors)
+   - Transaction summary (amount, product description)
+   - Available payment methods
+
+2. **Select a payment method:**
+   - **Credit/Debit Cards** (Visa, Mastercard, Amex, Rupay)
+   - **UPI** (Intent or Collect flow)
+   - **Net Banking** (50+ banks)
+   - **Wallets** (PayU Money, PhonePe, Paytm, etc.)
+
+3. **Complete authentication:**
+   - Card: CVV + OTP (3D Secure)
+   - UPI: PIN authentication
+   - Net Banking: Bank credentials
+   - Wallet: Wallet PIN/OTP
+
+4. **Receive outcome:**
+   - **Success** → Redirected to `surl`
+   - **Failure** → Redirected to `furl`
+   - **Cancel** → Redirected to `curl`
 
 <Info>
-**Payment Link Sharing Best Practices:**
-- Use URL shorteners for SMS to save character count
-- Include context in the message (e.g., "Complete your payment for Order #12345: [link]")
-- Set expiry time on your server-side to invalidate old payment links
-- Track link opens using UTM parameters or custom analytics
+**Callback URL Best Practices:**
+- Always use HTTPS for surl/furl/curl endpoints
+- Display clear success/failure messages on callback pages
+- Extract transaction details from callback parameters (PayU POSTs data to these URLs)
+- Do NOT rely solely on callback parameters — always verify using webhooks and Verify Payment API
 </Info>
 
----
+***
 
 ## Step 3: Receive Payment Notification
 
 ### Step 3.1: Partner Webhook
 
-PayU sends payment notifications to your configured partner webhook URLs after the customer completes (or cancels) the payment.
+After the customer completes payment, PayU sends a webhook notification to your configured partner webhook URL.
 
 **Webhook Configuration:**
 
-Ensure these webhook URLs are configured in PayU's system:
+Ensure these URLs are configured:
 
-- `partner_webhook_success` â€” Called on successful payment
-- `partner_webhook_failure` â€” Called on failed payment
-- `partner_webhook_cancelled` â€” Called when payment is cancelled
+- `partner_webhook_success` — Called on successful payment
+- `partner_webhook_failure` — Called on failed payment
+- `partner_webhook_cancelled` — Called when payment is cancelled
 
 **Sample Success Webhook Payload:**
 
 ```json
 {
   "key": "JPM7Fg",
-  "txnid": "TXNPL20240315001",
-  "mihpayid": "403993715521855096",
+  "txnid": "PPHOST20240315001",
+  "mihpayid": "403993715521899234",
   "status": "success",
   "unmappedstatus": "captured",
   "mode": "CC",
   "bankcode": "VISA",
-  "amount": "500.00",
-  "productinfo": "Payment for Order #12345",
-  "firstname": "John",
-  "email": "john.doe@example.com",
+  "amount": "1500.00",
+  "productinfo": "Premium Subscription - Monthly",
+  "firstname": "Priya",
+  "email": "priya.sharma@example.com",
   "phone": "919876543210",
-  "udf1": "",
-  "udf2": "",
+  "udf1": "subscription_plan_premium",
+  "udf2": "monthly_billing",
   "udf3": "",
   "udf4": "",
-  "udf5": "partner_channel_001",
+  "udf5": "partner_web_checkout",
   "merchant_id": "8739528",
   "error": "No Error",
   "error_Message": "No Error",
@@ -651,32 +1137,32 @@ Ensure these webhook URLs are configured in PayU's system:
 ```json
 {
   "key": "JPM7Fg",
-  "txnid": "TXNPL20240315001",
-  "mihpayid": "403993715521855103",
+  "txnid": "PPHOST20240315001",
+  "mihpayid": "403993715521899241",
   "status": "failure",
   "unmappedstatus": "failed",
-  "mode": "CC",
-  "bankcode": "VISA",
-  "amount": "500.00",
-  "productinfo": "Payment for Order #12345",
-  "firstname": "John",
-  "email": "john.doe@example.com",
+  "mode": "NB",
+  "bankcode": "ICIC",
+  "amount": "1500.00",
+  "productinfo": "Premium Subscription - Monthly",
+  "firstname": "Priya",
+  "email": "priya.sharma@example.com",
   "phone": "919876543210",
-  "udf1": "",
-  "udf2": "",
+  "udf1": "subscription_plan_premium",
+  "udf2": "monthly_billing",
   "udf3": "",
   "udf4": "",
-  "udf5": "partner_channel_001",
+  "udf5": "partner_web_checkout",
   "merchant_id": "8739528",
   "error": "E000",
-  "error_Message": "Transaction declined by bank",
+  "error_Message": "Payment declined by bank",
   "hash": "webhook_hash_from_payu"
 }
 ```
 
 ### Step 3.2: Verify Webhook Hash
 
-**Always verify the webhook hash before processing the payment notification.** This ensures the webhook originated from PayU and hasn't been tampered with.
+**Always verify the webhook hash before processing.**
 
 **Reverse Hash Formula:**
 
@@ -687,13 +1173,13 @@ client_secret|status|||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|am
 <Warning>
 **Critical Verification Rules:**
 - There are **five consecutive pipes** (`|||||`) between `status` and `udf5`
-- Use your OAuth **client_secret** (NOT merchant salt)
+- Use OAuth **client_secret** (NOT merchant salt)
 - Do NOT add a trailing pipe after `merchant_id`
-- Compute SHA-512 and compare as **case-insensitive** (lowercase both hashes before comparing)
-- **Reject the webhook if the hash doesn't match**
+- Compute SHA-512 and compare as **case-insensitive**
+- **Reject webhook if hash doesn't match**
 </Warning>
 
-**Sample Webhook Verification Code:**
+**Sample Verification Code:**
 
 **Python:**
 
@@ -701,7 +1187,6 @@ client_secret|status|||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|am
 import hashlib
 
 def verify_webhook_hash(webhook_payload, client_secret):
-    # Extract fields from webhook
     status = webhook_payload.get('status', '')
     udf5 = webhook_payload.get('udf5', '')
     udf4 = webhook_payload.get('udf4', '')
@@ -716,38 +1201,19 @@ def verify_webhook_hash(webhook_payload, client_secret):
     merchant_id = webhook_payload.get('merchant_id', '')
     received_hash = webhook_payload.get('hash', '')
     
-    # Build reverse hash string
     hash_string = f"{client_secret}|{status}|||||{udf5}|{udf4}|{udf3}|{udf2}|{udf1}|{email}|{firstname}|{productinfo}|{amount}|{txnid}|{merchant_id}"
     
-    # Compute SHA-512
     computed_hash = hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
     
-    # Compare (case-insensitive)
     return computed_hash.lower() == received_hash.lower()
 
-# Example usage
-webhook_data = {
-    "status": "success",
-    "udf5": "partner_channel_001",
-    "udf4": "",
-    "udf3": "",
-    "udf2": "",
-    "udf1": "",
-    "email": "john.doe@example.com",
-    "firstname": "John",
-    "productinfo": "Payment for Order #12345",
-    "amount": "500.00",
-    "txnid": "TXNPL20240315001",
-    "merchant_id": "8739528",
-    "hash": "hash_from_webhook"
-}
-
-is_valid = verify_webhook_hash(webhook_data, "your_client_secret_here")
+# Example
+is_valid = verify_webhook_hash(webhook_data, "your_client_secret")
 
 if is_valid:
-    print("âœ… Webhook hash verified â€” safe to process")
+    print("✅ Webhook verified — safe to process")
 else:
-    print("âŒ Invalid webhook hash â€” reject request")
+    print("❌ Invalid webhook hash — reject")
 ```
 
 **Java:**
@@ -756,8 +1222,8 @@ else:
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class WebhookHashVerifier {
-    public static boolean verifyWebhookHash(
+public class WebhookVerifier {
+    public static boolean verifyHash(
         String status, String udf5, String udf4, String udf3, String udf2, String udf1,
         String email, String firstname, String productinfo, String amount,
         String txnid, String merchantId, String receivedHash, String clientSecret
@@ -778,43 +1244,14 @@ public class WebhookHashVerifier {
             hexString.append(hex);
         }
         
-        String computedHash = hexString.toString();
-        
-        return computedHash.equalsIgnoreCase(receivedHash);
-    }
-    
-    public static void main(String[] args) throws NoSuchAlgorithmException {
-        boolean isValid = verifyWebhookHash(
-            "success",
-            "partner_channel_001",
-            "",
-            "",
-            "",
-            "",
-            "john.doe@example.com",
-            "John",
-            "Payment for Order #12345",
-            "500.00",
-            "TXNPL20240315001",
-            "8739528",
-            "hash_from_webhook",
-            "your_client_secret_here"
-        );
-        
-        if (isValid) {
-            System.out.println("âœ… Webhook hash verified");
-        } else {
-            System.out.println("âŒ Invalid webhook hash");
-        }
+        return hexString.toString().equalsIgnoreCase(receivedHash);
     }
 }
 ```
 
 ### Step 3.3: Process Webhook
 
-After verifying the hash, process the webhook and respond with HTTP 200:
-
-**Python Flask Example:**
+**Python Flask Webhook Handler:**
 
 ```python
 from flask import Flask, request, jsonify
@@ -830,16 +1267,17 @@ def handle_success_webhook():
     if not verify_webhook_hash(webhook_data, "your_client_secret"):
         return jsonify({"error": "Invalid hash"}), 400
     
-    # Extract transaction details
+    # Extract details
     txnid = webhook_data.get('txnid')
     mihpayid = webhook_data.get('mihpayid')
     status = webhook_data.get('status')
+    mode = webhook_data.get('mode')
     amount = webhook_data.get('amount')
     
-    # Update your database
-    # db.update_transaction(txnid=txnid, mihpayid=mihpayid, status=status)
+    # Update database
+    # db.update_payment_status(txnid=txnid, mihpayid=mihpayid, status=status)
     
-    print(f"âœ… Payment Success: {txnid} | PayU ID: {mihpayid} | Amount: {amount}")
+    print(f"✅ Payment Success: {txnid} | PayU ID: {mihpayid} | Mode: {mode} | Amount: ₹{amount}")
     
     # Respond with 200 OK
     return jsonify({"message": "Webhook received"}), 200
@@ -848,29 +1286,17 @@ if __name__ == '__main__':
     app.run(port=5000)
 ```
 
-<Warning>
-**Important Webhook Handling Rules:**
-- Always verify the hash before processing
-- Respond with HTTP 200 even if hash verification fails (but don't process the payment)
-- Implement idempotency checks using `txnid` to avoid duplicate processing
-- Log all webhook payloads for debugging and reconciliation
-</Warning>
-
----
+***
 
 ## Step 4: Verify Payment
 
-After receiving the webhook, call the Verify Payment API to confirm the final transaction status. This adds an additional layer of security and ensures you have the most up-to-date payment status.
-
 ### Step 4.1: Generate Verify Payment Hash
 
-**Verify Payment Hash Formula:**
+**Hash Formula:**
 
 ```
 merchant_id|verify_payment|txnid|client_secret
 ```
-
-**Sample Code:**
 
 **Python:**
 
@@ -881,97 +1307,46 @@ def generate_verify_hash(merchant_id, txnid, client_secret):
     hash_string = f"{merchant_id}|verify_payment|{txnid}|{client_secret}"
     return hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
 
-verify_hash = generate_verify_hash(8739528, "TXNPL20240315001", "your_client_secret")
-print(f"Verify Hash: {verify_hash}")
-```
-
-**Java:**
-
-```java
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
-public class VerifyHashGenerator {
-    public static String generateVerifyHash(int merchantId, String txnid, String clientSecret) 
-        throws NoSuchAlgorithmException {
-        
-        String hashString = merchantId + "|verify_payment|" + txnid + "|" + clientSecret;
-        
-        MessageDigest md = MessageDigest.getInstance("SHA-512");
-        byte[] hashBytes = md.digest(hashString.getBytes());
-        
-        StringBuilder hexString = new StringBuilder();
-        for (byte b : hashBytes) {
-            String hex = Integer.toHexString(0xff & b);
-            if (hex.length() == 1) hexString.append('0');
-            hexString.append(hex);
-        }
-        
-        return hexString.toString();
-    }
-}
+verify_hash = generate_verify_hash(8739528, "PPHOST20240315001", "your_client_secret")
 ```
 
 ### Step 4.2: Call Verify Payment API
 
-**Endpoint URLs:**
+**Endpoint:**
 
-| Environment | URL |
-|-------------|-----|
-| Test | `https://test-partnerapilayer.payu.in/apilayer/partner/verifyPayment` |
-| Production | `https://api.payu.in/partner/verifyPayment` |
+| Environment | URL                                                                   |
+| ----------- | --------------------------------------------------------------------- |
+| Test        | `https://test-partnerapilayer.payu.in/apilayer/partner/verifyPayment` |
+| Production  | `https://api.payu.in/partner/verifyPayment`                           |
 
 **Request:**
 
-```curl
+```bash
 curl --location 'https://test-partnerapilayer.payu.in/apilayer/partner/verifyPayment' \
 --header 'Authorization: Bearer your_access_token_here' \
 --header 'Content-Type: application/json' \
 --data '{
-  "txnid": "TXNPL20240315001",
+  "txnid": "PPHOST20240315001",
   "merchant_id": 8739528,
   "reseller_id": "11ee-0e7e-5403fde2-9523-0a696b110fde",
   "hash": "computed_verify_hash_here"
 }'
 ```
-```python
-import requests
-import json
 
-url = "https://test-partnerapilayer.payu.in/apilayer/partner/verifyPayment"
-
-headers = {
-    'Authorization': 'Bearer your_access_token_here',
-    'Content-Type': 'application/json'
-}
-
-payload = {
-    "txnid": "TXNPL20240315001",
-    "merchant_id": 8739528,
-    "reseller_id": "11ee-0e7e-5403fde2-9523-0a696b110fde",
-    "hash": "computed_verify_hash_here"
-}
-
-response = requests.post(url, headers=headers, data=json.dumps(payload))
-
-print(f"Status Code: {response.status_code}")
-print(f"Response: {response.text}")
-```
-
-**Verification Response:**
+**Response:**
 
 ```json
 {
   "status": "success",
   "unmappedstatus": "captured",
-  "mihpayid": "403993715521855096",
-  "txnid": "TXNPL20240315001",
-  "amount": "500.00",
+  "mihpayid": "403993715521899234",
+  "txnid": "PPHOST20240315001",
+  "amount": "1500.00",
   "mode": "CC",
   "bankcode": "VISA",
-  "productinfo": "Payment for Order #12345",
-  "firstname": "John",
-  "email": "john.doe@example.com",
+  "productinfo": "Premium Subscription - Monthly",
+  "firstname": "Priya",
+  "email": "priya.sharma@example.com",
   "phone": "919876543210"
 }
 ```
@@ -980,67 +1355,46 @@ print(f"Response: {response.text}")
 
 **Reconciliation Checklist:**
 
-Compare the webhook payload with the verification response:
+✅ `mihpayid` matches<br />✅ `txnid` matches<br />✅ `amount` matches<br />✅ `status` is `"success"`<br />✅ `unmappedstatus` is `"captured"`
 
-âœ… `mihpayid` matches  
-âœ… `txnid` matches  
-âœ… `amount` matches  
-âœ… `status` matches  
-âœ… `unmappedstatus` is `captured` (for success)
+If all match, mark transaction as verified.
 
-If all checks pass, mark the transaction as verified and complete in your system.
+***
 
-<Info>
-**Best Practice:** Always treat the Verify Payment API response as the source of truth, especially if there's a discrepancy between the webhook and verification response.
-</Info>
+## Use Cases
 
----
+Partner Payments Hosted Checkout is ideal for:
+
+### E-commerce Platforms
+
+Multi-merchant marketplaces where sellers need to accept payments. Partner handles checkout integration; merchants just onboard.
+
+### Subscription Services
+
+Recurring billing for SaaS, memberships, content subscriptions. Hosted checkout supports saved cards and automated retries.
+
+### B2B Platforms
+
+Business-to-business transactions requiring invoice payments, procurement orders, vendor settlements.
+
+### Event Ticketing
+
+Concert, sports, conference ticket sales with multiple payment methods and high transaction volumes.
+
+***
 
 ## Error Handling
 
-<table>
-  <thead>
-    <tr>
-      <th>Error</th>
-      <th>Cause</th>
-      <th>Resolution</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>Invalid hash</code></td>
-      <td>Hash computation mismatch</td>
-      <td>Verify you're using <code>client_secret</code> (not merchant salt), check pipe sequence (6 pipes between udf5 and client_secret), ensure SHA-512 lowercase hex output</td>
-    </tr>
-    <tr>
-      <td><code>Invalid access token</code></td>
-      <td>OAuth token expired or invalid</td>
-      <td>Refresh your OAuth token. Tokens typically expire after 1 hour. Implement automatic refresh logic</td>
-    </tr>
-    <tr>
-      <td><code>Transaction not found</code></td>
-      <td>txnid doesn't exist in PayU's system</td>
-      <td>Verify the txnid in your verify payment request matches the one used during payment creation. Check for typos</td>
-    </tr>
-    <tr>
-      <td><code>Missing webhook URL</code></td>
-      <td>Partner webhook URLs not configured</td>
-      <td>Contact PayU integration team to configure <code>partner_webhook_success</code>, <code>partner_webhook_failure</code>, and <code>partner_webhook_cancelled</code> endpoints</td>
-    </tr>
-    <tr>
-      <td><code>HMAC validation failure</code></td>
-      <td>Webhook hash verification failed</td>
-      <td>Check reverse hash formula (5 pipes after status, no trailing pipe). Ensure case-insensitive comparison. Verify you're using client_secret</td>
-    </tr>
-    <tr>
-      <td><code>Unauthorized - 401</code></td>
-      <td>Missing or invalid Authorization header</td>
-      <td>Ensure you're sending <code>Authorization: Bearer &lt;access_token&gt;</code> in all API requests. Verify the token hasn't expired</td>
-    </tr>
-  </tbody>
-</table>
+| Error                                | Cause                                | Resolution                                                                                                       |
+| ------------------------------------ | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| <code>Invalid hash</code>            | Hash computation mismatch            | Verify using <code>client_secret</code> (not merchant salt), check 6-pipe sequence, ensure SHA-512 lowercase hex |
+| <code>Invalid access token</code>    | OAuth token expired or invalid       | Refresh OAuth token. Implement auto-refresh logic                                                                |
+| <code>Transaction not found</code>   | txnid doesn't exist in PayU          | Verify txnid matches exactly. Check for typos                                                                    |
+| <code>Missing webhook URL</code>     | Partner webhook URLs not configured  | Contact PayU to configure partner_webhook_success, partner_webhook_failure, partner_webhook_cancelled            |
+| <code>HMAC validation failure</code> | Webhook hash verification failed     | Check reverse hash formula (5 pipes after status, no trailing pipe). Use case-insensitive comparison             |
+| <code>Unauthorized - 401</code>      | Missing/invalid Authorization header | Ensure <code>Authorization: Bearer &lt;token&gt;</code> in all requests                                          |
 
----
+***
 
 ## Testing
 
@@ -1049,74 +1403,66 @@ If all checks pass, mark the transaction as verified and complete in your system
 **Base URL:** `https://test-partnerapilayer.payu.in/apilayer/partner`
 
 **OAuth URLs:**
-- Authorization Code: `https://uat-partner.payu.in/api/v1/merchants/auth_code`
+
+- Auth Code: `https://uat-partner.payu.in/api/v1/merchants/auth_code`
 - Access Token: `https://uat-accounts.payu.in/oauth/token`
 
 ### Test Workflow
 
-1. **Obtain test OAuth credentials** from PayU integration team
-2. **Generate access token** using test client_id and client_secret
-3. **Create a test payment link** with a test merchant_id
-4. **Open the redirectUri** in a browser
-5. **Complete payment** using test card details (provided by PayU)
-6. **Verify webhook** is received at your test webhook URL
-7. **Call Verify Payment API** to confirm final status
-8. **Reconcile** webhook vs verify response
+1. Generate OAuth access token
+2. Create payment request
+3. Redirect to hosted checkout (test environment)
+4. Complete payment using test card/UPI
+5. Verify redirect to surl/furl
+6. Confirm webhook received
+7. Call Verify Payment API
+8. Reconcile all data points
 
 ### Validation Checklist
 
-âœ… OAuth token generation succeeds  
-âœ… Payment link creation returns valid redirectUri  
-âœ… Hosted checkout page loads correctly  
-âœ… Test payment completes successfully  
-âœ… Webhook is received within 5 seconds  
-âœ… Webhook hash verification passes  
-âœ… Verify Payment API returns matching status  
-âœ… Reconciliation logic works correctly
+✅ OAuth token generation succeeds<br />✅ Payment API returns redirectUri<br />✅ Hosted checkout page loads<br />✅ Test payment succeeds<br />✅ Customer redirected to surl<br />✅ Webhook received within 5 seconds<br />✅ Webhook hash verified<br />✅ Verify Payment API confirms status<br />✅ Reconciliation successful
 
-<Warning>
-**Production Credentials:** Contact PayU for production OAuth URLs and credentials. Never use test credentials in production.
-</Warning>
-
----
+***
 
 ## Best Practices
 
 ### Security
-- âœ… **Store client_secret securely** â€” Never commit to version control or expose in client-side code
-- âœ… **Always verify webhook hash** before processing payment notifications
-- âœ… **Use HTTPS** for all webhook endpoints
-- âœ… **Implement rate limiting** on webhook endpoints to prevent abuse
+
+- ✅ Store `client_secret` securely — Never expose in client-side code
+- ✅ Always verify webhook hash before processing
+- ✅ Use HTTPS for all callback URLs (surl/furl/curl)
+- ✅ Implement rate limiting on webhook endpoints
 
 ### Reliability
-- âœ… **Implement idempotency** using txnid to prevent duplicate processing
-- âœ… **Use unique txnid per transaction** â€” Never reuse transaction IDs
-- âœ… **Set payment link expiry** on your server to invalidate old links
-- âœ… **Implement retry logic** for verify payment API calls
+
+- ✅ Implement idempotency using `txnid`
+- ✅ Use unique `txnid` per transaction — Never reuse
+- ✅ Implement retry logic for Verify Payment API
+- ✅ Log all API requests/responses for debugging
 
 ### Integration
-- âœ… **Implement token refresh logic** â€” OAuth tokens expire after ~1 hour
-- âœ… **Log all API requests/responses** for debugging and audit trails
-- âœ… **Monitor webhook delivery** â€” Set up alerts if webhooks aren't received within expected timeframes
-- âœ… **Test both success and failure scenarios** thoroughly before going live
+
+- ✅ Implement OAuth token refresh (tokens expire \~1 hour)
+- ✅ Monitor webhook delivery latency
+- ✅ Test both success and failure scenarios
+- ✅ Handle network timeouts gracefully
 
 ### Customer Experience
-- âœ… **Use descriptive productinfo** so customers recognize the charge
-- âœ… **Include customer name and email** even though optional â€” improves checkout experience
-- âœ… **Provide clear surl/furl pages** with next steps after payment
-- âœ… **Send payment link with context** (e.g., "Complete payment for Order #12345")
 
----
+- ✅ Use descriptive `productinfo` so customers recognize the charge
+- ✅ Include customer name and email (improves checkout experience)
+- ✅ Provide clear success/failure pages on surl/furl
+- ✅ Show payment status in real-time after redirect
+
+***
 
 ## Next Steps
 
-Now that you've integrated Payment Links Hosted Checkout, explore related payment flows:
-
-- **[Partner Payment UPI Intent Integration](#)** â€” Direct UPI app invocation for instant payments
-- **[Payment Links UPI TPV Integration](#)** â€” Third-party verification for secure beneficiary validation
-- **[Verify Payment API Reference](#)** â€” Detailed API documentation for payment verification
-- **[Partner Payments Webhook Guide](#)** â€” Comprehensive webhook handling patterns
+- **[Partner Payment UPI Intent Integration](#)** — Direct UPI app invocation
+- **[Payment Links for Partners Overview](#)** — Shareable payment links
+- **[Verify Payment API Reference](#)** — Complete verification documentation
+- **[Partner Webhook Guide](#)** — Advanced webhook patterns
 
 <Success>
-**Integration Complete!** You're now ready to create and manage hosted checkout payment links using PayU's Partner Payments API.
+**Integration Complete!** You can now accept payments through PayU's hosted checkout using the Partner Payments API.
 </Success>
