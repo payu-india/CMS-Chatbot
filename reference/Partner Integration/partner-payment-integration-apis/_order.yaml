@@ -5,7 +5,7 @@
 - refund-transaction-api-partner-integration
 - refund-status-api-partner-integration
 - oauth-token-api-partner-integration
-- new-get-authorization-code-partner-integration
+- get-authorization-code-partner-integration
 - exchange-authorization-code-api
 - collect-payment-for-partners
 - new-partner-webhooks
