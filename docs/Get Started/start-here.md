@@ -31,7 +31,7 @@ next:
      entry point. The paragraphs below are rewritten to be lean, honest,
      and action-oriented. Needs SME review for accuracy and brand tone. */}
 
-PayU lets you accept payments from customers across India using UPI, cards, net banking, wallets, EMI, and more as payment methods. Whether you want to share a payment link with no technical setup, add a checkout to your website, or build a fully custom payment flow, PayU has an integration that fits.
+Whether you are a business owner who wants to start accepting payments today with no coding, or a developer building a fully custom checkout — this is where you start. PayU supports UPI, cards, net banking, wallets, EMI, and more across India. The sections below will help you find the right product and get to your first payment as quickly as possible.
 
 {/* NEW CONTENT — cards block showing what you can do with PayU.
      Use case labels and capabilities are drawn from product docs across the repo.
@@ -78,7 +78,13 @@ PayU lets you accept payments from customers across India using UPI, cards, net 
      on the wizard component or the Quick Start page it is sourced from.
      Needs SME review for tone. */}
 
-Tell us about your business setup and technical capability, this wizard then recommends the PayU product that fits. Not sure where to start? Answer few questions and we will point you to the right path — takes about a minute.
+<Callout icon="far fa-lightbulb-on" theme="default">
+  ### **No technical setup? No problem!**
+
+  If you just want to start accepting payments today without any coding, [Payment Links](doc:payment-links-dashboard) and [UPI QR](doc:integrate-upi-qr) work straight from the PayU Dashboard — no developer needed.
+</Callout>
+
+If you want to explore more products or choose a product for you, tell us about your business setup and technical capability, this wizard then recommends the PayU product that fits. Not sure where to start? Answer few questions and we will point you to the right path — takes about a minute.
 
 <PayUQuickStartWizard />
 
@@ -113,12 +119,14 @@ If you already know what you need, go directly to the right guide.
      next after choosing a path. Needs SME review. */}
 
 <Callout icon="📘" theme="info">
-  ### **Before you start any integration**
+  ### **Before You Start Integrating**
 
   Every PayU integration requires two things:
 
   1. A registered and activated PayU merchant account
   2. Your Merchant Key and Salt for the environment you are integrating (Test or Production)
 
-  If you don't have these yet, [Set Up Your Account →](doc:set-up-your-account)
+  **Do not have an account yet?** [Set Up Your Account →](doc:set-up-your-account)
+
+  **Already have an account?** Your credentials are in the PayU Dashboard under **Developer → API Details**.
 </Callout>
