@@ -18,7 +18,7 @@
         "tags": [
           "Misc"
         ],
-        "summary": "CreatePaymentLinkAPI",
+        "summary": "Create Payment LinkAPI",
         "description": "",
         "operationId": "CreatePaymentLinkAPI",
         "parameters": [
