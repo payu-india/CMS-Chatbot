@@ -23,16 +23,7 @@ metadata:
 next:
   description: Explore related topics and resources.
 ---
-{/*
-=============================================================================
-CONTENT PROVENANCE — for SME / editorial review
-=============================================================================
-SOURCE       — drawn from an existing repo file (path shown).
-               Lightly rewritten for tone and clarity; facts unchanged.
-NEW CONTENT  — written fresh; no equivalent exists in the repo.
-               Must be validated by a PayU SME before publishing.
-=============================================================================
-*/}
+<br />
 
 {/* NEW CONTENT — the existing introduction/index.md opens with a generic
      "what is a payment gateway" definition and a bullet list of benefits.
@@ -40,34 +31,34 @@ NEW CONTENT  — written fresh; no equivalent exists in the repo.
      entry point. The paragraphs below are rewritten to be lean, honest,
      and action-oriented. Needs SME review for accuracy and brand tone. */}
 
-PayU lets you accept payments from customers across India — UPI, cards, net banking, wallets, EMI, and more. Whether you want to share a payment link with no technical setup, add a checkout to your website, or build a fully custom payment flow, PayU has an integration that fits.
+PayU lets you accept payments from customers across India using UPI, cards, net banking, wallets, EMI, and more as payment methods. Whether you want to share a payment link with no technical setup, add a checkout to your website, or build a fully custom payment flow, PayU has an integration that fits.
 
 {/* NEW CONTENT — cards block showing what you can do with PayU.
      Use case labels and capabilities are drawn from product docs across the repo.
      Card descriptions are new editorial copy. Needs SME review for accuracy and completeness. */}
 
 <Cards>
-  <Card title="Collect one-time payments" icon="credit-card">
+  <Card title="Collect one-time payments" icon="far fa-credit-card">
     Accept UPI, cards, net banking, wallets, and EMI on your website or app — via a PayU-hosted page or your own custom checkout.
   </Card>
 
-  <Card title="Share a payment link" icon="link">
+  <Card title="Share a payment link" icon="far fa-link">
     Send a payment link over WhatsApp, email, or SMS. No website or technical setup required.
   </Card>
 
-  <Card title="Set up recurring billing" icon="refresh-cw">
+  <Card title="Set up recurring billing" icon="far fa-repeat">
     Charge customers on a schedule — subscriptions, mandates, and EMI plans with automated retry handling.
   </Card>
 
-  <Card title="Accept in-person payments" icon="qr-code">
+  <Card title="Accept in-person payments" icon="far fa-barcode-scan">
     Generate a UPI QR code for face-to-face or digital in-store payments.
   </Card>
 
-  <Card title="Add checkout to your store" icon="shopping-cart">
+  <Card title="Add checkout to your store" icon="far fa-cart-shopping">
     Ready-made plugins for Shopify, WooCommerce, and Magento — no custom code needed.
   </Card>
 
-  <Card title="Build for mobile" icon="smartphone">
+  <Card title="Build for mobile" icon="far fa-mobile-vibrate">
     Native SDKs for Android and iOS, plus React Native, Flutter, and Cordova wrappers.
   </Card>
 </Cards>
