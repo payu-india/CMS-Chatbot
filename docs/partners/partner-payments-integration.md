@@ -1,22 +1,23 @@
 ---
 title: Partner Payments Integration
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
 You or your merchants can integrate payments using the Hosted Checkout and UPI S2S Integration payment APIs. This will allow you collect payments using various payment methods such as Net Banking, Cards, UPI, Wallets, etc.
 
 ## Payments Journey
 
-The following sample screenshots illustrates payment journey when partners integrates with WhatsApp. 
+The following sample screenshots illustrates payment journey when partners integrates with WhatsApp.
 
-<Image align="center" className="border" border={true} src="https://files.readme.io/ed4f484-image.png" />
+
+<Image src="https://files.readme.io/ed4f484-image.png" align="center" border={true} />
+
 
 ## Pre-requisites
 
