@@ -1,5 +1,5 @@
 ---
-title: '[Step 3] Exchange Authorization Code API'
+title: '[Step 3] Exchange Authorization Code API - Partner Integration'
 deprecated: false
 hidden: true
 metadata:
