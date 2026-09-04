@@ -31,7 +31,7 @@ This integration is ideal for:
 
 The Partner Payments Hosted Checkout flow follows these steps:
 
-1. **OAuth Authentication** — Obtain an access token with scopes: `create_payment_links`, `partner_payment_links`, `partner_payments`
+1. **OAuth Authentication** — Obtain an access token with scopes: `hub_session`
 
 2. **Initiate Payment** — POST a payment request to the Partner Payments API with transaction details, callback URLs (`surl`, `furl`, `curl`), and a computed hash
 
@@ -265,7 +265,7 @@ Content-Type: application/x-www-form-urlencoded
 
 ```bash
 curl --location 'https://uat-partner.payu.in/api/v1/merchants/auth_code' \
---header 'Authorization: Bearer access_token_from_step_1' \
+--header 'Authorization: Bearer access_token_from_step_1.1' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --data-urlencode 'merchant_id=8739528' \
 --data-urlencode 'reseller_uuid=11ee-0e7e-5403fde2-9523-0a696b110fde' \
@@ -431,7 +431,7 @@ curl --location 'https://uat-accounts.payu.in/oauth/token' \
 --data-urlencode 'client_id=your_client_id' \
 --data-urlencode 'client_secret=your_client_secret' \
 --data-urlencode 'grant_type=authorization_code' \
---data-urlencode 'code=authorization_code_from_step_2' \
+--data-urlencode 'code=authorization_code_from_step_1.2' \
 --data-urlencode 'redirect_uri=https://uat-partner.payu.in'
 ```
 
@@ -580,8 +580,6 @@ Authorization: Bearer <final_access_token>
 - Implement automatic token refresh before expiry
 - Never expose tokens in client-side code or logs
 </Info>
-
-***
 
 ## Step 2: Initiate Hosted Checkout Payment
 
