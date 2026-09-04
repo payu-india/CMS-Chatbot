@@ -1,5 +1,5 @@
 ---
-title: Collect Payment for Partners
+title: '[NEW] Collect Payment for Partners'
 deprecated: false
 hidden: true
 metadata:
