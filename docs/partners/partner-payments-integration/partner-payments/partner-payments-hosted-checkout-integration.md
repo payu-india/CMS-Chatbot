@@ -53,13 +53,6 @@ The Partner Payments Hosted Checkout flow follows these steps:
 
 Before you begin, ensure you have:
 
-<Note>
-**Required OAuth Scopes:**
-- `create_payment_links`
-- `partner_payment_links`
-- `partner_payments`
-</Note>
-
 - **Partner OAuth Application** registered with PayU with the above scopes enabled
 - **OAuth Credentials:** `client_id` and `client_secret`
 - **Merchant Credentials:** `merchant_id` (PayU merchant ID) and `reseller_id` (partner UUID)
@@ -1390,7 +1383,7 @@ Concert, sports, conference ticket sales with multiple payment methods and high 
 | <code>Transaction not found</code>   | txnid doesn't exist in PayU          | Verify txnid matches exactly. Check for typos                                                                    |
 | <code>Missing webhook URL</code>     | Partner webhook URLs not configured  | Contact PayU to configure partner_webhook_success, partner_webhook_failure, partner_webhook_cancelled            |
 | <code>HMAC validation failure</code> | Webhook hash verification failed     | Check reverse hash formula (5 pipes after status, no trailing pipe). Use case-insensitive comparison             |
-| <code>Unauthorized - 401</code>      | Missing/invalid Authorization header | Ensure <code>Authorization: Bearer &lt;token&gt;</code> in all requests                                          |
+| <code>Unauthorized - 401</code>      | Missing/invalid Authorization header | Ensure <code>Authorization: Bearer \<token></code> in all requests                                               |
 
 ***
 
@@ -1456,10 +1449,10 @@ Concert, sports, conference ticket sales with multiple payment methods and high 
 
 ## Next Steps
 
-- **[Partner Payment UPI Intent Integration](#)** — Direct UPI app invocation
-- **[Payment Links for Partners Overview](#)** — Shareable payment links
-- **[Verify Payment API Reference](#)** — Complete verification documentation
-- **[Partner Webhook Guide](#)** — Advanced webhook patterns
+- [Partner Payment UPI Intent Integration](#) — Direct UPI app invocation
+- [Payment Links for Partners Overview](#) — Shareable payment links
+- [Verify Payment API Reference](#) — Complete verification documentation
+- [Partner Webhook Guide](#) — Advanced webhook patterns
 
 <Success>
 **Integration Complete!** You can now accept payments through PayU's hosted checkout using the Partner Payments API.
