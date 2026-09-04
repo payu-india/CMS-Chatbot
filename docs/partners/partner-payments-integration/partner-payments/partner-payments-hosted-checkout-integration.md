@@ -12,10 +12,6 @@ excerpt: "Integrate PayU's hosted checkout for partner payments with OAuth authe
 category: "65dd9cf7bc5a4a001d4e160d"
 ---
 
-# Partner Payments — Hosted Checkout Integration
-
-## Introduction
-
 Partner Payments Hosted Checkout enables partners to redirect customers to PayU's secure, PCI-compliant payment gateway where they can complete payments using multiple payment methods—all without handling sensitive card data or building custom payment forms.
 
 Unlike Payment Links (which create shareable URLs for remote payments), Partner Payments Hosted Checkout is designed for **direct integration** into your platform's checkout flow. When a customer initiates checkout on your website or app, you create a payment session via the Partner Payments API and immediately redirect them to PayU's hosted checkout page.
@@ -1072,4 +1068,3 @@ Concert, sports, conference ticket sales with multiple payment methods and high 
 <Success>
 **Integration Complete!** You can now accept payments through PayU's hosted checkout using the Partner Payments API.
 </Success>
-
