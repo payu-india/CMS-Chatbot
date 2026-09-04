@@ -8,3 +8,4 @@
 - new-get-authorization-code-partner-integration
 - exchange-authorization-code-api
 - collect-payment-for-partners
+- new-partner-webhooks
