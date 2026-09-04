@@ -1,7 +1,7 @@
 ---
 title: Partner Payement Links Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
