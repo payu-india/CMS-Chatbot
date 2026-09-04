@@ -1,5 +1,5 @@
 ---
-title: '[NEW] Get Authorization Code - Partner Integration'
+title: '[Step 2] Get Authorization Code - Partner Integration'
 deprecated: false
 hidden: true
 metadata:
