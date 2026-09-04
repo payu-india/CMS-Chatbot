@@ -30,7 +30,7 @@ This integration is ideal for:
 
 The Partner Payment UPI Intent flow follows these steps:
 
-1. **OAuth Authentication** — Obtain an access token with scopes: `create_payment_links`, `partner_payment_links`, `partner_payments`
+1. **OAuth Authentication** — Obtain an access token with scope: `hub_session`
 
 2. **Initiate UPI Intent Payment** — POST a payment request with `txn_s2s_flow=4` and customer device details (`s2s_client_ip`, `s2s_device_info`)
 
@@ -49,13 +49,6 @@ The Partner Payment UPI Intent flow follows these steps:
 ## Prerequisites
 
 Before you begin, ensure you have:
-
-<Note>
-**Required OAuth Scopes:**
-- `create_payment_links`
-- `partner_payment_links`
-- `partner_payments`
-</Note>
 
 - **Partner OAuth Application** registered with PayU with the above scopes enabled
 - **OAuth Credentials:** `client_id` and `client_secret`
@@ -1401,10 +1394,10 @@ The PDF does not provide test UPI VPAs or simulator instructions for testing UPI
 
 ## Next Steps
 
-- **[Payment Links Hosted Checkout](#)** — Multi-payment method web-based checkout
-- **[Partner Payment UPI TPV Integration](#)** — UPI Intent with third-party verification
-- **[Verify Payment API Reference](#)** — Complete API documentation
-- **[Partner Webhook Configuration Guide](#)** — Advanced webhook handling
+- [Payment Links Hosted Checkout](#) — Multi-payment method web-based checkout
+- [Partner Payment UPI TPV Integration](#) — UPI Intent with third-party verification
+- [Verify Payment API Reference](#) — Complete API documentation
+- [Partner Webhook Configuration Guide](#) — Advanced webhook handling
 
 <Success>
 **Integration Complete!** You can now process UPI Intent payments with direct app invocation using PayU Partner Payments API.
