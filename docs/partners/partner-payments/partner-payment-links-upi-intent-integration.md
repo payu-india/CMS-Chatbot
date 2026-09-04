@@ -9,12 +9,11 @@ Create shareable payment links that launch the customer's UPI app directly using
 
 ## How it works?
 
-1. **Create Payment Link** — Call Partner Payments API with `txn_s2s_flow=4` and S2S parameters
-2. **Share Link** — Send the generated link via WhatsApp, SMS, or any messaging channel
-3. **Customer Opens Link** — Link redirects to PayU's UPI Intent page
-4. **UPI App Launch** — Customer's UPI app is automatically invoked
-5. **Complete Payment** — Customer authorizes payment in their UPI app
-6. **Webhook Notification** — Receive real-time payment status update
+1. **Authentication** — Generate OAuth access token with `partner_payment_links` scope
+2. **Create Payment Link** — Call Partner Payments API with `txn_s2s_flow=4` and S2S parameters
+3. **Customer Payment** — Customer opens link, UPI app launches, payment completes
+4. **Webhook Notification** — Receive real-time payment status update
+5. **Verification** — Verify payment status using verify payment API
 
 ## Prerequisites
 
@@ -22,16 +21,48 @@ Create shareable payment links that launch the customer's UPI app directly using
 ✅ OAuth access token with `partner_payment_links` scope  
 ✅ Partner and merchant registered with PayU  
 ✅ Webhook URLs configured in `partner_webhook_urls` table  
-✅ Customer's phone number (for link sharing)
+✅ Customer device with UPI app installed
 </Note>
 
 ***
 
-## Create UPI Intent Payment Link
+## Step 1: Generate OAuth Access Token
 
-### Endpoint
+You must obtain an OAuth access token with the `partner_payment_links` scope before creating payment links.
 
-**HTTP Method:** POST
+### OAuth Scopes Required
+
+When requesting the authorization code (Step 2 of OAuth flow), include these scopes:
+
+```
+create_payment_links partner_payment_links partner_payments
+```
+
+**Authorization Code Request Example:**
+
+```bash
+curl --location 'https://uat-partner.payu.in/api/v1/merchants/auth_code' \
+--header 'Authorization: Bearer <ACCESS_TOKEN_FROM_STEP_1>' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data-urlencode 'merchant_id=8739528' \
+--data-urlencode 'reseller_uuid=11ee-0e7e-5403fde2-9523-0a696b110fde' \
+--data-urlencode 'redirect_uri=https://uat-partner.payu.in' \
+--data-urlencode 'scopes=create_payment_links partner_payment_links partner_payments'
+```
+
+<Info>
+For the complete OAuth token generation flow, refer to [Partner Payments Integration Guide - Step 1](doc:partner-payments-integration-guide#step-1-generate-oauth-access-token).
+</Info>
+
+***
+
+## Step 2: Create Payment Link
+
+### Step 2.1: Prepare the Request Parameters
+
+Collect the required payment details and S2S parameters for UPI Intent:
+
+**Endpoint:** `POST /partner/payments`
 
 **Environment URLs:**
 
@@ -40,14 +71,7 @@ Create shareable payment links that launch the customer's UPI app directly using
 | Test        | `https://test-partnerapilayer.payu.in/apilayer/partner/payments` |
 | Production  | `https://api.payu.in/partner/payments`                           |
 
-### Request Headers
-
-```
-Authorization: Bearer <FINAL_ACCESS_TOKEN>
-Content-Type: application/json
-```
-
-### Request Parameters
+**Mandatory Parameters:**
 
 <table>
 <thead>
@@ -112,23 +136,59 @@ Content-Type: application/json
 </table>
 
 <Warning>
-**Mandatory S2S Fields:** When `txn_s2s_flow=4`, both `s2s_client_ip` and `s2s_device_info` are **required**. Omitting them will cause an error.
+**Mandatory S2S Fields:** When `txn_s2s_flow=4`, both `s2s_client_ip` and `s2s_device_info` are **required**. Omitting them will cause an error: *"s2s_client_ip or s2s_device_info mandatory"*.
 </Warning>
 
 **Optional Parameters:**
 
-| Parameter            | Type & Description        | Example                                           |
-| -------------------- | ------------------------- | ------------------------------------------------- |
-| `firstname`, `email` | string — Customer details | Amit, [amit@example.com](mailto:amit@example.com) |
-| `udf1` - `udf5`      | string — Custom fields    | upi_intent_link                                   |
+| Parameter            | Type & Description                                                                  | Example                                           |
+| -------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------- |
+| `firstname`, `email` | string — Customer details                                                           | Amit, [amit@example.com](mailto:amit@example.com) |
+| `udf1` - `udf5`      | string — Custom tracking fields (use to track payment source, campaign codes, etc.) | udf5: whatsapp                                    |
 
-### Hash Generation
+***
+
+### Step 2.2: Generate Payment Request Hash
+
+Compute the SHA-512 hash using this exact formula:
 
 ```
 merchant_id|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||client_secret
 ```
 
-### Sample Request
+<Warning>
+**Important Hash Notes:**
+- There are **six consecutive pipe characters** (`||||||`) between `udf5` and `client_secret`
+- Use your OAuth `client_secret`, **not** the merchant salt
+- For empty fields (firstname, email, udf1-udf5), use empty strings (resulting in consecutive pipes)
+- Compute SHA-512 and convert to **lowercase hexadecimal**
+</Warning>
+
+**Hash Generation Example (Python):**
+
+```python
+import hashlib
+
+def generate_payment_hash(merchant_id, txnid, amount, productinfo, client_secret):
+    # All optional fields empty
+    hash_string = f"{merchant_id}|{txnid}|{amount}|{productinfo}|||||||||||{client_secret}"
+    return hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
+```
+
+***
+
+### Step 2.3: POST the Payment Request
+
+Call the Partner Payments endpoint with the computed hash and all required parameters.
+
+**Request Headers:**
+
+```
+Authorization: Bearer <FINAL_ACCESS_TOKEN>
+Content-Type: application/json
+```
+
+**Sample Request:**
 
 ```bash
 curl --location 'https://test-partnerapilayer.payu.in/apilayer/partner/payments' \
@@ -138,16 +198,13 @@ curl --location 'https://test-partnerapilayer.payu.in/apilayer/partner/payments'
   "txnid": "UPIPL28471834809170985",
   "amount": "500.00",
   "productinfo": "UPI Payment for Order #12345",
-  "firstname": "",
-  "email": "",
   "phone": "919876543210",
   "merchant_id": 8739528,
   "reseller_id": "11ee-0e7e-5403fde2-9523-0a696b110fde",
   "txn_s2s_flow": "4",
   "s2s_client_ip": "157.240.22.9",
   "s2s_device_info": "Mozilla/5.0 (Linux; Android 10)",
-  "udf5": "upi_intent_link",
-  "hash": "COMPUTED_HASH_VALUE"
+  "hash": "a3f5e8d2c1b4a6e9f7d3c8b2a1e4d6f9c3a5b7e2d1f4c6a8b3e5d2f7c1a9b4e6"
 }'
 ```
 
@@ -162,8 +219,8 @@ def create_upi_intent_payment_link(phone, amount, description, client_ip, device
     txnid = f"UPIPL{int(time.time() * 1000)}"
     merchant_id = 8739528
     
-    # Compute hash
-    hash_string = f"{merchant_id}|{txnid}|{amount}|{description}|||||||upi_intent_link||||||YOUR_CLIENT_SECRET"
+    # Compute hash (all optional fields empty)
+    hash_string = f"{merchant_id}|{txnid}|{amount}|{description}|||||||||||YOUR_CLIENT_SECRET"
     payment_hash = hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
     
     headers = {
@@ -181,7 +238,6 @@ def create_upi_intent_payment_link(phone, amount, description, client_ip, device
         "txn_s2s_flow": "4",
         "s2s_client_ip": client_ip,
         "s2s_device_info": device_info,
-        "udf5": "upi_intent_link",
         "hash": payment_hash
     }
     
@@ -200,7 +256,15 @@ result = create_upi_intent_payment_link(
 print(f"Payment Link: {result.get('redirectUri')}")
 ```
 
-### Sample Response
+> **Note:** Replace `YOUR_CLIENT_SECRET` and `YOUR_ACCESS_TOKEN` with actual values.
+
+***
+
+### Step 2.4: Handle Payment Response
+
+The response contains the payment link URL.
+
+**Sample Response:**
 
 ```json
 {
@@ -208,74 +272,38 @@ print(f"Payment Link: {result.get('redirectUri')}")
 }
 ```
 
-***
+**Response Parameters:**
 
-## Share UPI Intent Link
+| Parameter     | Type   | Description                                                                          |
+| ------------- | ------ | ------------------------------------------------------------------------------------ |
+| `redirectUri` | string | **Payment link URL** — Share this URL with your customer via WhatsApp, SMS, or email |
 
-### Via WhatsApp
+**Customer Experience:**
 
-```python
-def share_upi_link_whatsapp(phone, payment_link, amount):
-    message = f"""Hi! You have a payment request.
+When the customer opens the `redirectUri`:
 
-Amount: Rs. {amount}
-Payment Method: UPI
+1. PayU UPI Intent page loads
+2. System detects installed UPI apps
+3. Customer selects preferred UPI app (Google Pay, PhonePe, Paytm, etc.)
+4. UPI app opens with pre-filled payment details
+5. Customer enters UPI PIN
+6. Payment is processed
 
-Click to pay with UPI:
-{payment_link}
-
-Your UPI app will open automatically.
-"""
-    
-    send_whatsapp_message(phone, message)
-```
-
-### Via SMS
-
-```python
-def share_upi_link_sms(phone, payment_link, amount):
-    message = f"Pay Rs.{amount} via UPI: {payment_link}"
-    send_sms(phone, message)
-```
+<Note>
+After initiating the payment, PayU will send a webhook to your configured partner webhook URL once the customer completes or cancels the payment. See Step 3 for webhook handling.
+</Note>
 
 ***
 
-## Customer Experience
+## Step 3: Receive Payment Notification
 
-When the customer opens the link:
+After the customer completes payment, PayU sends notifications via webhooks.
 
-1. **Link Opens** → PayU UPI Intent page loads
-2. **UPI App Detection** → System detects installed UPI apps
-3. **App Selection** → Customer selects their preferred UPI app (Google Pay, PhonePe, Paytm, etc.)
-4. **App Launch** → UPI app opens with pre-filled payment details
-5. **Authorization** → Customer enters UPI PIN
-6. **Completion** → Payment is processed
+### Step 3.1: Partner Webhook
 
-### UPI Intent Response
+PayU sends a webhook to your configured partner webhook URL:
 
-After the customer clicks the payment link, PayU's page will display UPI app options. Behind the scenes, PayU uses the `intentURIData` to invoke the UPI app:
-
-**Intent URI Format:**
-
-```
-upi://pay?pa=merchant.payu@indus&pn=MERCHANT_NAME&tr=30478359672&tid=PPPL30478359672&am=500.00&cu=INR&tn=UPIIntent
-```
-
-**Parameters:**
-
-- `pa` — Payee VPA (merchant UPI ID)
-- `pn` — Payee name
-- `tr` — Transaction reference (PayU payment ID)
-- `tid` — Transaction ID
-- `am` — Amount
-- `cu` — Currency
-- `tn` — Transaction note
-
-***
-
-## Webhook Notification
-
-After payment completion, PayU sends a webhook:
+**Sample Webhook Payload:**
 
 ```json
 {
@@ -287,7 +315,7 @@ After payment completion, PayU sends a webhook:
   "bankcode": "INTENT",
   "amount": "500.00",
   "phone": "919876543210",
-  "udf5": "upi_intent_link",
+  "productinfo": "UPI Payment for Order #12345",
   "hash": "WEBHOOK_HASH"
 }
 ```
@@ -299,10 +327,141 @@ After payment completion, PayU sends a webhook:
 
 ***
 
-## Verify Payment
+### Step 3.2: Verify Webhook Hash (Reverse Hash)
+
+**Always verify** the webhook hash before processing. Use the **reverse hash formula**:
+
+```
+client_secret|status|||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|merchant_id
+```
+
+<Warning>
+**Reverse Hash Notes:**
+- There are **five consecutive pipe characters** (`|||||`) between `status` and `udf5`
+- The field order is **reversed** compared to the payment request hash
+- Use your OAuth `client_secret`, **not** the merchant salt
+- **Do not** include a trailing pipe after `merchant_id`
+- Compute SHA-512 and compare **case-insensitively** with the `hash` field
+</Warning>
+
+**Webhook Verification Code (Python):**
 
 ```python
 import hashlib
+
+def verify_webhook_hash(payload, client_secret):
+    hash_string = (
+        f"{client_secret}|"
+        f"{payload.get('status', '')}|||||"
+        f"{payload.get('udf5', '')}|"
+        f"{payload.get('udf4', '')}|"
+        f"{payload.get('udf3', '')}|"
+        f"{payload.get('udf2', '')}|"
+        f"{payload.get('udf1', '')}|"
+        f"{payload.get('email', '')}|"
+        f"{payload.get('firstname', '')}|"
+        f"{payload.get('productinfo', '')}|"
+        f"{payload.get('amount', '')}|"
+        f"{payload.get('txnid', '')}|"
+        f"{payload.get('merchant_id', '')}"
+    )
+    
+    expected_hash = hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
+    return expected_hash.lower() == payload.get('hash', '').lower()
+
+# Usage
+if verify_webhook_hash(webhook_payload, YOUR_CLIENT_SECRET):
+    print("✅ Webhook verified")
+    # Process payment
+else:
+    print("❌ Invalid webhook - discarding")
+```
+
+For complete webhook verification code, see [Partner Webhook API](ref:partner-webhook-api).
+
+***
+
+### Step 3.3: Process Webhook
+
+After verifying the hash, process the payment notification:
+
+```python
+from flask import request, jsonify
+
+@app.route('/webhook/payment/success', methods=['POST'])
+def webhook_handler():
+    payload = request.get_json() or request.form.to_dict()
+    
+    # Verify webhook hash
+    if not verify_webhook_hash(payload, CLIENT_SECRET):
+        return jsonify({"error": "Invalid hash"}), 400
+    
+    # Extract payment details
+    txnid = payload['txnid']
+    status = payload['status']
+    mihpayid = payload['mihpayid']
+    
+    # Update database
+    update_payment_status(txnid, status, mihpayid)
+    
+    # Always return 200
+    return jsonify({"status": "received"}), 200
+```
+
+<Success>
+**Best Practice:** Always respond with HTTP 200 to acknowledge webhook receipt. Process payments asynchronously to avoid blocking the webhook response.
+</Success>
+
+***
+
+## Step 4: Verify Payment
+
+After receiving the webhook, call the Verify Payment API to confirm the final transaction status.
+
+### Step 4.1: Generate Verify Payment Hash
+
+Compute the SHA-512 hash using this formula:
+
+```
+merchant_id|verify_payment|txnid|client_secret
+```
+
+**Example:**
+
+```
+8739528|verify_payment|UPIPL28471834809170985|YOUR_CLIENT_SECRET
+```
+
+***
+
+### Step 4.2: Call Verify Payment API
+
+**Endpoint:** `POST /partner/verifyPayment`
+
+**Environment URLs:**
+
+| Environment | URL                                                                   |
+| ----------- | --------------------------------------------------------------------- |
+| Test        | `https://test-partnerapilayer.payu.in/apilayer/partner/verifyPayment` |
+| Production  | `https://api.payu.in/partner/verifyPayment`                           |
+
+**Sample Request:**
+
+```bash
+curl --location 'https://test-partnerapilayer.payu.in/apilayer/partner/verifyPayment' \
+--header 'Authorization: Bearer 039e0d1d70f467f946e2d73bd43868df856cfaa352ea54591a76bfc4a08d3487' \
+--header 'Content-Type: application/json' \
+--data '{
+  "txnid": "UPIPL28471834809170985",
+  "merchant_id": 8739528,
+  "reseller_id": "11ee-0e7e-5403fde2-9523-0a696b110fde",
+  "hash": "f3a8d2e5c1b7a4e9d6c3b8a2e1f4d7c9b3a6e2d1f5c4a7b8e3d6f2c1a9b5e4d7"
+}'
+```
+
+```python
+import hashlib
+import requests
 
 def verify_upi_payment(txnid):
     url = "https://test-partnerapilayer.payu.in/apilayer/partner/verifyPayment"
@@ -311,6 +470,11 @@ def verify_upi_payment(txnid):
     hash_string = f"{merchant_id}|verify_payment|{txnid}|YOUR_CLIENT_SECRET"
     verify_hash = hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
     
+    headers = {
+        "Authorization": "Bearer YOUR_ACCESS_TOKEN",
+        "Content-Type": "application/json"
+    }
+    
     payload = {
         "txnid": txnid,
         "merchant_id": merchant_id,
@@ -318,34 +482,134 @@ def verify_upi_payment(txnid):
         "hash": verify_hash
     }
     
-    response = requests.post(url, headers={"Authorization": "Bearer TOKEN"}, json=payload)
+    response = requests.post(url, headers=headers, json=payload)
     return response.json()
+```
+
+***
+
+### Step 4.3: Process Verification Response
+
+**Sample Response:**
+
+```json
+{
+  "status": "success",
+  "unmappedstatus": "captured",
+  "mihpayid": "30478359672",
+  "txnid": "UPIPL28471834809170985",
+  "amount": "500.00",
+  "mode": "UPI",
+  "bankcode": "INTENT"
+}
+```
+
+**Reconciliation Steps:**
+
+1. Compare `mihpayid` from verify response with webhook payload
+2. Compare `status` and `unmappedstatus` values
+3. Verify `txnid` matches your original transaction ID
+4. Check `amount` matches the payment amount
+5. If all match, mark the payment as verified in your system
+
+<Success>
+**Integration Complete!** You've successfully created a UPI Intent payment link, received webhook notification, and verified the payment status.
+</Success>
+
+***
+
+## Use Cases
+
+### WhatsApp Commerce
+
+Send payment links directly in WhatsApp conversations:
+
+```python
+# Create payment link
+link_response = create_upi_intent_payment_link(
+    phone="919876543210",
+    amount="500.00",
+    description="Order #12345",
+    client_ip=get_client_ip(),
+    device_info=get_device_info()
+)
+
+# Send via WhatsApp
+message = f"""Hi! Your order is confirmed.
+
+Amount: Rs. 500.00
+Pay with UPI: {link_response['redirectUri']}
+
+Your UPI app will open automatically.
+"""
+send_whatsapp_message("919876543210", message)
+```
+
+### Invoice Payments
+
+```python
+invoice = get_invoice(invoice_id)
+
+link_response = create_upi_intent_payment_link(
+    phone=invoice.customer_phone,
+    amount=str(invoice.total),
+    description=f"Invoice #{invoice.number}",
+    client_ip=request.remote_addr,
+    device_info=request.headers.get('User-Agent')
+)
+
+send_sms(invoice.customer_phone, f"Pay invoice via UPI: {link_response['redirectUri']}")
 ```
 
 ***
 
 ## Error Handling
 
-| Error                                      | Cause                   | Resolution                       |
-| ------------------------------------------ | ----------------------- | -------------------------------- |
-| s2s_client_ip or s2s_device_info mandatory | Missing S2S fields      | Include both fields in request   |
-| Invalid hash                               | Hash validation failed  | Verify hash formula              |
-| No UPI app installed                       | Customer has no UPI app | Suggest alternate payment method |
+| Error                                      | Cause                    | Resolution                            |
+| ------------------------------------------ | ------------------------ | ------------------------------------- |
+| s2s_client_ip or s2s_device_info mandatory | Missing S2S fields       | Include both fields in request        |
+| Invalid hash                               | Hash validation failed   | Verify hash formula and client_secret |
+| No UPI app installed                       | Customer has no UPI app  | Provide alternate payment method      |
+| Auth token is not valid                    | Token expired or invalid | Regenerate OAuth token                |
+
+***
+
+## Testing
+
+### Test Environment
+
+- **API URL:** `https://test-partnerapilayer.payu.in/apilayer/partner/payments`
+- **OAuth URL:** `https://uat-accounts.payu.in/oauth/token`
+
+### Test UPI
+
+- **UPI ID:** `success@payu` (for successful test)
+- **UPI Intent:** Use any UPI app in test mode
+
+### Test Workflow
+
+1. Create UPI Intent payment link in UAT
+2. Open link on mobile device
+3. Select UPI app
+4. Complete test payment
+5. Verify webhook received
+6. Call verify payment API
+7. Confirm status matches
 
 ***
 
 ## Best Practices
 
-✅ **Capture Device Info** — Get real device user-agent from HTTP headers<br />✅ **Capture Client IP** — Extract from `X-Forwarded-For` or request IP<br />✅ **Mobile-First** — UPI Intent works best on mobile devices<br />✅ **Fallback Option** — Provide QR code for desktop users<br />✅ **Track Clicks** — Monitor link opens to measure engagement
+✅ **Capture Real Device Info** — Get actual device user-agent from HTTP headers<br />✅ **Capture Client IP** — Extract from `X-Forwarded-For` or request IP<br />✅ **Mobile-First** — UPI Intent works best on mobile devices<br />✅ **Handle Expiry** — Implement token refresh logic<br />✅ **Idempotency** — Check if link already exists before creating new one
 
 ***
 
 ## Next Steps
 
 - [Payment Links for UPI TPV](doc:payment-links-upi-tpv) — TPV validation for payment links
-- [Partner Webhook API](ref:partner-webhook-api) — Webhook verification
-- [Verify Payment API](ref:verify-payment-partner-api) — Payment verification
+- [Payment Links with Hosted Checkout](doc:payment-links-hosted-checkout) — Multi-method payment links
+- [Partner Webhook API](ref:partner-webhook-api) — Complete webhook verification guide
 
 <Success>
-**UPI Intent Payment Links Ready!** Your customers can now pay directly from their UPI apps with just one click.
+**UPI Intent Payment Links Ready!** Your customers can now pay directly from their UPI apps with a seamless one-click experience.
 </Success>
