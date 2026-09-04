@@ -126,7 +126,7 @@ If you already know what you need, go directly to the right guide.
   1. A registered and activated PayU merchant account
   2. Your Merchant Key and Salt for the environment you are integrating (Test or Production)
 
-  **Do not have an account yet?** [Set Up Your Account →](doc:set-up-your-account)
+  **Do not have an account yet?** [Set Up Your Account →<br />](doc:set-up-your-account)
 
   **Already have an account?** Your credentials are in the PayU Dashboard under **Developer → API Details**.
 </Callout>
