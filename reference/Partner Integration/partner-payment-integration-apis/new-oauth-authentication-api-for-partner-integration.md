@@ -1,5 +1,5 @@
 ---
-title: '[NEW] OAuth Authentication API for Partner Integration'
+title: '[NEW] OAuth Token API - Partner Integration'
 deprecated: false
 hidden: true
 metadata:
