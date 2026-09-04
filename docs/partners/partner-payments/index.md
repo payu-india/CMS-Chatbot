@@ -41,7 +41,86 @@ Partner Payments uses a three-step OAuth authentication flow followed by payment
 
 The following diagram illustrates the end-to-end payment journey when partners integrate via WhatsApp or other channels:
 
+```mermaid
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "mirrorActors": false,
+    "rightAngles": true,
+    "messageAlign": "left",
+    "fontSize": 10,
+    "actorFontSize": 10,
+    "noteFontSize": 10,
+    "actorMargin": 88,
+    "width": 168,
+    "boxMargin": 10,
+    "messageMargin": 38,
+    "diagramMarginX": 60,
+    "diagramMarginY": 18
+  },
+  "themeVariables": {
+    "fontFamily": "Arial, Helvetica, sans-serif",
+    "fontSize": "10px",
+    "background": "#FFFFFF",
+    "primaryColor": "#A6C307",
+    "primaryTextColor": "#002843",
+    "primaryBorderColor": "#002843",
+    "secondaryColor": "#F4F9E0",
+    "lineColor": "#002843",
+    "textColor": "#002843",
+    "actorBkg": "#A6C307",
+    "actorBorder": "#002843",
+    "actorTextColor": "#002843",
+    "actorLineColor": "#002843",
+    "signalColor": "#002843",
+    "signalTextColor": "#002843",
+    "labelBoxBkgColor": "#F4F9E0",
+    "labelBoxBorderColor": "#A6C307",
+    "noteBkgColor": "#F4F9E0",
+    "noteTextColor": "#002843",
+    "noteBorderColor": "#A6C307",
+    "activationBkgColor": "#E8F0C4",
+    "activationBorderColor": "#002843"
+  }
+}}%%
+sequenceDiagram
+    box Partner Channel (WhatsApp)
+        participant Cust as Customer
+        participant WA as WhatsApp
+    end
+    box Partner Backend
+        participant Partner as Partner Backend
+    end
+    box PayU
+        participant PayU as PayU
+    end
+    box UPI App
+        participant UPI as UPI App
+    end
 
+    Note over Cust,WA: 1. Customer initiates payment in WhatsApp
+
+    WA->>Partner: 2. Send payment request (order ref, amount)
+    Partner->>PayU: 3. OAuth token request
+    PayU-->>Partner: 4. OAuth access_token
+
+    Partner->>PayU: 5. POST /partner/payments (create UPI intent)
+    PayU-->>Partner: 6. Return UPI intent (deeplink/QR, payment_id)
+
+    Partner-->>WA: 7. Send Pay link to chat
+    WA-->>Cust: 8. Display Pay link/button
+    Cust->>UPI: 9. Open UPI app via intent
+    UPI->>UPI: 10. Authorize payment
+    UPI-->>PayU: 11. Payment result (success/failure)
+
+    PayU-->>Partner: 12. Webhook: payment.status
+    Partner->>PayU: 13. Verify payment (GET /partner/payments/{payment_id})
+    PayU-->>Partner: 14. Payment details (status, txn_id)
+
+    Partner-->>WA: 15. Send confirmation message
+    WA-->>Cust: 16. Notify payment status
+
+```
 
 **Typical Flow:**
 
