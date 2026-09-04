@@ -96,22 +96,22 @@ If you want to explore more products or choose a product for you, tell us about 
      data). The table structure and "prefer to browse" framing are new.
      Needs SME review to confirm doc URLs and effort labels are current. */}
 
-## Prefer to browse? All integration paths at a glance
+## Prefer to Browse? All Integration Paths at a Glance
 
 If you already know what you need, go directly to the right guide.
 
-| What you want to do                      | PayU solution            | Effort                  | Guide                                                                 |
-| ---------------------------------------- | ------------------------ | ----------------------- | --------------------------------------------------------------------- |
-| Share a payment link — no website needed | Payment Links            | 🟢 No coding required   | [Payment Links](doc:payment-links-dashboard)                          |
-| Accept payments in person via QR         | UPI QR Code              | 🟢 No coding required   | [UPI QR](doc:integrate-upi-qr)                                        |
-| Add checkout to a Shopify store          | Shopify Plugin           | 🟡 Some technical setup | [Shopify Plugin](doc:shopify)                                         |
-| Add checkout to a WooCommerce store      | WooCommerce Plugin       | 🟡 Some technical setup | [WooCommerce Plugin](doc:woocommerce)                                 |
-| Add checkout to a Magento store          | Magento Plugin           | 🟡 Some technical setup | [Magento Plugin](doc:magento)                                         |
-| Add checkout to a custom-built website   | PayU Hosted Checkout     | 🟡 Some technical setup | [Hosted Checkout](doc:prebuilt-checkout-payu-hosted)                  |
-| Build a fully custom payment page        | Merchant Hosted Checkout | 🔴 Developer required   | [Merchant Hosted](doc:custom-checkout-merchant-hosted)                |
-| Set up subscription or recurring billing | Recurring Payments       | 🔴 Developer required   | [Recurring Payments](doc:introduction-recurring-payments-integration) |
-| Split payments across multiple sellers   | Split Settlement         | 🔴 Developer required   | [Split Settlement](doc:split-settlments)                              |
-| Accept payments on a mobile app          | Mobile SDKs              | 🔴 Developer required   | [Mobile SDKs](doc:mobile-sdks)                                        |
+| What you want to do                      | PayU solution            | Effort                  |
+| ---------------------------------------- | ------------------------ | ----------------------- |
+| Share a payment link — no website needed | Payment Links            | 🟢 No coding required   |
+| Accept payments in person via QR         | UPI QR Code              | 🟢 No coding required   |
+| Add checkout to a Shopify store          | Shopify Plugin           | 🟡 Some technical setup |
+| Add checkout to a WooCommerce store      | WooCommerce Plugin       | 🟡 Some technical setup |
+| Add checkout to a Magento store          | Magento Plugin           | 🟡 Some technical setup |
+| Add checkout to a custom-built website   | PayU Hosted Checkout     | 🟡 Some technical setup |
+| Build a fully custom payment page        | Merchant Hosted Checkout | 🔴 Developer required   |
+| Set up subscription or recurring billing | Recurring Payments       | 🔴 Developer required   |
+| Split payments across multiple sellers   | Split Settlement         | 🔴 Developer required   |
+| Accept payments on a mobile app          | Mobile SDKs              | 🔴 Developer required   |
 
 {/* NEW CONTENT — the "What you'll need before you begin" callout below
      is new. It surfaces the two universal prerequisites (account + credentials)
