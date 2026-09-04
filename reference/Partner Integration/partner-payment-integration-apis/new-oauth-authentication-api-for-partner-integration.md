@@ -1,7 +1,7 @@
 ---
 title: '[NEW] OAuth Authentication API for Partner Integration'
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
