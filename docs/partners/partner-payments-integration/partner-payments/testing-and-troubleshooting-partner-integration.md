@@ -6,7 +6,597 @@ icon: far fa-arrow-left-from-dotted-line
 metadata:
   robots: index
 ---
-This section covers common errors, their resolutions, debugging techniques, and test data for Partner Payments integration.
+This guide provides comprehensive testing procedures, common error resolutions, debugging techniques, and test data for all Partner Payments integration methods: Hosted Checkout, UPI Intent, and UPI TPV.
+
+***
+
+## Testing Overview by Integration Method
+
+Before diving into specific tests, understand which testing steps apply to your integration:
+
+| Test Category            | Hosted Checkout    | UPI Intent    | UPI TPV                        |
+| ------------------------ | ------------------ | ------------- | ------------------------------ |
+| OAuth Token Generation   | ✅                  | ✅             | ✅                              |
+| Hash Generation          | ✅                  | ✅             | ✅ (beneficiarydetail excluded) |
+| S2S Flow Parameters      | ❌                  | ✅ (mandatory) | ✅ (mandatory)                  |
+| Beneficiary Validation   | ❌                  | ❌             | ✅ (mandatory)                  |
+| Redirect URL Handling    | ✅ (surl/furl/curl) | ⚠️ (optional) | ⚠️ (optional)                  |
+| intentURIData Validation | ❌                  | ✅             | ✅                              |
+| Webhook Verification     | ✅                  | ✅             | ✅ (bankcode=INTTPV)            |
+| Payment Verification API | ✅                  | ✅             | ✅                              |
+
+***
+
+## Step 1: Pre-Integration Validation
+
+### 1.1 Verify OAuth Credentials
+
+<Note>
+Complete this step before initiating any payment flow.
+</Note>
+
+**Test:** Generate OAuth access token using the 3-step flow
+
+**Expected Result:**
+
+- Step 1 (Reseller Password Grant): Returns `access_token` with `scope=hub_session`
+- Step 2 (Merchant Authorization Code): Returns `authorization_code`
+- Step 3 (Code Exchange): Returns final `access_token` with scopes `create_payment_links partner_payment_links partner_payments`
+
+**Validation Checklist:**
+
+- [ ] All three OAuth steps complete successfully
+- [ ] Final access token contains all required scopes
+- [ ] Token expiry time (`expires_in`) is typically 3600 seconds
+- [ ] Token is cached and reused until expiry
+
+**Common Failures:** See [Error: Auth token is not valid](#error-auth-token-is-not-valid) below
+
+***
+
+### 1.2 Verify Hash Generation
+
+<Warning>
+Partner Payments hash uses **OAuth `client_secret`**, NOT merchant salt.
+</Warning>
+
+**Hash Formula (Standard Payment):**
+
+```
+merchant_id|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||client_secret
+```
+
+**Note:** Six consecutive pipes (`||||||`) between `udf5` and `client_secret`
+
+**Hash Formula (UPI TPV):**
+
+```
+merchant_id|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||client_secret
+```
+
+**Important:** `beneficiarydetail` is **NOT** included in hash calculation
+
+**Test:** Compute hash for a sample transaction
+
+**Sample Hash String (Standard):**
+
+```
+8739528|TXN20240315123456|518.02|Payment for service|John|john@example.com|||||||||YOUR_CLIENT_SECRET
+```
+
+**Expected Output:**
+
+- SHA-512 hash: 128-character lowercase hexadecimal string
+- Example: `a1b2c3d4e5f6...` (128 chars)
+
+**Validation Checklist:**
+
+- [ ] Hash function uses SHA-512
+- [ ] Output is lowercase hexadecimal
+- [ ] Empty fields result in consecutive pipes (e.g., `||`)
+- [ ] client_secret is used (not merchant salt)
+- [ ] beneficiarydetail excluded from hash (UPI TPV only)
+
+**Debug Example (Python):**
+
+```python
+import hashlib
+
+merchant_id = "8739528"
+txnid = "TXN20240315123456"
+amount = "518.02"
+productinfo = "Payment for service"
+firstname = "John"
+email = "john@example.com"
+udf1 = udf2 = udf3 = udf4 = udf5 = ""
+client_secret = "YOUR_CLIENT_SECRET"
+
+hash_string = f"{merchant_id}|{txnid}|{amount}|{productinfo}|{firstname}|{email}|{udf1}|{udf2}|{udf3}|{udf4}|{udf5}||||||{client_secret}"
+print(f"Hash String: {hash_string}")
+
+hash_value = hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
+print(f"Computed Hash: {hash_value}")
+print(f"Hash Length: {len(hash_value)}")  # Should be 128
+```
+
+**Common Failures:** See [Error: Invalid hash](#error-invalid-hash) below
+
+***
+
+## Step 2: Test Each Integration Method
+
+### 2.1 Hosted Checkout Testing
+
+<details>
+<summary><strong>2.1.1: Initiate Hosted Checkout Payment</strong></summary>
+
+**Endpoint:** `POST https://test-partnerapilayer.payu.in/payment`
+
+**Test Payload:**
+
+```json
+{
+  "merchant_id": "8739528",
+  "reseller_id": "your-partner-uuid",
+  "txnid": "HC_TEST_001",
+  "amount": "100.00",
+  "productinfo": "Test Product",
+  "firstname": "Test",
+  "email": "test@example.com",
+  "phone": "9876543210",
+  "surl": "https://yoursite.com/success",
+  "furl": "https://yoursite.com/failure",
+  "curl": "https://yoursite.com/cancel",
+  "hash": "<computed_hash>"
+}
+```
+
+**Expected Response:**
+
+```json
+{
+  "status": "success",
+  "redirectUri": "https://test.payu.in/checkout?token=abc123xyz...",
+  "txnid": "HC_TEST_001"
+}
+```
+
+**Validation Checklist:**
+
+- [ ] API returns `200 OK` status
+- [ ] Response contains `redirectUri`
+- [ ] `txnid` in response matches request
+- [ ] No `error` or `message` fields in response
+
+</details>
+
+<details>
+<summary><strong>2.1.2: Complete Payment on Hosted Page</strong></summary>
+
+**Test Steps:**
+
+1. Open the `redirectUri` in a browser
+2. Hosted checkout page loads with merchant branding
+3. Select payment method (Card / UPI / Net Banking / Wallet)
+
+**For Card Payment (Test Cards):**
+
+| Card Number      | Expiry  | CVV | Name      | Expected Result |
+| ---------------- | ------- | --- | --------- | --------------- |
+| 5123456789012346 | 05/2026 | 123 | Test User | Success         |
+| 4012001037141112 | 12/2025 | 123 | Test User | Success         |
+| 6011111111111117 | 06/2027 | 999 | Test User | Failure         |
+
+**For UPI Payment (Test UPI IDs):**
+
+- `success@payu` — Success
+- `failure@payu` — Failure
+
+**Validation Checklist:**
+
+- [ ] Hosted page displays correctly
+- [ ] Payment method selection works
+- [ ] Test payment completes
+- [ ] Customer is redirected to `surl` (success) or `furl` (failure)
+
+</details>
+
+<details>
+<summary><strong>2.1.3: Verify Redirect URL Parameters</strong></summary>
+
+When customer is redirected to your `surl`/`furl`, PayU appends transaction details as POST parameters.
+
+**Expected Parameters:**
+
+```
+mihpayid=<PayU_Transaction_ID>
+txnid=HC_TEST_001
+status=success
+amount=100.00
+productinfo=Test Product
+firstname=Test
+email=test@example.com
+hash=<response_hash>
+...
+```
+
+**Validation Checklist:**
+
+- [ ] All expected parameters are present
+- [ ] `txnid` matches original request
+- [ ] `mihpayid` (PayU transaction ID) is present
+- [ ] `status` is `success` or `failure`
+- [ ] Response hash verification passes (see [Webhook Hash Verification](#webhook-hash-verification))
+
+</details>
+
+***
+
+### 2.2 UPI Intent Testing
+
+<details>
+<summary><strong>2.2.1: Initiate UPI Intent Payment</strong></summary>
+
+**Endpoint:** `POST https://test-partnerapilayer.payu.in/payment`
+
+**Test Payload:**
+
+```json
+{
+  "merchant_id": "8739528",
+  "reseller_id": "your-partner-uuid",
+  "txnid": "UPI_INTENT_001",
+  "amount": "250.00",
+  "productinfo": "UPI Test",
+  "firstname": "Customer",
+  "email": "customer@example.com",
+  "phone": "9123456789",
+  "txn_s2s_flow": "4",
+  "s2s_client_ip": "192.168.1.100",
+  "s2s_device_info": "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36",
+  "hash": "<computed_hash>"
+}
+```
+
+**Expected Response:**
+
+```json
+{
+  "status": "success",
+  "txnid": "UPI_INTENT_001",
+  "intentURIData": "upi://pay?pa=payu@icici&pn=PayU&tr=UPI_INTENT_001&am=250.00&cu=INR&tn=Payment..."
+}
+```
+
+**Validation Checklist:**
+
+- [ ] API returns `200 OK` status
+- [ ] Response contains `intentURIData`
+- [ ] `intentURIData` starts with `upi://pay?`
+- [ ] Transaction amount and ID are present in URI
+- [ ] No error messages in response
+
+</details>
+
+<details>
+<summary><strong>2.2.2: Invoke UPI App</strong></summary>
+
+**Test Steps (Android/iOS):**
+
+1. **Parse intentURIData:** Extract the UPI deep link from API response
+
+2. **Launch UPI App:**
+   - Android: Use `Intent` with `ACTION_VIEW` and `intentURIData` as URI
+   - iOS: Use `UIApplication.shared.open()` with the UPI URI
+
+3. **Select UPI App:** System prompts customer to choose UPI app (Google Pay, PhonePe, BHIM, etc.)
+
+4. **Authenticate:** Customer enters UPI PIN in the app
+
+**Test UPI Apps:**
+
+- Google Pay (recommended for testing)
+- PhonePe
+- BHIM UPI
+- Paytm
+
+**Validation Checklist:**
+
+- [ ] UPI app opens automatically
+- [ ] Payment details are pre-filled (amount, merchant name, transaction ID)
+- [ ] Customer can complete payment
+- [ ] UPI app shows success/failure message
+
+</details>
+
+<details>
+<summary><strong>2.2.3: Simulate Success and Failure Transactions</strong></summary>
+
+**Success Scenario:**
+
+- Use a test UPI account registered with PayU sandbox
+- Complete payment with correct UPI PIN
+- Expected webhook: `status=success`, `mode=UPI`
+
+**Failure Scenario:**
+
+- Use an invalid UPI PIN
+- OR decline payment in UPI app
+- Expected webhook: `status=failure`
+
+**Validation Checklist:**
+
+- [ ] Success transaction triggers success webhook
+- [ ] Failure transaction triggers failure webhook
+- [ ] Webhook arrives within 5–10 seconds
+- [ ] Webhook contains correct `txnid` and `mihpayid`
+
+</details>
+
+***
+
+### 2.3 UPI TPV Testing
+
+<details>
+<summary><strong>2.3.1: Initiate UPI TPV Payment</strong></summary>
+
+**Endpoint:** `POST https://test-partnerapilayer.payu.in/payment`
+
+**Test Payload:**
+
+```json
+{
+  "merchant_id": "8739528",
+  "reseller_id": "your-partner-uuid",
+  "txnid": "TPV_TEST_001",
+  "amount": "500.00",
+  "productinfo": "TPV Payment",
+  "firstname": "Borrower",
+  "email": "borrower@example.com",
+  "phone": "9988776655",
+  "txn_s2s_flow": "4",
+  "s2s_client_ip": "203.0.113.50",
+  "s2s_device_info": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0)",
+  "beneficiarydetail": "{\"ifscCode\":\"SBIN0001234\",\"accountNumber\":\"12345678901\",\"accountHolderName\":\"BORROWER NAME\"}",
+  "hash": "<computed_hash>"
+}
+```
+
+<Warning>
+**Critical:** `beneficiarydetail` is a JSON string but is **NOT** included in hash calculation.
+</Warning>
+
+**Expected Response:**
+
+```json
+{
+  "status": "success",
+  "txnid": "TPV_TEST_001",
+  "intentURIData": "upi://pay?pa=payu@icici&pn=PayU&tr=TPV_TEST_001&am=500.00...",
+  "bankcode": "INTTPV",
+  "api_version": "6"
+}
+```
+
+**Validation Checklist:**
+
+- [ ] Response contains `intentURIData`
+- [ ] `bankcode` is automatically set to `INTTPV`
+- [ ] `api_version` is `6`
+- [ ] No errors in response
+
+</details>
+
+<details>
+<summary><strong>2.3.2: Test Beneficiary Account Validation</strong></summary>
+
+**Test Scenarios:**
+
+**Scenario 1: Matching Account (Success)**
+
+- Customer pays from UPI account linked to the beneficiary details provided
+- Expected: Payment succeeds, webhook status = `success`
+
+**Scenario 2: Mismatched Account (Failure)**
+
+- Customer pays from a different UPI account (not linked to beneficiary details)
+- Expected: Payment rejected, webhook status = `failure`
+
+**Test Data:**
+
+<Note>
+Request test beneficiary account details from PayU support for sandbox testing. Real production accounts cannot be used in UAT.
+</Note>
+
+**Validation Checklist:**
+
+- [ ] Matching account completes successfully
+- [ ] Mismatched account is rejected
+- [ ] Webhook contains `bankcode=INTTPV`
+- [ ] Verify Payment API confirms TPV validation
+
+</details>
+
+<details>
+<summary><strong>2.3.3: Verify TPV-Specific Webhook Fields</strong></summary>
+
+**Expected Webhook Fields (Success):**
+
+```
+mihpayid=<PayU_Transaction_ID>
+txnid=TPV_TEST_001
+status=success
+amount=500.00
+bankcode=INTTPV
+mode=UPI
+unmappedstatus=captured
+hash=<webhook_hash>
+```
+
+**Validation Checklist:**
+
+- [ ] `bankcode` is `INTTPV` (confirms TPV flow)
+- [ ] `mode` is `UPI`
+- [ ] `unmappedstatus` is `captured` (for success)
+- [ ] All beneficiary validation passed
+
+</details>
+
+***
+
+## Step 3: Webhook Testing
+
+### 3.1 Configure Partner Webhooks
+
+<Warning>
+Partner Payments webhooks are **different** from merchant-level webhooks. They must be configured separately in PayU's system.
+</Warning>
+
+**Required Webhook URLs:**
+
+- `partner_webhook_success` — Triggered on successful payment
+- `partner_webhook_failure` — Triggered on failed payment
+- `partner_webhook_cancelled` — Triggered when customer cancels payment
+
+**Configuration:**
+Contact PayU support to register your partner webhook URLs. Provide:
+
+- Your `reseller_id` (partner UUID)
+- HTTPS URLs for all three webhook types
+- IP whitelist (if required for your firewall)
+
+***
+
+### 3.2 Webhook Hash Verification
+
+All webhooks from PayU include a `hash` parameter for verification.
+
+**Reverse Hash Formula:**
+
+```
+client_secret|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|merchant_id
+```
+
+**Note:** Five pipes after `status`, then reverse order of request parameters
+
+**Verification Steps:**
+
+1. Extract parameters from webhook POST body
+2. Compute reverse hash using formula above
+3. Compare computed hash with webhook `hash` parameter
+4. **Case-sensitive comparison** — hashes must match exactly
+
+**Example (Python):**
+
+```python
+import hashlib
+
+def verify_webhook_hash(webhook_data, client_secret):
+    hash_string = (
+        f"{client_secret}|{webhook_data['status']}||||||"
+        f"{webhook_data.get('udf5', '')}|{webhook_data.get('udf4', '')}|"
+        f"{webhook_data.get('udf3', '')}|{webhook_data.get('udf2', '')}|"
+        f"{webhook_data.get('udf1', '')}|{webhook_data['email']}|"
+        f"{webhook_data['firstname']}|{webhook_data['productinfo']}|"
+        f"{webhook_data['amount']}|{webhook_data['txnid']}|"
+        f"{webhook_data['merchant_id']}"
+    )
+    
+    computed_hash = hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
+    return computed_hash == webhook_data['hash']
+
+# Usage
+if verify_webhook_hash(webhook_data, client_secret):
+    # Process webhook
+    pass
+else:
+    # Reject webhook
+    pass
+```
+
+**Validation Checklist:**
+
+- [ ] Webhook arrives within 5–10 seconds of payment
+- [ ] All expected fields are present (mihpayid, txnid, status, amount, hash)
+- [ ] Hash verification passes
+- [ ] Webhook is idempotent (handle duplicate webhooks)
+
+***
+
+### 3.3 Webhook Testing Checklist
+
+**For Each Integration Method:**
+
+| Test Case          | Expected Result                                         |
+| ------------------ | ------------------------------------------------------- |
+| Successful payment | `partner_webhook_success` called with `status=success`  |
+| Failed payment     | `partner_webhook_failure` called with `status=failure`  |
+| Cancelled payment  | `partner_webhook_cancelled` called with `status=cancel` |
+| Hash verification  | Computed hash matches webhook `hash` parameter          |
+| Duplicate webhook  | System handles idempotently (no duplicate processing)   |
+| Delayed webhook    | Webhook retries after timeout (if first attempt fails)  |
+
+***
+
+## Step 4: Payment Verification API Testing
+
+<Note>
+Always use the Verify Payment API as the final source of truth for transaction status, even after receiving webhooks.
+</Note>
+
+### 4.1 Call Verify Payment API
+
+**Endpoint:** `POST https://test-partnerapilayer.payu.in/verifyPayment`
+
+**Test Payload:**
+
+```json
+{
+  "merchant_id": "8739528",
+  "txnid": "TPV_TEST_001"
+}
+```
+
+**Expected Response (Success):**
+
+```json
+{
+  "status": "success",
+  "mihpayid": "403993715529111111",
+  "txnid": "TPV_TEST_001",
+  "amount": "500.00",
+  "productinfo": "TPV Payment",
+  "firstname": "Borrower",
+  "email": "borrower@example.com",
+  "mode": "UPI",
+  "bankcode": "INTTPV",
+  "unmappedstatus": "captured",
+  "payment_source": "payu"
+}
+```
+
+### 4.2 Reconcile Webhook vs Verify API
+
+**Validation Checklist:**
+
+- [ ] `mihpayid` matches in both webhook and verify response
+- [ ] `txnid` matches original request
+- [ ] `status` and `unmappedstatus` are consistent
+- [ ] `amount` matches original request
+- [ ] For TPV: `bankcode` is `INTTPV`
+- [ ] No discrepancies between webhook and verify API
+
+**Reconciliation Logic:**
+
+```
+IF webhook.status == verify_api.status
+  AND webhook.mihpayid == verify_api.mihpayid
+  AND webhook.amount == verify_api.amount
+THEN
+  Mark transaction as confirmed
+ELSE
+  Flag for manual review
+```
 
 ***
 
@@ -20,26 +610,23 @@ This section covers common errors, their resolutions, debugging techniques, and 
 Could not validate hash
 ```
 
-**Cause:**<br />The payment request hash computed by your system doesn't match PayU's computed hash. This typically indicates:
-
-- Incorrect field order in hash string
-- Using merchant `salt` instead of partner `client_secret`
-- Missing or extra pipe characters (`|`) in the hash formula
-- Encoding issues or incorrect SHA-512 implementation
+**Cause:**<br />The payment request hash computed by your system doesn't match PayU's computed hash.
 
 **Resolution:**
 
-1. **Verify the hash formula** — Ensure you're using the correct partner payment hash formula:
+1. **Verify the hash formula:**
    ```
    merchant_id|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||client_secret
    ```
-   Note: **Six consecutive pipes** (`||||||`) between `udf5` and `client_secret`
+   **Note:** Six consecutive pipes (`||||||`) between `udf5` and `client_secret`
 
-2. **Use client_secret, not salt** — Partner Payments API requires `client_secret` (from OAuth credentials), not the merchant's `salt` value
+2. **Use client_secret, not salt** — Partner Payments API requires `client_secret` (from OAuth credentials)
 
-3. **Check for empty fields** — Empty fields (e.g., `firstname=""`) should be represented as empty strings between pipes, resulting in consecutive pipes
+3. **Check for empty fields** — Empty fields should be represented as empty strings between pipes
 
 4. **Verify SHA-512 hex output** — Ensure your hash is lowercase hexadecimal (128 characters)
+
+5. **For UPI TPV:** Ensure `beneficiarydetail` is **NOT** included in hash calculation
 
 **Debug Example (Java):**
 
@@ -49,7 +636,7 @@ String hashString = merchantId + "|" + txnid + "|" + amount + "|" + productinfo 
                    udf4 + "|" + udf5 + "||||||" + clientSecret;
 
 System.out.println("Hash String: " + hashString);
-// Expected: 8739528|28471834809170981|518.02|Payment for service|||||||||||whatsapp||||||YOUR_CLIENT_SECRET
+// Expected: 8739528|TXN001|518.02|Payment|||||||||||whatsapp||||||YOUR_CLIENT_SECRET
 
 String hash = sha512Hex(hashString);
 System.out.println("Computed Hash: " + hash);
@@ -69,181 +656,152 @@ Auth token is not valid
 **Cause:**
 
 - Access token has expired (default expiry: 3600 seconds)
-- Token doesn't have the required `partner_payments` scope
-- Token was generated for a different environment (UAT token used in production)
+- Token doesn't have the required scopes
+- Token was generated for different environment (UAT vs production)
 - Token is missing from the `Authorization` header
 
 **Resolution:**
 
-1. **Regenerate the token** — Complete all three OAuth steps again:
+1. **Regenerate the token** — Complete all three OAuth steps:
    - Step 1: Password grant with reseller credentials
    - Step 2: Request authorization code for merchant
    - Step 3: Exchange code for final access token
 
-2. **Verify scopes** — Ensure the authorization code request (Step 2) includes:
+2. **Verify scopes:**
    ```
    scopes=create_payment_links partner_payment_links partner_payments
    ```
 
-3. **Check header format** — Ensure the Authorization header is correctly formatted:
+3. **Check header format:**
    ```
    Authorization: Bearer YOUR_ACCESS_TOKEN
    ```
-   (Note: There's a space between "Bearer" and the token)
 
-4. **Use correct environment** — Ensure UAT tokens are used with UAT endpoints, and production tokens with production endpoints
+4. **Implement token caching:**
 
-**Token Expiry Handling:**
+```python
+import time
 
-```java
-// Cache token with expiry time
-class TokenCache {
-    private String accessToken;
-    private long expiryTime;
+class TokenCache:
+    def __init__(self):
+        self.access_token = None
+        self.expiry_time = 0
     
-    public String getToken() {
-        if (System.currentTimeMillis() >= expiryTime) {
-            // Token expired, regenerate
-            accessToken = regenerateToken();
-            expiryTime = System.currentTimeMillis() + 3600000; // 1 hour
-        }
-        return accessToken;
-    }
-}
+    def get_token(self):
+        if time.time() >= self.expiry_time:
+            # Regenerate token
+            self.access_token = self._generate_new_token()
+            self.expiry_time = time.time() + 3600  # 1 hour
+        return self.access_token
 ```
 
 ***
 
-### Error: Payment transaction not found in core payments
+### Error: Transaction not found
 
 **Error Message:**
 
 ```
-Transaction not found
+Transaction not found / No data found for given transaction details
 ```
 
-**Cause:**<br />The transaction hasn't been persisted in PayU's core payment system yet. This can occur when:
-
-- Calling verify payment API immediately after payment initiation
-- Network latency between partner layer and core payments
-- Transaction ID (txnid) is incorrect or doesn't exist
+**Cause:**<br />Transaction has not yet been persisted in PayU's system. This can happen immediately after initiating a payment.
 
 **Resolution:**
 
-1. **Wait and retry** — Add a 2-3 second delay before calling verify payment:
-   ```java
-   // Initiate payment
-   PaymentResponse response = initiatePayment(request);
+1. **Wait 2–3 seconds** before calling Verify Payment API
+2. **Implement retry logic** with exponential backoff
+3. **Verify txnid** is correct and matches original request
 
-   // Wait for persistence
-   Thread.sleep(3000); // 3 seconds
+**Retry Logic Example (Python):**
 
-   // Now verify
-   VerifyResponse verification = verifyPayment(txnid);
-   ```
+```python
+import time
+import requests
 
-2. **Implement exponential backoff** — Retry verification with increasing delays:
-   ```python
-   import time
-
-   def verify_with_retry(txnid, max_retries=3):
-       for attempt in range(max_retries):
-           try:
-               return verify_payment(txnid)
-           except TransactionNotFoundError:
-               if attempt < max_retries - 1:
-                   sleep_time = 2 ** attempt  # 1s, 2s, 4s
-                   time.sleep(sleep_time)
-               else:
-                   raise
-   ```
-
-3. **Verify txnid** — Ensure the `txnid` used in verify payment matches the one sent in the payment request
+def verify_payment_with_retry(merchant_id, txnid, max_retries=3):
+    for attempt in range(max_retries):
+        response = requests.post(
+            'https://test-partnerapilayer.payu.in/verifyPayment',
+            json={'merchant_id': merchant_id, 'txnid': txnid}
+        )
+        
+        if response.status_code == 200:
+            data = response.json()
+            if data.get('status') != 'Transaction not found':
+                return data
+        
+        # Exponential backoff: 2s, 4s, 8s
+        wait_time = 2 ** attempt
+        time.sleep(wait_time)
+    
+    raise Exception(f"Transaction {txnid} not found after {max_retries} retries")
+```
 
 ***
 
-### Error: partner payment webhook url not present or not enabled
+### Error: partner payment webhook not present/enabled
 
 **Error Message:**
 
 ```
-partner payment webhook url not present or not enabled
+partner payment webhook not present/enabled for given merchant
 ```
 
-**Cause:**<br />No row exists in the `partner_webhook_urls` table for your partner, or the `is_payment_webhook_enabled` flag is set to `false`.
+**Cause:**<br />Partner-level webhooks are not configured in PayU's system for your `reseller_id`.
 
 **Resolution:**
 
-1. **Insert webhook configuration** — Add a row to `partner_webhook_urls`:
-   ```sql
-   INSERT INTO partner_webhook_urls (
-     partner_uuid,
-     merchant_id,
-     partner_webhook_success,
-     partner_webhook_failure,
-     partner_webhook_cancelled,
-     partner_webhook_default,
-     partner_name,
-     is_payment_webhook_enabled,
-     is_json_payment_payload
-   ) VALUES (
-     '11ee-0e7e-5403fde2-9523-0a696b110fde',
-     NULL,
-     'https://partner.example.com/webhook/payment/success',
-     'https://partner.example.com/webhook/payment/failure',
-     'https://partner.example.com/webhook/payment/cancelled',
-     'https://partner.example.com/webhook/payment/default',
-     'Your Partner Name',
-     true,  -- MUST be true
-     false
-   );
-   ```
+1. **Contact PayU Support** to configure partner webhooks
+2. **Provide the following:**
+   - Your `reseller_id` (partner UUID)
+   - Webhook URLs (success, failure, cancel)
+   - Whether webhooks should be enabled globally for all your merchants
 
-2. **Enable the flag** — If row exists but webhooks aren't working:
-   ```sql
-   UPDATE partner_webhook_urls
-   SET is_payment_webhook_enabled = true
-   WHERE partner_uuid = '11ee-0e7e-5403fde2-9523-0a696b110fde';
-   ```
-
-3. **Check merchant_id** — Use `merchant_id = NULL` for partner-level webhooks (applies to all merchants)
+**Important:** Partner webhooks are configured at the **partner level** (reseller), not individual merchant level.
 
 ***
 
-### Error: s2s_client_ip or s2s_device_info mandatory
+### Error: s2s_client_ip or s2s_device_info is mandatory
 
 **Error Message:**
 
 ```
-s2s_client_ip or s2s_device_info mandatory
+s2s_client_ip and s2s_device_info are mandatory when txn_s2s_flow is 4
 ```
 
-**Cause:**<br />You've set `txn_s2s_flow = "4"` to enable UPI Intent S2S, but didn't include the mandatory `s2s_client_ip` and `s2s_device_info` fields.
+**Cause:**<br />UPI Intent and UPI TPV flows (`txn_s2s_flow=4`) require customer IP address and device information for security and fraud prevention.
 
 **Resolution:**
 
-1. **Add both mandatory S2S fields** to your payment request:
-   ```json
-   {
-     "txn_s2s_flow": "4",
-     "s2s_client_ip": "157.240.22.9",
-     "s2s_device_info": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/602.4.6"
-   }
-   ```
+1. **Capture customer IP address:**
+   - From HTTP headers: `X-Forwarded-For` or `REMOTE_ADDR`
+   - Send as string in `s2s_client_ip` parameter
 
-2. **Capture real values** — Extract these from the customer's request:
-   ```java
-   // Get client IP from HTTP request
-   String clientIp = request.getHeader("X-Forwarded-For");
-   if (clientIp == null) {
-       clientIp = request.getRemoteAddr();
-   }
+2. **Capture device user-agent:**
+   - From HTTP header: `User-Agent`
+   - Send as string in `s2s_device_info` parameter
 
-   // Get device info from User-Agent header
-   String deviceInfo = request.getHeader("User-Agent");
-   ```
+**Example (Node.js/Express):**
 
-3. **Don't use S2S flow for redirect** — If you want redirect checkout, **omit** `txn_s2s_flow` entirely
+```javascript
+app.post('/initiate-payment', (req, res) => {
+  const clientIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  const deviceInfo = req.headers['user-agent'];
+  
+  const paymentPayload = {
+    merchant_id: '8739528',
+    txnid: 'TXN001',
+    amount: '100.00',
+    txn_s2s_flow: '4',
+    s2s_client_ip: clientIp,
+    s2s_device_info: deviceInfo,
+    // ... other parameters
+  };
+  
+  // Send to PayU API
+});
+```
 
 ***
 
@@ -252,189 +810,262 @@ s2s_client_ip or s2s_device_info mandatory
 **Error Message:**
 
 ```
-Could not validate HMAC header
+Could not validate HMAC header signature
 ```
 
-**Cause:**<br />This error occurs in omnichannel QR flows when the HMAC signature in request headers is malformed or doesn't match PayU's computed signature.
+**Cause:**<br />HMAC signature validation failed for QR/omnichannel payment requests.
 
 **Resolution:**
 
-> **⚠️ Info Gap:** The exact HMAC header format and signing algorithm for omnichannel QR flows should be confirmed with the PayU integration team.
+1. **Verify all required headers are present:**
+   - `X-Payu-Signature`
+   - `X-Payu-Timestamp`
+   - `X-Payu-Nonce`
 
-1. **Check HMAC header format** — Ensure headers include:
-   - `X-HMAC-Signature`
-   - `X-HMAC-Date` (request timestamp)
-   - `X-HMAC-Algorithm` (e.g., "HmacSHA256")
+2. **Check timestamp** — Must be within ±5 minutes of current server time
 
-2. **Verify signing date** — Ensure the timestamp is recent (within allowed clock skew, typically ±5 minutes)
+3. **Confirm signing key** — Use the correct HMAC secret provided by PayU
 
-3. **Confirm signing key** — Verify you're using the correct secret key for HMAC computation
+<Warning>
+⚠️ **Info Gap:** Exact HMAC signing algorithm and key derivation details needed from PayU documentation.
+</Warning>
 
 ***
 
 ## Log Patterns for Debugging
 
-Use these grep patterns to troubleshoot issues in PayU application logs:
+Use these `grep` patterns to locate relevant log entries:
 
-### Hash Validation Failures
-
-```bash
-grep "Could not validate hash" application.log
-```
-
-**What to look for:** Transaction IDs and timestamps of failed hash validations. Compare your hash computation with these events.
-
-***
-
-### Webhook Sending Events
+**Hash Validation Failures:**
 
 ```bash
-grep "Sending.*payment webhook" application.log
+grep -i "hash.*invalid\|could not validate hash" app.log
 ```
 
-**What to look for:** Confirmation that PayU is attempting to send webhooks to your URLs. If you're not receiving webhooks, check if this log entry exists.
-
-***
-
-### Verify Payment API Calls
+**Webhook Send/Receive:**
 
 ```bash
-grep "verifyPayment" application.log
+grep -i "webhook.*sent\|partner_webhook" app.log
 ```
 
-**What to look for:** Verify payment requests and responses. Useful for checking if PayU is receiving your verification calls and what status is being returned.
-
-***
-
-### Transaction Not Found Errors
+**Payment Verification Calls:**
 
 ```bash
-grep "Transaction not found" application.log
+grep -i "verifyPayment\|verify.*payment" app.log
 ```
 
-**What to look for:** Frequency of this error. If it appears frequently, you may need to add retry logic with delays.
+**Transaction Not Found Errors:**
+
+```bash
+grep -i "transaction not found\|no data found" app.log
+```
+
+**S2S Flow Errors:**
+
+```bash
+grep -i "s2s_client_ip\|s2s_device_info\|txn_s2s_flow" app.log
+```
+
+**OAuth Token Issues:**
+
+```bash
+grep -i "auth token.*not valid\|token.*expired\|401" app.log
+```
 
 ***
 
 ## Test Data
 
-### Test Credentials (UAT Environment)
+### UAT Credentials
 
-> **⚠️ Info Gap:** Complete test credentials including `client_id`, `client_secret`, reseller username, and password should be obtained from your PayU integration team.
-
-**Sample Test Data (from documentation):**
-
-| Parameter                      | Value                                |
-| ------------------------------ | ------------------------------------ |
-| `merchant_id`                  | 8739528                              |
-| `reseller_id` / `partner_uuid` | 11ee-0e7e-5403fde2-9523-0a696b110fde |
+<Note>
+Request complete UAT credentials from PayU support, including:
+- Test `merchant_id`
+- Test `client_id` and `client_secret`
+- Test `reseller_id`
+- Sandbox beneficiary account details (for UPI TPV testing)
+</Note>
 
 ### Sample Transaction IDs
 
-Use these patterns for generating test transaction IDs:
+Use descriptive, unique transaction IDs for easy tracking:
 
-- `28408067218883788`
-- `28471834809170981`
-- `28471834809170982`
-
-**Format:** Numeric string, typically 17-20 digits, unique per transaction
+```
+HC_UAT_20240315_001    (Hosted Checkout)
+UPI_INTENT_20240315_001 (UPI Intent)
+TPV_UAT_20240315_001   (UPI TPV)
+```
 
 ### Sample Customer Data
 
 ```json
 {
-  "phone": "919820988398",
-  "firstname": "",
-  "email": "",
-  "amount": "518.02"
+  "firstname": "TestUser",
+  "email": "testuser@example.com",
+  "phone": "9876543210"
 }
 ```
 
 ### Sample UDF Values
 
-User-defined fields for partner-specific metadata:
-
 ```json
 {
-  "udf1": "",
-  "udf2": "1370625260",
-  "udf3": "r-hway-LDnTRBuFK8STTTeTEc2SuD",
+  "udf1": "session_12345",
+  "udf2": "app_android",
+  "udf3": "v2.1.0",
   "udf4": "",
-  "udf5": "whatsapp"
+  "udf5": ""
 }
 ```
 
-**Common udf5 values:**
+### Sample Beneficiary Details (UPI TPV)
 
-- `"whatsapp"` — Payment initiated via WhatsApp
-- `"web"` — Payment initiated via web portal
-- `"mobile_app"` — Payment initiated via mobile app
-
-### Sample Beneficiary Detail (UPI TPV)
+<Warning>
+⚠️ **Info Gap:** Valid test IFSC codes and account numbers for UAT environment needed from PayU.
+</Warning>
 
 ```json
 {
-  "ifscCode": "ICIC0001234",
-  "accountNumber": "123456789012",
-  "accountHolderName": "Test User"
+  "ifscCode": "SBIN0001234",
+  "accountNumber": "12345678901",
+  "accountHolderName": "TEST ACCOUNT HOLDER"
 }
 ```
 
-> **⚠️ Info Gap:** Valid test IFSC codes and account numbers for UAT should be provided by PayU.
+***
+
+## End-to-End Integration Checklist
+
+Use this checklist to validate your complete integration before going live:
+
+### OAuth Flow
+
+- [ ] Step 1: Reseller password grant succeeds
+- [ ] Step 2: Merchant authorization code obtained
+- [ ] Step 3: Final access token contains all required scopes
+- [ ] Token caching and refresh logic implemented
+
+### Payment Initiation
+
+- [ ] Hash generation follows correct formula
+- [ ] `client_secret` used (not merchant salt)
+- [ ] All mandatory parameters included
+- [ ] For S2S: `s2s_client_ip` and `s2s_device_info` captured
+- [ ] For TPV: `beneficiarydetail` excluded from hash
+
+### Hosted Checkout (if applicable)
+
+- [ ] `redirectUri` returned successfully
+- [ ] Customer redirect to PayU works
+- [ ] Hosted page loads with correct branding
+- [ ] Test payments complete successfully
+- [ ] Customer redirected to `surl`/`furl` based on outcome
+
+### UPI Intent/TPV (if applicable)
+
+- [ ] `intentURIData` returned in response
+- [ ] UPI app launches correctly on mobile device
+- [ ] Payment details pre-filled in UPI app
+- [ ] Customer can authenticate and complete payment
+- [ ] For TPV: Account validation works (success and failure scenarios)
+
+### Webhook Handling
+
+- [ ] Partner webhooks configured in PayU system
+- [ ] Webhook URLs are HTTPS and publicly accessible
+- [ ] Webhook hash verification implemented
+- [ ] Idempotency handling prevents duplicate processing
+- [ ] Webhook arrival time acceptable (\< 10 seconds)
+- [ ] For TPV: `bankcode=INTTPV` validated
+
+### Payment Verification
+
+- [ ] Verify Payment API called after webhook
+- [ ] Response reconciled with webhook data
+- [ ] `mihpayid`, `txnid`, `amount`, `status` match
+- [ ] Retry logic handles "transaction not found" errors
+- [ ] Final payment status persisted in your system
+
+### Error Handling
+
+- [ ] Hash validation errors logged and debugged
+- [ ] Token expiry handled with automatic refresh
+- [ ] Transaction not found errors retry with backoff
+- [ ] Invalid webhook signatures rejected
+- [ ] All errors logged with sufficient context
+
+### Reconciliation
+
+- [ ] Daily reconciliation process in place
+- [ ] Webhook vs Verify API discrepancies flagged
+- [ ] Manual review process for failed/stuck transactions
+- [ ] Settlement reports downloaded from PayU dashboard
 
 ***
 
-## Test Flow Checklist
+## Going Live Checklist
 
-Use this checklist to verify your integration end-to-end:
+Before switching to production:
 
-### ✅ OAuth Token Generation
+### Credential Updates
 
-- [ ] Step 1: Password grant returns `access_token` with `expires_in: 3600`
-- [ ] Step 2: Authorization code request returns `attributes.code`
-- [ ] Step 3: Code exchange returns final `access_token`
-- [ ] Token includes required scopes: `partner_payments`
+- [ ] Production `client_id` and `client_secret` obtained
+- [ ] Production `merchant_id` and `reseller_id` configured
+- [ ] Production OAuth endpoints updated in code
+- [ ] Production API endpoints updated (`https://partnerapilayer.payu.in`)
 
-### ✅ Payment Initiation
+### Final Validation
 
-- [ ] Payment request hash computed correctly (6 pipes before `client_secret`)
-- [ ] Request includes all mandatory fields (`txnid`, `amount`, `merchant_id`, `reseller_id`)
-- [ ] For S2S: `txn_s2s_flow=4`, `s2s_client_ip`, and `s2s_device_info` included
-- [ ] Response returns `metaData.txnStatus` and either `intentURIData` or `redirectUri`
+- [ ] Conduct live transaction in production (small amount)
+- [ ] Verify production webhook delivery
+- [ ] Confirm production Verify Payment API works
+- [ ] Validate production reconciliation process
+- [ ] Check production settlement in PayU dashboard
 
-### ✅ Webhook Configuration
+### Infrastructure
 
-- [ ] Row inserted in `partner_webhook_urls` with `is_payment_webhook_enabled=true`
-- [ ] Webhook endpoint URLs are publicly accessible
-- [ ] Webhook endpoint returns HTTP 200 status
-- [ ] Webhook hash verification passes (reverse hash formula)
+- [ ] Webhook URLs whitelisted on firewall
+- [ ] SSL certificates valid for all callback URLs
+- [ ] Load balancing configured (if high volume expected)
+- [ ] Monitoring and alerting set up for payment failures
 
-### ✅ Payment Verification
+### Documentation
 
-- [ ] Verify payment hash computed correctly (`merchant_id|verify_payment|txnid|client_secret`)
-- [ ] Verify payment API returns transaction status
-- [ ] `mihpayid` from verify response matches webhook payload
-- [ ] `status` and `unmappedstatus` match between webhook and verification
-
-### ✅ Error Handling
-
-- [ ] 401 errors trigger token regeneration
-- [ ] Hash validation failures are logged with full hash string
-- [ ] Transaction not found errors trigger retry with delay
-- [ ] Webhook signature failures reject the payload
+- [ ] API integration document updated
+- [ ] Runbook created for common errors
+- [ ] Contact information for PayU support documented
+- [ ] Escalation process defined for critical issues
 
 ***
 
-## Next Steps
+## Support
 
-- [Partner Payments Integration Guide](doc:partner-payments-integration-guide) — Main integration flow
-- [UPI TPV Integration](doc:upi-tpv-integration) — Third-party validation setup
-- [API Reference: POST /partner/payments](ref:partner-payments-api) — Complete API specification
+For unresolved issues or technical questions, contact PayU Partner Support with:
 
-<Info>
-**Need Help?** If you encounter errors not covered in this guide, contact PayU support with:
-- Full error message
-- Transaction ID (txnid)
-- Timestamp of the error
-- Relevant log excerpts
-</Info>
+**Required Information:**
+
+- Your `reseller_id` (partner UUID)
+- Merchant ID(s) involved
+- Integration method (Hosted Checkout / UPI Intent / UPI TPV)
+- Detailed error description
+- Sample `txnid` exhibiting the issue
+- Timestamp of the transaction
+- Full error message and relevant logs
+- Steps to reproduce (if applicable)
+
+**Support Channels:**
+
+- Partner Portal: [https://partner.payu.in/support](https://partner.payu.in/support)
+- Email: [partner-support@payu.in](mailto:partner-support@payu.in)
+- Phone: \[Contact information from PayU]
+
+***
+
+## Related Documentation
+
+- [Partner Payments Overview](doc:partner-payments-overview)
+- [Hosted Checkout Integration Guide](ref:hosted-checkout-api-partner-integration)
+- [UPI Intent Integration Guide](ref:upi-s2s-partner-integration-api)
+- [UPI TPV Integration Guide](doc:partner-payments-upi-tpv-integration)
+- [Getting Access Token (OAuth)](ref:getting-access-token)
+- [Verify Payment API](doc:verify-payment-api)
