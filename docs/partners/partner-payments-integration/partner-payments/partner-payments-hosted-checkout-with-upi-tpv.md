@@ -1,7 +1,9 @@
 ---
 title: '# Partner Payments Hosted Checkout with UPI TPV'
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
