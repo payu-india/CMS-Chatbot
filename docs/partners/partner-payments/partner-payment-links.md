@@ -1,7 +1,7 @@
 ---
 title: Partner Payment Links
 deprecated: false
-hidden: false
+hidden: true
 icon: far fa-arrow-left-from-dotted-line
 metadata:
   robots: index
