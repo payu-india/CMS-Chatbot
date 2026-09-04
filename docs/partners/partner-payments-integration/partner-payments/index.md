@@ -179,9 +179,9 @@ sequenceDiagram
 
 To integrate Partner Payments, refer to:
 
-- [Partner Payments Integration Guide](doc:partner-payments-integration-guide) — Complete step-by-step integration walkthrough
-- [UPI TPV Integration](doc:upi-tpv-integration) — Third-party validation setup for compliance scenarios
-- [Testing and Troubleshooting](doc:testing-and-troubleshooting-partner-payments) — Common errors, log patterns, and test data
+- [Partner Payments Hosted Checkout Integration](doc:partner-payments-hosted-checkout-integration)
+- [Partner Payments UPI Intent Integration](doc:partner-payments-upi-intent-integration)
+- [Partner Payments UPI TPV Integration](doc:partner-payments-upi-tpv-integration)
 
 <Callout icon="📮" theme="default">
   ### **Postman Collection**
