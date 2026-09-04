@@ -1,7 +1,9 @@
 ---
-title: Partner Payement Links Integration
+title: Partner Payment Links Integration
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
