@@ -1,5 +1,5 @@
 ---
-title: '# Partner Payments Hosted Checkout with UPI TPV'
+title: Partner Payments Hosted Checkout with UPI TPV
 deprecated: false
 hidden: true
 link:
