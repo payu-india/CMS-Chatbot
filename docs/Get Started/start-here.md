@@ -78,7 +78,7 @@ PayU lets you accept payments from customers across India using UPI, cards, net 
      on the wizard component or the Quick Start page it is sourced from.
      Needs SME review for tone. */}
 
-Not sure which integration fits your use case? Answer three quick questions and we'll point you to the right path — takes about a minute.
+Tell us about your business setup and technical capability, this wizard then recommends the PayU product that fits. Not sure where to start? Answer few questions and we will point you to the right path — takes about a minute.
 
 <PayUQuickStartWizard />
 
