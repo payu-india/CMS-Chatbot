@@ -179,9 +179,12 @@ sequenceDiagram
 
 To integrate Partner Payments, refer to:
 
-- [Partner Payments Hosted Checkout Integration](doc:partner-payments-hosted-checkout-integration)
-- [Partner Payments UPI Intent Integration](doc:partner-payments-upi-intent-integration)
-- [Partner Payments UPI TPV Integration](doc:partner-payments-upi-tpv-integration)
+- Hosted Checkout
+  - [Partner Payments Hosted Checkout Integration](doc:partner-payments-hosted-checkout-integration)
+  - [Partner Payments Hosted Checkout with UPI TPV](doc:partner-payments-hosted-checkout-with-upi-tpv)
+- Custom Checkout
+  - [Partner Payments UPI Intent Integration](doc:partner-payments-upi-intent-integration)
+  - [Partner Payments UPI TPV Integration](doc:partner-payments-upi-tpv-integration)
 
 <Callout icon="📮" theme="default">
   ### **Postman Collection**
