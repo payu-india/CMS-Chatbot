@@ -1,7 +1,7 @@
 ---
 title: '[NEW] Partner Payment using Hosted Checkout Integration '
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
