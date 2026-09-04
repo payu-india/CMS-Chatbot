@@ -31,7 +31,7 @@ This integration is ideal for:
 
 The Partner Payments UPI TPV flow follows these steps:
 
-1. **OAuth Authentication** — Obtain an access token with scopes: `create_payment_links`, `partner_payment_links`, `partner_payments`
+1. **OAuth Authentication** — Obtain an access token with scope: `hub_session`
 
 2. **Initiate UPI TPV Payment** — POST a payment request with:
    - `txn_s2s_flow=4` (enables UPI S2S flow)
@@ -56,13 +56,6 @@ The Partner Payments UPI TPV flow follows these steps:
 ## Prerequisites
 
 Before you begin, ensure you have:
-
-<Note>
-**Required OAuth Scopes:**
-- `create_payment_links`
-- `partner_payment_links`
-- `partner_payments`
-</Note>
 
 - **Partner OAuth Application** registered with PayU with the above scopes enabled
 - **OAuth Credentials:** `client_id` and `client_secret`
@@ -1412,10 +1405,10 @@ The PDF does not provide test beneficiary account details for sandbox testing. R
 
 ## Next Steps
 
-- **[Partner Payments Hosted Checkout](#)** — Multi-method payment gateway integration
-- **[Partner Payment UPI Intent Integration](#)** — Standard UPI S2S without TPV
-- **[Verify Payment API Reference](#)** — Complete verification documentation
-- **[Partner Webhook Guide](#)** — Advanced webhook patterns
+- [Partner Payments Hosted Checkout](#) — Multi-method payment gateway integration
+- [Partner Payment UPI Intent Integration](#) — Standard UPI S2S without TPV
+- [Verify Payment API Reference](#) — Complete verification documentation
+- [Partner Webhook Guide](#) — Advanced webhook patterns
 
 <Success>
 **Integration Complete!** You can now accept UPI TPV payments with beneficiary account validation using the Partner Payments API.
