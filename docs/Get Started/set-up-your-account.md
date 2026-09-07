@@ -37,7 +37,12 @@ NEW CONTENT  — written fresh; no equivalent exists in the repo.
      straight into steps without a brief orientation sentence.
      Needs SME review. */}
 
-Before you can integrate PayU, you need three things: a merchant account, a completed KYC, and your API credentials. This page walks you through all three in order.
+Before you can integrate with PayU, you need these three:&#x20;
+
+- A merchant account
+- A completed KYC
+- Merchant secrets
+- API credentials.
 
 {/* NEW CONTENT — the sequential step overview below is new. It helps
      users understand the full setup journey before they start.
@@ -46,10 +51,10 @@ Before you can integrate PayU, you need three things: a merchant account, a comp
 <Callout icon="📘" theme="info">
   ### **How long does this take?**
 
-  - **Create account** — 5 minutes
-  - **Complete KYC** — 15–30 minutes (have your business documents ready)
-  - **Test credentials** — available immediately after account creation
-  - **Production credentials** — available after PayU verifies your website (up to 2 business days)
+  - **Create an account**: 5 minutes
+  - **Complete KYC**: 15–30 minutes (Keep your business documents ready)
+  - **Test credentials**: Available immediately after account creation
+  - **Production credentials**: Available after PayU verifies your website (up to 2 business days)
 </Callout>
 
 ***
