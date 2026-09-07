@@ -79,7 +79,7 @@ Whether you are a business owner who wants to start accepting payments today wit
      Needs SME review for tone. */}
 
 <Callout icon="far fa-lightbulb-on" theme="default">
-  ### **No technical setup? No problem!**
+  ### **No Technical Setup? No problem!**
 
   If you just want to start accepting payments today without any coding, [Payment Links](doc:payment-links-dashboard) and [UPI QR](doc:integrate-upi-qr) work straight from the PayU Dashboard — no developer needed.
 </Callout>
