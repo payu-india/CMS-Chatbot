@@ -10,9 +10,6 @@ metadata:
 next:
   description: ''
 ---
-Below is the complete Markdown content. It includes the sample credential values from the source workbook, which are marked as sensitive in the document.
-
-````markdown
 ---
 title: Get Real-Time Merchant Status using Webhooks
 excerpt: ''
@@ -366,4 +363,3 @@ The following reference consolidates the field descriptions and possible-value n
 | `timestamp` | Integer | `merchant_credentials_issued` only | Unix epoch timestamp (seconds) of credential issuance. The field name is `timestamp`, not `change_timestamp`, which is different from standard event payloads. |
 
 > **Note:** For errors or remarks, refer to [KYC Errors and Solutions](ref:kyc-errors-and-solutions).
-````
