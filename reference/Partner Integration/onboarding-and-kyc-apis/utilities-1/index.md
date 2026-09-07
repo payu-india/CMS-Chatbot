@@ -1,5 +1,5 @@
 ---
-title: Utilities
+title: Get Merchant Details
 excerpt: >-
   # Utilities — Status Polling
 
@@ -24,4 +24,6 @@ excerpt: >-
 
   - Check overall onboarding stage and activation readiness
 hidden: false
+link:
+  new_tab: false
 ---
