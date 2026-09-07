@@ -195,12 +195,12 @@ To complete your KYC:
 
 5. Verify your mobile number with the OTP to proceed.
 
-6. **What category does your business fall under?:&#x20;**&#x53;earch and select your business category from the search drop-down list.
+6. **What category does your business fall under?:&#x20;**&#x53;earch and select your business category from the search drop-down list and click **Confirm & Proceed.**
 
-   <Image src="https://files.readme.io/0aebcfcb7b61b1b6d889cd64b0b9450e8238bf64d66db2d1b9f002fb7241e2fb-Screenshot_2026-09-07_at_12.04.54_PM.png" align="center" caption="Select your business category" border={true} />
+   <Image src="https://files.readme.io/ba6f19fb73985f9617571ba9f74486a39addcb1d5a555d43bde6de4c19ea036a-Screenshot_2026-09-07_at_12.12.40_PM.png" align="center" caption="Select your business category" border={true} />
 
 
-7. **Bank details** — Enter your bank account number and IFSC code, then click **Connect Bank Account**.
+7. **Share your business details**: Enter your bank account number and IFSC code, then click **Connect Bank Account**.
 
 8. **How you accept payments** — Select one of the following:
    - **On my website/app** — enter your website URL, Android app URL, or iOS app URL.
