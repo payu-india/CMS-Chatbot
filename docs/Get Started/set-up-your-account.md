@@ -70,26 +70,78 @@ To create a PayU account:
 
 1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin">PayU dashboard</Anchor> in your browser.
 
-2. Fill in the following details on the **Create your PayU account** page:
+2. Provide the following details on the **Create your PayU account** page:
 
-   | Field                                             | What to enter                                                                            |
-   | ------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-   | Email                                             | Your email address — this becomes your login username and receives PayU communications   |
-   | Password                                          | At least 8 characters, including uppercase, lowercase, a number, and a special character |
-   | Mobile                                            | Your 10-digit mobile number                                                              |
-   | Do you want to collect payments for your website? | Select **Yes** and enter your website URL if applicable                                  |
-   | Monthly expected sales                            | Your estimated monthly revenue in rupees                                                 |
+   <Table>
+     <thead>
+       <tr>
+         <th>
+           Field
+         </th>
+
+         <th>
+           Details
+         </th>
+       </tr>
+     </thead>
+
+     <tbody>
+       <tr>
+         <td>
+           **Email**
+         </td>
+
+         <td>
+           Your email address. This will be your login username and receives PayU communications
+         </td>
+       </tr>
+
+       <tr>
+         <td>
+           **Password**
+         </td>
+
+         <td>
+           Your password should contain:
+
+           - At least 8 characters,&#x20;
+           - At least 1 uppercase&#x20;
+           - At least 1 lowercase
+           - At least 1 number
+           - At least 1 special character
+         </td>
+       </tr>
+
+       <tr>
+         <td>
+           **Mobile**
+         </td>
+
+         <td>
+           Your 10-digit mobile number
+         </td>
+       </tr>
+
+       <tr>
+         <td>
+           **Do you want to collect payments for your website? (optional)**
+         </td>
+
+         <td>
+           Select **Yes** and enter your website URL if applicable
+         </td>
+       </tr>
+     </tbody>
+   </Table>
 
 3. Click **Send OTP & Create Account**. An OTP is sent to your mobile number.
 
-4. Enter the OTP and click **Verify Mobile**.
+4. Enter the OTP and click **VERIFY OTP&#x20;**&#x6F;n the **OTP Verification&#x20;**&#x70;age.
 
-5. Click **Confirm** to complete registration.
+<Callout icon="far fa-diagram-next" theme="success">
+  ### **What Happens Next:**
 
-<Callout icon="📘" theme="info">
-  **What happens next:**
-
-  - Your **Test Key and Salt** are available immediately — you can start building and testing right away.
+  - Your **Test Key and Salt** are available immediately. You can start building and testing right away.
   - Your **Production Key and Salt** become available after PayU verifies your website. This takes up to 2 business days.
   - You must complete KYC (Step 2 below) before you can accept real payments.
 </Callout>
@@ -104,17 +156,20 @@ To create a PayU account:
      Rewritten for brevity; verbose sub-sections condensed where the
      original had redundant prose. */}
 
-PayU requires all merchants to complete KYC (Know Your Customer) to comply with regulatory guidelines. Your account cannot accept live payments until KYC is complete.
+PayU requires all merchants to complete KYC (Know Your Customer) to comply with regulatory guidelines. Your account cannot accept live payments until you complete the KYC.
 
 **Before you start**, have these documents ready:
 
-- Proof of identity (Aadhaar card, passport, or PAN card)
-- Proof of address (Aadhaar card, passport, or utility bill)
-- Business proof (GST registration certificate or business licence)
+- **Business PAN Card Number:&#x20;**&#x42;usines&#x73;**&#x20;**&#x50;AN card details to verify your business identity.
+- **Proof of identity** (Aadhaar card, passport, or PAN card)
+- **Proof of address** (Aadhaar card, passport, or utility bill)
+- **Business proof** (GST registration certificate or business license)
 
-For the full list of required documents based on your business type, see the [Documents checklist](#documents-checklist) below.
+For the full list of required documents based on your business type, refer to the [Documents checklist](#documents-checklist) below.
 
-### Complete your KYC
+***
+
+### Complete Your KYC
 
 1. Log in to your PayU Dashboard and click **Activate Account** at the top of the page (or under **Complete your Onboarding**).
 
