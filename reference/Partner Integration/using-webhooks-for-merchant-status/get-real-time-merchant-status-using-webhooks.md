@@ -334,7 +334,6 @@ The following reference consolidates the field descriptions and possible-value n
 
 You’re right. I removed the **Present in** column unintentionally while merging the **Type** and **Description / possible values** columns. Here is the corrected table:
 
-```markdown
 | Field | Present in | Description / possible values |
 | :-- | :-- | :-- |
 | `event_name` | All events | `String` — Human-readable event label. See the event reference above for all possible values. |
@@ -352,6 +351,5 @@ You’re right. I removed the **Present in** column unintentionally while mergin
 | `salt_v1` | `merchant_credentials_issued` only | `String` — Salt v1 for HMAC/SHA1 hash generation for legacy payment APIs. Treat as secret; do not log or expose. |
 | `salt_v2` | `merchant_credentials_issued` only | `String` — Salt v2 for SHA256 hash generation for current payment APIs. Treat as secret; do not log or expose. |
 | `timestamp` | `merchant_credentials_issued` only | `Integer` — Unix epoch timestamp (seconds) of credential issuance. The field name is `timestamp`, not `change_timestamp`, which is different from standard event payloads. |
-```
 
 > **Note:** For errors or remarks, refer to [KYC Errors and Solutions](ref:kyc-errors-and-solutions).
