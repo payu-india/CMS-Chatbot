@@ -178,24 +178,42 @@ To complete your KYC:
    <Image src="https://files.readme.io/13ce6e59854f56279a73d73b85abdc3d1befa8a30de7f89c65405185c1380e52-Screenshot_2026-09-07_at_11.35.55_AM.png" align="center" caption="Enter Business PAN" border={true} />
 
 
-3. **Please confirm your Business entity** — Select any of the following business entity type and click **Confirm & Proceed:**
+3. **Please confirm your Business entity**: Select any of the following business entity type and click **Confirm & Proceed:**
    - **Individual**
    - **Sole Proprietorship**
 
-4. **Bank details** — Enter your bank account number and IFSC code, then click **Connect Bank Account**.
+4. **Mobile Number:&#x20;**&#x56;erify the mobile number you have already provided during sign-up and click **Proceed with CKYC.**
+   <Callout icon="📘" theme="info">
+     ### Note:
 
-5. **How you accept payments** — Select one of the following:
+     - You can update the mobile number in this screen.
+     - You can choose to skip CKYC by clicking **Skip CKYC.**
+   </Callout>
+
+   <Image src="https://files.readme.io/47ffcf9c6922cb6635ff66a7b6aa5b35e313cf87193ca4a5b3a2465e0d2f19ff-Screenshot_2026-09-07_at_11.54.36_AM.png" align="center" caption="Verify or Update Mobile Number" border={true} />
+
+
+5. Verify your mobile number with the OTP to proceed.
+
+6. **What category does your business fall under?:&#x20;**&#x53;earch and select your business category from the search drop-down list.
+
+   <Image src="https://files.readme.io/0aebcfcb7b61b1b6d889cd64b0b9450e8238bf64d66db2d1b9f002fb7241e2fb-Screenshot_2026-09-07_at_12.04.54_PM.png" align="center" caption="Select your business category" border={true} />
+
+
+7. **Bank details** — Enter your bank account number and IFSC code, then click **Connect Bank Account**.
+
+8. **How you accept payments** — Select one of the following:
    - **On my website/app** — enter your website URL, Android app URL, or iOS app URL.
    - **I don't have a website/app** — you can use Payment Links, Invoices, or Payment Buttons from the Dashboard.
 
-6. **Signing authority details** — Verify the name, PAN, and email of your signing authority. Update the email if needed, then click **Proceed to KYC**.
+9. **Signing authority details** — Verify the name, PAN, and email of your signing authority. Update the email if needed, then click **Proceed to KYC**.
 
-7. **KYC documents** — Choose one of the following methods:
-   - **Fetch from cKYC** — enter your date of birth / incorporation date and authorise PayU to fetch documents automatically.
-   - **Fetch from Aadhaar** — accept Aadhaar terms and click Submit.
-   - **Upload manually** — verify your address details and upload PAN card, address proof, and any other requested documents.
+10. **KYC documents** — Choose one of the following methods:
+    - **Fetch from cKYC** — enter your date of birth / incorporation date and authorise PayU to fetch documents automatically.
+    - **Fetch from Aadhaar** — accept Aadhaar terms and click Submit.
+    - **Upload manually** — verify your address details and upload PAN card, address proof, and any other requested documents.
 
-8. Click **Submit Documents**.
+11. Click **Submit Documents**.
 
 <Callout icon="📘" theme="info">
   If you cannot complete KYC, contact your PayU Key Account Manager or visit [PayU Support](https://help.payu.in/knowledge-center).
