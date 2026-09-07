@@ -138,6 +138,8 @@ To create a PayU account:
 
 4. Enter the OTP and click **VERIFY OTP&#x20;**&#x6F;n the **OTP Verification&#x20;**&#x70;age.
 
+You can continue to complete your KYC or choose to complete it later. Click **Go to Dashboard&#x20;**&#x74;o access your test credentials.&#x20;
+
 <Callout icon="far fa-diagram-next" theme="success">
   ### **What Happens Next:**
 
@@ -148,7 +150,7 @@ To create a PayU account:
 
 ***
 
-## Step 2: Complete KYC and activate your account
+## Step 2: Complete KYC and Activate Your Account
 
 {/* SOURCE — content sourced from:
      docs/getting started/register-with-payu/complete-your-kyc.md
@@ -158,7 +160,7 @@ To create a PayU account:
 
 PayU requires all merchants to complete KYC (Know Your Customer) to comply with regulatory guidelines. Your account cannot accept live payments until you complete the KYC.
 
-**Before you start**, have these documents ready:
+**Before you start**, keep these documents ready:
 
 - **Business PAN Card Number:&#x20;**&#x42;usines&#x73;**&#x20;**&#x50;AN card details to verify your business identity.
 - **Proof of identity** (Aadhaar card, passport, or PAN card)
@@ -167,15 +169,18 @@ PayU requires all merchants to complete KYC (Know Your Customer) to comply with 
 
 For the full list of required documents based on your business type, refer to the [Documents checklist](#documents-checklist) below.
 
-***
+To complete your KYC:
 
-### Complete Your KYC
+1. Log in to your PayU Dashboard and click **Resume Onboarding** at the top of the page (or under **Onboarding Progress**).
 
-1. Log in to your PayU Dashboard and click **Activate Account** at the top of the page (or under **Complete your Onboarding**).
+2. **Business PAN Card Number**: Enter your business PAN, verify the details and click **Confirm & Proceed**.
 
-2. **PAN Verification** — Enter your Business PAN and click **Proceed to Verify**.
+   <Image src="https://files.readme.io/13ce6e59854f56279a73d73b85abdc3d1befa8a30de7f89c65405185c1380e52-Screenshot_2026-09-07_at_11.35.55_AM.png" align="center" caption="Enter Business PAN" border={true} />
 
-3. **Business details** — Select your business category and sub-category, enter your GSTIN (optional) and estimated monthly sales, then click **Proceed**.
+
+3. **Please confirm your Business entity** — Select any of the following business entity type and click **Confirm & Proceed:**
+   - **Individual**
+   - **Sole Proprietorship**
 
 4. **Bank details** — Enter your bank account number and IFSC code, then click **Connect Bank Account**.
 
