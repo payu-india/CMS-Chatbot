@@ -1095,6 +1095,10 @@ Ensure these URLs are configured:
 - `partner_webhook_failure` — Called on failed payment
 - `partner_webhook_cancelled` — Called when payment is cancelled
 
+<Callout icon="⚠️" theme="info">
+  ### Contact your Account Manager to register for the Webhooks.
+</Callout>
+
 **Sample Success Webhook Payload:**
 
 ```json
