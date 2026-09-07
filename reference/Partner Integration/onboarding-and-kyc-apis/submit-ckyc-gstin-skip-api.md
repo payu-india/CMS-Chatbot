@@ -1,7 +1,9 @@
 ---
 title: Submit CKYC & GSTIN Skip API
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
