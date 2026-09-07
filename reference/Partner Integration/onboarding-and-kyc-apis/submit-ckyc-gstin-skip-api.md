@@ -182,4 +182,3 @@ The following response preserves the supplied response structure and values. Sen
 - Use the UAT base URL for testing and the Production base URL for live requests.
 - The merchant UUID in the path and the provider UUID in each consent object should be the identifiers applicable to the request.
 - A successful response returns a confirmation `message` and the consent record under `data.consents`.
-- This document does not define additional error codes or undocumented behavior.
