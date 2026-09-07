@@ -334,22 +334,22 @@ The following reference consolidates the field descriptions and possible-value n
 
 You’re right. I removed the **Present in** column unintentionally while merging the **Type** and **Description / possible values** columns. Here is the corrected table:
 
-| Field | Present in | Description / possible values |
-| :-- | :-- | :-- |
-| `event_name` | All events | `String` — Human-readable event label. See the event reference above for all possible values. |
-| `previous_status` | All events | `String/null` — Status before the change. `null` for first-time KYC events (Aadhaar/Video KYC). |
-| `current_status` | All events | `String` — Status after the change. Webhook is only sent when `previous_status != current_status`. |
-| `change_timestamp` | Standard events (not KYC verification events) | `Integer` — Unix epoch timestamp (seconds) of the status change. |
-| `mid` | AccountConsumer/MerchantConsumer events | `String` — Numeric merchant ID. Used in Merchant-based consumer payloads. |
-| `merchant_uuid` | AccountConsumer/MerchantConsumer events | `String` — UUID-format merchant identifier. Used in Merchant-based consumer payloads. |
-| `identifier` | ProductAccountConsumer events | `String` — Numeric merchant ID (MID). Used in ProductAccount-based consumer payloads. |
-| `product_account_uuid` | ProductAccountConsumer events | `String` — UUID-format product account identifier. Used in ProductAccount-based consumer payloads. |
-| `capture_link` | Aadhaar KYC/Video KYC events only | `String/null` — VCIP video call URL. Populated when `vkyc_status = link_generated`. `null` otherwise. |
-| `error` | Standard events (not KYC verification events) | `String` — `"NA"` when no error. Contains an error message string when a processing error occurred. |
-| `remarks` | Standard events (not KYC verification events) | `String` — `"NA"` when no remarks. Contains reviewer notes or system remarks when present. |
-| `merchant_key` | `merchant_credentials_issued` only | `String` — PayU merchant key assigned at activation. Used as the public identifier in payment API calls. Treat as sensitive. |
-| `salt_v1` | `merchant_credentials_issued` only | `String` — Salt v1 for HMAC/SHA1 hash generation for legacy payment APIs. Treat as secret; do not log or expose. |
-| `salt_v2` | `merchant_credentials_issued` only | `String` — Salt v2 for SHA256 hash generation for current payment APIs. Treat as secret; do not log or expose. |
-| `timestamp` | `merchant_credentials_issued` only | `Integer` — Unix epoch timestamp (seconds) of credential issuance. The field name is `timestamp`, not `change_timestamp`, which is different from standard event payloads. |
+| Field                  | Present in                                    | Description / possible values                                                                                                                                              |
+| :--------------------- | :-------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `event_name`           | All events                                    | `String` — Human-readable event label. See the event reference above for all possible values.                                                                              |
+| `previous_status`      | All events                                    | `String/null` — Status before the change. `null` for first-time KYC events (Aadhaar/Video KYC).                                                                            |
+| `current_status`       | All events                                    | `String` — Status after the change. Webhook is only sent when `previous_status != current_status`.                                                                         |
+| `change_timestamp`     | Standard events (not KYC verification events) | `Integer` — Unix epoch timestamp (seconds) of the status change.                                                                                                           |
+| `mid`                  | AccountConsumer/ MerchantConsumer events       | `String` — Numeric merchant ID. Used in Merchant-based consumer payloads.                                                                                                  |
+| `merchant_uuid`        | AccountConsumer/ MerchantConsumer events       | `String` — UUID-format merchant identifier. Used in Merchant-based consumer payloads.                                                                                      |
+| `identifier`           | ProductAccountConsumer events                 | `String` — Numeric merchant ID (MID). Used in ProductAccount-based consumer payloads.                                                                                      |
+| `product_account_uuid` | ProductAccountConsumer events                 | `String` — UUID-format product account identifier. Used in ProductAccount-based consumer payloads.                                                                         |
+| `capture_link`         | Aadhaar KYC/Video KYC events only             | `String/null` — VCIP video call URL. Populated when `vkyc_status = link_generated`. `null` otherwise.                                                                      |
+| `error`                | Standard events (not KYC verification events) | `String` — `"NA"` when no error. Contains an error message string when a processing error occurred.                                                                        |
+| `remarks`              | Standard events (not KYC verification events) | `String` — `"NA"` when no remarks. Contains reviewer notes or system remarks when present.                                                                                 |
+| `merchant_key`         | `merchant_credentials_issued` only            | `String` — PayU merchant key assigned at activation. Used as the public identifier in payment API calls. Treat as sensitive.                                               |
+| `salt_v1`              | `merchant_credentials_issued` only            | `String` — Salt v1 for HMAC/SHA1 hash generation for legacy payment APIs. Treat as secret; do not log or expose.                                                           |
+| `salt_v2`              | `merchant_credentials_issued` only            | `String` — Salt v2 for SHA256 hash generation for current payment APIs. Treat as secret; do not log or expose.                                                             |
+| `timestamp`            | `merchant_credentials_issued` only            | `Integer` — Unix epoch timestamp (seconds) of credential issuance. The field name is `timestamp`, not `change_timestamp`, which is different from standard event payloads. |
 
 > **Note:** For errors or remarks, refer to [KYC Errors and Solutions](ref:kyc-errors-and-solutions).
