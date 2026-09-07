@@ -10,18 +10,6 @@ metadata:
 next:
   description: ''
 ---
----
-title: Get Real-Time Merchant Status using Webhooks
-excerpt: ''
-deprecated: false
-hidden: false
-metadata:
-  title: ''
-  description: ''
-  robots: index
-next:
-  description: ''
----
 Partners can refer many merchants as they want, and every merchant has their own onboarding journey with PayU. To get the real-time merchant status update, resellers can integrate with PayU with their webhooks, where PayU will notify the reseller about the merchant onboarding status in real-time.
 
 **Note**: Partners need to contact PayU or their Key Account Manager to enable the real-time merchant status service.
@@ -35,7 +23,7 @@ To configure webhooks:
 ### Validate the Webhook Signature
 
 * Each Webhook payload will have a HMAC signature in the Authorization header.
-* HMAC will be generated using the SHA-256 function using request payload passed to webhook URL, and a **client\_secret** of partner application will be used as secret key to sign it and get a hashed string. This hashed string will be passed in the Authorization header.
+* HMAC will be generated using the SHA-256 function using request payload passed to webhook URL, and a **client_secret** of partner application will be used as secret key to sign it and get a hashed string. This hashed string will be passed in the Authorization header.
 
 **The formula for HMAC:**
 
@@ -78,20 +66,20 @@ When the following payload is sent:
 
 The workbook defines 12 webhook event rows or dynamic event patterns. The event-specific examples and field notes in this section are sourced from the **Webhook Events** and **Payload Field Reference** sheets.
 
-| # | Event name or pattern | Category | Trigger action |
-| :-- | :-- | :-- | :-- |
-| 1 | Settlement Status Update | Standard | `update` (`settlement_status` change) |
-| 2 | Nodal Status Update | Standard | `update_bank_detail` |
-| 3 | Bank Verification Status Update | Standard | `update_bank_detail` |
-| 4 | Website Status Update | Standard | `update_merchant_account_status` (`status_type = WEBSITE`) |
-| 5 | Document Status Update | Standard | `update_merchant_account_status` (`status_type = KYC_DOCUMENTS`) |
-| 6 | Agreement Status Update | Standard | `update_merchant_account_status` (`status_type = Agreement`) |
-| 7 | Aadhar Verification Status Update | KYC | `create_kyc` / `update_kyc` (`kyc_type = aadhaar_kyc`) |
-| 8 | Video KYC Verification Status Update | KYC | `create_kyc` / `update_kyc` (`kyc_type = video_kyc`) |
-| 9 | `{DocumentCategory} Doc Created` | Dynamic document | `create_kyc_doc` |
-| 10 | `{DocumentCategory} Status Update` | Dynamic document | `update_kyc_doc` |
-| 11 | `{DocumentCategory} Doc Deleted` | Dynamic document | `delete_kyc_doc` |
-| 12 | `merchant_credentials_issued` | Credential issued | Merchant credentials generated and issued |
+| #  | Event name or pattern                | Category          | Trigger action                                                   |
+| :- | :----------------------------------- | :---------------- | :--------------------------------------------------------------- |
+| 1  | Settlement Status Update             | Standard          | `update` (`settlement_status` change)                            |
+| 2  | Nodal Status Update                  | Standard          | `update_bank_detail`                                             |
+| 3  | Bank Verification Status Update      | Standard          | `update_bank_detail`                                             |
+| 4  | Website Status Update                | Standard          | `update_merchant_account_status` (`status_type = WEBSITE`)       |
+| 5  | Document Status Update               | Standard          | `update_merchant_account_status` (`status_type = KYC_DOCUMENTS`) |
+| 6  | Agreement Status Update              | Standard          | `update_merchant_account_status` (`status_type = Agreement`)     |
+| 7  | Aadhar Verification Status Update    | KYC               | `create_kyc` / `update_kyc` (`kyc_type = aadhaar_kyc`)           |
+| 8  | Video KYC Verification Status Update | KYC               | `create_kyc` / `update_kyc` (`kyc_type = video_kyc`)             |
+| 9  | `{DocumentCategory} Doc Created`     | Dynamic document  | `create_kyc_doc`                                                 |
+| 10 | `{DocumentCategory} Status Update`   | Dynamic document  | `update_kyc_doc`                                                 |
+| 11 | `{DocumentCategory} Doc Deleted`     | Dynamic document  | `delete_kyc_doc`                                                 |
+| 12 | `merchant_credentials_issued`        | Credential issued | Merchant credentials generated and issued                        |
 
 ### Standard status payloads
 
@@ -344,22 +332,26 @@ This event is fired once when PayU generates and assigns merchant credentials af
 
 The following reference consolidates the field descriptions and possible-value notes from the workbook. Presence is event-specific; the samples above are authoritative for the exact fields shown in each event example.
 
-| Field | Type | Present in | Description / possible values |
-| :-- | :-- | :-- | :-- |
-| `event_name` | String | All events | Human-readable event label. See the event reference above for all possible values. |
-| `previous_status` | String/null | All events | Status before the change. `null` for first-time KYC events (Aadhaar/Video KYC). |
-| `current_status` | String | All events | Status after the change. Webhook is only sent when `previous_status != current_status`. |
-| `change_timestamp` | Integer | Standard events (not KYC verification events) | Unix epoch timestamp (seconds) of the status change. |
-| `mid` | String | AccountConsumer/MerchantConsumer events | Numeric merchant ID. Used in Merchant-based consumer payloads. |
-| `merchant_uuid` | String | AccountConsumer/MerchantConsumer events | UUID-format merchant identifier. Used in Merchant-based consumer payloads. |
-| `identifier` | String | ProductAccountConsumer events | Numeric merchant ID (MID). Used in ProductAccount-based consumer payloads. |
-| `product_account_uuid` | String | ProductAccountConsumer events | UUID-format product account identifier. Used in ProductAccount-based consumer payloads. |
-| `capture_link` | String/null | Aadhaar KYC/Video KYC events only | VCIP video call URL. Populated when `vkyc_status = link_generated`. `null` otherwise. |
-| `error` | String | Standard events (not KYC verification events) | `"NA"` when no error. Contains error message string when a processing error occurred. |
-| `remarks` | String | Standard events (not KYC verification events) | `"NA"` when no remarks. Contains reviewer notes or system remarks when present. |
-| `merchant_key` | String | `merchant_credentials_issued` only | PayU merchant key assigned at activation. Used as the public identifier in payment API calls. Treat as sensitive. |
-| `salt_v1` | String | `merchant_credentials_issued` only | Salt v1 for HMAC/SHA1 hash generation (legacy payment APIs). Treat as secret; do not log or expose. |
-| `salt_v2` | String | `merchant_credentials_issued` only | Salt v2 for SHA256 hash generation (current payment APIs). Treat as secret; do not log or expose. |
-| `timestamp` | Integer | `merchant_credentials_issued` only | Unix epoch timestamp (seconds) of credential issuance. The field name is `timestamp`, not `change_timestamp`, which is different from standard event payloads. |
+You’re right. I removed the **Present in** column unintentionally while merging the **Type** and **Description / possible values** columns. Here is the corrected table:
+
+```markdown
+| Field | Present in | Description / possible values |
+| :-- | :-- | :-- |
+| `event_name` | All events | `String` — Human-readable event label. See the event reference above for all possible values. |
+| `previous_status` | All events | `String/null` — Status before the change. `null` for first-time KYC events (Aadhaar/Video KYC). |
+| `current_status` | All events | `String` — Status after the change. Webhook is only sent when `previous_status != current_status`. |
+| `change_timestamp` | Standard events (not KYC verification events) | `Integer` — Unix epoch timestamp (seconds) of the status change. |
+| `mid` | AccountConsumer/MerchantConsumer events | `String` — Numeric merchant ID. Used in Merchant-based consumer payloads. |
+| `merchant_uuid` | AccountConsumer/MerchantConsumer events | `String` — UUID-format merchant identifier. Used in Merchant-based consumer payloads. |
+| `identifier` | ProductAccountConsumer events | `String` — Numeric merchant ID (MID). Used in ProductAccount-based consumer payloads. |
+| `product_account_uuid` | ProductAccountConsumer events | `String` — UUID-format product account identifier. Used in ProductAccount-based consumer payloads. |
+| `capture_link` | Aadhaar KYC/Video KYC events only | `String/null` — VCIP video call URL. Populated when `vkyc_status = link_generated`. `null` otherwise. |
+| `error` | Standard events (not KYC verification events) | `String` — `"NA"` when no error. Contains an error message string when a processing error occurred. |
+| `remarks` | Standard events (not KYC verification events) | `String` — `"NA"` when no remarks. Contains reviewer notes or system remarks when present. |
+| `merchant_key` | `merchant_credentials_issued` only | `String` — PayU merchant key assigned at activation. Used as the public identifier in payment API calls. Treat as sensitive. |
+| `salt_v1` | `merchant_credentials_issued` only | `String` — Salt v1 for HMAC/SHA1 hash generation for legacy payment APIs. Treat as secret; do not log or expose. |
+| `salt_v2` | `merchant_credentials_issued` only | `String` — Salt v2 for SHA256 hash generation for current payment APIs. Treat as secret; do not log or expose. |
+| `timestamp` | `merchant_credentials_issued` only | `Integer` — Unix epoch timestamp (seconds) of credential issuance. The field name is `timestamp`, not `change_timestamp`, which is different from standard event payloads. |
+```
 
 > **Note:** For errors or remarks, refer to [KYC Errors and Solutions](ref:kyc-errors-and-solutions).
