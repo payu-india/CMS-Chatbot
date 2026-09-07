@@ -59,16 +59,16 @@ Before you can integrate with PayU, you need these three:&#x20;
 
 ***
 
-## Step 1: Create your account
+## Step 1: Create a PayU Account
 
 {/* SOURCE — content sourced from:
      docs/getting started/register-with-payu/register-for-a-merchant-account-on-dashboard.md
      Rewritten for brevity and consistent tone. Steps, field names, and
      notes are faithful to the original. */}
 
-To integrate with PayU, you need a merchant account. Registration takes about 5 minutes.
+To create a PayU account:
 
-1. Open [https://onboarding.payu.in/app/account](https://onboarding.payu.in/app/account) in your browser.
+1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin">PayU dashboard</Anchor> in your browser.
 
 2. Fill in the following details on the **Create your PayU account** page:
 
