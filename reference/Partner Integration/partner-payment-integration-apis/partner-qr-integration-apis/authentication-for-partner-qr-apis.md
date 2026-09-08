@@ -1,7 +1,9 @@
 ---
 title: Authentication for Partner QR APIs
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
