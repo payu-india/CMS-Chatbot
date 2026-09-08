@@ -56,7 +56,7 @@ The **CreateMerchant** API creates a new merchant shell account on PayU (Step 01
   {
     "merchant": {
         "name": "PAYU PAYMENTS PRIVATE LIMITED",
-        "email": "payuonb_mar02_v9@yopmail.com",
+        "email": "test@yopmail.com",
         "registered_mobile": "6976543219",
         "mid": 760070201,
         "product": "PayUbiz",
@@ -98,7 +98,7 @@ The **CreateMerchant** API creates a new merchant shell account on PayU (Step 01
         "partner_source": "Create Merchant API",
         "pan_verification_status": "Pending",
         "website_approval_status": null,
-        "notification_email": "payuonb_mar02_v9@yopmail.com",
+        "notification_email": "test@yopmail.com",
         "settlement_status": null,
         "is_service_agreement_accepted": false,
         "is_authorisation_letter_required": false,
@@ -153,10 +153,10 @@ The **CreateMerchant** API creates a new merchant shell account on PayU (Step 01
   The response contains a `merchant` object. The table below documents the fields present in the saved response. `mid` is the numeric merchant identifier; `uuid` is the merchant UUID. `product_account_uuid` is not present in the saved response.
 
   | Parameter                                     | Description                                            | Example                                     |
-  | :---------------------------- | :----------------------------------------------------- | :---------------------------|
+  | :-------------------------------------------- | :----------------------------------------------------- | :------------------------------------------ |
   | `merchant.name`                               | `string` — Returned in the saved `merchant` response.  | `"PAYU PAYMENTS PRIVATE LIMITED"`           |
   | `merchant.email`                              | `string` — Returned in the saved `merchant` response.  | `"test@yopmail.com"`                        |
-  | `merchant.registered_ mobile`                  | `string` — Returned in the saved `merchant` response.  | `"6976543219"`                              |
+  | `merchant.registered_ mobile`                 | `string` — Returned in the saved `merchant` response.  | `"6976543219"`                              |
   | `merchant.mid`                                | `integer` — Numeric merchant identifier (`mid`).       | `760070201`                                 |
   | `merchant.product`                            | `string` — Returned in the saved `merchant` response.  | `"PayUbiz"`                                 |
   | `merchant.business _type`                     | `string` — Returned in the saved `merchant` response.  | `"LongTail"`                                |
@@ -168,7 +168,7 @@ The **CreateMerchant** API creates a new merchant shell account on PayU (Step 01
   | `merchant.ios_url`                            | `null` — Returned in the saved `merchant` response.    | `null`                                      |
   | `merchant.gst_number`                         | `null` — Returned in the saved `merchant` response.    | `null`                                      |
   | `merchant.gst_ verification_status`           | `string` — Returned in the saved `merchant` response.  | `"Pending"`                                 |
-  | `merchant.created_at`                         | `string` — Returned in the saved `merchant` response.  | `"2026-03-02T16:36:46.000Z"`                |
+  | `merchant.created_at`                         | `string` — Returned in the saved `merchant` response.  | `"2026-03-02T16:36: 46.000Z"`               |
   | `merchant.mobile`                             | `string` — Returned in the saved `merchant` response.  | `"6976543219"`                              |
   | `merchant.blocked`                            | `boolean` — Returned in the saved `merchant` response. | `false`                                     |
   | `merchant.first_name`                         | `string` — Returned in the saved `merchant` response.  | `"PAYU"`                                    |
@@ -191,7 +191,7 @@ The **CreateMerchant** API creates a new merchant shell account on PayU (Step 01
   | `merchant.partner_ source`                    | `string` — Returned in the saved `merchant` response.  | `"Create Merchant API"`                     |
   | `merchant.pan_ verification_status`           | `string` — Returned in the saved `merchant` response.  | `"Pending"`                                 |
   | `merchant.website_ approval_status`           | `null` — Returned in the saved `merchant` response.    | `null`                                      |
-  | `merchant.notification_ email`                | `string` — Returned in the saved `merchant` response.  | `"payuonb_mar02_v9@yopmail.com"`            |
+  | `merchant.notification_ email`                | `string` — Returned in the saved `merchant` response.  | `"test@yopmail.com"`                        |
   | `merchant.settlement_status`                  | `null` — Returned in the saved `merchant` response.    | `null`                                      |
   | `merchant.is_service_ agreement_accepted`     | `boolean` — Returned in the saved `merchant` response. | `false`                                     |
   | `merchant.is_authorisation_ letter_required`  | `boolean` — Returned in the saved `merchant` response. | `false`                                     |
