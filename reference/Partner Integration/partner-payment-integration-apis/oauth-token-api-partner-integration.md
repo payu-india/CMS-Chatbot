@@ -1,11 +1,11 @@
 ---
-title: '[Step 1] OAuth Token API - Partner Integration'
+title: '[Step 1] Merchant Token API - Partner Integration'
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-This endpoint is the first step in the three-step OAuth authentication flow for Partner Payments. Use your reseller credentials to obtain an initial access token with `hub_session` scope.
+This endpoint is the first step in the three-step Merchant token flow for Partner Payments. Use your reseller credentials to obtain an initial access token with `hub_session` scope.
 
 ## Endpoint
 
