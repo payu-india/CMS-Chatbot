@@ -2,7 +2,7 @@
 title: Partner Refund Transaction API
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''

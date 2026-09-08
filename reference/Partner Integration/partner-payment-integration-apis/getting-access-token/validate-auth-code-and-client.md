@@ -2,7 +2,7 @@
 title: Validate Auth Code and Client API - Partner Integration
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''

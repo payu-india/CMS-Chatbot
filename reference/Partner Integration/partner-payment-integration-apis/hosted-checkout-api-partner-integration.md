@@ -2,7 +2,7 @@
 title: Hosted Checkout Integration - Partner Integration
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
