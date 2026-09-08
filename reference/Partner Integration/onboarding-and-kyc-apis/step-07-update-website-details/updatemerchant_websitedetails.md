@@ -60,8 +60,11 @@ When you skip the Website, your account will only be eligible to collect payment
   ```json
   {
     "merchant": {
-      "mid": 12345678,
-      "status": "account_created"
+      "mid": 760070201,
+      "website_url": "www.borosil.com",
+      "android_url": "www.borosil.com",
+      "ios_url": "www.borosil.com",
+      "website_approval_status": "Pending"
     }
   }
   ```
