@@ -11,7 +11,7 @@ Use this API to update or skip Website details for your merchant account.&#x20;
 <Callout icon="📘" theme="info">
   ### **Prerequisite**
 
-  Step 01 to 06 must be updated before updating/skipping the website..
+  Step 01 to 06 must be updated before updating/skipping the website.
 
   **Entity applicability:** All entities.
 </Callout>
