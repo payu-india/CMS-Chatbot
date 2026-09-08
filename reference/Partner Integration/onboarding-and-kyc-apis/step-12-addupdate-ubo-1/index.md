@@ -1,5 +1,5 @@
 ---
-title: Step 12 — Add/Update UBO [Conditional]
+title: Step 12 — Add or Update UBO [Conditional]
 hidden: false
 link:
   new_tab: false
