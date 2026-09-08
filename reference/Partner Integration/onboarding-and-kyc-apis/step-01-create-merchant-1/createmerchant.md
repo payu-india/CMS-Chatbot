@@ -153,10 +153,10 @@ The **CreateMerchant** API creates a new merchant shell account on PayU (Step 01
   The response contains a `merchant` object. The table below documents the fields present in the saved response. `mid` is the numeric merchant identifier; `uuid` is the merchant UUID. `product_account_uuid` is not present in the saved response.
 
   | Parameter                                     | Description                                            | Example                                     |
-  | :-------------------------------------------- | :----------------------------------------------------- | :------------------------------------------ |
+  | :---------------------------- | :----------------------------------------------------- | :---------------------------|
   | `merchant.name`                               | `string` — Returned in the saved `merchant` response.  | `"PAYU PAYMENTS PRIVATE LIMITED"`           |
-  | `merchant.email`                              | `string` — Returned in the saved `merchant` response.  | `"test@yopmail.com"`            |
-  | `merchant.registered_mobile`                  | `string` — Returned in the saved `merchant` response.  | `"6976543219"`                              |
+  | `merchant.email`                              | `string` — Returned in the saved `merchant` response.  | `"test@yopmail.com"`                        |
+  | `merchant.registered_ mobile`                  | `string` — Returned in the saved `merchant` response.  | `"6976543219"`                              |
   | `merchant.mid`                                | `integer` — Numeric merchant identifier (`mid`).       | `760070201`                                 |
   | `merchant.product`                            | `string` — Returned in the saved `merchant` response.  | `"PayUbiz"`                                 |
   | `merchant.business _type`                     | `string` — Returned in the saved `merchant` response.  | `"LongTail"`                                |
