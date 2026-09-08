@@ -1,10 +1,12 @@
 ---
-title: Step 12 — Add/Update UBO
+title: Step 12 — Add/Update UBO [Conditional]
 hidden: false
+link:
+  new_tab: false
 ---
 This step is to submit UBO details. UBOs are individuals who own or control 25%+ of the business.
 
-## Prerequisite 
+## Prerequisite
 
 Steps- Step 11 (VKYC)
 
