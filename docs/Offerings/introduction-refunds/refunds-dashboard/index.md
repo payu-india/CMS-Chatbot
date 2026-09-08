@@ -70,7 +70,7 @@ The _Refund Payment_ pop-up page is displayed.
 
 ## Upload Bulk Refunds using Dashboard
 
-### Understanding Upload Bulk Refunds&#x20;
+### Understanding Upload Bulk Refunds
 
 Bulk refunds let merchants initiate multiple refund requests at after uploading a file through the PayU Dashboard. PayU processes the uploaded file row by row: each row represents one refund request and can be accepted for processing or rejected if it does not meet the file requirements. A batch output file provides the processing result for each row, helping merchants review refund outcomes.<br />Use this format to prepare the merchant-level file for a bulk refund upload. The file contains six columns: the first two columns are mandatory, followed by optional and Closed Loop Wallet-only conditional fields.
 
@@ -160,8 +160,13 @@ A list of batches uploaded in the past is displayed on this page. The batches ca
 
 
 4. Use the **Download sample file** option to download the Excel file template that can be used for including the refund information:
-   * Add the PayU ID/transaction ID against which the refund needs to be initiated in the first column of the Excel file.
-   * Add the refund amount in the second column against each transaction ID.
+   * Update the following columns of the Excel. For more information, refer to [Understanding Bulk Upload](#understanding-upload-bulk-refunds).
+     * transactionid
+     * amount
+     * remarks
+     * reference_id
+     * refund_type
+     * customer_phone
    * Save the file.
 
 <Callout icon="📘" theme="info">
