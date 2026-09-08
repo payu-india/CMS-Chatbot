@@ -60,7 +60,6 @@ Use the following test environment endpoints for OAuth Integration:
 | -------------------------------- | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | Authorization Page               | `https://uat-onepayuonboarding.payu.in/app/account/signup&reseller_id={Reseller UUID}&state={state}` | `https://onboarding.payu.in/app/account/signup?reseller_id={reseller_id}&state={session state}` |
 | Validate Auth Code               | `https://testdashboard.payu.in/oauth/validate-auth-code`                                             | `https://dashboard.payu.in/oauth/validate-auth-code`                                            |
-| Get Merchant Credentials         | `https://testdashboard.payu.in/oauth/get-merchant-credentials`                                       | `https://dashboard.payu.in/oauth/get-merchant-credentials`                                      |
 | Payment APIs (Partner API Layer) | `https://test-partnerapilayer.payu.in/apilayer/partner/payments`                                     | `https://partnerapilayer.payu.in/apilayer/partner/payments`                                     |
 
 ***
