@@ -2,6 +2,7 @@
 - step-01-create-merchant-1
 - step-02-update-pan-dob
 - step-03-ckyc-verification-1
+- submit-ckyc-gstin-skip-api
 - step-04-update-business-details
 - step-05-update-bank-details
 - step-06-upload-bank-proof-conditional
@@ -16,4 +17,3 @@
 - step-15-upload-kyc-documents-1
 - step-16-e-sign-agreement-1
 - utilities-1
-- submit-ckyc-gstin-skip-api
