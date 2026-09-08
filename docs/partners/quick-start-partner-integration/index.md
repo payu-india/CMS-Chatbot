@@ -76,12 +76,12 @@ Construct the authorization URL to redirect merchants to the PayU login page.
 **Required Parameters:**
 
 - `reseller_id`: It contains reseller UUID. For more information on how to obtain UUID, refer to [Download Client Credentials.](doc:download-client-credentials)
-- `state`: It contains encoded session state
+- `state`: It contains session state
 - `email` (optional): It contains the partner email address. It is optional.
 
 <Accordion title="Sample OAuth URL" icon="fa-code">
   ```
-  https://onboarding.payu.in/app/account/signup?reseller_id=66ed-fc3c-512f47ed-ac95-4319452fbd89&state=Uqnr5ge22U
+  https://onboarding.payu.in/app/account/signup?reseller_id=66ed-fc3c-512f47ed-ac95-4319452fbd89&state=1513493
   ```
 </Accordion>
 
