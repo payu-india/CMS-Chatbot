@@ -12,9 +12,9 @@ The **Collect Payment using Rewards** API (**\_payment** API) is used to initiat
 
   The below procedure is for Merchant Hosted Checkout integration. For Server-to-Server (S2S) integration, refer to the following based on the payment method:
 
-  [- Cards S2S](https://docs.payu.in/reference/_payment_s2s_classic_integration)
+-  [Cards S2S](https://docs.payu.in/reference/_payment_s2s_classic_integration)
 
-  [- UPI S2S](https://docs.payu.in/reference/_payment_s2s_upi_collection)
+-  [UPI S2S](https://docs.payu.in/reference/_payment_s2s_upi_collection)
 </Callout>
 
 **Environment**
