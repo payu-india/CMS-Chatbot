@@ -433,81 +433,7 @@ Follow these steps to test the complete OAuth onboarding flow:
   </Accordion>
 </Accordion>
 
-<Accordion title="6. Test Get Merchant Credentials API" icon="fa-magnifying-glass">
-  **API:** [Get Merchant Credentials API](/reference/get_merchant_credentials_api)
-
-  **Use Case:** Retrieve credentials at a later time if needed
-
-  <Accordion title="Step 1: Basic Retrieval" icon="fa-code">
-    ```bash
-    curl --location 'https://testdashboard.payu.in/oauth/get-merchant-credentials' \
-    --header 'Content-Type: application/json' \
-    --data '{
-        "client_id": "ABC123",
-        "client_secret": "your_client_secret"
-    }'
-    ```
-
-    **Expected Response:**
-
-    ```json
-    {
-        "status": 1,
-        "msg": "Success",
-        "merchant_key": "mK3j2L9p",
-        "salt": "sA7x9B2c"
-    }
-    ```
-
-    **Validation Points:**
-
-    - [ ] Credentials match those received earlier
-    - [ ] API responds within 2 seconds
-    - [ ] Can be called multiple times
-    - [ ] Same credentials returned consistently
-  </Accordion>
-
-  <Accordion title="Step 2: Error Scenarios" icon="fa-shield-check">
-    **Invalid Client Credentials:**
-
-    ```json
-    {
-        "client_id": "INVALID",
-        "client_secret": "INVALID"
-    }
-    ```
-
-    **Expected Response:**
-
-    ```json
-    {
-        "status": 0,
-        "msg": "Invalid client credentials"
-    }
-    ```
-
-    **No Merchant Onboarded:**
-
-    For a valid partner client that hasn't onboarded any merchant via OAuth:
-
-    **Expected Response:**
-
-    ```json
-    {
-        "status": 0,
-        "msg": "No merchant found for this partner"
-    }
-    ```
-
-    **Validation Points:**
-
-    - [ ] Invalid credentials rejected
-    - [ ] Appropriate error messages returned
-    - [ ] No sensitive data in error responses
-  </Accordion>
-</Accordion>
-
-<Accordion title="7. Test Payment Integration with OAuth Credentials" icon="fa-check-circle">
+<Accordion title="6. Test Payment Integration with OAuth Credentials" icon="fa-check-circle">
   After receiving merchant credentials via OAuth, test payment collection using the Partner API Layer. Use the `access_token` received from the Validate Auth Code API as the Bearer token.
 
   <Accordion title="Step 1: Test Hosted Checkout Payment Request" icon="fa-code">
@@ -630,7 +556,7 @@ Follow these steps to test the complete OAuth onboarding flow:
   </Accordion>
 </Accordion>
 
-<Accordion title="8. Test Multiple Merchant Onboarding" icon="fa-list-check">
+<Accordion title="7. Test Multiple Merchant Onboarding" icon="fa-list-check">
   Test onboarding multiple merchants through OAuth:
 
   **Test Steps:**
@@ -650,7 +576,7 @@ Follow these steps to test the complete OAuth onboarding flow:
   - [ ] No credential cross-contamination
 </Accordion>
 
-<Accordion title="9. Test Error Handling and Edge Cases" icon="fa-shield-check">
+<Accordion title="8. Test Error Handling and Edge Cases" icon="fa-shield-check">
   <Accordion title="Scenario 1: Redirect URL Mismatch" icon="fa-times-circle">
     **Test Steps:**
 
