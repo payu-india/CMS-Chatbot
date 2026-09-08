@@ -1,7 +1,9 @@
 ---
-title: Onboard Merchants Manually
+title: Onboard Merchants Manually using Partner Portal
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
@@ -291,6 +293,7 @@ The **My Incentives** tab shows incentives for the past seven days by default. Y
 3. Click **Apply** to view the results.
 
 ## Referral Onboarding
+
 You will find an option available on the Partner Dashboard as Refer a Merchant. Using this, you can either onboard a single merchant or multiple merchants with a single click. Enter your merchant’s primary details, and you are done with creating a merchant account. You can onboard a merchant or multiple merchants as described in the following sections:
 
 - [Add a Referral Merchant](#add-a-referral-merchant)
@@ -538,8 +541,11 @@ A message similar to the following is displayed at the bottom right-corner of yo
 <Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-26-at-9.07.24-PM.png" align="center" width="3px" />
 
 
+<br />
+
 
 <Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-26-at-9.07.24-PM.png" align="center" width="350px" border={true} />
+
 
 ## Managing Users
 
