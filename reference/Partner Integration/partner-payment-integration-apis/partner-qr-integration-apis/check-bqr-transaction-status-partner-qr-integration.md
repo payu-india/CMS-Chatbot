@@ -1,7 +1,9 @@
 ---
 title: Check BQR Transaction Status - Partner QR Integration
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
