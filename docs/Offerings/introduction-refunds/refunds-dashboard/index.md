@@ -16,11 +16,9 @@ Order cancellations are an unfortunate reality for any business. Customers may c
 
 Refunds can be classified into two types:
 
-* **Partial refund**: Where the refund amount is less than the payment amount. This means the merchant is refunding only part of the payment done by the customer. This happens when only part of the order is canceled.  
-  Ex. Customer purchases two products from merchant or value Rs. 500 and Rs. 7000. Customer pays a total of Rs. 7,500 to the merchant via online payment. Now the customer returns product 1 of value Rs. 500. Now, the merchant only must return Rs. 500 to the customer (instead of the transaction amount of Rs. 7,500).
+* **Partial refund**: Where the refund amount is less than the payment amount. This means the merchant is refunding only part of the payment done by the customer. This happens when only part of the order is canceled.<br />Ex. Customer purchases two products from merchant or value Rs. 500 and Rs. 7000. Customer pays a total of Rs. 7,500 to the merchant via online payment. Now the customer returns product 1 of value Rs. 500. Now, the merchant only must return Rs. 500 to the customer (instead of the transaction amount of Rs. 7,500).
 * **Instant refund**: If the instant refund is enabled for you, the refunds are completed within 5 minutes of the refund request.
-* **Full refund**: Where the refund amount is equal to the payment amount. This means that the merchant is refunding the entire payment done by the customer for a transaction. This happens when either merchant or customer cancels the entire order.  
-  Ex. Customer purchases two products from merchant or value Rs. 500 and Rs. 7000. Customer pays a total of Rs. 7,500 to the merchant via online payment. Now the customer returns both the product. Now, the merchant must return Rs. 7,500 to the customer.
+* **Full refund**: Where the refund amount is equal to the payment amount. This means that the merchant is refunding the entire payment done by the customer for a transaction. This happens when either merchant or customer cancels the entire order.<br />Ex. Customer purchases two products from merchant or value Rs. 500 and Rs. 7000. Customer pays a total of Rs. 7,500 to the merchant via online payment. Now the customer returns both the product. Now, the merchant must return Rs. 7,500 to the customer.
 
 ## Understanding Refunds
 
@@ -51,13 +49,17 @@ To initiate the refund using Dashboard:
 
 The transaction details are displayed for the transaction.
 
-<Image align="center" border={false} width="550px" src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/11/dashboard_transaction_details-934x1024.png" />
+
+<Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/11/dashboard_transaction_details-934x1024.png" align="center" width="550px" />
+
 
 4. Click **Send Refund** at the top-right corner of the page.
 
 The _Refund Payment_ pop-up page is displayed.
 
-<Image align="center" border={true} width="350px" src="https://files.readme.io/ddd30371217dfadd3582d48286bc390db91a280857858dad75c1f083574fe860-dashboard_refund_payment.png" className="border" />
+
+<Image src="https://files.readme.io/ddd30371217dfadd3582d48286bc390db91a280857858dad75c1f083574fe860-dashboard_refund_payment.png" align="center" width="350px" border={true} />
+
 
 5. Enter the amount to be refunded in the **Refund Payment** field.
 6. Click **Send Full Refund** if the full amount is refunded or Send **Partial Refund** or partial amount is refunded.
@@ -68,7 +70,11 @@ The _Refund Payment_ pop-up page is displayed.
 
 ## Upload Bulk Refunds using Dashboard
 
-Bulk upload allows merchants using PayU Dashboard to issue refunds in bulk using a .xls, .xlsx, or .csv file. Every file you upload containing refund information on Dashboard is known as a batch. After a batch is uploaded successfully, it is picked up for processing within 60 mins. After a batch is picked for processing the status against that batch gets updated. A batch file can be in either of these states:
+### Understanding Upload Bulk Refunds&#x20;
+
+Bulk refunds let merchants initiate multiple refund requests at after uploading a file through the PayU Dashboard. PayU processes the uploaded file row by row: each row represents one refund request and can be accepted for processing or rejected if it does not meet the file requirements. A batch output file provides the processing result for each row, helping merchants review refund outcomes.<br />Use this format to prepare the merchant-level file for a bulk refund upload. The file contains six columns: the first two columns are mandatory, followed by optional and Closed Loop Wallet-only conditional fields.
+
+Every file you upload containing refund information on Dashboard is known as a batch. After a batch is uploaded successfully, it is picked up for processing within 60 mins. After a batch is picked for processing the status against that batch gets updated. A batch file can be in either of these states:
 
 * **UPLOADED**: This is the initial state of the file when it is uploaded. Once you upload a file, it stays ‘uploaded’ and gets picked up for processing within 60 mins.
 * **QUEUED**: This state indicates that the file is read and refunds are queued in the system for processing.
@@ -77,15 +83,71 @@ Bulk upload allows merchants using PayU Dashboard to issue refunds in bulk using
 
 After a batch crosses the **Uploaded** stage, the **Download Output** option gets enabled for that batch. You can then download the output file for the batch to check the refund status when required.
 
+## Supported file types
+
+Bulk refund uploads support `.xls`, `.xlsx`, and `.csv` files.
+
+## File requirements
+
+- The first two columns, `transactionid` and `amount`, are mandatory.
+- Do not change the first two column headers.
+- Include all six columns in the file, in the order shown below. Leave fields that do not apply blank.
+- Use a unique filename for each upload.
+
+## Merchant-level fields
+
+The following fields are defined at the merchant level:
+
+| Field name       | Description                                                                                                                                                             | Requirement                          |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| `transactionid`  | Unique PayU Transaction ID (PayU ID) for which the refund is processed.                                                                                                 | Mandatory                            |
+| `amount`         | Refund amount.                                                                                                                                                          | Mandatory                            |
+| `remarks`        | Additional information or notes for reference and future tracking.                                                                                                      | Optional                             |
+| `reference_id`   | Merchant's unique refund reference ID for merchant-side tracking and reconciliation.                                                                                    | Optional                             |
+| `refund_type`    | Applicable only to Closed Loop Wallet merchants; other merchants may leave blank. Supported value: `wallet`.                                                            | Conditional: Closed Loop Wallet only |
+| `customer_phone` | Customer's registered mobile number. Required only for Closed Loop Wallet refund processing; other merchants may leave blank. Supported value: a 10-digit phone number. | Conditional: Closed Loop Wallet only |
+
+The first two fields, `transactionid` and `amount`, are mandatory for every merchant. The `remarks` and `reference_id` fields are optional. The `refund_type` and `customer_phone` fields are conditional: use them for Closed Loop Wallet refunds and leave them blank for other merchants. For Closed Loop Wallet refunds, set `refund_type` to `wallet` and provide the customer's registered 10-digit mobile number in `customer_phone`.
+
+## Examples
+
+The following examples show the six-column order. They are illustrative rows only.
+
+### Standard refund row
+
+For a non-Closed Loop Wallet refund, the two conditional fields are blank:
+
+```csv
+transactionid,amount,remarks,reference_id,refund_type,customer_phone
+PayUTxn12345,500.00,Customer return,MER-REF-1001,,
+```
+
+### Closed Loop Wallet refund row
+
+For a Closed Loop Wallet refund, provide `wallet` and the customer's registered 10-digit phone number:
+
+```csv
+transactionid,amount,remarks,reference_id,refund_type,customer_phone
+PayUWallet67890,250.00,Wallet refund,MER-REF-1002,wallet,9876543210
+```
+
+<br />
+
+### Procedure
+
 To initiate refunds using bulk upload:
 
 1. Log on to PayU Merchant Dashboard and select **Transactions**.
 
-<Image align="center" border={true} src="https://files.readme.io/35b21b6978fc94e8ca9bbe3532fabbca3cccfaddcf88c503433cf9c479d27160-Screenshot_2025-10-28_at_3.23.33_PM.png" className="border" />
+
+<Image src="https://files.readme.io/35b21b6978fc94e8ca9bbe3532fabbca3cccfaddcf88c503433cf9c479d27160-Screenshot_2025-10-28_at_3.23.33_PM.png" align="center" border={true} />
+
 
 2. Select the **Batch Refunds** tab.
 
-<Image align="center" border={true} src="https://files.readme.io/39c1803b52dd6308b958d37bcd7a512c75a5c4757314f89e450cbacb8f3d969c-Screenshot_2025-10-28_at_3.27.13_PM.png" className="border" />
+
+<Image src="https://files.readme.io/39c1803b52dd6308b958d37bcd7a512c75a5c4757314f89e450cbacb8f3d969c-Screenshot_2025-10-28_at_3.27.13_PM.png" align="center" border={true} />
+
 
 A list of batches uploaded in the past is displayed on this page. The batches can be filtered based on the date of upload and batch status.
 
@@ -93,7 +155,9 @@ A list of batches uploaded in the past is displayed on this page. The batches ca
 
    The _Batch Upload_ pop-up page is displayed with instructions to upload the file.
 
-<Image align="center" border={false} width="350px" src="https://files.readme.io/4466141eb8909a5b6940ee6da9f9e3481ec6e10101d0d234b561b95caeac28cf-Screenshot_2025-10-28_at_3.29.06_PM.png" />
+
+<Image src="https://files.readme.io/4466141eb8909a5b6940ee6da9f9e3481ec6e10101d0d234b561b95caeac28cf-Screenshot_2025-10-28_at_3.29.06_PM.png" align="center" width="350px" />
+
 
 4. Use the **Download sample file** option to download the Excel file template that can be used for including the refund information:
    * Add the PayU ID/transaction ID against which the refund needs to be initiated in the first column of the Excel file.
@@ -107,23 +171,31 @@ A list of batches uploaded in the past is displayed on this page. The batches ca
   * A unique file name should be uploaded each time
 </Callout>
 
-<Image align="center" border={false} width="350px" src="https://files.readme.io/527e560c9899eb40c2c588e60e5ef681982fe1c24f99c20de27eaf9bcafadfc8-Screenshot_2025-10-28_at_3.42.52_PM.png" />
+
+<Image src="https://files.readme.io/527e560c9899eb40c2c588e60e5ef681982fe1c24f99c20de27eaf9bcafadfc8-Screenshot_2025-10-28_at_3.42.52_PM.png" align="center" width="350px" />
+
 
 5. Browse for the desired file from your system and click **Upload**.
 
    A message is displayed after the file is successfully uploaded.
 
-<Image align="center" border={true} width="350px" src="https://files.readme.io/ee4e6313213add86baf86026190a8fea13aed2f4d129e034cbe5b945f0d2329e-Screenshot_2025-10-28_at_3.44.05_PM.png" className="border" />
+
+<Image src="https://files.readme.io/ee4e6313213add86baf86026190a8fea13aed2f4d129e034cbe5b945f0d2329e-Screenshot_2025-10-28_at_3.44.05_PM.png" align="center" width="350px" border={true} />
+
 
 6. Click **Submit**.
 
 A ‘success’ message is displayed with the number of total records uploaded for processing.
 
-<Image align="center" border={false} src="https://files.readme.io/ce7f19640f0b99797d15ad9b678c1d0108d7a767c5c0ba09b613acf67153e674-Screenshot_2025-10-28_at_3.44.41_PM.png" />
+
+<Image src="https://files.readme.io/ce7f19640f0b99797d15ad9b678c1d0108d7a767c5c0ba09b613acf67153e674-Screenshot_2025-10-28_at_3.44.41_PM.png" align="center" />
+
 
 After the batch is uploaded, the status is displayed as **Uploaded** under the **Batch Refunds** tab.
 
-<Image align="center" border={true} src="https://files.readme.io/eebf18ddeb4b753facbbad10da0ce010e39e09aff120c97ff51b47af5d67ac0d-Screenshot_2025-10-28_at_3.45.18_PM.png" className="border" />
+
+<Image src="https://files.readme.io/eebf18ddeb4b753facbbad10da0ce010e39e09aff120c97ff51b47af5d67ac0d-Screenshot_2025-10-28_at_3.45.18_PM.png" align="center" border={true} />
+
 
 7. Click the batch ID to open the batch details page.
 
@@ -139,7 +211,7 @@ A refund can be in any of these states:
 
 ## **Track Refunds on Dashboard**
 
-The **Refunds** tab of the _Transactions_page summarizes all the refunds for the selected date range. You can view the detailed transaction records and the option to export the transaction records for the selected period.
+The **Refunds** tab of the \_Transactions_page summarizes all the refunds for the selected date range. You can view the detailed transaction records and the option to export the transaction records for the selected period.
 
 To view the refunds for a preferred interval:
 
@@ -148,7 +220,9 @@ To view the refunds for a preferred interval:
 
    The **Refunds** tab of the _Transactions_ page is displayed.
 
-<Image align="center" border={true} src="https://files.readme.io/e971a50fb3dc37d9b6cebb19185806244b6baef7894f54034a21099e97a1d9c7-Screenshot_2025-10-28_at_3.47.38_PM.png" className="border" />
+
+<Image src="https://files.readme.io/e971a50fb3dc37d9b6cebb19185806244b6baef7894f54034a21099e97a1d9c7-Screenshot_2025-10-28_at_3.47.38_PM.png" align="center" border={true} />
+
 
 3. Below the Transactions Overview, click the drop-down for calendar view
 4. Select the option **Today** to view the summary of transactions triggered for the day.
