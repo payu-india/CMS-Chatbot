@@ -6,10 +6,12 @@ hidden: false
 link:
   new_tab: false
 ---
-The **UpdateMerchant Website Details** API adds the merchant website and/or app store URLs (Step 07 of 16).
+Use this API to update or skip Website details for your merchant account.&#x20;
 
 <Callout icon="📘" theme="info">
-  **Prerequisite:** Step 05 (bank details) or Step 06 (bank proof), as applicable.
+  ### **Prerequisite**
+
+  Step 01 to 06 must be updated before updating/skipping the website..
 
   **Entity applicability:** All entities.
 </Callout>
@@ -43,9 +45,8 @@ The **UpdateMerchant Website Details** API adds the merchant website and/or app 
   ```bash
     curl --location --request PUT 'https://uat-partner.payu.in/api/v1/merchants/{{uuid}}/update' \
     --header 'Authorization: Bearer {{access_token}}' \
-    --form 'merchant[website_details][website_url]="tools"' \
-    --form 'merchant[website_details][android_url]="tools"' \
-    --form 'merchant[website_details][ios_url]="tools"'
+    --form 'merchant[integration_type][website_url]="tools"' \
+
   ```
 </Accordion>
 
@@ -123,3 +124,7 @@ The **UpdateMerchant Website Details** API adds the merchant website and/or app 
   | merchant\[website_details]\[android_url]<br /><code>optional</code>    | `string` — Android app store URL | `https://play.google.com/store/apps/details?id=com.example` |
   | merchant\[website_details]\[ios_url]<br /><code>optional</code>        | `string` — iOS App Store URL     | `https://apps.apple.com/app/example/id123456`               |
 </Accordion>
+
+<br />
+
+<br />
