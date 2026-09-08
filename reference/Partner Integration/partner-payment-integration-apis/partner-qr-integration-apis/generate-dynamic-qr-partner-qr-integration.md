@@ -1,7 +1,7 @@
 ---
 title: Generate Dynamic QR - Partner QR Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
