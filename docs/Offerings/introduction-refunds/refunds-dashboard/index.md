@@ -179,7 +179,7 @@ A list of batches uploaded in the past is displayed on this page. The batches ca
 </Callout>
 
 
-<Image src="https://files.readme.io/be292fe196339018b61de275fd3233e7eb2865a19f238e4d2db36b643a37dad1-image_14.png" align="center" width="350px" />
+<Image src="https://files.readme.io/be292fe196339018b61de275fd3233e7eb2865a19f238e4d2db36b643a37dad1-image_14.png" align="center" width="550px" />
 
 
 5. Browse for the desired file from your system and click **Upload**.
