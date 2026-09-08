@@ -1,5 +1,5 @@
 ---
-title: Submit CKYC & GSTIN Skip API
+title: Skip CKYC & GSTIN API
 deprecated: false
 hidden: false
 link:
