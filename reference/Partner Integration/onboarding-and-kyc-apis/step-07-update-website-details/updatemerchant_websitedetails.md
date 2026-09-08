@@ -21,15 +21,29 @@ The **UpdateMerchant Website Details** API adds the merchant website and/or app 
 | Test Environment       | `https://uat-partner.payu.in/api/v1/merchants/{uuid}/update` |
 | Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/update`     |
 
-## Sample Request
+## Sample Request&#x20;
 
-<Accordion title="Sample request" icon="fa-code">
+### Update website
+
+<Accordion title="Sample request to update website" icon="fa-code">
   ```bash
     curl --location --request PUT 'https://uat-partner.payu.in/api/v1/merchants/{{uuid}}/update' \
     --header 'Authorization: Bearer {{access_token}}' \
     --form 'merchant[website_details][website_url]="https://www.example.com"' \
     --form 'merchant[website_details][android_url]="https://play.google.com/store/apps/details?id=com.example"' \
     --form 'merchant[website_details][ios_url]="https://apps.apple.com/app/example/id123456"'
+  ```
+</Accordion>
+
+### Skip website
+
+<Accordion title="Sample request to skip website" icon="fa-code">
+  ```bash
+    curl --location --request PUT 'https://uat-partner.payu.in/api/v1/merchants/{{uuid}}/update' \
+    --header 'Authorization: Bearer {{access_token}}' \
+    --form 'merchant[website_details][website_url]="tools"' \
+    --form 'merchant[website_details][android_url]="tools"' \
+    --form 'merchant[website_details][ios_url]="tools"'
   ```
 </Accordion>
 
