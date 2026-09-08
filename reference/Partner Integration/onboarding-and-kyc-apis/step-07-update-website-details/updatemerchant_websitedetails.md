@@ -8,6 +8,8 @@ link:
 ---
 Use this API to update or skip Website details for your merchant account.&#x20;
 
+When you skip the Website, your account will only be eligible to collect payment using payment link or invoices.&#x20;
+
 <Callout icon="📘" theme="info">
   ### **Prerequisite**
 
@@ -45,7 +47,7 @@ Use this API to update or skip Website details for your merchant account.&#x20;
   ```bash
     curl --location --request PUT 'https://uat-partner.payu.in/api/v1/merchants/{{uuid}}/update' \
     --header 'Authorization: Bearer {{access_token}}' \
-    --form 'merchant[integration_type][website_url]="tools"' \
+    --form 'merchant[integration_type]="tools"' \
 
   ```
 </Accordion>
