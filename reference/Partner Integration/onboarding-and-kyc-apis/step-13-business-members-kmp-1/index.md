@@ -1,6 +1,8 @@
 ---
-title: Step 13 — Business Members & KMP
+title: Step 13 — Business Members & KMP [Conditional]
 hidden: false
+link:
+  new_tab: false
 ---
 Submits business member details (directors, partners, designated partners).
 
