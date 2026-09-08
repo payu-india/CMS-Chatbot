@@ -3,6 +3,8 @@ api:
   file: payu_partner_api_openapi_3.1_enhanced_v1.yaml
   operationId: UpdateMerchant_WebsiteDetails
 hidden: false
+link:
+  new_tab: false
 ---
 The **UpdateMerchant Website Details** API adds the merchant website and/or app store URLs (Step 07 of 16).
 
