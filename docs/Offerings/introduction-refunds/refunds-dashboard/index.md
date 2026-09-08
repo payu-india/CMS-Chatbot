@@ -170,14 +170,16 @@ A list of batches uploaded in the past is displayed on this page. The batches ca
    * Save the file.
 
 <Callout icon="📘" theme="info">
-  **Notes**:
+  ### **Notes:**
 
-  * Both these columns are mandatory and the column header should not be changed.
-  * A unique file name should be uploaded each time
+  - The first two columns, `transactionid` and `amount`, are mandatory.
+  - Do not change the first two column headers.
+  - Include all six columns in the file, in the order shown below. Leave fields that do not apply blank.
+  - Use a unique filename for each upload.
 </Callout>
 
 
-<Image src="https://files.readme.io/527e560c9899eb40c2c588e60e5ef681982fe1c24f99c20de27eaf9bcafadfc8-Screenshot_2025-10-28_at_3.42.52_PM.png" align="center" width="350px" />
+<Image src="https://files.readme.io/be292fe196339018b61de275fd3233e7eb2865a19f238e4d2db36b643a37dad1-image_14.png" align="center" width="350px" />
 
 
 5. Browse for the desired file from your system and click **Upload**.
