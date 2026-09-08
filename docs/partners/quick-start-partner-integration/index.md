@@ -116,7 +116,9 @@ https://onboarding.payu.in/app/account/signup?reseller_id=11f1-1078-ee249a86-9fd
 ```
 
 <Callout icon="⚠️" theme="warn">
-  ### **Important**: The `auth_code` is single-use and expires after a short period. Exchange it immediately for merchant credentials.
+  ### **Important**:&#x20;
+
+  The `auth_code` is single-use and expires after a short period. Exchange it immediately for merchant credentials. For more infor
 </Callout>
 
 ***
