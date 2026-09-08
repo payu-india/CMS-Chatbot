@@ -754,13 +754,19 @@ paths:
               properties:
                 merchant[website_details][website_url]:
                   type: string
-                  description: '`string` — Merchant website URL'
+                  description: >-
+                    `string` — Merchant website URL or include "tools" to skip
+                    website.
                 merchant[website_details][android_url]:
                   type: string
-                  description: '`string` — Android app store URL'
+                  description: >-
+                    `string` — Android app store URL  or include "tools" to skip
+                    website.
                 merchant[website_details][ios_url]:
                   type: string
-                  description: '`string` — iOS App Store URL'
+                  description: >-
+                    `string` — iOS App Store URL  or include "tools" to skip
+                    website.
             example:
               merchant[website_details][website_url]: https://www.example.com
               merchant[website_details][android_url]: https://play.google.com/store/apps/details?id=com.example
