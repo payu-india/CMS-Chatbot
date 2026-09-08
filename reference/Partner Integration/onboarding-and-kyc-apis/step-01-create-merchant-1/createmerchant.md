@@ -152,79 +152,79 @@ The **CreateMerchant** API creates a new merchant shell account on PayU (Step 01
 <Accordion title="Response parameters" icon="fa-table">
   The response contains a `merchant` object. The table below documents the fields present in the saved response. `mid` is the numeric merchant identifier; `uuid` is the merchant UUID. `product_account_uuid` is not present in the saved response.
 
-  | Parameter                                     | Description                                            | Example                                  |
-  | :-------------------------------------------- | :----------------------------------------------------- | :--------------------------------------- |
-  | `merchant.name`                               | `string` — Returned in the saved `merchant` response.  | `"PAYU PAYMENTS PRIVATE LIMITED"`        |
-  | `merchant.email`                              | `string` — Returned in the saved `merchant` response.  | `"payuonb_mar02_v9@yopmail.com"`         |
-  | `merchant.registered_mobile`                  | `string` — Returned in the saved `merchant` response.  | `"6976543219"`                           |
-  | `merchant.mid`                                | `integer` — Numeric merchant identifier (`mid`).       | `760070201`                              |
-  | `merchant.product`                            | `string` — Returned in the saved `merchant` response.  | `"PayUbiz"`                              |
-  | `merchant.business _type`                      | `string` — Returned in the saved `merchant` response.  | `"LongTail"`                             |
-  | `merchant.business _name`                      | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.pancard _name`                       | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.pancard _number`                     | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.website_url`                        | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.android_url`                        | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.ios_url`                            | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.gst_number`                         | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.gst_ verification_status`           | `string` — Returned in the saved `merchant` response.  | `"Pending"`                              |
-  | `merchant.created_at`                         | `string` — Returned in the saved `merchant` response.  | `"2026-03-02T16:36:46.000Z"`             |
-  | `merchant.mobile`                             | `string` — Returned in the saved `merchant` response.  | `"6976543219"`                           |
-  | `merchant.blocked`                            | `boolean` — Returned in the saved `merchant` response. | `false`                                  |
-  | `merchant.first_name`                         | `string` — Returned in the saved `merchant` response.  | `"PAYU"`                                 |
-  | `merchant.last_name`                          | `string` — Returned in the saved `merchant` response.  | `"PAYMENTS PRIVATE LIMITED"`             |
-  | `merchant.bank_ detail.bank_account_number`   | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.bank_ detail.ifsc_code`             | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.bank_ detail.holder_name`           | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.bank_ detail.nodal_code`            | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.bank_ detail.nodal_status`          | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.operating_ address.address_line`    | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.operating_ address.city`            | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.operating_ address.state`           | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.operating_ address.pincode`         | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.registration_ address.address_line` | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.registration_ address.city`         | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.registration_ address.state`        | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.registration_ address.pincode`      | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.business_ entity`                   | `string` — Returned in the saved `merchant` response.  | `"Individual"`                           |
-  | `merchant.status`                             | `string` — Returned in the saved `merchant` response.  | `"account_created"`                      |
-  | `merchant.partner_ source`                    | `string` — Returned in the saved `merchant` response.  | `"Create Merchant API"`                  |
-  | `merchant.pan_ verification_status`           | `string` — Returned in the saved `merchant` response.  | `"Pending"`                              |
-  | `merchant.website_ approval_status`           | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.notification_ email`                | `string` — Returned in the saved `merchant` response.  | `"payuonb_mar02_v9@yopmail.com"`         |
-  | `merchant.settlement_status`                  | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.is_service_ agreement_accepted`     | `boolean` — Returned in the saved `merchant` response. | `false`                                  |
-  | `merchant.is_authorisation_ letter_required`  | `boolean` — Returned in the saved `merchant` response. | `false`                                  |
-  | `merchant.monthly_ expected_volume`           | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.business_ category`                 | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.business_ sub_category`             | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.bank_ verification_status`          | `null` — Returned in the saved `merchant` response.    | `null`                                   |
+  | Parameter                                     | Description                                            | Example                                     |
+  | :-------------------------------------------- | :----------------------------------------------------- | :------------------------------------------ |
+  | `merchant.name`                               | `string` — Returned in the saved `merchant` response.  | `"PAYU PAYMENTS PRIVATE LIMITED"`           |
+  | `merchant.email`                              | `string` — Returned in the saved `merchant` response.  | `"test@yopmail.com"`            |
+  | `merchant.registered_mobile`                  | `string` — Returned in the saved `merchant` response.  | `"6976543219"`                              |
+  | `merchant.mid`                                | `integer` — Numeric merchant identifier (`mid`).       | `760070201`                                 |
+  | `merchant.product`                            | `string` — Returned in the saved `merchant` response.  | `"PayUbiz"`                                 |
+  | `merchant.business _type`                     | `string` — Returned in the saved `merchant` response.  | `"LongTail"`                                |
+  | `merchant.business _name`                     | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.pancard _name`                      | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.pancard _number`                    | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.website_url`                        | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.android_url`                        | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.ios_url`                            | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.gst_number`                         | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.gst_ verification_status`           | `string` — Returned in the saved `merchant` response.  | `"Pending"`                                 |
+  | `merchant.created_at`                         | `string` — Returned in the saved `merchant` response.  | `"2026-03-02T16:36:46.000Z"`                |
+  | `merchant.mobile`                             | `string` — Returned in the saved `merchant` response.  | `"6976543219"`                              |
+  | `merchant.blocked`                            | `boolean` — Returned in the saved `merchant` response. | `false`                                     |
+  | `merchant.first_name`                         | `string` — Returned in the saved `merchant` response.  | `"PAYU"`                                    |
+  | `merchant.last_name`                          | `string` — Returned in the saved `merchant` response.  | `"PAYMENTS PRIVATE LIMITED"`                |
+  | `merchant.bank_ detail.bank_account_number`   | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.bank_ detail.ifsc_code`             | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.bank_ detail.holder_name`           | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.bank_ detail.nodal_code`            | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.bank_ detail.nodal_status`          | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.operating_ address.address_line`    | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.operating_ address.city`            | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.operating_ address.state`           | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.operating_ address.pincode`         | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.registration_ address.address_line` | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.registration_ address.city`         | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.registration_ address.state`        | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.registration_ address.pincode`      | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.business_ entity`                   | `string` — Returned in the saved `merchant` response.  | `"Individual"`                              |
+  | `merchant.status`                             | `string` — Returned in the saved `merchant` response.  | `"account_created"`                         |
+  | `merchant.partner_ source`                    | `string` — Returned in the saved `merchant` response.  | `"Create Merchant API"`                     |
+  | `merchant.pan_ verification_status`           | `string` — Returned in the saved `merchant` response.  | `"Pending"`                                 |
+  | `merchant.website_ approval_status`           | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.notification_ email`                | `string` — Returned in the saved `merchant` response.  | `"payuonb_mar02_v9@yopmail.com"`            |
+  | `merchant.settlement_status`                  | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.is_service_ agreement_accepted`     | `boolean` — Returned in the saved `merchant` response. | `false`                                     |
+  | `merchant.is_authorisation_ letter_required`  | `boolean` — Returned in the saved `merchant` response. | `false`                                     |
+  | `merchant.monthly_ expected_volume`           | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.business_ category`                 | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.business_ sub_category`             | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.bank_ verification_status`          | `null` — Returned in the saved `merchant` response.    | `null`                                      |
   | `merchant.uuid`                               | `string` — Merchant UUID (`uuid`).                     | `"11f1- 1655-ff305e86- ae3d- 02f4a48620c1"` |
-  | `merchant.penny_ deposit_status`              | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.document_ status`                   | `string` — Returned in the saved `merchant` response.  | `"Pending"`                              |
-  | `merchant.kyc_ status.status`                 | `string` — Returned in the saved `merchant` response.  | `"LOCKED"`                               |
-  | `merchant.kyc_ status.kyc_ status`             | `string` — Returned in the saved `merchant` response.  | `"LOCKED"`                               |
-  | `merchant.kyc_ status.ckyc_ status`            | `string` — Returned in the saved `merchant` response.  | `"PENDING"`                              |
-  | `merchant.agreement_ status`                  | `string` — Returned in the saved `merchant` response.  | `"Not Generated"`                        |
-  | `merchant.integration_ type`                  | `string` — Returned in the saved `merchant` response.  | `"Not Selected"`                         |
-  | `merchant.cin_number`                         | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.vkyc_ exempt_status`                | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.lob_ status_prerisk`                | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.dob`                                | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.vkyc_status`                        | `string` — Returned in the saved `merchant` response.  | `"pending"`                              |
-  | `merchant.vkyc.status`                        | `string` — Returned in the saved `merchant` response.  | `"pending"`                              |
-  | `merchant.vkyc. completed_at`                 | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.vkyc. kyc_type`                     | `string` — Returned in the saved `merchant` response.  | `"video_kyc"`                            |
-  | `merchant.vkyc. capture_link`                 | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.vkyc. expires_at`                   | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.vkyc. link_created_at`              | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.vkyc. consent_given`                | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.skip_ vkyc_eligible`                | `boolean` — Returned in the saved `merchant` response. | `false`                                  |
-  | `merchant.ckyc_ skipped`                      | `boolean` — Returned in the saved `merchant` response. | `false`                                  |
-  | `merchant.cpv_status`                         | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.digilocker_ status`                 | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.ckyc_ status`                       | `null` — Returned in the saved `merchant` response.    | `null`                                   |
-  | `merchant.service_ intent`                    | `string` — Returned in the saved `merchant` response.  | `"default"`                              |
+  | `merchant.penny_ deposit_status`              | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.document_ status`                   | `string` — Returned in the saved `merchant` response.  | `"Pending"`                                 |
+  | `merchant.kyc_ status.status`                 | `string` — Returned in the saved `merchant` response.  | `"LOCKED"`                                  |
+  | `merchant.kyc_ status.kyc_ status`            | `string` — Returned in the saved `merchant` response.  | `"LOCKED"`                                  |
+  | `merchant.kyc_ status.ckyc_ status`           | `string` — Returned in the saved `merchant` response.  | `"PENDING"`                                 |
+  | `merchant.agreement_ status`                  | `string` — Returned in the saved `merchant` response.  | `"Not Generated"`                           |
+  | `merchant.integration_ type`                  | `string` — Returned in the saved `merchant` response.  | `"Not Selected"`                            |
+  | `merchant.cin_number`                         | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.vkyc_ exempt_status`                | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.lob_ status_prerisk`                | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.dob`                                | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.vkyc_status`                        | `string` — Returned in the saved `merchant` response.  | `"pending"`                                 |
+  | `merchant.vkyc.status`                        | `string` — Returned in the saved `merchant` response.  | `"pending"`                                 |
+  | `merchant.vkyc. completed_at`                 | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.vkyc. kyc_type`                     | `string` — Returned in the saved `merchant` response.  | `"video_kyc"`                               |
+  | `merchant.vkyc. capture_link`                 | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.vkyc. expires_at`                   | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.vkyc. link_created_at`              | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.vkyc. consent_given`                | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.skip_ vkyc_eligible`                | `boolean` — Returned in the saved `merchant` response. | `false`                                     |
+  | `merchant.ckyc_ skipped`                      | `boolean` — Returned in the saved `merchant` response. | `false`                                     |
+  | `merchant.cpv_status`                         | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.digilocker_ status`                 | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.ckyc_ status`                       | `null` — Returned in the saved `merchant` response.    | `null`                                      |
+  | `merchant.service_ intent`                    | `string` — Returned in the saved `merchant` response.  | `"default"`                                 |
 </Accordion>
 
 ## Additional Request parameters description
