@@ -56,7 +56,9 @@ When you skip the Website, your account will only be eligible to collect payment
 
 ### Success scenario
 
-<Accordion title="Success scenario" icon="fa-file-code">
+#### Update Website
+
+<Accordion title="Success scenario for update website" icon="fa-file-code">
   ```json
   {
     "merchant": {
@@ -65,6 +67,19 @@ When you skip the Website, your account will only be eligible to collect payment
       "android_url": "www.borosil.com",
       "ios_url": "www.borosil.com",
       "website_approval_status": "Pending"
+    }
+  }
+  ```
+</Accordion>
+
+#### Skip website
+
+<Accordion title="Success scenario for skip website" icon="fa-info-circle">
+  ```json
+  {
+    "merchant": {
+      "mid": 760070201,
+      "integration_type":"tools"
     }
   }
   ```
