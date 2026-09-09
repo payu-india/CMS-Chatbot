@@ -171,55 +171,75 @@ For the full list of required documents based on your business type, refer to th
 
 To complete your KYC:
 
-<Accordion title="Resume Onboarding" icon="far fa-chart-pie-simple-circle-currency">
-  Log in to your PayU Dashboard and click **Resume Onboarding** at the top of the page (or under **Onboarding Progress**)
+<Accordion title="1. Resume Onboarding" icon="far fa-chart-pie-simple-circle-currency">
+  Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin">PayU dashboard</Anchor> and click **Resume Onboarding** at the top of the page (or under **Onboarding Progress**)
 </Accordion>
 
-<Accordion title="Business PAN Card Number" icon="fa-info-circle">
+<Accordion title="2. Business PAN Card Number" icon="far fa-id-card">
+  Enter your business PAN, verify the details and click **Confirm & Proceed**.
+
+  ![](https://files.readme.io/aa16d8fba3f835de17fb687aba2ee0b1b67b369e7c810e642bdbb07303d9cb10-image.png)
+</Accordion>
+
+<br />
+
+<Accordion title="3. Please confirm your Business entity" icon="far fa-buildings">
+  Select any of the following business entity type and click **Confirm & Proceed:**
+
+  - **Individual**
+
+  - **Sole Proprietorship**
+</Accordion>
+
+<Accordion title="Provide phone number to complete CKYC" icon="far fa-phone">
+  1. Verify the mobile number associated with your business PAN and click **Proceed with CKYC.**
+
+
+  <Image src="https://files.readme.io/6da5617a549d6e068c976f393385c639e74ecb3bea90e18c7f93241b8c189497-image.png" align="center" caption="Verify or Update Mobile Number" border={true} />
+
+
+  <Callout icon="📘" theme="info">
+    ### **Note:**
+
+    - You can update the mobile number in this screen.
+    - You can choose to skip CKYC by clicking **Skip CKYC.**
+  </Callout>
+
+  2. Verify your mobile number with the OTP to proceed.
+</Accordion>
+
+<Accordion title="What category does your business fall under?" icon="far fa-crate-empty">
+  Search and select your business category from the search drop-down list and click **Confirm & Proceed.**
+
+
+  <Image src="https://files.readme.io/5d603e11dd7d574234d96483157b20aae9da6fb3c635ecabdb0fae802cbc95c0-image.png" align="center" caption="Select your Business Category" border={true} />
 
 </Accordion>
 
-1. **Business PAN Card Number**: Enter your business PAN, verify the details and click **Confirm & Proceed**.
+<Accordion title="Share your business details" icon="far fa-business-time">
+  Provide the following details and click **Confirm & Proceed.**
 
-   <Image src="https://files.readme.io/13ce6e59854f56279a73d73b85abdc3d1befa8a30de7f89c65405185c1380e52-Screenshot_2026-09-07_at_11.35.55_AM.png" align="center" caption="Enter Business PAN" border={true} />
+  - **Expected Sales per month**
+  - **Do you have a GSTIN number?:&#x20;**&#x55;se the radio button to select your option.
+  - **GSTIN&#x20;**(if applicable)
 
+  ![](https://files.readme.io/1f448bf4c6099d0e879ac7f94337ad3594f8c7f5d003db253e156dece1609456-Screenshot_2026-09-08_at_6.23.41_PM.png)
+</Accordion>
 
-2. **Please confirm your Business entity**: Select any of the following business entity type and click **Confirm & Proceed:**
-   - **Individual**
-   - **Sole Proprietorship**
+1. : Enter your bank account number and IFSC code, then click **Connect Bank Account**.
 
-3. **Mobile Number:&#x20;**&#x56;erify the mobile number you have already provided during sign-up and click **Proceed with CKYC.**
-   <Callout icon="📘" theme="info">
-     ### **Note:**
-
-     - You can update the mobile number in this screen.
-     - You can choose to skip CKYC by clicking **Skip CKYC.**
-   </Callout>
-
-   <Image src="https://files.readme.io/47ffcf9c6922cb6635ff66a7b6aa5b35e313cf87193ca4a5b3a2465e0d2f19ff-Screenshot_2026-09-07_at_11.54.36_AM.png" align="center" caption="Verify or Update Mobile Number" border={true} />
-
-
-4. Verify your mobile number with the OTP to proceed.
-
-5. **What category does your business fall under?:&#x20;**&#x53;earch and select your business category from the search drop-down list and click **Confirm & Proceed.**
-
-   <Image src="https://files.readme.io/ba6f19fb73985f9617571ba9f74486a39addcb1d5a555d43bde6de4c19ea036a-Screenshot_2026-09-07_at_12.12.40_PM.png" align="center" caption="Select your business category" border={true} />
-
-
-6. **Share your business details**: Enter your bank account number and IFSC code, then click **Connect Bank Account**.
-
-7. **How you accept payments** — Select one of the following:
+2. **How you accept payments** — Select one of the following:
    - **On my website/app** — enter your website URL, Android app URL, or iOS app URL.
    - **I don't have a website/app** — you can use Payment Links, Invoices, or Payment Buttons from the Dashboard.
 
-8. **Signing authority details** — Verify the name, PAN, and email of your signing authority. Update the email if needed, then click **Proceed to KYC**.
+3. **Signing authority details** — Verify the name, PAN, and email of your signing authority. Update the email if needed, then click **Proceed to KYC**.
 
-9. **KYC documents** — Choose one of the following methods:
+4. **KYC documents** — Choose one of the following methods:
    - **Fetch from cKYC** — enter your date of birth / incorporation date and authorise PayU to fetch documents automatically.
    - **Fetch from Aadhaar** — accept Aadhaar terms and click Submit.
    - **Upload manually** — verify your address details and upload PAN card, address proof, and any other requested documents.
 
-10. Click **Submit Documents**.
+5. Click **Submit Documents**.
 
 <Callout icon="📘" theme="info">
   ### **Note:**
