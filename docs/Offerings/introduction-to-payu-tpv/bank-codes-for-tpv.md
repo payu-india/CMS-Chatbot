@@ -15,9 +15,7 @@ The following codes must be used as the value for the <Glossary>bankcode</Glossa
 <br />
 
 <SearchableTableRemote
-  tableKey="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/bank-codes-tpv.json"
+  tableKey="https://cdn.jsdelivr.net/gh/palgunams21/payu-docs-assets@main/data/bank-codes-tpv.json"
   placeholder="Search"
   maxHeight="500px"
 />
-
-<br />
