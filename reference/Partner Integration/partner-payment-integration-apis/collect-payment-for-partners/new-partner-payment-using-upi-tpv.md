@@ -27,7 +27,14 @@ Authorization: Bearer <FINAL_ACCESS_TOKEN>
 Content-Type: application/json
 ```
 
-> Use the final access token obtained from [OAuth Step 3](ref:exchange-authorization-code-api).
+<Callout icon="📘" theme="info">
+  ### Notes:
+
+  - You must generate the token using the **Reseller Client Credentials Token&#x20;**&#x41;PI before to be posted in header in the above APIs. For more information, refer to [Reseller Client Credentials Token API](ref:reseller-client-credentials-token)
+  - If you are old partner merchant or reseller, you must a set of APIs to generate the token that must be used in above APIs, so you must use the final access token obtained from [\[Step 3\] Exchange Authorization Code API.](ref:exchange-authorization-code-partner-api)
+
+    &#x20;For more information, refer to [Token Generation Flow used for Partner Payments.](ref:token-generation-flow-for-old-partner-merchants)
+</Callout>
 
 ***
 
