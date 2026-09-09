@@ -8,20 +8,7 @@ metadata:
 ---
 ***
 
-title: Refund Transaction API
-api:
-file: refund_apis.json
-operationId: refundTransaction
-hidden: false
-link:
-new_tab: false
-metadata:
-title: Refund Transaction API
-description: >-
-The Refund Transaction API allows users to cancel or refund transactions in
-different states, with specific parameters required for each action. Sample
-requests and responses are provided for successful and failed scenarios.
-keywords:
+The Refund Transaction API allows users to cancel or refund transactions in<br />different states, with specific parameters required for each action. Sample<br />requests and responses are provided for successful and failed scenarios.<br />keywords:
 
 - cancel_refund_transaction command
 - Refund Transaction API
@@ -451,7 +438,7 @@ In this API:
   | **var3** <br /> `mandatory`           | **For captured transaction:** This parameter must contain the amount which needs to be refunded. Both partial and full refunds are allowed. • **For a full refund:** The var3 value would be equal to the amount with which the transaction was made • **For a partial refund:** This var3 value would be less than the amount with which the transaction was made **For pre-auth transaction:** If the transaction is in a pre-auth state currently, the full cancellation is allowed. The amount must be the same as the auth amount. A partial amount would not be allowed |
   | **var5** <br /> `mandatory`           | This parameter must contain the refund webhook/callback URL.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
   | **var8** <br /> `mandatory for split` | Refund split information provided by merchant in a JSON format. This is applicable only with the Split transactions. For more information, refer to [var8 JSON Object Fields Description](#var8-json-object-fields-description)                                                                                                                                                                                                                                                                                                                                               |
-  | **var9** <br /> `optional`            | This parameter is used to store additioanl information or notes for reference and future tracking of the refund. For more information on var9, refer to [var9 JSON Object Fields Description](#var9-json-object-fields-description).                                                                                                                                                                                                                                                                                                                                                                                                          |
+  | **var9** <br /> `optional`            | This parameter is used to store additioanl information or notes for reference and future tracking of the refund. For more information on var9, refer to [var9 JSON Object Fields Description](#var9-json-object-fields-description).                                                                                                                                                                                                                                                                                                                                          |
 
   ### var9 JSON Object Fields Description
 
