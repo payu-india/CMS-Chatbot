@@ -7,6 +7,14 @@ metadata:
   title: Refund Transaction API
 ---
 ---
+api:
+  file: cancel_refund_tranasaction-10.json
+  operationId: cancel_refund_transaction
+hidden: false
+metadata:
+  title: Refund Transaction API
+---
+---
 title: Refund Transaction API
 api:
   file: refund_apis.json
@@ -52,7 +60,8 @@ In this API:
   curl -X POST "https://test.payu.in/merchant/postservice?form=2" \
   -H "accept: application/json" \
   -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=JP***g&command=cancel_refund_transaction&var1=403993715521937565&var2=20201105secrettokenaturend&hash=10"
+  -d "key=JP***g&command=cancel_refund_transaction&var1=403993715521937565&var2=20201105secrettokenaturend&hash=10" \
+  --data-urlencode 'var9={"refundDetails":{"remarks":"Customer requested refund_123456_200_300_300"}}' 
   ```
   ```python
   import requests
@@ -67,6 +76,7 @@ In this API:
       "command": "cancel_refund_transaction",
       "var1": "403993715521937565",
       "var2": "20201105secrettokenaturend",
+      "var9": "{\"refundDetails\":{\"remarks\":\"Customer requested refund_123456_200_300_300\"}}",
       "hash": "10"
   }
 
@@ -85,6 +95,7 @@ In this API:
           "command": "cancel_refund_transaction",
           "var1": "403993715521937565",
           "var2": "20201105secrettokenaturend",
+          "var9": "{\"refundDetails\":{\"remarks\":\"Customer requested refund_123456_200_300_300\"}}",
           "hash": "10"
       })
   })
@@ -93,12 +104,16 @@ In this API:
   ```
   ```java
   import java.net.URI;
+  import java.net.URLEncoder;
+  import java.nio.charset.StandardCharsets;
   import java.net.http.HttpClient;
   import java.net.http.HttpRequest;
   import java.net.http.HttpResponse;
 
   String url = "https://test.payu.in/merchant/postservice?form=2";
-  String formData = "key=JP***g&command=cancel_refund_transaction&var1=403993715521937565&var2=20201105secrettokenaturend&hash=10";
+  String var9 = "{\"refundDetails\":{\"remarks\":\"Customer requested refund_123456_200_300_300\"}}";
+  String formData = "key=JP***g&command=cancel_refund_transaction&var1=403993715521937565&var2=20201105secrettokenaturend&var9="
+      + URLEncoder.encode(var9, StandardCharsets.UTF_8) + "&hash=10";
 
   HttpClient client = HttpClient.newHttpClient();
   HttpRequest request = HttpRequest.newBuilder()
@@ -119,6 +134,7 @@ In this API:
       "command" => "cancel_refund_transaction",
       "var1" => "403993715521937565",
       "var2" => "20201105secrettokenaturend",
+      "var9" => "{\"refundDetails\":{\"remarks\":\"Customer requested refund_123456_200_300_300\"}}",
       "hash" => "10"
   );
 
@@ -436,9 +452,20 @@ In this API:
   | **var2** <br /> `mandatory`           | This parameter must contain the Token ID (unique token from the merchant) for the refund request.• Token ID has to be generated at your end for each new refund request • It is an identifier for each new refund request which can be used for tracking it • It must be unique for every new refund request generated – otherwise the refund request would not be generated successfully • Token ID length should not be greater than 23 characters                                                                                                                          |
   | **var3** <br /> `mandatory`           | **For captured transaction:** This parameter must contain the amount which needs to be refunded. Both partial and full refunds are allowed. • **For a full refund:** The var3 value would be equal to the amount with which the transaction was made • **For a partial refund:** This var3 value would be less than the amount with which the transaction was made **For pre-auth transaction:** If the transaction is in a pre-auth state currently, the full cancellation is allowed. The amount must be the same as the auth amount. A partial amount would not be allowed |
   | **var5** <br /> `mandatory`           | This parameter must contain the refund webhook/callback URL.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-  | **var8** <br /> `mandatory for split` | Refund split information provided by merchant in a JSON format. This is applicable only with the Split transactions. The JSON format is described in the table below                                                                                                                                                                                                                                                                                                                                                                                                          |
+  | **var8** <br /> `mandatory for split` | Refund split information provided by merchant in a JSON format. This is applicable only with the Split transactions. For more information, refer to [var8 JSON Object Fields Description](#var8-json-object-fields-description)                                                                                                                                                                                                                                                                                                                                                                                                         |
+  | **var9** <br /> `optional`           | For more information or notes for reference and future tracking of the refund, refer to [var9 JSON Object Fields Description](#var9-json-object-fields-description). |
 
-  ### Split Transaction Parameters (var8)
+  ### var9 JSON Object Fields Description
+
+  The **var9** parameter is optional and contains additional information or notes for reference and future tracking of the refund. Use the following JSON structure:
+
+  ```text
+  var9={"refundDetails":{"remarks":"Customer requested refund_123456_200_300_300"}}
+  ```
+
+  The maximum supported length for **var9** is 1024 characters. The following symbols are not accepted in the remarks value: `#`, `$`, `%`, `^`, `&`, `*`, `+`, `=`, `[`, `]`, `\\`, `'`, `;`, `/`, `{`, `}`, `:`, `<`, `>`, `?`, `~`. If unsupported symbols are sent in the API request, the refund request is accepted, but the remarks are rejected and are not stored at PayU.
+
+  ### var8 JSON Object Fields Description
 
   The **var8** parameter is in JSON format that contains the following fields:
 
@@ -462,9 +489,9 @@ In this API:
   }
   ```
 
-  > 📘 **Reference**
+  > 📘 **Notes**
   >
-  > var5 and var8 are optional parameters and not included in the following **Try It** experience. For more information on description with examples, refer to the [Other request parameters](#key-request-parameters) subsection.
+  > var5, var8 and var9 are optional parameters and not included in the following **Try It** experience. For more information on description with examples, refer to the [Other request parameters](#key-request-parameters) subsection.
 </Accordion>
 
 <Accordion title="Example Values for Testing" icon="fa-flask">
