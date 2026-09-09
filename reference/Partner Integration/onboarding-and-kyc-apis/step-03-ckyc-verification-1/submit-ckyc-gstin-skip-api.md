@@ -25,18 +25,18 @@ The bearer token must include the `refer_merchant` scope. Keep the token confide
 
 ## Endpoints
 
-| Environment | Base URL                       |
-| ----------- | ------------------------------ |
-| UAT         | `https://test-partner.payu.in` |
-| Production  | `https://partner.payu.in`      |
+| Environment | Base URL                      |
+| ----------- | ----------------------------- |
+| UAT         | `https://uat-partner.payu.in` |
+| Production  | `https://partner.payu.in`     |
 
 ## Operation
 
-| Property      | Value                                      |
-| ------------- | ------------------------------------------ |
-| HTTP method   | `POST`                                     |
-| Endpoint path | `/api/v1/merchants/{uuid}/submit_consents` |
-| Content type  | `application/json`                         |
+| Property      | Value                                                |
+| ------------- | ---------------------------------------------------- |
+| HTTP method   | `POST`                                               |
+| Endpoint path | `{base_url}/api/v1/merchants/{uuid}/submit_consents` |
+| Content type  | `application/json`                                   |
 
 Replace `{uuid}` with the UUID of the merchant whose consent is being submitted.
 
