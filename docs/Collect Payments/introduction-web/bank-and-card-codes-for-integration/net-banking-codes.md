@@ -25,7 +25,7 @@ In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you 
 <br />
 
 <SearchableTableRemote
-  tableKey="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/net-banking-codes.json"
+  tableKey="netBankingCodes"
   placeholder="Search"
   maxHeight="500px"
 />
