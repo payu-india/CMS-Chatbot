@@ -1,7 +1,7 @@
 ---
 title: Reseller Client Credentials Token
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -19,59 +19,12 @@ The **Reseller Client Credentials Token** API obtains an access token for a rese
 
 **Environment**
 
-| Environment | URL                                                                                                                            |
-| :---------- | :----------------------------------------------------------------------------------------------------------------------------- |
-| UAT         | `https://uat-accounts.payu.in/oauth/token`                                                                                     |
-| Production  | The PDF says the production hostname is structurally similar. Confirm the exact production URL with the PayU integration team. |
+| Environment | URL                                        |
+| :---------- | :----------------------------------------- |
+| UAT         | `https://uat-accounts.payu.in/oauth/token` |
+| Production  | `https://accounts.payu.in/oauth/token`     |
 
-## Sample Request
-
-<Accordion title="Sample request" icon="fa-code">
-  ```bash
-  curl --location 'https://uat-accounts.payu.in/oauth/token' \
-  --header 'Content-Type: application/x-www-form-urlencoded' \
-  --data-urlencode 'client_id=<RESELLER_CLIENT_ID>' \
-  --data-urlencode 'client_secret=<RESELLER_CLIENT_SECRET>' \
-  --data-urlencode 'grant_type=client_credentials' \
-  --data-urlencode 'scope=partner_payment_links partner_payments'
-  ```
-
-  The request uses `POST` and sends the four form parameters with `Content-Type: application/x-www-form-urlencoded`.
-</Accordion>
-
-## Sample Response
-
-### Success scenario
-
-<Accordion title="Success scenario" icon="fa-file-code">
-  ```json
-  {
-  "access_token": "<RESELLER_ACCESS_TOKEN>",
-  "token_type": "Bearer",
-  "expires_in": 3600,
-  "scope": "partner_payment_links partner_payments"
-  }
-  ```
-</Accordion>
-
-### Failure scenario
-
-<Accordion title="Failure scenario" icon="fa-file-code">
-  The section names `invalid_client` and `invalid_grant` as OAuth errors and notes 4xx/5xx status-code behavior. Section 2 does not provide a concrete failure JSON body, so do not assume a failure-response schema from this reference.
-</Accordion>
-
-## Response parameters
-
-<Accordion title="Response parameters" icon="fa-table">
-  | Parameter      | Description                                              | Example                                  |
-  | :------------- | :------------------------------------------------------- | :--------------------------------------- |
-  | `access_token` | Reseller access token to use in subsequent API requests. | `<RESELLER_ACCESS_TOKEN>`                |
-  | `token_type`   | Token type returned by the OAuth server.                 | `Bearer`                                 |
-  | `expires_in`   | Token lifetime in seconds.                               | `3600`                                   |
-  | `scope`        | Scopes granted to the token.                             | `partner_payment_links partner_payments` |
-</Accordion>
-
-## Additional Request parameters description
+## Request parameters&#x20;
 
 ### Header parameters
 
@@ -114,3 +67,46 @@ Before requesting the token, ensure that:
 
 - The merchant is linked to the reseller.
 - The OAuth application has appropriate scopes, subject to the scope note above.
+
+## Sample Request
+
+<Accordion title="Sample request" icon="fa-code">
+  ```bash
+  curl --location 'https://uat-accounts.payu.in/oauth/token' \
+  --header 'Content-Type: application/x-www-form-urlencoded' \
+  --data-urlencode 'client_id=<RESELLER_CLIENT_ID>' \
+  --data-urlencode 'client_secret=<RESELLER_CLIENT_SECRET>' \
+  --data-urlencode 'grant_type=client_credentials' \
+  --data-urlencode 'scope=partner_payment_links partner_payments'
+  ```
+
+  The request uses `POST` and sends the four form parameters with `Content-Type: application/x-www-form-urlencoded`.
+</Accordion>
+
+## Sample Response
+
+### Success scenario
+
+<Accordion title="Success scenario" icon="fa-file-code">
+  ```json
+  {
+  "access_token": "<RESELLER_ACCESS_TOKEN>",
+  "token_type": "Bearer",
+  "expires_in": 3600,
+  "scope": "partner_payment_links partner_payments"
+  }
+  ```
+</Accordion>
+
+## Response parameters
+
+<Accordion title="Response parameters" icon="fa-table">
+  | Parameter      | Description                                              | Example                                  |
+  | :------------- | :------------------------------------------------------- | :--------------------------------------- |
+  | `access_token` | Reseller access token to use in subsequent API requests. | `<RESELLER_ACCESS_TOKEN>`                |
+  | `token_type`   | Token type returned by the OAuth server.                 | `Bearer`                                 |
+  | `expires_in`   | Token lifetime in seconds.                               | `3600`                                   |
+  | `scope`        | Scopes granted to the token.                             | `partner_payment_links partner_payments` |
+</Accordion>
+
+##
