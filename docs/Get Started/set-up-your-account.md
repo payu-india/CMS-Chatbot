@@ -227,6 +227,12 @@ To complete your KYC:
 </Accordion>
 
 <Accordion title="Connect Mobile App or Website" icon="far fa-page">
+  How do you want to collect payments? Select any of the following option and click **Confirm & Proceed**:
+
+  - **I have a website:&#x20;**&#x73;elect this option if you have a website to collect payments and provide the following details:
+    - **Website URL**
+    - **Android app:&#x20;**&#x59;our android application URL if available.
+    - **iOS app:&#x20;**&#x59;our iOS application URL if available.
 
 </Accordion>
 
