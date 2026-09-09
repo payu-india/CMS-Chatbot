@@ -208,7 +208,7 @@ To complete your KYC:
   2. Verify your mobile number with the OTP to proceed.
 </Accordion>
 
-<Accordion title="What category does your business fall under?" icon="far fa-crate-empty">
+<Accordion title="4. What category does your business fall under?" icon="far fa-crate-empty">
   Search and select your business category from the search drop-down list and click **Confirm & Proceed.**
 
 
@@ -216,7 +216,7 @@ To complete your KYC:
 
 </Accordion>
 
-<Accordion title="Share your business details" icon="far fa-business-time">
+<Accordion title="5. Share your business details" icon="far fa-business-time">
   Provide the following details and click **Confirm & Proceed.**
 
   - **Expected Sales per month**
@@ -224,6 +224,10 @@ To complete your KYC:
   - **GSTIN&#x20;**(if applicable)
 
   ![](https://files.readme.io/1f448bf4c6099d0e879ac7f94337ad3594f8c7f5d003db253e156dece1609456-Screenshot_2026-09-08_at_6.23.41_PM.png)
+</Accordion>
+
+<Accordion title="Connect Mobile App or Website" icon="far fa-page">
+
 </Accordion>
 
 1. : Enter your bank account number and IFSC code, then click **Connect Bank Account**.
