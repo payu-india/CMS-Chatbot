@@ -10,3 +10,4 @@
 - exchange-authorization-code-partner-api
 - collect-payment-for-partners
 - new-partner-webhooks
+- token-generation-flow-for-old-partner-merchants
