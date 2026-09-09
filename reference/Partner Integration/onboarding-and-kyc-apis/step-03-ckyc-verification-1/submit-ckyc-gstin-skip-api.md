@@ -32,11 +32,11 @@ The bearer token must include the `refer_merchant` scope. Keep the token confide
 
 ## Operation
 
-| Property      | Value                                          |
-| ------------- | ---------------------------------------------- |
-| HTTP method   | `POST`                                         |
-| Endpoint path | `/api/v1/merchants/{uuid}/submit_ckyc_consent` |
-| Content type  | `application/json`                             |
+| Property      | Value                                      |
+| ------------- | ------------------------------------------ |
+| HTTP method   | `POST`                                     |
+| Endpoint path | `/api/v1/merchants/{uuid}/submit_consents` |
+| Content type  | `application/json`                         |
 
 Replace `{uuid}` with the UUID of the merchant whose consent is being submitted.
 
