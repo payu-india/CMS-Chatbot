@@ -14,7 +14,7 @@ metadata:
 next:
   description: ''
 ---
-In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you must use **NB** with **pg** parameter for collecting payment using Net Banking. The following table provides the codes for the leading banks in India. This code must be used as a value with the **<Glossary>bankcode</Glossary>** parameter.
+In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you must use **NB** with **pg** parameter for collecting payment using Net Banking. The following table provides the codes for the leading banks in India. This code must be used as a value with the <Glossary>bankcode</Glossary> parameter.
 
 <Callout icon="📘" theme="info">
   ### **Note on merged bank codes:**&#x20;
@@ -25,7 +25,7 @@ In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you 
 <br />
 
 <SearchableTableRemote
-  tableKey="https://raw.githubusercontent.com/palgunams21/payu-docs-assets/refs/heads/main/data/net-banking-codes.json"
+  tableKey="https://cdn.jsdelivr.net/gh/palgunams21/payu-docs-assets@main/data/net-banking-codes.json"
   placeholder="Search"
   maxHeight="500px"
 />
@@ -42,5 +42,3 @@ Both the Erstwhile bank and Successor bank are supported in PayU Platform as men
 | Oriental Bank of Commerce (`OBCB`) | Punjab National Bank (`PNBB`)            |
 | Syndicate Bank (`SYNDB`)           | Canara Bank          (`CABB`)            |
 | United Bank of India (`UNIB`)      | Punjab National Bank (`PNBB)`            |
-
-<br />
