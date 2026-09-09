@@ -4,9 +4,9 @@
 - upi-tpv-integration-api-partner
 - refund-transaction-api-partner-integration
 - refund-status-api-partner-integration
+- reseller-client-credentials-token
 - oauth-token-api-partner-integration
 - get-authorization-code-partner-integration
 - exchange-authorization-code-partner-api
 - collect-payment-for-partners
 - new-partner-webhooks
-- reseller-client-credentials-token
