@@ -22,7 +22,11 @@ metadata:
 next:
   description: ''
 ---
-The PayU India API requires authentication using a merchant key and a salt. When you post requests using any of the PayU APIs, you will be posting the merchant key as the first parameter, so separate authentication is not required because these are REST APIs  All requests are accompanied by a hash that is appended at the end of the request. While posting parameters for an API, the hash parameter in each API must contain the hash value to be calculated at your end. The following hash logic used in PayU India APIs:
+> 📘 Unified authentication guide
+>
+> For the complete authentication overview across key + salt + hash, OAuth, and HMAC header models, see **[API Authentication and Security](doc:api-authentication-and-security)** in API Introduction.
+
+The PayU India API requires authentication using a merchant key and a salt. When you post requests using any of the PayU APIs, you will be posting the merchant key as the first parameter, so separate authentication is not required because these are REST APIs. All requests are accompanied by a hash that is appended at the end of the request. While posting parameters for an API, the hash parameter in each API must contain the hash value to be calculated at your end. The following hash logic is used in PayU India APIs:
 
 * **Payment** APIs or \_payment API: The string used for calculating the hash:
 
