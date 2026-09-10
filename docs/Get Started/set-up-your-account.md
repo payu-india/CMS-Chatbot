@@ -552,13 +552,13 @@ Your Merchant Key and Salt are the credentials used by every PayU integration to
 
 ***
 
-### How to Get Your Credentials
+### How to Get Your Keys
 
 <Tabs>
-  <Tab title="Test credentials">
+  <Tab title="Test Keys">
     {/* SOURCE: docs/getting started/payu-dashboard/generate-merchant-key-and-salt-copy.md — Test Environment tab */}
 
-    Test credentials are available immediately after you create your account. You do not need to complete KYC first.
+    Test credentials are available immediately after you create your account. You do not need to complete KYC.
 
     1. Log in to the [PayU Test Dashboard](https://test.payu.in/).
 
@@ -575,7 +575,7 @@ Your Merchant Key and Salt are the credentials used by every PayU integration to
     </Callout>
   </Tab>
 
-  <Tab title="Production credentials">
+  <Tab title="Production Keys">
     {/* SOURCE: docs/getting started/payu-dashboard/generate-merchant-key-and-salt-copy.md — Production Environment tab */}
 
     Production credentials become available once your KYC is complete and PayU has verified your website (up to 2 business days after registration).
