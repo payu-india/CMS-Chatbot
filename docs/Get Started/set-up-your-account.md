@@ -612,14 +612,20 @@ Your Merchant Key and Salt are the credentials used by every PayU integration to
   </Tab>
 </Tabs>
 
-### Regenerate your Salt
+### Regenerate Your Salt
 
-If your Salt is compromised or you need to rotate it:
+You can re-generate the Salt If it is compromised or you need to rotate it.
 
-1. Log in to the PayU Dashboard and switch to the relevant environment (Live or Test).
-2. Select **Developer** from the left menu → **API Details**.
-3. Click **Regenerate Salt** and confirm.
-4. Click **Activate** next to the new Salt under the **Actions** column.
+To re-generate the salt:
+
+1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin">PayU dashboard</Anchor> and switch to the relevant environment (Live or Test) using the drop-down menu in the top navigation bar.
+2. Click **Developer** from the left menu, the **API Keys** tab is displayed.
+3. Click **Regenerate Salt**.
+
+   ![](https://files.readme.io/37ba70b5021285252fecb4f7027b6b5c41d0eaf97bc6122f7103d2329821208f-Screenshot_2026-09-10_at_6.00.37_PM.png)
+
+   The confirmation menu appears.
+4. Click **Regenerate**&#x20;
 
 <Callout icon="📘" theme="info">
   ### **Important:**
