@@ -564,16 +564,16 @@ Your Merchant Key and Salt are the credentials used by every PayU integration to
 
        ![](https://files.readme.io/4d094466b46924e4b801281109b3446598f368405d5d30a26cdb846cdacf5fe1-Screenshot_2026-09-10_at_4.53.08_PM.png)
 
+    2. Click **Developer** from the left menu, the **API Keys** tab is displayed.
 
+    3. Click **View Details&#x20;**&#x64;isplayed under **API Key Salt details.**
 
-    2. Switch to **Test Mode** using the toggle on the menu bar.
+       Your test Key and Salt are generated and displayed here on first access.
 
-    3. Select **Developer** from the left menu, then open the **API Details** tab.
-
-       Your Test Key and Salt are displayed here and generated automatically on first access.
+       ![](https://files.readme.io/4c3b797c36b05f70f23a8b586823dfe34871fa1aefda642efd5ad561c04cd299-Screenshot_2026-09-10_at_5.46.03_PM.png)
 
     <Callout icon="far fa-exclamation" theme="error">
-      ### Watch Out!
+      ### **Note:**
 
       Test credentials only work in the test environment. They cannot be used for live payments.
     </Callout>
@@ -582,7 +582,15 @@ Your Merchant Key and Salt are the credentials used by every PayU integration to
   <Tab title="Production Keys">
     {/* SOURCE: docs/getting started/payu-dashboard/generate-merchant-key-and-salt-copy.md — Production Environment tab */}
 
-    Production credentials become available once your KYC is complete and PayU has verified your website (up to 2 business days after registration).
+    Production credentials are available once you complete your KYC and PayU has verified your website. This may take up to 2 business days after registration.&#x20;
+
+    <Callout icon="📘" theme="info">
+      ### **Note:**
+
+      You can make your first transaction only after your settlement is active.
+    </Callout>
+
+    To get production keys:
 
     1. Log in to the [PayU Merchant Dashboard](https://merchant.payu.in/).
 
