@@ -596,14 +596,16 @@ Your Merchant Key and Salt are the credentials used by every PayU integration to
 
     1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin">PayU dashboard.</Anchor> By default you will be in the **Live Mode.&#x20;**&#x49;f not change to **Live Mode&#x20;**&#x66;rom the top navigation bar.
 
-    2. Select **Developer** from the left menu, then open the **API Details** tab.
+    2. Click **Developer** from the left menu, the **API Keys** tab is displayed.
 
-       Your Production Key and Salt are displayed here.
+    3. Click **View Details&#x20;**&#x64;isplayed under **API Key Salt details.**
+
+       Your test Key and Salt are generated and displayed here on first access.
 
     <Callout icon="🚧" theme="warn">
-      ### **These credentials are sensitive.**
+      ### **Do Not Share!**
 
-      - Do not share them publicly or in frontend code.
+      - Do not share production secrets publicly or in frontend code.
       - Store them securely on your server — use environment variables, not hardcoded values.
       - If you share access with a developer or agency, ask your Key Account Manager about the correct way to do this securely.
     </Callout>
