@@ -267,8 +267,19 @@ To complete your KYC:
   - **Bank Verification Letter**
 
   ![](https://files.readme.io/41b50f2e07fc229529de521f3f263f449d555aaa8468fe6dc735cf3eb2d2697c-Screenshot_2026-09-10_at_10.51.12_AM.png)
+</Accordion>
 
+<Accordion title="Signing Authority Details" icon="far fa-signature">
+  Provide these details to which all the communications are sent in future. These details are essential for KYC verification. Enter the details and click **Confirm & Proceed:**
 
+  - **Signing Authority Name:&#x20;**&#x56;erify the name. You cannot edit this field.
+  - **Signing Authority Email ID:&#x20;**&#x45;nter the email address to receive the document and further communications.
+  - **Signing Authority’s PAN card number:&#x20;**&#x56;erify the PAN. You cannot edit this field.
+  - **Politically Exposed Person (PEP) Status:&#x20;**&#x53;elect any of the following:&#x20;
+    - **I am a PEP:&#x20;**&#x53;elect this if you are a politically exposed person.
+    - **I am related to a PEP:&#x20;**&#x53;elect this if you are a relative of any politically exposed person.
+    - **Not Applicable**
+  - **Choose a KYC option:&#x20;**&#x43;hoose your way KYC verification&#x20;
 </Accordion>
 
 1. **How you accept payments** — Select one of the following:
