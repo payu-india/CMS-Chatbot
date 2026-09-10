@@ -169,7 +169,7 @@ PayU requires all merchants to complete KYC (Know Your Customer) to comply with 
 
 For the full list of required documents based on your business type, refer to the [Documents checklist](#documents-checklist) below.
 
-To complete your KYC:
+Follow steps in every section to complete your KYC:
 
 <Accordion title="1. Resume Onboarding" icon="far fa-chart-pie-simple-circle-currency">
   Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin">PayU dashboard</Anchor> and click **Resume Onboarding** at the top of the page (or under **Onboarding Progress**)
@@ -179,9 +179,9 @@ To complete your KYC:
   Enter your business PAN, verify the details and click **Confirm & Proceed**.
 
   ![](https://files.readme.io/aa16d8fba3f835de17fb687aba2ee0b1b67b369e7c810e642bdbb07303d9cb10-image.png)
-</Accordion>
 
-<br />
+
+</Accordion>
 
 <Accordion title="3. Please confirm your Business entity" icon="far fa-buildings">
   Select any of the following business entity type and click **Confirm & Proceed:**
@@ -191,7 +191,7 @@ To complete your KYC:
   - **Sole Proprietorship**
 </Accordion>
 
-<Accordion title="Provide phone number to complete CKYC" icon="far fa-phone">
+<Accordion title="4. Provide phone number to complete CKYC" icon="far fa-phone">
   1. Verify the mobile number associated with your business PAN and click **Proceed with CKYC.**
 
 
@@ -208,7 +208,7 @@ To complete your KYC:
   2. Verify your mobile number with the OTP to proceed.
 </Accordion>
 
-<Accordion title="4. What category does your business fall under?" icon="far fa-crate-empty">
+<Accordion title="5. What category does your business fall under?" icon="far fa-crate-empty">
   Search and select your business category from the search drop-down list and click **Confirm & Proceed.**
 
 
@@ -216,7 +216,7 @@ To complete your KYC:
 
 </Accordion>
 
-<Accordion title="5. Share your business details" icon="far fa-business-time">
+<Accordion title="6. Share your business details" icon="far fa-business-time">
   Provide the following details and click **Confirm & Proceed.**
 
   - **Expected Sales per month**
@@ -226,7 +226,9 @@ To complete your KYC:
   ![](https://files.readme.io/1f448bf4c6099d0e879ac7f94337ad3594f8c7f5d003db253e156dece1609456-Screenshot_2026-09-08_at_6.23.41_PM.png)
 </Accordion>
 
-<Accordion title="6. Connect Mobile App or Website" icon="far fa-page">
+### Business Information
+
+<Accordion title="1. Connect Mobile App or Website" icon="far fa-page">
   How do you want to collect payments? Select any of the following option, provide the required details and click **Confirm & Proceed**:
 
   - **I have a website:&#x20;**&#x73;elect this option if you have a website to collect payments and provide the following details:
@@ -242,13 +244,13 @@ To complete your KYC:
     ![](https://files.readme.io/affa2b3e158be5ae5a9539fa9ef3c25eec580276365c053c907799bebe733e59-Screenshot_2026-09-10_at_10.09.44_AM.png)
 </Accordion>
 
-<Accordion title="7. Request submitted for verification" icon="fab fa-cloudversify">
+<Accordion title="Request submitted for verification" icon="fab fa-cloudversify">
   Your provided website details goes through verification. You can continue to the next step by clicking the **Proceed to next step&#x20;**&#x62;utton.
 
   ![](https://files.readme.io/9ab84000ef03f7f58a957402ff1ed2ab109f5f0e1893334870ba75bb3671308e-Screenshot_2026-09-10_at_10.13.07_AM.png)
 </Accordion>
 
-<Accordion title="8. Share bank account details" icon="far fa-coin-blank">
+<Accordion title="2. Share bank account details" icon="far fa-coin-blank">
   provide these bank details to process funds to your account:
 
   - **Bank Holder Name:&#x20;**&#x59;ou can select the name from the drop-down list.
@@ -258,7 +260,7 @@ To complete your KYC:
   ![](https://files.readme.io/d774d474f3a08aeb44cfdcd6a943bbca812626aed77a307b27dc93ef3999f88b-Screenshot_2026-09-10_at_10.44.04_AM.png)
 </Accordion>
 
-<Accordion title="Upload the Bank Proof" icon="far fa-table-cells-header-unlock">
+<Accordion title="3. Upload the Bank Proof" icon="far fa-table-cells-header-unlock">
   You should verify your bank account to proceed. Upload any of the following and click **Submit for Verification & Proceed.**
 
   - **Cancelled Cheque**
@@ -267,9 +269,13 @@ To complete your KYC:
   - **Bank Verification Letter**
 
   ![](https://files.readme.io/41b50f2e07fc229529de521f3f263f449d555aaa8468fe6dc735cf3eb2d2697c-Screenshot_2026-09-10_at_10.51.12_AM.png)
+
+  ##
 </Accordion>
 
-<Accordion title="Signing Authority Details" icon="far fa-signature">
+### KYC Checks
+
+<Accordion title="1. Signing Authority Details" icon="far fa-signature">
   Provide these details to which all the communications are sent in future. These details are essential for KYC verification. Enter the details and click **Confirm & Proceed:**
 
   - **Signing Authority Name:&#x20;**&#x56;erify the name. You cannot edit this field.
@@ -288,7 +294,11 @@ To complete your KYC:
 
     **What's Next:**
 
-    If you have chosen DigiLocker as a verification method, follow the on screen steps to complete the verification.
+    If you have chosen DigiLocker as a verification method, follow these steps to complete the verification:
+
+  1. Enter your Adhaar number and verify it using OTP.
+  2. Enter you DigiLocker PIN
+  3. Select the associated Adhaar.
 </Accordion>
 
 1. **How you accept payments** — Select one of the following:
