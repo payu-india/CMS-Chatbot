@@ -560,6 +560,8 @@ Your Merchant Key and Salt are the credentials used by every PayU integration to
 
     Test credentials are available immediately after you create your account. You do not need to complete KYC.
 
+    To get test keys:
+
     1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin">PayU dashboard</Anchor> and select **Test Mode** from the drop-down menu in the top navigation bar.
 
        ![](https://files.readme.io/4d094466b46924e4b801281109b3446598f368405d5d30a26cdb846cdacf5fe1-Screenshot_2026-09-10_at_4.53.08_PM.png)
@@ -592,11 +594,9 @@ Your Merchant Key and Salt are the credentials used by every PayU integration to
 
     To get production keys:
 
-    1. Log in to the [PayU Merchant Dashboard](https://merchant.payu.in/).
+    1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin">PayU dashboard.</Anchor> By default you will be in the **Live Mode.&#x20;**&#x49;f not change to **Live Mode&#x20;**&#x66;rom the top navigation bar.
 
-    2. Switch to **Live Mode** using the toggle on the menu bar.
-
-    3. Select **Developer** from the left menu, then open the **API Details** tab.
+    2. Select **Developer** from the left menu, then open the **API Details** tab.
 
        Your Production Key and Salt are displayed here.
 
