@@ -6,13 +6,11 @@ icon: far fa-rectangle-api
 metadata:
   robots: index
 ---
-## Overview
+#Overview
 
 The Fetch Settlement API is a `GET` endpoint for retrieving paginated settlement information for a merchant through a reseller portal. Use it to request settlement data for a reseller, merchant, and date range.
 
 The endpoint returns settlement-level values and nested transaction objects in a successful response. The response examples below are sanitized documentation examples; replace request placeholders with values from your integration and never place a real token in documentation or source control.
-
-**Contents:** [Overview](#overview) · [Endpoints (UAT and Production)](#endpoints-uat-and-production) · [Authentication](#authentication) · [Query Parameters & Description](#query-parameters--description) · [Sample Request](#sample-request) · [Request Description](#request-description) · [Sample Response](#sample-response) · [Response Description](#response-description)
 
 ## Endpoints (UAT and Production)
 
