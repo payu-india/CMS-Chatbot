@@ -560,7 +560,11 @@ Your Merchant Key and Salt are the credentials used by every PayU integration to
 
     Test credentials are available immediately after you create your account. You do not need to complete KYC.
 
-    1. Log in to the [PayU Test Dashboard](https://test.payu.in/).
+    1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin">PayU dashboard</Anchor> and select **Test Mode** from the drop-down menu in the top navigation bar.
+
+       ![](https://files.readme.io/4d094466b46924e4b801281109b3446598f368405d5d30a26cdb846cdacf5fe1-Screenshot_2026-09-10_at_4.53.08_PM.png)
+
+
 
     2. Switch to **Test Mode** using the toggle on the menu bar.
 
