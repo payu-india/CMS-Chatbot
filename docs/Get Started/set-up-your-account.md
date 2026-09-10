@@ -568,8 +568,10 @@ Your Merchant Key and Salt are the credentials used by every PayU integration to
 
        Your Test Key and Salt are displayed here and generated automatically on first access.
 
-    <Callout icon="📘" theme="info">
-      ### Test credentials only work in the test environment. They cannot be used for live payments.
+    <Callout icon="far fa-exclamation" theme="error">
+      ### Watch Out!
+
+      Test credentials only work in the test environment. They cannot be used for live payments.
     </Callout>
   </Tab>
 
@@ -606,7 +608,7 @@ If your Salt is compromised or you need to rotate it:
 4. Click **Activate** next to the new Salt under the **Actions** column.
 
 <Callout icon="📘" theme="info">
-  **Important:**
+  ### **Important:**
 
   - A regenerated Salt expires in 15 days if not activated.
   - After activation, the new Salt replaces Salt v1.
