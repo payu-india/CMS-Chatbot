@@ -226,13 +226,15 @@ To complete your KYC:
   ![](https://files.readme.io/1f448bf4c6099d0e879ac7f94337ad3594f8c7f5d003db253e156dece1609456-Screenshot_2026-09-08_at_6.23.41_PM.png)
 </Accordion>
 
-<Accordion title="Connect Mobile App or Website" icon="far fa-page">
+<Accordion title="6. Connect Mobile App or Website" icon="far fa-page">
   How do you want to collect payments? Select any of the following option and click **Confirm & Proceed**:
 
   - **I have a website:&#x20;**&#x73;elect this option if you have a website to collect payments and provide the following details:
     - **Website URL**
     - **Android app:&#x20;**&#x59;our android application URL if available.
     - **iOS app:&#x20;**&#x59;our iOS application URL if available.
+    ![](https://files.readme.io/8666efc75c66b0ac361a464d5022bd6ccd350e974a1fea5604dd9961db94007a-Screenshot_2026-09-09_at_12.54.40_PM.png)
+
 
 </Accordion>
 
