@@ -227,31 +227,33 @@ To complete your KYC:
 </Accordion>
 
 <Accordion title="6. Connect Mobile App or Website" icon="far fa-page">
-  How do you want to collect payments? Select any of the following option and click **Confirm & Proceed**:
+  How do you want to collect payments? Select any of the following option, provide the required details and click **Confirm & Proceed**:
 
   - **I have a website:&#x20;**&#x73;elect this option if you have a website to collect payments and provide the following details:
     - **Website URL**
     - **Android app:&#x20;**&#x59;our android application URL if available.
     - **iOS app:&#x20;**&#x59;our iOS application URL if available.
-    ![](https://files.readme.io/8666efc75c66b0ac361a464d5022bd6ccd350e974a1fea5604dd9961db94007a-Screenshot_2026-09-09_at_12.54.40_PM.png)
+    ![](https://files.readme.io/04c04050a2e7049bd03e0598b57b071d936a320ab60ae897f701452fa2e499ee-Screenshot_2026-09-09_at_12.54.40_PM.png)
 
+
+  - **I don't have a website:&#x20;**&#x53;elect this option if you do not have a website to collect payments and provide any of the following details:
+    - **Instagram Business Profile**
+    - **Whatsapp store**
 
 </Accordion>
 
-1. : Enter your bank account number and IFSC code, then click **Connect Bank Account**.
-
-2. **How you accept payments** — Select one of the following:
+1. **How you accept payments** — Select one of the following:
    - **On my website/app** — enter your website URL, Android app URL, or iOS app URL.
    - **I don't have a website/app** — you can use Payment Links, Invoices, or Payment Buttons from the Dashboard.
 
-3. **Signing authority details** — Verify the name, PAN, and email of your signing authority. Update the email if needed, then click **Proceed to KYC**.
+2. **Signing authority details** — Verify the name, PAN, and email of your signing authority. Update the email if needed, then click **Proceed to KYC**.
 
-4. **KYC documents** — Choose one of the following methods:
+3. **KYC documents** — Choose one of the following methods:
    - **Fetch from cKYC** — enter your date of birth / incorporation date and authorise PayU to fetch documents automatically.
    - **Fetch from Aadhaar** — accept Aadhaar terms and click Submit.
    - **Upload manually** — verify your address details and upload PAN card, address proof, and any other requested documents.
 
-5. Click **Submit Documents**.
+4. Click **Submit Documents**.
 
 <Callout icon="📘" theme="info">
   ### **Note:**
