@@ -239,6 +239,35 @@ To complete your KYC:
   - **I don't have a website:&#x20;**&#x53;elect this option if you do not have a website to collect payments and provide any of the following details:
     - **Instagram Business Profile**
     - **Whatsapp store**
+    ![](https://files.readme.io/affa2b3e158be5ae5a9539fa9ef3c25eec580276365c053c907799bebe733e59-Screenshot_2026-09-10_at_10.09.44_AM.png)
+</Accordion>
+
+<Accordion title="7. Request submitted for verification" icon="fab fa-cloudversify">
+  Your provided website details goes through verification. You can continue to the next step by clicking the **Proceed to next step&#x20;**&#x62;utton.
+
+  ![](https://files.readme.io/9ab84000ef03f7f58a957402ff1ed2ab109f5f0e1893334870ba75bb3671308e-Screenshot_2026-09-10_at_10.13.07_AM.png)
+</Accordion>
+
+<Accordion title="8. Share bank account details" icon="far fa-coin-blank">
+  provide these bank details to process funds to your account:
+
+  - **Bank Holder Name:&#x20;**&#x59;ou can select the name from the drop-down list.
+  - **Bank Account Number**
+  - **IFSC Code**
+
+  ![](https://files.readme.io/d774d474f3a08aeb44cfdcd6a943bbca812626aed77a307b27dc93ef3999f88b-Screenshot_2026-09-10_at_10.44.04_AM.png)
+</Accordion>
+
+<Accordion title="Upload the Bank Proof" icon="far fa-table-cells-header-unlock">
+  You should verify your bank account to proceed. Upload any of the following and click **Submit for Verification & Proceed.**
+
+  - **Cancelled Cheque**
+  - **Bank Statement**
+  - **Passbook**
+  - **Bank Verification Letter**
+
+  ![](https://files.readme.io/41b50f2e07fc229529de521f3f263f449d555aaa8468fe6dc735cf3eb2d2697c-Screenshot_2026-09-10_at_10.51.12_AM.png)
+
 
 </Accordion>
 
