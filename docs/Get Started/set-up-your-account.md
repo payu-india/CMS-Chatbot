@@ -5,6 +5,8 @@ excerpt: >-
   credentials.
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
   title: Set Up Your PayU Account
   description: >-
@@ -625,7 +627,7 @@ To re-generate the salt:
    ![](https://files.readme.io/37ba70b5021285252fecb4f7027b6b5c41d0eaf97bc6122f7103d2329821208f-Screenshot_2026-09-10_at_6.00.37_PM.png)
 
    The confirmation menu appears.
-4. Click **Regenerate**&#x20;
+4. Click **Regenerate** to regenerate the Salt.
 
 <Callout icon="📘" theme="info">
   ### **Important:**
