@@ -495,20 +495,16 @@ Expand the section that matches your business entity type.
 
 Your Merchant Key and Salt are the credentials used by every PayU integration to authenticate requests and generate hashes. You need them before you can write any integration code.
 
+### **What are Merchant Key and Salt?**
+
+- **Key**: A unique identifier for your merchant account. It is included in every payment request you send to PayU.
+- **Salt (32-bit / v1)**: Used to generate the SHA-512 hash that authenticates your requests. Use Salt v1 for standard integrations.
+- **Salt (256-bit / v2)**:  A stronger variant of the Salt for integrations that require it.
+
 {/* NEW CONTENT — the "What are Key and Salt?" explanation below does not
      exist as a standalone explanation in any single page. The field
      descriptions in the original are footnotes under the tabs, not a
      clear upfront explanation. This intro is new. Needs SME review. */}
-
-<Callout icon="📘" theme="info">
-  ### **What are Merchant Key and Salt?**
-
-  - **Key** — a unique identifier for your merchant account. It is included in every payment request you send to PayU.
-  - **Salt (32-bit / v1)** — used to generate the SHA-512 hash that authenticates your requests. Use Salt v1 for standard integrations.
-  - **Salt (256-bit / v2)** — a stronger variant of the Salt for integrations that require it.
-
-  Each environment (Test and Production) has a separate Key–Salt pair. Never use Test credentials in production or vice versa.
-</Callout>
 
 {/* NEW CONTENT — Test vs Production comparison block.
      The repo documents test and production credentials separately across
@@ -516,43 +512,47 @@ Your Merchant Key and Salt are the credentials used by every PayU integration to
      a new merchant understand which to use and when. This block is new.
      Needs SME review. */}
 
-## Test vs Production Secrets
+### **Test vs Production Secrets**
 
 <Tabs>
-  <Tab title="Test secrets">
-    |                       |                                                                                                   |
+  <Tab title="Test Secrets">
+    | Term                  | Description                                                                                       |
     | --------------------- | ------------------------------------------------------------------------------------------------- |
-    | **Where to get them** | [PayU Test Dashboard](https://test.payu.in/) → Developer → API Details                            |
+    | **Where to get them** | [PayU Dashboard (Test Mode)](https://test.payu.in/) → **Developer** → **API Keys**                |
     | **Available**         | Immediately after account creation — no KYC required                                              |
-    | **What they do**      | Authenticate requests in the test environment only. No real money moves.                          |
+    | **What they do**      | Authenticate requests in the test environment only. No real transaction.                          |
     | **Use when**          | Building your integration, running test transactions, validating your hash generation             |
     | **Key prefix**        | Starts with a test-environment merchant key (different from your live key)                        |
-    | **Transactions**      | Use [test cards and UPI IDs](doc:test-cards-and-credentials) — real payment methods will not work |
+    | **Transactions**      | Use [test cards and UPI IDs.](doc:test-cards-and-credentials) Real payment methods will not work. |
 
     <Callout icon="📘" theme="info">
-      ### Always build and test with Test secrets first. Your test key and live key are different values — double-check which you have loaded before going live.
+      ### **Note:**
+
+      Always build and test with Test secrets first. Your test key and live key are different values — double-check which you have loaded before going live.
     </Callout>
   </Tab>
 
-  <Tab title="Production secrets">
-    |                       |                                                                                |
-    | --------------------- | ------------------------------------------------------------------------------ |
-    | **Where to get them** | [PayU Merchant Dashboard](https://merchant.payu.in/) → Developer → API Details |
-    | **Available**         | After PayU verifies your website — up to 2 business days after registration    |
-    | **What they do**      | Authenticate live payment requests. Real money moves.                          |
-    | **Use when**          | Your integration is tested and you are ready to accept real customer payments  |
-    | **Key prefix**        | Starts with your live-environment merchant key (different from your test key)  |
-    | **Transactions**      | Real customer payment methods (cards, UPI, net banking, wallets)               |
+  <Tab title="Production Secrets">
+    | Term                  | Description                                                                                     |
+    | --------------------- | ----------------------------------------------------------------------------------------------- |
+    | **Where to get them** | [PayU Merchant Dashboard (Live Mode)](https://merchant.payu.in/) → **Developer** → **API Keys** |
+    | **Available**         | After PayU verifies your website. This can take up to 2 business days after registration.       |
+    | **What they do**      | Authenticate live payment requests with real transaction.                                       |
+    | **Use when**          | Your integration is tested and you are ready to accept real customer payments                   |
+    | **Key prefix**        | Starts with your live-environment merchant key (different from your test key)                   |
+    | **Transactions**      | Real customer payment methods (cards, UPI, net banking, wallets)                                |
 
     <Callout icon="🚧" theme="warn">
-      ### **Production secrets are sensitive.** Never expose them in frontend code, client-side JavaScript, or a public repository. Store them in environment variables on your server. If you share access with a developer or agency, ask your Key Account Manager about the correct way to do this securely.
+      ### **Production Secrets are Sensitive**
+
+      Never expose them in frontend code, client-side JavaScript, or a public repository. Store them in environment variables on your server. If you share access with a developer or agency, ask your Key Account Manager about the correct way to do this securely.
     </Callout>
   </Tab>
 </Tabs>
 
 ***
 
-### How to get your credentials
+### How to Get Your Credentials
 
 <Tabs>
   <Tab title="Test credentials">
