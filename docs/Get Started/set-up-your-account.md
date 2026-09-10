@@ -279,21 +279,32 @@ To complete your KYC:
     - **I am a PEP:&#x20;**&#x53;elect this if you are a politically exposed person.
     - **I am related to a PEP:&#x20;**&#x53;elect this if you are a relative of any politically exposed person.
     - **Not Applicable**
-  - **Choose a KYC option:&#x20;**&#x43;hoose your way KYC verification&#x20;
+  - **Choose a KYC option:&#x20;**&#x43;hoose your way of KYC verification. These are the available options:
+    - **Verify via Digi Locker**
+    - **Upload Aadhaar XML:&#x20;**&#x55;pload the XML and share the code for verification. Follow the steps mentioned on the page to download the Aadhaar XML.
+  - **By proceeding I accept Aadhaar terms and conditions:&#x20;**&#x53;elect the checkbox to agree to the terms and conditions.
+
+    ![](https://files.readme.io/8f4eccecf0e4de5108c95637a09fe2e7630313cf395022b28a4807d417ae1e27-image.png)
+
+    **What's Next:**
+
+    If you have chosen DigiLocker as a verification method, follow the on screen steps to complete the verification.
 </Accordion>
 
 1. **How you accept payments** — Select one of the following:
-   - **On my website/app** — enter your website URL, Android app URL, or iOS app URL.
-   - **I don't have a website/app** — you can use Payment Links, Invoices, or Payment Buttons from the Dashboard.
 
-2. **Signing authority details** — Verify the name, PAN, and email of your signing authority. Update the email if needed, then click **Proceed to KYC**.
+2. **On my website/app** — enter your website URL, Android app URL, or iOS app URL.
 
-3. **KYC documents** — Choose one of the following methods:
+3. **I don't have a website/app** — you can use Payment Links, Invoices, or Payment Buttons from the Dashboard.
+
+4. **Signing authority details** — Verify the name, PAN, and email of your signing authority. Update the email if needed, then click **Proceed to KYC**.
+
+5. **KYC documents** — Choose one of the following methods:
    - **Fetch from cKYC** — enter your date of birth / incorporation date and authorise PayU to fetch documents automatically.
    - **Fetch from Aadhaar** — accept Aadhaar terms and click Submit.
    - **Upload manually** — verify your address details and upload PAN card, address proof, and any other requested documents.
 
-4. Click **Submit Documents**.
+6. Click **Submit Documents**.
 
 <Callout icon="📘" theme="info">
   ### **Note:**
