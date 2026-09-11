@@ -30,6 +30,12 @@ The following are the sample payloads for webhook events.
   ` application/x-www-form-urlencode`
 </Callout>
 
+### Payment Gateway
+
+Given below are the sample webhook event payloads of different payment products.
+
+<br />
+
 ### Payment Successful
 
 ```text
