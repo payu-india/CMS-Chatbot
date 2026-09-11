@@ -31,9 +31,9 @@ In this API:
 * **var3** parameter should contain the amount that needs to be refunded
 
 <Callout icon="📮" theme="default">
-  **Postman Collection**: Access the **Refund Transaction API Postman Collection** from the following location:
+  ### **Postman Collection**:&#x20;
 
-  [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/w4v94j2/refund-transaction-api](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/w4v94j2/refund-transaction-api)
+  Access the **Refund Transaction API Postman Collection** from the following location:[https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/w4v94j2/refund-transaction-api](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/request/w4v94j2/refund-transaction-api)
 </Callout>
 
 <GENERALAPIsEnvironment />
@@ -292,6 +292,20 @@ In this API:
 </Accordion>
 
 <Accordion title="Sample response" icon="fa-reply">
+  <Callout icon="📘" theme="info">
+    ### **UAT refund status testing**
+
+    In the UAT environment, use the refund amount to test the success, failure, and `in_progress` refund outcomes with the following amount-to-status mapping:
+
+    | amount  | status      |
+    | :------ | :---------- |
+    | 100-200 | success     |
+    | 0-99    | failure     |
+    | other   | in_progress |
+
+    These mappings apply to testing refund success, failure, and `in_progress` outcomes in the UAT environment.
+  </Callout>
+
   ### Success Scenarios
 
   **1. On successful processing from PayU:**
