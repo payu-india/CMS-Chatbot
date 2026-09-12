@@ -28,7 +28,9 @@ Every section below is tagged with one of:
 
   NEW CONTENT — does not exist in any repo file.
                 Must be validated by a PayU SME before publishing.
-                Also marked inline with the <!-- NEW CONTENT */} comment.
+                Also marked inline with the <!-- NEW CONTENT */}
+
+comment.
 
 \=============================================================================
 \-->
@@ -36,11 +38,11 @@ Every section below is tagged with one of:
 {/* NEW CONTENT — page-scope framing. No equivalent intro exists in the repo.
      Needs SME review. */}
 
-This page covers everything on the developer's side of webhook delivery: how to test your endpoint before it receives real events, how to inspect what PayU sent and why delivery failed, and how to diagnose the most common failure modes. For signature verification specifically, see [Verify Webhook Requests](doc:verify-webhook-requests). For the event catalog and payload field reference, see [Webhook Events Reference](doc:events-and-payloads).
+Test your endpoint before it receives real events, inspect what PayU sent and why delivery failed, and diagnose the most common failure modes. For signature verification specifically, see [Verify Webhook Requests](doc:verify-webhook-requests). For the event catalog and payload field reference, see Webhook Events and Payloads.
 
 ***
 
-## Test your endpoint before going live
+## Test Your Endpoint Before Going Live
 
 {/* SYNTHESISED — tools and approach synthesised from:
      docs/Monitoring & Alerts/payu-monitoring-alerts-overwatch/webhook-alerts.md (ngrok, webhook.site, Postman, curl test approach)
