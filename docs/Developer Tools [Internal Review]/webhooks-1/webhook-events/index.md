@@ -358,6 +358,136 @@ furl=https://test.payu.in/admin/test_response
 pa_name=PayU
 ```
 
+#### UPI
+
+```text Success
+mihpayid=613345778912993937
+mode=UPI
+status=success
+key=DSHd23
+txnid=txn0q12sssqswsqqw2a1s
+amount=10.00
+addedon=2026-09-02 12:29:03
+productinfo=iPhone
+firstname=firstname
+lastname=lastname
+address1=
+address2=
+city=
+state=
+country=
+zipcode=
+email=test@gmail.com
+phone=9999999999
+udf1=
+udf2=
+udf3=
+udf4=Executed Callback
+udf5=
+udf6=
+udf7=
+udf8=
+udf9=
+udf10=
+card_token=
+card_no=
+field0=
+field1=
+field2=
+field3=ps@paytm
+field4=
+field5=613345778912993937
+field6=
+field7=00|APPROVED OR COMPLETED SUCCESSFULLY
+field8=QR
+field9=Transaction Successful|Completed Using Callback
+payment_source=sist
+cardToken=
+authenticationMethod=
+PG_TYPE=UPI-PG
+error=E000
+error_Message=No Error
+net_amount_debit=10
+discount=0.00
+offer_key=
+offer_availed=
+splitInfo={"splitStatus":"splitNotReceived","splitSegments":[]}
+unmappedstatus=captured
+hash=0e2a805d3d2ffcfeeb1d181b5e6a5b0997ef3caa6eaf86af5bc3ffc79f2478a488572460578308cf052b50fd80e9fb79f94cfdd36b2f91a7de7f4b512f9007d7
+bank_ref_no=ICIACCHHOBH3TADDBGF5H11RXXBDSFJCU3JB
+bank_ref_num=ICIACCHHOBH3TADDBGF5H11RXXBDSFJCU3JB
+bankcode=INTENT
+surl=https://test.payu.in/admin/test_response
+curl=https://test.payu.in/admin/test_response
+furl=https://test.payu.in/admin/test_response
+pa_name=PayU
+```
+
+#### Wallet
+
+```text Success
+mihpayid=613345778913028505
+mode=CASH
+status=success
+key=DSHd23
+txnid=580d3a03c624676709cd
+amount=10.00
+addedon=2026-09-07 09:31:56
+productinfo=Product Info
+firstname=Payu-Admin
+lastname=
+address1=
+address2=
+city=
+state=
+country=
+zipcode=
+email=test@example.com
+phone=1234567890
+udf1=
+udf2=
+udf3=
+udf4=
+udf5=
+udf6=
+udf7=
+udf8=
+udf9=
+udf10=
+card_token=
+card_no=
+field0=
+field1=
+field2=
+field3=
+field4=
+field5=
+field6=
+field7=
+field8=
+field9=Transaction Completed Successfully
+payment_source=payu
+cardToken=
+authenticationMethod=
+PG_TYPE=CASH-PG
+error=E000
+error_Message=No Error
+net_amount_debit=10
+discount=0.00
+offer_key=
+offer_availed=
+splitInfo={"splitStatus":"splitNotReceived","splitSegments":[]}
+unmappedstatus=captured
+hash=dc4bfca9a4798e54dfeb9f5fa63236af4a4abf6e7a1e668b3724512e7989728d2b10ea001f6c6631fc99e7636668ad16e0d2a21bb6114baedbc7b59d7a675213
+bank_ref_no=a14c59b2-72cd-4b65-ad27-716913ec6608
+bank_ref_num=a14c59b2-72cd-4b65-ad27-716913ec6608
+bankcode=AMON
+surl=https://test.payu.in/admin/test_response
+curl=https://test.payu.in/admin/test_response
+furl=https://test.payu.in/admin/test_response
+pa_name=PayU
+```
+
 #### Payments Event Payload Parameter Description
 
 <Callout icon="📘" theme="info">
