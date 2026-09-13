@@ -60,7 +60,7 @@ flowchart TB
 
 ```
 
-Plain-text view:
+Entity Relationships:
 
 ```text
 checkout.html
