@@ -40,23 +40,24 @@ By the end, you should be able to:
 The following describes the flow represented by the source, not a statement that it has been executed.
 
 ```mermaid
-flowchart LR
-    A[checkout.html\ncontact + cart] -->|PayU.saveOrder| B[(sessionStorage\npayu_order)]
+flowchart TB
+    A[checkout.html<br/>contact + cart] -->|PayU.saveOrder| B[(sessionStorage<br/>payu_order)]
     A --> C[payu-cards.html]
     B --> C
-    C -->|PayU.getOrder| D[PayU.createPayment\nPOST /api/payu/create-payment]
-    D --> E[server response\nkey/hash/action/surl/furl]
-    C -->|adds pg=CC, bankcode=CC\nand card fields| F[hidden POST form]
+    C -->|PayU.getOrder| D[PayU.createPayment<br/>POST /api/payu/create-payment]
+    D --> E[server response<br/>key/hash/action/surl/furl]
+    C -->|adds pg=CC, bankcode=CC<br/>and card fields| F[hidden POST form]
     E --> F
-    F --> G[PayU _payment\ntest or production]
+    F --> G[PayU _payment<br/>test or production]
     G -->|surl| H[success callback]
     G -->|furl| I[failure callback]
-    H --> J[validate response hash\nthen verify_payment]
+    H --> J[validate response hash<br/>then verify_payment]
     I --> J
     J --> K[webhook + reconciliation]
     K --> L[idempotent fulfilment]
-    N[server/payu-cards-server.js\n/api/payu/cards/initiate] -. reference route .-> E
+    N[server/payu-cards-server.js<br/>/api/payu/cards/initiate] -. reference route .-> E
     N -. optional BIN route .-> O[bin-status]
+
 ```
 
 Plain-text view:
