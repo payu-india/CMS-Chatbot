@@ -1,7 +1,9 @@
 ---
 title: '[NEW] Partner Webhooks'
 deprecated: false
-hidden: true
+hidden: false
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
