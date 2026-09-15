@@ -1,7 +1,7 @@
 ---
 title: '[Step 3] Exchange Authorization Code API - Partner Integration'
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---

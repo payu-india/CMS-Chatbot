@@ -1,7 +1,7 @@
 ---
 title: '[Step 2] Get Authorization Code - Partner Integration'
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
