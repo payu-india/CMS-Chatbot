@@ -2,7 +2,9 @@
 title: Partner Payments UPI TPV Integration
 deprecated: false
 hidden: false
-icon: far fa-arrow-left-from-dotted-line
+icon: far fa-person-military-to-person
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
