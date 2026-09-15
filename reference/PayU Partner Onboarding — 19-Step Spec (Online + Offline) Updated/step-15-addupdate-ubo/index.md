@@ -24,5 +24,7 @@ excerpt: >-
 
 
   Multiple UBOs can be submitted using array indexing: `ubo[0]`, `ubo[1]`, etc.
-hidden: false
+hidden: true
+link:
+  new_tab: false
 ---
