@@ -69,7 +69,9 @@ Before you begin, ensure you have:
 
 ***
 
-<Partner_Payment_Info/ >
+<Partner_Payment_Auth />
+
+<br />
 
 ## Step 2: Initiate UPI Intent Payment
 
@@ -513,9 +515,9 @@ After the customer completes (or cancels) the payment in their UPI app, PayU sen
 
 Ensure these URLs are configured in PayU's system:
 
-- `partner_webhook_success` — Called on successful payment
-- `partner_webhook_failure` — Called on failed payment
-- `partner_webhook_cancelled` — Called when payment is cancelled
+\- `partner_webhook_success` — Called on successful payment
+\- `partner_webhook_failure` — Called on failed payment
+\- `partner_webhook_cancelled` — Called when payment is cancelled
 
 **Sample Success Webhook Payload:**
 
@@ -795,10 +797,10 @@ If all match, mark the transaction as confirmed.
 
 Partner Payment UPI Intent is ideal for:
 
-- **Mobile-first apps** — Ride-hailing, food delivery, e-commerce apps
-- **Quick checkout** — Minimize steps and friction
-- **In-app purchases** — Games, content subscriptions, digital goods
-- **Instant payments** — Bills, recharges, peer-to-peer transfers
+\- **Mobile-first apps** — Ride-hailing, food delivery, e-commerce apps
+\- **Quick checkout** — Minimize steps and friction
+\- **In-app purchases** — Games, content subscriptions, digital goods
+\- **Instant payments** — Bills, recharges, peer-to-peer transfers
 
 ***
 
@@ -824,8 +826,8 @@ Partner Payment UPI Intent is ideal for:
 
 **OAuth URLs:**
 
-- Auth Code: `https://uat-partner.payu.in/api/v1/merchants/auth_code`
-- Access Token: `https://uat-accounts.payu.in/oauth/token`
+\- Auth Code: `https://uat-partner.payu.in/api/v1/merchants/auth_code`
+\- Access Token: `https://uat-accounts.payu.in/oauth/token`
 
 <Warning>
 **⚠️ Info Gap: Test UPI VPAs**
@@ -835,14 +837,14 @@ The PDF does not provide test UPI VPAs or simulator instructions for testing UPI
 
 ### Test Workflow
 
-1. Generate OAuth access token
-2. Initiate UPI Intent payment with `txn_s2s_flow=4`
-3. Verify `intentURIData` is returned in response
-4. Test UPI app invocation on Android/iOS test devices
-5. Complete test payment in UPI app
-6. Verify webhook is received
-7. Call Verify Payment API
-8. Reconcile webhook vs verification response
+1\. Generate OAuth access token
+2\. Initiate UPI Intent payment with `txn_s2s_flow=4`
+3\. Verify `intentURIData` is returned in response
+4\. Test UPI app invocation on Android/iOS test devices
+5\. Complete test payment in UPI app
+6\. Verify webhook is received
+7\. Call Verify Payment API
+8\. Reconcile webhook vs verification response
 
 ### Validation Checklist
 
@@ -854,47 +856,47 @@ The PDF does not provide test UPI VPAs or simulator instructions for testing UPI
 
 ### Capturing S2S Parameters
 
-- ✅ **Always capture real customer IP** — Check `X-Forwarded-For`, `X-Real-IP` headers if behind proxy/CDN
-- ✅ **Capture accurate user-agent** — Use the actual HTTP `User-Agent` header, never hardcode
-- ✅ **Never use server IP** as `s2s_client_ip` — This will cause validation failures
+\- ✅ **Always capture real customer IP** — Check `X-Forwarded-For`, `X-Real-IP` headers if behind proxy/CDN
+\- ✅ **Capture accurate user-agent** — Use the actual HTTP `User-Agent` header, never hardcode
+\- ✅ **Never use server IP** as `s2s_client_ip` — This will cause validation failures
 
 ### UPI App Invocation
 
-- ✅ **Check if UPI app is installed** before attempting to open deep link
-- ✅ **Provide fallback UI** if no UPI app is installed ("Please install Google Pay or PhonePe")
-- ✅ **Show waiting screen** after invoking UPI app with "Completing payment..." message
-- ✅ **Handle app-switch timeout** — Update UI if customer doesn't return within 2-3 minutes
+\- ✅ **Check if UPI app is installed** before attempting to open deep link
+\- ✅ **Provide fallback UI** if no UPI app is installed ("Please install Google Pay or PhonePe")
+\- ✅ **Show waiting screen** after invoking UPI app with "Completing payment..." message
+\- ✅ **Handle app-switch timeout** — Update UI if customer doesn't return within 2-3 minutes
 
 ### Security
 
-- ✅ **Always verify webhook hash** before updating payment status
-- ✅ **Secure client_secret storage** — Never expose in client-side code
-- ✅ **Use HTTPS** for all webhook endpoints
-- ✅ **Implement rate limiting** on webhook handlers
+\- ✅ **Always verify webhook hash** before updating payment status
+\- ✅ **Secure client_secret storage** — Never expose in client-side code
+\- ✅ **Use HTTPS** for all webhook endpoints
+\- ✅ **Implement rate limiting** on webhook handlers
 
 ### Reliability
 
-- ✅ **Implement idempotency** using `txnid` to prevent duplicate processing
-- ✅ **Use unique txnid** per transaction — Never reuse
-- ✅ **Handle "pending" status gracefully** — Don't show "failed" immediately
-- ✅ **Implement webhook retry logic** — PayU retries webhooks, handle duplicates
-- ✅ **Always call Verify Payment API** after webhook for final confirmation
+\- ✅ **Implement idempotency** using `txnid` to prevent duplicate processing
+\- ✅ **Use unique txnid** per transaction — Never reuse
+\- ✅ **Handle "pending" status gracefully** — Don't show "failed" immediately
+\- ✅ **Implement webhook retry logic** — PayU retries webhooks, handle duplicates
+\- ✅ **Always call Verify Payment API** after webhook for final confirmation
 
 ### Integration
 
-- ✅ **Implement OAuth token refresh** — Tokens expire after \~1 hour
-- ✅ **Log all API requests/responses** for debugging
-- ✅ **Monitor webhook latency** — Alert if webhooks delayed beyond expected time
-- ✅ **Test on real devices** — Emulators may not handle UPI deep links correctly
+\- ✅ **Implement OAuth token refresh** — Tokens expire after \~1 hour
+\- ✅ **Log all API requests/responses** for debugging
+\- ✅ **Monitor webhook latency** — Alert if webhooks delayed beyond expected time
+\- ✅ **Test on real devices** — Emulators may not handle UPI deep links correctly
 
 ***
 
 ## Next Steps
 
-- [Payment Links Hosted Checkout](#) — Multi-payment method web-based checkout
-- [Partner Payment UPI TPV Integration](#) — UPI Intent with third-party verification
-- [Verify Payment API Reference](#) — Complete API documentation
-- [Partner Webhook Configuration Guide](#) — Advanced webhook handling
+\- [Payment Links Hosted Checkout](#) — Multi-payment method web-based checkout
+\- [Partner Payment UPI TPV Integration](#) — UPI Intent with third-party verification
+\- [Verify Payment API Reference](#) — Complete API documentation
+\- [Partner Webhook Configuration Guide](#) — Advanced webhook handling
 
 <Success>
 **Integration Complete!** You can now process UPI Intent payments with direct app invocation using PayU Partner Payments API.
