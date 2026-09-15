@@ -1,7 +1,7 @@
 ---
 title: '[New] Partner Payment using UPI TPV'
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---

@@ -1,7 +1,7 @@
 ---
 title: '[NEW] Partner Payment using UPI Intent [S2S]'
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
