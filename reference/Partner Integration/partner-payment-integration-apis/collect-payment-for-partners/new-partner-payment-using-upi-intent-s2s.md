@@ -1,7 +1,9 @@
 ---
-title: '[NEW] Partner Payment using UPI Intent [S2S]'
+title: Partner Payment using UPI Intent [S2S]
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
@@ -36,7 +38,7 @@ Content-Type: application/json
     &#x20;For more information, refer to [Token Generation Flow used for Partner Payments.](ref:token-generation-flow-for-old-partner-merchants)
 </Callout>
 
->
+\>
 
 ***
 
