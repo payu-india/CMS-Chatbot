@@ -72,5 +72,7 @@ excerpt: >-
   | Skipped | Individual / Sole Prop | **Required** |
 
   | Skipped | All others | **Required** |
-hidden: false
+hidden: true
+link:
+  new_tab: false
 ---
