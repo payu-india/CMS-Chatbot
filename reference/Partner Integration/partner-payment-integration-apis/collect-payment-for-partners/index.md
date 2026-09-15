@@ -1,7 +1,9 @@
 ---
-title: '[NEW] Collect Payment for Partners'
+title: Collect Payment for Partners
 deprecated: false
-hidden: true
+hidden: false
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
