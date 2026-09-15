@@ -31,7 +31,7 @@ This integration is ideal for:
 
 The Partner Payments Hosted Checkout flow follows these steps:
 
-1. **OAuth Authentication** — Obtain an access token with scopes: `hub_session`
+1. **Get the Access token&#x20;**&#x20;— Obtain an access token with scopes: `hub_session`
 
 2. **Initiate Payment** — POST a payment request to the Partner Payments API with transaction details, callback URLs (`surl`, `furl`, `curl`), and a computed hash
 
@@ -66,10 +66,6 @@ Before you begin, ensure you have:
 <Warning>
 **Important:** All hash computations for partner payments use your OAuth `client_secret`, NOT the merchant salt used in direct merchant integrations.
 </Warning>
-
-***
-
-## Step 1: Generate OAuth Access Token
 
 <Partner_Payment_Auth />
 
