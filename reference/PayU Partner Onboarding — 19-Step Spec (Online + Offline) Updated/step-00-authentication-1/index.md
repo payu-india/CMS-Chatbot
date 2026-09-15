@@ -43,5 +43,7 @@ excerpt: >-
   09, 11, 14, 15) |
 
   | `client_manage_agreement` | Agreement management (Step 16) |
-hidden: false
+hidden: true
+link:
+  new_tab: false
 ---
