@@ -1,11 +1,11 @@
 ---
-title: '[NEW] Partner Webhooks'
+title: Partner Webhooks
 deprecated: false
 hidden: false
 link:
   new_tab: false
 metadata:
-  robots: index
+  robots: noindex
 ---
 After a customer completes a payment, PayU sends a webhook POST request to your configured partner webhook URL with the complete transaction details. This page covers the webhook payload structure, hash verification, and database configuration.
 
