@@ -36,5 +36,7 @@ excerpt: >-
   ## After Success
 
   Merchant activated. Day-0 flags: S2S, tokenisation, callbacks, refunds.
-hidden: false
+hidden: true
+link:
+  new_tab: false
 ---
