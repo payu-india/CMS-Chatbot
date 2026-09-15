@@ -2,7 +2,9 @@
 title: Testing and Troubleshooting Partner Integration
 deprecated: false
 hidden: false
-icon: far fa-arrow-left-from-dotted-line
+icon: 🔎
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
