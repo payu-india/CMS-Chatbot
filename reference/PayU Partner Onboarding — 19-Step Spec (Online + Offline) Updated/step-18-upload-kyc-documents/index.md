@@ -44,5 +44,7 @@ excerpt: >-
   - `DOCUMENT_APPROVED` — Verified successfully
 
   - `DOCUMENT_REJECTED` — Rejected — delete and re-upload
-hidden: false
+hidden: true
+link:
+  new_tab: false
 ---
