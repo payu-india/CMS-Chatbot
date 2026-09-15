@@ -1,7 +1,7 @@
 ---
 title: Partner Payments UPI Intent Integration
 deprecated: false
-hidden: true
+hidden: false
 icon: far fa-arrow-left-from-dotted-line
 metadata:
   robots: index
