@@ -23,5 +23,7 @@ excerpt: >-
   - Check agreement/E-sign status
 
   - Check overall onboarding stage and activation readiness
-hidden: false
+hidden: true
+link:
+  new_tab: false
 ---
