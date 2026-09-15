@@ -71,9 +71,7 @@ Before you begin, ensure you have:
 
 ## Step 1: Generate OAuth Access Token
 
-Partner Payments API requires a 3-step OAuth 2.0 authentication flow to obtain the final Bearer token.
-
-
+<Partner_Payment_Auth/ >
 
 ## Step 2: Initiate Hosted Checkout Payment
 
