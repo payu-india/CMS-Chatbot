@@ -36,5 +36,7 @@ excerpt: >-
   ELSE (offline flow, UBO already has an Aadhaar XML + share code from UIDAI):
       Use "AadhaarXmlOfflineForUBO" — upload the XML file + share code directly
   ```
-hidden: false
+hidden: true
+link:
+  new_tab: false
 ---
