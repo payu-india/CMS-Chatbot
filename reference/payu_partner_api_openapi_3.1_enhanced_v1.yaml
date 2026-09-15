@@ -333,6 +333,24 @@ paths:
                   description: >-
                     `string` — Entity type; determines CKYC method and later
                     steps
+                merchant[onboarding_type]:
+                  type: string
+                  default: online
+                  enum:
+                    - online
+                    - offline
+                merchant[pos_merchant]:
+                  type: boolean
+                  default: 'false'
+                  description: >-
+                    Post the values as "true" if you select the values as
+                    "offline: for the "merchant[onboarding_type]" propeery.
+                merchant[latitude]:
+                  type: string
+                  default: Merchant geographical latitude co-ordinate.
+                merchant[longitude]:
+                  type: string
+                  default: Merchant geographical longitude co-ordinate.
               required:
                 - merchant[display_name]
                 - merchant[email]
