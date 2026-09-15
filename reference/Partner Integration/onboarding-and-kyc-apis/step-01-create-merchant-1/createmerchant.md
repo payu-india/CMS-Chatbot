@@ -241,11 +241,15 @@ The **CreateMerchant** API creates a new merchant shell account on PayU (Step 01
 ### Body parameters
 
 <Accordion title="Body parameters" icon="fa-table">
-  | Parameter                                                                      | Description                                     | Example                    |
-  | :----------------------------------------------------------------------------- | :---------------------------------------------- | :------------------------- |
-  | merchant\[display_name]<br /><code>mandatory</code>                            | `string` — Business or display name             | `Test Merchant`            |
-  | merchant\[email]<br /><code>mandatory</code>                                   | `string` — Merchant email                       | `testmerchant@yopmail.com` |
-  | merchant\[mobile]<br /><code>mandatory</code>                                  | `string` — 10-digit Indian mobile number        | `9876543210`               |
-  | merchant\[product]<br /><code>mandatory</code>                                 | `string` — PayU product type; must be `PayUbiz` | `PayUbiz`                  |
-  | merchant\[business_details]\[business_entity_type]<br /><code>mandatory</code> | `string` — Business entity type                 | `Private Limited`          |
+  | Parameter                                                                      | Description                                                                                                               | Example                    |
+  | :----------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------ | :------------------------- |
+  | merchant\[display_name]<br /><code>mandatory</code>                            | `string` — Business or display name                                                                                       | `Test Merchant`            |
+  | merchant\[email]<br /><code>mandatory</code>                                   | `string` — Merchant email                                                                                                 | `testmerchant@yopmail.com` |
+  | merchant\[mobile]<br /><code>mandatory</code>                                  | `string` — 10-digit Indian mobile number                                                                                  | `9876543210`               |
+  | merchant\[product]<br /><code>mandatory</code>                                 | `string` — PayU product type; must be `PayUbiz`                                                                           | `PayUbiz`                  |
+  | merchant\[business_details]\[business_entity_type]<br /><code>mandatory</code> | `string` — Business entity type                                                                                           | `Private Limited`          |
+  | merchant\[onboarding_type]                                                     | `string` —Post the value as "online" for online merchants. For offline or merchants using QR, post "offline"              | online                     |
+  | merchant\[pos_merchant]                                                        | `boolean` —Post the values as "true" if you select the values as "offline: for the "merchant\[onboarding_type]" propeery. | false                      |
+  | merchant\[latitude]                                                            | Merchant geographical latitude co-ordinate.                                                                               | 19.076090                  |
+  | merchant\[longitude]                                                           | Merchant geographical longitude co-ordinate.                                                                              | 72.877426                  |
 </Accordion>
