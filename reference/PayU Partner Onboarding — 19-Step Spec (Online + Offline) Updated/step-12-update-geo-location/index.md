@@ -21,5 +21,7 @@ excerpt: >-
 
   Geo-location is captured during agent/field visits for offline merchants to
   verify physical presence at the declared address.
-hidden: false
+hidden: true
+link:
+  new_tab: false
 ---
