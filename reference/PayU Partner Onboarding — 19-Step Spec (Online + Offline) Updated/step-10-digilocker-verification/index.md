@@ -53,5 +53,7 @@ excerpt: >-
   5. Documents flow from DigiLocker directly to PayU
 
   6. Merchant is redirected back to partner's pre-configured URL
-hidden: false
+hidden: true
+link:
+  new_tab: false
 ---
