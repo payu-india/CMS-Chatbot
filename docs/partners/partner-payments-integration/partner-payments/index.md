@@ -11,10 +11,12 @@ Partner Payments API enables partners and resellers to integrate PayU's payment 
 
 Partner Payments uses a three-step OAuth authentication flow followed by payment initiation via RESTful APIs. Here's the complete flow:
 
-1. **Authentication Flow** — Partners generate an OAuth access token through a three-step process:
-   - Step 1: Password grant using reseller credentials to obtain an initial access token
-   - Step 2: Request authorization code for the specific merchant using the initial token
-   - Step 3: Exchange the authorization code for the final access token with `partner_payments` scope
+1. **Authentication Flow** — Partners get the access token through a two-step process:
+   1. Receiving the auth_code on the redirect URI
+   2. Validate this auth_code using the Validate Auth Code and Client API.
+
+      You will receive an accesss_token.
+   3. Use the access token in the **Payment Initiation&#x20;**&#x73;tep.
 
 2. **Payment Initiation** — Partners use the final access token to call the `/partner/payments` endpoint with:
    - Transaction details (amount, product info, customer details)
