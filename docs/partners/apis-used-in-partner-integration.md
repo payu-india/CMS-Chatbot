@@ -1,8 +1,10 @@
 ---
 title: APIs used in Partner Integration
 deprecated: false
-hidden: false
+hidden: true
 icon: far fa-rectangle-api
+link:
+  new_tab: false
 metadata:
   title: APIs used in Partner Integration
   robots: index
