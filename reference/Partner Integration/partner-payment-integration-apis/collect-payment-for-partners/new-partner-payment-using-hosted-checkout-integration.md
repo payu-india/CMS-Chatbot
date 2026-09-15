@@ -1,5 +1,5 @@
 ---
-title: '[NEW] Partner Payment using Hosted Checkout Integration '
+title: 'Partner Payment using Hosted Checkout Integration '
 deprecated: false
 hidden: false
 metadata:
