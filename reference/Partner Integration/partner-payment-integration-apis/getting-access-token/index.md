@@ -1,14 +1,13 @@
 ---
 title: Get Access Token - Partner Integration
-excerpt: ''
 deprecated: false
-hidden: true
+hidden: false
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
 To get access token to be used in Partner integration:
 
