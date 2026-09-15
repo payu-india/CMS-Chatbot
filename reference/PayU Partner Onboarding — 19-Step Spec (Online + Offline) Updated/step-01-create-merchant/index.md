@@ -28,5 +28,7 @@ excerpt: >-
 
   - Store both `mid` and `uuid` from the response — different APIs require
   different identifiers
-hidden: false
+hidden: true
+link:
+  new_tab: false
 ---
