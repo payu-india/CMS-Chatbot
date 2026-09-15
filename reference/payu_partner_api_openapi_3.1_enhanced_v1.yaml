@@ -356,6 +356,15 @@ paths:
                   type: string
                   default: ''
                   description: Merchant geographical longitude co-ordinate.
+                merchant[business_entity_sub_type]:
+                  type: string
+                  enum:
+                    - company_owned
+                    - partner_retail
+                    - franchise_owned_franchise_operated
+                    - franchise_owned_company_operated
+                  description: Post the value for Offline onboarding.
+                  default: company_owned
               required:
                 - merchant[display_name]
                 - merchant[email]
