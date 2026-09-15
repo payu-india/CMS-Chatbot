@@ -1,7 +1,9 @@
 ---
 title: Token Generation Flow used for Partner Payments
 deprecated: false
-hidden: true
+hidden: false
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
@@ -11,7 +13,7 @@ If you are old partner merchant, you can't generate reseller client credentials 
 
 * [\[Step 2\] Get Authorization Code - Partner Integration](https://docs.payu.in/reference/get-authorization-code-partner-integration)
 
-* [[\[Step 3\] Exchange Authorization Code API - Partner Integration](ref:exchange-authorization-code-partner-api)](https://docs.payu.in/reference/exchange-authorization-code-partner-api)
+* \[[\[Step 3\] Exchange Authorization Code API - Partner Integration](ref:exchange-authorization-code-partner-api)]\([https://docs.payu.in/reference/exchange-authorization-code-partner-api](https://docs.payu.in/reference/exchange-authorization-code-partner-api))
 
 <Callout icon="📘" theme="info">
   ### Reference:
