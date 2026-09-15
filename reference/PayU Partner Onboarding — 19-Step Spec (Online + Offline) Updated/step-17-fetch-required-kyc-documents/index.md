@@ -426,5 +426,7 @@ excerpt: >-
   | 7 | PAN Card of Company | PAN Card |
 
   | 8 | Service Agreement | Service Agreement |
-hidden: false
+hidden: true
+link:
+  new_tab: false
 ---
