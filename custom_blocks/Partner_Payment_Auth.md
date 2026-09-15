@@ -1,7 +1,7 @@
 ---
 name: Partner_Payment_Auth
 ---
-## Step 1: OAuth Authentication
+## Step 1: Get the Access Token
 
 ### Step 1.1: Receiving the auth_code on the redirect URI
 
