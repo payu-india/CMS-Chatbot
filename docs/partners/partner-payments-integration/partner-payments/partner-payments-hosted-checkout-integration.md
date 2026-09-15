@@ -71,7 +71,9 @@ Before you begin, ensure you have:
 
 ## Step 1: Generate OAuth Access Token
 
-<Partner_Payment_Auth/ >
+<Partner_Payment_Auth />
+
+<br />
 
 ## Step 2: Initiate Hosted Checkout Payment
 
@@ -491,7 +493,7 @@ echo "Response: " . $response;
 
 **Key Response Field:**
 
-- **redirectUri** — The PayU hosted checkout URL. **Immediately redirect the customer to this URL.**
+\- **redirectUri** — The PayU hosted checkout URL. **Immediately redirect the customer to this URL.**
 
 **Redirect Implementation:**
 
@@ -548,27 +550,27 @@ fetch('/api/create-payment', {
 
 Once redirected to `redirectUri`, the customer will:
 
-1. **See PayU's hosted checkout page** with:
-   - Your merchant branding (logo, colors)
-   - Transaction summary (amount, product description)
-   - Available payment methods
+1\. **See PayU's hosted checkout page** with:
+\- Your merchant branding (logo, colors)
+\- Transaction summary (amount, product description)
+\- Available payment methods
 
-2. **Select a payment method:**
-   - **Credit/Debit Cards** (Visa, Mastercard, Amex, Rupay)
-   - **UPI** (Intent or Collect flow)
-   - **Net Banking** (50+ banks)
-   - **Wallets** (PayU Money, PhonePe, Paytm, etc.)
+2\. **Select a payment method:**
+\- **Credit/Debit Cards** (Visa, Mastercard, Amex, Rupay)
+\- **UPI** (Intent or Collect flow)
+\- **Net Banking** (50+ banks)
+\- **Wallets** (PayU Money, PhonePe, Paytm, etc.)
 
-3. **Complete authentication:**
-   - Card: CVV + OTP (3D Secure)
-   - UPI: PIN authentication
-   - Net Banking: Bank credentials
-   - Wallet: Wallet PIN/OTP
+3\. **Complete authentication:**
+\- Card: CVV + OTP (3D Secure)
+\- UPI: PIN authentication
+\- Net Banking: Bank credentials
+\- Wallet: Wallet PIN/OTP
 
-4. **Receive outcome:**
-   - **Success** → Redirected to `surl`
-   - **Failure** → Redirected to `furl`
-   - **Cancel** → Redirected to `curl`
+4\. **Receive outcome:**
+\- **Success** → Redirected to `surl`
+\- **Failure** → Redirected to `furl`
+\- **Cancel** → Redirected to `curl`
 
 <Info>
 **Callback URL Best Practices:**
@@ -590,9 +592,9 @@ After the customer completes payment, PayU sends a webhook notification to your 
 
 Ensure these URLs are configured:
 
-- `partner_webhook_success` — Called on successful payment
-- `partner_webhook_failure` — Called on failed payment
-- `partner_webhook_cancelled` — Called when payment is cancelled
+\- `partner_webhook_success` — Called on successful payment
+\- `partner_webhook_failure` — Called on failed payment
+\- `partner_webhook_cancelled` — Called when payment is cancelled
 
 <Callout icon="⚠️" theme="info">
   ### Contact your Account Manager to register for the Webhooks.
@@ -898,19 +900,19 @@ Concert, sports, conference ticket sales with multiple payment methods and high 
 
 **OAuth URLs:**
 
-- Auth Code: `https://uat-partner.payu.in/api/v1/merchants/auth_code`
-- Access Token: `https://uat-accounts.payu.in/oauth/token`
+\- Auth Code: `https://uat-partner.payu.in/api/v1/merchants/auth_code`
+\- Access Token: `https://uat-accounts.payu.in/oauth/token`
 
 ### Test Workflow
 
-1. Generate OAuth access token
-2. Create payment request
-3. Redirect to hosted checkout (test environment)
-4. Complete payment using test card/UPI
-5. Verify redirect to surl/furl
-6. Confirm webhook received
-7. Call Verify Payment API
-8. Reconcile all data points
+1\. Generate OAuth access token
+2\. Create payment request
+3\. Redirect to hosted checkout (test environment)
+4\. Complete payment using test card/UPI
+5\. Verify redirect to surl/furl
+6\. Confirm webhook received
+7\. Call Verify Payment API
+8\. Reconcile all data points
 
 ### Validation Checklist
 
@@ -922,40 +924,40 @@ Concert, sports, conference ticket sales with multiple payment methods and high 
 
 ### Security
 
-- ✅ Store `client_secret` securely — Never expose in client-side code
-- ✅ Always verify webhook hash before processing
-- ✅ Use HTTPS for all callback URLs (surl/furl/curl)
-- ✅ Implement rate limiting on webhook endpoints
+\- ✅ Store `client_secret` securely — Never expose in client-side code
+\- ✅ Always verify webhook hash before processing
+\- ✅ Use HTTPS for all callback URLs (surl/furl/curl)
+\- ✅ Implement rate limiting on webhook endpoints
 
 ### Reliability
 
-- ✅ Implement idempotency using `txnid`
-- ✅ Use unique `txnid` per transaction — Never reuse
-- ✅ Implement retry logic for Verify Payment API
-- ✅ Log all API requests/responses for debugging
+\- ✅ Implement idempotency using `txnid`
+\- ✅ Use unique `txnid` per transaction — Never reuse
+\- ✅ Implement retry logic for Verify Payment API
+\- ✅ Log all API requests/responses for debugging
 
 ### Integration
 
-- ✅ Implement OAuth token refresh (tokens expire \~1 hour)
-- ✅ Monitor webhook delivery latency
-- ✅ Test both success and failure scenarios
-- ✅ Handle network timeouts gracefully
+\- ✅ Implement OAuth token refresh (tokens expire \~1 hour)
+\- ✅ Monitor webhook delivery latency
+\- ✅ Test both success and failure scenarios
+\- ✅ Handle network timeouts gracefully
 
 ### Customer Experience
 
-- ✅ Use descriptive `productinfo` so customers recognize the charge
-- ✅ Include customer name and email (improves checkout experience)
-- ✅ Provide clear success/failure pages on surl/furl
-- ✅ Show payment status in real-time after redirect
+\- ✅ Use descriptive `productinfo` so customers recognize the charge
+\- ✅ Include customer name and email (improves checkout experience)
+\- ✅ Provide clear success/failure pages on surl/furl
+\- ✅ Show payment status in real-time after redirect
 
 ***
 
 ## Next Steps
 
-- [Partner Payment UPI Intent Integration](#) — Direct UPI app invocation
-- [Payment Links for Partners Overview](#) — Shareable payment links
-- [Verify Payment API Reference](#) — Complete verification documentation
-- [Partner Webhook Guide](#) — Advanced webhook patterns
+\- [Partner Payment UPI Intent Integration](#) — Direct UPI app invocation
+\- [Payment Links for Partners Overview](#) — Shareable payment links
+\- [Verify Payment API Reference](#) — Complete verification documentation
+\- [Partner Webhook Guide](#) — Advanced webhook patterns
 
 <Success>
 **Integration Complete!** You can now accept payments through PayU's hosted checkout using the Partner Payments API.
