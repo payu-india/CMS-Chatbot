@@ -23,5 +23,7 @@ excerpt: >-
 
   Bank statements are required for POS merchants to assess financial risk and
   determine POS device eligibility.
-hidden: false
+hidden: true
+link:
+  new_tab: false
 ---
