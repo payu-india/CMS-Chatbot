@@ -22,5 +22,7 @@ excerpt: >-
   ## VKYC Statuses
 
   `not_initiated` → `in_progress` → `approved` | `declined`
-hidden: false
+hidden: true
+link:
+  new_tab: false
 ---
