@@ -23,5 +23,7 @@ To get access token to be used in Partner integration:
    * [UPI S2S Integration API](ref:upi-s2s-partner-integration-api)
 
 <Callout icon="📘" theme="info">
-  **Note**: [Refresh Token API](ref:refresh_token_api) is used to fetch new access_token using the refresh_token received in the **Validate Auth Code and Client** API.
+  ### **Note**:&#x20;
+
+  [Refresh Token API](ref:refresh_token_api) is used to fetch new access_token using the refresh_token received in the **Validate Auth Code and Client** API.
 </Callout>
