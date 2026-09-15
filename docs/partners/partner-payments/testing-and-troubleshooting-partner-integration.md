@@ -37,13 +37,15 @@ Before diving into specific tests, understand which testing steps apply to your 
 Complete this step before initiating any payment flow.
 </Note>
 
-**Test:** Generate OAuth access token using the 3-step flow
+**Test:** Generate access token using the 3-step flow as in [Get Access Token - Partner Integration](ref:getting-access-token)
 
 **Expected Result:**
 
-- Step 1 (Reseller Password Grant): Returns `access_token` with `scope=hub_session`
-- Step 2 (Merchant Authorization Code): Returns `authorization_code`
-- Step 3 (Code Exchange): Returns final `access_token` with scopes `create_payment_links partner_payment_links partner_payments`
+1. Received the **auth_code** on the redirect URI
+2. Validate this **auth_code** using the [Validate Auth Code and Client API](ref:validate-auth-code-and-client).
+
+   You will receive an accesss_token.
+3. Use the access token in the Partner Payment APIs.
 
 **Validation Checklist:**
 
@@ -53,75 +55,6 @@ Complete this step before initiating any payment flow.
 - [ ] Token is cached and reused until expiry
 
 **Common Failures:** See [Error: Auth token is not valid](#error-auth-token-is-not-valid) below
-
-***
-
-### 1.2 Verify Hash Generation
-
-<Warning>
-Partner Payments hash uses **OAuth `client_secret`**, NOT merchant salt.
-</Warning>
-
-**Hash Formula (Standard Payment):**
-
-```
-merchant_id|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||client_secret
-```
-
-**Note:** Six consecutive pipes (`||||||`) between `udf5` and `client_secret`
-
-**Hash Formula (UPI TPV):**
-
-```
-merchant_id|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||client_secret
-```
-
-**Important:** `beneficiarydetail` is **NOT** included in hash calculation
-
-**Test:** Compute hash for a sample transaction
-
-**Sample Hash String (Standard):**
-
-```
-8739528|TXN20240315123456|518.02|Payment for service|John|john@example.com|||||||||YOUR_CLIENT_SECRET
-```
-
-**Expected Output:**
-
-- SHA-512 hash: 128-character lowercase hexadecimal string
-- Example: `a1b2c3d4e5f6...` (128 chars)
-
-**Validation Checklist:**
-
-- [ ] Hash function uses SHA-512
-- [ ] Output is lowercase hexadecimal
-- [ ] Empty fields result in consecutive pipes (e.g., `||`)
-- [ ] client_secret is used (not merchant salt)
-- [ ] beneficiarydetail excluded from hash (UPI TPV only)
-
-**Debug Example (Python):**
-
-```python
-import hashlib
-
-merchant_id = "8739528"
-txnid = "TXN20240315123456"
-amount = "518.02"
-productinfo = "Payment for service"
-firstname = "John"
-email = "john@example.com"
-udf1 = udf2 = udf3 = udf4 = udf5 = ""
-client_secret = "YOUR_CLIENT_SECRET"
-
-hash_string = f"{merchant_id}|{txnid}|{amount}|{productinfo}|{firstname}|{email}|{udf1}|{udf2}|{udf3}|{udf4}|{udf5}||||||{client_secret}"
-print(f"Hash String: {hash_string}")
-
-hash_value = hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
-print(f"Computed Hash: {hash_value}")
-print(f"Hash Length: {len(hash_value)}")  # Should be 128
-```
-
-**Common Failures:** See [Error: Invalid hash](#error-invalid-hash) below
 
 ***
 
