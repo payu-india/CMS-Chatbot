@@ -1,7 +1,9 @@
 ---
-title: Handling Net Banking and UPI Deep-Links in WebView
+title: Handle Net Banking and UPI Deep-Links in WebView
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
