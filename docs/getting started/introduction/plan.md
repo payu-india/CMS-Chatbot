@@ -5,104 +5,104 @@ hidden: true
 metadata:
   robots: index
 ---
-# PayU Developer Docs — Full Restructuring Plan (v2)
+# PayU Developer Docs — Full Restructuring Plan (v3)
 
-**Prepared**: September 16, 2026 | **Tier Strategy**: Integration-complexity tiers (No-Code / Prebuilt UI / Developer Required) | **AI-Ready Architecture**
-
-***
-
-## How to Read This Document
-
-This plan has five parts:
-
-1. **Baseline Measurement** — how to use GSC and GA to establish where you are today before touching anything
-2. **New Information Architecture** — the complete top-to-bottom structure: tier definitions, taxonomy, global nav, full left nav across all 107 products, and six page-level templates
-3. **AI-Readiness Layer** — the metadata schema, semantic chunking rules, and MCP alignment
-4. **Migration Map** — every current section and product mapped to its new home, with exact repo paths
-5. **What You've Missed** — capabilities and content types absent from both the current docs and this plan's scope
-
-Phases and timelines are at the end.
+**Prepared**: September 16, 2026 | **IA Source**: V7 (research-backed) | **AI-Ready Architecture**
 
 ***
 
-## The Three Tiers — Definitions
+## What Changed in v3
 
-The tier strategy organizes products by how much developer involvement is required, not by use case. This is the central organizing principle for every navigation, page label, and audience callout in the new docs.
+This version aligns the plan with **IA V7** — a separately produced information architecture grounded in 10 user research findings (R1–R10). V7 is the canonical IA source. Key structural differences from v2:
 
-**Tier 1 — No-Code** (27 products)
-Zero developer involvement. A merchant or ops person configures the product via the PayU dashboard, installs a plugin, or shares a link. No API calls, no code to write. Examples: Payment Links, WooCommerce Plugin, Subscriptions Dashboard, Payouts Dashboard, Refunds Dashboard.
+| What v2 had                                   | What V7 (v3) uses                                                            | Why it changes                                                         |
+| --------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| Tiers as top-level nav sections               | Tiers as sub-groupings _within_ Accept Payments                              | Developers browse by use case, not by effort level                     |
+| Payment Methods inside Accept Payments        | Payment Methods as its own top-level umbrella                                | COD and AutoPay are discovery problems that need a dedicated home      |
+| SDKs scattered under Accept Payments          | SDKs as a standalone top-level umbrella                                      | 9 Android SDKs, 5 iOS SDKs — too deep to bury inside checkout docs     |
+| Go Live items scattered per-product           | Go Live as a standalone top-level umbrella                                   | R4: "Integrated and accepting payments are different journeys"         |
+| No Solution Guides                            | Solution Guides by business type                                             | Marketplace, Subscription, International, D2C each need a curated path |
+| Basic Developer Tools                         | Developer Tools expanded with Debugging & Logs (R6) and Quickstart Code (R7) | Top developer frustrations are debugging and copy-paste code access    |
+| "Find Your Integration" as new page to create | Quick Start Wizard **already exists** at `quick-start.md` (hidden)           | P0 action: unhide — solves 3 research findings at once                 |
+| COD not mentioned                             | COD as a first-class Payment Method with activation guide                    | R5: COD is completely absent from current docs                         |
+| GoKwik not mentioned                          | GoKwik plugin under eCommerce Plugins                                        | R9: GoKwik docs–CPV–API loop blocks non-transacting merchants          |
 
-**Tier 2 — Prebuilt UI** (19 products)
-A developer does the integration work, but PayU owns and maintains the complete payment UI. The merchant never builds a payment form. Examples: PayU Hosted Checkout, Android CheckoutPro SDK, Checkout Plus, Affordability Widget.
+***
 
-**Tier 3 — Developer Required** (47 products)
-Full custom integration. The merchant builds the payment form and/or flow, calls APIs directly, and owns the UI. Full PCI scope responsibility. Examples: Merchant Hosted Checkout, S2S flows, Subscriptions API, Payouts API, Partner Onboarding API.
+## User Research Findings (R1–R10)
 
-**Multi-Tier** (14 products)
-A single product where different channels or features sit in different tiers. Examples: Refunds (T1: dashboard, T3: API), Subscriptions (T1: dashboard & links, T3: API/AutoPay), Offers (T1: dashboard, T2: widget, T3: API). These need an "Overview" page that routes developers to the right tier.
+Every structural decision in V7 is backed by one or more of these findings. They are referenced throughout the plan.
+
+| \#  | Finding                                                                                                                                                                      | IA Fix                                                                                         |
+| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| R1  | 52% of integrations are developer-built by someone who is NOT the merchant. Developers need: prod credentials, copyable code, callbacks, errors, logs, production checklist. | `Who Is Setting This Up?` → Developer Setup Package path                                       |
+| R2  | All successful developers used AI (Claude/ChatGPT/Gemini) to complete integration. DevGuide Builder MCP exists but is buried.                                                | `Ask AI First` promoted to Getting Started; also in Developer Tools                            |
+| R3  | Research next step: "Create user-friendly integration video guides." Less experienced devs wanted video and layman-friendly docs.                                            | Video Guides in Getting Started                                                                |
+| R4  | Confusion around the final go-live step. "Integrated and accepting payments are different journeys."                                                                         | Go Live as a standalone top-level section                                                      |
+| R5  | Difficulty finding or enabling COD and AutoPay.                                                                                                                              | COD added to Payment Methods; AutoPay cross-referenced; `Enable Payment Methods` in Go Live    |
+| R6  | Developer need: "callbacks, errors, logs." Error codes alone are insufficient.                                                                                               | Debugging & Logs section (6 new pages) in Developer Tools                                      |
+| R7  | AI-assisted devs pasted docs into AI and needed copyable code. `recipes/` directory not referenced in IA.                                                                    | Quickstart Code section in Developer Tools AND Getting Started                                 |
+| R8  | Most merchants cannot name their checkout type. PayU Hosted vs Merchant Hosted vs CommercePro confuses them.                                                                 | Checkout Type Quick Reference in Getting Started; "also known as" labels on every product page |
+| R9  | GoKwik docs–CPV–API loop is a PayU-influenced wait blocking non-transacting merchants.                                                                                       | GoKwik as dedicated entry under eCommerce Plugins                                              |
+| R10 | Less experienced users wanted clearer step-by-step guides. Experience level question suggested.                                                                              | Transaction Debug Checklist (step-by-step); Video Guides indexed by experience level           |
 
 ***
 
 ## Part 1 — Baseline Measurement (GSC + GA)
 
-Do this before moving a single file. Once restructuring begins, pre-migration data becomes your primary validation reference.
+Do this before moving a single file. Pre-migration data is your primary validation reference.
 
 ### Google Search Console
 
-Pull 16 weeks of data — this covers a full Indian festive season cycle. Export every report as CSV; don't rely on the GSC UI for trend analysis.
+Pull 16 weeks of data — full Indian festive season cycle. Export all reports as CSV.
 
-**Queries Report** — Segment into four intent buckets. For each bucket record: total impressions, average position, average CTR, and the top 10 queries.
+**Queries Report** — Segment into four intent buckets and record: total impressions, average position, average CTR, top 10 queries per bucket.
 
-- **Navigation intent**: `payu docs`, `payu developer portal`, `docs.payu.in`, `payu api documentation` — how many developers actively look for your docs
-- **Integration intent**: `payu payment integration`, `payu woocommerce plugin`, `payu android sdk`, `payu upi integration`, `payu checkout integration`, `payu recurring payments api`, `payu payouts api` — demand signal for which tiers and products matter most in search
-- **Troubleshooting intent**: `payu hash mismatch`, `payu error 422`, `payu payment failed`, `payu webhook not received`, `payu invalid hash` — where developers get stuck
-- **Comparison intent**: `payu vs razorpay developer docs`, `payu integration easy` — competitive positioning
+- **Navigation**: `payu docs`, `payu developer portal`, `docs.payu.in`
+- **Integration**: `payu payment integration`, `payu woocommerce plugin`, `payu android sdk`, `payu upi integration`, `payu recurring payments api`, `payu payouts api`, `payu merchant hosted checkout`
+- **Troubleshooting**: `payu hash mismatch`, `payu error 422`, `payu payment failed`, `payu webhook not received`, `payu 505 error` (R6 — bank integration errors are a top frustration)
+- **Checkout-type confusion** (R8): `payu hosted checkout vs merchant hosted`, `payu checkout express`, `payu commercepro integration` — measure how many developers are searching for the same product by different names
 
-**Pages Report** — Sort by impressions descending. The top 20 pages by impressions are your highest-value URLs. Protect these during migration or guarantee 301 redirects are live before launch.
+**Pages Report** — Sort by impressions descending. Top 20 URLs are your highest-value assets. Protect them through migration or guarantee 301s are live before launch.
 
-Also examine the bottom: pages with zero impressions in 16 weeks are either `hidden: true` (your platform likely sets `noindex` from this field), too thin for Google to surface, or orphaned with no inbound links.
+**Coverage Report** — Download the "Not indexed" list. Start by checking these known hidden pages against it: `quick-start.md`, `who-is-setting-this-up.md`, `what-can-you-do-next.md`, webhooks section. If these are not indexed, you'll see the GSC impact the moment you unhide them.
 
-**Coverage Report** — Download the "Not indexed" list. Any navigable page not indexed is invisible to 100% of organic developer traffic.
-
-**Core Web Vitals** — Record pass/fail rates by section. Developer docs with poor CWV subtly signal product quality.
-
-**Tier-specific query segments to track separately**: Tier 1 searches skew toward `woocommerce payu plugin`, `payu payment link setup`, `payu shopify`; Tier 2 toward `payu checkout sdk`, `payu android sdk integration`; Tier 3 toward `payu s2s api`, `payu merchant hosted checkout`, `payu subscriptions api`. Knowing which tier drives the most organic demand should inform which sections you restructure first.
+**Core Web Vitals** — Record pass/fail rates by section.
 
 ### Google Analytics 4
 
 **Five reports that matter most:**
 
-**1. Top Pages by Engagement** — Sort by Views, but cross-reference with Average Engagement Time. High views + low engagement = intent mismatch or content failure. High engagement + low views = underranked valuable content (SEO opportunity).
+**1. Top Pages by Engagement** — Views cross-referenced with Average Engagement Time. High views + low engagement = intent mismatch. High engagement + low views = underranked valuable content.
 
-**2. Entry Pages (Organic only)** — Filter by `First user medium = organic`. These are your de-facto homepages for organic developer traffic. If developers are landing deep in docs with no context (no tier indicator, no "you might need to read this first" callout), that's a structural gap.
+**2. Entry Pages (Organic)** — Filter by `First user medium = organic`. These are your de-facto homepages for search traffic. If developers land deep in docs with no tier indicator, no "you might need to read this first" callout — that's a structural gap the V7 IA solves.
 
-**3. Exit Pages** — High exits mid-guide = friction point. High exits on API endpoint pages = developer couldn't find the answer. These are your highest-priority content fixes.
+**3. Exit Pages** — High exits mid-guide = friction point. High exits on API pages = developer couldn't find the answer. These are priority rewrite targets.
 
-**4. Tier 1 vs Tier 2 vs Tier 3 funnel** — Once the new structure is live, build a GA4 custom funnel: `[Tier selection page]` → `[Product overview page]` → `[Integration guide or dashboard guide]` → `[API reference or success state]`. Drop-off at each step tells you where the tier navigation breaks.
+**4. Go-Live Funnel** — Build a custom GA4 funnel once the new structure is live: `[Integration guide]` → `[Test payment page]` → `[Go Live checklist]` → `[First production transaction]`. R4 found that "integrated" and "accepting payments" are different journeys. Measure where developers fall off between them.
 
-**5. Internal Search Queries** — Top 100 search queries from inside the docs. Every high-volume query without a great result page is a content gap.
+**5. Internal Search Queries** — Top 100 internal search queries. The volume of searches for "hosted checkout" vs "payu checkout" vs "redirect checkout" directly quantifies the R8 naming confusion problem. Use this to prioritize which "also known as" labels to write first.
 
 **Events to set up before restructuring begins:**
 
-- `code_copy` — fires when a developer copies any code block. Your best engagement signal.
-- `tier_selection` — fires when a developer clicks a tier badge or tier navigation item. Tells you which tiers developers actually use.
-- `outbound_to_dashboard` — fires when a developer navigates from docs to the PayU dashboard.
-- `404_error` — critical during and after migration.
-- `feedback_helpful` / `feedback_unhelpful` — on every page's feedback widget (add this to all pages as part of the restructure).
-- `search_query` — captures internal search terms.
+- `code_copy` — fires when a developer copies any code block (R7 signal)
+- `wizard_completed` — fires when the Quick Start Wizard reaches its final step (once unhidden)
+- `tier_path_selected` — fires when a developer clicks No-Code / Prebuilt / Custom in Accept Payments
+- `ai_chat_opened` — fires when developer opens Ask AI / DevGuide Builder (R2 signal)
+- `404_error` — critical during and after migration
+- `feedback_helpful` / `feedback_unhelpful` — on every page
 
-**Snapshot these numbers today before any changes:**
+**Baseline snapshot (record before any changes):**
 
-| Metric                                     | Snapshot | Target (post-restructure, 6 months)      |
-| ------------------------------------------ | -------- | ---------------------------------------- |
-| Organic sessions/month to docs             | —        | +40%                                     |
-| Avg. engagement time on integration guides | —        | \>3 minutes                              |
-| Avg. engagement time on API endpoint pages | —        | \>2 minutes                              |
-| 404 error rate                             | —        | \<0.5%                                   |
-| Top integration guide exit rate            | —        | \<35%                                    |
-| Internal search usage rate                 | —        | Decreasing (better nav = less searching) |
-| % of navigable pages indexed (GSC)         | —        | \>90%                                    |
-| Tier 1 guide completion rate               | —        | \>60%                                    |
+| Metric                                         | Today | Target (6 months post-launch) |
+| ---------------------------------------------- | ----- | ----------------------------- |
+| Organic sessions/month                         | —     | +40%                          |
+| Avg. engagement time on integration guides     | —     | \>3 min                       |
+| Exit rate on MHC/S2S guides (T3)               | —     | \<35%                         |
+| Wizard completion rate (once unhidden)         | —     | \>50%                         |
+| Internal search usage rate                     | —     | Decreasing                    |
+| % of navigable pages indexed                   | —     | \>90%                         |
+| "Was this helpful" unhelpful rate on API pages | —     | \<20%                         |
 
 ***
 
@@ -110,595 +110,1407 @@ Also examine the bottom: pages with zero impressions in 16 weeks are either `hid
 
 ### 2.1 Canonical Terminology
 
-Lock these names before any file moves. Inconsistency is a trust signal — if "Merchant Hosted Checkout" and "Custom Checkout" appear interchangeably, developers (and AI agents) lose confidence.
+Lock before any file moves. Inconsistency is a trust signal — and R8 shows it actively causes developers to build the wrong thing.
 
-| Current (inconsistent)                                   | Canonical Name                                                            |
-| -------------------------------------------------------- | ------------------------------------------------------------------------- |
-| PayU Hosted Checkout / Redirect Flow / Prebuilt Checkout | **PayU Hosted Checkout**                                                  |
-| Merchant Hosted Checkout / Custom Checkout / MHC         | **Merchant Hosted Checkout**                                              |
-| Checkout Express / CommercePro Checkout                  | **Checkout Express**                                                      |
-| S2S / Server-to-Server / Direct API                      | **Server-to-Server (S2S)**                                                |
-| General APIs / verify_payment / Management API           | **Management APIs**                                                       |
-| Key & Salt / Merchant Key / API Key                      | **Merchant Key** (key) and **API Salt** (salt) — always paired            |
-| Hash / Checksum / SHA512 hash                            | **Hash** — never "checksum"                                               |
-| txnid / transaction_id / merchant_txn_id                 | **txnid** — the PayU canonical field name                                 |
-| Recurring Payments / Subscriptions / Auto-debit          | **Subscriptions** (the product) / **Recurring Payments** (the capability) |
-| Tier 1 / No-Code / Dashboard                             | **Tier 1 — No-Code**                                                      |
-| Tier 2 / Prebuilt UI / SDK                               | **Tier 2 — Prebuilt UI**                                                  |
-| Tier 3 / Developer / API / Custom                        | **Tier 3 — Developer Required**                                           |
+| Current (inconsistent)                                      | Canonical Name                                                    | "Also known as" label on page                        |
+| ----------------------------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------- |
+| PayU Hosted Checkout / Redirect Flow / Prebuilt Checkout    | **PayU Hosted Checkout**                                          | "Also called: Redirect Checkout, Prebuilt Checkout"  |
+| Merchant Hosted Checkout / Custom Checkout / MHC / Seamless | **Merchant Hosted Checkout**                                      | "Also called: Custom Checkout, Seamless Integration" |
+| Checkout Express / CommercePro / Checkout Plus              | **CommercePro / Checkout Plus**                                   | "Also called: Checkout Express, Embedded Checkout"   |
+| S2S / Server-to-Server / Direct API                         | **Server-to-Server (S2S)**                                        |                                                      |
+| Key & Salt / Merchant Key / API Key                         | **Merchant Key** (key) + **API Salt** (salt)                      |                                                      |
+| Hash / Checksum / SHA512 hash                               | **Hash**                                                          |                                                      |
+| txnid / transaction_id / merchant_txn_id                    | **txnid**                                                         |                                                      |
+| Recurring Payments / Subscriptions / Auto-debit / SI        | **Subscriptions** (product) / **Recurring Payments** (capability) |                                                      |
 
-**URL slug convention**: lowercase, hyphenated, structured as `/{section}/{product}/{page}`. Never include tier numbers in slugs — tiers can change, but slugs should be permanent. Examples:
+**URL slug convention**: lowercase, hyphenated, `/{umbrella}/{product}/{page}`. Never include tier numbers in slugs.
 
-- `/accept-payments/merchant-hosted-checkout/cards` not `/tier3/MHC/credit-debit-cards`
-- `/manage-subscriptions/subscriptions-api/create-a-mandate` not `/Offerings/introduction-recurring-payments`
-- `/send-payouts/smart-send/overview` not `/payouts/payouts-integration/smart-send-introduction`
-
-**API endpoint page naming**: always `Verb + Noun`. Predictable for search and AI retrieval.
-
-- Good: `Create a Payment`, `Register a Mandate`, `Initiate a Payout`, `Fetch Bill Details`
-- Bad: `postservice`, `Payment APIs`, `Mandate Registration`, `Get Transaction`
+**API endpoint naming**: always `Verb + Noun`. `Create a Payment`, `Register a Mandate`, `Initiate a Payout`. Never: `postservice`, `Payment APIs`, `verify_payment API`.
 
 ***
 
 ### 2.2 Global Navigation
-
-Five items maximum. No dropdowns. Clean.
 
 ```
 [PayU Logo]    Docs    API Reference    SDKs    Changelog    Support
                                                         [🔍 Search]  [Dashboard →]
 ```
 
-The **Dashboard →** CTA should be visually distinct and persistent. Developers switch between docs and dashboard constantly — never make them hunt for it.
+Five items, no dropdowns. **Dashboard →** is persistent and visually distinct.
 
 ***
 
-### 2.3 Left Navigation — Complete Structure
+### 2.3 Left Navigation — Full V7 Structure
 
-This is the full left nav across all 107 products, organized by use-case section with tier labels. Items marked **(NEW)** do not exist in the current repo and must be written. Tier badges `[T1]` `[T2]` `[T3]` appear as visual labels on each nav item, not as section dividers — a developer scanning the nav instantly knows how much work each product requires.
+This is the complete left nav from IA V7, preserving all umbrella terms, L0 pages, and L1–L3 sub-pages. Status annotations indicate work required. `★` = new page to create. `↑` = exists but hidden (unhide). `→` = exists, needs move. `∿` = exists, needs merge/edit.
 
 ```
-──────────────────────────────
-  OVERVIEW & GET STARTED
-──────────────────────────────
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  GETTING STARTED
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-• What is PayU                              [concept]
-• Key Concepts                              [concept — hash, webhooks, environments]
-(• Architecture Overview)                   [NEW — payment flow diagram]
-• Choose Your Integration Path             [NEW — tier decision guide, CRITICAL]
-• Create Your Account                       [guide]
-• Your First Payment in 5 Minutes          [tutorial — PayU Hosted Checkout quickstart]
-• Test Your Integration                     [guide — sandbox, test cards, test UPI IDs]
-(• Go-Live Checklist)                       [NEW — per tier: T1 checklist / T2 checklist / T3 checklist]
+• Find Your Integration                   [↑ quick-start.md — P0 UNHIDE. Solves R1+R2+R8]
+  The <PayUQuickStartWizard /> component.
+  Routes in ≤4 questions: intent → platform
+  → branding need → who's setting this up?
 
-──────────────────────────────
+• Who Is Setting This Up?                 [↑ who-is-setting-this-up.md — P0 UNHIDE + build]
+    ├─ Setting Up Myself                  [★ New]
+    ├─ Developer Setup Package            [★ New — R1]
+    │    ├─ Prod Credentials Guide        [★ New]
+    │    ├─ Quickstart Code               [★ New — surfaces recipes/]
+    │    ├─ Callbacks & Webhook Ref       [★ New]
+    │    └─ Production Checklist          [★ New]
+    └─ Build with AI                      [★ New — R2]
+
+• Account Setup
+    ├─ Create Your Account                [→ Move from getting started/register-with-payu/]
+    │    ├─ Complete KYC & Activation
+    │    └─ Documents Checklist
+    └─ Get Your Credentials               [∿ Merge 4 near-duplicate pages — R1]
+
+• Your First Test Payment                 [→ Move from Collect Payments/.../test-payment-details.md]
+
+• Ask AI First                            [→ Move to here — R2: all successful devs used AI]
+
+• Video Guides                            [★ New — R3+R10]
+
+• Checkout Type Quick Reference           [★ New — R8: most merchants can't name their checkout type]
+
+• What Can You Do Next?                   [↑ what-can-you-do-next.md — UNHIDE + complete]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   ACCEPT PAYMENTS
-──────────────────────────────
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-[T1] No-Code
+── NO-CODE SOLUTIONS ──────────────────── [Tier 1]
 
-  ▸ Payment Links
-    • Overview
-    • Create from Dashboard
-    • Bulk Upload via CSV
+• Payment Links & Invoices
+    ├─ Overview
+    ├─ Create a Payment Link
+    ├─ Bulk Upload
+    ├─ Dashboard Management
+    ├─ Payment Buttons
+    ├─ Invoices
+    └─ Payment Link APIs
 
-  • Payment Buttons                         [T1]
-  • Invoices                                [T1]
+• UPI QR
+    ├─ Static QR
+    └─ Dynamic QR
 
-  ▸ eCommerce Plugins                       [T1]
-    • Overview — Choose Your Platform
-    • Shopify
-    • WooCommerce
-    • Magento / Adobe Commerce
-    • BigCommerce
-    • OpenCart
-    • PrestaShop
-    • Wix
-    • Shopmatic
-    • Fynd
-    • Odoo
-    • Bagisto
-    • Zoho
-    • CommercePro Checkout Plugin
+• WhatsApp Payments
+    ├─ Enhanced Payment Links
+    └─ UPI Intent (P2M)
 
-  ▸ In-Person Payments                      [T1]
-    • Static UPI QR
-    • Integrated Dynamic Storefront QR
+── PREBUILT INTEGRATIONS ─────────────── [Tier 2]
 
-  ▸ WhatsApp                                [T1 in this section]
-    • Enhanced Payment Links
+• PayU Hosted Checkout
+    ├─ Overview & When to Use             ["Also known as: Redirect Checkout, Prebuilt Checkout" — R8]
+    ├─ Integrate
+    │    ├─ Web Integration
+    │    └─ Mobile WebView
+    ├─ Customize the Payment Page
+    ├─ Test
+    └─ Go Live
 
-[T2] Prebuilt UI
+• CommercePro / Checkout Plus
+    ├─ Overview & When to Use             ["Also known as: Checkout Express, Embedded Checkout" — R8]
+    ├─ Integrate
+    ├─ Test
+    └─ Go Live
 
-  ▸ Web Checkout
-    • PayU Hosted Checkout — Overview
-    • Integration Guide
-    • Customise the Checkout
-    • Handle the Payment Response
-    • Checkout Express (CommercePro)        [T2]
-    • Checkout Plus                         [T2]
+• eCommerce Plugins
+    ├─ Shopify
+    ├─ WooCommerce
+    ├─ Magento
+    ├─ BigCommerce
+    ├─ OpenCart
+    ├─ PrestaShop
+    ├─ Wix
+    ├─ GoKwik                             [★ New — R9]
+    └─ Others
 
-  ▸ Mobile SDKs                             [T2]
-    • Overview — Choose Your SDK
-    • Android CheckoutPro SDK
-    • iOS CheckoutPro SDK
-    • React Native SDK
-    • Flutter SDK
-    • Cordova SDK
-    • Capacitor / Ionic SDK
-    • UPI Bolt SDK
+• In-Person & POS
+    ├─ Dynamic Storefront QR
+    ├─ POS Terminal
+    └─ Android POS SDK
 
-  ▸ WhatsApp                                [T2 in this section]
-    • Native Payments (P2M / UPI Intent)
-    • Interakt Integration
+── CUSTOM INTEGRATIONS ───────────────── [Tier 3]
 
-  ▸ In-Person & QR                          [T2]
-    • Dynamic UPI QR (API-generated)
+• Merchant Hosted Checkout
+    ├─ Overview & When to Use             ["Also known as: Custom Checkout, Seamless" — R8]
+    ├─ Integrate by Payment Method
+    │    ├─ Cards (Seamless)
+    │    ├─ UPI (Collect & Intent)
+    │    ├─ Net Banking
+    │    ├─ Wallets
+    │    ├─ EMI (Seamless)
+    │    ├─ BNPL
+    │    ├─ EFTNET
+    │    ├─ PayPal
+    │    └─ Pluxee
+    ├─ Collect Additional Charges
+    ├─ UPI Collect Disablement
+    ├─ Integration Checklist
+    ├─ Test
+    └─ Go Live
 
-  ▸ Payment Links API                       [T2]
-    • Create Payment Links via API
+• Server-to-Server (S2S)
+    ├─ Overview & When to Use
+    ├─ Integrate
+    │    ├─ General Flow
+    │    ├─ Classic (Cards + OTP)
+    │    ├─ Decoupled
+    │    ├─ Direct Authorization
+    │    ├─ UPI Variants
+    │    └─ UPI Smart Intent (Non-SDK)
+    ├─ Integration Checklist
+    ├─ Test
+    └─ Go Live
 
-[T3] Developer Required
+• Advanced & Specialized
+    ├─ Save Cards & Tokenization
+    │    ├─ Model 1 — PayU Hosted
+    │    ├─ Model 2 — Zero Code Change
+    │    ├─ Model 3 — Simple REST API
+    │    ├─ Collect Payments with Saved Card
+    │    ├─ API Notifications for Tokenization
+    │    └─ Impact on Recurring Payments
+    ├─ TPV Verification
+    ├─ Apple Pay
+    ├─ Native OTP Flow
+    ├─ Virtual Cards
+    │    └─ Web Integration
+    ├─ Auth & Capture (Pre-Authorize)
+    ├─ Account Funding Transactions (AFT)
+    ├─ Merchant Wallet
+    │    └─ Closed-Loop Wallet Management
+    ├─ Mutual Funds Payments
+    ├─ Banking Connect (IBMB/NBBL)
+    └─ Payment via Prepaid (Vouchers)
 
-  ▸ Merchant Hosted Checkout                [T3]
-    • Overview
-    • Integration Guide
-    ▸ Payment Methods
-      • Cards (Credit / Debit)
-      • UPI Intent
-      • UPI Collect
-      • Net Banking
-      • Net Banking TPV
-      • Wallets
-      • BNPL
-      • EFTNet
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  PAYMENT METHODS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  ▸ Server-to-Server (S2S)                  [T3]
-    • Overview
-    • Standard Flow
-    • Classic Flow (OTP)
-    • Decoupled Flow
-    • Direct Authorization
-    • Handle the Payment Response
+• Overview & Integration Matrix
 
-  ▸ Specialized Payment Methods             [T3]
-    • Apple Pay
-    • Native OTP Flow
-    • EFTNET / Bank Transfer (NEFT/RTGS/IMPS)
-    • Banking Connect (IBMB / NBBL)
-    • Mutual Fund Payments
-    • Account Funding Transaction (AFT)
-    • Virtual Cards
-    • Merchant Wallet / Closed Loop Wallet
-    • TPV — API Integration
-    • Push Tokenization
-    • LazyPay Pay-in-3
-    • EMI NTB Flow
-    • Redemption using Prepaid
+• Cards
+    ├─ Overview
+    └─ Test Cards
 
-  ▸ In-Person & POS                         [T3]
-    • Android POS SDK
-    • POS Terminal Integration
+• UPI
+    ├─ Overview
+    └─ UPI AutoPay / Mandates              [Cross-ref to Manage Subscriptions — R5]
 
-  • Payment Links Bulk Upload API           [T3]
+• Net Banking
 
-Multi-Tier Products
+• Wallets
 
-  ▸ EMI                                     [T2 auto in Hosted Checkout | T3 API]
-    • Overview — Choose Your Approach
-    • EMI in Hosted Checkout                [T2]
-    • EMI API Integration                   [T3]
-    • Cardless EMI                          [T3]
+• EMI
+    ├─ Overview
+    └─ EMI NTB Flow
 
-  ▸ BNPL                                    [T2 auto in Hosted Checkout | T3 API]
-    • Overview — Choose Your Approach
-    • BNPL in Hosted Checkout               [T2]
-    • BNPL API Integration (S2S)            [T3]
+• Buy Now Pay Later (BNPL)
 
-  ▸ UPI QR                                  [T1 static | T2 dynamic API]
-    • Overview — Choose Your Approach
-    • Static QR from Dashboard              [T1]
-    • Dynamic QR via API                    [T2]
+• Bank Transfer (EFTNet)
 
-  ▸ Save Cards / Tokenization               [T2 auto | T3 Push Tokenization]
-    • Overview — Choose Your Approach
-    (• Compliance: RBI Tokenization Rules)  [NEW]
-    • Auto-Tokenization (Hosted Checkout)   [T2]
-    • Push Tokenization API                 [T3]
+• Cash on Delivery (COD)                  [★ New — R5: completely absent from docs]
+    ├─ Overview
+    └─ Enable COD on Your Account         [★ New — activation steps only in support docs currently]
 
-  ▸ WhatsApp Payments                       [T1 links | T2 native SDK]
-    • Overview — Choose Your Approach
-    • Enhanced Payment Links                [T1]
-    • Native Payments (P2M / UPI Intent)    [T2]
+• International Payments (overview)
+    ├─ International Cards
+    ├─ Dynamic Currency Conversion
+    └─ Cross-Border / LRS
 
-──────────────────────────────
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SDKs
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• Overview & Platform Support Matrix
+
+• Mobile SDKs
+    ├─ Android
+    │    ├─ CheckoutPro SDK
+    │    ├─ Google Pay SDK                 [currently in mobile-sdks/android-google-pay-sdk/]
+    │    ├─ PhonePe SDK                    [currently in mobile-sdks/android-phonepe-sdk/]
+    │    ├─ UPI Bolt SDK
+    │    ├─ UPI SDK                        [currently in mobile-sdks/android-upi-sdk/]
+    │    ├─ 3DS 2.0 / FlashPay SDK         [currently in mobile-sdks/android-3ds20-sdk/]
+    │    ├─ Core SDK                       [currently in mobile-sdks/android-core-sdk/]
+    │    ├─ Custom Browser SDK
+    │    └─ Native OTP Assist SDK
+    ├─ iOS
+    │    ├─ CheckoutPro SDK
+    │    ├─ 3DS 2.0 / FlashPay SDK
+    │    ├─ UPI SDK
+    │    ├─ Core SDK
+    │    └─ Custom Browser SDK
+    ├─ React Native
+    │    ├─ CheckoutPro SDK
+    │    └─ Core SDK
+    ├─ Flutter
+    │    └─ CheckoutPro SDK
+    └─ Cordova
+         ├─ CheckoutPro SDK
+         └─ UPI Bolt SDK (Capacitor)
+
+• Server-Side SDKs
+    ├─ PHP
+    ├─ Java
+    ├─ Node.js
+    ├─ Python
+    └─ Go
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   INCREASE CONVERSION
-──────────────────────────────
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  ▸ Affordability Suite
-    • Overview
-    • Offers Dashboard                      [T1]
-    • Affordability Widget                  [T2]
-    ▸ Offers API Integration                [T3]
-      • Create an Offer
-      • SKU-Based Discounts
-      • No-Cost EMI Offers
+• Offers
+    ├─ Dashboard
+    ├─ API Integration
+    └─ SKU-Based / Cashback / No-Cost EMI
 
-  ▸ Rewards & Loyalty                       [T3]
-    • Loyalty Edge API
-    • TWID Rewards Integration
-    • Rewards Partner Integration
-    • RewardX / Pay with Rewards
-    • Flipkart Supercoins
+• Affordability Widget
+    ├─ Integrate with JavaScript
+    └─ Integrate with ReactJS
 
-  • Recommendation Engine                   [T2]
-  • MobiKwik Link Pay                       [T3]
+• Loyalty Edge
+    ├─ Workflow
+    ├─ Enable
+    └─ Launch a Program
 
-──────────────────────────────
+• Recommendation Engine
+    ├─ Customer Journey
+    └─ API
+
+• Rewards Partner Integration
+    ├─ Redemption
+    ├─ Earn
+    └─ Refund
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   MANAGE SUBSCRIPTIONS
-──────────────────────────────
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  ▸ Subscriptions                           [Multi-Tier]
-    • Overview — Choose Your Approach
-    • Subscription Links & Dashboard        [T1]
-    • Subscriptions API                     [T3]
-    • UPI AutoPay Mandate API               [T3]
-    • Zion Subscription Automation          [T3]
-    • eNACH Integration                     [T3]
-    (• Subscription Webhooks)               [fill stub — HIGH PRIORITY]
-    (• Retry Logic & Recovery)              [NEW]
+• Overview & Key Concepts
 
-──────────────────────────────
-  MANAGE INTERNATIONAL PAYMENTS
-──────────────────────────────
+• Subscription APIs
+    ├─ API Integration
+    ├─ Plans
+    └─ Standing Instructions (International Cards)
 
-  All products in this section are [T3 — Developer Required]
+• Recurring by Payment Method
+    ├─ Cards
+    ├─ Net Banking
+    ├─ UPI AutoPay
+    └─ Pay-and-Subscribe
 
-  • Overview
-  (• Supported Currencies & Methods)        [NEW]
-  • Cross-Border Payments / Import
-  • Dynamic Currency Conversion (DCC)
-  • LRS Integration
+• Mandates
+    ├─ eNACH Registration
+    ├─ eNACH Supported Banks
+    └─ Bank Codes
 
-──────────────────────────────
+• Zion Subscription Platform
+    ├─ Workflow
+    ├─ Supported Instruments
+    ├─ Plan & Subscription APIs
+    └─ Webhooks
+
+• Subscription Dashboard
+    ├─ Create Link
+    ├─ Bulk Upload
+    └─ Manage Mandates
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   SEND PAYOUTS
-──────────────────────────────
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  ▸ Payouts                                 [Multi-Tier]
-    • Overview — Choose Your Approach
-    • Payouts Dashboard                     [T1]
-    • Single Transfer API                   [T3]
-    • Smart Send (Auto-Rail Selection)      [T3]
-    • Beneficiary Registration              [T3]
-    • Pay to Phone                          [T3]
-    • EFTNet                                [T3]
-    • Payout Webhooks & Status
-    (• Rate Limits & Bulk Limits)           [NEW]
+• Overview & Process Flow
 
-──────────────────────────────
-  RECONCILE & MANAGE PAYMENTS
-──────────────────────────────
+• Payout Lifecycle
 
-  ▸ Refunds                                 [Multi-Tier]
-    • Overview — T1 Dashboard vs T3 API
-    • Issue Refund from Dashboard           [T1]
-    • Refund API Integration                [T3]
-    • Refund States & Timelines
-    • Partial Refunds
+• Integrate
+    ├─ Single Transfer
+    ├─ Smart Send
+    ├─ Beneficiary Registration
+    └─ Pay to Phone
 
-  ▸ Chargebacks                             [Multi-Tier]
-    • Overview — T1 Dashboard vs T3 Webhooks
-    • Chargeback Dashboard                  [T1]
-    • Webhook Integration & Alerts          [T3]
-    • Submit Evidence via API               [T3]
+• Payouts Dashboard
+    ├─ Account Activity
+    ├─ Add Money
+    ├─ Transfers
+    └─ Approvals
 
-  ▸ Reports & Settlements                   [Multi-Tier]
-    • Overview
-    • Download Reports from Dashboard       [T1]
-    • Reports API                           [T3]
-    (• TDS / GST Handling)                  [NEW]
-    (• Settlement Cycle Explained)          [NEW]
+• Test Credentials
 
-──────────────────────────────
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  INTERNATIONAL PAYMENTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• Dynamic Currency Conversion (DCC)
+
+• Cross-Border (Import) Payments
+    ├─ Subscriptions with Cross-Border
+    ├─ On-Hold & Settlement APIs
+    └─ Import Plugin Integration
+
+• Liberalised Remittance Scheme (LRS)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  RECONCILE & MANAGE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• Settlements
+    ├─ Dashboard
+    ├─ TDR Reports
+    └─ Priority Settlements
+
+• Refunds
+    ├─ Refund APIs
+    ├─ Instant Refunds
+    ├─ Refunds Dashboard
+    └─ Product-Specific Notes
+
+• Chargebacks
+    ├─ Process & Types
+    ├─ Reasons & Codes
+    ├─ Closure Reasons
+    ├─ Dashboard
+    └─ Webhooks
+
+• Split Settlements
+
+• Reports
+    ├─ Generate Reports
+    ├─ Schedule Reports
+    └─ Payouts Reports
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   PARTNER & MARKETPLACE
-──────────────────────────────
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  ▸ Partner Program                         [Multi-Tier]
-    • Overview — Choose Your Approach
-    • Referral Links                        [T1]
-    • Co-Branded OAuth Onboarding           [T3]
-    • Partner API (Merchant Onboarding)     [T3]
+• Partner Program
+    ├─ Overview
+    └─ Get Incentive
 
-  ▸ Split Settlements                       [Multi-Tier]
-    • Overview
-    • Dashboard for Split Settlements       [T1]
-    • Split Settlements API                 [T3]
+• Partner Portal
+    ├─ Register
+    ├─ Configure
+    └─ Manage Users
 
-──────────────────────────────
-  BILL PAYMENTS (BBPS)
-──────────────────────────────
+• Co-Branded (OAuth) Onboarding
+    ├─ Workflow
+    ├─ Download Credentials
+    └─ APIs
 
-  • Overview
-  • BBPS Connect Agent API                  [T2]
-  • BBPS Recharge API                       [T3]
-  (• Webhook Events)                        [NEW]
+• Referral Links
 
-──────────────────────────────
+• Split Settlements
+    ├─ Overview — Aggregator Model       [CANONICAL OWNER]
+    ├─ Onboard Sub-Merchants
+    ├─ Dashboard
+    └─ Payment Integration
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  BILL PAYMENTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• BBPS
+    ├─ Connect Agent API
+    └─ Biller, Bill & Complaint APIs
+
+• Recharge
+    ├─ Workflow
+    └─ APIs
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  API REFERENCE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• API Fundamentals
+    ├─ REST API Format
+    ├─ Authentication & Security
+    └─ Handling Redirects
+         ├─ Web Checkout
+         └─ Mobile SDK Checkout
+
+• [OpenAPI Specs by Product Area]
+  (auto-rendered from reference/ directory)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   DEVELOPER TOOLS
-──────────────────────────────
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  ▸ Server-Side SDKs                        [T3]
-    • Overview
-    • PHP SDK
-    • Java SDK
-    • Node.js SDK
-    • Python SDK
-    • Go SDK
+• Debugging & Logs                        [★ New section — R6]
+    ├─ Reading API Error Responses         [★ New]
+    ├─ Common Bank Integration Errors      [★ New — bank 505 error top frustration]
+    ├─ Webhook Delivery Logs              [★ New — most common debugging need]
+    ├─ Transaction Debug Checklist         [★ New — step-by-step for R10]
+    └─ Test vs Production Env Guide        [★ New — prevents UAT/prod confusion]
 
-  ▸ Webhooks
-    • Overview
-    • Create & Configure
-    (• Event Types Catalog)                 [NEW — fill stub HIGH PRIORITY]
-    (• Payment Webhook Payloads)            [fill stub HIGH PRIORITY]
-    (• Subscription Webhook Payloads)       [fill stub HIGH PRIORITY]
-    • Verify a Webhook Signature
-    (• Retry & Failure Handling)            [NEW]
+• Security & Compliance
+    ├─ PCI DSS Scope by Integration Type  [★ New — T1: no scope, T2: minimal, T3: full]
+    ├─ Security Checklist                 [★ New]
+    ├─ Authentication Best Practices
+    └─ Fraud Prevention Guidelines
 
-  ▸ Authentication & Security
-    • API Authentication
-    • Hash Generation                       [concept + code, all languages]
-    (• Rate Limits Reference)               [NEW]
-    (• Idempotency)                         [NEW]
+• Security & Signing                      [∿ Replaces 8+ duplicate per-platform hash pages]
+    └─ Hash Verification Tool
 
-  ▸ AI Integration (MCP & CLI)
-    • Dev Guide MCP Server
-    • Remote MCP Server
-    • PayU CLI
-    • Agentic Commerce Suite
+• Quickstart Code                         [★ New section — R7: surfaces recipes/ directory]
+    ├─ PayU Hosted Checkout
+    ├─ Merchant Hosted Checkout
+    ├─ Server-to-Server (S2S)
+    └─ Payment Links
 
-  ▸ Testing & Sandbox
-    (• Sandbox Reference)                   [NEW — centralized test cards, UPI IDs, bank codes]
-    (• Simulate Payment Outcomes)           [NEW — how to trigger success/failure/pending]
-    (• Sandbox Limitations)                 [NEW]
+• Ask AI (DevGuide Builder)               [→ Moved here + in Getting Started for dual surface]
 
-  • Monitoring & Alerts
+• Webhooks                                [↑ hidden:true — P0 UNHIDE]
+    ├─ Overview & Event Catalog           [fill stub HIGH PRIORITY]
+    ├─ Payment Webhook Payloads           [fill stub HIGH PRIORITY]
+    ├─ Subscription Webhook Payloads      [fill stub HIGH PRIORITY]
+    ├─ Verify a Webhook Signature
+    └─ Retry & Failure Handling           [★ New]
 
-──────────────────────────────
-  RESOURCES
-──────────────────────────────
+• Error Codes & Troubleshooting           [∿ Merge error-handling.md + payment-error-codes.json]
 
-  • Error Code Reference
-  (• Glossary)                              [NEW — HIGH AI-READINESS IMPACT]
-  • SDKs & Libraries
-  (• Postman Collections)                   [NEW — surface existing JSON files]
-  (• Changelog)                             [NEW]
-  (• Status Page)                           [NEW — link to uptime monitor]
-  (• Community & Support)                   [NEW]
+• Testing Reference                       [★ New — centralized sandbox page]
+
+• Monitoring & Alerts
+    ├─ PayU Overwatch
+    ├─ Webhook Alerts
+    └─ Incident Response                  [★ New]
+
+• MCP & CLI
+    ├─ Remote MCP Server
+    │    ├─ Authentication
+    │    ├─ Request Format
+    │    └─ Merchant Account Management
+    ├─ DevGuide Builder MCP
+    ├─ PayU CLI
+    └─ Agentic Commerce Suite
+
+• Codes & Reference
+    ├─ Bank Codes
+    ├─ Card Type Codes
+    ├─ Payment Mode Codes
+    ├─ UPI Handles
+    ├─ Wallet Codes
+    ├─ EMI Codes
+    ├─ BNPL Codes
+    └─ MCC / Currency Codes
+
+• Glossary                                [★ New — HIGH AI-READINESS IMPACT — R8]
+
+• FAQs                                    [∿ Merge multiple FAQ files into one filterable hub]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  GO LIVE                                 [★ New top-level section — R4]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• Pre-Launch Technical Checklist          [★ New — R4: top friction point #3]
+
+• Enable Payment Methods                  [★ New — R4+R5]
+    ├─ International Payments Activation
+    ├─ AutoPay / UPI Mandate Activation
+    ├─ COD Activation
+    └─ BNPL Provider Activation
+
+• First Production Transaction            [★ New — "integrated ≠ accepting payments" gap]
+
+• Going Live with Webhooks                [★ New — most common go-live failure point]
+
+• Production Monitoring Setup             [★ New]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  SOLUTION GUIDES                         [★ New top-level section]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• Marketplace / Aggregator Business
+• Subscription Business
+• International Merchant
+• High-Growth D2C
 ```
 
 ***
 
-### 2.4 The "Choose Your Integration Path" Page
+### 2.4 Page-Level Templates
 
-This page is the single most important new page in the restructured docs. It sits at the top of the left nav and answers the question every new developer has before reading anything else: _"Where do I start?"_
-
-The page should be a decision tree built around three questions:
-
-**Question 1**: Are you a developer?
-
-- No → Go to Tier 1. Your path: `Payment Links → eCommerce Plugins → Dashboard features`
-- Yes → Continue to Q2
-
-**Question 2**: Do you need to build your own payment form/UI?
-
-- No → Tier 2 is your path. PayU renders the UI. Your path: `PayU Hosted Checkout → Checkout Express → Mobile SDKs`
-- Yes → Tier 3 is your path. You build the form. Your path: `Merchant Hosted Checkout → S2S`
-
-**Question 3** (Tier 3 developers): Which platform?
-
-- Web → Merchant Hosted Checkout or S2S
-- Mobile → Android/iOS/RN/Flutter SDKs (note: CheckoutPro is Tier 2 — they stay on Tier 3 only if they need a custom UI)
-- In-Person → Android POS SDK or POS Terminal
-
-At the bottom of this page: a matrix table showing all use-case sections (Subscriptions, Payouts, Refunds, etc.) and which tier applies within each, so developers know that even if they're a Tier 3 payment integration, they can still use the Tier 1 dashboard for refunds.
+Every page is one of seven types. Type determines structure — enforced as layouts in your docs platform, not suggestions. Templates A1 and A2 are written in production-ready MDX using the component library already in the docs platform. All other templates show the MDX component pattern to follow.
 
 ***
 
-### 2.5 Page-Level Templates
+#### Template A1 — Tier 1 (No-Code) Product Overview Page
 
-Every page is one of six types. Type determines structure. These are not suggestions — define them as enforced layouts in your docs platform.
+Used for: All 27 No-Code tier products. Entry point for non-developer merchants. Focuses on what the product does and how to start — no code, no API setup required.
 
-***
+**Frontmatter**
 
-#### Template A — Product Overview Page
-
-Used for: section landing pages and multi-tier product overview pages.
-
+```yaml
+---
+title: "{Product Name}"
+excerpt: "{One sentence: what it does, for whom, and one key benefit}"
+tier: "tier-1"
+tier_label: "No-Code"
+product: "{product-slug}"
+umbrella: "accept-payments"  # or whichever umbrella applies
+page_type: "overview"
+audience: "non-developer"
+search_keywords: ["{product name}", "{alias 1}", "{alias 2}", "{key action}"]
+also_known_as: ["{alias}"]  # only if needed per R8
+last_reviewed: "YYYY-MM-DD"
+deprecated: false
+hidden: false
+---
 ```
-[H1] Product Name
-[Tier badge(s)] — e.g., "Available at Tier 1 and Tier 3"
 
-[Lede — 2 sentences] What this product does and who it's for.
+**Page Body**
 
-[H2] Choose your approach          ← FOR MULTI-TIER PRODUCTS ONLY
-Comparison table: | | Tier 1 — No-Code | Tier 3 — Developer |
-Rows: Who it's for | Setup time | Code required | Capabilities | Limitations
-→ [Go to Tier 1 guide] or [Go to Tier 3 guide]
+```mdx
+<Banner
+  isInline={true}
+  message="Integration effort: No code or website required"
+  color="#15C614"
+  textColor="#ffffff"
+  fontSize="14px"
+  fontWeight="bold"
+/>
 
-[H2] When to use this
-Prose explanation. Include when NOT to use it. Include a comparison
-to the closest alternative if one exists.
+## What Can I Do with {Product}?
 
-[H2] How it works
-One diagram showing the sequence. Keep to the essential flow.
+{One sentence describing the core value. Who it's for. What problem it solves.}
 
-[H2] Prerequisites
+- {Use case 1 — merchant-facing benefit}
+- {Use case 2}
+- {Use case 3}
+- {Use case 4}
+
+{Optional — embed a video if one exists:}
+<Embed url="https://www.youtube.com/watch?v={video-id}" />
+
+{Optional — CTA button linking to dashboard or an in-docs guide. Never link to Postman.}
+<HTMLBlock>
+  <div style="margin: 16px 0;">
+    <a
+      href="https://onboarding.payu.in/{relevant-section}"
+      data-tooltip="{Tooltip text, e.g. 'Opens the PayU Dashboard'}"
+      style="background:#15C614;color:#fff;padding:10px 20px;border-radius:6px;font-weight:bold;text-decoration:none;font-size:14px;display:inline-block;"
+    >
+      {CTA label, e.g. "Create a Payment Link"}
+    </a>
+  </div>
+</HTMLBlock>
+
+---
+
+## Is {Product} Right for Me?
+
+{Product} is a good choice if:
+
+- **{Key phrase}** — {One sentence explaining this use case.}
+- **{Key phrase}** — {One sentence.}
+- **{Key phrase}** — {One sentence.}
+
+Consider another PayU solution if:
+
+- {Situation or constraint} → **{Alternative product}**
+- {Situation or constraint} → **{Alternative product}**
+
+<Callout icon="far fa-face-thinking" theme="warn">
+  ### Not Sure Which PayU Solution Is Right For You?
+  {Sentence about the choice being hard.} [Find the right solution →]({link to Checkout Type Quick Reference or decision guide})
+</Callout>
+
+---
+
+## What Will I Need?
+
+You don't need a website or developer to get started.
+
+You'll need:
+
+<Columns layout="fixed">
+  <Column>**{Requirement 1}:** {One-sentence description. Where to get it or how to verify.}</Column>
+</Columns>
+<Columns layout="fixed">
+  <Column>**{Requirement 2}:** {One-sentence description.}</Column>
+</Columns>
+<Columns layout="fixed">
+  <Column>**{Requirement 3}:** {One-sentence description.}</Column>
+</Columns>
+
+{Use one flat `<Columns>` per requirement. Do NOT nest `<Columns>` inside `<Columns>`.}
+
+---
+
+## How do I {Core Action — e.g. "Create a Payment Link"}?
+
+<Accordion title="1. {First step — imperative verb}" icon="far fa-{icon-name}">
+  {Instructions. What to click, what to enter, what to expect.}
+</Accordion>
+
+<Accordion title="2. {Second step}" icon="far fa-{icon-name}">
+  {Instructions.}
+</Accordion>
+
+<Accordion title="3. {Third step}" icon="far fa-{icon-name}">
+  {Instructions.}
+</Accordion>
+
+{All Accordion titles must start with a sequential number: 1., 2., 3. — no gaps, no unnumbered steps.}
+
+<Columns layout="fixed">
+  <Column>**Need detailed steps?** See [{Guide title}]({link}) →</Column>
+</Columns>
+
+---
+
+## How does My Customer {Action — e.g. "Pay"}?
+
+{Include this section only for products where the merchant needs to understand the end-customer flow. Omit for purely back-office products.}
+
+<Accordion title="1. {Customer action step 1}" icon="far fa-{icon-name}">
+  {What the customer sees and does.}
+</Accordion>
+
+<Accordion title="2. {Customer action step 2}" icon="far fa-{icon-name}">
+  {What the customer sees and does.}
+</Accordion>
+
+{Continue numbered steps for the full customer journey — do not skip any steps.}
+
+{One sentence stating what the customer does NOT need — e.g. "Your customer does not need a PayU account to pay."}
+
+---
+
+## How do I Manage {Payments / Orders / Subscriptions}?
+
+<Columns layout="fixed">
+  <Column>**{Capability 1}:** {Description of what the merchant can do.}</Column>
+</Columns>
+<Columns layout="fixed">
+  <Column>**{Capability 2}:** {Description.}</Column>
+</Columns>
+<Columns layout="fixed">
+  <Column>**{Capability 3}:** {Description.}</Column>
+</Columns>
+
+{One flat `<Columns>` per capability. Never nest `<Columns>` inside `<Columns>`.}
+
+{One sentence on what happens on payment failure or expiry and how the merchant handles it.}
+
+---
+
+## Next Steps
+
+<Cards>
+  <Card title="Start using {Product}" icon="far fa-{relevant-icon}">
+    - **{Primary action}:** [{Link text}]({link})
+    - **{Secondary action}:** [{Link text}]({link})
+    - **{Tertiary action}:** [{Link text}]({link})
+  </Card>
+  <Card title="For Developers" icon="far fa-gear-api">
+    **{API option title}:** {One sentence on what the API enables.} [{Link text}]({api-reference-link})
+  </Card>
+</Cards>
+```
+
+**Component rules:**
+
+- `<Banner>` color: T1 green = `#15C614`, T2 blue = `#0077FF`, T3 orange = `#FF6B35`
+- `<Accordion>` numbering must be sequential — no gaps, no unnumbered entries
+- "For Developers" `<Card>` is always present even on T1 pages
+- `<HTMLBlock>` CTA links only to PayU Dashboard or an in-docs guide — never Postman
+- `llms.txt` routing belongs in the site-level head file, not in page body content
+
+***
+
+#### Template A2 — Tier 2/3 Product Overview Page
+
+Used for: T2 (Prebuilt UI) and T3 (Developer Required) products. Audience is developers and platform builders. Emphasizes integration architecture, decision criteria, and limits.
+
+**Frontmatter**
+
+```yaml
+---
+title: "{Product Name}"
+excerpt: "{One sentence: what it does, who integrates it, and the integration model}"
+tier: "tier-2"           # or "tier-3" or "multi-tier"
+tier_label: "Prebuilt UI"  # or "Developer Required"
+product: "{product-slug}"
+umbrella: "accept-payments"
+page_type: "overview"
+audience: "developer"    # or "platform-builder" for T3 marketplace/aggregator
+experience_level: "intermediate"
+prerequisites:
+  - "api-authentication"
+  - "hash-generation"
+search_keywords: ["{product name}", "{alias}", "{integration method}"]
+also_known_as: ["{alias 1}", "{alias 2}"]  # Required — R8
+last_reviewed: "YYYY-MM-DD"
+deprecated: false
+hidden: false
+---
+```
+
+**Page Body**
+
+```mdx
+<Banner
+  isInline={true}
+  message="{T2: 'Integration effort: A few hours with frontend code' | T3: 'Integration effort: Custom build — developer required'}"
+  color="{T2: '#0077FF' | T3: '#FF6B35'}"
+  textColor="#ffffff"
+  fontSize="14px"
+  fontWeight="bold"
+/>
+
+<Callout icon="far fa-circle-info" theme="info">
+  **Also known as**: {alias 1}, {alias 2}. Not sure which checkout to use? See the [Checkout Type Quick Reference]({link}).
+</Callout>
+
+---
+
+## What is {Product}?
+
+{One paragraph: technical definition, how it fits in the PayU ecosystem, and the key architectural distinction — e.g. "PayU hosts the payment page" vs "you build the payment UI."}
+
+{Optional: flow diagram as an image or embedded visual.}
+
+---
+
+## When to Use {Product}
+
+| Use this when | Consider another option if |
+|---|---|
+| {Condition 1 — specific, not vague} | {Alternative product} → [{link}]({link}) |
+| {Condition 2} | {Alternative} |
+| {Condition 3} | {Alternative} |
+
+{T3 only — add PCI scope callout:}
+<Callout icon="far fa-shield-halved" theme="warn">
+  **PCI DSS scope**: Building a custom payment form means card data may touch your server. Review [PCI Scope by Integration Type]({link}) before committing to this approach.
+</Callout>
+
+---
+
+## How It Works
+
+{Numbered sequence for anything with more than 3 steps. Keep to essential steps only.}
+
+1. {Step in the payment flow}
+2. {Step}
+3. {Step}
+
+[→ Deep dive: Payment Flow explained]({link-to-concept-page})
+
+---
+
+## Prerequisites
+
 | Requirement | Details | Where to get it |
+|---|---|---|
+| PayU merchant account | Active account with KYC complete | [PayU Dashboard]({link}) |
+| API credentials | `key` + `salt` | Dashboard → Settings → API Keys |
+| {Product-specific prereq} | {Details} | {Where} |
 
-[H2] Capabilities and limits
-Specific technical capabilities. And: what this product cannot do.
-Developers need the limits before committing to a path.
+---
 
-[Quick links]
-→ Integration Guide  →  API Reference  →  Sample Code
+## Capabilities and Limits
+
+**What this integration supports:**
+- {Capability 1}
+- {Capability 2}
+- {Capability 3}
+
+**What it does not support:**
+- {Limitation 1 — important for integration commitment decisions}
+- {Limitation 2}
+
+---
+
+## Next Steps
+
+<Cards>
+  <Card title="Integrate {Product}" icon="far fa-code">
+    - **Integration guide:** [{Guide title}]({link})
+    - **API reference:** [{Endpoint title}]({link})
+    - **Quickstart code:** [{Language}]({link})
+  </Card>
+  <Card title="Test your integration" icon="far fa-flask">
+    - **Test credentials:** [Get test keys]({link})
+    - **Test card reference:** [Test cards]({link})
+  </Card>
+</Cards>
 ```
 
 ***
 
-#### Template B — Integration Guide Page
+#### Template B1 — Tier 1 Dashboard Walkthrough
 
-Used for: step-by-step implementation guides at any tier.
+Used for: Step-by-step guides for non-developer merchants performing actions in the PayU Dashboard. No code. Screenshot-driven.
 
+**Frontmatter**
+
+```yaml
+---
+title: "{Action verb + outcome — e.g. 'Create a Payment Link'}"
+excerpt: "{One sentence: what the merchant accomplishes and how long it takes}"
+tier: "tier-1"
+tier_label: "No-Code"
+product: "{product-slug}"
+umbrella: "{umbrella}"
+page_type: "guide"
+audience: "non-developer"
+last_reviewed: "YYYY-MM-DD"
+deprecated: false
+hidden: false
+---
 ```
-[H1] Verb + Outcome — e.g., "Set Up PayU Hosted Checkout"
-[Tier badge] [T2 — Prebuilt UI]
 
-[Info callout] Prerequisites: [linked list] | Time: ~30 min
+**Page Body**
 
-[H2] What you'll build
-One paragraph. Concrete end state. "By the end of this guide, your
-checkout page will redirect customers to PayU's payment screen, collect
-payment, and return them to your site with a success/failure response."
+```mdx
+<Callout icon="far fa-clock" theme="info">
+  **Time**: ~{X} minutes &nbsp;|&nbsp; **What you'll need**: [{Prereq 1}]({link}), [{Prereq 2}]({link})
+</Callout>
 
-[H2] Step 1 — [Step name]
-Why this step (one sentence). What to do.
-[Code block with copy button]
-[Expected output or screenshot]
-[⚠ Common mistake — one-liner]
+## Before You Start
 
-[Repeat for each step]
+{One sentence context. Link to the product overview page. Link to any account setup needed first.}
 
-[H2] Test your integration
-Specific test case. Include test credential. What success looks like.
+---
 
-[H2] Troubleshooting
-| Error | Likely Cause | Fix |
-Max 5 rows.
+## Steps
 
-[H2] Next steps
-3 links in the natural progression.
+<Accordion title="1. {Step — imperative verb}" icon="far fa-{icon}">
+  {Where to navigate in the dashboard. What to click. What to enter.}
+
+  {Screenshot or screen recording if available.}
+
+  <Callout icon="far fa-lightbulb" theme="info">
+    **Tip**: {Optional — useful shortcut or the most common mistake to avoid at this step.}
+  </Callout>
+</Accordion>
+
+<Accordion title="2. {Step}" icon="far fa-{icon}">
+  {Instructions.}
+</Accordion>
+
+<Accordion title="3. {Step}" icon="far fa-{icon}">
+  {Instructions.}
+</Accordion>
+
+{All Accordion titles must be numbered consecutively — no gaps.}
+
+---
+
+## What Happens Next
+
+{One paragraph: expected outcome, where to verify success, what the customer or system does after this action.}
+
+---
+
+## Troubleshooting
+
+| Problem | Fix |
+|---|---|
+| {Common issue 1} | {Resolution — one line} |
+| {Common issue 2} | {Resolution} |
+
+---
+
+## Related Guides
+
+<Cards>
+  <Card title="{Related action}" icon="far fa-{icon}">
+    [{Link text}]({link})
+  </Card>
+  <Card title="{Related action}" icon="far fa-{icon}">
+    [{Link text}]({link})
+  </Card>
+</Cards>
 ```
 
 ***
+
+#### Template B2 — Tier 2/3 Integration Guide
+
+Used for: Developer integration guides at T2 and T3. Code-first. Every step includes copyable, runnable code.
+
+**Frontmatter**
+
+```yaml
+---
+title: "{Action verb + outcome — e.g. 'Integrate Merchant Hosted Checkout'}"
+excerpt: "{One sentence: what the developer builds and the concrete end state}"
+tier: "tier-2"  # or tier-3
+tier_label: "Prebuilt UI"  # or Developer Required
+product: "{product-slug}"
+umbrella: "{umbrella}"
+page_type: "guide"
+audience: "developer"
+experience_level: "intermediate"
+prerequisites:
+  - "{prereq-slug}"
+last_reviewed: "YYYY-MM-DD"
+deprecated: false
+hidden: false
+---
+```
+
+**Page Body**
+
+````mdx
+<Callout icon="far fa-triangle-exclamation" theme="info">
+  **Prerequisites**: [{Prereq 1}]({link}) · [{Prereq 2}]({link}) &nbsp;|&nbsp; **Time**: ~{X} hours &nbsp;|&nbsp; **Difficulty**: {Beginner / Intermediate / Advanced}
+</Callout>
+
+## What You'll Build
+
+{One paragraph. Concrete end state. What will work when this guide is complete.}
+
+---
+
+## Step 1 — {Step name}
+
+{One sentence: why this step is needed.}
+
+{What to do.}
+
+```{language}
+// Complete, runnable code — no truncation, no ellipsis.
+// Runs as-is with credentials swapped.
+````
+
+**Expected output:**
+
+```
+{What should appear in the console, browser, or API response}
+```
+
+<Callout icon="far fa-triangle-exclamation" theme="warn">
+  **Common mistake**: {One-liner on the most frequent error at this step.}
+</Callout>
+
+***
+
+## Step 2 — {Step name}
+
+{Repeat structure: why → what → code block → expected output → common mistake callout}
+
+***
+
+{Repeat for all steps.}
+
+***
+
+## Test Your Integration
+
+{Specific test scenario. Test credentials and test card number inline — not "see testing page."}
+
+```{language}
+// Test credentials inline here
+```
+
+Expected response:
+
+```json
+{
+  "status": "success",
+  "mihpayid": "..."
+}
+```
+
+[Full test card reference →](\{link\})
+
+***
+
+## Troubleshooting
+
+| Error                   | Likely Cause     | Fix          |
+| ----------------------- | ---------------- | ------------ |
+| {Error code or message} | {Why it happens} | {What to do} |
+| {Error}                 | {Cause}          | {Fix}        |
+
+Max 5 rows. [→ Full Debugging & Logs reference](\{link\}) for more.
+
+***
+
+## Next Steps
+
+<Cards>
+  <Card title="Verify payments" icon="far fa-circle-check">
+    [\{Verify Payment API\}](\{link\})
+  </Card>
+
+  <Card title="Handle webhooks" icon="far fa-webhook">
+    [\{Webhook Setup Guide\}](\{link\})
+  </Card>
+
+  <Card title="Go live" icon="far fa-rocket">
+    [\{Production Checklist\}](\{link\})
+  </Card>
+</Cards>
+
+````
+
+---
 
 #### Template C — API Endpoint Page
 
-The most critical template for AI-readiness. Every endpoint page must follow this structure exactly. LLMs parse these pages to generate integration code — structural inconsistency produces hallucinations.
+The most critical template for AI-readiness. Every endpoint page follows this structure exactly. LLMs parse these to generate integration code — inconsistent structure produces hallucinations.
 
-```
-[H1] Create a Payment
-[Tier badge] [T3 — Developer Required]
+**Frontmatter**
 
-[Method badge] POST    https://info.payu.in/merchant/postservice
+```yaml
+---
+title: "{Verb + resource — e.g. 'Create a Payment'}"
+excerpt: "{Method} {endpoint path} — {one-line description of what it does}"
+page_type: "api-reference"
+audience: "developer"
+api_method: "POST"
+api_endpoint: "/merchant/postservice"
+api_version: "v2"
+prerequisites:
+  - "api-authentication"
+  - "hash-generation"
+last_reviewed: "YYYY-MM-DD"
+deprecated: false
+hidden: false
+---
+````
 
-[One-line description]
-Submit a payment request to initiate a transaction. Returns a
-transaction ID; customer is redirected to authentication.
+**Page Body**
 
-[H2] Authentication
-What credentials. How they're passed. Link: Hash Generation.
+````mdx
+<Banner
+  isInline={true}
+  message="POST  https://info.payu.in/merchant/postservice"
+  color="#0077FF"
+  textColor="#ffffff"
+  fontSize="13px"
+  fontWeight="bold"
+/>
 
-[H2] Headers
+{One-line description of what this endpoint does and when to call it.}
+
+---
+
+## Authentication
+
+{What credentials are required. How they are passed. The hash formula specific to this endpoint.}
+
+[→ Hash Generation]({link})
+
+---
+
+## Request Headers
+
 | Header | Type | Required | Description |
+|---|---|---|---|
+| Content-Type | string | Yes | `application/x-www-form-urlencoded` |
+| {Header} | {type} | {Yes/No} | {description} |
 
-[H2] Request Parameters
+---
+
+## Request Parameters
+
 | Parameter | Type | Required | Max Length | Description | Example |
-[ALL parameters documented — no "see dashboard" shortcuts]
+|---|---|---|---|---|---|
+| {param} | {type} | {Yes/No} | {length} | {description} | `{example}` |
 
-[H2] Request Example
-[Code block — default: form-encoded POST]
-[Toggle: cURL / PHP / Python / Java / Node.js / Go]
+All parameters documented — no "see dashboard" shortcuts.
 
-[H2] Response Parameters
-| Parameter | Type | Description |
+---
 
-[H2] Response Examples
-[Tab: Success 200]   [Tab: Common failures]
-Each tab labeled with the scenario that produces it.
+## Request Example
 
-[H2] Error Codes (this endpoint)
-| Code | Message | Cause | Fix |
-Link → full Error Code Reference
+```bash
+curl -X POST https://info.payu.in/merchant/postservice \
+  -d "key={your-key}" \
+  -d "txnid={unique-txn-id}" \
+  -d "..."
+````
 
-[H2] Code Examples
-cURL first (no dependencies), then PHP, Python, Java, Node.js, Go.
+{Provide language toggles: cURL / PHP / Python / Java / Node.js / Go}
 
-[H2] Related Endpoints
-3 links max.
+***
 
-[H2] Changelog
-| Date | Change |
+## Response Parameters
+
+| Parameter | Type   | Description   |
+| --------- | ------ | ------------- |
+| {param}   | {type} | {description} |
+
+***
+
+## Response Examples
+
+**200 Success**
+
+```json
+{
+  "status": 1,
+  "mihpayid": "...",
+  "...": "..."
+}
+```
+
+**Common failure cases**
+
+```json
+{
+  "status": 0,
+  "error": "...",
+  "...": "..."
+}
 ```
 
 ***
+
+## Error Codes (this endpoint)
+
+| Code   | Message   | Cause            | Fix          |
+| ------ | --------- | ---------------- | ------------ |
+| {code} | {message} | {why it happens} | {what to do} |
+
+[→ Full Error Code Reference](\{link\})
+
+***
+
+## Code Examples
+
+cURL first (no dependencies), then PHP, Python, Java, Node.js, Go.
+
+***
+
+## Related Endpoints
+
+- [\{Endpoint name\}](\{link\})
+- [\{Endpoint name\}](\{link\})
+- [\{Endpoint name\}](\{link\})
+
+***
+
+## Changelog
+
+| Date         | Change         |
+| ------------ | -------------- |
+| {YYYY-MM-DD} | {What changed} |
+
+````
+
+---
 
 #### Template D — Concept Page
 
-Used for: Hash Generation, Webhooks overview, Payment Flow, Test vs. Production, Tokenization.
+Used for: Hash Generation, Webhooks overview, Payment Flow, Test vs. Production.
 
-```
-[H1] How [Concept] Works
+```mdx
+---
+title: "How {Concept} Works"
+page_type: "concept"
+audience: "developer"
+last_reviewed: "YYYY-MM-DD"
+deprecated: false
+hidden: false
+---
 
-[H2] What it is — 2-3 plain-language sentences.
+## What It Is
 
-[H2] Why it exists — The specific problem it solves.
+{2–3 plain-language sentences. No jargon. Assume zero prior knowledge of PayU internals.}
 
-[H2] How it works — Diagram for complex flows. Prose + example for simpler ones.
+---
 
-[H2] Implementation — Code block. Multiple languages.
+## Why It Exists
 
-[H2] Common mistakes — Top 3, as a table.
+{The specific problem it solves. Why PayU requires it. What would break without it.}
 
-[H2] Terms defined on this page — Glossary entries inline.
-Critical for AI-readiness: LLMs retrieve these definitions to
-ground code generation using platform-specific terms.
-```
+---
+
+## How It Works
+
+{Diagram for complex flows. Numbered sequence for anything with more than 3 steps.}
+
+---
+
+## Implementation
+
+```{language}
+{Code block — multiple languages via toggle.}
+````
 
 ***
 
+## Common Mistakes
+
+| Mistake       | Why It Happens | Fix            |
+| ------------- | -------------- | -------------- |
+| {Top mistake} | {Root cause}   | {One-line fix} |
+| {Mistake 2}   | {Cause}        | {Fix}          |
+| {Mistake 3}   | {Cause}        | {Fix}          |
+
+***
+
+## Terms Defined on This Page
+
+| Term   | Definition                                                |
+| ------ | --------------------------------------------------------- |
+| {term} | {Platform-specific meaning — not a dictionary definition} |
+| {term} | {Definition}                                              |
+
+**AI-readiness note:** These definitions are retrieved by the Developer MCP when generating integration code. Every concept page must have this section.
+
+````
+
+---
+
 #### Template E — Troubleshooting / Error Page
 
-```
-[H1] Error [Code]: [Verbatim Error Message]
+Built for R6 — developers need more than just error codes; they need complete debug paths.
 
-[H2] What this means — Plain language, not a restatement of the error.
+```mdx
+---
+title: "Error {Code}: {Verbatim Error Message}"
+page_type: "troubleshooting"
+audience: "developer"
+last_reviewed: "YYYY-MM-DD"
+deprecated: false
+hidden: false
+---
 
-[H2] Common causes — Numbered list, ranked by frequency.
+## What This Means
 
-[H2] How to fix it — Per cause, with code where applicable.
+{Plain language — what the error tells you about the transaction state.}
 
-[H2] If you're still stuck
-→ Check [relevant guide]
-→ Contact developer support (include: transaction ID, error response, hash input)
-```
+---
+
+## Common Causes
+
+1. **{Cause 1}** — {One sentence on why this happens.}
+2. **{Cause 2}** — {Why.}
+3. **{Cause 3}** — {Why.}
+
+{Ranked by frequency. 3–5 causes maximum.}
+
+---
+
+## How to Fix It
+
+**If cause 1:**
+{Fix — with code if applicable.}
+
+**If cause 2:**
+{Fix.}
+
+---
+
+## Debug Checklist
+
+[→ Transaction Debug Checklist]({link})
+
+---
+
+## If You're Still Stuck
+
+- Check [{Relevant guide}]({link})
+- Contact developer support — include: `txnid`, full error response, hash input string
+````
 
 ***
 
 #### Template F — Tutorial / Recipe Page
 
-Used for: end-to-end code walkthroughs ("Accept a Payment in Python").
+Used for: Quickstart Code section and all `recipes/` walkthroughs. Optimized for R7 — AI-assisted developers need copyable code first, explanation second.
+
+````mdx
+---
+title: "{Action} in {Language/Platform}"
+excerpt: "{One sentence: what this builds and how long it takes to run}"
+tier: "{tier}"
+page_type: "tutorial"
+audience: "developer"
+experience_level: "beginner"
+last_reviewed: "YYYY-MM-DD"
+deprecated: false
+hidden: false
+---
+
+## Full Source Code
+
+```{language}
+// Complete, runnable source code FIRST — no preamble.
+// No truncation. No ellipsis. Runs as-is with credentials swapped.
+````
+
+**Prerequisites**: {Linked list}  |  **Time**: \~{X} min
+
+***
+
+## Overview
+
+{What this builds, end-to-end. Where this code fits in the full payment flow.}
+
+***
+
+## Code Walkthrough
+
+### {Section name — e.g. "Hash generation"}
+
+```{language}
+{Excerpt from the full code above — referenced by line numbers if helpful}
+```
+
+{Explanation of what this section does and why. No paraphrasing what the code already says.}
+
+### {Next section}
+
+{Continue through the complete flow.}
+
+***
+
+## Run It
+
+```bash
+{Install command}
+{Set environment variables}
+{Run command}
+```
+
+Expected output:
 
 ```
-[H1] [Action] in [Language/Platform]
-[Tier badge]
-
-[Full source code block first — with copy-all button]
-Prerequisites | Time estimate
-
-[H2] Overview — What this tutorial builds, end-to-end.
-
-[H2] Code walkthrough — Break into sections, explain each.
-
-[H2] Run it — Install, set env vars, run. Expected output.
-
-[H2] What to do next — 3 links to the natural next step.
+{What should appear in terminal or browser}
 ```
 
 ***
 
+## What to Do Next
+
+<Cards>
+  <Card title="{Next step}" icon="far fa-{icon}">
+    [\{Link text\}](\{link\})
+  </Card>
+
+  <Card title="{Next step}" icon="far fa-{icon}">
+    [\{Link text\}](\{link\})
+  </Card>
+
+  <Card title="{Next step}" icon="far fa-{icon}">
+    [\{Link text\}](\{link\})
+  </Card>
+</Cards>
+
+````
+
+---
+
 ## Part 3 — AI-Readiness Layer
 
-AI-readiness is not a separate phase. It's a standard applied to every page from the start of the restructure.
+AI-readiness is a standard applied to every page from the start of the restructure, not a separate phase.
 
 ### 3.1 Enhanced Frontmatter Schema
 
@@ -708,20 +1520,23 @@ title: "Create a Payment"
 excerpt: "Submit a payment request to the PayU API and initiate a transaction."
 
 # Tier & product classification
-tier: "tier-3"                    # tier-1 | tier-2 | tier-3 | multi-tier
-tier_label: "Developer Required"  # No-Code | Prebuilt UI | Developer Required
+tier: "tier-3"                      # tier-1 | tier-2 | tier-3 | multi-tier
+tier_label: "Developer Required"    # No-Code | Prebuilt UI | Developer Required
 product: "merchant-hosted-checkout"
-section: "accept-payments"        # accept-payments | increase-conversion |
-                                  # manage-subscriptions | international-payments |
-                                  # send-payouts | reconcile-manage | partner-marketplace |
-                                  # bill-payments | developer-tools | resources
+umbrella: "accept-payments"         # accept-payments | payment-methods | sdks |
+                                    # increase-conversion | manage-subscriptions |
+                                    # send-payouts | international-payments |
+                                    # reconcile-manage | partner-marketplace |
+                                    # bill-payments | api-reference |
+                                    # developer-tools | go-live | solution-guides
 
 # Page type & audience
-page_type: "api-reference"        # overview | guide | api-reference | concept |
-                                  # tutorial | troubleshooting
-audience: "developer"             # developer | non-developer | platform-builder
+page_type: "api-reference"          # overview | guide | api-reference | concept |
+                                    # tutorial | troubleshooting
+audience: "developer"               # developer | non-developer | platform-builder
+experience_level: "intermediate"    # beginner | intermediate | advanced  ← R10
 
-# Navigation & discoverability
+# Navigation
 prerequisites:
   - "api-authentication"
   - "hash-generation"
@@ -729,6 +1544,11 @@ related:
   - "verify-a-payment"
   - "handle-payment-response"
   - "payment-webhooks"
+also_known_as:                       # R8 — drives "also known as" label on page
+  - "Custom Checkout"
+  - "Seamless Integration"
+
+# Discoverability
 search_keywords:
   - "payment request"
   - "initiate payment"
@@ -745,290 +1565,178 @@ last_reviewed: "2026-09-16"
 deprecated: false
 hidden: false
 ---
-```
+````
 
-The fields with the highest AI-retrieval impact: `excerpt` (used as chunk context in RAG), `prerequisites` (lets an agent chain docs in the right order), `related` (cross-document traversal), `search_keywords` (improves embedding recall for synonyms and paraphrase queries), and `tier` + `section` (lets the MCP server filter by audience before retrieval).
+### 3.2 Semantic Chunking
 
-### 3.2 Semantic Chunking Rules
+Every H2 section must be a self-contained thought answerable as a standalone RAG chunk.
 
-The PayU MCP server's `search_payu_docs` tool retrieves document chunks. Chunk quality depends entirely on heading structure.
+Bad: `H2: Overview` / `H2: Details` / `H2: Notes`
 
-**Rule**: Every H2 section must be a self-contained thought answerable as a standalone unit.
+Good: `H2: How Hash Verification Works` / `H2: Required Parameters for Hash Generation` / `H2: Common Hash Mismatch Causes`
 
-Bad (hard to chunk):
-
-```
-H2: Overview
-H2: Details
-H2: More Information
-```
-
-Good (each H2 is a retrievable answer):
-
-```
-H2: How Hash Verification Works
-H2: Required Parameters for Hash Generation
-H2: Hash Generation Code Examples
-H2: Common Hash Mismatch Causes
-```
-
-When an agent receives the question "Why is my hash mismatching?", it should retrieve exactly one chunk that answers it, not need to parse an entire "Overview" section.
+The Debugging & Logs section (R6) is especially important here — each page answers one specific debugging question, so the chunk = the answer.
 
 ### 3.3 Glossary as Anchor Document
 
-The Glossary page is the single highest-ROI AI-readiness investment per hour of writing effort. LLMs hallucinate on PayU-specific and non-obvious terms. A well-structured Glossary acts as a canonical grounding reference for the MCP server.
+Minimum entries: `txnid`, `mihpayid`, `productinfo`, `salt`, `SALT2`, `SALT7`, `udf1–udf5`, `hash`, `surl`, `furl`, `postservice`, `verify_payment`, `mandate`, `si_details`, `emi_amount`, `pg`, `enforce_paymethod`, `bank_code`, `card_token`, `bnpl`, `DCC`, `LRS`, `AFT`, `VAN`, `eNACH`, `AutoPay`, `Zion`, `CheckoutPro`, `Bolt SDK`, `mihpayid vs txnid` (developers confuse these constantly). Each entry should also include its "also known as" aliases (R8).
 
-Minimum glossary entries: `txnid`, `mihpayid`, `productinfo`, `salt`, `SALT2`, `SALT7`, `udf1–udf5`, `hash`, `surl`, `furl`, `postservice`, `verify_payment`, `mandate`, `si_details`, `emi_amount`, `pg`, `enforce_paymethod`, `bank_code`, `card_token`, `bnpl`, `DCC`, `LRS`, `AFT`, `VAN` (Virtual Account Number for EFTNet), `eNACH`, `AutoPay`, `Zion`, `CheckoutPro`, `Bolt SDK`, `mihpayid vs txnid` (developers confuse these constantly).
+### 3.4 MCP Server Alignment
 
-### 3.4 Multi-Tier Product AI Routing
-
-For multi-tier products, the Overview page must explicitly state which tier applies to which use case in a format that is retrievable as a single chunk:
-
-```markdown
-## Which Tier Is Right for You
-
-| If you want to... | Use this approach | Tier |
-|---|---|---|
-| Issue refunds without code | PayU Dashboard | Tier 1 — No-Code |
-| Issue refunds programmatically | Refund API | Tier 3 — Developer Required |
-| Automate refunds triggered by events | Refund API + Webhooks | Tier 3 — Developer Required |
-```
-
-This structure allows the MCP server to answer "how do I do refunds without code?" with a direct Tier 1 answer, and "how do I automate refunds via API?" with a direct Tier 3 answer — from the same product section.
-
-### 3.5 MCP Server Alignment
-
-Both MCP tools should be documented with the input/output schema and a complete worked example showing: prompt → tool call → response → what the agent does next. Rate limits must be on both (currently only on Dev Guide MCP). The Remote MCP Server's OAuth authentication flow needs a dedicated page — it doesn't exist.
+Both MCP tools (Dev Guide MCP and Remote MCP) need: input/output schema, a worked example (prompt → tool call → response → what the agent does next), and rate limits on both. The `also_known_as` frontmatter field directly improves MCP retrieval on synonymous queries. A developer asking "how do I integrate seamless checkout?" should retrieve Merchant Hosted Checkout pages, not fail to find them.
 
 ***
 
 ## Part 4 — Migration Map
 
-Every current section, its product count, exact repo paths (from the product tier spreadsheet), and destination in the new structure.
+### Page Status Summary from V7
 
-### Section-Level Disposition
+| Status                          | Count (approx.) | Action                                                 |
+| ------------------------------- | --------------- | ------------------------------------------------------ |
+| Exists — Unhide                 | \~8 pages       | P0: flip `hidden: false` in frontmatter                |
+| Exists — Move                   | \~40+ pages     | Move file, add redirect                                |
+| Exists — Merge                  | \~15 pages      | Consolidate content, add redirect from all merged URLs |
+| Exists — Unhide + Build Content | \~5 pages       | Unhide and write body content                          |
+| New — To Create                 | \~30+ pages     | Write from scratch                                     |
 
-| Current Section                  | Products                                        | Action                                                                                                              | New Section                                                                     |
-| -------------------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `docs/Collect Payments/`         | \~60+ products across all tiers                 | Distribute by tier and use case                                                                                     | Accept Payments (T1/T2/T3 groups)                                               |
-| `docs/Offerings/`                | \~40+ products                                  | Distribute across: Increase Conversion, Manage Subscriptions, International, Reconcile & Manage, Accept Payments T3 | Per use case                                                                    |
-| `docs/getting started/`          | Onboarding + Dashboard                          | Consolidate                                                                                                         | Overview & Get Started                                                          |
-| `docs/API basics/`               | Auth, hash, REST format                         | Distribute                                                                                                          | Hash → Developer Tools; Auth → Developer Tools; REST format → individual guides |
-| `docs/partners/`                 | Partner referral, co-branded OAuth, Partner API | Rename                                                                                                              | Partner & Marketplace                                                           |
-| `docs/payouts/`                  | Payouts dashboard + API                         | Rename + clean stubs                                                                                                | Send Payouts                                                                    |
-| `docs/BBPS/`                     | BBPS Connect + Recharge                         | Rename                                                                                                              | Bill Payments                                                                   |
-| `docs/MCP & CLI/` + `docs/MCP/`  | MCP servers, CLI, agentic                       | Merge                                                                                                               | Developer Tools › AI Integration                                                |
-| `docs/Developer Tools/`          | Webhooks, TWID                                  | Add to nav, fill stubs                                                                                              | Developer Tools › Webhooks                                                      |
-| `docs/Whatsapp integration/`     | Enhanced links + Native payments                | Distribute across T1 / T2                                                                                           | Accept Payments (multi-tier WhatsApp)                                           |
-| `docs/payu rewardsx/`            | RewardX, Flipkart Supercoins                    | Add to nav                                                                                                          | Increase Conversion › Rewards                                                   |
-| `docs/Payment Gateway/`          | 312 files, nav-orphaned                         | Canonical diff vs Collect Payments; redirect loser                                                                  | Merge into Accept Payments                                                      |
-| `docs/Payment Methods/`          | 9 files, nav-orphaned                           | Distribute into MHC payment method sub-pages                                                                        | Accept Payments › MHC                                                           |
-| `docs/RECYCLE BIN/`              | 41 files                                        | Remove from nav (done); archive                                                                                     | Not in nav                                                                      |
-| `docs/Docs For Internal Review/` | 18 files                                        | Move off public repo                                                                                                | Not in public nav                                                               |
-| `docs/Monitoring & Alerts/`      | 2 files                                         | Move                                                                                                                | Developer Tools                                                                 |
-| `docs/Integration ASK AI Docs/`  | 13 files                                        | Merge                                                                                                               | Developer Tools › AI Integration                                                |
-| `docs/Quick Start/`              | 7 files                                         | Consolidate                                                                                                         | Get Started section                                                             |
+### P0 Pages: Unhide Immediately (highest impact / least effort)
 
-### Product-Level Migration (exact repo paths from tier spreadsheet)
+These pages exist and are fully or partially built. Unhiding them is the fastest win in the entire plan.
 
-#### Accept Payments — Tier 1: No-Code
+| File                                         | Current Status                   | Action                                         | Research Impact                    |
+| -------------------------------------------- | -------------------------------- | ---------------------------------------------- | ---------------------------------- |
+| `docs/Quick Start/quick-start.md`            | `hidden: true`                   | Set `hidden: false`                            | Solves R1 + R2 + R8 simultaneously |
+| `docs/Quick Start/who-is-setting-this-up.md` | `hidden: true`, 4-bullet shell   | Set `hidden: false` + build content            | R1                                 |
+| `docs/Quick Start/what-can-you-do-next.md`   | `hidden: true`, structure exists | Set `hidden: false` + fill \[TO CONFIRM] cells | R4                                 |
+| Webhooks section (`docs/Developer Tools/`)   | `hidden: true`                   | Set `hidden: false`                            | R6                                 |
 
-| Product                 | Current Repo Path                                                                              | New Slug                                            |
-| ----------------------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------- |
-| Payment Links           | `docs/Collect Payments/introduction-no-code-payments-integration/payment-links-dashboard/`     | `/accept-payments/payment-links/`                   |
-| Payment Buttons         | `docs/Collect Payments/introduction-no-code-payments-integration/payment-buttons-dashboard.md` | `/accept-payments/payment-buttons/`                 |
-| Invoices                | `docs/Collect Payments/introduction-no-code-payments-integration/invoices-dashboard/`          | `/accept-payments/invoices/`                        |
-| Shopify Plugin          | `docs/Collect Payments/ecommerce-platform-plugins/shopify/`                                    | `/accept-payments/plugins/shopify/`                 |
-| WooCommerce Plugin      | `docs/Collect Payments/ecommerce-platform-plugins/woocommerce/`                                | `/accept-payments/plugins/woocommerce/`             |
-| Magento Plugin          | `docs/Collect Payments/ecommerce-platform-plugins/magento/`                                    | `/accept-payments/plugins/magento/`                 |
-| BigCommerce Plugin      | `docs/Collect Payments/ecommerce-platform-plugins/bigcommerce/`                                | `/accept-payments/plugins/bigcommerce/`             |
-| OpenCart Plugin         | `docs/Collect Payments/ecommerce-platform-plugins/opencart/`                                   | `/accept-payments/plugins/opencart/`                |
-| PrestaShop Plugin       | `docs/Collect Payments/ecommerce-platform-plugins/prestashop/`                                 | `/accept-payments/plugins/prestashop/`              |
-| Wix Plugin              | `docs/Collect Payments/ecommerce-platform-plugins/wix/`                                        | `/accept-payments/plugins/wix/`                     |
-| Shopmatic Plugin        | `docs/Collect Payments/ecommerce-platform-plugins/shopmatic/`                                  | `/accept-payments/plugins/shopmatic/`               |
-| Fynd Plugin             | `docs/Collect Payments/ecommerce-platform-plugins/fynd-integration/`                           | `/accept-payments/plugins/fynd/`                    |
-| Odoo Plugin             | `docs/Collect Payments/ecommerce-platform-plugins/odoo/`                                       | `/accept-payments/plugins/odoo/`                    |
-| Bagisto Plugin          | `docs/Collect Payments/ecommerce-platform-plugins/bagisto/`                                    | `/accept-payments/plugins/bagisto/`                 |
-| Zoho Plugin             | `docs/Collect Payments/ecommerce-platform-plugins/zoho-integration/`                           | `/accept-payments/plugins/zoho/`                    |
-| CommercePro Plugin      | `docs/Collect Payments/ecommerce-platform-plugins/commercepro-checkout/`                       | `/accept-payments/plugins/commercepro/`             |
-| WhatsApp Enhanced Links | `docs/Whatsapp integration/enhanced-payment-links-on-whatsapp.md`                              | `/accept-payments/whatsapp/enhanced-payment-links/` |
-| Static UPI QR           | `docs/Collect Payments/in-person-payments/integrate-upi-qr/`                                   | `/accept-payments/upi-qr/static/`                   |
-| Dynamic Storefront QR   | `docs/Collect Payments/in-person-payments/integrated-dynamic-storefront/`                      | `/accept-payments/in-person/dynamic-storefront-qr/` |
+### Section-Level Migration
 
-#### Accept Payments — Tier 2: Prebuilt UI
+| Current Section                                                           | Action                           | New Umbrella                                      |
+| ------------------------------------------------------------------------- | -------------------------------- | ------------------------------------------------- |
+| `docs/Collect Payments/introduction-no-code-payments-integration/`        | Move + restructure               | Accept Payments → No-Code                         |
+| `docs/Collect Payments/ecommerce-platform-plugins/`                       | Move (add GoKwik ★)              | Accept Payments → Prebuilt → eCommerce Plugins    |
+| `docs/Collect Payments/introduction-web/prebuilt-checkout-payu-hosted/`   | Move                             | Accept Payments → Prebuilt → PayU Hosted Checkout |
+| `docs/Collect Payments/introduction-web/checkout-express-integration/`    | Move                             | Accept Payments → Prebuilt → CommercePro          |
+| `docs/Collect Payments/introduction-web/checkout-plus-integration/`       | Move                             | Accept Payments → Prebuilt → CommercePro          |
+| `docs/Collect Payments/introduction-web/custom-checkout-merchant-hosted/` | Move                             | Accept Payments → Custom → MHC                    |
+| `docs/Collect Payments/introduction-web/server-to-server-integration/`    | Move                             | Accept Payments → Custom → S2S                    |
+| `docs/Collect Payments/mobile-sdks/`                                      | Move, expand SDK breakdown       | SDKs → Mobile SDKs                                |
+| `docs/Collect Payments/explore-server-integrations/`                      | Move                             | SDKs → Server-Side SDKs                           |
+| `docs/Collect Payments/in-person-payments/`                               | Move                             | Accept Payments → Prebuilt + Custom → In-Person   |
+| `docs/Offerings/introduction-to-affordability/`                           | Distribute                       | Increase Conversion                               |
+| `docs/Offerings/introduction-recurring-payments-integration/`             | Move + restructure               | Manage Subscriptions                              |
+| `docs/Offerings/introduction-dynamic-currency-conversion/`                | Move                             | International Payments                            |
+| `docs/Offerings/introduction-cross-border-payments-import/`               | Move                             | International Payments                            |
+| `docs/Offerings/introduction-refunds/`                                    | Move                             | Reconcile & Manage → Refunds                      |
+| `docs/Offerings/chargeback/`                                              | Move                             | Reconcile & Manage → Chargebacks                  |
+| `docs/Offerings/split-settlments/`                                        | Move (canonical owner)           | Partner & Marketplace → Split Settlements         |
+| `docs/Offerings/introduction-save-cards/`                                 | Move + expand 3 models           | Accept Payments → Advanced → Save Cards           |
+| `docs/Offerings/auth-and-capture-pre-authorize-card-payments/`            | Move + consolidate duplicate dir | Accept Payments → Advanced → Auth & Capture       |
+| `docs/Offerings/apple-pay-integration/`                                   | Move                             | Accept Payments → Advanced → Apple Pay            |
+| `docs/Offerings/native-otp-flow-integration/`                             | Move                             | Accept Payments → Advanced → Native OTP           |
+| `docs/Offerings/virtual-cards-introduction/`                              | Move                             | Accept Payments → Advanced → Virtual Cards        |
+| `docs/Offerings/account-funding-transaction-integration/`                 | Move                             | Accept Payments → Advanced → AFT                  |
+| `docs/Offerings/introduction-to-merchant-wallet/`                         | Move                             | Accept Payments → Advanced → Merchant Wallet      |
+| `docs/Offerings/mutual-funds-payments/`                                   | Move                             | Accept Payments → Advanced → Mutual Funds         |
+| `docs/Offerings/banking-connect-ibmb-or-nbbl/`                            | Move                             | Accept Payments → Advanced → Banking Connect      |
+| `docs/Offerings/introduction-to-payu-tpv/`                                | Move                             | Accept Payments → Advanced → TPV                  |
+| `docs/Offerings/rewards-partner-integration/`                             | Move                             | Increase Conversion → Rewards                     |
+| `docs/Offerings/recommendation-engine/`                                   | Move                             | Increase Conversion → Recommendation Engine       |
+| `docs/Offerings/twid-rewards-integration/`                                | Move                             | Increase Conversion → Rewards                     |
+| `docs/payu rewardsx/`                                                     | Add to nav + move                | Increase Conversion → Rewards                     |
+| `docs/payouts/`                                                           | Move + clean stubs               | Send Payouts                                      |
+| `docs/BBPS/`                                                              | Move                             | Bill Payments                                     |
+| `docs/partners/`                                                          | Move + restructure               | Partner & Marketplace                             |
+| `docs/MCP & CLI/` + `docs/MCP/`                                           | Merge                            | Developer Tools → MCP & CLI                       |
+| `docs/Developer Tools/`                                                   | Add to nav, fill stubs           | Developer Tools → Webhooks                        |
+| `docs/Whatsapp integration/`                                              | Distribute                       | Accept Payments (No-Code + Prebuilt)              |
+| `docs/Payment Methods/`                                                   | Add to nav                       | Payment Methods (new umbrella)                    |
+| `docs/getting started/`                                                   | Consolidate                      | Getting Started                                   |
+| `docs/API basics/`                                                        | Distribute                       | API Reference + Developer Tools                   |
+| `docs/Monitoring & Alerts/`                                               | Move                             | Developer Tools → Monitoring                      |
+| `docs/Integration ASK AI Docs/`                                           | Merge                            | Developer Tools → Ask AI                          |
+| `docs/Whatsapp integration/` (Native Payments)                            | Move                             | Accept Payments → Prebuilt                        |
+| `docs/RECYCLE BIN/`                                                       | Remove from nav (done), archive  | Not in nav                                        |
+| `docs/Docs For Internal Review/`                                          | Remove from public repo          | Not in public repo                                |
 
-| Product                  | Current Repo Path                                                                                                                     | New Slug                                        |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| PayU Hosted Checkout     | `docs/Collect Payments/introduction-web/prebuilt-checkout-payu-hosted/`                                                               | `/accept-payments/payu-hosted-checkout/`        |
-| Checkout Express         | `docs/Collect Payments/introduction-web/checkout-express/`                                                                            | `/accept-payments/checkout-express/`            |
-| Checkout Plus            | `docs/Collect Payments/introduction-web/checkout-plus-integration/`                                                                   | `/accept-payments/checkout-plus/`               |
-| Android CheckoutPro SDK  | `docs/Collect Payments/mobile-sdks/explore-android-sdks/`                                                                             | `/accept-payments/mobile-sdks/android/`         |
-| iOS CheckoutPro SDK      | `docs/Collect Payments/mobile-sdks/explore-ios-sdks/`                                                                                 | `/accept-payments/mobile-sdks/ios/`             |
-| React Native SDK         | `docs/Collect Payments/mobile-sdks/explore-reactnative-sdks/`                                                                         | `/accept-payments/mobile-sdks/react-native/`    |
-| Flutter SDK              | `docs/Collect Payments/mobile-sdks/flutter-sdk-introduction/`                                                                         | `/accept-payments/mobile-sdks/flutter/`         |
-| Cordova SDK              | `docs/Collect Payments/mobile-sdks/cordova-mobile-sdks/`                                                                              | `/accept-payments/mobile-sdks/cordova/`         |
-| Capacitor / Ionic SDK    | `docs/Collect Payments/mobile-sdks/upi-bolt-sdk-ionic/`                                                                               | `/accept-payments/mobile-sdks/capacitor-ionic/` |
-| UPI Bolt SDK             | `docs/Collect Payments/mobile-sdks/upi-bolt-sdk-ionic/`                                                                               | `/accept-payments/mobile-sdks/upi-bolt/`        |
-| WhatsApp Native Payments | `docs/Whatsapp integration/whatsapp-native-payments/`                                                                                 | `/accept-payments/whatsapp/native-payments/`    |
-| Interakt for WhatsApp    | `docs/Collect Payments/ecommerce-platform-plugins/interakt-for-whatsapp-business/`                                                    | `/accept-payments/whatsapp/interakt/`           |
-| Affordability Widget     | `docs/Offerings/introduction-to-affordability/affordability-suite/`                                                                   | `/increase-conversion/affordability-widget/`    |
-| Recommendation Engine    | `docs/Offerings/recommendation-engine/`                                                                                               | `/increase-conversion/recommendation-engine/`   |
-| Payment Links API        | `docs/Collect Payments/introduction-no-code-payments-integration/payment-links-dashboard/create-payment-link-via-bulk-upload-apis.md` | `/accept-payments/payment-links/api/`           |
-| Dynamic UPI QR (API)     | `docs/Collect Payments/in-person-payments/integrate-upi-qr/`                                                                          | `/accept-payments/upi-qr/dynamic-api/`          |
-| BBPS Connect Agent API   | `docs/BBPS/connect-agent-api-integration/`                                                                                            | `/bill-payments/bbps-connect-agent-api/`        |
+### Content Requiring Rewrite
 
-#### Accept Payments — Tier 3: Developer Required
+These files cannot be migrated — they need to be written from scratch or substantially rebuilt:
 
-| Product                        | Current Repo Path                                                                                                                     | New Slug                                           |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| Merchant Hosted Checkout       | `docs/Collect Payments/introduction-web/custom-checkout-merchant-hosted/`                                                             | `/accept-payments/merchant-hosted-checkout/`       |
-| S2S — Standard Flow            | `docs/Collect Payments/introduction-web/server-to-server-integration/`                                                                | `/accept-payments/s2s/standard-flow/`              |
-| S2S — Classic (OTP)            | `docs/Collect Payments/introduction-web/server-to-server-integration/classic-integration-for-cards-otp-integration.md`                | `/accept-payments/s2s/classic-flow/`               |
-| S2S — Decoupled                | `docs/Collect Payments/introduction-web/server-to-server-integration/decoupled-flow-authentication-only-integration.md`               | `/accept-payments/s2s/decoupled-flow/`             |
-| S2S — Direct Auth              | `docs/Collect Payments/introduction-web/server-to-server-integration/`                                                                | `/accept-payments/s2s/direct-authorization/`       |
-| Native OTP Flow                | `docs/Offerings/native-otp-flow-integration/`                                                                                         | `/accept-payments/specialized/native-otp/`         |
-| Apple Pay                      | `docs/Offerings/apple-pay-integration/`                                                                                               | `/accept-payments/specialized/apple-pay/`          |
-| Pre-Authorize / Auth & Capture | `docs/Offerings/auth-and-capture-pre-authorize-card-payments/`                                                                        | `/accept-payments/specialized/auth-and-capture/`   |
-| EFTNET / Bank Transfer         | `docs/Offerings/introduction-to-eftnet/`                                                                                              | `/accept-payments/specialized/eftnet/`             |
-| Banking Connect (IBMB/NBBL)    | `docs/Offerings/banking-connect-ibmb-or-nbbl/`                                                                                        | `/accept-payments/specialized/banking-connect/`    |
-| Mutual Fund Payments           | `docs/Offerings/mutual-funds-payments/`                                                                                               | `/accept-payments/specialized/mutual-funds/`       |
-| AFT                            | `docs/Offerings/account-funding-transaction-integration/`                                                                             | `/accept-payments/specialized/aft/`                |
-| Virtual Cards                  | `docs/Offerings/virtual-cards-introduction/`                                                                                          | `/accept-payments/specialized/virtual-cards/`      |
-| Merchant Wallet                | `docs/Offerings/introduction-to-merchant-wallet/`                                                                                     | `/accept-payments/specialized/merchant-wallet/`    |
-| TPV API                        | `docs/Offerings/introduction-to-payu-tpv/`                                                                                            | `/accept-payments/specialized/tpv/`                |
-| Push Tokenization              | `docs/Offerings/introduction-save-cards/push-tokenization.md`                                                                         | `/accept-payments/save-cards/push-tokenization/`   |
-| Android POS SDK                | `docs/Collect Payments/in-person-payments/android-pos-sdk/`                                                                           | `/accept-payments/in-person/android-pos/`          |
-| POS Terminal                   | `docs/Collect Payments/in-person-payments/pos-terminal-integration/`                                                                  | `/accept-payments/in-person/pos-terminal/`         |
-| LazyPay Pay-in-3               | `docs/Offerings/introduction-to-affordability/lazypay-pay-in-3/`                                                                      | `/accept-payments/specialized/lazypay-pay-in-3/`   |
-| EMI NTB Flow                   | `docs/Offerings/introduction-to-affordability/emi-ntb-flow-integration.md`                                                            | `/accept-payments/specialized/emi-ntb/`            |
-| Redemption using Prepaid       | `docs/Offerings/redemption-using-prepaid-integration/`                                                                                | `/accept-payments/specialized/prepaid-redemption/` |
-| Payment Links Bulk Upload API  | `docs/Collect Payments/introduction-no-code-payments-integration/payment-links-dashboard/create-payment-link-via-bulk-upload-apis.md` | `/accept-payments/payment-links/bulk-api/`         |
-
-#### Other Sections
-
-| Product                      | Current Repo Path                                                                                         | New Slug                                            |
-| ---------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
-| Offers Dashboard             | `docs/Offerings/introduction-to-affordability/offers-dashboard/`                                          | `/increase-conversion/offers/dashboard/`            |
-| Offers API                   | `docs/Offerings/introduction-to-affordability/offers-integration-1/`                                      | `/increase-conversion/offers/api/`                  |
-| Loyalty Edge API             | `docs/Offerings/introduction-to-affordability/loyalty-edge-introduction/`                                 | `/increase-conversion/rewards/loyalty-edge/`        |
-| TWID Rewards                 | `docs/Offerings/twid-rewards-integration/`                                                                | `/increase-conversion/rewards/twid/`                |
-| Rewards Partner              | `docs/Offerings/rewards-partner-integration/`                                                             | `/increase-conversion/rewards/partner/`             |
-| RewardX / Pay with Rewards   | `docs/payu rewardsx/introduction-pay-with-rewards.md`                                                     | `/increase-conversion/rewards/rewardx/`             |
-| Flipkart Supercoins          | `docs/payu rewardsx/introduction-flipkart-supercoins-pay/`                                                | `/increase-conversion/rewards/flipkart-supercoins/` |
-| MobiKwik Link Pay            | `docs/Offerings/introduction-to-affordability/mobikwik-link-pay-integration/`                             | `/increase-conversion/mobikwik/`                    |
-| Subscriptions Dashboard      | `docs/Offerings/introduction-recurring-payments-integration/subscription-dashboard/`                      | `/manage-subscriptions/dashboard/`                  |
-| Subscriptions API            | `docs/Offerings/introduction-recurring-payments-integration/using-api-integration-recurring-payments/`    | `/manage-subscriptions/api/`                        |
-| UPI AutoPay Mandate API      | `docs/Offerings/introduction-recurring-payments-integration/using-api-integration-recurring-payments/`    | `/manage-subscriptions/upi-autopay/`                |
-| Zion Subscription Automation | `docs/Offerings/introduction-recurring-payments-integration/using-zion-subscription-automation-platform/` | `/manage-subscriptions/zion/`                       |
-| eNACH                        | `docs/Offerings/mutual-funds-payments/enach-mutual-fund-payments-integration.md`                          | `/manage-subscriptions/enach/`                      |
-| Cross-Border Payments        | `docs/Offerings/introduction-cross-border-payments-import/`                                               | `/international-payments/cross-border/`             |
-| DCC                          | `docs/Offerings/introduction-dynamic-currency-conversion/`                                                | `/international-payments/dcc/`                      |
-| LRS Integration              | `docs/Offerings/introduction-cross-border-payments-import/cb-lrs-integration/`                            | `/international-payments/lrs/`                      |
-| Payouts Dashboard            | `docs/payouts/payouts-dashboard/`                                                                         | `/send-payouts/dashboard/`                          |
-| Payouts Single Transfer      | `docs/payouts/payouts-integration/single-transfer-integration-for-payouts.md`                             | `/send-payouts/single-transfer/`                    |
-| Smart Send                   | `docs/payouts/payouts-integration/smart-send-introduction/`                                               | `/send-payouts/smart-send/`                         |
-| Beneficiary Registration     | `docs/payouts/payouts-integration/beneficiary-registration-framework.md`                                  | `/send-payouts/beneficiary-registration/`           |
-| Pay to Phone                 | `docs/payouts/releasepending-pay-to-phone-integration/`                                                   | `/send-payouts/pay-to-phone/`                       |
-| Refunds Dashboard            | `docs/Offerings/introduction-refunds/refunds-in-payu-products/`                                           | `/reconcile-manage/refunds/dashboard/`              |
-| Refund API                   | `docs/Offerings/introduction-refunds/`                                                                    | `/reconcile-manage/refunds/api/`                    |
-| Chargeback Dashboard         | `docs/Offerings/chargeback/`                                                                              | `/reconcile-manage/chargebacks/dashboard/`          |
-| Reports Dashboard            | `docs/getting started/payu-dashboard/sales-and-earnings-dashboard.md`                                     | `/reconcile-manage/reports/dashboard/`              |
-| Split Settlements Dashboard  | `docs/Offerings/split-settlments/dashboard-for-split-settlements/`                                        | `/partner-marketplace/split-settlements/dashboard/` |
-| Split Settlements API        | `docs/Offerings/split-settlments/api-integration-for-split-settlements/`                                  | `/partner-marketplace/split-settlements/api/`       |
-| Partner Referral Links       | `docs/partners/refer-merchants-using-referral-links.md`                                                   | `/partner-marketplace/referral-links/`              |
-| Co-Branded OAuth             | `docs/partners/refer-merchants-using-co-branded-oauth-onboarding/`                                        | `/partner-marketplace/co-branded-oauth/`            |
-| Partner API                  | `docs/partners/partner-payments-integration.md`                                                           | `/partner-marketplace/partner-api/`                 |
-| BBPS Recharge API            | `docs/BBPS/recharge-api-integration/`                                                                     | `/bill-payments/recharge-api/`                      |
-| Server-Side SDKs             | `docs/Collect Payments/explore-server-integrations/`                                                      | `/developer-tools/server-side-sdks/`                |
-| Dev Guide MCP                | `docs/MCP & CLI/payu-devguide-builder-mcp-configuration.md`                                               | `/developer-tools/mcp/dev-guide-mcp/`               |
-| Remote MCP                   | `docs/MCP & CLI/payu-remote-mcp-server-integration.md`                                                    | `/developer-tools/mcp/remote-mcp/`                  |
-| PayU CLI                     | `docs/MCP & CLI/payu-cli.md`                                                                              | `/developer-tools/mcp/payu-cli/`                    |
-| Agentic Commerce             | `docs/MCP & CLI/agentic-commerce/`                                                                        | `/developer-tools/mcp/agentic-commerce/`            |
+1. **Webhook Event Catalog** — stub exists at `Developer Tools/webhooks-consolidated/events-and-payloads.md`
+2. **Payment Webhook Payloads** — stub exists, write from actual payloads
+3. **Subscription Webhook Payloads** — stub exists, write from actual payloads
+4. `payu-affordability-widget.md` — 5 literal `[PLACEHOLDER: Screenshot]` markers in live content
+5. `payouts/payouts-dashboard/eftnet.md` — 79 characters, no content
+6. `quickstart-code.md` — has `// TODO: verify hash` in developer-facing example code
+7. **COD documentation** — completely absent; write Overview and Enable COD pages
+8. **GoKwik plugin page** — doesn't exist; write
+9. **Video Guides page** — doesn't exist; write structure (links to videos, indexed by experience level)
+10. **Checkout Type Quick Reference** — doesn't exist; write (addresses R8 directly)
+11. **All 5 Debugging & Logs sub-pages** — new section, write all
+12. **All 5 Go Live section pages** — new section, write all
+13. **All 4 Solution Guides** — new section, write all
+14. **Developer Setup Package + sub-pages** — new, under Who Is Setting This Up?
+15. **Glossary** — write all entries; highest-ROI AI-readiness investment
+16. **PCI DSS Scope by Integration Type** — write from scratch
+17. All 25 sub-300-char stub files in active sections
 
 ### Redirect Strategy
 
-Build the redirect map CSV before any file moves. Every moved URL gets a 301 — no exceptions, even for low-traffic pages.
+Build the redirect map CSV before any file moves. Every moved URL → 301. Format:
 
 ```csv
 old_slug,new_slug,http_status,reason
-/docs/Collect-Payments/introduction-web/prebuilt-checkout-payu-hosted,/accept-payments/payu-hosted-checkout,301,section restructure
-/docs/Collect-Payments/introduction-web/custom-checkout-merchant-hosted,/accept-payments/merchant-hosted-checkout,301,section restructure
-/docs/Offerings/introduction-recurring-payments-integration,/manage-subscriptions,301,section restructure
-...
+/docs/Collect-Payments/introduction-web/prebuilt-checkout-payu-hosted,/accept-payments/payu-hosted-checkout,301,umbrella restructure
+/docs/Collect-Payments/introduction-web/custom-checkout-merchant-hosted,/accept-payments/merchant-hosted-checkout,301,umbrella restructure
+/docs/Offerings/introduction-recurring-payments-integration,/manage-subscriptions,301,umbrella restructure
 ```
 
-Monitor 404 errors in GA4 for 4 weeks post-launch. Every 404 is a missing redirect.
-
-### Content Requiring Rewrite (not just move)
-
-These cannot be migrated by renaming — they need to be written or substantially rebuilt:
-
-1. **Webhook Event Catalog** — stub files exist at `docs/Developer Tools/webhooks-consolidated/events-and-payloads.md`. Write from scratch with all event types.
-2. **Payment Webhook Payloads** — stub at `docs/Developer Tools/webhooks-consolidated/create-and-manage-webhooks-1/sample-payloads-payment-webhooks.md`. Write from actual webhook payloads.
-3. **Subscription Webhook Payloads** — stub at `docs/Developer Tools/webhooks-consolidated/subscription-webhooks/sample-payloads-subscription-webhooks.md`. Write.
-4. `payu-affordability-widget.md` — 5 literal `[PLACEHOLDER: Screenshot...]` markers. Add real screenshots or remove callouts.
-5. `payouts/payouts-dashboard/eftnet.md` — 79 characters, no content. Write.
-6. `quickstart-code.md` — has `// TODO: verify hash` in developer-facing example code. Fix.
-7. All 25 stub files under 300 chars — prioritize those in navigable sections.
-8. **Multi-Tier Overview pages** — 14 products need overview pages written from scratch explaining the tier decision.
-9. **"Choose Your Integration Path"** — new page, doesn't exist anywhere.
-10. **Go-Live Checklist per tier** — new page, doesn't exist anywhere.
+Monitor 404s in GA4 for 4 weeks post-launch. Every 404 is a missing redirect.
 
 ***
 
 ## Part 5 — What You've Missed
 
-These are documentation capabilities and content types absent from both the current repo and the scope of your original ask, that belong in a world-class payment developer portal. Ordered by developer impact.
+The V7 IA addresses most of the original gaps. The remaining items below are either still absent from V7, out of scope for V7 but needed for a world-class portal, or operational/process gaps.
 
-**Tier-aware Go-Live Checklist** — Not just a generic checklist, but three checklists: one per tier. A Tier 1 merchant going live with the WooCommerce plugin has completely different requirements from a Tier 3 developer going live with Merchant Hosted Checkout (PCI scope, hash validation, webhook handling, error state coverage). Every major payment gateway has this page. You don't.
+**SDK version table and changelogs** — The SDKs umbrella correctly surfaces all 9 Android SDKs and 5 iOS SDKs. But there is no version table (current stable version, minimum OS requirement, last updated) on the SDK overview page, and no per-SDK changelog. Developers upgrading from v2 to v3 CheckoutPro need to know what broke. This belongs on each SDK sub-page.
 
-**"Choose Your Integration Path" decision guide** — The most visited page on Stripe's developer docs is the one that routes developers to the right integration path. You have 107 products across 3 tiers and 9 sections. Without a routing page, every new developer reads the wrong docs first and builds the wrong thing. This page must be written before any other new content.
+**Deprecation and versioning policy** — V7 has a Changelog in the global nav, but no published policy on how long deprecated APIs remain live, how breaking changes are announced, or what the migration window is. Enterprise Tier 3 developers cannot commit without this.
 
-**Changelog** — No centralized record of API changes, SDK releases, new features, or deprecations anywhere in the repo. If a developer can't see that your API changed 3 months ago, they can't know if their integration is current. This is one of the highest trust signals for developers evaluating a platform. Every meaningful change needs: what changed, why, and what action the developer must take.
+**Rate Limits reference** — V7 has no Rate Limits page. Every API category needs its limits. A centralized table (API | Rate Limit | Burst Limit | Throttle Behavior | Retry guidance) is essential for platform builders designing retry logic. This should live under Developer Tools.
 
-**Sandbox / Testing Reference** — Test credentials, test card numbers, test UPI IDs, test bank codes, and instructions for simulating specific outcomes (success, failure, pending, timeout) are scattered across multiple pages. A developer spends real time hunting for a test UPI ID that should take 5 seconds to find. One canonical Testing page, bookmarked and returned to throughout development. Per-tier: a Tier 1 plugin user needs different test instructions from a Tier 3 S2S developer.
+**Postman Collections as a first-class resource** — Postman collection JSON files exist in `reference/` but are undocumented. A sub-page under Developer Tools listing each collection with a description and import link would meaningfully reduce time-to-first-API-call.
 
-**Rate Limits Reference** — Currently documented only in the Dev Guide MCP section (30 req/min, 100 req/day). Every API section should have its limits documented. A centralized Rate Limits page with a table per API category is more useful than per-page mentions. Platform builders designing retry logic need this before writing a line of code.
+**"Was This Helpful?" on every page** — V7 doesn't specify a per-page feedback mechanism. This is the cheapest continuous quality signal available. Pages with high "unhelpful" rates become your priority rewrite queue. Implement once at the docs platform level; costs near-zero.
 
-**Glossary** — No canonical definitions for PayU-specific terminology anywhere. Developers confuse `mihpayid` and `txnid` regularly. LLMs hallucinate on `si_details`, `SALT2`, `SALT7`, `enforce_paymethod`, `pg`, and `VAN`. A Glossary page is the single highest-ROI AI-readiness investment in the entire repo.
+**Last Reviewed timestamp surfaced visibly** — `last_reviewed` is in the proposed frontmatter schema, but V7 doesn't specify surfacing it visibly on the page. Developers look at dates. A guide with no visible date signals distrust. Surface it next to the page title or in a sidebar.
 
-**Per-product Changelog / SDK Version History** — Separate from the API changelog, a version history per SDK (Android, iOS, React Native, Flutter) with breaking changes flagged and migration steps. SDK consumers need to know what changed before upgrading, especially for Tier 2 CheckoutPro integrations where PayU controls the UI layer.
+**"Edit this page" GitHub link** — One implementation line in the docs platform. Signals that docs are maintained, enables community corrections, and surfaces the last commit date naturally.
 
-**Versioning and Deprecation Policy** — No published policy on how long deprecated APIs stay live, how breaking changes are communicated, or what the migration window is. An enterprise developer cannot commit to a Tier 3 integration without knowing the answer to these questions.
+**International regulatory context page** — The International Payments umbrella has the three products (DCC, Cross-Border, LRS), but no overview page explaining the regulatory context (RBI LRS regulations, FEMA compliance, reporting requirements). Merchants integrating international payments are often blocked by compliance uncertainty before they even start the technical integration.
 
-**Webhook Event Catalog** — A single page listing every possible webhook event type, the payload schema, when it fires, and what action the developer should take. Currently stub files. For developers building event-driven integrations across Subscriptions, Payouts, Refunds, Chargebacks, and BBPS, this page is as important as the payment creation API.
+**Status page link** — No link to a PayU uptime/status page exists anywhere in the docs. Developers debugging a production issue need to rule out "is it me or is it PayU?" in under 30 seconds. Surface a persistent status link in the global nav or footer.
 
-**Compliance and Security page** — PCI DSS scope and responsibility by tier (T1: no scope; T2: minimal; T3: full scope including MHC), RBI regulations affecting integrations (tokenization mandate, recurring payment regulations, save card regulations), 3DS2 authentication requirements. Enterprise integrators verify this before committing to PayU. Currently absent.
-
-**"Was This Helpful?" feedback on every page** — The cheapest content quality signal available. A thumbs up / thumbs down with optional text input on every page gives continuous signal. Pages with high "unhelpful" rates are your priority rewrite queue. Pages with high "helpful" rates are your templates. Costs near-zero to implement, yields permanent signal.
-
-**Last Reviewed timestamp on every page** — Developers look at dates. A guide that says "Last reviewed: March 2026" builds more trust than an undated one. Add `last_reviewed` to frontmatter (defined in Section 3.1) and surface it visibly. Anything not reviewed in 6 months should appear in a stale-content report.
-
-**Postman Collections as first-class resources** — Postman collection JSON files exist in the repo but are buried in `reference/` alongside OpenAPI specs with no documentation on how to find, import, or use them. A "Postman Collections" resource page with a description of each collection, an import link, and setup instructions would meaningfully reduce time-to-first-API-call for Tier 3 developers.
-
-**International payments section** — Cross-Border Payments, DCC, and LRS are currently scattered. They're all Tier 3, RBI-regulated, and require specific agreements. A dedicated `Manage International Payments` section with an overview explaining the regulatory context before the technical docs would serve this audience far better than the current placement inside `Offerings/`.
-
-**"Edit this page" GitHub link** — One implementation line in your docs platform. Enables community corrections, surfaces the last commit date naturally, and signals that the docs are maintained.
-
-**Community and developer support links** — Developers who get stuck have nowhere to go from your docs except general merchant support. A developer community surface (GitHub Discussions, dedicated Stack Overflow tag, or Discord) referenced from every page reduces support tickets and builds ecosystem loyalty.
-
-**Server-Side SDK documentation** — Five SDKs (PHP, Java, Node.js, Python, Go) exist at `docs/Collect Payments/explore-server-integrations/` but are currently grouped with no dedicated Developer Tools section in nav. These are Tier 3 tools that need their own section, per-language installation instructions, and version tables.
+**Community surface** — Developers who exhaust the docs and support tickets have nowhere to go. A linked community (GitHub Discussions, dedicated Stack Overflow tag) referenced from the Support nav item would reduce repeat support tickets and build ecosystem trust.
 
 ***
 
 ## Phased Timeline
 
-| Phase                                                             | Duration    | Scope                                                                                                                                                                                                                                   | Owner Signal                                        |
-| ----------------------------------------------------------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
-| **Phase 0 — Emergency**                                           | Week 1      | Remove RECYCLE BIN + internal review from nav. Fix 4 broken links. Remove 5 placeholder markers. Fix TODO in quickstart code.                                                                                                           | Done before anything else — these are live defects. |
-| **Phase 1 — Foundations**                                         | Weeks 2–4   | GSC/GA snapshot. Lock canonical terminology table. Build redirect map CSV. Resolve Collect Payments vs. Payment Gateway canonical question. Write "Choose Your Integration Path" page.                                                  | No files move until Phase 1 is complete.            |
-| **Phase 2 — Get Started + Accept Payments**                       | Weeks 5–12  | Restructure Overview/Get Started section. Restructure all of Accept Payments (T1, T2, T3 groups). Write Go-Live Checklist (all three tiers). Write Sandbox Reference. Fill all stubs in this section. Apply templates A–F to all pages. | Highest-traffic, highest-stakes section.            |
-| **Phase 3 — Increase Conversion + Subscriptions + International** | Weeks 13–18 | Restructure these three sections. Consolidate the offers-integration triplication. Merge duplicate auth-and-capture directories. Write multi-tier Overview pages for EMI, BNPL, Save Cards.                                             |                                                     |
-| **Phase 4 — Payouts + Reconcile + Partner + BBPS**                | Weeks 19–22 | Restructure remaining use-case sections. Fill Payouts stubs. Write Chargeback webhook docs. Write Split Settlements API docs.                                                                                                           |                                                     |
-| **Phase 5 — Developer Tools + Resources**                         | Weeks 23–26 | Webhook Event Catalog. Webhook Payload pages. Server-Side SDK section. Rate Limits page. Glossary. Postman Collections page. Merge MCP sections.                                                                                        |                                                     |
-| **Phase 6 — AI-Readiness**                                        | Weeks 27–30 | Enhanced frontmatter rollout across all pages. Semantic heading audit. MCP server alignment. Changelog structure + 6-month backfill. SDK Changelogs. Versioning/deprecation policy.                                                     |                                                     |
-| **Phase 7 — Ongoing**                                             | Monthly     | GSC/GA review against baselines. Stale page report (anything `last_reviewed` > 6 months). Quarterly content audit.                                                                                                                      |                                                     |
+| Phase                                           | Duration    | Scope                                                                                                                                                                                                                                       | Unlock Condition                         |
+| ----------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
+| **Phase 0 — Immediate wins**                    | Week 1      | Unhide 4 pages (`quick-start.md`, `who-is-setting-this-up.md`, `what-can-you-do-next.md`, Webhooks). Remove RECYCLE BIN + internal review from nav. Fix 4 broken links. Remove 5 `[PLACEHOLDER]` markers. Fix `// TODO` in quickstart code. | No dependencies — do today.              |
+| **Phase 1 — Foundations**                       | Weeks 2–4   | GSC/GA snapshot. Lock terminology + "also known as" table. Build redirect map CSV. Resolve Collect Payments vs. Payment Gateway canonical question. Set up GA4 events. Write Checkout Type Quick Reference (R8 — high impact, low effort).  | No files move until redirect map exists. |
+| **Phase 2 — Getting Started + Accept Payments** | Weeks 5–12  | Restructure Getting Started. Restructure all of Accept Payments (No-Code, Prebuilt, Custom groups). Write Developer Setup Package (R1). Write Quickstart Code section (R7). Write GoKwik page (R9). Apply all templates.                    | Redirect map complete.                   |
+| **Phase 3 — Payment Methods + SDKs**            | Weeks 13–16 | Create Payment Methods umbrella. Write COD pages (R5). Build full SDK umbrella with all Android/iOS sub-pages.                                                                                                                              | Accept Payments structure stable.        |
+| **Phase 4 — Go Live section**                   | Weeks 17–19 | Write all 5 Go Live pages. Write Pre-Launch Checklist. Write Enable Payment Methods activation guides (R4+R5). Write Going Live with Webhooks.                                                                                              | —                                        |
+| **Phase 5 — Remaining umbrellas**               | Weeks 20–25 | Restructure Increase Conversion, Manage Subscriptions, International, Send Payouts, Reconcile & Manage, Partner & Marketplace, BBPS.                                                                                                        | —                                        |
+| **Phase 6 — Developer Tools expansion**         | Weeks 26–29 | Write Debugging & Logs (all 6 pages — R6). Write PCI DSS Scope page. Merge hash pages. Write Video Guides (R3). Write Solution Guides.                                                                                                      | —                                        |
+| **Phase 7 — AI-Readiness**                      | Weeks 30–33 | Enhanced frontmatter rollout. Semantic heading audit. Write Glossary. MCP alignment. Rate Limits page. SDK Changelogs. Deprecation policy.                                                                                                  | —                                        |
+| **Phase 8 — Ongoing**                           | Monthly     | GSC/GA review vs. baselines. Stale page report (`last_reviewed` > 6 months). Quarterly content audit.                                                                                                                                       | —                                        |
 
 ***
 
-_Document version 2.0 — Updated with product tier data from PayU_Product_Tiers.xlsx. Tier strategy: T1 = No-Code (27 products), T2 = Prebuilt UI (19 products), T3 = Developer Required (47 products), Multi-Tier (14 products spanning T1–T3). Total: 107 products across 9 use-case sections._
+_Document version 3.0 — Updated to align with IA V7 (research-backed, 10 user research findings R1–R10). Tier strategy: T1 = No-Code, T2 = Prebuilt UI, T3 = Developer Required, used as sub-groupings within Accept Payments rather than top-level nav. Total products: 107. Top-level umbrellas: 15 (Getting Started, Accept Payments, Payment Methods, SDKs, Increase Conversion, Manage Subscriptions, Send Payouts, International Payments, Reconcile & Manage, Partner & Marketplace, Bill Payments, API Reference, Developer Tools, Go Live, Solution Guides)._
