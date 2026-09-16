@@ -620,5 +620,3 @@ Your integration should handle these custom URL schemes:
 ## Need Help?
 
 - 📧 **Support:** [support@payu.in](mailto:support@payu.in) (include your merchant ID)
-- 📚 **Documentation:** [PayU Developer Docs](https://docs.payu.in)
-- 💬 **Community:** [PayU Developer Forum](#)
