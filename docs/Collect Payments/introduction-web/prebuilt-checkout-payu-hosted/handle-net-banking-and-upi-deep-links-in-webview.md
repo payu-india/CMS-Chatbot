@@ -1,5 +1,5 @@
 ---
-title: '[Internal Review]Handle Net Banking and UPI Deep-Links in WebView'
+title: '[Internal Review]Handle Net Banking Deep-Links in WebView'
 deprecated: false
 hidden: true
 link:
@@ -7,7 +7,7 @@ link:
 metadata:
   robots: index
 ---
-Handle Net Banking and UPI payment deep-links in your mobile WebView (Android and iOS). When users select Net Banking or UPI, PayU redirects to custom URL schemes (`nb://`, `upi://`, bank-specific schemes). Your app must intercept these URLs and launch the corresponding native app.
+Handle Net Banking payment deep-links in your mobile WebView (Android and iOS). When users select Net Banking, PayU redirects to custom URL schemes (`nb://` and bank-specific schemes). Your app must intercept these URLs and launch the corresponding native app.
 
 <Callout icon="📘" theme="info">
   ### **What You'll Build**
@@ -15,7 +15,7 @@ Handle Net Banking and UPI payment deep-links in your mobile WebView (Android an
   A WebView integration that:
 
   - Intercepts payment deep-links before the WebView loads them
-  - Launches the banking/UPI app installed on the device
+  - Launches the banking app installed on the device
   - Handles fallback when the app is not installed
   - Receives payment status via callback URLs
 </Callout>
@@ -38,7 +38,7 @@ Before you begin, ensure you have:
 
 Here's the end-to-end flow:
 
-1. **User selects Net Banking/UPI** → PayU gateway generates a deep-link
+1. **User selects Net Banking** → PayU gateway generates a deep-link
 2. **WebView intercepts the deep-link** → Your app catches the URL before loading
 3. **Check if banking app is installed** → Use platform APIs to verify
 4. **Launch the banking app** → Hand off the payment to the native app
@@ -83,12 +83,6 @@ Both Android and iOS require you to declare which external app URL schemes you i
               <data android:scheme="yesirisnb" />
           </intent>
           
-          <!-- UPI URL Scheme -->
-          <intent>
-              <action android:name="android.intent.action.VIEW" />
-              <data android:scheme="upi" />
-          </intent>
-          
           <!-- Intent URL Scheme -->
           <intent>
               <action android:name="android.intent.action.VIEW" />
@@ -121,9 +115,6 @@ Both Android and iOS require you to declare which external app URL schemes you i
       <string>hdfcbanknb</string>
       <string>axisbanknb</string>
       <string>yesirisnb</string>
-      
-      <!-- UPI URL Scheme -->
-      <string>upi</string>
       
       <!-- Intent URL Scheme -->
       <string>intent</string>
@@ -169,7 +160,6 @@ Configure your WebView to intercept navigation requests and detect deep-link URL
       
       private fun isDeepLink(url: String): Boolean {
           return url.startsWith("nb://") ||
-                 url.startsWith("upi://") ||
                  url.startsWith("intent://") ||
                  url.startsWith("imobileappnb://") ||
                  url.startsWith("hdfcbanknb://") ||
@@ -280,7 +270,6 @@ Configure your WebView to intercept navigation requests and detect deep-link URL
       
       private func isDeepLink(_ urlString: String) -> Bool {
           return urlString.hasPrefix("nb://") ||
-                 urlString.hasPrefix("upi://") ||
                  urlString.hasPrefix("intent://") ||
                  urlString.hasPrefix("imobileappnb://") ||
                  urlString.hasPrefix("hdfcbanknb://") ||
@@ -502,12 +491,12 @@ After the user completes payment, PayU redirects back to your WebView via the su
 ## Step 5: Testing Your Integration
 
 <Accordion title="Test Scenario 1: Banking App Installed" icon="far fa-check-double">
-  **Setup:** Install at least one banking/UPI app (Google Pay, PhonePe, ICICI iMobile, etc.) on your test device
+  **Setup:** Install at least one banking on your test device
 
   **Steps:**
 
   1. Launch your app and initiate a test payment
-  2. Select Net Banking or UPI as the payment method
+  2. Select Net Banking as the payment method
   3. Choose a bank whose app is installed
   4. Verify the banking app launches successfully
   5. Complete or cancel the payment in the banking app
@@ -569,7 +558,6 @@ Your integration should handle these custom URL schemes:
 | Scheme            | Description           | Example                          |
 | ----------------- | --------------------- | -------------------------------- |
 | `nb://`           | Generic Net Banking   | `nb://netbanking?ver=1&mode=...` |
-| `upi://`          | UPI Payments          | `upi://pay?pa=merchant@upi&...`  |
 | `intent://`       | Android Intent scheme | `intent://netbanking#Intent;...` |
 | `imobileappnb://` | ICICI Bank iMobile    | `imobileappnb://netbanking?...`  |
 | `hdfcbanknb://`   | HDFC Bank             | `hdfcbanknb://netbanking?...`    |
