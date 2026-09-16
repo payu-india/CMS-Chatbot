@@ -52,7 +52,7 @@ Here's the end-to-end flow:
 
 Both Android and iOS require you to declare which external app URL schemes you intend to query.
 
-<Accordion title="Android: Configure AndroidManifest.xml" icon="android">
+<Accordion title="Android: Configure AndroidManifest.xml" icon="fab fa-android">
   Add this `<queries>` block to your `AndroidManifest.xml` **outside** the `<application>` tag:
 
   ```xml
@@ -145,7 +145,7 @@ Both Android and iOS require you to declare which external app URL schemes you i
 
 Configure your WebView to intercept navigation requests and detect deep-link URLs.
 
-<Accordion title="Android: WebViewClient Implementation" icon="android">
+<Accordion title="Android: WebViewClient Implementation" icon="fab fa-android">
   ### 2.1: Create Custom WebViewClient
 
   ```kotlin
@@ -215,7 +215,7 @@ Configure your WebView to intercept navigation requests and detect deep-link URL
   ```
 </Accordion>
 
-<Accordion title="iOS: WKNavigationDelegate Implementation" icon="apple">
+<Accordion title="iOS: WKNavigationDelegate Implementation" icon="fab fa-apple">
   ### 2.1: Set Up WKWebView
 
   ```swift
@@ -303,7 +303,7 @@ Configure your WebView to intercept navigation requests and detect deep-link URL
 
 Check if the banking app is installed, launch it if available, or show a fallback if not.
 
-<Accordion title="Android: Intent Handling" icon="android">
+<Accordion title="Android: Intent Handling" icon="fab fa-android">
   ```kotlin
   import android.content.Intent
   import android.content.pm.PackageManager
@@ -355,7 +355,7 @@ Check if the banking app is installed, launch it if available, or show a fallbac
   - Your WebView loads the callback → Parse the response parameters
 </Accordion>
 
-<Accordion title="iOS: URL Opening" icon="apple">
+<Accordion title="iOS: URL Opening" icon="fab fa-apple">
   ```swift
   import UIKit
 
@@ -407,7 +407,7 @@ Check if the banking app is installed, launch it if available, or show a fallbac
 
 After the user completes payment, PayU redirects back to your WebView via the success (`surl`) or failure (`furl`) URL you configured.
 
-<Accordion title="Android: Callback Detection" icon="android">
+<Accordion title="Android: Callback Detection" icon="fab fa-android">
   ```kotlin
   override fun onPageFinished(view: WebView?, url: String?) {
       super.onPageFinished(view, url)
@@ -442,7 +442,7 @@ After the user completes payment, PayU redirects back to your WebView via the su
   ```
 </Accordion>
 
-<Accordion title="iOS: Callback Detection" icon="apple">
+<Accordion title="iOS: Callback Detection" icon="fab fa-apple">
   ```swift
   func webView(_ webView: WKWebView, 
                decidePolicyFor navigationAction: WKNavigationAction, 
@@ -501,7 +501,7 @@ After the user completes payment, PayU redirects back to your WebView via the su
 
 ## Step 5: Testing Your Integration
 
-<Accordion title="Test Scenario 1: Banking App Installed" icon="check-circle">
+<Accordion title="Test Scenario 1: Banking App Installed" icon="far fa-check-double">
   **Setup:** Install at least one banking/UPI app (Google Pay, PhonePe, ICICI iMobile, etc.) on your test device
 
   **Steps:**
@@ -517,7 +517,7 @@ After the user completes payment, PayU redirects back to your WebView via the su
   **Expected Result:** ✅ Banking app opens → Payment completes → Callback received → Status shown
 </Accordion>
 
-<Accordion title="Test Scenario 2: Banking App Not Installed" icon="exclamation-triangle">
+<Accordion title="Test Scenario 2: Banking App Not Installed" icon="far fa-triangle-exclamation">
   **Setup:** Use a device/emulator without the selected banking app
 
   **Steps:**
@@ -531,7 +531,7 @@ After the user completes payment, PayU redirects back to your WebView via the su
   **Expected Result:** ✅ Fallback shown → User can retry or cancel → App remains stable
 </Accordion>
 
-<Accordion title="Test Scenario 3: Callback Verification" icon="shield">
+<Accordion title="Test Scenario 3: Callback Verification" icon="far fa-shield">
   **Steps:**
 
   1. Complete a test payment
@@ -550,15 +550,15 @@ After the user completes payment, PayU redirects back to your WebView via the su
 
 Before deploying to production:
 
-- [ ] **Environment URLs updated** — Replace sandbox URLs with production endpoints
-- [ ] **Live credentials configured** — Use production merchant key and salt (not test credentials)
-- [ ] **Manifest/Info.plist verified** — All URL schemes declared correctly
-- [ ] **Deep-link URLs unmodified** — No encoding/decoding in your code
-- [ ] **Fallback implemented** — Graceful handling when banking apps are missing
-- [ ] **Callback verification** — Hash validation is implemented
-- [ ] **Error handling** — Proper logging and error messages
-- [ ] **Multi-device testing** — Tested on Android 11+ and latest iOS versions
-- [ ] **Performance tested** — No memory leaks or WebView crashes
+- [x] **Environment URLs updated** — Replace sandbox URLs with production endpoints
+- [x] **Live credentials configured** — Use production merchant key and salt (not test credentials)
+- [x] **Manifest/Info.plist verified** — All URL schemes declared correctly
+- [x] **Deep-link URLs unmodified** — No encoding/decoding in your code
+- [x] **Fallback implemented** — Graceful handling when banking apps are missing
+- [x] **Callback verification** — Hash validation is implemented
+- [x] **Error handling** — Proper logging and error messages
+- [x] **Multi-device testing** — Tested on Android 11+ and latest iOS versions
+- [x] **Performance tested** — No memory leaks or WebView crashes
 
 ***
 
@@ -577,26 +577,28 @@ Your integration should handle these custom URL schemes:
 | `yesirisnb://`    | Yes Bank IRIS         | `yesirisnb://netbanking?...`     |
 
 <Callout icon="📌" theme="default">
-  ### **Note:** This list covers the most common banking apps. Additional bank-specific schemes may be added in future updates.
+  ### **Note:**&#x20;
+
+  This list covers the most common banking apps. Additional bank-specific schemes may be added in future updates.
 </Callout>
 
 ***
 
 ## Troubleshooting
 
-<Accordion title="Banking app doesn't launch on Android 11+" icon="bug">
+<Accordion title="Banking app doesn't launch on Android 11+" icon="far fa-bug">
   **Problem:** `resolveActivity()` returns `null` even though the app is installed.
 
   **Solution:** Verify your `AndroidManifest.xml` includes the `<queries>` block with the correct URL scheme. Without this, Android 11+ blocks package visibility.
 </Accordion>
 
-<Accordion title="iOS canOpenURL() always returns false" icon="bug">
+<Accordion title="iOS canOpenURL() always returns false" icon="far fa-bug">
   **Problem:** `UIApplication.shared.canOpenURL()` returns `false` for all banking schemes.
 
   **Solution:** Add the URL schemes to `LSApplicationQueriesSchemes` in your `Info.plist`. iOS requires explicit declaration of queryable schemes.
 </Accordion>
 
-<Accordion title="Callback URL not detected" icon="bug">
+<Accordion title="Callback URL not detected" icon="far fa-bug">
   **Problem:** Payment completes but WebView doesn't detect the callback.
 
   **Solution:**
@@ -607,7 +609,7 @@ Your integration should handle these custom URL schemes:
   - Test with a simple pattern match (e.g., `contains("payment/success")`)
 </Accordion>
 
-<Accordion title="Deep-link signature validation fails" icon="bug">
+<Accordion title="Deep-link signature validation fails" icon="far fa-bug">
   **Problem:** Banking app shows "Invalid request" or signature errors.
 
   **Solution:** You're likely modifying the deep-link URL. Never encode, decode, or alter the URL in any way. Pass it exactly as received from the WebView navigation event.
