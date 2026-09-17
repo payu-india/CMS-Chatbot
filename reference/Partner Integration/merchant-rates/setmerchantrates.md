@@ -4,3 +4,4 @@ api:
   operationId: setMerchantRates
 hidden: false
 ---
+For all payment merchanism & instrument mapping, please see [mechanism to instrument](https://docs.payu.in/docs/payment-mechanism-to-instrument-mapping) mapping guide.&#x20;
