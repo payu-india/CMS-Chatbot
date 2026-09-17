@@ -1,0 +1,818 @@
+openapi: 3.1.0
+info:
+  title: Partner Merchant Rates API
+  version: 1.0.0
+  description: >
+    Create or update **TDR/TSF pricing** for a merchant (**MID**) that your
+    partner account referred.
+
+    Rates are stored per payment mechanism, instrument, optional card type, and
+    optional transaction amount slab.
+
+
+    ## Prerequisites
+
+
+    All of the following must be satisfied before calling this API:
+
+
+    1. Valid OAuth access token in the `Authorization` header (`Bearer` prefix
+    required).
+
+    2. Partner (`reseller_uuid`) must exist and be a **platform partner**
+    (`is_platform_partner = true`).
+
+    3. Token must include scope **`refer_merchant`**.
+
+    4. Token user must be authorized as **owner** of the partner (standard
+    partner portal token).
+
+    5. `mid` must be an existing merchant product-account identifier **linked to
+    your partner** (merchant referred by you).
+
+    6. Use only `payment_mechanism` and `instrument` codes that exist in PayU's
+    catalog. Invalid codes fail at the **pricing entry** level.
+
+
+    > **Discover standard partner rate cards (optional):**
+
+    > `GET
+    /api/v1/partners/fetch_rates?reseller_uuid={reseller_uuid}&business_category_id={id}`
+    — use the same auth.
+
+    > Merchant Rates API sets **merchant-specific** overrides on top of partner
+    defaults.
+
+
+    ## Business Logic
+
+
+    ### Upsert (create or update)
+
+    - First call for a MID creates a **product account plan** and rate rows.
+
+    - Subsequent calls with the same `payment_mechanism` + `instrument` +
+    `card_type` (+ same `amount_slab` if used) **update** existing rates.
+
+    - Per-entry success messages: `"Rate created"` or `"Rate updated"`.
+
+
+    ### Amount Slabs
+
+
+    | `amount_slab` | Where rates are stored |
+
+    |---|---|
+
+    | **Not sent** | `PlanDetail` (`tdr_percentage` → `rate`, `tdr_flat` →
+    `flat_charge`, etc.) |
+
+    | **Sent** | `GmvBucket` for that slab; `PlanDetail` holds structure, slab
+    holds the actual %/flat values |
+
+
+    - Different slabs (e.g. `0–2000` and `2001–5000`) create **separate**
+    buckets for the same instrument.
+
+    - `amount_slab: { "min_amount": 0 }` only → open-ended slab from 0 upward
+    (`max_amount` = null).
+
+
+    ### TSF Rules
+
+    TSF (`tsf_percentage` / `tsf_flat`) is allowed only when:
+
+    - `payment_mechanism` is **`UPI`**, **or**
+
+    - `instrument` starts with **`RUPAY`** (e.g. `RUPAYCC`).
+
+
+    TSF is rejected if **either** `tsf_percentage > 0` **or** `tsf_flat > 0` on
+    other instruments (e.g. AMEX, regular CC).
+
+    `0` / omitted TSF is always fine on any instrument.
+
+
+    ### Card Type Mapping (CC / DC only)
+
+
+    | You send | Stored as |
+
+    |---|---|
+
+    | `Domestic`, `domestic`, `unknown`, `not_present` | `default` |
+
+    | `International`, `international` | `international` |
+
+    | `Corporate`, `corporate` | `corporate` |
+
+    | `Prepaid`, `prepaid` | `prepaid` |
+
+
+    Unrecognized values default to `default`.
+
+
+    ### Batch Processing
+
+    - Entries are processed **in array order**; index `0` is first.
+
+    - One bad entry does **not** roll back successful siblings.
+
+    - Max **300** entries per request.
+
+
+    ## Integration Checklist
+
+
+    1. Obtain token with `refer_merchant` scope for a **platform** partner.
+
+    2. Refer merchant and note **`mid`** (product account identifier).
+
+    3. `POST` with 1+ valid `pricing` entries; `tdr_percentage` is required on
+    every entry.
+
+    4. For **CC/DC**, always send `card_type`.
+
+    5. Use **TSF** only on **UPI** or **RUPAY*** instruments.
+
+    6. On **200** + `partial_success`, fix failed `results[i]` and resubmit
+    **only** corrected entries (or full batch if easier).
+
+    7. On **422** + service `message`, fix the request-level issue (MID, link,
+    batch size) before retrying.
+servers:
+  - url: https://partner.payu.in
+    description: Production
+security:
+  - bearerAuth: []
+tags:
+  - name: Merchant Rates
+    description: Set TDR/TSF pricing for merchants referred by your partner account
+paths:
+  /api/v1/partners/merchant_rates:
+    post:
+      operationId: setMerchantRates
+      summary: Set merchant rates
+      description: >
+        Create or update TDR/TSF pricing for a merchant referred by your partner
+        account.
+
+
+        Supports batch upsert of up to **300** pricing entries per request. Each
+        entry is processed independently — a failure on one entry does not roll
+        back others.
+
+
+        **Response shape depends on outcome:**
+
+        - HTTP **200** + `status: success` → all entries processed successfully.
+
+        - HTTP **200** + `status: partial_success` → some entries succeeded,
+        some failed. Always inspect `results[]`.
+
+        - HTTP **422** + `status: error` (with `results`) → all entries failed.
+
+        - HTTP **422** + `status: error` (with `message`, no `results`) →
+        service-level failure (bad MID, not linked, batch > 300).
+
+        - HTTP **400 / 401 / 403 / 404** → request rejected before entry
+        processing.
+      tags:
+        - Merchant Rates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MerchantRatesRequest'
+            examples:
+              simple_rates:
+                summary: Simple rates — no amount slab
+                description: >-
+                  Rates stored on PlanDetail. UPI allows TSF; CC requires
+                  card_type.
+                value:
+                  reseller_uuid: 550e8400-e29b-41d4-a716-446655440000
+                  mid: '12345678'
+                  pricing:
+                    - payment_mechanism: UPI
+                      instrument: UPI
+                      tdr_percentage: 0.5
+                      tdr_flat: 0
+                      tsf_percentage: 0.1
+                      tsf_flat: 0
+                    - payment_mechanism: CC
+                      instrument: CC
+                      card_type: Domestic
+                      tdr_percentage: 2
+                      tdr_flat: 0
+              with_amount_slabs:
+                summary: With amount slabs
+                description: >-
+                  Entry 0 creates a 0–2000 GmvBucket. Entry 1 is open-ended
+                  (max_amount null). Second call with same keys → "Rate
+                  updated".
+                value:
+                  reseller_uuid: 550e8400-e29b-41d4-a716-446655440000
+                  mid: '12345678'
+                  pricing:
+                    - payment_mechanism: UPI
+                      instrument: UPI
+                      amount_slab:
+                        min_amount: 0
+                        max_amount: 2000
+                      tdr_percentage: 0
+                      tdr_flat: 0
+                      tsf_percentage: 0.1
+                      tsf_flat: 0
+                    - payment_mechanism: CC
+                      instrument: CC
+                      card_type: Domestic
+                      amount_slab:
+                        min_amount: 0
+                      tdr_percentage: 2
+                      tdr_flat: 0
+              international_rupay:
+                summary: International card + Rupay TSF
+                description: >-
+                  TSF allowed because instrument starts with RUPAY. card_type
+                  International stored as "international".
+                value:
+                  reseller_uuid: 550e8400-e29b-41d4-a716-446655440000
+                  mid: '12345678'
+                  pricing:
+                    - payment_mechanism: CC
+                      instrument: RUPAYCC
+                      card_type: International
+                      tdr_percentage: 2.5
+                      tdr_flat: 0
+                      tsf_percentage: 0.15
+                      tsf_flat: 0.5
+              minimal_upi:
+                summary: Minimal UPI — tdr_percentage only
+                description: >-
+                  Smallest valid payload. Only tdr_percentage is required
+                  besides mechanism and instrument.
+                value:
+                  reseller_uuid: 550e8400-e29b-41d4-a716-446655440000
+                  mid: '12345678'
+                  pricing:
+                    - payment_mechanism: UPI
+                      instrument: UPI
+                      tdr_percentage: 0.4
+              partial_success_mix:
+                summary: Mixed valid + invalid entries
+                description: >-
+                  Entry 0 is valid UPI; entries 1 and 2 use invalid codes to
+                  demonstrate partial_success.
+                value:
+                  reseller_uuid: 550e8400-e29b-41d4-a716-446655440000
+                  mid: '12345678'
+                  pricing:
+                    - payment_mechanism: UPI
+                      instrument: UPI
+                      tdr_percentage: 0
+                    - payment_mechanism: INVALID_MODE
+                      instrument: UPI
+                      tdr_percentage: 0
+                    - payment_mechanism: CC
+                      instrument: INVALID_OPTION
+                      card_type: Domestic
+                      tdr_percentage: 2
+      responses:
+        '200':
+          description: >
+            Request processed. Check `status` field:
+
+            - `success` — all entries succeeded (`failed` = 0).
+
+            - `partial_success` — some entries failed. Inspect `results[]` and
+            retry failed indices.
+
+
+            > **Do not rely on HTTP status alone.** HTTP 200 can contain failed
+            rows when `status` is `partial_success`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchResponse'
+              examples:
+                all_success:
+                  summary: All entries succeeded
+                  value:
+                    status: success
+                    processed: 2
+                    failed: 0
+                    results:
+                      - index: 0
+                        status: success
+                        message: Rate created
+                      - index: 1
+                        status: success
+                        message: Rate created
+                rate_updated:
+                  summary: Rate updated (second call with same keys)
+                  value:
+                    status: success
+                    processed: 1
+                    failed: 0
+                    results:
+                      - index: 0
+                        status: success
+                        message: Rate updated
+                partial_success:
+                  summary: Partial success — some entries failed
+                  value:
+                    status: partial_success
+                    processed: 1
+                    failed: 2
+                    results:
+                      - index: 0
+                        status: success
+                        message: Rate created
+                      - index: 1
+                        status: error
+                        message: Invalid payment_mechanism 'INVALID_MODE'
+                      - index: 2
+                        status: error
+                        message: >-
+                          Invalid instrument 'INVALID_OPTION' for
+                          payment_mechanism 'CC'
+        '400':
+          description: >-
+            Missing or invalid required top-level fields. Returned before auth
+            or entry processing.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMessage'
+              examples:
+                missing_mid:
+                  summary: mid missing or blank
+                  value:
+                    error: mid is required
+                invalid_pricing:
+                  summary: pricing missing, empty, or not an array
+                  value:
+                    error: pricing array is required
+        '401':
+          description: Missing, invalid, or expired Bearer token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+              example:
+                status: Unauthorized
+        '403':
+          description: >
+            One of:
+
+            - Partner is not a platform partner (`is_platform_partner = false`).
+
+            - Token lacks `refer_merchant` scope.
+
+            - Token user is not the partner owner.
+
+
+            > Returns the same JSON body as 401 — distinguish by **HTTP status
+            code**.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+              example:
+                status: Unauthorized
+        '404':
+          description: |
+            `reseller_uuid` not found **or** omitted/null in the request body.
+
+            > Note: A missing `reseller_uuid` returns 404, not 400.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+              example:
+                status: NotFound
+        '422':
+          description: >
+            Three possible shapes:
+
+
+            | Shape | `processed` / `failed` / `results` present? | When |
+
+            |---|---|---|
+
+            | `{ "status": "error", "message": "..." }` | No | Service-level
+            failure — MID not found, not linked, batch > 300, server
+            misconfiguration |
+
+            | `{ "status": "error", "processed": 0, "failed": N, "results":
+            [...] }` | Yes | All pricing entries failed |
+
+            | `{ "error": "..." }` | No | Unhandled exception |
+
+
+            **Service-level `message` values (exact):**
+
+            - `Partner not found`
+
+            - `Merchant MID not found`
+
+            - `Merchant MID is not linked to this partner`
+
+            - `Maximum 300 pricing entries allowed per request`
+
+            - `Default payment mode 'Others' not found` *(server
+            misconfiguration)*
+
+            - `Default payment gateway 'Default' not found` *(server
+            misconfiguration)*
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/ServiceError'
+                  - $ref: '#/components/schemas/BatchResponse'
+                  - $ref: '#/components/schemas/ErrorMessage'
+              examples:
+                mid_not_found:
+                  summary: Merchant MID not found
+                  value:
+                    status: error
+                    message: Merchant MID not found
+                mid_not_linked:
+                  summary: MID not linked to this partner
+                  value:
+                    status: error
+                    message: Merchant MID is not linked to this partner
+                batch_limit_exceeded:
+                  summary: More than 300 pricing entries
+                  value:
+                    status: error
+                    message: Maximum 300 pricing entries allowed per request
+                all_entries_failed:
+                  summary: All entries failed (entry-level errors)
+                  value:
+                    status: error
+                    processed: 0
+                    failed: 1
+                    results:
+                      - index: 0
+                        status: error
+                        message: Invalid payment_mechanism 'INVALID_MODE'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >
+        OAuth access token for a **platform partner** with `refer_merchant`
+        scope.
+
+
+        Format: `Authorization: Bearer <access_token>`
+  schemas:
+    MerchantRatesRequest:
+      type: object
+      required:
+        - reseller_uuid
+        - mid
+        - pricing
+      properties:
+        reseller_uuid:
+          type: string
+          format: uuid
+          description: Your partner UUID. Must belong to a platform partner.
+          example: 550e8400-e29b-41d4-a716-446655440000
+        mid:
+          type: string
+          description: >-
+            Merchant product-account identifier. Must be referred by your
+            partner.
+          example: '12345678'
+        pricing:
+          type: array
+          description: >
+            Array of 1–300 rate entries. Must be a JSON **array** (not an object
+            or string).
+
+            Entries are processed in order; index `0` is first.
+          minItems: 1
+          maxItems: 300
+          items:
+            $ref: '#/components/schemas/PricingEntry'
+    PricingEntry:
+      type: object
+      required:
+        - payment_mechanism
+        - instrument
+        - tdr_percentage
+      properties:
+        payment_mechanism:
+          type: string
+          description: |
+            Short code matching `OnePayuPaymentMode.title`. Case-sensitive.
+
+            Common values: `UPI`, `CC`, `DC`.
+            Exact codes depend on PayU environment configuration.
+          example: UPI
+        instrument:
+          type: string
+          description: >
+            `OnePayuPaymentOption.identifier`. Must belong to the given
+            `payment_mechanism`.
+
+
+            Examples by mechanism:
+
+            - `UPI` → `UPI`
+
+            - `CC` → `CC`, `RUPAYCC`, `AMEX`
+
+            - `DC` → `DC`, `VISA`, `RUPAYDC`
+          example: UPI
+        tdr_percentage:
+          type: number
+          minimum: 0
+          description: TDR percentage. **Required.** Must be ≥ 0.
+          example: 0.5
+        tdr_flat:
+          type: number
+          minimum: 0
+          description: Flat TDR charge in currency units. Optional; if sent, must be ≥ 0.
+          example: 0
+        tsf_percentage:
+          type: number
+          minimum: 0
+          description: >
+            TSF percentage. Optional.
+
+
+            If value > 0, only allowed when `payment_mechanism` is `UPI` **or**
+            `instrument` starts with `RUPAY` (e.g. `RUPAYCC`).
+
+            Sending `0` or omitting is always valid on any instrument.
+          example: 0.1
+        tsf_flat:
+          type: number
+          minimum: 0
+          description: |
+            Flat TSF charge. Optional.
+
+            Same instrument restrictions as `tsf_percentage` when value > 0.
+          example: 0
+        card_type:
+          type: string
+          description: >
+            **Required when `payment_mechanism` is `CC` or `DC`.**
+            Case-insensitive.
+
+
+            | Input | Stored as |
+
+            |---|---|
+
+            | `Domestic`, `domestic`, `unknown`, `not_present` | `default` |
+
+            | `International`, `international` | `international` |
+
+            | `Corporate`, `corporate` | `corporate` |
+
+            | `Prepaid`, `prepaid` | `prepaid` |
+
+
+            Unrecognized values default to `default`.
+          enum:
+            - Domestic
+            - International
+            - Corporate
+            - Prepaid
+          example: Domestic
+        amount_slab:
+          $ref: '#/components/schemas/AmountSlab'
+    AmountSlab:
+      type: object
+      description: >
+        Optional transaction amount range for this pricing entry.
+
+
+        | Provided? | Storage |
+
+        |---|---|
+
+        | **Omitted** | Rates apply on `PlanDetail` (flat rate for that
+        instrument) |
+
+        | **Present** | Rates apply only for transactions in that range via
+        `GmvBucket` |
+
+
+        Different slabs for the same instrument create separate buckets. A
+        second call with the same slab bounds **updates** the existing bucket.
+      properties:
+        min_amount:
+          type: number
+          minimum: 0
+          description: Lower bound (inclusive). Defaults to `0` if omitted. Must be ≥ 0.
+          default: 0
+          example: 0
+        max_amount:
+          type: number
+          minimum: 0
+          description: >
+            Upper bound (inclusive). May be omitted for an open-ended slab
+            (`end_range = null`).
+
+            Must be > `min_amount` when both are provided.
+          example: 2000
+    BatchResponse:
+      type: object
+      description: >
+        Returned when auth and top-level validation pass and the service runs
+        entry processing.
+
+        Present on HTTP **200** (`success` / `partial_success`) and HTTP **422**
+        (`error` when all entries fail).
+      required:
+        - status
+        - processed
+        - failed
+        - results
+      properties:
+        status:
+          type: string
+          enum:
+            - success
+            - partial_success
+            - error
+          description: >
+            | Value | HTTP | Meaning |
+
+            |---|---|---|
+
+            | `success` | 200 | All entries succeeded; `failed` = 0 |
+
+            | `partial_success` | 200 | Some succeeded, some failed. Retry only
+            failed indices. |
+
+            | `error` | 422 | All entries failed; `processed` = 0 |
+          example: success
+        processed:
+          type: integer
+          description: Number of successfully processed pricing entries.
+          example: 2
+        failed:
+          type: integer
+          description: Number of failed pricing entries.
+          example: 0
+        results:
+          type: array
+          description: Per-entry outcome, in the same order as the request `pricing` array.
+          items:
+            $ref: '#/components/schemas/EntryResult'
+    EntryResult:
+      type: object
+      required:
+        - index
+        - status
+        - message
+      properties:
+        index:
+          type: integer
+          description: Zero-based index of this entry in the request `pricing` array.
+          example: 0
+        status:
+          type: string
+          enum:
+            - success
+            - error
+          example: success
+        message:
+          type: string
+          description: >
+            **Success messages:**
+
+            - `Rate created` — new rate row or slab created.
+
+            - `Rate updated` — existing rate row or slab updated.
+
+
+            **Error messages (exact strings):**
+
+
+            | Message | Condition |
+
+            |---|---|
+
+            | `tdr_percentage is mandatory` | Field missing or null |
+
+            | `tdr_percentage must be a valid number` | Non-numeric string
+            provided |
+
+            | `tdr_percentage must be >= 0` | Negative value |
+
+            | `tsf_percentage must be a valid number` | Provided but non-numeric
+            |
+
+            | `tsf_percentage must be >= 0` | Negative value |
+
+            | `tdr_flat must be a valid number` | Provided but non-numeric |
+
+            | `tdr_flat must be >= 0` | Negative value |
+
+            | `tsf_flat must be a valid number` | Provided but non-numeric |
+
+            | `tsf_flat must be >= 0` | Negative value |
+
+            | `amount_slab.min_amount must be a valid number` | Invalid
+            `min_amount` |
+
+            | `amount_slab.min_amount must be >= 0` | Negative `min_amount` |
+
+            | `amount_slab.max_amount must be a valid number` | Invalid
+            `max_amount` |
+
+            | `amount_slab.max_amount must be >= 0` | Negative `max_amount` |
+
+            | `amount_slab.min_amount must be less than amount_slab.max_amount`
+            | `min_amount` ≥ `max_amount` |
+
+            | `card_type is mandatory for payment_mechanism CC or DC` | CC/DC
+            without `card_type` |
+
+            | `TSF is only allowed for UPI or Rupay instruments` | TSF > 0 on
+            non-UPI, non-Rupay instrument |
+
+            | `Invalid payment_mechanism '<CODE>'` | Unknown mechanism code
+            (dynamic) |
+
+            | `Invalid instrument '<INSTR>' for payment_mechanism '<MECH>'` |
+            Unknown instrument or wrong mode (dynamic) |
+          example: Rate created
+    ServiceError:
+      type: object
+      description: >
+        Service-level fatal error. The request never processes pricing entries
+        (or processing aborts before per-entry results).
+
+        No `processed` / `failed` / `results` fields present.
+      required:
+        - status
+        - message
+      properties:
+        status:
+          type: string
+          enum:
+            - error
+          example: error
+        message:
+          type: string
+          description: >
+            **Exact message values:**
+
+
+            | Message | When |
+
+            |---|---|
+
+            | `Partner not found` | Internal consistency (normally blocked by
+            404 on bad UUID) |
+
+            | `Merchant MID not found` | `mid` does not exist |
+
+            | `Merchant MID is not linked to this partner` | MID exists but
+            belongs to another partner |
+
+            | `Maximum 300 pricing entries allowed per request` |
+            `pricing.length` > 300 |
+
+            | `Default payment mode 'Others' not found` | Server
+            misconfiguration |
+
+            | `Default payment gateway 'Default' not found` | Server
+            misconfiguration |
+          example: Merchant MID not found
+    StatusResponse:
+      type: object
+      description: Returned for auth and partner-lookup failures (401, 403, 404).
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          enum:
+            - Unauthorized
+            - NotFound
+          example: Unauthorized
+    ErrorMessage:
+      type: object
+      description: >-
+        Returned for controller validation failures (400) and unhandled
+        exceptions (422).
+      required:
+        - error
+      properties:
+        error:
+          type: string
+          description: Human-readable error description.
+          example: mid is required
