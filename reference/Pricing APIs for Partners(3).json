@@ -29,7 +29,7 @@
         "tags": [
           "default"
         ],
-        "summary": "Merchant Rates - Validation error (missing mid)",
+        "summary": "Send Merchant Pricing (missing mid)",
         "description": "Expect 400 Bad Request with error: 'mid is required'.",
         "requestBody": {
           "content": {
