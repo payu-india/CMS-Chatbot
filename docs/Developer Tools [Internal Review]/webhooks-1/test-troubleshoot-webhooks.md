@@ -30,11 +30,6 @@ Every section below is tagged with one of:
                 Must be validated by a PayU SME before publishing.
                 Also marked inline with the <!-- NEW CONTENT */}
 
-comment.
-
-\=============================================================================
-\-->
-
 {/* NEW CONTENT — page-scope framing. No equivalent intro exists in the repo.
      Needs SME review. */}
 
