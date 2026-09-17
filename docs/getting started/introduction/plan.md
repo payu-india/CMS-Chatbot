@@ -644,14 +644,14 @@ Every page is one of seven types. Type determines structure — enforced as layo
 
 #### Template A1 — Tier 1 (No-Code) Product Overview Page
 
-Used for: All 27 No-Code tier products. Entry point for non-developer merchants. Focuses on what the product does and how to start — no code, no API setup required.
+Used for: All 27 No-Code tier products. Entry point for non-developer merchants. Primary objective: help the merchant understand the product and reach their first payment. No code, no API setup required.
 
 **Frontmatter**
 
 ```yaml
 ---
 title: "{Product Name}"
-excerpt: "{One sentence: what it does, for whom, and one key benefit}"
+excerpt: "{One sentence: business outcome — e.g. 'Collect payments from customers without needing a website or developer.'}"
 tier: "tier-1"
 tier_label: "No-Code"
 product: "{product-slug}"
@@ -659,7 +659,7 @@ umbrella: "accept-payments"  # or whichever umbrella applies
 page_type: "overview"
 audience: "non-developer"
 search_keywords: ["{product name}", "{alias 1}", "{alias 2}", "{key action}"]
-also_known_as: ["{alias}"]  # only if needed per R8
+also_known_as: ["{alias}"]  # only where naming is ambiguous — R8
 last_reviewed: "YYYY-MM-DD"
 deprecated: false
 hidden: false
@@ -671,57 +671,43 @@ hidden: false
 ```mdx
 <Banner
   isInline={true}
-  message="Integration effort: No code or website required"
+  message="🟢 No coding required"
   color="#15C614"
   textColor="#ffffff"
   fontSize="14px"
   fontWeight="bold"
 />
 
-## What Can I Do with {Product}?
-
-{One sentence describing the core value. Who it's for. What problem it solves.}
-
-- {Use case 1 — merchant-facing benefit}
-- {Use case 2}
-- {Use case 3}
-- {Use case 4}
-
-{Optional — embed a video if one exists:}
-<Embed url="https://www.youtube.com/watch?v={video-id}" />
-
-{Optional — CTA button linking to dashboard or an in-docs guide. Never link to Postman.}
-<HTMLBlock>
-  <div style="margin: 16px 0;">
-    <a
-      href="https://onboarding.payu.in/{relevant-section}"
-      data-tooltip="{Tooltip text, e.g. 'Opens the PayU Dashboard'}"
-      style="background:#15C614;color:#fff;padding:10px 20px;border-radius:6px;font-weight:bold;text-decoration:none;font-size:14px;display:inline-block;"
-    >
-      {CTA label, e.g. "Create a Payment Link"}
-    </a>
-  </div>
-</HTMLBlock>
+{One-line business outcome — e.g. "Collect payments from customers without a website, app, or developer."}
 
 ---
 
-## Is {Product} Right for Me?
+## Is This Right for Me?
 
-{Product} is a good choice if:
+{Who should use it — one sentence.}
 
-- **{Key phrase}** — {One sentence explaining this use case.}
-- **{Key phrase}** — {One sentence.}
-- **{Key phrase}** — {One sentence.}
+Common use cases:
+- {Use case 1}
+- {Use case 2}
+- {Use case 3}
 
-Consider another PayU solution if:
+This is NOT the right solution if:
+- {Constraint or situation} → [{Alternative product}]({link})
+- {Constraint or situation} → [{Alternative product}]({link})
 
-- {Situation or constraint} → **{Alternative product}**
-- {Situation or constraint} → **{Alternative product}**
+---
 
-<Callout icon="far fa-face-thinking" theme="warn">
-  ### Not Sure Which PayU Solution Is Right For You?
-  {Sentence about the choice being hard.} [Find the right solution →]({link to Checkout Type Quick Reference or decision guide})
-</Callout>
+## What Can I Do with {Product}?
+
+Focus on business outcomes, not features.
+
+- {Outcome 1 — what the merchant accomplishes}
+- {Outcome 2}
+- {Outcome 3}
+- {Outcome 4}
+
+{Optional — embed a video if one exists:}
+<Embed url="https://www.youtube.com/watch?v={video-id}" />
 
 ---
 
@@ -729,87 +715,97 @@ Consider another PayU solution if:
 
 You don't need a website or developer to get started.
 
-You'll need:
-
 <Columns layout="fixed">
-  <Column>**{Requirement 1}:** {One-sentence description. Where to get it or how to verify.}</Column>
+  <Column>**{Requirement 1}:** {One sentence. Where to get it.}</Column>
 </Columns>
 <Columns layout="fixed">
-  <Column>**{Requirement 2}:** {One-sentence description.}</Column>
+  <Column>**{Requirement 2}:** {One sentence.}</Column>
 </Columns>
 <Columns layout="fixed">
-  <Column>**{Requirement 3}:** {One-sentence description.}</Column>
+  <Column>**{Requirement 3}:** {One sentence.}</Column>
 </Columns>
 
-{Use one flat `<Columns>` per requirement. Do NOT nest `<Columns>` inside `<Columns>`.}
+{One flat `<Columns>` per requirement. No technical prerequisites unless genuinely required.}
 
 ---
 
-## How do I {Core Action — e.g. "Create a Payment Link"}?
+## How Does It Work?
 
-<Accordion title="1. {First step — imperative verb}" icon="far fa-{icon-name}">
-  {Instructions. What to click, what to enter, what to expect.}
-</Accordion>
+{Simple business flow — use → to show the sequence. Keep to one line.}
 
-<Accordion title="2. {Second step}" icon="far fa-{icon-name}">
-  {Instructions.}
-</Accordion>
+**{Create}** → **{Share}** → **{Customer pays}** → **{Payment received}**
 
-<Accordion title="3. {Third step}" icon="far fa-{icon-name}">
-  {Instructions.}
-</Accordion>
-
-{All Accordion titles must start with a sequential number: 1., 2., 3. — no gaps, no unnumbered steps.}
-
-<Columns layout="fixed">
-  <Column>**Need detailed steps?** See [{Guide title}]({link}) →</Column>
-</Columns>
+{One sentence expanding on each step if needed. No technical detail here.}
 
 ---
 
-## How does My Customer {Action — e.g. "Pay"}?
+## How Do I Get Started?
 
-{Include this section only for products where the merchant needs to understand the end-customer flow. Omit for purely back-office products.}
+<HTMLBlock>
+  <div style="margin: 16px 0;">
+    <a
+      href="https://onboarding.payu.in/{relevant-section}"
+      data-tooltip="{Tooltip — e.g. 'Opens the PayU Dashboard'}"
+      style="background:#15C614;color:#fff;padding:10px 20px;border-radius:6px;font-weight:bold;text-decoration:none;font-size:14px;display:inline-block;"
+    >
+      {CTA — e.g. "Create your first Payment Link →"}
+    </a>
+  </div>
+</HTMLBlock>
 
-<Accordion title="1. {Customer action step 1}" icon="far fa-{icon-name}">
+The detailed steps are in [{Guide title}]({link-to-dedicated-guide}).
+
+---
+
+## How Does My Customer Pay?
+
+<Accordion title="1. {First customer action}" icon="far fa-{icon-name}">
   {What the customer sees and does.}
 </Accordion>
 
-<Accordion title="2. {Customer action step 2}" icon="far fa-{icon-name}">
+<Accordion title="2. {Second customer action}" icon="far fa-{icon-name}">
   {What the customer sees and does.}
 </Accordion>
 
-{Continue numbered steps for the full customer journey — do not skip any steps.}
+{Continue numbered steps through the full customer journey — no gaps, no unnumbered steps.}
 
-{One sentence stating what the customer does NOT need — e.g. "Your customer does not need a PayU account to pay."}
+{One sentence on what the customer does NOT need — e.g. "Your customer does not need a PayU account to pay."}
 
 ---
 
-## How do I Manage {Payments / Orders / Subscriptions}?
+## How Do I Manage Payments?
 
 <Columns layout="fixed">
-  <Column>**{Capability 1}:** {Description of what the merchant can do.}</Column>
+  <Column>**{Capability 1 — e.g. "View payment status"}:** {One-sentence description.}</Column>
 </Columns>
 <Columns layout="fixed">
-  <Column>**{Capability 2}:** {Description.}</Column>
+  <Column>**{Capability 2 — e.g. "Export transactions"}:** {One sentence.}</Column>
 </Columns>
 <Columns layout="fixed">
-  <Column>**{Capability 3}:** {Description.}</Column>
+  <Column>**{Capability 3 — e.g. "Deactivate a link"}:** {One sentence.}</Column>
 </Columns>
 
-{One flat `<Columns>` per capability. Never nest `<Columns>` inside `<Columns>`.}
+{One sentence: what happens on payment failure or expiry and how the merchant handles it.}
 
-{One sentence on what happens on payment failure or expiry and how the merchant handles it.}
+---
+
+## Not Sure Which PayU Solution Is Right for You?
+
+<Callout icon="far fa-face-thinking" theme="warn">
+  ### Tell us what you're trying to achieve
+  {One sentence: "We'll recommend the right PayU solution for your situation."}
+  [Find the right solution →]({link to Quick Start Wizard / Checkout Type Quick Reference})
+</Callout>
 
 ---
 
 ## Next Steps
 
 <Cards>
-  <Card title="Start using {Product}" icon="far fa-{relevant-icon}">
+  <Card title="{Primary CTA — e.g. 'Create your first payment'}" icon="far fa-{relevant-icon}">
     - **{Primary action}:** [{Link text}]({link})
-    - **{Secondary action}:** [{Link text}]({link})
-    - **{Tertiary action}:** [{Link text}]({link})
+    - **{Bulk / advanced action}:** [{Link text}]({link})
+    - **{Related product}:** [{Link text}]({link})
   </Card>
   <Card title="For Developers" icon="far fa-gear-api">
     **{API option title}:** {One sentence on what the API enables.} [{Link text}]({api-reference-link})
@@ -819,35 +815,34 @@ You'll need:
 
 **Component rules:**
 
-- `<Banner>` color: T1 green = `#15C614`, T2 blue = `#0077FF`, T3 orange = `#FF6B35`
-- `<Accordion>` numbering must be sequential — no gaps, no unnumbered entries
-- "For Developers" `<Card>` is always present even on T1 pages
-- `<HTMLBlock>` CTA links only to PayU Dashboard or an in-docs guide — never Postman
-- `llms.txt` routing belongs in the site-level head file, not in page body content
+- Banner color: T1 green = `#15C614`. Always use 🟢 emoji in the message for T1.
+- `<Accordion>` numbering must be sequential — no gaps, no unnumbered entries.
+- "For Developers" `<Card>` always present even on T1 — developers sometimes manage merchant integrations.
+- `<HTMLBlock>` CTA links only to the PayU Dashboard or an in-docs guide — never Postman.
+- `llms.txt` routing belongs in the site-level head file, not in page body content.
 
 ***
 
-#### Template A2 — Tier 2/3 Product Overview Page
+#### Template A2 — Tier 2 (Minimal Technical Effort) Product Overview Page
 
-Used for: T2 (Prebuilt UI) and T3 (Developer Required) products. Audience is developers and platform builders. Emphasizes integration architecture, decision criteria, and limits.
+Used for: All 19 Prebuilt UI tier products. Primary audience: merchant + self-builder + developer. Primary objective: help the user decide whether this product is appropriate and understand what is involved before entering the technical guide.
 
 **Frontmatter**
 
 ```yaml
 ---
 title: "{Product Name}"
-excerpt: "{One sentence: what it does, who integrates it, and the integration model}"
-tier: "tier-2"           # or "tier-3" or "multi-tier"
-tier_label: "Prebuilt UI"  # or "Developer Required"
+excerpt: "{One sentence: what it does and the integration model — e.g. 'Accept payments on your website through a PayU-hosted checkout page.'}"
+tier: "tier-2"
+tier_label: "Prebuilt UI"
 product: "{product-slug}"
 umbrella: "accept-payments"
 page_type: "overview"
-audience: "developer"    # or "platform-builder" for T3 marketplace/aggregator
-experience_level: "intermediate"
+audience: "developer"
+experience_level: "beginner"
 prerequisites:
   - "api-authentication"
-  - "hash-generation"
-search_keywords: ["{product name}", "{alias}", "{integration method}"]
+search_keywords: ["{product name}", "{alias 1}", "{alias 2}", "{integration method}"]
 also_known_as: ["{alias 1}", "{alias 2}"]  # Required — R8
 last_reviewed: "YYYY-MM-DD"
 deprecated: false
@@ -860,8 +855,8 @@ hidden: false
 ```mdx
 <Banner
   isInline={true}
-  message="{T2: 'Integration effort: A few hours with frontend code' | T3: 'Integration effort: Custom build — developer required'}"
-  color="{T2: '#0077FF' | T3: '#FF6B35'}"
+  message="🟡 Some technical setup required"
+  color="#F5A623"
   textColor="#ffffff"
   fontSize="14px"
   fontWeight="bold"
@@ -871,80 +866,367 @@ hidden: false
   **Also known as**: {alias 1}, {alias 2}. Not sure which checkout to use? See the [Checkout Type Quick Reference]({link}).
 </Callout>
 
----
-
-## What is {Product}?
-
-{One paragraph: technical definition, how it fits in the PayU ecosystem, and the key architectural distinction — e.g. "PayU hosts the payment page" vs "you build the payment UI."}
-
-{Optional: flow diagram as an image or embedded visual.}
+{One-line business outcome — e.g. "Accept payments on your website through a PayU-hosted checkout."}
 
 ---
 
-## When to Use {Product}
+## Is This Right for Me?
 
-| Use this when | Consider another option if |
-|---|---|
-| {Condition 1 — specific, not vague} | {Alternative product} → [{link}]({link}) |
-| {Condition 2} | {Alternative} |
-| {Condition 3} | {Alternative} |
+Choose {Product} when:
+- {Condition 1 — specific, not vague}
+- {Condition 2}
+- {Condition 3}
 
-{T3 only — add PCI scope callout:}
-<Callout icon="far fa-shield-halved" theme="warn">
-  **PCI DSS scope**: Building a custom payment form means card data may touch your server. Review [PCI Scope by Integration Type]({link}) before committing to this approach.
-</Callout>
+This is NOT the right solution if:
+- Need a completely custom checkout → [Merchant Hosted Checkout]({link})
+- No website / no technical setup → [Payment Links]({link})
+- {Other constraint} → [{Alternative}]({link})
 
 ---
 
-## How It Works
+## What Can I Do with {Product}?
 
-{Numbered sequence for anything with more than 3 steps. Keep to essential steps only.}
+Combination of business capabilities and important product capabilities.
 
-1. {Step in the payment flow}
-2. {Step}
-3. {Step}
+- {Business outcome 1}
+- {Business outcome 2}
+- {Product capability — e.g. "Apply your branding to the checkout page"}
+- {Product capability — e.g. "Accept cards, UPI, wallets, net banking, EMI"}
+
+---
+
+## What Will I Need?
+
+<Columns layout="fixed">
+  <Column>**PayU merchant account:** Active account with KYC complete. [Get started]({link})</Column>
+</Columns>
+<Columns layout="fixed">
+  <Column>**API credentials:** Merchant key + salt. Dashboard → Settings → API Keys.</Column>
+</Columns>
+<Columns layout="fixed">
+  <Column>**Website or application:** Ability to add code to your checkout page.</Column>
+</Columns>
+<Columns layout="fixed">
+  <Column>**{Product-specific requirement}:** {One sentence.}</Column>
+</Columns>
+
+{Still an overview — not a complete technical prerequisite document. The integration guide has the full list.}
+
+---
+
+## How Does It Work?
+
+{Conceptual payment/integration flow. Use → to show sequence.}
+
+**Customer** → **Your website** → **PayU Checkout** → **Payment processed** → **Return to your site + verification**
+
+{Optional: embed a flow diagram or architecture image here.}
+
+{One sentence on what PayU handles vs. what the merchant is responsible for.}
 
 [→ Deep dive: Payment Flow explained]({link-to-concept-page})
 
 ---
 
-## Prerequisites
+## How Do I Get Started?
 
-| Requirement | Details | Where to get it |
-|---|---|---|
-| PayU merchant account | Active account with KYC complete | [PayU Dashboard]({link}) |
-| API credentials | `key` + `salt` | Dashboard → Settings → API Keys |
-| {Product-specific prereq} | {Details} | {Where} |
+<HTMLBlock>
+  <div style="margin: 16px 0;">
+    <a
+      href="{link-to-integration-guide}"
+      style="background:#F5A623;color:#fff;padding:10px 20px;border-radius:6px;font-weight:bold;text-decoration:none;font-size:14px;display:inline-block;"
+    >
+      Start {Product} integration →
+    </a>
+  </div>
+</HTMLBlock>
+
+The integration guide covers: **Credentials** → **Integration code** → **Hash generation** → **Testing** → **Go live**
 
 ---
 
-## Capabilities and Limits
+## How Does My Customer Pay?
 
-**What this integration supports:**
-- {Capability 1}
-- {Capability 2}
-- {Capability 3}
+{Optional — include only if understanding the customer experience is important for this product. Keep shorter than T1. If PayU fully controls the checkout UI, this section can be a single paragraph rather than Accordions.}
 
-**What it does not support:**
-- {Limitation 1 — important for integration commitment decisions}
-- {Limitation 2}
+{Customer reaches your checkout} → {Redirected to PayU payment page} → {Chooses payment method and pays} → {Redirected back to your site}
+
+{One sentence on what the customer does NOT need.}
+
+---
+
+## What Happens After Payment?
+
+Before entering the integration guide, understand these concepts:
+
+<Columns layout="fixed">
+  <Column>**Payment response:** {One sentence on what PayU returns and where.} [{Link to docs}]({link})</Column>
+</Columns>
+<Columns layout="fixed">
+  <Column>**Verification:** {One sentence on why you must verify server-side.} [{Link}]({link})</Column>
+</Columns>
+<Columns layout="fixed">
+  <Column>**Webhooks:** {One sentence on server-to-server notification.} [{Link}]({link})</Column>
+</Columns>
+<Columns layout="fixed">
+  <Column>**Success/failure handling:** {One sentence.} [{Link}]({link})</Column>
+</Columns>
+
+{Overview only — complete specifications are in the integration guide.}
+
+---
+
+## Not Sure Which PayU Solution Is Right for You?
+
+<Callout icon="far fa-face-thinking" theme="warn">
+  ### Not sure which PayU checkout is right for your situation?
+  [Use the Quick Start Wizard →]({link}) — answer 4 questions and get a recommendation.
+</Callout>
 
 ---
 
 ## Next Steps
 
 <Cards>
-  <Card title="Integrate {Product}" icon="far fa-code">
+  <Card title="Start integration" icon="far fa-code">
     - **Integration guide:** [{Guide title}]({link})
     - **API reference:** [{Endpoint title}]({link})
-    - **Quickstart code:** [{Language}]({link})
+    - **Testing:** [Test your integration]({link})
   </Card>
-  <Card title="Test your integration" icon="far fa-flask">
-    - **Test credentials:** [Get test keys]({link})
-    - **Test card reference:** [Test cards]({link})
+  <Card title="Explore options" icon="far fa-arrows-left-right">
+    - **Related solution:** [{Alternative product}]({link})
+    - **All checkout options:** [Checkout Type Quick Reference]({link})
   </Card>
 </Cards>
 ```
+
+***
+
+#### Template A3 — Tier 3 (Substantial Development Effort) Product Overview Page
+
+Used for: All 47 Developer Required tier products. Primary audience: developer / technical integrator / agency. Primary objective: help the technical user make the correct architectural decision and enter the right implementation path quickly.
+
+**Frontmatter**
+
+```yaml
+---
+title: "{Product Name}"
+excerpt: "{One sentence: technical/business outcome — e.g. 'Build a fully customized payment experience using PayU APIs.'}"
+tier: "tier-3"
+tier_label: "Developer Required"
+product: "{product-slug}"
+umbrella: "accept-payments"
+page_type: "overview"
+audience: "developer"  # or "platform-builder" for marketplace/aggregator products
+experience_level: "intermediate"  # or "advanced" for S2S, SDKs
+prerequisites:
+  - "api-authentication"
+  - "hash-generation"
+search_keywords: ["{product name}", "{alias 1}", "{alias 2}", "{integration method}"]
+also_known_as: ["{alias 1}", "{alias 2}"]  # Required — R8 (naming confusion is worst at T3)
+last_reviewed: "YYYY-MM-DD"
+deprecated: false
+hidden: false
+---
+```
+
+**Page Body**
+
+```mdx
+<Banner
+  isInline={true}
+  message="🔴 Significant development effort"
+  color="#E53935"
+  textColor="#ffffff"
+  fontSize="14px"
+  fontWeight="bold"
+/>
+
+<Callout icon="far fa-circle-info" theme="info">
+  **Also known as**: {alias 1}, {alias 2}. Not sure which integration to use? See the [Checkout Type Quick Reference]({link}).
+</Callout>
+
+{One-line technical/business outcome — e.g. "Build a fully customized payment experience where you control every aspect of the checkout UI."}
+
+---
+
+## Is This Right for Me?
+
+{Product} is designed for:
+- {What it is designed for — specific use case}
+- {Situation that requires this level of control}
+
+Choose {Product} when:
+- {Condition 1 — architectural requirement}
+- {Condition 2}
+
+This is NOT the right solution if:
+- Want PayU to host the checkout UI → [PayU Hosted Checkout]({link})
+- Want a prebuilt embedded checkout → [CommercePro / Checkout Plus]({link})
+- No developer available → [Payment Links]({link})
+
+{This section is especially important at T3 — choosing a technically complex integration unnecessarily increases Integration TAT.}
+
+<Callout icon="far fa-shield-halved" theme="warn">
+  **PCI DSS scope note:** Building a custom payment form means card data may touch your server. Review [PCI Scope by Integration Type]({link}) before committing to this approach.
+</Callout>
+
+---
+
+## What Can I Do with {Product}?
+
+Focus on capabilities and control the developer gains — not marketing features.
+
+- {Capability 1 — e.g. "Customize every aspect of the checkout UI"}
+- {Capability 2 — e.g. "Control the payment experience within your application"}
+- {Capability 3 — e.g. "Integrate with your existing application architecture"}
+- {Capability 4 — e.g. "Control payment method selection and flows"}
+
+---
+
+## What Will I Need?
+
+Still an overview — not a prerequisite manual. The integration guide has the complete list.
+
+<Columns layout="fixed">
+  <Column>**PayU merchant account:** Active account with KYC complete and production credentials. [Dashboard]({link})</Column>
+</Columns>
+<Columns layout="fixed">
+  <Column>**API credentials:** Merchant key + salt + SALT2/SALT7 where applicable. Dashboard → Settings → API Keys.</Column>
+</Columns>
+<Columns layout="fixed">
+  <Column>**Backend server:** Ability to make server-side API calls and handle callbacks securely.</Column>
+</Columns>
+<Columns layout="fixed">
+  <Column>**Programming environment:** {Language/framework requirements for this specific product.}</Column>
+</Columns>
+<Columns layout="fixed">
+  <Column>**{Product-specific technical requirement}:** {One sentence.}</Column>
+</Columns>
+
+---
+
+## How Does It Work?
+
+{Technical conceptual flow — not a request/response spec. Use → for sequence.}
+
+**Your application** → **PayU API** → **Payment provider / bank** → **PayU** → **Your application (response + webhook)**
+
+{Optional: embed an architecture or sequence diagram — use `<Embed>` for a hosted diagram or an image block.}
+
+{One sentence on where your responsibility starts and ends vs. PayU's responsibility.}
+
+[→ Payment Flow deep dive]({link-to-concept-page})
+
+---
+
+## How Do I Get Started?
+
+<HTMLBlock>
+  <div style="margin: 16px 0;">
+    <a
+      href="{link-to-integration-guide}"
+      style="background:#E53935;color:#fff;padding:10px 20px;border-radius:6px;font-weight:bold;text-decoration:none;font-size:14px;display:inline-block;"
+    >
+      Start {Product} integration →
+    </a>
+  </div>
+</HTMLBlock>
+
+Choose the appropriate integration route:
+
+- [{API integration guide}]({link}) — {One sentence on when to choose this route}
+- [{SDK guide}]({link}) — {One sentence}
+- [{Server-to-server guide}]({link}) — {One sentence}
+- [{Web integration guide}]({link}) — {One sentence}
+
+---
+
+## How Does the Payment Flow Work?
+
+{Technical stages at a conceptual level — NOT complete request/response specifications. Those are in the integration guide.}
+
+**Initiate** → **Authenticate** → **Process** → **Receive response** → **Verify**
+
+<Accordion title="1. Initiate — {brief description}" icon="far fa-play">
+  {What your application does. What PayU API is called. What parameters matter. One paragraph.}
+</Accordion>
+
+<Accordion title="2. Authenticate — {brief description}" icon="far fa-lock">
+  {How authentication works at this stage. Hash formula if relevant. One paragraph.}
+</Accordion>
+
+<Accordion title="3. Process — {brief description}" icon="far fa-gear">
+  {What happens at the payment provider. What your application's role is. One paragraph.}
+</Accordion>
+
+<Accordion title="4. Receive response — {brief description}" icon="far fa-arrow-left">
+  {How the response reaches you — surl/furl, webhook, or both. One paragraph.}
+</Accordion>
+
+<Accordion title="5. Verify — {brief description}" icon="far fa-circle-check">
+  {Why you must verify server-side. What API to call. One paragraph.}
+</Accordion>
+
+---
+
+## What Happens After Payment?
+
+Understand these before entering the integration guide:
+
+<Columns layout="fixed">
+  <Column>**Payment response:** {One sentence.} [{Link to docs}]({link})</Column>
+</Columns>
+<Columns layout="fixed">
+  <Column>**Server-side verification:** {One sentence — why client-side response alone is insufficient.} [{Link}]({link})</Column>
+</Columns>
+<Columns layout="fixed">
+  <Column>**Webhooks:** {One sentence on server-to-server notification and when to rely on it.} [{Link}]({link})</Column>
+</Columns>
+<Columns layout="fixed">
+  <Column>**Idempotency:** {One sentence on duplicate payment handling.} [{Link}]({link})</Column>
+</Columns>
+<Columns layout="fixed">
+  <Column>**Failure handling:** {One sentence on retry logic and partial failures.} [{Link}]({link})</Column>
+</Columns>
+
+{Overview only — complete specifications are in the integration guide.}
+
+---
+
+## Not Sure Which PayU Solution Is Right for You?
+
+<Callout icon="far fa-face-thinking" theme="warn">
+  ### Looking for a simpler integration?
+  [PayU Hosted Checkout]({link}) handles the payment UI for you — less code, faster integration. [Compare options →]({link to Checkout Type Quick Reference})
+</Callout>
+
+---
+
+## Next Steps
+
+<Cards>
+  <Card title="Start integration" icon="far fa-code">
+    - **Integration guide:** [{Guide title}]({link})
+    - **API reference:** [{Primary endpoint}]({link})
+    - **SDK documentation:** [{SDK name}]({link})
+  </Card>
+  <Card title="Validate and ship" icon="far fa-rocket">
+    - **Testing:** [Test your integration]({link})
+    - **Go live:** [Production checklist]({link})
+    - **Troubleshooting:** [Debugging & Logs]({link})
+  </Card>
+</Cards>
+```
+
+**Component rules across all three overview templates:**
+
+- Banner emoji + color: 🟢 `#15C614` = T1, 🟡 `#F5A623` = T2, 🔴 `#E53935` = T3
+- `also_known_as` `<Callout>` — required for T2 and T3, optional for T1
+- `<HTMLBlock>` CTA button color matches the tier Banner color
+- `<Accordion>` in "How Does the Payment Flow Work?" (A3) — numbered stages, not steps
+- "For Developers" `<Card>` in A1 Next Steps — always present; "Explore options" `<Card>` in A2; "Validate and ship" `<Card>` in A3
+- `llms.txt` routing belongs in the site-level head file, not in any page body
 
 ***
 
@@ -977,13 +1259,13 @@ hidden: false
   **Time**: ~{X} minutes &nbsp;|&nbsp; **What you'll need**: [{Prereq 1}]({link}), [{Prereq 2}]({link})
 </Callout>
 
-## Before You Start
+## What Do I Need Before I Start?
 
 {One sentence context. Link to the product overview page. Link to any account setup needed first.}
 
 ---
 
-## Steps
+## How Do I {Core Action — e.g. "Create a Payment Link"}?
 
 <Accordion title="1. {Step — imperative verb}" icon="far fa-{icon}">
   {Where to navigate in the dashboard. What to click. What to enter.}
@@ -1007,13 +1289,13 @@ hidden: false
 
 ---
 
-## What Happens Next
+## What Happens After I Complete These Steps?
 
 {One paragraph: expected outcome, where to verify success, what the customer or system does after this action.}
 
 ---
 
-## Troubleshooting
+## Something Isn't Working — What Do I Do?
 
 | Problem | Fix |
 |---|---|
@@ -1022,7 +1304,7 @@ hidden: false
 
 ---
 
-## Related Guides
+## What Should I Do Next?
 
 <Cards>
   <Card title="{Related action}" icon="far fa-{icon}">
@@ -1068,7 +1350,7 @@ hidden: false
   **Prerequisites**: [{Prereq 1}]({link}) · [{Prereq 2}]({link}) &nbsp;|&nbsp; **Time**: ~{X} hours &nbsp;|&nbsp; **Difficulty**: {Beginner / Intermediate / Advanced}
 </Callout>
 
-## What You'll Build
+## What Will I Build?
 
 {One paragraph. Concrete end state. What will work when this guide is complete.}
 
@@ -1107,7 +1389,7 @@ hidden: false
 
 ***
 
-## Test Your Integration
+## How Do I Test My Integration?
 
 {Specific test scenario. Test credentials and test card number inline — not "see testing page."}
 
@@ -1128,7 +1410,7 @@ Expected response:
 
 ***
 
-## Troubleshooting
+## Something Isn't Working — What Do I Do?
 
 | Error                   | Likely Cause     | Fix          |
 | ----------------------- | ---------------- | ------------ |
@@ -1199,7 +1481,7 @@ hidden: false
 
 ---
 
-## Authentication
+## How Do I Authenticate?
 
 {What credentials are required. How they are passed. The hash formula specific to this endpoint.}
 
@@ -1207,7 +1489,7 @@ hidden: false
 
 ---
 
-## Request Headers
+## What Headers Do I Need to Send?
 
 | Header | Type | Required | Description |
 |---|---|---|---|
@@ -1216,7 +1498,7 @@ hidden: false
 
 ---
 
-## Request Parameters
+## What Parameters Does This Endpoint Accept?
 
 | Parameter | Type | Required | Max Length | Description | Example |
 |---|---|---|---|---|---|
@@ -1226,7 +1508,7 @@ All parameters documented — no "see dashboard" shortcuts.
 
 ---
 
-## Request Example
+## What Does a Request Look Like?
 
 ```bash
 curl -X POST https://info.payu.in/merchant/postservice \
@@ -1239,7 +1521,7 @@ curl -X POST https://info.payu.in/merchant/postservice \
 
 ***
 
-## Response Parameters
+## What Does the Response Contain?
 
 | Parameter | Type   | Description   |
 | --------- | ------ | ------------- |
@@ -1247,7 +1529,7 @@ curl -X POST https://info.payu.in/merchant/postservice \
 
 ***
 
-## Response Examples
+## What Does the Response Look Like?
 
 **200 Success**
 
@@ -1271,7 +1553,7 @@ curl -X POST https://info.payu.in/merchant/postservice \
 
 ***
 
-## Error Codes (this endpoint)
+## What Errors Can This Endpoint Return?
 
 | Code   | Message   | Cause            | Fix          |
 | ------ | --------- | ---------------- | ------------ |
@@ -1281,13 +1563,13 @@ curl -X POST https://info.payu.in/merchant/postservice \
 
 ***
 
-## Code Examples
+## How Do I Call This Endpoint?
 
 cURL first (no dependencies), then PHP, Python, Java, Node.js, Go.
 
 ***
 
-## Related Endpoints
+## What Else Might I Need?
 
 - [\{Endpoint name\}](\{link\})
 - [\{Endpoint name\}](\{link\})
@@ -1319,25 +1601,25 @@ deprecated: false
 hidden: false
 ---
 
-## What It Is
+## What Is {Concept}?
 
 {2–3 plain-language sentences. No jargon. Assume zero prior knowledge of PayU internals.}
 
 ---
 
-## Why It Exists
+## Why Does PayU Require This?
 
 {The specific problem it solves. Why PayU requires it. What would break without it.}
 
 ---
 
-## How It Works
+## How Does {Concept} Work?
 
 {Diagram for complex flows. Numbered sequence for anything with more than 3 steps.}
 
 ---
 
-## Implementation
+## How Do I Implement This?
 
 ```{language}
 {Code block — multiple languages via toggle.}
@@ -1345,7 +1627,7 @@ hidden: false
 
 ***
 
-## Common Mistakes
+## What Are the Most Common Mistakes?
 
 | Mistake       | Why It Happens | Fix            |
 | ------------- | -------------- | -------------- |
@@ -1355,7 +1637,7 @@ hidden: false
 
 ***
 
-## Terms Defined on This Page
+## What Do These Terms Mean?
 
 | Term   | Definition                                                |
 | ------ | --------------------------------------------------------- |
@@ -1382,13 +1664,13 @@ deprecated: false
 hidden: false
 ---
 
-## What This Means
+## What Does This Error Mean?
 
 {Plain language — what the error tells you about the transaction state.}
 
 ---
 
-## Common Causes
+## What Causes This Error?
 
 1. **{Cause 1}** — {One sentence on why this happens.}
 2. **{Cause 2}** — {Why.}
@@ -1398,7 +1680,7 @@ hidden: false
 
 ---
 
-## How to Fix It
+## How Do I Fix It?
 
 **If cause 1:**
 {Fix — with code if applicable.}
@@ -1408,13 +1690,13 @@ hidden: false
 
 ---
 
-## Debug Checklist
+## Where Do I Start Debugging?
 
 [→ Transaction Debug Checklist]({link})
 
 ---
 
-## If You're Still Stuck
+## Still Stuck?
 
 - Check [{Relevant guide}]({link})
 - Contact developer support — include: `txnid`, full error response, hash input string
@@ -1439,7 +1721,7 @@ deprecated: false
 hidden: false
 ---
 
-## Full Source Code
+## What Does the Complete Code Look Like?
 
 ```{language}
 // Complete, runnable source code FIRST — no preamble.
@@ -1450,13 +1732,13 @@ hidden: false
 
 ***
 
-## Overview
+## What Does This Build?
 
 {What this builds, end-to-end. Where this code fits in the full payment flow.}
 
 ***
 
-## Code Walkthrough
+## How Does the Code Work?
 
 ### {Section name — e.g. "Hash generation"}
 
@@ -1472,7 +1754,7 @@ hidden: false
 
 ***
 
-## Run It
+## How Do I Run It?
 
 ```bash
 {Install command}
@@ -1488,7 +1770,7 @@ Expected output:
 
 ***
 
-## What to Do Next
+## What Should I Do Next?
 
 <Cards>
   <Card title="{Next step}" icon="far fa-{icon}">
