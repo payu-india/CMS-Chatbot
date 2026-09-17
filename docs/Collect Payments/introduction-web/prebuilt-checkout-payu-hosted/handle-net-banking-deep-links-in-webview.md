@@ -1,7 +1,7 @@
 ---
 title: Handle NBBL Deep-Links in WebView
 excerpt: >-
-  Learn to handle Net Banking deep-links in Android and iOS WebViews. Complete
+  Learn to handle NBBL deep-links in Android and iOS WebViews. Complete
   integration guide with code examples for PayU payment gateway.
 deprecated: false
 hidden: false
