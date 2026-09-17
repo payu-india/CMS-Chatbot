@@ -1,0 +1,95 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Partner Merchant Rates API",
+    "description": "# Partner Merchant Rates API — Integration Guide\n\nCreate or update **TDR/TSF pricing** for a merchant (**MID**) that your partner account referred. Rates are stored per payment mechanism, instrument, optional card type, and optional transaction amount slab.\n\n---\n\n## Endpoint\n\n| | |\n|---|---|\n| **Method** | `POST` |\n| **URL** | `https://partner.payu.in/api/v1/partners/merchant_rates` |\n| **Content-Type** | `application/json` |\n| **Auth** | `Authorization: Bearer <access_token>` |\n\n---\n\n## Prerequisites (all required)\n\n1. **Valid OAuth access token** in the `Authorization` header (`Bearer` prefix required).\n2. Partner (`reseller_uuid`) must exist and be a **platform partner** (`is_platform_partner = true`).\n3. Token must include scope **`refer_merchant`**.\n4. Token user must be authorized as **owner** of the partner (standard partner portal token).\n5. **`mid`** must be an existing merchant product-account identifier **linked to your partner** (merchant referred by you).\n6. Use only **`payment_mechanism`** and **`instrument`** codes that exist in PayU’s catalog (see *Payment codes* below). Invalid codes fail at the **pricing entry** level.\n\n> **Discover standard partner rate cards (optional):** `GET https://partner.payu.in/api/v1/partners/fetch_rates?reseller_uuid=550e8400-e29b-41d4-a716-446655440000&business_category_id=<id>` — use the same auth. Merchant Rates API sets **merchant-specific** overrides on top of partner defaults.\n\n---\n\n## Request body\n\n```json\n{\n  \"reseller_uuid\": \"<partner-uuid>\",\n  \"mid\": \"<merchant-mid>\",\n  \"pricing\": [\n    {\n      \"payment_mechanism\": \"UPI\",\n      \"instrument\": \"UPI\",\n      \"tdr_percentage\": 0.5,\n      \"tdr_flat\": 0,\n      \"tsf_percentage\": 0.1,\n      \"tsf_flat\": 0,\n      \"card_type\": \"Domestic\",\n      \"amount_slab\": { \"min_amount\": 0, \"max_amount\": 2000 }\n    }\n  ]\n}\n```\n\n### Top-level fields\n\n| Field | Type | Required | Description |\n|-------|------|----------|-------------|\n| `reseller_uuid` | string (UUID) | **Yes** | Your partner UUID. |\n| `mid` | string | **Yes** | Merchant product-account identifier. |\n| `pricing` | array | **Yes** | 1–**300** rate entries per request. Must be a JSON **array** (not an object/string). |\n\n### Each `pricing[]` entry\n\n| Field | Type | Required | Description |\n|-------|------|----------|-------------|\n| `payment_mechanism` | string | **Yes** | Short code on `OnePayuPaymentMode.title` (e.g. `UPI`, `CC`, `DC`). Case-sensitive. |\n| `instrument` | string | **Yes** | `OnePayuPaymentOption.identifier`; must belong to the given `payment_mechanism`. |\n| `tdr_percentage` | number | **Yes** | TDR %; must be present and **≥ 0**. |\n| `tdr_flat` | number | No | Flat TDR charge; if sent, must be **≥ 0**. |\n| `tsf_percentage` | number | No | TSF %; if sent and > 0, only allowed for **UPI** or **Rupay** instruments (see *TSF rules*). Must be **≥ 0** when provided. |\n| `tsf_flat` | number | No | Flat TSF; same rules as `tsf_percentage`. Must be **≥ 0** when provided. |\n| `card_type` | string | **Yes for CC/DC** | Required when `payment_mechanism` is `CC` or `DC`. See *Card type mapping*. |\n| `amount_slab` | object | No | If **omitted**, rates apply on `PlanDetail` (flat rate for that instrument). If **present**, rates apply only for transactions in that amount range via `GmvBucket`. |\n| `amount_slab.min_amount` | number | No | Defaults to **0** if omitted. Must be **≥ 0**. |\n| `amount_slab.max_amount` | number | No | Upper bound; may be omitted for open-ended slab (`end_range = null`). Must be **> min_amount** when both are set. |\n\n---\n\n## Business logic\n\n### Upsert (create or update)\n\n- First call for a MID creates a **product account plan** and rate rows.\n- Subsequent calls with the same `payment_mechanism` + `instrument` + `card_type` (+ same `amount_slab` if used) **update** existing rates.\n- Per-entry success messages: `\"Rate created\"` or `\"Rate updated\"`.\n\n### With vs without `amount_slab`\n\n| `amount_slab` | Where rates are stored |\n|---------------|------------------------|\n| **Not sent** | `PlanDetail` (`tdr_percentage` → `rate`, `tdr_flat` → `flat_charge`, etc.) |\n| **Sent** | `GmvBucket` for that slab; `PlanDetail` holds structure, slab holds the actual %/flat values |\n\n- Different slabs (e.g. `0–2000` and `2001–5000`) create **separate** buckets for the same instrument.\n- `amount_slab: { \"min_amount\": 0 }` only → open-ended slab from 0 upward (`max_amount` = null).\n\n### TSF rules\n\n**TSF** (`tsf_percentage` / `tsf_flat`) is allowed only when:\n\n- `payment_mechanism` is **`UPI`**, **or**\n- `instrument` starts with **`RUPAY`** (e.g. `RUPAYCC`).\n\nTSF is rejected if **either** `tsf_percentage > 0` **or** `tsf_flat > 0` on other instruments (e.g. AMEX, regular CC).\n\n`0` / omitted TSF is always fine on any instrument.\n\n### Card type mapping (`CC` / `DC` only)\n\nInput (case-insensitive) → stored value:\n\n| You send | Stored as |\n|----------|----------|\n| `Domestic`, `domestic`, `unknown`, `not_present`, omitted/null on non-CC/DC | `default` |\n| `International`, `international` | `international` |\n| `Corporate`, `corporate` | `corporate` |\n| `Prepaid`, `prepaid` | `prepaid` |\n\nUnrecognized values default to `default`.\n\n### Batch processing\n\n- Entries are processed **in array order**; index `0` is first.\n- One bad entry does **not** roll back successful siblings.\n- Max **300** entries per request.\n\n### Payment codes\n\n`payment_mechanism` must match a configured mode **title** (examples from tests: `UPI`, `CC`, `DC`).\n\n`instrument` must match an option **identifier** under that mode (examples: `UPI`, `CC`, `RUPAYCC`, `AMEX`, `VISA` under `DC`).\n\nExact codes depend on PayU environment configuration. Use invalid codes only if you intend to test error handling.\n\n---\n\n## Response shapes\n\n### A. Per-entry batch response (HTTP 200 or 422)\n\nReturned when the request passes auth and top-level validation and the service runs (even if every entry fails).\n\n```json\n{\n  \"status\": \"success | partial_success | error\",\n  \"processed\": <number of successful entries>,\n  \"failed\": <number of failed entries>,\n  \"results\": [\n    { \"index\": 0, \"status\": \"success\", \"message\": \"Rate created\" },\n    { \"index\": 1, \"status\": \"error\", \"message\": \"<exact message>\" }\n  ]\n}\n```\n\n| `status` | HTTP | Meaning |\n|----------|------|--------|\n| `success` | **200** | All entries succeeded (`failed` = 0). |\n| `partial_success` | **200** | Some succeeded, some failed. **Retry only failed indices.** |\n| `error` | **422** | **All** entries failed (`processed` = 0). |\n\n> **Important:** HTTP **200** can still contain failed rows when `status` is `partial_success`. Always inspect `results[]`.\n\n### B. Service-level fatal error (HTTP 422)\n\nRequest never processes pricing entries (or processing aborts before per-entry results). Body:\n\n```json\n{ \"status\": \"error\", \"message\": \"<exact message>\" }\n```\n\nNo `processed` / `failed` / `results` in this shape.\n\n### C. Controller validation (HTTP 400)\n\n```json\n{ \"error\": \"<exact message>\" }\n```\n\n### D. Auth / partner lookup\n\n| HTTP | Body | When |\n|------|------|------|\n| **401** | `{ \"status\": \"Unauthorized\" }` | Missing/invalid/expired Bearer token. |\n| **403** | `{ \"status\": \"Unauthorized\" }` | Not platform partner, missing `refer_merchant` scope, or not partner owner. |\n| **404** | `{ \"status\": \"NotFound\" }` | Unknown `reseller_uuid` **or** `reseller_uuid` omitted/null. |\n\n### E. Unhandled exception (HTTP 422)\n\n```json\n{ \"error\": \"<exception message>\" }\n```\n\n---\n\n## Complete error catalog (exact messages)\n\n### HTTP 400 — request validation\n\n| Condition | Response body |\n|-----------|----------------|\n| `mid` missing or blank | `{ \"error\": \"mid is required\" }` |\n| `pricing` missing, empty, or not an array | `{ \"error\": \"pricing array is required\" }` |\n\n### HTTP 401\n\n| Condition | Response body |\n|-----------|----------------|\n| No/invalid token | `{ \"status\": \"Unauthorized\" }` |\n\n### HTTP 403\n\n| Condition | Response body |\n|-----------|----------------|\n| Not platform partner **or** token lacks `refer_merchant` **or** Pundit owner check fails | `{ \"status\": \"Unauthorized\" }` |\n\n### HTTP 404\n\n| Condition | Response body |\n|-----------|----------------|\n| `reseller_uuid` not found **or** not provided | `{ \"status\": \"NotFound\" }` |\n\n### HTTP 422 — service-level (`message` field)\n\n| Exact `message` | When |\n|-----------------|------|\n| `Partner not found` | Internal consistency (normally blocked by 404 on bad UUID). |\n| `Merchant MID not found` | `mid` does not exist. |\n| `Merchant MID is not linked to this partner` | MID exists but belongs to another partner. |\n| `Maximum 300 pricing entries allowed per request` | `pricing.length` > 300. |\n| `Default payment mode 'Others' not found` | Server misconfiguration (rare). |\n| `Default payment gateway 'Default' not found` | Server misconfiguration (rare). |\n\n### HTTP 422 — all entries failed (`status: \"error\"` + `results`)\n\nSame per-entry messages as below; top-level `status` is `error`, `processed` = 0.\n\n### Per-entry `results[].message` (entry `status: \"error\"`)\n\n| Exact message | When |\n|---------------|------|\n| `tdr_percentage is mandatory` | Field missing or null. |\n| `tdr_percentage must be a valid number` | Non-numeric string. |\n| `tdr_percentage must be >= 0` | Negative value. |\n| `tsf_percentage must be a valid number` | Provided but non-numeric. |\n| `tsf_percentage must be >= 0` | Negative value. |\n| `tdr_flat must be a valid number` | Provided but non-numeric. |\n| `tdr_flat must be >= 0` | Negative value. |\n| `tsf_flat must be a valid number` | Provided but non-numeric. |\n| `tsf_flat must be >= 0` | Negative value. |\n| `amount_slab.min_amount must be a valid number` | Invalid `min_amount`. |\n| `amount_slab.min_amount must be >= 0` | Negative `min_amount`. |\n| `amount_slab.max_amount must be a valid number` | Invalid `max_amount`. |\n| `amount_slab.max_amount must be >= 0` | Negative `max_amount`. |\n| `amount_slab.min_amount must be less than amount_slab.max_amount` | `min_amount` ≥ `max_amount`. |\n| `card_type is mandatory for payment_mechanism CC or DC` | `CC`/`DC` without `card_type`. |\n| `TSF is only allowed for UPI or Rupay instruments` | TSF > 0 on non-UPI, non-Rupay instrument. |\n| `Invalid payment_mechanism '<CODE>'` | Unknown mechanism (dynamic `<CODE>`). |\n| `Invalid instrument '<INSTR>' for payment_mechanism '<MECH>'` | Unknown instrument or wrong mode (dynamic). |\n\n### Per-entry success `results[].message`\n\n| Message | When |\n|---------|------|\n| `Rate created` | New rate row or slab. |\n| `Rate updated` | Existing rate row or slab updated. |\n\n---\n\n## Integration checklist\n\n1. Obtain token with `refer_merchant` for a **platform** partner.\n2. Refer merchant and note **`mid`** (product account identifier).\n3. `POST` with 1+ valid `pricing` entries; require `tdr_percentage` on every entry.\n4. For **CC/DC**, always send `card_type`.\n5. Use **TSF** only on **UPI** or **RUPAY*** instruments.\n6. On **200** + `partial_success`, fix failed `results[i]` and resubmit **only** corrected entries (or full batch if easier).\n7. On **422** + service `message`, fix request-level issue (MID, link, batch size) before retrying.\n\n---\n\n*Generated from `reseller-portal`: `Api::V1::ResellersController#merchant_rates`, `PartnerRatesService`.*",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://partner.payu.in"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "noauthAuth": {
+        "type": "http",
+        "scheme": "noauth"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Success examples",
+      "description": "All return **HTTP 200** with `\"status\": \"success\"` when `reseller_uuid`, `mid`, auth, and every `pricing` entry are valid."
+    },
+    {
+      "name": "Auth & top-level validation errors",
+      "description": "Failures before or during controller checks. Fix these before debugging individual `pricing` entries."
+    },
+    {
+      "name": "Service-level errors (whole request)",
+      "description": "**HTTP 422** with `{ \"status\": \"error\", \"message\": \"...\" }` — no per-entry `results`. Fix MID/link/batch size before retrying."
+    },
+    {
+      "name": "Pricing entry validation errors",
+      "description": "Usually **HTTP 200** (`partial_success`) or **422** (`error` when all entries fail). Errors appear in `results[i].message` with exact strings below."
+    }
+  ],
+  "paths": {
+    "/api/v1/partners/merchant_rates": {
+      "post": {
+        "tags": [
+          "Pricing entry validation errors"
+        ],
+        "summary": "[entry] Negative or invalid flat / TSF / slab",
+        "description": "Examples of exact messages:\n- `tdr_flat must be >= 0`\n- `tsf_flat must be >= 0`\n- `tsf_percentage must be >= 0`\n- `amount_slab.min_amount must be less than amount_slab.max_amount`\n- `amount_slab.min_amount must be >= 0`\n- `amount_slab.max_amount must be >= 0`\n- `tdr_flat must be a valid number` / `tsf_flat must be a valid number` / `amount_slab.min_amount must be a valid number` / `amount_slab.max_amount must be a valid number`",
+        "requestBody": {
+          "content": {
+            "*/*": {
+              "schema": {
+                "type": "string",
+                "example": "\"{\\n  \\\"reseller_uuid\\\": \\\"550e8400-e29b-41d4-a716-446655440000\\\",\\n  \\\"mid\\\": \\\"12345678\\\",\\n  \\\"pricing\\\": [\\n    {\\n      \\\"payment_mechanism\\\": \\\"UPI\\\",\\n      \\\"instrument\\\": \\\"UPI\\\",\\n      \\\"tdr_percentage\\\": 0,\\n      \\\"tdr_flat\\\": -1,\\n      \\\"amount_slab\\\": { \\\"min_amount\\\": 2000, \\\"max_amount\\\": 2000 }\\n    }\\n  ]\\n}\""
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer YOUR_ACCESS_TOKEN"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}
