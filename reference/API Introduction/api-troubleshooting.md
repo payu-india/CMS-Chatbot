@@ -1,7 +1,9 @@
 ---
-title: Issues and Troubleshooting
+title: Errors and Troubleshooting
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
