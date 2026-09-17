@@ -11,6 +11,13 @@ metadata:
   description: >-
     Learn to handle Net Banking deep-links in Android and iOS WebViews. Complete
     integration guide with code examples for PayU payment gateway.
+  keywords:
+    - webview deep-link integration
+    - net banking webview android
+    - payu webview integration
+    - mobile payment deep-link
+    - webview intent handling
+    - banking app deep-link
   robots: index
 ---
 Handle Net Banking payment deep-links in your mobile WebView (Android and iOS). When users select Net Banking, PayU redirects to custom URL schemes (`nb://` and bank-specific schemes). Your app must intercept these URLs and launch the corresponding native app.
