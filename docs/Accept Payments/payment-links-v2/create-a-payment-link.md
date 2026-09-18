@@ -89,10 +89,10 @@ To create and send a Payment Link:
 
             <RequiredStar legend />
         </Callout>
-        | Information                                                 | Description                                          |
-        | ----------------------------------------------------------- | ---------------------------------------------------- |
-        | <requiredstar param="Item Description" bold></RequiredStar> | A short description about the link you are creating. |
-        | **Total Amount**                                            |                                                      |
+        | Information                                                   | Description                                          |
+        | ------------------------------------------------------------- | ---------------------------------------------------- |
+        | <RequiredStar param="merchant_id" bold={true}></RequiredStar> | A short description about the link you are creating. |
+        | **Total Amount**                                              |                                                      |
 
   - **Amount** — enter the payment amount in INR.
   - **Purpose** — a brief description, e.g. _"Invoice #1042 — Web Design Services"_.
