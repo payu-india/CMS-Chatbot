@@ -392,6 +392,14 @@ Use bulk upload to create hundreds of payment links in one go. Each row in the C
 
 ***
 
+<Cards>
+  <Card title="For Developers" icon="fa-rocket">
+    Need to create or manage payment links from your own system — CRM, ERP, or billing tool? Use **Payment Links APIs** to create, share, fetch, and deactivate links programmatically with OAuth2 authentication.
+
+    → [Get an API token](doc:api-auth-token) · [Create a link via API](doc:api-create-share) · [Fetch & manage links via API](doc:api-fetch)
+  </Card>
+</Cards>
+
 ## What Happens After My Customer Pays?
 
 After your customer makes the payment:
