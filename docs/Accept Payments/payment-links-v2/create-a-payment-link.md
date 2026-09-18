@@ -82,102 +82,100 @@ To create and send a Payment Link:
   <Image src="https://files.readme.io/889bdf1e584b7531c1f79d1396230fbbfcb7ae0c6beaa5789d764d57c95aef8f-Screenshot_2026-09-18_at_11.06.18_AM.png" align="center" caption="Create New Payment Link panel" border={true} />
 
 
-  2. Provide the these details in respective sections:
-     1. **Payment Link Details**
-        <Callout icon="📘" theme="info">
-          ### **Required Fields**
+  2. Provide these details in the **Payment Link Details** section:
+     <Callout icon="📘" theme="info">
+       ### **Required Fields**
 
-            <RequiredStar legend />
-        </Callout>
-        <Table>
-          <thead>
-            <tr>
-              <th>
-                Information
-              </th>
+         <RequiredStar legend />
+     </Callout>
+     <Table>
+       <thead>
+         <tr>
+           <th>
+             Information
+           </th>
 
-              <th>
-                Description
-              </th>
-            </tr>
-          </thead>
+           <th>
+             Description
+           </th>
+         </tr>
+       </thead>
 
-          <tbody>
-            <tr>
-              <td>
-                <requiredstar param="Item Description" bold="{true}"></RequiredStar>
-              </td>
+       <tbody>
+         <tr>
+           <td>
+             <requiredstar param="Item Description" bold="{true}"></RequiredStar>
+           </td>
 
-              <td>
-                A short description about the link you are creating.
-              </td>
-            </tr>
+           <td>
+             A short description about the link you are creating.
+           </td>
+         </tr>
 
-            <tr>
-              <td>
-                **Total Amount**
-              </td>
+         <tr>
+           <td>
+             **Total Amount**
+           </td>
 
-              <td>
-                The total amount you want to collect. You can choose to leave this field for the open payments. Add an amount if you wan to allow partial payments.
-              </td>
-            </tr>
+           <td>
+             The total amount you want to collect. You can choose to leave this field for the open payments. Add an amount if you wan to allow partial payments.
+           </td>
+         </tr>
 
-            <tr>
-              <td>
-                **Limit Link Access To**
-              </td>
+         <tr>
+           <td>
+             **Limit Link Access To**
+           </td>
 
-              <td>
-                Use this filed to limit the payment link to number of customers or transactions.
-              </td>
-            </tr>
+           <td>
+             Use this filed to limit the payment link to number of customers or transactions.
+           </td>
+         </tr>
 
-            <tr>
-              <td>
-                **Set Payment Due Date (Link Expiry)**
-              </td>
+         <tr>
+           <td>
+             **Set Payment Due Date (Link Expiry)**
+           </td>
 
-              <td>
-                Use this field if you want to set the expiry of the link. Post this date and time the link stops working and customers cannot make the payment using this link.
-              </td>
-            </tr>
+           <td>
+             Use this field if you want to set the expiry of the link. Post this date and time the link stops working and customers cannot make the payment using this link.
+           </td>
+         </tr>
 
-            <tr>
-              <td>
-                **Enable Partial Payment**
-              </td>
+         <tr>
+           <td>
+             **Enable Partial Payment**
+           </td>
 
-              <td>
-                Enable this to accept <Glossary>partial payments</Glossary>.
-              </td>
-            </tr>
+           <td>
+             Enable this to accept <Glossary>partial payments</Glossary>.
+           </td>
+         </tr>
+         
+         <tr>
+            <td>
+              **Min. Initial Payment** (only if you enable partial payment)
+            </td>
 
-            <tr>
-              <td>
-                **Add More Details**
-              </td>
+            <td>
+             Enter the minimum part payment accepted.
+            </td>
+         </tr>
+         
+         <tr>
+            <td>
+              **Number of Instalments**
+            </td>
 
-              <td>
-                This option lets you add the following fields to collect the information:
+            <td>
+             Enter the number of instalments you want to allow on the payment link.
+            </td>
+         </tr>
+       </tbody>
+     </Table>
 
-                - **Add Invoice Number**
-                - **Add Tax**
-                - **Add Shipping**
-                - **Add Address Details**
-                - **Add UDF Details**
-              </td>
-            </tr>
-          </tbody>
-        </Table>
+     <Image src="https://files.readme.io/7eb57e5f6f3a938989a98e19f63d223fe049d2f1d5b8e4258693879e27ac47b8-Screenshot_2026-09-18_at_1.36.52_PM.png" align="center" caption="Provide Payment Link Details" border={true} />
 
-  - **Amount** — enter the payment amount in INR.
-  - **Purpose** — a brief description, e.g. _"Invoice #1042 — Web Design Services"_.
-
-  Optional fields:
-
-  - Toggle **Allow Partial Payment** on if you want the customer to pay in instalments.
-  - Set **Max Transactions Allowed** to cap how many times the link can be used (leave blank for unlimited).
 </Accordion>
 
 <Accordion title="3. Add invoice or reference details (optional)" icon="far fa-file-invoice">
