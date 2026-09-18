@@ -89,10 +89,13 @@ To create and send a Payment Link:
 
             <RequiredStar legend />
         </Callout>
-        | Information                                                          | Description                                          |
-        | -------------------------------------------------------------------- | ---------------------------------------------------- |
-        | <requiredstar param="Item Description" bold="{true}"></RequiredStar> | A short description about the link you are creating. |
-        | **Total Amount**                                                     |                                                      |
+        | Information                                                          | Description                                                                                                                                                     |
+        | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+        | <requiredstar param="Item Description" bold="{true}"></RequiredStar> | A short description about the link you are creating.                                                                                                            |
+        | **Total Amount**                                                     | The total amount you want to collect. You can choose to leave this field for the open payments. Add an amount if you wan to allow partial payments.             |
+        | **Limit Link Access To**                                             | Use this filed to limit the payment link to number of customers or transactions.                                                                                |
+        | **Set Payment Due Date (Link Expiry)**                               | Use this field if you want to set the expiry of the link. Post this date and time the link stops working and customers cannot make the payment using this link. |
+        | **Enable Partial Payment**                                           | Enable this to accept partial payments.                                                                                                                         |
 
   - **Amount** — enter the payment amount in INR.
   - **Purpose** — a brief description, e.g. _"Invoice #1042 — Web Design Services"_.
