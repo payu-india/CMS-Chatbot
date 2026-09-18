@@ -91,7 +91,7 @@ To create and send a Payment Link:
         </Callout>
         | Information                                                 | Description                                          |
         | ----------------------------------------------------------- | ---------------------------------------------------- |
-        | <RequiredStar param="Item Description" bold></RequiredStar> | A short description about the link you are creating. |
+        | <requiredstar param="Item Description" bold></RequiredStar> | A short description about the link you are creating. |
         | **Total Amount**                                            |                                                      |
 
   - **Amount** — enter the payment amount in INR.
