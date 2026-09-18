@@ -71,15 +71,15 @@ To create and send a Payment Link:
   2. Expand **Payment Tools&#x20;**&#x61;nd clic&#x6B;**&#x20;Payment Links&#x20;**&#x64;isplayed in the left navigation.
 
 
-  <Image src="https://files.readme.io/afb09b2616f9c9a7ca0f64c3996ea262ce36ded89d50a17e5118b62254a5923d-Screenshot_2026-09-18_at_10.56.30_AM.png" align="center" caption="Go to Payment Links" border={true} />
+  <Image src="https://files.readme.io/35fe8235c387b22f93c4af37425c7ce2077534a981c17a8abb22d037f98486a1-Screenshot_2026-09-18_at_11.04.00_AM.png" align="center" caption="Go to Payment Links" border={true} />
 
 </Accordion>
 
-<Accordion title="2. Create a new link" icon="far fa-plus">
-  Click **Create New Payment Link** in the top-right corner.
+<Accordion title="2. Create a new link" icon="far fa-link">
+  1. Click **Create New Payment Links** displayed in the top-right corner of the **Payment Links** page.
 
 
-  <Image src="https://files.readme.io/554b3cb321e0336bb4886c7cd21aab5b800d75d238dbe647b7febe10decef1f0-dashboard_create_new_payment_link_step1.png" align="center" caption="Create New Payment Link panel" border={true} />
+  <Image src="https://files.readme.io/889bdf1e584b7531c1f79d1396230fbbfcb7ae0c6beaa5789d764d57c95aef8f-Screenshot_2026-09-18_at_11.06.18_AM.png" align="center" caption="Create New Payment Link panel" border={true} />
 
 
   Fill in the required fields:
