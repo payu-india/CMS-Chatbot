@@ -6,7 +6,28 @@ excerpt: >-
 deprecated: false
 hidden: true
 metadata:
+  title: Create a Payment Link — 5-Minute Quickstart | PayU Docs
+  description: >-
+    Step-by-step guide to creating and sending a PayU Payment Link in 5 minutes.
+    No code required — share over WhatsApp, SMS, or email from the Dashboard.
+  keywords:
+    - send payment link payu
+    - create payment link tutorial
+    - how to create payment link india
+    - payu payment link step by step
+    - payment link whatsapp india
+    - no code payment quickstart payu
+    - payu dashboard create payment link
+    - payment link sms notification
+    - accept payment link no website
+    - payu payment link guide
   robots: index
+next:
+  description: Explore related information and resources.
+  pages:
+    - slug: payment-links-v2
+      title: Payment Links
+      type: basic
 ---
 {/* NEW CONTENT: Template F — T1 Quickstart/Tutorial (V2 format) */}
 
