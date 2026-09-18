@@ -1,7 +1,9 @@
 ---
-title: Payment Links V2
+title: Payment Links
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
