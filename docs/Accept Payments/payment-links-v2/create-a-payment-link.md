@@ -84,10 +84,15 @@ To create and send a Payment Link:
 
   2. Provide the these details in respective sections:
      1. **Payment Link Details**
-        | Information          | Required/Optional | Description                                          |
-        | -------------------- | ----------------- | ---------------------------------------------------- |
-        | **Item Description** | Required          | A short description about the link you are creating. |
-        | **Total Amount**     | Optional          |                                                      |
+        <Callout icon="📘" theme="info">
+          ### **Required Fields**
+
+          Fields marked <RequiredStar param="with" /> are mandatory.&#x20;
+        </Callout>
+        | Information                               | Required/Optional | Description                                          |
+        | ----------------------------------------- | ----------------- | ---------------------------------------------------- |
+        | <RequiredStar param="Item Description" /> | Required          | A short description about the link you are creating. |
+        | **Total Amount**                          | Optional          |                                                      |
 
   - **Amount** — enter the payment amount in INR.
   - **Purpose** — a brief description, e.g. _"Invoice #1042 — Web Design Services"_.
