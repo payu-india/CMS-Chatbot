@@ -1,0 +1,1288 @@
+---
+name: PayUPaymentLinksWizard
+---
+// PayUPaymentLinksWizard — ReadMe Custom Component (Payment Links Integration Guide)
+// Interactive wizard for PayU Payment Links integration
+// Similar structure to PayUHostedIntegrationWizard
+
+import { useState, useEffect, useRef } from 'react';
+
+export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
+  // PAYMENT_LINKS_LAB_BUNDLE_START
+  var PaymentLinksLabRuntime = (function () {
+
+    function empty(s) {
+      return s == null ? '' : String(s).trim();
+    }
+
+    function isBlank(s) {
+      return empty(s) === '';
+    }
+
+    var WIZARD_STEP_IDS = [
+      'welcome', 'prereq', 'credentials', 'token', 'create', 'share', 'test', 'manage', 'golive'
+    ];
+
+    function defaultProgress() {
+      return {
+        credentialsSaved: false,
+        tokenGenerated: false,
+        linkCreated: false,
+        linkShared: false,
+        linkTested: false
+      };
+    }
+
+    var engine = {
+      empty: empty,
+      isBlank: isBlank,
+      WIZARD_STEP_IDS: WIZARD_STEP_IDS,
+      defaultProgress: defaultProgress
+    };
+
+    var LAB_CONTEXT_SCHEMA_VERSION = '1.0';
+    var LAB_CONTEXT_EVENT = 'payu-payment-links-wizard-context';
+
+    var ERROR_CODES = {
+      MISSING_CLIENT_ID: 'MISSING_CLIENT_ID',
+      MISSING_CLIENT_SECRET: 'MISSING_CLIENT_SECRET',
+      MISSING_MERCHANT_ID: 'MISSING_MERCHANT_ID',
+      PREREQ_INCOMPLETE: 'PREREQ_INCOMPLETE',
+      CREDENTIALS_NOT_SAVED: 'CREDENTIALS_NOT_SAVED',
+      TOKEN_NOT_GENERATED: 'TOKEN_NOT_GENERATED',
+      LINK_NOT_CREATED: 'LINK_NOT_CREATED',
+      LINK_NOT_SHARED: 'LINK_NOT_SHARED',
+      LINK_NOT_TESTED: 'LINK_NOT_TESTED',
+      API_ERROR: 'API_ERROR'
+    };
+
+    var BLOCKER_MESSAGES = {
+      PREREQ_INCOMPLETE: 'Tick all checkboxes on step 1 first.',
+      MISSING_CLIENT_ID: 'Enter your Client ID from the PayU dashboard.',
+      MISSING_CLIENT_SECRET: 'Enter your Client Secret from the PayU dashboard.',
+      MISSING_MERCHANT_ID: 'Enter your Merchant ID from the PayU dashboard.',
+      CREDENTIALS_NOT_SAVED: 'Fill in all credentials and save them.',
+      TOKEN_NOT_GENERATED: 'Generate an access token first.',
+      LINK_NOT_CREATED: 'Create a payment link before proceeding.',
+      LINK_NOT_SHARED: 'Share the payment link to test it.',
+      LINK_NOT_TESTED: 'Complete a test payment using the link.'
+    };
+
+    var STEP_NEXT_ACTIONS = {
+      welcome: 'Hit **Next** when ready to start.',
+      prereq: 'Tick all checkboxes, then **Continue**.',
+      credentials: 'Enter Client ID, Secret, and Merchant ID, then **Save credentials**.',
+      token: 'Select scope and click **Generate Token**.',
+      create: 'Fill payment details and click **Create Payment Link**.',
+      share: 'Copy the link or share via email/SMS.',
+      test: 'Open the payment link and complete a test payment.',
+      manage: 'Review link management features, then **Continue**.',
+      golive: 'Read the go-live checklist. Want to run the wizard again? Hit **Start over**.'
+    };
+
+    function exportLabContext(input) {
+      var step = typeof input.step === 'number' ? input.step : 0;
+      var stepId = engine.WIZARD_STEP_IDS[step] || 'welcome';
+      var progress = input.progress || engine.defaultProgress();
+
+      return {
+        schemaVersion: LAB_CONTEXT_SCHEMA_VERSION,
+        exportedAt: Date.now(),
+        step: step,
+        stepId: stepId,
+        stepLabel: input.stepLabel || String(step),
+        progress: Object.assign({}, progress),
+        lastErrorCode: input.lastErrorCode || null,
+        lastUserMessage: input.err || input.msg || ''
+      };
+    }
+
+    function getCopilotInsights(context) {
+      var ctx = context || {};
+      var insights = [];
+      var stepId = ctx.stepId || 'welcome';
+
+      insights.push({
+        id: 'whats-next',
+        title: 'Do this next',
+        body: STEP_NEXT_ACTIONS[stepId] || 'Follow the current step instructions.',
+        severity: 'info'
+      });
+
+      return insights;
+    }
+
+    function serializeContextForClipboard(context) {
+      return JSON.stringify(context, null, 2);
+    }
+
+    return {
+      engine: engine,
+      LAB_CONTEXT_SCHEMA_VERSION: LAB_CONTEXT_SCHEMA_VERSION,
+      LAB_CONTEXT_EVENT: LAB_CONTEXT_EVENT,
+      ERROR_CODES: ERROR_CODES,
+      BLOCKER_MESSAGES: BLOCKER_MESSAGES,
+      exportLabContext: exportLabContext,
+      getCopilotInsights: getCopilotInsights,
+      serializeContextForClipboard: serializeContextForClipboard
+    };
+  })();
+  // PAYMENT_LINKS_LAB_BUNDLE_END
+
+  var LAB_CONFIG = {
+    storageKey: 'payu-payment-links-wizard-v1',
+    testTokenUrl: 'https://uat-accounts.payu.in/oauth/token',
+    prodTokenUrl: 'https://accounts.payu.in/oauth/token',
+    testApiUrl: 'https://uatoneapi.payu.in/payment-links',
+    prodApiUrl: 'https://oneapi.payu.in/payment-links'
+  };
+
+  var PAYU_GREEN = '#0f766e';
+  var PAYU_GREEN_DARK = '#115e59';
+  var PAYU_GREEN_LIGHT = '#ecfdf5';
+  var RED_REQ = '#dc2626';
+
+  // Styles
+  var launcherCardStyle = {
+    margin: '24px 0', padding: '20px 24px', borderRadius: '12px',
+    border: '1px solid #99f6e4', background: 'linear-gradient(135deg, #f0fdfa 0%, #fff 50%)',
+    boxShadow: '0 1px 3px rgba(15,118,110,0.08)'
+  };
+  var modalOverlayStyle = {
+    position: 'fixed', inset: 0, zIndex: 99999, background: 'rgba(15,23,42,0.55)',
+    display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px',
+    boxSizing: 'border-box'
+  };
+  var modalPanelStyle = {
+    width: '100%', maxWidth: '720px', maxHeight: 'min(92vh, 900px)', overflow: 'hidden',
+    display: 'flex', flexDirection: 'column', borderRadius: '14px',
+    background: '#fff', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.35)',
+    fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif'
+  };
+  var modalHeaderStyle = {
+    flexShrink: 0, padding: '16px 20px', background: 'linear-gradient(135deg, #0f766e 0%, #115e59 100%)',
+    color: '#fff', borderRadius: '14px 14px 0 0'
+  };
+  var modalBodyStyle = {
+    flex: 1, overflow: 'auto', padding: '20px', minHeight: 0, background: '#fafafa'
+  };
+  var modalFooterStyle = {
+    flexShrink: 0, padding: '14px 20px', borderTop: '1px solid #e5e7eb', background: '#fff',
+    borderRadius: '0 0 14px 14px'
+  };
+  var modalTabRowStyle = { display: 'flex', gap: '8px', marginTop: '12px' };
+  var modalTabBtnStyle = {
+    flex: 1, cursor: 'pointer', border: 'none', borderRadius: '8px', padding: '10px 12px',
+    fontSize: '13px', fontWeight: 600, minHeight: '44px', boxSizing: 'border-box',
+    background: 'rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.9)'
+  };
+  var modalTabBtnActiveStyle = Object.assign({}, modalTabBtnStyle, { background: '#fff', color: PAYU_GREEN_DARK });
+  var contentCardStyle = {
+    background: '#fff', borderRadius: '10px', border: '1px solid #e5e7eb',
+    padding: '16px', marginTop: '4px'
+  };
+  var taglineStyle = {
+    margin: '0 0 16px', padding: '10px 14px', borderLeft: '4px solid ' + PAYU_GREEN,
+    background: '#fff', borderRadius: '0 8px 8px 0', fontSize: '15px', fontWeight: 600,
+    lineHeight: 1.45, color: '#1f2937'
+  };
+  var btnRowStyle = { display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '16px', alignItems: 'center' };
+  var inputStyle = {
+    boxSizing: 'border-box', width: '100%', minWidth: 0, borderRadius: '6px',
+    border: '1px solid #d1d5db', background: '#fff', padding: '8px 12px',
+    fontSize: '14px', color: '#111827'
+  };
+  var labelStyle = { display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: 700, color: PAYU_GREEN };
+  var reqStarStyle = { color: RED_REQ, fontWeight: 700 };
+  var bodyTextStyle = { margin: '0 0 12px', fontSize: '14px', lineHeight: 1.6, color: '#4b5563' };
+  var infoBoxStyle = {
+    margin: '0 0 16px', padding: '12px 14px', borderRadius: '8px',
+    background: PAYU_GREEN_LIGHT, border: '1px solid rgba(15,118,110,0.2)',
+    fontSize: '14px', lineHeight: 1.6, color: '#374151'
+  };
+  var errTextStyle = { margin: '0 0 12px', fontSize: '14px', lineHeight: 1.5, color: RED_REQ };
+  var okTextStyle = { margin: '0 0 12px', fontSize: '14px', lineHeight: 1.5, color: PAYU_GREEN };
+  var codeBlockStyle = {
+    display: 'block', wordBreak: 'break-all', borderRadius: '6px', background: '#f3f4f6',
+    padding: '8px 12px', fontSize: '12px', fontFamily: 'monospace', color: '#1f2937', marginBottom: '12px'
+  };
+  var btnPrimaryStyle = {
+    cursor: 'pointer', borderRadius: '6px', border: 'none', background: PAYU_GREEN,
+    color: '#fff', padding: '10px 16px', fontSize: '14px', fontWeight: 600,
+    minHeight: '44px', boxSizing: 'border-box', lineHeight: 1.25
+  };
+  var btnSecondaryStyle = {
+    cursor: 'pointer', borderRadius: '6px', border: '1px solid ' + PAYU_GREEN,
+    background: '#fff', color: PAYU_GREEN, padding: '10px 16px',
+    fontSize: '14px', fontWeight: 600, minHeight: '44px', boxSizing: 'border-box', lineHeight: 1.25
+  };
+  var cardCheckStyle = {
+    display: 'flex', gap: '10px', alignItems: 'flex-start', padding: '12px 14px',
+    borderRadius: '8px', border: '1px solid #e5e7eb', background: '#f9fafb', cursor: 'pointer', fontSize: '14px',
+    minHeight: '44px', boxSizing: 'border-box'
+  };
+  var checkboxInputStyle = { width: '20px', height: '20px', marginTop: '2px', flexShrink: 0, cursor: 'pointer' };
+  var navRowStyle = { display: 'flex', justifyContent: 'space-between', gap: '12px', marginTop: '20px', paddingTop: '16px', borderTop: '1px solid #e5e7eb', alignItems: 'center' };
+  var mutedTextStyle = { margin: '12px 0 0', fontSize: '12px', lineHeight: 1.5, color: '#6b7280' };
+  var stepPillRowStyle = { display: 'flex', flexWrap: 'wrap', gap: '6px', marginTop: '10px' };
+  var stepPillStyle = {
+    borderRadius: '9999px', padding: '4px 10px', fontSize: '11px', fontWeight: 600,
+    background: 'rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.85)'
+  };
+  var stepPillActiveStyle = Object.assign({}, stepPillStyle, { background: '#fff', color: PAYU_GREEN_DARK });
+  var fieldStackStyle = { display: 'flex', flexDirection: 'column', gap: '16px' };
+
+  var STEPS = [
+    {id:'welcome',title:'Welcome',tagline:'',stepLabel:'Start'},
+    {id:'prereq',title:'Before you start',tagline:'Make sure you have these ready.',stepLabel:'1'},
+    {id:'credentials',title:'Get credentials',tagline:'Retrieve Client ID, Secret, and Merchant ID from dashboard.',stepLabel:'2'},
+    {id:'token',title:'Generate access token',tagline:'OAuth 2.0 token for API authentication.',stepLabel:'3'},
+    {id:'create',title:'Create payment link',tagline:'Build your first payment link with test data.',stepLabel:'4'},
+    {id:'share',title:'Share the link',tagline:'Send the link to customers via email, SMS, or direct URL.',stepLabel:'5'},
+    {id:'test',title:'Test payment',tagline:'Complete a test payment using the link.',stepLabel:'6'},
+    {id:'manage',title:'Manage links',tagline:'View, update, and track payment links.',stepLabel:'7'},
+    {id:'golive',title:'Go live',tagline:'Production checklist before accepting real payments.',stepLabel:'8'}
+  ];
+
+  var WELCOME_OUTCOMES = [
+    'Get Client ID and Secret from PayU Dashboard',
+    'Generate OAuth 2.0 access token',
+    'Create and test a payment link',
+    'Understand link management and webhooks',
+    'Ready for production deployment'
+  ];
+
+  var PREREQ = [
+    {id:'account',label:'Active PayU merchant account with Payment Links enabled'},
+    {id:'dashboard',label:'Access to PayU Dashboard to get Client ID and Secret'},
+    {id:'https',label:'HTTPS callback URLs for payment notifications (webhook)'},
+    {id:'understand',label:'Basic understanding of REST APIs and OAuth 2.0'}
+  ];
+
+  var SCOPES = [
+    {value:'read_payment_links',label:'Read (Get single/all links)'},
+    {value:'create_payment_links',label:'Create (Generate new links)'},
+    {value:'update_payment_links',label:'Update (Change status/expiry)'},
+    {value:'all',label:'All scopes (read create update)'}
+  ];
+
+  var GO_LIVE = [
+    'Switch to production URLs (accounts.payu.in and oneapi.payu.in)',
+    'Use production Client ID, Secret, and Merchant ID',
+    'Enable webhooks to receive payment notifications',
+    'Set up proper error handling and logging',
+    'Test with small live transaction before full rollout',
+    'Monitor payment success rates on dashboard'
+  ];
+
+  function empty(s) { return s == null ? '' : String(s).trim(); }
+  function isBlank(s) { return empty(s) === ''; }
+
+  function defaultProgress() {
+    return {
+      credentialsSaved: false,
+      tokenGenerated: false,
+      linkCreated: false,
+      linkShared: false,
+      linkTested: false
+    };
+  }
+
+  function wizardFresh() {
+    return {
+      clientId: '',
+      clientSecret: '',
+      merchantId: '',
+      accessToken: '',
+      tokenExpiry: null,
+      selectedScope: 'create_payment_links',
+      linkAmount: '100.00',
+      linkDescription: 'Test payment for Product X',
+      createdLinkUrl: '',
+      progress: defaultProgress(),
+      wizardStep: 0
+    };
+  }
+
+  var LAB_KEY = LAB_CONFIG.storageKey;
+  var LAB_UPDATE_EVENT = 'payu-payment-links-wizard-update';
+
+  function labRead() {
+    try {
+      if (typeof window === 'undefined') return null;
+      if (typeof localStorage === 'undefined') return null;
+      var raw = localStorage.getItem(LAB_KEY);
+      if (!raw) return null;
+      return JSON.parse(raw);
+    } catch (e) { return null; }
+  }
+
+  function labWrite(data) {
+    try {
+      if (typeof window === 'undefined') return false;
+      if (typeof localStorage === 'undefined') return false;
+      var snapshot = Object.assign({}, data, { updatedAt: Date.now() });
+      localStorage.setItem(LAB_KEY, JSON.stringify(snapshot));
+      return true;
+    } catch (e) { return false; }
+  }
+
+  function labEnsure() {
+    var existing = labRead();
+    if (existing && existing.progress) return existing;
+    return wizardFresh();
+  }
+
+  var _step = useState(0);
+  var step = _step[0];
+  var setStep = _step[1];
+
+  var _lab = useState(labEnsure());
+  var lab = _lab[0];
+  var setLab = _lab[1];
+
+  var _clientId = useState('');
+  var clientId = _clientId[0];
+  var setClientId = _clientId[1];
+
+  var _clientSecret = useState('');
+  var clientSecret = _clientSecret[0];
+  var setClientSecret = _clientSecret[1];
+
+  var _merchantId = useState('');
+  var merchantId = _merchantId[0];
+  var setMerchantId = _merchantId[1];
+
+  var _accessToken = useState('');
+  var accessToken = _accessToken[0];
+  var setAccessToken = _accessToken[1];
+
+  var _selectedScope = useState('create_payment_links');
+  var selectedScope = _selectedScope[0];
+  var setSelectedScope = _selectedScope[1];
+
+  var _linkAmount = useState('100.00');
+  var linkAmount = _linkAmount[0];
+  var setLinkAmount = _linkAmount[1];
+
+  var _linkDescription = useState('Test payment for Product X');
+  var linkDescription = _linkDescription[0];
+  var setLinkDescription = _linkDescription[1];
+
+  var _createdLinkUrl = useState('');
+  var createdLinkUrl = _createdLinkUrl[0];
+  var setCreatedLinkUrl = _createdLinkUrl[1];
+
+  var _busy = useState(false);
+  var busy = _busy[0];
+  var setBusy = _busy[1];
+
+  var _err = useState('');
+  var err = _err[0];
+  var setErr = _err[1];
+
+  var _msg = useState('');
+  var msg = _msg[0];
+  var setMsg = _msg[1];
+
+  var _copyMsg = useState('');
+  var copyMsg = _copyMsg[0];
+  var setCopyMsg = _copyMsg[1];
+
+  var _prereq = useState({});
+  var prereq = _prereq[0];
+  var setPrereq = _prereq[1];
+
+  var _goDone = useState({});
+  var goDone = _goDone[0];
+  var setGoDone = _goDone[1];
+
+  var _modalOpen = useState(false);
+  var modalOpen = _modalOpen[0];
+  var setModalOpen = _modalOpen[1];
+
+  var _modalTab = useState('lab');
+  var modalTab = _modalTab[0];
+  var setModalTab = _modalTab[1];
+
+  var launcherBtnRef = useRef(null);
+  var closeBtnRef = useRef(null);
+  var modalPanelRef = useRef(null);
+
+  function wizardProgress() {
+    if (lab && lab.progress) return lab.progress;
+    return defaultProgress();
+  }
+
+  function openModal() {
+    setModalOpen(true);
+    setModalTab('lab');
+    setErr('');
+    setMsg('');
+    setCopyMsg('');
+    var fresh = wizardFresh();
+    labWrite(fresh);
+    setLab(fresh);
+    setClientId('');
+    setClientSecret('');
+    setMerchantId('');
+    setAccessToken('');
+    setSelectedScope('create_payment_links');
+    setLinkAmount('100.00');
+    setLinkDescription('Test payment for Product X');
+    setCreatedLinkUrl('');
+    setPrereq({});
+    setGoDone({});
+    setStep(0);
+  }
+
+  function closeModal() {
+    setModalOpen(false);
+    setModalTab('lab');
+  }
+
+  function onOverlayClick(e) {
+    if (e.target === e.currentTarget) closeModal();
+  }
+
+  function labClick(fn) {
+    return function (e) {
+      if (e && e.stopPropagation) e.stopPropagation();
+      fn(e);
+    };
+  }
+
+  function goToStep(n) {
+    if (n > step && !canAdvance()) return;
+    setStep(n);
+    setErr('');
+    setMsg('');
+  }
+
+  function prereqDone(map) {
+    for (var i = 0; i < PREREQ.length; i += 1) {
+      if (!map[PREREQ[i].id]) return false;
+    }
+    return true;
+  }
+
+  function allChecked(map, list) {
+    for (var i = 0; i < list.length; i += 1) {
+      if (!map[i]) return false;
+    }
+    return true;
+  }
+
+  function canAdvance() {
+    var p = wizardProgress();
+    if (step === 0) return true;
+    if (step === 1) return prereqDone(prereq);
+    if (step === 2) return p.credentialsSaved;
+    if (step === 3) return p.tokenGenerated && !isBlank(accessToken);
+    if (step === 4) return p.linkCreated && !isBlank(createdLinkUrl);
+    if (step === 5) return p.linkShared;
+    if (step === 6) return p.linkTested;
+    if (step === 7) return true;
+    return true;
+  }
+
+  function continueHint() {
+    if (canAdvance()) return '';
+    if (step === 1) return 'Tick all checkboxes above.';
+    if (step === 2) return 'Enter all credentials and save.';
+    if (step === 3) return 'Generate access token first.';
+    if (step === 4) return 'Create a payment link.';
+    if (step === 5) return 'Mark link as shared.';
+    if (step === 6) return 'Complete test payment.';
+    return '';
+  }
+
+  function saveCredentials() {
+    if (isBlank(clientId)) { setErr('Client ID is required.'); return; }
+    if (isBlank(clientSecret)) { setErr('Client Secret is required.'); return; }
+    if (isBlank(merchantId)) { setErr('Merchant ID is required.'); return; }
+    var labData = labEnsure();
+    labData.clientId = clientId;
+    labData.clientSecret = clientSecret;
+    labData.merchantId = merchantId;
+    labData.progress.credentialsSaved = true;
+    labWrite(labData);
+    setLab(labData);
+    setMsg('Credentials saved. Next: generate access token.');
+    setErr('');
+  }
+
+  function generateToken() {
+    if (!lab.progress.credentialsSaved) { setErr('Save credentials first.'); return; }
+    if (isBlank(clientId)) { setErr('Client ID missing.'); return; }
+    if (isBlank(clientSecret)) { setErr('Client Secret missing.'); return; }
+
+    setBusy(true);
+    setErr('');
+    setMsg('Generating token...');
+
+    var scopeValue = selectedScope === 'all' ? 'create_payment_links update_payment_links read_payment_links' : selectedScope;
+
+    var body = new URLSearchParams();
+    body.append('client_id', clientId);
+    body.append('client_secret', clientSecret);
+    body.append('grant_type', 'client_credentials');
+    body.append('scope', scopeValue);
+
+    fetch(LAB_CONFIG.testTokenUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: body
+    })
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      if (data.access_token) {
+        var token = data.access_token;
+        setAccessToken(token);
+        var labData = labEnsure();
+        labData.accessToken = token;
+        labData.tokenExpiry = Date.now() + (data.expires_in || 7200) * 1000;
+        labData.progress.tokenGenerated = true;
+        labWrite(labData);
+        setLab(labData);
+        setMsg('Token generated successfully. Valid for ' + Math.floor((data.expires_in || 7200) / 60) + ' minutes.');
+        setErr('');
+      } else {
+        setErr('Token generation failed: ' + (data.error_description || data.error || 'Unknown error'));
+        setMsg('');
+      }
+      setBusy(false);
+    })
+    .catch(function (e) {
+      setErr('Network error: ' + e.message);
+      setMsg('');
+      setBusy(false);
+    });
+  }
+
+  function createPaymentLink() {
+    if (!lab.progress.tokenGenerated) { setErr('Generate access token first.'); return; }
+    if (isBlank(accessToken)) { setErr('Access token missing.'); return; }
+    if (isBlank(merchantId)) { setErr('Merchant ID missing.'); return; }
+    if (isBlank(linkAmount)) { setErr('Amount is required.'); return; }
+    if (isBlank(linkDescription)) { setErr('Description is required.'); return; }
+
+    setBusy(true);
+    setErr('');
+    setMsg('Creating payment link...');
+
+    var payload = {
+      subAmount: parseFloat(linkAmount),
+      isPartialPaymentAllowed: false,
+      description: linkDescription,
+      source: 'API'
+    };
+
+    fetch(LAB_CONFIG.testApiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + accessToken,
+        'merchantId': merchantId
+      },
+      body: JSON.stringify(payload)
+    })
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      if (data.status === 0 && data.result && data.result.paymentLink) {
+        var link = data.result.paymentLink;
+        setCreatedLinkUrl(link);
+        var labData = labEnsure();
+        labData.createdLinkUrl = link;
+        labData.progress.linkCreated = true;
+        labWrite(labData);
+        setLab(labData);
+        setMsg('Payment link created successfully!');
+        setErr('');
+      } else {
+        setErr('Link creation failed: ' + (data.message || 'Unknown error'));
+        setMsg('');
+      }
+      setBusy(false);
+    })
+    .catch(function (e) {
+      setErr('Network error: ' + e.message);
+      setMsg('');
+      setBusy(false);
+    });
+  }
+
+  function markShared() {
+    var labData = labEnsure();
+    labData.progress.linkShared = true;
+    labWrite(labData);
+    setLab(labData);
+    setMsg('Link marked as shared. Next: test payment.');
+    setErr('');
+  }
+
+  function markTested() {
+    var labData = labEnsure();
+    labData.progress.linkTested = true;
+    labWrite(labData);
+    setLab(labData);
+    setMsg('Test payment completed. Next: link management.');
+    setErr('');
+  }
+
+  function copyText(text) {
+    var value = String(text || '');
+    if (!value) return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(value).then(function () {
+        setCopyMsg('Copied!');
+        setTimeout(function () { setCopyMsg(''); }, 2000);
+      });
+    }
+  }
+
+  function restartLab() {
+    var next = wizardFresh();
+    labWrite(next);
+    setLab(next);
+    setClientId('');
+    setClientSecret('');
+    setMerchantId('');
+    setAccessToken('');
+    setSelectedScope('create_payment_links');
+    setLinkAmount('100.00');
+    setLinkDescription('Test payment for Product X');
+    setCreatedLinkUrl('');
+    setPrereq({});
+    setGoDone({});
+    setErr('');
+    setMsg('');
+    goToStep(0);
+  }
+
+  var current = STEPS[step];
+  var pct = Math.round(((step + 1) / STEPS.length) * 100);
+  var prog = wizardProgress();
+
+  function wizardBtnStyle(variant, disabled) {
+    var base = variant === 'primary' ? btnPrimaryStyle : btnSecondaryStyle;
+    if (!disabled) return Object.assign({}, base);
+    if (variant === 'primary') {
+      return Object.assign({}, base, { background: '#94a3b8', color: '#f8fafc', cursor: 'not-allowed' });
+    }
+    return Object.assign({}, base, {
+      borderColor: '#cbd5e1', background: '#f1f5f9', color: '#94a3b8', cursor: 'not-allowed'
+    });
+  }
+
+  function renderWizardButton(variant, label, onClick, disabled) {
+    var isDisabled = !!disabled;
+    return (
+      <button
+        type="button"
+        disabled={isDisabled}
+        onClick={isDisabled ? undefined : onClick}
+        style={wizardBtnStyle(variant, isDisabled)}
+      >
+        {label}
+      </button>
+    );
+  }
+
+  function FieldLabel(props) {
+    return (
+      <label style={labelStyle}>
+        <span>{props.name}</span>
+        {props.required ? <span style={reqStarStyle} aria-hidden="true"> *</span> : null}
+      </label>
+    );
+  }
+
+  function LabStatus(props) {
+    var statusRowStyle = { display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '16px' };
+    var statusOkStyle = { borderRadius: '9999px', background: '#f0fdfa', color: '#115e59', padding: '4px 10px', fontSize: '12px', fontWeight: 600 };
+    var statusPendingStyle = { borderRadius: '9999px', background: '#f3f4f6', color: '#4b5563', padding: '4px 10px', fontSize: '12px', fontWeight: 600 };
+    return (
+      <div style={statusRowStyle}>
+        {(props.items || []).map(function (it, idx) {
+          return (
+            <span key={idx} style={it.ok ? statusOkStyle : statusPendingStyle}>
+              {it.ok ? '✓ ' : '○ '}{it.label}
+            </span>
+          );
+        })}
+      </div>
+    );
+  }
+
+  function renderStepPills() {
+    return (
+      <div style={stepPillRowStyle} aria-hidden="true">
+        {STEPS.map(function (s, idx) {
+          var active = idx === step;
+          var done = idx < step;
+          var style = active ? stepPillActiveStyle : stepPillStyle;
+          return (
+            <span key={s.id} style={style}>
+              {s.stepLabel}{done && !active ? ' ✓' : ''}
+            </span>
+          );
+        })}
+      </div>
+    );
+  }
+
+  function renderModalTabs() {
+    return (
+      <div style={modalTabRowStyle} role="tablist" aria-label="Lab and Help">
+        <button
+          type="button"
+          role="tab"
+          aria-selected={modalTab === 'lab'}
+          onClick={labClick(function () { setModalTab('lab'); })}
+          style={modalTab === 'lab' ? modalTabBtnActiveStyle : modalTabBtnStyle}
+        >
+          Lab
+        </button>
+        <button
+          type="button"
+          role="tab"
+          aria-selected={modalTab === 'help'}
+          onClick={labClick(function () { setModalTab('help'); })}
+          style={modalTab === 'help' ? modalTabBtnActiveStyle : modalTabBtnStyle}
+        >
+          Help
+        </button>
+      </div>
+    );
+  }
+
+  function renderHelpPanel() {
+    var helpInsightCardStyle = {
+      marginBottom: '12px', padding: '12px 14px', borderRadius: '8px', border: '1px solid #e5e7eb', background: '#fff'
+    };
+    var helpInsightTitleStyle = { margin: '0 0 6px', fontSize: '14px', fontWeight: 700, color: '#111827' };
+    var helpInsightBodyStyle = { margin: 0, fontSize: '14px', lineHeight: 1.6, color: '#4b5563' };
+
+    var ctx = PaymentLinksLabRuntime.exportLabContext({
+      step: step,
+      stepLabel: STEPS[step] ? STEPS[step].stepLabel : String(step),
+      progress: prog,
+      err: err,
+      msg: msg
+    });
+    var insights = PaymentLinksLabRuntime.getCopilotInsights(ctx);
+
+    return (
+      <div>
+        <p style={bodyTextStyle}>
+          Stuck? This tab tells you what to do next based on where you are.
+        </p>
+        <div style={infoBoxStyle}>
+          <strong style={{ display: 'block', marginBottom: '6px', color: PAYU_GREEN_DARK }}>Where you are</strong>
+          <p style={{ margin: 0, fontSize: '13px', lineHeight: 1.6 }}>
+            Step {ctx.step + 1} — {ctx.stepId}
+          </p>
+        </div>
+        <div aria-live="polite">
+          {insights.map(function (ins) {
+            return (
+              <div key={ins.id} style={helpInsightCardStyle}>
+                <p style={helpInsightTitleStyle}>{ins.title}</p>
+                <p style={helpInsightBodyStyle}>{ins.body}</p>
+              </div>
+            );
+          })}
+        </div>
+        <div style={btnRowStyle}>
+          {renderWizardButton('primary', 'Back to lab', labClick(function () { setModalTab('lab'); }), false)}
+        </div>
+      </div>
+    );
+  }
+
+  function renderWelcome() {
+    return (
+      <div>
+        <p style={{ fontSize: '16px', lineHeight: 1.65, color: '#374151', margin: '0 0 20px' }}>
+          This wizard guides you through integrating PayU Payment Links. You'll learn how to generate OAuth tokens, create payment links, and test them in sandbox mode.
+        </p>
+        <div style={infoBoxStyle}>
+          <strong style={{ display: 'block', marginBottom: '10px', color: PAYU_GREEN_DARK }}>By the end you will have</strong>
+          <ul style={{ margin: 0, paddingLeft: '20px', lineHeight: 1.85 }}>
+            {WELCOME_OUTCOMES.map(function (item) {
+              return <li key={item}>{item}</li>;
+            })}
+          </ul>
+        </div>
+        <div style={infoBoxStyle}>
+          <strong style={{ display: 'block', marginBottom: '10px', color: PAYU_GREEN_DARK }}>How it works</strong>
+          <ol style={{ margin: 0, paddingLeft: '20px', lineHeight: 1.85 }}>
+            <li>Get Client ID and Secret from Dashboard</li>
+            <li>Generate OAuth 2.0 access token</li>
+            <li>Create payment link via API</li>
+            <li>Share link with customer</li>
+            <li>Customer pays via the link</li>
+            <li>Receive payment webhook notification</li>
+          </ol>
+        </div>
+      </div>
+    );
+  }
+
+  function renderPrereq() {
+    return (
+      <div>
+        <div style={{ display: 'grid', gap: '8px' }}>
+          {PREREQ.map(function (item) {
+            return (
+              <label key={item.id} style={cardCheckStyle}>
+                <input
+                  type="checkbox"
+                  checked={!!prereq[item.id]}
+                  onChange={function (e) {
+                    var n = Object.assign({}, prereq);
+                    n[item.id] = e.target.checked;
+                    setPrereq(n);
+                  }}
+                  style={checkboxInputStyle}
+                />
+                <span>{item.label}</span>
+              </label>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
+  function renderCredentials() {
+    return (
+      <div>
+        <div style={infoBoxStyle}>
+          <strong>How to get credentials:</strong>
+          <ol style={{ margin: '8px 0 0', paddingLeft: '20px', lineHeight: 1.7 }}>
+            <li>Log in to PayU Dashboard</li>
+            <li>Go to <strong>Settings → Payment Links API Credentials</strong></li>
+            <li>Copy Client ID, Secret, and Merchant ID</li>
+          </ol>
+        </div>
+        <div style={fieldStackStyle}>
+          <div>
+            <FieldLabel name="Client ID" required={true} />
+            <input
+              type="text"
+              value={clientId}
+              onChange={function (e) { setClientId(e.target.value); }}
+              style={inputStyle}
+              placeholder="Your test Client ID"
+            />
+          </div>
+          <div>
+            <FieldLabel name="Client Secret" required={true} />
+            <input
+              type="password"
+              value={clientSecret}
+              onChange={function (e) { setClientSecret(e.target.value); }}
+              style={inputStyle}
+              placeholder="Your test Client Secret"
+              autoComplete="off"
+            />
+          </div>
+          <div>
+            <FieldLabel name="Merchant ID" required={true} />
+            <input
+              type="text"
+              value={merchantId}
+              onChange={function (e) { setMerchantId(e.target.value); }}
+              style={inputStyle}
+              placeholder="Your test Merchant ID"
+            />
+          </div>
+        </div>
+        <div style={btnRowStyle}>
+          {renderWizardButton('primary', 'Save credentials', labClick(saveCredentials), false)}
+        </div>
+        {prog.credentialsSaved ? <p style={okTextStyle}>Credentials saved. Next: generate token.</p> : null}
+      </div>
+    );
+  }
+
+  function renderToken() {
+    return (
+      <div>
+        <p style={bodyTextStyle}>
+          Select the API scope you need, then generate an OAuth 2.0 access token. The token expires after ~2 hours.
+        </p>
+        <div style={fieldStackStyle}>
+          <div>
+            <FieldLabel name="Scope" required={true} />
+            <select
+              value={selectedScope}
+              onChange={function (e) { setSelectedScope(e.target.value); }}
+              style={inputStyle}
+            >
+              {SCOPES.map(function (s) {
+                return <option key={s.value} value={s.value}>{s.label}</option>;
+              })}
+            </select>
+          </div>
+        </div>
+        <div style={btnRowStyle}>
+          {renderWizardButton('primary', busy ? 'Generating...' : 'Generate Token', labClick(generateToken), busy || !prog.credentialsSaved)}
+          {accessToken ? renderWizardButton('secondary', 'Copy Token', labClick(function () { copyText(accessToken); }), false) : null}
+        </div>
+        {accessToken ? (
+          <div style={infoBoxStyle}>
+            <p style={{ margin: '0 0 6px', fontSize: '12px', fontWeight: 700, color: PAYU_GREEN }}>access_token</p>
+            <code style={{ fontSize: '11px', wordBreak: 'break-all' }}>{accessToken}</code>
+          </div>
+        ) : null}
+        {prog.tokenGenerated ? <p style={okTextStyle}>Token generated. Next: create payment link.</p> : null}
+      </div>
+    );
+  }
+
+  function renderCreate() {
+    return (
+      <div>
+        <p style={bodyTextStyle}>
+          Create your first payment link with test data. The link will be active in test mode.
+        </p>
+        <div style={fieldStackStyle}>
+          <div>
+            <FieldLabel name="Amount (₹)" required={true} />
+            <input
+              type="text"
+              value={linkAmount}
+              onChange={function (e) { setLinkAmount(e.target.value); }}
+              style={inputStyle}
+              placeholder="100.00"
+            />
+          </div>
+          <div>
+            <FieldLabel name="Description" required={true} />
+            <input
+              type="text"
+              value={linkDescription}
+              onChange={function (e) { setLinkDescription(e.target.value); }}
+              style={inputStyle}
+              placeholder="Payment for Product X"
+            />
+          </div>
+        </div>
+        <div style={btnRowStyle}>
+          {renderWizardButton('primary', busy ? 'Creating...' : 'Create Payment Link', labClick(createPaymentLink), busy || !prog.tokenGenerated)}
+          {createdLinkUrl ? renderWizardButton('secondary', 'Copy Link', labClick(function () { copyText(createdLinkUrl); }), false) : null}
+        </div>
+        {createdLinkUrl ? (
+          <div style={infoBoxStyle}>
+            <p style={{ margin: '0 0 6px', fontSize: '12px', fontWeight: 700, color: PAYU_GREEN }}>Payment Link</p>
+            <code style={{ fontSize: '11px', wordBreak: 'break-all' }}>{createdLinkUrl}</code>
+          </div>
+        ) : null}
+        {prog.linkCreated ? <p style={okTextStyle}>Link created successfully! Next: share it.</p> : null}
+      </div>
+    );
+  }
+
+  function renderShare() {
+    return (
+      <div>
+        <p style={bodyTextStyle}>
+          Share the payment link with your customer via email, SMS, or direct URL. You can also embed it in your app.
+        </p>
+        {createdLinkUrl ? (
+          <div style={infoBoxStyle}>
+            <p style={{ margin: '0 0 6px', fontSize: '12px', fontWeight: 700, color: PAYU_GREEN }}>Your Payment Link</p>
+            <code style={{ fontSize: '11px', wordBreak: 'break-all' }}>{createdLinkUrl}</code>
+          </div>
+        ) : (
+          <p style={bodyTextStyle}>No link created yet. Go back to Step 4.</p>
+        )}
+        <div style={btnRowStyle}>
+          {createdLinkUrl ? renderWizardButton('secondary', 'Copy Link', labClick(function () { copyText(createdLinkUrl); }), false) : null}
+          {createdLinkUrl ? (
+            <a
+              href={createdLinkUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={Object.assign({}, wizardBtnStyle('secondary', false), { textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' })}
+            >
+              Open Link
+            </a>
+          ) : null}
+          {renderWizardButton('primary', 'I shared the link', labClick(markShared), !createdLinkUrl)}
+        </div>
+        {prog.linkShared ? <p style={okTextStyle}>Link shared. Next: test payment.</p> : null}
+      </div>
+    );
+  }
+
+  function renderTest() {
+    return (
+      <div>
+        <p style={bodyTextStyle}>
+          Open the payment link and complete a test payment. Use test payment methods provided by PayU.
+        </p>
+        <div style={infoBoxStyle}>
+          <strong>Test Payment Details:</strong>
+          <ul style={{ margin: '8px 0 0', paddingLeft: '20px', lineHeight: 1.7 }}>
+            <li><strong>Test Card:</strong> 5123456789012346</li>
+            <li><strong>CVV:</strong> 123</li>
+            <li><strong>Expiry:</strong> Any future date</li>
+            <li><strong>OTP:</strong> 123456</li>
+            <li><strong>Test UPI:</strong> success@payu</li>
+          </ul>
+        </div>
+        {createdLinkUrl ? (
+          <div style={btnRowStyle}>
+            <a
+              href={createdLinkUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={Object.assign({}, wizardBtnStyle('secondary', false), { textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' })}
+            >
+              Open Payment Link
+            </a>
+            {renderWizardButton('primary', 'I completed test payment', labClick(markTested), false)}
+          </div>
+        ) : null}
+        {prog.linkTested ? <p style={okTextStyle}>Test payment completed. Next: link management.</p> : null}
+      </div>
+    );
+  }
+
+  function renderManage() {
+    return (
+      <div>
+        <p style={bodyTextStyle}>
+          Use these APIs to manage your payment links:
+        </p>
+        <div style={infoBoxStyle}>
+          <ul style={{ margin: 0, paddingLeft: '20px', lineHeight: 1.85 }}>
+            <li><strong>Get Single Link:</strong> Fetch details of a specific link</li>
+            <li><strong>Get All Links:</strong> List all payment links</li>
+            <li><strong>Update Status:</strong> Activate/deactivate links</li>
+            <li><strong>Get Transaction:</strong> View payment details</li>
+            <li><strong>Share Link:</strong> Send via email/SMS programmatically</li>
+          </ul>
+        </div>
+        <p style={bodyTextStyle}>
+          View all payment links and transactions on your <strong>PayU Dashboard → Payment Links</strong>.
+        </p>
+      </div>
+    );
+  }
+
+  function renderGolive() {
+    return (
+      <div>
+        <p style={bodyTextStyle}>
+          Before accepting real payments, complete this checklist:
+        </p>
+        <div style={{ display: 'grid', gap: '8px', marginBottom: '16px' }}>
+          {GO_LIVE.map(function (label, idx) {
+            return (
+              <label key={label} style={{ display: 'flex', cursor: 'pointer', alignItems: 'flex-start', gap: '8px', fontSize: '14px', fontWeight: 600, lineHeight: 1.5, color: PAYU_GREEN, minHeight: '44px', padding: '8px 0', boxSizing: 'border-box' }}>
+                <input
+                  type="checkbox"
+                  checked={!!goDone[idx]}
+                  onChange={function (e) {
+                    var n = Object.assign({}, goDone);
+                    n[idx] = e.target.checked;
+                    setGoDone(n);
+                  }}
+                  style={checkboxInputStyle}
+                />
+                <span>{label}</span>
+              </label>
+            );
+          })}
+        </div>
+        <div style={btnRowStyle}>
+          {renderWizardButton('primary', 'Start over', labClick(restartLab), false)}
+        </div>
+      </div>
+    );
+  }
+
+  function renderWizardBody() {
+    var inner = null;
+    if (step === 0) inner = renderWelcome();
+    else if (step === 1) inner = renderPrereq();
+    else if (step === 2) inner = renderCredentials();
+    else if (step === 3) inner = renderToken();
+    else if (step === 4) inner = renderCreate();
+    else if (step === 5) inner = renderShare();
+    else if (step === 6) inner = renderTest();
+    else if (step === 7) inner = renderManage();
+    else if (step === 8) inner = renderGolive();
+
+    return (
+      <div>
+        {step > 0 && current.tagline ? <p style={taglineStyle}>{current.tagline}</p> : null}
+        {step >= 2 && step <= 6 ? (
+          <div className="mb-4 flex items-start gap-3 rounded-md border border-teal-200 bg-white/90 px-3 py-2.5" role="note">
+            <span className="mt-0.5 shrink-0 rounded bg-teal-700 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">Try it</span>
+            <p className="mb-0 min-w-0 text-sm leading-snug text-gray-700">
+              <span className="font-semibold text-gray-900">Hands-on lab — </span>
+              Real API calls to PayU test environment. Everything stays in your browser.
+            </p>
+          </div>
+        ) : null}
+        {step > 1 ? (
+          <LabStatus items={[
+            { label: 'Credentials saved', ok: prog.credentialsSaved },
+            { label: 'Token generated', ok: prog.tokenGenerated },
+            { label: 'Link created', ok: prog.linkCreated },
+            { label: 'Link tested', ok: prog.linkTested }
+          ]} />
+        ) : null}
+        <div aria-live="polite" aria-atomic="true">
+          {err ? <p style={errTextStyle}>{err}</p> : null}
+          {msg ? <p style={okTextStyle}>{msg}</p> : null}
+          {copyMsg ? <p style={okTextStyle}>{copyMsg}</p> : null}
+        </div>
+        <div style={step === 0 ? { marginTop: '4px' } : contentCardStyle}>{inner}</div>
+      </div>
+    );
+  }
+
+  function renderWizardFooter() {
+    var canGoForward = canAdvance();
+    return (
+      <div>
+        <div style={navRowStyle}>
+          {step > 0 ? (
+            renderWizardButton('secondary', 'Back', labClick(function () { goToStep(step - 1); }), false)
+          ) : (
+            <span />
+          )}
+          {step < STEPS.length - 1 ? (
+            renderWizardButton(
+              'primary',
+              step === 0 ? 'Next' : 'Continue',
+              labClick(function () {
+                if (!canAdvance()) return;
+                goToStep(step + 1);
+              }),
+              !canGoForward
+            )
+          ) : null}
+        </div>
+        {!canGoForward && continueHint() ? (
+          <p style={{ margin: '10px 0 0', fontSize: '14px', lineHeight: 1.5, color: '#b45309' }}>{continueHint()}</p>
+        ) : null}
+      </div>
+    );
+  }
+
+  useEffect(function () {
+    if (!modalOpen || typeof document === 'undefined') return;
+    var focusRaf = 0;
+
+    function lockScroll() {
+      document.body.style.overflow = 'hidden';
+    }
+    function unlockScroll() {
+      document.body.style.overflow = '';
+    }
+
+    function onKey(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+        return;
+      }
+    }
+
+    lockScroll();
+    document.addEventListener('keydown', onKey);
+    focusRaf = requestAnimationFrame(function () {
+      if (closeBtnRef.current) closeBtnRef.current.focus();
+    });
+
+    return function () {
+      cancelAnimationFrame(focusRaf);
+      document.removeEventListener('keydown', onKey);
+      unlockScroll();
+      if (launcherBtnRef.current) launcherBtnRef.current.focus();
+    };
+  }, [modalOpen]);
+
+  return (
+    <div className="min-w-0" style={{ fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif' }}>
+      <div style={launcherCardStyle} role="region" aria-label="Payment Links walkthrough">
+        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-start', gap: '16px', justifyContent: 'space-between' }}>
+          <div style={{ flex: '1 1 280px', minWidth: 0 }}>
+            <div style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: PAYU_GREEN, marginBottom: '6px' }}>
+              Try it yourself
+            </div>
+            <h3 style={{ margin: '0 0 8px', fontSize: '1.25rem', fontWeight: 700, color: '#111827' }}>
+              Payment Links walkthrough
+            </h3>
+            <p style={{ margin: '0 0 12px', fontSize: '14px', lineHeight: 1.6, color: '#4b5563' }}>
+              Create payment links via API, test in sandbox, and learn link management — all in one popup.
+            </p>
+            <ul style={{ margin: 0, paddingLeft: '18px', fontSize: '13px', lineHeight: 1.7, color: '#374151' }}>
+              <li>OAuth 2.0 token generation</li>
+              <li>Real API integration with test environment</li>
+              <li>Test payment with demo credentials</li>
+              <li>About 15 minutes</li>
+            </ul>
+          </div>
+          <div style={{ flexShrink: 0, alignSelf: 'center' }}>
+            <button type="button" ref={launcherBtnRef} onClick={labClick(openModal)} style={Object.assign({}, wizardBtnStyle('primary', false), { padding: '12px 24px', fontSize: '15px' })}>
+              Open walkthrough
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {modalOpen ? (
+        <div style={modalOverlayStyle} onClick={onOverlayClick} role="dialog" aria-modal="true" aria-label="Payment Links walkthrough">
+          <div ref={modalPanelRef} style={modalPanelStyle} onClick={function(e) { if (e && e.stopPropagation) e.stopPropagation(); }}>
+            <div style={modalHeaderStyle}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '12px' }}>
+                <div style={{ minWidth: 0 }}>
+                  <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', opacity: 0.85, marginBottom: '4px' }}>
+                    PayU Payment Links
+                  </div>
+                  <h2 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 700, lineHeight: 1.3 }}>{current.title}</h2>
+                  {step > 0 ? (
+                    <p style={{ margin: '6px 0 0', fontSize: '13px', opacity: 0.9 }}>Step {current.stepLabel} of 8</p>
+                  ) : null}
+                </div>
+                <button
+                  type="button"
+                  ref={closeBtnRef}
+                  onClick={labClick(closeModal)}
+                  aria-label="Close walkthrough"
+                  style={{ flexShrink: 0, cursor: 'pointer', border: 'none', background: 'rgba(255,255,255,0.2)', color: '#fff', borderRadius: '8px', width: '44px', height: '44px', fontSize: '18px', lineHeight: 1 }}
+                >
+                  ×
+                </button>
+              </div>
+              {renderStepPills()}
+              {renderModalTabs()}
+              <div style={{ marginTop: '12px', height: '4px', background: 'rgba(255,255,255,0.25)', borderRadius: '4px', overflow: 'hidden' }}>
+                <div style={{ height: '100%', width: pct + '%', background: '#fff', transition: 'width 0.25s ease' }} />
+              </div>
+            </div>
+            <div style={modalBodyStyle}>
+              {modalTab === 'help' ? renderHelpPanel() : renderWizardBody()}
+            </div>
+            <div style={modalFooterStyle}>
+              {modalTab === 'lab' ? renderWizardFooter() : null}
+              <p style={Object.assign({}, mutedTextStyle, { marginTop: modalTab === 'lab' ? '8px' : 0, marginBottom: 0 })}>
+                {modalTab === 'help' ? 'Help runs locally · Esc to close' : 'Progress saved in this browser · Esc to close'}
+              </p>
+            </div>
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+};
+
+  <PayUPaymentLinksWizard />
