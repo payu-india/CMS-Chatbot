@@ -375,6 +375,17 @@ Use bulk upload to create hundreds of payment links in one go. Each row in the C
 
 ***
 
+## What Are the Different Statuses of a Payment Link?
+
+| Status          | What it means                                  | How to get here                         | What you can do                                      |
+| --------------- | ---------------------------------------------- | --------------------------------------- | ---------------------------------------------------- |
+| **Active**      | Live — accepting payments                      | Link just created                       | Share, duplicate, deactivate                         |
+| **Paid**        | Payment received (or max transactions reached) | Customer completed a payment            | Duplicate if you need to collect again               |
+| **Expired**     | Expiry date passed                             | System auto-expires at the set date     | Duplicate with a new expiry; or extend via API       |
+| **Deactivated** | Manually stopped                               | You disabled it in Dashboard or via API | Re-activate via API; or duplicate from the dashboard |
+
+***
+
 ## What Happens After My Customer Pays?
 
 After your customer makes the payment:
