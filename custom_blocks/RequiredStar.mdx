@@ -23,6 +23,7 @@ export const RequiredStar = (props) => {
     whiteSpace: 'nowrap',
     fontWeight: 700,
     color: '#1f2937',
+    fontSize: 'inherit',
   };
   const starStyle = {
     color: '#e53e3e',
@@ -38,7 +39,7 @@ export const RequiredStar = (props) => {
   if (props.legend) {
     return (
       <span style={{ display: 'inline', lineHeight: 'inherit' }}>
-        Parameters marked with{' '}
+        Parameters/Fields marked with{' '}
         <sup aria-hidden="true" style={starStyle}>
           *
         </sup>{' '}
