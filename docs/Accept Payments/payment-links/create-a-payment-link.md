@@ -444,7 +444,7 @@ After your customer makes the payment:
     Expiry dates, partial payments, custom fields, and notifications.
   </Card>
 
-  <Card title="Payment Links Overview" href="doc:payment-links-overview" icon="fa-circle-info">
+  <Card title="Payment Links Overview" href="doc:payment-links-overview" icon="far fa-file-lines">
     Full overview — use cases, supported payment methods, and API access.
   </Card>
 </Cards>
