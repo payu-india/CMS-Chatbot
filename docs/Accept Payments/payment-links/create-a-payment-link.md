@@ -40,7 +40,7 @@ next:
   fontWeight="bold"
 />
 
-Create a Payment Link from the PayU Dashboard and share it with your customer in under 5 minutes without the help of a developer or code.
+Create a <Anchor target="_blank" href="https://docs.payu.in/update/docs/payment-links">Payment Link</Anchor> from the PayU Dashboard and share it with your customer in under 5 minutes without the help of a developer or code.
 
 ***
 
