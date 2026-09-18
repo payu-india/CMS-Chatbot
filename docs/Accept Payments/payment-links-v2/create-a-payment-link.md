@@ -178,57 +178,70 @@ To create and send a Payment Link:
 
 </Accordion>
 
-<Accordion title="3. Add invoice or reference details (optional)" icon="far fa-file-invoice">
-  Click **Add more details** to expand additional configuration fields:
+<Accordion title="3. Add More Details (optional)" icon="far fa-file-invoice">
+  1. Click **Add More Details** to include these additional configuration fields:
+
+  | Field                         | Description                                  |
+  | ----------------------------- | -------------------------------------------- |
+  | **Add Invoice Number**        | Tie the link to your internal invoice ID     |
+  | **Add Tax**                   | Add a tax line to the payment record         |
+  | **Add Shipping**              | Add a shipping charge                        |
+  | **Add Address Details**       | Collect delivery address from the customer   |
+  | **Add UDF Details**           | Custom key-value fields for your own records |
+  | **Add Merchant Reference ID** | Your internal order or booking reference     |
 
 
-  <Image src="https://files.readme.io/c73e2f1739d759815cf7503096e7c971927f4986c8b0dddafc6951b4a760cff2-dashboard_create_new_payment_link_step2.png" align="center" caption="Add more details panel" border={true} />
+  <Image src="https://files.readme.io/c73e2f1739d759815cf7503096e7c971927f4986c8b0dddafc6951b4a760cff2-dashboard_create_new_payment_link_step2.png" border={true} />
 
 
-  | Field                 | When to use                                  |
-  | --------------------- | -------------------------------------------- |
-  | Invoice Number        | Tie the link to your internal invoice ID     |
-  | Tax                   | Add a tax line to the payment record         |
-  | Shipping              | Add a shipping charge                        |
-  | Address Details       | Collect delivery address from the customer   |
-  | UDF 1–5               | Custom key-value fields for your own records |
-  | Merchant Reference ID | Your internal order or booking reference     |
-
-  Click **Add Fields** to apply your selection and return to the main panel.
+  2. Click **Add Fields** to apply your selection and return to the main panel.
 </Accordion>
 
-<Accordion title="4. Set customer details and expiry" icon="far fa-user">
-  Scroll to the **Customer Details** section:
+<Accordion title="4. Customer Targeting" icon="far fa-user">
+  Add these details under the **Customer Targeting&#x20;**&#x73;ection:
+
+  | Fields           | Description                                               |
+  | ---------------- | --------------------------------------------------------- |
+  | **Phone number** | The customer phone number.                                |
+  | **Send via SMS** | Select for PayU to send the link automatically via SMS.   |
+  | **Name**         | The customer name.                                        |
+  | **Email**        | The customer email ID.                                    |
+  | **Send Email**   | Select for PayU to send the link automatically via email. |
+  |                  |                                                           |
 
 
-  <Image src="https://files.readme.io/09b1e5b30bbcb46d0d1b457bfff8ccf422f49190014ec95d198640db0bf55eb2-dashboard_create_new_payment_link_step3.png" align="center" caption="Customer Details section" border={true} />
+  <Image src="https://files.readme.io/e152dd0ea2bea18f00fd03a354e0fdecce071b2d84e4e54cd3fba858ac5400fb-Screenshot_2026-09-18_at_1.54.47_PM.png" align="center" caption="Enter Customer Details" border={true} />
 
-
-  - **Customer Name / Email / Phone** — pre-fills the checkout page and enables automatic delivery.
-  - **Notify via SMS / Notify via Email** — toggle on to have PayU send the link automatically on creation.
-  - **Link Expiry** — defaults to 1 year from today; set a shorter date for time-sensitive offers.
 
   <Callout icon="📘" theme="info">
+    ### **Note:**
+
     If you enter the customer's phone or email and toggle notifications on, PayU sends the link the moment you click **Create** — no manual copying or sharing needed.
   </Callout>
 </Accordion>
 
-<Accordion title="5. Add checkout fields (optional)" icon="far fa-list-check">
-  Scroll to **Additional Customer Details** to specify what PayU collects from your customer at checkout:
+<Accordion title="5. Customer Data Capture (optional)" icon="far fa-list-check">
+  Specify what PayU collects from your customer at checkout under the **Customer Data Capture&#x20;**&#x73;ection:
 
-  - Standard fields: Customer Name, Address, Email, Mobile
-  - Custom fields: click **Add New Fields+** and configure:
-    - **Field Type** — Alphanumeric, Calendar, or Dropdown
-    - **Field Name** — the label the customer sees
-    - **Mark as Mandatory** — toggle on to require the field before payment can proceed
+  - Standard fields: Customer Email and Phone
+  - Custom fields: click **Add new Fields+** and configure:
+    - **Field Type**: Alphanumeric, Calendar, or Dropdown
+    - **Field Name**: the label the customer sees
+    - **Mark as Mandatory**: Select to require the field before payment can proceed
 
 
-  <Image src="https://files.readme.io/d322acc2c2795a82b620e501380e4366576307f7a1c17ff79b89c6f0cfda5e66-dashboard_payment_link_with_additional_details.png" align="center" caption="Checkout page with additional customer detail fields enabled" border={true} />
+  <Image src="https://files.readme.io/2448391dfa55fcd56969ab1a3d5ba09c542d7caefe3ecb5181aa14cb19e5ce25-Screenshot_2026-09-18_at_2.09.25_PM.png" align="center" caption="Capture Customer Data" border={true} />
 
 </Accordion>
 
 <Accordion title="6. Create and send" icon="far fa-paper-plane">
-  Click **Create and Send Payment Link** in the top-right corner.
+  Click **Create and Send Payment link** in the top-right corner.
+
+
+  <Image src="https://files.readme.io/14e447953ba5f3a9c4c0cabaf852255600b8ca63288b8f422a7ce90ca784efbd-Screenshot_2026-09-18_at_2.14.45_PM.png" align="center" caption="Create and Send a Payment Link" border={true} />
+
+
+  **What happens next:**
 
   - **If notifications are on** → PayU sends the link to the customer immediately via SMS/email.
   - **If not** → the link appears in your Payment Links Dashboard. Copy the URL from the **Payment Link** column and share it over WhatsApp, email, or any channel.
