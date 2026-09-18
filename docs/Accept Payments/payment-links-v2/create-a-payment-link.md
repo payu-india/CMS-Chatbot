@@ -87,55 +87,12 @@ To create and send a Payment Link:
         <Callout icon="📘" theme="info">
           ### **Required Fields**
 
-          <RequiredStar legend />
+            <RequiredStar legend />
         </Callout>
-        <Table>
-          <thead>
-            <tr>
-              <th>
-                Information
-              </th>
-
-              <th>
-                Required/Optional
-              </th>
-
-              <th>
-                Description
-              </th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-              <td>
-                <RequiredStar param="Item Description" bold />
-              </td>
-
-              <td>
-                Required
-              </td>
-
-              <td>
-                A short description about the link you are creating.
-              </td>
-            </tr>
-
-            <tr>
-              <td>
-                **Total Amount**
-              </td>
-
-              <td>
-                Optional
-              </td>
-
-              <td>
-
-              </td>
-            </tr>
-          </tbody>
-        </Table>
+        | Information      | Description                                          |
+        | ---------------- | ---------------------------------------------------- |
+        |                  | A short description about the link you are creating. |
+        | **Total Amount** |                                                      |
 
   - **Amount** — enter the payment amount in INR.
   - **Purpose** — a brief description, e.g. _"Invoice #1042 — Web Design Services"_.
