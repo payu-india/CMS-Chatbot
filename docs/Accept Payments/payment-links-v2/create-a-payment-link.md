@@ -40,11 +40,11 @@ next:
   fontWeight="bold"
 />
 
-Create a payment link from the PayU Dashboard and share it with your customer in under 5 minutes. Everything on this page happens in the Dashboard — no developer or code needed.
+Create a payment link from the PayU Dashboard and share it with your customer in under 5 minutes. You can create a payment link without the help of a developer or code.
 
 ***
 
-## What Will I Need?
+## What All I Need?
 
 <Columns layout="fixed">
   <Column>
