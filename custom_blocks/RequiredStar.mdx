@@ -18,6 +18,12 @@ export const RequiredStar = (props) => {
     fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
     fontSize: '0.875em',
   };
+  const boldStyle = {
+    display: 'inline',
+    whiteSpace: 'nowrap',
+    fontWeight: 700,
+    color: '#1f2937',
+  };
   const starStyle = {
     color: '#e53e3e',
     fontWeight: 700,
@@ -27,6 +33,8 @@ export const RequiredStar = (props) => {
     marginLeft: '0.06em',
     background: 'transparent',
   };
+
+  // Legend explaining what asterisks mean
   if (props.legend) {
     return (
       <span style={{ display: 'inline', lineHeight: 'inherit' }}>
@@ -38,11 +46,27 @@ export const RequiredStar = (props) => {
       </span>
     );
   }
+
+  // HTML block output with code format
   if (props.htmlblock && name) {
     return (
       <HTMLBlock>{`<span style="display:inline;white-space:nowrap;vertical-align:baseline"><code style="display:inline;white-space:nowrap;padding:2px 6px;background:#f3f4f6;color:#1f2937;border-radius:4px;font-family:ui-monospace,Menlo,monospace;font-size:0.875em">${name}</code><sup style="color:#e53e3e;font-weight:700;font-size:0.75em;line-height:0;vertical-align:super;margin-left:0.06em;background:transparent">*</sup></span>`}</HTMLBlock>
     );
   }
+
+  // Bold text with asterisk (NEW USE CASE 1)
+  if (props.bold && name) {
+    return (
+      <span style={inlineWrap}>
+        <strong style={boldStyle}>{name}</strong>
+        <sup aria-hidden="true" style={starStyle}>
+          *
+        </sup>
+      </span>
+    );
+  }
+
+  // Code format with asterisk (ORIGINAL)
   if (name) {
     return (
       <span style={inlineWrap}>
@@ -53,6 +77,8 @@ export const RequiredStar = (props) => {
       </span>
     );
   }
+
+  // Just the asterisk for notes (NEW USE CASE 2 - already existed but now documented)
   return (
     <sup aria-hidden="true" style={starStyle}>
       *
@@ -60,4 +86,27 @@ export const RequiredStar = (props) => {
   );
 };
 
-<RequiredStar param="merchant_id" />
+/*
+USAGE EXAMPLES:
+
+1. Code format with red asterisk (original):
+   <RequiredStar param="merchant_id" />
+   Output: merchant_id* (in code block style)
+
+2. Bold text with red asterisk (NEW):
+   <RequiredStar param="merchant_id" bold />
+   Output: merchant_id* (in bold)
+
+3. Just the red asterisk for notes (NEW):
+   <RequiredStar />
+   Output: * (just the asterisk)
+   Example: Note: Fields marked with <RequiredStar /> are required.
+
+4. Legend text:
+   <RequiredStar legend />
+   Output: "Parameters marked with * are mandatory."
+
+5. HTML block output:
+   <RequiredStar param="merchant_id" htmlblock />
+   Output: HTML string with code formatting
+*/
