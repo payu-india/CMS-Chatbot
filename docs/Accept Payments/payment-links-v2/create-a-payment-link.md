@@ -258,11 +258,15 @@ Use bulk upload to create hundreds of payment links in one go. Each row in the C
 
 <Accordion title="1. Open Bulk Uploads" icon="far fa-folder-open">
   1. Log in to the [PayU Dashboard](https://onboarding.payu.in/).
+
   2. Expand **Payment Tools&#x20;**&#x61;nd clic&#x6B;**&#x20;Payment Links&#x20;**&#x64;isplayed in the left navigation.
+
 
      <Image src="https://files.readme.io/bc6fe9da1a24dc6d7bd3bf46b29fc136aa19c59a37319a5c5bdea81f01cfc566-image.png" align="center" caption="Go to Payment Links" border={true} />
 
+
   3. Click **Bulk Create** displayed at the top-right.
+
 
      <Image src="https://files.readme.io/b5ef3ea428e4c976ec9d8c8cbac1e1add683047cb998485b984b0885595b21db-Screenshot_2026-09-18_at_3.12.38_PM.png" align="center" caption="Go to Bulk Create" border={true} />
 
@@ -322,6 +326,7 @@ Use bulk upload to create hundreds of payment links in one go. Each row in the C
   2. Enter a **Batch ID (Optional)**: Your internal reference for this upload batch.
   3. Enter a **Batch description&#x20;**(optional): A label to help you identify this batch later.
 
+
      <Image src="https://files.readme.io/b736def75c804d83e56904bd5b75f7c9538f35d522567cfc46200274e2f48209-Screenshot_2026-09-18_at_3.32.33_PM.png" align="center" caption="Upload and Set Batch Detials" border={true} />
 
 </Accordion>
@@ -347,6 +352,7 @@ Use bulk upload to create hundreds of payment links in one go. Each row in the C
      - **Customer Phone** _(checked by default)_
   2. To add custom fields beyond these, click **+ Add New Fields** and configure the field type, label, and whether it is mandatory.
   3. Once done, click **Generate Payment Links** (or the upload/submit button) to process your batch.
+
 
      <Image src="https://files.readme.io/ed2ae0ea830f1c0c3cec866e2be547a59c9e589a2caf95dffa4075268d2b80f0-Screenshot_2026-09-18_at_3.39.58_PM.png" align="center" caption="Create and Send Payment Links" border={true} />
 
@@ -412,6 +418,10 @@ After your customer makes the payment:
 | Wrong amount or details on the link             | Deactivate it and create a new one — links cannot be edited after creation. Duplicate the link to reuse the settings.                    |
 
 ***
+
+## Sandbox for Your Testing
+
+<br />
 
 ## Next Steps
 
