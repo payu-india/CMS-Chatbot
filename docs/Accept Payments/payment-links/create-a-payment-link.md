@@ -400,6 +400,8 @@ Use bulk upload to create hundreds of payment links in one go. Each row in the C
   </Card>
 </Cards>
 
+***
+
 ## What Happens After My Customer Pays?
 
 After your customer makes the payment:
