@@ -40,7 +40,7 @@ next:
   fontWeight="bold"
 />
 
-Create a payment link from the PayU Dashboard and share it with your customer in under 5 minutes. You can create a payment link without the help of a developer or code.
+Create a Payment Link from the PayU Dashboard and share it with your customer in under 5 minutes without the help of a developer or code.
 
 ***
 
@@ -62,16 +62,16 @@ Create a payment link from the PayU Dashboard and share it with your customer in
 
 ***
 
-## How Do I Create and Send a Payment Link?
+## How Do I Create a Payment Link?
 
-<Accordion title="1. Open Payment Links" icon="far fa-grid-2">
-  1. Log in to the **PayU Dashboard**.
-  2. In the left navigation, go to **Payment Tools > Payment Links**.
+To create and send a Payment Link:
 
-  The Payment Links Dashboard opens on the **Payment Link** tab.
+<Accordion title="1. Open Payment Links on the Dashboard" icon="far fa-grid-2">
+  1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor>.
+  2. Expand **Payment Tools&#x20;**&#x61;nd clic&#x6B;**&#x20;Payment Links&#x20;**&#x64;isplayed in the left navigation.
 
 
-  <Image src="https://files.readme.io/cc35b704632bded3088580a070ffaf24f203c3713f7880fb0a2cdc6e5b8bc842-Screenshot_2025-06-02_at_7.05.43_PM.png" align="center" caption="Payment Links Dashboard" border={true} />
+  <Image src="https://files.readme.io/afb09b2616f9c9a7ca0f64c3996ea262ce36ded89d50a17e5118b62254a5923d-Screenshot_2026-09-18_at_10.56.30_AM.png" align="center" caption="Go to Payment Links" border={true} />
 
 </Accordion>
 
