@@ -46,15 +46,19 @@ Create a payment link from the PayU Dashboard and share it with your customer in
 
 ## What All I Need?
 
-<Columns layout="fixed">
-  <Column>
-    **A PayU merchant account.** [Set up your account](doc:set-up-your-account) if you haven't already.
-  </Column>
+<Cards>
+  <Card title="A PayU Merchant Account" icon="far fa-table-cells-column-unlock">
+    <Columns layout="fixed">
+      <Column>
+        [Set up your account](doc:set-up-your-account) if you have not already.
+      </Column>
+    </Columns>
+  </Card>
 
-  <Column>
-    **Dashboard access.** Log in to the [PayU Dashboard](https://onboarding.payu.in/) before you start.
-  </Column>
-</Columns>
+  <Card title="Dashboard Access" icon="far fa-pager">
+    Log in to the [PayU Dashboard](https://onboarding.payu.in/) to check whether you have access to the PayU dashboard before you start.
+  </Card>
+</Cards>
 
 ***
 
