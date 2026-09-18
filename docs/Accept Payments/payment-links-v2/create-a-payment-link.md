@@ -421,7 +421,7 @@ After your customer makes the payment:
 
 ## Sandbox for Your Testing
 
-<br />
+<PayUPaymentLinksWizard />
 
 ## Next Steps
 
