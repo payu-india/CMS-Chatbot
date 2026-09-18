@@ -82,7 +82,12 @@ To create and send a Payment Link:
   <Image src="https://files.readme.io/889bdf1e584b7531c1f79d1396230fbbfcb7ae0c6beaa5789d764d57c95aef8f-Screenshot_2026-09-18_at_11.06.18_AM.png" align="center" caption="Create New Payment Link panel" border={true} />
 
 
-  Fill in the required fields:
+  2. Provide the these details in respective sections:
+     1. **Payment Link Details**
+        | Information          | Required/Optional | Description                                          |
+        | -------------------- | ----------------- | ---------------------------------------------------- |
+        | **Item Description** | Required          | A short description about the link you are creating. |
+        | **Total Amount**     | Optional          |                                                      |
 
   - **Amount** — enter the payment amount in INR.
   - **Purpose** — a brief description, e.g. _"Invoice #1042 — Web Design Services"_.
