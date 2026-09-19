@@ -1,7 +1,7 @@
 ---
 title: Subscripions or Recurring Payments
 excerpt: ''
-deprecated: false
+deprecated: true
 hidden: false
 metadata:
   title: Recurring Payments Introduction
@@ -18,6 +18,10 @@ metadata:
 next:
   description: ''
 ---
+<Callout icon="📘" theme="info">
+  **This section is being replaced.** Use the restructured [PayU Subscriptions](doc:payu-subscriptions) documentation for the latest workflow-centric guides. Migration details: [Subscription Documentation Restructuring](doc:subscription-documentation-restructuring).
+</Callout>
+
 The Subscriptions, Recurring Payments or Standing Instruction (SI) from PayU to set up and manage recurring payments. These recurring payments:
 
 * Can be charged as per a cycle defined
