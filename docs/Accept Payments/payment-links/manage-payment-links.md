@@ -5,7 +5,24 @@ excerpt: >-
   from the PayU Dashboard.
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
+  title: Manage Payment Links — Dashboard Guide | PayU Developer
+  description: >-
+    Filter, duplicate, share, deactivate, and export PayU Payment Links from the
+    Dashboard — no developer needed. Includes bulk upload and CSV export.
+  keywords:
+    - manage payment links payu
+    - filter payment links dashboard
+    - deactivate payment link payu
+    - export payment links csv
+    - duplicate payment link
+    - bulk upload payment links
+    - payu payment links dashboard
+    - share payment link again
+    - payment link history export
+    - payu no code payment management
   robots: index
 next:
   description: Explore related information and resources.
