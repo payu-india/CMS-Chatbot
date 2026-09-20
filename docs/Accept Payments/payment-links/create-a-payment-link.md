@@ -368,15 +368,36 @@ Use bulk upload to create hundreds of payment links in one go. Each row in the C
 
   <Image src="https://files.readme.io/10ae907f614ea7970e1dcc010fd4e3c3707e570fe055beeaec4d11e607908e97-Screenshot_2026-09-18_at_3.44.35_PM.png" align="center" caption="Check Bulk Upload Status" border={true} />
 
+</Accordion>
 
-  **Common Errors to Watch For:**
+<Accordion title="Common Errors: File and Format Issues" icon="far fa-triangle-exclamation">
+  These errors stop the entire upload before any rows are processed.
 
-  | Error                              | Cause                                    | Fix                                                |
-  | ---------------------------------- | ---------------------------------------- | -------------------------------------------------- |
-  | "Amount is mandatory"              | Amount column is empty                   | Fill in Amount for every row                       |
-  | "Product Description is mandatory" | Description column is empty              | Fill in Product Description for every row          |
-  | "Invoice ID already exists"        | Duplicate Invoice ID across your account | Use a unique Invoice ID per row, or leave it blank |
-  | "Invalid Time Unit"                | Time Unit value is not D, H, or M        | Use exactly `D`, `H`, or `M` (uppercase)           |
+  | Error                                             | Cause                                    | Fix                                                                |
+  | ------------------------------------------------- | ---------------------------------------- | ------------------------------------------------------------------ |
+  | File not accepted / upload fails                  | File is `.xlsx`, not `.csv`              | Open in Excel or Google Sheets → **Save as CSV (comma-separated)** |
+  | File too large                                    | File exceeds 20 MB                       | Split into smaller files and upload in batches                     |
+  | Fields mapped incorrectly / column not recognised | Column headers were renamed or reordered | Re-download the sample file and keep its headers exactly as-is     |
+  | Batch created but 0 links generated               | File has a header row but no data rows   | Make sure at least one data row is filled below the header         |
+</Accordion>
+
+<Accordion title="Common Errors: Row Data Issues" icon="far fa-circle-exclamation">
+  These errors are reported per row — the rest of the batch may still succeed.
+
+  | Error                                                 | Cause                                                    | Fix                                                                  |
+  | ----------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------------------- |
+  | "Amount is mandatory"                                 | Amount column is empty                                   | Fill in Amount for every row                                         |
+  | "Amount must be at least 1"                           | Amount is 0 or below                                     | Enter a value of 1 or more                                           |
+  | "Invalid Amount"                                      | Amount has commas, symbols, or letters — e.g. `₹1,000`   | Use plain numbers only — `1000`, not `₹1,000`                        |
+  | "Product Description is mandatory"                    | Description column is empty                              | Fill in Product Description for every row                            |
+  | "Invoice ID already exists"                           | Invoice ID was used in a previous link                   | Use a unique Invoice ID per row, or leave it blank                   |
+  | "Invalid Time Unit"                                   | Time Unit is not `D`, `H`, or `M`                        | Use uppercase `D` (days), `H` (hours), or `M` (minutes)              |
+  | "Validation Period and Time Unit must both be filled" | One is filled, the other is blank                        | Fill both together, or leave both blank                              |
+  | "Validation Period exceeds maximum"                   | Equivalent days exceed 1000 from today                   | Reduce the period or switch to a shorter Time Unit                   |
+  | "Invalid mobile number"                               | Not 10 digits, or includes spaces, dashes, `0`, or `+91` | Enter 10 digits only — `9876543210`, not `+919876543210`             |
+  | "Invalid email"                                       | Missing `@`, has spaces, or is malformed                 | Check format — `name@domain.com`                                     |
+  | "Send SMS requires a mobile number"                   | Send SMS is `1` but Customer Mobile is blank             | Add the mobile number, or set Send SMS to `0`                        |
+  | "Invalid value for partial payment"                   | Is Partial Payment Allowed is not `0` or `1`             | Use `1` to allow partial payments, `0` or blank for full amount only |
 </Accordion>
 
 ***
