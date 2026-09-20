@@ -21,6 +21,10 @@ next:
 ---
 PayU offers multiple payment workflows suitable for your online payment collection and disbursement strategy with diverse requirements and operational realities. Your website’s payment workflow is an integral part of your customer’s shopping experience. After the customer adds the products to the shopping cart on your website and checkout, you need to offer various payment modes to make the shopping experience complete.
 
+> 📘 New to PayU?
+>
+> Start with **[Accept Your First Payment](doc:accept-your-first-payment)** — the canonical onboarding journey. Choose Hosted Checkout, Seamless, CommercePro, Mobile SDK, Plugins, or Other, then continue into the matching product guide.
+
 # What is a payment gateway?
 
 A payment gateway is a technology used by merchants to accept debit or credit card, UPI, wallets, EMI, etc. For purchases made by customers.
@@ -50,6 +54,7 @@ A payment gateway is a technology used by merchants to accept debit or credit ca
 PayU provides multiple integration options to help you collect payments on your website.
 Each option is designed for different **developer needs, business requirements, and compliance levels**.
 
+* **New merchants:** begin with [Accept Your First Payment](doc:accept-your-first-payment), then branch into the integration that fits you.
 * If you want to **start quickly without coding**, choose a **No Code** solution.
 * If you want PayU to **handle PCI compliance and payment pages**, choose **Hosted Checkout**.
 * If you need **full control over the checkout UI** or already manage PCI compliance, use **Merchant Hosted** or **Server-to-Server** APIs.

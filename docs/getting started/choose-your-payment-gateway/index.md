@@ -12,6 +12,10 @@ next:
 ---
 PayU provides payment gateway solutions to online businesses through its cutting-edge and award-winning technology.
 
+> 📘 Recommended starting point
+>
+> For a guided path from zero to your first test payment, begin with **[Accept Your First Payment](doc:accept-your-first-payment)**. Use this page when you need a deeper comparison across products.
+
 To choose the right products (API Integration) for your business, you need to consider factors like:
 
 * The type of payments you want to accept (cards, UPI, wallets, etc.)

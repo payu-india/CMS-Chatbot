@@ -1,0 +1,162 @@
+---
+name: DevExScrollSyncNav
+---
+// DevExScrollSyncNav - Sticky in-page nav that highlights the section in view.
+// Props:
+//   sectionsJson: JSON array of { id, title }
+//   offset: scroll offset in px (default 96)
+// Usage:
+//   <DevExScrollSyncNav sectionsJson='[{"id":"overview","title":"Overview"}]' />
+// Pair with matching element ids on the page (id="overview", etc.).
+
+import { useEffect, useState } from 'react';
+
+export const DevExScrollSyncNav = (props) => {
+  var DEFAULT_SECTIONS = JSON.parse(
+    '[{"id":"overview","title":"Overview"},{"id":"prerequisites","title":"Prerequisites"},{"id":"choose-integration-method","title":"Choose Integration Method"},{"id":"get-credentials","title":"Get Credentials"},{"id":"generate-hash","title":"Generate Hash"},{"id":"create-payment-request","title":"Create Payment Request"},{"id":"handle-payment-response","title":"Handle Payment Response"},{"id":"verify-payment","title":"Verify Payment"},{"id":"test","title":"Test"},{"id":"go-live","title":"Go Live"},{"id":"next-steps","title":"Next Steps"}]'
+  );
+
+  function parseSections(raw) {
+    if (!raw) return DEFAULT_SECTIONS;
+    try {
+      var parsed = typeof raw === 'string' ? JSON.parse(raw) : raw;
+      return Array.isArray(parsed) && parsed.length ? parsed : DEFAULT_SECTIONS;
+    } catch (e) {
+      return DEFAULT_SECTIONS;
+    }
+  }
+
+  var sections = parseSections(props.sectionsJson);
+  var offset = Number(props.offset);
+  if (isNaN(offset)) offset = 96;
+
+  var _active = useState(sections[0] ? sections[0].id : '');
+  var active = _active[0];
+  var setActive = _active[1];
+
+  useEffect(
+    function () {
+      if (typeof window === 'undefined' || typeof document === 'undefined') return undefined;
+
+      var nodes = [];
+      for (var i = 0; i < sections.length; i += 1) {
+        var el = document.getElementById(sections[i].id);
+        if (el) nodes.push({ id: sections[i].id, el: el });
+      }
+      if (!nodes.length) return undefined;
+
+      var observer = null;
+      if (typeof IntersectionObserver !== 'undefined') {
+        var visible = {};
+        observer = new IntersectionObserver(
+          function (entries) {
+            for (var j = 0; j < entries.length; j += 1) {
+              var entry = entries[j];
+              visible[entry.target.id] = entry.isIntersecting && entry.intersectionRatio > 0;
+            }
+            for (var k = 0; k < nodes.length; k += 1) {
+              if (visible[nodes[k].id]) {
+                setActive(nodes[k].id);
+                break;
+              }
+            }
+          },
+          {
+            root: null,
+            rootMargin: '-' + offset + 'px 0px -55% 0px',
+            threshold: [0, 0.25, 0.5, 1],
+          }
+        );
+        for (var n = 0; n < nodes.length; n += 1) observer.observe(nodes[n].el);
+      }
+
+      function onScroll() {
+        if (observer) return;
+        var current = nodes[0].id;
+        for (var s = 0; s < nodes.length; s += 1) {
+          var top = nodes[s].el.getBoundingClientRect().top;
+          if (top - offset <= 8) current = nodes[s].id;
+        }
+        setActive(current);
+      }
+
+      if (!observer) {
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+      }
+
+      return function () {
+        if (observer) observer.disconnect();
+        window.removeEventListener('scroll', onScroll);
+      };
+    },
+    [sections, offset]
+  );
+
+  function jump(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var y = el.getBoundingClientRect().top + window.scrollY - offset + 4;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+    setActive(id);
+    if (el.focus) {
+      el.setAttribute('tabindex', '-1');
+      el.focus({ preventScroll: true });
+    }
+  }
+
+  return (
+    <nav
+      aria-label="On this page"
+      style={{
+        position: 'sticky',
+        top: '72px',
+        zIndex: 2,
+        margin: '16px 0',
+        padding: '12px',
+        border: '1px solid #e5e7eb',
+        borderRadius: '12px',
+        background: 'rgba(255,255,255,.96)',
+        backdropFilter: 'blur(6px)',
+        fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif',
+      }}
+    >
+      <div style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6b7280', marginBottom: '8px' }}>
+        On this page
+      </div>
+      <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'grid', gap: '2px' }}>
+        {sections.map(function (section) {
+          var isActive = section.id === active;
+          return (
+            <li key={section.id}>
+              <button
+                type="button"
+                onClick={function () {
+                  jump(section.id);
+                }}
+                aria-current={isActive ? 'true' : undefined}
+                style={{
+                  width: '100%',
+                  textAlign: 'left',
+                  padding: '7px 10px',
+                  borderRadius: '8px',
+                  border: 'none',
+                  background: isActive ? 'rgba(0,166,81,.1)' : 'transparent',
+                  color: isActive ? '#067a3d' : '#374151',
+                  fontWeight: isActive ? 700 : 500,
+                  fontSize: '13px',
+                  cursor: 'pointer',
+                  borderLeft: '3px solid ' + (isActive ? '#00A651' : 'transparent'),
+                }}
+              >
+                {section.title}
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  );
+};
+
+<DevExScrollSyncNav />

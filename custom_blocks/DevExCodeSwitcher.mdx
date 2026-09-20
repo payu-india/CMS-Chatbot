@@ -1,0 +1,259 @@
+---
+name: DevExCodeSwitcher
+---
+// DevExCodeSwitcher - Language tabs + code panel + copy button.
+// Props:
+//   snippetsJson: JSON object keyed by language id -> { label?, code, language? }
+//   languagesJson: optional language order override
+//   storageKey: optional localStorage key
+//   heading: optional panel heading
+// Usage:
+//   <DevExCodeSwitcher snippetsJson='{"nodejs":{"label":"Node.js","code":"console.log(1)"}}' />
+
+import { useEffect, useRef, useState } from 'react';
+
+export const DevExCodeSwitcher = (props) => {
+  var DEFAULT_SNIPPETS = JSON.parse(
+    '{"nodejs":{"label":"Node.js","code":"const crypto = require(\'crypto\');\\n\\nfunction generateHash(params, salt) {\\n  const hashString = [\\n    params.key, params.txnid, params.amount, params.productinfo,\\n    params.firstname, params.email,\\n    params.udf1 || \'\', params.udf2 || \'\', params.udf3 || \'\',\\n    params.udf4 || \'\', params.udf5 || \'\',\'\',\'\',\'\',\'\',\'\', salt\\n  ].join(\'|\');\\n  return crypto.createHash(\'sha512\').update(hashString).digest(\'hex\');\\n}"},"java":{"label":"Java","code":"String hashString = key + \\"|\\" + txnid + \\"|\\" + amount + \\"|\\" +\\n  productinfo + \\"|\\" + firstname + \\"|\\" + email +\\n  \\"|||||||||||\\" + salt;\\nMessageDigest md = MessageDigest.getInstance(\\"SHA-512\\");\\nbyte[] digest = md.digest(hashString.getBytes(StandardCharsets.UTF_8));"},"php":{"label":"PHP","code":"$hashString = $key.\'|\'.$txnid.\'|\'.$amount.\'|\'.$productinfo.\'|\'.\\n  $firstname.\'|\'.$email.\'|||||||||||\'.$salt;\\n$hash = strtolower(hash(\'sha512\', $hashString));"},"python":{"label":"Python","code":"import hashlib\\n\\nhash_string = f\\"{key}|{txnid}|{amount}|{productinfo}|{firstname}|{email}|||||||||||{salt}\\"\\nhash_value = hashlib.sha512(hash_string.encode(\'utf-8\')).hexdigest()"},"go":{"label":"Go","code":"hashString := strings.Join([]string{key, txnid, amount, productinfo, firstname, email, \\"\\", \\"\\", \\"\\", \\"\\", \\"\\", \\"\\", \\"\\", \\"\\", \\"\\", \\"\\", salt}, \\"|\\")\\nsum := sha512.Sum512([]byte(hashString))\\nhash := hex.EncodeToString(sum[:])"},"dotnet":{"label":".NET","code":"var hashString = $\\"{key}|{txnid}|{amount}|{productinfo}|{firstname}|{email}|||||||||||{salt}\\";\\nusing var sha = SHA512.Create();\\nvar bytes = sha.ComputeHash(Encoding.UTF8.GetBytes(hashString));\\nvar hash = Convert.ToHexString(bytes).ToLowerInvariant();"}}'
+  );
+
+  function parseSnippets(raw) {
+    if (!raw) return DEFAULT_SNIPPETS;
+    try {
+      var parsed = typeof raw === 'string' ? JSON.parse(raw) : raw;
+      if (parsed && typeof parsed === 'object') return parsed;
+      return DEFAULT_SNIPPETS;
+    } catch (e) {
+      return DEFAULT_SNIPPETS;
+    }
+  }
+
+  var snippets = parseSnippets(props.snippetsJson);
+  var languages = [];
+  if (props.languagesJson) {
+    try {
+      var ordered = typeof props.languagesJson === 'string' ? JSON.parse(props.languagesJson) : props.languagesJson;
+      if (Array.isArray(ordered)) {
+        for (var i = 0; i < ordered.length; i += 1) {
+          var item = ordered[i];
+          var id = typeof item === 'string' ? item : item.id;
+          if (snippets[id]) {
+            languages.push({
+              id: id,
+              label: (item && item.label) || snippets[id].label || id,
+            });
+          }
+        }
+      }
+    } catch (e) {
+      // fall through
+    }
+  }
+  if (!languages.length) {
+    for (var key in snippets) {
+      if (Object.prototype.hasOwnProperty.call(snippets, key)) {
+        languages.push({ id: key, label: snippets[key].label || key });
+      }
+    }
+  }
+
+  var storageKey = props.storageKey ? String(props.storageKey) : 'payu-devex-lang';
+  var heading = props.heading != null ? String(props.heading) : '';
+
+  function initialLang() {
+    if (typeof window !== 'undefined') {
+      try {
+        var saved = window.localStorage.getItem(storageKey);
+        if (saved && snippets[saved]) return saved;
+      } catch (e) {
+        // ignore
+      }
+    }
+    return languages[0] ? languages[0].id : 'nodejs';
+  }
+
+  var _lang = useState(initialLang);
+  var lang = _lang[0];
+  var setLang = _lang[1];
+  var _copied = useState(false);
+  var copied = _copied[0];
+  var setCopied = _copied[1];
+  var timerRef = useRef(null);
+
+  useEffect(function () {
+    return function () {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
+
+  useEffect(
+    function () {
+      try {
+        if (typeof window !== 'undefined') window.localStorage.setItem(storageKey, lang);
+      } catch (e) {
+        // ignore
+      }
+    },
+    [lang, storageKey]
+  );
+
+  function selectLang(id) {
+    var y = typeof window !== 'undefined' ? window.scrollY : 0;
+    setLang(id);
+    if (typeof window !== 'undefined') {
+      requestAnimationFrame(function () {
+        window.scrollTo(0, y);
+      });
+    }
+  }
+
+  function copyCode() {
+    var code = snippets[lang] && snippets[lang].code ? snippets[lang].code : '';
+    if (!code) return;
+    var done = function () {
+      setCopied(true);
+      if (timerRef.current) clearTimeout(timerRef.current);
+      timerRef.current = setTimeout(function () {
+        setCopied(false);
+      }, 1800);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(code).then(done).catch(function () {
+        fallbackCopy(code, done);
+      });
+    } else {
+      fallbackCopy(code, done);
+    }
+  }
+
+  function fallbackCopy(value, done) {
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = value;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      done();
+    } catch (e) {
+      // ignore
+    }
+  }
+
+  var active = snippets[lang] || { code: '', label: lang };
+
+  return (
+    <div
+      style={{
+        border: '1px solid #e5e7eb',
+        borderRadius: '12px',
+        overflow: 'hidden',
+        margin: '16px 0',
+        background: '#0f172a',
+        fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif',
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '8px',
+          padding: '10px 12px',
+          background: '#111827',
+          borderBottom: '1px solid #1f2937',
+        }}
+      >
+        <div style={{ minWidth: 0 }}>
+          {heading ? (
+            <div style={{ color: '#e5e7eb', fontSize: '13px', fontWeight: 600, marginBottom: '6px' }}>
+              {heading}
+            </div>
+          ) : null}
+          <div role="tablist" aria-label="Programming language" style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
+            {languages.map(function (item) {
+              var selected = item.id === lang;
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={selected}
+                  id={'devex-code-lang-' + item.id}
+                  tabIndex={selected ? 0 : -1}
+                  onClick={function () {
+                    selectLang(item.id);
+                  }}
+                  style={{
+                    padding: '6px 10px',
+                    borderRadius: '6px',
+                    border: '1px solid ' + (selected ? '#00A651' : '#374151'),
+                    background: selected ? '#00A651' : 'transparent',
+                    color: selected ? '#fff' : '#d1d5db',
+                    fontSize: '12px',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                  }}
+                >
+                  {item.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+        <button
+          type="button"
+          onClick={copyCode}
+          aria-label={copied ? 'Copied to clipboard' : 'Copy code to clipboard'}
+          style={{
+            padding: '6px 12px',
+            borderRadius: '6px',
+            border: '1px solid ' + (copied ? '#00A651' : '#4b5563'),
+            background: copied ? 'rgba(0,166,81,.2)' : '#1f2937',
+            color: copied ? '#86efac' : '#e5e7eb',
+            fontSize: '12px',
+            fontWeight: 600,
+            cursor: 'pointer',
+          }}
+        >
+          {copied ? 'Copied!' : 'Copy'}
+        </button>
+      </div>
+      <pre
+        role="tabpanel"
+        aria-labelledby={'devex-code-lang-' + lang}
+        style={{
+          margin: 0,
+          padding: '16px',
+          overflow: 'auto',
+          maxHeight: '420px',
+          color: '#e5e7eb',
+          fontSize: '12.5px',
+          lineHeight: 1.55,
+          fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
+        }}
+      >
+        <code>{active.code}</code>
+      </pre>
+      <span
+        role="status"
+        aria-live="polite"
+        style={{
+          position: 'absolute',
+          width: 1,
+          height: 1,
+          overflow: 'hidden',
+          clip: 'rect(0,0,0,0)',
+        }}
+      >
+        {copied ? 'Copied to clipboard' : ''}
+      </span>
+    </div>
+  );
+};
+
+<DevExCodeSwitcher heading="Generate hash" />

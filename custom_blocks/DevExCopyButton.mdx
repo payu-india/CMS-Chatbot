@@ -1,0 +1,111 @@
+---
+name: DevExCopyButton
+---
+// DevExCopyButton - Reusable copy-to-clipboard control for DevEx guides.
+// Props: text (string to copy), label (optional button label), size ("sm"|"md").
+// Provides keyboard accessibility, aria-live feedback, and a temporary "Copied!" state.
+// Usage: <DevExCopyButton text="npm install payu" />
+
+import { useEffect, useRef, useState } from 'react';
+
+export const DevExCopyButton = (props) => {
+  var text = props.text != null ? String(props.text) : '';
+  var label = props.label != null ? String(props.label) : 'Copy';
+  var size = props.size === 'sm' ? 'sm' : 'md';
+
+  var _copied = useState(false);
+  var copied = _copied[0];
+  var setCopied = _copied[1];
+  var timerRef = useRef(null);
+
+  useEffect(function () {
+    return function () {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
+
+  function copy() {
+    if (!text) return;
+    var done = function () {
+      setCopied(true);
+      if (timerRef.current) clearTimeout(timerRef.current);
+      timerRef.current = setTimeout(function () {
+        setCopied(false);
+      }, 1800);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(function () {
+        fallbackCopy(text, done);
+      });
+    } else {
+      fallbackCopy(text, done);
+    }
+  }
+
+  function fallbackCopy(value, done) {
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = value;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      done();
+    } catch (e) {
+      // no-op
+    }
+  }
+
+  var pad = size === 'sm' ? '6px 10px' : '8px 14px';
+  var fontSize = size === 'sm' ? '12px' : '13px';
+
+  return (
+    <button
+      type="button"
+      onClick={copy}
+      disabled={!text}
+      aria-label={copied ? 'Copied to clipboard' : 'Copy code to clipboard'}
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: '6px',
+        padding: pad,
+        borderRadius: '8px',
+        border: '1px solid ' + (copied ? '#00A651' : '#d1d5db'),
+        background: copied ? 'rgba(0,166,81,.08)' : '#fff',
+        color: copied ? '#067a3d' : '#374151',
+        fontSize: fontSize,
+        fontWeight: 600,
+        cursor: text ? 'pointer' : 'not-allowed',
+        fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif',
+        lineHeight: 1.2,
+        transition: 'background 0.15s ease, border-color 0.15s ease, color 0.15s ease',
+      }}
+    >
+      <span aria-hidden="true">{copied ? '✓' : '⧉'}</span>
+      <span>{copied ? 'Copied!' : label}</span>
+      <span
+        role="status"
+        aria-live="polite"
+        style={{
+          position: 'absolute',
+          width: 1,
+          height: 1,
+          padding: 0,
+          margin: -1,
+          overflow: 'hidden',
+          clip: 'rect(0,0,0,0)',
+          whiteSpace: 'nowrap',
+          border: 0,
+        }}
+      >
+        {copied ? 'Copied to clipboard' : ''}
+      </span>
+    </button>
+  );
+};
+
+<DevExCopyButton text="key|txnid|amount|productinfo|firstname|email|||||||||||salt" label="Copy hash recipe" />

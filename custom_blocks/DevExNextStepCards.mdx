@@ -1,0 +1,78 @@
+---
+name: DevExNextStepCards
+---
+// DevExNextStepCards - Branching continuation cards into product-specific docs.
+// Props:
+//   cardsJson: JSON array of { id, title, description, href, cta? }
+//   heading: optional section heading
+// Usage:
+//   <DevExNextStepCards heading="Continue your integration" />
+
+export const DevExNextStepCards = (props) => {
+  var DEFAULT_CARDS = JSON.parse(
+    '[{"id":"hosted","title":"I am using Hosted Checkout","description":"Continue to the PayU Hosted Checkout guide for redirect, hash, surl/furl, and go-live.","href":"https://docs.payu.in/docs/prebuilt-checkout-payu-hosted","cta":"Continue to Hosted Checkout Guide"},{"id":"commercepro","title":"I am using CommercePro","description":"Continue to CommercePro Checkout for conversion-optimized checkout integration.","href":"https://docs.payu.in/docs/checkout-express","cta":"Continue to CommercePro Guide"},{"id":"go","title":"I am using Go SDK","description":"Continue to the Go server SDK for hash, create payment, verify, and refund helpers.","href":"https://docs.payu.in/docs/go-sdk","cta":"Continue to Go SDK Guide"},{"id":"plugins","title":"I am integrating through Plugins","description":"Continue to eCommerce platform plugins for Shopify, WooCommerce, Magento, and more.","href":"https://docs.payu.in/docs/ecommerce-platform-plugins","cta":"Continue to Plugin documentation"}]'
+  );
+
+  function parseCards(raw) {
+    if (!raw) return DEFAULT_CARDS;
+    try {
+      var parsed = typeof raw === 'string' ? JSON.parse(raw) : raw;
+      return Array.isArray(parsed) && parsed.length ? parsed : DEFAULT_CARDS;
+    } catch (e) {
+      return DEFAULT_CARDS;
+    }
+  }
+
+  var cards = parseCards(props.cardsJson);
+  var heading = props.heading != null ? String(props.heading) : 'Continue from here';
+
+  return (
+    <section
+      aria-label={heading}
+      style={{
+        margin: '20px 0',
+        fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif',
+      }}
+    >
+      <h3 style={{ margin: '0 0 12px', fontSize: '1.1rem', color: '#1e3a5f' }}>{heading}</h3>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+          gap: '12px',
+        }}
+      >
+        {cards.map(function (card) {
+          return (
+            <a
+              key={card.id || card.href}
+              href={card.href}
+              style={{
+                display: 'block',
+                textDecoration: 'none',
+                color: 'inherit',
+                border: '1px solid #e5e7eb',
+                borderRadius: '12px',
+                padding: '16px',
+                background: '#fff',
+                transition: 'border-color 0.15s ease, box-shadow 0.15s ease',
+              }}
+            >
+              <div style={{ fontSize: '15px', fontWeight: 700, color: '#1e3a5f', marginBottom: '6px' }}>
+                {card.title}
+              </div>
+              <p style={{ margin: '0 0 12px', fontSize: '13px', color: '#6b7280', lineHeight: 1.5 }}>
+                {card.description}
+              </p>
+              <span style={{ fontSize: '13px', fontWeight: 700, color: '#00A651' }}>
+                {card.cta || 'Continue'} →
+              </span>
+            </a>
+          );
+        })}
+      </div>
+    </section>
+  );
+};
+
+<DevExNextStepCards />
