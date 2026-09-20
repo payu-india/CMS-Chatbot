@@ -450,9 +450,35 @@ After your customer makes the payment:
 
 ***
 
+## What If My Customer Wants the Money Back?
+
+It depends on&#x20;
+
+- Whether you want to return the money yourself&#x20;
+- You are waiting for the amount to reach your account
+- Your customer has raised a complaint with their bank. Here are the&#x20;
+
+<Cards>
+  <Card title="Refunds" href="doc:introduction-refunds" icon="fa-rotate-left">
+    Issue a partial or full refund to a customer directly from the Dashboard or via the Refunds API.
+  </Card>
+
+  <Card title="Settlements" href="doc:split-settlments" icon="fa-building-columns">
+    Understand how PayU settles funds to your bank account, view settlement reports, and split funds across multiple beneficiaries.
+  </Card>
+
+  <Card title="Disputes & Chargebacks" href="doc:chargeback" icon="fa-shield-halved">
+    Respond to customer disputes and chargebacks raised through their bank — track status and submit evidence from the Dashboard.
+  </Card>
+</Cards>
+
+***
+
 ## Sandbox for Your Testing
 
 <PayUPaymentLinksWizard />
+
+***
 
 ## Next Steps
 
