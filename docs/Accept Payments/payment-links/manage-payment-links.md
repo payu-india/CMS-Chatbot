@@ -40,26 +40,74 @@ next:
   fontWeight="bold"
 />
 
-All management actions on this page happen in the PayU Dashboard. No developer or code needed.
+Once a payment link is live, you have more control over it than you might expect — you can share it again, duplicate it with different settings, pull up every transaction made on it, download records, and more. All of it happens in the PayU Dashboard with no code.
 
-***
+New to Payment Links? Start with the [Payment Links Overview](doc:payment-links-overview) or follow the [step-by-step guide to create your first link](doc:send-a-payment-link). To manage links from your own system, see the [Fetch API](doc:api-fetch) and [Cancel / Update Status API](doc:api-cancel-status).
 
-## How Do I Open My Payment Links?
-
-1. Log in to the [PayU Dashboard](https://onboarding.payu.in/).
-2. In the left navigation, select **Payment Tools > Payment Links**.
-
-The Payment Links Dashboard opens on the **Payment Link** tab.
+To open your links: log in to [PayU Dashboard](https://onboarding.payu.in/) → **Payment Tools > Payment Links**.
 
 
 <Image src="https://files.readme.io/cc35b704632bded3088580a070ffaf24f203c3713f7880fb0a2cdc6e5b8bc842-Screenshot_2025-06-02_at_7.05.43_PM.png" align="center" caption="Payment Links Dashboard" border={true} />
 
 
-The table shows one link per row with these columns: **Created On**, **Payment Link** (the URL), **Purpose of Payment**, **Amount**, **Status**, **Actions** (Duplicate / Share / Disable), and **Details**.
+***
+
+## What All Can I Do With a Link After It Is Created?
+
+<Accordion title="Duplicate a link" icon="far fa-copy">
+  Duplicating creates a brand-new link pre-filled with the same settings — amount, purpose, and options — so you don't have to fill everything in again. Use it to reuse a configuration, correct a mistake on an existing link, or run the same payment request for a different customer.
+
+  1. Find the link in the table.
+  2. In the **Actions** column, click the **Duplicate** icon.
+  3. The Create New Payment Link panel opens with the existing link's settings pre-filled.
+  4. Edit any fields you need to change — for example, the expiry date or customer details.
+  5. Click **Create and Send Payment Link**.
+
+  <Callout icon="📘" theme="info">
+    Duplicating does not deactivate the original link. If you want to replace a link (e.g., wrong amount was set), duplicate it with the correct details first, then deactivate the original.
+  </Callout>
+</Accordion>
+
+<Accordion title="Share or resend a link" icon="far fa-share">
+  You can send the link to a customer at any time as long as it is still **Active**.
+
+  1. Find the link in the table.
+  2. In the **Actions** column, click the **Share** icon.
+  3. Choose to send via **SMS**, **Email**, or copy the URL manually and share it over WhatsApp or any other channel.
+
+  There is no limit on how many times you can share a link — each share just sends the same URL again.
+</Accordion>
+
+<Accordion title="Deactivate a link" icon="far fa-ban">
+  Deactivating stops any further payments on the link. Customers who click it will see a message that it is no longer active.
+
+  1. Find the link in the table.
+  2. In the **Actions** column, click the **Disable** icon (🚫).
+  3. Confirm the action in the pop-up.
+
+  The link status changes to **Deactivated**.
+
+  <Callout icon="🚧" theme="warning">
+    **Deactivation is permanent from the Dashboard.** To accept payment for the same purpose again, duplicate the link first, then deactivate the original. If you need to re-activate a deactivated link programmatically, use the [Cancel / Update Status API](doc:api-cancel-status) with `active: true`.
+  </Callout>
+</Accordion>
+
+<Accordion title="View all transactions on a link" icon="far fa-rectangle-list">
+  A single payment link can be paid multiple times (unless you set a max transaction limit). The detail view shows you every payment made on it.
+
+  1. Find the link in the table.
+  2. Click **Details** in the rightmost column.
+
+  The detail view shows the full link configuration — amount, purpose, expiry, options — along with a complete transaction history and any customer details collected at checkout.
+</Accordion>
 
 ***
 
-## How Do I Filter My Links?
+## How Do I Look Up a Specific Link?
+
+<Callout icon="📘" theme="info">
+  Not sure what **Active**, **Paid**, **Expired**, or **Deactivated** mean? See [Payment Link Statuses](doc:send-a-payment-link).
+</Callout>
 
 <Accordion title="Filter by status" icon="far fa-filter">
   1. Click the **Filter** drop-down above the link list.
@@ -76,7 +124,7 @@ The table shows one link per row with these columns: **Created On**, **Payment L
 <Accordion title="Filter by date range" icon="far fa-calendar">
   1. Click the **Calendar** icon at the top of the table.
   2. For a quick range, select **Today**, **Yesterday**, **Past 7 days**, or **Past 30 days** and click **Apply**.
-  3. For a custom range, select **Custom Range**, choose a start date and end date from the calendar, then click **Apply**.
+  3. For a custom range, select **Custom Range**, pick a start and end date from the calendar, then click **Apply**.
 
 
   <Image src="https://files.readme.io/ee050997f17cdc2030467be8855624d90886bb2d8296f698dc594d24713effcb-Screenshot_2025-06-04_at_12.22.39_PM.png" align="center" caption="Calendar view — custom date range selection" border={true} />
@@ -85,67 +133,20 @@ The table shows one link per row with these columns: **Created On**, **Payment L
 
 ***
 
-## How Do I Take Action on a Link?
-
-<Accordion title="Duplicate a link" icon="far fa-copy">
-  Duplicating creates a new link pre-filled with the same settings (amount, purpose, options) — useful for reusing configurations or correcting a mistake.
-
-  1. Find the link in the table.
-  2. In the **Actions** column, click the **Duplicate** icon.
-  3. The Create New Payment Link panel opens with the existing link's settings pre-filled.
-  4. Edit any fields you need to change (for example, the expiry date).
-  5. Click **Create and Send Payment Link**.
-
-  <Callout icon="📘" theme="info">
-    Duplicating does not deactivate the original link. If you want to replace a link (e.g., wrong amount), duplicate it first with the correct details, then deactivate the original.
-  </Callout>
-</Accordion>
-
-<Accordion title="Resend or share a link" icon="far fa-share">
-  1. Find the link in the table.
-  2. In the **Actions** column, click the **Share** icon.
-  3. Choose to send via **SMS**, **Email**, or copy the URL manually.
-
-  You can share a link as many times as needed as long as it is **Active** and has not reached its max transaction limit.
-</Accordion>
-
-<Accordion title="Deactivate a link" icon="far fa-ban">
-  Deactivating prevents any further payments on the link. Customers who click it will see a message that it is no longer active.
-
-  1. Find the link in the table.
-  2. In the **Actions** column, click the **Disable** icon (🚫).
-  3. Confirm the action in the pop-up.
-
-  The link status changes to **Deactivated**.
-
-  <Callout icon="🚧" theme="warning">
-    **Deactivation is permanent from the Dashboard.** To accept payment for the same purpose again, duplicate the link first, then deactivate the original. Via API, a deactivated link can be re-activated using `active: true`.
-  </Callout>
-</Accordion>
-
-<Accordion title="View link details" icon="far fa-rectangle-list">
-  1. Find the link in the table.
-  2. Click **Details** in the rightmost column.
-
-  The detail view shows the full link configuration (amount, purpose, expiry, options), a complete transaction history (each payment made on this link), and any customer details collected at checkout.
-</Accordion>
-
-***
-
-## How Do I Export My Data?
+## Can I Download All My Payment Link Records?
 
 <Accordion title="Export payment link records" icon="far fa-download">
   1. Click the **Download** drop-down at the top of the table.
   2. Select a format:
 
-  | Format                           | Contents                          |
-  | -------------------------------- | --------------------------------- |
-  | **csv**                          | Summary of payment links          |
-  | **xlsx**                         | Summary of payment links (Excel)  |
-  | **Txn - csv**                    | Transaction-level detail per link |
-  | **Txns - xlsx**                  | Transaction-level detail (Excel)  |
-  | **Old Payment Link Data - csv**  | Legacy link data                  |
-  | **Old Payment Link Data - xlsx** | Legacy link data (Excel)          |
+  | Format                           | Contents                             |
+  | -------------------------------- | ------------------------------------ |
+  | **csv**                          | Summary of all payment links         |
+  | **xlsx**                         | Summary of all payment links (Excel) |
+  | **Txn - csv**                    | Transaction-level detail per link    |
+  | **Txns - xlsx**                  | Transaction-level detail (Excel)     |
+  | **Old Payment Link Data - csv**  | Legacy link data                     |
+  | **Old Payment Link Data - xlsx** | Legacy link data (Excel)             |
 
   3. A pop-up shows the report generation status. Click **Download** when ready.
 
@@ -156,20 +157,11 @@ The table shows one link per row with these columns: **Created On**, **Payment L
 
 ***
 
-## How Do I Create Links in Bulk?
+## What If I Want to Create a Lot of Links at Once?
 
-<Accordion title="Bulk upload via CSV" icon="far fa-upload">
-  1. Click the **Bulk Uploads** tab in the Payment Links Dashboard.
-  2. Download the CSV template.
-  3. Fill in the link details for each row (amount, description, expiry, customer details, etc.).
-  4. Upload the completed CSV.
+Use the **Bulk Uploads** tab in the Payment Links Dashboard to upload a CSV and create hundreds of links in one go. For a full walkthrough including all column definitions and common errors, see [Send a Payment Link → Create Many Links at Once](doc:send-a-payment-link).
 
-  PayU processes the upload and creates all links in the batch. Errors (such as missing mandatory fields or duplicate invoice numbers) are shown per row in the upload result.
-
-  <Callout icon="📘" theme="info">
-    For fully automated bulk creation from your own systems, use the [Create Payment Link API](doc:api-create-share).
-  </Callout>
-</Accordion>
+To automate bulk creation from your own system, use the [Create Payment Link API](doc:api-create-share).
 
 ***
 
@@ -177,11 +169,15 @@ The table shows one link per row with these columns: **Created On**, **Payment L
 
 <Cards>
   <Card title="Payment Link Options" href="doc:payment-link-options" icon="fa-sliders">
-    Expiry, partial payments, custom fields, and notifications.
+    Expiry dates, partial payments, custom fields, and notifications.
   </Card>
 
   <Card title="Send a Payment Link" href="doc:send-a-payment-link" icon="fa-paper-plane">
     Step-by-step guide to creating and sending a payment link.
+  </Card>
+
+  <Card title="Payment Links API" href="doc:api-fetch" icon="fa-code">
+    Fetch, update, and cancel payment links programmatically.
   </Card>
 
   <Card title="Payment Links Troubleshooting" href="doc:payment-links-troubleshooting" icon="fa-wrench">
