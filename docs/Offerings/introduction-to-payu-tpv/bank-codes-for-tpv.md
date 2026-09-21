@@ -26,6 +26,9 @@ The following codes must be used as the value for the <Glossary>bankcode</Glossa
 
 Both the previous and successor banks are supported in PayU Platform as mentioned below:
 
-| **Previous Bank (with the Bankcode)** | **Successor Bank (with the Bankcode)** |
-| ------------------------------------- | -------------------------------------- |
-| Andhra Bank TPV(`ABNBTPV`)            | Union bank Of India TPV`UBIBTPV`)      |
+| Previous Bank (with the Bank Code) | Successor Bank (**bankcode** value) |
+| ---------------------------------- | ----------------------------------- |
+| Allahabad Bank (`ALLB`)            | Indian Bank          (`INDB`)       |
+| Oriental Bank of Commerce (`OBCB`) | Punjab National Bank (`PNBB`)       |
+| Syndicate Bank (`SYNDB`)           | Canara Bank          (`CABB`)       |
+| United Bank of India (`UNIB`)      | Punjab National Bank (`PNBB)`       |
