@@ -124,7 +124,58 @@ Ensure these URLs are configured:
 | unmappedstatus | `"captured"` (success) or `"bounced"` (failure) | Final payment status           |
 
 
-#### Payload for UPI TPV
+#### Payload for S2S UPI Intent
+Ensure these URLs are configured in PayU's system:
+
+\- `partner_webhook_success` — Called on successful payment
+\- `partner_webhook_failure` — Called on failed payment
+\- `partner_webhook_cancelled` — Called when payment is cancelled
+
+**Sample Success Webhook Payload:**
+
+```json
+{
+  "key": "JPM7Fg",
+  "txnid": "UPIINT20240315001",
+  "mihpayid": "30478359672",
+  "status": "success",
+  "unmappedstatus": "captured",
+  "mode": "UPI",
+  "bankcode": "INTENT",
+  "amount": "500.00",
+  "productinfo": "UPI Payment for Order #12345",
+  "firstname": "Rajesh",
+  "email": "rajesh@example.com",
+  "phone": "919876543210",
+  "udf1": "",
+  "udf2": "",
+  "udf3": "",
+  "udf4": "",
+  "udf5": "partner_channel_001",
+  "merchant_id": "8739528",
+  "error": "No Error",
+  "error_Message": "No Error",
+  "hash": "webhook_hash_from_payu"
+}
+```
+
+**UPI Intent-Specific Fields:**
+
+| Field            | Value for UPI Intent                           |
+| ---------------- | ---------------------------------------------- |
+| `mode`           | `"UPI"`                                        |
+| `bankcode`       | `"INTENT"`                                     |
+| `unmappedstatus` | `"captured"` (success) or `"failed"` (failure) |
+
+<Info>
+**Note on txnStatus "pending":**
+
+The initial API response shows `txnStatus: "pending"`. The webhook is sent only after the customer completes the UPI authentication. Do NOT rely on polling — always use the webhook for final status updates.
+</Info>
+
+
+##### Payload for S2S UPI TPV
+**Sample Success Webhook Payload (UPI TPV):**
 
 ```json
 {
@@ -159,6 +210,8 @@ Ensure these URLs are configured:
 | `mode`           | `"UPI"`                                                          |
 | `bankcode`       | `"INTTPV"` (automatically set by PayU)                           |
 | `unmappedstatus` | `"captured"` (success) or `"failed"` (failure/validation failed) |
+
+### S
 
 ### Step 2: Verify Webhook Hash
 
