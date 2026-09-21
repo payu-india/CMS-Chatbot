@@ -400,28 +400,6 @@ If all match, the beneficiary account validation was successful and payment is c
 
 ***
 
-## Use Cases
-
-Partner Payments UPI TPV is ideal for:
-
-### Loan Repayments
-
-Ensure EMI payments come from the borrower's registered account. Prevents fraud where someone else tries to pay on behalf of the borrower.
-
-### Vendor Payments
-
-Verify that vendor payments originate from the vendor's verified business account, not personal or third-party accounts.
-
-### Refund Collections
-
-Collect refunds specifically to the account that made the original payment, ensuring compliance with refund regulations.
-
-### Compliance-Heavy Industries
-
-NBFC, lending, insurance, government payments where regulatory compliance requires verified account transactions.
-
-***
-
 ## Error Handling
 
 | Error                                         | Cause                                                    | Resolution                                                                                                             |
