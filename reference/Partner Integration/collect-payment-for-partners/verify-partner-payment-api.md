@@ -95,21 +95,21 @@ if response.status_code == 200:
 
 ## Response Parameters
 
-| Field          | Value               | Description                        |
-| -------------- | ------------------- | ---------------------------------- |
-| status         | `"success"`         | Payment succeeded                  |
-| bankcode       | `"INTTPV"`          | Confirms UPI TPV validation passed |
-| mode           | `"UPI"`             | Payment method                     |
-| unmappedstatus | `"captured"`        | Payment captured successfully      |
-| mihpayid       | PayU transaction ID | Unique PayU reference              |
-| firstname | The first name of the customer. | Rajesh |
-| email | The email address of the customer. | rajesh.kumar@example.com |
-| phone | The phone number of the customer. | 9876543210 |
-| mode | The payment mode used for the transaction. | UPI |
-| bankcode | The bank code associated with the payment method used. | INTTPV |
-| unmappedstatus | The raw internal status of the transaction as received from the payment gateway. | captured |
-| payment_source | The payment platform through which the transaction was processed. | payu |
-| merchant_id | The unique ID of the merchant. | 8739528 |
+| Field          | Description                                                                            |                                                 | Value
+| -------------- | -------------------------------------------------------------------------------- | --------------------------------------|
+| status         | Indidicates the status of payment                                                                |  `"success"`  | 
+| bankcode       | Confirms UPI TPV validation passed                                                                        |  For INTTPV"  |
+| mode           | Payment method                                                                          | `"UPI"` |
+| unmappedstatus | Payment captured successfully                                                                    |  `"captured"`  |
+| mihpayid       | PayU transaction ID                                                              | Unique PayU reference                                       |
+| firstname      | The first name of the customer.                                                  | Rajesh                                                      |
+| email          | The email address of the customer.                                               | [rajesh.kumar@example.com](mailto:rajesh.kumar@example.com) |
+| phone          | The phone number of the customer.                                                | 9876543210                                                  |
+| mode           | The payment mode used for the transaction.                                       | UPI                                                         |
+| bankcode       | The bank code associated with the payment method used.                           | INTTPV                                                      |
+| unmappedstatus | The raw internal status of the transaction as received from the payment gateway. | captured                                                    |
+| payment_source | The payment platform through which the transaction was processed.                | payu                                                        |
+| merchant_id    | The unique ID of the merchant.                                                   | 8739528                                                     |
 
 ***
 
