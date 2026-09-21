@@ -91,6 +91,7 @@ Before you begin, ensure you have:
 Authorization: Bearer <your_access_token>
 Content-Type: application/json
 ```
+
 For getting access token, refer to [Prequisites](#prequisites)
 
 **Request Body Parameters:**
@@ -222,7 +223,6 @@ For getting access token, refer to [Prequisites](#prequisites)
 - The `redirectUri` in the response is NOT shareable — It should be used for immediate redirect only
 </Warning>
 
-
 ### Step 2.2: Generate Payment Request Hash
 
 The payment request hash authenticates your API call using SHA-512.
@@ -243,10 +243,13 @@ merchant_id|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|||
 </Warning>
 
 **Sample Hash Generation Code:**
+
 <Generate_Hash_Partner_Payment />
 
 ### Step 2.3: POST the Payment Request
-Use the hash created in Step 2.2 here in this step: 
+
+Use the hash created in Step 2.2 here in this step:
+
 ```bash
 curl --location 'https://test-partnerapilayer.payu.in/apilayer/partner/payments' \
 --header 'Authorization: Bearer your_access_token_here' \
@@ -373,6 +376,7 @@ echo "Response: " . $response;
 ?>
 ```
 </Accordion>
+
 ### Step 2.4: Handle Payment Response & Redirect Customer
 
 **Success Response:**
@@ -382,6 +386,7 @@ echo "Response: " . $response;
   "redirectUri": "https://secure.payu.in/_payment?mihpayid=403993715521899234&amount=1500.00&txnid=PPHOST20240315001&key=JPM7Fg&productinfo=Premium+Subscription+-+Monthly&phone=919876543210&firstname=Priya&email=priya.sharma%40example.com&surl=https%3A%2F%2Fyourplatform.com%2Fpayment%2Fsuccess&furl=https%3A%2F%2Fyourplatform.com%2Fpayment%2Ffailure&curl=https%3A%2F%2Fyourplatform.com%2Fpayment%2Fcancel&hash=..."
 }
 ```
+
 <Accordion title="Response Parameters Implementation" icon="fa-info-circle">
 **Key Response Field:**
 
@@ -436,8 +441,10 @@ fetch('/api/create-payment', {
     }
 });
 ```
+</Accordion>
 
-**Customer Experience on Hosted Checkout:**
+<Accordion title="Customer Experience on Hosted Checkout" icon="fa-info-circle">
+**:**
 
 Once redirected to `redirectUri`, the customer will:
 
@@ -470,7 +477,7 @@ Once redirected to `redirectUri`, the customer will:
 - Extract transaction details from callback parameters (PayU POSTs data to these URLs)
 - Do NOT rely solely on callback parameters — always verify using webhooks and Verify Payment API
 </Info>
-
+</Accordion>
 ***
 
 ## Step 3: Receive Payment Notification
@@ -794,4 +801,3 @@ Concert, sports, conference ticket sales with multiple payment methods and high 
 <Success>
 **Integration Complete!** You can now accept payments through PayU's hosted checkout using the Partner Payments API.
 </Success>
-
