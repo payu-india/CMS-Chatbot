@@ -369,24 +369,29 @@ You can filter the payment links list using the following options:
 
 ## Can I Download All My Payment Link Records?
 
-<Accordion title="Export payment link records" icon="far fa-download">
-  1. Click the **Download** drop-down at the top of the table.
-  2. Select a format:
+<Accordion title="Export Payment Link Records" icon="far fa-download">
+  To download payment link records:
+
+  1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor> and go to **Payment Links&#x20;**&#x75;nder **Payment Tools.**
+
+     <Image src="https://files.readme.io/f435da3d1c07338957b79786bc9f159f1d9a7c6f3aa38d8856be45865b01712d-image.png" align="center" caption="Access Payment Links" border={true} />
+
+  2. Click the **Download** drop-down at the top of the table and select any of the following format:
 
   | Format                           | Contents                             |
   | -------------------------------- | ------------------------------------ |
   | **csv**                          | Summary of all payment links         |
   | **xlsx**                         | Summary of all payment links (Excel) |
-  | **Txn - csv**                    | Transaction-level detail per link    |
+  | **Txns - csv**                   | Transaction-level detail per link    |
   | **Txns - xlsx**                  | Transaction-level detail (Excel)     |
   | **Old Payment Link Data - csv**  | Legacy link data                     |
   | **Old Payment Link Data - xlsx** | Legacy link data (Excel)             |
 
-  3. A pop-up shows the report generation status. Click **Download** when ready.
+
+  <Image src="https://files.readme.io/725bfcf87501665e6d3b5b15b9c5838fd12377c1b4966ee7a636c88ace4e1d89-Screenshot_2026-09-21_at_3.18.03_PM.png" align="center" caption="Select the Format" border={true} />
 
 
-  <Image src="https://files.readme.io/238e4d7aa7373144cd4799cc70a0bdc1c363df5e428ffa21ce9f67bdbd378ade-dashboard_payment_links_download_reports_drop-down.png" align="center" caption="Download drop-down with format options" border={true} />
-
+  3. Click **Download&#x20;**&#x6F;n the **Report Ready for Download&#x20;**&#x70;op-up menu to download the report.
 </Accordion>
 
 ***
