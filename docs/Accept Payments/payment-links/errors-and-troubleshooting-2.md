@@ -68,7 +68,7 @@ next:
 
   **If status is Active but the link still doesn't open:**
 
-  - Ask the customer to try a different browser or clear their cache.
+  - Ask the customer to try open in a different browser or clear their cache.
   - Check if the link URL was truncated when shared (common over SMS). You can copy the full URL from the Dashboard and resend it.
   - Confirm the link was not shared as a screenshot instead of the actual URL.
 </Accordion>
@@ -77,22 +77,33 @@ next:
 
 ## Why Is not the Payment Showing in My Dashboard?
 
-<Accordion title="Payment not reflecting after customer paid" icon="far fa-clock">
-  **Steps:**
+<Accordion title="Payment Not Reflecting After Customer Paid" icon="far fa-clock">
+  Follow these troubleshooting steps:
 
-  1. Wait **5–10 minutes** — Dashboard updates are near-real-time but occasionally delayed.
-  2. Check **Transactions** (not Payment Links) — the transaction may appear there before the link status updates.
-  3. Ask the customer for the last 4 digits of the card used or the UPI transaction reference ID, and the approximate time.
-  4. Search **Transactions > Search by amount/date**.
+  1. Wait for 5–10 minutes: Dashboard updates are near-real-time but occasionally delayed.
+  2. Check in the **Transactions** (not Payment Links) tab: The transaction may appear there before the link status updates.
+  3. Search for the transactio&#x6E;**&#x20;**&#x75;sing th&#x65;**&#x20;**&#x61;mount or date.
 
-  **If the transaction appears in Transactions but the link status hasn't updated:**
-  This is a display lag. The payment is received. The link will update within 30 minutes. Contact PayU support with the transaction ID if it persists beyond 1 hour.
+  <Columns layout="fixed">
+    <Column>
+      **If the transaction appears in Transactions but the link status is not updated:**
 
-  **If the transaction does not appear anywhere:**
-  The payment may have failed on the customer's bank side even if their account was debited. Banks sometimes auto-reverse such debits within 5–7 business days. Ask the customer to check their bank statement. If the debit was not reversed, raise a dispute with PayU support and provide the customer's bank reference number.
+      The payment is received. The link will update within 30 minutes. Contact <Anchor target="_blank" href="https://help.payu.in/query">PayU support</Anchor> with the transaction ID if it persists beyond an hour.
+    </Column>
+  </Columns>
+
+  <Columns layout="fixed">
+    <Column>
+      **If the transaction does not appear anywhere:**
+
+      The payment may have failed on the customer's bank side even if their account was debited. Banks sometimes auto-reverse such debits within 5–7 business days. Ask the customer to check their bank statement. If the debit was not reversed, raise a dispute with <Anchor target="_blank" href="https://help.payu.in/query">PayU support</Anchor> and provide the customer's bank reference number.
+    </Column>
+  </Columns>
 
   <Callout icon="📘" theme="info">
-    If you have webhooks configured, a missing webhook event is a reliable sign the payment did not complete on PayU's side. → [Webhooks: Receive & Verify](doc:receive-and-verify-a-webhook)
+    ### **Webhooks**
+
+    If you have configured webhooks, a missing webhook event is a reliable sign the payment did not complete on PayU's side.
   </Callout>
 </Accordion>
 
