@@ -375,7 +375,7 @@ You can filter the payment links list using the following options:
 
 <Cards>
   <Card title="Payment Links Overview" href="https://docs.payu.in/docs/payment-links" icon="fad fa-link" target="_blank">
-    Go through Payment Links if you are new.
+    New to Payment Links? Start here to understand what it is, who it is for, and what your customers experience when they pay.
   </Card>
 
   <Card title="Send a Payment Link" href="doc:send-a-payment-link" icon="fa-paper-plane">
