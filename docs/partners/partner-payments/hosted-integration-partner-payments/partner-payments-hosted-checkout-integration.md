@@ -783,66 +783,7 @@ if __name__ == '__main__':
 
 ## Step 4: Verify Payment
 
-### Step 4.1: Generate Verify Payment Hash
-
-**Hash Formula:**
-
-```
-merchant_id|verify_payment|txnid|client_secret
-```
-
-**Python:**
-
-```python
-import hashlib
-
-def generate_verify_hash(merchant_id, txnid, client_secret):
-    hash_string = f"{merchant_id}|verify_payment|{txnid}|{client_secret}"
-    return hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
-
-verify_hash = generate_verify_hash(8739528, "PPHOST20240315001", "your_client_secret")
-```
-
-### Step 4.2: Call Verify Payment API
-
-**Endpoint:**
-
-| Environment | URL                                                                   |
-| ----------- | --------------------------------------------------------------------- |
-| Test        | `https://test-partnerapilayer.payu.in/apilayer/partner/verifyPayment` |
-| Production  | `https://api.payu.in/partner/verifyPayment`                           |
-
-**Request:**
-
-```bash
-curl --location 'https://test-partnerapilayer.payu.in/apilayer/partner/verifyPayment' \
---header 'Authorization: Bearer your_access_token_here' \
---header 'Content-Type: application/json' \
---data '{
-  "txnid": "PPHOST20240315001",
-  "merchant_id": 8739528,
-  "reseller_id": "11ee-0e7e-5403fde2-9523-0a696b110fde",
-  "hash": "computed_verify_hash_here"
-}'
-```
-
-**Response:**
-
-```json
-{
-  "status": "success",
-  "unmappedstatus": "captured",
-  "mihpayid": "403993715521899234",
-  "txnid": "PPHOST20240315001",
-  "amount": "1500.00",
-  "mode": "CC",
-  "bankcode": "VISA",
-  "productinfo": "Premium Subscription - Monthly",
-  "firstname": "Priya",
-  "email": "priya.sharma@example.com",
-  "phone": "919876543210"
-}
-```
+<Verify_Payment_Partner />
 
 ### Step 4.3: Process Verification Response
 
