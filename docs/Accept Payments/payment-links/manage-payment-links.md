@@ -262,7 +262,7 @@ You can perform the following actions after a link is created:
 
      <Image src="https://files.readme.io/615e8c4c1da7afcbe5befc1657e14d1878c6e9a5f33ac59571d6a8c5ea50ed74-Screenshot_2026-09-21_at_1.47.19_PM.png" align="center" caption="Click Deactivate" border={true} />
 
-  3. Click in the confirmation window.
+  3. Click **Yes** in the confirmation window.
 
   The link status changes to **Deactivated**.
 
