@@ -40,7 +40,7 @@ next:
   fontWeight="bold"
 />
 
-You can manage a payment link after it is created and live from the PayU Dashboard.
+You can manage payment links from the PayU Dashboard after they are created and live.
 
 <Callout icon="📘" theme="warn">
   ### New to Payment Links?
