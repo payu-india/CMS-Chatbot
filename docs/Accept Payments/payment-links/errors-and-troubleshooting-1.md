@@ -6,7 +6,34 @@ excerpt: >-
 deprecated: false
 hidden: true
 metadata:
+  title: Payment Links Troubleshooting | PayU Developer Docs
+  description: >-
+    Fix PayU Payment Links issues — link not opening, payment not reflecting,
+    SMS or email not delivered, bulk upload errors, and API failures explained.
+  keywords:
+    - payment link not working payu
+    - payu payment link troubleshooting
+    - fix payment link error
+    - payment not reflecting payu dashboard
+    - payment link sms not delivered
+    - payment link email not received
+    - payu bulk upload error
+    - payu payment link expired
+    - payment link deactivated fix
+    - payu api 401 unauthorized payment links
   robots: index
+next:
+  description: Explore related information and resources.
+  pages:
+    - slug: payment-links
+      title: Payment Links
+      type: basic
+    - slug: create-a-payment-link
+      title: Create a Payment Link
+      type: basic
+    - slug: manage-payment-links
+      title: Manage Payment Links
+      type: basic
 ---
 {/* NEW CONTENT: Template E — Troubleshooting (V2 format) */}
 
