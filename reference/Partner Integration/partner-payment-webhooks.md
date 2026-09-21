@@ -7,7 +7,9 @@ metadata:
 ---
 After the customer completes payment (or if account validation fails), PayU sends a webhook notification to your configured partner webhook URL.
 
-## Sample Success Webhook Payload (UPI TPV
+## Step 1: Get the Webhook Payload
+
+### Sample Success Webhook Payload for UPI TPV
 
 ```json
 {
@@ -43,7 +45,7 @@ After the customer completes payment (or if account validation fails), PayU send
 | `bankcode`       | `"INTTPV"` (automatically set by PayU)                           |
 | `unmappedstatus` | `"captured"` (success) or `"failed"` (failure/validation failed) |
 
-### Step 3.2: Verify Webhook Hash
+### Step 2: Verify Webhook Hash
 
 **Always verify the webhook hash** before processing.
 
@@ -63,8 +65,6 @@ client_secret|status|||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|am
 </Warning>
 
 **Sample Verification Code:**
-
-**Python:**
 
 ```python
 import hashlib
@@ -98,9 +98,6 @@ if is_valid:
 else:
     print("❌ Invalid webhook hash — reject")
 ```
-
-**Java:**
-
 ```java
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -132,7 +129,7 @@ public class UPITPVWebhookVerifier {
 }
 ```
 
-### Step 3.3: Process Webhook
+### Step 3: Process Webhook
 
 **Python Flask Webhook Handler:**
 
