@@ -79,7 +79,7 @@ Before you begin, ensure you have:
 
 ### Step 2.1: Prepare Request Parameters
 
-Use the `access_token` created using Step 1 in this step:
+Use the `access_token` created using Step 1 in this step as the bearer token:
 
 **Endpoint URLs:**
 
