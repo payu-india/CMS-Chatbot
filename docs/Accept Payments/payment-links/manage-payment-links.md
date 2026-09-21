@@ -80,8 +80,21 @@ You can perform the following actions after a link is created:
      - **Payment Type**
      - **Payment Status**
      - **Status**
-  2. Find the link in the table.
-  3. Click **Details** in the rightmost column.
+  2. Click the Payment Link you want to view the details.
+
+     <Image src="https://files.readme.io/fada3c576d9d091f8a41e2cefe2ce555ff3878f8debea9b8ddc1e08b76191d43-Screenshot_2026-09-21_at_10.21.28_AM.png" align="center" caption="Click to view details" border={true} />
+
+
+  The link details are divided in to the following sections:
+
+  <Accordion title="Link Details" icon="fad fa-link">
+    The following details are displayed in this section:
+
+    - **Link:&#x20;**&#x54;he payment with options to copy and share via WhatsApp and Facebook.
+    - **Invoice ID:&#x20;**&#x54;he auto generated invoice ID. For example, **INV331178996540608300.**
+    - **Total Amount:&#x20;**&#x54;he total amount for which the link is created.
+    - **Type:&#x20;**
+  </Accordion>
 
   The detail view shows everything you set when creating the link — amount, purpose, expiry date, partial payment settings, and any custom fields — along with any customer details collected at checkout.
 </Accordion>
