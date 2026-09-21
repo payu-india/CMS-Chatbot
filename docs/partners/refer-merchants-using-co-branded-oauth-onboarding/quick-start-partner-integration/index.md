@@ -17,7 +17,7 @@ Before you begin, ensure you have:
 - **Whitelisted redirect URL**: Your callback URL registered with PayU
 - **OAuth scope enabled**: Contact your Key Account Manager (KAM) to enable OAuth onboarding
 
-### Onboarding Workflow
+## Onboarding Workflow
 
 <Accordion title="Flow diagram" icon="fa-info-circle">
   Co-Branded (OAuth) Onboarding or OAuth Workflow (technical workflow) involves the steps as illustrated in the following diagram:
@@ -196,10 +196,6 @@ This is enable Co-Branded Onboarding (OAuth) for partners.
   ```curl Oauth Callback
   https://xn6vqico31.execute-api.ap-south-1.amazonaws.com/prod/webhook/payu?auth_code=ce38ce1370c46e6830067d2726f3e254b0ea1d271788300ac9e4f347e9587aeb&merchantId=8235901&reseller_id=11ec-ccfb-4a042936-a698-0a696b110fde&state=null
   ```
-
-
-
-
 </Accordion>
 
 ## Integration Flow
