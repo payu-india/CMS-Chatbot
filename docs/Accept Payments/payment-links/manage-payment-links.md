@@ -287,7 +287,9 @@ You can perform the following actions after a link is created:
 
 ***
 
-## How Do I Look Up a Specific Link?
+## How Do I Find a Specific Payment Link?
+
+You can filter the payment links list using the following options:
 
 <Callout icon="📘" theme="info">
   ### **Payment Link Status**
@@ -295,9 +297,23 @@ You can perform the following actions after a link is created:
   Not sure what **Active**, **Paid**, **Expired**, or **Deactivated** mean? See [Payment Link Statuses](doc:send-a-payment-link).
 </Callout>
 
-<Accordion title="Filter by status" icon="far fa-filter">
-  1. Click the **Filter** drop-down above the link list.
-  2. Select one or more status checkboxes: **Active**, **Paid**, **Deactivated**, **Expired**.
+<Accordion title="Filter by Status and Payment Type" icon="far fa-filter">
+  To filter the list by status:
+
+  1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor> and go to **Payment Links&#x20;**&#x75;nder **Payment Tools.**
+
+     <Image src="https://files.readme.io/42a033de863c821718096d7b68198aba4cf6907b5cedbfa20c5cce9a399753ec-image.png" align="center" caption="Access Payment Links" border={true} />
+
+  2. Click the **Filter** drop-down and select one or more status checkboxes. These are the available options:
+     - **Active**
+     - **Paid**
+     - **Deactivated**
+     - **Expired**
+     <Callout icon="📘" theme="info">
+       ### **Payment Link Status**
+
+       Not sure what **Active**, **Paid**, **Expired**, or **Deactivated** mean? See [Payment Link Statuses](doc:send-a-payment-link).
+     </Callout>
   3. Click **Apply**.
 
   To clear filters, click **Reset** inside the filter panel.
