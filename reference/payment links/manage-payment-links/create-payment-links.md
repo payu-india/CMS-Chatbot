@@ -30,21 +30,21 @@ The **Create a Payment Link** API is used to create a regular payment link, recu
 | Production Environment | {user.https://oneapi.payu.in/payment-links}    |
 
 <Callout icon="📘" theme="info">
+### Notes:
   * The access token with the scope as **create_payment_links** is required on the header. For more information on getting the access token, refer to [Get Access Token](https://docs.payu.in/reference/get-token-api-for-payment-links).
   * To create a seamless eNACH payment link, the **enforcePayMethod** parameter must be passed with "enach" as the only method.
-<Accordion title="Other items to be noted" icon="fa-list">
-- `paymentDeadline` and `partialPaymentDeadline` use `yyyy-MM-dd HH:mm:ss`.
-- `whatsappRecipients` accepts no more than four entries. Each `phone` value must contain 10 to 15 digits.
-- `reminder.isScheduled` and `reminder.channels` are required when `reminder` is supplied. `reminder.type` is optional and accepts `0` or `1`.
-- `offerKey` is limited to 255 characters.
-- `partnerWebhookSuccessUrls` and `partnerWebhookFailureUrls` are limited to 512 characters each.
-- `amountStatus` accepts `UNPAID`, `PARTIALLY_PAID`, `FULLY_PAID`, or `OVERDUE`.
-- The four `beneficiarydetail` arrays support a maximum of four entries and must have matching lengths.
-- `beneficiaryAccountType` accepts `SAVINGS` or `CURRENT`.
-- Use `enforcePayMethod: "enach"` alone when creating a seamless eNACH payment link.
-</Accordion>
-
 </Callout>
+<Accordion title="Other items to be noted" icon="fa-list">
+  - `paymentDeadline` and `partialPaymentDeadline` use `yyyy-MM-dd HH:mm:ss`.
+  - `whatsappRecipients` accepts no more than four entries. Each `phone` value must contain 10 to 15 digits.
+  - `reminder.isScheduled` and `reminder.channels` are required when `reminder` is supplied. `reminder.type` is optional and accepts `0` or `1`.
+  - `offerKey` is limited to 255 characters.
+  - `partnerWebhookSuccessUrls` and `partnerWebhookFailureUrls` are limited to 512 characters each.
+  - `amountStatus` accepts `UNPAID`, `PARTIALLY_PAID`, `FULLY_PAID`, or `OVERDUE`.
+  - The four `beneficiarydetail` arrays support a maximum of four entries and must have matching lengths.
+  - `beneficiaryAccountType` accepts `SAVINGS` or `CURRENT`.
+  - Use `enforcePayMethod: "enach"` alone when creating a seamless eNACH payment link.
+  </Accordion>
 
 ### Sample Requests
 
@@ -292,57 +292,58 @@ The **Create a Payment Link** API is used to create a regular payment link, recu
 <br />
 
 ## Sample response
-  **Success scenario**
 
-  ```json
-  {
-    "status": 0,
-    "message": "paymentLink generated",
-    "result": {
-      "subAmount": 2,
-      "tax": 0,
-      "shippingCharge": 0,
-      "totalAmount": 2,
-      "invoiceNumber": "INV7711514022032",
-      "paymentLink": "http://pp72.pmny.in/MIioqucT8hXV",
-      "description": "paymentLink for testing",
-      "active": true,
-      "isPartialPaymentAllowed": false,
-      "expiryDate": "2023-03-21 17:58:30",
-      "udf": {
-        "udf1": null,
-        "udf2": null,
-        "udf3": null,
-        "udf4": null,
-        "udf5": null
-      },
-      "address": {
-        "line1": null,
-        "line2": null,
-        "city": null,
-        "state": null,
-        "country": null,
-        "zipCode": null
-      },
-      "emailStatus": "not opted",
-      "smsStatus": "not opted"
+**Success scenario**
+
+```json
+{
+  "status": 0,
+  "message": "paymentLink generated",
+  "result": {
+    "subAmount": 2,
+    "tax": 0,
+    "shippingCharge": 0,
+    "totalAmount": 2,
+    "invoiceNumber": "INV7711514022032",
+    "paymentLink": "http://pp72.pmny.in/MIioqucT8hXV",
+    "description": "paymentLink for testing",
+    "active": true,
+    "isPartialPaymentAllowed": false,
+    "expiryDate": "2023-03-21 17:58:30",
+    "udf": {
+      "udf1": null,
+      "udf2": null,
+      "udf3": null,
+      "udf4": null,
+      "udf5": null
     },
-    "errorCode": null,
-    "guid": null
-  }
-  ```
+    "address": {
+      "line1": null,
+      "line2": null,
+      "city": null,
+      "state": null,
+      "country": null,
+      "zipCode": null
+    },
+    "emailStatus": "not opted",
+    "smsStatus": "not opted"
+  },
+  "errorCode": null,
+  "guid": null
+}
+```
 
-  **Failure scenario**
+**Failure scenario**
 
-  ```json
-  {
-    "status": -1,
-    "message": "Invoice Number already exists. Please enter new invoice number.",
-    "result": null,
-    "errorCode": null,
-    "guid": null
-  }
-  ```
+```json
+{
+  "status": -1,
+  "message": "Invoice Number already exists. Please enter new invoice number.",
+  "result": null,
+  "errorCode": null,
+  "guid": null
+}
+```
 
 ## Request parameters
 
@@ -351,46 +352,44 @@ The following fields are available when creating a payment link. Unless marked o
 > **Important:** The examples below use illustrative values and placeholders. Replace every value in `{{double_curly_braces}}` with a value from your integration. Do not use real customer or bank data in documentation examples.
 
 <Accordion title="Parameters used in Advanced Payment Link flows" icon="fa-table">
+  | Parameter                       | Type                                | Description                                                                                                              |
+  | :------------------------------ | :---------------------------------- | :----------------------------------------------------------------------------------------------------------------------- |
+  | `paymentDeadline`               | String                              | Deadline by which the customer must complete payment, independent of `expiryDate`. Use the `yyyy-MM-dd HH:mm:ss` format. |
+  | `whatsappRecipients`            | Array of objects, maximum 4 entries | WhatsApp recipients. Each object must contain a `phone` value with 10 to 15 digits.                                      |
+  | `whatsappTemplateName`          | String                              | WhatsApp notification template name.                                                                                     |
+  | `offerKey`                      | String, maximum 255 characters      | Offer or coupon key to attach to the payment link.                                                                       |
+  | `blockDaysForPreAuthorizeLinks` | Integer                             | Number of days to hold a pre-authorisation.                                                                              |
 
-| Parameter                       | Type                                | Description                                                                                                              |
-| :------------------------------ | :---------------------------------- | :----------------------------------------------------------------------------------------------------------------------- |
-| `paymentDeadline`               | String                              | Deadline by which the customer must complete payment, independent of `expiryDate`. Use the `yyyy-MM-dd HH:mm:ss` format. |
-| `whatsappRecipients`            | Array of objects, maximum 4 entries | WhatsApp recipients. Each object must contain a `phone` value with 10 to 15 digits.                                      |
-| `whatsappTemplateName`          | String                              | WhatsApp notification template name.                                                                                     |
-| `offerKey`                      | String, maximum 255 characters      | Offer or coupon key to attach to the payment link.                                                                       |
-| `blockDaysForPreAuthorizeLinks` | Integer                             | Number of days to hold a pre-authorisation.                                                                              |
+  `viaWhatsapp` is the existing switch for WhatsApp notification. Use it with `whatsappRecipients` when the link must be sent to more than one WhatsApp number.
 
-`viaWhatsapp` is the existing switch for WhatsApp notification. Use it with `whatsappRecipients` when the link must be sent to more than one WhatsApp number.
+  ### `reminder` object
 
-### `reminder` object
+  Use `reminder` to configure a payment reminder.
 
-Use `reminder` to configure a payment reminder.
+  | Field         | Type             | Required | Description                                                                  |
+  | :------------ | :--------------- | :------- | :--------------------------------------------------------------------------- |
+  | `isScheduled` | Boolean          | Yes      | Whether a reminder is scheduled.                                             |
+  | `type`        | Integer          | No       | `0` means before the payment deadline; `1` means after the payment deadline. |
+  | `channels`    | Array of strings | Yes      | Reminder channels. Supported values are `email` and `phone`.                 |
 
-| Field         | Type             | Required | Description                                                                  |
-| :------------ | :--------------- | :------- | :--------------------------------------------------------------------------- |
-| `isScheduled` | Boolean          | Yes      | Whether a reminder is scheduled.                                             |
-| `type`        | Integer          | No       | `0` means before the payment deadline; `1` means after the payment deadline. |
-| `channels`    | Array of strings | Yes      | Reminder channels. Supported values are `email` and `phone`.                 |
+  ### `additionalDetails` object
 
-### `additionalDetails` object
+  | Field                       | Type                           | Description                                                                                    |
+  | :-------------------------- | :----------------------------- | :--------------------------------------------------------------------------------------------- |
+  | `partnerWebhookSuccessUrls` | String, maximum 512 characters | Partner webhook URL for a successful payment. This is separate from the merchant `successURL`. |
+  | `partnerWebhookFailureUrls` | String, maximum 512 characters | Partner webhook URL for a failed payment.                                                      |
+  | `amountStatus`              | Enum                           | Current payment status: `UNPAID`, `PARTIALLY_PAID`, `FULLY_PAID`, or `OVERDUE`.                |
+  | `partialPaymentDeadline`    | String                         | Deadline specifically for completing partial payments. Use the `yyyy-MM-dd HH:mm:ss` format.   |
+  | `sendWhatsapp`              | Boolean                        | Whether WhatsApp notification is enabled for the link.                                         |
 
-| Field                       | Type                           | Description                                                                                    |
-| :-------------------------- | :----------------------------- | :--------------------------------------------------------------------------------------------- |
-| `partnerWebhookSuccessUrls` | String, maximum 512 characters | Partner webhook URL for a successful payment. This is separate from the merchant `successURL`. |
-| `partnerWebhookFailureUrls` | String, maximum 512 characters | Partner webhook URL for a failed payment.                                                      |
-| `amountStatus`              | Enum                           | Current payment status: `UNPAID`, `PARTIALLY_PAID`, `FULLY_PAID`, or `OVERDUE`.                |
-| `partialPaymentDeadline`    | String                         | Deadline specifically for completing partial payments. Use the `yyyy-MM-dd HH:mm:ss` format.   |
-| `sendWhatsapp`              | Boolean                        | Whether WhatsApp notification is enabled for the link.                                         |
+  ### `beneficiarydetail` object
 
-### `beneficiarydetail` object
+  Use `beneficiarydetail` to specify bank-account beneficiaries for NEFT or IMPS payout flows. You can provide up to four entries. The arrays must contain the same number of entries, and each position represents one beneficiary.
 
-Use `beneficiarydetail` to specify bank-account beneficiaries for NEFT or IMPS payout flows. You can provide up to four entries. The arrays must contain the same number of entries, and each position represents one beneficiary.
-
-| Field                      | Type             | Maximum entries | Description                                                             |
-| :------------------------- | :--------------- | :-------------: | :---------------------------------------------------------------------- |
-| `beneficiaryAccountNumber` | Array of strings |        4        | Bank account numbers.                                                   |
-| `ifscCode`                 | Array of strings |        4        | IFSC codes. The number of values must match `beneficiaryAccountNumber`. |
-| `beneficiaryName`          | Array of strings |        4        | Account-holder names.                                                   |
-| `beneficiaryAccountType`   | Array of strings |        4        | Account types. Each value must be `SAVINGS` or `CURRENT`.               |
-
+  | Field                      | Type             | Maximum entries | Description                                                             |
+  | :------------------------- | :--------------- | :-------------: | :---------------------------------------------------------------------- |
+  | `beneficiaryAccountNumber` | Array of strings |        4        | Bank account numbers.                                                   |
+  | `ifscCode`                 | Array of strings |        4        | IFSC codes. The number of values must match `beneficiaryAccountNumber`. |
+  | `beneficiaryName`          | Array of strings |        4        | Account-holder names.                                                   |
+  | `beneficiaryAccountType`   | Array of strings |        4        | Account types. Each value must be `SAVINGS` or `CURRENT`.               |
 </Accordion>
