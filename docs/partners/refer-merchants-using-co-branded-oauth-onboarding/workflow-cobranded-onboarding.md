@@ -1,14 +1,13 @@
 ---
 title: Workflow for Co-Branded Onboarding
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
 Co-Branded (OAuth) Onboarding or OAuth Workflow (technical workflow) involves the steps as illustrated in the following diagram:
 
