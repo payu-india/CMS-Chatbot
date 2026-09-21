@@ -88,18 +88,37 @@ You can perform the following actions after a link is created:
   The link details are divided in to the following sections:
 
   <Accordion title="Link Details" icon="fad fa-link">
-    The following details are displayed in this section:
+    The link and customer detials are displayed in two sub-sections.
 
-    - **Name:&#x20;**&#x4E;ame of the Payment Link you enterd during creation.
-    - **Status:&#x20;**&#x53;tatus of the payment link. Refer to the Payment Link statuses for more information.
-    - **Link:&#x20;**&#x54;he payment with options to copy and share via WhatsApp and Facebook.
-    - **Invoice ID:&#x20;**&#x54;he auto generated invoice ID. For example, **INV331178996540608300.**
-    - **Total Amount:&#x20;**&#x54;he total amount for which the link is created.
-    - **Type:&#x20;**&#x54;he payment type. The value can be either **Partial&#x20;**&#x6F;r **Full**.
-    - **Share:&#x20;**&#x4F;ptions to copy the link or share via WhatsApp, Facebook or to any other mobile number or email ID.
+    <Tabs>
+      <Tab title="Link Details">
+        - **Name:&#x20;**&#x4E;ame of the Payment Link you enterd during creation.
 
-      <Image src="https://files.readme.io/18374beecc40c725bf806f3eea419f259e50c0928a43a7573e94c8a661280637-Screenshot_2026-09-21_at_10.40.08_AM.png" align="center" caption="Share the Payment Link" border={true} />
+        - **Status:&#x20;**&#x53;tatus of the payment link. Refer to the Payment Link statuses for more information.
 
+        - **Link:&#x20;**&#x54;he payment with options to copy and share via WhatsApp and Facebook.
+
+        - **Invoice ID:&#x20;**&#x54;he auto generated invoice ID. For example, **INV331178996540608300.**
+
+        - **Total Amount:&#x20;**&#x54;he total amount for which the link is created.
+
+        - **Type:&#x20;**&#x54;he payment type. The value can be either **Partial&#x20;**&#x6F;r **Full**.
+
+        - **Share:&#x20;**&#x4F;ptions to copy the link or share via WhatsApp, Facebook or to any other mobile number or email ID.
+
+          <Image src="https://files.readme.io/18374beecc40c725bf806f3eea419f259e50c0928a43a7573e94c8a661280637-Screenshot_2026-09-21_at_10.40.08_AM.png" border={true} />
+
+      </Tab>
+
+      <Tab title="Customer Details">
+        - **Email**
+        - **Phone Number**
+
+
+        <Image src="https://files.readme.io/4b110954b53faf10c794ef87abc99530181f9de6a892369ba8a942c526bd9e9a-Screenshot_2026-09-21_at_11.51.29_AM.png" align="center" caption="Customer Details" border={true} />
+
+      </Tab>
+    </Tabs>
   </Accordion>
 
   <Accordion title="Details and Transactions" icon="far fa-money-bills">
@@ -132,8 +151,16 @@ You can perform the following actions after a link is created:
         - **Customer Email**
         - **Amount:&#x20;**&#x54;he amount of the transaction.
         - **Status:&#x20;**&#x54;he status of the transaction.
+
+
+        <Image src="https://files.readme.io/b60e913b8bd066fb40ca89de88be1bf31dfe0469a98502b6b53a5aa20a5ec9dd-Screenshot_2026-09-21_at_11.29.48_AM.png" align="center" caption="Transaction Details" border={true} />
+
       </Tab>
     </Tabs>
+  </Accordion>
+
+  <Accordion title="" icon="fa-info-circle">
+
   </Accordion>
 </Accordion>
 
