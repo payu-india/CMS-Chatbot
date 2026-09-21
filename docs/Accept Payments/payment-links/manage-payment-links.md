@@ -40,7 +40,7 @@ next:
   fontWeight="bold"
 />
 
-Once a payment link is live, you have more control over it than you might expect — you can share it again, duplicate it with different settings, pull up every transaction made on it, download records, and more. All of it happens in the PayU Dashboard with no code.
+You can manage a payment link after it is created and live. You can share it again, duplicate it with different settings, pull up every transaction made on it, download records, and more. All of it happens in the PayU Dashboard.
 
 New to Payment Links? Start with the [Payment Links Overview](doc:payment-links-overview) or follow the [step-by-step guide to create your first link](doc:send-a-payment-link). To manage links from your own system, see the [Fetch API](doc:api-fetch) and [Cancel / Update Status API](doc:api-cancel-status).
 
