@@ -718,7 +718,6 @@ if response.status_code == 200:
     redirect_uri = response.json().get("redirectUri")
     print(f"Redirect URI: {redirect_uri}")
 ```
-
 ```java
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -776,7 +775,6 @@ public class InitiateHostedCheckoutTPV {
     }
 }
 ```
-
 ```php
 <?php
 $url = "https://test-partnerapilayer.payu.in/apilayer/partner/payments";
