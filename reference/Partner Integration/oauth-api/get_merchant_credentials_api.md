@@ -1,17 +1,14 @@
 ---
-title: Get Merchant Credentials API
-excerpt: ''
 api:
   file: partner-apis-27.json
   operationId: Getmerchantcredentials
-deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
 The **Get Merchant Credentials** API is used to perform the following:
 
@@ -22,14 +19,16 @@ The merchant ID in the request header must be included as a query parameter in t
 
 **Environment**
 
-|                        |                               |
-| :--------------------- | :---------------------------- |
-| Test Environment       | &lt;https://uat-partner.payu.in&gt; |
-| Production Environment | &lt;https://partner.payu.in&gt;     |
+|                        |                                                               |
+| :--------------------- | :------------------------------------------------------------ |
+| Test Environment       | \<[https://uat-partner.payu.in](https://uat-partner.payu.in)> |
+| Production Environment | \<[https://partner.payu.in](https://partner.payu.in)>         |
 
-> 📘 Note:
->
-> The access token with the scope as **read_merchant_reseller** from is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
+<Callout icon="📘" theme="info">
+  ### Note:
+
+  The access token with the scope as **read_merchant_reseller** from is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
+</Callout>
 
 <details>
   <summary>Sample request</summary>
