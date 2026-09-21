@@ -109,10 +109,8 @@ Before you begin, ensure you have:
 Authorization: Bearer <your_access_token>
 Content-Type: application/json
 ```
-
-**Request Body Parameters:**
-
-#### Mandatory Parameters
+<Accordion title="Request Parameters" icon="fa-info-circle">
+**Mandatory Parameters**
 
 <table>
   <thead>
@@ -181,7 +179,7 @@ Content-Type: application/json
   </tbody>
 </table>
 
-#### Optional Parameters
+**Optional Parameters**
 
 | Parameter | Type & Description                                                                    | Example                                                                      |
 | --------- | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
@@ -219,6 +217,7 @@ Content-Type: application/json
 ```
 
 Send this as a **JSON string** (not an object) in the `beneficiarydetail` parameter.
+</Accordion>
 
 ### Step 2.2: Generate Payment Request Hash
 
@@ -240,268 +239,7 @@ merchant_id|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|||
 - Do NOT add a trailing pipe after `client_secret`
 </Warning>
 
-**Sample Hash Generation Code:**
-
-**Python:**
-
-```python
-import hashlib
-
-def generate_upi_tpv_hash(merchant_id, txnid, amount, productinfo, firstname, email, udf1, udf2, udf3, udf4, udf5, client_secret):
-    # Note: beneficiarydetail is NOT included in hash
-    hash_string = f"{merchant_id}|{txnid}|{amount}|{productinfo}|{firstname}|{email}|{udf1}|{udf2}|{udf3}|{udf4}|{udf5}||||||{client_secret}"
-    return hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
-
-# Example
-payment_hash = generate_upi_tpv_hash(
-    merchant_id=8739528,
-    txnid="TPVUPI20240315001",
-    amount="518.02",
-    productinfo="Loan EMI Payment",
-    firstname="Amit",
-    email="amit.kumar@example.com",
-    udf1="loan_account_123",
-    udf2="emi_month_06",
-    udf3="tpv_reference_001",
-    udf4="",
-    udf5="partner_tpv_channel",
-    client_secret="your_client_secret_here"
-)
-
-print(f"Payment Hash: {payment_hash}")
-```
-
-**Java:**
-
-```java
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
-public class UPITPVHashGenerator {
-    public static String generateHash(
-        int merchantId, String txnid, String amount, String productinfo,
-        String firstname, String email, String udf1, String udf2, 
-        String udf3, String udf4, String udf5, String clientSecret
-    ) throws NoSuchAlgorithmException {
-        
-        // Note: beneficiarydetail is NOT included in hash
-        String hashString = merchantId + "|" + txnid + "|" + amount + "|" + 
-                          productinfo + "|" + firstname + "|" + email + "|" +
-                          udf1 + "|" + udf2 + "|" + udf3 + "|" + udf4 + "|" + 
-                          udf5 + "||||||" + clientSecret;
-        
-        MessageDigest md = MessageDigest.getInstance("SHA-512");
-        byte[] hashBytes = md.digest(hashString.getBytes());
-        
-        StringBuilder hexString = new StringBuilder();
-        for (byte b : hashBytes) {
-            String hex = Integer.toHexString(0xff & b);
-            if (hex.length() == 1) hexString.append('0');
-            hexString.append(hex);
-        }
-        
-        return hexString.toString();
-    }
-}
-```
-
-**PHP:**
-
-```php
-<?php
-function generateUPITPVHash($merchantId, $txnid, $amount, $productinfo, 
-                            $firstname, $email, $udf1, $udf2, $udf3, 
-                            $udf4, $udf5, $clientSecret) {
-    
-    // Note: beneficiarydetail is NOT included in hash
-    $hashString = $merchantId . "|" . $txnid . "|" . $amount . "|" . 
-                  $productinfo . "|" . $firstname . "|" . $email . "|" .
-                  $udf1 . "|" . $udf2 . "|" . $udf3 . "|" . $udf4 . "|" . 
-                  $udf5 . "||||||" . $clientSecret;
-    
-    return hash('sha512', $hashString);
-}
-
-$hash = generateUPITPVHash(
-    8739528,
-    "TPVUPI20240315001",
-    "518.02",
-    "Loan EMI Payment",
-    "Amit",
-    "amit.kumar@example.com",
-    "loan_account_123",
-    "emi_month_06",
-    "tpv_reference_001",
-    "",
-    "partner_tpv_channel",
-    "your_client_secret_here"
-);
-
-echo "Payment Hash: " . $hash;
-?>
-```
-
-### Step 2.3: POST the Payment Request
-
-**Sample Request (cURL):**
-
-```bash
-curl --location 'https://test-partnerapilayer.payu.in/apilayer/partner/payments' \
---header 'Authorization: Bearer your_access_token_here' \
---header 'Content-Type: application/json' \
---data '{
-  "txnid": "TPVUPI20240315001",
-  "amount": "518.02",
-  "productinfo": "Loan EMI Payment",
-  "firstname": "Amit",
-  "email": "amit.kumar@example.com",
-  "phone": "919876543210",
-  "merchant_id": 8739528,
-  "reseller_id": "11ee-0e7e-5403fde2-9523-0a696b110fde",
-  "txn_s2s_flow": "4",
-  "s2s_client_ip": "157.240.22.9",
-  "s2s_device_info": "Mozilla/5.0 (iPhone) AppleWebKit/602.4.6",
-  "beneficiarydetail": "{\"ifscCode\":\"ICIC0001234\",\"accountNumber\":\"123456789012\",\"accountHolderName\":\"Test User\"}",
-  "udf1": "loan_account_123",
-  "udf2": "emi_month_06",
-  "udf3": "tpv_reference_001",
-  "udf5": "partner_tpv_channel",
-  "hash": "computed_sha512_hash_here"
-}'
-```
-
-**Sample Request (Python):**
-
-```python
-import requests
-import json
-
-url = "https://test-partnerapilayer.payu.in/apilayer/partner/payments"
-
-headers = {
-    'Authorization': 'Bearer your_access_token_here',
-    'Content-Type': 'application/json'
-}
-
-# Beneficiary details as JSON string
-beneficiary_detail = json.dumps({
-    "ifscCode": "ICIC0001234",
-    "accountNumber": "123456789012",
-    "accountHolderName": "Test User"
-})
-
-payload = {
-    "txnid": "TPVUPI20240315001",
-    "amount": "518.02",
-    "productinfo": "Loan EMI Payment",
-    "firstname": "Amit",
-    "email": "amit.kumar@example.com",
-    "phone": "919876543210",
-    "merchant_id": 8739528,
-    "reseller_id": "11ee-0e7e-5403fde2-9523-0a696b110fde",
-    "txn_s2s_flow": "4",
-    "s2s_client_ip": "157.240.22.9",
-    "s2s_device_info": "Mozilla/5.0 (iPhone) AppleWebKit/602.4.6",
-    "beneficiarydetail": beneficiary_detail,
-    "udf1": "loan_account_123",
-    "udf2": "emi_month_06",
-    "udf3": "tpv_reference_001",
-    "udf5": "partner_tpv_channel",
-    "hash": "computed_sha512_hash_here"
-}
-
-try:
-    response = requests.post(url, headers=headers, data=json.dumps(payload))
-    print(f"Status Code: {response.status_code}")
-    print(f"Response: {response.text}")
-except Exception as e:
-    print(f"Error: {str(e)}")
-```
-
-**Sample Request (Java):**
-
-```java
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-
-public class CreateUPITPVPayment {
-    public static void main(String[] args) throws Exception {
-        String url = "https://test-partnerapilayer.payu.in/apilayer/partner/payments";
-        
-        // Escape the beneficiarydetail JSON properly
-        String payload = "{\"txnid\":\"TPVUPI20240315001\",\"amount\":\"518.02\",\"productinfo\":\"Loan EMI Payment\",\"firstname\":\"Amit\",\"email\":\"amit.kumar@example.com\",\"phone\":\"919876543210\",\"merchant_id\":8739528,\"reseller_id\":\"11ee-0e7e-5403fde2-9523-0a696b110fde\",\"txn_s2s_flow\":\"4\",\"s2s_client_ip\":\"157.240.22.9\",\"s2s_device_info\":\"Mozilla/5.0 (iPhone) AppleWebKit/602.4.6\",\"beneficiarydetail\":\"{\\\"ifscCode\\\":\\\"ICIC0001234\\\",\\\"accountNumber\\\":\\\"123456789012\\\",\\\"accountHolderName\\\":\\\"Test User\\\"}\",\"udf1\":\"loan_account_123\",\"udf2\":\"emi_month_06\",\"udf3\":\"tpv_reference_001\",\"udf5\":\"partner_tpv_channel\",\"hash\":\"computed_sha512_hash_here\"}";
-        
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create(url))
-            .header("Authorization", "Bearer your_access_token_here")
-            .header("Content-Type", "application/json")
-            .POST(HttpRequest.BodyPublishers.ofString(payload))
-            .build();
-        
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        
-        System.out.println("Status Code: " + response.statusCode());
-        System.out.println("Response Body: " + response.body());
-    }
-}
-```
-
-**Sample Request (PHP):**
-
-```php
-<?php
-$url = "https://test-partnerapilayer.payu.in/apilayer/partner/payments";
-
-$headers = array(
-    'Authorization: Bearer your_access_token_here',
-    'Content-Type: application/json'
-);
-
-// Beneficiary details as JSON string
-$beneficiaryDetail = json_encode(array(
-    "ifscCode" => "ICIC0001234",
-    "accountNumber" => "123456789012",
-    "accountHolderName" => "Test User"
-));
-
-$payload = json_encode(array(
-    "txnid" => "TPVUPI20240315001",
-    "amount" => "518.02",
-    "productinfo" => "Loan EMI Payment",
-    "firstname" => "Amit",
-    "email" => "amit.kumar@example.com",
-    "phone" => "919876543210",
-    "merchant_id" => 8739528,
-    "reseller_id" => "11ee-0e7e-5403fde2-9523-0a696b110fde",
-    "txn_s2s_flow" => "4",
-    "s2s_client_ip" => "157.240.22.9",
-    "s2s_device_info" => "Mozilla/5.0 (iPhone) AppleWebKit/602.4.6",
-    "beneficiarydetail" => $beneficiaryDetail,
-    "udf1" => "loan_account_123",
-    "udf2" => "emi_month_06",
-    "udf3" => "tpv_reference_001",
-    "udf5" => "partner_tpv_channel",
-    "hash" => "computed_sha512_hash_here"
-));
-
-$ch = curl_init($url);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-$response = curl_exec($ch);
-$statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-curl_close($ch);
-
-echo "Status Code: " . $statusCode . "\n";
-echo "Response: " . $response;
-?>
-```
+<Generate_Hash_Partner_Payment />
 
 ### Step 2.4: Handle Payment Response
 
