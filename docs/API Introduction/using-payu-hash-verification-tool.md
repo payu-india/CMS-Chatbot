@@ -1,10 +1,33 @@
 ---
 title: Using PayU Hash Verification Tool
+excerpt: >-
+  Verify PayU callback hashes quickly using the PayU Hash Verification Tool —
+  parse callback data, enter salt, and confirm reverse hash validity.
 deprecated: false
 hidden: false
 metadata:
+  title: Using PayU Hash Verification Tool
+  description: >-
+    Step-by-step guide to verify PayU payment callback hashes with the PayU Hash
+    Verification Tool. Parse callback response data, enter salt, and validate
+    reverse hash.
+  keywords:
+    - PayU hash verification tool
+    - PayU reverse hash
+    - PayU callback hash
+    - verify PayU hash
   robots: index
+next:
+  description: ''
 ---
+Use the PayU Hash Verification Tool when debugging callback or reverse-hash failures during API integration.
+
+> 📘 Related concepts
+>
+> * [API Authentication and Security](doc:api-authentication-and-security)
+> * [Generate Hash](doc:hashing-request-and-response)
+> * [Webhooks and Callbacks](doc:webhooks-and-callbacks)
+
 ## Step 1: Open the PayU Hash Verification Tool
 
 Navigate to the following URL on your browser:
@@ -53,3 +76,9 @@ The tool will recompute the hash using the provided data and your salt.
 * Compare the  hash values under **Calculated Hash** with that of under **Response Hash**
 
 <br />
+
+## What to read next
+
+* [API Troubleshooting](doc:api-troubleshooting)
+* [Error Handling for APIs](doc:error-handling-for-apis)
+* [API Best Practices](doc:api-best-practices)

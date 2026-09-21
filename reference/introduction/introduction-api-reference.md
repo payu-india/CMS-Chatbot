@@ -20,6 +20,10 @@ next:
 ---
 Welcome to the PayU India API Reference documentation. This comprehensive guide provides developers with the information they need to seamlessly integrate PayU's payment processing capabilities into their applications and websites. Whether you're building an e-commerce platform, a mobile app, or any online service that requires secure and reliable payment processing, our APIs have you covered.
 
+> 📘 New to PayU APIs?
+>
+> Start with **[API Introduction](doc:api-introduction)** for the shared concepts that apply across products — which API to use, authentication models, environments and base URLs, first request, common workflows, errors, and webhooks. Use this API Reference for endpoint schemas, parameters, and Try It playground calls.
+
 > 🚧 Limitations with API Reference
 >
 > You cannot do test or mock API calls for certain APIs on this API Reference. PayU currently does not support the following APIs related to certain products or features with Test environment:
