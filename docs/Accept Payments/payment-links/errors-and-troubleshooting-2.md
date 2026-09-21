@@ -109,9 +109,9 @@ next:
 
 ***
 
-## Why Didn't My Customer Receive the SMS or Email?
+## Why Did not My Customer Receive the SMS or Email?
 
-<Accordion title="Notification not delivered" icon="far fa-envelope">
+<Accordion title="Notification Not Delivered" icon="far fa-envelope">
   **Check:**
 
   1. Confirm the customer's phone/email was entered correctly — open the link **Details** view in the Dashboard.
