@@ -1,31 +1,30 @@
 ---
-title: Validate Auth Code and Client
-excerpt: ''
 api:
   file: validate-auth-code-4.json
   operationId: ValidateAuthCodeandClient
-deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
 The **Validate Auth Code and Client** API is used for validating auth code and client.
 
 **Environment**
 
-|                |                                |
-| :------------- | :----------------------------- |
-| **Test**       | \<https://uat-accounts.payu.in> |
-| **Production** | \<https://accounts.payu.in>     |
+|                |                                                                  |
+| :------------- | :--------------------------------------------------------------- |
+| **Test**       | \<[https://uat-accounts.payu.in>](https://uat-accounts.payu.in>) |
+| **Production** | \<[https://accounts.payu.in>](https://accounts.payu.in>)         |
 
-> 📘 Notes:
-> 
-> - The grant type for the **grant_type** parameter for this API is** authorization_code**. 
-> - For the client credentials, refer to [Download Client Credentials](doc:download-client-credentials).
+<Callout icon="📘" theme="info">
+  ### Notes:
+
+  - The grant type for the **grant_type** parameter for this API is **authorization_code**.
+  - For the client credentials, refer to [Download Client Credentials](doc:download-client-credentials).
+</Callout>
 
 <details>
   <summary>Sample request</summary>
