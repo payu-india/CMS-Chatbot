@@ -149,7 +149,6 @@ curl --location 'https://uat-accounts.payu.in/oauth/token' \
 --data-urlencode 'password=your_reseller_password' \
 --data-urlencode 'scope=hub_session'
 ```
-
 ```python
 import requests
 
@@ -210,7 +209,6 @@ public class Step1_ObtainInitialToken {
     }
 }
 ```
-
 ```php
 <?php
 $url = "https://uat-accounts.payu.in/oauth/token";
