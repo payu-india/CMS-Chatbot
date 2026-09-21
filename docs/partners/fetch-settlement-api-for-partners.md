@@ -6,7 +6,7 @@ icon: far fa-rectangle-api
 metadata:
   robots: index
 ---
-#Overview
+# Overview
 
 The Fetch Settlement API is a `GET` endpoint for retrieving paginated settlement information for a merchant through a reseller portal. Use it to request settlement data for a reseller, merchant, and date range.
 
@@ -20,14 +20,14 @@ The endpoint path is the same in both environments:
 GET /api/v1/merchants/fetch_settlement
 ```
 
-| Environment | Base URL                       | Full endpoint                                                    |
-| ----------- | ------------------------------ | ---------------------------------------------------------------- |
-| UAT         | `https://test-partner.payu.in` | `https://test-partner.payu.in/api/v1/merchants/fetch_settlement` |
-| Production  | `https://partner.payu.in`      | `https://partner.payu.in/api/v1/merchants/fetch_settlement`      |
+| Environment | Full endpoint                                                    |
+| ----------- | ---------------------------------------------------------------- |
+| UAT         | `https://test-partner.payu.in/api/v1/merchants/fetch_settlement` |
+| Production  | `https://partner.payu.in/api/v1/merchants/fetch_settlement`      |
 
 ## Authentication
 
-Obtain the token through the **get token API** with the `client_read_settlements` scope. Send the returned token as a Bearer token in the `Authorization` header:
+Obtain the token through the [**get token API**](https://docs.payu.in/reference/get_token_partner_integration) with the `client_read_settlements` scope. Send the returned token as a Bearer token in the `Authorization` header:
 
 ```http
 Authorization: Bearer ${TOKEN}
