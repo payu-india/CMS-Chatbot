@@ -284,7 +284,6 @@ curl --location 'https://test-partnerapilayer.payu.in/apilayer/partner/payments'
   "hash": "a1b2c3d4e5f6789..."
 }'
 ```
-
 ```python
 import requests
 import json
