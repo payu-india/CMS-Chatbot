@@ -11,7 +11,7 @@ The `auth_code` is received on the configured redirect URI.
 
 Validate this auth_code using the [Validate Auth Code and Client API](https://docs.payu.in/reference-link/validate-auth-code-and-client).
 
-You will receive an access_token.
+You will receive an `access_token`.
 
 <Accordion title="Request Parameters" icon="far fa-abacus">
   | Parameter       | Required | Description                                                                                                                | Example value            |
