@@ -69,13 +69,13 @@ next:
   **If status is Active but the link still doesn't open:**
 
   - Ask the customer to try a different browser or clear their cache.
-  - Check if the link URL was truncated when shared (common over SMS) — copy the full URL from the Dashboard and resend it.
+  - Check if the link URL was truncated when shared (common over SMS). You can copy the full URL from the Dashboard and resend it.
   - Confirm the link was not shared as a screenshot instead of the actual URL.
 </Accordion>
 
 ***
 
-## Why Isn't the Payment Showing in My Dashboard?
+## Why Is not the Payment Showing in My Dashboard?
 
 <Accordion title="Payment not reflecting after customer paid" icon="far fa-clock">
   **Steps:**
