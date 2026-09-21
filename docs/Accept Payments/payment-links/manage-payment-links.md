@@ -58,7 +58,7 @@ To open your links: log in to [PayU Dashboard](https://onboarding.payu.in/) and 
 
 ***
 
-## What All Can I Do With a Link After It Is Created?
+## What Can I Do With a Payment Link After It Is Created?
 
 <Accordion title="Duplicate a link" icon="far fa-copy">
   Duplicating creates a brand-new link pre-filled with the same settings — amount, purpose, and options — so you don't have to fill everything in again. Use it to reuse a configuration, correct a mistake on an existing link, or run the same payment request for a different customer.
