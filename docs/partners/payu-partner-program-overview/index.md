@@ -112,6 +112,5 @@ If you need merchants to stay in your platform with an end-to-end controlled exp
 
 In this part of the document, the following sections provide the steps to integrate using various integration methods:
 
-- [Quick start — five API calls](doc:quick-start-partner-integration)
-- [API reference](doc:partner-api-authentication) (auth, onboarding, KYC, payments, webhooks)
-- [Errors and troubleshooting](doc:errors-partner-integration)
+- [Register a Partner Account](doc:register-a-partner-account)​
+- [Which Partner Integration Method to Choose?](doc:which-partner-integration-to-choose)
