@@ -1,7 +1,9 @@
 ---
-title: Quick Start Partner API Integration
+title: Partner OAuth Integration
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
