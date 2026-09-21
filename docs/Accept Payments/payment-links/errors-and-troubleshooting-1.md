@@ -1,0 +1,180 @@
+---
+title: Errors and Troubleshooting
+excerpt: >-
+  Diagnose and fix common Payment Links problems — links not opening, payments
+  not reflecting, notifications not delivered, and API errors.
+deprecated: false
+hidden: true
+metadata:
+  robots: index
+---
+{/* NEW CONTENT: Template E — Troubleshooting (V2 format) */}
+
+<Banner
+  isInline={true}
+  message="This page covers issues after creating a payment link"
+  color="#FF6B35"
+  textColor="#ffffff"
+  fontSize="14px"
+  fontWeight="bold"
+/>
+
+<Callout icon="📘" theme="info">
+  Haven't created a payment link yet? → [Send a Payment Link](doc:send-a-payment-link)
+</Callout>
+
+***
+
+## Why Is My Customer's Link Not Opening?
+
+<Accordion title="Check the link status first" icon="far fa-magnifying-glass">
+  Open the [Payment Links Dashboard](https://onboarding.payu.in/) and find the link. Check the **Status** column:
+
+  | Status          | What it means                            | What to do                                              |
+  | --------------- | ---------------------------------------- | ------------------------------------------------------- |
+  | **Active**      | Link should work                         | See device/browser issues below                         |
+  | **Expired**     | Expiry date passed                       | Duplicate the link with a new expiry date               |
+  | **Deactivated** | Manually disabled                        | Duplicate the link if you still need to collect payment |
+  | **Paid**        | Max transactions reached or paid in full | Create a new link if you need additional payment        |
+
+  **If status is Active but the link still doesn't open:**
+
+  - Ask the customer to try a different browser or clear their cache.
+  - Check if the link URL was truncated when shared (common over SMS) — copy the full URL from the Dashboard and resend it.
+  - Confirm the link was not shared as a screenshot instead of the actual URL.
+</Accordion>
+
+***
+
+## Why Isn't the Payment Showing in My Dashboard?
+
+<Accordion title="Payment not reflecting after customer paid" icon="far fa-clock">
+  **Steps:**
+
+  1. Wait **5–10 minutes** — Dashboard updates are near-real-time but occasionally delayed.
+  2. Check **Transactions** (not Payment Links) — the transaction may appear there before the link status updates.
+  3. Ask the customer for the last 4 digits of the card used or the UPI transaction reference ID, and the approximate time.
+  4. Search **Transactions > Search by amount/date**.
+
+  **If the transaction appears in Transactions but the link status hasn't updated:**
+  This is a display lag. The payment is received. The link will update within 30 minutes. Contact PayU support with the transaction ID if it persists beyond 1 hour.
+
+  **If the transaction does not appear anywhere:**
+  The payment may have failed on the customer's bank side even if their account was debited. Banks sometimes auto-reverse such debits within 5–7 business days. Ask the customer to check their bank statement. If the debit was not reversed, raise a dispute with PayU support and provide the customer's bank reference number.
+
+  <Callout icon="📘" theme="info">
+    If you have webhooks configured, a missing webhook event is a reliable sign the payment did not complete on PayU's side. → [Webhooks: Receive & Verify](doc:receive-and-verify-a-webhook)
+  </Callout>
+</Accordion>
+
+***
+
+## Why Didn't My Customer Receive the SMS or Email?
+
+<Accordion title="Notification not delivered" icon="far fa-envelope">
+  **Check:**
+
+  1. Confirm the customer's phone/email was entered correctly — open the link **Details** view in the Dashboard.
+  2. Confirm the **Notify via SMS** / **Notify via Email** toggles were turned on at the time of creation. Notifications fire once, at creation — they cannot be re-triggered for an existing link.
+  3. Ask the customer to:
+     - Check their spam/junk folder (for email).
+     - Check if DND (Do Not Disturb) is active on their number — DND blocks all promotional messages from all senders.
+
+  **How to resend the link:**
+  Go to the link in the Dashboard → **Actions** → **Share** → send again via SMS or email, or copy the URL and share manually.
+
+  <Callout icon="🚧" theme="warning">
+    Notification status is visible in the link's **Details** view under `emailStatus` and `smsStatus`. If either shows "not opted", the notification was not configured at creation time.
+  </Callout>
+</Accordion>
+
+***
+
+## Why Did My Customer's Payment Fail at Checkout?
+
+<Accordion title="Payment failed on the checkout page" icon="far fa-circle-xmark">
+  Ask the customer: what payment method did they try, and what error message did they see?
+
+  | Customer error                 | Likely cause                       | Fix                                                                |
+  | ------------------------------ | ---------------------------------- | ------------------------------------------------------------------ |
+  | "Transaction declined by bank" | Bank or card issuer declined       | Try a different card, or contact their bank                        |
+  | "Invalid OTP" or "OTP expired" | OTP entry timeout or typo          | Try again with the correct OTP within the time limit               |
+  | "Payment method not available" | Method not enabled on your account | Contact PayU to enable the payment method                          |
+  | "Amount exceeds limit"         | Card or UPI daily limit reached    | Try a different payment method or contact their bank               |
+  | Page stuck / spinning          | Poor network on customer's side    | Try on a stable connection, different browser, or different device |
+
+  **If payment methods are missing from the checkout page:** Contact PayU support — certain methods require activation at the merchant account level.
+</Accordion>
+
+***
+
+## How Do I Fix a Link with Wrong Details?
+
+<Accordion title="Wrong amount, description, or customer — link cannot be edited" icon="far fa-pen-to-square">
+  Payment Link configuration **cannot be edited after creation**.
+
+  **Fix:**
+
+  1. Go to the link → **Actions** → **Duplicate**.
+  2. Correct the details in the new link creation panel.
+  3. Click **Create and Send Payment Link**.
+  4. Go back to the original link → **Actions** → **Disable** to deactivate it.
+</Accordion>
+
+***
+
+## Why Did My Bulk Upload Fail?
+
+<Accordion title="CSV upload errors" icon="far fa-file-csv">
+  **Check the upload result:**
+
+  1. Go to the **Bulk Uploads** tab in the Payment Links Dashboard.
+  2. Find your upload and review the error rows.
+
+  | Error                           | Cause                                            | Fix                                                                  |
+  | ------------------------------- | ------------------------------------------------ | -------------------------------------------------------------------- |
+  | "Duplicate invoice number"      | A link with that invoice number already exists   | Use a unique invoice number per row, or leave blank to auto-generate |
+  | "Missing mandatory field"       | `subAmount` or `description` is empty            | Fill in all required columns                                         |
+  | "Invalid date format"           | `expiryDate` not in `YYYY-MM-DD HH:MM:SS` format | Correct the date format                                              |
+  | "Amount must be greater than 0" | Zero or negative `subAmount`                     | Enter a positive amount                                              |
+</Accordion>
+
+***
+
+## Why Is My API Request Failing?
+
+<Accordion title="API error codes and fixes" icon="far fa-code">
+  | Error                                           | Cause                                                      | Fix                                                               |
+  | ----------------------------------------------- | ---------------------------------------------------------- | ----------------------------------------------------------------- |
+  | `401 Unauthorized`                              | Token expired or wrong scope                               | [Generate a new token](doc:api-auth-token) with the correct scope |
+  | `400 — Invoice Number already exists`           | `invoiceNumber` reused                                     | Use a unique invoice number or omit it                            |
+  | `400 — furl/surl not recognised`                | Wrong parameter names                                      | Use `failureUrl` and `successUrl`                                 |
+  | `400 — expiry cannot be less than current date` | `expiryDate` in the past                                   | Set a future date in `YYYY-MM-DD HH:MM:SS`                        |
+  | `404 — paymentLink not found`                   | Invoice number doesn't match any link for your merchant ID | Verify invoice number and `merchantId` header                     |
+</Accordion>
+
+***
+
+## Still Stuck?
+
+Collect this before contacting support: the Payment Link URL or invoice number, a transaction ID (if the customer attempted payment), the date and time of the issue, and a screenshot of any error message.
+
+Contact PayU Support via the Dashboard **Help** section, or email `support@payu.in`.
+
+***
+
+## Related Pages
+
+<Cards>
+  <Card title="Send a Payment Link" href="doc:send-a-payment-link" icon="fa-paper-plane">
+    Step-by-step creation guide.
+  </Card>
+
+  <Card title="Manage Payment Links" href="doc:manage-payment-links" icon="fa-list-check">
+    Duplicate, deactivate, and re-share links.
+  </Card>
+
+  <Card title="Payment Links FAQs" href="doc:payment-links-faqs" icon="fa-circle-question">
+    Common questions about Payment Links.
+  </Card>
+</Cards>
