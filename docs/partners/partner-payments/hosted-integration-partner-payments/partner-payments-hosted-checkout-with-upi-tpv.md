@@ -125,8 +125,7 @@ The first step obtains an access token using your reseller credentials with the 
 ```
 Content-Type: application/x-www-form-urlencoded
 ```
-
-**Request Body Parameters:**
+<Accordion title="Request Parameters" icon="fa-table">
 
 | Parameter     | Type   | Required | Description              |
 | ------------- | ------ | -------- | ------------------------ |
@@ -136,6 +135,8 @@ Content-Type: application/x-www-form-urlencoded
 | username      | string | Yes      | Your reseller username   |
 | password      | string | Yes      | Your reseller password   |
 | scope         | string | Yes      | Must be `hub_session`    |
+
+</Accordion>
 
 **Sample Request:**
 
@@ -267,15 +268,14 @@ Use the initial access token to request an authorization code for the specific m
 Content-Type: application/x-www-form-urlencoded
 Authorization: Bearer <INITIAL_ACCESS_TOKEN>
 ```
-
-**Request Body Parameters:**
+<Accordion title="Request Parameters" icon="fa-table">
 
 | Parameter    | Type   | Required | Description                                                                    |
 | ------------ | ------ | -------- | ------------------------------------------------------------------------------ |
 | merchant_id  | string | Yes      | PayU merchant ID                                                               |
 | scopes       | string | Yes      | Space-separated: `create_payment_links partner_payment_links partner_payments` |
 | redirect_uri | string | Yes      | OAuth redirect URI (e.g., `https://uat-partner.payu.in`)                       |
-
+</Accordion>
 **Sample Request:**
 
 ```bash
@@ -286,7 +286,6 @@ curl --location 'https://uat-partner.payu.in/api/v1/merchants/auth_code' \
 --data-urlencode 'scopes=create_payment_links partner_payment_links partner_payments' \
 --data-urlencode 'redirect_uri=https://uat-partner.payu.in'
 ```
-
 ```python
 import requests
 
@@ -309,7 +308,6 @@ if response.status_code == 200:
     authorization_code = response.json()["authorization_code"]
     print(f"Authorization Code: {authorization_code}")
 ```
-
 ```java
 String url = "https://uat-partner.payu.in/api/v1/merchants/auth_code";
 
@@ -331,7 +329,6 @@ if (response.statusCode() == 200) {
     System.out.println("Authorization Code: " + authCode);
 }
 ```
-
 ```php
 $url = "https://uat-partner.payu.in/api/v1/merchants/auth_code";
 
@@ -383,8 +380,7 @@ Exchange the authorization code for the final access token with full partner pay
 ```
 Content-Type: application/x-www-form-urlencoded
 ```
-
-**Request Body Parameters:**
+<Accordion title="Request Parameters" icon="fa-table">
 
 | Parameter     | Type   | Required | Description                      |
 | ------------- | ------ | -------- | -------------------------------- |
@@ -393,6 +389,7 @@ Content-Type: application/x-www-form-urlencoded
 | grant_type    | string | Yes      | Must be `authorization_code`     |
 | code          | string | Yes      | Authorization code from Step 1.2 |
 | redirect_uri  | string | Yes      | Same redirect URI from Step 1.2  |
+</Accordion>
 
 **Sample Request:**
 
@@ -405,7 +402,6 @@ curl --location 'https://uat-accounts.payu.in/oauth/token' \
 --data-urlencode 'code=AUTH_CODE_abc123xyz456' \
 --data-urlencode 'redirect_uri=https://uat-partner.payu.in'
 ```
-
 ```python
 import requests
 
@@ -430,7 +426,6 @@ if response.status_code == 200:
     print(f"Final Access Token: {final_access_token}")
     # Use this token for all payment API calls
 ```
-
 ```java
 String url = "https://uat-accounts.payu.in/oauth/token";
 
@@ -453,7 +448,6 @@ if (response.statusCode() == 200) {
     System.out.println("Final Access Token: " + finalAccessToken);
 }
 ```
-
 ```php
 $url = "https://uat-accounts.payu.in/oauth/token";
 
@@ -512,7 +506,7 @@ if ($httpCode == 200) {
 
 Construct your payment request with transaction details and beneficiary account information.
 
-**Payment Request Parameters:**
+<Accordion title="Request Parameters" icon="fa-table">
 
 | Parameter         | Type   | Required        | Description                                        | Example                                  |
 | ----------------- | ------ | --------------- | -------------------------------------------------- | ---------------------------------------- |
@@ -552,6 +546,8 @@ The `beneficiarydetail` parameter must be a **JSON string** containing the autho
 | ifscCode          | string | Yes      | 11-character IFSC code of beneficiary's bank | `"ICIC0001234"`  |
 | accountNumber     | string | Yes      | Beneficiary's bank account number            | `"123456789012"` |
 | accountHolderName | string | Yes      | Account holder name (as per bank records)    | `"RAJESH KUMAR"` |
+
+</Accordion>
 
 <Warning>
 **Critical: Beneficiary Detail Handling**
