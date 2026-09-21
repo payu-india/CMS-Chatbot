@@ -39,4 +39,3 @@ Both the previous and successor banks are supported in the PayU Platform:
 | Oriental Bank of Commerce (`OBCB`) | Punjab National Bank (`PNBB`)           |
 | Syndicate Bank (`SYNDB`)           | Canara Bank (`CABB`)                    |
 | United Bank of India (`UNIB`)      | Punjab National Bank (`PNBB)`           |
-| Andhra Bank TPV(`ABNBTPV`)         | Union bank Of India TPV(`UBIBTPV`)      |
