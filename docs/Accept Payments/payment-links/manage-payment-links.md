@@ -265,12 +265,6 @@ You can perform the following actions after a link is created:
   3. Click **Yes** in the confirmation window.
 
   The link status changes to **Deactivated**.
-
-  <Callout icon="🚧" theme="warning">
-    ### **Deactivation is Permanent from the Dashboard**
-
-    To accept payment for the same purpose again, duplicate the link first, then deactivate the original. If you need to re-activate a deactivated link programmatically, use the [Cancel / Update Status API](doc:api-cancel-status) with `active: true`.
-  </Callout>
 </Accordion>
 
 <Accordion title="Reactivate a Link" icon="far fa-clock-rotate-left">
