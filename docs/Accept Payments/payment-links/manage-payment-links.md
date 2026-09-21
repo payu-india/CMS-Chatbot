@@ -315,7 +315,7 @@ You can perform the following actions after a link is created:
 
 ***
 
-## How Do I Find a Specific Payment Link?
+## How Do I Search for a Payment Link?
 
 You can filter the payment links list using the following options:
 
