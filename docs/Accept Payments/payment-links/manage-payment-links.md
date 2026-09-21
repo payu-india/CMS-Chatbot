@@ -347,6 +347,24 @@ You can filter the payment links list using the following options:
 
 </Accordion>
 
+<Accordion title="Search a Payment Link" icon="fad fa-magnifying-glass">
+  You can search a payment using purpose and InvoiceNumber.
+
+  To search a payment link:
+
+  1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor> and go to **Payment Links&#x20;**&#x75;nder **Payment Tools.**
+
+     <Image src="https://files.readme.io/16f19c44171f05b7d9ce1394576e538eb0e5459b9f54c3f1f0a2355c46e03974-image.png" align="center" caption="Access Payment Links" border={true} />
+
+  2. Use the drop-down next to the search to select the search type. Below are the available options:
+     - **Purpose**
+     - **InvoiceNumber**
+
+     <Image src="https://files.readme.io/296c997061ba5287303445fafc09c121ce72269f1715382f60217f126339242c-Screenshot_2026-09-21_at_3.01.23_PM.png" align="center" caption="Select Search Type" border={true} />
+
+  3. Enter the required information in the search bar based on your selection and click **Search**.
+</Accordion>
+
 ***
 
 ## Can I Download All My Payment Link Records?
