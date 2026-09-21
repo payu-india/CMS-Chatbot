@@ -158,10 +158,6 @@ You can perform the following actions after a link is created:
       </Tab>
     </Tabs>
   </Accordion>
-
-  <Accordion title="" icon="fa-info-circle">
-
-  </Accordion>
 </Accordion>
 
 <Accordion title="Duplicate a link" icon="far fa-copy">
