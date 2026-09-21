@@ -42,12 +42,6 @@ next:
 
 You can manage payment links from the PayU Dashboard after they are created and live.
 
-<Callout icon="fad fa-rectangle-new" theme="warn">
-  ### New to Payment Links?
-
-  Start with the [Payment Links Overview](doc:payment-links-overview) or follow the [step-by-step guide to create your first link](doc:send-a-payment-link). To manage links from your own system, see the [Fetch API](doc:api-fetch) and [Cancel / Update Status API](doc:api-cancel-status).
-</Callout>
-
 ***
 
 ## How Do I Access My Payment Links?
@@ -452,12 +446,12 @@ You can filter the payment links list using the following options:
 ## Next Steps
 
 <Cards>
-  <Card title="Send a Payment Link" href="doc:send-a-payment-link" icon="fa-paper-plane">
-    Step-by-step guide to creating and sending a payment link.
+  <Card title="Payment Links Overview" icon="fad fa-link">
+    Go through Payment Links if you are new.
   </Card>
 
-  <Card title="Payment Links API" href="doc:api-fetch" icon="fa-code">
-    Fetch, update, and cancel payment links programmatically.
+  <Card title="Send a Payment Link" href="doc:send-a-payment-link" icon="fa-paper-plane">
+    Step-by-step guide to creating and sending a payment link.
   </Card>
 
   <Card title="Payment Links Troubleshooting" href="doc:payment-links-troubleshooting" icon="fa-wrench">
