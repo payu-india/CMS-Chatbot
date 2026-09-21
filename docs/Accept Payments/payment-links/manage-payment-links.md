@@ -50,10 +50,10 @@ You can manage payment links from the PayU Dashboard after they are created and 
 
 ## Access Your Payment Links
 
-To open your links: log in to [PayU Dashboard](https://onboarding.payu.in/) → **Payment Tools > Payment Links**.
+To open your links: log in to [PayU Dashboard](https://onboarding.payu.in/) and click **Payment Links&#x20;**&#x75;nder **Payment Tools**.
 
 
-<Image src="https://files.readme.io/cc35b704632bded3088580a070ffaf24f203c3713f7880fb0a2cdc6e5b8bc842-Screenshot_2025-06-02_at_7.05.43_PM.png" align="center" caption="Payment Links Dashboard" border={true} />
+<Image src="https://files.readme.io/bca170f5ad6ba34eb18f1e8ba1a7072d45be0b24fd0f32fd4bfdf22d015682ca-Screenshot_2026-09-21_at_9.35.56_AM.png" align="center" caption="Access Payment Links" border={true} />
 
 
 ***
