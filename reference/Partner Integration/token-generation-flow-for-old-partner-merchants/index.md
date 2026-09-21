@@ -1,7 +1,7 @@
 ---
 title: Token Generation Flow used for Partner Payments
 deprecated: false
-hidden: false
+hidden: true
 link:
   new_tab: false
 metadata:
