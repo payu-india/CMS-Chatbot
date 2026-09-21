@@ -64,6 +64,16 @@ To open your links: log in to [PayU Dashboard](https://onboarding.payu.in/) and 
 
 You can perform the following actions after a link is created:
 
+<Accordion title="See Payment Link Details" icon="far fa-rectangle-list">
+  To see payment link details:
+
+  1. Log in to the Payu dashboard.
+  2. Find the link in the table.
+  3. Click **Details** in the rightmost column.
+
+  The detail view shows everything you set when creating the link — amount, purpose, expiry date, partial payment settings, and any custom fields — along with any customer details collected at checkout.
+</Accordion>
+
 <Accordion title="Duplicate a link" icon="far fa-copy">
   Duplicating creates a brand-new link pre-filled with the same settings — amount, purpose, and options — so you don't have to fill everything in again. Use it to reuse a configuration, correct a mistake on an existing link, or run the same payment request for a different customer.
 
@@ -102,13 +112,14 @@ You can perform the following actions after a link is created:
   </Callout>
 </Accordion>
 
-<Accordion title="View all transactions on a link" icon="far fa-rectangle-list">
-  A single payment link can be paid multiple times (unless you set a max transaction limit). The detail view shows you every payment made on it.
+<Accordion title="See all transactions made on a link" icon="far fa-clock-rotate-left">
+  A single payment link can be paid multiple times (unless you set a max transaction limit). To see every payment made on it:
 
   1. Find the link in the table.
   2. Click **Details** in the rightmost column.
+  3. Scroll to the **Transaction History** section.
 
-  The detail view shows the full link configuration — amount, purpose, expiry, options — along with a complete transaction history and any customer details collected at checkout.
+  Each row shows the transaction ID, amount paid, date, and status.
 </Accordion>
 
 ***
@@ -116,6 +127,8 @@ You can perform the following actions after a link is created:
 ## How Do I Look Up a Specific Link?
 
 <Callout icon="📘" theme="info">
+  ### **Payment Link Status**
+
   Not sure what **Active**, **Paid**, **Expired**, or **Deactivated** mean? See [Payment Link Statuses](doc:send-a-payment-link).
 </Callout>
 
@@ -164,14 +177,6 @@ You can perform the following actions after a link is created:
   <Image src="https://files.readme.io/238e4d7aa7373144cd4799cc70a0bdc1c363df5e428ffa21ce9f67bdbd378ade-dashboard_payment_links_download_reports_drop-down.png" align="center" caption="Download drop-down with format options" border={true} />
 
 </Accordion>
-
-***
-
-## What If I Want to Create a Lot of Links at Once?
-
-Use the **Bulk Uploads** tab in the Payment Links Dashboard to upload a CSV and create hundreds of links in one go. For a full walkthrough including all column definitions and common errors, see [Send a Payment Link → Create Many Links at Once](doc:send-a-payment-link).
-
-To automate bulk creation from your own system, use the [Create Payment Link API](doc:api-create-share).
 
 ***
 
