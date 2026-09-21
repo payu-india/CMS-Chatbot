@@ -102,8 +102,38 @@ You can perform the following actions after a link is created:
 
   </Accordion>
 
-  <Accordion title="" icon="fa-info-circle">
+  <Accordion title="Details and Transactions" icon="far fa-money-bills">
+    This section has two different tabs:
 
+    <Tabs>
+      <Tab title="Details">
+        The **Details&#x20;**&#x74;ab diaplys the following link information:
+
+        - **Created On:&#x20;**&#x54;he date and time at which the link was created.
+        - **Balance:&#x20;**&#x54;he balance amount to be paid (only if the partial payment is enabled).
+        - **Min. Initial Payment:&#x20;**&#x54;he minimum amount allowed to pay.
+        - **Limit Access To:&#x20;**&#x54;he number of transactions allowed.&#x20;
+        - **Creator Email**
+        - **Expiry Date:&#x20;**&#x54;he link expiry date an time beyond which the link will be deactivated.
+        - **Partial Payment**
+        - **Status:&#x20;**&#x53;tatus of the payment.
+        - **Auto Reminder**
+
+
+        <Image src="https://files.readme.io/575f5f4799fc68845cea4977f74665bddb91165fd06ddf4a8e18d11bafc0fa43-Screenshot_2026-09-21_at_11.22.45_AM.png" align="center" caption="Link Details" border={true} />
+
+      </Tab>
+
+      <Tab title="Transactions">
+        This tab displays the following transaction information of the link:
+
+        - **Date:&#x20;**&#x44;ate and time at which the payment was made.
+        - **Payu ID (Transaction ID):&#x20;**&#x41; unique transaction ID. You have an option to copy it.
+        - **Customer Email**
+        - **Amount:&#x20;**&#x54;he amount of the transaction.
+        - **Status:&#x20;**&#x54;he status of the transaction.
+      </Tab>
+    </Tabs>
   </Accordion>
 </Accordion>
 
