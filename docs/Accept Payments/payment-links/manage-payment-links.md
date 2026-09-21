@@ -48,6 +48,8 @@ You can manage payment links from the PayU Dashboard after they are created and 
   Start with the [Payment Links Overview](doc:payment-links-overview) or follow the [step-by-step guide to create your first link](doc:send-a-payment-link). To manage links from your own system, see the [Fetch API](doc:api-fetch) and [Cancel / Update Status API](doc:api-cancel-status).
 </Callout>
 
+***
+
 ## Access Your Payment Links
 
 To open your links: log in to [PayU Dashboard](https://onboarding.payu.in/) and click **Payment Links&#x20;**&#x75;nder **Payment Tools**.
@@ -59,6 +61,8 @@ To open your links: log in to [PayU Dashboard](https://onboarding.payu.in/) and 
 ***
 
 ## What Can I Do With a Payment Link After It Is Created?
+
+You can perform the following actions after a link is created:
 
 <Accordion title="Duplicate a link" icon="far fa-copy">
   Duplicating creates a brand-new link pre-filled with the same settings — amount, purpose, and options — so you don't have to fill everything in again. Use it to reuse a configuration, correct a mistake on an existing link, or run the same payment request for a different customer.
