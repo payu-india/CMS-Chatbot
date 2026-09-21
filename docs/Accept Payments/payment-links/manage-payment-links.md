@@ -273,12 +273,22 @@ You can perform the following actions after a link is created:
   </Callout>
 </Accordion>
 
-<Accordion title="See all transactions made on a link" icon="far fa-clock-rotate-left">
-  A single payment link can be paid multiple times (unless you set a max transaction limit). To see every payment made on it:
+<Accordion title="Reactivate a Link" icon="far fa-clock-rotate-left">
+  You can reactivate a deactivated link from the dashboard:
 
-  1. Find the link in the table.
-  2. Click **Details** in the rightmost column.
-  3. Scroll to the **Transaction History** section.
+  To reactivate a link:
+
+  1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor> and go to **Payment Links&#x20;**&#x75;nder **Payment Tools.**
+
+     <Image src="https://files.readme.io/538f6c20473e9c0da496e892ac68071e166879f495dda0f71227fcbda7fc0de5-image.png" align="center" caption="Access Payment Links" border={true} />
+
+  2. Click the menu icon against a deactivated payment link and click **Activate.**
+
+     <Image src="https://files.readme.io/aa31df7ffbf655de3e172a8e8089bf4c82f7ee8fac69a7d531a7dc3881f7579b-Screenshot_2026-09-21_at_1.58.59_PM.png" align="center" caption="Click Activate" border={true} />
+
+  3. Click **Yes&#x20;**&#x69;n the confirmation window to activate.
+
+  The link status changes to **Active**.
 
   Each row shows the transaction ID, amount paid, date, and status.
 </Accordion>
