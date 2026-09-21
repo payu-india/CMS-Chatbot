@@ -1,8 +1,7 @@
 ---
-title: Hosted Checkout Integration
+title: Hosted Checkout Integration - Partner Payments
 deprecated: false
 hidden: false
-icon: far fa-arrow-left-from-dotted-line
 link:
   new_tab: false
 metadata:
