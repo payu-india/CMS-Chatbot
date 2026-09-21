@@ -69,9 +69,12 @@ You can perform the following actions after a link is created:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor> and go to **Payment Links&#x20;**&#x75;nder **Payment Tools.**
 
+
      <Image src="https://files.readme.io/53215c3e4e7294d15669cb34cd231730787e24e86505214a8d80d48cb5b67c19-image.png" align="center" caption="Access Payment Links" border={true} />
 
+
      A list of created payment links is displayed with the following information:
+
      - **Created On**
      - **Purpose of Payment**
      - **Invoice ID**
@@ -82,10 +85,11 @@ You can perform the following actions after a link is created:
      - **Status**
   2. Click the Payment Link you want to view the details.
 
+
      <Image src="https://files.readme.io/fada3c576d9d091f8a41e2cefe2ce555ff3878f8debea9b8ddc1e08b76191d43-Screenshot_2026-09-21_at_10.21.28_AM.png" align="center" caption="Click to view details" border={true} />
 
 
-  The link details are divided in to the following sections:
+  The link details are divided in to the following sections:<br />
 
   <Accordion title="Link Details" icon="fad fa-link">
     The link and customer detials are displayed in two sub-sections.
@@ -106,6 +110,7 @@ You can perform the following actions after a link is created:
 
         - **Share:&#x20;**&#x4F;ptions to copy the link or share via WhatsApp, Facebook or to any other mobile number or email ID.
 
+
           <Image src="https://files.readme.io/18374beecc40c725bf806f3eea419f259e50c0928a43a7573e94c8a661280637-Screenshot_2026-09-21_at_10.40.08_AM.png" border={true} />
 
       </Tab>
@@ -122,7 +127,7 @@ You can perform the following actions after a link is created:
   </Accordion>
 
   <Accordion title="Details and Transactions" icon="far fa-money-bills">
-    This section has two different tabs:
+    This section has two different tabs:<br />
 
     <Tabs>
       <Tab title="Details">
