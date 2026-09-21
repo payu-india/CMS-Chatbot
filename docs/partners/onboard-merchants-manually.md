@@ -1,5 +1,5 @@
 ---
-title: Onboard Merchants Manually using Partner Portal
+title: Refer Merchants Manually using Partner Portal
 deprecated: false
 hidden: false
 link:
