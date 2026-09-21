@@ -24,7 +24,7 @@ The following codes must be used as the value for the <Glossary>bankcode</Glossa
 
 ## Merged Banks and Supported Bank Codes
 
-Both the previous and successor banks are supported in PayU Platform as mentioned below:
+Both the previous and successor banks are supported in PayU Platform:
 
 | Previous Bank (with the Bank Code) | Successor Bank (**with the Bank Code**) |
 | ---------------------------------- | --------------------------------------- |
