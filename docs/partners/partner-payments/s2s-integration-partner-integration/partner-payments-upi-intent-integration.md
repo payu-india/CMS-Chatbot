@@ -400,17 +400,6 @@ If all match, mark the transaction as confirmed.
 
 ***
 
-## Use Cases
-
-Partner Payment UPI Intent is ideal for:
-
-\- **Mobile-first apps** — Ride-hailing, food delivery, e-commerce apps
-\- **Quick checkout** — Minimize steps and friction
-\- **In-app purchases** — Games, content subscriptions, digital goods
-\- **Instant payments** — Bills, recharges, peer-to-peer transfers
-
-***
-
 ## Error Handling
 
 | Error                                     | Cause                                         | Resolution                                                                                                              |
