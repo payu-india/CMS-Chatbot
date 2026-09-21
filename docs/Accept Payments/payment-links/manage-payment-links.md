@@ -180,7 +180,7 @@ You can perform the following actions after a link is created:
 
   3. The **Create new payment link** page opens with the existing link's details pre-filled.
   4. Edit any fields you need to change. For example, the expiry date or customer details.
-  5. Click **Create and Send Payment Link**.
+  5. Click **Create and Send Payment link**.
 
      <Image src="https://files.readme.io/eb3a59aa72227334bc5d2e66dd3f100eef9594aa8cbc4084e3c93dd19a9f2d46-screen-recording.gif" align="center" caption="Duplicate a Payment Link" border={true} />
 
