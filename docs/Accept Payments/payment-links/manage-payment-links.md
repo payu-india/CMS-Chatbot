@@ -67,9 +67,10 @@ You can perform the following actions after a link is created:
 <Accordion title="See Payment Link Details" icon="far fa-rectangle-list">
   To see payment link details:
 
-  1. Log in to the Payu dashboard.
-  2. Find the link in the table.
-  3. Click **Details** in the rightmost column.
+  1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor>.
+  2.
+  3. Find the link in the table.
+  4. Click **Details** in the rightmost column.
 
   The detail view shows everything you set when creating the link — amount, purpose, expiry date, partial payment settings, and any custom fields — along with any customer details collected at checkout.
 </Accordion>
