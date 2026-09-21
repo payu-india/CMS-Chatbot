@@ -164,8 +164,6 @@ For getting access token, refer to [Prequisites](#prequisites).
 
   <Partner_Payment_Auth />
 
-
-
   ## Step 2: Initiate Hosted Checkout Payment
 
   ### Step 2.1: Prepare Request Parameters
@@ -590,7 +588,7 @@ Partner Payments Hosted Checkout is ideal for:
 
 * **Subscription Services** : Recurring billing for SaaS, memberships, content subscriptions. Hosted checkout supports saved cards and automated retries.
 
-\*. **B2B Platforms** : Business-to-business transactions requiring invoice payments, procurement orders, vendor settlements.
+* **B2B Platforms** : Business-to-business transactions requiring invoice payments, procurement orders, vendor settlements.
 
 * **Event Ticketing** : Concert, sports, conference ticket sales with multiple payment methods and high transaction volumes.
 
