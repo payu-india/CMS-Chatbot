@@ -372,6 +372,7 @@ echo "Status Code: " . $statusCode . "\n";
 echo "Response: " . $response;
 ?>
 ```
+</Accordion>
 ### Step 2.4: Handle Payment Response & Redirect Customer
 
 **Success Response:**
