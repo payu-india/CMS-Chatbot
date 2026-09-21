@@ -105,6 +105,8 @@ Before you begin, ensure you have:
 
 **Headers:**
 
+Use the `access_token` from Step 1 for this step as bearer token:
+
 ```
 Authorization: Bearer <your_access_token>
 Content-Type: application/json
