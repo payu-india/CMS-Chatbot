@@ -249,17 +249,27 @@ You can perform the following actions after a link is created:
   </Callout>
 </Accordion>
 
-<Accordion title="Deactivate a link" icon="far fa-ban">
+<Accordion title="Deactivate a Link" icon="far fa-ban">
   Deactivating stops any further payments on the link. Customers who click it will see a message that it is no longer active.
 
-  1. Find the link in the table.
-  2. In the **Actions** column, click the **Disable** icon (🚫).
-  3. Confirm the action in the pop-up.
+  To deactivate a link:
+
+  1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor> and go to **Payment Links&#x20;**&#x75;nder **Payment Tools.**
+
+     <Image src="https://files.readme.io/517b591fde2b0d734063b91df9a7efd015f4d4eb75e35c147f198ec2e07929cb-image.png" align="center" caption="Access Payment Links" border={true} />
+
+  2. Click the menu icon against a required payment link and click **Deactivate.**
+
+     <Image src="https://files.readme.io/615e8c4c1da7afcbe5befc1657e14d1878c6e9a5f33ac59571d6a8c5ea50ed74-Screenshot_2026-09-21_at_1.47.19_PM.png" align="center" caption="Click Deactivate" border={true} />
+
+  3. Click in the confirmation window.
 
   The link status changes to **Deactivated**.
 
   <Callout icon="🚧" theme="warning">
-    **Deactivation is permanent from the Dashboard.** To accept payment for the same purpose again, duplicate the link first, then deactivate the original. If you need to re-activate a deactivated link programmatically, use the [Cancel / Update Status API](doc:api-cancel-status) with `active: true`.
+    ### **Deactivation is Permanent from the Dashboard**
+
+    To accept payment for the same purpose again, duplicate the link first, then deactivate the original. If you need to re-activate a deactivated link programmatically, use the [Cancel / Update Status API](doc:api-cancel-status) with `active: true`.
   </Callout>
 </Accordion>
 
