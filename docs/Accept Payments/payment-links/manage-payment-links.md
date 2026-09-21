@@ -42,7 +42,7 @@ next:
 
 You can manage payment links from the PayU Dashboard after they are created and live.
 
-<Callout icon="📘" theme="warn">
+<Callout icon="fad fa-rectangle-new" theme="warn">
   ### New to Payment Links?
 
   Start with the [Payment Links Overview](doc:payment-links-overview) or follow the [step-by-step guide to create your first link](doc:send-a-payment-link). To manage links from your own system, see the [Fetch API](doc:api-fetch) and [Cancel / Update Status API](doc:api-cancel-status).
