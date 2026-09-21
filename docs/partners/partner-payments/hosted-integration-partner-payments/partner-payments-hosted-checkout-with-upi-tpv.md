@@ -114,391 +114,7 @@ Partner Payments API requires a 3-step OAuth 2.0 authentication flow to obtain t
 - Authorization code request requires the reseller's initial access token
 </Warning>
 
-### Step 1.1: Obtain Initial Access Token (Reseller Password Grant)
-
-The first step obtains an access token using your reseller credentials with the `hub_session` scope.
-
-**Endpoint:** `POST https://uat-accounts.payu.in/oauth/token`
-
-**Headers:**
-
-```
-Content-Type: application/x-www-form-urlencoded
-```
-<Accordion title="Request Parameters" icon="fa-table">
-
-| Parameter     | Type   | Required | Description              |
-| ------------- | ------ | -------- | ------------------------ |
-| client_id     | string | Yes      | Your OAuth client ID     |
-| client_secret | string | Yes      | Your OAuth client secret |
-| grant_type    | string | Yes      | Must be `password`       |
-| username      | string | Yes      | Your reseller username   |
-| password      | string | Yes      | Your reseller password   |
-| scope         | string | Yes      | Must be `hub_session`    |
-
-</Accordion>
-
-**Sample Request:**
-
-```bash
-curl --location 'https://uat-accounts.payu.in/oauth/token' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'client_id=your_client_id' \
---data-urlencode 'client_secret=your_client_secret' \
---data-urlencode 'grant_type=password' \
---data-urlencode 'username=your_reseller_username' \
---data-urlencode 'password=your_reseller_password' \
---data-urlencode 'scope=hub_session'
-```
-```python
-import requests
-
-url = "https://uat-accounts.payu.in/oauth/token"
-
-headers = {
-    "Content-Type": "application/x-www-form-urlencoded"
-}
-
-payload = {
-    "client_id": "your_client_id",
-    "client_secret": "your_client_secret",
-    "grant_type": "password",
-    "username": "your_reseller_username",
-    "password": "your_reseller_password",
-    "scope": "hub_session"
-}
-
-response = requests.post(url, headers=headers, data=payload)
-
-if response.status_code == 200:
-    initial_access_token = response.json()["access_token"]
-    print(f"Initial Access Token: {initial_access_token}")
-```
-
-```java
-import java.net.URI;
-import java.net.URLEncoder;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
-
-public class Step1_ObtainInitialToken {
-    public static void main(String[] args) throws Exception {
-        String url = "https://uat-accounts.payu.in/oauth/token";
-        
-        String formBody = "client_id=" + URLEncoder.encode("your_client_id", StandardCharsets.UTF_8) +
-                         "&client_secret=" + URLEncoder.encode("your_client_secret", StandardCharsets.UTF_8) +
-                         "&grant_type=password" +
-                         "&username=" + URLEncoder.encode("your_reseller_username", StandardCharsets.UTF_8) +
-                         "&password=" + URLEncoder.encode("your_reseller_password", StandardCharsets.UTF_8) +
-                         "&scope=hub_session";
-        
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create(url))
-            .header("Content-Type", "application/x-www-form-urlencoded")
-            .POST(HttpRequest.BodyPublishers.ofString(formBody))
-            .build();
-        
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        
-        if (response.statusCode() == 200) {
-            String accessToken = response.body().split("\"access_token\":\"")[1].split("\"")[0];
-            System.out.println("Initial Access Token: " + accessToken);
-        }
-    }
-}
-```
-```php
-<?php
-$url = "https://uat-accounts.payu.in/oauth/token";
-
-$payload = http_build_query(array(
-    "client_id" => "your_client_id",
-    "client_secret" => "your_client_secret",
-    "grant_type" => "password",
-    "username" => "your_reseller_username",
-    "password" => "your_reseller_password",
-    "scope" => "hub_session"
-));
-
-$ch = curl_init($url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    "Content-Type: application/x-www-form-urlencoded"
-));
-
-$response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-curl_close($ch);
-
-if ($httpCode == 200) {
-    $data = json_decode($response, true);
-    $initialAccessToken = $data['access_token'];
-    echo "Initial Access Token: " . $initialAccessToken;
-}
-?>
-```
-
-**Sample Response:**
-
-```json
-{
-  "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...",
-  "token_type": "bearer",
-  "expires_in": 3600,
-  "scope": "hub_session"
-}
-```
-
-***
-
-### Step 1.2: Request Merchant Authorization Code
-
-Use the initial access token to request an authorization code for the specific merchant.
-
-**Endpoint:** `POST https://uat-partner.payu.in/api/v1/merchants/auth_code`
-
-**Headers:**
-
-```
-Content-Type: application/x-www-form-urlencoded
-Authorization: Bearer <INITIAL_ACCESS_TOKEN>
-```
-<Accordion title="Request Parameters" icon="fa-table">
-
-| Parameter    | Type   | Required | Description                                                                    |
-| ------------ | ------ | -------- | ------------------------------------------------------------------------------ |
-| merchant_id  | string | Yes      | PayU merchant ID                                                               |
-| scopes       | string | Yes      | Space-separated: `create_payment_links partner_payment_links partner_payments` |
-| redirect_uri | string | Yes      | OAuth redirect URI (e.g., `https://uat-partner.payu.in`)                       |
-</Accordion>
-**Sample Request:**
-
-```bash
-curl --location 'https://uat-partner.payu.in/api/v1/merchants/auth_code' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---header 'Authorization: Bearer <INITIAL_ACCESS_TOKEN>' \
---data-urlencode 'merchant_id=8739528' \
---data-urlencode 'scopes=create_payment_links partner_payment_links partner_payments' \
---data-urlencode 'redirect_uri=https://uat-partner.payu.in'
-```
-```python
-import requests
-
-url = "https://uat-partner.payu.in/api/v1/merchants/auth_code"
-
-headers = {
-    "Content-Type": "application/x-www-form-urlencoded",
-    "Authorization": f"Bearer {initial_access_token}"
-}
-
-payload = {
-    "merchant_id": "8739528",
-    "scopes": "create_payment_links partner_payment_links partner_payments",
-    "redirect_uri": "https://uat-partner.payu.in"
-}
-
-response = requests.post(url, headers=headers, data=payload)
-
-if response.status_code == 200:
-    authorization_code = response.json()["authorization_code"]
-    print(f"Authorization Code: {authorization_code}")
-```
-```java
-String url = "https://uat-partner.payu.in/api/v1/merchants/auth_code";
-
-String formBody = "merchant_id=8739528" +
-                 "&scopes=create_payment_links partner_payment_links partner_payments" +
-                 "&redirect_uri=https://uat-partner.payu.in";
-
-HttpRequest request = HttpRequest.newBuilder()
-    .uri(URI.create(url))
-    .header("Content-Type", "application/x-www-form-urlencoded")
-    .header("Authorization", "Bearer " + initialAccessToken)
-    .POST(HttpRequest.BodyPublishers.ofString(formBody))
-    .build();
-
-HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-if (response.statusCode() == 200) {
-    String authCode = response.body().split("\"authorization_code\":\"")[1].split("\"")[0];
-    System.out.println("Authorization Code: " + authCode);
-}
-```
-```php
-$url = "https://uat-partner.payu.in/api/v1/merchants/auth_code";
-
-$payload = http_build_query(array(
-    "merchant_id" => "8739528",
-    "scopes" => "create_payment_links partner_payment_links partner_payments",
-    "redirect_uri" => "https://uat-partner.payu.in"
-));
-
-$ch = curl_init($url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    "Content-Type: application/x-www-form-urlencoded",
-    "Authorization: Bearer " . $initialAccessToken
-));
-
-$response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-curl_close($ch);
-
-if ($httpCode == 200) {
-    $data = json_decode($response, true);
-    $authorizationCode = $data['authorization_code'];
-    echo "Authorization Code: " . $authorizationCode;
-}
-?>
-```
-
-**Sample Response:**
-
-```json
-{
-  "authorization_code": "AUTH_CODE_abc123xyz456"
-}
-```
-
-***
-
-### Step 1.3: Exchange Authorization Code for Final Access Token
-
-Exchange the authorization code for the final access token with full partner payment scopes.
-
-**Endpoint:** `POST https://uat-accounts.payu.in/oauth/token`
-
-**Headers:**
-
-```
-Content-Type: application/x-www-form-urlencoded
-```
-<Accordion title="Request Parameters" icon="fa-table">
-
-| Parameter     | Type   | Required | Description                      |
-| ------------- | ------ | -------- | -------------------------------- |
-| client_id     | string | Yes      | Your OAuth client ID             |
-| client_secret | string | Yes      | Your OAuth client secret         |
-| grant_type    | string | Yes      | Must be `authorization_code`     |
-| code          | string | Yes      | Authorization code from Step 1.2 |
-| redirect_uri  | string | Yes      | Same redirect URI from Step 1.2  |
-</Accordion>
-
-**Sample Request:**
-
-```bash
-curl --location 'https://uat-accounts.payu.in/oauth/token' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---data-urlencode 'client_id=your_client_id' \
---data-urlencode 'client_secret=your_client_secret' \
---data-urlencode 'grant_type=authorization_code' \
---data-urlencode 'code=AUTH_CODE_abc123xyz456' \
---data-urlencode 'redirect_uri=https://uat-partner.payu.in'
-```
-```python
-import requests
-
-url = "https://uat-accounts.payu.in/oauth/token"
-
-headers = {
-    "Content-Type": "application/x-www-form-urlencoded"
-}
-
-payload = {
-    "client_id": "your_client_id",
-    "client_secret": "your_client_secret",
-    "grant_type": "authorization_code",
-    "code": authorization_code,
-    "redirect_uri": "https://uat-partner.payu.in"
-}
-
-response = requests.post(url, headers=headers, data=payload)
-
-if response.status_code == 200:
-    final_access_token = response.json()["access_token"]
-    print(f"Final Access Token: {final_access_token}")
-    # Use this token for all payment API calls
-```
-```java
-String url = "https://uat-accounts.payu.in/oauth/token";
-
-String formBody = "client_id=" + URLEncoder.encode("your_client_id", StandardCharsets.UTF_8) +
-                 "&client_secret=" + URLEncoder.encode("your_client_secret", StandardCharsets.UTF_8) +
-                 "&grant_type=authorization_code" +
-                 "&code=" + authorizationCode +
-                 "&redirect_uri=https://uat-partner.payu.in";
-
-HttpRequest request = HttpRequest.newBuilder()
-    .uri(URI.create(url))
-    .header("Content-Type", "application/x-www-form-urlencoded")
-    .POST(HttpRequest.BodyPublishers.ofString(formBody))
-    .build();
-
-HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-if (response.statusCode() == 200) {
-    String finalAccessToken = response.body().split("\"access_token\":\"")[1].split("\"")[0];
-    System.out.println("Final Access Token: " + finalAccessToken);
-}
-```
-```php
-$url = "https://uat-accounts.payu.in/oauth/token";
-
-$payload = http_build_query(array(
-    "client_id" => "your_client_id",
-    "client_secret" => "your_client_secret",
-    "grant_type" => "authorization_code",
-    "code" => $authorizationCode,
-    "redirect_uri" => "https://uat-partner.payu.in"
-));
-
-$ch = curl_init($url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    "Content-Type: application/x-www-form-urlencoded"
-));
-
-$response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-curl_close($ch);
-
-if ($httpCode == 200) {
-    $data = json_decode($response, true);
-    $finalAccessToken = $data['access_token'];
-    echo "Final Access Token: " . $finalAccessToken;
-}
-?>
-```
-
-**Sample Response:**
-
-```json
-{
-  "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI...",
-  "token_type": "bearer",
-  "expires_in": 3600,
-  "scope": "create_payment_links partner_payment_links partner_payments"
-}
-```
-
-<Note>
-**Token Management Best Practices:**
-- Cache the final access token and reuse it until expiry (default: 3600 seconds / 1 hour)
-- Implement automatic token refresh before expiry
-- Store tokens securely (never expose in client-side code or logs)
-- If a token expires mid-session, repeat Steps 1.1–1.3 to obtain a fresh token
-</Note>
-
-***
+<Partner_Payment_Auth />
 
 ## Step 2: Initiate Hosted Checkout Payment with UPI TPV
 
@@ -507,46 +123,44 @@ if ($httpCode == 200) {
 Construct your payment request with transaction details and beneficiary account information.
 
 <Accordion title="Request Parameters" icon="fa-table">
+  | Parameter         | Type   | Required        | Description                                        | Example                                  |
+  | ----------------- | ------ | --------------- | -------------------------------------------------- | ---------------------------------------- |
+  | merchant_id       | string | Yes             | PayU merchant ID                                   | `"8739528"`                              |
+  | reseller_id       | string | Yes             | Partner UUID/reseller ID                           | `"11ee-0e7e-5403fde2-9523-0a696b110fde"` |
+  | txnid             | string | Yes             | Unique transaction ID (alphanumeric, max 50 chars) | `"HC_TPV_20240315_001"`                  |
+  | amount            | string | Yes             | Transaction amount (decimal, 2 places)             | `"1500.00"`                              |
+  | productinfo       | string | Yes             | Product/service description                        | `"Loan EMI Payment - March 2024"`        |
+  | firstname         | string | Optional        | Customer first name                                | `"Rajesh"`                               |
+  | email             | string | Optional        | Customer email                                     | `"rajesh.kumar@example.com"`             |
+  | phone             | string | Optional        | Customer phone (10 digits)                         | `"9876543210"`                           |
+  | surl              | string | Yes             | Success redirect URL (HTTPS)                       | `"https://yoursite.com/success"`         |
+  | furl              | string | Yes             | Failure redirect URL (HTTPS)                       | `"https://yoursite.com/failure"`         |
+  | curl              | string | Yes             | Cancel redirect URL (HTTPS)                        | `"https://yoursite.com/cancel"`          |
+  | udf1              | string | Optional        | User-defined field 1                               | `"session_12345"`                        |
+  | udf2              | string | Optional        | User-defined field 2                               | `"1370625260"`                           |
+  | udf3              | string | Optional        | User-defined field 3                               | `"loan-ref-ABC123"`                      |
+  | udf4              | string | Optional        | User-defined field 4                               | `""`                                     |
+  | udf5              | string | Optional        | User-defined field 5                               | `"whatsapp"`                             |
+  | beneficiarydetail | string | **Yes for TPV** | Beneficiary account details as JSON string         | See below                                |
+  | hash              | string | Yes             | SHA-512 payment request hash                       | Computed (see Step 2.2)                  |
 
-| Parameter         | Type   | Required        | Description                                        | Example                                  |
-| ----------------- | ------ | --------------- | -------------------------------------------------- | ---------------------------------------- |
-| merchant_id       | string | Yes             | PayU merchant ID                                   | `"8739528"`                              |
-| reseller_id       | string | Yes             | Partner UUID/reseller ID                           | `"11ee-0e7e-5403fde2-9523-0a696b110fde"` |
-| txnid             | string | Yes             | Unique transaction ID (alphanumeric, max 50 chars) | `"HC_TPV_20240315_001"`                  |
-| amount            | string | Yes             | Transaction amount (decimal, 2 places)             | `"1500.00"`                              |
-| productinfo       | string | Yes             | Product/service description                        | `"Loan EMI Payment - March 2024"`        |
-| firstname         | string | Optional        | Customer first name                                | `"Rajesh"`                               |
-| email             | string | Optional        | Customer email                                     | `"rajesh.kumar@example.com"`             |
-| phone             | string | Optional        | Customer phone (10 digits)                         | `"9876543210"`                           |
-| surl              | string | Yes             | Success redirect URL (HTTPS)                       | `"https://yoursite.com/success"`         |
-| furl              | string | Yes             | Failure redirect URL (HTTPS)                       | `"https://yoursite.com/failure"`         |
-| curl              | string | Yes             | Cancel redirect URL (HTTPS)                        | `"https://yoursite.com/cancel"`          |
-| udf1              | string | Optional        | User-defined field 1                               | `"session_12345"`                        |
-| udf2              | string | Optional        | User-defined field 2                               | `"1370625260"`                           |
-| udf3              | string | Optional        | User-defined field 3                               | `"loan-ref-ABC123"`                      |
-| udf4              | string | Optional        | User-defined field 4                               | `""`                                     |
-| udf5              | string | Optional        | User-defined field 5                               | `"whatsapp"`                             |
-| beneficiarydetail | string | **Yes for TPV** | Beneficiary account details as JSON string         | See below                                |
-| hash              | string | Yes             | SHA-512 payment request hash                       | Computed (see Step 2.2)                  |
+  **Beneficiary Detail Schema:**
 
-**Beneficiary Detail Schema:**
+  The `beneficiarydetail` parameter must be a **JSON string** containing the authorized beneficiary account details:
 
-The `beneficiarydetail` parameter must be a **JSON string** containing the authorized beneficiary account details:
+  ```json
+  {
+    "ifscCode": "ICIC0001234",
+    "accountNumber": "123456789012",
+    "accountHolderName": "RAJESH KUMAR"
+  }
+  ```
 
-```json
-{
-  "ifscCode": "ICIC0001234",
-  "accountNumber": "123456789012",
-  "accountHolderName": "RAJESH KUMAR"
-}
-```
-
-| Field             | Type   | Required | Description                                  | Example          |
-| ----------------- | ------ | -------- | -------------------------------------------- | ---------------- |
-| ifscCode          | string | Yes      | 11-character IFSC code of beneficiary's bank | `"ICIC0001234"`  |
-| accountNumber     | string | Yes      | Beneficiary's bank account number            | `"123456789012"` |
-| accountHolderName | string | Yes      | Account holder name (as per bank records)    | `"RAJESH KUMAR"` |
-
+  | Field             | Type   | Required | Description                                  | Example          |
+  | ----------------- | ------ | -------- | -------------------------------------------- | ---------------- |
+  | ifscCode          | string | Yes      | 11-character IFSC code of beneficiary's bank | `"ICIC0001234"`  |
+  | accountNumber     | string | Yes      | Beneficiary's bank account number            | `"123456789012"` |
+  | accountHolderName | string | Yes      | Account holder name (as per bank records)    | `"RAJESH KUMAR"` |
 </Accordion>
 
 <Warning>
