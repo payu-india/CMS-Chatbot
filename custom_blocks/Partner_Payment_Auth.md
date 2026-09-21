@@ -13,7 +13,7 @@ Validate this auth_code using the [Validate Auth Code and Client API](https://do
 
 You will receive an access_token.
 
-<Accordion title="Request Parameters" icon="fa-info-table">
+<Accordion title="Request Parameters" icon="far fa-abacus">
   | Parameter       | Required | Description                                                                                                                | Example value            |
   | --------------- | -------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
   | `client_id`     | Yes      | Client identifier.                                                                                                         | `{{client_id}}`          |
@@ -35,7 +35,7 @@ You will receive an access_token.
   ```
 </Accordion>
 
-<Accordion title="Sample response" icon="fa-info-reply">
+<Accordion title="Sample response" icon="far fa-reply">
   ```json
   {
     "access_token": "{{access_token}}",
