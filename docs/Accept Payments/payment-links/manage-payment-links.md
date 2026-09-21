@@ -399,10 +399,6 @@ You can filter the payment links list using the following options:
 ## Next Steps
 
 <Cards>
-  <Card title="Payment Link Options" href="doc:payment-link-options" icon="fa-sliders">
-    Expiry dates, partial payments, custom fields, and notifications.
-  </Card>
-
   <Card title="Send a Payment Link" href="doc:send-a-payment-link" icon="fa-paper-plane">
     Step-by-step guide to creating and sending a payment link.
   </Card>
