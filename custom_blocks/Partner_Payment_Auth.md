@@ -23,7 +23,7 @@ You will receive an access_token.
   | `redirect_uri`  | Yes      | Redirect URL associated with the authorization request. It must match the redirect URI used for the authorization request. | `{{redirect_uri}}`       |
 </Accordion>
 
-<Accordion title="Samp[e request" icon="fa-code">
+<Accordion title="Sample request" icon="fa-code">
   ```bash
   curl --location '{{accounts_base_url}}/oauth/token' \
     --header 'Content-Type: application/x-www-form-urlencoded' \
