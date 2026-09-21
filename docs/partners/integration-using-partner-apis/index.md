@@ -354,6 +354,25 @@ Generates the merged merchant agreement for electronic signing. After successful
 | Test Environment       | `https://uat-partner.payu.in/api/v1/merchants/{uuid}/generate_merged_document_for_esign` |
 | Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/generate_merged_document_for_esign`     |
 
+<Accordion title="Request Parameters" icon="far fa-table-cells">
+  ### Header parameters
+
+  <Accordion title="Header parameters" icon="fa-table">
+    | Header                                    | Description                                       | Example                   |
+    | :---------------------------------------- | :------------------------------------------------ | :------------------------ |
+    | Authorization<br /><code>mandatory</code> | `string` — Bearer token from Step 00 (`GetToken`) | `Bearer {{access_token}}` |
+    | Accept<br /><code>optional</code>         | `string` — Preferred response media type          | `application/json`        |
+  </Accordion>
+
+  ### Path parameters
+
+  <Accordion title="Path parameters" icon="fa-table">
+    | Parameter                        | Description                                              | Example                                |
+    | :------------------------------- | :------------------------------------------------------- | :------------------------------------- |
+    | uuid<br /><code>mandatory</code> | `string` — Merchant UUID from Step 01 (`CreateMerchant`) | `11ef-d968-6b042d6c-9b94-02975f21d323` |
+  </Accordion>
+</Accordion>
+
 <Accordion title="Sample request" icon="fa-code">
   ```bash
   curl --location 'https://uat-partner.payu.in/api/v1/merchants/{{uuid}}/generate_merged_document_for_esign' \
