@@ -246,9 +246,7 @@ merchant_id|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|||
 <Generate_Hash_Partner_Payment />
 
 ### Step 2.3: POST the Payment Request
-
-**Sample Request (cURL):**
-
+Use the hash created in Step 2.2 here in this step: 
 ```bash
 curl --location 'https://test-partnerapilayer.payu.in/apilayer/partner/payments' \
 --header 'Authorization: Bearer your_access_token_here' \
@@ -271,9 +269,6 @@ curl --location 'https://test-partnerapilayer.payu.in/apilayer/partner/payments'
   "hash": "computed_sha512_hash_here"
 }'
 ```
-
-**Sample Request (Python):**
-
 ```python
 import requests
 import json
@@ -308,9 +303,6 @@ response = requests.post(url, headers=headers, data=json.dumps(payload))
 print(f"Status Code: {response.status_code}")
 print(f"Response: {response.text}")
 ```
-
-**Sample Request (Java):**
-
 ```java
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -338,9 +330,6 @@ public class InitiateHostedCheckout {
     }
 }
 ```
-
-**Sample Request (PHP):**
-
 ```php
 <?php
 $url = "https://test-partnerapilayer.payu.in/apilayer/partner/payments";
@@ -383,7 +372,6 @@ echo "Status Code: " . $statusCode . "\n";
 echo "Response: " . $response;
 ?>
 ```
-
 ### Step 2.4: Handle Payment Response & Redirect Customer
 
 **Success Response:**
@@ -393,7 +381,7 @@ echo "Response: " . $response;
   "redirectUri": "https://secure.payu.in/_payment?mihpayid=403993715521899234&amount=1500.00&txnid=PPHOST20240315001&key=JPM7Fg&productinfo=Premium+Subscription+-+Monthly&phone=919876543210&firstname=Priya&email=priya.sharma%40example.com&surl=https%3A%2F%2Fyourplatform.com%2Fpayment%2Fsuccess&furl=https%3A%2F%2Fyourplatform.com%2Fpayment%2Ffailure&curl=https%3A%2F%2Fyourplatform.com%2Fpayment%2Fcancel&hash=..."
 }
 ```
-
+<Accordion title="Response Parameters Implementation" icon="fa-info-circle">
 **Key Response Field:**
 
 \- **redirectUri** — The PayU hosted checkout URL. **Immediately redirect the customer to this URL.**
@@ -417,7 +405,6 @@ def initiate_checkout():
     else:
         return "Payment initiation failed", 500
 ```
-
 ```php
 // PHP redirect
 <?php
