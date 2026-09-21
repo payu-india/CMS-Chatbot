@@ -165,10 +165,15 @@ You can perform the following actions after a link is created:
   </Accordion>
 </Accordion>
 
-<Accordion title="Duplicate a link" icon="far fa-copy">
-  Duplicating creates a brand-new link pre-filled with the same settings — amount, purpose, and options — so you don't have to fill everything in again. Use it to reuse a configuration, correct a mistake on an existing link, or run the same payment request for a different customer.
+<Accordion title="Duplicate a Link" icon="far fa-copy">
+  Duplicating creates a brand-new link pre-filled with the same details such as, amount, purpose, and options so that you do not have to fill everything in again. Use it to reuse a configuration, correct a mistake on an existing link, or run the same payment request for a different customer.
 
-  1. Find the link in the table.
+  To duplicate a link:
+
+  1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor> and go to **Payment Links&#x20;**&#x75;nder **Payment Tools.**
+
+     <Image src="https://files.readme.io/16cc602d7fea50b82cf305a021d8ec949b3f3ca9219a632f468ab9745bbdc5dd-image.png" align="center" caption="Access Payment Links" border={true} />
+
   2. In the **Actions** column, click the **Duplicate** icon.
   3. The Create New Payment Link panel opens with the existing link's settings pre-filled.
   4. Edit any fields you need to change — for example, the expiry date or customer details.
