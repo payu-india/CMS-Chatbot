@@ -1,14 +1,13 @@
 ---
 title: Enable Co-Branded Onboarding (OAuth) for Partners
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
 The following are the major steps involved to enable Co-Branded Onboarding (OAuth) for partners:
 
