@@ -30,13 +30,25 @@ The **Create a Payment Link** API is used to create a regular payment link, recu
 | Production Environment | {user.https://oneapi.payu.in/payment-links}    |
 
 <Callout icon="📘" theme="info">
-  ### Notes:
-
   * The access token with the scope as **create_payment_links** is required on the header. For more information on getting the access token, refer to [Get Access Token](https://docs.payu.in/reference/get-token-api-for-payment-links).
   * To create a seamless eNACH payment link, the **enforcePayMethod** parameter must be passed with "enach" as the only method.
+<Accordion title="Other items to be noted" icon="fa-list">
+- `paymentDeadline` and `partialPaymentDeadline` use `yyyy-MM-dd HH:mm:ss`.
+- `whatsappRecipients` accepts no more than four entries. Each `phone` value must contain 10 to 15 digits.
+- `reminder.isScheduled` and `reminder.channels` are required when `reminder` is supplied. `reminder.type` is optional and accepts `0` or `1`.
+- `offerKey` is limited to 255 characters.
+- `partnerWebhookSuccessUrls` and `partnerWebhookFailureUrls` are limited to 512 characters each.
+- `amountStatus` accepts `UNPAID`, `PARTIALLY_PAID`, `FULLY_PAID`, or `OVERDUE`.
+- The four `beneficiarydetail` arrays support a maximum of four entries and must have matching lengths.
+- `beneficiaryAccountType` accepts `SAVINGS` or `CURRENT`.
+- Use `enforcePayMethod: "enach"` alone when creating a seamless eNACH payment link.
+</Accordion>
+
 </Callout>
+
 ### Sample Requests
-<Accordion title="Create a payment link" icon="fa-upload">
+
+<Accordion title="Create a payment link" icon="fa-code">
   ```curl
     curl --location -g --request POST 'https://uatoneapi.payu.in/payment-links/' \
     --header 'merchantId: {{merchantId}}' \
@@ -88,199 +100,198 @@ The **Create a Payment Link** API is used to create a regular payment link, recu
 </Accordion>
 
 ### For various other scenarios
+
 <Accordion title="Create an open-invoice payment link" icon="fa--info-split">
+  Set `isAmountFilledByCustomer` to `true`. In this flow, `subAmount` must be `null` because the customer enters the amount.
 
-Set `isAmountFilledByCustomer` to `true`. In this flow, `subAmount` must be `null` because the customer enters the amount.
-
-```curl
-curl --location -g --request POST 'https://uatoneapi.payu.in/payment-links/' \
-  --header 'merchantId: {{merchantId}}' \
-  --header 'Content-Type: application/json' \
-  --header 'Authorization: Bearer {{access_token}}' \
-  --data-raw '{
-    "isAmountFilledByCustomer": true,
-    "subAmount": null,
-    "description": "Customer-entered payment for {{customerReference}}",
-    "source": "API"
-  }'
-```
+  ```curl
+  curl --location -g --request POST 'https://uatoneapi.payu.in/payment-links/' \
+    --header 'merchantId: {{merchantId}}' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer {{access_token}}' \
+    --data-raw '{
+      "isAmountFilledByCustomer": true,
+      "subAmount": null,
+      "description": "Customer-entered payment for {{customerReference}}",
+      "source": "API"
+    }'
+  ```
 </Accordion>
+
 <Accordion title="Allow partial payments" icon="fa--info-split">
+  Set `isPartialPaymentAllowed` to `true`. Use `minAmountForCustomer` when the customer must pay at least a specified amount.
 
-Set `isPartialPaymentAllowed` to `true`. Use `minAmountForCustomer` when the customer must pay at least a specified amount.
-
-```curl
-curl --location -g --request POST 'https://uatoneapi.payu.in/payment-links/' \
-  --header 'merchantId: {{merchantId}}' \
-  --header 'Content-Type: application/json' \
-  --header 'Authorization: Bearer {{access_token}}' \
-  --data-raw '{
-    "subAmount": 5000,
-    "isPartialPaymentAllowed": true,
-    "minAmountForCustomer": 500,
-    "paymentDeadline": "2026-10-15 23:59:59",
-    "description": "Part-payment for order {{orderId}}",
-    "source": "API"
-  }'
-```
+  ```curl
+  curl --location -g --request POST 'https://uatoneapi.payu.in/payment-links/' \
+    --header 'merchantId: {{merchantId}}' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer {{access_token}}' \
+    --data-raw '{
+      "subAmount": 5000,
+      "isPartialPaymentAllowed": true,
+      "minAmountForCustomer": 500,
+      "paymentDeadline": "2026-10-15 23:59:59",
+      "description": "Part-payment for order {{orderId}}",
+      "source": "API"
+    }'
+  ```
 </Accordion>
 
 <Accordion title="Create a recurring or SI payment link" icon="fa--info-clock">
+  Use `si_payment_link` as the `source` and provide the recurring schedule in `siDetails`.
 
-Use `si_payment_link` as the `source` and provide the recurring schedule in `siDetails`.
-
-```curl
-curl --location -g --request POST 'https://uatoneapi.payu.in/payment-links/' \
-  --header 'merchantId: {{merchantId}}' \
-  --header 'Content-Type: application/json' \
-  --header 'Authorization: Bearer {{access_token}}' \
-  --data-raw '{
-    "subAmount": 500,
-    "description": "Monthly subscription for {{customerId}}",
-    "source": "si_payment_link",
-    "siDetails": {
-      "billingAmount": 500,
-      "billingCurrency": "INR",
-      "billingCycle": "MONTHLY",
-      "billingInterval": 1,
-      "paymentStartDate": "2026-10-01",
-      "paymentEndDate": "2027-09-30"
-    }
-  }'
-```
-</Accordion>
-<Accordion title="Create a seamless eNACH payment link" icon="fa-code">
-
-For a seamless eNACH link, pass `enforcePayMethod` with `enach` as the only method. The eNACH `bankDetails` object is nested inside `siDetails`.
-
-```curl
-curl --location -g --request POST 'https://uatoneapi.payu.in/payment-links/' \
-  --header 'merchantId: {{merchantId}}' \
-  --header 'Content-Type: application/json' \
-  --header 'Authorization: Bearer {{access_token}}' \
-  --data-raw '{
-    "subAmount": 500,
-    "description": "eNACH subscription for {{customerId}}",
-    "source": "si_payment_link",
-    "enforcePayMethod": "enach",
-    "siDetails": {
-      "billingAmount": 500,
-      "billingCycle": "MONTHLY",
-      "paymentStartDate": "2026-10-01",
-      "bankDetails": {
-        "bankCode": "{{bankCode}}",
-        "bankAccountNumber": "{{customerBankAccountNumber}}",
-        "ifsc": "{{customerIfsc}}",
-        "accountType": "SAVINGS"
+  ```curl
+  curl --location -g --request POST 'https://uatoneapi.payu.in/payment-links/' \
+    --header 'merchantId: {{merchantId}}' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer {{access_token}}' \
+    --data-raw '{
+      "subAmount": 500,
+      "description": "Monthly subscription for {{customerId}}",
+      "source": "si_payment_link",
+      "siDetails": {
+        "billingAmount": 500,
+        "billingCurrency": "INR",
+        "billingCycle": "MONTHLY",
+        "billingInterval": 1,
+        "paymentStartDate": "2026-10-01",
+        "paymentEndDate": "2027-09-30"
       }
-    }
-  }'
-```
+    }'
+  ```
 </Accordion>
+
+<Accordion title="Create a seamless eNACH payment link" icon="fa-code">
+  For a seamless eNACH link, pass `enforcePayMethod` with `enach` as the only method. The eNACH `bankDetails` object is nested inside `siDetails`.
+
+  ```curl
+  curl --location -g --request POST 'https://uatoneapi.payu.in/payment-links/' \
+    --header 'merchantId: {{merchantId}}' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer {{access_token}}' \
+    --data-raw '{
+      "subAmount": 500,
+      "description": "eNACH subscription for {{customerId}}",
+      "source": "si_payment_link",
+      "enforcePayMethod": "enach",
+      "siDetails": {
+        "billingAmount": 500,
+        "billingCycle": "MONTHLY",
+        "paymentStartDate": "2026-10-01",
+        "bankDetails": {
+          "bankCode": "{{bankCode}}",
+          "bankAccountNumber": "{{customerBankAccountNumber}}",
+          "ifsc": "{{customerIfsc}}",
+          "accountType": "SAVINGS"
+        }
+      }
+    }'
+  ```
+</Accordion>
+
 <Accordion title="Schedule a payment reminder" icon="fa-code">
+  Set `reminder.isScheduled` to `true`, choose the reminder timing with `reminder.type`, and provide one or both supported channels.
 
-Set `reminder.isScheduled` to `true`, choose the reminder timing with `reminder.type`, and provide one or both supported channels.
-
-```curl
-curl --location -g --request POST 'https://uatoneapi.payu.in/payment-links/' \
-  --header 'merchantId: {{merchantId}}' \
-  --header 'Content-Type: application/json' \
-  --header 'Authorization: Bearer {{access_token}}' \
-  --data-raw '{
-    "subAmount": 2500,
-    "paymentDeadline": "2026-10-15 23:59:59",
-    "reminder": {
-      "isScheduled": true,
-      "type": 0,
-      "channels": ["email", "phone"]
-    },
-    "description": "Payment with reminder for {{orderId}}",
-    "source": "API"
-  }'
-```
+  ```curl
+  curl --location -g --request POST 'https://uatoneapi.payu.in/payment-links/' \
+    --header 'merchantId: {{merchantId}}' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer {{access_token}}' \
+    --data-raw '{
+      "subAmount": 2500,
+      "paymentDeadline": "2026-10-15 23:59:59",
+      "reminder": {
+        "isScheduled": true,
+        "type": 0,
+        "channels": ["email", "phone"]
+      },
+      "description": "Payment with reminder for {{orderId}}",
+      "source": "API"
+    }'
+  ```
 </Accordion>
+
 <Accordion title="Send a payment link to multiple WhatsApp recipients" icon="fa-code">
+  Set `viaWhatsapp` to `true` and provide up to four recipient objects in `whatsappRecipients`. Use `whatsappTemplateName` to select the WhatsApp notification template.
 
-Set `viaWhatsapp` to `true` and provide up to four recipient objects in `whatsappRecipients`. Use `whatsappTemplateName` to select the WhatsApp notification template.
-
-```curl
-curl --location -g --request POST 'https://uatoneapi.payu.in/payment-links/' \
-  --header 'merchantId: {{merchantId}}' \
-  --header 'Content-Type: application/json' \
-  --header 'Authorization: Bearer {{access_token}}' \
-  --data-raw '{
-    "subAmount": 1500,
-    "viaWhatsapp": true,
-    "whatsappRecipients": [
-      {"phone": "9876543210"},
-      {"phone": "9123456789"}
-    ],
-    "whatsappTemplateName": "{{whatsappTemplateName}}",
-    "description": "WhatsApp payment link for {{orderId}}",
-    "source": "API"
-  }'
-```
+  ```curl
+  curl --location -g --request POST 'https://uatoneapi.payu.in/payment-links/' \
+    --header 'merchantId: {{merchantId}}' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer {{access_token}}' \
+    --data-raw '{
+      "subAmount": 1500,
+      "viaWhatsapp": true,
+      "whatsappRecipients": [
+        {"phone": "9876543210"},
+        {"phone": "9123456789"}
+      ],
+      "whatsappTemplateName": "{{whatsappTemplateName}}",
+      "description": "WhatsApp payment link for {{orderId}}",
+      "source": "API"
+    }'
+  ```
 </Accordion>
 
 <Accordion title="Attach an offer or coupon" icon="fa-code">
-Pass the offer or coupon identifier in `offerKey`.
+  Pass the offer or coupon identifier in `offerKey`.
 
-```curl
-curl --location -g --request POST 'https://uatoneapi.payu.in/payment-links/' \
-  --header 'merchantId: {{merchantId}}' \
-  --header 'Content-Type: application/json' \
-  --header 'Authorization: Bearer {{access_token}}' \
-  --data-raw '{
-    "subAmount": 2000,
-    "offerKey": "{{offerKey}}",
-    "description": "Payment link with offer for {{orderId}}",
-    "source": "API"
-  }'
-```
+  ```curl
+  curl --location -g --request POST 'https://uatoneapi.payu.in/payment-links/' \
+    --header 'merchantId: {{merchantId}}' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer {{access_token}}' \
+    --data-raw '{
+      "subAmount": 2000,
+      "offerKey": "{{offerKey}}",
+      "description": "Payment link with offer for {{orderId}}",
+      "source": "API"
+    }'
+  ```
 </Accordion>
+
 <Accordion title="Specify payout beneficiaries" icon="fa-code">
+  Use `beneficiarydetail` for NEFT or IMPS payout flows. Keep the four arrays aligned by position and do not send more than four entries.
 
-Use `beneficiarydetail` for NEFT or IMPS payout flows. Keep the four arrays aligned by position and do not send more than four entries.
-
-```curl
-curl --location -g --request POST 'https://uatoneapi.payu.in/payment-links/' \
-  --header 'merchantId: {{merchantId}}' \
-  --header 'Content-Type: application/json' \
-  --header 'Authorization: Bearer {{access_token}}' \
-  --data-raw '{
-    "subAmount": 4000,
-    "beneficiarydetail": {
-      "beneficiaryAccountNumber": ["{{beneficiaryAccountNumber1}}"],
-      "ifscCode": ["{{beneficiaryIfsc1}}"],
-      "beneficiaryName": ["{{beneficiaryName1}}"],
-      "beneficiaryAccountType": ["SAVINGS"]
-    },
-    "description": "Payment link with payout beneficiary",
-    "source": "API"
-  }'
-```
+  ```curl
+  curl --location -g --request POST 'https://uatoneapi.payu.in/payment-links/' \
+    --header 'merchantId: {{merchantId}}' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer {{access_token}}' \
+    --data-raw '{
+      "subAmount": 4000,
+      "beneficiarydetail": {
+        "beneficiaryAccountNumber": ["{{beneficiaryAccountNumber1}}"],
+        "ifscCode": ["{{beneficiaryIfsc1}}"],
+        "beneficiaryName": ["{{beneficiaryName1}}"],
+        "beneficiaryAccountType": ["SAVINGS"]
+      },
+      "description": "Payment link with payout beneficiary",
+      "source": "API"
+    }'
+  ```
 </Accordion>
+
 <Accordion title="Hold a pre-authorisation" icon="fa-code">
+  Pass the number of days to hold the pre-authorisation in `blockDaysForPreAuthorizeLinks`.
 
-Pass the number of days to hold the pre-authorisation in `blockDaysForPreAuthorizeLinks`.
-
-```curl
-curl --location -g --request POST 'https://uatoneapi.payu.in/payment-links/' \
-  --header 'merchantId: {{merchantId}}' \
-  --header 'Content-Type: application/json' \
-  --header 'Authorization: Bearer {{access_token}}' \
-  --data-raw '{
-    "subAmount": 7500,
-    "blockDaysForPreAuthorizeLinks": 7,
-    "description": "Pre-authorisation payment link for {{orderId}}",
-    "source": "API"
-  }'
-```
+  ```curl
+  curl --location -g --request POST 'https://uatoneapi.payu.in/payment-links/' \
+    --header 'merchantId: {{merchantId}}' \
+    --header 'Content-Type: application/json' \
+    --header 'Authorization: Bearer {{access_token}}' \
+    --data-raw '{
+      "subAmount": 7500,
+      "blockDaysForPreAuthorizeLinks": 7,
+      "description": "Pre-authorisation payment link for {{orderId}}",
+      "source": "API"
+    }'
+  ```
 </Accordion>
 
+<br />
 
-
-<Accordion title="Sample response" icon="fa-download">
+## Sample response
   **Success scenario**
 
   ```json
@@ -332,7 +343,6 @@ curl --location -g --request POST 'https://uatoneapi.payu.in/payment-links/' \
     "guid": null
   }
   ```
-</Accordion>
 
 ## Request parameters
 
@@ -340,7 +350,7 @@ The following fields are available when creating a payment link. Unless marked o
 
 > **Important:** The examples below use illustrative values and placeholders. Replace every value in `{{double_curly_braces}}` with a value from your integration. Do not use real customer or bank data in documentation examples.
 
-### Fields added for advanced payment-link flows
+<Accordion title="Parameters used in Advanced Payment Link flows" icon="fa-table">
 
 | Parameter                       | Type                                | Description                                                                                                              |
 | :------------------------------ | :---------------------------------- | :----------------------------------------------------------------------------------------------------------------------- |
@@ -383,14 +393,4 @@ Use `beneficiarydetail` to specify bank-account beneficiaries for NEFT or IMPS p
 | `beneficiaryName`          | Array of strings |        4        | Account-holder names.                                                   |
 | `beneficiaryAccountType`   | Array of strings |        4        | Account types. Each value must be `SAVINGS` or `CURRENT`.               |
 
-## Validation notes
-
-- `paymentDeadline` and `partialPaymentDeadline` use `yyyy-MM-dd HH:mm:ss`.
-- `whatsappRecipients` accepts no more than four entries. Each `phone` value must contain 10 to 15 digits.
-- `reminder.isScheduled` and `reminder.channels` are required when `reminder` is supplied. `reminder.type` is optional and accepts `0` or `1`.
-- `offerKey` is limited to 255 characters.
-- `partnerWebhookSuccessUrls` and `partnerWebhookFailureUrls` are limited to 512 characters each.
-- `amountStatus` accepts `UNPAID`, `PARTIALLY_PAID`, `FULLY_PAID`, or `OVERDUE`.
-- The four `beneficiarydetail` arrays support a maximum of four entries and must have matching lengths.
-- `beneficiaryAccountType` accepts `SAVINGS` or `CURRENT`.
-- Use `enforcePayMethod: "enach"` alone when creating a seamless eNACH payment link.
+</Accordion>
