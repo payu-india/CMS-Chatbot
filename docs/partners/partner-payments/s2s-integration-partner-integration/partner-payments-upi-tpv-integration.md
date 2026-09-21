@@ -1,5 +1,5 @@
 ---
-title: Partner Payments UPI TPV Integration
+title: 'UPI TPV Integration - Partner Payments '
 deprecated: false
 hidden: false
 icon: far fa-person-military-to-person
