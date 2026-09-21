@@ -213,6 +213,19 @@ You can perform the following actions after a link is created:
   There is no limit on how many times you can share a link. Each share just sends the same URL again.
 </Accordion>
 
+<Accordion title="Edit the Details of a Link" icon="far fa-pen-to-square">
+  You can edit certain details of a payment link after it is created — such as the expiry date, amount, and status.
+
+  1. Find the link in the table.
+  2. Click **Details** in the rightmost column.
+  3. Click **Edit** and update the fields you want to change.
+  4. Save your changes.
+
+  <Callout icon="🚧" theme="warning">
+    Not all fields can be edited after creation. If you need to change the purpose or customer details, duplicate the link with the correct settings and deactivate the original. To update fields programmatically, use the [Cancel / Update Status API](doc:api-cancel-status).
+  </Callout>
+</Accordion>
+
 <Accordion title="Deactivate a link" icon="far fa-ban">
   Deactivating stops any further payments on the link. Customers who click it will see a message that it is no longer active.
 
