@@ -324,13 +324,26 @@ You can filter the payment links list using the following options:
   3. Click **Apply&#x20;**&#x74;o filter the list.
 </Accordion>
 
-<Accordion title="Filter by date range" icon="far fa-calendar">
-  1. Click the **Calendar** icon at the top of the table.
-  2. For a quick range, select **Today**, **Yesterday**, **Past 7 days**, or **Past 30 days** and click **Apply**.
-  3. For a custom range, select **Custom Range**, pick a start and end date from the calendar, then click **Apply**.
+<Accordion title="Filter by Date Range" icon="far fa-calendar">
+  To filter the list by date range:
 
+  1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor> and go to **Payment Links&#x20;**&#x75;nder **Payment Tools.**
 
-  <Image src="https://files.readme.io/ee050997f17cdc2030467be8855624d90886bb2d8296f698dc594d24713effcb-Screenshot_2025-06-04_at_12.22.39_PM.png" align="center" caption="Calendar view — custom date range selection" border={true} />
+     <Image src="https://files.readme.io/87f833f0e3b63b7a43a5ea66318e367c44468236472eb90f95fcf468fc965c6a-image.png" align="center" caption="Access Payment Links" border={true} />
+
+  2. Click the calendar icon and select any of the following.
+     1. For a quick range, click **Today**, **Yesterday**, **Last 7 days**, or **Last 30 days**.
+
+        <Image src="https://files.readme.io/5c16e927eb9fa8f01f539d7cbe087d5bf072c1dc49e3b477a2c82153148b8e8d-Screenshot_2026-09-21_at_2.32.18_PM.png" align="center" caption="Select Date Range" border={true} />
+
+     2. For a custom range, click **Custom Range**, pick a start and end date from the calendar, then click **Apply**.
+        <Callout icon="fad fa-star-exclamation" theme="warn">
+          ### **Watch Out!**
+
+          You can select a maximum date range of 90 days.
+        </Callout>
+
+        <Image src="https://files.readme.io/ca476fe9b764393c8b3ffd3b620b17308e3ad2e371807355b3f3531919e85ab2-Screenshot_2026-09-21_at_2.33.21_PM.png" align="center" caption="Select Custom Range" border={true} />
 
 </Accordion>
 
