@@ -289,8 +289,6 @@ You can perform the following actions after a link is created:
   3. Click **Yes&#x20;**&#x69;n the confirmation window to activate.
 
   The link status changes to **Active**.
-
-  Each row shows the transaction ID, amount paid, date, and status.
 </Accordion>
 
 ***
