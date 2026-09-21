@@ -10,7 +10,78 @@ After the customer completes payment (or if account validation fails), PayU send
 ## Step 1: Get the Webhook Payload
 
 ### Sample Webhook Payloads
-#### Sample Webhook Payloads for Hosted Checkout TPV
+#### Payloads for Hosted Checkout
+**Webhook Configuration:**
+
+Ensure these URLs are configured:
+
+\- `partner_webhook_success` — Called on successful payment
+\- `partner_webhook_failure` — Called on failed payment
+\- `partner_webhook_cancelled` — Called when payment is cancelled
+
+<Callout icon="⚠️" theme="info">
+  ### Contact your Account Manager to register for the Webhooks.
+</Callout>
+
+<Accordion title="Sample Payload" icon="fa-code">
+  **Sample Success Webhook Payload**
+
+  ```json
+  {
+    "key": "JPM7Fg",
+    "txnid": "PPHOST20240315001",
+    "mihpayid": "403993715521899234",
+    "status": "success",
+    "unmappedstatus": "captured",
+    "mode": "CC",
+    "bankcode": "VISA",
+    "amount": "1500.00",
+    "productinfo": "Premium Subscription - Monthly",
+    "firstname": "Priya",
+    "email": "priya.sharma@example.com",
+    "phone": "919876543210",
+    "udf1": "subscription_plan_premium",
+    "udf2": "monthly_billing",
+    "udf3": "",
+    "udf4": "",
+    "udf5": "partner_web_checkout",
+    "merchant_id": "8739528",
+    "error": "No Error",
+    "error_Message": "No Error",
+    "hash": "webhook_hash_from_payu"
+  }
+  ```
+
+  **Sample Failure Webhook Payload:**
+
+  ```json
+  {
+    "key": "JPM7Fg",
+    "txnid": "PPHOST20240315001",
+    "mihpayid": "403993715521899241",
+    "status": "failure",
+    "unmappedstatus": "failed",
+    "mode": "NB",
+    "bankcode": "ICIC",
+    "amount": "1500.00",
+    "productinfo": "Premium Subscription - Monthly",
+    "firstname": "Priya",
+    "email": "priya.sharma@example.com",
+    "phone": "919876543210",
+    "udf1": "subscription_plan_premium",
+    "udf2": "monthly_billing",
+    "udf3": "",
+    "udf4": "",
+    "udf5": "partner_web_checkout",
+    "merchant_id": "8739528",
+    "error": "E000",
+    "error_Message": "Payment declined by bank",
+    "hash": "webhook_hash_from_payu"
+  }
+  ```
+</Accordion>
+
+#### Payloads for Hosted Checkout TPV
 
 **Webhook URLs (configured in PayU system):**
 
@@ -53,7 +124,7 @@ After the customer completes payment (or if account validation fails), PayU send
 | unmappedstatus | `"captured"` (success) or `"bounced"` (failure) | Final payment status           |
 
 
-#### Sample Success Webhook Payload for UPI TPV
+#### Payload for UPI TPV
 
 ```json
 {
