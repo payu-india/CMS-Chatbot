@@ -1,8 +1,9 @@
 ---
 title: Net Banking Codes
-excerpt: ''
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
@@ -11,8 +12,6 @@ metadata:
     - Net Banking bankcode
     - NetBanking bankcode
   robots: index
-next:
-  description: ''
 ---
 In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you must use **NB** with **pg** parameter for collecting payment using Net Banking. The following table provides the codes for the leading banks in India. This code must be used as a value with the <Glossary>bankcode</Glossary> parameter.
 
@@ -30,15 +29,13 @@ In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you 
   maxHeight="500px"
 />
 
-<br />
-
 ## Merged banks and supported bank codes
 
 Both the Erstwhile bank and Successor bank are supported in PayU Platform as mentioned below:
 
-| Erstwhile bank (with the bankcode) | Successor bank      (**bankcode** value) |
-| ---------------------------------- | ---------------------------------------- |
-| Allahabad Bank (`ALLB`)            | Indian Bank          (`INDB`)            |
-| Oriental Bank of Commerce (`OBCB`) | Punjab National Bank (`PNBB`)            |
-| Syndicate Bank (`SYNDB`)           | Canara Bank          (`CABB`)            |
-| United Bank of India (`UNIB`)      | Punjab National Bank (`PNBB)`            |
+| Erstwhile bank (with the Bank Code) | Successor bank (**with the Bank Code**) |
+| ----------------------------------- | --------------------------------------- |
+| Allahabad Bank (`ALLB`)             | Indian Bank (`INDB`)                    |
+| Oriental Bank of Commerce (`OBCB`)  | Punjab National Bank (`PNBB`)           |
+| Syndicate Bank (`SYNDB`)            | Canara Bank          (`CABB`)           |
+| United Bank of India (`UNIB`)       | Punjab National Bank (`PNBB)`           |
