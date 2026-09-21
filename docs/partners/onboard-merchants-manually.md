@@ -75,7 +75,7 @@ The **Profile** tab contains the following sections:
 - [PAN Details](#pan-details)
 - [Bank Details](#bank-details)
 
-<Accordion title="Step to Complete Profile" icon="fa-info-circle">
+<Accordion title="Steps to Complete Profile" icon="🖊️">
   If you have not completed your profile, the **Get Paid > Complete your onboarding** tile is displayed on the top after you log in. Click **Get Paid** to complete your profile.
 
   Or click your profile photo at the top-right corner and select **My Profile** from the drop-down menu.
@@ -140,7 +140,7 @@ Configure the following:
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/03/merchant_dashboard_logo_placeholder-1024x476.png)
 
-<Accordion title="Steps to Configure the Logo" icon="fa-info-circle">
+<Accordion title="Steps to Configure the Logo" icon="🔶">
   To configure the URLs and brand logo:
 
   1. Log in at [partner.payu.in](https://partner.payu.in/) and navigate to the user menu.
@@ -148,8 +148,6 @@ Configure the following:
 
 
   <Image src="https://files.readme.io/b3e8c99125068fda5648febbd3ccbb08d8a22074d8170d447e5f264d10596dfe-Screenshot_2025-08-26_at_2.45.17_PM.png" align="center" />
-
-
 
 
 
@@ -192,7 +190,7 @@ Configure the following:
 
 To log in to your Partner Account:
 
-<Accordion title="Steps to Log in Partner Portal" icon="fa-info-circle">
+<Accordion title="Steps to Log in Partner Portal" icon="🛂">
   1. Navigate to the following PayU Affiliate Partner Program URL:
 
      [https://partner.payu.in/](https://partner.payu.in/)
@@ -240,7 +238,7 @@ You can view your incentive plan and manage incentives on the **My Incentives** 
   **Note:** Your net incentive is: **(Client TDR – Base Rate) × Transaction Value**, where Client TDR is the rate given to your referrals.
 </Callout>
 
-<Accordion title="View your Incentive Plan" icon="fa-info-circle">
+<Accordion title="View your Incentive Plan" icon="📨">
   PayU provides incentives for onboarding merchants and for payments made by customers through your merchants.
 
   1. Log in to Partner Portal.
@@ -275,7 +273,7 @@ You can view your incentive plan and manage incentives on the **My Incentives** 
 
 </Accordion>
 
-<Accordion title="View the Incentive Details" icon="fa-info-circle">
+<Accordion title="View the Incentive Details" icon="🪪">
   To view specific incentive details, including the settlement breakup:
 
   1. Enter the merchant MID or merchant name in the search column and click **Search**.
@@ -307,7 +305,7 @@ You will find an option available on the Partner Dashboard as Refer a Merchant. 
 - [Add a Referral Merchant](#add-a-referral-merchant)
 - [Add Multiple Referral Merchants](#add-multiple-referral-merchants)
 
-<Accordion title="Add a Referral Merchant" icon="fa-info-circle">
+<Accordion title="Add a Referral Merchant" icon="⚖️">
   This section describes the procedure add a single referral merchant.
 
   To onboard a referral merchant:
@@ -361,7 +359,7 @@ You will find an option available on the Partner Dashboard as Refer a Merchant. 
   You will be redirected to the _Complete Your KYC_ page as in PayU Dashboard. For more information, refer the to [Activate Account](doc:complete-your-kyc) section of the _PayU Dashboard User Guide_.
 </Accordion>
 
-<Accordion title="Add Multiple Referral Merchants" icon="fa-info-circle">
+<Accordion title="Add Multiple Referral Merchants" icon="🧑‍🤝‍🧑">
   You can upload multiple referral merchants by entering their details in the provided template. If you want to add a merchant (single), refer to [Onboarding APIs](ref:onboarding-apis)
 
   To add multiple referral merchants:
@@ -549,8 +547,6 @@ You will find an option available on the Partner Dashboard as Refer a Merchant. 
 
 
 
-
-
   <Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-26-at-9.07.24-PM.png" align="center" width="350px" border={true} />
 
 </Accordion>
@@ -559,7 +555,7 @@ You will find an option available on the Partner Dashboard as Refer a Merchant. 
 
 You can invite users and provide permissions to manage or maintain your Partner Portal. You can perform the following to manage users:
 
-<Accordion title="Add a User" icon="fa-info-circle">
+<Accordion title="Add a User" icon="far fa-address-card">
   To add a user on Partner Portal:
 
   1. Click your profile picture on the top-right corner and select **Invite a user** from the drop-down menu.
@@ -568,8 +564,6 @@ You can invite users and provide permissions to manage or maintain your Partner 
 
 
   <Image src="https://files.readme.io/3fb3cce6908d85f492a0a9e040c932b6083f926f0b35bc427c40b741887688f1-partner_portal_add_user.png" align="center" border={true} />
-
-
 
 
 
@@ -582,8 +576,6 @@ You can invite users and provide permissions to manage or maintain your Partner 
 
 
   <Image src="https://files.readme.io/d99487df22adf33d23ddb38c889c7249a599ea094edb74b4a10cc7558fd123b9-Screenshot_2025-08-26_at_3.09.41_PM.png" align="center" width="320px" border={true} />
-
-
 
 
 
@@ -638,8 +630,6 @@ You can invite users and provide permissions to manage or maintain your Partner 
 
 
   <Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-11.10.39-AM-1024x435.png" align="center" width="550px" />
-
-
 
 
 
