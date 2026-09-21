@@ -13,54 +13,56 @@ Onboard merchants manually through the PayU Partner Portal. Complete the steps b
 
 You need to create a partner account in the Test and Production environment to become a partner. A partner account connects you with PayU and enables access to Partner Dashboard and merchant onboarding.
 
-To create a Partner Account:
+<Accordion title="Steps to Register a Partner Account" icon="📝">
+  To create a Partner Account:
 
-1. Navigate to the following PayU Affiliate Partner Program URL:
+  1. Navigate to the following PayU Affiliate Partner Program URL:
 
-   [https://partner.payu.in/](https://partner.payu.in/)
+     [https://partner.payu.in/](https://partner.payu.in/)
 
-   The PayU Affiliate Partner Program page is displayed.
-
-
-<Image src="https://files.readme.io/40a589301996024d72b3fa6404ade344c97b6ff98f8bc80a644c3405f6c9cd32-Screenshot_2025-08-26_at_2.40.32_PM.png" align="center" border={true} />
+     The PayU Affiliate Partner Program page is displayed.
 
 
-2. Click **Become a Partner**.
-3. Enter your email address in the **Enter Email** field and click **Next**.
+  <Image src="https://files.readme.io/40a589301996024d72b3fa6404ade344c97b6ff98f8bc80a644c3405f6c9cd32-Screenshot_2025-08-26_at_2.40.32_PM.png" align="center" border={true} />
 
 
-<Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/image-21-1024x512.jpg" align="center" border={true} />
+  2. Click **Become a Partner**.
+  3. Enter your email address in the **Enter Email** field and click **Next**.
 
 
-The _Tell us more about yourself_ page is displayed.
+  <Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/image-21-1024x512.jpg" align="center" border={true} />
 
 
-<Image src="https://files.readme.io/82a984c583e59fb8a8d93aa1426accf7078fe667fae8e047d997c7baa7a2a234-Screenshot_2025-08-26_at_2.39.31_PM.png" align="center" border={true} />
+  The _Tell us more about yourself_ page is displayed.
 
 
-4. Provide the details for the fields as described in the following table:
+  <Image src="https://files.readme.io/82a984c583e59fb8a8d93aa1426accf7078fe667fae8e047d997c7baa7a2a234-Screenshot_2025-08-26_at_2.39.31_PM.png" align="center" border={true} />
 
-| **Field**          | **Description**                                                                                                                                                                                                                                                                            |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Enter Name**     | Enter your name in this field.                                                                                                                                                                                                                                                             |
-| **Phone Number**   | Enter your mobile phone number in this field. PayU will send an OTP on this number for verification.                                                                                                                                                                                       |
-| **Enter Password** | Enter the password that you wish to use while logging into your merchant account with PayU. Your password must meet these requirements: at least eight characters; at least one uppercase alphabet; at least one lowercase alphabet; at least one numeral; at least one special character. |
 
-5. Click **Next**.
+  4. Provide the details for the fields as described in the following table:
 
-   The OTP is sent to the mobile number you specified in the **Phone Number** field.
+  | **Field**          | **Description**                                                                                                                                                                                                                                                                            |
+  | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | **Enter Name**     | Enter your name in this field.                                                                                                                                                                                                                                                             |
+  | **Phone Number**   | Enter your mobile phone number in this field. PayU will send an OTP on this number for verification.                                                                                                                                                                                       |
+  | **Enter Password** | Enter the password that you wish to use while logging into your merchant account with PayU. Your password must meet these requirements: at least eight characters; at least one uppercase alphabet; at least one lowercase alphabet; at least one numeral; at least one special character. |
 
-6. Enter the OTP sent to that mobile number.
+  5. Click **Next**.
 
-7. Click **Verify Mobile**.
+     The OTP is sent to the mobile number you specified in the **Phone Number** field.
 
-   Registration for the partner account in PayU is complete.
+  6. Enter the OTP sent to that mobile number.
 
-<Callout icon="📘" theme="info">
-  **Note:** If you have already registered for the PayU Partner Program using the entered phone number, the following message is displayed:
+  7. Click **Verify Mobile**.
 
-  _“Mobile Number already exists with PayU. Please continue with your old password to add merchant account.”_
-</Callout>
+     Registration for the partner account in PayU is complete.
+
+  <Callout icon="📘" theme="info">
+    **Note:** If you have already registered for the PayU Partner Program using the entered phone number, the following message is displayed:
+
+    _“Mobile Number already exists with PayU. Please continue with your old password to add merchant account.”_
+  </Callout>
+</Accordion>
 
 ### Complete your profile on Partner Portal
 
@@ -73,59 +75,61 @@ The **Profile** tab contains the following sections:
 - [PAN Details](#pan-details)
 - [Bank Details](#bank-details)
 
-If you have not completed your profile, the **Get Paid > Complete your onboarding** tile is displayed on the top after you log in. Click **Get Paid** to complete your profile.
+<Accordion title="Step to Complete Profile" icon="fa-info-circle">
+  If you have not completed your profile, the **Get Paid > Complete your onboarding** tile is displayed on the top after you log in. Click **Get Paid** to complete your profile.
 
-Or click your profile photo at the top-right corner and select **My Profile** from the drop-down menu.
-
-
-<Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-9.59.59-AM.png" align="center" width="250px" />
+  Or click your profile photo at the top-right corner and select **My Profile** from the drop-down menu.
 
 
-The **Profile** tab is displayed with _Fill the details below to generate your partnership agreement_ as the title.
-
-#### General Details
-
-The details on the **General Details** pane are automatically updated based on the details you filled in during registration. You can update these details if required.
-
-#### Business details
-
-1. Expand the **Business Details** pane.
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-9.56.40-AM-1024x699.png)
-
-2. Select your business registration type from the **Select Business Registration Type** drop-down list.
-3. Enter your business name in the **Business Registration Name** field.
-4. Enter your business registration address in the **Business Address** field.
-5. Enter the PIN code in the **Pincode** field.
-6. Enter your GSTIN in the **GSTIN** field (optional).
-7. Select the domain from the **Domain** drop-down list.
-8. Click **Submit**.
-
-#### PAN details
-
-1. Expand the **PAN Details** pane.
+  <Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-9.59.59-AM.png" align="center" width="250px" />
 
 
-<Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-10.21.02-AM-1024x744.png" align="center" border={true} />
+  The **Profile** tab is displayed with _Fill the details below to generate your partnership agreement_ as the title.
+
+  #### General Details
+
+  The details on the **General Details** pane are automatically updated based on the details you filled in during registration. You can update these details if required.
+
+  #### Business details
+
+  1. Expand the **Business Details** pane.
+
+  ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-9.56.40-AM-1024x699.png)
+
+  2. Select your business registration type from the **Select Business Registration Type** drop-down list.
+  3. Enter your business name in the **Business Registration Name** field.
+  4. Enter your business registration address in the **Business Address** field.
+  5. Enter the PIN code in the **Pincode** field.
+  6. Enter your GSTIN in the **GSTIN** field (optional).
+  7. Select the domain from the **Domain** drop-down list.
+  8. Click **Submit**.
+
+  #### PAN details
+
+  1. Expand the **PAN Details** pane.
 
 
-2. Enter the name in the **Name on PAN Card (PAN card of the signing authority)** field.
-3. Enter your PAN number in the **Number on PAN Card** field.
-4. Click **Submit** to verify.
+  <Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-10.21.02-AM-1024x744.png" align="center" border={true} />
 
-#### Bank details
 
-1. Expand the **Bank Details** pane.
+  2. Enter the name in the **Name on PAN Card (PAN card of the signing authority)** field.
+  3. Enter your PAN number in the **Number on PAN Card** field.
+  4. Click **Submit** to verify.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-10.24.37-AM-1024x876.png)
+  #### Bank details
 
-2. Enter your business name in the **Account Holder’s Name (Same as Registered Business Name)** field.
-3. Enter your account number in the **Bank Account Number** field.
-4. Confirm your account number in the **Re-enter Bank Account Number** field.
-5. Enter your bank IFSC code in the **IFSC Code** field. Search the IFSC code using the **Search IFSC** option, or find the IFSC code on the cheque book provided by your bank.
-6. Click **Submit**.
+  1. Expand the **Bank Details** pane.
 
-For the full standalone guide, see [Register a Partner Account](doc:register-a-partner-account).
+  ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-10.24.37-AM-1024x876.png)
+
+  2. Enter your business name in the **Account Holder’s Name (Same as Registered Business Name)** field.
+  3. Enter your account number in the **Bank Account Number** field.
+  4. Confirm your account number in the **Re-enter Bank Account Number** field.
+  5. Enter your bank IFSC code in the **IFSC Code** field. Search the IFSC code using the **Search IFSC** option, or find the IFSC code on the cheque book provided by your bank.
+  6. Click **Submit**.
+
+  For the full standalone guide, see [Register a Partner Account](doc:register-a-partner-account).
+</Accordion>
 
 ## Step 2: Configure URLs and Logo
 
@@ -136,93 +140,97 @@ Configure the following:
 
 ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/03/merchant_dashboard_logo_placeholder-1024x476.png)
 
-To configure the URLs and brand logo:
+<Accordion title="Steps to Configure the Logo" icon="fa-info-circle">
+  To configure the URLs and brand logo:
 
-1. Log in at [partner.payu.in](https://partner.payu.in/) and navigate to the user menu.
-2. Click your profile picture on the top-right corner and select **My App** from the drop-down menu.
-
-
-<Image src="https://files.readme.io/b3e8c99125068fda5648febbd3ccbb08d8a22074d8170d447e5f264d10596dfe-Screenshot_2025-08-26_at_2.45.17_PM.png" align="center" />
+  1. Log in at [partner.payu.in](https://partner.payu.in/) and navigate to the user menu.
+  2. Click your profile picture on the top-right corner and select **My App** from the drop-down menu.
 
 
-<br />
+  <Image src="https://files.readme.io/b3e8c99125068fda5648febbd3ccbb08d8a22074d8170d447e5f264d10596dfe-Screenshot_2025-08-26_at_2.45.17_PM.png" align="center" />
 
 
-<Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/03/Screenshot-2022-03-31-at-5.16.27-PM-1.png" align="center" width="422px" />
 
 
-3. Expand the **Application Details** pane (if required).
+
+  <Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/03/Screenshot-2022-03-31-at-5.16.27-PM-1.png" align="center" width="422px" />
 
 
-<Image src="https://files.readme.io/08f4ed2da70075a2c0d553a2e68667d7012a97ce375da6581972462b3cb10896-partner_portal_aupdate_app_details.png" align="center" border={true} />
+  3. Expand the **Application Details** pane (if required).
 
 
-4. Update the following details to complete your app registration:
+  <Image src="https://files.readme.io/08f4ed2da70075a2c0d553a2e68667d7012a97ce375da6581972462b3cb10896-partner_portal_aupdate_app_details.png" align="center" border={true} />
 
-| **Field**           | **Description**                                    | **Example**                                      |
-| ------------------- | -------------------------------------------------- | ------------------------------------------------ |
-| Application name    | Enter your application name.                       | PayU Payments Pvt. Ltd.                          |
-| Application website | Enter your application website.                    | [https://www.payu.in/](https://www.payu.in/)     |
-| Redirect URL        | URL used to redirect back to the partner platform. | [https://www.xyz.in/](https://www.xyz.in/)       |
-| Policy Page URL     | Link to your privacy policy.                       | [https://policy.xyz.in/](https://policy.xyz.in/) |
 
-5. Click **Submit**.
-6. Verify your identity with your password after submission so the details are updated.
-7. Expand the **Branding Details** pane.
+  4. Update the following details to complete your app registration:
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-01-at-12.00.45-PM-1024x644.png)
+  | **Field**           | **Description**                                    | **Example**                                      |
+  | ------------------- | -------------------------------------------------- | ------------------------------------------------ |
+  | Application name    | Enter your application name.                       | PayU Payments Pvt. Ltd.                          |
+  | Application website | Enter your application website.                    | [https://www.payu.in/](https://www.payu.in/)     |
+  | Redirect URL        | URL used to redirect back to the partner platform. | [https://www.xyz.in/](https://www.xyz.in/)       |
+  | Policy Page URL     | Link to your privacy policy.                       | [https://policy.xyz.in/](https://policy.xyz.in/) |
 
-8. Click **Browse** in the **Add a brand logo** field and select a brand logo.
+  5. Click **Submit**.
+  6. Verify your identity with your password after submission so the details are updated.
+  7. Expand the **Branding Details** pane.
 
-<Callout icon="📘" theme="info">
-  **Note:** The brand logo should be JPG/JPEG, less than 5 MB, and 90 × 90 pixels.
-</Callout>
+  ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-01-at-12.00.45-PM-1024x644.png)
 
-9. Click the colour chooser in the **Pick color** field for the theme.
+  8. Click **Browse** in the **Add a brand logo** field and select a brand logo.
 
-For the full standalone guide, see [Configure URLs and Logo](doc:configure-urls-and-logo).
+  <Callout icon="📘" theme="info">
+    **Note:** The brand logo should be JPG/JPEG, less than 5 MB, and 90 × 90 pixels.
+  </Callout>
+
+  9. Click the colour chooser in the **Pick color** field for the theme.
+
+  For the full standalone guide, see [Configure URLs and Logo](doc:configure-urls-and-logo).
+</Accordion>
 
 ## Step 3: Log in to Partner Portal
 
 To log in to your Partner Account:
 
-1. Navigate to the following PayU Affiliate Partner Program URL:
+<Accordion title="Steps to Log in Partner Portal" icon="fa-info-circle">
+  1. Navigate to the following PayU Affiliate Partner Program URL:
 
-   [https://partner.payu.in/](https://partner.payu.in/)
+     [https://partner.payu.in/](https://partner.payu.in/)
 
-   The PayU Affiliate Partner Program page is displayed.
-
-
-<Image src="https://files.readme.io/40a589301996024d72b3fa6404ade344c97b6ff98f8bc80a644c3405f6c9cd32-Screenshot_2025-08-26_at_2.40.32_PM.png" align="center" border={true} />
+     The PayU Affiliate Partner Program page is displayed.
 
 
-2. Click **Log In**.
-
-   The _Enter your email to create account or login_ page is displayed.
+  <Image src="https://files.readme.io/40a589301996024d72b3fa6404ade344c97b6ff98f8bc80a644c3405f6c9cd32-Screenshot_2025-08-26_at_2.40.32_PM.png" align="center" border={true} />
 
 
-<Image src="https://files.readme.io/cdb7a5fe9c981c6c287f3410a3d5d10b27810eb52429aa7f1e0c0c9bac7f39fa-Screenshot_2025-08-26_at_2.53.16_PM.png" align="center" border={true} />
+  2. Click **Log In**.
+
+     The _Enter your email to create account or login_ page is displayed.
 
 
-3. Enter your email address in the **Enter Email** field and click **Next**.
-
-   A page requesting your password is displayed.
-
-<Callout icon="📘" theme="info">
-  **Note:** If you do not have an account or are not registered, the _Tell us more about yourself_ page is displayed. For more information, see [Step 1: Register a Partner Account](#step-1-register-a-partner-account).
-</Callout>
-
-4. Enter your password in the **Enter Password** field and click **Login**.
-
-<Callout icon="📘" theme="info">
-  **Note:** If you forgot your password or wish to log in using OTP, click **Login with OTP**. Enter the OTP sent to your registered mobile number in the **Enter OTP** field and click **Verify Mobile**.
-</Callout>
-
-The Partner Dashboard page is displayed.
+  <Image src="https://files.readme.io/cdb7a5fe9c981c6c287f3410a3d5d10b27810eb52429aa7f1e0c0c9bac7f39fa-Screenshot_2025-08-26_at_2.53.16_PM.png" align="center" border={true} />
 
 
-<Image src="https://files.readme.io/e898a8e39d8272497e4680710b460e75091e1968eac96c8a303fd128f873d835-Screenshot_2025-08-26_at_2.54.57_PM.png" align="center" border={true} />
+  3. Enter your email address in the **Enter Email** field and click **Next**.
 
+     A page requesting your password is displayed.
+
+  <Callout icon="📘" theme="info">
+    **Note:** If you do not have an account or are not registered, the _Tell us more about yourself_ page is displayed. For more information, see [Step 1: Register a Partner Account](#step-1-register-a-partner-account).
+  </Callout>
+
+  4. Enter your password in the **Enter Password** field and click **Login**.
+
+  <Callout icon="📘" theme="info">
+    **Note:** If you forgot your password or wish to log in using OTP, click **Login with OTP**. Enter the OTP sent to your registered mobile number in the **Enter OTP** field and click **Verify Mobile**.
+  </Callout>
+
+  The Partner Dashboard page is displayed.
+
+
+  <Image src="https://files.readme.io/e898a8e39d8272497e4680710b460e75091e1968eac96c8a303fd128f873d835-Screenshot_2025-08-26_at_2.54.57_PM.png" align="center" border={true} />
+
+</Accordion>
 
 ## Step 4: Track Incentives
 
@@ -232,65 +240,65 @@ You can view your incentive plan and manage incentives on the **My Incentives** 
   **Note:** Your net incentive is: **(Client TDR – Base Rate) × Transaction Value**, where Client TDR is the rate given to your referrals.
 </Callout>
 
-### View your incentive plan
+<Accordion title="View your Incentive Plan" icon="fa-info-circle">
+  PayU provides incentives for onboarding merchants and for payments made by customers through your merchants.
 
-PayU provides incentives for onboarding merchants and for payments made by customers through your merchants.
+  1. Log in to Partner Portal.
+  2. Click your profile picture at the top-right and select **Incentive Plan** from the drop-down menu.
 
-1. Log in to Partner Portal.
-2. Click your profile picture at the top-right and select **Incentive Plan** from the drop-down menu.
+  ![](https://files.readme.io/b3e8c99125068fda5648febbd3ccbb08d8a22074d8170d447e5f264d10596dfe-Screenshot_2025-08-26_at_2.45.17_PM.png)
 
-![](https://files.readme.io/b3e8c99125068fda5648febbd3ccbb08d8a22074d8170d447e5f264d10596dfe-Screenshot_2025-08-26_at_2.45.17_PM.png)
-
-The _Here is your incentive plan_ page is displayed.
-
-
-<Image src="https://files.readme.io/d17717449085d1ce7f42f7077b8658998a5007e4685babd8ef5261ad898db41a-partner_portal_incentive_rates_list.png" align="center" border={true} />
+  The _Here is your incentive plan_ page is displayed.
 
 
-The base rate is listed for various payment methods.
-
-### View your incentives
-
-Incentives refresh at the end of the day. To view incentives for a custom period, see [View incentives for a custom period](#view-incentives-for-a-custom-period).
-
-1. Perform any of the following:
-   - Select the **My Incentives** tab on top.
-   - Click your profile picture on the top-right corner and select **My Incentives** from the drop-down menu.
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-12.16.19-PM-1024x823.png)
-
-2. Select any of the following tabs for different views of incentives:
-   - **My Incentives**
-   - **Merchant Incentives**
+  <Image src="https://files.readme.io/d17717449085d1ce7f42f7077b8658998a5007e4685babd8ef5261ad898db41a-partner_portal_incentive_rates_list.png" align="center" border={true} />
 
 
-<Image src="https://files.readme.io/c34a9f797d18a802dcd03953b6b3fb2593a1eefc7b39d8f88bd392f04dcf2fa4-partner_portal_incentives_view.png" align="center" border={true} />
+  The base rate is listed for various payment methods.
+
+  ### View your incentives
+
+  Incentives refresh at the end of the day. To view incentives for a custom period, see [View incentives for a custom period](#view-incentives-for-a-custom-period).
+
+  1. Perform any of the following:
+     - Select the **My Incentives** tab on top.
+     - Click your profile picture on the top-right corner and select **My Incentives** from the drop-down menu.
+
+  ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-12.16.19-PM-1024x823.png)
+
+  2. Select any of the following tabs for different views of incentives:
+     - **My Incentives**
+     - **Merchant Incentives**
 
 
-### View the incentive details
+  <Image src="https://files.readme.io/c34a9f797d18a802dcd03953b6b3fb2593a1eefc7b39d8f88bd392f04dcf2fa4-partner_portal_incentives_view.png" align="center" border={true} />
 
-To view specific incentive details, including the settlement breakup:
+</Accordion>
 
-1. Enter the merchant MID or merchant name in the search column and click **Search**.
-2. Select the hamburger menu on the incentive entry and select **View Details**.
+<Accordion title="View the Incentive Details" icon="fa-info-circle">
+  To view specific incentive details, including the settlement breakup:
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-12.16.19-PM-1-1024x157.png)
+  1. Enter the merchant MID or merchant name in the search column and click **Search**.
+  2. Select the hamburger menu on the incentive entry and select **View Details**.
 
-<Callout icon="📘" theme="info">
-  **Note:** You can export the detailed settlement record to PDF using the **Download Details** option on the hamburger menu.
-</Callout>
+  ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-12.16.19-PM-1-1024x157.png)
 
-### View incentives for a custom period
+  <Callout icon="📘" theme="info">
+    **Note:** You can export the detailed settlement record to PDF using the **Download Details** option on the hamburger menu.
+  </Callout>
+</Accordion>
 
-The **My Incentives** tab shows incentives for the past seven days by default. You can select a date range, month, or year using the calendar view.
+<Accordion title="View Incentives for a Custom Period" icon="fa-info-circle">
+  The **My Incentives** tab shows incentives for the past seven days by default. You can select a date range, month, or year using the calendar view.
 
-1. Click **Calendar** to open the calendar view.
-2. Select any of the following options:
-   - Today
-   - Yesterday
-   - Past 7 days
-   - Past 30 days
-3. Click **Apply** to view the results.
+  1. Click **Calendar** to open the calendar view.
+  2. Select any of the following options:
+     - Today
+     - Yesterday
+     - Past 7 days
+     - Past 30 days
+  3. Click **Apply** to view the results.
+</Accordion>
 
 ## Referral Onboarding
 
@@ -299,347 +307,347 @@ You will find an option available on the Partner Dashboard as Refer a Merchant. 
 - [Add a Referral Merchant](#add-a-referral-merchant)
 - [Add Multiple Referral Merchants](#add-multiple-referral-merchants)
 
-### Add a referral merchant
+<Accordion title="Add a Referral Merchant" icon="fa-info-circle">
+  This section describes the procedure add a single referral merchant.
 
-This section describes the procedure add a single referral merchant.
+  To onboard a referral merchant:
 
-To onboard a referral merchant:
+  1. Log in to your partner account.
 
-1. Log in to your partner account.
+     On the left pane, the **Add Single Merchant** and **Add Multiple Merchant** options are displayed under **Refer a Merchant**.
 
-   On the left pane, the **Add Single Merchant** and **Add Multiple Merchant** options are displayed under **Refer a Merchant**.
+  2. Click **Add Single Merchant** on the left pane to add a single merchant.
 
-2. Click **Add Single Merchant** on the left pane to add a single merchant.
+  ![Refer\_merchant](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-188.png)
 
-![Refer\_merchant](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-188.png)
+  ```
+   The _Refer a merchant_ pop-up page is displayed.
+  ```
 
-```
- The _Refer a merchant_ pop-up page is displayed.
-```
+  ![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-189.png)
 
-![](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-189.png)
+  3. Enter the following merchant’s details:
 
-3. Enter the following merchant’s details:
+  | **Field**             | **Description**                                                                     |
+  | --------------------- | ----------------------------------------------------------------------------------- |
+  | **Name**              | Enter the name of the merchant.                                                     |
+  | **Email Address**     | Enter the email address of the merchant.                                            |
+  | **Phone Number**      | Enter the merchant’s phone number.                                                  |
+  | **Payment Service**   | Enter the payment service from the drop-down list that the merchant will use.       |
+  | **Business Category** | Select the business category from the drop-down list to which the merchant belongs. |
 
-| **Field**             | **Description**                                                                     |
-| --------------------- | ----------------------------------------------------------------------------------- |
-| **Name**              | Enter the name of the merchant.                                                     |
-| **Email Address**     | Enter the email address of the merchant.                                            |
-| **Phone Number**      | Enter the merchant’s phone number.                                                  |
-| **Payment Service**   | Enter the payment service from the drop-down list that the merchant will use.       |
-| **Business Category** | Select the business category from the drop-down list to which the merchant belongs. |
+  4. Click **Next** to proceed further.
 
-4. Click **Next** to proceed further.
+     The _Merchant Plan_ page is displayed.
 
-   The _Merchant Plan_ page is displayed.
 
+  <Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/10/Screenshot-2021-10-06-at-12.11.07-PM-474x1024.png" align="center" width="350px" />
 
-<Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/10/Screenshot-2021-10-06-at-12.11.07-PM-474x1024.png" align="center" width="350px" />
 
+  5. Click **Add Merchant** button to add the merchant with the **Standard** plan (free), where the transaction charges listed on the page are applicable. Before adding, check default merchant plan details.
 
-5. Click **Add Merchant** button to add the merchant with the **Standard** plan (free), where the transaction charges listed on the page are applicable. Before adding, check default merchant plan details.
+  > **Note**: Select the **Click Here** option at the bottom of the **Merchant Plan** page to see the benefits (similar to the following screenshot) if you are a registered partner. You can avail of these benefits only if you are a registered partner. For more information, contact PayU Support.
 
-> **Note**: Select the **Click Here** option at the bottom of the **Merchant Plan** page to see the benefits (similar to the following screenshot) if you are a registered partner. You can avail of these benefits only if you are a registered partner. For more information, contact PayU Support.
 
+  <Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/10/Screenshot-2021-10-06-at-12.13.59-PM-1024x878.jpg" align="center" width="450px" />
 
-<Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/10/Screenshot-2021-10-06-at-12.13.59-PM-1024x878.jpg" align="center" width="450px" />
 
+  The referral merchant gets added to the Home page.
 
-The referral merchant gets added to the Home page.
+  ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/10/Screenshot-2021-10-06-at-12.23.38-PM-1024x800.png)
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/10/Screenshot-2021-10-06-at-12.23.38-PM-1024x800.png)
+  6. Click **Complete Profile** to complete the merchant’s profile.
 
-6. Click **Complete Profile** to complete the merchant’s profile.
+  You will be redirected to the _Complete Your KYC_ page as in PayU Dashboard. For more information, refer the to [Activate Account](doc:complete-your-kyc) section of the _PayU Dashboard User Guide_.
+</Accordion>
 
-You will be redirected to the _Complete Your KYC_ page as in PayU Dashboard. For more information, refer the to [Activate Account](doc:complete-your-kyc) section of the _PayU Dashboard User Guide_.
+<Accordion title="Add Multiple Referral Merchants" icon="fa-info-circle">
+  You can upload multiple referral merchants by entering their details in the provided template. If you want to add a merchant (single), refer to [Onboarding APIs](ref:onboarding-apis)
 
-### Add multiple referral merchants
+  To add multiple referral merchants:
 
-You can upload multiple referral merchants by entering their details in the provided template. If you want to add a merchant (single), refer to [Onboarding APIs](ref:onboarding-apis)
+  1. Log in to your partner account.
 
-To add multiple referral merchants:
+     On the left pane, the **Add Single Merchant** and **Add Multiple Merchant** options are displayed under **Refer a Merchant**.
 
-1. Log in to your partner account.
+  ![Refer\_merchant](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-188.png)
 
-   On the left pane, the **Add Single Merchant** and **Add Multiple Merchant** options are displayed under **Refer a Merchant**.
+  2. Click **Add Multiple Merchants** on the left pane to add multiple merchants.
 
-![Refer\_merchant](https://devguide.payu.in/wordpress/wp-content/uploads/2021/08/image-188.png)
+     The _Add Multiple Merchants_ pop-up page is displayed.
 
-2. Click **Add Multiple Merchants** on the left pane to add multiple merchants.
 
-   The _Add Multiple Merchants_ pop-up page is displayed.
+  <Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/10/Screenshot-2021-10-06-at-10.23.59-PM-761x1024.png" align="center" width="422px" border={true} />
 
 
-<Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/10/Screenshot-2021-10-06-at-10.23.59-PM-761x1024.png" align="center" width="422px" border={true} />
+  3. Select the **Download Sample Template** option to download the spreadsheet template in which you need to fill in the details of multiple merchants.
 
+  > **Note**: If you try to upload using any other spreadsheet or template, the upload will be successful only if the columns (marked mandatory and same order) as in the template mentioned in Step 3.
 
-3. Select the **Download Sample Template** option to download the spreadsheet template in which you need to fill in the details of multiple merchants.
+  4. Click **Browse** to select the spreadsheet containing the multiple merchant details.
 
-> **Note**: If you try to upload using any other spreadsheet or template, the upload will be successful only if the columns (marked mandatory and same order) as in the template mentioned in Step 3.
+  > **Note**: The values for the following columns in the spreadsheet are mandatory. You can fill in the other details.
 
-4. Click **Browse** to select the spreadsheet containing the multiple merchant details.
+  - Merchant Name
+  - Merchant Email
+  - Merchant Phone
 
-> **Note**: The values for the following columns in the spreadsheet are mandatory. You can fill in the other details.
+  5. Click **Submit**.
 
-- Merchant Name
-- Merchant Email
-- Merchant Phone
+  #### Complete your Referral Details
 
-5. Click **Submit**.
+  You have to complete the following sections (in the following sequence) on the KYC page to complete KYC for your merchant with PayU:
 
-#### Complete your Referral Details
+  #### Navigate to the KYC page for a Referral
 
-You have to complete the following sections (in the following sequence) on the KYC page to complete KYC for your merchant with PayU:
+  To open the KYC page for a referral:
 
-#### Navigate to the KYC page for a Referral
+  1. Log in to Partner Portal.
 
-To open the KYC page for a referral:
+  The list of referrals are displayed.
 
-1. Log in to Partner Portal.
+  ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-11.53.01-AM-1024x835.png)
 
-The list of referrals are displayed.
+  1. Click **Complete Profile** next on the referral entry that you wish to complete KYC details.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-11.53.01-AM-1024x835.png)
+     A page is displayed with a message, “Your account is active. Complete your full KYC.” The **PAN Verification** section is displayed requesting your PAN details.
 
-1. Click **Complete Profile** next on the referral entry that you wish to complete KYC details.
+  #### PAN Verification
 
-   A page is displayed with a message, “Your account is active. Complete your full KYC.” The **PAN Verification** section is displayed requesting your PAN details.
+  To verify your PAN on the **PAN verification** section:
 
-#### PAN Verification
+  1. Enter your PAN in the **Business PAN Card** field.
 
-To verify your PAN on the **PAN verification** section:
+  ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-25-at-7.17.19-PM-1024x705.jpg)
 
-1. Enter your PAN in the **Business PAN Card** field.
+  2. Click **Proceed to Verify**.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-25-at-7.17.19-PM-1024x705.jpg)
+  After the PAN is verified, the section name gets updated to “Your PAN is verified. Way yo Go!” and **Tell us a little bit about your business** section is enabled.
 
-2. Click **Proceed to Verify**.
+  #### Tell us a little bit about your business
 
-After the PAN is verified, the section name gets updated to “Your PAN is verified. Way yo Go!” and **Tell us a little bit about your business** section is enabled.
+  To enter information on your business in the **Tell us a little bit about your business** section:
 
-#### Tell us a little bit about your business
+  1. Select your business category from the **Business Category** drop-down list.
 
-To enter information on your business in the **Tell us a little bit about your business** section:
+  ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-24-at-7.22.55-PM-1-1024x697.jpg)
 
-1. Select your business category from the **Business Category** drop-down list.
+  2. Select your business sub category from the **Business Sub Category drop-down list.**
+  3. Enter your GSTIN in the **GSTIN** field (optional).
+  4. Enter the estimated sales or revenue per month of your business in the **Expected Sales per month** field.
+  5. Click **Proceed**.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-24-at-7.22.55-PM-1-1024x697.jpg)
+  The section name gets updated to **Business details submitted successfully**. The **Enter Bank details of\<your name>** section is enabled, where \<your name > is substituted with your name as in PAN.
 
-2. Select your business sub category from the **Business Sub Category drop-down list.**
-3. Enter your GSTIN in the **GSTIN** field (optional).
-4. Enter the estimated sales or revenue per month of your business in the **Expected Sales per month** field.
-5. Click **Proceed**.
+  #### Enter Bank Details
 
-The section name gets updated to **Business details submitted successfully**. The **Enter Bank details of\<your name>** section is enabled, where \<your name > is substituted with your name as in PAN.
+  To enter your bank details on the **Enter bank details of\<your name>** section:
 
-#### Enter Bank Details
+  1. Enter your account number in the **Bank Account Number** field.
 
-To enter your bank details on the **Enter bank details of\<your name>** section:
+  ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-24-at-7.23.30-PM-1024x709.jpg)
 
-1. Enter your account number in the **Bank Account Number** field.
+  2. Enter your bank IFSC code in the **IFSC Code** field. You can find the IFSC code on the cheque book provided by your bank.
+  3. Click **Connect Bank Account**.
 
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-24-at-7.23.30-PM-1024x709.jpg)
+  #### How do you Wish to Accept Payments
 
-2. Enter your bank IFSC code in the **IFSC Code** field. You can find the IFSC code on the cheque book provided by your bank.
-3. Click **Connect Bank Account**.
+  To specify how do wish to accept payments from your customers, select any of the following on the **How do you wish to accept payments** section:
 
-#### How do you Wish to Accept Payments
+  - **On my website/app**: Enter the URL for the following fields:
+    1. Website
+    2. Android App
+    3. iOS App
 
-To specify how do wish to accept payments from your customers, select any of the following on the **How do you wish to accept payments** section:
 
-- **On my website/app**: Enter the URL for the following fields:
-  1. Website
-  2. Android App
-  3. iOS App
+  <Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-25-at-10.07.25-PM-1024x462.jpg" align="center" border={true} />
 
 
-<Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-25-at-10.07.25-PM-1024x462.jpg" align="center" border={true} />
+  > **Note**: You have to ensure that the list of pages are created on your website as indicated under the **Important – Your website must have the following pages**.
 
+  - **I don’t have a website/app**: You can use the following features of Dashboard to collect payments if you don’t have website or app:
+    1. [Payment Links](doc:payment-links-dashboard)
+    2. [Payment Invoices](doc:invoices-dashboard)
+    3. [Payment Buttons](doc:payment-buttons-dashboard)
 
-> **Note**: You have to ensure that the list of pages are created on your website as indicated under the **Important – Your website must have the following pages**.
 
-- **I don’t have a website/app**: You can use the following features of Dashboard to collect payments if you don’t have website or app:
-  1. [Payment Links](doc:payment-links-dashboard)
-  2. [Payment Invoices](doc:invoices-dashboard)
-  3. [Payment Buttons](doc:payment-buttons-dashboard)
+  <Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-25-at-9.46.50-PM-1024x343.jpg" align="center" border={true} />
 
 
-<Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-25-at-9.46.50-PM-1024x343.jpg" align="center" border={true} />
+  Click **Next** to proceed to the **Verify signing authoring details** section.
 
+  The section title gets updated to “Signing authority details captured” and the **Verify signing authority details** section is enabled.
 
-Click **Next** to proceed to the **Verify signing authoring details** section.
+  ### Verify signing authority details
 
-The section title gets updated to “Signing authority details captured” and the **Verify signing authority details** section is enabled.
+  To verify your business signing authority details in the **Verify signing authority details** section:
 
-### Verify signing authority details
-
-To verify your business signing authority details in the **Verify signing authority details** section:
-
-1. Verify the details in the following fields:
-   - Signing Authority Name
-   - Signing Authority’s PAN card number
-   - Signing Authority Email ID
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-24-at-7.23.49-PM-1-1024x657.jpg)
-
-2. Update the email ID in the **Signing Authority Email ID** field if required.
-3. Click **Proceed to KYC**.
-
-The section name gets update to “Signing authority details captured” and the **Complete the KYC** section is enabled.
-
-### Complete the KYC
-
-To fetch your KYC documents automatically from the cKYC/Aadhaar database or upload the documents manually, select any of the following options:
-
-- **Fetch from cKYC**: To fetch your automatically from the cKYC database:
-  1. Enter your date of birth or company’s incorporation date in the **Date of Birth/ Date of Incorporation** field.
-  2. Select the **I hereby authorize PayU …** check box to authorize PayU to fetch the KYC documents from cKYC.
-  3. Click **Submit**.
-
-![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-26-at-8.23.06-PM-1024x441.jpg)
-
-- Fetch from Aadhaar: To fetch your automatically from the Aadhaar database:
-  1. Select the **By proceeding I accept Aadhar Terms and Conditions** check box to accept Aaadhar Terms & Conditions.
-  2. Click **Submit**.
-
-
-<Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-26-at-8.23.17-PM-1024x611.jpg" align="center" border={true} />
-
-
-- Upload documents manually: To upload the KYC documents manually:
   1. Verify the details in the following fields:
-     - Name
-     - Address
-     - Postal Code
-     - City
-     - State
-  2. Update the **Address** and **Postal Code** fields if required.
-  3. Choose **Yes** in the **Do you have a different Operating Business Address ?** field if the business address is different and enter the following details:
-     - Address
-     - Postal Code
-  4. Click **Confirm and Proceed**.
+     - Signing Authority Name
+     - Signing Authority’s PAN card number
+     - Signing Authority Email ID
 
-An additional section, **Additional documents required** is displayed. For more information, refer to [Additional Documents Required.](#additional-documents-required)
+  ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-24-at-7.23.49-PM-1-1024x657.jpg)
 
-### Additional documents required
+  2. Update the email ID in the **Signing Authority Email ID** field if required.
+  3. Click **Proceed to KYC**.
 
-To submit the documents manually:
+  The section name gets update to “Signing authority details captured” and the **Complete the KYC** section is enabled.
 
+  ### Complete the KYC
 
-<Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-26-at-8.36.42-PM_defaced-1-1024x396.jpg" align="center" width="450px" border={true} />
+  To fetch your KYC documents automatically from the cKYC/Aadhaar database or upload the documents manually, select any of the following options:
 
+  - **Fetch from cKYC**: To fetch your automatically from the cKYC database:
+    1. Enter your date of birth or company’s incorporation date in the **Date of Birth/ Date of Incorporation** field.
+    2. Select the **I hereby authorize PayU …** check box to authorize PayU to fetch the KYC documents from cKYC.
+    3. Click **Submit**.
 
-1. Select each of the following drop-down list and select the document by clicking **Select file from your library**:
-   - **PAN Card**: Select a scanned copy or photo of your PAN card.
-   - **Address Proof**: Select a scanned copy or photo of a government issued ID cards such as Passport or Driving License.
-   - **Government issued certificate copy** (only if requested): Select your Income Tax returns scanned document (80G).
-2. Click **Submit Documents**.
+  ![](https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-26-at-8.23.06-PM-1024x441.jpg)
 
-A message similar to the following is displayed at the bottom right-corner of your browser.
+  - Fetch from Aadhaar: To fetch your automatically from the Aadhaar database:
+    1. Select the **By proceeding I accept Aadhar Terms and Conditions** check box to accept Aaadhar Terms & Conditions.
+    2. Click **Submit**.
 
 
-<Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-26-at-9.07.24-PM.png" align="center" width="3px" />
+  <Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-26-at-8.23.17-PM-1024x611.jpg" align="center" border={true} />
 
 
-<br />
+  - Upload documents manually: To upload the KYC documents manually:
+    1. Verify the details in the following fields:
+       - Name
+       - Address
+       - Postal Code
+       - City
+       - State
+    2. Update the **Address** and **Postal Code** fields if required.
+    3. Choose **Yes** in the **Do you have a different Operating Business Address ?** field if the business address is different and enter the following details:
+       - Address
+       - Postal Code
+    4. Click **Confirm and Proceed**.
+
+  An additional section, **Additional documents required** is displayed. For more information, refer to [Additional Documents Required.](#additional-documents-required)
+
+  ### Additional documents required
+
+  To submit the documents manually:
 
 
-<Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-26-at-9.07.24-PM.png" align="center" width="350px" border={true} />
+  <Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-26-at-8.36.42-PM_defaced-1-1024x396.jpg" align="center" width="450px" border={true} />
 
+
+  1. Select each of the following drop-down list and select the document by clicking **Select file from your library**:
+     - **PAN Card**: Select a scanned copy or photo of your PAN card.
+     - **Address Proof**: Select a scanned copy or photo of a government issued ID cards such as Passport or Driving License.
+     - **Government issued certificate copy** (only if requested): Select your Income Tax returns scanned document (80G).
+  2. Click **Submit Documents**.
+
+  A message similar to the following is displayed at the bottom right-corner of your browser.
+
+
+  <Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-26-at-9.07.24-PM.png" align="center" width="3px" />
+
+
+
+
+
+  <Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2021/09/Screenshot-2021-09-26-at-9.07.24-PM.png" align="center" width="350px" border={true} />
+
+</Accordion>
 
 ## Managing Users
 
 You can invite users and provide permissions to manage or maintain your Partner Portal. You can perform the following to manage users:
 
-### Add a User
+<Accordion title="Add a User" icon="fa-info-circle">
+  To add a user on Partner Portal:
 
-To add a user on Partner Portal:
+  1. Click your profile picture on the top-right corner and select **Invite a user** from the drop-down menu.
 
-1. Click your profile picture on the top-right corner and select **Invite a user** from the drop-down menu.
-
-The _My Users_ page is displayed.
-
-
-<Image src="https://files.readme.io/3fb3cce6908d85f492a0a9e040c932b6083f926f0b35bc427c40b741887688f1-partner_portal_add_user.png" align="center" border={true} />
+  The _My Users_ page is displayed.
 
 
-<br />
+  <Image src="https://files.readme.io/3fb3cce6908d85f492a0a9e040c932b6083f926f0b35bc427c40b741887688f1-partner_portal_add_user.png" align="center" border={true} />
 
 
-<Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-11.00.43-AM-1024x568.png" align="center" width="450px" />
 
 
-2. Click **Add User** from the left pane.
 
-   The _Add User Details_ pop-up page is displayed.
-
-
-<Image src="https://files.readme.io/d99487df22adf33d23ddb38c889c7249a599ea094edb74b4a10cc7558fd123b9-Screenshot_2025-08-26_at_3.09.41_PM.png" align="center" width="320px" border={true} />
+  <Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-11.00.43-AM-1024x568.png" align="center" width="450px" />
 
 
-<br />
+  2. Click **Add User** from the left pane.
+
+     The _Add User Details_ pop-up page is displayed.
 
 
-<Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-10.39.27-AM-726x1024.png" align="center" width="350px" />
+  <Image src="https://files.readme.io/d99487df22adf33d23ddb38c889c7249a599ea094edb74b4a10cc7558fd123b9-Screenshot_2025-08-26_at_3.09.41_PM.png" align="center" width="320px" border={true} />
 
 
-3. Enter the user’s name in the **Name** field.
-4. Enter the user’s email ID in the **Email ID** field.
-5. Select any of the following options from the **Select the type of referral access this user will have the** field:
-   - The user will be able to see all your referrals
-   - The user will be able to see only their referrals
-6. Select any of the following user’s permissions from the Select type of user management permissions this user will have field.
-   - The user can add/manage other users
-   - The user cannot add/manage other users
-7. Click **Add User** to add the user.
-
-   A confirmation message is displayed, and a link is sent to the e-mail ID that was entered in Step 4.
-
-### Revoke a User
-
-To revoke a user or make the user inactive on Partner Portal:
-
-1. Click your profile picture on the top-right corner and select **Invite a user** from the drop-down menu.
 
 
-<Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-10.56.12-AM.png" align="center" width="150px" />
+
+  <Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-10.39.27-AM-726x1024.png" align="center" width="350px" />
 
 
-```
-The My Users page is displayed.
-```
+  3. Enter the user’s name in the **Name** field.
+  4. Enter the user’s email ID in the **Email ID** field.
+  5. Select any of the following options from the **Select the type of referral access this user will have the** field:
+     - The user will be able to see all your referrals
+     - The user will be able to see only their referrals
+  6. Select any of the following user’s permissions from the Select type of user management permissions this user will have field.
+     - The user can add/manage other users
+     - The user cannot add/manage other users
+  7. Click **Add User** to add the user.
 
-2. Click the hamburger menu next to the user you wish to revoke and select **Revoke Access**.
+     A confirmation message is displayed, and a link is sent to the e-mail ID that was entered in Step 4.
+</Accordion>
 
-### Edit Permissions for a User
+<Accordion title="Revoke a User" icon="fa-info-circle">
+  To revoke a user or make the user inactive on Partner Portal:
 
-To edit permission for a user on Partner Portal:
-
-1. Click your profile picture on the top-right corner and select **Invite a user** from the drop-down menu.
-
-
-<Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-10.56.12-AM.png" align="center" width="150px" />
-
-
-```
-The _My Users_ page is displayed.
-```
-
-2. Click the hamburger menu next to the user you wish to revoke and select **Edit Permission**.
-
-   The _Add User Details_ page is displayed.
+  1. Click your profile picture on the top-right corner and select **Invite a user** from the drop-down menu.
 
 
-<Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-11.10.39-AM-1024x435.png" align="center" width="550px" />
+  <Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-10.56.12-AM.png" align="center" width="150px" />
 
 
-<br />
+  ```
+  The My Users page is displayed.
+  ```
+
+  2. Click the hamburger menu next to the user you wish to revoke and select **Revoke Access**.
+</Accordion>
+
+<Accordion title="Edit Permissions for a User" icon="fa-info-circle">
+  To edit permission for a user on Partner Portal:
+
+  1. Click your profile picture on the top-right corner and select **Invite a user** from the drop-down menu.
 
 
-<Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-11.10.39-AM-1024x435.png" align="center" width="3px" />
+  <Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-10.56.12-AM.png" align="center" width="150px" />
 
 
-3. Select any of the following user’s permissions from the **Select type of user management permissions this user will have** field.
-   - The user can add/manage other users
-   - The user cannot add/manage other users
-4. Click **Add User**.
+  ```
+  The _My Users_ page is displayed.
+  ```
+
+  2. Click the hamburger menu next to the user you wish to revoke and select **Edit Permission**.
+
+     The _Add User Details_ page is displayed.
+
+
+  <Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-11.10.39-AM-1024x435.png" align="center" width="550px" />
+
+
+
+
+
+  <Image src="https://devguide.payu.in/wordpress/index.php/wp-json/getobject?keyname=uploads/2022/04/Screenshot-2022-04-25-at-11.10.39-AM-1024x435.png" align="center" width="3px" />
+
+
+  3. Select any of the following user’s permissions from the **Select type of user management permissions this user will have** field.
+     - The user can add/manage other users
+     - The user cannot add/manage other users
+  4. Click **Add User**.
+</Accordion>
