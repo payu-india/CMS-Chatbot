@@ -785,7 +785,7 @@ if __name__ == '__main__':
 
 <Verify_Payment_Partner />
 
-### Step 4.3: Process Verification Response
+### Process Verification Response
 
 **Reconciliation Checklist:**
 
