@@ -166,7 +166,7 @@ You can perform the following actions after a link is created:
 </Accordion>
 
 <Accordion title="Duplicate a Link" icon="far fa-copy">
-  Duplicating creates a brand-new link pre-filled with the same details such as, amount, purpose, and options so that you do not have to fill everything in again. Use it to reuse a configuration, correct a mistake on an existing link, or run the same payment request for a different customer.
+  Duplicating creates a brand-new link pre-filled with the same details such as, amount, purpose, and options so that you do not have to fill everything in again. Use it to reuse a configuration, correct a mistake on an existing link, or run the same payment request for a different customer.<br />
 
   To duplicate a link:
 
