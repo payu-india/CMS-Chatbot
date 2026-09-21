@@ -90,13 +90,21 @@ You can perform the following actions after a link is created:
   <Accordion title="Link Details" icon="fad fa-link">
     The following details are displayed in this section:
 
+    - **Name:&#x20;**&#x4E;ame of the Payment Link you enterd during creation.
+    - **Status:&#x20;**&#x53;tatus of the payment link. Refer to the Payment Link statuses for more information.
     - **Link:&#x20;**&#x54;he payment with options to copy and share via WhatsApp and Facebook.
     - **Invoice ID:&#x20;**&#x54;he auto generated invoice ID. For example, **INV331178996540608300.**
     - **Total Amount:&#x20;**&#x54;he total amount for which the link is created.
-    - **Type:&#x20;**
+    - **Type:&#x20;**&#x54;he payment type. The value can be either **Partial&#x20;**&#x6F;r **Full**.
+    - **Share:&#x20;**&#x4F;ptions to copy the link or share via WhatsApp, Facebook or to any other mobile number or email ID.
+
+      <Image src="https://files.readme.io/18374beecc40c725bf806f3eea419f259e50c0928a43a7573e94c8a661280637-Screenshot_2026-09-21_at_10.40.08_AM.png" align="center" caption="Share the Payment Link" border={true} />
+
   </Accordion>
 
-  The detail view shows everything you set when creating the link — amount, purpose, expiry date, partial payment settings, and any custom fields — along with any customer details collected at checkout.
+  <Accordion title="" icon="fa-info-circle">
+
+  </Accordion>
 </Accordion>
 
 <Accordion title="Duplicate a link" icon="far fa-copy">
