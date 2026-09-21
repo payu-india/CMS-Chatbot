@@ -5,6 +5,8 @@ excerpt: >-
   not reflecting, notifications not delivered, and API errors.
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
   title: Payment Links Troubleshooting | PayU Developer Docs
   description: >-
