@@ -64,7 +64,7 @@ To open your links: log in to [PayU Dashboard](https://onboarding.payu.in/) and 
 
 You can perform the following actions after a link is created:
 
-<Accordion title="See Payment Link Details" icon="far fa-rectangle-list">
+<Accordion title="View Payment Link Details" icon="far fa-rectangle-list">
   To see payment link details:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor> and go to **Payment Links&#x20;**&#x75;nder **Payment Tools.**
@@ -165,7 +165,33 @@ You can perform the following actions after a link is created:
   </Accordion>
 </Accordion>
 
-<Accordion title="Duplicate a Link" icon="far fa-copy">
+<Accordion title="Share or Resend a Payment Link" icon="far fa-share">
+  You can send the link to a customer at any time as long as it is still **Active**.
+
+  To share or resend a link:
+
+  1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor> and go to **Payment Links&#x20;**&#x75;nder **Payment Tools.**
+
+
+     <Image src="https://files.readme.io/4bdd9694005c1b8b87943da0a39ec512d18b55e48941bc7a9010b1ff106647c4-image.png" align="center" caption="Access Payment Links" border={true} />
+
+
+  2. Click the menu icon against a required payment link and click **Share.**
+
+
+     <Image src="https://files.readme.io/27172438300911c6a248a792664a3004e425677962fdccd55c1f1ee51715b116-Screenshot_2026-09-21_at_1.15.27_PM.png" align="center" caption="Click Share" border={true} />
+
+
+  3. Copy the link or share via WhatsApp, Facebook or to any other mobile number or email ID as required.
+
+
+     <Image src="https://files.readme.io/4a76daed789c0c72bb8a54ca89827a29fdd263504516d6c6388982729010863e-image.png" align="center" caption="Share or Resend the Link." border={true} />
+
+
+  There is no limit on how many times you can share a link. Each share just sends the same URL again.
+</Accordion>
+
+<Accordion title="Duplicate a Payment Link" icon="far fa-copy">
   Duplicating creates a brand-new link pre-filled with the same details such as, amount, purpose, and options so that you do not have to fill everything in again. Use it to reuse a configuration, correct a mistake on an existing link, or run the same payment request for a different customer.<br />
 
   To duplicate a link:
@@ -201,33 +227,7 @@ You can perform the following actions after a link is created:
      The link is created and sent to the customer. You can see it in the **Payment Links&#x20;**&#x70;age.
 </Accordion>
 
-<Accordion title="Share or Resend a Link" icon="far fa-share">
-  You can send the link to a customer at any time as long as it is still **Active**.
-
-  To share or resend a link:
-
-  1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor> and go to **Payment Links&#x20;**&#x75;nder **Payment Tools.**
-
-
-     <Image src="https://files.readme.io/4bdd9694005c1b8b87943da0a39ec512d18b55e48941bc7a9010b1ff106647c4-image.png" align="center" caption="Access Payment Links" border={true} />
-
-
-  2. Click the menu icon against a required payment link and click **Share.**
-
-
-     <Image src="https://files.readme.io/27172438300911c6a248a792664a3004e425677962fdccd55c1f1ee51715b116-Screenshot_2026-09-21_at_1.15.27_PM.png" align="center" caption="Click Share" border={true} />
-
-
-  3. Copy the link or share via WhatsApp, Facebook or to any other mobile number or email ID as required.
-
-
-     <Image src="https://files.readme.io/4a76daed789c0c72bb8a54ca89827a29fdd263504516d6c6388982729010863e-image.png" align="center" caption="Share or Resend the Link." border={true} />
-
-
-  There is no limit on how many times you can share a link. Each share just sends the same URL again.
-</Accordion>
-
-<Accordion title="Edit the Details of a Link" icon="far fa-pen-to-square">
+<Accordion title="Edit Payment Link Details" icon="far fa-pen-to-square">
   You can edit certain details such as the expiry date, amount, and status of a payment link after it is created.
 
   To edit the details:
@@ -269,7 +269,7 @@ You can perform the following actions after a link is created:
   </Callout>
 </Accordion>
 
-<Accordion title="Deactivate a Link" icon="far fa-ban">
+<Accordion title="Deactivate a Payment Link" icon="far fa-ban">
   Deactivating stops any further payments on the link. Customers who click it will see a message that it is no longer active.
 
   To deactivate a link:
@@ -291,7 +291,7 @@ You can perform the following actions after a link is created:
   The link status changes to **Deactivated**.
 </Accordion>
 
-<Accordion title="Reactivate a Link" icon="far fa-clock-rotate-left">
+<Accordion title="Reactivate a Payment Link" icon="far fa-clock-rotate-left">
   You can reactivate a deactivated link from the dashboard:
 
   To reactivate a link:
@@ -318,12 +318,6 @@ You can perform the following actions after a link is created:
 ## How Do I Find a Specific Payment Link?
 
 You can filter the payment links list using the following options:
-
-<Callout icon="📘" theme="info">
-  ### **Payment Link Status**
-
-  Not sure what **Active**, **Paid**, **Expired**, or **Deactivated** mean? See [Payment Link Statuses](doc:send-a-payment-link).
-</Callout>
 
 <Accordion title="Filter by Status and Payment Type" icon="far fa-filter">
   To filter the list by status:
