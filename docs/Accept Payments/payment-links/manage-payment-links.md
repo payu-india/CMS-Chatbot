@@ -195,11 +195,22 @@ You can perform the following actions after a link is created:
 <Accordion title="Share or Resend a Link" icon="far fa-share">
   You can send the link to a customer at any time as long as it is still **Active**.
 
-  1. Find the link in the table.
-  2. In the **Actions** column, click the **Share** icon.
-  3. Choose to send via **SMS**, **Email**, or copy the URL manually and share it over WhatsApp or any other channel.
+  To share or resend a link:
 
-  There is no limit on how many times you can share a link — each share just sends the same URL again.
+  1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor> and go to **Payment Links&#x20;**&#x75;nder **Payment Tools.**
+
+     <Image src="https://files.readme.io/4bdd9694005c1b8b87943da0a39ec512d18b55e48941bc7a9010b1ff106647c4-image.png" align="center" caption="Access Payment Links" border={true} />
+
+  2. Click the menu icon against a required payment link and click **Share.**
+
+     <Image src="https://files.readme.io/27172438300911c6a248a792664a3004e425677962fdccd55c1f1ee51715b116-Screenshot_2026-09-21_at_1.15.27_PM.png" align="center" caption="Click Share" border={true} />
+
+  3. Copy the link or share via WhatsApp, Facebook or to any other mobile number or email ID as required.
+
+     <Image src="https://files.readme.io/4a76daed789c0c72bb8a54ca89827a29fdd263504516d6c6388982729010863e-image.png" align="center" caption="Share or Resend the Link." border={true} />
+
+
+  There is no limit on how many times you can share a link. Each share just sends the same URL again.
 </Accordion>
 
 <Accordion title="Deactivate a link" icon="far fa-ban">
