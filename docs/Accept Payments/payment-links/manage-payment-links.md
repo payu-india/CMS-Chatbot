@@ -409,7 +409,7 @@ You can filter the payment links list using the following options:
 
 ***
 
-## Can I Download All My Payment Link Records?
+## How Do I Download My Payment Link Records?
 
 <Accordion title="Export Payment Link Records" icon="far fa-download">
   To download payment link records:
