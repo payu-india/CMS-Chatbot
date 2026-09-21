@@ -6,7 +6,7 @@ excerpt: >-
   Onboarding. You should create a partner account to get started with the
   partner program.
 deprecated: false
-hidden: true
+hidden: false
 link:
   url: >-
     https://docs.payu.in/docs/onboard-merchants-manually#step-1-register-a-partner-account
