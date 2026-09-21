@@ -123,26 +123,33 @@ Partner Payments API requires a 3-step OAuth 2.0 authentication flow to obtain t
 Construct your payment request with transaction details and beneficiary account information.
 
 <Accordion title="Request Parameters" icon="fa-table">
-  | Parameter         | Type   | Required        | Description                                        | Example                                  |
-  | ----------------- | ------ | --------------- | -------------------------------------------------- | ---------------------------------------- |
-  | merchant_id       | string | Yes             | PayU merchant ID                                   | `"8739528"`                              |
-  | reseller_id       | string | Yes             | Partner UUID/reseller ID                           | `"11ee-0e7e-5403fde2-9523-0a696b110fde"` |
-  | txnid             | string | Yes             | Unique transaction ID (alphanumeric, max 50 chars) | `"HC_TPV_20240315_001"`                  |
-  | amount            | string | Yes             | Transaction amount (decimal, 2 places)             | `"1500.00"`                              |
-  | productinfo       | string | Yes             | Product/service description                        | `"Loan EMI Payment - March 2024"`        |
-  | firstname         | string | Optional        | Customer first name                                | `"Rajesh"`                               |
-  | email             | string | Optional        | Customer email                                     | `"rajesh.kumar@example.com"`             |
-  | phone             | string | Optional        | Customer phone (10 digits)                         | `"9876543210"`                           |
-  | surl              | string | Yes             | Success redirect URL (HTTPS)                       | `"https://yoursite.com/success"`         |
-  | furl              | string | Yes             | Failure redirect URL (HTTPS)                       | `"https://yoursite.com/failure"`         |
-  | curl              | string | Yes             | Cancel redirect URL (HTTPS)                        | `"https://yoursite.com/cancel"`          |
-  | udf1              | string | Optional        | User-defined field 1                               | `"session_12345"`                        |
-  | udf2              | string | Optional        | User-defined field 2                               | `"1370625260"`                           |
-  | udf3              | string | Optional        | User-defined field 3                               | `"loan-ref-ABC123"`                      |
-  | udf4              | string | Optional        | User-defined field 4                               | `""`                                     |
-  | udf5              | string | Optional        | User-defined field 5                               | `"whatsapp"`                             |
-  | beneficiarydetail | string | **Yes for TPV** | Beneficiary account details as JSON string         | See below                                |
-  | hash              | string | Yes             | SHA-512 payment request hash                       | Computed (see Step 2.2)                  |
+  **Mandatory Parameters**
+
+  | Parameter         | Description                                                                                                                       | Example                                                      |
+  | :---------------- | :-------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------- |
+  | merchant_id       | PayU merchant ID.                                                                                                                 | 8739528                                                      |
+  | reseller_id       | Partner UUID/reseller ID.                                                                                                         | 11ee-0e7e-5403fde2-9523-0a696b110fde                         |
+  | txnid             | Unique transaction ID (alphanumeric, max 50 chars).                                                                               | HC_TPV_20240315_001                                          |
+  | amount            | Transaction amount (decimal, 2 places).                                                                                           | 1500.00                                                      |
+  | productinfo       | Product/service description.                                                                                                      | Loan EMI Payment - March 2024                                |
+  | surl              | Success redirect URL (HTTPS).                                                                                                     | [https://yoursite.com/success](https://yoursite.com/success) |
+  | furl              | Failure redirect URL (HTTPS).                                                                                                     | [https://yoursite.com/failure](https://yoursite.com/failure) |
+  | curl              | Cancel redirect URL (HTTPS).                                                                                                      | [https://yoursite.com/cancel](https://yoursite.com/cancel)   |
+  | beneficiarydetail | Beneficiary account details as JSON string. Required for TPV transactions. See the Beneficiary Detail Schema below.               | See below                                                    |
+  | hash              | SHA-512 hash computed as: sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|salt) | Computed (see Step 2.2)                                      |
+
+  **Optional Parameters**
+
+  | Parameter | Description                 | Example                                                     |
+  | :-------- | :-------------------------- | :---------------------------------------------------------- |
+  | firstname | Customer first name.        | Rajesh                                                      |
+  | email     | Customer email.             | [rajesh.kumar@example.com](mailto:rajesh.kumar@example.com) |
+  | phone     | Customer phone (10 digits). | 9876543210                                                  |
+  | udf1      | User-defined field 1.       | session_12345                                               |
+  | udf2      | User-defined field 2.       | 1370625260                                                  |
+  | udf3      | User-defined field 3.       | loan-ref-ABC123                                             |
+  | udf4      | User-defined field 4.       |                                                             |
+  | udf5      | User-defined field 5.       | whatsapp                                                    |
 
   **Beneficiary Detail Schema:**
 
@@ -156,11 +163,13 @@ Construct your payment request with transaction details and beneficiary account 
   }
   ```
 
-  | Field             | Type   | Required | Description                                  | Example          |
-  | ----------------- | ------ | -------- | -------------------------------------------- | ---------------- |
-  | ifscCode          | string | Yes      | 11-character IFSC code of beneficiary's bank | `"ICIC0001234"`  |
-  | accountNumber     | string | Yes      | Beneficiary's bank account number            | `"123456789012"` |
-  | accountHolderName | string | Yes      | Account holder name (as per bank records)    | `"RAJESH KUMAR"` |
+  **Mandatory Parameters**
+
+  | Parameter         | Description                                   | Example      |
+  | :---------------- | :-------------------------------------------- | :----------- |
+  | ifscCode          | 11-character IFSC code of beneficiary's bank. | ICIC0001234  |
+  | accountNumber     | Beneficiary's bank account number.            | 123456789012 |
+  | accountHolderName | Account holder name (as per bank records).    | RAJESH KUMAR |
 </Accordion>
 
 <Warning>
@@ -460,12 +469,12 @@ if ($httpCode == 200) {
 
 **Response Fields:**
 
-| Field       | Type   | Description                                                   |
-| ----------- | ------ | ------------------------------------------------------------- |
-| status      | string | Request status (`"success"` or `"failure"`)                   |
-| redirectUri | string | PayU hosted checkout URL (redirect customer here immediately) |
-| txnid       | string | Transaction ID from request                                   |
-| merchant_id | string | Merchant ID from request                                      |
+| Field       | Description                                                   |
+| ----------- | ------------------------------------------------------------- |
+| status      | Request status (`"success"` or `"failure"`)                   |
+| redirectUri | PayU hosted checkout URL (redirect customer here immediately) |
+| txnid       | Transaction ID from request                                   |
+| merchant_id | Merchant ID from request                                      |
 
 **Next Steps:**
 
