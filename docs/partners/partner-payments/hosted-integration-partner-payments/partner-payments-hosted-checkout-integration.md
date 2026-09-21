@@ -92,11 +92,10 @@ Authorization: Bearer <your_access_token>
 Content-Type: application/json
 ```
 
-For getting access token, refer to [Prequisites](#prequisites)
+For getting access token, refer to [Prequisites](#prequisites).
 
-**Request Body Parameters:**
-
-#### Mandatory Parameters
+<Accordion title="Request Body Parameters" icon="fa-table">
+**Mandatory Parameters**
 
 <table>
   <thead>
@@ -161,7 +160,7 @@ For getting access token, refer to [Prequisites](#prequisites)
   </tbody>
 </table>
 
-#### Optional Parameters
+**Optional Parameters**
 
 <table>
   <thead>
@@ -214,7 +213,7 @@ For getting access token, refer to [Prequisites](#prequisites)
     </tr>
   </tbody>
 </table>
-
+</Accordion>
 <Warning>
 **Hosted Checkout-Specific Notes:**
 - **NO** `txn_s2s_flow` parameter — This is for UPI Intent S2S flows only
@@ -375,6 +374,7 @@ echo "Status Code: " . $statusCode . "\n";
 echo "Response: " . $response;
 ?>
 ```
+
 </Accordion>
 
 ### Step 2.4: Handle Payment Response & Redirect Customer
@@ -387,97 +387,98 @@ echo "Response: " . $response;
 }
 ```
 
-<Accordion title="Response Parameters Implementation" icon="fa-info-circle">
-**Key Response Field:**
+<Accordion title="Response Parameters Implementation" icon="fa-info-reply">
+  **Key Response Field:**
 
-\- **redirectUri** — The PayU hosted checkout URL. **Immediately redirect the customer to this URL.**
+  \- **redirectUri** — The PayU hosted checkout URL. **Immediately redirect the customer to this URL.**
 
-**Redirect Implementation:**
+  **Redirect Implementation:**
 
-**Server-side redirect (recommended):**
+  **Server-side redirect (recommended):**
 
-```python
-# Python Flask example
-from flask import redirect
+  ```python
+  # Python Flask example
+  from flask import redirect
 
-@app.route('/checkout', methods=['POST'])
-def initiate_checkout():
-    # Create payment via Partner API (steps above)
-    response = requests.post(payu_url, headers=headers, data=json.dumps(payload))
-    
-    if response.status_code == 200:
-        redirect_uri = response.json().get('redirectUri')
-        return redirect(redirect_uri, code=302)
-    else:
-        return "Payment initiation failed", 500
-```
-```php
-// PHP redirect
-<?php
-// Create payment via Partner API
-$response = json_decode($apiResponse, true);
+  @app.route('/checkout', methods=['POST'])
+  def initiate_checkout():
+      # Create payment via Partner API (steps above)
+      response = requests.post(payu_url, headers=headers, data=json.dumps(payload))
+      
+      if response.status_code == 200:
+          redirect_uri = response.json().get('redirectUri')
+          return redirect(redirect_uri, code=302)
+      else:
+          return "Payment initiation failed", 500
+  ```
+  ```php
+  // PHP redirect
+  <?php
+  // Create payment via Partner API
+  $response = json_decode($apiResponse, true);
 
-if ($response['redirectUri']) {
-    header("Location: " . $response['redirectUri']);
-    exit();
-}
-?>
-```
+  if ($response['redirectUri']) {
+      header("Location: " . $response['redirectUri']);
+      exit();
+  }
+  ?>
+  ```
 
-**Client-side redirect (JavaScript):**
+  **Client-side redirect (JavaScript):**
 
-```javascript
-// After receiving API response
-fetch('/api/create-payment', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(paymentData)
-})
-.then(response => response.json())
-.then(data => {
-    if (data.redirectUri) {
-        // Redirect customer to PayU checkout
-        window.location.href = data.redirectUri;
-    }
-});
-```
+  ```javascript
+  // After receiving API response
+  fetch('/api/create-payment', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(paymentData)
+  })
+  .then(response => response.json())
+  .then(data => {
+      if (data.redirectUri) {
+          // Redirect customer to PayU checkout
+          window.location.href = data.redirectUri;
+      }
+  });
+  ```
 </Accordion>
 
 <Accordion title="Customer Experience on Hosted Checkout" icon="fa-info-circle">
-**:**
+  **:**
 
-Once redirected to `redirectUri`, the customer will:
+  Once redirected to `redirectUri`, the customer will:
 
-1\. **See PayU's hosted checkout page** with:
-\- Your merchant branding (logo, colors)
-\- Transaction summary (amount, product description)
-\- Available payment methods
+  1\. **See PayU's hosted checkout page** with:
+  \- Your merchant branding (logo, colors)
+  \- Transaction summary (amount, product description)
+  \- Available payment methods
 
-2\. **Select a payment method:**
-\- **Credit/Debit Cards** (Visa, Mastercard, Amex, Rupay)
-\- **UPI** (Intent or Collect flow)
-\- **Net Banking** (50+ banks)
-\- **Wallets** (PayU Money, PhonePe, Paytm, etc.)
+  2\. **Select a payment method:**
+  \- **Credit/Debit Cards** (Visa, Mastercard, Amex, Rupay)
+  \- **UPI** (Intent or Collect flow)
+  \- **Net Banking** (50+ banks)
+  \- **Wallets** (PayU Money, PhonePe, Paytm, etc.)
 
-3\. **Complete authentication:**
-\- Card: CVV + OTP (3D Secure)
-\- UPI: PIN authentication
-\- Net Banking: Bank credentials
-\- Wallet: Wallet PIN/OTP
+  3\. **Complete authentication:**
+  \- Card: CVV + OTP (3D Secure)
+  \- UPI: PIN authentication
+  \- Net Banking: Bank credentials
+  \- Wallet: Wallet PIN/OTP
 
-4\. **Receive outcome:**
-\- **Success** → Redirected to `surl`
-\- **Failure** → Redirected to `furl`
-\- **Cancel** → Redirected to `curl`
+  4\. **Receive outcome:**
+  \- **Success** → Redirected to `surl`
+  \- **Failure** → Redirected to `furl`
+  \- **Cancel** → Redirected to `curl`
 
-<Info>
-**Callback URL Best Practices:**
-- Always use HTTPS for surl/furl/curl endpoints
-- Display clear success/failure messages on callback pages
-- Extract transaction details from callback parameters (PayU POSTs data to these URLs)
-- Do NOT rely solely on callback parameters — always verify using webhooks and Verify Payment API
-</Info>
+  <Info>
+  **Callback URL Best Practices:**
+  - Always use HTTPS for surl/furl/curl endpoints
+  - Display clear success/failure messages on callback pages
+  - Extract transaction details from callback parameters (PayU POSTs data to these URLs)
+  - Do NOT rely solely on callback parameters — always verify using webhooks and Verify Payment API
+  </Info>
 </Accordion>
+
 ***
 
 ## Step 3: Receive Payment Notification
@@ -497,9 +498,8 @@ Ensure these URLs are configured:
 <Callout icon="⚠️" theme="info">
   ### Contact your Account Manager to register for the Webhooks.
 </Callout>
-
-**Sample Success Webhook Payload:**
-
+<Accordion title="Sample Payload" icon="fa-code">
+**Sample Success Webhook Payload**
 ```json
 {
   "key": "JPM7Fg",
@@ -553,6 +553,7 @@ Ensure these URLs are configured:
   "hash": "webhook_hash_from_payu"
 }
 ```
+</Accordion>
 
 ### Step 3.2: Verify Webhook Hash
 
@@ -573,10 +574,7 @@ client_secret|status|||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|am
 - **Reject webhook if hash doesn't match**
 </Warning>
 
-**Sample Verification Code:**
-
-**Python:**
-
+<Accordion title="Sample Verification Payload" icon="fa-code">
 ```python
 import hashlib
 
@@ -609,9 +607,6 @@ if is_valid:
 else:
     print("❌ Invalid webhook hash — reject")
 ```
-
-**Java:**
-
 ```java
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -642,11 +637,11 @@ public class WebhookVerifier {
     }
 }
 ```
-
+</Accordion>
 ### Step 3.3: Process Webhook
+Implement using the following sample python code to handle the webhook:
 
-**Python Flask Webhook Handler:**
-
+<Accordion title="Sample Python Flask Webhook Handler" icon="fa-code">
 ```python
 from flask import Flask, request, jsonify
 import hashlib
@@ -679,7 +674,7 @@ def handle_success_webhook():
 if __name__ == '__main__':
     app.run(port=5000)
 ```
-
+</Accordion>
 ***
 
 ## Step 4: Verify Payment
@@ -693,7 +688,7 @@ if __name__ == '__main__':
 ✅ `mihpayid` matches<br />✅ `txnid` matches<br />✅ `amount` matches<br />✅ `status` is `"success"`<br />✅ `unmappedstatus` is `"captured"`
 
 If all match, mark transaction as verified.
-
+</Accordion>
 ***
 
 ## Use Cases
