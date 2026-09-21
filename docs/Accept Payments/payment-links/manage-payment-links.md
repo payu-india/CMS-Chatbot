@@ -192,7 +192,7 @@ You can perform the following actions after a link is created:
      The link is created and sent to the customer. You can see it in the **Payment Links&#x20;**&#x70;age.
 </Accordion>
 
-<Accordion title="Share or resend a link" icon="far fa-share">
+<Accordion title="Share or Resend a Link" icon="far fa-share">
   You can send the link to a customer at any time as long as it is still **Active**.
 
   1. Find the link in the table.
