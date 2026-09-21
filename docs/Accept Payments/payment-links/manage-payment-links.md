@@ -172,23 +172,32 @@ You can perform the following actions after a link is created:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor> and go to **Payment Links&#x20;**&#x75;nder **Payment Tools.**
 
+
      <Image src="https://files.readme.io/16cc602d7fea50b82cf305a021d8ec949b3f3ca9219a632f468ab9745bbdc5dd-image.png" align="center" caption="Access Payment Links" border={true} />
+
 
   2. Click the menu icon against a required payment link and click **Duplicate.**
 
+
      <Image src="https://files.readme.io/ba9d25a123f142ce6b98c768421c302cd0d3486ac7351ca72555f27624801fc5-Screenshot_2026-09-21_at_12.02.28_PM.png" align="center" caption="Click Duplicate" border={true} />
 
+
   3. The **Create new payment link** page opens with the existing link's details pre-filled.
+
   4. Edit any fields you need to change. For example, the expiry date or customer details.
+
   5. Click **Create and Send Payment link**.
 
+
      <Image src="https://files.readme.io/eb3a59aa72227334bc5d2e66dd3f100eef9594aa8cbc4084e3c93dd19a9f2d46-screen-recording.gif" align="center" caption="Duplicate a Payment Link" border={true} />
+
 
      <Callout icon="📘" theme="info">
        ### **Note:**
 
        Duplicating does not deactivate the original link. If you want to replace a link (e.g., wrong amount was set), duplicate it with the correct details first, then deactivate the original.
      </Callout>
+
      The link is created and sent to the customer. You can see it in the **Payment Links&#x20;**&#x70;age.
 </Accordion>
 
@@ -199,13 +208,18 @@ You can perform the following actions after a link is created:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor> and go to **Payment Links&#x20;**&#x75;nder **Payment Tools.**
 
+
      <Image src="https://files.readme.io/4bdd9694005c1b8b87943da0a39ec512d18b55e48941bc7a9010b1ff106647c4-image.png" align="center" caption="Access Payment Links" border={true} />
+
 
   2. Click the menu icon against a required payment link and click **Share.**
 
+
      <Image src="https://files.readme.io/27172438300911c6a248a792664a3004e425677962fdccd55c1f1ee51715b116-Screenshot_2026-09-21_at_1.15.27_PM.png" align="center" caption="Click Share" border={true} />
 
+
   3. Copy the link or share via WhatsApp, Facebook or to any other mobile number or email ID as required.
+
 
      <Image src="https://files.readme.io/4a76daed789c0c72bb8a54ca89827a29fdd263504516d6c6388982729010863e-image.png" align="center" caption="Share or Resend the Link." border={true} />
 
@@ -220,11 +234,15 @@ You can perform the following actions after a link is created:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor> and go to **Payment Links&#x20;**&#x75;nder **Payment Tools.**
 
+
      <Image src="https://files.readme.io/0edfad7491b4d310e15206fed91377c0067061f06c99a2d0e8cc9401b6abff22-image.png" align="center" caption="Access Payment Links" border={true} />
+
 
   2. Click the menu icon against a required payment link and click **Edit Details.**
 
+
      <Image src="https://files.readme.io/9ffda282631c77994e3f79648f454f60252605cbc90148606d2056933573dd8a-Screenshot_2026-09-21_at_1.29.51_PM.png" align="center" caption="Click Edit Details" border={true} />
+
 
   3. Make changes to the required details. You can edit only the following details.
      - **Item Description**
@@ -237,7 +255,9 @@ You can perform the following actions after a link is created:
      - **Phone number**
      - **Name**
      - **Email**
+
   4. Click **Edit Payment Link&#x20;**&#x74;o save the changes.
+
 
      <Image src="https://files.readme.io/e658e847683bc35ac6dbad46081b3c761143df81736a55e53d4410a43a2e2037-screen-recording-2.gif" align="center" caption="Edit Payment Link Details" border={true} />
 
@@ -256,11 +276,15 @@ You can perform the following actions after a link is created:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor> and go to **Payment Links&#x20;**&#x75;nder **Payment Tools.**
 
+
      <Image src="https://files.readme.io/517b591fde2b0d734063b91df9a7efd015f4d4eb75e35c147f198ec2e07929cb-image.png" align="center" caption="Access Payment Links" border={true} />
+
 
   2. Click the menu icon against a required payment link and click **Deactivate.**
 
+
      <Image src="https://files.readme.io/615e8c4c1da7afcbe5befc1657e14d1878c6e9a5f33ac59571d6a8c5ea50ed74-Screenshot_2026-09-21_at_1.47.19_PM.png" align="center" caption="Click Deactivate" border={true} />
+
 
   3. Click **Yes** in the confirmation window.
 
@@ -274,11 +298,15 @@ You can perform the following actions after a link is created:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor> and go to **Payment Links&#x20;**&#x75;nder **Payment Tools.**
 
+
      <Image src="https://files.readme.io/538f6c20473e9c0da496e892ac68071e166879f495dda0f71227fcbda7fc0de5-image.png" align="center" caption="Access Payment Links" border={true} />
+
 
   2. Click the menu icon against a deactivated payment link and click **Activate.**
 
+
      <Image src="https://files.readme.io/aa31df7ffbf655de3e172a8e8089bf4c82f7ee8fac69a7d531a7dc3881f7579b-Screenshot_2026-09-21_at_1.58.59_PM.png" align="center" caption="Click Activate" border={true} />
+
 
   3. Click **Yes&#x20;**&#x69;n the confirmation window to activate.
 
@@ -302,24 +330,32 @@ You can filter the payment links list using the following options:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor> and go to **Payment Links&#x20;**&#x75;nder **Payment Tools.**
 
+
      <Image src="https://files.readme.io/42a033de863c821718096d7b68198aba4cf6907b5cedbfa20c5cce9a399753ec-image.png" align="center" caption="Access Payment Links" border={true} />
 
+
   2. Click the **Filter** drop-down and select one or more status and payment type checkboxes. These are the available options:
+
      - **Status**
+
        - **Active**
        - **Paid**
        - **Deactivated**
        - **Expired**
-     <Callout icon="📘" theme="info">
+         <Callout icon="📘" theme="info">
+
        ### **Payment Link Status**
 
        Not sure what **Active**, **Paid**, **Expired**, or **Deactivated** mean? See [Payment Link Statuses](doc:send-a-payment-link).
-     </Callout>
+
+       </Callout>
      - **Payment Type**
        - **Standard**
        - **Partial Payment**
 
+
      <Image src="https://files.readme.io/38e42794f7726239255a7ec9ab9003684361bdc839446e56ce2dab84e8794489-Screenshot_2026-09-21_at_2.23.12_PM.png" align="center" caption="Filter Payment Link List" border={true} />
+
 
   3. Click **Apply&#x20;**&#x74;o filter the list.
 </Accordion>
@@ -329,19 +365,25 @@ You can filter the payment links list using the following options:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor> and go to **Payment Links&#x20;**&#x75;nder **Payment Tools.**
 
+
      <Image src="https://files.readme.io/87f833f0e3b63b7a43a5ea66318e367c44468236472eb90f95fcf468fc965c6a-image.png" align="center" caption="Access Payment Links" border={true} />
+
 
   2. Click the calendar icon and select any of the following.
      1. For a quick range, click **Today**, **Yesterday**, **Last 7 days**, or **Last 30 days**.
 
+
         <Image src="https://files.readme.io/5c16e927eb9fa8f01f539d7cbe087d5bf072c1dc49e3b477a2c82153148b8e8d-Screenshot_2026-09-21_at_2.32.18_PM.png" align="center" caption="Select Date Range" border={true} />
 
+
      2. For a custom range, click **Custom Range**, pick a start and end date from the calendar, then click **Apply**.
+
         <Callout icon="fad fa-star-exclamation" theme="warn">
           ### **Watch Out!**
 
           You can select a maximum date range of 90 days.
         </Callout>
+
 
         <Image src="https://files.readme.io/ca476fe9b764393c8b3ffd3b620b17308e3ad2e371807355b3f3531919e85ab2-Screenshot_2026-09-21_at_2.33.21_PM.png" align="center" caption="Select Custom Range" border={true} />
 
@@ -354,13 +396,18 @@ You can filter the payment links list using the following options:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor> and go to **Payment Links&#x20;**&#x75;nder **Payment Tools.**
 
+
      <Image src="https://files.readme.io/16f19c44171f05b7d9ce1394576e538eb0e5459b9f54c3f1f0a2355c46e03974-image.png" align="center" caption="Access Payment Links" border={true} />
 
+
   2. Use the drop-down next to the search to select the search type. Below are the available options:
+
      - **Purpose**
      - **InvoiceNumber**
 
+
      <Image src="https://files.readme.io/296c997061ba5287303445fafc09c121ce72269f1715382f60217f126339242c-Screenshot_2026-09-21_at_3.01.23_PM.png" align="center" caption="Select Search Type" border={true} />
+
 
   3. Enter the required information in the search bar based on your selection and click **Search**.
 </Accordion>
@@ -374,7 +421,9 @@ You can filter the payment links list using the following options:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor> and go to **Payment Links&#x20;**&#x75;nder **Payment Tools.**
 
+
      <Image src="https://files.readme.io/f435da3d1c07338957b79786bc9f159f1d9a7c6f3aa38d8856be45865b01712d-image.png" align="center" caption="Access Payment Links" border={true} />
+
 
   2. Click the **Download** drop-down at the top of the table and select any of the following format:
 
@@ -393,6 +442,15 @@ You can filter the payment links list using the following options:
 
   3. Click **Download&#x20;**&#x6F;n the **Report Ready for Download&#x20;**&#x70;op-up menu to download the report.
 </Accordion>
+
+***
+
+<Callout icon="fad fa-code" theme="success">
+  ### **For Developers**
+
+  - If you want to create payment links from your own system such as a CRM, billing tool, or backend, use the Create Payment Link API.
+  - If you want to fetch, update, or deactivate links from your own system, see the Fetch Payment Links API and the Cancel / Update Status API.
+</Callout>
 
 ***
 
