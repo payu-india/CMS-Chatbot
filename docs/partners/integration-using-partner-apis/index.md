@@ -30,7 +30,7 @@ Obtain a bearer token with the `refer_merchant` scope before these steps. See [G
 
 ### Step 1. Create Merchant (Name, Email, Phone)
 
-Creates a new merchant shell account on PayU. Pass display name, email, mobile, product (`PayUbiz`), and business entity type. Store `mid`, `uuid`, and `product_account_uuid` from the response — later steps use these identifiers. For the full parameter list and Try It experience, see [CreateMerchant API](ref:createmerchant).
+Creates a new merchant shell account on PayU. Pass display name, email, mobile, product (`PayUbiz`), and business entity type. Store `mid`, `uuid`, and `product_account_uuid` from the response — later steps use these identifiers. For the full parameter list and Try It experience, see [Create Merchant API](ref:createmerchant).
 
 **HTTP Method**: POST
 
@@ -86,6 +86,35 @@ Adds business category, sub-category, expected monthly volume, GST, business nam
 | Test Environment       | `https://uat-partner.payu.in/api/v1/merchants/{uuid}/update` |
 | Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/update`     |
 
+<Accordion title="Request Parameters" icon="far fa-table-cells">
+  ### Header parameters
+
+  <Accordion title="Header parameters" icon="fa-table">
+    | Header                                    | Description                                       | Example                   |
+    | :---------------------------------------- | :------------------------------------------------ | :------------------------ |
+    | Authorization<br /><code>mandatory</code> | `string` — Bearer token from Step 00 (`GetToken`) | `Bearer {{access_token}}` |
+    | Content-Type<br /><code>mandatory</code>  | `string` — Must be `multipart/form-data`          | `multipart/form-data`     |
+  </Accordion>
+
+  ### Path parameters
+
+  <Accordion title="Path parameters" icon="fa-table">
+    | Parameter                        | Description                                              | Example                                |
+    | :------------------------------- | :------------------------------------------------------- | :------------------------------------- |
+    | uuid<br /><code>mandatory</code> | `string` — Merchant UUID from Step 01 (`CreateMerchant`) | `11ef-d968-6b042d6c-9b94-02975f21d323` |
+  </Accordion>
+
+  ### Body parameters
+
+  <Accordion title="Body parameters" icon="fa-table">
+    | Parameter                                             | Description                                                         | Example               |
+    | :---------------------------------------------------- | :------------------------------------------------------------------ | :-------------------- |
+    | merchant\[pancard_number]<br /><code>mandatory</code> | `string` — PAN in `ABCDE1234F` format                               | `ABCDE1234F`          |
+    | merchant\[pancard_name]<br /><code>mandatory</code>   | `string` — Name on PAN card (must match registry)                   | `MERCHANT LEGAL NAME` |
+    | merchant\[dob]<br /><code>mandatory</code>            | `string` — DOB (Individual) or date of incorporation (`YYYY-MM-DD`) | `2000-01-06`          |
+  </Accordion>
+</Accordion>
+
 <Accordion title="Sample request" icon="fa-code">
   ```bash
     curl --location --request PUT 'https://uat-partner.payu.in/api/v1/merchants/{{uuid}}/update' \
@@ -125,6 +154,35 @@ Adds the merchant website and/or app store URLs. At least one channel URL is typ
 | Test Environment       | `https://uat-partner.payu.in/api/v1/merchants/{uuid}/update` |
 | Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/update`     |
 
+<Accordion title="Request Parameters" icon="far fa-table-cells-header">
+  ### Header parameters
+
+  <Accordion title="Header parameters" icon="fa-table">
+    | Header                                    | Description                                       | Example                   |
+    | :---------------------------------------- | :------------------------------------------------ | :------------------------ |
+    | Authorization<br /><code>mandatory</code> | `string` — Bearer token from Step 00 (`GetToken`) | `Bearer {{access_token}}` |
+    | Content-Type<br /><code>mandatory</code>  | `string` — Must be `multipart/form-data`          | `multipart/form-data`     |
+  </Accordion>
+
+  ### Path parameters
+
+  <Accordion title="Path parameters" icon="fa-table">
+    | Parameter                        | Description                                              | Example                                |
+    | :------------------------------- | :------------------------------------------------------- | :------------------------------------- |
+    | uuid<br /><code>mandatory</code> | `string` — Merchant UUID from Step 01 (`CreateMerchant`) | `11ef-d968-6b042d6c-9b94-02975f21d323` |
+  </Accordion>
+
+  ### Body parameters
+
+  <Accordion title="Body parameters" icon="fa-table">
+    | Parameter                                                              | Description                      | Example                                                     |
+    | :--------------------------------------------------------------------- | :------------------------------- | :---------------------------------------------------------- |
+    | merchant\[website_details]\[website_url]<br /><code>conditional</code> | `string` — Merchant website URL  | `https://www.example.com`                                   |
+    | merchant\[website_details]\[android_url]<br /><code>optional</code>    | `string` — Android app store URL | `https://play.google.com/store/apps/details?id=com.example` |
+    | merchant\[website_details]\[ios_url]<br /><code>optional</code>        | `string` — iOS App Store URL     | `https://apps.apple.com/app/example/id123456`               |
+  </Accordion>
+</Accordion>
+
 <Accordion title="Sample request" icon="fa-code">
   ```bash
     curl --location --request PUT 'https://uat-partner.payu.in/api/v1/merchants/{{uuid}}/update' \
@@ -158,6 +216,38 @@ Submits the authorised signatory for the merchant agreement. Complete this step 
 | :--------------------- | :---------------------------------------------------------------------- |
 | Test Environment       | `https://uat-partner.payu.in/api/v1/merchants/{uuid}/signatory_details` |
 | Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/signatory_details`     |
+
+<Accordion title="Request Parameters" icon="far fa-table-cells-header">
+  ### Header parameters
+
+  <Accordion title="Header parameters" icon="fa-table">
+    | Header                                    | Description                                            | Example                             |
+    | :---------------------------------------- | :----------------------------------------------------- | :---------------------------------- |
+    | Authorization<br /><code>mandatory</code> | `string` — Bearer token from Step 00 (`GetToken`)      | `Bearer {{access_token}}`           |
+    | Content-Type<br /><code>mandatory</code>  | `string` — Must be `application/x-www-form-urlencoded` | `application/x-www-form-urlencoded` |
+  </Accordion>
+
+  ### Path parameters
+
+  <Accordion title="Path parameters" icon="fa-table">
+    | Parameter                        | Description                                              | Example                                |
+    | :------------------------------- | :------------------------------------------------------- | :------------------------------------- |
+    | uuid<br /><code>mandatory</code> | `string` — Merchant UUID from Step 01 (`CreateMerchant`) | `11ef-d968-6b042d6c-9b94-02975f21d323` |
+  </Accordion>
+
+  ### Body parameters
+
+  <Accordion title="Body parameters" icon="fa-table">
+    | Parameter                                                                                              | Description                                        | Example                  |
+    | :----------------------------------------------------------------------------------------------------- | :------------------------------------------------- | :----------------------- |
+    | merchant\[signatory_contact_details_attributes\[0]\[authorised_signatory]]<br /><code>mandatory</code> | `string` — `true` for the authorised signatory     | `true`                   |
+    | merchant\[signatory_contact_details_attributes\[0]\[name]]<br /><code>mandatory</code>                 | `string` — Signatory full name                     | `Signatory 1 Name`       |
+    | merchant\[signatory_contact_details_attributes\[0]\[pancard_number]]<br /><code>mandatory</code>       | `string` — Signatory PAN                           | `ABCDE1234F`             |
+    | merchant\[signatory_contact_details_attributes\[0]\[email]]<br /><code>mandatory</code>                | `string` — Signatory email                         | `signatory1@yopmail.com` |
+    | merchant\[signatory_contact_details_attributes\[0]\[contact_detail_type]]<br /><code>mandatory</code>  | `string` — e.g. `Signing Authority`                | `Signing Authority`      |
+    | merchant\[signatory_contact_details_attributes\[0]\[cin_number]]<br /><code>conditional</code>         | `string` — CIN only for Pvt Ltd / Public Ltd / OPC | `(empty for others)`     |
+  </Accordion>
+</Accordion>
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
@@ -196,6 +286,35 @@ Uploads one KYC document per required category (JPG, PNG, or PDF; max 5 MB). Cal
 | :--------------------- | :---------------------------------------------------------------- |
 | Test Environment       | `https://uat-partner.payu.in/api/v3/merchants/{mid}/kyc_document` |
 | Production Environment | `https://partner.payu.in/api/v3/merchants/{mid}/kyc_document`     |
+
+<Accordion title="Request Parameters" icon="far fa-table-cells">
+  ### Header parameters
+
+  <Accordion title="Header parameters" icon="fa-table">
+    | Header                                    | Description                                       | Example                   |
+    | :---------------------------------------- | :------------------------------------------------ | :------------------------ |
+    | Authorization<br /><code>mandatory</code> | `string` — Bearer token from Step 00 (`GetToken`) | `Bearer {{access_token}}` |
+    | Content-Type<br /><code>mandatory</code>  | `string` — Must be `multipart/form-data`          | `multipart/form-data`     |
+  </Accordion>
+
+  ### Path parameters
+
+  <Accordion title="Path parameters" icon="fa-table">
+    | Parameter                       | Description                                         | Example   |
+    | :------------------------------ | :-------------------------------------------------- | :-------- |
+    | mid<br /><code>mandatory</code> | `string` — Numeric merchant ID (`mid`) from Step 01 | `8390925` |
+  </Accordion>
+
+  ### Body parameters
+
+  <Accordion title="Body parameters" icon="fa-table">
+    | Parameter                                                 | Description                                                 | Example                         |
+    | :-------------------------------------------------------- | :---------------------------------------------------------- | :------------------------------ |
+    | merchant\[document_category]<br /><code>mandatory</code>  | `string` — Exact `document_categories[i].name` from Step 14 | `PAN Card of Signing Authority` |
+    | merchant\[document_type]<br /><code>mandatory</code>      | `string` — Exact `document_types[j].name` from Step 14      | `PAN Card`                      |
+    | merchant\[processed_document]<br /><code>mandatory</code> | `file` — JPG/PNG/PDF, max 5 MB                              | `pan.pdf`                       |
+  </Accordion>
+</Accordion>
 
 <Accordion title="Sample request" icon="fa-code">
   ```bash
