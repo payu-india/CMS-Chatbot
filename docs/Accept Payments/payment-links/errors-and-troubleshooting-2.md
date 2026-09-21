@@ -47,22 +47,24 @@ next:
 />
 
 <Callout icon="📘" theme="info">
-  Haven't created a payment link yet? → [Send a Payment Link](doc:send-a-payment-link)
+  ### **Payment Links**
+
+  Have not created a payment link yet? → [Create a Payment Link](doc:send-a-payment-link)
 </Callout>
 
 ***
 
 ## Why Is My Customer's Link Not Opening?
 
-<Accordion title="Check the link status first" icon="far fa-magnifying-glass">
+<Accordion title="Check the Link Status First" icon="far fa-magnifying-glass">
   Open the [Payment Links Dashboard](https://onboarding.payu.in/) and find the link. Check the **Status** column:
 
-  | Status          | What it means                            | What to do                                              |
-  | --------------- | ---------------------------------------- | ------------------------------------------------------- |
-  | **Active**      | Link should work                         | See device/browser issues below                         |
-  | **Expired**     | Expiry date passed                       | Duplicate the link with a new expiry date               |
-  | **Deactivated** | Manually disabled                        | Duplicate the link if you still need to collect payment |
-  | **Paid**        | Max transactions reached or paid in full | Create a new link if you need additional payment        |
+  | Status          | What it Means                                                      | What to Do                                                   |
+  | --------------- | ------------------------------------------------------------------ | ------------------------------------------------------------ |
+  | **Active**      | Link should work                                                   | Check for device or browser issues.                          |
+  | **Expired**     | Link has expired                                                   | Duplicate the link with a new expiry date                    |
+  | **Deactivated** | Manually disabled                                                  | Reactivate the link if you still need to collect payments    |
+  | **Paid**        | Max transactions reached or the customer has paid the full amount. | Create a new link if you want to collect additional payments |
 
   **If status is Active but the link still doesn't open:**
 
