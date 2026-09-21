@@ -214,14 +214,37 @@ You can perform the following actions after a link is created:
 </Accordion>
 
 <Accordion title="Edit the Details of a Link" icon="far fa-pen-to-square">
-  You can edit certain details of a payment link after it is created — such as the expiry date, amount, and status.
+  You can edit certain details such as the expiry date, amount, and status of a payment link after it is created.
 
-  1. Find the link in the table.
-  2. Click **Details** in the rightmost column.
-  3. Click **Edit** and update the fields you want to change.
-  4. Save your changes.
+  To edit the details:
+
+  1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor> and go to **Payment Links&#x20;**&#x75;nder **Payment Tools.**
+
+     <Image src="https://files.readme.io/0edfad7491b4d310e15206fed91377c0067061f06c99a2d0e8cc9401b6abff22-image.png" align="center" caption="Access Payment Links" border={true} />
+
+  2. Click the menu icon against a required payment link and click **Edit Details.**
+
+     <Image src="https://files.readme.io/9ffda282631c77994e3f79648f454f60252605cbc90148606d2056933573dd8a-Screenshot_2026-09-21_at_1.29.51_PM.png" align="center" caption="Click Edit Details" border={true} />
+
+  3. Make changes to the required details. You can edit only the following details.
+     - **Item Description**
+     - **Set Payment Due Date (Link Expiry):&#x20;**&#x53;et or remove the link expiry
+     - **Enable Partial Payment:&#x20;**&#x45;nable or disable the partial payment
+     - **Number of Instalments**
+     - **Add More Details**
+       - **Add Address Details**
+       - **Add UDF Details**
+     - **Phone number**
+     - **Name**
+     - **Email**
+  4. Click **Edit Payment Link&#x20;**&#x74;o save the changes.
+
+     <Image src="https://files.readme.io/e658e847683bc35ac6dbad46081b3c761143df81736a55e53d4410a43a2e2037-screen-recording-2.gif" align="center" caption="Edit Payment Link Details" border={true} />
+
 
   <Callout icon="🚧" theme="warning">
+    ### **Watch Out!**
+
     Not all fields can be edited after creation. If you need to change the purpose or customer details, duplicate the link with the correct settings and deactivate the original. To update fields programmatically, use the [Cancel / Update Status API](doc:api-cancel-status).
   </Callout>
 </Accordion>
