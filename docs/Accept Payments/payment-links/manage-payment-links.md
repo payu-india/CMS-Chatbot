@@ -174,12 +174,20 @@ You can perform the following actions after a link is created:
 
      <Image src="https://files.readme.io/16cc602d7fea50b82cf305a021d8ec949b3f3ca9219a632f468ab9745bbdc5dd-image.png" align="center" caption="Access Payment Links" border={true} />
 
-  2. In the **Actions** column, click the **Duplicate** icon.
-  3. The Create New Payment Link panel opens with the existing link's settings pre-filled.
-  4. Edit any fields you need to change — for example, the expiry date or customer details.
+  2. Click the menu icon against a required payment link and click **Duplicate.**
+
+     <Image src="https://files.readme.io/ba9d25a123f142ce6b98c768421c302cd0d3486ac7351ca72555f27624801fc5-Screenshot_2026-09-21_at_12.02.28_PM.png" align="center" caption="Click Duplicate" border={true} />
+
+  3. The **Create new payment link** page opens with the existing link's details pre-filled.
+  4. Edit any fields you need to change. For example, the expiry date or customer details.
   5. Click **Create and Send Payment Link**.
 
+     <Image src="https://files.readme.io/eb3a59aa72227334bc5d2e66dd3f100eef9594aa8cbc4084e3c93dd19a9f2d46-screen-recording.gif" align="center" caption="Duplicate a Payment Link" border={true} />
+
+
   <Callout icon="📘" theme="info">
+    ### **Note:**
+
     Duplicating does not deactivate the original link. If you want to replace a link (e.g., wrong amount was set), duplicate it with the correct details first, then deactivate the original.
   </Callout>
 </Accordion>
