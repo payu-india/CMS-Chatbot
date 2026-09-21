@@ -304,23 +304,24 @@ You can filter the payment links list using the following options:
 
      <Image src="https://files.readme.io/42a033de863c821718096d7b68198aba4cf6907b5cedbfa20c5cce9a399753ec-image.png" align="center" caption="Access Payment Links" border={true} />
 
-  2. Click the **Filter** drop-down and select one or more status checkboxes. These are the available options:
-     - **Active**
-     - **Paid**
-     - **Deactivated**
-     - **Expired**
+  2. Click the **Filter** drop-down and select one or more status and payment type checkboxes. These are the available options:
+     - **Status**
+       - **Active**
+       - **Paid**
+       - **Deactivated**
+       - **Expired**
      <Callout icon="📘" theme="info">
        ### **Payment Link Status**
 
        Not sure what **Active**, **Paid**, **Expired**, or **Deactivated** mean? See [Payment Link Statuses](doc:send-a-payment-link).
      </Callout>
-  3. Click **Apply**.
+     - **Payment Type**
+       - **Standard**
+       - **Partial Payment**
 
-  To clear filters, click **Reset** inside the filter panel.
+     <Image src="https://files.readme.io/38e42794f7726239255a7ec9ab9003684361bdc839446e56ce2dab84e8794489-Screenshot_2026-09-21_at_2.23.12_PM.png" align="center" caption="Filter Payment Link List" border={true} />
 
-
-  <Image src="https://files.readme.io/53b5421aae446c8b0143ce30155c6d8789f8f2081d50c084083c0930fe17f839-Screenshot_2025-06-02_at_6.54.04_PM.png" align="center" caption="Filter drop-down with status checkboxes" border={true} />
-
+  3. Click **Apply&#x20;**&#x74;o filter the list.
 </Accordion>
 
 <Accordion title="Filter by date range" icon="far fa-calendar">
