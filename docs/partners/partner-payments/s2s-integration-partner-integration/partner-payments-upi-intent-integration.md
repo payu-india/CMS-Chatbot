@@ -1,5 +1,5 @@
 ---
-title: Partner Payments UPI Intent Integration
+title: 'UPI Intent Integration - Partner Payments '
 deprecated: false
 hidden: false
 icon: far fa-bullseye-pointer
