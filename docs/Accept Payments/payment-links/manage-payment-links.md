@@ -184,12 +184,12 @@ You can perform the following actions after a link is created:
 
      <Image src="https://files.readme.io/eb3a59aa72227334bc5d2e66dd3f100eef9594aa8cbc4084e3c93dd19a9f2d46-screen-recording.gif" align="center" caption="Duplicate a Payment Link" border={true} />
 
+     <Callout icon="📘" theme="info">
+       ### **Note:**
 
-  <Callout icon="📘" theme="info">
-    ### **Note:**
-
-    Duplicating does not deactivate the original link. If you want to replace a link (e.g., wrong amount was set), duplicate it with the correct details first, then deactivate the original.
-  </Callout>
+       Duplicating does not deactivate the original link. If you want to replace a link (e.g., wrong amount was set), duplicate it with the correct details first, then deactivate the original.
+     </Callout>
+     The link is created and sent to the customer. You can see it in the **Payment Links&#x20;**&#x70;age.
 </Accordion>
 
 <Accordion title="Share or resend a link" icon="far fa-share">
