@@ -79,6 +79,8 @@ Before you begin, ensure you have:
 
 ### Step 2.1: Prepare Request Parameters
 
+Use the access_token created using Step 1 in this step:
+
 **Endpoint URLs:**
 
 | Environment | URL                                                              |
@@ -97,7 +99,8 @@ Content-Type: application/json
 
 **Request Body Parameters:**
 
-#### Mandatory Parameters
+<Accordion title="Request Parameters" icon="fa-table">
+**Mandatory Parameters**
 
 | Parameter       | Type & Description                                                                                                                                                                                                                          | Example                              |
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
@@ -124,6 +127,8 @@ Content-Type: application/json
 | udf4      | <strong>string</strong> - User-defined field 4 for custom data.                       | custom_value_4                                  |
 | udf5      | <strong>string</strong> - User-defined field 5, often used for partner or channel ID. | partner_channel_001                             |
 
+</Accordion>
+
 <Warning>
 **UPI Intent-Specific Requirements:**
 - `txn_s2s_flow` MUST be set to `"4"` — This activates the UPI Intent S2S flow
@@ -149,241 +154,11 @@ merchant_id|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|||
 - Do NOT add a trailing pipe after `client_secret`
 </Warning>
 
-**Sample Hash Generation Code:**
+<Generate_Hash_Partner_Payment />
 
-**Python:**
-
-```python
-import hashlib
-
-def generate_upi_intent_hash(merchant_id, txnid, amount, productinfo, firstname, email, udf1, udf2, udf3, udf4, udf5, client_secret):
-    hash_string = f"{merchant_id}|{txnid}|{amount}|{productinfo}|{firstname}|{email}|{udf1}|{udf2}|{udf3}|{udf4}|{udf5}||||||{client_secret}"
-    return hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
-
-# Example
-payment_hash = generate_upi_intent_hash(
-    merchant_id=8739528,
-    txnid="UPIINT20240315001",
-    amount="500.00",
-    productinfo="UPI Payment for Order #12345",
-    firstname="Rajesh",
-    email="rajesh@example.com",
-    udf1="",
-    udf2="",
-    udf3="",
-    udf4="",
-    udf5="partner_channel_001",
-    client_secret="your_client_secret_here"
-)
-
-print(f"Payment Hash: {payment_hash}")
-```
-
-**Java:**
-
-```java
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
-public class UPIIntentHashGenerator {
-    public static String generateHash(
-        int merchantId, String txnid, String amount, String productinfo,
-        String firstname, String email, String udf1, String udf2, 
-        String udf3, String udf4, String udf5, String clientSecret
-    ) throws NoSuchAlgorithmException {
-        
-        String hashString = merchantId + "|" + txnid + "|" + amount + "|" + 
-                          productinfo + "|" + firstname + "|" + email + "|" +
-                          udf1 + "|" + udf2 + "|" + udf3 + "|" + udf4 + "|" + 
-                          udf5 + "||||||" + clientSecret;
-        
-        MessageDigest md = MessageDigest.getInstance("SHA-512");
-        byte[] hashBytes = md.digest(hashString.getBytes());
-        
-        StringBuilder hexString = new StringBuilder();
-        for (byte b : hashBytes) {
-            String hex = Integer.toHexString(0xff & b);
-            if (hex.length() == 1) hexString.append('0');
-            hexString.append(hex);
-        }
-        
-        return hexString.toString();
-    }
-}
-```
-
-**PHP:**
-
-```php
-<?php
-function generateUPIIntentHash($merchantId, $txnid, $amount, $productinfo, 
-                               $firstname, $email, $udf1, $udf2, $udf3, 
-                               $udf4, $udf5, $clientSecret) {
-    
-    $hashString = $merchantId . "|" . $txnid . "|" . $amount . "|" . 
-                  $productinfo . "|" . $firstname . "|" . $email . "|" .
-                  $udf1 . "|" . $udf2 . "|" . $udf3 . "|" . $udf4 . "|" . 
-                  $udf5 . "||||||" . $clientSecret;
-    
-    return hash('sha512', $hashString);
-}
-
-$hash = generateUPIIntentHash(
-    8739528,
-    "UPIINT20240315001",
-    "500.00",
-    "UPI Payment for Order #12345",
-    "Rajesh",
-    "rajesh@example.com",
-    "",
-    "",
-    "",
-    "",
-    "partner_channel_001",
-    "your_client_secret_here"
-);
-
-echo "Payment Hash: " . $hash;
-?>
-```
-
-### Step 2.3: POST the Payment Request
-
-**Sample Request (cURL):**
-
-```bash
-curl --location 'https://test-partnerapilayer.payu.in/apilayer/partner/payments' \
---header 'Authorization: Bearer your_access_token_here' \
---header 'Content-Type: application/json' \
---data '{
-  "txnid": "UPIINT20240315001",
-  "amount": "500.00",
-  "productinfo": "UPI Payment for Order #12345",
-  "firstname": "Rajesh",
-  "email": "rajesh@example.com",
-  "phone": "919876543210",
-  "merchant_id": 8739528,
-  "reseller_id": "11ee-0e7e-5403fde2-9523-0a696b110fde",
-  "txn_s2s_flow": "4",
-  "s2s_client_ip": "157.240.22.9",
-  "s2s_device_info": "Mozilla/5.0 (Linux; Android 10; SM-G973F) AppleWebKit/537.36",
-  "udf5": "partner_channel_001",
-  "hash": "computed_sha512_hash_here"
-}'
-```
-
-**Sample Request (Python):**
-
-```python
-import requests
-import json
-
-url = "https://test-partnerapilayer.payu.in/apilayer/partner/payments"
-
-headers = {
-    'Authorization': 'Bearer your_access_token_here',
-    'Content-Type': 'application/json'
-}
-
-payload = {
-    "txnid": "UPIINT20240315001",
-    "amount": "500.00",
-    "productinfo": "UPI Payment for Order #12345",
-    "firstname": "Rajesh",
-    "email": "rajesh@example.com",
-    "phone": "919876543210",
-    "merchant_id": 8739528,
-    "reseller_id": "11ee-0e7e-5403fde2-9523-0a696b110fde",
-    "txn_s2s_flow": "4",
-    "s2s_client_ip": "157.240.22.9",
-    "s2s_device_info": "Mozilla/5.0 (Linux; Android 10; SM-G973F) AppleWebKit/537.36",
-    "udf5": "partner_channel_001",
-    "hash": "computed_sha512_hash_here"
-}
-
-try:
-    response = requests.post(url, headers=headers, data=json.dumps(payload))
-    print(f"Status Code: {response.status_code}")
-    print(f"Response: {response.text}")
-except Exception as e:
-    print(f"Error: {str(e)}")
-```
-
-**Sample Request (Java):**
-
-```java
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-
-public class CreateUPIIntentPayment {
-    public static void main(String[] args) throws Exception {
-        String url = "https://test-partnerapilayer.payu.in/apilayer/partner/payments";
-        
-        String payload = "{\"txnid\":\"UPIINT20240315001\",\"amount\":\"500.00\",\"productinfo\":\"UPI Payment for Order #12345\",\"firstname\":\"Rajesh\",\"email\":\"rajesh@example.com\",\"phone\":\"919876543210\",\"merchant_id\":8739528,\"reseller_id\":\"11ee-0e7e-5403fde2-9523-0a696b110fde\",\"txn_s2s_flow\":\"4\",\"s2s_client_ip\":\"157.240.22.9\",\"s2s_device_info\":\"Mozilla/5.0 (Linux; Android 10; SM-G973F) AppleWebKit/537.36\",\"udf5\":\"partner_channel_001\",\"hash\":\"computed_sha512_hash_here\"}";
-        
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create(url))
-            .header("Authorization", "Bearer your_access_token_here")
-            .header("Content-Type", "application/json")
-            .POST(HttpRequest.BodyPublishers.ofString(payload))
-            .build();
-        
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        
-        System.out.println("Status Code: " + response.statusCode());
-        System.out.println("Response Body: " + response.body());
-    }
-}
-```
-
-**Sample Request (PHP):**
-
-```php
-<?php
-$url = "https://test-partnerapilayer.payu.in/apilayer/partner/payments";
-
-$headers = array(
-    'Authorization: Bearer your_access_token_here',
-    'Content-Type: application/json'
-);
-
-$payload = json_encode(array(
-    "txnid" => "UPIINT20240315001",
-    "amount" => "500.00",
-    "productinfo" => "UPI Payment for Order #12345",
-    "firstname" => "Rajesh",
-    "email" => "rajesh@example.com",
-    "phone" => "919876543210",
-    "merchant_id" => 8739528,
-    "reseller_id" => "11ee-0e7e-5403fde2-9523-0a696b110fde",
-    "txn_s2s_flow" => "4",
-    "s2s_client_ip" => "157.240.22.9",
-    "s2s_device_info" => "Mozilla/5.0 (Linux; Android 10; SM-G973F) AppleWebKit/537.36",
-    "udf5" => "partner_channel_001",
-    "hash" => "computed_sha512_hash_here"
-));
-
-$ch = curl_init($url);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-$response = curl_exec($ch);
-$statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-curl_close($ch);
-
-echo "Status Code: " . $statusCode . "\n";
-echo "Response: " . $response;
-?>
-```
 
 ### Step 2.4: Handle Payment Response
-
+<Accordion title="Handle Response" icon="fa-reply">
 **Success Response:**
 
 ```json
@@ -433,7 +208,7 @@ The `intentURIData` is a query string containing UPI payment parameters:
 
 This data is used to construct a UPI deep link that opens the customer's UPI app.
 </Info>
-
+</Accordion>
 **Invoking the UPI App:**
 
 <Warning>
