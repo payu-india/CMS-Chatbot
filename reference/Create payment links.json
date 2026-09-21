@@ -1,240 +1,5184 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "PayU Payment Links API",
-    "version": "1.0.0",
-    "description": "API for creating and managing payment links"
+    "title": "PaymentLink",
+    "version": "1.0.0"
   },
   "servers": [
     {
-      "url": "https://uat-partner.payu.in",
-      "description": "PayU UAT API server"
+      "url": "http://{{paymentlink}}"
+    },
+    {
+      "url": "https://oneapi.payu.in"
+    },
+    {
+      "url": "https://testoneapi.payu.in"
+    },
+    {
+      "url": "https://pp72.payumoney.com"
+    },
+    {
+      "url": "https://tools.payu.in"
+    },
+    {
+      "url": "http://localhost:8087"
+    },
+    {
+      "url": "https://pp19secure.payu.in"
+    }
+  ],
+  "tags": [
+    {
+      "name": "CRUD"
+    },
+    {
+      "name": "Download"
+    },
+    {
+      "name": "Bulk-Upload"
+    },
+    {
+      "name": "Bulk-Upload > V1"
+    },
+    {
+      "name": "Bulk-Upload > Sample File"
+    },
+    {
+      "name": "Checkout"
+    },
+    {
+      "name": "Cron"
+    },
+    {
+      "name": "Reminder"
+    },
+    {
+      "name": "Data-Migration"
     }
   ],
   "paths": {
-    "/partners/payment-links": {
-      "post": {
-        "summary": "Create Payment Link - Partner Integration",
-        "description": "Create a new payment link with specified parameters",
-        "security": [
+    "/payment-links/INV3373558525073": {
+      "get": {
+        "tags": [
+          "CRUD"
+        ],
+        "summary": "Get Single Payment Link",
+        "parameters": [
           {
-            "BearerAuth": []
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{auth_token}}"
+          },
+          {
+            "name": "mid",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{mid}}"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "paymentDetailsRequired",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "example": "true"
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Wed, 20 Oct 2021 08:33:15 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "chunked"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Access-Control-Request-Headers"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1; mode=block"
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache, no-store, max-age=0, must-revalidate"
+                }
+              },
+              "Pragma": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "Expires": {
+                "schema": {
+                  "type": "integer",
+                  "example": "0"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "DENY"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "status": 0,
+                  "message": null,
+                  "result": {
+                    "summary": {
+                      "amountRequested": 16,
+                      "totalRevenue": 0,
+                      "totalViews": 0
+                    },
+                    "subAmount": 10,
+                    "tax": 2,
+                    "shippingCharge": 3,
+                    "totalAmount": 16,
+                    "totalAmountCollected": 0,
+                    "invoiceNumber": "INV8141747332110",
+                    "paymentLink": "https://pmny.in/3ILpBu2UkVHx",
+                    "description": "test payment link",
+                    "active": true,
+                    "isPartialPaymentAllowed": false,
+                    "status": "active",
+                    "expiryDate": "2023-03-14T11:00:05.000+0530",
+                    "udf": {
+                      "udf1": "sampleudf1",
+                      "udf2": "sampleudf2",
+                      "udf3": "sampleudf3",
+                      "udf4": "sampleudf4",
+                      "udf5": "sampleudf5"
+                    },
+                    "address": {
+                      "line1": "abc house",
+                      "line2": "xyz society",
+                      "city": "Noida",
+                      "state": "Uttar Pradesh",
+                      "country": "India",
+                      "zipCode": "201301"
+                    },
+                    "addedOn": "2021-10-20T13:02:39.000+0530",
+                    "isAmountFilledByCustomer": false
+                  },
+                  "errorCode": null,
+                  "guid": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payment-links/INV1097903042212": {
+      "get": {
+        "tags": [
+          "CRUD"
+        ],
+        "summary": "Get Batch Id Payment Links",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{auth_token}}"
+          },
+          {
+            "name": "mid",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{mid}}"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "paymentDetailsRequired",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "example": "true"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Wed, 20 Oct 2021 08:33:15 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "chunked"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Access-Control-Request-Headers"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1; mode=block"
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache, no-store, max-age=0, must-revalidate"
+                }
+              },
+              "Pragma": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "Expires": {
+                "schema": {
+                  "type": "integer",
+                  "example": "0"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "DENY"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "status": 0,
+                  "message": null,
+                  "result": {
+                    "summary": {
+                      "amountRequested": 16,
+                      "totalRevenue": 0,
+                      "totalViews": 0
+                    },
+                    "subAmount": 10,
+                    "tax": 2,
+                    "shippingCharge": 3,
+                    "totalAmount": 16,
+                    "totalAmountCollected": 0,
+                    "invoiceNumber": "INV8141747332110",
+                    "paymentLink": "https://pmny.in/3ILpBu2UkVHx",
+                    "description": "test payment link",
+                    "active": true,
+                    "isPartialPaymentAllowed": false,
+                    "status": "active",
+                    "expiryDate": "2023-03-14T11:00:05.000+0530",
+                    "udf": {
+                      "udf1": "sampleudf1",
+                      "udf2": "sampleudf2",
+                      "udf3": "sampleudf3",
+                      "udf4": "sampleudf4",
+                      "udf5": "sampleudf5"
+                    },
+                    "address": {
+                      "line1": "abc house",
+                      "line2": "xyz society",
+                      "city": "Noida",
+                      "state": "Uttar Pradesh",
+                      "country": "India",
+                      "zipCode": "201301"
+                    },
+                    "addedOn": "2021-10-20T13:02:39.000+0530",
+                    "isAmountFilledByCustomer": false
+                  },
+                  "errorCode": null,
+                  "guid": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payment-links": {
+      "get": {
+        "tags": [
+          "CRUD"
+        ],
+        "summary": "Get All Payment Links",
         "parameters": [
           {
             "name": "merchantId",
             "in": "header",
-            "required": true,
             "schema": {
               "type": "string"
             },
-            "description": "Merchant ID",
-            "example": "12231777"
+            "example": "{{mid}}"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{auth_token}}"
+          },
+          {
+            "name": "mids",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{mids}}"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "example": "20"
+          },
+          {
+            "name": "pageOffset",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "example": "0"
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "amount"
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "desc"
+          },
+          {
+            "name": "dateFrom",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "2021-10-19"
+          },
+          {
+            "name": "dateTo",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "2021-12-28"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "active%23"
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Wed, 20 Oct 2021 08:44:32 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "chunked"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Access-Control-Request-Headers"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1; mode=block"
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache, no-store, max-age=0, must-revalidate"
+                }
+              },
+              "Pragma": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "Expires": {
+                "schema": {
+                  "type": "integer",
+                  "example": "0"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "DENY"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "status": 0,
+                  "message": null,
+                  "result": {
+                    "pageSize": 20,
+                    "pages": 1,
+                    "rows": 11,
+                    "pageOffset": 0,
+                    "paymentLinksList": [
+                      {
+                        "invoiceNumber": "INV3762626772110",
+                        "description": "vbvcfbbcb",
+                        "createDate": "2021-10-19T15:30:22.000+0530",
+                        "paymentLinkURL": "https://pmny.in/jIvqNEaR8B4B",
+                        "customerName": null,
+                        "amount": 501,
+                        "active": true,
+                        "expiry": "2022-10-19T15:30:22.000+0530",
+                        "isAmountFilledByCustomer": false,
+                        "status": "active"
+                      },
+                      {
+                        "invoiceNumber": "INV8141747332110",
+                        "description": "test payment link",
+                        "createDate": "2021-10-20T13:02:39.000+0530",
+                        "paymentLinkURL": "https://pmny.in/3ILpBu2UkVHx",
+                        "customerName": null,
+                        "amount": 16,
+                        "active": true,
+                        "expiry": "2023-04-15T12:00:05.000+0530",
+                        "isAmountFilledByCustomer": false,
+                        "status": "active"
+                      },
+                      {
+                        "invoiceNumber": "INV6167737333211",
+                        "description": "app payment link",
+                        "createDate": "2021-10-20T12:52:59.000+0530",
+                        "paymentLinkURL": "https://pmny.in/aIJq9uN5J98P",
+                        "customerName": null,
+                        "amount": 7,
+                        "active": true,
+                        "expiry": "2022-10-20T12:52:59.000+0530",
+                        "isAmountFilledByCustomer": false,
+                        "status": "active"
+                      },
+                      {
+                        "invoiceNumber": "ghjhjgkjgkjkjk",
+                        "description": "Dinner",
+                        "createDate": "2021-10-20T13:19:29.000+0530",
+                        "paymentLinkURL": "https://pmny.in/Jrd9GN0Mxlxw",
+                        "customerName": null,
+                        "amount": 1,
+                        "active": true,
+                        "expiry": "2022-10-20T13:19:28.000+0530",
+                        "isAmountFilledByCustomer": false,
+                        "status": "active"
+                      },
+                      {
+                        "invoiceNumber": "hgfhf",
+                        "description": "Dinner",
+                        "createDate": "2021-10-19T14:31:30.000+0530",
+                        "paymentLinkURL": "https://pmny.in/NIfozwJoJWEF",
+                        "customerName": null,
+                        "amount": 1,
+                        "active": true,
+                        "expiry": "2022-10-19T14:31:29.000+0530",
+                        "isAmountFilledByCustomer": false,
+                        "status": "active"
+                      },
+                      {
+                        "invoiceNumber": "INV7101636773432",
+                        "description": "Dinner",
+                        "createDate": "2021-10-19T15:21:14.000+0530",
+                        "paymentLinkURL": "https://pmny.in/srX9a8uofhAf",
+                        "customerName": null,
+                        "amount": 1,
+                        "active": true,
+                        "expiry": "2022-10-19T15:21:14.000+0530",
+                        "isAmountFilledByCustomer": false,
+                        "status": "active"
+                      },
+                      {
+                        "invoiceNumber": "dfdfsfdf",
+                        "description": "CHECK",
+                        "createDate": "2021-10-19T15:22:18.000+0530",
+                        "paymentLinkURL": "https://pmny.in/3re9R8gMIcW5",
+                        "customerName": null,
+                        "amount": 1,
+                        "active": true,
+                        "expiry": "2022-10-19T15:22:18.000+0530",
+                        "isAmountFilledByCustomer": false,
+                        "status": "active"
+                      },
+                      {
+                        "invoiceNumber": "INV3934652653211",
+                        "description": "Play",
+                        "createDate": "2021-10-19T15:12:47.000+0530",
+                        "paymentLinkURL": "https://pmny.in/7rc778geOPVT",
+                        "customerName": null,
+                        "amount": 1,
+                        "active": true,
+                        "expiry": "2022-10-19T15:12:46.000+0530",
+                        "isAmountFilledByCustomer": false,
+                        "status": "active"
+                      },
+                      {
+                        "invoiceNumber": "INV6626612676421",
+                        "description": "Dinner",
+                        "createDate": "2021-10-19T15:24:11.000+0530",
+                        "paymentLinkURL": "https://pmny.in/ArP729A55uoU",
+                        "customerName": null,
+                        "amount": 1,
+                        "active": true,
+                        "expiry": "2022-10-19T15:24:10.000+0530",
+                        "isAmountFilledByCustomer": false,
+                        "status": "active"
+                      },
+                      {
+                        "invoiceNumber": "dfdjsfhd",
+                        "description": "Dinner",
+                        "createDate": "2021-10-19T14:26:18.000+0530",
+                        "paymentLinkURL": "https://pmny.in/Vr97L7UXMNJH",
+                        "customerName": null,
+                        "amount": 1,
+                        "active": true,
+                        "expiry": "2022-10-19T14:26:17.000+0530",
+                        "isAmountFilledByCustomer": false,
+                        "status": "active"
+                      },
+                      {
+                        "invoiceNumber": "INV7336886621101",
+                        "description": "Dinner",
+                        "createDate": "2021-10-19T15:26:08.000+0530",
+                        "paymentLinkURL": "https://pmny.in/PIgeGBib1KiA",
+                        "customerName": null,
+                        "amount": 1,
+                        "active": true,
+                        "expiry": "2022-10-19T15:26:07.000+0530",
+                        "isAmountFilledByCustomer": false,
+                        "status": "active"
+                      }
+                    ]
+                  },
+                  "errorCode": null,
+                  "guid": null
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "CRUD"
+        ],
+        "summary": "{{paymentlink}}/payment-links",
         "requestBody": {
-          "required": true,
           "content": {
-            "application/json": {
+            "*/*": {
               "schema": {
-                "$ref": "#/components/schemas/CreatePaymentLinkRequest"
+                "type": "string",
+                "example": "\"{\\n    \\\"subAmount\\\": 1,\\n    \\\"description\\\": \\\"Test Link\\\",\\n    \\\"source\\\": \\\"API\\\",\\n    \\\"maxPaymentsAllowed\\\": null,\\n    \\\"transactionId\\\": null,\\n    \\\"viaEmail\\\": false,\\n    \\\"viaSms\\\": false,\\n    \\\"customer\\\": {\\n        \\\"email\\\": \\\"sahil.bundela@payu.in\\\",\\n        \\\"phone\\\": \\\"8383075210\\\",\\n        \\\"name\\\": \\\"Sachin Tendulkar\\\",\\n        \\\"bankDetails\\\": {\\n            \\\"bankCode\\\": \\\"ICICENCC\\\",\\n            \\\"bankAccountNumber\\\": \\\"000501039180\\\",\\n            \\\"authenticationMethod\\\": \\\"DEBIT_CARD\\\",\\n            \\\"ifsc\\\": \\\"ICIC0000046\\\",\\n            \\\"accountType\\\": \\\"SAVINGS\\\"\\n        }\\n    },\\n    \\\"reminder\\\": {\\n        \\\"isScheduled\\\": true,\\n        \\\"channels\\\": [\\n            \\\"email\\\",\\n            \\\"phone\\\"\\n        ]\\n    },\\n    \\\"siDetails\\\": {\\n        \\\"billingAmount\\\": 10,\\n        \\\"billingCurrency\\\": \\\"INR\\\",\\n        \\\"billingCycle\\\": \\\"MONTHLY\\\",\\n        \\\"billingInterval\\\": 1,\\n        \\\"paymentStartDate\\\": \\\"2024-11-05\\\",\\n        \\\"paymentEndDate\\\": \\\"2024-11-10\\\",\\n        \\\"isNoExpiry\\\": false,\\n        \\\"remarks\\\": \\\"No Remark\\\"\\n    },\\n    \\\"enforcePayMethod\\\": null,\\n    \\\"isInfoInvoice\\\": null,\\n    \\\"enforcePG\\\": \\\"CC\\\",\\n    \\\"partnerWebhookSuccessUrls\\\": \\\"https://www.youtube.com/\\\",\\n    \\\"partnerWebhookFailureUrls\\\": \\\"https://www.youtube.com/\\\"\\n}\""
               }
             }
           }
         },
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{auth_token}}"
+          },
+          {
+            "name": "content-type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json;charset=UTF-8"
+          },
+          {
+            "name": "mid",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{mid}}"
+          }
+        ],
         "responses": {
           "200": {
-            "description": "Payment link created successfully"
-          },
-          "400": {
-            "description": "Bad request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal server error"
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
           }
         }
-      }
-    }
-  },
-  "components": {
-    "securitySchemes": {
-      "BearerAuth": {
-        "type": "http",
-        "scheme": "bearer"
       }
     },
-    "schemas": {
-      "CreatePaymentLinkRequest": {
-        "type": "object",
-        "required": [
-          "isPartialPaymentAllowed",
-          "subAmount",
-          "description",
-          "invoiceNumber",
-          "expiryDate",
-          "tax",
-          "source",
-          "customer"
+    "/payment-links/summary": {
+      "get": {
+        "tags": [
+          "CRUD"
         ],
-        "properties": {
-          "isPartialPaymentAllowed": {
-            "type": "boolean",
-            "description": "This parameter contains any of the following: true-The part payment is enabled false-The part payment is not enabled"
+        "summary": "https://oneapi.payu.in/payment-links/summary",
+        "parameters": [
+          {
+            "name": "authority",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "oneapi.payu.in"
           },
-          "maxPaymentsAllowed": {
-            "type": "integer",
-            "description": "This parameter is used to specify the number of payments that can be accepted on a link."
+          {
+            "name": "accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
           },
-          "isAmountFilledByCustomer": {
-            "type": "boolean",
-            "description": "This parameter is set to true if the amount has to be entered by your customer in the payment link page."
+          {
+            "name": "accept-language",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "en-GB,en-US;q=0.9,en;q=0.8"
           },
-          "minAmountForCustomer": {
-            "type": "integer",
-            "description": "This parameter contains the minimum amount a customer needs to pay in case of partial payment."
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer 2170467ce304367b7b3a771221b19241c65616363e2c14256c8b92739d48d775"
           },
-          "subAmount": {
-            "type": "integer",
-            "description": "This parameter must contain the payment amount."
+          {
+            "name": "mid",
+            "in": "header",
+            "schema": {
+              "type": "integer"
+            },
+            "example": "180439"
           },
-          "description": {
-            "type": "string",
-            "description": "This parameter must contain the description or purpose of creating the payment link."
+          {
+            "name": "origin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "https://payu.in"
           },
-          "invoiceNumber": {
-            "type": "string",
-            "description": "This parameter contains the unique string which is used for identifying a payment link. This must be alphanumeric."
+          {
+            "name": "product",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "PAYUBIZ"
           },
-          "expiryDate": {
-            "type": "string",
-            "description": "This parameter contains the expiry date of the payment link. This must be in yyyy-MM-dd HH:mm:ss format (will be 365 days in all other cases)."
+          {
+            "name": "referer",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "https://payu.in/"
           },
-          "tax": {
-            "type": "string",
-            "description": "This parameter contains the tax amount for the payment transaction. This value must be greater than zero."
+          {
+            "name": "sec-ch-ua",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "\"Chromium\";v=\"112\", \"Google Chrome\";v=\"112\", \"Not:A-Brand\";v=\"99\""
           },
-          "source": {
-            "type": "string",
-            "description": "This parameter contains the source of payment generation."
+          {
+            "name": "sec-ch-ua-mobile",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "?0"
           },
-          "currency": {
-            "type": "string",
-            "description": "This parameter contains the currency used for collecting the amount."
+          {
+            "name": "sec-ch-ua-platform",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "\"macOS\""
           },
-          "customer": {
-            "$ref": "#/components/schemas/Customer"
+          {
+            "name": "sec-fetch-dest",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "empty"
           },
-          "address": {
-            "$ref": "#/components/schemas/Address"
+          {
+            "name": "sec-fetch-mode",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "cors"
           },
-          "udf1": {
-            "type": "string",
-            "description": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."
+          {
+            "name": "sec-fetch-site",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "same-site"
           },
-          "udf2": {
-            "type": "string",
-            "description": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."
+          {
+            "name": "user-agent",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/payment-links/INV7145116822122/share": {
+      "post": {
+        "tags": [
+          "CRUD"
+        ],
+        "summary": "Share payment Link",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": ""
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "merchantId",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{mid}}"
           },
-          "udf3": {
-            "type": "string",
-            "description": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{auth_token}}"
           },
-          "udf4": {
-            "type": "string",
-            "description": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."
+          {
+            "name": "channelList",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "sahil.bundela@payu.in"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Wed, 20 Oct 2021 08:47:00 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "chunked"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Access-Control-Request-Headers"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1; mode=block"
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache, no-store, max-age=0, must-revalidate"
+                }
+              },
+              "Pragma": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "Expires": {
+                "schema": {
+                  "type": "integer",
+                  "example": "0"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "DENY"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "status": 0,
+                  "message": null,
+                  "result": {
+                    "74246194": -1,
+                    "jyosana.saini@payu.in": 1
+                  },
+                  "errorCode": null,
+                  "guid": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payment-links/INV8525667197572/txns": {
+      "get": {
+        "tags": [
+          "CRUD"
+        ],
+        "summary": "Get Single Link Transactions",
+        "parameters": [
+          {
+            "name": "merchantId",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{mid}}"
           },
-          "udf5": {
-            "type": "string",
-            "description": "User-defined fields (udf) are used to store any information corresponding to a particular transaction. You can use up to five udfs in the post designated as udf1, udf2, udf3, udf4, udf5."
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
           },
-          "viaEmail": {
-            "type": "integer",
-            "description": "This parameter is set to 1 to send the payment link via the email upon generation. Else, set to 0 (zero) so that email is not sent.",
-            "enum": [
-              0,
-              1
-            ]
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{auth_token}}"
           },
-          "viaSms": {
-            "type": "integer",
-            "description": "This parameter is set to 1 to send the payment link via the SMS upon generation. Else, set to 0 (zero) so that SMS is not sent.",
-            "enum": [
-              0,
-              1
-            ]
+          {
+            "name": "source",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "quickpayment"
           },
-          "shippingCharge": {
-            "type": "string",
-            "description": "This parameter must contain the shipping charges"
+          {
+            "name": "dateTo",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "2023-10-20"
+          },
+          {
+            "name": "dateFrom",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "2022-10-01"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Wed, 20 Oct 2021 09:18:00 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "chunked"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Access-Control-Request-Headers"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1; mode=block"
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache, no-store, max-age=0, must-revalidate"
+                }
+              },
+              "Pragma": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "Expires": {
+                "schema": {
+                  "type": "integer",
+                  "example": "0"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "DENY"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "status": 0,
+                  "message": null,
+                  "result": {
+                    "pageSize": 10,
+                    "pages": 0,
+                    "rows": 0,
+                    "pageOffset": 1,
+                    "data": []
+                  },
+                  "errorCode": null,
+                  "guid": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payment-links/edit/INV043243334558": {
+      "put": {
+        "tags": [
+          "CRUD"
+        ],
+        "summary": "Edit Payment Link Copy",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "expiryDate": "2025-08-18 23:59:59",
+                  "active": "true",
+                  "source": "payment_link_onedash"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "merchantId",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{mid}}"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{auth_token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Wed, 20 Oct 2021 09:19:06 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "chunked"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Access-Control-Request-Headers"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1; mode=block"
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache, no-store, max-age=0, must-revalidate"
+                }
+              },
+              "Pragma": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "Expires": {
+                "schema": {
+                  "type": "integer",
+                  "example": "0"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "DENY"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "example-0": {
+                    "summary": "paymentLink active/inactive status TA",
+                    "value": {
+                      "status": 0,
+                      "message": "paymentLink updated",
+                      "result": null,
+                      "errorCode": null,
+                      "guid": null
+                    }
+                  },
+                  "example-1": {
+                    "summary": "paymentLink active/inactive status TA",
+                    "value": {
+                      "status": 0,
+                      "message": "paymentLink updated",
+                      "result": null,
+                      "errorCode": null,
+                      "guid": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "default",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": ""
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payment-links/INV1161315061240": {
+      "put": {
+        "tags": [
+          "CRUD"
+        ],
+        "summary": "Update Payment Link Copy",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "active": 0
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "merchantId",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{mid}}"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{auth_token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Wed, 20 Oct 2021 09:19:06 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "chunked"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Access-Control-Request-Headers"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1; mode=block"
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache, no-store, max-age=0, must-revalidate"
+                }
+              },
+              "Pragma": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "Expires": {
+                "schema": {
+                  "type": "integer",
+                  "example": "0"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "DENY"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "example-0": {
+                    "summary": "paymentLink active/inactive status TA",
+                    "value": {
+                      "status": 0,
+                      "message": "paymentLink updated",
+                      "result": null,
+                      "errorCode": null,
+                      "guid": null
+                    }
+                  },
+                  "example-1": {
+                    "summary": "paymentLink active/inactive status TA",
+                    "value": {
+                      "status": 0,
+                      "message": "paymentLink updated",
+                      "result": null,
+                      "errorCode": null,
+                      "guid": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "default",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": ""
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/paymentLinkReport": {
+      "post": {
+        "tags": [
+          "Download"
+        ],
+        "summary": "payment-links",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "format": "csv",
+                  "fields": [
+                    "invoiceNumber",
+                    "merchantId",
+                    "currency",
+                    "isAmountFilledByCustomer",
+                    "subAmount",
+                    "tax",
+                    "shippingCharge",
+                    "totalAmount",
+                    "description",
+                    "paymentLink",
+                    "maxPaymentsAllowed",
+                    "status",
+                    "successfulPaymentsCount",
+                    "source",
+                    "amountCollected",
+                    "amountDue",
+                    "minAmountForCustomer",
+                    "isPartialPaymentAllowed",
+                    "expiryDate",
+                    "addedOn",
+                    "udf1",
+                    "udf2",
+                    "udf3",
+                    "udf4",
+                    "udf5",
+                    "customerName",
+                    "customerPhone",
+                    "customerEmail",
+                    "customerAddress1",
+                    "customerAddress2",
+                    "customerCity",
+                    "customerState",
+                    "customerCountry",
+                    "customerZipCode",
+                    "viaEmail",
+                    "viaSms",
+                    "emailTemplateName",
+                    "smsTemplateName",
+                    "batchId",
+                    "emailStatus",
+                    "smsStatus"
+                  ],
+                  "filters": {
+                    "dateFrom": "2022-10-04",
+                    "dateTo": "2023-01-15",
+                    "order": "desc",
+                    "orderBy": "createDate"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "mid",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{mid}}"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{auth_token}}"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Wed, 20 Oct 2021 09:11:34 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "chunked"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Access-Control-Request-Headers"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1; mode=block"
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache, no-store, max-age=0, must-revalidate"
+                }
+              },
+              "Pragma": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "Expires": {
+                "schema": {
+                  "type": "integer",
+                  "example": "0"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "DENY"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "code": 0,
+                  "message": "",
+                  "status": 0,
+                  "traceId": "",
+                  "result": {
+                    "requestId": "1928234",
+                    "fileCreatedOn": "2021-10-20T14:41:34.564+0530",
+                    "format": "csv",
+                    "source": "payment-links",
+                    "status": "QUEUED"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "headers": {
+              "Server": {
+                "schema": {
+                  "type": "string",
+                  "example": "nginx"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Fri, 04 Jul 2025 12:52:51 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "chunked"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Access-Control-Request-Headers"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1; mode=block"
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache, no-store, max-age=0, must-revalidate"
+                }
+              },
+              "Pragma": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "Expires": {
+                "schema": {
+                  "type": "integer",
+                  "example": "0"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "DENY"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "timestamp": "2025-07-04T12:52:50.995+00:00",
+                  "status": 500,
+                  "error": "Internal Server Error",
+                  "path": "/api/files/paymentLinkReport"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/files/134224123131": {
+      "get": {
+        "tags": [
+          "Download"
+        ],
+        "summary": "payment-links Copy",
+        "parameters": [
+          {
+            "name": "mid",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{mid}}"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{auth_token}}"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Wed, 20 Oct 2021 09:11:34 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "chunked"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Access-Control-Request-Headers"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1; mode=block"
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache, no-store, max-age=0, must-revalidate"
+                }
+              },
+              "Pragma": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "Expires": {
+                "schema": {
+                  "type": "integer",
+                  "example": "0"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "DENY"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "code": 0,
+                  "message": "",
+                  "status": 0,
+                  "traceId": "",
+                  "result": {
+                    "requestId": "1928234",
+                    "fileCreatedOn": "2021-10-20T14:41:34.564+0530",
+                    "format": "csv",
+                    "source": "payment-links",
+                    "status": "QUEUED"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/payment-link-txns": {
+      "post": {
+        "tags": [
+          "Download"
+        ],
+        "summary": "payment-link-txns",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "format": "csv",
+                  "filters": {
+                    "invoiceNumber": "INV6544455759422",
+                    "dateFrom": "2021-10-19",
+                    "dateTo": "2023-10-20"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "mid",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{mid}}"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{auth_token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/reports/multiple-payment-link-txns": {
+      "post": {
+        "tags": [
+          "Download"
+        ],
+        "summary": "multiple-payment-link-txns Copy",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "format": "csv",
+                  "fields": null,
+                  "filters": {
+                    "dateFrom": "2023-01-01",
+                    "dateTo": "2023-05-15",
+                    "order": "desc",
+                    "orderBy": "addedOn"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "mid",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{mid}}"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{auth_token}}"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Wed, 20 Oct 2021 09:11:34 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "chunked"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Access-Control-Request-Headers"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1; mode=block"
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache, no-store, max-age=0, must-revalidate"
+                }
+              },
+              "Pragma": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "Expires": {
+                "schema": {
+                  "type": "integer",
+                  "example": "0"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "DENY"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "code": 0,
+                  "message": "",
+                  "status": 0,
+                  "traceId": "",
+                  "result": {
+                    "requestId": "1928234",
+                    "fileCreatedOn": "2021-10-20T14:41:34.564+0530",
+                    "format": "csv",
+                    "source": "payment-links",
+                    "status": "QUEUED"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/paymentLink/api/files/multiplePaymentLinkTransactionReport": {
+      "post": {
+        "tags": [
+          "Download"
+        ],
+        "summary": "local multiple-payment-link-txns",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "requestId": "45435454543543",
+                  "format": "csv",
+                  "fields": [
+                    "txnid",
+                    "status",
+                    "productInfo",
+                    "addedOn",
+                    "source",
+                    "invoiceNumber",
+                    "amount",
+                    "discount",
+                    "additional_charges",
+                    "customAttributes",
+                    "firstName",
+                    "lastName",
+                    "email",
+                    "address1",
+                    "address2",
+                    "city",
+                    "state",
+                    "country",
+                    "zipcode",
+                    "bank_name",
+                    "bank_ref_no",
+                    "PG_type",
+                    "card_type",
+                    "name_on_card",
+                    "card_number",
+                    "mode",
+                    "error_code",
+                    "error_message",
+                    "offer_key",
+                    "offer_availed",
+                    "offer_type",
+                    "offer_failure_reason",
+                    "udf1",
+                    "udf2",
+                    "udf3",
+                    "udf4",
+                    "udf5",
+                    "field1",
+                    "field2",
+                    "field3",
+                    "field4",
+                    "field5"
+                  ],
+                  "filters": {
+                    "dateFrom": "2022-05-04",
+                    "dateTo": "2023-06-15"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "mid",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{mid}}"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{auth_token}}"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          }
+        ],
+        "responses": {
+          "500": {
+            "description": "Internal Server Error",
+            "headers": {
+              "Server": {
+                "schema": {
+                  "type": "string",
+                  "example": "nginx/1.14.2"
+                }
+              },
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Fri, 23 Dec 2022 07:06:55 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "chunked"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Access-Control-Request-Headers"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1; mode=block"
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache, no-store, max-age=0, must-revalidate"
+                }
+              },
+              "Pragma": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "Expires": {
+                "schema": {
+                  "type": "integer",
+                  "example": "0"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "DENY"
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string",
+                  "example": "*"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "status": 500,
+                  "message": "JSON conversion problem: Unexpected character ('/' (code 47)): maybe a (non-standard) comment? (not recognized as one since Feature 'ALLOW_COMMENTS' not enabled for parser); nested exception is com.fasterxml.jackson.databind.JsonMappingException: Unexpected character ('/' (code 47)): maybe a (non-standard) comment? (not recognized as one since Feature 'ALLOW_COMMENTS' not enabled for parser)\n at [Source: (PushbackInputStream); line: 44, column: 9] (through reference chain: com.payu.paymentLinks.dto.DownloadRequestDTO[\"fields\"]->java.util.ArrayList[40])",
+                  "result": null,
+                  "errorCode": null,
+                  "guid": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/payment-links/118503637462370076": {
+      "get": {
+        "tags": [
+          "Download"
+        ],
+        "summary": "getFile url",
+        "parameters": [
+          {
+            "name": "mid",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{mid}}"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{auth_token}}"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Wed, 20 Oct 2021 09:11:34 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "chunked"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Access-Control-Request-Headers"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1; mode=block"
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache, no-store, max-age=0, must-revalidate"
+                }
+              },
+              "Pragma": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "Expires": {
+                "schema": {
+                  "type": "integer",
+                  "example": "0"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "DENY"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "code": 0,
+                  "message": "",
+                  "status": 0,
+                  "traceId": "",
+                  "result": {
+                    "requestId": "1928234",
+                    "fileCreatedOn": "2021-10-20T14:41:34.564+0530",
+                    "format": "csv",
+                    "source": "payment-links",
+                    "status": "QUEUED"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/payment-links-bulk": {
+      "post": {
+        "tags": [
+          "Download"
+        ],
+        "summary": "payment-links-bulk",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "requestId": "12345",
+                  "format": "xlsx",
+                  "batchId": "2131"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "mid",
+            "in": "header",
+            "schema": {
+              "type": "integer"
+            },
+            "example": "396284"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/reports/payment-link-txns/9148345106048371739": {
+      "get": {
+        "tags": [
+          "Download"
+        ],
+        "summary": "https://testoneapi.payu.in/reports/payment-link-txns/9148345106048371739",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "en-GB,en-US;q=0.9,en;q=0.8"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer 745660f93e555db93076f08c450d67bce07f044c6868f2555bf206c470775eb7"
+          },
+          {
+            "name": "Connection",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "keep-alive"
+          },
+          {
+            "name": "Mid",
+            "in": "header",
+            "schema": {
+              "type": "integer"
+            },
+            "example": "7600678"
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "https://staging.payu.in"
+          },
+          {
+            "name": "Product",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "PAYUBIZ"
+          },
+          {
+            "name": "Referer",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "https://staging.payu.in/"
+          },
+          {
+            "name": "Sec-Fetch-Dest",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "empty"
+          },
+          {
+            "name": "Sec-Fetch-Mode",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "cors"
+          },
+          {
+            "name": "Sec-Fetch-Site",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "same-site"
+          },
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+          },
+          {
+            "name": "sec-ch-ua",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "\"Not/A)Brand\";v=\"8\", \"Chromium\";v=\"126\", \"Google Chrome\";v=\"126\""
+          },
+          {
+            "name": "sec-ch-ua-mobile",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "?0"
+          },
+          {
+            "name": "sec-ch-ua-platform",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "\"macOS\""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/payment-links/bulk-uploads/upload": {
+      "post": {
+        "tags": [
+          "Bulk-Upload > V1"
+        ],
+        "summary": "uploadBulkInvoice",
+        "requestBody": {
+          "content": {}
+        },
+        "parameters": [
+          {
+            "name": "mid",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{mid}}"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{auth_token}}"
+          },
+          {
+            "name": "file",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "\"/Users/sahil.bundela/Documents\""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/payment-links/bulk-uploads": {
+      "post": {
+        "tags": [
+          "Bulk-Upload > V1"
+        ],
+        "summary": "createBulkInvoice",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "batchDesc": "PayU-Bulk-Email-Invoice-data.xlsx",
+                  "batchId": "",
+                  "fileId": 865,
+                  "shareVia": {
+                    "email": true,
+                    "phone": true
+                  },
+                  "customAttributes": [
+                    {
+                      "attributeType": "input",
+                      "checked": false,
+                      "required": false,
+                      "customAttributeName": "Customer Name",
+                      "options": []
+                    },
+                    {
+                      "attributeType": "input",
+                      "checked": false,
+                      "required": false,
+                      "customAttributeName": "Customer Address",
+                      "options": []
+                    },
+                    {
+                      "customAttributeName": "city",
+                      "attributeType": "select",
+                      "options": [
+                        "delhi",
+                        "noida",
+                        "gurugram"
+                      ],
+                      "checked": true,
+                      "required": true
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "mid",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{mid}}"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{auth_token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
           }
         }
       },
-      "Customer": {
-        "type": "object",
-        "required": [
-          "name",
-          "phone",
-          "email"
+      "get": {
+        "tags": [
+          "Bulk-Upload"
         ],
-        "description": "Customer object containing customer information",
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "Customer name"
+        "summary": "Get all batches",
+        "parameters": [
+          {
+            "name": "authority",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "testoneapi.payu.in"
           },
-          "phone": {
-            "type": "string",
-            "description": "Customer phone number"
+          {
+            "name": "accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "*/*"
           },
-          "email": {
-            "type": "string",
-            "format": "email",
-            "description": "Customer email address"
+          {
+            "name": "accept-language",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "en-GB,en-US;q=0.9,en;q=0.8"
+          },
+          {
+            "name": "access-control-request-headers",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "authorization,mid,product"
+          },
+          {
+            "name": "access-control-request-method",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "GET"
+          },
+          {
+            "name": "origin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "https://staging.payu.in"
+          },
+          {
+            "name": "referer",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "https://staging.payu.in/"
+          },
+          {
+            "name": "sec-fetch-dest",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "empty"
+          },
+          {
+            "name": "sec-fetch-mode",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "cors"
+          },
+          {
+            "name": "sec-fetch-site",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "same-site"
+          },
+          {
+            "name": "user-agent",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+          },
+          {
+            "name": "mid",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{mid}}"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{auth_token}}"
+          },
+          {
+            "name": "pageOffset",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "example": "0"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "example": "10"
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "createDate"
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "desc"
+          },
+          {
+            "name": "dateFrom",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "2025-01-01"
+          },
+          {
+            "name": "dateTo",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "2025-01-30"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/payment-links/bulk-uploads/sample-file": {
+      "post": {
+        "tags": [
+          "Bulk-Upload > Sample File"
+        ],
+        "summary": "Upload Sample File",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "payload": {
+                    "type": "string",
+                    "example": "{\"batchId\":\"Bulk54343295\",\"shareVia\":{\"email\":true,\"phone\":true},\n\"reminder\": {\"isScheduled\":true,\"channels\":[\"phone\",\"email\"]}}"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "merchantId",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{mid}}"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{auth_token}}"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": ""
+              }
+            }
           }
         }
       },
-      "Address": {
-        "type": "object",
-        "required": [
-          "line1",
-          "city",
-          "state",
-          "country",
-          "zipCode"
+      "delete": {
+        "tags": [
+          "Bulk-Upload > Sample File"
         ],
-        "description": "This parameter contains the customer address to which the goods are delivered.",
-        "properties": {
-          "line1": {
-            "type": "string",
-            "description": "Address line 1"
+        "summary": "Delete Sample File",
+        "parameters": [
+          {
+            "name": "merchantId",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{mid}}"
           },
-          "line2": {
-            "type": "string",
-            "description": "Address line 2"
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{auth_token}}"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": ""
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Bulk-Upload > Sample File"
+        ],
+        "summary": "Get Sample File Copy",
+        "parameters": [
+          {
+            "name": "merchantId",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{mid}}"
           },
-          "city": {
-            "type": "string",
-            "description": "City"
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{auth_token}}"
           },
-          "state": {
-            "type": "string",
-            "description": "State"
+          {
+            "name": "type",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "example": "1"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": ""
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payment-links/bulk-uploads/v2/upload": {
+      "post": {
+        "tags": [
+          "Bulk-Upload"
+        ],
+        "summary": "Upload File",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "payload": {
+                    "type": "string",
+                    "example": "{\"batchId\":\"Bulk54343295\",\"shareVia\":{\"email\":true,\"phone\":true},\n\"reminder\": {\"isScheduled\":true,\"channels\":[\"phone\",\"email\"]}}"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "merchantId",
+            "in": "header",
+            "schema": {
+              "type": "integer"
+            },
+            "example": "180748"
           },
-          "country": {
-            "type": "string",
-            "description": "Country"
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer 0c36b2a734c58694efd00621751d414d7323fa151ebb7ddd4b2b73aea0528058"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                },
+                "example": ""
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payment-links/bulk-uploads/BULK124956755675/error-file": {
+      "get": {
+        "tags": [
+          "Bulk-Upload"
+        ],
+        "summary": "Download Error File",
+        "parameters": [
+          {
+            "name": "merchantId",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{mid}}"
           },
-          "zipCode": {
-            "type": "string",
-            "description": "ZIP/Postal code"
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{auth_token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/payment-links/bulk-uploads/BULK1647": {
+      "get": {
+        "tags": [
+          "Bulk-Upload"
+        ],
+        "summary": "Batch Payment Links",
+        "parameters": [
+          {
+            "name": "mid",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{mid}}"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{auth_token}}"
+          },
+          {
+            "name": "pageOffset",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "addedOn"
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "desc"
+          },
+          {
+            "name": "searchText",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "active,inactive,expired"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/payment-links/bulk-uploads/BULK1564756/summary": {
+      "get": {
+        "tags": [
+          "Bulk-Upload"
+        ],
+        "summary": "Batch Summery",
+        "parameters": [
+          {
+            "name": "mid",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{mid}}"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{auth_token}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/payment-links/bulk-uploads/v2/batchDetails": {
+      "get": {
+        "tags": [
+          "Bulk-Upload"
+        ],
+        "summary": "Get batch detail",
+        "parameters": [
+          {
+            "name": "authority",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "testoneapi.payu.in"
+          },
+          {
+            "name": "accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "*/*"
+          },
+          {
+            "name": "accept-language",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "en-GB,en-US;q=0.9,en;q=0.8"
+          },
+          {
+            "name": "access-control-request-headers",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "authorization,mid,product"
+          },
+          {
+            "name": "access-control-request-method",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "GET"
+          },
+          {
+            "name": "origin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "https://staging.payu.in"
+          },
+          {
+            "name": "referer",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "https://staging.payu.in/"
+          },
+          {
+            "name": "sec-fetch-dest",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "empty"
+          },
+          {
+            "name": "sec-fetch-mode",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "cors"
+          },
+          {
+            "name": "sec-fetch-site",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "same-site"
+          },
+          {
+            "name": "user-agent",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+          },
+          {
+            "name": "mid",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{mid}}"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{auth_token}}"
+          },
+          {
+            "name": "pageOffset",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "example": "0"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "example": "10"
+          },
+          {
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "createDate"
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "desc"
+          },
+          {
+            "name": "searchText",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "BULK485501014423"
+          },
+          {
+            "name": "dateFrom",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "2024-01-01"
+          },
+          {
+            "name": "dateTo",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "2024-04-06"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/pay/425B1645F1CAB7D7066BAAFB196FA2827E7188F585220534625FAFB9C5BA7A91/intermediate": {
+      "get": {
+        "tags": [
+          "Checkout"
+        ],
+        "summary": "getPaymentLinkIntermediatePage",
+        "parameters": [
+          {
+            "name": "encryptedMID",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{encryptedMid}}"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/getEncryptedMid/INV6319186806211": {
+      "get": {
+        "tags": [
+          "Checkout"
+        ],
+        "summary": "getEncryptedInvoiceId",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/getEncryptedMid/{mid}": {
+      "get": {
+        "tags": [
+          "Checkout"
+        ],
+        "summary": "getEncryptedMid",
+        "parameters": [
+          {
+            "name": "mid",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/payment-links/default-merchant-attributes": {
+      "get": {
+        "tags": [
+          "Checkout"
+        ],
+        "summary": "default-merchant-attributes",
+        "parameters": [
+          {
+            "name": "mid",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{mid}}"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{auth_token}}"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/payment": {
+      "post": {
+        "tags": [
+          "Checkout"
+        ],
+        "summary": "makePayment",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "{{emailId}}"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "example": "{{phone}}"
+                  },
+                  "encryptedMid": {
+                    "type": "string",
+                    "example": "{{encryptedMid}}"
+                  },
+                  "invoiceNumber": {
+                    "type": "string",
+                    "example": "INV9430669477230"
+                  },
+                  "amount": {
+                    "type": "number",
+                    "example": "10.0"
+                  },
+                  "customAttribute": {
+                    "type": "string",
+                    "example": "[]"
+                  },
+                  "content type": {
+                    "type": "string",
+                    "example": "application/x-www-form-urlencoded"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/x-www-form-urlencoded"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/toolsService/postBackParam.do": {
+      "post": {
+        "tags": [
+          "Checkout"
+        ],
+        "summary": "PostBackParam.do",
+        "description": "Generated from cURL: curl 'https://tools.payu.in/toolsService/postBackParam.do' \\\n  -H 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7' \\\n  -H 'accept-language: en-GB,en-US;q=0.9,en;q=0.8' \\\n  -H 'cache-control: max-age=0' \\\n  -H 'content-type: application/x-www-form-urlencoded' \\\n  -H 'cookie: rskxRunCookie=0; rCookie=xhgpoo5cm5bdg8s9tzovcm2m6o6c9; DEVICEINFO=801DDF828223DF0FAE40308BC23D19CC2811FEA740B78A961CB5682D9865042106C4972CF1A76D32D3C1A86B53908B7CAD06B8D927B97A88EEF36D; USERTXNINFO=67193acfb13b42.81467901; lastRskxRun=1729706720721; _hjSessionUser_2667858=eyJpZCI6IjkxYjExOWU1LThlOTItNTFmZi1iOGEyLTE0ZTFkZDEwN2I3ZSIsImNyZWF0ZWQiOjE3Mjk3NTIyMDE5MDgsImV4aXN0aW5nIjp0cnVlfQ==; _fbp=fb.1.1731550518894.184008052842066791; merchantType=SMB-ENT; _hp2_id.3342147043=%7B%22userId%22%3A%225292652279171775%22%2C%22pageviewId%22%3A%227299790313462663%22%2C%22sessionId%22%3A%221551646829312219%22%2C%22identity%22%3Anull%2C%22trackerVersion%22%3A%224.0%22%7D; _ga_7CG3P7JYWT=GS1.1.1732713016.4.1.1732713017.0.0.0; WZRK_G=8856cf441aaa45d483ff05332381887f; chatbot=true; 931aff6118e35bb935401db1b3eddee4a9985dc9000162eb33f7229b905b7634_allowed_idle_time_in_seconds=10800; null_allowed_idle_time_in_seconds=10800; 123502_allowed_idle_time_in_seconds=10800; 47ec1c5ba31a32386a5e34edcc8191fcfc77ce12ac9eec5e9e29a25315d556ca_allowed_idle_time_in_seconds=10800; 8582983_allowed_idle_time_in_seconds=10800; 3c1a01426f1897afcfadec92dae463c7c041ff203d38c0ea4f3f3ef26c6200cc_allowed_idle_time_in_seconds=10800; e8104e10abb6a72e0619e82afa5a0dcc36e2d401f7115ec024667a74724bde6f_allowed_idle_time_in_seconds=10800; _gid=GA1.2.1446115559.1735243766; _clck=1ea95dx%7C2%7Cfs1%7C0%7C1758; _gcl_au=1.1.657309199.1729752172.148587116.1735244342.1735244346; product=PAYUBIZ; dashboardPreference=one_dashboard; product_account_type=PayUbizAccount; test_product_account_type=PayUbizAccount; _hjSession_2667858=eyJpZCI6IjI4Y2NkNTNjLTYxMTAtNGI0MS05MDhjLTk5OWI3ZmY0ODg2YiIsImMiOjE3MzUyNDQzNDg3OTAsInMiOjAsInIiOjAsInNiIjowLCJzciI6MCwic2UiOjAsImZzIjowLCJzcCI6MH0=; 9f09432cc4b891124410575a64233ec41ca054521d5b2691c1718d49f489d58b_allowed_idle_time_in_seconds=10800; 7600678_allowed_idle_time_in_seconds=10800; _ga=GA1.1.2004829615.1729752172; coherenceToken=2172ddcb5cbd770a2630d8040624869390f9c890dbaf7631db1be9f8aa8319c3; _ga_6FW4JBDXF1=GS1.1.1735243766.122.1.1735248016.53.0.0; WZRK_S_test=%7B%22p%22%3A73%7D; PHPSESSID=dcvku6ljperdlhmo86f5a08if4; bankportalToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6bnVsbCwiZXhwIjoxNzM1MjUyNDQyfQ.XVM8pLrqoKadDA1ANIXnnHi_rjTF77OxPCiOkINnaWA; merchantAccessToken=addf7e791389e3efb49433cc52855a4390ed10fb075e9a940c25c11f1413318d; user_uuid=11e8-70b2-1a4ae4ea-95cc-02e2abbf5760; product_accounts=%5B%7B%22product_account_type%22%3A%22PayUbizAccount%22%2C%22product_account_uuid%22%3A%2211ec-0f01-24aff86c-a7d3-0a911fce7ff6%22%2C%22merchant_account_uuid%22%3A%2211ed-14c6-bcd9437a-97cc-02e708f88ebc%22%2C%22identifier%22%3A8288875%2C%22acl_role_name%22%3A%22MerchantAdminUserRole%22%2C%22name%22%3A%22Merchant%22%7D%2C%7B%22product_account_type%22%3A%22PayUbizAccount%22%2C%22product_account_uuid%22%3A%2211ec-2fe8-0d5cf982-ac9b-025dcc012560%22%2C%22merchant_account_uuid%22%3A%2211ed-16e0-e88f36d4-a6cf-02e708f88ebc%22%2C%22identifier%22%3A8333426%2C%22acl_role_name%22%3A%22MerchantAdminUserRole%22%2C%22name%22%3A%22Merchant%22%7D%2C%7B%22product_account_type%22%3A%22PayUbizAccount%22%2C%22product_account_uuid%22%3A%2211ec-cd03-5264878a-8a69-0a911fce7ff6%22%2C%22merchant_account_uuid%22%3A%2211ed-173a-f899a80c-a6cf-02e708f88ebc%22%2C%22identifier%22%3A8569298%2C%22acl_role_name%22%3A%22MerchantAdminUserRole%22%2C%22name%22%3A%22Merchant%22%7D%2C%7B%22product_account_type%22%3A%22PayUbizAccount%22%2C%22product_account_uuid%22%3A%2211ec-d814-8e67b6a0-95fc-0a4a7b1a8b80%22%2C%22merchant_account_uuid%22%3A%2211ed-1740-4fceba54-a6cf-02e708f88ebc%22%2C%22identifier%22%3A8582983%2C%22acl_role_name%22%3A%22MerchantAdminUserRole%22%2C%22name%22%3A%22Merchant%22%7D%2C%7B%22product_account_type%22%3A%22PayUbizAccount%22%2C%22product_account_uuid%22%3A%2211ed-3f00-19b34d30-9a16-0aab38980c62%22%2C%22merchant_account_uuid%22%3A%2211ed-3f00-1b03124c-9a16-0aab38980c62%22%2C%22identifier%22%3A8704272%2C%22acl_role_name%22%3A%22MerchantAdminUserRole%22%2C%22name%22%3A%22Merchant%22%7D%2C%7B%22product_account_type%22%3A%22PayUbizAccount%22%2C%22product_account_uuid%22%3A%2211ed-3f15-ade839d8-9cdb-0aab38980c62%22%2C%22merchant_account_uuid%22%3A%2211ed-3f15-af16862a-9cdb-0aab38980c62%22%2C%22identifier%22%3A8704463%2C%22acl_role_name%22%3A%22MerchantAdminUserRole%22%2C%22name%22%3A%22Merchant%22%7D%5D; mid=8582983; product_account_uuid=11ec-d814-8e67b6a0-95fc-0a4a7b1a8b80; merchant_account_uuid=11ed-1740-4fceba54-a6cf-02e708f88ebc; testAccessToken=b6d7ebeb8abb7d7b57cf9fcd2a94269084fcba1984d0a37bb57914a1fa004cf3; test_product_account_uuid=11ed-3353-9689fa10-be99-026e3e71538e; test_merchant_account_uuid=11ed-3353-976315f2-be99-026e3e71538e; test_mid=8236879; addf7e791389e3efb49433cc52855a4390ed10fb075e9a940c25c11f1413318d_allowed_idle_time_in_seconds=10800; WZRK_S_WW6-Z6K-RW5Z=%7B%22p%22%3A3%2C%22s%22%3A1735248900%2C%22t%22%3A1735248945%7D; session_timeout=%222024-12-27T00%3A35%3A48.177Z%22; WZRK_S_489-9RZ-ZZ6Z=%7B%22p%22%3A2%2C%22s%22%3A1735248952%2C%22t%22%3A1735248964%7D' \\\n  -H 'origin: https://secure.payu.in' \\\n  -H 'priority: u=0, i' \\\n  -H 'referer: https://secure.payu.in/' \\\n  -H 'sec-ch-ua: \"Not)A;Brand\";v=\"99\", \"Google Chrome\";v=\"127\", \"Chromium\";v=\"127\"' \\\n  -H 'sec-ch-ua-mobile: ?0' \\\n  -H 'sec-ch-ua-platform: \"macOS\"' \\\n  -H 'sec-fetch-dest: document' \\\n  -H 'sec-fetch-mode: navigate' \\\n  -H 'sec-fetch-site: same-site' \\\n  -H 'upgrade-insecure-requests: 1' \\\n  -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36' \\\n  --data-raw 'mihpayid=21971247388&mode=&status=failure&unmappedstatus=bounced&key=rXjDfJ&txnid=78489183&amount=10.00&discount=0.00&net_amount_debit=0.00&addedon=2024-12-27+03%3A06%3A05&productinfo=Paid+With+ButtonId+78489173&firstname=&lastname=&address1=&address2=&city=&state=&country=&zipcode=&email=sahil.bundela%40payu.in&phone=918383075210&udf1=&udf2=&udf3=&udf4=&udf5=&udf6=&udf7=&udf8=&udf9=&udf10=&hash=a40e5f4c2679fc27dcc3786cb6c3b0d2b64c5da8409ca6d4aa660f6835bc13bffacd40515e7ddda14a90c65d33b7e0c29475f0d17d303547bbebb969c25ca011&field1=&field2=&field3=&field4=&field5=&field6=&field7=&field8=&field9=GMV+limit+reached+for+non+approved+smb+account.&payment_source=button&PG_TYPE=&bank_ref_num=&bankcode=&error=E721&error_Message='",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "mihpayid": {
+                    "type": "integer",
+                    "example": "21971247388"
+                  },
+                  "mode": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string",
+                    "example": "failure"
+                  },
+                  "unmappedstatus": {
+                    "type": "string",
+                    "example": "bounced"
+                  },
+                  "key": {
+                    "type": "string",
+                    "example": "rXjDfJ"
+                  },
+                  "txnid": {
+                    "type": "integer",
+                    "example": "78489183"
+                  },
+                  "amount": {
+                    "type": "number",
+                    "example": "10.00"
+                  },
+                  "discount": {
+                    "type": "number",
+                    "example": "0.00"
+                  },
+                  "net_amount_debit": {
+                    "type": "number",
+                    "example": "0.00"
+                  },
+                  "addedon": {
+                    "type": "string",
+                    "example": "2024-12-27 03:06:05"
+                  },
+                  "productinfo": {
+                    "type": "string",
+                    "example": "Paid With ButtonId 78489173"
+                  },
+                  "firstname": {
+                    "type": "string"
+                  },
+                  "lastname": {
+                    "type": "string"
+                  },
+                  "address1": {
+                    "type": "string"
+                  },
+                  "address2": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "string"
+                  },
+                  "country": {
+                    "type": "string"
+                  },
+                  "zipcode": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "sahil.bundela@payu.in"
+                  },
+                  "phone": {
+                    "type": "integer",
+                    "example": "918383075210"
+                  },
+                  "udf1": {
+                    "type": "string"
+                  },
+                  "udf2": {
+                    "type": "string"
+                  },
+                  "udf3": {
+                    "type": "string"
+                  },
+                  "udf4": {
+                    "type": "string"
+                  },
+                  "udf5": {
+                    "type": "string"
+                  },
+                  "udf6": {
+                    "type": "string"
+                  },
+                  "udf7": {
+                    "type": "string"
+                  },
+                  "udf8": {
+                    "type": "string"
+                  },
+                  "udf9": {
+                    "type": "string"
+                  },
+                  "udf10": {
+                    "type": "string"
+                  },
+                  "hash": {
+                    "type": "string",
+                    "example": "a40e5f4c2679fc27dcc3786cb6c3b0d2b64c5da8409ca6d4aa660f6835bc13bffacd40515e7ddda14a90c65d33b7e0c29475f0d17d303547bbebb969c25ca011"
+                  },
+                  "field1": {
+                    "type": "string"
+                  },
+                  "field2": {
+                    "type": "string"
+                  },
+                  "field3": {
+                    "type": "string"
+                  },
+                  "field4": {
+                    "type": "string"
+                  },
+                  "field5": {
+                    "type": "string"
+                  },
+                  "field6": {
+                    "type": "string"
+                  },
+                  "field7": {
+                    "type": "string"
+                  },
+                  "field8": {
+                    "type": "string"
+                  },
+                  "field9": {
+                    "type": "string",
+                    "example": "GMV limit reached for non approved smb account."
+                  },
+                  "payment_source": {
+                    "type": "string",
+                    "example": "button"
+                  },
+                  "PG_TYPE": {
+                    "type": "string"
+                  },
+                  "bank_ref_num": {
+                    "type": "string"
+                  },
+                  "bankcode": {
+                    "type": "string"
+                  },
+                  "error": {
+                    "type": "string",
+                    "example": "E721"
+                  },
+                  "error_Message": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+          },
+          {
+            "name": "accept-language",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "en-GB,en-US;q=0.9,en;q=0.8"
+          },
+          {
+            "name": "cache-control",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "max-age=0"
+          },
+          {
+            "name": "content-type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/x-www-form-urlencoded"
+          },
+          {
+            "name": "cookie",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "rskxRunCookie=0; rCookie=xhgpoo5cm5bdg8s9tzovcm2m6o6c9; DEVICEINFO=801DDF828223DF0FAE40308BC23D19CC2811FEA740B78A961CB5682D9865042106C4972CF1A76D32D3C1A86B53908B7CAD06B8D927B97A88EEF36D; USERTXNINFO=67193acfb13b42.81467901; lastRskxRun=1729706720721; _hjSessionUser_2667858=eyJpZCI6IjkxYjExOWU1LThlOTItNTFmZi1iOGEyLTE0ZTFkZDEwN2I3ZSIsImNyZWF0ZWQiOjE3Mjk3NTIyMDE5MDgsImV4aXN0aW5nIjp0cnVlfQ==; _fbp=fb.1.1731550518894.184008052842066791; merchantType=SMB-ENT; _hp2_id.3342147043=%7B%22userId%22%3A%225292652279171775%22%2C%22pageviewId%22%3A%227299790313462663%22%2C%22sessionId%22%3A%221551646829312219%22%2C%22identity%22%3Anull%2C%22trackerVersion%22%3A%224.0%22%7D; _ga_7CG3P7JYWT=GS1.1.1732713016.4.1.1732713017.0.0.0; WZRK_G=8856cf441aaa45d483ff05332381887f; chatbot=true; 931aff6118e35bb935401db1b3eddee4a9985dc9000162eb33f7229b905b7634_allowed_idle_time_in_seconds=10800; null_allowed_idle_time_in_seconds=10800; 123502_allowed_idle_time_in_seconds=10800; 47ec1c5ba31a32386a5e34edcc8191fcfc77ce12ac9eec5e9e29a25315d556ca_allowed_idle_time_in_seconds=10800; 8582983_allowed_idle_time_in_seconds=10800; 3c1a01426f1897afcfadec92dae463c7c041ff203d38c0ea4f3f3ef26c6200cc_allowed_idle_time_in_seconds=10800; e8104e10abb6a72e0619e82afa5a0dcc36e2d401f7115ec024667a74724bde6f_allowed_idle_time_in_seconds=10800; _gid=GA1.2.1446115559.1735243766; _clck=1ea95dx%7C2%7Cfs1%7C0%7C1758; _gcl_au=1.1.657309199.1729752172.148587116.1735244342.1735244346; product=PAYUBIZ; dashboardPreference=one_dashboard; product_account_type=PayUbizAccount; test_product_account_type=PayUbizAccount; _hjSession_2667858=eyJpZCI6IjI4Y2NkNTNjLTYxMTAtNGI0MS05MDhjLTk5OWI3ZmY0ODg2YiIsImMiOjE3MzUyNDQzNDg3OTAsInMiOjAsInIiOjAsInNiIjowLCJzciI6MCwic2UiOjAsImZzIjowLCJzcCI6MH0=; 9f09432cc4b891124410575a64233ec41ca054521d5b2691c1718d49f489d58b_allowed_idle_time_in_seconds=10800; 7600678_allowed_idle_time_in_seconds=10800; _ga=GA1.1.2004829615.1729752172; coherenceToken=2172ddcb5cbd770a2630d8040624869390f9c890dbaf7631db1be9f8aa8319c3; _ga_6FW4JBDXF1=GS1.1.1735243766.122.1.1735248016.53.0.0; WZRK_S_test=%7B%22p%22%3A73%7D; PHPSESSID=dcvku6ljperdlhmo86f5a08if4; bankportalToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6bnVsbCwiZXhwIjoxNzM1MjUyNDQyfQ.XVM8pLrqoKadDA1ANIXnnHi_rjTF77OxPCiOkINnaWA; merchantAccessToken=addf7e791389e3efb49433cc52855a4390ed10fb075e9a940c25c11f1413318d; user_uuid=11e8-70b2-1a4ae4ea-95cc-02e2abbf5760; product_accounts=%5B%7B%22product_account_type%22%3A%22PayUbizAccount%22%2C%22product_account_uuid%22%3A%2211ec-0f01-24aff86c-a7d3-0a911fce7ff6%22%2C%22merchant_account_uuid%22%3A%2211ed-14c6-bcd9437a-97cc-02e708f88ebc%22%2C%22identifier%22%3A8288875%2C%22acl_role_name%22%3A%22MerchantAdminUserRole%22%2C%22name%22%3A%22Merchant%22%7D%2C%7B%22product_account_type%22%3A%22PayUbizAccount%22%2C%22product_account_uuid%22%3A%2211ec-2fe8-0d5cf982-ac9b-025dcc012560%22%2C%22merchant_account_uuid%22%3A%2211ed-16e0-e88f36d4-a6cf-02e708f88ebc%22%2C%22identifier%22%3A8333426%2C%22acl_role_name%22%3A%22MerchantAdminUserRole%22%2C%22name%22%3A%22Merchant%22%7D%2C%7B%22product_account_type%22%3A%22PayUbizAccount%22%2C%22product_account_uuid%22%3A%2211ec-cd03-5264878a-8a69-0a911fce7ff6%22%2C%22merchant_account_uuid%22%3A%2211ed-173a-f899a80c-a6cf-02e708f88ebc%22%2C%22identifier%22%3A8569298%2C%22acl_role_name%22%3A%22MerchantAdminUserRole%22%2C%22name%22%3A%22Merchant%22%7D%2C%7B%22product_account_type%22%3A%22PayUbizAccount%22%2C%22product_account_uuid%22%3A%2211ec-d814-8e67b6a0-95fc-0a4a7b1a8b80%22%2C%22merchant_account_uuid%22%3A%2211ed-1740-4fceba54-a6cf-02e708f88ebc%22%2C%22identifier%22%3A8582983%2C%22acl_role_name%22%3A%22MerchantAdminUserRole%22%2C%22name%22%3A%22Merchant%22%7D%2C%7B%22product_account_type%22%3A%22PayUbizAccount%22%2C%22product_account_uuid%22%3A%2211ed-3f00-19b34d30-9a16-0aab38980c62%22%2C%22merchant_account_uuid%22%3A%2211ed-3f00-1b03124c-9a16-0aab38980c62%22%2C%22identifier%22%3A8704272%2C%22acl_role_name%22%3A%22MerchantAdminUserRole%22%2C%22name%22%3A%22Merchant%22%7D%2C%7B%22product_account_type%22%3A%22PayUbizAccount%22%2C%22product_account_uuid%22%3A%2211ed-3f15-ade839d8-9cdb-0aab38980c62%22%2C%22merchant_account_uuid%22%3A%2211ed-3f15-af16862a-9cdb-0aab38980c62%22%2C%22identifier%22%3A8704463%2C%22acl_role_name%22%3A%22MerchantAdminUserRole%22%2C%22name%22%3A%22Merchant%22%7D%5D; mid=8582983; product_account_uuid=11ec-d814-8e67b6a0-95fc-0a4a7b1a8b80; merchant_account_uuid=11ed-1740-4fceba54-a6cf-02e708f88ebc; testAccessToken=b6d7ebeb8abb7d7b57cf9fcd2a94269084fcba1984d0a37bb57914a1fa004cf3; test_product_account_uuid=11ed-3353-9689fa10-be99-026e3e71538e; test_merchant_account_uuid=11ed-3353-976315f2-be99-026e3e71538e; test_mid=8236879; addf7e791389e3efb49433cc52855a4390ed10fb075e9a940c25c11f1413318d_allowed_idle_time_in_seconds=10800; WZRK_S_WW6-Z6K-RW5Z=%7B%22p%22%3A3%2C%22s%22%3A1735248900%2C%22t%22%3A1735248945%7D; session_timeout=%222024-12-27T00%3A35%3A48.177Z%22; WZRK_S_489-9RZ-ZZ6Z=%7B%22p%22%3A2%2C%22s%22%3A1735248952%2C%22t%22%3A1735248964%7D"
+          },
+          {
+            "name": "origin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "https://secure.payu.in"
+          },
+          {
+            "name": "priority",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "u=0, i"
+          },
+          {
+            "name": "referer",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "https://secure.payu.in/"
+          },
+          {
+            "name": "sec-ch-ua",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "\"Not)A;Brand\";v=\"99\", \"Google Chrome\";v=\"127\", \"Chromium\";v=\"127\""
+          },
+          {
+            "name": "sec-ch-ua-mobile",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "?0"
+          },
+          {
+            "name": "sec-ch-ua-platform",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "\"macOS\""
+          },
+          {
+            "name": "sec-fetch-dest",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "document"
+          },
+          {
+            "name": "sec-fetch-mode",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "navigate"
+          },
+          {
+            "name": "sec-fetch-site",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "same-site"
+          },
+          {
+            "name": "upgrade-insecure-requests",
+            "in": "header",
+            "schema": {
+              "type": "integer"
+            },
+            "example": "1"
+          },
+          {
+            "name": "user-agent",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/cron/reminder": {
+      "get": {
+        "tags": [
+          "Cron"
+        ],
+        "summary": "Evict reminder count cache",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/cron/expiry": {
+      "get": {
+        "tags": [
+          "Cron"
+        ],
+        "summary": "set expiry",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/paymentLink/cron/verify_payment": {
+      "get": {
+        "tags": [
+          "Cron"
+        ],
+        "summary": "Test",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/cron/verify_payment/fallback": {
+      "get": {
+        "tags": [
+          "Cron"
+        ],
+        "summary": "verify_payment falback",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/paymentLink/cron/update_bulkUpload_status": {
+      "get": {
+        "tags": [
+          "Cron"
+        ],
+        "summary": "update bulk upload stataus",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/paymentLink/merchant/verify-payment": {
+      "get": {
+        "tags": [
+          "Cron"
+        ],
+        "summary": "merchant verify_payment",
+        "parameters": [
+          {
+            "name": "merchantIds",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "example": "8754066"
+          },
+          {
+            "name": "dateFrom",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "2023-09-01"
+          },
+          {
+            "name": "dateTo",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "example": "2023-10-28"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/reminder": {
+      "post": {
+        "tags": [
+          "Reminder"
+        ],
+        "summary": "Create reminder",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "schedulingInterval": 5,
+                  "timeUnit": 0,
+                  "reminderType": 1
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "mid",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{mid}}"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer 346a633487becfc5dd19016daa3e8222e14c56e1c56ef6b4194d6117ca860c7f"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Reminder"
+        ],
+        "summary": "GET Reminders",
+        "parameters": [
+          {
+            "name": "mid",
+            "in": "header",
+            "schema": {
+              "type": "integer"
+            },
+            "example": "8298450"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer 72b4b8e2b5a585dcf95d54f63cb12a5db09afdc05c644f8590442ebbf44ef251"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/reminder/13": {
+      "delete": {
+        "tags": [
+          "Reminder"
+        ],
+        "summary": "Delete reminder",
+        "parameters": [
+          {
+            "name": "mid",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{mid}}"
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{auth_token}}"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/info/template/": {
+      "get": {
+        "tags": [
+          "Data-Migration"
+        ],
+        "summary": "Merchant Template",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{auth_token}}"
+          },
+          {
+            "name": "mid",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{mid}}"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Wed, 20 Oct 2021 08:33:15 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "chunked"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Access-Control-Request-Headers"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1; mode=block"
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache, no-store, max-age=0, must-revalidate"
+                }
+              },
+              "Pragma": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "Expires": {
+                "schema": {
+                  "type": "integer",
+                  "example": "0"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "DENY"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "status": 0,
+                  "message": null,
+                  "result": {
+                    "summary": {
+                      "amountRequested": 16,
+                      "totalRevenue": 0,
+                      "totalViews": 0
+                    },
+                    "subAmount": 10,
+                    "tax": 2,
+                    "shippingCharge": 3,
+                    "totalAmount": 16,
+                    "totalAmountCollected": 0,
+                    "invoiceNumber": "INV8141747332110",
+                    "paymentLink": "https://pmny.in/3ILpBu2UkVHx",
+                    "description": "test payment link",
+                    "active": true,
+                    "isPartialPaymentAllowed": false,
+                    "status": "active",
+                    "expiryDate": "2023-03-14T11:00:05.000+0530",
+                    "udf": {
+                      "udf1": "sampleudf1",
+                      "udf2": "sampleudf2",
+                      "udf3": "sampleudf3",
+                      "udf4": "sampleudf4",
+                      "udf5": "sampleudf5"
+                    },
+                    "address": {
+                      "line1": "abc house",
+                      "line2": "xyz society",
+                      "city": "Noida",
+                      "state": "Uttar Pradesh",
+                      "country": "India",
+                      "zipCode": "201301"
+                    },
+                    "addedOn": "2021-10-20T13:02:39.000+0530",
+                    "isAmountFilledByCustomer": false
+                  },
+                  "errorCode": null,
+                  "guid": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/info/merchant-param/": {
+      "get": {
+        "tags": [
+          "Data-Migration"
+        ],
+        "summary": "Merchant Param",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{auth_token}}"
+          },
+          {
+            "name": "mid",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "{{mid}}"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/json"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Date": {
+                "schema": {
+                  "type": "string",
+                  "example": "Wed, 20 Oct 2021 08:33:15 GMT"
+                }
+              },
+              "Content-Type": {
+                "schema": {
+                  "type": "string",
+                  "example": "application/json"
+                }
+              },
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string",
+                  "example": "chunked"
+                }
+              },
+              "Connection": {
+                "schema": {
+                  "type": "string",
+                  "example": "keep-alive"
+                }
+              },
+              "Vary": {
+                "schema": {
+                  "type": "string",
+                  "example": "Access-Control-Request-Headers"
+                }
+              },
+              "X-Content-Type-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "nosniff"
+                }
+              },
+              "X-XSS-Protection": {
+                "schema": {
+                  "type": "string",
+                  "example": "1; mode=block"
+                }
+              },
+              "Cache-Control": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache, no-store, max-age=0, must-revalidate"
+                }
+              },
+              "Pragma": {
+                "schema": {
+                  "type": "string",
+                  "example": "no-cache"
+                }
+              },
+              "Expires": {
+                "schema": {
+                  "type": "integer",
+                  "example": "0"
+                }
+              },
+              "X-Frame-Options": {
+                "schema": {
+                  "type": "string",
+                  "example": "DENY"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "example": {
+                  "status": 0,
+                  "message": null,
+                  "result": {
+                    "summary": {
+                      "amountRequested": 16,
+                      "totalRevenue": 0,
+                      "totalViews": 0
+                    },
+                    "subAmount": 10,
+                    "tax": 2,
+                    "shippingCharge": 3,
+                    "totalAmount": 16,
+                    "totalAmountCollected": 0,
+                    "invoiceNumber": "INV8141747332110",
+                    "paymentLink": "https://pmny.in/3ILpBu2UkVHx",
+                    "description": "test payment link",
+                    "active": true,
+                    "isPartialPaymentAllowed": false,
+                    "status": "active",
+                    "expiryDate": "2023-03-14T11:00:05.000+0530",
+                    "udf": {
+                      "udf1": "sampleudf1",
+                      "udf2": "sampleudf2",
+                      "udf3": "sampleudf3",
+                      "udf4": "sampleudf4",
+                      "udf5": "sampleudf5"
+                    },
+                    "address": {
+                      "line1": "abc house",
+                      "line2": "xyz society",
+                      "city": "Noida",
+                      "state": "Uttar Pradesh",
+                      "country": "India",
+                      "zipCode": "201301"
+                    },
+                    "addedOn": "2021-10-20T13:02:39.000+0530",
+                    "isAmountFilledByCustomer": false
+                  },
+                  "errorCode": null,
+                  "guid": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/_payment": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "https://pp19secure.payu.in/_payment",
+        "description": "Generated from cURL: curl 'https://pp19secure.payu.in/_payment' \\\n  -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7' \\\n  -H 'Accept-Language: en-GB,en-US;q=0.9,en;q=0.8' \\\n  -H 'Cache-Control: max-age=0' \\\n  -H 'Connection: keep-alive' \\\n  -H 'Content-Type: application/x-www-form-urlencoded' \\\n  -H 'Cookie: rskxRunCookie=0; rCookie=xhgpoo5cm5bdg8s9tzovcm2m6o6c9; DEVICEINFO=801DDF828223DF0FAE40308BC23D19CC2811FEA740B78A961CB5682D9865042106C4972CF1A76D32D3C1A86B53908B7CAD06B8D927B97A88EEF36D; USERTXNINFO=67193acfb13b42.81467901; lastRskxRun=1729706720721; _hjSessionUser_2667858=eyJpZCI6IjkxYjExOWU1LThlOTItNTFmZi1iOGEyLTE0ZTFkZDEwN2I3ZSIsImNyZWF0ZWQiOjE3Mjk3NTIyMDE5MDgsImV4aXN0aW5nIjp0cnVlfQ==; _fbp=fb.1.1731550518894.184008052842066791; chatbot=true; 49cd9b2ee3762d1c265e051fb3807041670f1bb6283458a53fca17f65daf50b8_allowed_idle_time_in_seconds=10800; c08a18c9c54569804e66b38010db257591b0f1cade644fea96606efeafca7c56_allowed_idle_time_in_seconds=10800; 134220_allowed_idle_time_in_seconds=10800; merchantType=SMB-ENT; 8451850_allowed_idle_time_in_seconds=10800; 04590d32eb9ca74cb8a5d5a53c1bcdab7c83bfe00f7a10e6636556c88a5e8570_allowed_idle_time_in_seconds=10800; 123502_allowed_idle_time_in_seconds=10800; d5730562e6b85120e04288f05675be42c6c24d2eb24cadc601b1849292984a4c_allowed_idle_time_in_seconds=10800; 7600678_allowed_idle_time_in_seconds=10800; 5626593f96049af665c27fbfe8f8f81405cb5c1d0eccb5aabe4d334018f99671_allowed_idle_time_in_seconds=10800; 0d63cf9707b2589d27b38257d6352641b1c00b2d46c75906427dbc15f6f996b4_allowed_idle_time_in_seconds=10800; WZRK_G=8856cf441aaa45d483ff05332381887f; 8582983_allowed_idle_time_in_seconds=10800; 1d38bdf6c0d4507685098a943344cfd426605c839bc48a675a04a318ce160c28_allowed_idle_time_in_seconds=10800; _gid=GA1.2.1405330682.1732595416; 8077f4c27ae9ff77df6f2e6dd74e5144c6b7d8093d8923dcfc68969a1b7bf4d4_allowed_idle_time_in_seconds=10800; a976dba08e7fa2f3bd675dcac55da94ab1996f867c51509ace6b26dafd0ee99f_allowed_idle_time_in_seconds=10800; _gcl_au=1.1.657309199.1729752172.708656872.1732622116.1732622115; 7c91774f1d45b513275bddee4adf2a15bcfa3fb20659c89806714ba1aaf730ad_allowed_idle_time_in_seconds=10800; _clck=1ea95dx%7C2%7Cfr8%7C0%7C1758; session_timeout=%222024-11-27T09%3A45%3A15.237Z%22; _hp2_ses_props.3342147043=%7B%22ts%22%3A1732696829909%2C%22d%22%3A%22docs.payu.in%22%2C%22h%22%3A%22%2Freference%2Finfo_kyc_document_api%22%7D; _ga=GA1.2.2004829615.1729752172; _hp2_id.3342147043=%7B%22userId%22%3A%225292652279171775%22%2C%22pageviewId%22%3A%227426466044534383%22%2C%22sessionId%22%3A%221551646829312219%22%2C%22identity%22%3Anull%2C%22trackerVersion%22%3A%224.0%22%7D; _clsk=l3gzr%7C1732697276715%7C4%7C1%7Cq.clarity.ms%2Fcollect; _ga_7CG3P7JYWT=GS1.1.1732696830.3.1.1732697294.0.0.0; _ga_6FW4JBDXF1=GS1.1.1732696831.35.1.1732697294.39.0.0; PHPSESSID=fuaeq2gvm580h45jdg4rbfhad5; coherenceToken=8a8a96b232df8f61b6ee96db3af82272b9eafaf7103c34d194b994bb2c2eac99' \\\n  -H 'Origin: https://pp19admin.payu.in' \\\n  -H 'Referer: https://pp19admin.payu.in/' \\\n  -H 'Sec-Fetch-Dest: document' \\\n  -H 'Sec-Fetch-Mode: navigate' \\\n  -H 'Sec-Fetch-Site: same-site' \\\n  -H 'Upgrade-Insecure-Requests: 1' \\\n  -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36' \\\n  -H 'sec-ch-ua: \"Not)A;Brand\";v=\"99\", \"Google Chrome\";v=\"127\", \"Chromium\";v=\"127\"' \\\n  -H 'sec-ch-ua-mobile: ?0' \\\n  -H 'sec-ch-ua-platform: \"macOS\"' \\\n  --data-raw 'hash=d2522d0870d46be438fb0b66aeb0f43211cd060079ddd6182a4f5dfb61d8ed6d3254a2b087149559bb5be8132adc756184ec5fca3852403af63dfeff21b3fe55&key=smsplus&txnid=dd8505cd34723036864c&version=&api_version=1&pre_init_mode=0&amount=10&additional_charges=&firstname=Payu-Admin&salt_version=1&email=test%40example.com&phone=1234567890&productinfo=Product+Info&user_credentials=&surl=https%3A%2F%2Fpp19admin.payu.in%2Ftest_response&txtid=afb82b0dc86628a66f7fc4eb5b166786&furl=https%3A%2F%2Fpp19admin.payu.in%2Ftest_response&panNumber=&notifyurl=https%3A%2F%2Fpp19admin.payu.in%2Ftest_notification.php&percentage_additional_charges=&codurl=https%3A%2F%2Fpp19admin.payu.in%2Ftest_response&additional_gst_charges=&ipurl=https%3A%2F%2Fpp19admin.payu.in%2Ftest_response&partner_webhook_success=&partner_webhook_failure=&miles=&pubkey=&lastname=&curl=&address1=&address2=&shipping_firstname=&shipping_lastname=&shipping_address1=&shipping_address2=&shipping_city=&shipping_state=&shipping_country=&shipping_zipcode=&shipping_phone=&city=&state=&country=&zipcode=&nsc=&enforce_paymethod=&drop_category=&offer_key=&service_provider=&user_token=&cart_details=&offer_auto_apply=&splitInfo=&force_pa=&partner_udf_1=&partner_udf_2=&partner_udf_3=&partner_udf_4=&partner_udf_5=&base_split_id=&note_category=&custom_note=&udf1=&udf2=&udf3=&udf4=&udf5=&udf6=&base_payuid=&base_merchantid=&vendor_id=&service_provider=&one_click=&si=&subscriptionId=&free_trial=1&twid_customer_hash=&visaabpdetails=&walletUrn=&load_amount=&force_pgid=&app_id=&beneficiarydetail=&merchantDataForDM=&gstParams=&paisa_mecode=&device_type=&instrument_type=&instrument_id=&ismobileview=&card_merchant_param=&retry_payuids=&boltEnabled=&s2s_client_ip=&s2s_device_info=&html=&sdktoken=&snooze=0&transactionContext=&device_context=&sdk_flow_type=&sdk_platform=&sdk_retry=&loan_id=&acquiring_bin=&mcpLookupId=&pg=&bankcode=&subvention_amount=&forceProtocolAs3DS2=&subvention_eligibility=&ccnum=5123456789012346&ccname=Test+User&ccvv=123&alt_id=&storecard_token_type=&additional_info=&ccexpmon=05&ccexpyr=2025&otp=123456&store_card_token=&store_card=&card_name=&txn_s2s_flow=&decoded_s2s_response=&authentication_flow=&sub_merchant_id=&methodCallReferenceId=&threeDSCompInd=&authentication_info=&tokenService=&pre_authorize=&skip3ds=&auth_only=&termUrl=&is_atm_pin=&vpa=&vpa_phone=&merchant_data=&dm_fp_session=&callId=&skipcvv=&citi_reward=&additional_payment_info=&source_id=&threeDS2RequestData=&save_sodexo_card=&linkAndPayFlowType=&is_check_balance=&linkAndPayFlowDetails=&si_details=&tools_txn_type=&one_click_details=&splitRequest=&moneyMerchantName=&moneyWebsiteUrl=&offer_product_id=&offer_brand_id=&payoutdetails=&upi_custom_note=&icp_type=&payment_split=&orderid=&extra_charges=&expiry_time=&platform=&email_required=&edit_email_allowed=&edit_phone_allowed=&outletId=&cardLastFour=&programCode=&invoiceAmount=&balance=&tax_and_shipping_url=&fetch_dynamic_charges='",
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "hash": {
+                    "type": "string",
+                    "example": "d2522d0870d46be438fb0b66aeb0f43211cd060079ddd6182a4f5dfb61d8ed6d3254a2b087149559bb5be8132adc756184ec5fca3852403af63dfeff21b3fe55"
+                  },
+                  "key": {
+                    "type": "string",
+                    "example": "smsplus"
+                  },
+                  "txnid": {
+                    "type": "string",
+                    "example": "dd8505cd34723036864c"
+                  },
+                  "version": {
+                    "type": "string"
+                  },
+                  "api_version": {
+                    "type": "integer",
+                    "example": "1"
+                  },
+                  "pre_init_mode": {
+                    "type": "integer",
+                    "example": "0"
+                  },
+                  "amount": {
+                    "type": "integer",
+                    "example": "10"
+                  },
+                  "additional_charges": {
+                    "type": "string"
+                  },
+                  "firstname": {
+                    "type": "string",
+                    "example": "Payu-Admin"
+                  },
+                  "salt_version": {
+                    "type": "integer",
+                    "example": "1"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "test@example.com"
+                  },
+                  "phone": {
+                    "type": "integer",
+                    "example": "1234567890"
+                  },
+                  "productinfo": {
+                    "type": "string",
+                    "example": "Product Info"
+                  },
+                  "user_credentials": {
+                    "type": "string"
+                  },
+                  "surl": {
+                    "type": "string",
+                    "example": "https://pp19admin.payu.in/test_response"
+                  },
+                  "txtid": {
+                    "type": "string",
+                    "example": "afb82b0dc86628a66f7fc4eb5b166786"
+                  },
+                  "furl": {
+                    "type": "string",
+                    "example": "https://pp19admin.payu.in/test_response"
+                  },
+                  "panNumber": {
+                    "type": "string"
+                  },
+                  "notifyurl": {
+                    "type": "string",
+                    "example": "https://pp19admin.payu.in/test_notification.php"
+                  },
+                  "percentage_additional_charges": {
+                    "type": "string"
+                  },
+                  "codurl": {
+                    "type": "string",
+                    "example": "https://pp19admin.payu.in/test_response"
+                  },
+                  "additional_gst_charges": {
+                    "type": "string"
+                  },
+                  "ipurl": {
+                    "type": "string",
+                    "example": "https://pp19admin.payu.in/test_response"
+                  },
+                  "partner_webhook_success": {
+                    "type": "string"
+                  },
+                  "partner_webhook_failure": {
+                    "type": "string"
+                  },
+                  "miles": {
+                    "type": "string"
+                  },
+                  "pubkey": {
+                    "type": "string"
+                  },
+                  "lastname": {
+                    "type": "string"
+                  },
+                  "curl": {
+                    "type": "string"
+                  },
+                  "address1": {
+                    "type": "string"
+                  },
+                  "address2": {
+                    "type": "string"
+                  },
+                  "shipping_firstname": {
+                    "type": "string"
+                  },
+                  "shipping_lastname": {
+                    "type": "string"
+                  },
+                  "shipping_address1": {
+                    "type": "string"
+                  },
+                  "shipping_address2": {
+                    "type": "string"
+                  },
+                  "shipping_city": {
+                    "type": "string"
+                  },
+                  "shipping_state": {
+                    "type": "string"
+                  },
+                  "shipping_country": {
+                    "type": "string"
+                  },
+                  "shipping_zipcode": {
+                    "type": "string"
+                  },
+                  "shipping_phone": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "string"
+                  },
+                  "country": {
+                    "type": "string"
+                  },
+                  "zipcode": {
+                    "type": "string"
+                  },
+                  "nsc": {
+                    "type": "string"
+                  },
+                  "enforce_paymethod": {
+                    "type": "string"
+                  },
+                  "drop_category": {
+                    "type": "string"
+                  },
+                  "offer_key": {
+                    "type": "string"
+                  },
+                  "service_provider": {
+                    "type": "string"
+                  },
+                  "user_token": {
+                    "type": "string"
+                  },
+                  "cart_details": {
+                    "type": "string"
+                  },
+                  "offer_auto_apply": {
+                    "type": "string"
+                  },
+                  "splitInfo": {
+                    "type": "string"
+                  },
+                  "force_pa": {
+                    "type": "string"
+                  },
+                  "partner_udf_1": {
+                    "type": "string"
+                  },
+                  "partner_udf_2": {
+                    "type": "string"
+                  },
+                  "partner_udf_3": {
+                    "type": "string"
+                  },
+                  "partner_udf_4": {
+                    "type": "string"
+                  },
+                  "partner_udf_5": {
+                    "type": "string"
+                  },
+                  "base_split_id": {
+                    "type": "string"
+                  },
+                  "note_category": {
+                    "type": "string"
+                  },
+                  "custom_note": {
+                    "type": "string"
+                  },
+                  "udf1": {
+                    "type": "string"
+                  },
+                  "udf2": {
+                    "type": "string"
+                  },
+                  "udf3": {
+                    "type": "string"
+                  },
+                  "udf4": {
+                    "type": "string"
+                  },
+                  "udf5": {
+                    "type": "string"
+                  },
+                  "udf6": {
+                    "type": "string"
+                  },
+                  "base_payuid": {
+                    "type": "string"
+                  },
+                  "base_merchantid": {
+                    "type": "string"
+                  },
+                  "vendor_id": {
+                    "type": "string"
+                  },
+                  "one_click": {
+                    "type": "string"
+                  },
+                  "si": {
+                    "type": "string"
+                  },
+                  "subscriptionId": {
+                    "type": "string"
+                  },
+                  "free_trial": {
+                    "type": "integer",
+                    "example": "1"
+                  },
+                  "twid_customer_hash": {
+                    "type": "string"
+                  },
+                  "visaabpdetails": {
+                    "type": "string"
+                  },
+                  "walletUrn": {
+                    "type": "string"
+                  },
+                  "load_amount": {
+                    "type": "string"
+                  },
+                  "force_pgid": {
+                    "type": "string"
+                  },
+                  "app_id": {
+                    "type": "string"
+                  },
+                  "beneficiarydetail": {
+                    "type": "string"
+                  },
+                  "merchantDataForDM": {
+                    "type": "string"
+                  },
+                  "gstParams": {
+                    "type": "string"
+                  },
+                  "paisa_mecode": {
+                    "type": "string"
+                  },
+                  "device_type": {
+                    "type": "string"
+                  },
+                  "instrument_type": {
+                    "type": "string"
+                  },
+                  "instrument_id": {
+                    "type": "string"
+                  },
+                  "ismobileview": {
+                    "type": "string"
+                  },
+                  "card_merchant_param": {
+                    "type": "string"
+                  },
+                  "retry_payuids": {
+                    "type": "string"
+                  },
+                  "boltEnabled": {
+                    "type": "string"
+                  },
+                  "s2s_client_ip": {
+                    "type": "string"
+                  },
+                  "s2s_device_info": {
+                    "type": "string"
+                  },
+                  "html": {
+                    "type": "string"
+                  },
+                  "sdktoken": {
+                    "type": "string"
+                  },
+                  "snooze": {
+                    "type": "integer",
+                    "example": "0"
+                  },
+                  "transactionContext": {
+                    "type": "string"
+                  },
+                  "device_context": {
+                    "type": "string"
+                  },
+                  "sdk_flow_type": {
+                    "type": "string"
+                  },
+                  "sdk_platform": {
+                    "type": "string"
+                  },
+                  "sdk_retry": {
+                    "type": "string"
+                  },
+                  "loan_id": {
+                    "type": "string"
+                  },
+                  "acquiring_bin": {
+                    "type": "string"
+                  },
+                  "mcpLookupId": {
+                    "type": "string"
+                  },
+                  "pg": {
+                    "type": "string"
+                  },
+                  "bankcode": {
+                    "type": "string"
+                  },
+                  "subvention_amount": {
+                    "type": "string"
+                  },
+                  "forceProtocolAs3DS2": {
+                    "type": "string"
+                  },
+                  "subvention_eligibility": {
+                    "type": "string"
+                  },
+                  "ccnum": {
+                    "type": "integer",
+                    "example": "5123456789012346"
+                  },
+                  "ccname": {
+                    "type": "string",
+                    "example": "Test User"
+                  },
+                  "ccvv": {
+                    "type": "integer",
+                    "example": "123"
+                  },
+                  "alt_id": {
+                    "type": "string"
+                  },
+                  "storecard_token_type": {
+                    "type": "string"
+                  },
+                  "additional_info": {
+                    "type": "string"
+                  },
+                  "ccexpmon": {
+                    "type": "integer",
+                    "example": "05"
+                  },
+                  "ccexpyr": {
+                    "type": "integer",
+                    "example": "2025"
+                  },
+                  "otp": {
+                    "type": "integer",
+                    "example": "123456"
+                  },
+                  "store_card_token": {
+                    "type": "string"
+                  },
+                  "store_card": {
+                    "type": "string"
+                  },
+                  "card_name": {
+                    "type": "string"
+                  },
+                  "txn_s2s_flow": {
+                    "type": "string"
+                  },
+                  "decoded_s2s_response": {
+                    "type": "string"
+                  },
+                  "authentication_flow": {
+                    "type": "string"
+                  },
+                  "sub_merchant_id": {
+                    "type": "string"
+                  },
+                  "methodCallReferenceId": {
+                    "type": "string"
+                  },
+                  "threeDSCompInd": {
+                    "type": "string"
+                  },
+                  "authentication_info": {
+                    "type": "string"
+                  },
+                  "tokenService": {
+                    "type": "string"
+                  },
+                  "pre_authorize": {
+                    "type": "string"
+                  },
+                  "skip3ds": {
+                    "type": "string"
+                  },
+                  "auth_only": {
+                    "type": "string"
+                  },
+                  "termUrl": {
+                    "type": "string"
+                  },
+                  "is_atm_pin": {
+                    "type": "string"
+                  },
+                  "vpa": {
+                    "type": "string"
+                  },
+                  "vpa_phone": {
+                    "type": "string"
+                  },
+                  "merchant_data": {
+                    "type": "string"
+                  },
+                  "dm_fp_session": {
+                    "type": "string"
+                  },
+                  "callId": {
+                    "type": "string"
+                  },
+                  "skipcvv": {
+                    "type": "string"
+                  },
+                  "citi_reward": {
+                    "type": "string"
+                  },
+                  "additional_payment_info": {
+                    "type": "string"
+                  },
+                  "source_id": {
+                    "type": "string"
+                  },
+                  "threeDS2RequestData": {
+                    "type": "string"
+                  },
+                  "save_sodexo_card": {
+                    "type": "string"
+                  },
+                  "linkAndPayFlowType": {
+                    "type": "string"
+                  },
+                  "is_check_balance": {
+                    "type": "string"
+                  },
+                  "linkAndPayFlowDetails": {
+                    "type": "string"
+                  },
+                  "si_details": {
+                    "type": "string"
+                  },
+                  "tools_txn_type": {
+                    "type": "string"
+                  },
+                  "one_click_details": {
+                    "type": "string"
+                  },
+                  "splitRequest": {
+                    "type": "string"
+                  },
+                  "moneyMerchantName": {
+                    "type": "string"
+                  },
+                  "moneyWebsiteUrl": {
+                    "type": "string"
+                  },
+                  "offer_product_id": {
+                    "type": "string"
+                  },
+                  "offer_brand_id": {
+                    "type": "string"
+                  },
+                  "payoutdetails": {
+                    "type": "string"
+                  },
+                  "upi_custom_note": {
+                    "type": "string"
+                  },
+                  "icp_type": {
+                    "type": "string"
+                  },
+                  "payment_split": {
+                    "type": "string"
+                  },
+                  "orderid": {
+                    "type": "string"
+                  },
+                  "extra_charges": {
+                    "type": "string"
+                  },
+                  "expiry_time": {
+                    "type": "string"
+                  },
+                  "platform": {
+                    "type": "string"
+                  },
+                  "email_required": {
+                    "type": "string"
+                  },
+                  "edit_email_allowed": {
+                    "type": "string"
+                  },
+                  "edit_phone_allowed": {
+                    "type": "string"
+                  },
+                  "outletId": {
+                    "type": "string"
+                  },
+                  "cardLastFour": {
+                    "type": "string"
+                  },
+                  "programCode": {
+                    "type": "string"
+                  },
+                  "invoiceAmount": {
+                    "type": "string"
+                  },
+                  "balance": {
+                    "type": "string"
+                  },
+                  "tax_and_shipping_url": {
+                    "type": "string"
+                  },
+                  "fetch_dynamic_charges": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+          },
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "en-GB,en-US;q=0.9,en;q=0.8"
+          },
+          {
+            "name": "Cache-Control",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "max-age=0"
+          },
+          {
+            "name": "Connection",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "keep-alive"
+          },
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "application/x-www-form-urlencoded"
+          },
+          {
+            "name": "Cookie",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "rskxRunCookie=0; rCookie=xhgpoo5cm5bdg8s9tzovcm2m6o6c9; DEVICEINFO=801DDF828223DF0FAE40308BC23D19CC2811FEA740B78A961CB5682D9865042106C4972CF1A76D32D3C1A86B53908B7CAD06B8D927B97A88EEF36D; USERTXNINFO=67193acfb13b42.81467901; lastRskxRun=1729706720721; _hjSessionUser_2667858=eyJpZCI6IjkxYjExOWU1LThlOTItNTFmZi1iOGEyLTE0ZTFkZDEwN2I3ZSIsImNyZWF0ZWQiOjE3Mjk3NTIyMDE5MDgsImV4aXN0aW5nIjp0cnVlfQ==; _fbp=fb.1.1731550518894.184008052842066791; chatbot=true; 49cd9b2ee3762d1c265e051fb3807041670f1bb6283458a53fca17f65daf50b8_allowed_idle_time_in_seconds=10800; c08a18c9c54569804e66b38010db257591b0f1cade644fea96606efeafca7c56_allowed_idle_time_in_seconds=10800; 134220_allowed_idle_time_in_seconds=10800; merchantType=SMB-ENT; 8451850_allowed_idle_time_in_seconds=10800; 04590d32eb9ca74cb8a5d5a53c1bcdab7c83bfe00f7a10e6636556c88a5e8570_allowed_idle_time_in_seconds=10800; 123502_allowed_idle_time_in_seconds=10800; d5730562e6b85120e04288f05675be42c6c24d2eb24cadc601b1849292984a4c_allowed_idle_time_in_seconds=10800; 7600678_allowed_idle_time_in_seconds=10800; 5626593f96049af665c27fbfe8f8f81405cb5c1d0eccb5aabe4d334018f99671_allowed_idle_time_in_seconds=10800; 0d63cf9707b2589d27b38257d6352641b1c00b2d46c75906427dbc15f6f996b4_allowed_idle_time_in_seconds=10800; WZRK_G=8856cf441aaa45d483ff05332381887f; 8582983_allowed_idle_time_in_seconds=10800; 1d38bdf6c0d4507685098a943344cfd426605c839bc48a675a04a318ce160c28_allowed_idle_time_in_seconds=10800; _gid=GA1.2.1405330682.1732595416; 8077f4c27ae9ff77df6f2e6dd74e5144c6b7d8093d8923dcfc68969a1b7bf4d4_allowed_idle_time_in_seconds=10800; a976dba08e7fa2f3bd675dcac55da94ab1996f867c51509ace6b26dafd0ee99f_allowed_idle_time_in_seconds=10800; _gcl_au=1.1.657309199.1729752172.708656872.1732622116.1732622115; 7c91774f1d45b513275bddee4adf2a15bcfa3fb20659c89806714ba1aaf730ad_allowed_idle_time_in_seconds=10800; _clck=1ea95dx%7C2%7Cfr8%7C0%7C1758; session_timeout=%222024-11-27T09%3A45%3A15.237Z%22; _hp2_ses_props.3342147043=%7B%22ts%22%3A1732696829909%2C%22d%22%3A%22docs.payu.in%22%2C%22h%22%3A%22%2Freference%2Finfo_kyc_document_api%22%7D; _ga=GA1.2.2004829615.1729752172; _hp2_id.3342147043=%7B%22userId%22%3A%225292652279171775%22%2C%22pageviewId%22%3A%227426466044534383%22%2C%22sessionId%22%3A%221551646829312219%22%2C%22identity%22%3Anull%2C%22trackerVersion%22%3A%224.0%22%7D; _clsk=l3gzr%7C1732697276715%7C4%7C1%7Cq.clarity.ms%2Fcollect; _ga_7CG3P7JYWT=GS1.1.1732696830.3.1.1732697294.0.0.0; _ga_6FW4JBDXF1=GS1.1.1732696831.35.1.1732697294.39.0.0; PHPSESSID=fuaeq2gvm580h45jdg4rbfhad5; coherenceToken=8a8a96b232df8f61b6ee96db3af82272b9eafaf7103c34d194b994bb2c2eac99"
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "https://pp19admin.payu.in"
+          },
+          {
+            "name": "Referer",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "https://pp19admin.payu.in/"
+          },
+          {
+            "name": "Sec-Fetch-Dest",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "document"
+          },
+          {
+            "name": "Sec-Fetch-Mode",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "navigate"
+          },
+          {
+            "name": "Sec-Fetch-Site",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "same-site"
+          },
+          {
+            "name": "Upgrade-Insecure-Requests",
+            "in": "header",
+            "schema": {
+              "type": "integer"
+            },
+            "example": "1"
+          },
+          {
+            "name": "User-Agent",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"
+          },
+          {
+            "name": "sec-ch-ua",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "\"Not)A;Brand\";v=\"99\", \"Google Chrome\";v=\"127\", \"Chromium\";v=\"127\""
+          },
+          {
+            "name": "sec-ch-ua-mobile",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "?0"
+          },
+          {
+            "name": "sec-ch-ua-platform",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "example": "\"macOS\""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
           }
         }
       }
     }
-  },
-  "x-readme": {}
+  }
 }
