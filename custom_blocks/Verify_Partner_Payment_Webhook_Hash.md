@@ -80,5 +80,3 @@ client_secret|status|||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|am
   }
   ```
 </Accordion>
-
-### S
