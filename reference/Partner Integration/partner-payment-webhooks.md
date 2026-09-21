@@ -9,7 +9,51 @@ After the customer completes payment (or if account validation fails), PayU send
 
 ## Step 1: Get the Webhook Payload
 
-### Sample Success Webhook Payload for UPI TPV
+### Sample Webhook Payloads
+#### Sample Webhook Payloads for Hosted Checkout TPV
+
+**Webhook URLs (configured in PayU system):**
+
+- `partner_webhook_success` — Triggered on successful payment
+- `partner_webhook_failure` — Triggered on failed payment
+- `partner_webhook_cancelled` — Triggered when customer cancels
+
+**Webhook Payload (POST request):**
+
+```json
+{
+  "mihpayid": "403993715529111111",
+  "txnid": "HC_TPV_20240315_001",
+  "status": "success",
+  "amount": "1500.00",
+  "productinfo": "Loan EMI Payment - March 2024",
+  "firstname": "Rajesh",
+  "email": "rajesh.kumar@example.com",
+  "phone": "9876543210",
+  "mode": "UPI",
+  "bankcode": "INTTPV",
+  "unmappedstatus": "captured",
+  "merchant_id": "8739528",
+  "udf1": "session_12345",
+  "udf2": "1370625260",
+  "udf3": "loan-ref-ABC123",
+  "udf4": "",
+  "udf5": "whatsapp",
+  "hash": "a1b2c3d4e5f6...",
+  "payment_source": "payu"
+}
+```
+
+**Key TPV Fields in Webhook:**
+
+| Field          | Value for TPV                                   | Description                    |
+| -------------- | ----------------------------------------------- | ------------------------------ |
+| mode           | `"UPI"`                                         | Payment method used            |
+| bankcode       | `"INTTPV"`                                      | Confirms TPV validation passed |
+| unmappedstatus | `"captured"` (success) or `"bounced"` (failure) | Final payment status           |
+
+
+#### Sample Success Webhook Payload for UPI TPV
 
 ```json
 {
