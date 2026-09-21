@@ -1,7 +1,7 @@
 ---
 title: '[Step 1] Merchant Token API - Partner Integration'
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
