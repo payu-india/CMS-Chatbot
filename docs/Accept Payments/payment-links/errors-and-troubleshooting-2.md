@@ -174,20 +174,6 @@ Something not right after creating a payment link? Go through the most common is
 
 ***
 
-## Why Is My API Request Failing?
-
-<Accordion title="API error codes and fixes" icon="far fa-code">
-  | Error                                           | Cause                                                      | Fix                                                               |
-  | ----------------------------------------------- | ---------------------------------------------------------- | ----------------------------------------------------------------- |
-  | `401 Unauthorized`                              | Token expired or wrong scope                               | [Generate a new token](doc:api-auth-token) with the correct scope |
-  | `400 — Invoice Number already exists`           | `invoiceNumber` reused                                     | Use a unique invoice number or omit it                            |
-  | `400 — furl/surl not recognised`                | Wrong parameter names                                      | Use `failureUrl` and `successUrl`                                 |
-  | `400 — expiry cannot be less than current date` | `expiryDate` in the past                                   | Set a future date in `YYYY-MM-DD HH:MM:SS`                        |
-  | `404 — paymentLink not found`                   | Invoice number doesn't match any link for your merchant ID | Verify invoice number and `merchantId` header                     |
-</Accordion>
-
-***
-
 ## Still Stuck?
 
 Collect this before contacting support: the Payment Link URL or invoice number, a transaction ID (if the customer attempted payment), the date and time of the issue, and a screenshot of any error message.
