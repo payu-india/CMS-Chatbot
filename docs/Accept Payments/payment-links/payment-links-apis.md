@@ -44,10 +44,11 @@ You can use the Payment Links APIs to perform various actions on payment links p
 
 The table below provides the list of Payment Links APIs and their brief description:
 
-| API                                            | Description                                                                           |
-| ---------------------------------------------- | ------------------------------------------------------------------------------------- |
-| [Create a Payment Link](doc:api-create-share)  | API to create a new payment link.                                                     |
-| [Share a Payment Link](doc:api-create-share)   | API to share an existing payment link with a customer via SMS or email.               |
-| [Fetch a Payment Link](doc:api-fetch)          | API to fetch the details of a payment link by its invoice number.                     |
-| [Fetch All Payment Links](doc:api-fetch)       | API to fetch all the created payment links with date, status, and pagination filters. |
-| [Update a Payment Link](doc:api-cancel-status) | API to update, deactivate, or reactivate a payment link.                              |
+| API                                                                                                                                                                         | Description                                                                           |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| <Anchor target="_blank" href="https://docs.payu.in/reference/create-payment-links">Create a Payment Link</Anchor>                                                           | API to create a new payment link.                                                     |
+| <Anchor target="_blank" href="https://docs.payu.in/reference/share_payment_link_api">[Share a Payment Link](https://docs.payu.in/reference/share_payment_link_api)</Anchor> | API to share an existing payment link with a customer via SMS or email.               |
+| <Anchor target="_blank" href="https://docs.payu.in/reference/get-single-payment-link">Fetch a Payment Link</Anchor>                                                         | API to fetch the details of a payment link by its invoice number.                     |
+| <Anchor target="_blank" href="https://docs.payu.in/reference/get-all-payment-links-api">Fetch All Payment Links</Anchor>                                                    | API to fetch all the created payment links with date, status, and pagination filters. |
+| <Anchor target="_blank" href="https://docs.payu.in/reference/change-status-of-a-payment-link-api">Change Status or Expiry of a Payment Link</Anchor>                        | API to update the status or expiry of a payment link.                                 |
+| <Anchor target="_blank" href="https://docs.payu.in/reference/get-transaction-details-api">Get Transaction Details</Anchor>                                                  | API to get transaction details of a payment link.                                     |
