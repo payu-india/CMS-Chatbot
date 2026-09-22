@@ -39,14 +39,9 @@ next:
 ---
 {/* NEW CONTENT: Template E — Troubleshooting (V2 format) */}
 
-<Banner
-  isInline={true}
-  message="This page helps you troubleshoot issues that occur after you create a Payment Link."
-  color="#16C612"
-  textColor="#ffffff"
-  fontSize="14px"
-  fontWeight="bold"
-/>
+
+
+Something not right after creating a payment link? Go through the most common issues — links not opening, payments not reflecting in your Dashboard, notifications not delivered, and errors in bulk uploads and ways to resolve them.
 
 <Callout icon="📘" theme="info">
   ### **Payment Links**
