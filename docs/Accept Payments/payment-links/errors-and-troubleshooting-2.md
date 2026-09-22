@@ -148,15 +148,10 @@ Something not right after creating a payment link? Go through the most common is
 
 ## How Do I Fix a Link with Wrong Details?
 
-<Accordion title="Wrong amount, description, or customer — link cannot be edited" icon="far fa-pen-to-square">
-  Payment Link configuration **cannot be edited after creation**.
+<Accordion title="Wrong amount, description, or customer " icon="far fa-pen-to-square">
+  You cannot edit the payment link configuration after creation.
 
-  **Fix:**
-
-  1. Go to the link → **Actions** → **Duplicate**.
-  2. Correct the details in the new link creation panel.
-  3. Click **Create and Send Payment Link**.
-  4. Go back to the original link → **Actions** → **Disable** to deactivate it.
+  **What Next:&#x20;**&#x59;ou should <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#what-can-i-do-with-a-payment-link-after-it-is-created">duplicate</Anchor> the existing payment link by correcting the details and send the new link to the customer. Also, we recommend you to deactivate the link with incorrect details if not in use.
 </Accordion>
 
 ***
