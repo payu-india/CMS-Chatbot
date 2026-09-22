@@ -55,19 +55,34 @@ next:
 1. #### What is a payment link and how does it work?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  A payment link is a secure, shareable URL that lets your customer pay you without visiting your website or app. You <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link">create the link</Anchor> in the PayU Dashboard or via <Anchor target="_blank" href="https://docs.payu.in/reference/create-payment-links">API</Anchor>, share it over any channel such as email, SMS, WhatsApp. Your customer clicks it to pay on a PayU-hosted checkout page. Once paid, you receive a notification and the transaction appears in your Dashboard.
-
-  → See [Payment Links Overview](doc:payment-links-overview)
+  A <Anchor target="_blank" href="doc:payment-links-overview">payment link</Anchor> is a secure, shareable URL that lets your customer pay you without visiting your website or app. You <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link">create the link</Anchor> in the PayU Dashboard or via <Anchor target="_blank" href="https://docs.payu.in/reference/create-payment-links">API</Anchor>, share it over any channel such as email, SMS, WhatsApp. Your customer clicks it to pay on a PayU-hosted checkout page. Once paid, you receive a notification and the transaction appears in your Dashboard.
 </Accordion>
 
-<Accordion title="Do I need a developer or any code?" icon="far fa-code">
-  No. Payment Links is a no-code product — create, share, and manage links entirely from the PayU Dashboard. The [Payment Links API](doc:api-create-share) is available for merchants who want to automate link creation inside their own systems, but it is optional.
+***
+
+2. #### Do I need a developer or any code to create a Payment Link?
+
+<Accordion title="Answer" icon="fab fa-adn">
+  No. Payment Links is a no-code product. You can <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link">create</Anchor>, <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#what-can-i-do-with-a-payment-link-after-it-is-created">share</Anchor>, and <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links">manage</Anchor> links entirely from the PayU Dashboard. The [Payment Links API](doc:api-create-share) is available for merchants who want to automate link creation inside their own systems, but it is optional.
 </Accordion>
 
-<Accordion title="Which payment methods can customers use?" icon="far fa-credit-card">
+***
+
+3. #### Which payment methods can customers use to make payments?
+
+<Accordion title="Answer" icon="fab fa-adn">
   {/* EXISTING CONTENT: adapted from faqs-payment-links.md */}
 
-  Customers can pay using any method enabled on your merchant account: credit/debit cards (Visa, Mastercard, RuPay, Amex), UPI (all apps — GPay, PhonePe, Paytm, etc.), net banking (50+ banks), wallets (Paytm, Mobikwik, Freecharge), EMI (no-cost and standard), and BNPL. Contact PayU support to enable or disable specific methods.
+  Customers can pay using payment methods enabled on your merchant accounts such as&#x20;
+
+  - Credit/Debit cards (Visa, Mastercard, RuPay and Amex)
+  - UPI (GPay, PhonePe, Paytm, etc.)
+  - NetBanking (50+ banks)
+  - Wallets (Paytm, Mobikwik and Freecharge)
+  - EMI (no-cost and standard)
+  - BNPL.&#x20;
+
+  Contact <Anchor target="_blank" href="https://help.payu.in/query">PayU support</Anchor> to enable or disable specific methods.
 </Accordion>
 
 <Accordion title="Are Payment Links secure?" icon="far fa-shield">
