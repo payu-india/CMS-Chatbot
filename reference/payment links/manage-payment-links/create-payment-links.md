@@ -20,7 +20,6 @@ metadata:
 next:
   description: ''
 ---
-
 The **Create a Payment Link** API is used to create a regular payment link, recurring or SI payment link for your customer.
 
 ## Environment
@@ -2152,6 +2151,7 @@ function holdPreAuthorisation() {
 holdPreAuthorisation();
 ?>
 ```
+
 ## Sample response
 
 **Success scenario**
@@ -2253,4 +2253,115 @@ The following fields are available when creating a payment link. Unless marked o
   | `ifscCode`                 | Array of strings |        4        | IFSC codes. The number of values must match `beneficiaryAccountNumber`. |
   | `beneficiaryName`          | Array of strings |        4        | Account-holder names.                                                   |
   | `beneficiaryAccountType`   | Array of strings |        4        | Account types. Each value must be `SAVINGS` or `CURRENT`.               |
+</Accordion>
+
+## Response parameters
+
+| Parameter | Type | Description | Example |
+| :--- | :--- | :--- | :--- |
+| status | Integer | The API response status code. `0` indicates success; a negative value indicates an error. | 0 |
+| message | String | A human-readable message describing the outcome of the request. | paymentLink generated |
+| result | Object | The response payload containing the payment link details. Returns `null` on failure. | For more infirmation, refer to [result object](#result-object) |
+| errorCode | String | The error code returned when the request fails. Returns `null` on success. | null |
+| guid | String | A unique identifier for the request. Returns `null` if not applicable. | null |
+
+<Accordion title="JSON objects field description" icon="fa-table">
+### result object
+
+<table>
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>subAmount</td>
+      <td>Number</td>
+      <td>The base payment amount, excluding tax and shipping.</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>tax</td>
+      <td>Number</td>
+      <td>The tax amount applied to the transaction.</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>shippingCharge</td>
+      <td>Number</td>
+      <td>The shipping charge applied to the transaction.</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>totalAmount</td>
+      <td>Number</td>
+      <td>The total payable amount, inclusive of tax and shipping charges.</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>invoiceNumber</td>
+      <td>String</td>
+      <td>The unique invoice number generated for the payment link.</td>
+      <td>INV7711514022032</td>
+    </tr>
+    <tr>
+      <td>paymentLink</td>
+      <td>String</td>
+      <td>The URL of the generated payment link to be shared with the customer.</td>
+      <td>http://pp72.pmny.in/MIioqucT8hXV</td>
+    </tr>
+    <tr>
+      <td>description</td>
+      <td>String</td>
+      <td>The description of the payment link as provided in the request.</td>
+      <td>paymentLink for testing</td>
+    </tr>
+    <tr>
+      <td>active</td>
+      <td>Boolean</td>
+      <td>Indicates whether the payment link is currently active.</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td>isPartialPaymentAllowed</td>
+      <td>Boolean</td>
+      <td>Indicates whether partial payments are permitted for this link.</td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td>expiryDate</td>
+      <td>String</td>
+      <td>The date and time at which the payment link expires. Format: <code>yyyy-MM-dd HH:mm:ss</code>.</td>
+      <td>2023-03-21 17:58:30</td>
+    </tr>
+    <tr>
+      <td>udf</td>
+      <td>Object</td>
+      <td>An object containing user-defined fields (<code>udf1</code> to <code>udf5</code>) for custom data. Returns <code>null</code> if not provided.</td>
+      <td>null</td>
+    </tr>
+    <tr>
+      <td>address</td>
+      <td>Object</td>
+      <td>An object containing address details (<code>line1</code>, <code>line2</code>, <code>city</code>, <code>state</code>, <code>country</code>, <code>zipCode</code>). Returns <code>null</code> if not provided.</td>
+      <td>null</td>
+    </tr>
+    <tr>
+      <td>emailStatus</td>
+      <td>String</td>
+      <td>The email notification opt-in status for the payment link.</td>
+      <td>not opted</td>
+    </tr>
+    <tr>
+      <td>smsStatus</td>
+      <td>String</td>
+      <td>The SMS notification opt-in status for the payment link.</td>
+      <td>not opted</td>
+    </tr>
+  </tbody>
+</table>
 </Accordion>
