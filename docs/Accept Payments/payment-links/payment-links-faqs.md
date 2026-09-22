@@ -35,3 +35,159 @@ next:
       title: Errors and Troubleshooting
       type: basic
 ---
+{/* EXISTING CONTENT: Move + Rewrite from payment-links-dashboard/faqs-payment-links.md (V2 format) */}
+
+{/* NEW CONTENT: Additional questions added where original FAQ had gaps */}
+
+<Banner
+  isInline={true}
+  message="Integration effort: No code or website required"
+  color="#15C614"
+  textColor="#ffffff"
+  fontSize="14px"
+  fontWeight="bold"
+/>
+
+***
+
+## General
+
+<Accordion title="What is a payment link and how does it work?" icon="far fa-circle-question">
+  A payment link is a secure, shareable URL that lets your customer pay you without visiting your website or app. You create the link in the PayU Dashboard (or via API), share it over any channel — email, SMS, WhatsApp — and your customer clicks it to pay on a PayU-hosted checkout page. Once paid, you receive a notification and the transaction appears in your Dashboard.
+
+  → See [Payment Links Overview](doc:payment-links-overview)
+</Accordion>
+
+<Accordion title="Do I need a developer or any code?" icon="far fa-code">
+  No. Payment Links is a no-code product — create, share, and manage links entirely from the PayU Dashboard. The [Payment Links API](doc:api-create-share) is available for merchants who want to automate link creation inside their own systems, but it is optional.
+</Accordion>
+
+<Accordion title="Which payment methods can customers use?" icon="far fa-credit-card">
+    {/* EXISTING CONTENT: adapted from faqs-payment-links.md */}
+
+  Customers can pay using any method enabled on your merchant account: credit/debit cards (Visa, Mastercard, RuPay, Amex), UPI (all apps — GPay, PhonePe, Paytm, etc.), net banking (50+ banks), wallets (Paytm, Mobikwik, Freecharge), EMI (no-cost and standard), and BNPL. Contact PayU support to enable or disable specific methods.
+</Accordion>
+
+<Accordion title="Are Payment Links secure?" icon="far fa-shield">
+    {/* EXISTING CONTENT: adapted from faqs-payment-links.md */}
+
+  Yes. PayU Payment Links are PCI DSS compliant. PayU uses advanced encryption and tokenisation to protect customer payment data. No card or bank details pass through your systems — the customer pays directly on PayU's hosted checkout page.
+</Accordion>
+
+***
+
+## Creating and Configuring Links
+
+<Accordion title="Can I set a custom amount for each link?" icon="far fa-money-bill">
+  Yes. Each link has its own amount field. You can also leave the amount flexible so the customer fills it in at checkout — useful for donations or open-ended collections.
+</Accordion>
+
+<Accordion title="Can I collect customer information with the payment?" icon="far fa-list-check">
+  Yes. You can add standard fields (name, email, phone, address) and fully custom fields (any label, any type) to the checkout page. See [Payment Link Options](doc:payment-link-options) for details.
+</Accordion>
+
+<Accordion title="Can I set an expiry date?" icon="far fa-calendar-xmark">
+  Yes. The default expiry is 1 year. You can set any future date during creation. Once expired, the link cannot accept payments. To extend expiry after the fact, use the [Cancel / Change Status API](doc:api-cancel-status), or duplicate the link from the Dashboard with a new expiry date.
+</Accordion>
+
+<Accordion title="Can I limit how many times a link can be used?" icon="far fa-hashtag">
+  Yes — use the **Max Transactions** field when creating the link. Leave it blank for unlimited. Once the limit is reached, the link automatically deactivates.
+</Accordion>
+
+<Accordion title="Can I edit a payment link after creating it?" icon="far fa-pen-to-square">
+  You cannot edit a link's amount, description, or configuration from the Dashboard after creation. To correct a mistake, duplicate the link with the right details, then deactivate the original. Via API, you can update `active` status, `expiryDate`, `subAmount`, `tax`, `shippingCharge`, and `isPartialPaymentAllowed` using the [Cancel / Change Status API](doc:api-cancel-status).
+</Accordion>
+
+<Accordion title="Can a customer pay in instalments?" icon="far fa-money-bill-wave">
+  Yes, if you enable **Partial Payment** on the link. The customer can pay any amount less than the total — you cannot specify a minimum. For structured auto-debiting, use [Recurring Payments](doc:recurring-payments).
+</Accordion>
+
+<Accordion title="How many payment links can I create?" icon="far fa-infinity">
+  There is no hard limit on the number of payment links. For creating hundreds at once, use the [Bulk Upload](doc:manage-payment-links) feature or the [Create Payment Link API](doc:api-create-share).
+</Accordion>
+
+***
+
+## Sharing and Notifications
+
+<Accordion title="How do I share a payment link with a customer?" icon="far fa-share">
+  You can copy the link URL from the Dashboard and share it over any channel (WhatsApp, email, etc.), send it directly from the Dashboard via SMS or email (enter the customer's phone/email at creation and toggle notifications on), or reshare an existing link from **Actions > Share**.
+</Accordion>
+
+<Accordion title="Can the same link be shared with multiple customers?" icon="far fa-users">
+  Yes — a single link can be opened and paid by different customers, up to the Max Transactions limit (unlimited by default). For a personalised link pre-filled with a specific customer's details, create one link per customer.
+</Accordion>
+
+***
+
+## Payments and Reconciliation
+
+<Accordion title="How will I know when a customer has paid?" icon="far fa-bell">
+  The link status in the Dashboard changes to **Paid** (or **Active** with a non-zero `totalRevenue` for partial-payment links). The transaction appears in **Transactions** in the Dashboard. If you have webhooks configured, you receive a real-time `payment.success` event → [Webhooks: Receive & Verify](doc:receive-and-verify-a-webhook)
+</Accordion>
+
+<Accordion title="What happens if a customer's payment fails?" icon="far fa-rotate-left">
+  The link remains **Active** and the customer can try again — either immediately or later. A failed attempt does not count against the Max Transactions limit.
+</Accordion>
+
+<Accordion title="Can I issue a refund for a payment made via a payment link?" icon="far fa-money-bill-transfer">
+  Yes. Find the transaction in **Transactions** and initiate a refund from there. The refund process is the same regardless of how the payment was collected.
+</Accordion>
+
+***
+
+## API Usage
+
+<Accordion title="Do I need a special API key for Payment Links?" icon="far fa-key">
+    {/* EXISTING CONTENT: adapted from faqs-payment-links.md */}
+
+  Payment Links APIs use **OAuth2 Bearer token** authentication — separate from your standard PayU `key` + `salt` + SHA-512 hash. You need a **Client ID** and **Client Secret** from the Dashboard to get a token.
+
+  → [Authentication (Token)](doc:api-auth-token)
+</Accordion>
+
+<Accordion title="What scopes does each API operation require?" icon="far fa-lock">
+    {/* EXISTING CONTENT: adapted from faqs-payment-links.md */}
+
+  | Operation              | Required scope         |
+  | ---------------------- | ---------------------- |
+  | Create a payment link  | `create_payment_links` |
+  | Share a payment link   | `read_payment_links`   |
+  | Fetch a single link    | `read_payment_links`   |
+  | Fetch all links        | `read_payment_links`   |
+  | Update / cancel a link | `update_payment_links` |
+
+  Request multiple scopes in one token by separating them with spaces: `create_payment_links update_payment_links read_payment_links`.
+</Accordion>
+
+<Accordion title="How long is a token valid, and can I reuse it?" icon="far fa-clock">
+  Tokens expire after the number of seconds in the `expires_in` field (typically 3600 = 1 hour). A token is valid for multiple API calls until it expires or is revoked — you do not need a new token per request. Generate a new token before it expires; do not hard-code tokens in your application.
+</Accordion>
+
+<Accordion title="Why am I getting 'furl/surl not recognised'?" icon="far fa-triangle-exclamation">
+    {/* EXISTING CONTENT: adapted from faqs-payment-links.md */}
+
+  The Payment Links API does not use the shorthand `furl` and `surl`. Use `failureUrl` and `successUrl` instead.
+</Accordion>
+
+<Accordion title="Why am I getting 'Invoice Number already exists'?" icon="far fa-triangle-exclamation">
+  Each payment link must have a unique `invoiceNumber` within your merchant account. Either use a different value, or omit `invoiceNumber` entirely — PayU will auto-generate a unique one.
+</Accordion>
+
+***
+
+## Related Pages
+
+<Cards>
+  <Card title="Payment Links Overview" href="doc:payment-links-overview" icon="fa-circle-info">
+    What Payment Links is, use cases, and how it works.
+  </Card>
+
+  <Card title="Payment Links Troubleshooting" href="doc:payment-links-troubleshooting" icon="fa-wrench">
+    Fix issues with links not working, payments not reflecting, and API errors.
+  </Card>
+
+  <Card title="Payment Link Options" href="doc:payment-link-options" icon="fa-sliders">
+    Full reference for all configuration options.
+  </Card>
+</Cards>
