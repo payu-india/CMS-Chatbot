@@ -121,14 +121,3 @@ The steps below give a detailed view of the lifecycle of a PayU Payment Link.
     - [Disputes and Chargebacks](doc:chargeback)
   </Callout>
 </Accordion>
-
-***
-
-## Related Information
-
-- [Payment Links Overview](doc:payment-links-overview)
-- [Send a Payment Link](doc:send-a-payment-link)
-- [Manage Payment Links](doc:manage-payment-links)
-- [Payment Link Statuses](doc:send-a-payment-link)
-- [Payment Links APIs](doc:api-reference)
-- [Payment Links FAQs](doc:payment-links-faqs)
