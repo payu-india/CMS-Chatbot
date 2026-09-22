@@ -3,6 +3,8 @@ api:
   file: payu_partner_api_openapi_3.1_enhanced_v1.yaml
   operationId: UpdateMerchant_PAN_DOB_Entity
 hidden: false
+link:
+  new_tab: false
 ---
 The **Update Merchant Details** such as PAN + DOB using this API so that the merchant PAN and date of birth or incorporation (Step 02 of 16) are updated.
 
