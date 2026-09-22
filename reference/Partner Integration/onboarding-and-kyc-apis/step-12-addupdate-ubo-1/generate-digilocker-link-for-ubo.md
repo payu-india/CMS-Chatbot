@@ -16,7 +16,7 @@ Use this API to verify the Aadhar of each UBO members.&#x20;
 
 ## Prerequisites
 
-- **Step 12** (Add/Update UBO) must be completed — the UBO must exist and its `ultimate_beneficiary_uuid` must be available from the Step 15 response.
+- **Step 11** (Add/Update UBO) must be completed — the UBO must exist and its `ultimate_beneficiary_uuid` must be available from the Step 15 response.
 
 ## Authentication
 
@@ -79,4 +79,4 @@ Redirect the UBO to the `capture_link` URL to complete Aadhaar OTP authenticatio
 
 ## Next Step
 
-After the UBO completes DigiLocker authentication, proceed to **Step 13**.
+After the UBO completes DigiLocker authentication, proceed to **Step 12**.
