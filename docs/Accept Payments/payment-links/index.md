@@ -241,5 +241,7 @@ If a payment fails, you can share the same link again for the customer to retry,
     **Automate Payment Links with APIs:** Create and manage payment links programmatically.
   </Card>
 
-  <Card title="How Payment Links Works" icon="fa-diagram-project" href="doc:how-payment-links-works"> See the end-to-end flow — from creating a link to receiving funds in your bank. </Card>
+  <Card title="How Payment Links Works" href="https://docs.payu.in/docs/payment-links-workflow" icon="fa-diagram-project" target="_blank">
+    See the end-to-end flow — from creating a link to receiving funds in your bank.
+  </Card>
 </Cards>
