@@ -193,17 +193,17 @@ HTTP Method: **POST**
 </Table>
 `}</HTMLBlock>
 
-<br />
+<Callout icon="📘" theme="info">
+  **Notes:**
 
-> **Notes:**
->
-> - The reward child (RD/TWID) **cannot be the first transaction**
-> - RD is always the **second child** in the split workflow
-> - Bank rewards do not work with saved-card or network-token flows unless `cardBin` and `cardLastFour` are passed
+  - The reward child (RD/TWID) **cannot be the first transaction**
+  - RD is always the **second child** in the split workflow
+  - Bank rewards do not work with saved-card or network-token flows unless `cardBin` and `cardLastFour` are passed
+</Callout>
 
-## Split-Info JSON Structure
+## SplitInfo JSON Structure
 
-The `split-info` parameter must be a valid JSON string with the following structure:
+The `splitinfo` parameter must be a valid JSON string with the following structure:
 
 ```json
 {
@@ -279,25 +279,29 @@ The `split-info` parameter must be a valid JSON string with the following struct
   The `rewardName` value must match the `issuerDetailDTO.brandName` from the Fetch Balance API response when using TWID rewards. This field is **NOT applicable for Zillion** rewards.
 </Callout>
 
-### Notes
+<Callout icon="📘" theme="info">
+  ### Notes
 
-#### Transaction Ordering
+  #### Transaction Ordering
 
-- ❌ **The reward child (RD/TWID) CANNOT be the first transaction**
-- ✅ RD must always be the **second child** in the `childPaymentInstruments` array
-- Flow sequence: Core payment → Split-payment → Core payment → Loyalty
+  - ❌ **The reward child (RD/TWID) CANNOT be the first transaction**
+  - ✅ RD must always be the **second child** in the `childPaymentInstruments` array
+  - Flow sequence: Core payment → Split-payment → Core payment → Loyalty
 
-#### Bank Rewards Limitation
+  #### Bank Rewards Limitation
 
-- ❌ Bank reward redemption does **not work** with:
-  - PayU saved-card flows (when card BIN is unavailable)
-  - Network-token flows (when card BIN is unavailable)
-- ✅ **Workaround:** Pass `cardBin` and `cardLastFour` in the reward child object
+  - ❌ Bank reward redemption does **not work** with:
+    - PayU saved-card flows (when card BIN is unavailable)
+    - Network-token flows (when card BIN is unavailable)
+  - ✅ **Workaround:** Pass `cardBin` and `cardLastFour` in the reward child object
 
-#### Session Consistency
+  #### Session Consistency
 
-- ⚠️ **CRITICAL:** The `sessionId` in `loyaltyDetails` must be **identical** to the `sessionId` used in the Fetch Balance API request
-- TWID validates this sessionId during the redemption process
+  - ⚠️ **CRITICAL:** The `sessionId` in `loyaltyDetails` must be **identical** to the `sessionId` used in the Fetch Balance API request
+  - TWID validates this sessionId during the redemption process
+</Callout>
+
+###
 
 ## Sample Request
 
@@ -628,3 +632,66 @@ curl -X POST "https://test.payu.in/_payment" \
   "error_Message": "Authorization failed at Bank"
 }
 ```
+
+## Response parameters
+
+| Parameter        | Type   | Description                                                                                                                                      | Example                                     |
+| ---------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------- |
+| mihpayid         | String | The unique PayU transaction ID assigned to the transaction.                                                                                      | 999091000010480                             |
+| mode             | String | The payment mode used for the transaction. Returns <code>SPLITPAY</code> for Rewards transactions.                                               | SPLITPAY                                    |
+| status           | String | The status of the transaction. Returns <code>success</code> or <code>failure</code>.                                                             | success                                     |
+| unmappedstatus   | String | The raw status of the transaction as returned by the payment gateway.                                                                            | success                                     |
+| key              | String | The merchant key used for the transaction.                                                                                                       | KOEfPI                                      |
+| txnid            | String | The merchant-generated transaction ID.                                                                                                           | ram1234                                     |
+| amount           | String | The total transaction amount.                                                                                                                    | 512                                         |
+| cardCategory     | String | The category of the card used. Returned only in failure scenarios.                                                                               | domestic                                    |
+| discount         | String | The discount amount applied to the transaction.                                                                                                  | 0.00                                        |
+| net_amount_debit | String | The net amount debited from the customer.                                                                                                        | 512                                         |
+| addedon          | String | The date and time at which the transaction was created. Format: <code>yyyy-MM-dd HH:mm:ss</code>.                                                | 2025-01-10 15:00:00                         |
+| productinfo      | String | The product description as provided in the request.                                                                                              | Product Info                                |
+| firstname        | String | The first name of the customer.                                                                                                                  | Payu-Admin                                  |
+| email            | String | The email address of the customer.                                                                                                               | [test@example.com](mailto:test@example.com) |
+| phone            | String | The phone number of the customer.                                                                                                                | 8800108522                                  |
+| hash             | String | The response hash for verifying the integrity of the transaction.                                                                                | 29efcd4f...                                 |
+| payment_source   | String | The source through which the payment was initiated.                                                                                              | payuS2S                                     |
+| PG_TYPE          | String | The payment gateway type used for processing the transaction.                                                                                    | SPLITPAY-PG                                 |
+| bank_ref_num     | String | The bank reference number for the transaction.                                                                                                   | 1255                                        |
+| error            | String | The error code returned for the transaction. Returns <code>E000</code> when there is no error.                                                   | E000                                        |
+| bankcode         | String | The bank code of the payment option used. Returns <code>TWIDX</code> for TWID Rewards or <code>ZRD</code> for Zillion Rewards.                   | TWIDX                                       |
+| error_Message    | String | The error message describing the transaction outcome. Returns <code>No Error</code> on success.                                                  | No Error                                    |
+| splitPayInfo     | Object | An object containing the breakdown of the split payment by child payment instrument. See the <strong>splitPayInfo object</strong> section below. | See splitPayInfo object                     |
+
+### splitPayInfo object
+
+The `splitPayInfo` object contains one key per child payment instrument used in the transaction. The keys and their fields vary by payment flow.
+
+#### cc object
+
+Returned when a Credit or Debit Card is used as a child payment instrument.
+
+| Parameter           | Type   | Description                                            | Example |
+| :------------------ | :----- | :----------------------------------------------------- | :------ |
+| `name`              | String | The payment instrument type.                           | `CC`    |
+| `bankCode`          | String | The bank code for the Credit or Debit Card instrument. | `CC`    |
+| `transactionAmount` | String | The amount charged on the card instrument.             | `412`   |
+
+#### upi object
+
+Returned when UPI is used as a child payment instrument.
+
+| Parameter           | Type   | Description                                           | Example     |
+| :------------------ | :----- | :---------------------------------------------------- | :---------- |
+| `name`              | String | The payment instrument type.                          | `UPI`       |
+| `bankCode`          | String | The bank code for the UPI instrument.                 | `UPI`       |
+| `vpa`               | String | The Virtual Payment Address (UPI ID) of the customer. | `kk@okaxis` |
+| `transactionAmount` | String | The amount charged on the UPI instrument.             | `99`        |
+
+#### rd object
+
+Returned for the Rewards child instrument in all split payment flows.
+
+| Parameter           | Type   | Description                                                                                            | Example  |
+| :------------------ | :----- | :----------------------------------------------------------------------------------------------------- | :------- |
+| `name`              | String | The payment instrument type for Rewards. Always returns `RD`.                                          | `RD`     |
+| `bankCode`          | String | The reward provider bank code. Varies by reward provider (e.g., `TWIDLS` for TWID, `ZLS` for Zillion). | `TWIDLS` |
+| `transactionAmount` | String | The reward amount redeemed.                                                                            | `100`    |
