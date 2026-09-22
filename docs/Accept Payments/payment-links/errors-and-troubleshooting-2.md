@@ -120,28 +120,28 @@ Something not right after creating a payment link? Go through the most common is
   3. Ask the customer to:
      - Check their spam or junk folder (for email).
      - Check if DND (Do Not Disturb) is active on their number. DND blocks all promotional messages from all senders.
-
-  <Callout icon="🚧" theme="warning">
-    Notification status is visible in the link's **Details** view under `emailStatus` and `smsStatus`. If either shows "not opted", the notification was not configured at creation time.
-  </Callout>
 </Accordion>
 
 ***
 
 ## Why Did My Customer's Payment Fail at Checkout?
 
-<Accordion title="Payment failed on the checkout page" icon="far fa-circle-xmark">
-  Ask the customer: what payment method did they try, and what error message did they see?
+<Accordion title="Payment Failed on the Checkout Page" icon="far fa-circle-xmark">
+  **Ask the customer:** what payment method did they try, and what error message did they see?
 
-  | Customer error                 | Likely cause                       | Fix                                                                |
-  | ------------------------------ | ---------------------------------- | ------------------------------------------------------------------ |
-  | "Transaction declined by bank" | Bank or card issuer declined       | Try a different card, or contact their bank                        |
-  | "Invalid OTP" or "OTP expired" | OTP entry timeout or typo          | Try again with the correct OTP within the time limit               |
-  | "Payment method not available" | Method not enabled on your account | Contact PayU to enable the payment method                          |
-  | "Amount exceeds limit"         | Card or UPI daily limit reached    | Try a different payment method or contact their bank               |
-  | Page stuck / spinning          | Poor network on customer's side    | Try on a stable connection, different browser, or different device |
+  | Customer Error                 | Likely Cause                       | Recommended Fix                                                                                                                  |
+  | ------------------------------ | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+  | `Transaction declined by bank` | Bank or card issuer declined       | Try a different card, or contact their bank                                                                                      |
+  | `Invalid OTP` or `OTP expired` | OTP entry timeout or typo          | Try again with the correct OTP within the time limit                                                                             |
+  | `Payment method not available` | Method not enabled on your account | Contact <Anchor target="_blank" href="https://help.payu.in/query">PayU support</Anchor> or your KAM to enable the payment method |
+  | `Amount exceeds limit`         | Card or UPI daily limit reached    | Try a different payment method or contact their bank                                                                             |
+  | Page stuck / loading           | Poor network on customer's side    | Try on a stable connection, different browser, or different device                                                               |
 
-  **If payment methods are missing from the checkout page:** Contact PayU support — certain methods require activation at the merchant account level.
+  <Columns layout="fixed">
+    <Column>
+      **If payment methods are missing from the checkout page:&#x20;**&#x43;ontact <Anchor target="_blank" href="https://help.payu.in/query">PayU support.</Anchor> Certain methods require activation at the merchant account level.
+    </Column>
+  </Columns>
 </Accordion>
 
 ***
