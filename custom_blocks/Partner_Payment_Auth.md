@@ -3,9 +3,9 @@ name: Partner_Payment_Auth
 ---
 ## Step 1: Get the Access Token
 
-The `auth_code` is received on the configured redirect URI. Validate this auth_code using the [Validate Auth Code and Client API](https://docs.payu.in/reference-link/validate-auth-code-and-client).
+The `auth_code` is received on the configured redirect URI. Validate this auth_code using the [Validate Auth Code and Client API](https://docs.payu.in/reference-link/validate-auth-code-and-client). If you already have the `access_token`, skip this step and proceed to Step 2.
 
-You will receive an `access_token`.
+You will receive an `access_token`.&#x20;
 
 <Accordion title="Request Parameters" icon="far fa-abacus">
   | Parameter       | Required | Description                                                                                                                | Example value            |
