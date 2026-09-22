@@ -52,8 +52,10 @@ next:
 
 ## General
 
-<Accordion title="What is a payment link and how does it work?" icon="far fa-circle-question">
-  A payment link is a secure, shareable URL that lets your customer pay you without visiting your website or app. You create the link in the PayU Dashboard (or via API), share it over any channel — email, SMS, WhatsApp — and your customer clicks it to pay on a PayU-hosted checkout page. Once paid, you receive a notification and the transaction appears in your Dashboard.
+1. #### What is a payment link and how does it work?
+
+<Accordion title="Answer" icon="fab fa-adn">
+  A payment link is a secure, shareable URL that lets your customer pay you without visiting your website or app. You <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link">create the link</Anchor> in the PayU Dashboard or via <Anchor target="_blank" href="https://docs.payu.in/reference/create-payment-links">API</Anchor>, share it over any channel such as email, SMS, WhatsApp. Your customer clicks it to pay on a PayU-hosted checkout page. Once paid, you receive a notification and the transaction appears in your Dashboard.
 
   → See [Payment Links Overview](doc:payment-links-overview)
 </Accordion>
@@ -63,13 +65,13 @@ next:
 </Accordion>
 
 <Accordion title="Which payment methods can customers use?" icon="far fa-credit-card">
-    {/* EXISTING CONTENT: adapted from faqs-payment-links.md */}
+  {/* EXISTING CONTENT: adapted from faqs-payment-links.md */}
 
   Customers can pay using any method enabled on your merchant account: credit/debit cards (Visa, Mastercard, RuPay, Amex), UPI (all apps — GPay, PhonePe, Paytm, etc.), net banking (50+ banks), wallets (Paytm, Mobikwik, Freecharge), EMI (no-cost and standard), and BNPL. Contact PayU support to enable or disable specific methods.
 </Accordion>
 
 <Accordion title="Are Payment Links secure?" icon="far fa-shield">
-    {/* EXISTING CONTENT: adapted from faqs-payment-links.md */}
+  {/* EXISTING CONTENT: adapted from faqs-payment-links.md */}
 
   Yes. PayU Payment Links are PCI DSS compliant. PayU uses advanced encryption and tokenisation to protect customer payment data. No card or bank details pass through your systems — the customer pays directly on PayU's hosted checkout page.
 </Accordion>
@@ -139,7 +141,7 @@ next:
 ## API Usage
 
 <Accordion title="Do I need a special API key for Payment Links?" icon="far fa-key">
-    {/* EXISTING CONTENT: adapted from faqs-payment-links.md */}
+  {/* EXISTING CONTENT: adapted from faqs-payment-links.md */}
 
   Payment Links APIs use **OAuth2 Bearer token** authentication — separate from your standard PayU `key` + `salt` + SHA-512 hash. You need a **Client ID** and **Client Secret** from the Dashboard to get a token.
 
@@ -147,7 +149,7 @@ next:
 </Accordion>
 
 <Accordion title="What scopes does each API operation require?" icon="far fa-lock">
-    {/* EXISTING CONTENT: adapted from faqs-payment-links.md */}
+  {/* EXISTING CONTENT: adapted from faqs-payment-links.md */}
 
   | Operation              | Required scope         |
   | ---------------------- | ---------------------- |
@@ -165,7 +167,7 @@ next:
 </Accordion>
 
 <Accordion title="Why am I getting 'furl/surl not recognised'?" icon="far fa-triangle-exclamation">
-    {/* EXISTING CONTENT: adapted from faqs-payment-links.md */}
+  {/* EXISTING CONTENT: adapted from faqs-payment-links.md */}
 
   The Payment Links API does not use the shorthand `furl` and `surl`. Use `failureUrl` and `successUrl` instead.
 </Accordion>
