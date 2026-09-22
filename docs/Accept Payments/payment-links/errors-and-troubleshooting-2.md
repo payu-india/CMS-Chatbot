@@ -184,21 +184,3 @@ Contact PayU support with these details:&#x20;
 - [x] Screenshot of any error message
 
 Contact PayU Support via the Dashboard **Help** section, or email `support@payu.in`.
-
-***
-
-## Related Pages
-
-<Cards>
-  <Card title="Send a Payment Link" href="doc:send-a-payment-link" icon="fa-paper-plane">
-    Step-by-step creation guide.
-  </Card>
-
-  <Card title="Manage Payment Links" href="doc:manage-payment-links" icon="fa-list-check">
-    Duplicate, deactivate, and re-share links.
-  </Card>
-
-  <Card title="Payment Links FAQs" href="doc:payment-links-faqs" icon="fa-circle-question">
-    Common questions about Payment Links.
-  </Card>
-</Cards>
