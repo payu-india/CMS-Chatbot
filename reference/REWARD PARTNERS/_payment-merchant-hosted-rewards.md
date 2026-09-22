@@ -179,11 +179,47 @@ HTTP Method: **POST**
     </tr>
     <tr>
       <td style={{ textAlign: "left" }}>
-        split-info <br/>
+        pg <br/>
         <code>mandatory</code>
       </td>
       <td style={{ textAlign: "left" }}>
-        <code>JSON String</code> Contains split payment details including childPaymentInstruments, loyaltyDetails, and earnPaymentInstruments. <strong>For new TWID flow, must include loyaltyDetails block with loyaltyApiVersion and sessionId.</strong>
+        <code>String</code> The payment gateway type. Use <code>SPLITPAY</code> for Rewards transactions.
+      </td>
+      <td style={{ textAlign: "left" }}>
+        SPLITPAY
+      </td>
+    </tr>
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        bankcode <br/>
+        <code>mandatory</code>
+      </td>
+      <td style={{ textAlign: "left" }}>
+        <code>String</code> The payment option bank code. Use <code>TWIDX</code> for TWID Rewards or <code>ZRD</code> for Zillion Rewards.
+      </td>
+      <td style={{ textAlign: "left" }}>
+        TWIDX
+      </td>
+    </tr>
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        txn_s2s_flow <br/>
+        <code>mandatory</code>
+      </td>
+      <td style={{ textAlign: "left" }}>
+        <code>String</code> The server-to-server flow identifier. Pass <code>4</code> for the Legacy Decoupled flow.
+      </td>
+      <td style={{ textAlign: "left" }}>
+        4
+      </td>
+    </tr>
+    <tr>
+      <td style={{ textAlign: "left" }}>
+        splitInfo <br/>
+        <code>mandatory</code>
+      </td>
+      <td style={{ textAlign: "left" }}>
+        <code>JSON String</code> Contains the split payment details, including <code>childPaymentInstruments</code>, <code>loyaltyDetails</code>, and <code>earnPaymentInstruments</code>. <strong>For the new TWID flow, include the <code>loyaltyDetails</code> block with <code>loyaltyApiVersion</code> and <code>sessionId</code>.</strong>
       </td>
       <td style={{ textAlign: "left" }}>
         See examples below
@@ -193,17 +229,17 @@ HTTP Method: **POST**
 </Table>
 `}</HTMLBlock>
 
-<Callout icon="📘" theme="info">
-  **Notes:**
+<br />
 
-  - The reward child (RD/TWID) **cannot be the first transaction**
-  - RD is always the **second child** in the split workflow
-  - Bank rewards do not work with saved-card or network-token flows unless `cardBin` and `cardLastFour` are passed
-</Callout>
+> **Notes:**
+>
+> - The reward child (RD/TWID) **cannot be the first transaction**
+> - RD is always the **second child** in the split workflow
+> - Bank rewards do not work with saved-card or network-token flows unless `cardBin` and `cardLastFour` are passed
 
-## SplitInfo JSON Structure
+## splitInfo JSON Structure
 
-The `splitinfo` parameter must be a valid JSON string with the following structure:
+The `splitInfo` parameter must be a valid JSON string with the following structure:
 
 ```json
 {
@@ -279,61 +315,75 @@ The `splitinfo` parameter must be a valid JSON string with the following structu
   The `rewardName` value must match the `issuerDetailDTO.brandName` from the Fetch Balance API response when using TWID rewards. This field is **NOT applicable for Zillion** rewards.
 </Callout>
 
-<Callout icon="📘" theme="info">
-  ### Notes
+### Notes
 
-  #### Transaction Ordering
+#### Transaction Ordering
 
-  - ❌ **The reward child (RD/TWID) CANNOT be the first transaction**
-  - ✅ RD must always be the **second child** in the `childPaymentInstruments` array
-  - Flow sequence: Core payment → Split-payment → Core payment → Loyalty
+- ❌ **The reward child (RD/TWID) CANNOT be the first transaction**
+- ✅ RD must always be the **second child** in the `childPaymentInstruments` array
+- Flow sequence: Core payment → Split-payment → Core payment → Loyalty
 
-  #### Bank Rewards Limitation
+#### Bank Rewards Limitation
 
-  - ❌ Bank reward redemption does **not work** with:
-    - PayU saved-card flows (when card BIN is unavailable)
-    - Network-token flows (when card BIN is unavailable)
-  - ✅ **Workaround:** Pass `cardBin` and `cardLastFour` in the reward child object
+- ❌ Bank reward redemption does **not work** with:
+  - PayU saved-card flows (when card BIN is unavailable)
+  - Network-token flows (when card BIN is unavailable)
+- ✅ **Workaround:** Pass `cardBin` and `cardLastFour` in the reward child object
 
-  #### Session Consistency
+#### Session Consistency
 
-  - ⚠️ **CRITICAL:** The `sessionId` in `loyaltyDetails` must be **identical** to the `sessionId` used in the Fetch Balance API request
-  - TWID validates this sessionId during the redemption process
-</Callout>
-
-###
+- ⚠️ **CRITICAL:** The `sessionId` in `loyaltyDetails` must be **identical** to the `sessionId` used in the Fetch Balance API request
+- TWID validates this sessionId during the redemption process
 
 ## Sample Request
 
 ### Burn Points with Card (TWID)
 
 ````bash
-curl --location 'https://test.payu.in/_payment' \
---header 'accept: application/json' \
---header 'Content-Type: application/x-www-form-urlencoded' \
---header 'Cookie: PHPSESSID=bkrc37gr4pfih9c0pc0gcc65mv; PHPSESSID=6aad1839f08e8; PHPSESSID=krjdhr0qtq7cgjbk16gll7ldma; PHPSESSID=6aad197750249; PHPSESSID=6aad1ba4b49dd' \
---data-urlencode 'key=V6kGqE' \
---data-urlencode 'txnid=46666364782829256655' \
---data-urlencode 'amount=1000' \
---data-urlencode 'firstname=Payu-Admin' \
---data-urlencode 'email=test@example.com' \
---data-urlencode 'phone=9304204920' \
---data-urlencode 'productinfo=iPhone' \
---data-urlencode 'pg=SPLITPAY' \
---data-urlencode 'bankcode=TWIDX' \
---data-urlencode 'surl=https://test.payu.in/admin/test_response' \
---data-urlencode 'furl=https://test.payu.in/admin/test_response' \
---data-urlencode 'hash=c118bc43080064a733d4dfe7acb6de45059a7bd75f3bafd32b0154358e0be6d6e8c2bb959548d6cf6b79c3bf5af6f0bc6b2708b9c7e338bb1ed797c81babad1b' \
---data-urlencode 'udf1=udf1' \
---data-urlencode 'udf2=udf2' \
---data-urlencode 'udf3=udf3' \
---data-urlencode 'udf4=udf4' \
---data-urlencode 'udf5=udf5' \
---data-urlencode 'txn_s2s_flow=4' \
---data-urlencode 's2s_client_ip=ClientIP' \
---data-urlencode 's2s_device_info=Device Info' \
---data-urlencode 'splitInfo={"childPaymentInstruments":[{"name":"UPI","bankCode":"UPI","vpa":"9999999999@upi","transactionAmount":"995"},{"name":"RD","bankCode":"TWIDLS","rewardId":271508,"rewardName":"Zillion","transactionAmount":"5"}],"earnPaymentInstruments":[],"totalAmount":"1000.00","consent":false}' \
-```
+curl -X POST "https://test.payu.in/_payment" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "key=YOUR_MERCHANT_KEY" \
+  -d "txnid=TXN123456" \
+  -d "amount=1000" \
+  -d "productinfo=Product Info" \
+  -d "firstname=Ashish" \
+  -d "email=test@gmail.com" \
+  -d "phone=9876543210" \
+  -d "pg=SPLITPAY" \
+  -d "bankcode=TWIDX" \
+  -d "txn_s2s_flow=4" \
+  -d "surl=https://www.merchant-surl.com" \
+  -d "furl=https://www.merchant-furl.com" \
+  -d "hash=generated_hash_value" \
+  --data-urlencode 'splitInfo={
+    "childPaymentInstruments": [
+      {
+        "name": "CC",
+        "bankCode": "CC",
+        "cardNumber": "5123456789012346",
+        "cvv": "345",
+        "validThrough": "05/29",
+        "ownerName": "Payu",
+        "transactionAmount": "997"
+      },
+      {
+        "name": "RD",
+        "bankCode": "TWIDLS",
+        "transactionAmount": "3",
+        "rewardId": 270943,
+        "rewardName": "twid Cash",
+        "cardBin": "512345",
+        "cardLastFour": "2346"
+      }
+    ],
+    "loyaltyDetails": {
+      "loyaltyApiVersion": 1,
+      "sessionId": "sessionId11323"
+    },
+    "earnPaymentInstruments": [],
+    "totalAmount": "1000.00",
+    "consent": false
+  }'
 ### Burn Points with Saved Card Flow (TWID and storecardTokenType = 0)
 
 **Use Case:** PayU saved card with reward redemption
@@ -348,10 +398,13 @@ curl -X POST "https://test.payu.in/_payment" \
   -d "firstname=Ashish" \
   -d "email=test@gmail.com" \
   -d "phone=9876543210" \
+  -d "pg=SPLITPAY" \
+  -d "bankcode=TWIDX" \
+  -d "txn_s2s_flow=4" \
   -d "surl=https://www.merchant-surl.com" \
   -d "furl=https://www.merchant-furl.com" \
   -d "hash=generated_hash_value" \
-  --data-urlencode 'split-info={
+  --data-urlencode 'splitInfo={
     "childPaymentInstruments": [
     {
       "name": "CC",
@@ -397,10 +450,13 @@ curl -X POST "https://test.payu.in/_payment" \
   -d "firstname=Ashish" \
   -d "email=test@gmail.com" \
   -d "phone=9876543210" \
+  -d "pg=SPLITPAY" \
+  -d "bankcode=TWIDX" \
+  -d "txn_s2s_flow=4" \
   -d "surl=https://www.merchant-surl.com" \
   -d "furl=https://www.merchant-furl.com" \
   -d "hash=generated_hash_value" \
-  --data-urlencode 'split-info={
+  --data-urlencode 'splitInfo={
     "childPaymentInstruments": [
     {
       "name": "CC",
@@ -450,10 +506,13 @@ curl -X POST "https://test.payu.in/_payment" \
   -d "firstname=Ashish" \
   -d "email=test@gmail.com" \
   -d "phone=9876543210" \
+  -d "pg=SPLITPAY" \
+  -d "bankcode=TWIDX" \
+  -d "txn_s2s_flow=4" \
   -d "surl=https://www.merchant-surl.com" \
   -d "furl=https://www.merchant-furl.com" \
   -d "hash=generated_hash_value" \
-  --data-urlencode 'split-info={
+  --data-urlencode 'splitInfo={
     "childPaymentInstruments": [
     {
       "name": "CC",
@@ -502,10 +561,13 @@ curl -X POST "https://test.payu.in/_payment" \
   -d "firstname=Ashish" \
   -d "email=test@gmail.com" \
   -d "phone=9876543210" \
+  -d "pg=SPLITPAY" \
+  -d "bankcode=TWIDX" \
+  -d "txn_s2s_flow=4" \
   -d "surl=https://www.merchant-surl.com" \
   -d "furl=https://www.merchant-furl.com" \
   -d "hash=generated_hash_value" \
-  --data-urlencode 'split-info={
+  --data-urlencode 'splitInfo={
     "childPaymentInstruments": [
     {
       "name": "UPI",
