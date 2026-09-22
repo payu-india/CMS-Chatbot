@@ -6,7 +6,7 @@ link:
 ---
 Retrieves the list of document categories and accepted document types required for this merchant.
 
-**The response from this API is the input for Step 15 (Upload KYC Documents).**
+**The response from this API is the input for Step 14 (Upload KYC Documents).**
 
 ## Prerequisite
 
