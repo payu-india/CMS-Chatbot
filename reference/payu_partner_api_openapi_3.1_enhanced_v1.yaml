@@ -392,7 +392,7 @@ paths:
           description: Internal Server Error
   /api/v1/merchants/{uuid_pan}/update:
     put:
-      summary: Update Merchant Details API
+      summary: Update PAN API
       operationId: UpdateMerchant_PAN_DOB_Entity
       tags:
         - 'Step 02 — Update: PAN + DOB'
