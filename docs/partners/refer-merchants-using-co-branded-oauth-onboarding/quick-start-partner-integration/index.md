@@ -299,7 +299,7 @@ https://onboarding.payu.in/app/account/signup?reseller_id=11f1-1078-ee249a86-9fd
 <Callout icon="⚠️" theme="warn">
   ### **Important**:&#x20;
 
-  The `auth_code` is single-use and expires after a short period. Exchange it immediately for merchant credentials. For more information, refer to [Validate Auth Code and Client.](ref:validate_authcode_and_client_api) If the `auth_code` has expired, use the **Refresh Token** API. For more information, refer to [Refresh Token API.](ref:refresh_token_api)
+  The `auth_code` is single-use and expires after a short period. For more information, refer to [Validate Auth Code and Client.](ref:validate_authcode_and_client_api) If the `auth_code` has expired, use the **Refresh Token** API. For more information, refer to [Refresh Token API.](ref:refresh_token_api)
 </Callout>
 
 ***
