@@ -1,5 +1,5 @@
 ---
-title: Step 13 — Business Members & KMP [Conditional]
+title: Step 12 — Business Members & KMP [Conditional]
 hidden: false
 link:
   new_tab: false
