@@ -85,30 +85,48 @@ next:
   Contact <Anchor target="_blank" href="https://help.payu.in/query">PayU support</Anchor> to enable or disable specific methods.
 </Accordion>
 
-<Accordion title="Are Payment Links secure?" icon="far fa-shield">
+***
+
+4. #### Are Payment Links secure?
+
+<Accordion title="Answer" icon="fab fa-adn">
   {/* EXISTING CONTENT: adapted from faqs-payment-links.md */}
 
-  Yes. PayU Payment Links are PCI DSS compliant. PayU uses advanced encryption and tokenisation to protect customer payment data. No card or bank details pass through your systems — the customer pays directly on PayU's hosted checkout page.
+  Yes. PayU Payment Links are PCI DSS compliant. PayU uses advanced encryption and tokenisation to protect customer payment data. No card or bank details pass through your systems. The customer pays directly on PayU's hosted checkout page.
 </Accordion>
 
 ***
 
 ## Creating and Configuring Links
 
-<Accordion title="Can I set a custom amount for each link?" icon="far fa-money-bill">
-  Yes. Each link has its own amount field. You can also leave the amount flexible so the customer fills it in at checkout — useful for donations or open-ended collections.
+1. #### Can I set a custom amount for each link?
+
+<Accordion title="Answer" icon="fab fa-adn">
+  Yes. Each link has its own amount field. You can also leave the amount flexible so the customer fills it in at checkout. It is useful for donations or open-ended collections.
 </Accordion>
 
-<Accordion title="Can I collect customer information with the payment?" icon="far fa-list-check">
-  Yes. You can add standard fields (name, email, phone, address) and fully custom fields (any label, any type) to the checkout page. See [Payment Link Options](doc:payment-link-options) for details.
+***
+
+2. #### Can I collect customer information with the payment?
+
+<Accordion title="Answer" icon="fab fa-adn">
+  Yes. You can add standard fields (name, email, phone, address) and fully custom fields (any label, any type) to the checkout page. Refere to the <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link#how-do-i-create-a-payment-link">Create a Payment Link</Anchor> page for more details.
 </Accordion>
 
-<Accordion title="Can I set an expiry date?" icon="far fa-calendar-xmark">
-  Yes. The default expiry is 1 year. You can set any future date during creation. Once expired, the link cannot accept payments. To extend expiry after the fact, use the [Cancel / Change Status API](doc:api-cancel-status), or duplicate the link from the Dashboard with a new expiry date.
+***
+
+3. #### Can I set an expiry date to the payment link?
+
+<Accordion title="Answer" icon="fab fa-adn">
+  Yes. The default expiry is 1 year. You can set any future date during creation. Once expired, the link cannot accept payments. To extend expiry after the fact, use the [Cancel / Change Status API](doc:api-cancel-status), or <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#what-can-i-do-with-a-payment-link-after-it-is-created">duplicate</Anchor> the link from the Dashboard with a new expiry date.
 </Accordion>
 
-<Accordion title="Can I limit how many times a link can be used?" icon="far fa-hashtag">
-  Yes — use the **Max Transactions** field when creating the link. Leave it blank for unlimited. Once the limit is reached, the link automatically deactivates.
+***
+
+4. #### Can I limit how many times a payment link can be used?
+
+<Accordion title="Answer" icon="fab fa-adn">
+  Yes. Use the **Max Transactions** field when <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link">creating the link</Anchor>. Leave it blank for unlimited. Once the limit is reached, the link automatically deactivates.
 </Accordion>
 
 <Accordion title="Can I edit a payment link after creating it?" icon="far fa-pen-to-square">
