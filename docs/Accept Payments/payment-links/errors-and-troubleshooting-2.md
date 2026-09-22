@@ -158,18 +158,18 @@ Something not right after creating a payment link? Go through the most common is
 
 ## Why Did My Bulk Upload Fail?
 
-<Accordion title="CSV upload errors" icon="far fa-file-csv">
+<Accordion title="CSV Upload Errors" icon="far fa-file-csv">
   **Check the upload result:**
 
   1. Go to the **Bulk Uploads** tab in the Payment Links Dashboard.
-  2. Find your upload and review the error rows.
+  2. Find your upload and review the error rows. You might find one these common errors.
 
-  | Error                           | Cause                                            | Fix                                                                  |
+  | Error                           | Cause                                            | Recommended Fix                                                      |
   | ------------------------------- | ------------------------------------------------ | -------------------------------------------------------------------- |
-  | "Duplicate invoice number"      | A link with that invoice number already exists   | Use a unique invoice number per row, or leave blank to auto-generate |
-  | "Missing mandatory field"       | `subAmount` or `description` is empty            | Fill in all required columns                                         |
-  | "Invalid date format"           | `expiryDate` not in `YYYY-MM-DD HH:MM:SS` format | Correct the date format                                              |
-  | "Amount must be greater than 0" | Zero or negative `subAmount`                     | Enter a positive amount                                              |
+  | `Duplicate invoice number`      | A link with that invoice number already exists   | Use a unique invoice number per row, or leave blank to auto-generate |
+  | `Missing mandatory field`       | `subAmount` or `description` is empty            | Fill in all required columns                                         |
+  | `Invalid date format`           | `expiryDate` not in `YYYY-MM-DD HH:MM:SS` format | Fix the date format                                                  |
+  | `Amount must be greater than 0` | Zero or negative `subAmount`                     | Enter a positive amount                                              |
 </Accordion>
 
 ***
