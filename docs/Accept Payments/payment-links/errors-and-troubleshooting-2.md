@@ -114,9 +114,9 @@ next:
 ## Why Did not My Customer Receive the SMS or Email?
 
 <Accordion title="Notification Not Delivered" icon="far fa-envelope">
-  **Check:**
+  Check these:
 
-  1. Confirm the customer's phone/email was entered correctly — open the link **Details** view in the Dashboard.
+  1. Confirm the customer's phone or email was entered correctly. To verify, open the link **Details** view in the Dashboard and check the details under the **Customer Details&#x20;**&#x73;ection. Refer to the <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#what-can-i-do-with-a-payment-link-after-it-is-created">Edit Payment Link Details</Anchor>**&#x20;**&#x66;or steps to edit information if they are incorrect.
   2. Confirm the **Notify via SMS** / **Notify via Email** toggles were turned on at the time of creation. Notifications fire once, at creation — they cannot be re-triggered for an existing link.
   3. Ask the customer to:
      - Check their spam/junk folder (for email).
