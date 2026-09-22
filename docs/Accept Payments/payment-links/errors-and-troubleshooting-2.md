@@ -42,7 +42,7 @@ next:
 <Banner
   isInline={true}
   message="This page covers issues after creating a payment link"
-  color="#FF6B35"
+  color="#16C612"
   textColor="#ffffff"
   fontSize="14px"
   fontWeight="bold"
