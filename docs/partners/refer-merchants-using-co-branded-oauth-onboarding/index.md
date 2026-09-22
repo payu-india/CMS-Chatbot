@@ -94,5 +94,5 @@ For example, Soylent Corp. has partnered with PayU and wants to onboard ABC LLP.
 The following APIs used in Co-branded onboarding:
 
 * [Validate Auth Code and Client](ref:validate_authcode_and_client_api)
+* &#x20;[Refresh Token API](ref:refresh_token_api) (If the `auth_code` has expired, use the **Refresh Token** API)
 
-<br />
