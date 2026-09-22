@@ -41,10 +41,6 @@ next:
 ---
 Understand the complete end-to-end flow of how PayU Payment Links works. Starting from creating your account to receiving funds in your bank account.
 
-![](https://files.readme.io/24867e7259d129b715d6d4fdfd39733e567da1141f8c6ea81835408fb5b52675-payu-flow-animated.gif)
-
-<br />
-
 ***
 
 ## Workflow
