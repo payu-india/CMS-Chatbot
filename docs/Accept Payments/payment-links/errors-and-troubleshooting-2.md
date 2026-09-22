@@ -176,7 +176,9 @@ Something not right after creating a payment link? Go through the most common is
 
 ## Still Stuck?
 
-Collect this before contacting support: the Payment Link URL or invoice number, a transaction ID (if the customer attempted payment), the date and time of the issue, and a screenshot of any error message.
+You can contact PayU support. However, ready with these before you contact them:&#x20;
+
+- The Payment Link URL or invoice number, a transaction ID (if the customer attempted payment), the date and time of the issue, and a screenshot of any error message.
 
 Contact PayU Support via the Dashboard **Help** section, or email `support@payu.in`.
 
