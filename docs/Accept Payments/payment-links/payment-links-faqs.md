@@ -163,20 +163,30 @@ next:
   You can copy the link URL from the Dashboard and share it over any channel (WhatsApp, email, etc.), send it directly from the Dashboard via SMS or email (enter the customer's phone/email at creation and toggle notifications on), or <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#what-can-i-do-with-a-payment-link-after-it-is-created">reshare</Anchor> an existing link from **Actions > Share**.
 </Accordion>
 
-<Accordion title="Can the same link be shared with multiple customers?" icon="far fa-users">
-  Yes — a single link can be opened and paid by different customers, up to the Max Transactions limit (unlimited by default). For a personalised link pre-filled with a specific customer's details, create one link per customer.
+***
+
+2. #### Can the same link be shared with multiple customers?
+
+<Accordion title="Answer" icon="fab fa-adn">
+  Yes. A single link can be opened and paid by different customers, up to the Max Transactions limit (unlimited by default). For a personalised link pre-filled with a specific customer's details, create one link per customer.
 </Accordion>
 
 ***
 
 ## Payments and Reconciliation
 
-<Accordion title="How will I know when a customer has paid?" icon="far fa-bell">
-  The link status in the Dashboard changes to **Paid** (or **Active** with a non-zero `totalRevenue` for partial-payment links). The transaction appears in **Transactions** in the Dashboard. If you have webhooks configured, you receive a real-time `payment.success` event → [Webhooks: Receive & Verify](doc:receive-and-verify-a-webhook)
+1. #### How will I know when a customer has paid?
+
+<Accordion title="Answer" icon="fab fa-adn">
+  The link status in the Dashboard changes to **Paid** (or **Active** with a non-zero `totalRevenue` for partial-payment links). The transaction appears in the **Transactions&#x20;**&#x74;ab in the Dashboard. If you have webhooks configured, you receive a real-time `payment.success` event.
 </Accordion>
 
-<Accordion title="What happens if a customer's payment fails?" icon="far fa-rotate-left">
-  The link remains **Active** and the customer can try again — either immediately or later. A failed attempt does not count against the Max Transactions limit.
+***
+
+2. #### What happens if a customer's payment fails?
+
+<Accordion title="Answer" icon="fab fa-adn">
+  The link remains **Active** and the customer can retry either immediately or later. A failed attempt does not count against the Max Transactions limit.
 </Accordion>
 
 <Accordion title="Can I issue a refund for a payment made via a payment link?" icon="far fa-money-bill-transfer">
