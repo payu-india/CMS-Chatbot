@@ -39,7 +39,7 @@ next:
 ---
 {/* NEW CONTENT: Template E — Troubleshooting (V2 format) */}
 
-
+<br />
 
 Something not right after creating a payment link? Go through the most common issues — links not opening, payments not reflecting in your Dashboard, notifications not delivered, and errors in bulk uploads and ways to resolve them.
 
