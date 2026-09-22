@@ -157,8 +157,10 @@ next:
 
 ## Sharing and Notifications
 
-<Accordion title="How do I share a payment link with a customer?" icon="far fa-share">
-  You can copy the link URL from the Dashboard and share it over any channel (WhatsApp, email, etc.), send it directly from the Dashboard via SMS or email (enter the customer's phone/email at creation and toggle notifications on), or reshare an existing link from **Actions > Share**.
+1. #### How do I share a payment link with a customer?
+
+<Accordion title="Answer" icon="fab fa-adn">
+  You can copy the link URL from the Dashboard and share it over any channel (WhatsApp, email, etc.), send it directly from the Dashboard via SMS or email (enter the customer's phone/email at creation and toggle notifications on), or <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#what-can-i-do-with-a-payment-link-after-it-is-created">reshare</Anchor> an existing link from **Actions > Share**.
 </Accordion>
 
 <Accordion title="Can the same link be shared with multiple customers?" icon="far fa-users">
