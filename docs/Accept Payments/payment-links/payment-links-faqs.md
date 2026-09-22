@@ -129,15 +129,27 @@ next:
   Yes. Use the **Max Transactions** field when <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link">creating the link</Anchor>. Leave it blank for unlimited. Once the limit is reached, the link automatically deactivates.
 </Accordion>
 
-<Accordion title="Can I edit a payment link after creating it?" icon="far fa-pen-to-square">
-  You cannot edit a link's amount, description, or configuration from the Dashboard after creation. To correct a mistake, duplicate the link with the right details, then deactivate the original. Via API, you can update `active` status, `expiryDate`, `subAmount`, `tax`, `shippingCharge`, and `isPartialPaymentAllowed` using the [Cancel / Change Status API](doc:api-cancel-status).
+***
+
+5. #### Can I edit a payment link after creating it?
+
+<Accordion title="Answer" icon="fab fa-adn">
+  You cannot edit a link's amount, description, or configuration from the Dashboard after creation. To correct a mistake, <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#what-can-i-do-with-a-payment-link-after-it-is-created">duplicate</Anchor> the link with the right details, then deactivate the original. Via API, you can update `active` status, `expiryDate`, `subAmount`, `tax`, `shippingCharge`, and `isPartialPaymentAllowed` using the [Cancel / Change Status API](doc:api-cancel-status).
 </Accordion>
 
-<Accordion title="Can a customer pay in instalments?" icon="far fa-money-bill-wave">
-  Yes, if you enable **Partial Payment** on the link. The customer can pay any amount less than the total — you cannot specify a minimum. For structured auto-debiting, use [Recurring Payments](doc:recurring-payments).
+***
+
+6. #### Can a customer pay in instalments?
+
+<Accordion title="Answer" icon="fab fa-adn">
+  Yes, if you enable **Partial Payment** on the link. The customer can pay any amount less than the total. You can specify a minimum amount a customer can pay. For structured auto-debiting, use [Recurring Payments](doc:recurring-payments).
 </Accordion>
 
-<Accordion title="How many payment links can I create?" icon="far fa-infinity">
+***
+
+7. #### How many payment links can I create?
+
+<Accordion title="Answer" icon="fab fa-adn">
   There is no hard limit on the number of payment links. For creating hundreds at once, use the [Bulk Upload](doc:manage-payment-links) feature or the [Create Payment Link API](doc:api-create-share).
 </Accordion>
 
