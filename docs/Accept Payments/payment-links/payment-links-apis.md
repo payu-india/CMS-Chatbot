@@ -44,19 +44,10 @@ You can use the Payment Links APIs to perform various actions on payment links p
 
 The table below provides the list of Payment Links APIs and their brief description:
 
-| API                                            | Description                                                                                   |
-| ---------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| [Get an OAuth2 Token](doc:api-auth-token)      | API to get an OAuth2 Bearer token required for authenticating all Payment Links API requests. |
-| [Revoke a Token](doc:api-auth-token)           | API to revoke an active OAuth2 token.                                                         |
-| [Create a Payment Link](doc:api-create-share)  | API to create a new payment link.                                                             |
-| [Share a Payment Link](doc:api-create-share)   | API to share an existing payment link with a customer via SMS or email.                       |
-| [Fetch a Payment Link](doc:api-fetch)          | API to fetch the details of a payment link by its invoice number.                             |
-| [Fetch All Payment Links](doc:api-fetch)       | API to fetch all the created payment links with date, status, and pagination filters.         |
-| [Update a Payment Link](doc:api-cancel-status) | API to update, deactivate, or reactivate a payment link.                                      |
-
-## Related Information
-
-- [Payment Links Overview](doc:payment-links-overview)
-- [Send a Payment Link](doc:send-a-payment-link)
-- [Manage Payment Links](doc:manage-payment-links)
-- [Payment Links Troubleshooting](doc:payment-links-troubleshooting)
+| API                                            | Description                                                                           |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------- |
+| [Create a Payment Link](doc:api-create-share)  | API to create a new payment link.                                                     |
+| [Share a Payment Link](doc:api-create-share)   | API to share an existing payment link with a customer via SMS or email.               |
+| [Fetch a Payment Link](doc:api-fetch)          | API to fetch the details of a payment link by its invoice number.                     |
+| [Fetch All Payment Links](doc:api-fetch)       | API to fetch all the created payment links with date, status, and pagination filters. |
+| [Update a Payment Link](doc:api-cancel-status) | API to update, deactivate, or reactivate a payment link.                              |
