@@ -1,9 +1,9 @@
 ---
 name: PayUPaymentLinksWizard
 ---
-// PayUPaymentLinksWizard — ReadMe Custom Component (Payment Links Interactive Lab)
+// PayUPaymentLinksWizard - ReadMe Custom Component (Payment Links Interactive Lab)
 // Hands-on wizard where users create a payment link by filling actual form fields
-// Generates demo link (no real API calls) — educational sandbox experience
+// Generates demo link (no real API calls) - educational sandbox experience
 
 import { useState, useEffect, useRef } from 'react';
 
@@ -20,15 +20,14 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
     }
 
     var WIZARD_STEP_IDS = [
-      'welcome', 'prereq', 'fields', 'create', 'share', 'test', 'manage', 'golive'
+      'understand', 'create', 'test', 'done'
     ];
 
     function defaultProgress() {
       return {
-        fieldsCompleted: false,
         linkCreated: false,
-        linkShared: false,
-        linkTested: false
+        paymentSimulated: false,
+        feedbackGiven: false
       };
     }
 
@@ -59,14 +58,10 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
     };
 
     var STEP_NEXT_ACTIONS = {
-      welcome: 'Hit **Next** when ready to start.',
-      prereq: 'Tick all checkboxes, then **Continue**.',
-      fields: 'Review field explanations, then **Continue**.',
-      create: 'Fill in all fields and **Create Payment Link**.',
-      share: 'Copy your link, then **Continue**.',
-      test: 'Open link and complete test payment.',
-      manage: 'Review management features.',
-      golive: 'Read go-live checklist.'
+      understand: 'Click Next when ready to create your link.',
+      create: 'Fill the form and click Create your payment link.',
+      test: 'Preview what customers see and pick a payment outcome.',
+      done: 'Share feedback or explore what you can do next.'
     };
 
     function exportLabContext(input) {
@@ -220,62 +215,51 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
   var fieldDescStyle = { flex: 1, fontSize: '14px', lineHeight: 1.6, color: '#4b5563' };
 
   var STEPS = [
-    {id:'welcome',title:'Welcome',tagline:'',stepLabel:'Start'},
-    {id:'prereq',title:'Before you start',tagline:'Make sure you have these ready.',stepLabel:'1'},
-    {id:'fields',title:'Understanding fields',tagline:'What each field means.',stepLabel:'2'},
-    {id:'create',title:'Create payment link',tagline:'Fill the form and generate your link.',stepLabel:'3'},
-    {id:'share',title:'Share the link',tagline:'Copy and share your payment link.',stepLabel:'4'},
-    {id:'test',title:'Test payment',tagline:'Complete a test transaction.',stepLabel:'5'},
-    {id:'manage',title:'Manage links',tagline:'Dashboard features overview.',stepLabel:'6'},
-    {id:'golive',title:'Go live',tagline:'Production checklist.',stepLabel:'7'}
+    {id:'understand',title:'Understand',tagline:'Why payment links?',stepLabel:'1'},
+    {id:'create',title:'Create your link',tagline:'Fill these 4 details.',stepLabel:'2'},
+    {id:'test',title:'Test it',tagline:'See what customers see.',stepLabel:'3'},
+    {id:'done',title:'Done!',tagline:'You're all set.',stepLabel:'4'}
   ];
 
-  var WELCOME_OUTCOMES = [
-    'Fill payment link form fields yourself',
-    'Generate a demo payment link',
-    'See what the link looks like',
-    'Understand test payment flow',
-    'Ready to use real Dashboard'
+  var BENEFITS = [
+    'Quick - Create links in seconds without a website',
+    'Flexible - Share via SMS, email, WhatsApp, or social media',
+    'Safe - Customers pay through secure PayU checkout'
   ];
 
-  var PREREQ = [
-    {id:'account',label:'Active PayU merchant account'},
-    {id:'dashboard',label:'Access to PayU Dashboard (test environment)'},
-    {id:'customer',label:'Customer contact details (email/phone) for testing'},
-    {id:'understand',label:'Basic understanding of payment collection'}
-  ];
-
-  var FIELD_EXPLANATIONS = [
-    {field:'Amount',desc:'Payment amount in rupees (e.g., 100.00)',required:true},
-    {field:'Purpose',desc:'Description of what the payment is for',required:true},
-    {field:'Customer Name',desc:'Name of the person paying',required:false},
-    {field:'Customer Email',desc:'Email to send payment link and receipt',required:false},
-    {field:'Customer Phone',desc:'Mobile number for SMS notifications',required:false},
-    {field:'Invoice Number',desc:'Your internal invoice/order ID (optional)',required:false},
-    {field:'Allow Partial Payment',desc:'Let customers pay in installments',required:false},
-    {field:'Max Transactions',desc:'How many times the link can be used',required:false}
-  ];
-
-  var GO_LIVE = [
-    'Test multiple payment scenarios (success, failure, cancellation)',
-    'Verify email and SMS notifications are working',
-    'Check link expiry and max transaction limits',
-    'Review Dashboard transaction reports',
-    'Set up webhooks for real-time payment updates (optional)',
-    'Train your team on Dashboard operations',
-    'Start with small production transactions'
-  ];
 
   function empty(s) { return s == null ? '' : String(s).trim(); }
   function isBlank(s) { return empty(s) === ''; }
 
   function defaultProgress() {
     return {
-      fieldsCompleted: false,
       linkCreated: false,
-      linkShared: false,
-      linkTested: false
+      paymentSimulated: false,
+      feedbackGiven: false
     };
+  }
+
+  function getSessionId() {
+    try {
+      if (typeof window === 'undefined' || typeof localStorage === 'undefined') return 'unknown';
+      var sid = localStorage.getItem('payu-payment-links-session-id');
+      if (!sid) {
+        sid = 'sess_' + Date.now().toString(36) + Math.random().toString(36).substring(2, 10);
+        localStorage.setItem('payu-payment-links-session-id', sid);
+      }
+      return sid;
+    } catch (e) { return 'unknown'; }
+  }
+
+  function trackEvent(eventName, properties) {
+    if (typeof console === 'undefined') return;
+    var event = {
+      event: eventName,
+      timestamp: Date.now(),
+      sessionId: getSessionId(),
+      properties: properties || {}
+    };
+    console.log('[PayUPaymentLinksWizard]', JSON.stringify(event));
   }
 
   function wizardFresh() {
@@ -366,6 +350,10 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
   var generatedLink = _generatedLink[0];
   var setGeneratedLink = _generatedLink[1];
 
+  var _showCheckoutPreview = useState(false);
+  var showCheckoutPreview = _showCheckoutPreview[0];
+  var setShowCheckoutPreview = _showCheckoutPreview[1];
+
   var _fieldErrors = useState({});
   var fieldErrors = _fieldErrors[0];
   var setFieldErrors = _fieldErrors[1];
@@ -382,13 +370,21 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
   var copyMsg = _copyMsg[0];
   var setCopyMsg = _copyMsg[1];
 
-  var _prereq = useState({});
-  var prereq = _prereq[0];
-  var setPrereq = _prereq[1];
+  var _showMoreOptions = useState(false);
+  var showMoreOptions = _showMoreOptions[0];
+  var setShowMoreOptions = _showMoreOptions[1];
 
-  var _goDone = useState({});
-  var goDone = _goDone[0];
-  var setGoDone = _goDone[1];
+  var _feedbackRating = useState('');
+  var feedbackRating = _feedbackRating[0];
+  var setFeedbackRating = _feedbackRating[1];
+
+  var _paymentOutcome = useState('');
+  var paymentOutcome = _paymentOutcome[0];
+  var setPaymentOutcome = _paymentOutcome[1];
+
+  var _showWhatsNext = useState(false);
+  var showWhatsNext = _showWhatsNext[0];
+  var setShowWhatsNext = _showWhatsNext[1];
 
   var _modalOpen = useState(false);
   var modalOpen = _modalOpen[0];
@@ -408,11 +404,17 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
   }
 
   function openModal() {
+    trackEvent('lab_opened');
     setModalOpen(true);
     setModalTab('lab');
     setErr('');
     setMsg('');
     setCopyMsg('');
+    setShowCheckoutPreview(false);
+    setShowMoreOptions(false);
+    setShowWhatsNext(false);
+    setFeedbackRating('');
+    setPaymentOutcome('');
     var fresh = wizardFresh();
     labWrite(fresh);
     setLab(fresh);
@@ -426,8 +428,6 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
     setMaxTransactions('1');
     setGeneratedLink('');
     setFieldErrors({});
-    setPrereq({});
-    setGoDone({});
     setStep(0);
   }
 
@@ -452,32 +452,20 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
     setStep(n);
     setErr('');
     setMsg('');
-  }
-
-  function prereqDone(map) {
-    for (var i = 0; i < PREREQ.length; i += 1) {
-      if (!map[PREREQ[i].id]) return false;
-    }
-    return true;
-  }
-
-  function allChecked(map, list) {
-    for (var i = 0; i < list.length; i += 1) {
-      if (!map[i]) return false;
-    }
-    return true;
+    var stepName = STEPS[n] ? STEPS[n].id : 'unknown';
+    trackEvent('step_viewed', { step: n, stepName: stepName });
   }
 
   function validateFields() {
     var errors = {};
-    if (isBlank(amount)) errors.amount = 'Amount is required';
-    else if (!/^\d+(\.\d{1,2})?$/.test(amount)) errors.amount = 'Enter valid amount (e.g., 100.00)';
-    if (isBlank(purpose)) errors.purpose = 'Purpose is required';
+    if (isBlank(amount)) errors.amount = 'Please enter an amount';
+    else if (!/^\d+(\.\d{1,2})?$/.test(amount)) errors.amount = 'Enter a valid amount like 100.00';
+    if (isBlank(purpose)) errors.purpose = 'Please tell us what this payment is for';
     if (!isBlank(customerEmail) && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerEmail)) {
-      errors.customerEmail = 'Enter valid email';
+      errors.customerEmail = 'Please enter a valid email address';
     }
     if (!isBlank(customerPhone) && !/^\d{10}$/.test(customerPhone.replace(/\s/g, ''))) {
-      errors.customerPhone = 'Enter 10-digit phone number';
+      errors.customerPhone = 'Please enter a 10-digit phone number';
     }
     return errors;
   }
@@ -485,21 +473,15 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
   function canAdvance() {
     var p = wizardProgress();
     if (step === 0) return true;
-    if (step === 1) return prereqDone(prereq);
-    if (step === 2) return true;
-    if (step === 3) return p.linkCreated && !isBlank(generatedLink);
-    if (step === 4) return p.linkShared;
-    if (step === 5) return p.linkTested;
-    if (step === 6) return true;
+    if (step === 1) return p.linkCreated && !isBlank(generatedLink);
+    if (step === 2) return p.paymentSimulated;
     return true;
   }
 
   function continueHint() {
     if (canAdvance()) return '';
-    if (step === 1) return 'Tick all checkboxes above.';
-    if (step === 3) return 'Fill required fields and create link.';
-    if (step === 4) return 'Copy the link first.';
-    if (step === 5) return 'Mark test payment as complete.';
+    if (step === 1) return 'Create your payment link first.';
+    if (step === 2) return 'Pick a payment outcome to continue.';
     return '';
   }
 
@@ -531,25 +513,45 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
     setLab(labData);
     setFieldErrors({});
     setErr('');
-    setMsg('Payment link created! Copy and share it.');
+    setMsg('Your payment link is ready!');
+
+    trackEvent('payment_link_created', {
+      amount: amount,
+      hasPurpose: !isBlank(purpose),
+      hasCustomerDetails: !isBlank(customerName) || !isBlank(customerEmail) || !isBlank(customerPhone)
+    });
   }
 
-  function markShared() {
+  function simulatePayment(outcome) {
+    setPaymentOutcome(outcome);
     var labData = labEnsure();
-    labData.progress.linkShared = true;
+    labData.progress.paymentSimulated = true;
     labWrite(labData);
     setLab(labData);
-    setMsg('Link marked as shared. Next: test payment.');
+    setShowCheckoutPreview(false);
+
+    if (outcome === 'success') {
+      setMsg('Payment successful! This is what happens when customers pay.');
+      trackEvent('payment_success', { method: 'simulated' });
+    } else if (outcome === 'failed') {
+      setMsg('Payment failed. This is what happens when payment doesn\'t go through.');
+      trackEvent('payment_failed', { method: 'simulated' });
+    } else if (outcome === 'cancelled') {
+      setMsg('Payment cancelled. Customer can try again with the same link.');
+      trackEvent('payment_cancelled', { method: 'simulated' });
+    }
     setErr('');
   }
 
-  function markTested() {
+  function submitFeedback(rating) {
+    setFeedbackRating(rating);
     var labData = labEnsure();
-    labData.progress.linkTested = true;
+    labData.progress.feedbackGiven = true;
     labWrite(labData);
     setLab(labData);
-    setMsg('Test payment completed. Next: link management.');
-    setErr('');
+    trackEvent('feedback_submitted', { rating: rating });
+    setMsg('Thanks for your feedback!');
+    setTimeout(function() { setMsg(''); }, 3000);
   }
 
   function copyText(text) {
@@ -557,10 +559,35 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
     if (!value) return;
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(value).then(function () {
-        setCopyMsg('Copied!');
-        setTimeout(function () { setCopyMsg(''); }, 2000);
+        setCopyMsg('✓ Link copied to clipboard!');
+        setTimeout(function () { setCopyMsg(''); }, 3000);
       });
+    } else {
+      // Fallback for older browsers
+      try {
+        var textArea = document.createElement('textarea');
+        textArea.value = value;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        setCopyMsg('✓ Link copied to clipboard!');
+        setTimeout(function () { setCopyMsg(''); }, 3000);
+      } catch (e) {
+        setCopyMsg('Please copy the link manually');
+        setTimeout(function () { setCopyMsg(''); }, 3000);
+      }
     }
+  }
+
+  function openCheckoutPreview() {
+    setShowCheckoutPreview(true);
+  }
+
+  function closeCheckoutPreview() {
+    setShowCheckoutPreview(false);
   }
 
   function restartLab() {
@@ -576,11 +603,15 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
     setAllowPartial(false);
     setMaxTransactions('1');
     setGeneratedLink('');
+    setShowCheckoutPreview(false);
+    setShowMoreOptions(false);
+    setShowWhatsNext(false);
+    setFeedbackRating('');
+    setPaymentOutcome('');
     setFieldErrors({});
-    setPrereq({});
-    setGoDone({});
     setErr('');
     setMsg('');
+    setCopyMsg('');
     goToStep(0);
   }
 
@@ -697,41 +728,23 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
   }
 
   function renderHelpPanel() {
-    var helpInsightCardStyle = {
-      marginBottom: '12px', padding: '12px 14px', borderRadius: '8px', border: '1px solid #e5e7eb', background: '#fff'
+    var helpTexts = {
+      understand: 'Click Next when you're ready to create your payment link.',
+      create: 'Fill in the amount and what the payment is for. Customer details are optional. Click "Create your payment link" when done.',
+      test: 'Click "Preview checkout" to see what your customer would see. Then pick a payment outcome to continue.',
+      done: 'You're finished! You can try again, share feedback, or explore what's next.'
     };
-    var helpInsightTitleStyle = { margin: '0 0 6px', fontSize: '14px', fontWeight: 700, color: '#111827' };
-    var helpInsightBodyStyle = { margin: 0, fontSize: '14px', lineHeight: 1.6, color: '#4b5563' };
 
-    var ctx = PaymentLinksLabRuntime.exportLabContext({
-      step: step,
-      stepLabel: STEPS[step] ? STEPS[step].stepLabel : String(step),
-      progress: prog,
-      err: err,
-      msg: msg
-    });
-    var insights = PaymentLinksLabRuntime.getCopilotInsights(ctx);
+    var currentStepId = STEPS[step] ? STEPS[step].id : 'understand';
+    var helpText = helpTexts[currentStepId] || 'Follow the instructions on screen.';
 
     return (
       <div>
         <p style={bodyTextStyle}>
-          Stuck? This tab tells you what to do next.
+          Stuck? Here's what to do next:
         </p>
-        <div style={infoBoxStyle}>
-          <strong style={{ display: 'block', marginBottom: '6px', color: PAYU_GREEN_DARK }}>Where you are</strong>
-          <p style={{ margin: 0, fontSize: '13px', lineHeight: 1.6 }}>
-            Step {ctx.step + 1} — {ctx.stepId}
-          </p>
-        </div>
-        <div aria-live="polite">
-          {insights.map(function (ins) {
-            return (
-              <div key={ins.id} style={helpInsightCardStyle}>
-                <p style={helpInsightTitleStyle}>{ins.title}</p>
-                <p style={helpInsightBodyStyle}>{ins.body}</p>
-              </div>
-            );
-          })}
+        <div style={Object.assign({}, infoBoxStyle, { fontSize: '15px', lineHeight: 1.7 })}>
+          {helpText}
         </div>
         <div style={btnRowStyle}>
           {renderWizardButton('primary', 'Back to lab', labClick(function () { setModalTab('lab'); }), false)}
@@ -740,118 +753,43 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
     );
   }
 
-  function renderPrereqLabel(item) {
-    var linkStyle = {
-      color: PAYU_GREEN_DARK,
-      textDecoration: 'underline',
-      fontWeight: 600
-    };
-
-    if (item.id === 'account') {
-      return (
-        <span>
-          Active <a href="https://onboarding.payu.in/app/account" target="_blank" rel="noopener noreferrer" style={linkStyle}>PayU merchant account</a>
-        </span>
-      );
-    }
-    if (item.id === 'dashboard') {
-      return (
-        <span>
-          Access to <a href="https://test-dashboard.payu.in" target="_blank" rel="noopener noreferrer" style={linkStyle}>PayU Dashboard</a> (test environment)
-        </span>
-      );
-    }
-    return <span>{item.label}</span>;
-  }
-
-  function renderWelcome() {
+  function renderUnderstand() {
     return (
       <div>
         <p style={{ fontSize: '16px', lineHeight: 1.65, color: '#374151', margin: '0 0 20px' }}>
-          This is a hands-on lab where you create a payment link by filling actual form fields — just like in the Dashboard. No login required, everything runs in your browser.
+          Payment links let you collect money from customers without building a website or app.
         </p>
         <div style={infoBoxStyle}>
-          <strong style={{ display: 'block', marginBottom: '10px', color: PAYU_GREEN_DARK }}>What you&apos;ll do</strong>
+          <strong style={{ display: 'block', marginBottom: '10px', color: PAYU_GREEN_DARK }}>Why payment links?</strong>
           <ul style={{ margin: 0, paddingLeft: '20px', lineHeight: 1.85 }}>
-            {WELCOME_OUTCOMES.map(function (item) {
+            {BENEFITS.map(function (item) {
               return <li key={item}>{item}</li>;
             })}
           </ul>
         </div>
         <div style={infoBoxStyle}>
-          <strong style={{ display: 'block', marginBottom: '10px', color: PAYU_GREEN_DARK }}>How it works</strong>
+          <strong style={{ display: 'block', marginBottom: '10px', color: PAYU_GREEN_DARK }}>What you'll do</strong>
           <ol style={{ margin: 0, paddingLeft: '20px', lineHeight: 1.85 }}>
-            <li>Learn what each field means</li>
-            <li>Fill in amount, purpose, and customer details</li>
-            <li>Click <strong>Create Payment Link</strong> to generate a demo link</li>
-            <li>Copy and share the link</li>
-            <li>See what customers experience when they pay</li>
+            <li>Fill in 4 simple details</li>
+            <li>Create your payment link</li>
+            <li>See what customers see when they pay</li>
           </ol>
         </div>
         <div style={infoBoxStyle}>
           <p style={{ margin: 0, fontSize: '14px', lineHeight: 1.6 }}>
-            <strong>Note:</strong> This generates a <strong>demo link</strong> for learning. In production, you create real links via PayU Dashboard.
+            <strong>Note:</strong> This creates a <strong>practice link</strong> for learning. To accept real payments, you'll use the PayU Dashboard.
           </p>
         </div>
       </div>
     );
   }
 
-  function renderPrereq() {
-    return (
-      <div>
-        <div style={{ display: 'grid', gap: '8px' }}>
-          {PREREQ.map(function (item) {
-            return (
-              <label key={item.id} style={cardCheckStyle}>
-                <input
-                  type="checkbox"
-                  checked={!!prereq[item.id]}
-                  onChange={function (e) {
-                    var n = Object.assign({}, prereq);
-                    n[item.id] = e.target.checked;
-                    setPrereq(n);
-                  }}
-                  style={checkboxInputStyle}
-                />
-                {renderPrereqLabel(item)}
-              </label>
-            );
-          })}
-        </div>
-      </div>
-    );
-  }
-
-  function renderFields() {
-    return (
-      <div>
-        <p style={bodyTextStyle}>
-          Before you fill the form, understand what each field does:
-        </p>
-        <div style={infoBoxStyle}>
-          <strong style={{ display: 'block', marginBottom: '10px', color: PAYU_GREEN_DARK }}>Form Fields</strong>
-          {FIELD_EXPLANATIONS.map(function (f) {
-            return (
-              <div key={f.field} style={fieldRowStyle}>
-                <div style={fieldLabelStyle}>{f.field}{f.required ? ' *' : ''}</div>
-                <div style={fieldDescStyle}>{f.desc}</div>
-              </div>
-            );
-          })}
-        </div>
-        <p style={bodyTextStyle}>
-          In the next step, you&apos;ll fill these fields yourself and generate your payment link.
-        </p>
-      </div>
-    );
-  }
 
   function renderCreate() {
     return (
       <div>
         <p style={bodyTextStyle}>
-          Fill in the details below to create your payment link. We&apos;ve pre-filled example values — you can use them or change any field.
+          Fill in these 4 details. We've added examples to get you started - change them if you like.
         </p>
         <div style={fieldStackStyle}>
           <div>
@@ -862,19 +800,21 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
               onChange={function (e) { setAmount(e.target.value); }}
               style={inputStyle}
               placeholder="100.00"
+              aria-describedby={fieldErrors.amount ? 'amount-error' : undefined}
             />
-            {fieldErrors.amount ? <p style={fieldInlineErrStyle}>{fieldErrors.amount}</p> : null}
+            {fieldErrors.amount ? <p id="amount-error" style={fieldInlineErrStyle}>{fieldErrors.amount}</p> : null}
           </div>
           <div>
-            <FieldLabel name="Purpose" required={true} />
+            <FieldLabel name="What is this payment for?" required={true} />
             <input
               type="text"
               value={purpose}
               onChange={function (e) { setPurpose(e.target.value); }}
               style={inputStyle}
-              placeholder="Payment for Product X"
+              placeholder="Product sale, service fee, etc."
+              aria-describedby={fieldErrors.purpose ? 'purpose-error' : undefined}
             />
-            {fieldErrors.purpose ? <p style={fieldInlineErrStyle}>{fieldErrors.purpose}</p> : null}
+            {fieldErrors.purpose ? <p id="purpose-error" style={fieldInlineErrStyle}>{fieldErrors.purpose}</p> : null}
           </div>
           <div>
             <FieldLabel name="Customer Name" required={false} />
@@ -887,169 +827,252 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
             />
           </div>
           <div>
-            <FieldLabel name="Customer Email" required={false} />
-            <input
-              type="email"
-              value={customerEmail}
-              onChange={function (e) { setCustomerEmail(e.target.value); }}
-              style={inputStyle}
-              placeholder="aarav@example.com"
-            />
-            {fieldErrors.customerEmail ? <p style={fieldInlineErrStyle}>{fieldErrors.customerEmail}</p> : null}
+            <FieldLabel name="Customer Email or Phone" required={false} />
+            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+              <input
+                type="email"
+                value={customerEmail}
+                onChange={function (e) { setCustomerEmail(e.target.value); }}
+                style={Object.assign({}, inputStyle, { flex: '1 1 200px' })}
+                placeholder="email@example.com"
+                aria-describedby={fieldErrors.customerEmail ? 'email-error' : undefined}
+              />
+              <input
+                type="text"
+                value={customerPhone}
+                onChange={function (e) { setCustomerPhone(e.target.value); }}
+                style={Object.assign({}, inputStyle, { flex: '1 1 150px' })}
+                placeholder="9876543210"
+                aria-describedby={fieldErrors.customerPhone ? 'phone-error' : undefined}
+              />
+            </div>
+            {fieldErrors.customerEmail ? <p id="email-error" style={fieldInlineErrStyle}>{fieldErrors.customerEmail}</p> : null}
+            {fieldErrors.customerPhone ? <p id="phone-error" style={fieldInlineErrStyle}>{fieldErrors.customerPhone}</p> : null}
           </div>
-          <div>
-            <FieldLabel name="Customer Phone" required={false} />
-            <input
-              type="text"
-              value={customerPhone}
-              onChange={function (e) { setCustomerPhone(e.target.value); }}
-              style={inputStyle}
-              placeholder="9876543210"
-            />
-            {fieldErrors.customerPhone ? <p style={fieldInlineErrStyle}>{fieldErrors.customerPhone}</p> : null}
-          </div>
-          <div>
-            <FieldLabel name="Invoice Number (Optional)" required={false} />
-            <input
-              type="text"
-              value={invoiceNumber}
-              onChange={function (e) { setInvoiceNumber(e.target.value); }}
-              style={inputStyle}
-              placeholder="INV-2024-001"
-            />
-          </div>
-          <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
-            <input
-              type="checkbox"
-              checked={allowPartial}
-              onChange={function (e) { setAllowPartial(e.target.checked); }}
-              style={checkboxInputStyle}
-            />
-            <span style={{ fontSize: '14px', fontWeight: 600, color: PAYU_GREEN }}>Allow Partial Payment</span>
-          </label>
-          <div>
-            <FieldLabel name="Max Transactions" required={false} />
-            <input
-              type="text"
-              value={maxTransactions}
-              onChange={function (e) { setMaxTransactions(e.target.value); }}
-              style={inputStyle}
-              placeholder="1"
-            />
+
+          {/* More options collapsible */}
+          <div style={{ marginTop: '8px' }}>
+            <button
+              type="button"
+              onClick={labClick(function() {
+                setShowMoreOptions(!showMoreOptions);
+                if (!showMoreOptions) {
+                  trackEvent('more_options_expanded');
+                }
+              })}
+              style={{
+                cursor: 'pointer',
+                background: 'none',
+                border: 'none',
+                color: PAYU_GREEN_DARK,
+                fontSize: '14px',
+                fontWeight: 600,
+                padding: '8px 0',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}
+            >
+              <span style={{ fontSize: '16px' }}>{showMoreOptions ? '▼' : '▸'}</span>
+              More options
+            </button>
+            {showMoreOptions ? (
+              <div style={{ marginTop: '12px', padding: '16px', background: '#f9fafb', borderRadius: '8px', border: '1px solid #e5e7eb' }}>
+                <div style={{ marginBottom: '16px' }}>
+                  <FieldLabel name="Invoice Number" required={false} />
+                  <input
+                    type="text"
+                    value={invoiceNumber}
+                    onChange={function (e) { setInvoiceNumber(e.target.value); }}
+                    style={inputStyle}
+                    placeholder="INV-2024-001"
+                  />
+                </div>
+                <label style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', cursor: 'pointer', marginBottom: '16px' }}>
+                  <input
+                    type="checkbox"
+                    checked={allowPartial}
+                    onChange={function (e) { setAllowPartial(e.target.checked); }}
+                    style={checkboxInputStyle}
+                  />
+                  <span style={{ fontSize: '14px', lineHeight: 1.5, color: '#374151' }}>
+                    <strong>Allow partial payments</strong><br />
+                    <span style={{ fontSize: '13px', color: '#6b7280' }}>Let customers pay in installments</span>
+                  </span>
+                </label>
+                <div>
+                  <FieldLabel name="Max times this link can be used" required={false} />
+                  <input
+                    type="text"
+                    value={maxTransactions}
+                    onChange={function (e) { setMaxTransactions(e.target.value); }}
+                    style={inputStyle}
+                    placeholder="1"
+                  />
+                </div>
+              </div>
+            ) : null}
           </div>
         </div>
+
         <div style={btnRowStyle}>
-          {renderWizardButton('primary', 'Create Payment Link', labClick(generateDemoLink), false)}
+          {renderWizardButton('primary', 'Create your payment link', labClick(generateDemoLink), false)}
         </div>
+
         {generatedLink ? (
-          <div style={Object.assign({}, infoBoxStyle, { marginTop: '16px', border: '1px solid ' + PAYU_GREEN })}>
-            <p style={{ margin: '0 0 6px', fontSize: '12px', fontWeight: 700, color: PAYU_GREEN }}>Your Payment Link</p>
-            <code style={{ fontSize: '11px', wordBreak: 'break-all', display: 'block', marginBottom: '8px' }}>{generatedLink}</code>
-            {renderWizardButton('secondary', 'Copy Link', labClick(function () { copyText(generatedLink); }), false)}
+          <div style={Object.assign({}, infoBoxStyle, { marginTop: '16px', border: '2px solid ' + PAYU_GREEN })}>
+            <p style={{ margin: '0 0 6px', fontSize: '13px', fontWeight: 700, color: PAYU_GREEN }}>✓ Your link is ready</p>
+            <code style={{ fontSize: '11px', wordBreak: 'break-all', display: 'block', marginBottom: '10px', padding: '8px', background: '#fff', borderRadius: '4px' }}>{generatedLink}</code>
+            {renderWizardButton('secondary', 'Copy link', labClick(function () { copyText(generatedLink); }), false)}
+            {copyMsg ? <p style={Object.assign({}, okTextStyle, { marginTop: '8px', marginBottom: 0 })}>{copyMsg}</p> : null}
           </div>
         ) : null}
-        {prog.linkCreated ? <p style={okTextStyle}>Link created! Next: share it.</p> : null}
       </div>
     );
   }
 
-  function renderShare() {
-    return (
-      <div>
-        <p style={bodyTextStyle}>
-          Your payment link is ready! Here&apos;s how you share it with customers:
-        </p>
-        {generatedLink ? (
-          <div style={infoBoxStyle}>
-            <p style={{ margin: '0 0 6px', fontSize: '12px', fontWeight: 700, color: PAYU_GREEN }}>Your Link</p>
-            <code style={{ fontSize: '11px', wordBreak: 'break-all', display: 'block', marginBottom: '8px' }}>{generatedLink}</code>
-            {renderWizardButton('secondary', 'Copy Link', labClick(function () { copyText(generatedLink); }), false)}
-          </div>
-        ) : (
-          <p style={bodyTextStyle}>Go back to create a link first.</p>
-        )}
-        <div style={infoBoxStyle}>
-          <strong style={{ display: 'block', marginBottom: '10px', color: PAYU_GREEN_DARK }}>Sharing Options</strong>
-          <ul style={{ margin: 0, paddingLeft: '20px', lineHeight: 1.85 }}>
-            <li><strong>Email:</strong> Paste the link in your email to the customer</li>
-            <li><strong>SMS:</strong> Send via text message</li>
-            <li><strong>WhatsApp/Telegram:</strong> Share in messaging apps</li>
-            <li><strong>Website:</strong> Embed as a button or QR code</li>
-            <li><strong>Social Media:</strong> Share on Facebook, Twitter, etc.</li>
-          </ul>
-        </div>
-        <div style={btnRowStyle}>
-          {generatedLink ? renderExternalLink(generatedLink, 'Open Link') : null}
-          {renderWizardButton('primary', 'I copied the link', labClick(markShared), !generatedLink)}
-        </div>
-        {prog.linkShared ? <p style={okTextStyle}>Link shared. Next: test payment.</p> : null}
-      </div>
-    );
-  }
 
   function renderTest() {
     return (
       <div>
         <p style={bodyTextStyle}>
-          Click your payment link and see what customers experience. Use these test credentials:
+          Try it out - see what your customer sees when they open your payment link.
         </p>
         <div style={infoBoxStyle}>
-          <strong style={{ display: 'block', marginBottom: '10px', color: PAYU_GREEN_DARK }}>Test Payment Details</strong>
-          <ul style={{ margin: 0, paddingLeft: '20px', lineHeight: 1.85 }}>
-            <li><strong>Test Card:</strong> 5123456789012346</li>
-            <li><strong>CVV:</strong> 123</li>
-            <li><strong>Expiry:</strong> Any future date (e.g., 12/28)</li>
-            <li><strong>OTP:</strong> 123456</li>
-            <li><strong>Test UPI:</strong> success@payu</li>
-          </ul>
-        </div>
-        <div style={infoBoxStyle}>
-          <strong style={{ display: 'block', marginBottom: '10px', color: PAYU_GREEN_DARK }}>What to Check</strong>
+          <strong style={{ display: 'block', marginBottom: '10px', color: PAYU_GREEN_DARK }}>What happens next</strong>
           <ol style={{ margin: 0, paddingLeft: '20px', lineHeight: 1.85 }}>
-            <li>Link opens and shows correct amount and purpose</li>
-            <li>Customer details are pre-filled if you entered them</li>
-            <li>Payment methods are visible (card, UPI, wallets)</li>
-            <li>Complete payment with test credentials</li>
-            <li>Check success/failure page</li>
-            <li>In real Dashboard, you&apos;d see the transaction</li>
+            <li>Click <strong>Preview checkout</strong> below</li>
+            <li>See the payment page your customer would see</li>
+            <li>Pick an outcome: payment successful, failed, or cancelled</li>
           </ol>
         </div>
+        {paymentOutcome ? (
+          <div style={Object.assign({}, infoBoxStyle, { border: '2px solid ' + PAYU_GREEN, marginBottom: '16px' })}>
+            <p style={{ margin: 0, fontSize: '14px', fontWeight: 600, color: PAYU_GREEN }}>
+              {paymentOutcome === 'success' ? '✓ You tried a successful payment' :
+               paymentOutcome === 'failed' ? '✗ You tried a failed payment' :
+               '⊗ You tried a cancelled payment'}
+            </p>
+          </div>
+        ) : null}
         <div style={btnRowStyle}>
-          {generatedLink ? renderExternalLink(generatedLink, 'Open Payment Link') : null}
-          {renderWizardButton('primary', 'I completed test payment', labClick(markTested), false)}
+          {generatedLink ? renderWizardButton('primary', 'Preview checkout', labClick(function() {
+            setShowCheckoutPreview(true);
+            trackEvent('preview_checkout_opened');
+          }), false) : null}
         </div>
-        {prog.linkTested ? <p style={okTextStyle}>Test done! Next: link management.</p> : null}
       </div>
     );
   }
 
-  function renderManage() {
+  function renderCheckoutPreview() {
+    var previewOverlayStyle = {
+      position: 'fixed', inset: 0, zIndex: 100000, background: 'rgba(0,0,0,0.7)',
+      display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px'
+    };
+    var previewPanelStyle = {
+      width: '100%', maxWidth: '480px', maxHeight: '90vh', overflow: 'auto',
+      background: '#fff', borderRadius: '12px', padding: '24px', boxSizing: 'border-box'
+    };
+    var checkoutHeaderStyle = {
+      textAlign: 'center', paddingBottom: '16px', borderBottom: '2px solid #e5e7eb', marginBottom: '20px'
+    };
+    var paymentMethodStyle = {
+      display: 'flex', gap: '8px', padding: '12px', border: '1px solid #e5e7eb',
+      borderRadius: '8px', cursor: 'pointer', marginBottom: '8px', alignItems: 'center'
+    };
+
     return (
-      <div>
-        <p style={bodyTextStyle}>
-          In the real PayU Dashboard, you can manage all your payment links:
-        </p>
-        <div style={infoBoxStyle}>
-          <strong style={{ display: 'block', marginBottom: '10px', color: PAYU_GREEN_DARK }}>Dashboard Features</strong>
-          <ul style={{ margin: 0, paddingLeft: '20px', lineHeight: 1.85 }}>
-            <li><strong>View All Links:</strong> See all created links in one place</li>
-            <li><strong>Link Details:</strong> View transactions, customer info, status</li>
-            <li><strong>Duplicate:</strong> Create a new link with same details</li>
-            <li><strong>Share Again:</strong> Resend via email/SMS</li>
-            <li><strong>Disable Link:</strong> Stop accepting new payments</li>
-            <li><strong>Export History:</strong> Download as CSV/Excel</li>
-            <li><strong>Filter by Status:</strong> Active, Expired, Deactivated</li>
-            <li><strong>Track Payments:</strong> See who paid, when, and how much</li>
-          </ul>
-        </div>
-        <div style={btnRowStyle}>
-          {renderExternalLink(LAB_CONFIG.testDashboardUrl, 'Open Test Dashboard')}
+      <div style={previewOverlayStyle} onClick={labClick(closeCheckoutPreview)}>
+        <div style={previewPanelStyle} onClick={function(e) { e.stopPropagation(); }}>
+          <div style={checkoutHeaderStyle}>
+            <div style={{ fontSize: '24px', fontWeight: 700, color: PAYU_GREEN_DARK, marginBottom: '4px' }}>PayU</div>
+            <div style={{ fontSize: '12px', color: '#6b7280' }}>Secure Payment Gateway</div>
+          </div>
+
+          <div style={{ marginBottom: '20px', padding: '16px', background: PAYU_GREEN_LIGHT, borderRadius: '8px' }}>
+            <div style={{ fontSize: '12px', color: '#6b7280', marginBottom: '4px' }}>Paying for</div>
+            <div style={{ fontSize: '16px', fontWeight: 600, color: '#111827', marginBottom: '12px' }}>{purpose}</div>
+            <div style={{ fontSize: '12px', color: '#6b7280', marginBottom: '4px' }}>Amount</div>
+            <div style={{ fontSize: '28px', fontWeight: 700, color: PAYU_GREEN_DARK }}>₹{amount}</div>
+          </div>
+
+          {customerName || customerEmail || customerPhone ? (
+            <div style={{ marginBottom: '20px', padding: '12px', background: '#f9fafb', borderRadius: '8px' }}>
+              <div style={{ fontSize: '13px', fontWeight: 600, color: '#111827', marginBottom: '8px' }}>Customer Details</div>
+              {customerName ? <div style={{ fontSize: '13px', color: '#4b5563', marginBottom: '4px' }}><strong>Name:</strong> {customerName}</div> : null}
+              {customerEmail ? <div style={{ fontSize: '13px', color: '#4b5563', marginBottom: '4px' }}><strong>Email:</strong> {customerEmail}</div> : null}
+              {customerPhone ? <div style={{ fontSize: '13px', color: '#4b5563' }}><strong>Phone:</strong> {customerPhone}</div> : null}
+            </div>
+          ) : null}
+
+          <div style={{ marginBottom: '20px' }}>
+            <div style={{ fontSize: '14px', fontWeight: 600, color: '#111827', marginBottom: '12px' }}>Select Payment Method</div>
+            <div style={paymentMethodStyle}>
+              <div style={{ width: '40px', height: '40px', background: PAYU_GREEN_LIGHT, borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px' }}>💳</div>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: '14px', fontWeight: 600, color: '#111827' }}>Cards</div>
+                <div style={{ fontSize: '12px', color: '#6b7280' }}>Credit / Debit / ATM Card</div>
+              </div>
+            </div>
+            <div style={paymentMethodStyle}>
+              <div style={{ width: '40px', height: '40px', background: PAYU_GREEN_LIGHT, borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px' }}>📱</div>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: '14px', fontWeight: 600, color: '#111827' }}>UPI</div>
+                <div style={{ fontSize: '12px', color: '#6b7280' }}>GPay, PhonePe, Paytm & More</div>
+              </div>
+            </div>
+            <div style={paymentMethodStyle}>
+              <div style={{ width: '40px', height: '40px', background: PAYU_GREEN_LIGHT, borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px' }}>🏦</div>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: '14px', fontWeight: 600, color: '#111827' }}>Net Banking</div>
+                <div style={{ fontSize: '12px', color: '#6b7280' }}>All Major Banks</div>
+              </div>
+            </div>
+            <div style={paymentMethodStyle}>
+              <div style={{ width: '40px', height: '40px', background: PAYU_GREEN_LIGHT, borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px' }}>👛</div>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: '14px', fontWeight: 600, color: '#111827' }}>Wallets</div>
+                <div style={{ fontSize: '12px', color: '#6b7280' }}>Paytm, Mobikwik & More</div>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ padding: '12px', background: '#fffbeb', border: '1px solid #fde68a', borderRadius: '8px', marginBottom: '20px' }}>
+            <div style={{ fontSize: '13px', color: '#92400e', lineHeight: 1.5, marginBottom: '12px' }}>
+              <strong>Pick what happens:</strong> In real life, your customer would enter their payment details here. For this practice, just pick an outcome below.
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }} role="group" aria-label="Simulated payment outcomes">
+            <button
+              type="button"
+              onClick={labClick(function() { simulatePayment('success'); })}
+              style={Object.assign({}, btnPrimaryStyle, { width: '100%', background: PAYU_GREEN })}
+            >
+              ✓ Payment successful
+            </button>
+            <button
+              type="button"
+              onClick={labClick(function() { simulatePayment('failed'); })}
+              style={Object.assign({}, btnPrimaryStyle, { width: '100%', background: '#dc2626' })}
+            >
+              ✗ Payment failed
+            </button>
+            <button
+              type="button"
+              onClick={labClick(function() { simulatePayment('cancelled'); })}
+              style={Object.assign({}, btnSecondaryStyle, { width: '100%' })}
+            >
+              Cancel payment
+            </button>
+          </div>
         </div>
       </div>
     );
   }
 
-  function renderGolive() {
+  function renderDone() {
     var linkStyle = {
       color: PAYU_GREEN_DARK,
       textDecoration: 'underline',
@@ -1058,42 +1081,109 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
 
     return (
       <div>
-        <p style={bodyTextStyle}>
-          Ready for production? Complete this checklist:
-        </p>
-        <div style={{ display: 'grid', gap: '8px', marginBottom: '16px' }}>
-          {GO_LIVE.map(function (label, idx) {
-            return (
-              <label key={label} style={{ display: 'flex', cursor: 'pointer', alignItems: 'flex-start', gap: '8px', fontSize: '14px', fontWeight: 600, lineHeight: 1.5, color: PAYU_GREEN, minHeight: '44px', padding: '8px 0', boxSizing: 'border-box' }}>
-                <input
-                  type="checkbox"
-                  checked={!!goDone[idx]}
-                  onChange={function (e) {
-                    var n = Object.assign({}, goDone);
-                    n[idx] = e.target.checked;
-                    setGoDone(n);
-                  }}
-                  style={checkboxInputStyle}
-                />
-                <span>{label}</span>
-              </label>
-            );
-          })}
+        <div style={{ textAlign: 'center', padding: '20px 0' }}>
+          <div style={{ fontSize: '48px', marginBottom: '12px' }}>🎉</div>
+          <h3 style={{ margin: '0 0 8px', fontSize: '1.5rem', fontWeight: 700, color: '#111827' }}>You're all set!</h3>
+          <p style={{ margin: 0, fontSize: '15px', color: '#6b7280' }}>
+            You've created and tested your first payment link
+          </p>
         </div>
-        <div style={infoBoxStyle}>
-          <strong style={{ display: 'block', marginBottom: '10px', color: PAYU_GREEN_DARK }}>Next Steps</strong>
-          <ol style={{ margin: 0, paddingLeft: '20px', lineHeight: 1.85 }}>
-            <li>Log in to <a href="https://dashboard.payu.in" target="_blank" rel="noopener noreferrer" style={linkStyle}>production Dashboard</a></li>
-            <li>Go to <strong>Payment Tools</strong> → <strong>Payment Links</strong></li>
-            <li>Click <strong>Create New Payment Link</strong></li>
-            <li>Fill fields just like you did in this lab</li>
-            <li>Share real links with real customers</li>
-            <li>Monitor transactions in Dashboard</li>
-          </ol>
+
+        {generatedLink ? (
+          <div style={Object.assign({}, infoBoxStyle, { border: '2px solid ' + PAYU_GREEN, marginBottom: '20px' })}>
+            <p style={{ margin: '0 0 6px', fontSize: '13px', fontWeight: 700, color: PAYU_GREEN }}>Your payment link</p>
+            <code style={{ fontSize: '11px', wordBreak: 'break-all', display: 'block', marginBottom: '10px', padding: '8px', background: '#fff', borderRadius: '4px' }}>{generatedLink}</code>
+            {renderWizardButton('secondary', 'Copy link', labClick(function () { copyText(generatedLink); }), false)}
+            {copyMsg ? <p style={Object.assign({}, okTextStyle, { marginTop: '8px', marginBottom: 0 })}>{copyMsg}</p> : null}
+          </div>
+        ) : null}
+
+        {!feedbackRating ? (
+          <div style={{ marginBottom: '20px', padding: '16px', background: '#f9fafb', borderRadius: '8px', border: '1px solid #e5e7eb' }}>
+            <p style={{ margin: '0 0 12px', fontSize: '14px', fontWeight: 600, color: '#111827' }}>How easy was it to complete this?</p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '8px' }}>
+              <button
+                type="button"
+                onClick={labClick(function() { submitFeedback('very_easy'); })}
+                style={Object.assign({}, btnSecondaryStyle, { padding: '8px 12px', minHeight: '40px', fontSize: '13px' })}
+              >
+                Very easy
+              </button>
+              <button
+                type="button"
+                onClick={labClick(function() { submitFeedback('easy'); })}
+                style={Object.assign({}, btnSecondaryStyle, { padding: '8px 12px', minHeight: '40px', fontSize: '13px' })}
+              >
+                Easy
+              </button>
+              <button
+                type="button"
+                onClick={labClick(function() { submitFeedback('difficult'); })}
+                style={Object.assign({}, btnSecondaryStyle, { padding: '8px 12px', minHeight: '40px', fontSize: '13px' })}
+              >
+                Difficult
+              </button>
+              <button
+                type="button"
+                onClick={labClick(function() { submitFeedback('very_difficult'); })}
+                style={Object.assign({}, btnSecondaryStyle, { padding: '8px 12px', minHeight: '40px', fontSize: '13px' })}
+              >
+                Very difficult
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div style={Object.assign({}, infoBoxStyle, { marginBottom: '20px', border: '1px solid ' + PAYU_GREEN })}>
+            <p style={{ margin: 0, fontSize: '14px', color: PAYU_GREEN, fontWeight: 600 }}>✓ Thanks for your feedback!</p>
+          </div>
+        )}
+
+        <div style={{ marginBottom: '16px', padding: '16px', background: '#fff', borderRadius: '8px', border: '1px solid #e5e7eb' }}>
+          <button
+            type="button"
+            onClick={labClick(function() { setShowWhatsNext(!showWhatsNext); })}
+            style={{ cursor: 'pointer', fontWeight: 600, fontSize: '14px', color: PAYU_GREEN_DARK, display: 'flex', alignItems: 'center', gap: '8px', background: 'none', border: 'none', padding: 0, width: '100%', textAlign: 'left' }}
+          >
+            <span style={{ fontSize: '16px' }}>{showWhatsNext ? '▼' : '▸'}</span>
+            What can you do next?
+          </button>
+          {showWhatsNext ? (
+            <div style={{ marginTop: '16px' }}>
+              <div style={{ marginBottom: '20px' }}>
+                <p style={{ margin: '0 0 8px', fontSize: '14px', fontWeight: 600, color: '#111827' }}>Share your link</p>
+                <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '14px', lineHeight: 1.7, color: '#4b5563' }}>
+                  <li>Send via SMS, email, or WhatsApp</li>
+                  <li>Post on social media</li>
+                  <li>Add to your website or invoices</li>
+                </ul>
+              </div>
+              <div style={{ marginBottom: '20px' }}>
+                <p style={{ margin: '0 0 8px', fontSize: '14px', fontWeight: 600, color: '#111827' }}>Manage your links</p>
+                <p style={{ margin: '0 0 8px', fontSize: '14px', color: '#4b5563' }}>In the PayU Dashboard, you can:</p>
+                <ul style={{ margin: 0, paddingLeft: '20px', fontSize: '14px', lineHeight: 1.7, color: '#4b5563' }}>
+                  <li>View all your payment links</li>
+                  <li>See who paid and when</li>
+                  <li>Disable or duplicate links</li>
+                  <li>Download payment reports</li>
+                </ul>
+              </div>
+              <div style={{ marginBottom: '16px' }}>
+                <p style={{ margin: '0 0 8px', fontSize: '14px', fontWeight: 600, color: '#111827' }}>Go live with real payments</p>
+                <ol style={{ margin: 0, paddingLeft: '20px', fontSize: '14px', lineHeight: 1.7, color: '#4b5563' }}>
+                  <li>Log in to <a href="https://dashboard.payu.in" target="_blank" rel="noopener noreferrer" style={linkStyle}>PayU Dashboard</a></li>
+                  <li>Go to Payment Links section</li>
+                  <li>Create a link just like you did here</li>
+                  <li>Share it with your customers</li>
+                  <li>Get notified when they pay</li>
+                </ol>
+              </div>
+            </div>
+          ) : null}
         </div>
+
         <div style={btnRowStyle}>
-          {renderWizardButton('primary', 'Start over', labClick(restartLab), false)}
-          {renderExternalLink('https://dashboard.payu.in', 'Open Production Dashboard')}
+          {renderWizardButton('secondary', 'Try again', labClick(restartLab), false)}
+          {renderExternalLink('https://dashboard.payu.in', 'Open PayU Dashboard')}
         </div>
       </div>
     );
@@ -1101,38 +1191,23 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
 
   function renderWizardBody() {
     var inner = null;
-    if (step === 0) inner = renderWelcome();
-    else if (step === 1) inner = renderPrereq();
-    else if (step === 2) inner = renderFields();
-    else if (step === 3) inner = renderCreate();
-    else if (step === 4) inner = renderShare();
-    else if (step === 5) inner = renderTest();
-    else if (step === 6) inner = renderManage();
-    else if (step === 7) inner = renderGolive();
+    if (step === 0) inner = renderUnderstand();
+    else if (step === 1) inner = renderCreate();
+    else if (step === 2) inner = renderTest();
+    else if (step === 3) inner = renderDone();
 
     return (
       <div>
         {step > 0 && current.tagline ? <p style={taglineStyle}>{current.tagline}</p> : null}
-        {step >= 2 && step <= 5 ? (
-          <div className="mb-4 flex items-start gap-3 rounded-md border border-teal-200 bg-white/90 px-3 py-2.5" role="note">
-            <span className="mt-0.5 shrink-0 rounded bg-teal-700 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white">Hands-on Lab</span>
-            <p className="mb-0 min-w-0 text-sm leading-snug text-gray-700">
-              <span className="font-semibold text-gray-900">Fill real form fields</span> — create your payment link right here in the browser.
-            </p>
-          </div>
-        ) : null}
-        {step > 1 ? (
+        {step === 1 || step === 2 ? (
           <LabStatus items={[
-            { label: 'Fields learned', ok: step > 2 },
             { label: 'Link created', ok: prog.linkCreated },
-            { label: 'Link shared', ok: prog.linkShared },
-            { label: 'Payment tested', ok: prog.linkTested }
+            { label: 'Payment simulated', ok: prog.paymentSimulated }
           ]} />
         ) : null}
         <div aria-live="polite" aria-atomic="true">
           {err ? <p style={errTextStyle}>{err}</p> : null}
           {msg ? <p style={okTextStyle}>{msg}</p> : null}
-          {copyMsg ? <p style={okTextStyle}>{copyMsg}</p> : null}
         </div>
         <div style={step === 0 ? { marginTop: '4px' } : contentCardStyle}>{inner}</div>
       </div>
@@ -1212,13 +1287,13 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
               Payment Links Lab
             </h3>
             <p style={{ margin: '0 0 12px', fontSize: '14px', lineHeight: 1.6, color: '#4b5563' }}>
-              Create a payment link by filling actual form fields — no Dashboard login needed. Everything runs in your browser.
+              Practice creating a payment link - no account or login needed. Everything runs in your browser.
             </p>
             <ul style={{ margin: 0, paddingLeft: '18px', fontSize: '13px', lineHeight: 1.7, color: '#374151' }}>
-              <li>Fill amount, purpose, customer details</li>
-              <li>Generate demo payment link</li>
-              <li>Test payment flow</li>
-              <li>About 10 minutes</li>
+              <li>Fill in 4 simple details</li>
+              <li>Create your practice link</li>
+              <li>See what customers see</li>
+              <li>About 5 minutes</li>
             </ul>
           </div>
           <div style={{ flexShrink: 0, alignSelf: 'center' }}>
@@ -1239,8 +1314,8 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
                     PayU Payment Links
                   </div>
                   <h2 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 700, lineHeight: 1.3 }}>{current.title}</h2>
-                  {step > 0 ? (
-                    <p style={{ margin: '6px 0 0', fontSize: '13px', opacity: 0.9 }}>Step {current.stepLabel} of 7</p>
+                  {step >= 0 ? (
+                    <p style={{ margin: '6px 0 0', fontSize: '13px', opacity: 0.9 }}>Step {current.stepLabel} of 4</p>
                   ) : null}
                 </div>
                 <button
@@ -1265,12 +1340,14 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
             <div style={modalFooterStyle}>
               {modalTab === 'lab' ? renderWizardFooter() : null}
               <p style={Object.assign({}, mutedTextStyle, { marginTop: modalTab === 'lab' ? '8px' : 0, marginBottom: 0 })}>
-                {modalTab === 'help' ? 'Help runs locally · Esc to close' : 'Progress saved in this browser · Esc to close'}
+                {modalTab === 'help' ? 'Help runs locally - Esc to close' : 'Progress saved in this browser - Esc to close'}
               </p>
             </div>
           </div>
         </div>
       ) : null}
+
+      {showCheckoutPreview ? renderCheckoutPreview() : null}
     </div>
   );
 };
