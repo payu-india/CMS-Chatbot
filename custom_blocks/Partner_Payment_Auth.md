@@ -3,13 +3,7 @@ name: Partner_Payment_Auth
 ---
 ## Step 1: Get the Access Token
 
-### Step 1.1: Receiving the auth_code on the redirect URI
-
-The `auth_code` is received on the configured redirect URI.
-
-### Step 1.2: Validate this auth_code
-
-Validate this auth_code using the [Validate Auth Code and Client API](https://docs.payu.in/reference-link/validate-auth-code-and-client).
+The `auth_code` is received on the configured redirect URI. Validate this auth_code using the [Validate Auth Code and Client API](https://docs.payu.in/reference-link/validate-auth-code-and-client).
 
 You will receive an `access_token`.
 
@@ -48,7 +42,5 @@ You will receive an `access_token`.
   }
   ```
 </Accordion>
-
-## Step 1.3: Use the access_token
 
 Send the access token as a bearer token when calling Partner Integration APIs.
