@@ -4,7 +4,7 @@ api:
   operationId: FetchRequiredDocs
 hidden: false
 ---
-The **Fetch Required KYC Documents** API returns document categories and accepted types for the merchant (Step 14 of 16).
+The **Fetch Required KYC Documents** API returns document categories and accepted types for the merchant.
 
 <Callout icon="📘" theme="info">
   ### Notes:
@@ -23,7 +23,7 @@ The **Fetch Required KYC Documents** API returns document categories and accepte
 | Production Environment | `https://partner.payu.in/api/v3/merchants/{mid}/kyc_document/required_docs`     |
 
 <Callout icon="📘" theme="info">
-  ### **Mapping to Step 15 - Upload KYC Documents:**&#x20;
+  ### **Mapping to Step 14- Upload KYC Documents:**&#x20;
 
   `document_categories[i].name` → `merchant[document_category]`; `document_categories[i].document_types[j].name` → `merchant[document_type]`.
 </Callout>
