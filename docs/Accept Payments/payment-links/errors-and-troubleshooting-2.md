@@ -118,16 +118,13 @@ next:
 
   1. Confirm the customer's phone or email was entered correctly. To verify, open the link **Details** view in the Dashboard and check the details under the **Customer Details&#x20;**&#x73;ection.&#x20;
 
-     **What Next:** Refer to the <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#what-can-i-do-with-a-payment-link-after-it-is-created">Edit Payment Link Details</Anchor>**&#x20;**&#x66;or steps to edit information if they are incorrect.
+     **You Can:** Refer to the <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#what-can-i-do-with-a-payment-link-after-it-is-created">Edit Payment Link Details</Anchor>**&#x20;**&#x66;or steps to edit information if they are incorrect.
   2. Confirm the **Send via SMS** or **Send Email** toggles were turned on at the time of the link creation. Notifications fire once, at creation — they cannot be re-triggered for an existing link.
 
-     **What Next:&#x20;**<Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#what-can-i-do-with-a-payment-link-after-it-is-created">Share or resend the link</Anchor> to the customer.
+     **You can:&#x20;**<Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#what-can-i-do-with-a-payment-link-after-it-is-created">Share or resend the link</Anchor> to the customer.
   3. Ask the customer to:
-     - Check their spam/junk folder (for email).
-     - Check if DND (Do Not Disturb) is active on their number — DND blocks all promotional messages from all senders.
-
-  **How to resend the link:**
-  Go to the link in the Dashboard → **Actions** → **Share** → send again via SMS or email, or copy the URL and share manually.
+     - Check their spam or junk folder (for email).
+     - Check if DND (Do Not Disturb) is active on their number. DND blocks all promotional messages from all senders.
 
   <Callout icon="🚧" theme="warning">
     Notification status is visible in the link's **Details** view under `emailStatus` and `smsStatus`. If either shows "not opted", the notification was not configured at creation time.
