@@ -12,9 +12,9 @@ The **Collect Payment using Rewards** API (**\_payment** API) is used to initiat
 
   The below procedure is for Merchant Hosted Checkout integration. For Server-to-Server (S2S) integration, refer to the following based on the payment method:
 
--  [Cards S2S](https://docs.payu.in/reference/_payment_s2s_classic_integration)
+  - [Cards S2S](https://docs.payu.in/reference/_payment_s2s_classic_integration)
 
--  [UPI S2S](https://docs.payu.in/reference/_payment_s2s_upi_collection)
+  - [UPI S2S](https://docs.payu.in/reference/_payment_s2s_upi_collection)
 </Callout>
 
 **Environment**
@@ -304,47 +304,32 @@ The `split-info` parameter must be a valid JSON string with the following struct
 ### Burn Points with Card (TWID)
 
 ````bash
-curl -X POST "https://test.payu.in/_payment" \
-  -H "Content-Type: application/x-www-form-urlencoded" \
-  -d "key=YOUR_MERCHANT_KEY" \
-  -d "txnid=TXN123456" \
-  -d "amount=1000" \
-  -d "productinfo=Product Info" \
-  -d "firstname=Ashish" \
-  -d "email=test@gmail.com" \
-  -d "phone=9876543210" \
-  -d "surl=https://www.merchant-surl.com" \
-  -d "furl=https://www.merchant-furl.com" \
-  -d "hash=generated_hash_value" \
-  --data-urlencode 'split-info={
-    "childPaymentInstruments": [
-      {
-        "name": "CC",
-        "bankCode": "CC",
-        "cardNumber": "5123456789012346",
-        "cvv": "345",
-        "validThrough": "05/29",
-        "ownerName": "Payu",
-        "transactionAmount": "997"
-      },
-      {
-        "name": "RD",
-        "bankCode": "TWIDLS",
-        "transactionAmount": "3",
-        "rewardId": 270943,
-        "rewardName": "twid Cash",
-        "cardBin": "512345",
-        "cardLastFour": "2346"
-      }
-    ],
-    "loyaltyDetails": {
-      "loyaltyApiVersion": 1,
-      "sessionId": "sessionId11323"
-    },
-    "earnPaymentInstruments": [],
-    "totalAmount": "1000.00",
-    "consent": false
-  }'
+curl --location 'https://test.payu.in/_payment' \
+--header 'accept: application/json' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Cookie: PHPSESSID=bkrc37gr4pfih9c0pc0gcc65mv; PHPSESSID=6aad1839f08e8; PHPSESSID=krjdhr0qtq7cgjbk16gll7ldma; PHPSESSID=6aad197750249; PHPSESSID=6aad1ba4b49dd' \
+--data-urlencode 'key=V6kGqE' \
+--data-urlencode 'txnid=46666364782829256655' \
+--data-urlencode 'amount=1000' \
+--data-urlencode 'firstname=Payu-Admin' \
+--data-urlencode 'email=test@example.com' \
+--data-urlencode 'phone=9304204920' \
+--data-urlencode 'productinfo=iPhone' \
+--data-urlencode 'pg=SPLITPAY' \
+--data-urlencode 'bankcode=TWIDX' \
+--data-urlencode 'surl=https://test.payu.in/admin/test_response' \
+--data-urlencode 'furl=https://test.payu.in/admin/test_response' \
+--data-urlencode 'hash=c118bc43080064a733d4dfe7acb6de45059a7bd75f3bafd32b0154358e0be6d6e8c2bb959548d6cf6b79c3bf5af6f0bc6b2708b9c7e338bb1ed797c81babad1b' \
+--data-urlencode 'udf1=udf1' \
+--data-urlencode 'udf2=udf2' \
+--data-urlencode 'udf3=udf3' \
+--data-urlencode 'udf4=udf4' \
+--data-urlencode 'udf5=udf5' \
+--data-urlencode 'txn_s2s_flow=4' \
+--data-urlencode 's2s_client_ip=ClientIP' \
+--data-urlencode 's2s_device_info=Device Info' \
+--data-urlencode 'splitInfo={"childPaymentInstruments":[{"name":"UPI","bankCode":"UPI","vpa":"9999999999@upi","transactionAmount":"995"},{"name":"RD","bankCode":"TWIDLS","rewardId":271508,"rewardName":"Zillion","transactionAmount":"5"}],"earnPaymentInstruments":[],"totalAmount":"1000.00","consent":false}' \
+```
 ### Burn Points with Saved Card Flow (TWID and storecardTokenType = 0)
 
 **Use Case:** PayU saved card with reward redemption
