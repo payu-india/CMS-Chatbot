@@ -240,4 +240,6 @@ If a payment fails, you can share the same link again for the customer to retry,
   <Card title="For Developers" icon="far fa-gear-api">
     **Automate Payment Links with APIs:** Create and manage payment links programmatically.
   </Card>
+
+  <Card title="How Payment Links Works" icon="fa-diagram-project" href="doc:how-payment-links-works"> See the end-to-end flow — from creating a link to receiving funds in your bank. </Card>
 </Cards>
