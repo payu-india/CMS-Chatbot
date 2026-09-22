@@ -189,8 +189,12 @@ next:
   The link remains **Active** and the customer can retry either immediately or later. A failed attempt does not count against the Max Transactions limit.
 </Accordion>
 
-<Accordion title="Can I issue a refund for a payment made via a payment link?" icon="far fa-money-bill-transfer">
-  Yes. Find the transaction in **Transactions** and initiate a refund from there. The refund process is the same regardless of how the payment was collected.
+***
+
+3. #### Can I issue a refund for a payment made via a payment link?
+
+<Accordion title="Answer" icon="fab fa-adn">
+  Yes. Find the transaction in the **Transactions&#x20;**&#x74;ab and initiate a refund from there. The refund process is the same regardless of how the payment was collected.
 </Accordion>
 
 ***
