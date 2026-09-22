@@ -42,10 +42,8 @@ next:
 Understand the complete end-to-end flow of how PayU Payment Links works. Starting from creating your account to receiving funds in your bank account.
 
 
-<Image src="INSERT_FLOW_DIAGRAM_URL" align="center" caption="PayU Payment Links — end-to-end flow" />
+<Image src="https://files.readme.io/37bfca16b8045dba6974cb355bc4f87e3c781cfda87bbc94f74c4af774ead2e0-payu-payment-links-flow-v4.png" align="center" caption="Payment Links Workflow" border={true} />
 
-
-> **Note for editors:** Upload `payu-payment-links-flow.png` to ReadMe and replace `INSERT_FLOW_DIAGRAM_URL` above with the hosted URL.
 
 ***
 
