@@ -41,7 +41,7 @@ next:
 
 <Banner
   isInline={true}
-  message="This page covers issues after creating a payment link"
+  message="This page helps you troubleshoot issues that occur after you create a Payment Link."
   color="#16C612"
   textColor="#ffffff"
   fontSize="14px"
