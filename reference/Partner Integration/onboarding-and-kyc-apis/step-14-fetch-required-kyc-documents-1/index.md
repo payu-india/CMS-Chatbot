@@ -23,9 +23,9 @@ Steps- All prior steps relevant to the entity type
 3. Each document_type has a `uuid` and `name`
 4. In **Step 15**, use the category `name` as `merchant[document_category]` and the type `name` as `merchant[document_type]`5. Upload one document per required category
 
-## Response → Step 15 Mapping
+## Response → Step 14 Mapping
 
-`Step 14 Response:                          Step 15 Request:─────────────────                          ────────────────document_categories[i].name           →    merchant[document_category]document_categories[i].document_types[j].name  →  merchant[document_type]`
+`Step 13 Response:                          Step 14 Request:─────────────────                          ────────────────document_categories[i].name           →    merchant[document_category]document_categories[i].document_types[j].name  →  merchant[document_type]`
 
 ## UUID-to-Name Reference Document Categories
 
