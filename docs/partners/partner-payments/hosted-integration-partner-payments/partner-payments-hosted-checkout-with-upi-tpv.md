@@ -710,7 +710,7 @@ client_secret|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|a
 
 <Verify_Partner_Payment_Webhook_Hash />
 
-## **S**tep 6: Verify Payment Status
+## **Step 6: Verify Payment Status
 
 Always call the Verify Payment API as the final source of truth for transaction status.
 
