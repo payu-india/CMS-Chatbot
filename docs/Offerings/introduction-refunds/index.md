@@ -129,7 +129,9 @@ Order cancellations are an unfortunate reality for any business. Customers may c
   7. **Customer receives the refund** — Typically **5–21 days** depending on payment method; PayU emails the merchant on completion.
   8. **Poll status** — Use [Check Refund Status APIs](doc:refund-apis-doc) or [Webhooks for Refunds](doc:webhooks-for-refunds) to track progress.
 
-  > 📘 **Automatic retries**: If the refund API call fails at the bank end, the bank retries up to three times automatically. If it still fails, PayU requests the refund manually with the bank.
+  <Callout icon="📘" theme="info">
+    ### **Automatic retries**: If the refund API call fails at the bank end, the bank retries up to three times automatically. If it still fails, PayU requests the refund manually with the bank.
+  </Callout>
 </Accordion>
 
 <Accordion title="Types of refunds" icon="fa-tags">
@@ -146,7 +148,9 @@ Order cancellations are an unfortunate reality for any business. Customers may c
 
   For example, if a customer tries to book a movie ticket and the transaction fails but the amount was debited, PayU initiates the refund automatically after reconciliation.
 
-  > 📘 **Contact PayU Key Account Manager to enable automatic refunds**: If you wish to enable the automatic refund feature, contact your PayU Key Account Manager or [PayU Support](https://help.payu.in).
+  <Callout icon="📘" theme="info">
+    ### **Contact PayU Key Account Manager to enable automatic refunds**: If you wish to enable the automatic refund feature, contact your PayU Key Account Manager or [PayU Support](https://help.payu.in).
+  </Callout>
 </Accordion>
 
 <Accordion title="Prerequisites and eligibility" icon="fa-check-circle">
@@ -164,8 +168,6 @@ Order cancellations are an unfortunate reality for any business. Customers may c
 
 <Accordion title="Refund turnaround time" icon="fa-clock">
   Refunds typically take **5–21 days** to reflect in the customer's bank account. For Net Banking transactions, certain government banks may take longer. PayU communicates the status (successful or failed) over email once the refund request is processed.
-
-  For instant refunds on eligible transactions, refer to [Partner Refunds](doc:partner-refunds).
 </Accordion>
 
 <Accordion title="Refund vs chargeback" icon="fa-scale-balanced">
@@ -189,5 +191,3 @@ The following sections describe how to initiate, track, and manage refunds with 
   - [Refunds for BNPL](doc:refunds-for-bnpl)
 - [Webhooks for Refunds](doc:webhooks-for-refunds)
 - [FAQs for Refunds](doc:faqs-for-refunds)
-
-<br />
