@@ -778,6 +778,7 @@ paths:
                 }
               );
               console.log(response.data);
+      x-internal: true
   /payment-links/{invoiceNumber}:
     get:
       tags:
