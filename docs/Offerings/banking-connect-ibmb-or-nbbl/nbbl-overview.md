@@ -5,7 +5,17 @@ hidden: true
 metadata:
   robots: index
 ---
-\=NBBL Banking Connect is PayU's implementation of NPCI Bharat BillPay Limited's standardized NetBanking framework. It keeps the trust and high-value capability of NetBanking while replacing the checkout experience built around bank-website credentials with a mobile-first, password-free flow.
+---
+title: NBBL Banking Connect overview
+deprecated: false
+hidden: false
+metadata:
+  description: Understand NBBL Banking Connect, its payment journeys, merchant benefits, and bank rollout.
+  robots: index
+---
+# NBBL Banking Connect overview
+
+NBBL Banking Connect is PayU's implementation of NPCI Bharat BillPay Limited's standardized NetBanking framework. It keeps the trust and high-value capability of NetBanking while replacing the checkout experience built around bank-website credentials with a mobile-first, password-free flow.
 
 ## What changes for the customer
 
@@ -19,6 +29,71 @@ If the selected bank app is not installed, or the app-first path is not enabled,
 
 ### Mobile app-intent flow
 
+```mermaid
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "mirrorActors": false,
+    "rightAngles": true,
+    "messageAlign": "left",
+    "fontSize": 10,
+    "actorFontSize": 10,
+    "noteFontSize": 10,
+    "actorMargin": 88,
+    "width": 168,
+    "boxMargin": 10,
+    "messageMargin": 38,
+    "diagramMarginX": 60,
+    "diagramMarginY": 18
+  },
+  "themeVariables": {
+    "fontFamily": "Arial, Helvetica, sans-serif",
+    "fontSize": "10px",
+    "background": "#FFFFFF",
+    "primaryColor": "#A6C307",
+    "primaryTextColor": "#002843",
+    "primaryBorderColor": "#002843",
+    "secondaryColor": "#F4F9E0",
+    "lineColor": "#002843",
+    "textColor": "#002843",
+    "actorBkg": "#A6C307",
+    "actorBorder": "#002843",
+    "actorTextColor": "#002843",
+    "actorLineColor": "#002843",
+    "signalColor": "#002843",
+    "signalTextColor": "#002843",
+    "labelBoxBkgColor": "#F4F9E0",
+    "labelBoxBorderColor": "#A6C307",
+    "noteBkgColor": "#F4F9E0",
+    "noteTextColor": "#002843",
+    "noteBorderColor": "#A6C307",
+    "activationBkgColor": "#E8F0C4",
+    "activationBorderColor": "#002843"
+  }
+}}%%
+sequenceDiagram
+    box Merchant Site/App
+        participant Merchant
+    end
+    box PayU Checkout
+        participant PayU
+    end
+    box Bank App
+        participant BankApp as "Bank App"
+    end
+
+    Note over Merchant: 1. Customer selects bank<br/>(NetBanking)
+
+    Merchant->>PayU: 2. Initiate NetBanking<br/>(selected bank)
+    PayU->>BankApp: 3. Open bank app<br/>(deep link)
+
+    BankApp->>BankApp: 4. Authenticate<br/>(biometric/MPIN)
+    BankApp->>BankApp: 5. Confirm debit<br/>account
+
+    BankApp-->>Merchant: 6. Return with<br/>payment result
+    Note over Merchant: Show success/failure
+```
+
 1. The customer selects a bank under NetBanking.
 2. PayU offers the option to pay through the selected bank app.
 3. PayU opens the installed bank app through a deep link.
@@ -27,6 +102,71 @@ If the selected bank app is not installed, or the app-first path is not enabled,
 6. The customer returns to the merchant with the payment result.
 
 ### Desktop QR flow
+
+```mermaid
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "mirrorActors": false,
+    "rightAngles": true,
+    "messageAlign": "left",
+    "fontSize": 10,
+    "actorFontSize": 10,
+    "noteFontSize": 10,
+    "actorMargin": 88,
+    "width": 168,
+    "boxMargin": 10,
+    "messageMargin": 38,
+    "diagramMarginX": 60,
+    "diagramMarginY": 18
+  },
+  "themeVariables": {
+    "fontFamily": "Arial, Helvetica, sans-serif",
+    "fontSize": "10px",
+    "background": "#FFFFFF",
+    "primaryColor": "#A6C307",
+    "primaryTextColor": "#002843",
+    "primaryBorderColor": "#002843",
+    "secondaryColor": "#F4F9E0",
+    "lineColor": "#002843",
+    "textColor": "#002843",
+    "actorBkg": "#A6C307",
+    "actorBorder": "#002843",
+    "actorTextColor": "#002843",
+    "actorLineColor": "#002843",
+    "signalColor": "#002843",
+    "signalTextColor": "#002843",
+    "labelBoxBkgColor": "#F4F9E0",
+    "labelBoxBorderColor": "#A6C307",
+    "noteBkgColor": "#F4F9E0",
+    "noteTextColor": "#002843",
+    "noteBorderColor": "#A6C307",
+    "activationBkgColor": "#E8F0C4",
+    "activationBorderColor": "#002843"
+  }
+}}%%
+sequenceDiagram
+    box Merchant Website
+        participant Merchant
+    end
+    box PayU Checkout
+        participant PayU
+    end
+    box Bank App (Mobile)
+        participant BankApp as "Bank App"
+    end
+
+    Note over Merchant: 1. Customer selects bank<br/>(NetBanking)
+
+    Merchant->>PayU: 2. Offer modes:<br/>QR or website
+    PayU-->>Merchant: 3. Display NetBanking QR
+
+    Note over BankApp: 4. Scan QR in bank app
+    BankApp->>BankApp: 5. Authenticate
+    BankApp->>BankApp: 6. Confirm debit<br/>account
+
+    PayU-->>Merchant: 7. Show payment result
+```
 
 1. The customer selects a bank under NetBanking.
 2. PayU offers the available payment modes, such as QR or the bank website.
@@ -37,6 +177,71 @@ If the selected bank app is not installed, or the app-first path is not enabled,
 7. PayU displays the payment result to the customer and merchant.
 
 ### Website fallback
+
+```mermaid
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "mirrorActors": false,
+    "rightAngles": true,
+    "messageAlign": "left",
+    "fontSize": 10,
+    "actorFontSize": 10,
+    "noteFontSize": 10,
+    "actorMargin": 88,
+    "width": 168,
+    "boxMargin": 10,
+    "messageMargin": 38,
+    "diagramMarginX": 60,
+    "diagramMarginY": 18
+  },
+  "themeVariables": {
+    "fontFamily": "Arial, Helvetica, sans-serif",
+    "fontSize": "10px",
+    "background": "#FFFFFF",
+    "primaryColor": "#A6C307",
+    "primaryTextColor": "#002843",
+    "primaryBorderColor": "#002843",
+    "secondaryColor": "#F4F9E0",
+    "lineColor": "#002843",
+    "textColor": "#002843",
+    "actorBkg": "#A6C307",
+    "actorBorder": "#002843",
+    "actorTextColor": "#002843",
+    "actorLineColor": "#002843",
+    "signalColor": "#002843",
+    "signalTextColor": "#002843",
+    "labelBoxBkgColor": "#F4F9E0",
+    "labelBoxBorderColor": "#A6C307",
+    "noteBkgColor": "#F4F9E0",
+    "noteTextColor": "#002843",
+    "noteBorderColor": "#A6C307",
+    "activationBkgColor": "#E8F0C4",
+    "activationBorderColor": "#002843"
+  }
+}}%%
+sequenceDiagram
+    box Merchant Website
+        participant Merchant
+    end
+    box PayU Checkout
+        participant PayU
+    end
+    box Bank Website
+        participant Bank as "Bank Website"
+    end
+
+    Note over Merchant: Bank app missing<br/>or app-first unavailable
+
+    Merchant->>PayU: Continue via bank<br/>website
+    PayU->>Bank: Redirect to bank site
+
+    Bank->>Bank: Customer logs in<br/>and pays
+    Bank-->>PayU: Status
+
+    PayU-->>Merchant: Redirect with<br/>status
+    Note over Merchant: Show success/failure
+```
 
 When the bank app is not installed or the app-first route is unavailable, the customer can continue with the familiar bank-website NetBanking journey.
 
@@ -50,43 +255,76 @@ NBBL offers two payment flows to accommodate different use cases:
 
 Enhanced version of traditional net banking that maintains the familiar bank website experience while adding interoperability:
 
-```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│  Customer   │────▶│   Merchant  │────▶│     PayU     │────▶│    IBMB     │
-│             │     │   / PA      │     │   Gateway    │     │  Platform   │
-└─────────────┘     └─────────────┘     └─────────────┘     └─────────────┘
-       │                   │                   │                   │
-       │  1. Select Bank   │                   │                   │
-       │──────────────────▶│                   │                   │
-       │                   │                   │                   │
-       │                   │  2. Txn Details   │                   │
-       │                   │──────────────────▶│                   │
-       │                   │                   │                   │
-       │                   │                   │  3. reqTxnInit    │
-       │                   │                   │──────────────────▶│
-       │                   │                   │                   │
-       │                   │                   │  4. Encrypted URL  │
-       │                   │                   │◀──────────────────│
-       │                   │                   │                   │
-       │                   │  5. Redirect URL  │                   │
-       │                   │◀──────────────────│                   │
-       │                   │                   │                   │
-       │  6. Redirect to    │                   │                   │
-       │     Bank Website  │                   │                   │
-       │──────────────────▶│                   │                   │
-       │                   │                   │                   │
-       │                   │                   │  7. Bank decrypts │
-       │                   │                   │     URL via API   │
-       │                   │                   │──────────────────▶│
-       │                   │                   │                   │
-       │  8. Complete      │                   │                   │
-       │     Transaction   │                   │                   │
-       │     on Bank Site  │                   │                   │
-       │                   │                   │                   │
+```mermaid
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "mirrorActors": false,
+    "rightAngles": true,
+    "messageAlign": "left",
+    "fontSize": 10,
+    "actorFontSize": 10,
+    "noteFontSize": 10,
+    "actorMargin": 88,
+    "width": 168,
+    "boxMargin": 10,
+    "messageMargin": 38,
+    "diagramMarginX": 60,
+    "diagramMarginY": 18
+  },
+  "themeVariables": {
+    "fontFamily": "Arial, Helvetica, sans-serif",
+    "fontSize": "10px",
+    "background": "#FFFFFF",
+    "primaryColor": "#A6C307",
+    "primaryTextColor": "#002843",
+    "primaryBorderColor": "#002843",
+    "secondaryColor": "#F4F9E0",
+    "lineColor": "#002843",
+    "textColor": "#002843",
+    "actorBkg": "#A6C307",
+    "actorBorder": "#002843",
+    "actorTextColor": "#002843",
+    "actorLineColor": "#002843",
+    "signalColor": "#002843",
+    "signalTextColor": "#002843",
+    "labelBoxBkgColor": "#F4F9E0",
+    "labelBoxBorderColor": "#A6C307",
+    "noteBkgColor": "#F4F9E0",
+    "noteTextColor": "#002843",
+    "noteBorderColor": "#A6C307",
+    "activationBkgColor": "#E8F0C4",
+    "activationBorderColor": "#002843"
+  }
+}}%%
+sequenceDiagram
+    box Customer Device
+        participant Customer
+    end
+    box Merchant / PA
+        participant MerchantPA as "Merchant / PA"
+    end
+    box PayU Gateway
+        participant PayU as "PayU Gateway"
+    end
+    box IBMB Platform
+        participant IBMB as "IBMB Platform"
+    end
+    box Bank Website
+        participant Bank as "Bank Website"
+    end
+
+    Customer->>MerchantPA: 1. Select bank &<br/>initiate payment
+    MerchantPA->>PayU: 2. Send txn<br/>details
+    PayU->>IBMB: 3. reqTxnInit
+    IBMB-->>PayU: 4. Encrypted URL
+    PayU-->>MerchantPA: 5. Redirect URL
+    MerchantPA->>Bank: 6. Redirect to<br/>bank site
+    Bank->>IBMB: 7. Decrypt URL via API
+    Note over Bank,PayU,MerchantPA: 8. Customer completes on<br/>bank site; status flows back
 ```
 
 **Key Steps:**
-
 1. Customer selects bank and initiates payment
 2. Merchant/PA sends transaction details to PayU
 3. PayU sends transaction to IBMB platform via `reqTxnInit` API
@@ -100,54 +338,77 @@ Enhanced version of traditional net banking that maintains the familiar bank web
 
 Modern mobile-first approach using QR codes and app intents:
 
-```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│  Customer   │     │   Merchant  │     │     PayU     │     │    IBMB     │
-│  (Desktop)  │     │   / PA      │     │   Gateway    │     │  Platform   │
-└─────────────┘     └─────────────┘     └─────────────┘     └─────────────┘
-       │                   │                   │                   │
-       │  1. Select QR     │                   │                   │
-       │──────────────────▶│                   │                   │
-       │                   │                   │                   │
-       │                   │  2. Txn Details   │                   │
-       │                   │──────────────────▶│                   │
-       │                   │                   │                   │
-       │                   │                   │  3. reqTxnInit    │
-       │                   │                   │──────────────────▶│
-       │                   │                   │                   │
-       │                   │                   │  4. Encrypted URL │
-       │                   │                   │◀──────────────────│
-       │                   │                   │                   │
-       │                   │  5. QR Code       │                   │
-       │                   │◀──────────────────│                   │
-       │                   │                   │                   │
-       │  6. QR Displayed  │                   │                   │
-       │◀──────────────────│                   │                   │
-       │                   │                   │                   │
-       │                   │                   │                   │
-┌─────────────┐            │                   │                   │
-│  Customer   │            │                   │                   │
-│  (Mobile)   │            │                   │                   │
-│  Bank App   │            │                   │                   │
-└─────────────┘            │                   │                   │
-       │                   │                   │                   │
-       │  7. Scan QR       │                   │                   │
-       │──────────────────▶│                   │                   │
-       │                   │                   │                   │
-       │                   │                   │  8. reqFetchTxn   │
-       │                   │                   │     Details       │
-       │                   │                   │◀──────────────────│
-       │                   │                   │                   │
-       │  9. Select Account│                   │                   │
-       │     & Authorize   │                   │                   │
-       │                   │                   │                   │
-       │  10. Payment      │                   │                   │
-       │      Success      │                   │                   │
-       │                   │                   │                   │
+```mermaid
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "mirrorActors": false,
+    "rightAngles": true,
+    "messageAlign": "left",
+    "fontSize": 10,
+    "actorFontSize": 10,
+    "noteFontSize": 10,
+    "actorMargin": 88,
+    "width": 168,
+    "boxMargin": 10,
+    "messageMargin": 38,
+    "diagramMarginX": 60,
+    "diagramMarginY": 18
+  },
+  "themeVariables": {
+    "fontFamily": "Arial, Helvetica, sans-serif",
+    "fontSize": "10px",
+    "background": "#FFFFFF",
+    "primaryColor": "#A6C307",
+    "primaryTextColor": "#002843",
+    "primaryBorderColor": "#002843",
+    "secondaryColor": "#F4F9E0",
+    "lineColor": "#002843",
+    "textColor": "#002843",
+    "actorBkg": "#A6C307",
+    "actorBorder": "#002843",
+    "actorTextColor": "#002843",
+    "actorLineColor": "#002843",
+    "signalColor": "#002843",
+    "signalTextColor": "#002843",
+    "labelBoxBkgColor": "#F4F9E0",
+    "labelBoxBorderColor": "#A6C307",
+    "noteBkgColor": "#F4F9E0",
+    "noteTextColor": "#002843",
+    "noteBorderColor": "#A6C307",
+    "activationBkgColor": "#E8F0C4",
+    "activationBorderColor": "#002843"
+  }
+}}%%
+sequenceDiagram
+    box Customer (Desktop)
+        participant CustDesktop as "Customer (Desktop)"
+    end
+    box Merchant / PA
+        participant MerchantPA as "Merchant / PA"
+    end
+    box PayU Gateway
+        participant PayU as "PayU Gateway"
+    end
+    box IBMB Platform
+        participant IBMB as "IBMB Platform"
+    end
+    box Bank App (Mobile)
+        participant BankApp as "Bank App (Mobile)"
+    end
+
+    CustDesktop->>MerchantPA: 1. Select QR option
+    MerchantPA->>PayU: 2. Send txn
+    PayU->>IBMB: 3. reqTxnInit
+    IBMB-->>PayU: 4. Encrypted URL<br/>(nb://...)
+    PayU-->>MerchantPA: 5. Show QR code
+    Note over MerchantPA: 6. QR displayed
+    BankApp->>IBMB: 7. reqFetchTxnDetails
+    BankApp->>BankApp: 8. Select account<br/>& authorize
+    PayU-->>MerchantPA: 9. Payment confirmation
 ```
 
 **Key Steps:**
-
 1. Customer selects QR code payment option
 2. Merchant/PA sends transaction to PayU
 3. PayU sends transaction to IBMB via `reqTxnInit` API
