@@ -120,7 +120,7 @@ next:
 <Accordion title="Answer" icon="fab fa-adn">
   Yes, but you should first enable international payments on your merchant account.
 
-  **Steps:**
+  **To enable&#x20;**
 
   1. Contact your PayU Key Account Manager to enable international payments for your MID.
   2. Once enabled, use the `currency` parameter in the <Anchor target="_blank" href="doc:api-create-share">Create Payment Link API</Anchor> to specify the currency (for example, `"currency": "USD"`).
