@@ -26,7 +26,7 @@ next:
       title: Payment Links
       type: basic
 ---
-The Payment Links APIs let you issue payment requests directly from your backend and deliver them to customers over SMS, email, or WhatsApp. Your customer receives a URL, taps it, and pays — no checkout integration required on your side.
+Payment Links APIs let you build link-based payment flows entirely in code — no PayU Dashboard interaction required after initial setup. Common use cases include sending payment requests from your backend after order creation, integrating payment reminders in CRM workflows, and building bulk invoicing or subscription billing systems.
 
 <Callout icon="📘" theme="info">
   ### **Prefer a no-code approach?**
@@ -36,15 +36,9 @@ The Payment Links APIs let you issue payment requests directly from your backend
 
 ***
 
-## What you can do
-
-Payment Links APIs let you build link-based payment flows entirely in code — no PayU Dashboard interaction required after initial setup. Common use cases include sending payment requests from your backend after order creation, integrating payment reminders in CRM workflows, and building bulk invoicing or subscription billing systems.
-
-***
-
 ## Authentication
 
-All Payment Links APIs use **OAuth 2.0 Bearer token** authentication — not the hash-based auth used by PayU's General/Merchant Hosted APIs.
+All Payment Links APIs use **OAuth 2.0 Bearer token** authentication.
 
 | Environment | Base URL                    |
 | :---------- | :-------------------------- |
@@ -60,7 +54,9 @@ Each token is scoped to specific operations. You must request the right scope wh
 | `read_payment_links`   | Fetch Payment Link · Fetch All Payment Links · Share Payment Link |
 
 <Callout icon="📘" theme="info">
-  ### **Tip**: A single token can carry up to three scopes simultaneously. Pass scopes space-separated:<br />`scope=create_payment_links update_payment_links read_payment_links`
+  ### **Tip**:&#x20;
+
+  A single token can carry up to three scopes simultaneously. Pass scopes space-separated:<br />`scope=create_payment_links update_payment_links read_payment_links`
 </Callout>
 
 ***
