@@ -27,13 +27,15 @@ The app-intent flow sends the customer from PayU Hosted Checkout to the installe
 
 ### Example interface states
 
-![Select bank and payment mode](../figma-crops/01-payment-mode.png)
 
-![Processing payment in the bank app](../figma-crops/02-processing-payment.png)
+<Image src="https://files.readme.io/8bef11c8df6993d94a147274e03ac332c548e2f5bfa382a25f11819323cf4538-01-payment-mode.png" border={true} />
 
-![Bank app approval](../figma-crops/03-approve-payment.png)
 
-![Payment success](../figma-crops/04-payment-success.png)
+
+<Image src="https://files.readme.io/7f22d82f0ebe1fbb91f0f4f4f986eb186b6ac8a2e49c54eb6f7ec519de1ae1da-02-processing-payment.png" border={true} />
+
+
+<br />
 
 ## Desktop: QR flow
 
