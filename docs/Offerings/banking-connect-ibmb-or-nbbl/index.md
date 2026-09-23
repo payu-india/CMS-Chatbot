@@ -26,9 +26,9 @@ Customers authenticate inside their own bank app instead of entering NetBanking 
 | QR               | Desktop or web        | Scans a NetBanking QR code with the bank's mobile app.                                   |
 | Website fallback | Any supported device  | Continues through the familiar bank website flow when the app-first path is unavailable. |
 
-For the detailed customer journey, see [PayU Hosted Customer Journey - Banking Connect](./payu-hosted-customer-journey-banking-connect.md).
+For the detailed customer journey, see [PayU Hosted Customer Journey - Banking Connect](doc:payu-hosted-customer-journey-banking-connect).
 
-For Android and iOS WebView implementations, see [Handle NBBL Deep-Links in WebView](./handle-nbbl-deep-links-in-webview.md).
+For Android and iOS WebView implementations, see [Handle NBBL Deep-Links in WebView](doc:handle-nbbl-deep-links-in-webview).
 
 ## Supported banks
 
