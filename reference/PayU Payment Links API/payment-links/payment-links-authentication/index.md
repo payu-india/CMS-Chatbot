@@ -28,134 +28,153 @@ next:
       title: Revoke Token API
       type: endpoint
 ---
-Payment Links APIs use OAuth 2.0 client credentials for authentication. Before calling any Payment Links endpoint, you need a Bearer token. Every API call then passes that token in the `Authorization` header.
+Payment Links APIs use **OAuth 2.0 client credentials** — not the hash-based authentication used by PayU's General or Merchant Hosted APIs. Every API call requires a Bearer token in the `Authorization` header.
 
 <Callout icon="📘" theme="info">
-  ### **Where do I Get My Client ID and Secret?**
+  ### Get Your Client ID and Secret
 
-  Go to your PayU Dashboard → **Developers** → **Client ID & Client secret details**. See Get Client ID and Secret for a step-by-step walkthrough.
-
-
-  <Image src="https://files.readme.io/ee267eeecb5afcea3fb50092eb5b3deb1efe2acdc108d2fbb46098c18aee669a-Screenshot_2026-09-23_at_1.34.30_PM.png" align="center" caption="Access Client ID and Secret" border={true} />
-
+  Go to PayU Dashboard → **Developers** → **Client ID & Client secret details** to find your `client_id` and `client_secret`. See [Get Client ID and Secret](doc:get-client-id-and-secret-from-dashboard) for a walkthrough.
 </Callout>
 
 ***
 
-## Environments
+## Base URLs
 
-| Environment | Base URL                       |
+| Environment | Auth base URL                  |
 | :---------- | :----------------------------- |
 | Test        | `https://uat-accounts.payu.in` |
 | Production  | `https://accounts.payu.in`     |
-
-<Callout icon="⚠️" theme="warn">
-  ### **Watch Out!**
-
-  The authentication endpoints use a **different base URL** for from the Payment Links endpoints (`oneapi.payu.in`). Make sure you're hitting the right host for each call.
-</Callout>
-
-***
-
-## Endpoints
-
-<Cards>
-  <Card title="Get Access Token" href="ref:get-token-api-for-payment-links">
-    `POST /oauth/token`
-
-    Exchange your `client_id` and `client_secret` for a Bearer token. Specify the scopes you need. Required before calling any Payment Links API.
-  </Card>
-
-  <Card title="Revoke Token API" href="ref:revoke-token-api-payment-links">
-    `POST /oauth/revoke`
-
-    Invalidate an existing token before it naturally expires. Use when rotating credentials or if a token may have been exposed.
-  </Card>
-</Cards>
 
 ***
 
 ## Scopes
 
-A single token can carry up to three scopes simultaneously. Pass them space-separated in the `scope` parameter when generating the token.
+A single token can carry up to three scopes simultaneously — pass them space-separated in the `scope` parameter.
 
-| Scope                  | Grants access to                                                                            |
-| :--------------------- | :------------------------------------------------------------------------------------------ |
-| `create_payment_links` | Create Payment Link                                                                         |
-| `update_payment_links` | Update / Cancel Payment Link                                                                |
-| `read_payment_links`   | Fetch Payment Link · Fetch All Payment Links · Share Payment Link · Get Transaction Details |
+| Scope                  | Grants access to                                                 |
+| :--------------------- | :--------------------------------------------------------------- |
+| `create_payment_links` | Create Payment Link                                              |
+| `update_payment_links` | Update / Cancel Payment Link                                     |
+| `read_payment_links`   | Fetch Payment Link · Fetch All · Share · Get Transaction Details |
 
-<Callout icon="📘" theme="info">
-  ### **Tip:** Request all the scopes your integration needs in one token call rather than generating separate tokens per operation.
+## API Endpoints
 
-  `scope=create_payment_links update_payment_links read_payment_links`
-</Callout>
+These are the authentication APIs
+
+<Cards>
+  <Card title="Get Access Token" href="ref:get-token-api-for-payment-links">
+    `POST /oauth/token`
+
+    Exchange your `client_id` and `client_secret` for a scoped Bearer token. Call this before any Payment Links API.
+  </Card>
+
+  <Card title="Revoke Token API" href="ref:revoke-token-api-payment-links">
+    `POST /oauth/revoke`
+
+    Invalidate a token before it naturally expires. Use this when rotating credentials or if a token may have been exposed.
+  </Card>
+</Cards>
 
 ***
 
 ## How it works
 
-1. **Generate a token** — Call `POST /oauth/token` with your `client_id`, `client_secret`, `grant_type: client_credentials`, and the scopes you need.
-2. **Store the token** — Save `access_token` and calculate its expiry as `created_at + expires_in` (both in the response). Do not call this endpoint before every API request.
-3. **Use the token** — Pass the token in the `Authorization` header of every Payment Links API call: `Authorization: Bearer {access_token}`.
-4. **Refresh before expiry** — When the token is within a few seconds of expiring, generate a new one. The previous token continues to work until its exact expiry time.
-5. **Revoke if needed** — If a token is no longer needed or may have been exposed, call `POST /oauth/revoke` to invalidate it immediately.
+<Accordion title="1. Generate a token" icon="fa-key">
+  Call `POST /oauth/token` with your `client_id`, `client_secret`, `grant_type: client_credentials`, and the scopes your integration needs. </Accordion> <Accordion title="2. Cache the token" icon="fa-database"> Store `access_token` and calculate its expiry as `created_at + expires_in`. Do not call this endpoint before every API request — that is wasteful and will trigger rate limits.
+</Accordion>
 
-***
+<Accordion title="3. Use the token" icon="fa-paper-plane"> Pass the token in the `Authorization` header of every Payment Links API call:
 
-## Token lifecycle
-
-| Parameter      | Description                                                                                                |
-| :------------- | :--------------------------------------------------------------------------------------------------------- |
-| `access_token` | The Bearer token string to pass in the `Authorization` header.                                             |
-| `expires_in`   | Validity period in seconds (typically `7200` — 2 hours). Configurable per OAuth app in the PayU Dashboard. |
-| `created_at`   | UNIX timestamp when the token was issued. Compute absolute expiry: `created_at + expires_in`.              |
-| `scope`        | Scopes granted. Verify this matches your request — a mismatch indicates a misconfigured app.               |
-
-<Callout icon="👍" theme="okay">
-  ### **Cache Your Token**
-
-  Generating a new token before every API call is wasteful and will trigger rate limits. Cache the token in memory, check expiry before each call, and only regenerate when needed.
-</Callout>
-
-***
+Authorization: Bearer {access_token} </Accordion> <Accordion title="4. Refresh before expiry" icon="fa-rotate"> Regenerate the token before it expires. The previous token stays valid until its exact expiry time, so there is no gap in service during rotation. </Accordion> <Accordion title="5. Revoke if needed" icon="fa-ban"> Call `POST /oauth/revoke` to invalidate a token early — for example, when rotating credentials or if a token may have been exposed. </Accordion>
 
 ## Using the token
 
-Include the token in the `Authorization` header of every Payment Links API call:
+<Tabs>
+  <Tab title="cURL">
+    ```curl
+    curl --location --request POST 'https://uatoneapi.payu.in/payment-links' \
+    --header 'Authorization: Bearer {{access_token}}' \
+    --header 'merchantId: {{merchantId}}' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+      "subAmount": 1499,
+      "description": "Test order",
+      "source": "API"
+    }'
+    ```
+  </Tab>
 
-```
-Authorization: Bearer ea4ed864b4d2a04b90c1e987a5d25a5da1d43fa5f7d123be6814a1e973f196c4
-```
+  <Tab title="Python">
+    ```python
+    import requests
 
-Example — creating a payment link with the token:
+    headers = {
+        "Authorization": "Bearer {{access_token}}",
+        "merchantId": "{{merchantId}}",
+        "Content-Type": "application/json"
+    }
+    payload = {"subAmount": 1499, "description": "Test order", "source": "API"}
+    response = requests.post("https://uatoneapi.payu.in/payment-links", headers=headers, json=payload)
+    print(response.json())
+    ```
+  </Tab>
 
-```curl
-curl --location --request POST 'https://uatoneapi.payu.in/payment-links' \
---header 'Authorization: Bearer {{access_token}}' \
---header 'merchantId: {{merchantId}}' \
---header 'Content-Type: application/json' \
---data-raw '{ "subAmount": 1499, "description": "Test order", "source": "API" }'
-```
+  <Tab title="Node.js">
+    ```javascript
+    const axios = require('axios');
 
-***
+    const response = await axios.post(
+      'https://uatoneapi.payu.in/payment-links',
+      { subAmount: 1499, description: 'Test order', source: 'API' },
+      {
+        headers: {
+          'Authorization': 'Bearer {{access_token}}',
+          'merchantId': '{{merchantId}}',
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+    console.log(response.data);
+    ```
+  </Tab>
 
-## Error handling
+  <Tab title="PHP">
+    ```php
+    <?php
+    $ch = curl_init('https://uatoneapi.payu.in/payment-links');
+    curl_setopt_array($ch, [
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_POST           => true,
+        CURLOPT_POSTFIELDS     => json_encode([
+            'subAmount'   => 1499,
+            'description' => 'Test order',
+            'source'      => 'API'
+        ]),
+        CURLOPT_HTTPHEADER => [
+            'Authorization: Bearer {{access_token}}',
+            'merchantId: {{merchantId}}',
+            'Content-Type: application/json'
+        ]
+    ]);
+    echo curl_exec($ch);
+    ```
+  </Tab>
+</Tabs>
 
-| Error                              | Cause                                                             | Fix                                                                                   |
-| :--------------------------------- | :---------------------------------------------------------------- | :------------------------------------------------------------------------------------ |
-| `invalid_client`                   | Wrong `client_id` or `client_secret`.                             | Verify credentials in PayU Dashboard → OAuth Apps.                                    |
-| `invalid_scope`                    | Scope value is misspelled or not permitted for this app.          | Check the scopes table above. Values are case-sensitive and space-separated.          |
-| `unauthorized_client`              | App is not configured for `client_credentials` grant.             | Contact PayU support to verify your app's grant type.                                 |
-| `rate_limit_exceeded`              | Too many token requests in a short window.                        | Cache tokens and reuse until `expires_in` elapses. Retry after `retry_after` seconds. |
-| `invalid_token` (on API call)      | Token has expired or been revoked.                                | Generate a new token via [Get Access Token](ref:get-token-api-for-payment-links).     |
-| `insufficient_scope` (on API call) | Token does not include the scope required by the endpoint called. | Regenerate the token with the correct scope for the operation.                        |
+## Error reference
 
-***
+| Error                 | When                                          | Fix                                                                    |
+| :-------------------- | :-------------------------------------------- | :--------------------------------------------------------------------- |
+| `invalid_client`      | Wrong `client_id` or `client_secret`          | Verify credentials in Dashboard → OAuth Apps                           |
+| `invalid_scope`       | Scope misspelled or not permitted             | Check scope values — case-sensitive, space-separated                   |
+| `unauthorized_client` | App not configured for `client_credentials`   | Contact PayU support                                                   |
+| `rate_limit_exceeded` | Too many token requests                       | Cache tokens; retry after `retry_after` seconds                        |
+| `invalid_token`       | Token expired or revoked                      | Regenerate via [Get Access Token](ref:get-token-api-for-payment-links) |
+| `insufficient_scope`  | Token missing required scope for the endpoint | Regenerate with the correct scope                                      |
 
-## Related APIs
+## Related
 
-- [Get Access Token](ref:get-token-api-for-payment-links) — Generate a Bearer token
-- [Revoke Token API](ref:revoke-token-api-payment-links) — Invalidate a token early
-- [Payment Links API Overview](ref:payment-links-api-overview) — Full list of Payment Links endpoints
+- [Get Access Token](ref:get-token-api-for-payment-links)
+- [Revoke Token API](ref:revoke-token-api-payment-links)
+- [Payment Links API Overview](ref:payment-links-api-overview)
 - [Get Client ID and Secret from Dashboard](doc:get-client-id-and-secret-from-dashboard)
