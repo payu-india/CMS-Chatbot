@@ -486,7 +486,7 @@ paths:
                 }
               );
               console.log(response.data);
-      x-internal: false
+      x-internal: true
   /payment-links/{invoiceNumber}:
     get:
       tags:
