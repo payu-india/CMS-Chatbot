@@ -1141,6 +1141,7 @@ paths:
                 { headers: { 'Authorization': 'Bearer {{access_token}}', 'merchantId': '{{merchantId}}' } }
               );
               console.log(response.data);
+      x-internal: true
 components:
   responses:
     Unauthorized:
