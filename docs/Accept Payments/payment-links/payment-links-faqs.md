@@ -108,9 +108,9 @@ next:
 6. #### Can I restrict payments to a specific bank or card type?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  No. Payment Links do not support bank-level or card-issuer-level restrictions (for example, "Union Bank credit cards only"). The checkout page shows all payment methods active on your account.
+  No. Payment Links do not support bank-level or card-issuer-level restrictions (for example, **Union Bank credit cards** only). The checkout page shows all payment methods active on your account.<br />
 
-  If your use case requires restricting the checkout to a specific payment method or issuer, consider a Server-to-Server (S2S) integration, which gives you more control over the checkout experience. Contact your PayU account manager for guidance.
+  If your use case requires restricting the checkout to a specific payment method or issuer, consider Server-to-Server (S2S) integration, which gives you more control over the checkout experience. Contact your PayU KAM for guidance.
 </Accordion>
 
 ***
