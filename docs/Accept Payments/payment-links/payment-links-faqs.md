@@ -86,11 +86,11 @@ next:
 4. #### UPI is not showing on the customer's payment page — why?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  UPI must be enabled on your merchant account. If you can see UPI when you test the link yourself but your customer cannot, ask them to try a different browser or device.
+  UPI should be enabled on your merchant account. If you can see UPI when you test the link but not your customer, ask them to try a different browser or device.
 
   If UPI is missing for all customers, contact <Anchor target="_blank" href="https://help.payu.in/query">PayU support</Anchor> to confirm that UPI is active on your merchant account.
 
-  **UPI Intent (direct app redirect):** if you want customers to be taken straight into a UPI app without entering their VPA, UPI Intent must be enabled separately — contact your PayU account manager.
+  **UPI Intent (direct app redirect):** if you want to direct your customers straight into a UPI app without entering their VPA, you should enable UPI Intent separately. Contact your PayU KAM to enable it.
 </Accordion>
 
 ***
@@ -98,9 +98,9 @@ next:
 5. #### Can I restrict payments to a specific bank or card type?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  No. Payment Links do not support bank-level or card-issuer-level restrictions (for example, "Union Bank credit cards only"). The checkout page shows all payment methods active on your account.
+  No. PayU Payment Links do not support bank-level or card-issuer-level restrictions (for example, Union Bank credit cards only). The checkout page shows all payment methods active on your account.
 
-  If your use case requires restricting the checkout to a specific payment method or issuer, consider a Server-to-Server (S2S) integration, which gives you more control over the checkout experience. Contact your PayU account manager for guidance.
+  If your use case requires restricting the checkout to a specific payment method or issuer, consider a Server-to-Server (S2S) integration, which gives you more control over the checkout experience. Contact your PayU KAM for guidance.
 </Accordion>
 
 ***
@@ -108,7 +108,7 @@ next:
 6. #### Are Payment Links secure?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Yes. PayU Payment Links are PCI DSS compliant. PayU uses advanced encryption and tokenisation to protect customer payment data. No card or bank details pass through your systems — the customer pays directly on PayU's hosted checkout page.
+  Yes. PayU Payment Links are PCI DSS compliant. PayU uses advanced encryption and tokenisation to protect customer payment data. No card or bank details pass through your systems. The customer pays directly on PayU's hosted checkout page.
 </Accordion>
 
 ***
@@ -118,7 +118,7 @@ next:
 1. #### Can I set a custom amount for each link?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Yes. Each link has its own amount field. You can also leave the amount flexible so the customer fills it in at checkout — useful for donations or open-ended collections.
+  Yes. Each link has its own amount field. You can also leave the amount flexible so the customer fills it in at checkout. This use case is useful for donations or open-ended collections.
 </Accordion>
 
 ***
@@ -126,12 +126,12 @@ next:
 2. #### Can I collect customer information with the payment?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Yes. You can add standard fields (name, email, phone, address) and fully custom fields (any label, any type) to the checkout page. See <Anchor target="_blank" href="doc:payment-link-options">Payment Link Options</Anchor> for details.
+  Yes. You can add standard fields (name, email, phone, address) and fully custom fields (any label, any type) to the checkout page. See <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link#how-do-i-create-a-payment-link">Payment Link Options</Anchor> for details.
 </Accordion>
 
 ***
 
-3. #### My custom fields are not visible on the customer's checkout page — why?
+3. #### My custom fields are not visible on the customer's checkout page. Why?
 
 <Accordion title="Answer" icon="fab fa-adn">
   Custom fields are visible on the checkout page only when the link is opened in a browser. To confirm they are configured correctly:
@@ -140,9 +140,7 @@ next:
   2. Check that the fields were added under **Additional Customer Details → Add New Fields+** during creation.
   3. Confirm the field type is set correctly (Alphanumeric, Calendar, or Dropdown).
 
-  If the fields are still missing, the most common cause is that they were added after the link was already created — **Payment Links cannot be edited after creation**. Duplicate the link, add the custom fields before clicking **Create and Send Payment Link**, then deactivate the original.
-
-  See <Anchor target="_blank" href="doc:payment-link-options">Custom Checkout Fields</Anchor> for details.
+  If the fields are still missing, the most common cause is that they were added after the link was already created. Payment Links cannot be edited after creation. <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#what-can-i-do-with-a-payment-link-after-it-is-created">Duplicate</Anchor> the link, add the custom fields before clicking **Create and Send Payment Link**, then deactivate the original.
 </Accordion>
 
 ***
@@ -160,7 +158,7 @@ next:
 5. #### Can I limit how many times a link can be used?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Yes. Use the **Max Transactions** field when <Anchor target="_blank" href="doc:send-a-payment-link">creating the link</Anchor>. Leave it blank for unlimited. Once the limit is reached, the link automatically deactivates.
+  Yes. Use the **Max Transactions** field when <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link">[creating the link](https://docs.payu.in/docs/create-a-payment-link)</Anchor>. Leave it blank for unlimited. Once the limit is reached, the link automatically deactivates.
 </Accordion>
 
 ***
@@ -168,7 +166,7 @@ next:
 6. #### Can I edit a payment link after creating it?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  You cannot edit a link's amount, description, or configuration from the Dashboard after creation. To correct a mistake, <Anchor target="_blank" href="doc:manage-payment-links">duplicate</Anchor> the link with the right details, then deactivate the original.
+  You cannot edit a link's amount, description, or configuration from the Dashboard after creation. To correct a mistake, <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#what-can-i-do-with-a-payment-link-after-it-is-created">duplicate</Anchor> the link with the right details, then deactivate the original.
 
   Via API, you can update `active` status, `expiryDate`, `subAmount`, `tax`, `shippingCharge`, and `isPartialPaymentAllowed` using the <Anchor target="_blank" href="doc:api-cancel-status">Cancel / Change Status API</Anchor>.
 </Accordion>
@@ -186,7 +184,7 @@ next:
 8. #### How many payment links can I create?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  There is no hard limit on the number of payment links. For creating hundreds at once, use the <Anchor target="_blank" href="doc:manage-payment-links">Bulk Upload</Anchor> feature or the <Anchor target="_blank" href="doc:api-create-share">Create Payment Link API</Anchor>.
+  There is no hard limit on the number of payment links. For creating hundreds at once, use the <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link#how-do-i-create-many-links-at-once">Bulk Upload</Anchor> feature or the <Anchor target="_blank" href="doc:api-create-share">Create Payment Link API</Anchor>.
 </Accordion>
 
 ***
