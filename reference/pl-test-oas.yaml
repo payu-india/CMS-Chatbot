@@ -1030,6 +1030,7 @@ paths:
                 { headers: { 'Authorization': 'Bearer {{access_token}}', 'merchantId': '{{merchantId}}', 'Content-Type': 'application/json' } }
               );
               console.log(response.data);
+      x-internal: true
     delete:
       tags:
         - Payment Links
