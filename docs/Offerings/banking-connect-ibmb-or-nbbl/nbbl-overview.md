@@ -5,15 +5,6 @@ hidden: true
 metadata:
   robots: index
 ---
-title: NBBL Banking Connect overview
-deprecated: false
-hidden: false
-metadata:
-  description: Understand NBBL Banking Connect, its payment journeys, merchant benefits, and bank rollout.
-  robots: index
----
-# NBBL Banking Connect overview
-
 NBBL Banking Connect is PayU's implementation of NPCI Bharat BillPay Limited's standardized NetBanking framework. It keeps the trust and high-value capability of NetBanking while replacing the checkout experience built around bank-website credentials with a mobile-first, password-free flow.
 
 ## What changes for the customer
@@ -299,6 +290,7 @@ sequenceDiagram
 ```
 
 **Key Steps:**
+
 1. Customer selects bank and initiates payment
 2. Merchant/PA sends transaction details to PayU
 3. PayU sends transaction to IBMB platform via `reqTxnInit` API
@@ -373,6 +365,7 @@ sequenceDiagram
 ```
 
 **Key Steps:**
+
 1. Customer selects QR code payment option
 2. Merchant/PA sends transaction to PayU
 3. PayU sends transaction to IBMB via `reqTxnInit` API
