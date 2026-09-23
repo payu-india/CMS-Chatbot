@@ -2,5 +2,5 @@
 api:
   file: pl-test-oas.yaml
   operationId: UpdatePaymentLinkAPI
-hidden: false
+hidden: true
 ---
