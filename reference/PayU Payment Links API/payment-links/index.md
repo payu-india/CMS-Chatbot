@@ -34,17 +34,6 @@ The Payment Links APIs let you issue payment requests directly from your backend
   Payment Links can be created and managed entirely from the PayU Dashboard — no APIs or code needed. If you'd rather skip the integration and get started immediately, see <Anchor target="_blank" href="https://docs.payu.in/docs/payment-links">Payment Links</Anchor>.
 </Callout>
 
-<Callout icon="📘" theme="info">
-  ### **Base URLs**
-
-  | Environment    | Base URL                    |
-  | :------------- | :-------------------------- |
-  | **Test**       | `https://uatoneapi.payu.in` |
-  | **Production** | `https://oneapi.payu.in`    |
-
-  All Payment Links endpoints are relative to these base URLs (e.g., `POST /payment-links`).
-</Callout>
-
 ***
 
 ## What you can do
@@ -56,6 +45,11 @@ Payment Links APIs let you build link-based payment flows entirely in code — n
 ## Authentication
 
 All Payment Links APIs use **OAuth 2.0 Bearer token** authentication — not the hash-based auth used by PayU's General/Merchant Hosted APIs.
+
+| Environment | Base URL                    |
+| :---------- | :-------------------------- |
+| Test        | `https://uatoneapi.payu.in` |
+| Production  | `https://oneapi.payu.in`    |
 
 Each token is scoped to specific operations. You must request the right scope when generating the token, and include the token in every API call as `Authorization: Bearer {access_token}`.
 
