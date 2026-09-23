@@ -51,7 +51,7 @@ next:
 1. #### What is a payment link and how does it work?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  A <Anchor target="_blank" href="doc:payment-links-overview">payment link</Anchor> is a secure, shareable URL that lets your customer pay you without visiting your website or app. You <Anchor target="_blank" href="doc:send-a-payment-link">create the link</Anchor> in the PayU Dashboard or via <Anchor target="_blank" href="doc:api-create-share">API</Anchor>, share it over any channel such as email, SMS, or WhatsApp. Your customer clicks it to pay on a PayU-hosted checkout page. Once paid, you receive a notification and the transaction appears in your Dashboard.
+  A <Anchor target="_blank" href="doc:payment-links-overview">payment link</Anchor> is a secure, shareable URL that lets your customer pay you without visiting your website or app. You <Anchor target="_blank" href="doc:send-a-payment-link">create the link</Anchor> in the PayU Dashboard or via <Anchor target="_blank" href="doc:api-create-share">API</Anchor>, share it over any channel such as email, SMS, or WhatsApp. Your customer clicks it to pay on a PayU-hosted checkout page. Once paid, you receive a notification and the transaction appears in your Dashboard.<br />
 
   See <Anchor target="_blank" href="doc:how-payment-links-works">How Payment Links Works</Anchor> for the end-to-end flow.
 </Accordion>
