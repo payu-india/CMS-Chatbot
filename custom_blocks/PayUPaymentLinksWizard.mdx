@@ -92,6 +92,7 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
   function pickOutcome(choice) {
     setOutcome(choice);
     setShowPreview(false);
+    setStep(1);
     // TODO: Track event - test_payment_completed { outcome: choice }
   }
 
@@ -190,44 +191,43 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
                           <button onClick={copyLink} style={{ padding: '8px 14px', background: copied ? GREEN : 'white', color: copied ? 'white' : GREEN, border: '1px solid ' + GREEN, borderRadius: '6px', cursor: 'pointer', fontSize: '13px', fontWeight: 600, transition: 'all 0.2s' }}>
                             {copied ? '✓ Copied!' : 'Copy Link'}
                           </button>
-                          <button onClick={function() { setStep(1); }} style={{ padding: '8px 14px', background: GREEN, color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '13px', fontWeight: 600 }}>
+                          <button onClick={function() {
+                            // TODO: Track event - test_payment_attempted
+                            setShowPreview(true);
+                          }} style={{ padding: '8px 14px', background: GREEN, color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '13px', fontWeight: 600 }}>
                             Open Link
                           </button>
                         </div>
                         <p style={{ margin: 0, fontSize: '12px', color: '#6b7280', lineHeight: 1.5 }}>
-                          <strong>Sandbox mode:</strong> Click <strong>Open Link</strong> to see the customer payment experience.
+                          <strong>Sandbox mode:</strong> This is a practice link (not a real URL). Click <strong>Open Link</strong> above to see what happens when a customer clicks your payment link.
                         </p>
                       </div>
                     ) : null}
                   </div>
                 ) : null}
 
-                {/* Step 1: Customer Payment Experience */}
+                {/* Step 1: Payment Result */}
                 {step === 1 ? (
                   <div>
-                    <p style={{ marginBottom: '16px', fontSize: '14px', color: '#4b5563' }}>This is what your customer sees when they open the payment link.</p>
-                    {outcome ? (
-                      <div style={{ padding: '12px 14px', borderRadius: '8px', background: outcome === 'success' ? GREEN_LIGHT : '#fef2f2', border: '2px solid ' + (outcome === 'success' ? GREEN : '#dc2626'), marginBottom: '16px' }}>
-                        <p style={{ margin: 0, fontSize: '14px', fontWeight: 700, color: outcome === 'success' ? GREEN : '#dc2626', marginBottom: '8px' }}>
-                          {outcome === 'success' ? '✓ Payment Successful' : outcome === 'failed' ? '✗ Payment Failed' : '⊗ Payment Cancelled'}
-                        </p>
-                        <p style={{ margin: 0, fontSize: '13px', color: '#4b5563' }}>
-                          {outcome === 'success' ? 'The link status will update to "Paid" in your Dashboard.' : outcome === 'failed' ? 'Customer can retry the payment with the same link.' : 'Customer closed the payment page without completing.'}
-                        </p>
-                        {outcome !== 'success' ? (
-                          <button onClick={function() { setOutcome(''); }} style={{ marginTop: '10px', padding: '8px 14px', background: GREEN, color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', fontWeight: 600 }}>
-                            Try Again
-                          </button>
-                        ) : null}
+                    <p style={{ marginBottom: '16px', fontSize: '14px', color: '#4b5563' }}>Payment result from your simulated customer transaction:</p>
+                    <div style={{ padding: '12px 14px', borderRadius: '8px', background: outcome === 'success' ? GREEN_LIGHT : '#fef2f2', border: '2px solid ' + (outcome === 'success' ? GREEN : '#dc2626'), marginBottom: '16px' }}>
+                      <p style={{ margin: 0, fontSize: '14px', fontWeight: 700, color: outcome === 'success' ? GREEN : '#dc2626', marginBottom: '8px' }}>
+                        {outcome === 'success' ? '✓ Payment Successful' : outcome === 'failed' ? '✗ Payment Failed' : '⊗ Payment Cancelled'}
+                      </p>
+                      <p style={{ margin: 0, fontSize: '13px', color: '#4b5563' }}>
+                        {outcome === 'success' ? 'The link status will update to "Paid" in your Dashboard. The transaction will appear in your Transactions tab.' : outcome === 'failed' ? 'Customer can retry the payment with the same link. The link remains Active.' : 'Customer closed the payment page without completing. The link remains Active for them to try again.'}
+                      </p>
+                    </div>
+                    {outcome !== 'success' ? (
+                      <div>
+                        <p style={{ margin: '0 0 12px', fontSize: '13px', color: '#6b7280' }}>Want to simulate a different outcome?</p>
+                        <button onClick={function() {
+                          setOutcome('');
+                          setStep(0);
+                        }} style={{ padding: '8px 14px', background: 'white', color: GREEN, border: '1px solid ' + GREEN, borderRadius: '6px', cursor: 'pointer', fontSize: '14px', fontWeight: 600 }}>
+                          Open Link Again
+                        </button>
                       </div>
-                    ) : null}
-                    {!outcome ? (
-                      <button onClick={function() {
-                        // TODO: Track event - test_payment_attempted
-                        setShowPreview(true);
-                      }} style={{ padding: '10px 16px', background: GREEN, color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', fontWeight: 600 }}>
-                        Open Payment Page
-                      </button>
                     ) : null}
                   </div>
                 ) : null}
