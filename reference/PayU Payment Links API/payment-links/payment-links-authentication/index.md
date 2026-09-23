@@ -28,7 +28,7 @@ next:
       title: Revoke Token API
       type: endpoint
 ---
-Payment Links APIs use **OAuth 2.0 client credentials** — not the hash-based authentication used by PayU's General or Merchant Hosted APIs. Before calling any Payment Links endpoint, you need a Bearer token. Every API call then passes that token in the `Authorization` header.
+Payment Links APIs use OAuth 2.0 client credentials for authentication. Before calling any Payment Links endpoint, you need a Bearer token. Every API call then passes that token in the `Authorization` header.
 
 <Callout icon="📘" theme="info">
   ### **Where do I get my Client ID and Secret?**
