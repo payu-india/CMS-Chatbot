@@ -211,31 +211,27 @@ next:
 
 ***
 
-3. #### My customer didn't receive the SMS — why?
+3. #### My customer didn't receive the SMS. Why?
 
 <Accordion title="Answer" icon="fab fa-adn">
   The three most common causes:
 
-  **1. Mobile number was not included.**
-  For Dashboard links: confirm you entered the customer's mobile number in the Customer Details section and toggled **Notify via SMS** on before creating the link.
-  For API links: confirm your request payload includes the `mobileNumber` field. PayU triggers SMS only when the mobile number is present in the create-link request — it is not optional if you want SMS delivery.
+  **1. Mobile number was not included.**<br /><br />**For Dashboard links:** Confirm you entered the customer's mobile number in the Customer Details section and toggled **Send via SMS** on before creating the link.<br /><br />**For API links:** Confirm your request payload includes the `mobileNumber` field. PayU triggers SMS only when the mobile number is present in the create-link request — it is not optional if you want SMS delivery.
 
-  **2. DND (Do Not Disturb) is active on the customer's number.**
-  DND blocks all promotional and transactional SMS from every sender. Ask the customer to check their DND status with their mobile operator, or share the link via WhatsApp or email instead.
+  **2. DND (Do Not Disturb) is active on the customer's number.**<br /><br />DND blocks all promotional and transactional SMS from every sender. Ask the customer to check their DND status with their mobile operator, or share the link via WhatsApp or email instead.
 
-  **3. Notifications fire once at creation only.**
-  SMS cannot be re-triggered for an existing link. To resend, go to **Actions → Share** in the Dashboard and send the link again manually, or share the URL directly.
+  **3. Notifications fire once at creation only.**<br /><br />SMS cannot be re-triggered for an existing link. To resend, go to **Actions → Share** in the Dashboard and send the link again manually, or share the URL directly.
 </Accordion>
 
 ***
 
-4. #### My customer didn't receive the payment link email — why?
+4. #### My customer didn't receive the payment link email. Why?
 
 <Accordion title="Answer" icon="fab fa-adn">
   Check the following:
 
-  1. Confirm the customer's email address was entered correctly — open the link **Details** view in the Dashboard.
-  2. Confirm **Notify via Email** was toggled on at the time of creation. Notifications fire once at creation only — they cannot be re-triggered.
+  1. Confirm the customer's email address was entered correctly. To verify, open the link **Details** view in the Dashboard.
+  2. Confirm **Send Email** was toggled on at the time of creation. Notifications sent once at creation only. You cannot re-trigger them.
   3. Ask the customer to check their spam or junk folder.
 
   To resend, go to **Actions → Share** in the Dashboard and re-send via email, or copy the URL and share manually.
