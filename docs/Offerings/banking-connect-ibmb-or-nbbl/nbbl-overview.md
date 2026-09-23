@@ -5,6 +5,13 @@ hidden: true
 metadata:
   robots: index
 ---
+title: NBBL Banking Connect overview
+deprecated: false
+hidden: false
+metadata:
+  description: Understand NBBL Banking Connect, its payment journeys, merchant benefits, and bank rollout.
+  robots: index
+---
 # NBBL Banking Connect overview
 
 NBBL Banking Connect is PayU's implementation of NPCI Bharat BillPay Limited's standardized NetBanking framework. It keeps the trust and high-value capability of NetBanking while replacing the checkout experience built around bank-website credentials with a mobile-first, password-free flow.
@@ -64,17 +71,12 @@ If the selected bank app is not installed, or the app-first path is not enabled,
   }
 }}%%
 sequenceDiagram
-    box Merchant Site/App
-        participant Merchant
-    end
-    box PayU Checkout
-        participant PayU
-    end
-    box Bank App
-        participant BankApp as "Bank App"
-    end
+    participant Customer
+    participant Merchant
+    participant PayU
+    participant BankApp as "Bank App"
 
-    Note over Merchant: 1. Customer selects bank<br/>(NetBanking)
+    Note over Customer: 1. Select bank<br/>(NetBanking)
 
     Merchant->>PayU: 2. Initiate NetBanking<br/>(selected bank)
     PayU->>BankApp: 3. Open bank app<br/>(deep link)
@@ -138,17 +140,12 @@ sequenceDiagram
   }
 }}%%
 sequenceDiagram
-    box Merchant Website
-        participant Merchant
-    end
-    box PayU Checkout
-        participant PayU
-    end
-    box Bank App (Mobile)
-        participant BankApp as "Bank App"
-    end
+    participant Customer
+    participant Merchant
+    participant PayU
+    participant BankApp as "Bank App (Mobile)"
 
-    Note over Merchant: 1. Customer selects bank<br/>(NetBanking)
+    Note over Customer: 1. Select bank<br/>(NetBanking)
 
     Merchant->>PayU: 2. Offer modes:<br/>QR or website
     PayU-->>Merchant: 3. Display NetBanking QR
@@ -213,17 +210,12 @@ sequenceDiagram
   }
 }}%%
 sequenceDiagram
-    box Merchant Website
-        participant Merchant
-    end
-    box PayU Checkout
-        participant PayU
-    end
-    box Bank Website
-        participant Bank as "Bank Website"
-    end
+    participant Customer
+    participant Merchant
+    participant PayU
+    participant Bank as "Bank Website"
 
-    Note over Merchant: Bank app missing<br/>or app-first unavailable
+    Note over Customer: App missing / not<br/>enabled for app-first
 
     Merchant->>PayU: Continue via bank<br/>website
     PayU->>Bank: Redirect to bank site
@@ -248,7 +240,47 @@ NBBL offers two payment flows to accommodate different use cases:
 Enhanced version of traditional net banking that maintains the familiar bank website experience while adding interoperability:
 
 ```mermaid
-%%{init: {"theme":"base","sequence":{"mirrorActors":false,"rightAngles":true,"messageAlign":"left","fontSize":10,"actorFontSize":10,"noteFontSize":10,"actorMargin":88,"width":168,"boxMargin":10,"messageMargin":38,"diagramMarginX":60,"diagramMarginY":18},"themeVariables":{"fontFamily":"Arial, Helvetica, sans-serif","fontSize":"10px","background":"#FFFFFF","primaryColor":"#A6C307","primaryTextColor":"#002843","primaryBorderColor":"#002843","secondaryColor":"#F4F9E0","lineColor":"#002843","textColor":"#002843","actorBkg":"#A6C307","actorBorder":"#002843","actorTextColor":"#002843","actorLineColor":"#002843","signalColor":"#002843","signalTextColor":"#002843","labelBoxBkgColor":"#F4F9E0","labelBoxBorderColor":"#A6C307","noteBkgColor":"#F4F9E0","noteTextColor":"#002843","noteBorderColor":"#A6C307","activationBkgColor":"#E8F0C4","activationBorderColor":"#002843"}}%%
+%%{init: {
+  "theme": "base",
+  "sequence": {
+    "mirrorActors": false,
+    "rightAngles": true,
+    "messageAlign": "left",
+    "fontSize": 10,
+    "actorFontSize": 10,
+    "noteFontSize": 10,
+    "actorMargin": 88,
+    "width": 168,
+    "boxMargin": 10,
+    "messageMargin": 38,
+    "diagramMarginX": 60,
+    "diagramMarginY": 18
+  },
+  "themeVariables": {
+    "fontFamily": "Arial, Helvetica, sans-serif",
+    "fontSize": "10px",
+    "background": "#FFFFFF",
+    "primaryColor": "#A6C307",
+    "primaryTextColor": "#002843",
+    "primaryBorderColor": "#002843",
+    "secondaryColor": "#F4F9E0",
+    "lineColor": "#002843",
+    "textColor": "#002843",
+    "actorBkg": "#A6C307",
+    "actorBorder": "#002843",
+    "actorTextColor": "#002843",
+    "actorLineColor": "#002843",
+    "signalColor": "#002843",
+    "signalTextColor": "#002843",
+    "labelBoxBkgColor": "#F4F9E0",
+    "labelBoxBorderColor": "#A6C307",
+    "noteBkgColor": "#F4F9E0",
+    "noteTextColor": "#002843",
+    "noteBorderColor": "#A6C307",
+    "activationBkgColor": "#E8F0C4",
+    "activationBorderColor": "#002843"
+  }
+}}%%
 sequenceDiagram
     participant Customer
     participant MerchantPA as "Merchant / PA"
@@ -267,7 +299,6 @@ sequenceDiagram
 ```
 
 **Key Steps:**
-
 1. Customer selects bank and initiates payment
 2. Merchant/PA sends transaction details to PayU
 3. PayU sends transaction to IBMB platform via `reqTxnInit` API
@@ -324,21 +355,11 @@ Modern mobile-first approach using QR codes and app intents:
   }
 }}%%
 sequenceDiagram
-    box Customer (Desktop)
-        participant CustDesktop as "Customer (Desktop)"
-    end
-    box Merchant / PA
-        participant MerchantPA as "Merchant / PA"
-    end
-    box PayU Gateway
-        participant PayU as "PayU Gateway"
-    end
-    box IBMB Platform
-        participant IBMB as "IBMB Platform"
-    end
-    box Bank App (Mobile)
-        participant BankApp as "Bank App (Mobile)"
-    end
+    participant CustDesktop as "Customer (Desktop)"
+    participant MerchantPA as "Merchant / PA"
+    participant PayU as "PayU Gateway"
+    participant IBMB as "IBMB Platform"
+    participant BankApp as "Bank App (Mobile)"
 
     CustDesktop->>MerchantPA: 1. Select QR option
     MerchantPA->>PayU: 2. Send txn
@@ -352,7 +373,6 @@ sequenceDiagram
 ```
 
 **Key Steps:**
-
 1. Customer selects QR code payment option
 2. Merchant/PA sends transaction to PayU
 3. PayU sends transaction to IBMB via `reqTxnInit` API
