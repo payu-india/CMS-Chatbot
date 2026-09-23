@@ -51,9 +51,9 @@ next:
 1. #### What is a payment link and how does it work?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  A <Anchor target="_blank" href="doc:payment-links-overview">payment link</Anchor> is a secure, shareable URL that lets your customer pay you without visiting your website or app. You <Anchor target="_blank" href="doc:send-a-payment-link">create the link</Anchor> in the PayU Dashboard or via <Anchor target="_blank" href="doc:api-create-share">API</Anchor>, share it over any channel such as email, SMS, or WhatsApp. Your customer clicks it to pay on a PayU-hosted checkout page. Once paid, you receive a notification and the transaction appears in your Dashboard.<br />
+  A <Anchor target="_blank" href="https://docs.payu.in/docs/payment-links">payment link</Anchor> is a secure, shareable URL that lets your customer pay you without visiting your website or app. You <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link">create the link</Anchor> in the PayU Dashboard or via <Anchor target="_blank" href="https://docs.payu.in/reference/create-payment-links">API</Anchor>, share it over any channel such as email, SMS, or WhatsApp. Your customer clicks it to pay on a PayU-hosted checkout page. Once paid, you receive a notification and the transaction appears in your Dashboard.<br />
 
-  See <Anchor target="_blank" href="doc:how-payment-links-works">How Payment Links Works</Anchor> for the end-to-end flow.
+  See <Anchor target="_blank" href="https://docs.payu.in/docs/payment-links-workflow">How Payment Links Works</Anchor> for the end-to-end flow.
 </Accordion>
 
 ***
@@ -61,12 +61,12 @@ next:
 2. #### Do I need a developer or any code to create a Payment Link?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  No. Payment Links is a no-code product. You can <Anchor target="_blank" href="doc:send-a-payment-link">create</Anchor>, <Anchor target="_blank" href="doc:manage-payment-links">share</Anchor>, and manage links entirely from the PayU Dashboard. The <Anchor target="_blank" href="doc:api-create-share">Payment Links API</Anchor> is available for merchants who want to automate link creation inside their own systems, but it is optional.
+  No. Payment Links is a no-code product. You can <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link">create</Anchor>, <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#what-can-i-do-with-a-payment-link-after-it-is-created">share</Anchor>, and manage links entirely from the PayU Dashboard. The <Anchor target="_blank" href="https://docs.payu.in/reference/manage-payment-links">Payment Links API</Anchor> is available for merchants who want to automate link creation inside their own systems, but it is optional.
 </Accordion>
 
 ***
 
-3. #### Does using Payment Links require an existing website or checkout integration? <Badge type="success">New</Badge>
+3. #### Should I integrate web checkout first to use Payment Links? <Badge type="success">New</Badge>
 
 <Accordion title="Answer" icon="fab fa-adn">
   No. Payment Links is a completely standalone product. You do not need a website, app, or any prior PayU integration to start using it. You can create and share payment links directly from the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> — no code or technical setup required.
