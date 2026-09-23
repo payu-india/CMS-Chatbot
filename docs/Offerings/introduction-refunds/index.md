@@ -186,7 +186,6 @@ The following sections describe how to initiate, track, and manage refunds with 
 - [Refunds in PayU Products](doc:refunds-in-payu-products)
   - [Refunds for Offers](doc:refunds-for-offers)
   - [Refund APIs for Split Settlements](doc:refund-apis-for-split-settlements)
-  - [Partner Refunds](doc:partner-refunds)
   - [Refunds for EMI](doc:refunds-for-emi)
   - [Refunds for BNPL](doc:refunds-for-bnpl)
 - [Webhooks for Refunds](doc:webhooks-for-refunds)
