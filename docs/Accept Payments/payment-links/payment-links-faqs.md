@@ -115,10 +115,10 @@ next:
 
 ***
 
-7. #### Can I create a payment link in an international / USD currency? <Badge type="success">New</Badge>
+7. #### Can I create a payment link in an international currency or in USD?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Yes, but international payments must first be enabled on your merchant account.
+  Yes, but you should first enable international payments on your merchant account.
 
   **Steps:**
 
