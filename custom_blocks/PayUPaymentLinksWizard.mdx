@@ -185,7 +185,12 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
                         </div>
                         <div style={{ padding: '10px', background: 'white', borderRadius: '6px', marginBottom: '12px', border: '1px solid #e5e7eb' }}>
                           <div style={{ fontSize: '11px', color: '#6b7280', marginBottom: '4px' }}>Payment Link</div>
-                          <code style={{ display: 'block', fontSize: '11px', wordBreak: 'break-all', color: '#111827' }}>{link}</code>
+                          <a href="#" onClick={function(e) {
+                            e.preventDefault();
+                            setShowPreview(true);
+                          }} style={{ display: 'block', fontSize: '11px', wordBreak: 'break-all', color: GREEN, textDecoration: 'underline', cursor: 'pointer', fontFamily: 'monospace' }}>
+                            {link}
+                          </a>
                         </div>
                         <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '10px' }}>
                           <button onClick={copyLink} style={{ padding: '8px 14px', background: copied ? GREEN : 'white', color: copied ? 'white' : GREEN, border: '1px solid ' + GREEN, borderRadius: '6px', cursor: 'pointer', fontSize: '13px', fontWeight: 600, transition: 'all 0.2s' }}>
@@ -199,7 +204,7 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
                           </button>
                         </div>
                         <p style={{ margin: 0, fontSize: '12px', color: '#6b7280', lineHeight: 1.5 }}>
-                          <strong>Sandbox mode:</strong> This is a practice link (not a real URL). Click <strong>Open Link</strong> above to see what happens when a customer clicks your payment link.
+                          <strong>Sandbox mode:</strong> This is a practice link (not a real URL). Click the <strong>link above</strong> or the <strong>Open Link</strong> button to see the customer payment experience.
                         </p>
                       </div>
                     ) : null}
