@@ -246,7 +246,7 @@ next:
 <Accordion title="Answer" icon="fab fa-adn">
   The link status in the Dashboard changes to **Paid** (or remains **Active** with a non-zero `totalRevenue` for partial-payment links). The transaction appears in the **Transactions** tab in the Dashboard.
 
-  If you have webhooks configured, you receive a real-time `payment.success` event. See <Anchor target="_blank" href="doc:receive-and-verify-a-webhook">Webhooks: Receive & Verify</Anchor>.
+  If you have webhooks configured, you receive a real-time `payment.success` event. See Webhooks: Receive & Verify.
 </Accordion>
 
 ***
