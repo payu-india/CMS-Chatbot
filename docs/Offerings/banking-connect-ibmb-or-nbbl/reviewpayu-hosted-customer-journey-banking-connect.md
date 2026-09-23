@@ -18,6 +18,8 @@ The app-intent flow sends the customer from PayU Hosted Checkout to the installe
 ### Steps
 
 1. The customer selects a bank under NetBanking.
+
+
 2. PayU displays the option to pay through the selected bank app.
 3. The customer selects the bank-app option.
 4. PayU opens the bank app through a deep link.
@@ -26,10 +28,6 @@ The app-intent flow sends the customer from PayU Hosted Checkout to the installe
 7. The customer returns to the merchant with the payment result.
 
 ### Example interface states
-
-
-<Image src="https://files.readme.io/8bef11c8df6993d94a147274e03ac332c548e2f5bfa382a25f11819323cf4538-01-payment-mode.png" border={true} />
-
 
 
 <Image src="https://files.readme.io/7f22d82f0ebe1fbb91f0f4f4f986eb186b6ac8a2e49c54eb6f7ec519de1ae1da-02-processing-payment.png" border={true} />
