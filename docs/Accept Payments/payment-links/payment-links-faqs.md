@@ -69,9 +69,9 @@ next:
 3. #### Should I integrate web checkout first to use Payment Links? <Badge type="success">New</Badge>
 
 <Accordion title="Answer" icon="fab fa-adn">
-  No. Payment Links is a completely standalone product. You do not need a website, app, or any prior PayU integration to start using it. You can create and share payment links directly from the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> — no code or technical setup required.
+  No. <Anchor target="_blank" href="https://docs.payu.in/docs/payment-links">Payment Links</Anchor> is a completely standalone product. You do not need a website, app, or any prior PayU integration to start using it. You can create and share payment links directly from the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> with out any code or technical setup.<br />
 
-  If you later integrate PayU Hosted Checkout or Merchant Hosted Checkout on your website, Payment Links remains available alongside those integrations.
+  If you later integrate <Anchor target="_blank" href="https://docs.payu.in/docs/prebuilt-checkout-payu-hosted">PayU Hosted Checkout</Anchor> or Merchant <Anchor target="_blank" href="https://docs.payu.in/docs/custom-checkout-merchant-hosted">Hosted Checkout</Anchor> on your website, Payment Links remains available alongside those integrations.
 </Accordion>
 
 ***
