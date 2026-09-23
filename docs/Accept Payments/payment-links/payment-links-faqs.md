@@ -76,7 +76,7 @@ next:
 
 ***
 
-4. #### Which payment methods can customers use?
+4. #### Which payment methods can customers use to make payments?
 
 <Accordion title="Answer" icon="fab fa-adn">
   Customers can pay using payment methods enabled on your merchant account:
@@ -93,12 +93,12 @@ next:
 
 ***
 
-5. #### UPI is not showing on the customer's payment page — why?
+5. #### Why is UPI not showing on the customer's payment page?
 
 <Accordion title="Answer" icon="fab fa-adn">
   UPI must be enabled on your merchant account. If you can see UPI when you test the link yourself but your customer cannot, ask them to try a different browser or device.
 
-  If UPI is missing for all customers, contact <Anchor target="_blank" href="https://help.payu.in/query">PayU support</Anchor> to confirm that UPI is active on your merchant account.
+  If UPI is missing for all customers, contact <Anchor target="_blank" href="https://help.payu.in/raise-ticket">PayU support</Anchor> to confirm that UPI is active on your merchant account.
 
   **UPI Intent (direct app redirect):** if you want customers to be taken straight into a UPI app without entering their VPA, UPI Intent must be enabled separately — contact your PayU account manager.
 </Accordion>
