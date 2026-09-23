@@ -403,5 +403,5 @@ The attached product brief lists HDFC Bank, ICICI Bank, Axis Bank, YES Bank, Fed
 
 ## Related documentation
 
-- [PayU Hosted Customer Journey - Banking Connect](./payu-hosted-customer-journey-banking-connect)
-- [Handle NBBL Deep-Links in WebView](./handle-nbbl-deep-links-in-webview)
+- [PayU Hosted Customer Journey - Banking Connect](doc:payu-hosted-customer-journey-banking-connect)
+- [Handle NBBL Deep-Links in WebView](doc:handle-nbbl-deep-links-in-webview)
