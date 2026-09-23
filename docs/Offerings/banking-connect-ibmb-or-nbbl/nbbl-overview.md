@@ -5,14 +5,6 @@ hidden: true
 metadata:
   robots: index
 ---
----
-title: NBBL Banking Connect overview
-deprecated: false
-hidden: false
-metadata:
-  description: Understand NBBL Banking Connect, its payment journeys, merchant benefits, and bank rollout.
-  robots: index
----
 # NBBL Banking Connect overview
 
 NBBL Banking Connect is PayU's implementation of NPCI Bharat BillPay Limited's standardized NetBanking framework. It keeps the trust and high-value capability of NetBanking while replacing the checkout experience built around bank-website credentials with a mobile-first, password-free flow.
@@ -256,63 +248,13 @@ NBBL offers two payment flows to accommodate different use cases:
 Enhanced version of traditional net banking that maintains the familiar bank website experience while adding interoperability:
 
 ```mermaid
-%%{init: {
-  "theme": "base",
-  "sequence": {
-    "mirrorActors": false,
-    "rightAngles": true,
-    "messageAlign": "left",
-    "fontSize": 10,
-    "actorFontSize": 10,
-    "noteFontSize": 10,
-    "actorMargin": 88,
-    "width": 168,
-    "boxMargin": 10,
-    "messageMargin": 38,
-    "diagramMarginX": 60,
-    "diagramMarginY": 18
-  },
-  "themeVariables": {
-    "fontFamily": "Arial, Helvetica, sans-serif",
-    "fontSize": "10px",
-    "background": "#FFFFFF",
-    "primaryColor": "#A6C307",
-    "primaryTextColor": "#002843",
-    "primaryBorderColor": "#002843",
-    "secondaryColor": "#F4F9E0",
-    "lineColor": "#002843",
-    "textColor": "#002843",
-    "actorBkg": "#A6C307",
-    "actorBorder": "#002843",
-    "actorTextColor": "#002843",
-    "actorLineColor": "#002843",
-    "signalColor": "#002843",
-    "signalTextColor": "#002843",
-    "labelBoxBkgColor": "#F4F9E0",
-    "labelBoxBorderColor": "#A6C307",
-    "noteBkgColor": "#F4F9E0",
-    "noteTextColor": "#002843",
-    "noteBorderColor": "#A6C307",
-    "activationBkgColor": "#E8F0C4",
-    "activationBorderColor": "#002843"
-  }
-}}%%
+%%{init: {"theme":"base","sequence":{"mirrorActors":false,"rightAngles":true,"messageAlign":"left","fontSize":10,"actorFontSize":10,"noteFontSize":10,"actorMargin":88,"width":168,"boxMargin":10,"messageMargin":38,"diagramMarginX":60,"diagramMarginY":18},"themeVariables":{"fontFamily":"Arial, Helvetica, sans-serif","fontSize":"10px","background":"#FFFFFF","primaryColor":"#A6C307","primaryTextColor":"#002843","primaryBorderColor":"#002843","secondaryColor":"#F4F9E0","lineColor":"#002843","textColor":"#002843","actorBkg":"#A6C307","actorBorder":"#002843","actorTextColor":"#002843","actorLineColor":"#002843","signalColor":"#002843","signalTextColor":"#002843","labelBoxBkgColor":"#F4F9E0","labelBoxBorderColor":"#A6C307","noteBkgColor":"#F4F9E0","noteTextColor":"#002843","noteBorderColor":"#A6C307","activationBkgColor":"#E8F0C4","activationBorderColor":"#002843"}}%%
 sequenceDiagram
-    box Customer Device
-        participant Customer
-    end
-    box Merchant / PA
-        participant MerchantPA as "Merchant / PA"
-    end
-    box PayU Gateway
-        participant PayU as "PayU Gateway"
-    end
-    box IBMB Platform
-        participant IBMB as "IBMB Platform"
-    end
-    box Bank Website
-        participant Bank as "Bank Website"
-    end
+    participant Customer
+    participant MerchantPA as "Merchant / PA"
+    participant PayU as "PayU Gateway"
+    participant IBMB as "IBMB Platform"
+    participant Bank as "Bank Website"
 
     Customer->>MerchantPA: 1. Select bank &<br/>initiate payment
     MerchantPA->>PayU: 2. Send txn<br/>details
@@ -325,6 +267,7 @@ sequenceDiagram
 ```
 
 **Key Steps:**
+
 1. Customer selects bank and initiates payment
 2. Merchant/PA sends transaction details to PayU
 3. PayU sends transaction to IBMB platform via `reqTxnInit` API
@@ -409,6 +352,7 @@ sequenceDiagram
 ```
 
 **Key Steps:**
+
 1. Customer selects QR code payment option
 2. Merchant/PA sends transaction to PayU
 3. PayU sends transaction to IBMB via `reqTxnInit` API
