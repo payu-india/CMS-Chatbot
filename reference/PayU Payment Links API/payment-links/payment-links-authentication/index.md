@@ -31,9 +31,9 @@ next:
 Payment Links APIs use OAuth 2.0 client credentials for authentication. Before calling any Payment Links endpoint, you need a Bearer token. Every API call then passes that token in the `Authorization` header.
 
 <Callout icon="📘" theme="info">
-  ### **Where do I get my Client ID and Secret?**
+  ### **Where do I Get My Client ID and Secret?**
 
-  Go to your PayU Dashboard → **Developers** → **OAuth Apps**. See [Get Client ID and Secret](doc:get-client-id-and-secret-from-dashboard) for a step-by-step walkthrough.
+  Go to your PayU Dashboard → **Developers** → **OAuth Apps**. See Get Client ID and Secret for a step-by-step walkthrough.
 </Callout>
 
 ***
