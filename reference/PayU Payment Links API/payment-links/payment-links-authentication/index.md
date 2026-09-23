@@ -35,7 +35,9 @@ Payment Links APIs use OAuth 2.0 client credentials for authentication. Before c
 
   Go to your PayU Dashboard → **Developers** → **Client ID & Client secret details**. See Get Client ID and Secret for a step-by-step walkthrough.
 
-  ![](https://files.readme.io/ee267eeecb5afcea3fb50092eb5b3deb1efe2acdc108d2fbb46098c18aee669a-Screenshot_2026-09-23_at_1.34.30_PM.png)
+
+  <Image src="https://files.readme.io/ee267eeecb5afcea3fb50092eb5b3deb1efe2acdc108d2fbb46098c18aee669a-Screenshot_2026-09-23_at_1.34.30_PM.png" align="center" caption="Access Client ID and Secret" border={true} />
+
 </Callout>
 
 ***
