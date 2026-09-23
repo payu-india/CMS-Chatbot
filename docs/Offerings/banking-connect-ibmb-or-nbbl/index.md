@@ -16,8 +16,7 @@ Customers authenticate inside their own bank app instead of entering NetBanking 
 - **High-value payments:** NetBanking continues to support high-value, uncapped payments.
 - **No integration change:** Existing merchant NetBanking integrations remain unchanged.
 - **Phased rollout:** PayU can enable banks individually or use traffic splits before a broader rollout.
-- **Standardized framework:** The framework is intended to improve transaction visibility and dispute handling across participating banks.
-- **Existing operations:** The product brief states that reconciliation and settlement processes do not change.
+- **Existing operations:** The reconciliation and settlement processes do not change.
 
 ## Payment journeys
 
@@ -39,8 +38,6 @@ The attached product brief lists these banks as currently live via NBBL:
 - ICICI Bank
 - Axis Bank
 - YES Bank
-- Federal Bank
-- AU Small Finance Bank
 
 The brief lists these banks as coming soon:
 
@@ -51,3 +48,5 @@ The brief lists these banks as coming soon:
 - Canara Bank
 - Kotak Mahindra Bank
 - CSB Bank
+- Federal Bank
+- AU Small Finance Bank
