@@ -1,0 +1,1534 @@
+openapi: 3.0.0
+info:
+  title: PayU Payment Links API
+  description: >-
+    Create, manage, and share payment links programmatically. Supports
+    fixed-amount, open-amount, partial payment, recurring (SI), and eNACH link
+    types.
+  version: 1.0.0
+servers:
+  - url: https://uatoneapi.payu.in
+    description: Test Environment
+  - url: https://oneapi.payu.in
+    description: Production Environment
+tags:
+  - name: Authentication
+    description: Generate and revoke OAuth 2.0 Bearer tokens.
+  - name: Payment Links
+    description: Create, retrieve, share, and manage payment links.
+paths:
+  /oauth/token:
+    post:
+      summary: Get Access Token
+      operationId: GetAccessTokenAPI
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - client_id
+                - client_secret
+                - grant_type
+                - scope
+              properties:
+                client_id:
+                  type: string
+                  description: >-
+                    Your OAuth app's public identifier. Find in PayU Dashboard →
+                    Developers → OAuth Apps.
+                  example: '{{client_id}}'
+                client_secret:
+                  type: string
+                  description: Your OAuth app's secret key. Never expose client-side.
+                  example: '{{client_secret}}'
+                grant_type:
+                  type: string
+                  description: >-
+                    Always pass client_credentials for server-to-server
+                    integration.
+                  example: client_credentials
+                scope:
+                  type: string
+                  description: >-
+                    Space-separated scopes: create_payment_links,
+                    update_payment_links, read_payment_links
+                  example: create_payment_links update_payment_links read_payment_links
+            examples:
+              allScopes:
+                summary: Token with all three scopes
+                value:
+                  client_id: '{{client_id}}'
+                  client_secret: '{{client_secret}}'
+                  grant_type: client_credentials
+                  scope: create_payment_links update_payment_links read_payment_links
+              createOnly:
+                summary: Token for creating links only
+                value:
+                  client_id: '{{client_id}}'
+                  client_secret: '{{client_secret}}'
+                  grant_type: client_credentials
+                  scope: create_payment_links
+      responses:
+        '200':
+          description: Token generated successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                    description: >-
+                      Bearer token to pass as Authorization header on all
+                      Payment Links API calls.
+                    example: >-
+                      ea4ed864b4d2a04b90c1e987a5d25a5da1d43fa5f7d123be6814a1e973f196c4
+                  token_type:
+                    type: string
+                    example: Bearer
+                  expires_in:
+                    type: integer
+                    description: >-
+                      Token validity in seconds. Typical value is 7200 (2
+                      hours).
+                    example: 7200
+                  scope:
+                    type: string
+                    example: >-
+                      create_payment_links update_payment_links
+                      read_payment_links
+                  created_at:
+                    type: integer
+                    description: >-
+                      Unix timestamp of token creation. Expiry = created_at +
+                      expires_in.
+                    example: 1763036368
+              examples:
+                success:
+                  summary: Success
+                  value:
+                    access_token: >-
+                      ea4ed864b4d2a04b90c1e987a5d25a5da1d43fa5f7d123be6814a1e973f196c4
+                    token_type: Bearer
+                    expires_in: 7200
+                    scope: >-
+                      create_payment_links update_payment_links
+                      read_payment_links
+                    created_at: 1763036368
+        '401':
+          description: Authentication failure.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: invalid_client
+                  error_description:
+                    type: string
+                    example: Client authentication failed.
+              examples:
+                invalidClient:
+                  summary: Invalid client credentials
+                  value:
+                    error: invalid_client
+                    error_description: >-
+                      Client authentication failed due to unknown client, no
+                      client authentication included, or unsupported
+                      authentication method.
+                invalidScope:
+                  summary: Invalid scope
+                  value:
+                    error: invalid_scope
+                    error_description: The requested scope is invalid, unknown, or malformed.
+      servers:
+        - url: https://uat-accounts.payu.in
+          description: Test Environment
+        - url: https://accounts.payu.in
+          description: Production Environment
+      security: []
+  /oauth/revoke:
+    post:
+      summary: Revoke Token API
+      operationId: RevokeTokenAPI
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - client_id
+                - client_secret
+                - token
+              properties:
+                client_id:
+                  type: string
+                  description: The client_id of the OAuth app that issued the token.
+                  example: '{{client_id}}'
+                client_secret:
+                  type: string
+                  description: The client_secret of the OAuth app that issued the token.
+                  example: '{{client_secret}}'
+                token:
+                  type: string
+                  description: The access_token value to invalidate.
+                  example: '{{access_token}}'
+            examples:
+              basic:
+                summary: Revoke a token
+                value:
+                  client_id: '{{client_id}}'
+                  client_secret: '{{client_secret}}'
+                  token: '{{access_token}}'
+      responses:
+        '200':
+          description: Token revoked successfully. Response body is empty.
+        '401':
+          description: Invalid credentials or token already revoked.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: invalid_client
+                  error_description:
+                    type: string
+                    example: Client authentication failed.
+              examples:
+                invalidClient:
+                  summary: Invalid client credentials
+                  value:
+                    error: invalid_client
+                    error_description: >-
+                      Client authentication failed due to unknown client, no
+                      client authentication included, or unsupported
+                      authentication method.
+                invalidToken:
+                  summary: Token already invalid
+                  value:
+                    error: invalid_token
+                    error_description: The token is invalid or has already been revoked.
+      servers:
+        - url: https://uat-accounts.payu.in
+          description: Test Environment
+        - url: https://accounts.payu.in
+          description: Production Environment
+      security: []
+  /payment-links:
+    post:
+      summary: Create Payment Link
+      operationId: CreatePaymentLinkAPI
+      description: >
+        Create a shareable payment link and optionally notify the customer via
+        email, SMS, or WhatsApp.
+
+
+        **Link types** — controlled by parameter combinations, not a separate
+        `type` field:
+
+
+        | Link Type | Key parameters |
+
+        |---|---|
+
+        | Standard (fixed amount) | `source: API`, `subAmount > 0` |
+
+        | Open Amount | `source: API`, `isAmountFilledByCustomer: true` (omit
+        `subAmount`) |
+
+        | Partial Payment | `source: API`, `subAmount > 0`,
+        `isPartialPaymentAllowed: true` |
+
+        | SI Recurring | `source: si_payment_link`, `siDetails` object |
+
+        | eNACH | `source: si_payment_link`, `enforcePayMethod: enach`,
+        `siDetails` with `bankDetails` |
+      tags:
+        - Payment Links
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          description: >-
+            Bearer token with `create_payment_links` scope. Format: `Bearer
+            {access_token}`
+          schema:
+            type: string
+            example: Bearer {{access_token}}
+        - name: merchantId
+          in: header
+          required: true
+          description: Your PayU Merchant ID.
+          schema:
+            type: string
+            example: '{{merchantId}}'
+      x-readme:
+        code-samples:
+          - language: curl
+            name: Standard
+            code: |
+              curl --location 'https://uatoneapi.payu.in/payment-links' \
+              --header 'Authorization: Bearer {{access_token}}' \
+              --header 'merchantId: {{merchantId}}' \
+              --header 'Content-Type: application/json' \
+              --data '{
+                "subAmount": 1499,
+                "description": "Order #ORD-2026-88421 — Wireless Headphones",
+                "source": "API",
+                "invoiceNumber": "ORD-2026-88421",
+                "expiryDate": "2026-10-15 23:59:59",
+                "tax": 0,
+                "shippingCharge": 0,
+                "viaEmail": true,
+                "viaSms": true,
+                "customer": {
+                  "name": "Arjun Mehta",
+                  "email": "arjun.mehta@example.com",
+                  "phone": "9876543210"
+                },
+                "udf": {
+                  "udf1": "electronics"
+                }
+              }'
+          - language: curl
+            name: Open Amount
+            code: |
+              curl --location 'https://uatoneapi.payu.in/payment-links' \
+              --header 'Authorization: Bearer {{access_token}}' \
+              --header 'merchantId: {{merchantId}}' \
+              --header 'Content-Type: application/json' \
+              --data '{
+                "description": "Donation — Help us plant 1,000 trees",
+                "source": "API",
+                "isAmountFilledByCustomer": true,
+                "invoiceNumber": "DON-2026-001",
+                "expiryDate": "2026-12-31 23:59:59",
+                "viaEmail": true,
+                "customer": {
+                  "name": "Priya Sharma",
+                  "email": "priya@example.com"
+                }
+              }'
+          - language: curl
+            name: Partial Payment
+            code: |
+              curl --location 'https://uatoneapi.payu.in/payment-links' \
+              --header 'Authorization: Bearer {{access_token}}' \
+              --header 'merchantId: {{merchantId}}' \
+              --header 'Content-Type: application/json' \
+              --data '{
+                "subAmount": 5000,
+                "description": "Advance booking — Photography session",
+                "source": "API",
+                "isPartialPaymentAllowed": true,
+                "minAmountForCustomer": 1000,
+                "invoiceNumber": "ADVC-2026-001",
+                "expiryDate": "2026-10-15 23:59:59",
+                "viaEmail": true,
+                "viaSms": true,
+                "customer": {
+                  "name": "Rohit Verma",
+                  "email": "rohit@example.com",
+                  "phone": "9988776655"
+                }
+              }'
+          - language: curl
+            name: SI Recurring
+            code: |
+              curl --location 'https://uatoneapi.payu.in/payment-links' \
+              --header 'Authorization: Bearer {{access_token}}' \
+              --header 'merchantId: {{merchantId}}' \
+              --header 'Content-Type: application/json' \
+              --data '{
+                "description": "Monthly SIP — ₹2000",
+                "source": "si_payment_link",
+                "invoiceNumber": "SIP-2026-001",
+                "viaEmail": true,
+                "viaSms": true,
+                "customer": {
+                  "name": "Kavya Nair",
+                  "email": "kavya@example.com",
+                  "phone": "9871234567"
+                },
+                "siDetails": {
+                  "billingAmount": 2000,
+                  "billingCycle": "MONTHLY",
+                  "billingInterval": 12,
+                  "paymentStartDate": "2026-11-01",
+                  "paymentEndDate": "2027-10-31",
+                  "isNoExpiry": false
+                }
+              }'
+          - language: curl
+            name: eNACH
+            code: |
+              curl --location 'https://uatoneapi.payu.in/payment-links' \
+              --header 'Authorization: Bearer {{access_token}}' \
+              --header 'merchantId: {{merchantId}}' \
+              --header 'Content-Type: application/json' \
+              --data '{
+                "description": "Monthly SIP via eNACH — ₹2000",
+                "source": "si_payment_link",
+                "enforcePayMethod": "enach",
+                "invoiceNumber": "ENACH-2026-001",
+                "viaEmail": true,
+                "customer": {
+                  "name": "Suresh Pillai",
+                  "email": "suresh@example.com",
+                  "phone": "9988001122"
+                },
+                "siDetails": {
+                  "billingAmount": 2000,
+                  "billingCycle": "MONTHLY",
+                  "billingInterval": 12,
+                  "paymentStartDate": "2026-11-01",
+                  "paymentEndDate": "2027-10-31",
+                  "isNoExpiry": false,
+                  "bankDetails": {
+                    "bankCode": "SBIIN",
+                    "bankAccountNumber": "1234567890",
+                    "ifsc": "SBIN0001234",
+                    "accountType": "SAVINGS"
+                  }
+                }
+              }'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - description
+                - source
+              properties:
+                subAmount:
+                  type: integer
+                  description: >
+                    Base payment amount in whole INR.
+
+
+                    - **Standard / Partial Payment**: Required. Must be greater
+                    than 0.
+
+                    - **Open Amount**: Omit this field and set
+                    `isAmountFilledByCustomer: true` instead.
+
+                    - **SI Recurring / eNACH**: Omit. Use
+                    `siDetails.billingAmount` for the per-cycle debit amount.
+                  example: 1499
+                description:
+                  type: string
+                  description: >-
+                    Purpose of the payment. Shown to the customer on the
+                    checkout page. Maximum 255 characters.
+                  example: 'Order #ORD-2026-88421 — Wireless Headphones'
+                source:
+                  type: string
+                  description: >
+                    Identifies the link category and determines which payment
+                    flows are available at checkout:
+
+
+                    - `"API"` — Standard, Open Amount, or Partial Payment links.
+
+                    - `"si_payment_link"` — SI Recurring and eNACH mandate
+                    registration links.
+                  enum:
+                    - API
+                    - si_payment_link
+                  example: API
+                invoiceNumber:
+                  type: string
+                  description: >
+                    Your unique reference ID for this link. Alphanumeric,
+                    maximum 25 characters. Auto-generated by PayU if omitted.
+                    This value is used as the path parameter in all subsequent
+                    Fetch, Update, Share, and Cancel calls — so supply your own
+                    if you need a predictable identifier.
+                  example: ORD-2026-88421
+                expiryDate:
+                  type: string
+                  description: >
+                    Link expiry in `YYYY-MM-DD HH:mm:ss` format. After this
+                    datetime the link stops accepting payments and `active`
+                    becomes `false`. Defaults to 7 days from creation.
+                  example: '2026-10-15 23:59:59'
+                currency:
+                  type: string
+                  description: ISO 4217 currency code. Defaults to `INR`.
+                  example: INR
+                tax:
+                  type: integer
+                  description: >-
+                    Tax amount in INR. Added to `subAmount` to calculate
+                    `totalAmount`. Defaults to 0.
+                  example: 0
+                shippingCharge:
+                  type: integer
+                  description: >-
+                    Shipping charge in INR. Added to `subAmount` to calculate
+                    `totalAmount`. Defaults to 0.
+                  example: 0
+                discount:
+                  type: integer
+                  description: >-
+                    Discount amount in INR. Subtracted from `subAmount` when
+                    calculating `totalAmount`. Defaults to 0.
+                  example: 0
+                maxPaymentsAllowed:
+                  type: integer
+                  description: >
+                    Maximum number of successful payment attempts allowed
+                    against this link. Once this limit is reached the link
+                    deactivates automatically. Defaults to 1.
+                  example: 1
+                isAmountFilledByCustomer:
+                  type: boolean
+                  description: >
+                    **Open Amount links only.** Set to `true` to allow the
+                    customer to enter their own payment amount at checkout.
+
+
+                    - When `true`, omit `subAmount`.
+
+                    - Mutually exclusive with `isPartialPaymentAllowed`.
+                  example: false
+                isPartialPaymentAllowed:
+                  type: boolean
+                  description: >
+                    **Partial Payment links only.** Set to `true` to allow the
+                    customer to pay less than the total amount in one or more
+                    instalments.
+
+
+                    - Requires `subAmount` to be set.
+
+                    - Use `minAmountForCustomer` to enforce a minimum first
+                    payment.
+
+                    - Mutually exclusive with `isAmountFilledByCustomer`.
+                  example: false
+                minAmountForCustomer:
+                  type: integer
+                  description: >
+                    **Partial Payment links only.** Minimum amount (in INR) the
+                    customer must pay in the first transaction.
+
+                    Ignored unless `isPartialPaymentAllowed` is `true`.
+                  example: 500
+                viaEmail:
+                  type: boolean
+                  description: >
+                    Send the payment link to `customer.email` via email
+                    immediately after creation. Requires `customer.email` to be
+                    set.
+                  example: true
+                viaSms:
+                  type: boolean
+                  description: >
+                    Send the payment link to `customer.phone` via SMS
+                    immediately after creation. Requires `customer.phone` to be
+                    set.
+                  example: true
+                viaWhatsapp:
+                  type: boolean
+                  description: >
+                    Send the payment link to `customer.phone` via WhatsApp
+                    immediately after creation. Requires `customer.phone` to be
+                    set.
+                  example: false
+                successURL:
+                  type: string
+                  description: >-
+                    URL to redirect the customer after a successful payment. If
+                    omitted, PayU uses the default thank-you page.
+                  example: https://yourstore.com/payment/success
+                failureURL:
+                  type: string
+                  description: >-
+                    URL to redirect the customer after a failed or cancelled
+                    payment.
+                  example: https://yourstore.com/payment/failure
+                enforcePayMethod:
+                  type: string
+                  description: >
+                    Restrict the checkout to specific payment methods. Separate
+                    multiple values with `|`.
+
+
+                    - **eNACH links**: Must be `"enach"`. This tells PayU to
+                    render the eNACH mandate registration flow instead of a
+                    standard checkout.
+
+                    - **Standard/Open Amount/Partial links**: Use pipe-separated
+                    method codes, e.g. `"cc|dc"` (cards only), `"upi"` (UPI
+                    only), `"nb"` (net banking only).
+                  example: cc|dc
+                dropCategory:
+                  type: string
+                  description: >
+                    Hide specific payment categories from checkout. Separate
+                    multiple values with `|`. Example: `"EMI"` removes the EMI
+                    option.
+                  example: EMI
+                customer:
+                  type: object
+                  description: >-
+                    Customer contact details. Recommended for all link types.
+                    Required if using `viaEmail`, `viaSms`, or `viaWhatsapp`.
+                  properties:
+                    name:
+                      type: string
+                      description: Customer's full name. Shown on the checkout page.
+                      example: Arjun Mehta
+                    email:
+                      type: string
+                      description: >-
+                        Customer's email address. Required when `viaEmail:
+                        true`.
+                      example: arjun.mehta@example.com
+                    phone:
+                      type: string
+                      description: >-
+                        Customer's 10-digit mobile number. Required when
+                        `viaSms: true` or `viaWhatsapp: true`.
+                      example: '9876543210'
+                address:
+                  type: object
+                  description: >-
+                    Customer billing address. Stored against the link and passed
+                    through to payment records and webhooks.
+                  properties:
+                    line1:
+                      type: string
+                      example: 42 MG Road
+                    line2:
+                      type: string
+                      example: Indiranagar
+                    city:
+                      type: string
+                      example: Bengaluru
+                    state:
+                      type: string
+                      example: Karnataka
+                    zipCode:
+                      type: string
+                      example: '560038'
+                udf:
+                  type: object
+                  description: >
+                    User-defined fields. All five values are stored against the
+                    link and passed through unchanged to webhook callbacks and
+                    payment records. Useful for tagging links with internal
+                    order IDs, customer segments, or campaign codes.
+                  properties:
+                    udf1:
+                      type: string
+                      example: electronics
+                    udf2:
+                      type: string
+                      example: app-checkout
+                    udf3:
+                      type: string
+                    udf4:
+                      type: string
+                    udf5:
+                      type: string
+                siDetails:
+                  type: object
+                  description: >
+                    **Required for SI Recurring and eNACH links** (`source:
+                    "si_payment_link"`).
+
+                    Defines the recurring billing schedule. Omit entirely for
+                    Standard, Open Amount, and Partial Payment links.
+                  properties:
+                    billingAmount:
+                      type: integer
+                      description: Amount to debit on each billing cycle, in whole INR.
+                      example: 2000
+                    billingCycle:
+                      type: string
+                      description: Frequency of recurring debits.
+                      enum:
+                        - DAILY
+                        - WEEKLY
+                        - MONTHLY
+                        - YEARLY
+                        - BI_MONTHLY
+                        - QUARTERLY
+                        - HALF_YEARLY
+                        - AS_PRESENTED
+                      example: MONTHLY
+                    billingInterval:
+                      type: integer
+                      description: >
+                        Total number of billing cycles for this mandate. For
+                        example, `12` for a 12-month monthly SIP.
+                      example: 12
+                    paymentStartDate:
+                      type: string
+                      description: Date of the first debit in `YYYY-MM-DD` format.
+                      example: '2026-11-01'
+                    paymentEndDate:
+                      type: string
+                      description: >-
+                        Date of the last debit in `YYYY-MM-DD` format. Ignored
+                        when `isNoExpiry` is `true`.
+                      example: '2027-10-31'
+                    isNoExpiry:
+                      type: boolean
+                      description: >
+                        Set to `true` for an open-ended mandate with no fixed
+                        end date. When `true`, `paymentEndDate` is ignored and
+                        the mandate stays active until explicitly cancelled.
+                      example: false
+                    isFreeTrial:
+                      type: boolean
+                      description: >
+                        Set to `true` to register the mandate without charging
+                        the first instalment. Useful when offering a free trial
+                        period before billing begins.
+                      example: false
+                    remarks:
+                      type: string
+                      description: >-
+                        Merchant-facing notes for this subscription. Not
+                        displayed to the customer.
+                      example: SIP — mutual fund folio 9104927822
+                    bankDetails:
+                      type: object
+                      description: >
+                        **Required for eNACH links** (`enforcePayMethod:
+                        "enach"`).
+
+                        Pre-populates the customer's bank information on the
+                        eNACH registration form.
+
+                        Omit for SI Recurring links where the customer selects
+                        their bank at checkout.
+                      properties:
+                        bankCode:
+                          type: string
+                          description: >-
+                            Bank identifier code. Example: `SBIIN` for State
+                            Bank of India.
+                          example: SBIIN
+                        bankAccountNumber:
+                          type: string
+                          description: Customer's bank account number.
+                          example: '1234567890'
+                        ifsc:
+                          type: string
+                          description: IFSC code of the specific branch.
+                          example: SBIN0001234
+                        accountType:
+                          type: string
+                          description: Type of bank account.
+                          enum:
+                            - SAVINGS
+                            - CURRENT
+                          example: SAVINGS
+            example:
+              subAmount: 1499
+              description: 'Order #ORD-2026-88421 — Wireless Headphones'
+              source: API
+              invoiceNumber: ORD-2026-88421
+              expiryDate: '2026-10-15 23:59:59'
+              tax: 0
+              shippingCharge: 0
+              viaEmail: true
+              viaSms: true
+              customer:
+                name: Arjun Mehta
+                email: arjun.mehta@example.com
+                phone: '9876543210'
+              udf:
+                udf1: electronics
+                udf2: app-checkout
+      responses:
+        '200':
+          description: >-
+            PayU always returns HTTP 200. Check `status` in the body: `0` =
+            success, `-1` = failure.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    description: '`0` = success, `-1` = failure'
+                    example: 0
+                  message:
+                    type: string
+                    example: paymentLink generated
+                  result:
+                    type: object
+                    nullable: true
+                    description: The created Payment Link object. `null` on failure.
+                    properties:
+                      invoiceNumber:
+                        type: string
+                        description: >-
+                          Unique identifier for this link. Use this as the path
+                          parameter in Fetch, Update, Share, and Cancel.
+                        example: ORD-2026-88421
+                      paymentLink:
+                        type: string
+                        description: The shareable URL to send to your customer.
+                        example: https://pp72.pmny.in/WxYzAbCdEfGh
+                      totalAmount:
+                        type: integer
+                        description: >-
+                          `subAmount + tax + shippingCharge`. `null` for Open
+                          Amount links.
+                        example: 1499
+                      active:
+                        type: boolean
+                        description: '`true` if the link is live and accepting payment.'
+                        example: true
+                      expiryDate:
+                        type: string
+                        description: Link expiry in `YYYY-MM-DD HH:mm:ss`.
+                        example: '2026-10-15 23:59:59'
+                  errorCode:
+                    type: string
+                    nullable: true
+                    example: null
+              examples:
+                success:
+                  summary: Success — link created
+                  value:
+                    status: 0
+                    message: paymentLink generated
+                    result:
+                      invoiceNumber: ORD-2026-88421
+                      paymentLink: https://pp72.pmny.in/WxYzAbCdEfGh
+                      totalAmount: 1499
+                      active: true
+                      expiryDate: '2026-10-15 23:59:59'
+                    errorCode: null
+                duplicateInvoice:
+                  summary: Failure — duplicate invoiceNumber
+                  value:
+                    status: -1
+                    message: >-
+                      Invoice Number already exists. Please enter new invoice
+                      number.
+                    result: null
+                    errorCode: null
+                missingParam:
+                  summary: Failure — missing required field
+                  value:
+                    status: -1
+                    message: description is required.
+                    result: null
+                    errorCode: null
+        '401':
+          description: Invalid or expired Bearer token.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: invalid_token
+                  error_description:
+                    type: string
+                    example: The access token is invalid or has expired.
+    get:
+      summary: Fetch All Payment Links
+      operationId: FetchAllPaymentLinksAPI
+      tags:
+        - Payment Links
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          description: >-
+            Bearer token with read_payment_links scope. Format: Bearer
+            {access_token}
+          schema:
+            type: string
+            example: Bearer {{access_token}}
+        - name: merchantId
+          in: header
+          required: true
+          description: Your PayU Merchant ID.
+          schema:
+            type: string
+            example: '{{merchantId}}'
+        - name: status
+          in: query
+          required: false
+          description: Filter links by status.
+          schema:
+            type: string
+            enum:
+              - active
+              - expired
+              - cancelled
+        - name: pageNumber
+          in: query
+          required: false
+          description: Page number (1-indexed). Defaults to 1.
+          schema:
+            type: integer
+            default: 1
+            example: 1
+        - name: pageSize
+          in: query
+          required: false
+          description: Records per page. Min 1, max 50. Defaults to 10.
+          schema:
+            type: integer
+            default: 10
+            example: 10
+      responses:
+        '200':
+          description: >-
+            PayU always returns HTTP 200. Check status: 0 = success, -1 =
+            failure.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 0
+                  message:
+                    type: string
+                    example: success
+                  result:
+                    type: object
+                    nullable: true
+                    properties:
+                      total:
+                        type: integer
+                        example: 42
+                      pageNumber:
+                        type: integer
+                        example: 1
+                      pageSize:
+                        type: integer
+                        example: 10
+                      data:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            invoiceNumber:
+                              type: string
+                              example: ORD-2026-88421
+                            paymentLink:
+                              type: string
+                              example: https://pp72.pmny.in/WxYzAbCdEfGh
+                            totalAmount:
+                              type: integer
+                              example: 1499
+                            active:
+                              type: boolean
+                              example: true
+                            expiryDate:
+                              type: string
+                              example: '2026-10-15 23:59:59'
+              examples:
+                success:
+                  summary: Success - results returned
+                  value:
+                    status: 0
+                    message: success
+                    result:
+                      total: 3
+                      pageNumber: 1
+                      pageSize: 10
+                      data:
+                        - invoiceNumber: ORD-2026-88421
+                          paymentLink: https://pp72.pmny.in/WxYzAbCdEfGh
+                          totalAmount: 1499
+                          active: true
+                          expiryDate: '2026-10-15 23:59:59'
+                empty:
+                  summary: Success - no results
+                  value:
+                    status: 0
+                    message: No records found
+                    result:
+                      total: 0
+                      pageNumber: 1
+                      pageSize: 10
+                      data: []
+        '401':
+          description: Invalid or expired Bearer token.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: invalid_token
+                  error_description:
+                    type: string
+                    example: The access token is invalid or has expired.
+  /payment-links/{invoiceNumber}:
+    get:
+      summary: Fetch Payment Link
+      operationId: FetchPaymentLinkAPI
+      tags:
+        - Payment Links
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          description: >-
+            Bearer token with read_payment_links scope. Format: Bearer
+            {access_token}
+          schema:
+            type: string
+            example: Bearer {{access_token}}
+        - name: merchantId
+          in: header
+          required: true
+          description: Your PayU Merchant ID.
+          schema:
+            type: string
+            example: '{{merchantId}}'
+        - name: invoiceNumber
+          in: path
+          required: true
+          description: The unique invoiceNumber of the payment link to retrieve.
+          schema:
+            type: string
+            example: ORD-2026-88421
+      responses:
+        '200':
+          description: >-
+            PayU always returns HTTP 200. Check status: 0 = success, -1 =
+            failure.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 0
+                  message:
+                    type: string
+                    example: success
+                  result:
+                    type: object
+                    nullable: true
+                    properties:
+                      invoiceNumber:
+                        type: string
+                        example: ORD-2026-88421
+                      paymentLink:
+                        type: string
+                        example: https://pp72.pmny.in/WxYzAbCdEfGh
+                      description:
+                        type: string
+                        example: 'Order #ORD-2026-88421 - Wireless Headphones'
+                      subAmount:
+                        type: integer
+                        example: 1499
+                      totalAmount:
+                        type: integer
+                        example: 1499
+                      active:
+                        type: boolean
+                        example: true
+                      isPartialPaymentAllowed:
+                        type: boolean
+                        example: false
+                      expiryDate:
+                        type: string
+                        example: '2026-10-15 23:59:59'
+                      emailStatus:
+                        type: string
+                        example: not opted
+                      smsStatus:
+                        type: string
+                        example: not opted
+              examples:
+                success:
+                  summary: Success
+                  value:
+                    status: 0
+                    message: success
+                    result:
+                      invoiceNumber: ORD-2026-88421
+                      paymentLink: https://pp72.pmny.in/WxYzAbCdEfGh
+                      description: 'Order #ORD-2026-88421 - Wireless Headphones'
+                      subAmount: 1499
+                      totalAmount: 1499
+                      active: true
+                      isPartialPaymentAllowed: false
+                      expiryDate: '2026-10-15 23:59:59'
+                      emailStatus: not opted
+                      smsStatus: not opted
+                notFound:
+                  summary: Failure - link not found
+                  value:
+                    status: -1
+                    message: Payment link not found.
+                    result: null
+        '401':
+          description: Invalid or expired Bearer token.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: invalid_token
+                  error_description:
+                    type: string
+                    example: The access token is invalid or has expired.
+    put:
+      summary: Update Payment Link
+      operationId: UpdatePaymentLinkAPI
+      tags:
+        - Payment Links
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          description: >-
+            Bearer token with update_payment_links scope. Format: Bearer
+            {access_token}
+          schema:
+            type: string
+            example: Bearer {{access_token}}
+        - name: merchantId
+          in: header
+          required: true
+          description: Your PayU Merchant ID.
+          schema:
+            type: string
+            example: '{{merchantId}}'
+        - name: invoiceNumber
+          in: path
+          required: true
+          description: The invoiceNumber of the payment link to update.
+          schema:
+            type: string
+            example: ORD-2026-88421
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Only pass the fields you want to change.
+              properties:
+                subAmount:
+                  type: integer
+                  description: Updated base amount in whole INR.
+                  example: 1999
+                expiryDate:
+                  type: string
+                  description: >-
+                    Updated expiry date in YYYY-MM-DD HH:mm:ss format. Must be a
+                    future date.
+                  example: '2026-11-30 23:59:59'
+                description:
+                  type: string
+                  description: Updated purpose description.
+                  example: Updated order description
+                isPartialPaymentAllowed:
+                  type: boolean
+                  description: Update whether partial payments are allowed.
+                  example: true
+                minAmountForCustomer:
+                  type: integer
+                  description: Updated minimum partial payment amount.
+                  example: 500
+                viaEmail:
+                  type: boolean
+                  description: Resend the link via email.
+                  example: true
+                viaSms:
+                  type: boolean
+                  description: Resend the link via SMS.
+                  example: false
+            example:
+              expiryDate: '2026-11-30 23:59:59'
+              subAmount: 1999
+      responses:
+        '200':
+          description: >-
+            PayU always returns HTTP 200. Check status: 0 = success, -1 =
+            failure.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 0
+                  message:
+                    type: string
+                    example: Payment link updated successfully
+                  result:
+                    type: object
+                    nullable: true
+                    properties:
+                      invoiceNumber:
+                        type: string
+                        example: ORD-2026-88421
+                      paymentLink:
+                        type: string
+                        example: https://pp72.pmny.in/WxYzAbCdEfGh
+                      totalAmount:
+                        type: integer
+                        example: 1999
+                      active:
+                        type: boolean
+                        example: true
+              examples:
+                success:
+                  summary: Success
+                  value:
+                    status: 0
+                    message: Payment link updated successfully
+                    result:
+                      invoiceNumber: ORD-2026-88421
+                      paymentLink: https://pp72.pmny.in/WxYzAbCdEfGh
+                      totalAmount: 1999
+                      active: true
+                notFound:
+                  summary: Failure - link not found
+                  value:
+                    status: -1
+                    message: Payment link not found.
+                    result: null
+                alreadyPaid:
+                  summary: Failure - link already paid
+                  value:
+                    status: -1
+                    message: Cannot update a payment link that has already been paid.
+                    result: null
+        '401':
+          description: Invalid or expired Bearer token.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: invalid_token
+                  error_description:
+                    type: string
+                    example: The access token is invalid or has expired.
+    delete:
+      summary: Cancel Payment Link
+      operationId: CancelPaymentLinkAPI
+      tags:
+        - Payment Links
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          description: >-
+            Bearer token with update_payment_links scope. Format: Bearer
+            {access_token}
+          schema:
+            type: string
+            example: Bearer {{access_token}}
+        - name: merchantId
+          in: header
+          required: true
+          description: Your PayU Merchant ID.
+          schema:
+            type: string
+            example: '{{merchantId}}'
+        - name: invoiceNumber
+          in: path
+          required: true
+          description: The invoiceNumber of the payment link to cancel.
+          schema:
+            type: string
+            example: ORD-2026-88421
+      responses:
+        '200':
+          description: >-
+            PayU always returns HTTP 200. Check status: 0 = success, -1 =
+            failure.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 0
+                  message:
+                    type: string
+                    example: Payment link cancelled successfully
+                  result:
+                    nullable: true
+                    example: null
+              examples:
+                success:
+                  summary: Success
+                  value:
+                    status: 0
+                    message: Payment link cancelled successfully
+                    result: null
+                alreadyCancelled:
+                  summary: Failure - already cancelled
+                  value:
+                    status: -1
+                    message: Payment link is already cancelled.
+                    result: null
+                alreadyPaid:
+                  summary: Failure - link already paid
+                  value:
+                    status: -1
+                    message: Cannot cancel a payment link that has already been paid.
+                    result: null
+        '401':
+          description: Invalid or expired Bearer token.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: invalid_token
+                  error_description:
+                    type: string
+                    example: The access token is invalid or has expired.
+  /payment-links/{invoiceNumber}/notify:
+    post:
+      summary: Share Payment Link
+      operationId: SharePaymentLinkAPI
+      tags:
+        - Payment Links
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          description: >-
+            Bearer token with read_payment_links scope. Format: Bearer
+            {access_token}
+          schema:
+            type: string
+            example: Bearer {{access_token}}
+        - name: merchantId
+          in: header
+          required: true
+          description: Your PayU Merchant ID.
+          schema:
+            type: string
+            example: '{{merchantId}}'
+        - name: invoiceNumber
+          in: path
+          required: true
+          description: The invoiceNumber of the payment link to share.
+          schema:
+            type: string
+            example: ORD-2026-88421
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                viaEmail:
+                  type: boolean
+                  description: Send the link to the customer's email address on file.
+                  example: true
+                viaSms:
+                  type: boolean
+                  description: Send the link to the customer's phone number via SMS.
+                  example: true
+                viaWhatsapp:
+                  type: boolean
+                  description: Send the link to the customer's phone number via WhatsApp.
+                  example: false
+            example:
+              viaEmail: true
+              viaSms: true
+              viaWhatsapp: false
+      responses:
+        '200':
+          description: >-
+            PayU always returns HTTP 200. Check status: 0 = success, -1 =
+            failure.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 0
+                  message:
+                    type: string
+                    example: Notification sent successfully
+              examples:
+                success:
+                  summary: Success
+                  value:
+                    status: 0
+                    message: Notification sent successfully
+                failure:
+                  summary: Failure - link not found
+                  value:
+                    status: -1
+                    message: Payment link not found.
+        '401':
+          description: Invalid or expired Bearer token.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: invalid_token
+                  error_description:
+                    type: string
+                    example: The access token is invalid or has expired.
+  /payment-links/{invoiceNumber}/transactions:
+    get:
+      summary: Get Transaction Details
+      operationId: GetTransactionDetailsAPI
+      tags:
+        - Payment Links
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          description: >-
+            Bearer token with read_payment_links scope. Format: Bearer
+            {access_token}
+          schema:
+            type: string
+            example: Bearer {{access_token}}
+        - name: merchantId
+          in: header
+          required: true
+          description: Your PayU Merchant ID.
+          schema:
+            type: string
+            example: '{{merchantId}}'
+        - name: invoiceNumber
+          in: path
+          required: true
+          description: The invoiceNumber of the payment link to fetch transactions for.
+          schema:
+            type: string
+            example: ORD-2026-88421
+      responses:
+        '200':
+          description: >-
+            PayU always returns HTTP 200. Check status: 0 = success, -1 =
+            failure.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 0
+                  message:
+                    type: string
+                    example: success
+                  result:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        txnid:
+                          type: string
+                          description: PayU transaction ID.
+                          example: '7019203456789'
+                        amount:
+                          type: number
+                          description: Amount paid in this transaction.
+                          example: 1499
+                        status:
+                          type: string
+                          description: 'Transaction status: success, failure, pending'
+                          example: success
+                        mode:
+                          type: string
+                          description: Payment mode used (UPI, CC, DC, NB, etc.)
+                          example: UPI
+                        paymentSource:
+                          type: string
+                          example: PaymentLink
+                        addedon:
+                          type: string
+                          description: Timestamp when the transaction was recorded.
+                          example: '2026-09-23 14:32:11'
+              examples:
+                success:
+                  summary: Success - transaction found
+                  value:
+                    status: 0
+                    message: success
+                    result:
+                      - txnid: '7019203456789'
+                        amount: 1499
+                        status: success
+                        mode: UPI
+                        paymentSource: PaymentLink
+                        addedon: '2026-09-23 14:32:11'
+                noTransactions:
+                  summary: Success - no transactions yet
+                  value:
+                    status: 0
+                    message: success
+                    result: []
+                notFound:
+                  summary: Failure - link not found
+                  value:
+                    status: -1
+                    message: Payment link not found.
+                    result: null
+        '401':
+          description: Invalid or expired Bearer token.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: invalid_token
+                  error_description:
+                    type: string
+                    example: The access token is invalid or has expired.
+components:
+  securitySchemes:
+    httpBearer:
+      type: http
+      scheme: bearer
+security:
+  - httpBearer: []
