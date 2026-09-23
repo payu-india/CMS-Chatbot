@@ -50,7 +50,9 @@ Payment Links APIs use OAuth 2.0 client credentials for authentication. Before c
 | Production  | `https://accounts.payu.in`     |
 
 <Callout icon="⚠️" theme="warn">
-  ### The authentication endpoints use a **different base URL** (`accounts.payu.in`) from the Payment Links endpoints (`oneapi.payu.in`). Make sure you're hitting the right host for each call.
+  ### **Watch Out!**
+
+  The authentication endpoints use a **different base URL** for from the Payment Links endpoints (`oneapi.payu.in`). Make sure you're hitting the right host for each call.
 </Callout>
 
 ***
@@ -111,7 +113,7 @@ A single token can carry up to three scopes simultaneously. Pass them space-sepa
 | `scope`        | Scopes granted. Verify this matches your request — a mismatch indicates a misconfigured app.               |
 
 <Callout icon="👍" theme="okay">
-  ### **Cache your token**
+  ### **Cache Your Token**
 
   Generating a new token before every API call is wasteful and will trigger rate limits. Cache the token in memory, check expiry before each call, and only regenerate when needed.
 </Callout>
