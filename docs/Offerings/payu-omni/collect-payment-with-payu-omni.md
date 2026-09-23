@@ -6,17 +6,6 @@ icon: far fa-arrow-left-from-dotted-line
 metadata:
   robots: index
 ---
----
-title: Integrate V2 Payments API for POS
-excerpt: 'Step-by-step guide to integrating PayU V2 Payments API for POS merchants'
-deprecated: false
-hidden: false
-metadata:
-  title: 'Integrate V2 Payments API for POS'
-  description: 'Complete integration guide for V2 Payments API with omnichannel support'
-  robots: index
----
-
 # Integrate V2 Payments API for POS
 
 This guide walks you through integrating PayU's V2 Payments API for POS merchants, enabling you to accept in-person payments with advanced device tracking and omnichannel capabilities.
@@ -34,7 +23,7 @@ Before starting integration, ensure you have:
 ⚠️ **Critical**: If your POS devices are not registered, you will receive error code `E342` or `E2081`. Complete device registration before proceeding.
 </Warning>
 
----
+***
 
 ## Step 1: Start Integration
 
@@ -132,7 +121,7 @@ Before starting integration, ensure you have:
   </tbody>
 </table>
 
----
+***
 
 **Optional Parameters**
 
@@ -287,7 +276,7 @@ The following fields MUST use exact hardcoded values for POS transactions:
 Using any other values will result in transaction failure.
 </Note>
 
----
+***
 
 ### Step 1.2: Authentication & Request Headers
 
@@ -295,15 +284,15 @@ The V2 Payments API uses **HMAC-SHA512 signature-based authentication** to secur
 
 #### Required Headers
 
-| Header | Type | Required | Description |
-|--------|------|----------|-------------|
-| `Content-Type` | String | Yes | Must be `application/json` |
-| `X-Partner-Token` | String | Yes | Bearer token provided by PayU during onboarding (format: `Bearer <token>`) |
-| `X-PayU-Reseller-UUID` | String | Yes | Your unique partner/reseller UUID provided by PayU |
-| `date` | String | Yes | Current timestamp in RFC 7231 format (GMT). Example: `Tue, 15 Nov 2023 08:12:31 GMT` |
-| `authorization` | String | Yes | HMAC signature in the format: `hmac username="<clientId>", algorithm="sha512", headers="date", signature="<hex_signature>"` |
+| Header                 | Type   | Required | Description                                                                                                                 |
+| ---------------------- | ------ | -------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `Content-Type`         | String | Yes      | Must be `application/json`                                                                                                  |
+| `X-Partner-Token`      | String | Yes      | Bearer token provided by PayU during onboarding (format: `Bearer <token>`)                                                  |
+| `X-PayU-Reseller-UUID` | String | Yes      | Your unique partner/reseller UUID provided by PayU                                                                          |
+| `date`                 | String | Yes      | Current timestamp in RFC 7231 format (GMT). Example: `Tue, 15 Nov 2023 08:12:31 GMT`                                        |
+| `authorization`        | String | Yes      | HMAC signature in the format: `hmac username="<clientId>", algorithm="sha512", headers="date", signature="<hex_signature>"` |
 
----
+***
 
 #### HMAC Signature Generation
 
@@ -329,7 +318,7 @@ The `authorization` header must contain an HMAC-SHA512 signature computed over t
    authorization: hmac username="<your_client_id>", algorithm="sha512", headers="date", signature="<computed_signature>"
    ```
 
----
+***
 
 #### Code Samples for Authentication
 
@@ -537,7 +526,7 @@ public class PayUAuthGenerator
 - Use the exact `date` header value for signature computation (no modifications)
 </Note>
 
----
+***
 
 ### Step 1.3: POST the Request
 
@@ -612,3 +601,301 @@ curl --location 'https://api.payu.in/v2/payments' \
 
 > **Note:** Replace `COMPUTED_SIGNATURE` with the actual HMAC-SHA512 signature generated using the code samples above. The `date` header and signature must be freshly generated for each request.
 
+
+
+**Sample Request in Other Languages**
+
+<Accordion title="Python - Complete Request" icon="python">
+
+```python
+import requests
+import json
+import hmac
+import hashlib
+from email.utils import formatdate
+
+def generate_auth_headers(client_id, client_secret, partner_token, reseller_uuid):
+    date_string = formatdate(timeval=None, localtime=False, usegmt=True)
+    signature = hmac.new(
+        client_secret.encode('utf-8'),
+        date_string.encode('utf-8'),
+        hashlib.sha512
+    ).hexdigest()
+    
+    auth_header = f'hmac username="{client_id}", algorithm="sha512", headers="date", signature="{signature}"'
+    
+    return {
+        'Content-Type': 'application/json',
+        'X-Partner-Token': f'Bearer {partner_token}',
+        'X-PayU-Reseller-UUID': reseller_uuid,
+        'date': date_string,
+        'authorization': auth_header
+    }
+
+url = "https://api.payu.in/v2/payments"
+headers = generate_auth_headers("client_id", "client_secret", "token", "uuid")
+
+payload = {
+    "accountId": "12345678",
+    "txnId": "TXN20240115001",
+    "amount": 1500.00,
+    "currency": "INR",
+    "paymentSource": "POS",
+    "paymentMethod": {"name": "POS", "bankCode": "POS"},
+    "additionalInfo": {"txnFlow": "seamless", "txnS2sFlow": "4"},
+    "callBackActions": {
+        "successAction": "https://yoursite.com/success",
+        "failureAction": "https://yoursite.com/failure",
+        "cancelAction": "https://yoursite.com/cancel"
+    },
+    "order": {
+        "productInfo": "POS Payment",
+        "userDefinedFields": {"udf1": "STORE_001", "udf2": "CASHIER_001", "udf3": "", "udf4": "", "udf5": ""},
+        "paymentChargeSpecification": {"price": 1500.00}
+    },
+    "omniChannelDetails": {
+        "printInfo": {"printInfo1": "Thank you!", "printInfo2": "Visit again"},
+        "additionalInfo": {"addInfo1": "Store: Main", "addInfo2": "Terminal: T001"},
+        "userId": "USER_001",
+        "posDeviceId": "POS_DEVICE_001",
+        "posPaymentMethod": "sale"
+    },
+    "gstParams": {
+        "invoiceNo": "INV-2024-001", "invoiceDate": "2024-01-15T10:30:00+05:30",
+        "invoiceName": "POS Sale", "gstIn": "22AAAAA0000A1Z5",
+        "gst": "270.00", "cgst": "135.00", "sgst": "135.00", 
+        "igst": "0.00", "cess": "0.00", "gstPercentage": "18"
+    }
+}
+
+response = requests.post(url, headers=headers, data=json.dumps(payload))
+print("Status:", response.status_code)
+print("Response:", response.json())
+```
+
+</Accordion>
+
+<Accordion title="PHP - Complete Request" icon="php">
+
+```php
+<?php
+function generateAuthHeaders($clientId, $clientSecret, $partnerToken, $resellerUuid) {
+    $dateString = gmdate('D, d M Y H:i:s') . ' GMT';
+    $signature = hash_hmac('sha512', $dateString, $clientSecret);
+    $authHeader = 'hmac username="' . $clientId . '", algorithm="sha512", headers="date", signature="' . $signature . '"';
+    
+    return [
+        'Content-Type: application/json',
+        'X-Partner-Token: Bearer ' . $partnerToken,
+        'X-PayU-Reseller-UUID: ' . $resellerUuid,
+        'date: ' . $dateString,
+        'authorization: ' . $authHeader
+    ];
+}
+
+$url = "https://api.payu.in/v2/payments";
+$headers = generateAuthHeaders("client_id", "client_secret", "token", "uuid");
+
+$payload = [
+    "accountId" => "12345678",
+    "txnId" => "TXN20240115001",
+    "amount" => 1500.00,
+    "currency" => "INR",
+    "paymentSource" => "POS",
+    "paymentMethod" => ["name" => "POS", "bankCode" => "POS"],
+    "additionalInfo" => ["txnFlow" => "seamless", "txnS2sFlow" => "4"],
+    "callBackActions" => [
+        "successAction" => "https://yoursite.com/success",
+        "failureAction" => "https://yoursite.com/failure"
+    ],
+    "order" => [
+        "productInfo" => "POS Payment",
+        "userDefinedFields" => ["udf1" => "STORE_001", "udf2" => "CASHIER_001"],
+        "paymentChargeSpecification" => ["price" => 1500.00]
+    ],
+    "omniChannelDetails" => [
+        "printInfo" => ["printInfo1" => "Thank you!", "printInfo2" => "Visit again"],
+        "userId" => "USER_001",
+        "posDeviceId" => "POS_DEVICE_001",
+        "posPaymentMethod" => "sale"
+    ],
+    "gstParams" => [
+        "invoiceNo" => "INV-2024-001",
+        "gst" => "270.00", "cgst" => "135.00", "sgst" => "135.00"
+    ]
+];
+
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
+
+$response = curl_exec($ch);
+echo "Response: " . $response;
+curl_close($ch);
+?>
+```
+
+</Accordion>
+
+---
+
+### Step 1.4: Response Handling
+
+#### Success Response
+
+```json
+{
+  "metaData": {
+    "message": "Transaction initiated successfully",
+    "referenceId": "REF123456",
+    "statusCode": "E000",
+    "txnId": "TXN20240115001",
+    "txnStatus": "pending",
+    "unmappedStatus": "INITIATED"
+  },
+  "result": {
+    "paymentId": "403993715529994433"
+  }
+}
+```
+
+**Response Fields:**
+
+| Field | Description |
+|-------|-------------|
+| metaData.statusCode | `E000` = success |
+| metaData.txnStatus | `pending`, `success`, `failed` |
+| result.paymentId | PayU's payment ID for tracking |
+
+#### Error Responses
+
+<Accordion title="E342: Device Not Registered">
+
+```json
+{
+  "metaData": {
+    "message": "POS device not registered",
+    "statusCode": "E342",
+    "txnStatus": "failed"
+  }
+}
+```
+
+**Resolution:** Register device in PayU Dashboard → POS Devices
+
+</Accordion>
+
+<Accordion title="E2081: Invalid Device ID">
+
+```json
+{
+  "metaData": {
+    "message": "Invalid device ID",
+    "statusCode": "E2081",
+    "txnStatus": "failed"
+  }
+}
+```
+
+**Resolution:** Verify exact posDeviceId from dashboard
+
+</Accordion>
+
+<Accordion title="401: Authentication Failed">
+
+**Resolution:** Check Client ID/Secret, regenerate signature with current timestamp
+
+</Accordion>
+
+---
+
+### Step 1.5: Verify Payment via Webhook
+
+#### Webhook Payload
+
+```json
+{
+  "vendorTxnId": "TXN20240115001",
+  "txnId": "403993715529994433",
+  "status": "captured",
+  "message": "Payment successful"
+}
+```
+
+#### Webhook Verification
+
+<Accordion title="Python - Webhook Verification">
+
+```python
+import hmac
+import hashlib
+
+def verify_webhook(headers, client_secret):
+    date_header = headers.get('date')
+    auth_header = headers.get('authorization')
+    
+    import re
+    match = re.search(r'signature="([^"]+)"', auth_header)
+    received_sig = match.group(1)
+    
+    computed_sig = hmac.new(
+        client_secret.encode(), 
+        date_header.encode(), 
+        hashlib.sha512
+    ).hexdigest()
+    
+    return hmac.compare_digest(computed_sig, received_sig)
+```
+
+</Accordion>
+
+---
+
+## Step 2: Test Integration
+
+### Step 2.1: Register Your POS Device
+
+1. Log into PayU Dashboard
+2. Go to **POS Devices** → **Register Device**
+3. Enter device details, submit
+4. Copy the assigned `posDeviceId`
+5. Verify status shows "Active"
+
+---
+
+### Step 2.2-2.5: Testing Steps
+
+**2.2 Pre-Payment Validation:** Verify credentials, device registration, hardcoded values
+
+**2.3 Successful Transaction:** Test with ₹10, complete on POS, verify webhook
+
+**2.4 Failed Scenarios:** Test invalid device ID, wrong payment method
+
+**2.5 Verification:** Check webhook delivery, dashboard, reconciliation
+
+---
+
+## Step 3: Going Live
+
+### Step 3.1: Production Credentials
+
+1. Generate live keys from dashboard
+2. Store securely (environment variables)
+3. Update endpoint to `https://api.payu.in/v2/payments`
+4. Update all device IDs to production values
+
+### Step 3.2: Final Checklist
+
+✅ Test ₹1 transaction in production  
+✅ Verify webhook endpoint (HTTPS, valid SSL)  
+✅ All devices registered and active  
+✅ Error handling implemented  
+✅ Reconciliation process ready  
+
+<Success>
+**Integration Complete!**
+
+Monitor first 24 hours closely. Contact support@payu.in for any issues.
+</Success>
