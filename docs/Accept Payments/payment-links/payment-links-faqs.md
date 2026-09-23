@@ -259,62 +259,49 @@ next:
 
 ***
 
-3. #### The payment page shows a blank screen or a timeout — what do I do?
+3. #### The payment page shows a blank screen or a timeout. What do I do?
 
 <Accordion title="Answer" icon="fab fa-adn">
   This is almost always a configuration issue with your redirect URLs. Check the following:
 
-  **1. Confirm the parameter names are correct.**
-  The Payment Links API uses `successUrl` and `failureUrl` — not `surl` and `furl`. Using the wrong names causes a blank screen or redirect failure after payment.
+  **1. Confirm the parameter names are correct.**<br /><br />The Payment Links API uses `successUrl` and `failureUrl` — not `surl` and `furl`. Using the wrong names causes a blank screen or redirect failure after payment.
 
-  **2. Confirm your redirect URLs are whitelisted.**
-  Your `successUrl` and `failureUrl` domains must be registered in your PayU merchant account. Contact PayU support or your account manager to whitelist them.
+  **2. Confirm your redirect URLs are whitelisted.**<br /><br />Your `successUrl` and `failureUrl` domains must be registered in your PayU merchant account. Contact PayU support or your KAM to whitelist them.
 
-  **3. Check the link status.**
-  If the link is expired or deactivated, the payment page will not load. Verify the link is **Active** in the Dashboard.
+  **3. Check the link status.**<br /><br />If the link is expired or deactivated, the payment page will not load. Verify the link is **Active** in the Dashboard.
 
   If the issue is intermittent, it may be a network or browser issue on the customer's end. Ask them to try on a different browser or device.
 </Accordion>
 
 ***
 
-4. #### I'm getting a hash mismatch on the payment response — how do I fix it?
+4. #### I am getting a hash mismatch on the payment response. How do I fix it?
 
 <Accordion title="Answer" icon="fab fa-adn">
   Hash mismatch means the hash you are computing locally does not match what PayU sent in the response. The most common causes:
 
-  **1. Wrong hash formula.**
-  The Payment Links response hash uses the **reverse** of the payment request hash. The formula is:
+  **1. Wrong hash formula.**<br /><br />The Payment Links response hash uses the **reverse** of the payment request hash. The formula is:
   `sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)`
 
-  **2. Extra spaces or encoding differences.**
-  Compute the hash from the exact values in the response — do not trim or re-encode any field.
+  **2. Extra spaces or encoding differences.**<br /><br />Compute the hash from the exact values in the response — do not trim or re-encode any field.
 
-  **3. Using the wrong SALT.**
-  Ensure you are using the SALT that corresponds to the `key` in the response.
+  **3. Using the wrong SALT.**<br /><br />Ensure you are using the SALT that corresponds to the `key` in the response.
 
-  **4. Split payment payload.**
-  If you are using `aggregatorSplitInfo` or `aggregatorCharges` in your create-link request, verify that **split settlement is enabled on your account**. Attempting split settlement on an account that hasn't been onboarded for it can produce unexpected response fields that break hash verification. Contact your PayU account manager to confirm it is activated.
+  **4. Split payment payload.**<br /><br />If you are using `aggregatorSplitInfo` or `aggregatorCharges` in your create-link request, verify that **split settlement is enabled on your account**. Attempting split settlement on an account that hasn't been onboarded for it can produce unexpected response fields that break hash verification. Contact your PayU account manager to confirm it is activated.
 </Accordion>
 
 ***
 
-5. #### Why isn't my webhook receiving payment notifications?
+5. #### Why is not my webhook receiving payment notifications?
 
 <Accordion title="Answer" icon="fab fa-adn">
   Check these in order:
 
-  **1. Webhook URL must be registered.**
-  Your webhook endpoint must be configured in the PayU Dashboard under **Settings → Webhooks**, or whitelisted by your PayU account manager. PayU does not send events to unregistered URLs.
+  **1. Webhook URL must be registered.**<br /><br />Your webhook endpoint must be configured in the PayU Dashboard under **Settings → Webhooks**, or whitelisted by your PayU account manager. PayU does not send events to unregistered URLs.
 
-  **2. Your endpoint must return HTTP 200.**
-  PayU retries delivery if it receives anything other than a `2xx` response. Check your server logs to confirm the endpoint is receiving the request and responding correctly.
+  **2. Your endpoint must return HTTP 200.**<br /><br />PayU retries delivery if it receives anything other than a `2xx` response. Check your server logs to confirm the endpoint is receiving the request and responding correctly.
 
-  **3. Verify the webhook hash.**
-  If your hash verification logic rejects the event, it will appear to "not arrive" in your app even though PayU sent it. To confirm whether PayU sent a webhook for a specific transaction, contact <Anchor target="_blank" href="https://help.payu.in/query">PayU support</Anchor> with the `txnid` and `mihpayid` — the integration team can pull webhook delivery logs.
-
-  **4. Check firewall rules.**
-  Ensure your server allows inbound requests from PayU's IP ranges.
+  **3. Check firewall rules.**<br /><br />Ensure your server allows inbound requests from PayU's IP ranges.
 </Accordion>
 
 ***
@@ -323,130 +310,4 @@ next:
 
 <Accordion title="Answer" icon="fab fa-adn">
   Yes. Find the transaction in the **Transactions** tab and initiate a refund from there. The refund process is the same regardless of how the payment was collected.
-</Accordion>
-
-***
-
-## API Usage
-
-1. #### Do I need a special API key for Payment Links?
-
-<Accordion title="Answer" icon="fab fa-adn">
-  Payment Links APIs use **OAuth2 Bearer token** authentication — separate from your standard PayU `key` + `salt` + SHA-512 hash. You need a **Client ID** and **Client Secret** to generate a token.
-
-  See <Anchor target="_blank" href="doc:api-auth-token">Authentication (Token)</Anchor>.
-</Accordion>
-
-***
-
-2. #### Where do I find my Client ID and Client Secret?
-
-<Accordion title="Answer" icon="fab fa-adn">
-  Your production Client ID and Client Secret are in the PayU Dashboard:
-
-  1. Log in to <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor>
-  2. Go to **Settings → API Keys** (or **Developer Settings**, depending on your dashboard version)
-  3. Your **Client ID** and **Client Secret** are listed there alongside your Key and Salt.
-
-  If you do not see them, your account may not have Payment Links API access enabled. Contact your PayU account manager or raise a request via the Dashboard **Help** section.
-
-  **For UAT testing**, your UAT Client ID and Client Secret are provided separately by the integration team with your UAT credentials. Do not use production credentials in UAT and vice versa.
-
-  <Callout icon="🚧" theme="warning">
-    Never share your Client Secret in public code repositories, client-side JavaScript, or mobile app binaries. Store it server-side only.
-  </Callout>
-</Accordion>
-
-***
-
-3. #### What are the UAT and production API endpoints?
-
-<Accordion title="Answer" icon="fab fa-adn">
-  Payment Links APIs use different base URLs for UAT and production:
-
-  | Environment    | Token endpoint                             | Payment Links endpoint                    |
-  | -------------- | ------------------------------------------ | ----------------------------------------- |
-  | **UAT**        | `https://uat-accounts.payu.in/oauth/token` | `https://uatoneapi.payu.in/payment-links` |
-  | **Production** | `https://accounts.payu.in/oauth/token`     | `https://oneapi.payu.in/payment-links`    |
-
-  Using a UAT token against the production endpoint (or vice versa) will return a `401 Unauthorized` error. Confirm you are using matching credentials and URLs for the same environment.
-</Accordion>
-
-***
-
-4. #### What scopes does each API operation require?
-
-<Accordion title="Answer" icon="fab fa-adn">
-  | Operation              | Required scope         |
-  | ---------------------- | ---------------------- |
-  | Create a payment link  | `create_payment_links` |
-  | Share a payment link   | `read_payment_links`   |
-  | Fetch a single link    | `read_payment_links`   |
-  | Fetch all links        | `read_payment_links`   |
-  | Update / cancel a link | `update_payment_links` |
-
-  Request multiple scopes in one token by separating them with spaces: `create_payment_links update_payment_links read_payment_links`.
-</Accordion>
-
-***
-
-5. #### How long is a token valid, and can I reuse it?
-
-<Accordion title="Answer" icon="fab fa-adn">
-  Tokens expire after the number of seconds in the `expires_in` field — typically 3600 (1 hour). A token is valid for multiple API calls until it expires or is revoked — you do not need a new token per request. Generate a new token before it expires and do not hard-code tokens in your application.
-</Accordion>
-
-***
-
-6. #### Why am I getting a 401 Unauthorized error?
-
-<Accordion title="Answer" icon="fab fa-adn">
-  A `401` error almost always means one of:
-
-  - **Token expired** — tokens are valid for \~1 hour. Generate a new token and retry.
-  - **Wrong environment** — you are using a UAT token against the production endpoint, or vice versa. See the endpoint table above.
-  - **Missing or wrong scope** — the token was generated without the scope required for the operation. Check the scopes table above and regenerate the token with the correct scopes.
-  - **Token revoked** — if the token was explicitly revoked, generate a new one.
-</Accordion>
-
-***
-
-7. #### Why am I getting 'furl/surl not recognised'?
-
-<Accordion title="Answer" icon="fab fa-adn">
-  The Payment Links API does not use the shorthand `furl` and `surl` (those are used in the standard PayU Hosted Checkout integration). Use `failureUrl` and `successUrl` instead in your create-link payload.
-</Accordion>
-
-***
-
-8. #### Why am I getting 'Invoice Number already exists'?
-
-<Accordion title="Answer" icon="fab fa-adn">
-  Each payment link must have a unique `invoiceNumber` within your merchant account. Either use a different value, or omit `invoiceNumber` entirely — PayU will auto-generate a unique one.
-</Accordion>
-
-***
-
-9. #### Why am I getting 'Transaction initiation not allowed on aggregator'?
-
-<Accordion title="Answer" icon="fab fa-adn">
-  This error means your merchant account is configured as an aggregator but **split settlement has not been activated** for your account.
-
-  If you are using `aggregatorSplitInfo` or `aggregatorCharges` in your create-link payload, split settlement must be explicitly enabled by PayU before you can use these fields. Contact your PayU account manager to activate split settlement for your MID.
-</Accordion>
-
-***
-
-10. #### Can I use split settlement with Payment Links?
-
-<Accordion title="Answer" icon="fab fa-adn">
-  Yes, but it requires prior activation. Split settlement lets you distribute a single payment across multiple sub-merchants or accounts using `aggregatorSplitInfo` in the create-link API payload.
-
-  **Prerequisites:**
-
-  1. Your account must be onboarded as an aggregator with split settlement enabled — contact your PayU account manager.
-  2. Child merchant accounts must be onboarded and approved before you can route payments to them.
-  3. Test split settlement in UAT before going to production.
-
-  Attempting to use `aggregatorSplitInfo` without activation will return the "Transaction initiation not allowed on aggregator" error.
 </Accordion>
