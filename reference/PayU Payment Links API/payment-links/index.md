@@ -63,6 +63,8 @@ Each token is scoped to specific operations. You must request the right scope wh
 
 ## Endpoints
 
+The following are the Payment Link APIs
+
 ### Authentication
 
 <Cards>
@@ -79,7 +81,9 @@ Each token is scoped to specific operations. You must request the right scope wh
   </Card>
 </Cards>
 
-### Create & Share
+***
+
+### Create and Share
 
 <Cards>
   <Card title="Create Payment Link" href="ref:create-payment-links">
@@ -94,6 +98,8 @@ Each token is scoped to specific operations. You must request the right scope wh
     Send an existing payment link to a customer via SMS, email, or WhatsApp.
   </Card>
 </Cards>
+
+***
 
 ### Fetch
 
@@ -116,6 +122,8 @@ Each token is scoped to specific operations. You must request the right scope wh
     Fetch the payment history for a specific link — including all attempts, their status, and transaction IDs.
   </Card>
 </Cards>
+
+***
 
 ### Manage
 
@@ -141,20 +149,6 @@ A typical payment links integration flow looks like this:
 
 ***
 
-## Key concepts
-
-`invoiceNumber` is your primary identifier throughout the lifecycle of a link. It is returned in the Create response (`result.invoiceNumber`) and used as the path parameter in all subsequent fetch, update, and share calls. If you do not supply one, PayU auto-generates it.
-
-`status` reflects the current state of a link: `active` (can accept payment), `inactive` (deactivated by merchant), or `expired` (past expiry date or max payments reached).
-
-`totalAmount` = `subAmount` + `tax` + `shippingCharge`. Always use `totalAmount` from the response for display — do not re-calculate from request parameters.
-
-**Open-amount links** — Set `isAmountFilledByCustomer: true` to let the customer enter any amount at checkout. In this case `subAmount` is not required.
-
-**Partial payments** — Set `isPartialPaymentAllowed: true` and optionally `minAmountForCustomer` to let the customer pay in instalments.
-
-***
-
 ## Webhooks
 
 When a customer completes or attempts payment via a link, PayU dispatches a webhook to the endpoint configured in your PayU Dashboard.
@@ -166,15 +160,7 @@ When a customer completes or attempts payment via a link, PayU dispatches a webh
 | `payment_pending` | Payment initiated but awaiting bank confirmation    |
 
 <Callout icon="📘" theme="info">
-  ### For the full webhook payload, signature verification, and retry policy, see [Payment Events](doc:webhook-events-and-sample-payloads).
+  ### **Webhooks**
+
+  For the full webhook payload, signature verification, and retry policy, see [Payment Events](doc:webhook-events-and-sample-payloads).
 </Callout>
-
-***
-
-## Related guides
-
-- [Get Client ID and Secret from Dashboard](doc:get-client-id-and-secret-from-dashboard)
-- [Payment Links Product Guide](doc:payment-links-overview)
-- [Create and Send a Payment Link (Quickstart)](doc:quickstart-send-a-payment-link)
-- [Webhook Events and Payloads](doc:webhook-events-and-sample-payloads)
-- [API Error Responses](doc:reading-api-error-responses)
