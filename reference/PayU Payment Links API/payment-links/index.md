@@ -26,7 +26,13 @@ next:
       title: Payment Links
       type: basic
 ---
-<br />
+The Payment Links APIs let you issue payment requests directly from your backend and deliver them to customers over SMS, email, or WhatsApp. Your customer receives a URL, taps it, and pays — no checkout integration required on your side.
+
+<Callout icon="📘" theme="info">
+  ### **Prefer a no-code approach?**
+
+  Payment Links can be created and managed entirely from the PayU Dashboard — no APIs or code needed. If you'd rather skip the integration and get started immediately, see <Anchor target="_blank" href="https://docs.payu.in/docs/payment-links">Payment Links</Anchor>.
+</Callout>
 
 <Callout icon="📘" theme="info">
   ### **Base URLs**
