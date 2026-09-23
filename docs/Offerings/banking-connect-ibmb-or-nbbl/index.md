@@ -5,97 +5,49 @@ hidden: true
 metadata:
   robots: index
 ---
-**NBBL (NPCI Bharat Bill Pay)** has developed the **Net Banking Interoperable Platform (IBMB/Banking Connect)** to modernize and revitalize net banking in India. This platform addresses the long-standing challenges of traditional net banking by providing interoperability, standardized settlements, and enhanced user experience.
+NBBL Banking Connect is PayU's implementation of NPCI Bharat BillPay Limited's standardized NetBanking framework. It modernizes NetBanking without changing a merchant's existing NetBanking integration.
 
-PayU has been selected as a key partner to pilot this new net banking platform, enabling merchants to offer a modern, seamless net banking payment experience to their customers.
+Customers authenticate inside their own bank app instead of entering NetBanking credentials on a merchant or PayU page. On mobile, the customer can use a bank-app deep link. On desktop, the customer can scan a NetBanking QR code with a bank app. If the app-first path is unavailable, the journey can fall back to the familiar bank-website flow.
 
-### What is NBBL?
+## Why merchants use Banking Connect
 
-NBBL's Interoperable Platform is a centralized payment system that enables:
+- **Mobile-first journey:** Customers complete payment in the bank app.
+- **Password-free checkout:** Customers do not need to remember or enter NetBanking User IDs and passwords during checkout.
+- **High-value payments:** NetBanking continues to support high-value, uncapped payments.
+- **No integration change:** Existing merchant NetBanking integrations remain unchanged.
+- **Phased rollout:** PayU can enable banks individually or use traffic splits before a broader rollout.
+- **Standardized framework:** The framework is intended to improve transaction visibility and dispute handling across participating banks.
+- **Existing operations:** The product brief states that reconciliation and settlement processes do not change.
 
-* **Single Integration** – Merchants integrate once with NBBL to accept payments from multiple banks
-* **Mobile-First Experience** – Authentication and authorization handled within the issuer's mobile app
-* **Near-Real-Time Settlement** – Faster fund transfers between banks
-* **No Amount Limits** – Process transactions of any size
-* **Standardized Operations** – Unified dispute management and settlement processes
+## Payment journeys
 
-<Accordion title="Challenges with Traditional Net Banking" icon="fa-info-circle">
-  Despite significant advancements in India's payments landscape, net banking has remained largely unchanged for over a decade. While UPI and cards have revolutionized transactions, net banking continues to struggle with:
+| Journey          | Customer device       | How the customer pays                                                                    |
+| ---------------- | --------------------- | ---------------------------------------------------------------------------------------- |
+| App intent       | Mobile browser or app | Selects a bank and opens the installed bank app through a deep link.                     |
+| QR               | Desktop or web        | Scans a NetBanking QR code with the bank's mobile app.                                   |
+| Website fallback | Any supported device  | Continues through the familiar bank website flow when the app-first path is unavailable. |
 
-  ### Key Challenges
+For the detailed customer journey, see [PayU Hosted Customer Journey - Banking Connect](./payu-hosted-customer-journey-banking-connect.md).
 
-  | Challenge                   | Impact                                                                              |
-  | :-------------------------- | :---------------------------------------------------------------------------------- |
-  | **Multiple Integrations**   | Payment Aggregators need to integrate with 40-50 individual banks separately        |
-  | **Varying Commercials**     | Pricing varies widely by industry sector (flat rates, percentage, revenue-sharing)  |
-  | **Unpredictable Refunds**   | No defined TAT; process varies by bank (2-10 days)                                  |
-  | **Inconsistent Settlement** | Settlement times vary significantly between banks                                   |
-  | **Low Success Rates**       | Frequently below 50%, with significant variations between banks                     |
-  | **Poor User Experience**    | Mandatory Customer ID & Password, step-up authentication (OTP & Security Questions) |
-  | **Lack of Risk Checks**     | No defined risk checklist; up to bank discretion                                    |
-  | **Dispute Management**      | Difficult to resolve disputes without centralized authority                         |
+For Android and iOS WebView implementations, see [Handle NBBL Deep-Links in WebView](./handle-nbbl-deep-links-in-webview.md).
 
-  ### Why Net Banking Still Matters
+## Supported banks
 
-  Despite challenges, net banking offers unique advantages:
+The attached product brief lists these banks as currently live via NBBL:
 
-  * **High Ticket Size** – Often used for large transactions
-  * **Flat Rate Commercials** – Attractive pricing model for businesses
-  * **TPV Features** – Supports various transaction processing functionalities
-  * **Bank Security** – Strong authentication credentials and risk mitigation
+- HDFC Bank
+- ICICI Bank
+- Axis Bank
+- YES Bank
+- Federal Bank
+- AU Small Finance Bank
 
-  NBBL's platform addresses these challenges through a centralized, interoperable system that standardizes net banking transactions across all participating banks and payment aggregators.
-</Accordion>
+The brief lists these banks as coming soon:
 
-## Key Features
-
-* **Interoperability** - Single integration with NBBL enables access to all participating banks
-* **Mobile-First Approach** - Authentication and authorization within bank's mobile app
-* **Near-Real-Time Settlement** - Faster fund transfers between banks
-* **No Amount Limit** - Process transactions of any size
-* **Configurability** - Platform can be customized to meet specific business needs
-* **Standardized Disputes** - Unified dispute management system
-* **Settlement Framework** - Standardized settlement process similar to IMPS, BBPS, UPI
-
-<Callout icon="📘" theme="info">
-  **Only non-seamless integration supported**: PayU currently **supports PayU Hosted integration** or non-seamless integration. Support for **Merchant Hosted** integration or seamless integration is in progress and will be available shortly.
-</Callout>
-
-## Desktop Features
-
-* **QR Code Generation**: Dynamic, secure QR codes for mobile app scanning
-* **Browser Optimization**: Seamless redirect flows for desktop browsers
-* **Multi-Bank Support**: Single integration for all Banking Connect participating banks
-* **Visual Feedback**: Real-time transaction status updates on desktop interface
-
-<Image align="center" border={false} src="https://files.readme.io/a7f7292beca283f7c0b234ec78fbd10e9d8c726db0ef3fb6f101f04dbab56f40-0.jpg" />
-
-## Mobile Features
-
-* **Intent Deep Linking**: Direct app-to-app payment flows
-* **Native App Integration**: Seamless banking app interactions
-* **Responsive Design**: Optimized checkout experience across mobile devices
-
-<Image align="center" border={true} src="https://files.readme.io/9ca652247279c924a3dcd8b3784c02a7cb53e57afd8e5386b804d4e25cad2cfe-nbbl_mobile_intent_consolidate.png" className="border" />
-
-## Cross-Platform Features
-
-* **Device Synchronization**: Transaction continuity across desktop and mobile
-* **Universal Compatibility**: Works with existing PayU integrations
-* **Fallback Mechanisms**: Automatic switching between QR, intent, and redirect flows
-* **Real-time Processing**: Instant status updates regardless of device platform
-
-## Banks Supported
-
-Currently, PayU supports the following banks for Banking Connect:
-
-* HDFC Bank
-* ICICI Bank
-* Axis Bank
-
-## Regulatory Compliance Requirements
-
-* **RBI Guidelines**: Full adherence to KYC Master Direction requirements
-* **PCI DSS Certification**: Mandatory for handling payment data across all platforms
-* **Data Protection**: PII encryption and secure data transmission protocols
-* **Cross-Platform Security**: Consistent security standards for desktop and mobile
+- SBI
+- IDBI Bank
+- Bank of Baroda
+- IDFC FIRST Bank
+- Canara Bank
+- Kotak Mahindra Bank
+- CSB Bank
