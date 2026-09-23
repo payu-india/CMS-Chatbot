@@ -1,1 +1,8 @@
 - payment-links-authentication
+- createpaymentlinkapi
+- fetchallpaymentlinksapi
+- fetchpaymentlinkapi
+- updatepaymentlinkapi
+- cancelpaymentlinkapi
+- sharepaymentlinkapi
+- gettransactiondetailsapi
