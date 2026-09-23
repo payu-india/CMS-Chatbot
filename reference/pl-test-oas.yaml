@@ -628,6 +628,7 @@ paths:
                 }
               );
               console.log(response.data);
+      x-internal: true
     get:
       tags:
         - Payment Links
