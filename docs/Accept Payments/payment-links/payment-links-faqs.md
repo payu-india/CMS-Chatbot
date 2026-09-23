@@ -456,25 +456,3 @@ next:
 
   Attempting to use `aggregatorSplitInfo` without activation will return the "Transaction initiation not allowed on aggregator" error.
 </Accordion>
-
-***
-
-## Related Pages
-
-<Cards>
-  <Card title="Payment Links Overview" href="doc:payment-links-overview" icon="fa-circle-info">
-    What Payment Links is, use cases, and how it works.
-  </Card>
-
-  <Card title="Payment Links Troubleshooting" href="doc:payment-links-troubleshooting" icon="fa-wrench">
-    Fix issues with links not working, payments not reflecting, and API errors.
-  </Card>
-
-  <Card title="Payment Link Options" href="doc:payment-link-options" icon="fa-sliders">
-    Full reference for all configuration options.
-  </Card>
-
-  <Card title="How Payment Links Works" href="doc:how-payment-links-works" icon="fa-diagram-project">
-    See the end-to-end flow — from creating a link to receiving funds in your bank.
-  </Card>
-</Cards>
