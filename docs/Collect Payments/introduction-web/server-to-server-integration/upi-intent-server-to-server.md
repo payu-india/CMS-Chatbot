@@ -29,6 +29,7 @@ This section includes the workflow and steps to integrate UPI Intent with Server
 
 
 ### Steps to integrate
+
 <Cards columns={3}>
   <Card title="Update Manifest File [One-Time]" href="#update-manifest-file-one-time">
     Add package IDs in your app's manifest so the app can access UPI apps installed on the customer's device
@@ -67,9 +68,9 @@ This section includes the workflow and steps to integrate UPI Intent with Server
   <br />
 </Cards>
 
+## Update Manifest File \[One-Time]
 
-## Update Manifest File [One-Time]
-  Add package ids in your apps manifest file to allow your application to access apps installed on the customer's device.
+Add package ids in your apps manifest file to allow your application to access apps installed on the customer's device.
 
 ## Step 1: Fetch the List of UPI and Smart Intent Supported Apps
 
@@ -100,6 +101,8 @@ Use the **\_payment** API to get Intent URI and transaction details for the UPI 
     | <Glossary>txn_s2s_flow</Glossary> | `String` This parameter must be passed with value 4 for Intent flow.                                              |
     | s2s_client_ip                     | `String` The IP address of the client device.                                                                     |
     | s2s_device_info                   | `String` Device information/user-agent string of the client.                                                      |
+| upiAppName | The UPI application to which the payment intent is routed. Pass one of the accepted values to trigger the corresponding UPI app. If not passed, the customer is prompted to choose. For more information, refer to [Accepted values for upiAppName](#accepted-values-for-upiappname) | `gpay` |
+
 
     **Optional Parameters**
 
@@ -114,138 +117,57 @@ Use the **\_payment** API to get Intent URI and transaction details for the UPI 
     | zipcode     | `String` Billing address zip code. Mandatory for cardless EMI option. Character Limit: 20. |
     | udf1–udf5   | `String` User-defined fields for storing transaction-specific data.                        |
     | notifyurl   | `String` The URL where PayU sends the server-to-server callback.                           |
+
+
+#### Accepted values for upiAppName
+
+| Value | Description |
+| :--- | :--- |
+| `gpay` | Routes the UPI payment intent to Google Pay. |
+| `phonepe` | Routes the UPI payment intent to PhonePe. |
+| `paytm` | Routes the UPI payment intent to Paytm. |
+| `qr` | Generates a UPI QR code for the customer to scan and pay. |
+| `amazonpay` | Routes the UPI payment intent to Amazon Pay. |
+
   </Tab>
 
   <Tab title="Sample Request">
     ```curl
+```curl
     curl --location 'https://test.payu.in/_payment' \
     --header 'Content-Type: application/x-www-form-urlencoded' \
-    --data-urlencode 'key=YOUR_MERCHANT_KEY' \
-    --data-urlencode 'txnid=TXN_12345' \
-    --data-urlencode 'amount=10.00' \
-    --data-urlencode 'productinfo=iPhone' \
-    --data-urlencode 'firstname=Ashish' \
-    --data-urlencode 'email=test@gmail.com' \
-    --data-urlencode 'phone=9876543210' \
+    --data-urlencode 'key=PRiQvJ' \
+    --data-urlencode 'txnid=my_order_991' \
+    --data-urlencode 'amount=1' \
+    --data-urlencode 'productinfo=my_order_991' \
+    --data-urlencode 'email=' \
+    --data-urlencode 'phone=9368252248' \
+    --data-urlencode 'txn_s2s_flow=4' \
+    --data-urlencode 'hash=||||||ABCDE1234F||1990-01-01||INV123456||||||' \
+    --data-urlencode 'surl=https://test.payu.in/admin/test_response' \
+    --data-urlencode 'furl=https://test.payu.in/admin/test_response' \
+    --data-urlencode 'udf1=buyer'\''s DOB' \
+    --data-urlencode 'udf2=' \
+    --data-urlencode 'udf3=buyer'\''s PAN' \
+    --data-urlencode 'udf4=' \
+    --data-urlencode 'udf5=invoice number' \
+    --data-urlencode 's2s_client_ip=10.200.12.12' \
+    --data-urlencode 's2s_device_info=Mozilla/5.0 (Windows NT 10.0; Win64; x64) PayU-API-Test/1.0' \
+    --data-urlencode 'firstname=' \
+    --data-urlencode 'lastname=kr' \
+    --data-urlencode 'address1=308,third floor' \
+    --data-urlencode 'address2=testing' \
+    --data-urlencode 'city=Gurugram' \
+    --data-urlencode 'state=UP' \
+    --data-urlencode 'country=India' \
+    --data-urlencode 'zipcode=122018' \
     --data-urlencode 'pg=UPI' \
     --data-urlencode 'bankcode=INTENT' \
-    --data-urlencode 'surl=https://apiplayground-response.herokuapp.com/' \
-    --data-urlencode 'furl=https://apiplayground-response.herokuapp.com/' \
-    --data-urlencode 'txn_s2s_flow=4' \
-    --data-urlencode 's2s_client_ip=10.200.12.12' \
-    --data-urlencode 's2s_device_info=Mozilla/5.0' \
-    --data-urlencode 'hash=YOUR_HASH_VALUE'
+    --data-urlencode 'upiAppName=gpay/phonepe/paytm/qr/amazonpay' \
+    --data-urlencode 'udf_params={"udf7":"asdf","udf8":"12"}' \
+    --data-urlencode 'buyer_type_business=1'
     ```
-    ```python
-    import requests
-
-    url = "https://test.payu.in/_payment"
-    headers = {"Content-Type": "application/x-www-form-urlencoded"}
-    data = {
-        "key": "YOUR_MERCHANT_KEY",
-        "txnid": "TXN_12345",
-        "amount": "10.00",
-        "productinfo": "iPhone",
-        "firstname": "Ashish",
-        "email": "test@gmail.com",
-        "phone": "9876543210",
-        "pg": "UPI",
-        "bankcode": "INTENT",
-        "surl": "https://apiplayground-response.herokuapp.com/",
-        "furl": "https://apiplayground-response.herokuapp.com/",
-        "txn_s2s_flow": "4",
-        "s2s_client_ip": "10.200.12.12",
-        "s2s_device_info": "Mozilla/5.0",
-        "hash": "YOUR_HASH_VALUE"
-    }
-    response = requests.post(url, headers=headers, data=data)
-    print(response.status_code)
-    print(response.text)
-    ```
-    ```php
-    <?php
-    $url = "https://test.payu.in/_payment";
-    $data = http_build_query([
-        "key"            => "YOUR_MERCHANT_KEY",
-        "txnid"          => "TXN_12345",
-        "amount"         => "10.00",
-        "productinfo"    => "iPhone",
-        "firstname"      => "Ashish",
-        "email"          => "test@gmail.com",
-        "phone"          => "9876543210",
-        "pg"             => "UPI",
-        "bankcode"       => "INTENT",
-        "surl"           => "https://apiplayground-response.herokuapp.com/",
-        "furl"           => "https://apiplayground-response.herokuapp.com/",
-        "txn_s2s_flow"   => "4",
-        "s2s_client_ip"  => "10.200.12.12",
-        "s2s_device_info"=> "Mozilla/5.0",
-        "hash"           => "YOUR_HASH_VALUE"
-    ]);
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, ["Content-Type: application/x-www-form-urlencoded"]);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $response = curl_exec($ch);
-    echo "Status: " . curl_getinfo($ch, CURLINFO_HTTP_CODE) . "\n";
-    echo $response;
-    curl_close($ch);
-    ?>
-    ```
-    ```java
-    import java.net.URI;
-    import java.net.URLEncoder;
-    import java.net.http.*;
-    import java.nio.charset.StandardCharsets;
-    import java.util.*;
-    public class UpiIntentS2S {
-        public static void main(String[] args) throws Exception {
-            Map<String,String> params = new LinkedHashMap<>();
-            params.put("key","YOUR_MERCHANT_KEY"); params.put("txnid","TXN_12345");
-            params.put("amount","10.00"); params.put("productinfo","iPhone");
-            params.put("firstname","Ashish"); params.put("email","test@gmail.com");
-            params.put("phone","9876543210"); params.put("pg","UPI"); params.put("bankcode","INTENT");
-            params.put("surl","https://apiplayground-response.herokuapp.com/");
-            params.put("furl","https://apiplayground-response.herokuapp.com/");
-            params.put("txn_s2s_flow","4"); params.put("s2s_client_ip","10.200.12.12");
-            params.put("s2s_device_info","Mozilla/5.0"); params.put("hash","YOUR_HASH_VALUE");
-            StringJoiner sj = new StringJoiner("&");
-            for (Map.Entry<String,String> e : params.entrySet())
-                sj.add(URLEncoder.encode(e.getKey(),StandardCharsets.UTF_8)+"="+URLEncoder.encode(e.getValue(),StandardCharsets.UTF_8));
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://test.payu.in/_payment"))
-                .header("Content-Type","application/x-www-form-urlencoded")
-                .POST(HttpRequest.BodyPublishers.ofString(sj.toString())).build();
-            HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
-            System.out.println("Status: "+response.statusCode()); System.out.println(response.body());
-        }
-    }
-    ```
-    ```csharp
-    using System;
-    using System.Collections.Generic;
-    using System.Net.Http;
-    using System.Threading.Tasks;
-    class UpiIntentS2S {
-        static async Task Main() {
-            using var client = new HttpClient();
-            var data = new FormUrlEncodedContent(new Dictionary<string,string> {
-                {"key","YOUR_MERCHANT_KEY"},{"txnid","TXN_12345"},{"amount","10.00"},
-                {"productinfo","iPhone"},{"firstname","Ashish"},{"email","test@gmail.com"},
-                {"phone","9876543210"},{"pg","UPI"},{"bankcode","INTENT"},
-                {"surl","https://apiplayground-response.herokuapp.com/"},
-                {"furl","https://apiplayground-response.herokuapp.com/"},
-                {"txn_s2s_flow","4"},{"s2s_client_ip","10.200.12.12"},
-                {"s2s_device_info","Mozilla/5.0"},{"hash","YOUR_HASH_VALUE"}
-            });
-            var response = await client.PostAsync("https://test.payu.in/_payment", data);
-            Console.WriteLine("Status: "+(int)response.StatusCode);
-            Console.WriteLine(await response.Content.ReadAsStringAsync());
-        }
-    }
-    ```
+   
   </Tab>
 </Tabs>
 
@@ -273,5 +195,5 @@ googlepay = gpay://upi/pay?
 Add the prefix as per the Android/IOS to create a fully qualified deeplink to trigger the UPI App.
 
 ## Step 5: Verify the payment
-  <Verify_Payment_Tabs />
-</Accordion>
+
+<Verify_Payment_Tabs />
