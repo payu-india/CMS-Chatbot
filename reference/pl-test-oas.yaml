@@ -2677,6 +2677,7 @@ paths:
                   value:
                     error: insufficient_scope
                     error_description: The access token does not have the required scope.
+      x-internal: true
   /payment-links/{invoiceNumber}/transactions:
     get:
       summary: Get Transaction Details
