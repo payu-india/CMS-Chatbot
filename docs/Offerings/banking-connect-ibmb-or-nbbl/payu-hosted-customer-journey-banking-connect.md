@@ -56,7 +56,15 @@ This section describes the customer journey for PayU Hosted integration on Deskt
 
 6) Seamless transaction confirmation
 
-![]()
+#### iOS SDK Customer Journey
+
+![](https://files.readme.io/787dbffeea6fa2da1ceffb599b45917ccba27780ad9e7db09bb4b3b120c26170-payu-hosted-android-ios-flow.png)
+
+#### Android SDK Customer Journey
+
+
+<Image src="https://files.readme.io/25ecbb39cdab5cc0137099892fcc36a200c38b1acbf73bab7e3582759ae2751a-payu-hosted-ios-flow.png" border={true} />
+
 
 <br />
 
