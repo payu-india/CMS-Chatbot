@@ -32,7 +32,7 @@ For Android and iOS WebView implementations, see [Handle NBBL Deep-Links in WebV
 
 ## Supported banks
 
-The attached product brief lists these banks as currently live via NBBL:
+These banks as currently live via NBBL:
 
 - HDFC Bank
 - ICICI Bank
