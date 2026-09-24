@@ -217,20 +217,10 @@ Use this endpoint to generate a shareable payment link and optionally deliver it
 
 ## Supported Payment Link Types
 
+PayU's Create Payment Link API supports five distinct link types, all from the same POST /payment-links endpoint. Each section below includes a ready-to-use payload.
+
 <Accordion title="Standard Payment Link" icon="fab fa-stripe-s">
   Use the this payload to create and send a payment link with fixed-amount and one-time payment via SMS, email, or WhatsApp. You can use it for order payments, invoices, and on-demand payment requests.
-
-  <Tabs>
-    <Tab title="Succes and Error Response">
-
-    </Tab>
-
-    <Tab title="Response Parameter Description">
-
-    </Tab>
-  </Tabs>
-
-
 
   <Tabs>
     <Tab title="Request Payload">
@@ -265,4 +255,8 @@ Use this endpoint to generate a shareable payment link and optionally deliver it
       Refer to the [Body Params](ref:create-payment-links#body-params) section for a full description of all request parameters and use cases.
     </Tab>
   </Tabs>
+</Accordion>
+
+<Accordion title="Open Amount Payment Link" icon="fad fa-envelope-open-dollar">
+
 </Accordion>
