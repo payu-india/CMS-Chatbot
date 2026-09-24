@@ -244,6 +244,332 @@ merchant_id|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|||
 
 <Generate_Hash_Partner_Payment />
 
+### Step 2.3: Post the request
+
+```curl
+curl --location 'https://test-partnerapilayer.payu.in/apilayer/partner/payments' \
+--header 'Authorization: Bearer your_access_token_here' \
+--header 'Content-Type: application/json' \
+--data '{
+  "txnid": "28471834809170982",
+  "amount": "518.02",
+  "productinfo": "28471834809170982",
+  "firstname": "",
+  "lastname": "",
+  "email": "",
+  "phone": "919820988398",
+  "merchant_id": 8739528,
+  "reseller_id": "11ee-0e7e-5403fde2-9523-0a696b110fde",
+  "udf1": "",
+  "udf2": "1370625260",
+  "udf3": "r-hway-TPV-REFERENCE",
+  "udf4": "",
+  "udf5": "whatsapp",
+  "surl": "https://merchant.example.com/success",
+  "furl": "https://merchant.example.com/failure",
+  "curl": "https://merchant.example.com/cancel",
+  "txn_s2s_flow": "4",
+  "s2s_client_ip": "157.240.22.9",
+  "s2s_device_info": "Mozilla/5.0 (iPhone) AppleWebKit/602.4.6",
+  "beneficiarydetail": "{\"ifscCode\":\"ICIC0001234\",\"accountNumber\":\"123456789012\",\"accountHolderName\":\"Test User\"}",
+  "hash": "<PAYMENT_REQUEST_HASH>"
+}'
+```
+```python
+import requests
+import json
+
+url = "https://test-partnerapilayer.payu.in/apilayer/partner/payments"
+
+headers = {
+    "Authorization": "Bearer your_access_token_here",
+    "Content-Type": "application/json"
+}
+
+payload = {
+    "txnid": "28471834809170982",
+    "amount": "518.02",
+    "productinfo": "28471834809170982",
+    "firstname": "",
+    "lastname": "",
+    "email": "",
+    "phone": "919820988398",
+    "merchant_id": 8739528,
+    "reseller_id": "11ee-0e7e-5403fde2-9523-0a696b110fde",
+    "udf1": "",
+    "udf2": "1370625260",
+    "udf3": "r-hway-TPV-REFERENCE",
+    "udf4": "",
+    "udf5": "whatsapp",
+    "surl": "https://merchant.example.com/success",
+    "furl": "https://merchant.example.com/failure",
+    "curl": "https://merchant.example.com/cancel",
+    "txn_s2s_flow": "4",
+    "s2s_client_ip": "157.240.22.9",
+    "s2s_device_info": "Mozilla/5.0 (iPhone) AppleWebKit/602.4.6",
+    "beneficiarydetail": "{\"ifscCode\":\"ICIC0001234\",\"accountNumber\":\"123456789012\",\"accountHolderName\":\"Test User\"}",
+    "hash": "<PAYMENT_REQUEST_HASH>"
+}
+
+try:
+    response = requests.post(url, headers=headers, json=payload)
+    print(f"Status Code: {response.status_code}")
+    print(f"Response: {response.text}")
+except requests.exceptions.RequestException as e:
+    print(f"Error: {e}")
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
+
+class Program
+{
+    private static readonly HttpClient client = new HttpClient();
+
+    static async Task Main(string[] args)
+    {
+        try
+        {
+            string url = "https://test-partnerapilayer.payu.in/apilayer/partner/payments";
+
+            var payload = new
+            {
+                txnid = "28471834809170982",
+                amount = "518.02",
+                productinfo = "28471834809170982",
+                firstname = "",
+                lastname = "",
+                email = "",
+                phone = "919820988398",
+                merchant_id = 8739528,
+                reseller_id = "11ee-0e7e-5403fde2-9523-0a696b110fde",
+                udf1 = "",
+                udf2 = "1370625260",
+                udf3 = "r-hway-TPV-REFERENCE",
+                udf4 = "",
+                udf5 = "whatsapp",
+                surl = "https://merchant.example.com/success",
+                furl = "https://merchant.example.com/failure",
+                curl = "https://merchant.example.com/cancel",
+                txn_s2s_flow = "4",
+                s2s_client_ip = "157.240.22.9",
+                s2s_device_info = "Mozilla/5.0 (iPhone) AppleWebKit/602.4.6",
+                beneficiarydetail = "{\"ifscCode\":\"ICIC0001234\",\"accountNumber\":\"123456789012\",\"accountHolderName\":\"Test User\"}",
+                hash = "<PAYMENT_REQUEST_HASH>"
+            };
+
+            string jsonPayload = JsonSerializer.Serialize(payload);
+            var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+
+            client.DefaultRequestHeaders.Clear();
+            client.DefaultRequestHeaders.Add("Authorization", "Bearer your_access_token_here");
+
+            HttpResponseMessage response = await client.PostAsync(url, content);
+            string responseContent = await response.Content.ReadAsStringAsync();
+
+            Console.WriteLine($"Status Code: {response.StatusCode}");
+            Console.WriteLine($"Response: {responseContent}");
+        }
+        catch (HttpRequestException e)
+        {
+            Console.WriteLine($"Error: {e.Message}");
+        }
+    }
+}
+```
+```javascript
+async function initiatePayment() {
+    const url = "https://test-partnerapilayer.payu.in/apilayer/partner/payments";
+
+    const payload = {
+        txnid: "28471834809170982",
+        amount: "518.02",
+        productinfo: "28471834809170982",
+        firstname: "",
+        lastname: "",
+        email: "",
+        phone: "919820988398",
+        merchant_id: 8739528,
+        reseller_id: "11ee-0e7e-5403fde2-9523-0a696b110fde",
+        udf1: "",
+        udf2: "1370625260",
+        udf3: "r-hway-TPV-REFERENCE",
+        udf4: "",
+        udf5: "whatsapp",
+        surl: "https://merchant.example.com/success",
+        furl: "https://merchant.example.com/failure",
+        curl: "https://merchant.example.com/cancel",
+        txn_s2s_flow: "4",
+        s2s_client_ip: "157.240.22.9",
+        s2s_device_info: "Mozilla/5.0 (iPhone) AppleWebKit/602.4.6",
+        beneficiarydetail: "{\"ifscCode\":\"ICIC0001234\",\"accountNumber\":\"123456789012\",\"accountHolderName\":\"Test User\"}",
+        hash: "<PAYMENT_REQUEST_HASH>"
+    };
+
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            "Authorization": "Bearer your_access_token_here",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    };
+
+    try {
+        const response = await fetch(url, requestOptions);
+        const responseText = await response.text();
+        console.log(`Status: ${response.status}`);
+        console.log(`Response: ${responseText}`);
+        return { status: response.status, data: responseText };
+    } catch (error) {
+        console.error("Error:", error);
+        throw error;
+    }
+}
+
+// Usage
+initiatePayment()
+    .then(result => console.log("Success:", result))
+    .catch(error => console.error("Failed:", error));
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.nio.charset.StandardCharsets;
+
+public class PayUPartnerPayment {
+    public static void main(String[] args) {
+        try {
+            initiatePayment();
+        } catch (IOException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+
+    public static void initiatePayment() throws IOException {
+        String url = "https://test-partnerapilayer.payu.in/apilayer/partner/payments";
+
+        String jsonPayload = "{"
+                + "\"txnid\": \"28471834809170982\"" + ","
+                + "\"amount\": \"518.02\"" + ","
+                + "\"productinfo\": \"28471834809170982\"" + ","
+                + "\"firstname\": \"\"" + ","
+                + "\"lastname\": \"\"" + ","
+                + "\"email\": \"\"" + ","
+                + "\"phone\": \"919820988398\"" + ","
+                + "\"merchant_id\": 8739528" + ","
+                + "\"reseller_id\": \"11ee-0e7e-5403fde2-9523-0a696b110fde\"" + ","
+                + "\"udf1\": \"\"" + ","
+                + "\"udf2\": \"1370625260\"" + ","
+                + "\"udf3\": \"r-hway-TPV-REFERENCE\"" + ","
+                + "\"udf4\": \"\"" + ","
+                + "\"udf5\": \"whatsapp\"" + ","
+                + "\"surl\": \"https://merchant.example.com/success\"" + ","
+                + "\"furl\": \"https://merchant.example.com/failure\"" + ","
+                + "\"curl\": \"https://merchant.example.com/cancel\"" + ","
+                + "\"txn_s2s_flow\": \"4\"" + ","
+                + "\"s2s_client_ip\": \"157.240.22.9\"" + ","
+                + "\"s2s_device_info\": \"Mozilla/5.0 (iPhone) AppleWebKit/602.4.6\"" + ","
+                + "\"beneficiarydetail\": \"{\\\"ifscCode\\\":\\\"ICIC0001234\\\",\\\"accountNumber\\\":\\\"123456789012\\\",\\\"accountHolderName\\\":\\\"Test User\\\"}\"" + ","
+                + "\"hash\": \"<PAYMENT_REQUEST_HASH>\""
+                + "}";
+
+        URL urlObj = new URL(url);
+        HttpURLConnection connection = (HttpURLConnection) urlObj.openConnection();
+
+        connection.setRequestMethod("POST");
+        connection.setRequestProperty("Authorization", "Bearer your_access_token_here");
+        connection.setRequestProperty("Content-Type", "application/json");
+        connection.setDoOutput(true);
+
+        try (OutputStream os = connection.getOutputStream()) {
+            byte[] input = jsonPayload.getBytes(StandardCharsets.UTF_8);
+            os.write(input, 0, input.length);
+        }
+
+        int responseCode = connection.getResponseCode();
+        System.out.println("Status Code: " + responseCode);
+
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(
+                responseCode >= 200 && responseCode < 300
+                        ? connection.getInputStream()
+                        : connection.getErrorStream(),
+                StandardCharsets.UTF_8))) {
+            StringBuilder response = new StringBuilder();
+            String responseLine;
+            while ((responseLine = br.readLine()) != null) {
+                response.append(responseLine.trim());
+            }
+            System.out.println("Response: " + response.toString());
+        }
+
+        connection.disconnect();
+    }
+}
+```
+```php
+<?php
+
+$url = "https://test-partnerapilayer.payu.in/apilayer/partner/payments";
+
+$payload = [
+    "txnid"            => "28471834809170982",
+    "amount"           => "518.02",
+    "productinfo"      => "28471834809170982",
+    "firstname"        => "",
+    "lastname"         => "",
+    "email"            => "",
+    "phone"            => "919820988398",
+    "merchant_id"      => 8739528,
+    "reseller_id"      => "11ee-0e7e-5403fde2-9523-0a696b110fde",
+    "udf1"             => "",
+    "udf2"             => "1370625260",
+    "udf3"             => "r-hway-TPV-REFERENCE",
+    "udf4"             => "",
+    "udf5"             => "whatsapp",
+    "surl"             => "https://merchant.example.com/success",
+    "furl"             => "https://merchant.example.com/failure",
+    "curl"             => "https://merchant.example.com/cancel",
+    "txn_s2s_flow"     => "4",
+    "s2s_client_ip"    => "157.240.22.9",
+    "s2s_device_info"  => "Mozilla/5.0 (iPhone) AppleWebKit/602.4.6",
+    "beneficiarydetail"=> '{"ifscCode":"ICIC0001234","accountNumber":"123456789012","accountHolderName":"Test User"}',
+    "hash"             => "<PAYMENT_REQUEST_HASH>"
+];
+
+$jsonPayload = json_encode($payload);
+
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonPayload);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    "Authorization: Bearer your_access_token_here",
+    "Content-Type: application/json"
+]);
+
+$response = curl_exec($ch);
+
+if (curl_errno($ch)) {
+    echo "Error: " . curl_error($ch);
+} else {
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    echo "Status Code: " . $httpCode . "\n";
+    echo "Response: " . $response . "\n";
+}
+
+curl_close($ch);
+?>
+```
+
+
+<Callout icon="📘" theme="info">
+  ``**Note:** The `Authorization` header value `your_access_token_here` is carried over from the earlier sample request. Replace it with your actual Bearer token before making the call.``
+</Callout>
+
 ### Step 2.4: Handle Payment Response
 
 **Success Response:**
