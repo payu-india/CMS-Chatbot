@@ -30,37 +30,37 @@ This section includes the workflow and steps to integrate UPI Intent with Server
 
 ### Steps to integrate
 <Cards columns={3}>
-  <Card title="Update Manifest File [One-Time]" href="https://docs.payu.in/docs/smart-intent-flow#update-manifest-file-one-time">
+  <Card title="Update Manifest File [One-Time]" href="#update-manifest-file-one-time">
     Add package IDs in your app's manifest so the app can access UPI apps installed on the customer's device
 
     <br />
   </Card>
 
-  <Card title="1. Fetch the List of UPI and Smart Intent Supported Apps" href="https://docs.payu.in/docs/smart-intent-flow#1-fetch-the-list-of-upi-and-smart-intent-supported-apps">
+  <Card title="1. Fetch the List of UPI and Smart Intent Supported Apps" href="#step-1-fetch-the-list-of-upi-and-smart-intent-supported-apps">
     List the specific UPI apps supported for app, webview, and m-web integrations
 
     <br />
   </Card>
 
-  <Card title="2. Get Intent URI" href="https://docs.payu.in/docs/smart-intent-flow#2-get-intent-uri">
+  <Card title="2. Get Intent URI" href="#step-2-get-intent-uri">
     Call the payment API to get the Intent URI and transaction details for the UPI app selected by the customer
 
     <br />
   </Card>
 
-  <Card title="3. Construct the Intent URI" href="https://docs.payu.in/docs/smart-intent-flow#3-construct-the-intent-uri">
+  <Card title="3. Construct the Intent URI" href="#step-3-construct-the-intent-uri">
     Extract intentURIData from the response and build the platform-specific URI using the Android or iOS prefix/suffix
 
     <br />
   </Card>
 
-  <Card title="4. Add the Prefix" href="https://docs.payu.in/docs/smart-intent-flow#4-add-the-prefix">
+  <Card title="4. Add the Prefix" href="#step-4-add-the-prefix">
     Prepend the appropriate Android or iOS prefix to create the fully qualified deeplink to trigger the UPI app
 
     <br />
   </Card>
 
-  <Card title="5. Verify the Payment" href="https://docs.payu.in/docs/smart-intent-flow#5-verify-the-payment">
+  <Card title="5. Verify the Payment" href="#step-5-verify-the-payment">
     Verify the payment status and ensure transaction completion
   </Card>
 
