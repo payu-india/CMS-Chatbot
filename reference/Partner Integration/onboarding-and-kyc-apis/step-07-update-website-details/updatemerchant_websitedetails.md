@@ -71,7 +71,6 @@ When you skip the Website, your account will only be eligible to collect payment
     "message": "Check the error details in the response body"
   }
   ```
-</Accordion>
 
 ## Response parameters
 
