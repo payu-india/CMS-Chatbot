@@ -31,12 +31,12 @@ If the selected bank app is not installed, or the app-first path is not enabled,
 #### iOS Device Customer Journey
 
 
-<Image src="https://files.readme.io/455332377a6b2b3672bee27ea371361c76903d85a9ca1d068e732a5164683953-seamless-ios-flow_1.png" border={true} />
+<Image src="https://files.readme.io/148a4b91e8e41642db3282a954e415619276aebe6fd224217622949cdb47b3bc-seamless-ios-flow_1.png" border={true} />
 
 
 #### Android Device Customer Journey
 
-![](https://files.readme.io/6d943cfba74fb655577dbcc16aa12049bf215b9c03f74b59bf7b056df1abcbf0-Android_seamless_payment_flow.png)
+![](https://files.readme.io/da9dfa254751d5e7c0901e5fba248c4039624fee09b48841c1272559f5c2b5c9-seamless-android-payment-flow.png)
 
 <br />
 
