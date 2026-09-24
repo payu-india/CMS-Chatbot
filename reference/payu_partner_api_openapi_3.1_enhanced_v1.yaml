@@ -1555,7 +1555,7 @@ paths:
       x-internal: false
   /api/v1/merchants/{uuid_website}/update-1:
     put:
-      summary: Copy of Update Website Details API
+      summary: Skip Website Details API
       operationId: UpdateMerchant_WebsiteDetails-1
       tags:
         - 'Step 07 — Update: Website Details'
