@@ -50,13 +50,18 @@ If the selected bank app is not installed, or the app-first path is not enabled,
 6. The customer confirms the debit account.
 7. PayU displays the payment result to the customer and merchant.
 
-![](https://files.readme.io/1a28e250fbadca380853558cde1df24b8f9b887c3dcba7d9495234e537e5c8c1-Seamless_web_checkout_flow.png)
+![](https://files.readme.io/654ab97c2c1e813d651d2852842a01d9d83556e3135ebb6e8a1581ff5122ed48-Seamless_web_checkout_flow.png)
 
 <br />
 
 ### Website fallback
 
 When the bank app is not installed or the app-first route is unavailable, the customer can continue with the familiar bank-website NetBanking journey.
+
+### Merchant Changes
+
+- No integration changes required to enable the desktop based flow. Existing flow will work as is.
+- To enable intent flow in mobile webview; please refer the document - Handle NBBL Deep-Links in WebView
 
 ## Related documentation
 
