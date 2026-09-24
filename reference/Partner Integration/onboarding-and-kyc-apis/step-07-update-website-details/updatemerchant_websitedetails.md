@@ -28,12 +28,12 @@ When you skip the Website, your account will only be eligible to collect payment
 | Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/update`     |
 
 ## Sample Request
-  ```bash
-    curl --location --request PUT 'https://uat-partner.payu.in/api/v1/merchants/{{uuid}}/update' \
-    --header 'Authorization: Bearer {{access_token}}' \
-    --form 'merchant[website_details][website_url]="https://www.example.com"' \
-    --form 'merchant[website_details][android_url]="https://play.google.com/store/apps/details?id=com.example"' \
-    --form 'merchant[website_details][ios_url]="https://apps.apple.com/app/example/id123456"'
+  ```curl
+curl --location --request PUT 'https://uat-partner.payu.in/api/v1/merchants/{{uuid}}/update' \
+  --header 'Authorization: Bearer {{access_token}}' \
+  --form 'merchant[website_details][website_url]="https://www.example.com"' \
+  --form 'merchant[website_details][android_url]="https://play.google.com/store/apps/details?id=com.example"' \
+  --form 'merchant[website_details][ios_url]="https://apps.apple.com/app/example/id123456"'
   ```
 
 ## Sample Response
