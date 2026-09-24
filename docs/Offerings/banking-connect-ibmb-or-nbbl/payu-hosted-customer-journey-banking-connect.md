@@ -7,10 +7,12 @@ metadata:
 ---
 This section describes the customer journey for PayU Hosted integration on Desktop and Mobile devices.
 
-> 📘 Notes:
->
-> * **Enable Banking Connect**: To enable Banking Connect or NBBL, contact your PayU Key Account Manager (KAM) or contact <Anchor label="PayU Support." target="_blank" href="https://help.payu.in">PayU Support.</Anchor>
-> * **Collect customer mobile number**: For NBBL, you must collect the customer mobile number. For more information, refer to [PayU Hosted Checkout](doc:prebuilt-checkout-payu-hosted) > [Web Integration](doc:web-integration-virtual-cards).
+<Callout icon="📘" theme="info">
+  ### Notes:
+
+  * **Enable Banking Connect**: To enable Banking Connect or NBBL, contact your PayU Key Account Manager (KAM) or contact <Anchor target="_blank" href="https://help.payu.in">PayU Support.</Anchor>
+  * **Collect customer mobile number**: For NBBL, you must collect the customer mobile number. For more information, refer to [PayU Hosted Checkout](doc:prebuilt-checkout-payu-hosted) > [Web Integration](doc:web-integration-virtual-cards).
+</Callout>
 
 ## &#x20;Desktop
 
@@ -19,17 +21,15 @@ This section describes the customer journey for PayU Hosted integration on Deskt
 1. Customer selects net banking on PayU Hosted Checkout (desktop)
 2. PayU generates dynamic QR code via Banking Connect
 
-<Image align="center" border={true} src="https://files.readme.io/c290c0a2e2e1f247046bbb2727d15edd3c392df8f0b533f8e6e10f6c635471b8-PayU_Hosted_web_QR_Step1.png" className="border" />
-
-3. Customer scans QR with their mobile banking app
-
-<Image align="center" border={true} src="https://files.readme.io/8370aa5e413bb879b168311f1d5f19b9d43b9efeb2be78996c2120dfd6b01b9f-PayU_Hosted_web_QR_Step2.png" className="border" />
+3) Customer scans QR with their mobile banking app
 
 4. Banking app decodes transaction details and initiates authentication
 5. Payment completion with OTP/biometric verification on mobile
 6. Real-time status update displayed on desktop merchant page
 
-<Image align="center" border={true} src="https://files.readme.io/f4963eecea03132e3aaf4707a05bf8cda1a42202bf2ab3a6f6775aeb93451a50-PayU_Hosted_web_QR_Step3.png" className="border" />
+![](https://files.readme.io/d55ade8734304dfb5a0ba1261c91d63f3f38735bb8267a3830006af08fee9475-PayU_Hosted_Web_Checkout_flow.png)
+
+<br />
 
 ### Redirect Flow
 
@@ -46,27 +46,19 @@ This section describes the customer journey for PayU Hosted integration on Deskt
 
 1. Customer selects net banking on mobile browser/app
 
-<Image align="center" border={true} width="300px" src="https://files.readme.io/f700c55cf1c2b6f1240c8caaef1164ab86079012f3fc16d48e3a710591d491eb-PayU_Hosted_Mobile_Intent_Step1.png" className="border" />
-
-2. PayU creates intent URL for selected bank via Banking Connect
-
-<Image align="center" border={true} width="300px" src="https://files.readme.io/434eb8e964cee3cbd3758edbc891bd8ee3d824c32d87d21e6563c81441937ff2-PayU_Hosted_Mobile_Intent_Step2.png" className="border" />
+2) PayU creates intent URL for selected bank via Banking Connect
 
 3. Automatic deep linking to banking app (Android/iOS)
 
-<Image align="center" border={true} width="300px" src="https://files.readme.io/b6ca6678254dd895f2b8943d2fd073938308c07d86c22c6bd1f57c23a51220a8-PayU_Hosted_Mobile_Intent_Step3.png" className="border" />
-
-4. Native in-app authentication and payment authorization
-
-<Image align="center" border={true} width="300px" src="https://files.readme.io/b912d26e6cd7e6a65cd9db35fc7a3a517c74ba635281d4ce5a080d907caaf51c-PayU_Hosted_Mobile_Intent_Step4.png" className="border" />
+4) Native in-app authentication and payment authorization
 
 5. Instant callback to PayU mobile interface
 
-<Image align="center" border={false} width="300px" src="https://files.readme.io/7982763d3af12d7c3c938a7ea20f25dc9e524c0e6df6dea589663352722350ba-PayU_Hosted_Mobile_Intent_Step5.png" />
+6) Seamless transaction confirmation
 
-6. Seamless transaction confirmation
+![]()
 
-<Image align="center" border={false} width="300px" src="https://files.readme.io/385399cf564718d019b89c6121c163bef58fac909f6f8c28a5ce5c2ca04bb3ae-PayU_Hosted_Mobile_Intent_Step7.png" />
+<br />
 
 ### Mobile Desktop Compatibility
 
