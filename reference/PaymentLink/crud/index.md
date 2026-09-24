@@ -1,4 +1,0 @@
----
-title: CRUD
-hidden: false
----
