@@ -2,5 +2,7 @@
 api:
   file: pl-test-oas.yaml
   operationId: SharePaymentLinkAPI
-hidden: false
+hidden: true
+link:
+  new_tab: false
 ---
