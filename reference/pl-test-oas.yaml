@@ -1417,6 +1417,7 @@ paths:
                   error_description:
                     type: string
                     example: The access token is invalid or has expired.
+      x-internal: true
   /payment-links/{invoiceNumber}/transactions:
     get:
       summary: Get Transaction Details
