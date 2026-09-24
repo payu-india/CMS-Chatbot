@@ -32,6 +32,8 @@ If the selected bank app is not installed, or the app-first path is not enabled,
 
 #### Android Flow
 
+![](https://files.readme.io/6d943cfba74fb655577dbcc16aa12049bf215b9c03f74b59bf7b056df1abcbf0-Android_seamless_payment_flow.png)
+
 <br />
 
 ### Desktop QR flow
@@ -43,6 +45,8 @@ If the selected bank app is not installed, or the app-first path is not enabled,
 5. The customer authenticates in the bank app.
 6. The customer confirms the debit account.
 7. PayU displays the payment result to the customer and merchant.
+
+![](https://files.readme.io/ed9e856425b3019f34ec74c1a3f7fcd1fc45f71f2aabc678a60ef0f7352c3c6a-Seamless_web_checkout_flow.png)
 
 <br />
 
