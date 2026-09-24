@@ -1617,6 +1617,7 @@ paths:
                   value:
                     error: insufficient_scope
                     error_description: The access token does not have the required scope.
+      x-internal: true
   /payment-links/{invoiceNumber}:
     get:
       summary: Fetch Payment Link
