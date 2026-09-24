@@ -142,7 +142,7 @@ next:
 8. #### Are Payment Links secure?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Yes. PayU Payment Links are PCI DSS compliant. PayU uses advanced encryption and tokenisation to protect customer payment data. No card or bank details pass through your systems — the customer pays directly on PayU's hosted checkout page.
+  Yes. PayU Payment Links are PCI DSS compliant. PayU uses advanced encryption and tokenisation to protect customer payment data. No card or bank details pass through your systems.
 </Accordion>
 
 ***
@@ -152,7 +152,7 @@ next:
 1. #### Can I set a custom amount for each link?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Yes. Each link has its own amount field. You can also leave the amount flexible so the customer fills it in at checkout — useful for donations or open-ended collections.
+  Yes. Each link has its own amount field. You can also leave the amount flexible so the customer fills it in at checkout You can use this use case for donations or open-ended collections.
 </Accordion>
 
 ***
@@ -160,12 +160,12 @@ next:
 2. #### Can I collect customer information with the payment?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Yes. You can add standard fields (name, email, phone, address) and fully custom fields (any label, any type) to the checkout page. See <Anchor target="_blank" href="doc:payment-link-options">Payment Link Options</Anchor> for details.
+  Yes. You can add standard fields (name, email, phone, address) and fully custom fields (any label, any type) to the checkout page. See <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link#how-do-i-create-a-payment-link">Create a Payment Link</Anchor> for details.
 </Accordion>
 
 ***
 
-3. #### My customer is being asked to re-enter their email and phone number at checkout — why? <Badge type="success">New</Badge>
+3. #### Why does the payment page ask for email and phone again even after I pass them while creating the payment link using APIs? <Badge type="success">New</Badge>
 
 <Accordion title="Answer" icon="fab fa-adn">
   Even when you pass `customerEmail` and `customerPhone` in your create-link API request, PayU may still prompt the customer to enter them if the **Additional Customer Details** fields are configured to capture email and phone on the checkout page.
