@@ -26,11 +26,11 @@ If the selected bank app is not installed, or the app-first path is not enabled,
 5. The customer confirms the debit account.
 6. The customer returns to the merchant with the payment result.
 
-#### iOS Flow
+#### iOS Device Customer Journey
 
 ![](https://files.readme.io/351aee5f6c66eeee77fb8cade4cc1e51218fbe054998e2c63d05bea56f386147-ios_seamless-payment-flow.png)
 
-#### Android Flow
+#### Android Device Customer Journey
 
 ![](https://files.readme.io/6d943cfba74fb655577dbcc16aa12049bf215b9c03f74b59bf7b056df1abcbf0-Android_seamless_payment_flow.png)
 
