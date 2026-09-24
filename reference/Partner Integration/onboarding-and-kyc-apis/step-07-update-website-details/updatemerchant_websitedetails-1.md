@@ -2,7 +2,7 @@
 api:
   file: payu_partner_api_openapi_3.1_enhanced_v1.yaml
   operationId: UpdateMerchant_WebsiteDetails-1
-hidden: true
+hidden: false
 link:
   new_tab: false
 metadata:
@@ -29,21 +29,7 @@ When you skip the Website, your account will only be eligible to collect payment
 | Test Environment       | `https://uat-partner.payu.in/api/v1/merchants/{uuid}/update` |
 | Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/update`     |
 
-## Sample Request&#x20;
-
-### Update website
-
-<Accordion title="Sample request to update website" icon="fa-code">
-  ```bash
-    curl --location --request PUT 'https://uat-partner.payu.in/api/v1/merchants/{{uuid}}/update' \
-    --header 'Authorization: Bearer {{access_token}}' \
-    --form 'merchant[website_details][website_url]="https://www.example.com"' \
-    --form 'merchant[website_details][android_url]="https://play.google.com/store/apps/details?id=com.example"' \
-    --form 'merchant[website_details][ios_url]="https://apps.apple.com/app/example/id123456"'
-  ```
-</Accordion>
-
-### Skip website
+## Sample Request
 
 <Accordion title="Sample request to skip website" icon="fa-code">
   ```bash
@@ -52,31 +38,12 @@ When you skip the Website, your account will only be eligible to collect payment
     --form 'merchant[integration_type]="tools"' \
 
   ```
-</Accordion>
+
 
 ## Sample Response
 
 ### Success scenario
 
-#### Update Website
-
-<Accordion title="Success scenario for update website" icon="fa-file-code">
-  ```json
-  {
-    "merchant": {
-      "mid": 760070201,
-      "website_url": "www.borosil.com",
-      "android_url": "www.borosil.com",
-      "ios_url": "www.borosil.com",
-      "website_approval_status": "Pending"
-    }
-  }
-  ```
-</Accordion>
-
-#### Skip website
-
-<Accordion title="Success scenario for skip website" icon="fa-info-circle">
   ```json
   {
     "merchant": {
@@ -85,11 +52,9 @@ When you skip the Website, your account will only be eligible to collect payment
     }
   }
   ```
-</Accordion>
+
 
 ### Failure scenario
-
-<Accordion title="Failure scenario" icon="fa-file-code">
   - **401 Unauthorized** — Token invalid or expired; call Step 00 again
 
   ```json
@@ -107,7 +72,7 @@ When you skip the Website, your account will only be eligible to collect payment
     "message": "Check the error details in the response body"
   }
   ```
-</Accordion>
+
 
 ## Response parameters
 
