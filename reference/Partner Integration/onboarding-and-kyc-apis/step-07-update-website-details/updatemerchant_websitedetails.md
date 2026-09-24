@@ -43,7 +43,10 @@ When you skip the Website, your account will only be eligible to collect payment
   {
     "merchant": {
       "mid": 760070201,
-      "integration_type":"tools"
+      "website_url": "www.borosil.com",
+      "android_url": "www.borosil.com",
+      "ios_url": "www.borosil.com",
+      "website_approval_status": "Pending"
     }
   }
   ```
