@@ -132,8 +132,8 @@ next:
   <Callout icon="fad fa-brake-warning" theme="error">
     ### Watch out!
 
-    - The currency selection option is not available in the Dashboard unless international payments are active on your account. If you do not see it, raise a request with your account manager.
-    - International currency payments apply only to card transactions. UPI, Net Banking, and Wallets are INR-only.
+    - The currency selection option is not available in the Dashboard unless international payments are active on your account. If you do not see it, raise a request with your key account manager.
+    - International currency payments apply only to card transactions. UPI, Net Banking, and Wallets are in INR.
   </Callout>
 </Accordion>
 
