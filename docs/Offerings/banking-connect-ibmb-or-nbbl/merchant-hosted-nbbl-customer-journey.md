@@ -2,6 +2,8 @@
 title: Merchant Hosted Customer Journey - Banking Connect
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
@@ -48,7 +50,7 @@ If the selected bank app is not installed, or the app-first path is not enabled,
 6. The customer confirms the debit account.
 7. PayU displays the payment result to the customer and merchant.
 
-![](https://files.readme.io/ed9e856425b3019f34ec74c1a3f7fcd1fc45f71f2aabc678a60ef0f7352c3c6a-Seamless_web_checkout_flow.png)
+![](https://files.readme.io/1a28e250fbadca380853558cde1df24b8f9b887c3dcba7d9495234e537e5c8c1-Seamless_web_checkout_flow.png)
 
 <br />
 
