@@ -28,49 +28,51 @@ When you skip the Website, your account will only be eligible to collect payment
 | Production Environment | `https://partner.payu.in/api/v1/merchants/{uuid}/update`     |
 
 ## Sample Request
-  ```curl
+
+```curl
 curl --location --request PUT 'https://uat-partner.payu.in/api/v1/merchants/{{uuid}}/update' \
-  --header 'Authorization: Bearer {{access_token}}' \
-  --form 'merchant[website_details][website_url]="https://www.example.com"' \
-  --form 'merchant[website_details][android_url]="https://play.google.com/store/apps/details?id=com.example"' \
-  --form 'merchant[website_details][ios_url]="https://apps.apple.com/app/example/id123456"'
-  ```
+--header 'Authorization: Bearer {{access_token}}' \
+--form 'merchant[website_details][website_url]="https://www.example.com"' \
+--form 'merchant[website_details][android_url]="https://play.google.com/store/apps/details?id=com.example"' \
+--form 'merchant[website_details][ios_url]="https://apps.apple.com/app/example/id123456"'
+```
 
 ## Sample Response
 
 ### Success scenario
-  ```json
-  {
-    "merchant": {
-      "mid": 760070201,
-      "website_url": "www.borosil.com",
-      "android_url": "www.borosil.com",
-      "ios_url": "www.borosil.com",
-      "website_approval_status": "Pending"
-    }
+
+```json
+{
+  "merchant": {
+    "mid": 760070201,
+    "website_url": "www.borosil.com",
+    "android_url": "www.borosil.com",
+    "ios_url": "www.borosil.com",
+    "website_approval_status": "Pending"
   }
-  ```
+}
+```
 
 ### Failure scenario
 
 <Accordion title="Failure scenario" icon="fa-file-code">
   - **401 Unauthorized** — Token invalid or expired; call Step 00 again
 
-  ```json
-  {
-    "error": "unauthorized",
-    "message": "Invalid or expired token"
-  }
-  ```
+```json
+{
+  "error": "unauthorized",
+  "message": "Invalid or expired token"
+}
+```
 
-  - **422 Validation Failed** — Request parameters failed validation
+\- **422 Validation Failed** — Request parameters failed validation
 
-  ```json
-  {
-    "error": "validation_failed",
-    "message": "Check the error details in the response body"
-  }
-  ```
+```json
+{
+  "error": "validation_failed",
+  "message": "Check the error details in the response body"
+}
+```
 
 ## Response parameters
 
@@ -107,7 +109,6 @@ curl --location --request PUT 'https://uat-partner.payu.in/api/v1/merchants/{{uu
   | :--------------------------------------------------------------------- | :------------------------------- | :---------------------------------------------------------- |
   | merchant\[website_details]\[website_url]<br /><code>conditional</code> | `string` — Merchant website URL  | `https://www.example.com`                                   |
   | merchant\[website_details]\[android_url]<br /><code>optional</code>    | `string` — Android app store URL | `https://play.google.com/store/apps/details?id=com.example` |
-  | merchant\[website_details]\[ios_url]<br /><code>optional</code>        | `string` — iOS App Store URL     | `https://apps.apple.com/app/example/id123456`               |
 </Accordion>
 
 <br />
