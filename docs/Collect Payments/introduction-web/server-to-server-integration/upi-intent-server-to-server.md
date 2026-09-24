@@ -133,7 +133,6 @@ Use the **\_payment** API to get Intent URI and transaction details for the UPI 
 
   <Tab title="Sample Request">
     ```curl
-```curl
     curl --location 'https://test.payu.in/_payment' \
     --header 'Content-Type: application/x-www-form-urlencoded' \
     --data-urlencode 'key=PRiQvJ' \
