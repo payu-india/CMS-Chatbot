@@ -184,7 +184,7 @@ next:
   2. Check that the fields were added under **Additional Customer Details → Add New Fields+** during creation.
   3. Confirm the field type is set correctly (Alphanumeric, Calendar, or Dropdown).<br />
 
-  If the fields are still missing, the most common cause is that they were added after the link was already created. Note that Payment Links cannot be edited after creation. <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#what-can-i-do-with-a-payment-link-after-it-is-created">Duplicate</Anchor> the link, add the custom fields before clicking Create and Send Payment Link, then deactivate the original.
+  If the fields are still missing, the most common cause is that they were added after the link was already created. Note that Payment Links cannot be edited after creation. <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#what-can-i-do-with-a-payment-link-after-it-is-created">Duplicate</Anchor> the link, add the custom fields before clicking Create and Send Payment Link, then deactivate the original.<br />
 
   See <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link">Custom Checkout Fields</Anchor> for details.
 </Accordion>
