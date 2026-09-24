@@ -118,19 +118,22 @@ next:
 7. #### Can I create a payment link in an international currency or in USD?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Yes, but you should first enable international payments on your merchant account.
+  Yes, but you should first enable international payments on your merchant account.<br />
 
-  **To enable&#x20;**
+  To enable international payments:<br />
 
   1. Contact your PayU Key Account Manager to enable international payments for your MID.
-  2. Once enabled, use the `currency` parameter in the <Anchor target="_blank" href="doc:api-create-share">Create Payment Link API</Anchor> to specify the currency (for example, `"currency": "USD"`).
+  2. Once enabled, use the `currency` parameter in the <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link#how-do-i-create-a-payment-link">Create Payment Link API</Anchor> to specify the currency (for example, `"currency": "USD"`).<br />
 
   PayU supports card payments from over 150 countries and offers Dynamic Currency Conversion (DCC), which allows your international customers to pay in their preferred local currency.
 
-  **Dashboard:** The currency selection option is not available in the Dashboard unless international payments are active on your account. If you do not see it, raise a request with your account manager.
+  **Dashboard:**&#x20;
 
-  <Callout icon="📘" theme="info">
-    International currency payments apply only to card transactions. UPI, Net Banking, and Wallets are INR-only.
+  <Callout icon="fad fa-brake-warning" theme="error">
+    ### Watch out!
+
+    - The currency selection option is not available in the Dashboard unless international payments are active on your account. If you do not see it, raise a request with your account manager.
+    - International currency payments apply only to card transactions. UPI, Net Banking, and Wallets are INR-only.
   </Callout>
 </Accordion>
 
