@@ -1,0 +1,7 @@
+- createpaymentlinkapi-2
+- fetchallpaymentlinksapi
+- fetchpaymentlinkapi
+- updatepaymentlinkapi
+- cancelpaymentlinkapi
+- sharepaymentlinkapi
+- gettransactiondetailsapi
