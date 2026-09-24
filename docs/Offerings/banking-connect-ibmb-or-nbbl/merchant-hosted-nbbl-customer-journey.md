@@ -26,6 +26,14 @@ If the selected bank app is not installed, or the app-first path is not enabled,
 5. The customer confirms the debit account.
 6. The customer returns to the merchant with the payment result.
 
+#### iOS Flow
+
+![](https://files.readme.io/351aee5f6c66eeee77fb8cade4cc1e51218fbe054998e2c63d05bea56f386147-ios_seamless-payment-flow.png)
+
+#### Android Flow
+
+<br />
+
 ### Desktop QR flow
 
 1. The customer selects a bank under NetBanking.
@@ -36,32 +44,11 @@ If the selected bank app is not installed, or the app-first path is not enabled,
 6. The customer confirms the debit account.
 7. PayU displays the payment result to the customer and merchant.
 
+<br />
+
 ### Website fallback
 
 When the bank app is not installed or the app-first route is unavailable, the customer can continue with the familiar bank-website NetBanking journey.
-
-## Technical flow diagrams
-
-> **Source note:** The following Net Banking 1.0+ and Net Banking 2.0 flow diagrams are retained from the previous Devguide page. Confirm the API names and technical sequence against the current Product and Tech source before publication.
-
-NBBL offers two payment flows to accommodate different use cases:
-
-### Net Banking
-
-Modern mobile-first approach using QR codes and app intents:
-
-**Key Steps:**
-
-1. Customer selects QR code payment option
-2. Merchant/PA sends transaction to PayU
-3. PayU sends transaction to IBMB via `reqTxnInit` API
-4. IBMB generates encrypted URL (format: `nb://nbpay?param=value`)
-5. PayU converts URL to QR code and displays on merchant page
-6. Customer scans QR code using bank mobile app
-7. Bank app sends `reqFetchTxnDetails` to IBMB to decrypt URL
-8. Customer selects account and authorizes payment in bank app
-9. Transaction completes within bank app
-10. Merchant page shows payment confirmation
 
 ## Related documentation
 
