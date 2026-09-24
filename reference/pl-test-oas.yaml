@@ -1861,6 +1861,7 @@ paths:
                   value:
                     error: insufficient_scope
                     error_description: The access token does not have the required scope.
+      x-internal: true
     put:
       summary: Update Payment Link
       operationId: UpdatePaymentLinkAPI
