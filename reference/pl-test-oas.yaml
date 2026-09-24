@@ -1103,6 +1103,7 @@ paths:
                   error_description:
                     type: string
                     example: The access token is invalid or has expired.
+      x-internal: true
     put:
       summary: Update Payment Link
       operationId: UpdatePaymentLinkAPI
