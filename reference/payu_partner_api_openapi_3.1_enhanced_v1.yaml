@@ -1553,6 +1553,69 @@ paths:
         '500':
           description: Internal Server Error
       x-internal: false
+  /api/v1/merchants/{uuid_website}/update-1:
+    put:
+      summary: Copy of Update Website Details API
+      operationId: UpdateMerchant_WebsiteDetails-1
+      tags:
+        - 'Step 07 — Update: Website Details'
+      security:
+        - BearerAuth: []
+      description: ''
+      parameters:
+        - name: uuid_website
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 11ef-d968-6b042d6c-9b94-02975f21d323
+          description: >-
+            Merchant UUID from Step 01. Runtime path is
+            `/api/v1/merchants/{uuid}/update`.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                merchant[website_details][website_url]:
+                  type: string
+                  description: '`string` — Merchant website URL.'
+                merchant[website_details][android_url]:
+                  type: string
+                  description: '`string` — Android app store URL.'
+                merchant[website_details][ios_url]:
+                  type: string
+                  description: '`string` — iOS App Store URL.'
+                merchant[integration_type]:
+                  type: string
+                  description: '`string` — include "tools" if you want to skip website.'
+                  enum:
+                    - tools
+            example:
+              merchant[website_details][website_url]: https://www.example.com
+              merchant[website_details][android_url]: https://play.google.com/store/apps/details?id=com.example
+              merchant[website_details][ios_url]: https://apps.apple.com/app/example/id123456
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized - Invalid or expired token
+        '403':
+          description: Forbidden - No access to this resource
+        '404':
+          description: Not Found
+        '422':
+          description: Validation Failed
+        '500':
+          description: Internal Server Error
 components:
   securitySchemes:
     BearerAuth:
