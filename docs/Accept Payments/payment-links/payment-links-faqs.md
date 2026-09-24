@@ -168,21 +168,21 @@ next:
 3. #### Why does the payment page ask for email and phone again even after I pass them while creating the payment link using APIs? <Badge type="success">New</Badge>
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Even when you pass `customerEmail` and `customerPhone` in your create-link API request, PayU may still prompt the customer to enter them if the **Additional Customer Details** fields are configured to capture email and phone on the checkout page.
+  Even when you pass `customerEmail` and `customerPhone` in the API request, PayU may still prompt the customer to enter them if the Additional Customer Details fields are configured to capture email and phone on the checkout page.<br />
 
-  To prevent this, do not add email and phone as custom checkout fields in your link configuration. If you are using the API, omit these fields from the **Additional Customer Details** section of the payload. If you created the link via the Dashboard, check that you have not toggled on the email/phone fields under **Additional Customer Details**.
+  To prevent this, do not add email and phone as custom checkout fields in your link configuration. If you are using the API, omit these fields from the Additional Customer Details section of the payload. If you created the link via the Dashboard, check that you have not toggled on the email/phone fields under Additional Customer Details.
 </Accordion>
 
 ***
 
-4. #### My custom fields are not visible on the customer's checkout page — why?
+4. #### My custom fields are not visible on the customer's checkout page. Why?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Custom fields are visible on the checkout page only when the link is opened in a browser. To confirm they are configured correctly:
+  Custom fields are visible on the checkout page only when the link is opened in a browser. To confirm they are configured correctly:<br />
 
   1. Open the link in a **browser** (not the Dashboard preview).
   2. Check that the fields were added under **Additional Customer Details → Add New Fields+** during creation.
-  3. Confirm the field type is set correctly (Alphanumeric, Calendar, or Dropdown).
+  3. Confirm the field type is set correctly (Alphanumeric, Calendar, or Dropdown).<br />
 
   If the fields are still missing, the most common cause is that they were added after the link was already created — **Payment Links cannot be edited after creation**. Duplicate the link, add the custom fields before clicking **Create and Send Payment Link**, then deactivate the original.
 
