@@ -1531,6 +1531,7 @@ paths:
                   error_description:
                     type: string
                     example: The access token is invalid or has expired.
+      x-internal: true
 components:
   securitySchemes:
     httpBearer:
