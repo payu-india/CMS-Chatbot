@@ -539,7 +539,7 @@ PayU's Create Payment Link API supports five distinct link types, all from the s
   </Tabs>
 </Accordion>
 
-<Accordion title="Hold the Pre-authorisation" icon="fa-info-circle">
+<Accordion title="Hold the Pre-authorisation" icon="fad fa-circle-pause">
   Place a hold on the customer's payment method without immediately capturing funds. The hold remains active for the number of days you specify, after which funds must be captured separately via the capture API.
 
   <Tabs>
@@ -562,6 +562,52 @@ PayU's Create Payment Link API supports five distinct link types, all from the s
         },
         "viaEmail": true,
         "blockDaysForPreAuthorizeLinks": 3
+      }'
+      ```
+    </Tab>
+
+    <Tab title="Parameter Description">
+      Refer to the [Body Params](ref:create-payment-links#body-params) section for a full description of all request parameters and use cases.
+    </Tab>
+  </Tabs>
+</Accordion>
+
+<Accordion title="Add Payout Beneficiaries" icon="fad fa-building-shield">
+  Specify up to 4 bank accounts for NEFT or IMPS disbursement after the payment is collected. All four arrays must have the same number of entries, where each index position represents one beneficiary.
+
+  <Tabs>
+    <Tab title="Request Payload">
+      ```curl
+      curl -X POST "https://uatoneapi.payu.in/payment-links" \
+        -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+        -H "merchantId: YOUR_MERCHANT_ID" \
+        -H "Content-Type: application/json" \
+        -d '{
+        "subAmount": 5000,
+        "description": "Freelancer payment Project Delta",
+        "source": "API",
+        "invoiceNumber": "PAY-2026-FL-001",
+        "expiryDate": "2026-10-31 23:59:59",
+        "customer": {
+          "name": "Sana Mirza",
+          "email": "sana.mirza@example.com",
+          "phone": "9811234567"
+        },
+        "viaEmail": true,
+        "beneficiarydetail": {
+          "beneficiaryAccountNumber": [
+            "123456789012"
+          ],
+          "ifscCode": [
+            "HDFC0001234"
+          ],
+          "beneficiaryName": [
+            "Sana Mirza"
+          ],
+          "beneficiaryAccountType": [
+            "SAVINGS"
+          ]
+        }
       }'
       ```
     </Tab>
