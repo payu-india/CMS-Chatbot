@@ -107,11 +107,6 @@ Token validity is returned as `expires_in` seconds (typically 7200 — 2 hours).
   </Tab>
 
   <Tab title="Parameter Description">
-    | Parameter       | Type   | Description                                                                                            |
-    | :-------------- | :----- | :----------------------------------------------------------------------------------------------------- |
-    | `client_id`     | string | Your OAuth app's public identifier. Obtained from the PayU Dashboard.                                  |
-    | `client_secret` | string | Your OAuth app's secret key. Treat this like a password — never expose it client-side.                 |
-    | `grant_type`    | string | Always pass `client_credentials` for server-to-server Payment Links integration.                       |
-    | `scope`         | string | Space-separated list of permissions. A single token can carry up to three scopes. See the table below. |
+    Refer to the [Body Params](ref:create-payment-links#body-params) section for a full description of all request parameters and use cases.
   </Tab>
 </Tabs>
