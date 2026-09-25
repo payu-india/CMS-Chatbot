@@ -1225,6 +1225,192 @@ PayU's Create Payment Link API supports five distinct link types, all from the s
         "viaSms": true
       }'
       ```
+      ```python
+      import requests
+
+      url = "https://uatoneapi.payu.in/payment-links"
+
+      headers = {
+          "Authorization": "Bearer YOUR_ACCESS_TOKEN",
+          "merchantId": "YOUR_MERCHANT_ID",
+          "Content-Type": "application/json"
+      }
+
+      payload = {
+        "subAmount": 5000,
+        "description": "Laptop purchase \u2013 INR 5,000 total",
+        "source": "API",
+        "invoiceNumber": "LAPTOP-2026-007",
+        "expiryDate": "2026-11-30 23:59:59",
+        "isPartialPaymentAllowed": true,
+        "minAmountForCustomer": 1000,
+        "maxPaymentsAllowed": 5,
+        "customer": {
+          "name": "Kiran Joshi",
+          "email": "kiran.joshi@example.com",
+          "phone": "9765432100"
+        },
+        "viaEmail": true,
+        "viaSms": true
+      }
+
+      response = requests.post(url, headers=headers, json=payload)
+      print(response.json())
+      ```
+      ```csharp
+      using System;
+      using System.Net.Http;
+      using System.Text;
+      using Newtonsoft.Json;
+
+      class Program
+      {
+          static async Task Main(string[] args)
+          {
+              var client = new HttpClient();
+              var url = "https://uatoneapi.payu.in/payment-links";
+
+              var headers = new Dictionary<string, string>
+              {
+                  { "Authorization", "Bearer YOUR_ACCESS_TOKEN" },
+                  { "merchantId", "YOUR_MERCHANT_ID" },
+                  { "Content-Type", "application/json" }
+              };
+
+              foreach (var header in headers)
+                  client.DefaultRequestHeaders.Add(header.Key, header.Value);
+
+              var json = JsonConvert.SerializeObject({
+        "subAmount": 5000,
+        "description": "Laptop purchase \u2013 INR 5,000 total",
+        "source": "API",
+        "invoiceNumber": "LAPTOP-2026-007",
+        "expiryDate": "2026-11-30 23:59:59",
+        "isPartialPaymentAllowed": true,
+        "minAmountForCustomer": 1000,
+        "maxPaymentsAllowed": 5,
+        "customer": {
+          "name": "Kiran Joshi",
+          "email": "kiran.joshi@example.com",
+          "phone": "9765432100"
+        },
+        "viaEmail": true,
+        "viaSms": true
+      });
+              var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+              var response = await client.PostAsync(url, content);
+              var responseContent = await response.Content.ReadAsStringAsync();
+              Console.WriteLine(responseContent);
+          }
+      }
+      ```
+      ```javascript
+      const url = "https://uatoneapi.payu.in/payment-links";
+
+      const headers = {
+          "Authorization": "Bearer YOUR_ACCESS_TOKEN",
+          "merchantId": "YOUR_MERCHANT_ID",
+          "Content-Type": "application/json"
+      };
+
+      const payload = {
+        "subAmount": 5000,
+        "description": "Laptop purchase \u2013 INR 5,000 total",
+        "source": "API",
+        "invoiceNumber": "LAPTOP-2026-007",
+        "expiryDate": "2026-11-30 23:59:59",
+        "isPartialPaymentAllowed": true,
+        "minAmountForCustomer": 1000,
+        "maxPaymentsAllowed": 5,
+        "customer": {
+          "name": "Kiran Joshi",
+          "email": "kiran.joshi@example.com",
+          "phone": "9765432100"
+        },
+        "viaEmail": true,
+        "viaSms": true
+      };
+
+      fetch(url, {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify(payload)
+      })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error("Error:", error));
+      ```
+      ```java
+      import okhttp3.*;
+      import org.json.JSONObject;
+
+      public class PaymentLinkExample {
+          public static void main(String[] args) throws Exception {
+              String url = "https://uatoneapi.payu.in/payment-links";
+
+              JSONObject payload = new JSONObject({"subAmount": 5000, "description": "Laptop purchase \u2013 INR 5,000 total", "source": "API", "invoiceNumber": "LAPTOP-2026-007", "expiryDate": "2026-11-30 23:59:59", "isPartialPaymentAllowed": true, "minAmountForCustomer": 1000, "maxPaymentsAllowed": 5, "customer": {"name": "Kiran Joshi", "email": "kiran.joshi@example.com", "phone": "9765432100"}, "viaEmail": true, "viaSms": true});
+
+              OkHttpClient client = new OkHttpClient();
+              RequestBody body = RequestBody.create(
+                  payload.toString(),
+                  MediaType.parse("application/json")
+              );
+
+              Request request = new Request.Builder()
+                  .url(url)
+                  .addHeader("Authorization", "Bearer YOUR_ACCESS_TOKEN")
+                  .addHeader("merchantId", "YOUR_MERCHANT_ID")
+                  .addHeader("Content-Type", "application/json")
+                  .post(body)
+                  .build();
+
+              Response response = client.newCall(request).execute();
+              System.out.println(response.body().string());
+          }
+      }
+      ```
+      ```php
+      <?php
+      $url = "https://uatoneapi.payu.in/payment-links";
+
+      $headers = [
+          "Authorization: Bearer YOUR_ACCESS_TOKEN",
+          "merchantId: YOUR_MERCHANT_ID",
+          "Content-Type: application/json"
+      ];
+
+      $payload = [
+          "subAmount" => 5000,
+          "description" => "Laptop purchase – INR 5,000 total",
+          "source" => "API",
+          "invoiceNumber" => "LAPTOP-2026-007",
+          "expiryDate" => "2026-11-30 23:59:59",
+          "isPartialPaymentAllowed" => true,
+          "minAmountForCustomer" => 1000,
+          "maxPaymentsAllowed" => 5,
+          "customer" => [
+              "name" => "Kiran Joshi",
+              "email" => "kiran.joshi@example.com",
+              "phone" => "9765432100"
+          ],
+          "viaEmail" => true,
+          "viaSms" => true
+      ];
+
+      $ch = curl_init($url);
+      curl_setopt_array($ch, [
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_POST => true,
+          CURLOPT_POSTFIELDS => json_encode($payload),
+          CURLOPT_HTTPHEADER => $headers
+      ]);
+
+      $response = curl_exec($ch);
+      curl_close($ch);
+      echo $response;
+      ?>
+      ```
     </Tab>
 
     <Tab title="Request Parameter Description">
@@ -1267,6 +1453,220 @@ PayU's Create Payment Link API supports five distinct link types, all from the s
           "billingCurrency": "INR"
         }
       }'
+      ```
+      ```python
+      import requests
+
+      url = "https://uatoneapi.payu.in/payment-links"
+
+      headers = {
+          "Authorization": "Bearer YOUR_ACCESS_TOKEN",
+          "merchantId": "YOUR_MERCHANT_ID",
+          "Content-Type": "application/json"
+      }
+
+      payload = {
+        "subAmount": 999,
+        "description": "Monthly SaaS subscription \u2013 Pro Plan",
+        "source": "si_payment_link",
+        "invoiceNumber": "SUB-2026-00291",
+        "expiryDate": "2026-12-31 23:59:59",
+        "customer": {
+          "name": "Priya Nair",
+          "email": "priya.nair@example.com",
+          "phone": "9123456789"
+        },
+        "viaEmail": true,
+        "siDetails": {
+          "billingAmount": 999,
+          "billingCycle": "MONTHLY",
+          "billingInterval": 12,
+          "paymentStartDate": "2026-10-01",
+          "paymentEndDate": "2027-09-30",
+          "isNoExpiry": false,
+          "isFreeTrial": false,
+          "remarks": "Monthly Pro plan",
+          "billingCurrency": "INR"
+        }
+      }
+
+      response = requests.post(url, headers=headers, json=payload)
+      print(response.json())
+      ```
+      ```csharp
+      using System;
+      using System.Net.Http;
+      using System.Text;
+      using Newtonsoft.Json;
+
+      class Program
+      {
+          static async Task Main(string[] args)
+          {
+              var client = new HttpClient();
+              var url = "https://uatoneapi.payu.in/payment-links";
+
+              var headers = new Dictionary<string, string>
+              {
+                  { "Authorization", "Bearer YOUR_ACCESS_TOKEN" },
+                  { "merchantId", "YOUR_MERCHANT_ID" },
+                  { "Content-Type", "application/json" }
+              };
+
+              foreach (var header in headers)
+                  client.DefaultRequestHeaders.Add(header.Key, header.Value);
+
+              var json = JsonConvert.SerializeObject({
+        "subAmount": 999,
+        "description": "Monthly SaaS subscription \u2013 Pro Plan",
+        "source": "si_payment_link",
+        "invoiceNumber": "SUB-2026-00291",
+        "expiryDate": "2026-12-31 23:59:59",
+        "customer": {
+          "name": "Priya Nair",
+          "email": "priya.nair@example.com",
+          "phone": "9123456789"
+        },
+        "viaEmail": true,
+        "siDetails": {
+          "billingAmount": 999,
+          "billingCycle": "MONTHLY",
+          "billingInterval": 12,
+          "paymentStartDate": "2026-10-01",
+          "paymentEndDate": "2027-09-30",
+          "isNoExpiry": false,
+          "isFreeTrial": false,
+          "remarks": "Monthly Pro plan",
+          "billingCurrency": "INR"
+        }
+      });
+              var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+              var response = await client.PostAsync(url, content);
+              var responseContent = await response.Content.ReadAsStringAsync();
+              Console.WriteLine(responseContent);
+          }
+      }
+      ```
+      ```javascript
+      const url = "https://uatoneapi.payu.in/payment-links";
+
+      const headers = {
+          "Authorization": "Bearer YOUR_ACCESS_TOKEN",
+          "merchantId": "YOUR_MERCHANT_ID",
+          "Content-Type": "application/json"
+      };
+
+      const payload = {
+        "subAmount": 999,
+        "description": "Monthly SaaS subscription \u2013 Pro Plan",
+        "source": "si_payment_link",
+        "invoiceNumber": "SUB-2026-00291",
+        "expiryDate": "2026-12-31 23:59:59",
+        "customer": {
+          "name": "Priya Nair",
+          "email": "priya.nair@example.com",
+          "phone": "9123456789"
+        },
+        "viaEmail": true,
+        "siDetails": {
+          "billingAmount": 999,
+          "billingCycle": "MONTHLY",
+          "billingInterval": 12,
+          "paymentStartDate": "2026-10-01",
+          "paymentEndDate": "2027-09-30",
+          "isNoExpiry": false,
+          "isFreeTrial": false,
+          "remarks": "Monthly Pro plan",
+          "billingCurrency": "INR"
+        }
+      };
+
+      fetch(url, {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify(payload)
+      })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error("Error:", error));
+      ```
+      ```java
+      import okhttp3.*;
+      import org.json.JSONObject;
+
+      public class PaymentLinkExample {
+          public static void main(String[] args) throws Exception {
+              String url = "https://uatoneapi.payu.in/payment-links";
+
+              JSONObject payload = new JSONObject({"subAmount": 999, "description": "Monthly SaaS subscription \u2013 Pro Plan", "source": "si_payment_link", "invoiceNumber": "SUB-2026-00291", "expiryDate": "2026-12-31 23:59:59", "customer": {"name": "Priya Nair", "email": "priya.nair@example.com", "phone": "9123456789"}, "viaEmail": true, "siDetails": {"billingAmount": 999, "billingCycle": "MONTHLY", "billingInterval": 12, "paymentStartDate": "2026-10-01", "paymentEndDate": "2027-09-30", "isNoExpiry": false, "isFreeTrial": false, "remarks": "Monthly Pro plan", "billingCurrency": "INR"}});
+
+              OkHttpClient client = new OkHttpClient();
+              RequestBody body = RequestBody.create(
+                  payload.toString(),
+                  MediaType.parse("application/json")
+              );
+
+              Request request = new Request.Builder()
+                  .url(url)
+                  .addHeader("Authorization", "Bearer YOUR_ACCESS_TOKEN")
+                  .addHeader("merchantId", "YOUR_MERCHANT_ID")
+                  .addHeader("Content-Type", "application/json")
+                  .post(body)
+                  .build();
+
+              Response response = client.newCall(request).execute();
+              System.out.println(response.body().string());
+          }
+      }
+      ```
+      ```php
+      <?php
+      $url = "https://uatoneapi.payu.in/payment-links";
+
+      $headers = [
+          "Authorization: Bearer YOUR_ACCESS_TOKEN",
+          "merchantId: YOUR_MERCHANT_ID",
+          "Content-Type: application/json"
+      ];
+
+      $payload = [
+          "subAmount" => 999,
+          "description" => "Monthly SaaS subscription – Pro Plan",
+          "source" => "si_payment_link",
+          "invoiceNumber" => "SUB-2026-00291",
+          "expiryDate" => "2026-12-31 23:59:59",
+          "customer" => [
+              "name" => "Priya Nair",
+              "email" => "priya.nair@example.com",
+              "phone" => "9123456789"
+          ],
+          "viaEmail" => true,
+          "siDetails" => [
+              "billingAmount" => 999,
+              "billingCycle" => "MONTHLY",
+              "billingInterval" => 12,
+              "paymentStartDate" => "2026-10-01",
+              "paymentEndDate" => "2027-09-30",
+              "isNoExpiry" => false,
+              "isFreeTrial" => false,
+              "remarks" => "Monthly Pro plan",
+              "billingCurrency" => "INR"
+          ]
+      ];
+
+      $ch = curl_init($url);
+      curl_setopt_array($ch, [
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_POST => true,
+          CURLOPT_POSTFIELDS => json_encode($payload),
+          CURLOPT_HTTPHEADER => $headers
+      ]);
+
+      $response = curl_exec($ch);
+      curl_close($ch);
+      echo $response;
+      ?>
       ```
     </Tab>
 
