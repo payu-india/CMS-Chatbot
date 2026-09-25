@@ -15,31 +15,6 @@ The <Anchor target="_blank" href="https://docs.payu.in/docs/payment-links">Payme
 
 ***
 
-## Use Cases
-
-The [Create Payment Link](ref:create-payment-links) endpoint supports 10 distinct link types. The type is determined entirely by the combination of parameters you pass — there is no separate `type` field.
-
-|  \# | Use Case                         | What it does                                                                                                                                       | Key fields                                                                                                     |
-| :-: | :------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------- |
-|  1  | **Standard Payment Link**        | Fixed-amount, one-time payment link delivered via SMS, email, or WhatsApp.                                                                         | `subAmount`, `description`, `source`                                                                           |
-|  2  | **Open Amount**                  | No fixed price — the customer enters the amount at checkout. Ideal for donations, tips, or flexible pricing.                                       | `isAmountFilledByCustomer: true` (omit `subAmount`)                                                            |
-|  3  | **Partial Payment**              | The customer pays in multiple instalments up to the full amount. The link stays active until the total is collected or it expires.                 | `isPartialPaymentAllowed: true`, `minAmountForCustomer`, `maxPaymentsAllowed`                                  |
-|  4  | **SI Recurring (Auto-debit)**    | Registers a standing instruction mandate for automated recurring debits on a fixed schedule — no customer action required after the first payment. | `siDetails.billingAmount`, `siDetails.billingCycle`, `siDetails.billingInterval`, `siDetails.paymentStartDate` |
-|  5  | **eNACH Recurring**              | Same as SI Recurring but routes the customer through the NACH bank mandate registration form instead of a card or UPI flow.                        | `enforcePayMethod: "enach"`, `siDetails.bankDetails`                                                           |
-|  6  | **Payment Reminder**             | Schedules an automatic notification to the customer before or after a payment deadline, independently of the link expiry date.                     | `paymentDeadline`, `reminder.isScheduled: true`, `reminder.type`, `reminder.channels`                          |
-|  7  | **Multiple WhatsApp Recipients** | Sends the same link to up to 4 WhatsApp numbers simultaneously at the moment of creation.                                                          | `viaWhatsapp: true`, `whatsappRecipients`, `whatsappTemplateName`                                              |
-|  8  | **Offer / Coupon**               | Attaches a promotional discount or coupon to the checkout so the customer sees the offer applied automatically.                                    | `offerKey`                                                                                                     |
-|  9  | **Pre-authorisation**            | Places a hold on the customer's payment method without immediately capturing funds. Useful for hotel bookings, rentals, and escrow-style flows.    | `blockDaysForPreAuthorizeLinks`                                                                                |
-|  10 | **Payout Beneficiaries**         | Specifies up to 4 bank accounts for NEFT or IMPS disbursement after payment is collected.                                                          | `beneficiarydetail.beneficiaryAccountNumber`, `beneficiarydetail.ifscCode`                                     |
-
-<Callout icon="📘" theme="info">
-  ### **Multiple parameters, one endpoint**
-
-  You can combine use cases in a single request. For example, a Partial Payment link (use case 3) can also carry a Reminder (use case 6) and a WhatsApp notification (use case 7) — just include the relevant fields together.
-</Callout>
-
-***
-
 ## Authentication
 
 All Payment Links APIs use **OAuth 2.0 Bearer token** authentication — not the hash-based auth used by PayU's General/Merchant Hosted APIs.
