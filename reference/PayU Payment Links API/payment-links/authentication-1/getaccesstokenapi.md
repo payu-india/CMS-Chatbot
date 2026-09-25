@@ -110,3 +110,31 @@ Token validity is returned as `expires_in` seconds (typically 7200 — 2 hours).
     Refer to the Form Data section for a full description of all request parameters and use cases.
   </Tab>
 </Tabs>
+
+***
+
+## Sample Response
+
+<Tabs>
+  <Tab title="Success and Error Response">
+    ```json Success Response
+    {
+      "access_token": "827c9f81aa7b9de0f0b33238733fa34a9f914fd41407fcac8fc73258aac1830e",
+      "token_type": "Bearer",
+      "expires_in": 7199,
+      "scope": "create_payment_links update_payment_links read_payment_links",
+      "created_at": 1790341162
+    }
+    ```
+    ```json Error Response
+    {
+      "error": "invalid_client",
+      "error_description": "Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method."
+    }
+    ```
+  </Tab>
+
+  <Tab title="Parameter Description">
+    Refer to the [Response](ref:create-payment-links#response-schemas) section for a full description of all response fields.
+  </Tab>
+</Tabs>
