@@ -260,6 +260,12 @@ PayU's Create Payment Link API supports five distinct link types, all from the s
 <Accordion title="Open Amount Payment Link" icon="fad fa-envelope-open-dollar">
   Use the this payload to create and send a payment link with an option for the customer to enter the amount at checkout. This link is ideal for donations, tips, charity collections, and flexible pricing scenarios.
 
+  <Callout icon="fad fa-brake-warning" theme="error">
+    ### **Watch Out!**
+
+    Do not include `subAmount` when `isAmountFilledByCustomer` is true. If both are present, `subAmount` takes precedence and the link will not be open-amount.
+  </Callout>
+
   <Tabs>
     <Tab title="Request Payload">
       ```curl
@@ -284,6 +290,283 @@ PayU's Create Payment Link API supports five distinct link types, all from the s
     </Tab>
 
     <Tab title="Request Parameter Description">
+      Refer to the [Body Params](ref:create-payment-links#body-params) section for a full description of all request parameters and use cases.
+    </Tab>
+  </Tabs>
+</Accordion>
+
+<Accordion title="Partial Payment Link" icon="fad fa-display-chart-up-circle-dollar">
+  Use this payload to create and send a payment link for a customer to pay the total amount in multiple instalments. The link stays active and accepts payments until the full amount is collected or the link expires.
+
+  <Tabs>
+    <Tab title="Request Payload">
+      ```curl
+      curl -X POST "https://uatoneapi.payu.in/payment-links" \
+        -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+        -H "merchantId: YOUR_MERCHANT_ID" \
+        -H "Content-Type: application/json" \
+        -d '{
+        "subAmount": 5000,
+        "description": "Laptop purchase — INR 5,000 total",
+        "source": "API",
+        "invoiceNumber": "LAPTOP-2026-007",
+        "expiryDate": "2026-11-30 23:59:59",
+        "isPartialPaymentAllowed": true,
+        "minAmountForCustomer": 1000,
+        "maxPaymentsAllowed": 5,
+        "customer": {
+          "name": "Kiran Joshi",
+          "email": "kiran.joshi@example.com",
+          "phone": "9765432100"
+        },
+        "viaEmail": true,
+        "viaSms": true
+      }'
+      ```
+    </Tab>
+
+    <Tab title="Request Parameter Description">
+      Refer to the [Body Params](ref:create-payment-links#body-params) section for a full description of all request parameters and use cases.
+    </Tab>
+  </Tabs>
+</Accordion>
+
+<Accordion title="SI Recurring Payment Link" icon="fad fa-space-station-moon-construction">
+  Registers a standing instruction (SI) mandate for automated recurring debits on a fixed schedule. The customer completes mandate registration via card or UPI on first interaction. All subsequent debits happen server-to-server with no customer action required.
+
+  <Tabs>
+    <Tab title="Request Payload">
+      ```curl
+      curl -X POST "https://uatoneapi.payu.in/payment-links" \
+        -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+        -H "merchantId: YOUR_MERCHANT_ID" \
+        -H "Content-Type: application/json" \
+        -d '{
+        "subAmount": 999,
+        "description": "Monthly SaaS subscription — Pro Plan",
+        "source": "si_payment_link",
+        "invoiceNumber": "SUB-2026-00291",
+        "expiryDate": "2026-12-31 23:59:59",
+        "customer": {
+          "name": "Priya Nair",
+          "email": "priya.nair@example.com",
+          "phone": "9123456789"
+        },
+        "viaEmail": true,
+        "siDetails": {
+          "billingAmount": 999,
+          "billingCycle": "MONTHLY",
+          "billingInterval": 12,
+          "paymentStartDate": "2026-10-01",
+          "paymentEndDate": "2027-09-30",
+          "isNoExpiry": false,
+          "isFreeTrial": false,
+          "remarks": "Monthly Pro plan",
+          "billingCurrency": "INR"
+        }
+      }'
+      ```
+    </Tab>
+
+    <Tab title="Request Parameter Description">
+      Refer to the [Body Params](ref:create-payment-links#body-params) section for a full description of all request parameters and use cases.
+    </Tab>
+  </Tabs>
+</Accordion>
+
+<Accordion title="eNACH Recurring Payment Link" icon="fad fa-calendar-check">
+  Routes the customer through the NACH bank debit mandate registration form instead of a card or UPI flow. Identical to SI Recurring in structure. The only difference is `enforcePayMethod`: `enach` and the optional `siDetails.bankDetails` object to pre-fill the customer's bank details.
+
+  <Tabs>
+    <Tab title="Request Payload">
+      ```curl
+      curl -X POST "https://uatoneapi.payu.in/payment-links" \
+        -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+        -H "merchantId: YOUR_MERCHANT_ID" \
+        -H "Content-Type: application/json" \
+        -d '{
+        "subAmount": 2500,
+        "description": "Annual insurance premium — auto-debit",
+        "source": "si_payment_link",
+        "enforcePayMethod": "enach",
+        "invoiceNumber": "INS-2026-ENACH-001",
+        "expiryDate": "2026-10-31 23:59:59",
+        "customer": {
+          "name": "Amit Bose",
+          "email": "amit.bose@example.com",
+          "phone": "9900123456"
+        },
+        "viaEmail": true,
+        "siDetails": {
+          "billingAmount": 2500,
+          "billingCycle": "YEARLY",
+          "billingInterval": 3,
+          "paymentStartDate": "2026-11-01",
+          "paymentEndDate": "2029-10-31",
+          "remarks": "Annual insurance renewal",
+          "billingCurrency": "INR",
+          "bankDetails": {
+            "bankCode": "HDFC",
+            "bankAccountNumber": "50100123456789",
+            "ifsc": "HDFC0001234",
+            "accountType": "SAVINGS"
+          }
+        }
+      }'
+      ```
+    </Tab>
+
+    <Tab title="Request Parameter Description">
+      Refer to the [Body Params](ref:create-payment-links#body-params) section for a full description of all request parameters and use cases.
+    </Tab>
+  </Tabs>
+</Accordion>
+
+<Accordion title="Payment Reminder" icon="fad fa-alarm-exclamation">
+  Schedule an automatic notification to the customer before or after a payment deadline. The reminder fires independently of the link expiry date, giving you control over when the customer is nudged to pay.
+
+  <Tabs>
+    <Tab title="Request Payload">
+      ```curl
+      curl -X POST "https://uatoneapi.payu.in/payment-links" \
+        -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+        -H "merchantId: YOUR_MERCHANT_ID" \
+        -H "Content-Type: application/json" \
+        -d '{
+        "subAmount": 2500,
+        "description": "Invoice INV-2026-00456 Consulting Services",
+        "source": "API",
+        "invoiceNumber": "INV-2026-00456",
+        "expiryDate": "2026-10-31 23:59:59",
+        "customer": {
+          "name": "Rahul Sharma",
+          "email": "rahul.sharma@example.com",
+          "phone": "9000012345"
+        },
+        "viaEmail": true,
+        "paymentDeadline": "2026-10-20 23:59:59",
+        "reminder": {
+          "isScheduled": true,
+          "type": 0,
+          "channels": [
+            "email",
+            "phone"
+          ]
+        }
+      }'
+      ```
+    </Tab>
+
+    <Tab title="Request Parameter Description">
+      Refer to the [Body Params](ref:create-payment-links#body-params) section for a full description of all request parameters and use cases.
+    </Tab>
+  </Tabs>
+</Accordion>
+
+<Accordion title="Multiple WhatsApp Recipients" icon="fab fa-square-whatsapp">
+  Send the same payment link to up to 4 WhatsApp numbers simultaneously at the moment of creation. This type of link is useful for shared invoices, group collections, or notifying both a customer and a guarantor.
+
+  <Tabs>
+    <Tab title="Request Payload">
+      ```curl
+      curl -X POST "https://uatoneapi.payu.in/payment-links" \
+        -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+        -H "merchantId: YOUR_MERCHANT_ID" \
+        -H "Content-Type: application/json" \
+        -d '{
+        "subAmount": 500,
+        "description": "Group event registration fee",
+        "source": "API",
+        "invoiceNumber": "EVENT-2026-099",
+        "expiryDate": "2026-11-15 23:59:59",
+        "customer": {
+          "name": "Kiran Joshi",
+          "phone": "9876512345"
+        },
+        "viaWhatsapp": true,
+        "whatsappTemplateName": "event_payment_link",
+        "whatsappRecipients": [
+          {
+            "phone": "9876512345"
+          },
+          {
+            "phone": "9765432100"
+          },
+          {
+            "phone": "9988776655"
+          }
+        ]
+      }'
+      ```
+    </Tab>
+
+    <Tab title="Request Parameter Description">
+      Refer to the [Body Params](ref:create-payment-links#body-params) section for a full description of all request parameters and use cases.
+    </Tab>
+  </Tabs>
+</Accordion>
+
+<Accordion title="Add Offers to the Payment Link" icon="fad fa-arrow-left-from-line">
+  Attach a promotional discount or coupon to the payment link so it is applied automatically when the customer reaches the checkout. No additional customer action is required to redeem the offer.
+
+  <Tabs>
+    <Tab title="Request Payload">
+      ```curl
+      curl -X POST "https://uatoneapi.payu.in/payment-links" \
+        -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+        -H "merchantId: YOUR_MERCHANT_ID" \
+        -H "Content-Type: application/json" \
+        -d '{
+        "subAmount": 3999,
+        "description": "Festival sale Bluetooth Speaker",
+        "source": "API",
+        "invoiceNumber": "SALE-2026-7821",
+        "expiryDate": "2026-10-25 23:59:59",
+        "customer": {
+          "name": "Deepa Krishnan",
+          "email": "deepa.krishnan@example.com",
+          "phone": "9123000456"
+        },
+        "viaEmail": true,
+        "offerKey": "FEST20OFF"
+      }'
+      ```
+    </Tab>
+
+    <Tab title="Request Parameter Description">
+      Refer to the [Body Params](ref:create-payment-links#body-params) section for a full description of all request parameters and use cases.
+    </Tab>
+  </Tabs>
+</Accordion>
+
+<Accordion title="Hold the Pre-authorisation" icon="fa-info-circle">
+  Place a hold on the customer's payment method without immediately capturing funds. The hold remains active for the number of days you specify, after which funds must be captured separately via the capture API.
+
+  <Tabs>
+    <Tab title="Request Payload">
+      ```curl
+      curl -X POST "https://uatoneapi.payu.in/payment-links" \
+        -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+        -H "merchantId: YOUR_MERCHANT_ID" \
+        -H "Content-Type: application/json" \
+        -d '{
+        "subAmount": 10000,
+        "description": "Hotel stay pre-authorisation hold",
+        "source": "API",
+        "invoiceNumber": "HOTEL-2026-338",
+        "expiryDate": "2026-11-01 12:00:00",
+        "customer": {
+          "name": "Amit Bose",
+          "email": "amit.bose@example.com",
+          "phone": "9900123456"
+        },
+        "viaEmail": true,
+        "blockDaysForPreAuthorizeLinks": 3
+      }'
+      ```
+    </Tab>
+
+    <Tab title="Parameter Description">
       Refer to the [Body Params](ref:create-payment-links#body-params) section for a full description of all request parameters and use cases.
     </Tab>
   </Tabs>
