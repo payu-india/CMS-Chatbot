@@ -108,7 +108,7 @@ Each token is scoped to specific operations. You must request the right scope wh
 
 ***
 
-## How it works
+## How It Works
 
 A typical payment links integration flow looks like this:
 
