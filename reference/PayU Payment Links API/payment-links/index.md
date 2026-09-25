@@ -42,6 +42,8 @@ Each token is scoped to specific operations. You must request the right scope wh
 
 ## Endpoints
 
+These are the Payment Links APIs.
+
 ### Authentication
 
 <Cards>
