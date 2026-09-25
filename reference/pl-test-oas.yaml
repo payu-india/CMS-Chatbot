@@ -18,36 +18,7 @@ paths:
     post:
       summary: Get Access Token
       operationId: GetAccessTokenAPI
-      description: >
-        Exchange your `client_id` and `client_secret` for a Bearer token scoped
-        to the
-
-        Payment Links operations you need. Call this endpoint once and cache the
-        token —
-
-        do not generate a new token before every API call.
-
-
-        Token validity is returned as `expires_in` seconds (typically 7200 — 2
-        hours).
-
-        Calculate expiry as `created_at + expires_in` and regenerate before that
-        moment.
-
-
-        **Scopes**
-
-
-        | Scope | Grants access to |
-
-        |---|---|
-
-        | `create_payment_links` | Create Payment Link |
-
-        | `update_payment_links` | Update Payment Link · Cancel Payment Link |
-
-        | `read_payment_links` | Fetch All · Fetch Single · Share · Get
-        Transactions |
+      description: ''
       tags:
         - Authentication
       requestBody:
