@@ -1716,6 +1716,240 @@ PayU's Create Payment Link API supports five distinct link types, all from the s
         }
       }'
       ```
+      ```python
+      import requests
+
+      url = "https://uatoneapi.payu.in/payment-links"
+
+      headers = {
+          "Authorization": "Bearer YOUR_ACCESS_TOKEN",
+          "merchantId": "YOUR_MERCHANT_ID",
+          "Content-Type": "application/json"
+      }
+
+      payload = {
+        "subAmount": 2500,
+        "description": "Annual insurance premium \u2013 auto-debit",
+        "source": "si_payment_link",
+        "enforcePayMethod": "enach",
+        "invoiceNumber": "INS-2026-ENACH-001",
+        "expiryDate": "2026-10-31 23:59:59",
+        "customer": {
+          "name": "Amit Bose",
+          "email": "amit.bose@example.com",
+          "phone": "9900123456"
+        },
+        "viaEmail": true,
+        "siDetails": {
+          "billingAmount": 2500,
+          "billingCycle": "YEARLY",
+          "billingInterval": 3,
+          "paymentStartDate": "2026-11-01",
+          "paymentEndDate": "2029-10-31",
+          "remarks": "Annual insurance renewal",
+          "billingCurrency": "INR",
+          "bankDetails": {
+            "bankCode": "HDFC",
+            "bankAccountNumber": "50100123456789",
+            "ifsc": "HDFC0001234",
+            "accountType": "SAVINGS"
+          }
+        }
+      }
+
+      response = requests.post(url, headers=headers, json=payload)
+      print(response.json())
+      ```
+      ```csharp
+      using System;
+      using System.Net.Http;
+      using System.Text;
+      using Newtonsoft.Json;
+
+      class Program
+      {
+          static async Task Main(string[] args)
+          {
+              var client = new HttpClient();
+              var url = "https://uatoneapi.payu.in/payment-links";
+
+              var headers = new Dictionary<string, string>
+              {
+                  { "Authorization", "Bearer YOUR_ACCESS_TOKEN" },
+                  { "merchantId", "YOUR_MERCHANT_ID" },
+                  { "Content-Type", "application/json" }
+              };
+
+              foreach (var header in headers)
+                  client.DefaultRequestHeaders.Add(header.Key, header.Value);
+
+              var json = JsonConvert.SerializeObject({
+        "subAmount": 2500,
+        "description": "Annual insurance premium \u2013 auto-debit",
+        "source": "si_payment_link",
+        "enforcePayMethod": "enach",
+        "invoiceNumber": "INS-2026-ENACH-001",
+        "expiryDate": "2026-10-31 23:59:59",
+        "customer": {
+          "name": "Amit Bose",
+          "email": "amit.bose@example.com",
+          "phone": "9900123456"
+        },
+        "viaEmail": true,
+        "siDetails": {
+          "billingAmount": 2500,
+          "billingCycle": "YEARLY",
+          "billingInterval": 3,
+          "paymentStartDate": "2026-11-01",
+          "paymentEndDate": "2029-10-31",
+          "remarks": "Annual insurance renewal",
+          "billingCurrency": "INR",
+          "bankDetails": {
+            "bankCode": "HDFC",
+            "bankAccountNumber": "50100123456789",
+            "ifsc": "HDFC0001234",
+            "accountType": "SAVINGS"
+          }
+        }
+      });
+              var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+              var response = await client.PostAsync(url, content);
+              var responseContent = await response.Content.ReadAsStringAsync();
+              Console.WriteLine(responseContent);
+          }
+      }
+      ```
+      ```javascript
+      const url = "https://uatoneapi.payu.in/payment-links";
+
+      const headers = {
+          "Authorization": "Bearer YOUR_ACCESS_TOKEN",
+          "merchantId": "YOUR_MERCHANT_ID",
+          "Content-Type": "application/json"
+      };
+
+      const payload = {
+        "subAmount": 2500,
+        "description": "Annual insurance premium \u2013 auto-debit",
+        "source": "si_payment_link",
+        "enforcePayMethod": "enach",
+        "invoiceNumber": "INS-2026-ENACH-001",
+        "expiryDate": "2026-10-31 23:59:59",
+        "customer": {
+          "name": "Amit Bose",
+          "email": "amit.bose@example.com",
+          "phone": "9900123456"
+        },
+        "viaEmail": true,
+        "siDetails": {
+          "billingAmount": 2500,
+          "billingCycle": "YEARLY",
+          "billingInterval": 3,
+          "paymentStartDate": "2026-11-01",
+          "paymentEndDate": "2029-10-31",
+          "remarks": "Annual insurance renewal",
+          "billingCurrency": "INR",
+          "bankDetails": {
+            "bankCode": "HDFC",
+            "bankAccountNumber": "50100123456789",
+            "ifsc": "HDFC0001234",
+            "accountType": "SAVINGS"
+          }
+        }
+      };
+
+      fetch(url, {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify(payload)
+      })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error("Error:", error));
+      ```
+      ```java
+      import okhttp3.*;
+      import org.json.JSONObject;
+
+      public class PaymentLinkExample {
+          public static void main(String[] args) throws Exception {
+              String url = "https://uatoneapi.payu.in/payment-links";
+
+              JSONObject payload = new JSONObject({"subAmount": 2500, "description": "Annual insurance premium \u2013 auto-debit", "source": "si_payment_link", "enforcePayMethod": "enach", "invoiceNumber": "INS-2026-ENACH-001", "expiryDate": "2026-10-31 23:59:59", "customer": {"name": "Amit Bose", "email": "amit.bose@example.com", "phone": "9900123456"}, "viaEmail": true, "siDetails": {"billingAmount": 2500, "billingCycle": "YEARLY", "billingInterval": 3, "paymentStartDate": "2026-11-01", "paymentEndDate": "2029-10-31", "remarks": "Annual insurance renewal", "billingCurrency": "INR", "bankDetails": {"bankCode": "HDFC", "bankAccountNumber": "50100123456789", "ifsc": "HDFC0001234", "accountType": "SAVINGS"}}});
+
+              OkHttpClient client = new OkHttpClient();
+              RequestBody body = RequestBody.create(
+                  payload.toString(),
+                  MediaType.parse("application/json")
+              );
+
+              Request request = new Request.Builder()
+                  .url(url)
+                  .addHeader("Authorization", "Bearer YOUR_ACCESS_TOKEN")
+                  .addHeader("merchantId", "YOUR_MERCHANT_ID")
+                  .addHeader("Content-Type", "application/json")
+                  .post(body)
+                  .build();
+
+              Response response = client.newCall(request).execute();
+              System.out.println(response.body().string());
+          }
+      }
+      ```
+      ```php
+      <?php
+      $url = "https://uatoneapi.payu.in/payment-links";
+
+      $headers = [
+          "Authorization: Bearer YOUR_ACCESS_TOKEN",
+          "merchantId: YOUR_MERCHANT_ID",
+          "Content-Type: application/json"
+      ];
+
+      $payload = [
+          "subAmount" => 2500,
+          "description" => "Annual insurance premium – auto-debit",
+          "source" => "si_payment_link",
+          "enforcePayMethod" => "enach",
+          "invoiceNumber" => "INS-2026-ENACH-001",
+          "expiryDate" => "2026-10-31 23:59:59",
+          "customer" => [
+              "name" => "Amit Bose",
+              "email" => "amit.bose@example.com",
+              "phone" => "9900123456"
+          ],
+          "viaEmail" => true,
+          "siDetails" => [
+              "billingAmount" => 2500,
+              "billingCycle" => "YEARLY",
+              "billingInterval" => 3,
+              "paymentStartDate" => "2026-11-01",
+              "paymentEndDate" => "2029-10-31",
+              "remarks" => "Annual insurance renewal",
+              "billingCurrency" => "INR",
+              "bankDetails" => [
+                  "bankCode" => "HDFC",
+                  "bankAccountNumber" => "50100123456789",
+                  "ifsc" => "HDFC0001234",
+                  "accountType" => "SAVINGS"
+              ]
+          ]
+      ];
+
+      $ch = curl_init($url);
+      curl_setopt_array($ch, [
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_POST => true,
+          CURLOPT_POSTFIELDS => json_encode($payload),
+          CURLOPT_HTTPHEADER => $headers
+      ]);
+
+      $response = curl_exec($ch);
+      curl_close($ch);
+      echo $response;
+      ?>
+      ```
     </Tab>
 
     <Tab title="Request Parameter Description">
