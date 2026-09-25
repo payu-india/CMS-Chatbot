@@ -17,7 +17,7 @@ The <Anchor target="_blank" href="https://docs.payu.in/docs/payment-links">Payme
 
 ## Authentication
 
-All Payment Links APIs use **OAuth 2.0 Bearer token** authentication — not the hash-based auth used by PayU's General/Merchant Hosted APIs.
+All Payment Links APIs use **OAuth 2.0 Bearer token** authentication.
 
 | Environment | Base URL                    |
 | :---------- | :-------------------------- |
@@ -33,7 +33,9 @@ Each token is scoped to specific operations. You must request the right scope wh
 | `read_payment_links`   | Fetch Payment Link · Fetch All Payment Links · Share Payment Link |
 
 <Callout icon="📘" theme="info">
-  ### **Tip**: A single token can carry up to three scopes simultaneously. Pass scopes space-separated:<br />`scope=create_payment_links update_payment_links read_payment_links`
+  ### **Mutiple Scopes**:&#x20;
+
+  A single token can carry up to three scopes simultaneously. Pass scopes space-separated:<br />`scope=create_payment_links update_payment_links read_payment_links`
 </Callout>
 
 ***
@@ -118,20 +120,6 @@ A typical payment links integration flow looks like this:
 
 ***
 
-## Key concepts
-
-`invoiceNumber` is your primary identifier throughout the lifecycle of a link. It is returned in the Create response (`result.invoiceNumber`) and used as the path parameter in all subsequent fetch, update, and share calls. If you do not supply one, PayU auto-generates it.
-
-`status` reflects the current state of a link: `active` (can accept payment), `inactive` (deactivated by merchant), or `expired` (past expiry date or max payments reached).
-
-`totalAmount` = `subAmount` + `tax` + `shippingCharge`. Always use `totalAmount` from the response for display — do not re-calculate from request parameters.
-
-**Open-amount links** — Set `isAmountFilledByCustomer: true` to let the customer enter any amount at checkout. In this case `subAmount` is not required.
-
-**Partial payments** — Set `isPartialPaymentAllowed: true` and optionally `minAmountForCustomer` to let the customer pay in instalments.
-
-***
-
 ## Webhooks
 
 When a customer completes or attempts payment via a link, PayU dispatches a webhook to the endpoint configured in your PayU Dashboard.
@@ -143,15 +131,7 @@ When a customer completes or attempts payment via a link, PayU dispatches a webh
 | `payment_pending` | Payment initiated but awaiting bank confirmation    |
 
 <Callout icon="📘" theme="info">
-  ### For the full webhook payload, signature verification, and retry policy, see [Payment Events](doc:webhook-events-and-sample-payloads).
+  ### Webhooks
+
+  For the full webhook payload, signature verification, and retry policy, see [Payment Events](doc:webhook-events-and-sample-payloads).
 </Callout>
-
-***
-
-## Related guides
-
-- [Get Client ID and Secret from Dashboard](doc:get-client-id-and-secret-from-dashboard)
-- [Payment Links Product Guide](doc:payment-links-overview)
-- [Create and Send a Payment Link (Quickstart)](doc:quickstart-send-a-payment-link)
-- [Webhook Events and Payloads](doc:webhook-events-and-sample-payloads)
-- [API Error Responses](doc:reading-api-error-responses)
