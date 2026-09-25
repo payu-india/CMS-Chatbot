@@ -135,6 +135,6 @@ Token validity is returned as `expires_in` seconds (typically 7200 — 2 hours).
   </Tab>
 
   <Tab title="Parameter Description">
-    Refer to the [Response](ref:create-payment-links#response-schemas) section for a full description of all response fields.
+    Refer to the [Responses](https://docs.payu.in/v3.0/reference/getaccesstokenapi#response-schemas) section for a full description of all response fields.
   </Tab>
 </Tabs>
