@@ -258,5 +258,33 @@ PayU's Create Payment Link API supports five distinct link types, all from the s
 </Accordion>
 
 <Accordion title="Open Amount Payment Link" icon="fad fa-envelope-open-dollar">
+  Use the this payload to create and send a payment link with an option for the customer to enter the amount at checkout. This link is ideal for donations, tips, charity collections, and flexible pricing scenarios.
 
+  <Tabs>
+    <Tab title="Request Payload">
+      ```curl
+      curl -X POST "https://uatoneapi.payu.in/payment-links" \
+        -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+        -H "merchantId: YOUR_MERCHANT_ID" \
+        -H "Content-Type: application/json" \
+        -d '{
+        "description": "Donate to Green Earth Foundation",
+        "source": "API",
+        "invoiceNumber": "DONATION-2026-00123",
+        "expiryDate": "2026-12-31 23:59:59",
+        "isAmountFilledByCustomer": true,
+        "customer": {
+          "name": "Priya Nair",
+          "email": "priya.nair@example.com",
+          "phone": "9123456789"
+        },
+        "viaEmail": true
+      }'
+      ```
+    </Tab>
+
+    <Tab title="Request Parameter Description">
+      Refer to the [Body Params](ref:create-payment-links#body-params) section for a full description of all request parameters and use cases.
+    </Tab>
+  </Tabs>
 </Accordion>
