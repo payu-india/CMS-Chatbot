@@ -757,6 +757,12 @@ Use this endpoint to generate a shareable payment link and optionally deliver it
 
 PayU's Create Payment Link API supports five distinct link types, all from the same POST /payment-links endpoint. Each section below includes a ready-to-use payload.
 
+<Callout icon="📘" theme="info">
+  ### **Multiple Parameters, One Endpoint**
+
+  You can combine use cases in a single request. For example, a Partial Payment link (use case 3) can also carry a Reminder (use case 6) and a WhatsApp notification (use case 7) — just include the relevant fields together.
+</Callout>
+
 <Accordion title="Standard Payment Link" icon="fab fa-stripe-s">
   Use the this payload to create and send a payment link with fixed-amount and one-time payment via SMS, email, or WhatsApp. You can use it for order payments, invoices, and on-demand payment requests.
 
