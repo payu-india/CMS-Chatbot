@@ -110,13 +110,27 @@ Each token is scoped to specific operations. You must request the right scope wh
 
 ## How It Works
 
-A typical payment links integration flow looks like this:
+A typical payment links integration flow looks like this:'
 
-1. **Generate a token** — Call `/oauth/token` with your `client_id`, `client_secret`, and the scopes you need.
-2. **Create the link** — Call `POST /payment-links` with the amount, description, customer details, and delivery preferences (`viaEmail`, `viaSms`, `viaWhatsapp`).
-3. **Share the link** — Either pass delivery flags at creation time, or call `/notify` later to send the link on-demand.
-4. **Receive payment notification** — PayU sends a webhook to your server when the customer pays. Always verify payment server-side.
-5. **Fetch status** — Call `GET /payment-links/{invoiceNumber}` or `GET /payment-links/{invoiceNumber}/transactions` to reconcile payment state in your system.
+<Accordion title="Step 1. Generate a Token" icon="fad fa-key-skeleton-left-right">
+  Call `/oauth/token` with your `client_id`, `client_secret`, and the scopes you need.
+</Accordion>
+
+<Accordion title="Create the Link" icon="fad fa-link">
+  Call `POST /payment-links` with the amount, description, customer details, and delivery preferences (`viaEmail`, `viaSms`, `viaWhatsapp`).
+</Accordion>
+
+<Accordion title="Share the Link" icon="fad fa-share-nodes">
+  Either pass delivery flags at creation time, or call `/notify` later to send the link on-demand.
+</Accordion>
+
+<Accordion title="Receive Payment Notification" icon="fad fa-hand-point-left">
+  PayU sends a webhook to your server when the customer pays. Always verify payment server-side.
+</Accordion>
+
+<Accordion title="Fetch Status" icon="fab fa-searchengin">
+  Call `GET /payment-links/{invoiceNumber}` or `GET /payment-links/{invoiceNumber}/transactions` to reconcile payment state in your system.
+</Accordion>
 
 ***
 
