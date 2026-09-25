@@ -2161,10 +2161,6 @@ paths:
                     Payment Links · Share Payment Link · Get Transaction Details
                     |
                   example: create_payment_links update_payment_links read_payment_links
-                  enum:
-                    - >-
-                      `create_payment_links update_payment_links
-                      read_payment_links`
             examples:
               allScopes:
                 summary: Token with all three scopes
