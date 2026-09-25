@@ -2142,7 +2142,7 @@ paths:
                   type: string
                   description: >
                     Space-separated list of scopes the token should carry. You
-                    can request all three in a single call:
+                    can request all three in a single call:<br/>
 
 
                     `create_payment_links update_payment_links
