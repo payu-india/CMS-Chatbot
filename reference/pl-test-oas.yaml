@@ -2180,29 +2180,35 @@ paths:
                   access_token:
                     type: string
                     description: >-
-                      Bearer token to use in the `Authorization` header of all
-                      Payment Links API calls.
+                      The generated bearer token to use in the `Authorization`
+                      header of all Payment Links API calls.
                     example: >-
                       ea4ed864b4d2a04b90c1e987a5d25a5da1d43fa5f7d123be6814a1e973f196c4
                   token_type:
                     type: string
-                    description: Always `Bearer`.
+                    description: >-
+                      The generated token type. The value will always be
+                      `Bearer`.
                     example: Bearer
                   expires_in:
                     type: integer
-                    description: Token validity in seconds. Typically `7200` (2 hours).
+                    description: >-
+                      The token expiry/validity in seconds. Typically `7200` (2
+                      hours).
                     example: 7200
                   scope:
                     type: string
-                    description: The scopes granted to this token.
+                    description: >-
+                      The scopes granted to this token. This will be the one you
+                      requested.
                     example: >-
                       create_payment_links update_payment_links
                       read_payment_links
                   created_at:
                     type: integer
-                    description: |
-                      Unix timestamp of token creation.
-                      Token expiry = `created_at + expires_in`.
+                    description: >
+                      A unix timestamp of token creation. The token expiry =
+                      `created_at + expires_in`.
                     example: 1763036368
               examples:
                 success:
