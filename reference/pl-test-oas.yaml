@@ -2146,7 +2146,7 @@ paths:
 
 
                     `create_payment_links update_payment_links
-                    read_payment_links`
+                    read_payment_links`<br/>
 
 
                     Refer to the Scopes section for more details.
