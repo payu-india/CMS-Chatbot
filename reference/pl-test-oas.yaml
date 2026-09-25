@@ -14,187 +14,6 @@ tags:
   - name: Payment Links
     description: Create, retrieve, update, share, and manage payment links.
 paths:
-  /oauth/token:
-    post:
-      summary: Get Access Token
-      operationId: GetAccessTokenAPI
-      description: ''
-      tags:
-        - Authentication
-      requestBody:
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              required:
-                - client_id
-                - client_secret
-                - grant_type
-                - scope
-              properties:
-                client_id:
-                  type: string
-                  description: >
-                    Your OAuth app's public identifier.
-
-                    Find this in PayU Dashboard → **Developers** → **OAuth
-                    Apps**.
-                  example: '{{client_id}}'
-                client_secret:
-                  type: string
-                  description: >
-                    Your OAuth app's secret key. Never expose it in client-side
-                    code or
-
-                    public repositories — treat it like a password.
-                  example: '{{client_secret}}'
-                grant_type:
-                  type: string
-                  description: |
-                    OAuth 2.0 grant type. Always pass `client_credentials` for
-                    server-to-server Payment Links integrations.
-                  example: client_credentials
-                scope:
-                  type: string
-                  description: >
-                    Space-separated list of scopes the token should carry. You
-                    can request all three in a single call:
-
-
-                    `create_payment_links update_payment_links
-                    read_payment_links`
-
-
-                    Refer to the Scopes section for more details.
-                  example: create_payment_links update_payment_links read_payment_links
-            examples:
-              allScopes:
-                summary: Token with all three scopes
-                value:
-                  client_id: '{{client_id}}'
-                  client_secret: '{{client_secret}}'
-                  grant_type: client_credentials
-                  scope: create_payment_links update_payment_links read_payment_links
-              createOnly:
-                summary: Token for creating links only
-                value:
-                  client_id: '{{client_id}}'
-                  client_secret: '{{client_secret}}'
-                  grant_type: client_credentials
-                  scope: create_payment_links
-      responses:
-        '200':
-          description: Token generated successfully.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  access_token:
-                    type: string
-                    description: >-
-                      Bearer token to use in the `Authorization` header of all
-                      Payment Links API calls.
-                    example: >-
-                      ea4ed864b4d2a04b90c1e987a5d25a5da1d43fa5f7d123be6814a1e973f196c4
-                  token_type:
-                    type: string
-                    description: Always `Bearer`.
-                    example: Bearer
-                  expires_in:
-                    type: integer
-                    description: Token validity in seconds. Typically `7200` (2 hours).
-                    example: 7200
-                  scope:
-                    type: string
-                    description: The scopes granted to this token.
-                    example: >-
-                      create_payment_links update_payment_links
-                      read_payment_links
-                  created_at:
-                    type: integer
-                    description: |
-                      Unix timestamp of token creation.
-                      Token expiry = `created_at + expires_in`.
-                    example: 1763036368
-              examples:
-                success:
-                  summary: Token generated
-                  value:
-                    access_token: >-
-                      ea4ed864b4d2a04b90c1e987a5d25a5da1d43fa5f7d123be6814a1e973f196c4
-                    token_type: Bearer
-                    expires_in: 7200
-                    scope: >-
-                      create_payment_links update_payment_links
-                      read_payment_links
-                    created_at: 1763036368
-        '400':
-          description: >-
-            Invalid request parameters. The response body uses the standard
-            OAuth error format.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    description: OAuth error code.
-                    example: invalid_scope
-                  error_description:
-                    type: string
-                    description: Human-readable error description.
-                    example: The requested scope is invalid, unknown, or malformed.
-              examples:
-                invalidScope:
-                  summary: Unknown scope value
-                  value:
-                    error: invalid_scope
-                    error_description: The requested scope is invalid, unknown, or malformed.
-                unsupportedGrant:
-                  summary: Wrong grant type
-                  value:
-                    error: unsupported_grant_type
-                    error_description: >-
-                      The authorization grant type is not supported by the
-                      authorization server.
-        '401':
-          description: Client authentication failed.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    example: invalid_client
-                  error_description:
-                    type: string
-                    example: Client authentication failed.
-              examples:
-                invalidClient:
-                  summary: Invalid credentials
-                  value:
-                    error: invalid_client
-                    error_description: >-
-                      Client authentication failed due to unknown client, no
-                      client authentication included, or unsupported
-                      authentication method.
-                rateLimited:
-                  summary: Rate limit exceeded
-                  value:
-                    error: rate_limit_exceeded
-                    error_description: >-
-                      Too many token requests. Cache your token and retry after
-                      the cooldown period.
-      servers:
-        - url: https://uat-accounts.payu.in
-          description: Test Environment
-        - url: https://accounts.payu.in
-          description: Production Environment
-      security: []
   /oauth/revoke:
     post:
       summary: Revoke Token API
@@ -2275,3 +2094,191 @@ paths:
                   value:
                     error: insufficient_scope
                     error_description: The access token does not have the required scope.
+  /oauth/token:
+    post:
+      summary: Get Access Token
+      operationId: GetAccessTokenAPI
+      description: ''
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - client_id
+                - client_secret
+                - grant_type
+                - scope
+              properties:
+                client_id:
+                  type: string
+                  description: >
+                    Your OAuth app's public identifier.
+
+                    Find this in PayU Dashboard → **Developers** → **OAuth
+                    Apps**.
+                  example: '{{client_id}}'
+                client_secret:
+                  type: string
+                  description: >
+                    Your OAuth app's secret key. Never expose it in client-side
+                    code or
+
+                    public repositories — treat it like a password.
+                  example: '{{client_secret}}'
+                grant_type:
+                  type: string
+                  description: |
+                    OAuth 2.0 grant type. Always pass `client_credentials` for
+                    server-to-server Payment Links integrations.
+                  example: client_credentials
+                  default: '`client_credentials`'
+                  enum:
+                    - '`client_credentials`'
+                scope:
+                  type: string
+                  description: >
+                    Space-separated list of scopes the token should carry. You
+                    can request all three in a single call:
+
+
+                    `create_payment_links update_payment_links
+                    read_payment_links`
+
+
+                    Refer to the Scopes section for more details.
+                  example: create_payment_links update_payment_links read_payment_links
+                  enum:
+                    - >-
+                      `create_payment_links update_payment_links
+                      read_payment_links`
+            examples:
+              allScopes:
+                summary: Token with all three scopes
+                value:
+                  client_id: '{{client_id}}'
+                  client_secret: '{{client_secret}}'
+                  grant_type: client_credentials
+                  scope: create_payment_links update_payment_links read_payment_links
+              createOnly:
+                summary: Token for creating links only
+                value:
+                  client_id: '{{client_id}}'
+                  client_secret: '{{client_secret}}'
+                  grant_type: client_credentials
+                  scope: create_payment_links
+      responses:
+        '200':
+          description: Token generated successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                    description: >-
+                      Bearer token to use in the `Authorization` header of all
+                      Payment Links API calls.
+                    example: >-
+                      ea4ed864b4d2a04b90c1e987a5d25a5da1d43fa5f7d123be6814a1e973f196c4
+                  token_type:
+                    type: string
+                    description: Always `Bearer`.
+                    example: Bearer
+                  expires_in:
+                    type: integer
+                    description: Token validity in seconds. Typically `7200` (2 hours).
+                    example: 7200
+                  scope:
+                    type: string
+                    description: The scopes granted to this token.
+                    example: >-
+                      create_payment_links update_payment_links
+                      read_payment_links
+                  created_at:
+                    type: integer
+                    description: |
+                      Unix timestamp of token creation.
+                      Token expiry = `created_at + expires_in`.
+                    example: 1763036368
+              examples:
+                success:
+                  summary: Token generated
+                  value:
+                    access_token: >-
+                      ea4ed864b4d2a04b90c1e987a5d25a5da1d43fa5f7d123be6814a1e973f196c4
+                    token_type: Bearer
+                    expires_in: 7200
+                    scope: >-
+                      create_payment_links update_payment_links
+                      read_payment_links
+                    created_at: 1763036368
+        '400':
+          description: >-
+            Invalid request parameters. The response body uses the standard
+            OAuth error format.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: OAuth error code.
+                    example: invalid_scope
+                  error_description:
+                    type: string
+                    description: Human-readable error description.
+                    example: The requested scope is invalid, unknown, or malformed.
+              examples:
+                invalidScope:
+                  summary: Unknown scope value
+                  value:
+                    error: invalid_scope
+                    error_description: The requested scope is invalid, unknown, or malformed.
+                unsupportedGrant:
+                  summary: Wrong grant type
+                  value:
+                    error: unsupported_grant_type
+                    error_description: >-
+                      The authorization grant type is not supported by the
+                      authorization server.
+        '401':
+          description: Client authentication failed.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: invalid_client
+                  error_description:
+                    type: string
+                    example: Client authentication failed.
+              examples:
+                invalidClient:
+                  summary: Invalid credentials
+                  value:
+                    error: invalid_client
+                    error_description: >-
+                      Client authentication failed due to unknown client, no
+                      client authentication included, or unsupported
+                      authentication method.
+                rateLimited:
+                  summary: Rate limit exceeded
+                  value:
+                    error: rate_limit_exceeded
+                    error_description: >-
+                      Too many token requests. Cache your token and retry after
+                      the cooldown period.
+      servers:
+        - url: https://uat-accounts.payu.in
+          description: Test Environment
+        - url: https://accounts.payu.in
+          description: Production Environment
+      security: []
