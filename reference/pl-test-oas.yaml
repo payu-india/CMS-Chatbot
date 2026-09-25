@@ -2149,7 +2149,17 @@ paths:
                     read_payment_links`<br/>
 
 
-                    Refer to the Scopes section for more details.
+                    | Scope | Grants access to |
+
+                    | :--- | :--- |
+
+                    | `create_payment_links` | Create Payment Link |
+
+                    | `update_payment_links` | Update / Cancel Payment Link |
+
+                    | `read_payment_links` | Fetch Payment Link · Fetch All
+                    Payment Links · Share Payment Link · Get Transaction Details
+                    |
                   example: create_payment_links update_payment_links read_payment_links
                   enum:
                     - >-
