@@ -752,7 +752,7 @@ Use this endpoint to generate a shareable payment link and optionally deliver it
     ```
   </Tab>
 
-  <Tab title="Response Parameter Description">
+  <Tab title="Parameter Description">
     Refer to the [Response](ref:create-payment-links#response-schemas) section for a full description of all response fields.
   </Tab>
 </Tabs>
