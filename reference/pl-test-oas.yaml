@@ -975,6 +975,7 @@ paths:
               - active
               - expired
               - cancelled
+            default: active
         - name: pageNumber
           in: query
           required: false
