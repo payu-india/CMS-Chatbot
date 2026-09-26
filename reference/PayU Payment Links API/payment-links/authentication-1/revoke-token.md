@@ -83,10 +83,19 @@ The revoked token becomes invalid immediately. After revoking, generate a newtok
 
 <Tabs>
   <Tab title="Success and Error Response">
-
+    ```json Success Response
+    HTTP/1.1 200 OK
+    Content-Length: 0
+    ```
+    ```json Error Response - Invalid client credentials
+    {
+      "error": "invalid_client",
+      "error_description": "Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method."
+    }
+    ```
   </Tab>
 
   <Tab title="Parameter Description">
-
+    Refer to the [Responses](https://docs.payu.in/v3.0/reference/getaccesstokenapi#response-schemas) section for a full description of all response fields.
   </Tab>
 </Tabs>
