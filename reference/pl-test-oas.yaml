@@ -14,89 +14,6 @@ tags:
   - name: Payment Links
     description: Create, retrieve, update, share, and manage payment links.
 paths:
-  /oauth/revoke:
-    post:
-      summary: Revoke Token API
-      operationId: RevokeTokenAPI
-      description: >
-        Invalidate a Bearer token before its natural expiry.
-
-
-        Use this when rotating credentials or if you suspect a token has been
-        exposed.
-
-        The revoked token becomes invalid immediately. After revoking, generate
-        a new
-
-        token via `POST /oauth/token`.
-      tags:
-        - Authentication
-      requestBody:
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              required:
-                - client_id
-                - client_secret
-                - token
-              properties:
-                client_id:
-                  type: string
-                  description: The `client_id` of the OAuth app that issued the token.
-                  example: '{{client_id}}'
-                client_secret:
-                  type: string
-                  description: The `client_secret` of the OAuth app that issued the token.
-                  example: '{{client_secret}}'
-                token:
-                  type: string
-                  description: The `access_token` value to invalidate.
-                  example: '{{access_token}}'
-            examples:
-              basic:
-                summary: Revoke a token
-                value:
-                  client_id: '{{client_id}}'
-                  client_secret: '{{client_secret}}'
-                  token: '{{access_token}}'
-      responses:
-        '200':
-          description: Token revoked successfully. Response body is empty.
-        '401':
-          description: Authentication failure.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    example: invalid_client
-                  error_description:
-                    type: string
-                    example: Client authentication failed.
-              examples:
-                invalidClient:
-                  summary: Invalid credentials
-                  value:
-                    error: invalid_client
-                    error_description: >-
-                      Client authentication failed due to unknown client, no
-                      client authentication included, or unsupported
-                      authentication method.
-                invalidToken:
-                  summary: Token already invalid
-                  value:
-                    error: invalid_token
-                    error_description: The token is invalid or has already been revoked.
-      servers:
-        - url: https://uat-accounts.payu.in
-          description: Test Environment
-        - url: https://accounts.payu.in
-          description: Production Environment
-      security: []
   /payment-links:
     post:
       summary: Create Payment Link
@@ -2281,6 +2198,89 @@ paths:
                     error_description: >-
                       Too many token requests. Cache your token and retry after
                       the cooldown period.
+      servers:
+        - url: https://uat-accounts.payu.in
+          description: Test Environment
+        - url: https://accounts.payu.in
+          description: Production Environment
+      security: []
+  /oauth/revoke:
+    post:
+      summary: Revoke a Token
+      operationId: RevokeTokenAPI
+      description: >
+        Invalidate a Bearer token before its natural expiry.
+
+
+        Use this when rotating credentials or if you suspect a token has been
+        exposed.
+
+        The revoked token becomes invalid immediately. After revoking, generate
+        a new
+
+        token via `POST /oauth/token`.
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - client_id
+                - client_secret
+                - token
+              properties:
+                client_id:
+                  type: string
+                  description: The `client_id` of the OAuth app that issued the token.
+                  example: '{{client_id}}'
+                client_secret:
+                  type: string
+                  description: The `client_secret` of the OAuth app that issued the token.
+                  example: '{{client_secret}}'
+                token:
+                  type: string
+                  description: The `access_token` value to invalidate.
+                  example: '{{access_token}}'
+            examples:
+              basic:
+                summary: Revoke a token
+                value:
+                  client_id: '{{client_id}}'
+                  client_secret: '{{client_secret}}'
+                  token: '{{access_token}}'
+      responses:
+        '200':
+          description: Token revoked successfully. Response body is empty.
+        '401':
+          description: Authentication failure.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: invalid_client
+                  error_description:
+                    type: string
+                    example: Client authentication failed.
+              examples:
+                invalidClient:
+                  summary: Invalid credentials
+                  value:
+                    error: invalid_client
+                    error_description: >-
+                      Client authentication failed due to unknown client, no
+                      client authentication included, or unsupported
+                      authentication method.
+                invalidToken:
+                  summary: Token already invalid
+                  value:
+                    error: invalid_token
+                    error_description: The token is invalid or has already been revoked.
       servers:
         - url: https://uat-accounts.payu.in
           description: Test Environment
