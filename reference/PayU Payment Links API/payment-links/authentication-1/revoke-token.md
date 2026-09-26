@@ -38,6 +38,38 @@ The revoked token becomes invalid immediately. After revoking, generate a newtok
     --data-urlencode 'client_secret={{client_secret}}' \
     --data-urlencode 'token={{access_token}}'
     ```
+    ```python
+    import requests
+
+    url = "https://uat-accounts.payu.in/oauth/revoke"
+
+    payload = {
+        "client_id":     "{{client_id}}",
+        "client_secret": "{{client_secret}}",
+        "token":         "{{access_token}}"
+    }
+
+    response = requests.post(url, data=payload)
+    # A 200 with an empty body means the token was successfully revoked
+    print(response.status_code)
+    ```
+    ```javascript
+    const axios = require('axios');
+    const qs = require('querystring');
+
+    const response = await axios.post(
+      'https://uat-accounts.payu.in/oauth/revoke',
+      qs.stringify({
+        client_id:     '{{client_id}}',
+        client_secret: '{{client_secret}}',
+        token:         '{{access_token}}'
+      }),
+      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
+    );
+
+    // 200 with empty body = success
+    console.log(response.status);
+    ```
   </Tab>
 
   <Tab title="Parameter Description">
