@@ -16,7 +16,7 @@ tags:
 paths:
   /payment-links:
     post:
-      summary: Create Payment Link
+      summary: Create a Payment Link
       operationId: CreatePaymentLinkAPI
       description: ''
       tags:
