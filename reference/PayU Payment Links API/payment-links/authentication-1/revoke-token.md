@@ -6,7 +6,9 @@ hidden: false
 metadata:
   title: Revoke a Token API
 ---
-Invalidate a Bearer token before its natural expiry. Use this endpoint when rotating credentials or if you suspect a token has been exposed. The revoked token becomes invalid immediately. After revoking, generate a newtoken via the Get A Access Token API.
+Invalidate a Bearer token before its natural expiry. Use this endpoint when rotating credentials or if you suspect a token has been exposed.<br />
+
+The revoked token becomes invalid immediately. After revoking, generate a newtoken via the Get A Access Token API.
 
 ***
 
