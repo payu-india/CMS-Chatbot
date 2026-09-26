@@ -76,3 +76,17 @@ The revoked token becomes invalid immediately. After revoking, generate a newtok
     Refer to the Form Data section for a full description of all request parameters and use cases.
   </Tab>
 </Tabs>
+
+***
+
+## Sample Response
+
+<Tabs>
+  <Tab title="Success and Error Response">
+
+  </Tab>
+
+  <Tab title="Parameter Description">
+
+  </Tab>
+</Tabs>
