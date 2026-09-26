@@ -2208,17 +2208,7 @@ paths:
     post:
       summary: Revoke a Token
       operationId: RevokeTokenAPI
-      description: >
-        Invalidate a Bearer token before its natural expiry.
-
-
-        Use this when rotating credentials or if you suspect a token has been
-        exposed.
-
-        The revoked token becomes invalid immediately. After revoking, generate
-        a new
-
-        token via `POST /oauth/token`.
+      description: ''
       tags:
         - Authentication
       requestBody:
