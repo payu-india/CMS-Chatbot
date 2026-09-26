@@ -73,7 +73,7 @@ The revoked token becomes invalid immediately. After revoking, generate a newtok
   </Tab>
 
   <Tab title="Parameter Description">
-    Refer to the Form Data section for a full description of all request parameters and use cases.
+    Refer to the [Form Data](https://docs.payu.in/v3.0/reference/revoke-token#body-params) section for a full description of all request parameters and use cases.
   </Tab>
 </Tabs>
 
