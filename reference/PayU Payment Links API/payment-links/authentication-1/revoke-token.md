@@ -29,7 +29,13 @@ Invalidate a Bearer token before its natural expiry. Use this endpoint when rota
 
 <Tabs>
   <Tab title="Request Payload">
-
+    ```curl
+    curl --location --request POST 'https://uat-accounts.payu.in/oauth/revoke' \
+    --header 'Content-Type: application/x-www-form-urlencoded' \
+    --data-urlencode 'client_id={{client_id}}' \
+    --data-urlencode 'client_secret={{client_secret}}' \
+    --data-urlencode 'token={{access_token}}'
+    ```
   </Tab>
 
   <Tab title="Parameter Description">
