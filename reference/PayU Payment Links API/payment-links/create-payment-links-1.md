@@ -22,6 +22,8 @@ Use this endpoint to generate a shareable payment link and optionally deliver it
   </Card>
 </Cards>
 
+<br />
+
 ***
 
 ## Environments
@@ -706,7 +708,7 @@ Use this endpoint to generate a shareable payment link and optionally deliver it
     ```
   </Tab>
 
-  <Tab title="Request Parameter Description">
+  <Tab title="Parameter Description">
     Refer to the [Body Params](ref:create-payment-links#body-params) section for a full description of all request parameters and use cases.
   </Tab>
 </Tabs>
