@@ -938,16 +938,7 @@ paths:
     get:
       summary: Fetch All Payment Links
       operationId: FetchAllPaymentLinksAPI
-      description: >
-        Retrieve a paginated list of payment links for your merchant account,
-
-        sorted by creation date (newest first). Use the `status` filter to
-        narrow
-
-        results to active, expired, or cancelled links.
-
-
-        **Required scope:** `read_payment_links`
+      description: ''
       tags:
         - Payment Links
       parameters:
