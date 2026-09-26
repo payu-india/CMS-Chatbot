@@ -1134,18 +1134,7 @@ paths:
     get:
       summary: Fetch Payment Link
       operationId: FetchPaymentLinkAPI
-      description: >
-        Retrieve the current state and all details of a payment link by its
-        `invoiceNumber`.
-
-
-        Use this to check whether a link is active, verify its amount and
-        configuration,
-
-        or poll for status after a customer interaction.
-
-
-        **Required scope:** `read_payment_links`
+      description: ''
       tags:
         - Payment Links
       parameters:
