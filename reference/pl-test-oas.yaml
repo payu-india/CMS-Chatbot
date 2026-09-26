@@ -2047,7 +2047,7 @@ paths:
                   example: client_credentials
                   default: '`client_credentials`'
                   enum:
-                    - '`client_credentials`'
+                    - client_credentials
                 scope:
                   type: string
                   description: >
