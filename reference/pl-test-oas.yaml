@@ -2013,7 +2013,7 @@ paths:
                     error_description: The access token does not have the required scope.
   /oauth/token:
     post:
-      summary: Get Access Token
+      summary: Get an Access Token
       operationId: GetAccessTokenAPI
       description: ''
       tags:
