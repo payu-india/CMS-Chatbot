@@ -3,6 +3,10 @@ api:
   file: pl-test-oas.yaml
   operationId: CreatePaymentLinkAPI
 hidden: false
+metadata:
+  title: Create a Payment Link
+next:
+  description: Explore related information and resources.
 ---
 Use this endpoint to generate a shareable payment link and optionally deliver it to your customer via SMS, email, or WhatsApp.
 
