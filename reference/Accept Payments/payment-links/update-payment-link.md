@@ -83,6 +83,163 @@ Only send the fields you want to change. Your omitted fields retain their curren
       "viaWhatsapp": true
     }'
     ```
+    ```csharp
+    using System.Net.Http;
+    using System.Text;
+
+    using var client = new HttpClient();
+
+    var request = new HttpRequestMessage(
+        HttpMethod.Post,
+        "https://uatoneapi.payu.in/payment-links"
+    );
+
+    request.Headers.Add("Authorization", "Bearer YOUR_ACCESS_TOKEN");
+    request.Headers.Add("merchantId", "YOUR_MERCHANT_ID");
+
+    request.Content = new StringContent(
+        """
+        {
+          "subAmount": 2000,
+          "description": "Update link testing",
+          "expiryDate": "2026-11-30 23:59:59",
+          "isPartialPaymentAllowed": true,
+          "minAmountForCustomer": 500,
+          "viaEmail": true,
+          "viaSms": true,
+          "viaWhatsapp": true
+        }
+        """,
+        Encoding.UTF8,
+        "application/json"
+    );
+
+    var response = await client.SendAsync(request);
+    var responseBody = await response.Content.ReadAsStringAsync();
+
+    Console.WriteLine(responseBody);
+    ```
+    ```python
+    import requests
+
+    url = "https://uatoneapi.payu.in/payment-links"
+
+    headers = {
+        "Authorization": "Bearer YOUR_ACCESS_TOKEN",
+        "merchantId": "YOUR_MERCHANT_ID",
+        "Content-Type": "application/json"
+    }
+
+    payload = {
+        "subAmount": 2000,
+        "description": "Update link testing",
+        "expiryDate": "2026-11-30 23:59:59",
+        "isPartialPaymentAllowed": True,
+        "minAmountForCustomer": 500,
+        "viaEmail": True,
+        "viaSms": True,
+        "viaWhatsapp": True
+    }
+
+    response = requests.post(url, headers=headers, json=payload)
+
+    print(response.text)
+    ```
+    ```javascript
+    const response = await fetch(
+      "https://uatoneapi.payu.in/payment-links",
+      {
+        method: "POST",
+        headers: {
+          "Authorization": "Bearer YOUR_ACCESS_TOKEN",
+          "merchantId": "YOUR_MERCHANT_ID",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          subAmount: 2000,
+          description: "Update link testing",
+          expiryDate: "2026-11-30 23:59:59",
+          isPartialPaymentAllowed: true,
+          minAmountForCustomer: 500,
+          viaEmail: true,
+          viaSms: true,
+          viaWhatsapp: true
+        })
+      }
+    );
+
+    const responseBody = await response.text();
+
+    console.log(responseBody);
+    ```
+    ```java
+    import java.net.URI;
+    import java.net.http.HttpClient;
+    import java.net.http.HttpRequest;
+    import java.net.http.HttpResponse;
+
+    HttpClient client = HttpClient.newHttpClient();
+
+    String jsonBody = """
+    {
+      "subAmount": 2000,
+      "description": "Update link testing",
+      "expiryDate": "2026-11-30 23:59:59",
+      "isPartialPaymentAllowed": true,
+      "minAmountForCustomer": 500,
+      "viaEmail": true,
+      "viaSms": true,
+      "viaWhatsapp": true
+    }
+    """;
+
+    HttpRequest request = HttpRequest.newBuilder()
+        .uri(URI.create("https://uatoneapi.payu.in/payment-links"))
+        .header("Authorization", "Bearer YOUR_ACCESS_TOKEN")
+        .header("merchantId", "YOUR_MERCHANT_ID")
+        .header("Content-Type", "application/json")
+        .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
+        .build();
+
+    HttpResponse<String> response = client.send(
+        request,
+        HttpResponse.BodyHandlers.ofString()
+    );
+
+    System.out.println(response.body());
+    ```
+    ```php
+    <?php
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, [
+        CURLOPT_URL => 'https://uatoneapi.payu.in/payment-links',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_POST => true,
+        CURLOPT_HTTPHEADER => [
+            'Authorization: Bearer YOUR_ACCESS_TOKEN',
+            'merchantId: YOUR_MERCHANT_ID',
+            'Content-Type: application/json'
+        ],
+        CURLOPT_POSTFIELDS => json_encode([
+            'subAmount' => 2000,
+            'description' => 'Update link testing',
+            'expiryDate' => '2026-11-30 23:59:59',
+            'isPartialPaymentAllowed' => true,
+            'minAmountForCustomer' => 500,
+            'viaEmail' => true,
+            'viaSms' => true,
+            'viaWhatsapp' => true
+        ])
+    ]);
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+
+    echo $response;
+    ```
   </Tab>
 
   <Tab title="Parameter Description">
