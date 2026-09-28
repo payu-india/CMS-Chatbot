@@ -5,4 +5,4 @@
 - update-payment-link
 - cancel-payment-link
 - share-payment-link
-- gettransactiondetailsapi
+- fetch-transaction-details
