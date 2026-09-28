@@ -1325,7 +1325,7 @@ paths:
                     error: insufficient_scope
                     error_description: The access token does not have the required scope.
     delete:
-      summary: Cancel Payment Link
+      summary: Cancel a Payment Link
       operationId: CancelPaymentLinkAPI
       description: ''
       tags:
