@@ -41,12 +41,12 @@ next:
 
 <br />
 
-Something not right after creating a payment link? Go through the most common issues — links not opening, payments not reflecting in your Dashboard, notifications not delivered, and errors in bulk uploads and ways to resolve them.
+Something not right after creating a <Anchor target="_blank" href="https://docs.payu.in/docs/payment-links">payment link</Anchor>? Go through the most common issues such as links not opening, payments not reflecting in your Dashboard, notifications not delivered, and errors in bulk uploads and ways to resolve them.
 
 <Callout icon="📘" theme="info">
   ### **Payment Links**
 
-  Have not created a payment link yet? → [Create a Payment Link](doc:send-a-payment-link)
+  Have not created a payment link yet? → <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link">Create a Payment Link</Anchor>
 </Callout>
 
 ***
