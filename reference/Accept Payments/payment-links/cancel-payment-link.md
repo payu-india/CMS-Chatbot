@@ -45,9 +45,9 @@ Use this endpoint to deactivate an existing payment link so it can no longer acc
 <Callout icon="🔑" theme="default">
   ### **Get your Bearer token before calling this endpoint**
 
-  This API uses OAuth 2.0 — not the hash-based auth used by other PayU APIs.
+  This API uses OAuth 2.0 authentication.
 
-  1. Call [Get Access Token](ref:get-token-api-for-payment-links) with `grant_type=client_credentials` and `scope=create_payment_links`
+  1. Call the <Anchor target="_blank" href="https://docs.payu.in/reference/generate-access-token">Generate an Access Token</Anchor> token with `grant_type=client_credentials` and `scope=create_payment_links`
   2. Copy the `access_token` from the response
   3. Pass it as `Authorization: Bearer {access_token}` in every request
 
@@ -65,11 +65,106 @@ Use this endpoint to deactivate an existing payment link so it can no longer acc
 <Tabs>
   <Tab title="Request Payload">
     ```curl
-    curl --request DELETE \
-         --url https://uatoneapi.payu.in/payment-links/{{invoice_number}} \
-         --header 'Authorization: Bearer {{access_token}}' \
-         --header 'accept: application/json' \
-         --header 'merchantId: {{merchantId}}'
+    curl --location --request DELETE 'https://uatoneapi.payu.in/payment-links/{{invoice_number}}' \
+      --header 'Authorization: Bearer {{access_token}}' \
+      --header 'merchantId: {{merchantId}}' \
+      --header 'Accept: application/json'
+    ```
+    ```csharp
+    using var client = new HttpClient();
+
+    var request = new HttpRequestMessage(
+        HttpMethod.Delete,
+        "https://uatoneapi.payu.in/payment-links/{{invoice_number}}"
+    );
+
+    request.Headers.Add("Authorization", "Bearer {{access_token}}");
+    request.Headers.Add("merchantId", "{{merchantId}}");
+    request.Headers.Add("Accept", "application/json");
+
+    var response = await client.SendAsync(request);
+    var responseBody = await response.Content.ReadAsStringAsync();
+
+    Console.WriteLine(responseBody);
+    ```
+    ```python
+    import requests
+
+    url = "https://uatoneapi.payu.in/payment-links/{{invoice_number}}"
+
+    headers = {
+        "Authorization": "Bearer {{access_token}}",
+        "merchantId": "{{merchantId}}",
+        "Accept": "application/json"
+    }
+
+    response = requests.delete(url, headers=headers)
+
+    print(response.text)
+    ```
+    ```javascript
+    const response = await fetch(
+      "https://uatoneapi.payu.in/payment-links/{{invoice_number}}",
+      {
+        method: "DELETE",
+        headers: {
+          "Authorization": "Bearer {{access_token}}",
+          "merchantId": "{{merchantId}}",
+          "Accept": "application/json"
+        }
+      }
+    );
+
+    const responseBody = await response.text();
+
+    console.log(responseBody);
+    ```
+    ```java
+    import java.net.URI;
+    import java.net.http.HttpClient;
+    import java.net.http.HttpRequest;
+    import java.net.http.HttpResponse;
+
+    HttpClient client = HttpClient.newHttpClient();
+
+    HttpRequest request = HttpRequest.newBuilder()
+        .uri(URI.create(
+            "https://uatoneapi.payu.in/payment-links/{{invoice_number}}"
+        ))
+        .header("Authorization", "Bearer {{access_token}}")
+        .header("merchantId", "{{merchantId}}")
+        .header("Accept", "application/json")
+        .DELETE()
+        .build();
+
+    HttpResponse<String> response = client.send(
+        request,
+        HttpResponse.BodyHandlers.ofString()
+    );
+
+    System.out.println(response.body());
+    ```
+    ```php
+    <?php
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, [
+        CURLOPT_URL => 'https://uatoneapi.payu.in/payment-links/{{invoice_number}}',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_CUSTOMREQUEST => 'DELETE',
+        CURLOPT_HTTPHEADER => [
+            'Authorization: Bearer {{access_token}}',
+            'merchantId: {{merchantId}}',
+            'Accept: application/json'
+        ]
+    ]);
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+
+    echo $response;
     ```
   </Tab>
 
