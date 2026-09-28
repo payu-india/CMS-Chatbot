@@ -634,17 +634,15 @@ paths:
                 blockDaysForPreAuthorizeLinks:
                   type: integer
                   description: >-
-                    **Use case 9 — Pre-authorisation.** Number of days to hold a
-                    pre-authorisation on the customer payment method before
-                    capture.
+                    Determines the number of days to hold a pre-authorisation on
+                    the customer payment method before capture.
                   example: 7
                 beneficiarydetail:
                   type: object
                   description: >-
-                    **Use case 10 — Payout beneficiaries.** Specify up to 4
-                    bank-account beneficiaries for NEFT or IMPS payout flows.
-                    All four arrays must have the same entry count; each index
-                    position represents one beneficiary.
+                    Specify up to 4 bank-account beneficiaries for NEFT or IMPS
+                    payout flows. All four arrays must have the same entry
+                    count. Every index position represents one beneficiary.
                   properties:
                     beneficiaryAccountNumber:
                       type: array
@@ -670,69 +668,79 @@ paths:
                         `CURRENT`.
                 adjustment:
                   type: integer
-                  description: Adjustment amount in INR applied to the total.
+                  description: >-
+                    Determines the adjustment amount in INR applied to the
+                    total.
                   example: 0
                 batchId:
                   type: string
                   description: >-
-                    Batch identifier for grouping multiple payment links created
-                    together.
+                    Indicates the unique batch identifier for grouping multiple
+                    payment links created together.
                   example: BATCH-2026-001
                 scheduledFor:
                   type: string
-                  description: Reason or reference note for scheduling this payment link.
+                  description: >-
+                    Determines the reason or reference note for scheduling this
+                    payment link.
                 emailTemplateName:
                   type: string
                   description: >-
-                    Custom email template name to use when sending the link via
-                    email.
+                    The custom email template name to use when sending the link
+                    via email.
                 smsTemplateName:
                   type: string
                   description: >-
-                    Custom SMS template name to use when sending the link via
-                    SMS.
+                    The custom SMS template name to use when sending the link
+                    via SMS.
                 timeUnit:
                   type: string
-                  description: Time unit qualifier used when specifying `expiryDate`.
+                  description: >-
+                    The time unit qualifier used when specifying the
+                    `expiryDate`.
                 notes:
                   type: string
                   description: >-
-                    Merchant-facing notes about the payment link. Not shown to
-                    the customer.
+                    The merchant-facing notes about the payment link. This note
+                    is not shown to the customer.
                 enforcePG:
                   type: string
                   description: >-
-                    Enforce a specific payment gateway. E.g. `"CC"` for credit
-                    card gateway.
+                    Use this to enforce a specific payment gateway. For example,
+                    `CC` for credit card gateway.
                   example: CC
                 userToken:
                   type: string
-                  description: User token for token-based customer authentication flows.
+                  description: >-
+                    Determines the user token for token-based customer
+                    authentication flows.
                 userCredentials:
                   type: string
                   description: >-
-                    User credentials string for credential-based authentication
-                    flows.
+                    Determines user credentials string for credential-based
+                    authentication flows.
                 transactionId:
                   type: string
                   description: >-
-                    Merchant-defined transaction ID to associate with this
+                    The merchant-defined transaction ID to associate with the
                     payment link.
                   example: TXN-2026-88421
                 validationPeriod:
                   type: string
-                  description: Validation period for the transaction.
+                  description: Determines the validation period for the transaction.
                 smsConfirm:
                   type: string
-                  description: SMS confirmation reference.
+                  description: The SMS confirmation reference.
                 isActive:
                   type: string
-                  description: Whether the payment link is active. Pass `"true"` if active.
+                  description: >-
+                    Indicates whether the payment link is active. You should
+                    pass the value as `true` if active.
                   example: 'true'
                 cart_details:
                   type: object
                   description: >-
-                    Cart details for itemised payment links including SKU
+                    The cart details for itemised payment links including SKU
                     breakdown.
                   properties:
                     amount:
@@ -765,7 +773,7 @@ paths:
                             description: Auto-apply the offer if `true`.
                 aggregatorSplitInfo:
                   type: object
-                  description: Split payment configuration for aggregator flows.
+                  description: The split payment configuration for aggregator flows.
                   properties:
                     type:
                       type: string
@@ -775,7 +783,7 @@ paths:
                       description: Split details object.
                 additionalDetails:
                   type: object
-                  description: Additional partner and payment configuration details.
+                  description: The additional partner and payment configuration details.
                   properties:
                     partnerWebhookSuccessUrls:
                       type: string
@@ -806,7 +814,7 @@ paths:
                 customAttributes:
                   type: array
                   description: >-
-                    Array of custom key-value objects passed through to the
+                    The array of custom key-value objects passed through to the
                     webhook payload unchanged. Useful for carrying merchant-side
                     metadata.
                   items:
