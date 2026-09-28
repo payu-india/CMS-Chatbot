@@ -1180,7 +1180,7 @@ paths:
                     error_description: The access token does not have the required scope.
   /payment-links/{invoiceNumber}:
     delete:
-      summary: Cancel Payment Link
+      summary: Cancel a Payment Link
       operationId: CancelPaymentLinkAPI
       description: >
         Deactivate an existing payment link so it can no longer accept payments.
