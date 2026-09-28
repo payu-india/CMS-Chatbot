@@ -109,7 +109,7 @@ Token validity is returned as `expires_in` seconds (typically 7200 — 2 hours).
   </Tab>
 
   <Tab title="Parameter Description">
-    Refer to the Form Data section for a full description of all request parameters and use cases.
+    Refer to the [Form Data](https://docs.payu.in/reference/generate-access-token#body-params) section for a full description of all request parameters and use cases.
   </Tab>
 </Tabs>
 
