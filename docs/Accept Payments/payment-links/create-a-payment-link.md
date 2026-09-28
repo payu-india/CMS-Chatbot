@@ -478,15 +478,15 @@ It depends on&#x20;
 ## Next Steps
 
 <Cards>
-  <Card title="Manage Payment Links" href="doc:manage-payment-links" icon="fa-list-check">
+  <Card title="Manage Payment Links" href="https://docs.payu.in/docs/manage-payment-links" icon="fa-list-check" target="_blank">
     Filter, duplicate, resend, deactivate, and export your links.
   </Card>
 
-  <Card title="Payment Link Options" href="doc:payment-link-options" icon="fa-sliders">
-    Expiry dates, partial payments, custom fields, and notifications.
+  <Card title="Errors and Troubleshooting" href="https://docs.payu.in/docs/payment-links-errors-and-troubleshooting" icon="fa-sliders" target="_blank">
+    Go through common errors and their troubleshooting steps.
   </Card>
 
-  <Card title="Payment Links Overview" href="doc:payment-links-overview" icon="far fa-file-lines">
+  <Card title="Payment Links Overview" href="https://docs.payu.in/docs/payment-links" icon="far fa-file-lines" target="_blank">
     Full overview — use cases, supported payment methods, and API access.
   </Card>
 </Cards>
