@@ -47,15 +47,11 @@ These are the Payment Links APIs.
 ### Authentication
 
 <Cards>
-  <Card title="Get Access Token" href="ref:get-token-api-for-payment-links">
-    `POST /oauth/token`
-
+  <Card title="Get an Access Token" href="ref:get-token-api-for-payment-links">
     Generate a Bearer token with one or more Payment Links scopes. Required before calling any other endpoint.
   </Card>
 
-  <Card title="Revoke Token API" href="ref:revoke-token-api-payment-links">
-    `POST /oauth/revoke`
-
+  <Card title="Revoke a Token" href="ref:revoke-token-api-payment-links">
     Invalidate an existing access token before its natural expiry.
   </Card>
 </Cards>
@@ -63,15 +59,11 @@ These are the Payment Links APIs.
 ### Create & Share
 
 <Cards>
-  <Card title="Create Payment Link" href="ref:create-payment-links">
-    `POST /payment-links`
-
+  <Card title="Create a Payment Link" href="ref:create-payment-links">
     Generate a new shareable payment link. Supports one-time, partial-payment, open-amount, recurring (SI), and eNACH links.
   </Card>
 
-  <Card title="Share Payment Link" href="ref:share_payment_link_api">
-    `POST /payment-links/{invoiceNumber}/notify`
-
+  <Card title="Share a Payment Link" href="ref:share_payment_link_api">
     Send an existing payment link to a customer via SMS, email, or WhatsApp.
   </Card>
 </Cards>
@@ -80,20 +72,14 @@ These are the Payment Links APIs.
 
 <Cards>
   <Card title="Fetch All Payment Links" href="ref:get-all-payment-links-api">
-    `GET /payment-links`
-
     List all payment links for a date range. Supports pagination, sorting, and filtering by status (`active`, `inactive`, `expired`).
   </Card>
 
-  <Card title="Fetch Payment Link" href="ref:get-single-payment-link">
-    `GET /payment-links/{invoiceNumber}`
-
+  <Card title="Fetch a Payment Link" href="ref:get-single-payment-link">
     Retrieve the full details and current status of a specific payment link by its invoice number.
   </Card>
 
   <Card title="Get Transaction Details" href="ref:get-transaction-details-api">
-    `GET /payment-links/{invoiceNumber}/transactions`
-
     Fetch the payment history for a specific link — including all attempts, their status, and transaction IDs.
   </Card>
 </Cards>
@@ -101,10 +87,12 @@ These are the Payment Links APIs.
 ### Manage
 
 <Cards>
-  <Card title="Update / Cancel Payment Link" href="ref:change-status-of-a-payment-link-api">
-    `PUT /payment-links/{invoiceNumber}`
-
+  <Card title="Update a Payment Link" href="ref:change-status-of-a-payment-link-api">
     Update a link's amount, expiry date, partial payment settings, or UDF fields. Set `active: false` to cancel/deactivate a link.
+  </Card>
+
+  <Card title="Cancel a Payment Link">
+    Cancel an existing Payment Link.
   </Card>
 </Cards>
 
