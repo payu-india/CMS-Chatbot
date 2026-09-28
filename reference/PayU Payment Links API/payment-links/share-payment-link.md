@@ -9,3 +9,15 @@ next:
   description: Explore related information and resources.
 ---
 Use this endpoint to resend a payment link notification to a customer. At least one of `viaEmail`,`viaSms`, or `viaWhatsapp` must be `true`. The customer's contact details are taken from the values stored on the link creation time.
+
+***
+
+<Cards>
+  <Card title="Method">
+    POST
+  </Card>
+
+  <Card title="Endpoint">
+    /payment-links/{invoiceNumber}/notify
+  </Card>
+</Cards>
