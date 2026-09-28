@@ -103,7 +103,7 @@ These are the Payment Links APIs.
 A typical payment links integration flow looks like this:'
 
 <Accordion title="Step 1. Generate a Token" icon="fad fa-key-skeleton-left-right">
-  Call `/oauth/token` with your `client_id`, `client_secret`, and the scopes you need.
+  Call the <Anchor target="_blank" href="https://docs.payu.in/v3.0/reference/get-access-token">Get an Access Token</Anchor> API with your `client_id`, `client_secret`, and the scopes you need.
 </Accordion>
 
 <Accordion title="Create the Link" icon="fad fa-link">
