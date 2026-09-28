@@ -61,7 +61,7 @@ Check this video to see how PayU Payment Links work: _should decide whether to k
                 }
                 </style>
 
-                <button onclick="window.open('https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/collection/rocz44o/payu-hosted-checkout-collection-complete-integration', '_blank')" 
+                <button onclick="window.open('https://docs.payu.in/docs/create-a-payment-link#how-do-i-create-a-payment-link', '_blank')" 
                         class="tooltip-btn" 
                         data-tooltip="Click to see steps to create your first payment link.">
                     Create your first payment link →
