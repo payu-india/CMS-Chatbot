@@ -1755,25 +1755,9 @@ paths:
                     error_description: The access token does not have the required scope.
   /payment-links/{invoiceNumber}/transactions:
     get:
-      summary: Get Transaction Details
+      summary: Fetch Transaction Details
       operationId: GetTransactionDetailsAPI
-      description: >
-        Fetch all payment attempts — successful, failed, and pending — recorded
-        against
-
-        a payment link.
-
-
-        Use this to verify payment completion, reconcile partial payments, or
-        display
-
-        payment history. An empty `result` array is a valid success response
-        when no
-
-        payments have been attempted yet.
-
-
-        **Required scope:** `read_payment_links`
+      description: ''
       tags:
         - Payment Links
       parameters:
