@@ -3,6 +3,8 @@ api:
   file: pl-test-oas.yaml
   operationId: GetAccessTokenAPI
 hidden: true
+link:
+  new_tab: false
 metadata:
   title: Generate an Access Token
 next:
