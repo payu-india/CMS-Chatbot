@@ -327,6 +327,6 @@ Use this endpoint to resend a payment link notification to a customer. At least 
   </Tab>
 
   <Tab title="Parameter Description">
-    Refer to the [Response](https://docs.payu.in/v3.0/reference/share-payment-link#response-schemas) section for a full description of all response fields.
+    Refer to the [Response](https://docs.payu.in/reference/share-payment-link#response-schemas) section for a full description of all response fields.
   </Tab>
 </Tabs>
