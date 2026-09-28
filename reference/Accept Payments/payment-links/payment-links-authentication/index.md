@@ -35,14 +35,59 @@ Payment Links APIs use OAuth 2.0 client credentials. Every API call requires a B
 
 A single token can carry up to three scopes simultaneously. You should pass them space-separated in the `scope` parameter.
 
-| Scope                  | Grants access to                                                 |
-| :--------------------- | :--------------------------------------------------------------- |
-| `create_payment_links` | Create Payment Link                                              |
-| `update_payment_links` | Update / Cancel Payment Link                                     |
-| `read_payment_links`   | Fetch Payment Link · Fetch All · Share · Get Transaction Details |
+<Table align={["left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Scope
+      </th>
+
+      <th>
+        Grants access to
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `create_payment_links`
+      </td>
+
+      <td>
+        Create a Payment Link
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `update_payment_links`
+      </td>
+
+      <td>
+        Update or Cancel a Payment Link
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `read_payment_links`
+      </td>
+
+      <td>
+        - Fetch a Payment Link
+        - Fetch All Payment Links
+        - Share a Payment Link
+        - Fetch Transaction Details
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 <Callout icon="👍" theme="okay">
   ### Request All Scopes in One Call
+
+  You can individual scope or add all scopes in one call as shown below:
 
   `scope=create_payment_links update_payment_links read_payment_links`
 </Callout>
