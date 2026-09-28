@@ -243,7 +243,7 @@ Only send the fields you want to change. Your omitted fields retain their curren
   </Tab>
 
   <Tab title="Parameter Description">
-    Refer to the [Path Params,](https://docs.payu.in/v3.0/reference/update-payment-link#path-params) [Body Params](https://docs.payu.in/v3.0/reference/update-payment-link#body-params) and [Headers](https://docs.payu.in/v3.0/reference/update-payment-link#header-params) sections for a full description of all request parameters and use cases.
+    Refer to the [Path Params,](https://docs.payu.in/reference/update-payment-link#path-params) [Headers](https://docs.payu.in/reference/update-payment-link#header-params), and [Body Params](https://docs.payu.in/reference/update-payment-link#body-params) sections for a full description of all request parameters and use cases.
   </Tab>
 </Tabs>
 
@@ -274,6 +274,6 @@ Only send the fields you want to change. Your omitted fields retain their curren
   </Tab>
 
   <Tab title="Parameter Description">
-    Refer to the [Response](https://docs.payu.in/v3.0/reference/update-payment-link#response-schemas) section for a full description of all response fields.
+    Refer to the [Response](https://docs.payu.in/reference/update-payment-link#response-schemas) section for a full description of all response fields.
   </Tab>
 </Tabs>
