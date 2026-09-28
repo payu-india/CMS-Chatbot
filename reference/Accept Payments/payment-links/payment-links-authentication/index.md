@@ -109,11 +109,11 @@ A single token can carry up to three scopes simultaneously. You should pass them
 These are the authentication APIs
 
 <Cards>
-  <Card title="Generate an Access Token" href="https://docs.payu.in/reference/generate-access-token" target="_blank">
+  <Card title="Generate an Access Token" href="https://docs.payu.in/reference/generate-access-token" icon="fad fa-key-skeleton-left-right" target="_blank">
     Exchange your `client_id` and `client_secret` for a scoped Bearer token. Call this before any Payment Links API.
   </Card>
 
-  <Card title="Revoke a Token" href="https://docs.payu.in/reference/revoke-token" target="_blank">
+  <Card title="Revoke a Token" href="https://docs.payu.in/reference/revoke-token" icon="fad fa-octagon-exclamation" target="_blank">
     Invalidate a token before it naturally expires. Use this when rotating credentials or if a token may have been exposed.
   </Card>
 </Cards>
