@@ -3,6 +3,10 @@ api:
   file: pl-test-oas.yaml
   operationId: FetchPaymentLinkAPI
 hidden: false
+metadata:
+  title: Fetch a Payment Link
+next:
+  description: Explore related information and resources.
 ---
 Use this endpoint to retrieve the current state and all details of a payment link by its `invoiceNumber`.<br />
 
