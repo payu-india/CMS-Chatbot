@@ -26,17 +26,17 @@ Use this endpoint to retrieve a paginated list of all payment links for your mer
 
 ## Environments
 
-| Environment                | URL                                       |
-| :------------------------- | :---------------------------------------- |
-| **Test Environment**       | `https://uatoneapi.payu.in/payment-links` |
-| **Production Environment** | `https://oneapi.payu.in/payment-links`    |
+| Environment                | URL                         |
+| :------------------------- | :-------------------------- |
+| **Test Environment**       | `https://uatoneapi.payu.in` |
+| **Production Environment** | `https://oneapi.payu.in`    |
 
 <Callout icon="🔑" theme="default">
   ### **Get your Bearer token before calling this endpoint**
 
   This API uses OAuth 2.0 — not the hash-based auth used by other PayU APIs.
 
-  1. Call [Get Access Token](ref:get-token-api-for-payment-links) with `grant_type=client_credentials` and `scope=create_payment_links`
+  1. Call the Generate an[ Access Token](ref:get-token-api-for-payment-links) token with `grant_type=client_credentials` and `scope=create_payment_links`
   2. Copy the `access_token` from the response
   3. Pass it as `Authorization: Bearer {access_token}` in every request
 
