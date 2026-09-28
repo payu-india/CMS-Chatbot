@@ -3,6 +3,10 @@ api:
   file: pl-test-oas.yaml
   operationId: GetAccessTokenAPI
 hidden: true
+metadata:
+  title: Generate an Access Token
+next:
+  description: Explore related information and resources.
 ---
 Use this endpoint to generate and cache the token. You do not have to generate a new token before every API call.<br />
 
