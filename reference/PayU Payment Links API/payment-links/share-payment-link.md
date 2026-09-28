@@ -305,7 +305,7 @@ Use this endpoint to resend a payment link notification to a customer. At least 
   </Tab>
 
   <Tab title="Parameter Description">
-    Refer to the [Body Params](ref:create-payment-links#body-params) section for a full description of all request parameters and use cases.
+    Refer to the Path Params section for a full description of all request parameters and use cases.
   </Tab>
 </Tabs>
 
