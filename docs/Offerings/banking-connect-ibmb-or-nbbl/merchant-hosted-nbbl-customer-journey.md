@@ -1,7 +1,7 @@
 ---
 title: Merchant Hosted Customer Journey - Banking Connect
 deprecated: false
-hidden: true
+hidden: false
 link:
   new_tab: false
 metadata:

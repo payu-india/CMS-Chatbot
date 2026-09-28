@@ -1,7 +1,7 @@
 ---
 title: ' PayU Hosted Customer Journey - Banking Connect'
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
