@@ -40,7 +40,7 @@ A single token can carry up to three scopes simultaneously. You should pass them
 | `read_payment_links`   | Fetch Payment Link · Fetch All · Share · Get Transaction Details |
 
 <Callout icon="👍" theme="okay">
-  ### Request all scopes in one call
+  ### Request All Scopes in One Call
 
   `scope=create_payment_links update_payment_links read_payment_links`
 </Callout>
@@ -49,21 +49,21 @@ A single token can carry up to three scopes simultaneously. You should pass them
 
 ## Endpoints
 
-<Cards>
-  <Card title="Get Access Token" href="ref:get-token-api-for-payment-links">
-    `POST /oauth/token`
+These are the authentication APIs
 
+<Cards>
+  <Card title="Get an Access Token" href="ref:get-token-api-for-payment-links">
     Exchange your `client_id` and `client_secret` for a scoped Bearer token. Call this before any Payment Links API.
   </Card>
 
-  <Card title="Revoke Token API" href="ref:revoke-token-api-payment-links">
-    `POST /oauth/revoke`
-
+  <Card title="Revoke a Token" href="ref:revoke-token-api-payment-links">
     Invalidate a token before it naturally expires. Use this when rotating credentials or if a token may have been exposed.
   </Card>
 </Cards>
 
-## How it works
+***
+
+## How It Works
 
 <Accordion title="1. Generate a Token" icon="fa-key">
   Call `POST /oauth/token` with your `client_id`, `client_secret`, `grant_type: client_credentials`, and the scopes your integration needs.
