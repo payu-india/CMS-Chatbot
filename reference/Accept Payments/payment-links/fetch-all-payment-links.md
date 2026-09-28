@@ -150,7 +150,7 @@ Use this endpoint to retrieve a paginated list of all payment links for your mer
   </Tab>
 
   <Tab title="Parameter Description">
-    Refer to the [Query Params](https://docs.payu.in/v3.0/reference/fetchallpaymentlinksapi#query-params) section for a full description of all request parameters and use cases.
+    Refer to the [Query Params](https://docs.payu.in/reference/fetch-all-payment-links#query-params) and [Headers](https://docs.payu.in/reference/fetch-all-payment-links#header-params) sections for a full description of all request parameters and use cases.
   </Tab>
 </Tabs>
 
