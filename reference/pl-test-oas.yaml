@@ -1692,187 +1692,6 @@ paths:
                   value:
                     error: insufficient_scope
                     error_description: The access token does not have the required scope.
-  /payment-links/{invoiceNumber}/transactions:
-    get:
-      summary: Fetch Transaction Details
-      operationId: GetTransactionDetailsAPI
-      description: ''
-      tags:
-        - Payment Links
-      parameters:
-        - name: Authorization
-          in: header
-          required: true
-          description: >-
-            Bearer token obtained from `POST /oauth/token`. Format: `Bearer
-            {access_token}`
-          schema:
-            type: string
-            example: Bearer {{access_token}}
-        - name: merchantId
-          in: header
-          required: true
-          description: Your PayU Merchant ID.
-          schema:
-            type: string
-            example: '{{merchantId}}'
-        - name: invoiceNumber
-          in: path
-          required: true
-          description: The `invoiceNumber` of the payment link.
-          schema:
-            type: string
-            example: ORD-2026-88421
-      responses:
-        '200':
-          description: Request processed successfully.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: integer
-                    description: '`0` = success.'
-                    example: 0
-                  message:
-                    type: string
-                    example: success
-                  result:
-                    type: array
-                    nullable: true
-                    items:
-                      type: object
-                      properties:
-                        txnid:
-                          type: string
-                          description: PayU's unique transaction ID.
-                          example: '7019203456789'
-                        amount:
-                          type: number
-                          description: Amount paid in this transaction, in INR.
-                          example: 1499
-                        status:
-                          type: string
-                          description: >
-                            Transaction outcome.
-
-
-                            - `success` — Payment was captured.
-
-                            - `failure` — Payment was declined or failed.
-
-                            - `pending` — Awaiting bank confirmation (common for
-                            net banking and UPI).
-                          example: success
-                        mode:
-                          type: string
-                          description: >-
-                            Payment mode: `UPI`, `CC` (credit card), `DC` (debit
-                            card), `NB` (net banking), `ENACH`, etc.
-                          example: UPI
-                        paymentSource:
-                          type: string
-                          description: >-
-                            Always `PaymentLink` for transactions originating
-                            from a payment link.
-                          example: PaymentLink
-                        addedon:
-                          type: string
-                          description: >-
-                            Timestamp when the transaction was recorded in
-                            `YYYY-MM-DD HH:mm:ss`.
-                          example: '2026-09-23 14:32:11'
-              examples:
-                successWithTransaction:
-                  summary: Payment recorded
-                  value:
-                    status: 0
-                    message: success
-                    result:
-                      - txnid: '7019203456789'
-                        amount: 1499
-                        status: success
-                        mode: UPI
-                        paymentSource: PaymentLink
-                        addedon: '2026-09-23 14:32:11'
-                partialPayments:
-                  summary: Two partial payments
-                  value:
-                    status: 0
-                    message: success
-                    result:
-                      - txnid: '7019203456789'
-                        amount: 1000
-                        status: success
-                        mode: UPI
-                        paymentSource: PaymentLink
-                        addedon: '2026-09-23 14:32:11'
-                      - txnid: '7019203456790'
-                        amount: 499
-                        status: success
-                        mode: CC
-                        paymentSource: PaymentLink
-                        addedon: '2026-09-25 09:15:44'
-                noTransactions:
-                  summary: No payments yet
-                  value:
-                    status: 0
-                    message: success
-                    result: []
-        '400':
-          description: >-
-            Validation or business-rule failure. The response body uses `status:
-            -1` and `message`.
-
-
-            > **Note:** PayU Payment Links API always returns HTTP 200. This
-            block documents error patterns returned when `status: -1`.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: integer
-                    example: -1
-                  message:
-                    type: string
-                    example: Payment link not found.
-                  result:
-                    nullable: true
-                    example: null
-              examples:
-                notFound:
-                  summary: Link not found
-                  value:
-                    status: -1
-                    message: Payment link not found.
-                    result: null
-        '401':
-          description: Authentication failure.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    example: invalid_token
-                  error_description:
-                    type: string
-                    example: The access token is invalid or has expired.
-              examples:
-                expiredToken:
-                  summary: Token expired or revoked
-                  value:
-                    error: invalid_token
-                    error_description: The access token is invalid or has expired.
-                insufficientScope:
-                  summary: Missing required scope
-                  value:
-                    error: insufficient_scope
-                    error_description: The access token does not have the required scope.
   /oauth/revoke:
     post:
       summary: Revoke a Token
@@ -2275,6 +2094,189 @@ paths:
                   value:
                     status: -1
                     message: At least one notification channel must be selected.
+        '401':
+          description: Authentication failure.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: invalid_token
+                  error_description:
+                    type: string
+                    example: The access token is invalid or has expired.
+              examples:
+                expiredToken:
+                  summary: Token expired or revoked
+                  value:
+                    error: invalid_token
+                    error_description: The access token is invalid or has expired.
+                insufficientScope:
+                  summary: Missing required scope
+                  value:
+                    error: insufficient_scope
+                    error_description: The access token does not have the required scope.
+  /payment-links/{invoiceNumber}/transactions:
+    get:
+      summary: Fetch Transaction Details
+      operationId: GetTransactionDetailsAPI
+      description: ''
+      tags:
+        - Payment Links
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          description: >-
+            The bearer token obtained by calling the Generate an Access Token
+            API in the `Bearer {access_token}` format.
+          schema:
+            type: string
+            example: Bearer {{access_token}}
+        - name: merchantId
+          in: header
+          required: true
+          description: Your unique PayU merchant ID.
+          schema:
+            type: string
+            example: '{{merchantId}}'
+        - name: invoiceNumber
+          in: path
+          required: true
+          description: The unique invoice number of the payment link.
+          schema:
+            type: string
+            example: ORD-2026-88421
+      responses:
+        '200':
+          description: Request processed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    description: The status of the API call.
+                    example: 0
+                  message:
+                    type: string
+                    example: success
+                    description: The status message.
+                  result:
+                    type: array
+                    nullable: true
+                    items:
+                      type: object
+                      properties:
+                        txnid:
+                          type: string
+                          description: PayU's unique transaction ID.
+                          example: '7019203456789'
+                        amount:
+                          type: number
+                          description: Amount paid in this transaction, in INR.
+                          example: 1499
+                        status:
+                          type: string
+                          description: >
+                            Transaction outcome.
+
+
+                            - `success` — Payment was captured.
+
+                            - `failure` — Payment was declined or failed.
+
+                            - `pending` — Awaiting bank confirmation (common for
+                            net banking and UPI).
+                          example: success
+                        mode:
+                          type: string
+                          description: >-
+                            Payment mode: `UPI`, `CC` (credit card), `DC` (debit
+                            card), `NB` (net banking), `ENACH`, etc.
+                          example: UPI
+                        paymentSource:
+                          type: string
+                          description: >-
+                            Always `PaymentLink` for transactions originating
+                            from a payment link.
+                          example: PaymentLink
+                        addedon:
+                          type: string
+                          description: >-
+                            Timestamp when the transaction was recorded in
+                            `YYYY-MM-DD HH:mm:ss`.
+                          example: '2026-09-23 14:32:11'
+                    description: The fetched payment links
+              examples:
+                successWithTransaction:
+                  summary: Payment recorded
+                  value:
+                    status: 0
+                    message: success
+                    result:
+                      - txnid: '7019203456789'
+                        amount: 1499
+                        status: success
+                        mode: UPI
+                        paymentSource: PaymentLink
+                        addedon: '2026-09-23 14:32:11'
+                partialPayments:
+                  summary: Two partial payments
+                  value:
+                    status: 0
+                    message: success
+                    result:
+                      - txnid: '7019203456789'
+                        amount: 1000
+                        status: success
+                        mode: UPI
+                        paymentSource: PaymentLink
+                        addedon: '2026-09-23 14:32:11'
+                      - txnid: '7019203456790'
+                        amount: 499
+                        status: success
+                        mode: CC
+                        paymentSource: PaymentLink
+                        addedon: '2026-09-25 09:15:44'
+                noTransactions:
+                  summary: No payments yet
+                  value:
+                    status: 0
+                    message: success
+                    result: []
+        '400':
+          description: >-
+            Validation or business-rule failure. The response body uses `status:
+            -1` and `message`.
+
+
+            > **Note:** PayU Payment Links API always returns HTTP 200. This
+            block documents error patterns returned when `status: -1`.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: -1
+                  message:
+                    type: string
+                    example: Payment link not found.
+                  result:
+                    nullable: true
+                    example: null
+              examples:
+                notFound:
+                  summary: Link not found
+                  value:
+                    status: -1
+                    message: Payment link not found.
+                    result: null
         '401':
           description: Authentication failure.
           content:
