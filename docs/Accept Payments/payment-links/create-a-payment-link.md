@@ -50,13 +50,13 @@ Create a <Anchor target="_blank" href="https://docs.payu.in/update/docs/payment-
   <Card title="A PayU Merchant Account" icon="far fa-table-cells-column-unlock">
     <Columns layout="fixed">
       <Column>
-        [Set up your account](doc:set-up-your-account) if you have not already.
+        <Anchor target="_blank" href="https://docs.payu.in/docs/set-up-your-account">Set up your account</Anchor> if you have not already.
       </Column>
     </Columns>
   </Card>
 
   <Card title="Dashboard Access" icon="far fa-pager">
-    Log in to the [PayU Dashboard](https://onboarding.payu.in/) to check whether you have access to the PayU dashboard before you start.
+    Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> to check whether you have access to the PayU dashboard before you start.
   </Card>
 </Cards>
 
@@ -417,7 +417,7 @@ Use bulk upload to create hundreds of payment links in one go. Each row in the C
   <Card title="For Developers" icon="far fa-code">
     Need to create or manage payment links from your own system — CRM, ERP, or billing tool? Use **Payment Links APIs** to create, share, fetch, and deactivate links programmatically with OAuth2 authentication.
 
-    → [Get an API token](doc:api-auth-token) · [Create a link via API](doc:api-create-share) · [Fetch & manage links via API](doc:api-fetch)
+    → <Anchor target="_blank" href="https://docs.payu.in/reference/generate-access-token">Generate an Access Token</Anchor> · <Anchor target="_blank" href="https://docs.payu.in/reference/create-payment-link">Create a Payment Link</Anchor> · <Anchor target="_blank" href="https://docs.payu.in/reference/payment-links#fetch">Fetch</Anchor> and <Anchor target="_blank" href="https://docs.payu.in/reference/payment-links#manage">manage</Anchor> links via API
   </Card>
 </Cards>
 
@@ -441,12 +441,12 @@ After your customer makes the payment:
 
 ## What Do I Do If Something Goes Wrong?
 
-| Problem                                         | Fix                                                                                                                                      |
-| ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| Customer says the link isn't opening            | Check the link status in your Dashboard — it may be expired or deactivated.                                                              |
-| Customer didn't receive the SMS or email        | Confirm phone/email were entered and the notification toggle was on before creation. Reshare from **Actions > Share** in your Dashboard. |
-| Customer paid but Dashboard still shows Pending | Wait 5–10 minutes and refresh. See [Payment Links Troubleshooting](doc:payment-links-troubleshooting).                                   |
-| Wrong amount or details on the link             | Deactivate it and create a new one — links cannot be edited after creation. Duplicate the link to reuse the settings.                    |
+| Problem                                         | Fix                                                                                                                                                                                        |
+| ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Customer says the link isn't opening            | Check the link status in your Dashboard — it may be expired or deactivated.                                                                                                                |
+| Customer didn't receive the SMS or email        | Confirm phone/email were entered and the notification toggle was on before creation. Reshare from **Actions > Share** in your Dashboard.                                                   |
+| Customer paid but Dashboard still shows Pending | Wait 5–10 minutes and refresh. See <Anchor target="_blank" href="https://docs.payu.in/docs/payment-links-errors-and-troubleshooting">Errors and Troubleshooting</Anchor> for more details. |
+| Wrong amount or details on the link             | Deactivate it and create a new one — links cannot be edited after creation. Duplicate the link to reuse the settings.                                                                      |
 
 ***
 
@@ -472,12 +472,6 @@ It depends on&#x20;
       Respond to customer disputes and chargebacks raised through their bank — track status and submit evidence from the Dashboard
     </Card>
   </Cards>
-
-***
-
-## Sandbox for Your Testing
-
-<PayUPaymentLinksWizard />
 
 ***
 
