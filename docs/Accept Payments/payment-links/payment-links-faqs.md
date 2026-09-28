@@ -194,9 +194,9 @@ next:
 5. #### Can I set an expiry date on a payment link?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Yes. The default expiry is 1 year. You can set any future date during creation. Once expired, the link cannot accept payments.
+  Yes. The default expiry is 1 year. You can set any future date during creation. Once expired, the link cannot accept payments.<br />
 
-  To extend expiry after creation: via API, use the <Anchor target="_blank" href="doc:api-cancel-status">Cancel / Change Status API</Anchor> with an updated `expiryDate`. From the Dashboard, you cannot extend expiry directly — duplicate the link with a new expiry date and deactivate the original.
+  To extend expiry after creation via API, use the <Anchor target="_blank" href="doc:api-cancel-status">Cancel / Change Status API</Anchor> with an updated `expiryDate`. From the Dashboard, you cannot extend expiry directly. You should <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#what-can-i-do-with-a-payment-link-after-it-is-created">duplicate</Anchor> the link with a new expiry date and <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#what-can-i-do-with-a-payment-link-after-it-is-created">deactivate</Anchor> the original.
 </Accordion>
 
 ***
