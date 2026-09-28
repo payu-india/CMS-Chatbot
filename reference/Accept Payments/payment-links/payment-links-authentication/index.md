@@ -113,7 +113,7 @@ These are the authentication APIs
 ## How It Works
 
 <Accordion title="1. Generate a Token" icon="fa-key">
-  Call Get an Access Token API with your `client_id`, `client_secret`, `grant_type: client_credentials`, and the scopes your integration needs.
+  Call <Anchor target="_blank" href="https://docs.payu.in/reference/generate-access-token">Generate an Access Token</Anchor> API with your `client_id`, `client_secret`, `grant_type: client_credentials`, and the scopes your integration needs.
 </Accordion>
 
 <Accordion title="2. Cache the Token" icon="fa-database">
@@ -133,7 +133,7 @@ These are the authentication APIs
 </Accordion>
 
 <Accordion title="5. Revoke if Needed" icon="fa-ban">
-  Call the Revoke a Token API to invalidate a token early if needed. For example, when rotating credentials or if a token may have been exposed.
+  Call the <Anchor target="_blank" href="https://docs.payu.in/reference/revoke-token">Revoke a Token</Anchor> API to invalidate a token early if needed. For example, when rotating credentials or if a token may have been exposed.
 </Accordion>
 
 ##
