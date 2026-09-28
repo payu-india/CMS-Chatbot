@@ -1071,7 +1071,7 @@ paths:
                             format: float
                             description: The amount associated with the link.
                           active:
-                            type: string
+                            type: boolean
                             description: >-
                               Determines whether the link is active. Possible
                               values:
@@ -1084,7 +1084,7 @@ paths:
                             format: date-time
                             description: The expiry date and time of the link.
                           isAmountFilledByCustomer:
-                            type: number
+                            type: boolean
                             description: >-
                               Determines whether the amount to be filled by the
                               customer.
@@ -1094,6 +1094,12 @@ paths:
 
                               - `false`: The amount will not be filled by the
                               customer
+                          status:
+                            type: boolean
+                            description: |-
+                              The status of the link. Possible values:
+                              - `true`
+                              - `false`
                         description: The list of payment links.
                     description: Contains the fetch result details.
               examples:
