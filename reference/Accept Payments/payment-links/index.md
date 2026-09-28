@@ -22,3 +22,137 @@ next:
       title: Fetch Payment Link
       type: endpoint
 ---
+The <Anchor target="_blank" href="https://docs.payu.in/docs/payment-links">Payment Links</Anchor> APIs let you issue payment requests directly from your backend and deliver them to customers over SMS, email, or WhatsApp. Your customer receives a URL, taps it, and pays the amount.
+
+<Callout icon="📘" theme="info">
+  ### **Prefer a No-code Approach?**
+
+  Payment Links can be created and managed entirely from the <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link">PayU Dashboard</Anchor>. If you would rather skip the integration and get started immediately, see <Anchor target="_blank" href="https://docs.payu.in/docs/payment-links">Payment Links</Anchor>.
+</Callout>
+
+***
+
+## Authentication
+
+All Payment Links APIs use **OAuth 2.0 Bearer token** authentication.
+
+| Environment | Base URL                    |
+| :---------- | :-------------------------- |
+| Test        | `https://uatoneapi.payu.in` |
+| Production  | `https://oneapi.payu.in`    |
+
+Each token is scoped to specific operations. You must request the right scope when generating the token, and include the token in every API call as `Authorization: Bearer {access_token}`.
+
+| Scope                  | Required for                                                      |
+| :--------------------- | :---------------------------------------------------------------- |
+| `create_payment_links` | Create Payment Link                                               |
+| `update_payment_links` | Update / Cancel Payment Link                                      |
+| `read_payment_links`   | Fetch Payment Link · Fetch All Payment Links · Share Payment Link |
+
+<Callout icon="📘" theme="info">
+  ### **Mutiple Scopes**:&#x20;
+
+  A single token can carry up to three scopes simultaneously. Pass scopes space-separated:<br />`scope=create_payment_links update_payment_links read_payment_links`
+</Callout>
+
+***
+
+## Endpoints
+
+These are the Payment Links APIs.
+
+### Authentication
+
+<Cards>
+  <Card title="Get an Access Token" href="https://docs.payu.in/v3.0/reference/get-access-token" target="_blank">
+    Generate a Bearer token with one or more Payment Links scopes. Required before calling any other endpoint.
+  </Card>
+
+  <Card title="Revoke a Token" href="https://docs.payu.in/v3.0/reference/revoke-token" target="_blank">
+    Invalidate an existing access token before its natural expiry.
+  </Card>
+</Cards>
+
+### Create and Share
+
+<Cards>
+  <Card title="Create a Payment Link" href="https://docs.payu.in/v3.0/reference/create-payment-link" target="_blank">
+    Generate a new shareable payment link. Supports one-time, partial-payment, open-amount, recurring (SI), and eNACH links.
+  </Card>
+
+  <Card title="Share a Payment Link" href="https://docs.payu.in/v3.0/reference/share-payment-link" target="_blank">
+    Send an existing payment link to a customer via SMS, email, or WhatsApp.
+  </Card>
+</Cards>
+
+### Fetch
+
+<Cards>
+  <Card title="Fetch All Payment Links" href="https://docs.payu.in/v3.0/reference/fetch-all-payment-links" target="_blank">
+    List all payment links for a date range. Supports pagination, sorting, and filtering by status (`active`, `inactive`, `expired`).
+  </Card>
+
+  <Card title="Fetch a Payment Link" href="https://docs.payu.in/v3.0/reference/fetch-payment-link" target="_blank">
+    Retrieve the full details and current status of a specific payment link by its invoice number.
+  </Card>
+
+  <Card title="Fetch Transaction Details" href="https://docs.payu.in/v3.0/reference/fetch-transaction-details" target="_blank">
+    Fetch the payment history for a specific link — including all attempts, their status, and transaction IDs.
+  </Card>
+</Cards>
+
+### Manage
+
+<Cards>
+  <Card title="Update a Payment Link" href="https://docs.payu.in/v3.0/reference/update-payment-link" target="_blank">
+    Update a link's amount, expiry date, partial payment settings, or UDF fields. Set `active: false` to cancel/deactivate a link.
+  </Card>
+
+  <Card title="Cancel a Payment Link" href="https://docs.payu.in/v3.0/reference/cancel-payment-link" target="_blank">
+    Cancel an existing Payment Link.
+  </Card>
+</Cards>
+
+***
+
+## How It Works
+
+A typical payment links integration flow looks like this:'
+
+<Accordion title="Step 1. Generate a Token" icon="fad fa-key-skeleton-left-right">
+  Call the <Anchor target="_blank" href="https://docs.payu.in/v3.0/reference/get-access-token">Get an Access Token</Anchor> API with your `client_id`, `client_secret`, and the scopes you need.
+</Accordion>
+
+<Accordion title="Create the Link" icon="fad fa-link">
+  Call the Create a Payment Link API with the amount, description, customer details, and delivery preferences (`viaEmail`, `viaSms`, `viaWhatsapp`).
+</Accordion>
+
+<Accordion title="Share the Link" icon="fad fa-share-nodes">
+  Either pass delivery flags at creation time, or call the Share a Payment Link API later to send the link on-demand.
+</Accordion>
+
+<Accordion title="Receive Payment Notification" icon="fad fa-hand-point-left">
+  PayU sends a webhook to your server when the customer pays. Always verify payment server-side.
+</Accordion>
+
+<Accordion title="Fetch Status" icon="fab fa-searchengin">
+  Call the Fetch all Payment Links or Fetch Transaction Details to reconcile payment state in your system.
+</Accordion>
+
+***
+
+## Webhooks
+
+When a customer completes or attempts payment via a link, PayU dispatches a webhook to the endpoint configured in your PayU Dashboard.
+
+| Event             | Triggered when                                      |
+| :---------------- | :-------------------------------------------------- |
+| `payment_success` | Customer completes payment via the link             |
+| `payment_failure` | Payment attempt fails (bank decline, timeout, drop) |
+| `payment_pending` | Payment initiated but awaiting bank confirmation    |
+
+<Callout icon="📘" theme="info">
+  ### Webhooks
+
+  For the full webhook payload, signature verification, and retry policy, see [Payment Events](doc:webhook-events-and-sample-payloads).
+</Callout>
