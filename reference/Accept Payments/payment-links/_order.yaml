@@ -3,6 +3,6 @@
 - fetch-all-payment-links
 - fetch-payment-link
 - update-payment-link
-- cancelpaymentlinkapi
+- cancel-payment-link
 - sharepaymentlinkapi
 - gettransactiondetailsapi
