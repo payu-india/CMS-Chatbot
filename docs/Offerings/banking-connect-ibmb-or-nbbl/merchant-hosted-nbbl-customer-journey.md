@@ -19,27 +19,6 @@ If the selected bank app is not installed, or the app-first path is not enabled,
 
 ## Payment flows
 
-### Mobile app-intent flow
-
-1. The customer selects a bank under NetBanking.
-2. PayU offers the option to pay through the selected bank app.
-3. PayU opens the installed bank app through a deep link.
-4. The customer authenticates in the bank app with biometrics or an app MPIN.
-5. The customer confirms the debit account.
-6. The customer returns to the merchant with the payment result.
-
-#### iOS Device Customer Journey
-
-
-<Image src="https://files.readme.io/37c2b22f3677ff5fdfa74ea4cdf0351e06b6924f4f569e4e02c7994f8fc616a0-seamless-ios-flow_1.png" border={true} />
-
-
-#### Android Device Customer Journey
-
-![](https://files.readme.io/da9dfa254751d5e7c0901e5fba248c4039624fee09b48841c1272559f5c2b5c9-seamless-android-payment-flow.png)
-
-<br />
-
 ### Desktop QR flow
 
 1. The customer selects a bank under NetBanking.
@@ -53,6 +32,31 @@ If the selected bank app is not installed, or the app-first path is not enabled,
 ![](https://files.readme.io/654ab97c2c1e813d651d2852842a01d9d83556e3135ebb6e8a1581ff5122ed48-Seamless_web_checkout_flow.png)
 
 <br />
+
+### Mobile app-intent flow
+
+1. The customer selects a bank under NetBanking.
+2. PayU offers the option to pay through the selected bank app.
+3. PayU opens the installed bank app through a deep link.
+4. The customer authenticates in the bank app with biometrics or an app MPIN.
+5. The customer confirms the debit account.
+6. The customer returns to the merchant with the payment result.
+
+#### iOS Device Customer Journey
+
+
+<Image src="https://files.readme.io/59b07a2e46f06543352360d8838b2c0592f0ff84d677e662accc8f6c7f2550e4-Seamless_iOS_payment_flow_final.png" width="400px" border={true} framed={true} />
+
+
+#### Android Device Customer Journey
+
+
+<Image src="https://files.readme.io/9b6c32b4942c08f21c5e01992d4cdad7bcdb5ee58edf8e39a9e47dfec5e81c83-Seamless_Android_payment_flow_final.png" border={true} />
+
+
+<br />
+
+###
 
 ### Website fallback
 
