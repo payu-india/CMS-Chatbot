@@ -53,7 +53,7 @@ paths:
                   token: '{{access_token}}'
       responses:
         '200':
-          description: Token revoked successfully. Response body is empty.
+          description: Token revoked successfully.
         '401':
           description: Authentication failure.
           content:
