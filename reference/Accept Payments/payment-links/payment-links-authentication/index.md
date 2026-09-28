@@ -5,10 +5,20 @@ hidden: true
 link:
   new_tab: false
 metadata:
-  title: Authentication
+  title: Authentication | Payment Links API
   description: Generate and revoke OAuth 2.0 Bearer tokens.
 next:
   description: Explore related information and resources.
+  pages:
+    - slug: payment-links
+      title: Payment Links
+      type: basic
+    - slug: generate-access-token
+      title: Generate an Access Token
+      type: endpoint
+    - slug: revoke-token
+      title: Revoke a Token
+      type: endpoint
 ---
 Payment Links APIs use OAuth 2.0 client credentials. Every API call requires a Bearer token in the `Authorization` header.
 
