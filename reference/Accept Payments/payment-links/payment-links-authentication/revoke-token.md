@@ -3,6 +3,8 @@ api:
   file: pl-test-oas.yaml
   operationId: RevokeTokenAPI
 hidden: true
+link:
+  new_tab: false
 metadata:
   title: Revoke a Token
 next:
