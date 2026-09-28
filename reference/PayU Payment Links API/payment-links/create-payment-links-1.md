@@ -28,10 +28,10 @@ Use this endpoint to generate a shareable payment link and optionally deliver it
 
 ## Environments
 
-| Environment                | URL                                       |
-| :------------------------- | :---------------------------------------- |
-| **Test Environment**       | `https://uatoneapi.payu.in/payment-links` |
-| **Production Environment** | `https://oneapi.payu.in/payment-links`    |
+| Environment                | URL                         |
+| :------------------------- | :-------------------------- |
+| **Test Environment**       | `https://uatoneapi.payu.in` |
+| **Production Environment** | `https://oneapi.payu.in`    |
 
 ***
 
