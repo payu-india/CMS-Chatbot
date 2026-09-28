@@ -36,11 +36,11 @@ The revoked token becomes invalid immediately. After revoking, generate a newtok
 <Tabs>
   <Tab title="Request Payload">
     ```curl
-    curl --location --request POST 'https://uat-accounts.payu.in/oauth/revoke' \
-    --header 'Content-Type: application/x-www-form-urlencoded' \
-    --data-urlencode 'client_id={{client_id}}' \
-    --data-urlencode 'client_secret={{client_secret}}' \
-    --data-urlencode 'token={{access_token}}'
+    curl --location 'https://uat-accounts.payu.in/oauth/revoke' \
+      --header 'Content-Type: application/x-www-form-urlencoded' \
+      -d 'client_id={{client_id}}' \
+      -d 'client_secret={{client_secret}}' \
+      -d 'token={{access_token}}'
     ```
     ```python
     import requests
@@ -73,6 +73,75 @@ The revoked token becomes invalid immediately. After revoking, generate a newtok
 
     // 200 with empty body = success
     console.log(response.status);
+    ```
+    ```csharp
+    using var client = new HttpClient();
+
+    var request = new HttpRequestMessage(
+        HttpMethod.Post,
+        "https://uat-accounts.payu.in/oauth/revoke"
+    );
+
+    request.Content = new FormUrlEncodedContent(new[]
+    {
+        new KeyValuePair<string, string>("client_id", "{{client_id}}"),
+        new KeyValuePair<string, string>("client_secret", "{{client_secret}}"),
+        new KeyValuePair<string, string>("token", "{{access_token}}")
+    });
+
+    var response = await client.SendAsync(request);
+    var responseBody = await response.Content.ReadAsStringAsync();
+    ```
+    ```java
+    import java.net.URI;
+    import java.net.http.HttpClient;
+    import java.net.http.HttpRequest;
+    import java.net.http.HttpResponse;
+
+    HttpClient client = HttpClient.newHttpClient();
+
+    String formData =
+        "client_id={{client_id}}" +
+        "&client_secret={{client_secret}}" +
+        "&token={{access_token}}";
+
+    HttpRequest request = HttpRequest.newBuilder()
+        .uri(URI.create("https://uat-accounts.payu.in/oauth/revoke"))
+        .header("Content-Type", "application/x-www-form-urlencoded")
+        .POST(HttpRequest.BodyPublishers.ofString(formData))
+        .build();
+
+    HttpResponse<String> response = client.send(
+        request,
+        HttpResponse.BodyHandlers.ofString()
+    );
+
+    System.out.println(response.body());
+    ```
+    ```php
+    <?php
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, [
+        CURLOPT_URL => 'https://uat-accounts.payu.in/oauth/revoke',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_POST => true,
+        CURLOPT_HTTPHEADER => [
+            'Content-Type: application/x-www-form-urlencoded'
+        ],
+        CURLOPT_POSTFIELDS => [
+            'client_id' => '{{client_id}}',
+            'client_secret' => '{{client_secret}}',
+            'token' => '{{access_token}}'
+        ]
+    ]);
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+
+    echo $response;
     ```
   </Tab>
 
