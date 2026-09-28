@@ -56,7 +56,7 @@ This section describes the customer journey for PayU Hosted integration on Deskt
 
 #### Android Device Customer Journey
 
-![](https://files.readme.io/787dbffeea6fa2da1ceffb599b45917ccba27780ad9e7db09bb4b3b120c26170-payu-hosted-android-ios-flow.png)
+![](https://files.readme.io/89bf0fcf92992285c1265b08d86552c1e60f3f5f74a48818dc32693112e3fdc3-PayU_hosted_Android_payment_flow_final.png)
 
 #### iOS Device Customer Journey
 
