@@ -62,7 +62,7 @@ Use this endpoint to deactivate an existing payment link so it can no longer acc
   <Tab title="Request Payload">
     ```curl
     curl --request DELETE \
-         --url https://uatoneapi.payu.in/payment-links/ORD-2026-88421 \
+         --url https://uatoneapi.payu.in/payment-links/{{invoice_number}} \
          --header 'Authorization: Bearer {{access_token}}' \
          --header 'accept: application/json' \
          --header 'merchantId: {{merchantId}}'
@@ -83,24 +83,24 @@ Use this endpoint to deactivate an existing payment link so it can no longer acc
     ```json Success Respone
     {
       "status": 0,
-      "message": "paymentLink generated",
-      "result": {
-        "subAmount": 1499,
-        "tax": 0,
-        "shippingCharge": 0,
-        "totalAmount": 1499,
-        "invoiceNumber": "ORD-2026-88421",
-        "paymentLink": "https://pp72.pmny.in/WxYzAbCdEfGh",
-        "description": "Order #ORD-2026-88421 – Wireless Headphones",
-        "active": true,
-        "isPartialPaymentAllowed": false,
-        "expiryDate": "2026-10-15 23:59:59",
-        "emailStatus": "sent",
-        "smsStatus": "sent"
-      },
+      "message": "string",
+      "result": {},
+      "errorCode": 170,
+      "guid": "f529e375-739f-4c8a-b5f5-0e67fa3f533f"
+    }
+    ```
+    ```json Error Response
+    {
+      "status": -1,
+      "message": "expiry cannot be less than the current date",
+      "result": null,
       "errorCode": null,
       "guid": null
     }
     ```
+  </Tab>
+
+  <Tab title="Parameter Description">
+
   </Tab>
 </Tabs>
