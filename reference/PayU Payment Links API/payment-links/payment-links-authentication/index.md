@@ -52,7 +52,7 @@ A single token can carry up to three scopes simultaneously. You should pass them
 These are the authentication APIs
 
 <Cards>
-  <Card title="Get an Access Token" href="ref:get-token-api-for-payment-links">
+  <Card title="Get an Access Token" href="https://docs.payu.in/v3.0/reference/get-access-token" target="_blank">
     Exchange your `client_id` and `client_secret` for a scoped Bearer token. Call this before any Payment Links API.
   </Card>
 
