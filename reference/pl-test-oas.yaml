@@ -1182,19 +1182,7 @@ paths:
     delete:
       summary: Cancel a Payment Link
       operationId: CancelPaymentLinkAPI
-      description: >
-        Deactivate an existing payment link so it can no longer accept payments.
-
-        Sets `active` to `false` permanently — a cancelled link cannot be
-        reactivated.
-
-
-        **Restrictions:**
-
-        - Cannot cancel a link that has already been fully paid.
-
-
-        **Required scope:** `update_payment_links`
+      description: ''
       tags:
         - Payment Links
       parameters:
