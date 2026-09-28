@@ -1179,175 +1179,6 @@ paths:
                     error: insufficient_scope
                     error_description: The access token does not have the required scope.
   /payment-links/{invoiceNumber}:
-    get:
-      summary: Fetch a Payment Link
-      operationId: FetchPaymentLinkAPI
-      description: ''
-      tags:
-        - Payment Links
-      parameters:
-        - name: Authorization
-          in: header
-          required: true
-          description: >-
-            The bearer token obtained by calling the Generate an Access Token
-            API in the `Bearer {access_token}` format.
-          schema:
-            type: string
-            example: Bearer {{access_token}}
-        - name: merchantId
-          in: header
-          required: true
-          description: Your unique PayU Merchant ID.
-          schema:
-            type: string
-            example: '{{merchantId}}'
-        - name: invoiceNumber
-          in: path
-          required: true
-          description: The unique invoice number of the payment link.
-          schema:
-            type: string
-            example: ORD-2026-88421
-      responses:
-        '200':
-          description: Request processed successfully.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: integer
-                    description: '`0` = success.'
-                    example: 0
-                  message:
-                    type: string
-                    example: success
-                  result:
-                    type: object
-                    nullable: true
-                    description: The Payment Link object.
-                    properties:
-                      invoiceNumber:
-                        type: string
-                        example: ORD-2026-88421
-                      paymentLink:
-                        type: string
-                        example: https://pp72.pmny.in/WxYzAbCdEfGh
-                      description:
-                        type: string
-                        example: 'Order #ORD-2026-88421 — Wireless Headphones'
-                      subAmount:
-                        type: integer
-                        example: 1499
-                      tax:
-                        type: integer
-                        example: 0
-                      shippingCharge:
-                        type: integer
-                        example: 0
-                      totalAmount:
-                        type: integer
-                        example: 1499
-                      active:
-                        type: boolean
-                        description: '`true` if the link is live and accepting payment.'
-                        example: true
-                      isPartialPaymentAllowed:
-                        type: boolean
-                        example: false
-                      expiryDate:
-                        type: string
-                        example: '2026-10-15 23:59:59'
-                      source:
-                        type: string
-                        example: API
-                      emailStatus:
-                        type: string
-                        description: >-
-                          `sent` if email was dispatched at creation. `not
-                          opted` if `viaEmail` was false.
-                        example: sent
-                      smsStatus:
-                        type: string
-                        description: >-
-                          `sent` if SMS was dispatched at creation. `not opted`
-                          if `viaSms` was false.
-                        example: not opted
-              examples:
-                success:
-                  summary: Link found
-                  value:
-                    status: 0
-                    message: success
-                    result:
-                      invoiceNumber: ORD-2026-88421
-                      paymentLink: https://pp72.pmny.in/WxYzAbCdEfGh
-                      description: 'Order #ORD-2026-88421 — Wireless Headphones'
-                      subAmount: 1499
-                      tax: 0
-                      shippingCharge: 0
-                      totalAmount: 1499
-                      active: true
-                      isPartialPaymentAllowed: false
-                      expiryDate: '2026-10-15 23:59:59'
-                      source: API
-                      emailStatus: sent
-                      smsStatus: not opted
-        '400':
-          description: >-
-            Validation or business-rule failure. The response body uses `status:
-            -1` and `message`.
-
-
-            > **Note:** PayU Payment Links API always returns HTTP 200. This
-            block documents error patterns returned when `status: -1`.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: integer
-                    example: -1
-                  message:
-                    type: string
-                    example: Payment link not found.
-                  result:
-                    nullable: true
-                    example: null
-              examples:
-                notFound:
-                  summary: Link not found
-                  value:
-                    status: -1
-                    message: Payment link not found.
-                    result: null
-        '401':
-          description: Authentication failure.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    example: invalid_token
-                  error_description:
-                    type: string
-                    example: The access token is invalid or has expired.
-              examples:
-                expiredToken:
-                  summary: Token expired or revoked
-                  value:
-                    error: invalid_token
-                    error_description: The access token is invalid or has expired.
-                insufficientScope:
-                  summary: Missing required scope
-                  value:
-                    error: insufficient_scope
-                    error_description: The access token does not have the required scope.
     put:
       summary: Update Payment Link
       operationId: UpdatePaymentLinkAPI
@@ -1665,6 +1496,190 @@ paths:
                   value:
                     status: -1
                     message: Cannot cancel a payment link that has already been paid.
+                    result: null
+        '401':
+          description: Authentication failure.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: invalid_token
+                  error_description:
+                    type: string
+                    example: The access token is invalid or has expired.
+              examples:
+                expiredToken:
+                  summary: Token expired or revoked
+                  value:
+                    error: invalid_token
+                    error_description: The access token is invalid or has expired.
+                insufficientScope:
+                  summary: Missing required scope
+                  value:
+                    error: insufficient_scope
+                    error_description: The access token does not have the required scope.
+    get:
+      summary: Fetch a Payment Link
+      operationId: FetchPaymentLinkAPI
+      description: ''
+      tags:
+        - Payment Links
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          description: >-
+            The bearer token obtained by calling the Generate an Access Token
+            API in the `Bearer {access_token}` format.
+          schema:
+            type: string
+            example: Bearer {{access_token}}
+        - name: merchantId
+          in: header
+          required: true
+          description: Your unique PayU Merchant ID.
+          schema:
+            type: string
+            example: '{{merchantId}}'
+        - name: invoiceNumber
+          in: path
+          required: true
+          description: The unique invoice number of the payment link.
+          schema:
+            type: string
+            example: ORD-2026-88421
+      responses:
+        '200':
+          description: Request processed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    description: '`0` = success.'
+                    example: 0
+                  message:
+                    type: string
+                    example: success
+                    description: Any message about the search.
+                  result:
+                    type: object
+                    nullable: true
+                    description: The fetched payment link details.
+                    properties:
+                      invoiceNumber:
+                        type: string
+                        example: ORD-2026-88421
+                        description: The unique invoice number.
+                      paymentLink:
+                        type: string
+                        example: https://pp72.pmny.in/WxYzAbCdEfGh
+                        description: The link shared to the customer to collect the payment
+                      description:
+                        type: string
+                        example: 'Order #ORD-2026-88421 — Wireless Headphones'
+                        description: >-
+                          The payment link description displayed on the
+                          checkout.
+                      subAmount:
+                        type: integer
+                        example: 1499
+                        description: Any sub-amount to be collected.
+                      tax:
+                        type: integer
+                        example: 0
+                        description: The tax imposed.
+                      shippingCharge:
+                        type: integer
+                        example: 0
+                        description: The shipping charges if any.
+                      totalAmount:
+                        type: integer
+                        example: 1499
+                        description: The total amount a customer should pay.
+                      active:
+                        type: boolean
+                        description: >-
+                          Determines whether the link is active. Possible
+                          values:
+
+                          - `true`: The link is active
+
+                          - `false`: The link is inactive
+                        example: true
+                      isPartialPaymentAllowed:
+                        type: boolean
+                        example: false
+                        description: Indicates whether partial payment is allowed.
+                      expiryDate:
+                        type: string
+                        example: '2026-10-15 23:59:59'
+                        description: The expiry date of the link.
+                      emailStatus:
+                        type: string
+                        description: >-
+                          `sent` if email was dispatched at creation. `not
+                          opted` if `viaEmail` was false.
+                        example: sent
+                      smsStatus:
+                        type: string
+                        description: >-
+                          `sent` if SMS was dispatched at creation. `not opted`
+                          if `viaSms` was false.
+                        example: not opted
+              examples:
+                success:
+                  summary: Link found
+                  value:
+                    status: 0
+                    message: success
+                    result:
+                      invoiceNumber: ORD-2026-88421
+                      paymentLink: https://pp72.pmny.in/WxYzAbCdEfGh
+                      description: 'Order #ORD-2026-88421 — Wireless Headphones'
+                      subAmount: 1499
+                      tax: 0
+                      shippingCharge: 0
+                      totalAmount: 1499
+                      active: true
+                      isPartialPaymentAllowed: false
+                      expiryDate: '2026-10-15 23:59:59'
+                      source: API
+                      emailStatus: sent
+                      smsStatus: not opted
+        '400':
+          description: >-
+            Validation or business-rule failure. The response body uses `status:
+            -1` and `message`.
+
+
+            > **Note:** PayU Payment Links API always returns HTTP 200. This
+            block documents error patterns returned when `status: -1`.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: -1
+                  message:
+                    type: string
+                    example: Payment link not found.
+                  result:
+                    nullable: true
+                    example: null
+              examples:
+                notFound:
+                  summary: Link not found
+                  value:
+                    status: -1
+                    message: Payment link not found.
                     result: null
         '401':
           description: Authentication failure.
