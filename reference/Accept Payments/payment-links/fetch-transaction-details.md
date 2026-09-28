@@ -3,6 +3,8 @@ api:
   file: pl-test-oas.yaml
   operationId: GetTransactionDetailsAPI
 hidden: true
+link:
+  new_tab: false
 metadata:
   title: Fetch Transaction Details | Payment Links API
 next:
