@@ -373,26 +373,29 @@ paths:
                   example: false
                 successURL:
                   type: string
-                  description: URL to redirect the customer after a successful payment.
+                  description: >-
+                    Determines the URL to redirect the customer after a
+                    successful payment.
                   example: https://yourstore.com/payment/success
                 failureURL:
                   type: string
                   description: >-
-                    URL to redirect the customer after a failed or cancelled
-                    payment.
+                    Determines the URL to redirect the customer after a failed
+                    or cancelled payment.
                   example: https://yourstore.com/payment/failure
                 enforcePayMethod:
                   type: string
                   description: >
-                    Restrict checkout to specific payment methods. Separate
-                    multiple values with `|`.
+                    You can restrict checkout to specific payment methods.
+                    Separate multiple values with `|`. Possible values:
 
+                    - `enach`: Renders the bank mandate registration flow.
 
-                    - **eNACH links:** Must be `"enach"` — renders the bank
-                    mandate registration flow.
+                    - `cc|dc` (cards only)
 
-                    - **Other links:** e.g. `"cc|dc"` (cards only), `"upi"` (UPI
-                    only), `"nb"` (net banking only).
+                    - `upi` (UPI only)
+
+                    - `nb` (net banking only).
                   example: cc|dc
                 dropCategory:
                   type: string
