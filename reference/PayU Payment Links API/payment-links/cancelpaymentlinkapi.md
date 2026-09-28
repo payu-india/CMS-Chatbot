@@ -3,6 +3,10 @@ api:
   file: pl-test-oas.yaml
   operationId: CancelPaymentLinkAPI
 hidden: false
+metadata:
+  title: Cancel a Payment Link
+next:
+  description: Explore related information and resources.
 ---
 Use this endpoint to deactivate an existing payment link so it can no longer accept payments. You should pass the `active` parameter value as `false` permanently to cancel a link.
 
