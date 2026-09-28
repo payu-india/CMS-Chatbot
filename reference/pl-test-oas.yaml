@@ -1012,8 +1012,9 @@ paths:
                 properties:
                   status:
                     type: integer
-                    description: '`0` = success.'
+                    description: '`0`: success.'
                     example: 0
+                    default: ''
                   message:
                     type: string
                     example: success
