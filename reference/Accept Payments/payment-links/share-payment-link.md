@@ -305,7 +305,7 @@ Use this endpoint to resend a payment link notification to a customer. At least 
   </Tab>
 
   <Tab title="Parameter Description">
-    Refer to the [Path Params](https://docs.payu.in/v3.0/reference/share-payment-link#path-params), [Headers](https://docs.payu.in/v3.0/reference/share-payment-link#header-params) and [Body Params](https://docs.payu.in/v3.0/reference/share-payment-link#body-params) sections for a full description of all request parameters and use cases.
+    Refer to the [Path Params](https://docs.payu.in/reference/share-payment-link#path-params), [Headers](https://docs.payu.in/reference/share-payment-link#header-params) and [Body Params](https://docs.payu.in/reference/share-payment-link#body-params) sections for a full description of all request parameters and use cases.
   </Tab>
 </Tabs>
 
