@@ -64,7 +64,7 @@ These are the Payment Links APIs.
 ### Authentication
 
 <Cards>
-  <Card title="Get an Access Token" href="https://docs.payu.in/v3.0/reference/get-access-token" target="_blank">
+  <Card title="Get an Access Token" href="https://docs.payu.in/reference/generate-access-token" target="_blank">
     Generate a Bearer token with one or more Payment Links scopes. Required before calling any other endpoint.
   </Card>
 
