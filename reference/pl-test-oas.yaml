@@ -1132,7 +1132,7 @@ paths:
                     error_description: The access token does not have the required scope.
   /payment-links/{invoiceNumber}:
     put:
-      summary: Update Payment Link
+      summary: Update a Payment Link
       operationId: UpdatePaymentLinkAPI
       description: >
         Modify the configuration of an existing active payment link. Only send
