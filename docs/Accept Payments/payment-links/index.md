@@ -232,7 +232,7 @@ If a payment fails, you can share the same link again for the customer to retry,
 ## Next Steps
 
 <Cards>
-  <Card title="Start using Payment Links" icon="far fa-link">
+  <Card title="Start using Payment Links" href="https://docs.payu.in/docs/create-a-payment-link" icon="far fa-link" target="_blank">
     - **Create a Payment Link:&#x20;**&#x43;reate your first link from the PayU Dashboard.
     - **Create Payment Links in Bulk:** Create multiple payment links at once.
   </Card>
