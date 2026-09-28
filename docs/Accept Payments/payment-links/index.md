@@ -72,24 +72,24 @@ Check this video to see how PayU Payment Links work: _should decide whether to k
 
 ## Is Payment Links Right for Me?
 
-Payment Links is a good choice if:
+Payment Links is a good choice if: <br />
 
 - **You don't have a website** and run your business through social media, messaging apps, or in person.
 - **You want to request payment** from a specific customer for an invoice, order, or service.
 - **You want to start collecting payments** quickly without building or learning a technical integration.
-- **You run a small business or provide services** where you regularly send payment requests to individual customers.
+- **You run a small business or provide services** where you regularly send payment requests to individual customers.<br />
 
-Consider another PayU solution if:
+Consider another PayU solution if:<br />
 
 - You want customers to pay directly on your website → **Hosted Checkout**
-- You want to create payment links programmatically → **Payment Links APIs**
+- You want to create payment links programmatically → <Anchor target="_blank" href="https://docs.payu.in/reference/payment-links">**Payment Links APIs**</Anchor>
 
 <Callout icon="far fa-face-thinking" theme="warn">
   ### **Not Sure Which PayU Solution is Right For You?**
 
   Tell us what you want to achieve and how you plan to accept payments. We will recommend the best PayU solution that fits your needs.
 
-  Find the right solution →
+  <Anchor target="_blank" href="https://docs.payu.in/docs/start-here">Find the right solution</Anchor> →
 </Callout>
 
 ***
@@ -102,7 +102,7 @@ You'll need:
 
 <Columns layout="fixed">
   <Column>
-    **A PayU merchant account:** Sign up here if you do not have an account.
+    **A PayU merchant account:** <Anchor target="_blank" href="https://docs.payu.in/docs/set-up-your-account">Sign up here</Anchor> if you do not have an account.
   </Column>
 </Columns>
 
@@ -145,7 +145,7 @@ Here is how it works:
 
 <Columns layout="fixed">
   <Column>
-    **Need detailed steps?**  See Create a Payment Link →
+    **Need detailed steps?**  See [Create a Payment Link →](https://docs.payu.in/docs/create-a-payment-link)
   </Column>
 </Columns>
 
@@ -213,7 +213,7 @@ Once your customer completes the payment:
   <Column>
     <Columns layout="fixed">
       <Column>
-        **You can export payment history**: Download a report of all payments received through your links
+        **You can export payment history**: <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#what-can-i-do-with-a-payment-link-after-it-is-created">Download a report</Anchor> of all payments received through your links
       </Column>
     </Columns>
   </Column>
