@@ -2,7 +2,7 @@
 - create-payment-link
 - fetch-all-payment-links
 - fetch-payment-link
-- updatepaymentlinkapi
+- update-payment-link
 - cancelpaymentlinkapi
 - sharepaymentlinkapi
 - gettransactiondetailsapi
