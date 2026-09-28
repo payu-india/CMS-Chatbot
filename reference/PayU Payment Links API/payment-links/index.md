@@ -87,11 +87,11 @@ These are the Payment Links APIs.
 ### Manage
 
 <Cards>
-  <Card title="Update a Payment Link" href="ref:change-status-of-a-payment-link-api">
+  <Card title="Update a Payment Link" href="https://docs.payu.in/v3.0/reference/update-payment-link" target="_blank">
     Update a link's amount, expiry date, partial payment settings, or UDF fields. Set `active: false` to cancel/deactivate a link.
   </Card>
 
-  <Card title="Cancel a Payment Link">
+  <Card title="Cancel a Payment Link" href="https://docs.payu.in/v3.0/reference/cancel-payment-link" target="_blank">
     Cancel an existing Payment Link.
   </Card>
 </Cards>
