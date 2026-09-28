@@ -25,16 +25,14 @@ paths:
         - name: Authorization
           in: header
           required: true
-          description: >-
-            Bearer token obtained from `POST /oauth/token`. Format: `Bearer
-            {access_token}`
+          description: Bearer token generated using the Generate an Access Token API
           schema:
             type: string
             example: Bearer {{access_token}}
         - name: merchantId
           in: header
           required: true
-          description: Your PayU Merchant ID.
+          description: Your unique PayU merchant ID obtained from the dashboard.
           schema:
             type: string
             example: '{{merchantId}}'
@@ -51,23 +49,30 @@ paths:
                 subAmount:
                   type: integer
                   description: >
-                    Base payment amount in whole INR.
+                    The payment amount in whole INR. Below are the use
+                    cases/scenarios:
 
 
-                    - **Standard / Partial Payment:** Required. Must be greater
-                    than 0.
+                    - **Standard or Partial Payment:** This filed is required if
+                    you want to collect a standard or partial payment. The value
+                    should be be greater than 0.
 
-                    - **Open Amount:** Omit — set `isAmountFilledByCustomer:
-                    true` instead.
+                    - **Open Amount:** Do not pass this filed if you want your
+                    customer to enter the amount. You should pass the
+                    `isAmountFilledByCustomer` parameter value as `true` to
+                    collect any open amount.
 
-                    - **SI Recurring / eNACH:** Omit — use
-                    `siDetails.billingAmount` for the per-cycle debit.
+                    - **SI Recurring or eNACH:** Do not pass this filed if you
+                    want to set up a collect payments. You should pass the
+                    `siDetails.billingAmount` parameter for SI recurring or
+                    eNACH.
                   example: 1499
                 description:
                   type: string
                   description: >-
-                    Purpose of the payment. Shown to the customer on the
-                    checkout page. Maximum 255 characters.
+                    The purpose of the payment. This description is shown to the
+                    customer on the checkout page. The maximum of `255`
+                    characters are allowed.
                   example: 'Order #ORD-2026-88421 — Wireless Headphones'
                 source:
                   type: string
