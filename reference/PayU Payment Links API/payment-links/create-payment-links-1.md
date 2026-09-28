@@ -3,6 +3,8 @@ api:
   file: pl-test-oas.yaml
   operationId: CreatePaymentLinkAPI
 hidden: false
+link:
+  new_tab: false
 metadata:
   title: Create a Payment Link
 next:
