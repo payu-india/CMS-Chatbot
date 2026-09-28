@@ -44,8 +44,6 @@ Use this endpoint to deactivate an existing payment link so it can no longer acc
 
 <PLbearertoken />
 
-<br />
-
 ***
 
 ## Sample Request
