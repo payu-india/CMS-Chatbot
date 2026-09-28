@@ -1134,24 +1134,7 @@ paths:
     put:
       summary: Update a Payment Link
       operationId: UpdatePaymentLinkAPI
-      description: >
-        Modify the configuration of an existing active payment link. Only send
-        the fields
-
-        you want to change — omitted fields retain their current values.
-
-
-        **Restrictions:**
-
-        - Cannot update a cancelled link (`active: false`).
-
-        - Cannot update a link that has been fully paid.
-
-        - Cannot reduce `subAmount` below the amount already collected on a
-        partial payment link.
-
-
-        **Required scope:** `update_payment_links`
+      description: ''
       tags:
         - Payment Links
       parameters:
