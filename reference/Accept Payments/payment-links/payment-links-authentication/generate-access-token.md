@@ -48,12 +48,12 @@ Token validity is returned as `expires_in` seconds (typically 7200 — 2 hours).
 <Tabs>
   <Tab title="Request Payload">
     ```curl
-    curl --location --request POST 'https://uat-accounts.payu.in/oauth/token' \
-    --header 'Content-Type: application/x-www-form-urlencoded' \
-    --data-urlencode 'client_id={{client_id}}' \
-    --data-urlencode 'client_secret={{client_secret}}' \
-    --data-urlencode 'grant_type=client_credentials' \
-    --data-urlencode 'scope=create_payment_links update_payment_links read_payment_links'
+    curl --location 'https://uat-accounts.payu.in/oauth/token' \
+      --header 'Content-Type: application/x-www-form-urlencoded' \
+      -d 'client_id={{client_id}}' \
+      -d 'client_secret={{client_secret}}' \
+      -d 'grant_type=client_credentials' \
+      -d 'scope=create_payment_links update_payment_links read_payment_links'
     ```
     ```python
     import requests
