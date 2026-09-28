@@ -1615,22 +1615,9 @@ paths:
                     error_description: The access token does not have the required scope.
   /payment-links/{invoiceNumber}/notify:
     post:
-      summary: Share Payment Link
+      summary: Share a Payment Link
       operationId: SharePaymentLinkAPI
-      description: >
-        Resend a payment link notification to a customer. At least one of
-        `viaEmail`,
-
-        `viaSms`, or `viaWhatsapp` must be `true`.
-
-
-        The customer's contact details are taken from the values stored on the
-        link
-
-        at creation time.
-
-
-        **Required scope:** `read_payment_links`
+      description: ''
       tags:
         - Payment Links
       parameters:
