@@ -47,23 +47,23 @@ These are the Payment Links APIs.
 ### Authentication
 
 <Cards>
-  <Card title="Get an Access Token" href="ref:get-token-api-for-payment-links">
+  <Card title="Get an Access Token" href="https://docs.payu.in/v3.0/reference/get-access-token" target="_blank">
     Generate a Bearer token with one or more Payment Links scopes. Required before calling any other endpoint.
   </Card>
 
-  <Card title="Revoke a Token" href="ref:revoke-token-api-payment-links">
+  <Card title="Revoke a Token" href="https://docs.payu.in/v3.0/reference/revoke-token" target="_blank">
     Invalidate an existing access token before its natural expiry.
   </Card>
 </Cards>
 
-### Create & Share
+### Create and Share
 
 <Cards>
-  <Card title="Create a Payment Link" href="ref:create-payment-links">
+  <Card title="Create a Payment Link" href="https://docs.payu.in/v3.0/reference/create-payment-link" target="_blank">
     Generate a new shareable payment link. Supports one-time, partial-payment, open-amount, recurring (SI), and eNACH links.
   </Card>
 
-  <Card title="Share a Payment Link" href="ref:share_payment_link_api">
+  <Card title="Share a Payment Link" href="https://docs.payu.in/v3.0/reference/share-payment-link" target="_blank">
     Send an existing payment link to a customer via SMS, email, or WhatsApp.
   </Card>
 </Cards>
@@ -71,15 +71,15 @@ These are the Payment Links APIs.
 ### Fetch
 
 <Cards>
-  <Card title="Fetch All Payment Links" href="ref:get-all-payment-links-api">
+  <Card title="Fetch All Payment Links" href="https://docs.payu.in/v3.0/reference/fetch-all-payment-links" target="_blank">
     List all payment links for a date range. Supports pagination, sorting, and filtering by status (`active`, `inactive`, `expired`).
   </Card>
 
-  <Card title="Fetch a Payment Link" href="ref:get-single-payment-link">
+  <Card title="Fetch a Payment Link" href="https://docs.payu.in/v3.0/reference/fetch-payment-link" target="_blank">
     Retrieve the full details and current status of a specific payment link by its invoice number.
   </Card>
 
-  <Card title="Get Transaction Details" href="ref:get-transaction-details-api">
+  <Card title="Fetch Transaction Details" href="https://docs.payu.in/v3.0/reference/fetch-transaction-details" target="_blank">
     Fetch the payment history for a specific link — including all attempts, their status, and transaction IDs.
   </Card>
 </Cards>
