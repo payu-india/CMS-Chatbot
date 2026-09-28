@@ -39,7 +39,7 @@ next:
       title: FAQs (Frequently Asked Questions)
       type: basic
 ---
-Understand the complete end-to-end flow of how PayU Payment Links works. Starting from creating your account to receiving funds in your bank account.
+Understand the complete end-to-end flow of how PayU <Anchor target="_blank" href="https://docs.payu.in/docs/payment-links">Payment Links</Anchor> works. Starting from creating your account to receiving funds in your bank account.
 
 ***
 
