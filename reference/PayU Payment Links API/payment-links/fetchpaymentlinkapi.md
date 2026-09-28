@@ -599,7 +599,7 @@ Check whether a link is active, verify its amount and configuration, or poll for
   </Tab>
 
   <Tab title="Parameter Description">
-    Refer to the [Body Params](ref:create-payment-links#body-params) section for a full description of all request parameters and use cases.
+    Refer to the [Path](ref:create-payment-links#body-params) Parameters and Header Parmeters sections for a full description of all parameters and use cases.
   </Tab>
 </Tabs>
 
