@@ -1692,160 +1692,6 @@ paths:
                   value:
                     error: insufficient_scope
                     error_description: The access token does not have the required scope.
-  /payment-links/{invoiceNumber}/notify:
-    post:
-      summary: Share a Payment Link
-      operationId: SharePaymentLinkAPI
-      description: >
-        Resend a payment link notification to a customer. At least one of
-        `viaEmail`,
-
-        `viaSms`, or `viaWhatsapp` must be `true`.
-
-
-        The customer's contact details are taken from the values stored on the
-        link
-
-        at creation time.
-
-
-        **Required scope:** `read_payment_links`
-      tags:
-        - Payment Links
-      parameters:
-        - name: Authorization
-          in: header
-          required: true
-          description: >-
-            The bearer token obtained by calling the Generate an Access Token
-            API in the `Bearer {access_token}` format.
-          schema:
-            type: string
-            example: Bearer {{access_token}}
-        - name: merchantId
-          in: header
-          required: true
-          description: Your unique PayU merchant ID.
-          schema:
-            type: string
-            example: '{{merchantId}}'
-        - name: invoiceNumber
-          in: path
-          required: true
-          description: The unique invoice number of the payment link.
-          schema:
-            type: string
-            example: ORD-2026-88421
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                viaEmail:
-                  type: boolean
-                  description: >-
-                    Send the link to the email address stored on this payment
-                    link.
-                  example: true
-                viaSms:
-                  type: boolean
-                  description: >-
-                    Send the link to the phone number stored on this payment
-                    link via SMS.
-                  example: true
-                viaWhatsapp:
-                  type: boolean
-                  description: >-
-                    Send the link to the phone number stored on this payment
-                    link via WhatsApp.
-                  example: false
-            example:
-              viaEmail: true
-              viaSms: true
-              viaWhatsapp: false
-      responses:
-        '200':
-          description: Request processed successfully.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: integer
-                    description: The status of the API call.
-                    example: 0
-                  message:
-                    type: string
-                    example: Notification sent successfully
-                    description: The status message.
-              examples:
-                success:
-                  summary: Notification sent
-                  value:
-                    status: 0
-                    message: Notification sent successfully
-        '400':
-          description: >-
-            Validation or business-rule failure. The response body uses `status:
-            -1` and `message`.
-
-
-            > **Note:** PayU Payment Links API always returns HTTP 200. This
-            block documents error patterns returned when `status: -1`.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: integer
-                    example: -1
-                  message:
-                    type: string
-                    example: Payment link not found.
-              examples:
-                notFound:
-                  summary: Link not found
-                  value:
-                    status: -1
-                    message: Payment link not found.
-                noEmail:
-                  summary: No email on record
-                  value:
-                    status: -1
-                    message: Email address not on record for this payment link.
-                noChannel:
-                  summary: No channel selected
-                  value:
-                    status: -1
-                    message: At least one notification channel must be selected.
-        '401':
-          description: Authentication failure.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    example: invalid_token
-                  error_description:
-                    type: string
-                    example: The access token is invalid or has expired.
-              examples:
-                expiredToken:
-                  summary: Token expired or revoked
-                  value:
-                    error: invalid_token
-                    error_description: The access token is invalid or has expired.
-                insufficientScope:
-                  summary: Missing required scope
-                  value:
-                    error: insufficient_scope
-                    error_description: The access token does not have the required scope.
   /payment-links/{invoiceNumber}/transactions:
     get:
       summary: Get Transaction Details
@@ -2312,3 +2158,160 @@ paths:
         - url: https://accounts.payu.in
           description: Production Environment
       security: []
+  /payment-links/{invoiceNumber}/notify:
+    post:
+      summary: Share a Payment Link
+      operationId: SharePaymentLinkAPI
+      description: >
+        Resend a payment link notification to a customer. At least one of
+        `viaEmail`,
+
+        `viaSms`, or `viaWhatsapp` must be `true`.
+
+
+        The customer's contact details are taken from the values stored on the
+        link
+
+        at creation time.
+
+
+        **Required scope:** `read_payment_links`
+      tags:
+        - Payment Links
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          description: >-
+            The bearer token obtained by calling the Generate an Access Token
+            API in the `Bearer {access_token}` format.
+          schema:
+            type: string
+            example: Bearer {{access_token}}
+        - name: merchantId
+          in: header
+          required: true
+          description: Your unique PayU merchant ID.
+          schema:
+            type: string
+            example: '{{merchantId}}'
+        - name: invoiceNumber
+          in: path
+          required: true
+          description: The unique invoice number of the payment link.
+          schema:
+            type: string
+            example: ORD-2026-88421
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                viaEmail:
+                  type: boolean
+                  description: >-
+                    Send the link to the email address stored on this payment
+                    link.
+                  example: true
+                viaSms:
+                  type: boolean
+                  description: >-
+                    Send the link to the phone number stored on this payment
+                    link via SMS.
+                  example: true
+                viaWhatsapp:
+                  type: boolean
+                  description: >-
+                    Send the link to the phone number stored on this payment
+                    link via WhatsApp.
+                  example: false
+            example:
+              viaEmail: true
+              viaSms: true
+              viaWhatsapp: false
+      responses:
+        '200':
+          description: Request processed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    description: The status of the API call.
+                    example: 0
+                  message:
+                    type: string
+                    example: Notification sent successfully
+                    description: The status message.
+                  guid:
+                    type: string
+                    description: The unique request identifier.
+              examples:
+                success:
+                  summary: Notification sent
+                  value:
+                    status: 0
+                    message: Notification sent successfully
+        '400':
+          description: >-
+            Validation or business-rule failure. The response body uses `status:
+            -1` and `message`.
+
+
+            > **Note:** PayU Payment Links API always returns HTTP 200. This
+            block documents error patterns returned when `status: -1`.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: -1
+                  message:
+                    type: string
+                    example: Payment link not found.
+              examples:
+                notFound:
+                  summary: Link not found
+                  value:
+                    status: -1
+                    message: Payment link not found.
+                noEmail:
+                  summary: No email on record
+                  value:
+                    status: -1
+                    message: Email address not on record for this payment link.
+                noChannel:
+                  summary: No channel selected
+                  value:
+                    status: -1
+                    message: At least one notification channel must be selected.
+        '401':
+          description: Authentication failure.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: invalid_token
+                  error_description:
+                    type: string
+                    example: The access token is invalid or has expired.
+              examples:
+                expiredToken:
+                  summary: Token expired or revoked
+                  value:
+                    error: invalid_token
+                    error_description: The access token is invalid or has expired.
+                insufficientScope:
+                  summary: Missing required scope
+                  value:
+                    error: insufficient_scope
+                    error_description: The access token does not have the required scope.
