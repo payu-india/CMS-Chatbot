@@ -238,31 +238,46 @@ Use this endpoint to resend a payment link notification to a customer. At least 
     .catch(error => console.error('Error:', error));
     ```
     ```java
-    import okhttp3.*;
-    import org.json.JSONObject;
+    import java.net.HttpURLConnection;
+    import java.net.URL;
+    import java.io.OutputStream;
+    import java.io.BufferedReader;
+    import java.io.InputStreamReader;
+    import com.google.gson.Gson;
+    import java.util.Arrays;
+    import java.util.HashMap;
+    import java.util.Map;
 
-    public class PaymentLinkExample {
+    public class SharePaymentLink {
         public static void main(String[] args) throws Exception {
-            String url = "https://uatoneapi.payu.in/payment-links";
-
-            JSONObject payload = new JSONObject({"subAmount": 1499, "description": "Order #ORD-2026-88421", "source": "API", "invoiceNumber": "ORD-2026-88421", "expiryDate": "2026-10-15 23:59:59", "currency": "INR", "tax": 0, "shippingCharge": 0, "discount": 0, "adjustment": 0, "maxPaymentsAllowed": 1, "isAmountFilledByCustomer": false, "isPartialPaymentAllowed": false, "minAmountForCustomer": 500, "viaEmail": true, "viaSms": true, "viaWhatsapp": false, "enforcePayMethod": "", "dropCategory": "", "successURL": "https://yoursite.com/success", "failureURL": "https://yoursite.com/failure", "customer": {"name": "Arjun Mehta", "email": "arjun.mehta@example.com", "phone": "9876543210"}, "address": {"line1": "123 MG Road", "line2": "Apt 4B", "city": "Bengaluru", "state": "Karnataka", "zipCode": "560001"}, "udf": {"udf1": "electronics", "udf2": "app-checkout", "udf3": "", "udf4": "", "udf5": ""}, "siDetails": {"billingAmount": 999, "billingCycle": "MONTHLY", "billingInterval": 12, "paymentStartDate": "2026-10-01", "paymentEndDate": "2027-09-30", "isNoExpiry": false, "isFreeTrial": false, "remarks": "Monthly subscription", "billingCurrency": "INR", "bankDetails": {"bankCode": "HDFC", "bankAccountNumber": "50100123456789", "ifsc": "HDFC0001234", "accountType": "SAVINGS"}}, "paymentDeadline": "2026-10-20 23:59:59", "reminder": {"isScheduled": true, "type": 0, "channels": ["email", "phone"]}, "whatsappRecipients": [{"phone": "9876543210"}], "whatsappTemplateName": "payment_link_template", "offerKey": "FEST20OFF", "blockDaysForPreAuthorizeLinks": 3, "beneficiarydetail": {"beneficiaryAccountNumber": ["123456789012"], "ifscCode": ["HDFC0001234"], "beneficiaryName": ["Arjun Mehta"], "beneficiaryAccountType": ["SAVINGS"]}, "batchId": "BATCH-2026-001", "notes": "Internal reference note", "transactionId": "TXN-2026-88421", "customAttributes": [{"key": "orderId", "value": "ORD-88421"}], "additionalDetails": {"amountStatus": "UNPAID", "sendWhatsapp": false, "partnerWebhookSuccessUrls": "https://partner.example.com/webhook/success", "partnerWebhookFailureUrls": "https://partner.example.com/webhook/failure"}});
-
-            OkHttpClient client = new OkHttpClient();
-            RequestBody body = RequestBody.create(
-                payload.toString(),
-                MediaType.parse("application/json")
-            );
-
-            Request request = new Request.Builder()
-                .url(url)
-                .addHeader("Authorization", "Bearer YOUR_ACCESS_TOKEN")
-                .addHeader("merchantId", "YOUR_MERCHANT_ID")
-                .addHeader("Content-Type", "application/json")
-                .post(body)
-                .build();
-
-            Response response = client.newCall(request).execute();
-            System.out.println(response.body().string());
+            URL url = new URL("https://uatoneapi.payu.in/payment-links/INV8446471886220/share");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("authorization", "Bearer fjsdkglfd09845084395");
+            conn.setRequestProperty("content-type", "application/json");
+            conn.setRequestProperty("mid", "5016764");
+            conn.setDoOutput(true);
+            
+            Map<String, Object> requestBody = new HashMap<>();
+            requestBody.put("channelList", Arrays.asList("ashish@gmail.com", "+919876543210"));
+            
+            Gson gson = new Gson();
+            String jsonInputString = gson.toJson(requestBody);
+            
+            try (OutputStream os = conn.getOutputStream()) {
+                byte[] input = jsonInputString.getBytes("utf-8");
+                os.write(input, 0, input.length);
+            }
+            
+            try (BufferedReader br = new BufferedReader(
+                    new InputStreamReader(conn.getInputStream(), "utf-8"))) {
+                StringBuilder response = new StringBuilder();
+                String responseLine = null;
+                while ((responseLine = br.readLine()) != null) {
+                    response.append(responseLine.trim());
+                }
+                System.out.println(response.toString());
+            }
         }
     }
     ```
