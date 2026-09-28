@@ -107,7 +107,7 @@ A typical payment links integration flow looks like this:'
 </Accordion>
 
 <Accordion title="Create the Link" icon="fad fa-link">
-  Call `POST /payment-links` with the amount, description, customer details, and delivery preferences (`viaEmail`, `viaSms`, `viaWhatsapp`).
+  Call the Create a Payment Link API with the amount, description, customer details, and delivery preferences (`viaEmail`, `viaSms`, `viaWhatsapp`).
 </Accordion>
 
 <Accordion title="Share the Link" icon="fad fa-share-nodes">
