@@ -2045,32 +2045,28 @@ paths:
               properties:
                 client_id:
                   type: string
-                  description: >
-                    Your OAuth app's public identifier.
-
-                    Find this in PayU Dashboard → **Developers** → **OAuth
-                    Apps**.
+                  description: |
+                    Your unique client ID obtained from the dashboard.
                   example: '{{client_id}}'
                 client_secret:
                   type: string
-                  description: >
-                    Your OAuth app's secret key. Never expose it in client-side
-                    code or
-
-                    public repositories — treat it like a password.
+                  description: |
+                    Your unique client secret obtained from the dashboard.
                   example: '{{client_secret}}'
                 grant_type:
                   type: string
-                  description: |
-                    OAuth 2.0 grant type. Always pass `client_credentials` for
-                    server-to-server Payment Links integrations.
+                  description: >
+                    Determines the OAuth 2.0 grant type. You should always pass
+                    this value as `client_credentials` for server-to-server
+                    Payment Links integrations.
                   example: client_credentials
+                  enum:
+                    - client_credentials
                 scope:
                   type: string
                   description: >
-                    Space-separated list of scopes the token should carry.
-
-                    You can request all three in a single call:
+                    A space-separated list of scopes the token should carry. You
+                    can request all three in a single call as shown below:
 
 
                     `create_payment_links update_payment_links
