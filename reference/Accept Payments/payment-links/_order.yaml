@@ -1,6 +1,6 @@
 - payment-links-authentication
 - create-payment-link
-- fetchallpaymentlinksapi
+- fetch-all-payment-links
 - fetchpaymentlinkapi
 - updatepaymentlinkapi
 - cancelpaymentlinkapi
