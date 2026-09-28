@@ -3,6 +3,10 @@ api:
   file: pl-test-oas.yaml
   operationId: GetTransactionDetailsAPI
 hidden: false
+metadata:
+  title: Fetch Transaction Details
+next:
+  description: Explore related information and resources.
 ---
 Use this endpoint to fetch all payment attempts such as successful, failed, and pending recorded against a payment link.<br />
 
