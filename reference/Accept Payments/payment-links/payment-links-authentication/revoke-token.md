@@ -169,6 +169,6 @@ The revoked token becomes invalid immediately. After revoking, generate a newtok
   </Tab>
 
   <Tab title="Parameter Description">
-    Refer to the [Responses](https://docs.payu.in/v3.0/reference/revoke-token#response-schemas) section for a full description of all response fields.
+    Refer to the [Responses](https://docs.payu.in/reference/revoke-token#response-schemas) section for a full description of all response fields.
   </Tab>
 </Tabs>
