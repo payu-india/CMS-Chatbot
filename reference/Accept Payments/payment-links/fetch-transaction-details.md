@@ -141,7 +141,7 @@ Use this to verify payment completion, reconcile partial payments, or displaypay
   </Tab>
 
   <Tab title="Parameter Description">
-    Refer to the [Path Params](https://docs.payu.in/v3.0/reference/fetch-transaction-details#path-params) and [Headers](https://docs.payu.in/v3.0/reference/fetch-transaction-details#header-params) sections for a full description of all parameters and use cases.
+    Refer to the [Path Params](https://docs.payu.in/reference/fetch-transaction-details#path-params) and [Headers](https://docs.payu.in/reference/fetch-transaction-details#header-params) sections for a full description of all parameters and use cases.
   </Tab>
 </Tabs>
 
