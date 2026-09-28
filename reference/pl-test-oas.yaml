@@ -2173,11 +2173,11 @@ paths:
                       properties:
                         txnid:
                           type: string
-                          description: PayU's unique transaction ID.
+                          description: The PayU's unique transaction ID.
                           example: '7019203456789'
                         amount:
                           type: number
-                          description: Amount paid in this transaction, in INR.
+                          description: The amount paid in this transaction, in INR.
                           example: 1499
                         status:
                           type: string
@@ -2185,18 +2185,18 @@ paths:
                             Transaction outcome.
 
 
-                            - `success` — Payment was captured.
+                            - `success`: Payment was captured.
 
-                            - `failure` — Payment was declined or failed.
+                            - `failure`: Payment was declined or failed.
 
-                            - `pending` — Awaiting bank confirmation (common for
+                            - `pending`: Awaiting bank confirmation (common for
                             net banking and UPI).
                           example: success
                         mode:
                           type: string
                           description: >-
-                            Payment mode: `UPI`, `CC` (credit card), `DC` (debit
-                            card), `NB` (net banking), `ENACH`, etc.
+                            The Payment mode: `UPI`, `CC` (credit card), `DC`
+                            (debit card), `NB` (net banking), `ENACH`, etc.
                           example: UPI
                         paymentSource:
                           type: string
@@ -2207,10 +2207,10 @@ paths:
                         addedon:
                           type: string
                           description: >-
-                            Timestamp when the transaction was recorded in
-                            `YYYY-MM-DD HH:mm:ss`.
+                            The timestamp at when the transaction was recorded
+                            in the `YYYY-MM-DD HH:mm:ss` format.
                           example: '2026-09-23 14:32:11'
-                    description: The fetched payment links
+                    description: The fetched transaction details.
               examples:
                 successWithTransaction:
                   summary: Payment recorded
