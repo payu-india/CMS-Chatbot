@@ -237,7 +237,7 @@ If a payment fails, you can share the same link again for the customer to retry,
     - **Create Payment Links in Bulk:** Create multiple payment links at once.
   </Card>
 
-  <Card title="For Developers" icon="far fa-gear-api">
+  <Card title="For Developers" href="https://docs.payu.in/reference/payment-links" icon="far fa-gear-api" target="_blank">
     **Automate Payment Links with APIs:** Create and manage payment links programmatically.
   </Card>
 
