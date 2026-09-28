@@ -76,7 +76,7 @@ These are the Payment Links APIs.
 ### Create and Share
 
 <Cards>
-  <Card title="Create a Payment Link" href="https://docs.payu.in/v3.0/reference/create-payment-link" target="_blank">
+  <Card title="Create a Payment Link" href="https://docs.payu.in/reference/create-payment-link" target="_blank">
     Generate a new shareable payment link. Supports one-time, partial-payment, open-amount, recurring (SI), and eNACH links.
   </Card>
 
