@@ -1,5 +1,5 @@
 - authentication-1
-- create-payment-links-1
+- create-payment-link
 - fetch-all-payment-links
 - fetch-payment-link
 - update-payment-link
