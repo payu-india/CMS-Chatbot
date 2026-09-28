@@ -40,7 +40,7 @@ Use this endpoint to generate a shareable payment link and optionally deliver it
 
   This API uses OAuth 2.0 — not the hash-based auth used by other PayU APIs.
 
-  1. Call [Get Access Token](ref:get-token-api-for-payment-links) with `grant_type=client_credentials` and `scope=create_payment_links`
+  1. Call the <Anchor target="_blank" href="https://docs.payu.in/reference/generate-access-token">Generate an Access Token</Anchor> token with `grant_type=client_credentials` and `scope=create_payment_links`
   2. Copy the `access_token` from the response
   3. Pass it as `Authorization: Bearer {access_token}` in every request
 
