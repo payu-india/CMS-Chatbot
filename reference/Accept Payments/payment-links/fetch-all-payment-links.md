@@ -195,6 +195,6 @@ Use this endpoint to retrieve a paginated list of all payment links for your mer
   </Tab>
 
   <Tab title="Parameter Description">
-    Refer to the [Response](https://docs.payu.in/v3.0/reference/fetchallpaymentlinksapi#response-schemas) section for a full description of all response fields.
+    Refer to the [Response](https://docs.payu.in/reference/fetch-all-payment-links#response-schemas) section for a full description of all response fields.
   </Tab>
 </Tabs>
