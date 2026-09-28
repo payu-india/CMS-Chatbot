@@ -2,6 +2,7 @@
 title: Banking Connect - IBMB or NBBL
 deprecated: false
 hidden: false
+icon: 🏦
 link:
   new_tab: false
 metadata:
