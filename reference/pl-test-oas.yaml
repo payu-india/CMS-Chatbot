@@ -15,6 +15,209 @@ tags:
     description: Create, retrieve, update, share, and manage payment links.
 paths:
   /payment-links:
+    get:
+      summary: Fetch All Payment Links
+      operationId: FetchAllPaymentLinksAPI
+      description: >
+        Retrieve a paginated list of payment links for your merchant account,
+
+        sorted by creation date (newest first). Use the `status` filter to
+        narrow
+
+        results to active, expired, or cancelled links.
+
+
+        **Required scope:** `read_payment_links`
+      tags:
+        - Payment Links
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          description: >-
+            Bearer token obtained from `POST /oauth/token`. Format: `Bearer
+            {access_token}`
+          schema:
+            type: string
+            example: Bearer {{access_token}}
+        - name: merchantId
+          in: header
+          required: true
+          description: Your PayU Merchant ID.
+          schema:
+            type: string
+            example: '{{merchantId}}'
+        - name: status
+          in: query
+          required: false
+          description: |
+            Filter links by their current state.
+
+            - `active` — Links that are live and can still accept payment.
+            - `expired` — Links whose `expiryDate` has passed.
+            - `cancelled` — Links deactivated by the merchant.
+
+            Omit to return all links regardless of state.
+          schema:
+            type: string
+            enum:
+              - active
+              - expired
+              - cancelled
+        - name: pageNumber
+          in: query
+          required: false
+          description: Page number (1-indexed). Defaults to `1`.
+          schema:
+            type: integer
+            default: 1
+            example: 1
+        - name: pageSize
+          in: query
+          required: false
+          description: Records per page. Minimum `1`, maximum `50`. Defaults to `10`.
+          schema:
+            type: integer
+            default: 10
+            example: 10
+      responses:
+        '200':
+          description: Request processed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    description: '`0` = success.'
+                    example: 0
+                  message:
+                    type: string
+                    example: success
+                  result:
+                    type: object
+                    nullable: true
+                    properties:
+                      total:
+                        type: integer
+                        description: Total number of matching links across all pages.
+                        example: 42
+                      pageNumber:
+                        type: integer
+                        example: 1
+                      pageSize:
+                        type: integer
+                        example: 10
+                      data:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            invoiceNumber:
+                              type: string
+                              example: ORD-2026-88421
+                            paymentLink:
+                              type: string
+                              example: https://pp72.pmny.in/WxYzAbCdEfGh
+                            description:
+                              type: string
+                              example: 'Order #ORD-2026-88421'
+                            totalAmount:
+                              type: integer
+                              example: 1499
+                            active:
+                              type: boolean
+                              example: true
+                            expiryDate:
+                              type: string
+                              example: '2026-10-15 23:59:59'
+              examples:
+                success:
+                  summary: Results returned
+                  value:
+                    status: 0
+                    message: success
+                    result:
+                      total: 2
+                      pageNumber: 1
+                      pageSize: 10
+                      data:
+                        - invoiceNumber: ORD-2026-88421
+                          paymentLink: https://pp72.pmny.in/WxYzAbCdEfGh
+                          description: 'Order #ORD-2026-88421'
+                          totalAmount: 1499
+                          active: true
+                          expiryDate: '2026-10-15 23:59:59'
+                        - invoiceNumber: DON-2026-001
+                          paymentLink: https://pp72.pmny.in/DonAbCdEf
+                          description: Donation — Help us plant 1,000 trees
+                          totalAmount: null
+                          active: true
+                          expiryDate: '2026-12-31 23:59:59'
+                empty:
+                  summary: No results
+                  value:
+                    status: 0
+                    message: No records found
+                    result:
+                      total: 0
+                      pageNumber: 1
+                      pageSize: 10
+                      data: []
+        '400':
+          description: >-
+            Validation failure. The response body uses `status: -1` and
+            `message`.
+
+
+            > **Note:** PayU Payment Links API always returns HTTP 200. This
+            block documents error patterns returned when `status: -1`.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: -1
+                  message:
+                    type: string
+                    example: Invalid pageSize. Must be between 1 and 50.
+                  result:
+                    nullable: true
+                    example: null
+              examples:
+                invalidPageSize:
+                  summary: Invalid pageSize
+                  value:
+                    status: -1
+                    message: Invalid pageSize. Must be between 1 and 50.
+                    result: null
+        '401':
+          description: Authentication failure.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: invalid_token
+                  error_description:
+                    type: string
+                    example: The access token is invalid or has expired.
+              examples:
+                expiredToken:
+                  summary: Token expired or revoked
+                  value:
+                    error: invalid_token
+                    error_description: The access token is invalid or has expired.
+                insufficientScope:
+                  summary: Missing required scope
+                  value:
+                    error: insufficient_scope
+                    error_description: The access token does not have the required scope.
     post:
       summary: Create a Payment Link
       operationId: CreatePaymentLinkAPI
@@ -92,51 +295,50 @@ paths:
                 invoiceNumber:
                   type: string
                   description: >
-                    Your unique reference ID for this link. Alphanumeric,
-                    maximum 25 characters.
-
-                    Auto-generated by PayU if omitted. Used as the path
-                    parameter in all subsequent
-
-                    Fetch, Update, Share, and Cancel calls.
+                    Determines a unique reference ID of the link. The value
+                    should be alphanumeric and maximum of 25 characters are
+                    allowed. This value is auto-generated by PayU if not passed
+                    and used as the path parameter in all subsequent Fetch,
+                    Update, Share, and Cancel APIs.
                   example: ORD-2026-88421
                 expiryDate:
                   type: string
                   description: >
-                    Link expiry in `YYYY-MM-DD HH:mm:ss` format. After this
-                    datetime the link stops
-
-                    accepting payments. Defaults to 7 days from creation.
+                    The link expiry in `YYYY-MM-DD HH:mm:ss` format. Post this
+                    date and time the link gets deactivated. Defaults to 7 days
+                    from creation if not passed.
                   example: '2026-10-15 23:59:59'
                 currency:
                   type: string
-                  description: ISO 4217 currency code. Defaults to `INR`.
+                  description: ISO 4217 currency code of the payment. Defaults to `INR`.
                   example: INR
                 tax:
                   type: integer
-                  description: Tax amount in INR added to `subAmount`. Defaults to 0.
+                  description: The tax amount in INR added to `subAmount`. Defaults to 0.
                   example: 0
                 shippingCharge:
                   type: integer
-                  description: Shipping charge in INR added to `subAmount`. Defaults to 0.
+                  description: >-
+                    The shipping charge in INR added to `subAmount`. Defaults to
+                    0.
                   example: 0
                 discount:
                   type: integer
                   description: >-
-                    Discount amount in INR subtracted from `subAmount`. Defaults
-                    to 0.
+                    The discount amount in INR subtracted from `subAmount`.
+                    Defaults to 0.
                   example: 0
                 maxPaymentsAllowed:
                   type: integer
-                  description: Maximum successful payment attempts allowed. Defaults to 1.
+                  description: >-
+                    The maximum successful payment attempts allowed. Defaults to
+                    1.
                   example: 1
                 isAmountFilledByCustomer:
                   type: boolean
                   description: >
-                    **Open Amount links only.** Set to `true` to let the
-                    customer enter their own
-
-                    payment amount at checkout. Mutually exclusive with
+                    You should pass this parameter and set the value as 'true`
+                    for **Open Amount links only.**. Mutually exclusive with
                     `isPartialPaymentAllowed`.
 
                     When `true`, omit `subAmount`.
@@ -144,40 +346,30 @@ paths:
                 isPartialPaymentAllowed:
                   type: boolean
                   description: >
-                    **Partial Payment links only.** Set to `true` to allow the
-                    customer to pay less
-
-                    than the total amount. Requires `subAmount`. Mutually
-                    exclusive with
+                    You should pass this parameter and set the value as 'true`
+                    for **Partial Payment links only.**. Mutually exclusive with
 
                     `isAmountFilledByCustomer`.
                   example: false
                 minAmountForCustomer:
                   type: integer
                   description: >
-                    **Partial Payment links only.** Minimum amount (INR) the
-                    customer must pay in
-
-                    the first transaction. Ignored unless
+                    Use this parameter for **Partial Payment links only.**
+                    Determines the minimum amount (INR) the customer should pay
+                    in the first transaction. Ignored unless
                     `isPartialPaymentAllowed` is `true`.
                   example: 500
                 viaEmail:
                   type: boolean
-                  description: >-
-                    Send the link to `customer.email` via email on creation.
-                    Requires `customer.email`.
+                  description: Indicates whether to send the link via email on creation.
                   example: true
                 viaSms:
                   type: boolean
-                  description: >-
-                    Send the link to `customer.phone` via SMS on creation.
-                    Requires `customer.phone`.
+                  description: Indicates whether to send the link as an SMS.
                   example: true
                 viaWhatsapp:
                   type: boolean
-                  description: >-
-                    Send the link to `customer.phone` via WhatsApp on creation.
-                    Requires `customer.phone`.
+                  description: Indicates whether to send the link via WhatsApp on creation.
                   example: false
                 successURL:
                   type: string
@@ -917,209 +1109,6 @@ paths:
                       true.
                     result: null
                     errorCode: null
-        '401':
-          description: Authentication failure.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    example: invalid_token
-                  error_description:
-                    type: string
-                    example: The access token is invalid or has expired.
-              examples:
-                expiredToken:
-                  summary: Token expired or revoked
-                  value:
-                    error: invalid_token
-                    error_description: The access token is invalid or has expired.
-                insufficientScope:
-                  summary: Missing required scope
-                  value:
-                    error: insufficient_scope
-                    error_description: The access token does not have the required scope.
-    get:
-      summary: Fetch All Payment Links
-      operationId: FetchAllPaymentLinksAPI
-      description: >
-        Retrieve a paginated list of payment links for your merchant account,
-
-        sorted by creation date (newest first). Use the `status` filter to
-        narrow
-
-        results to active, expired, or cancelled links.
-
-
-        **Required scope:** `read_payment_links`
-      tags:
-        - Payment Links
-      parameters:
-        - name: Authorization
-          in: header
-          required: true
-          description: >-
-            Bearer token obtained from `POST /oauth/token`. Format: `Bearer
-            {access_token}`
-          schema:
-            type: string
-            example: Bearer {{access_token}}
-        - name: merchantId
-          in: header
-          required: true
-          description: Your PayU Merchant ID.
-          schema:
-            type: string
-            example: '{{merchantId}}'
-        - name: status
-          in: query
-          required: false
-          description: |
-            Filter links by their current state.
-
-            - `active` — Links that are live and can still accept payment.
-            - `expired` — Links whose `expiryDate` has passed.
-            - `cancelled` — Links deactivated by the merchant.
-
-            Omit to return all links regardless of state.
-          schema:
-            type: string
-            enum:
-              - active
-              - expired
-              - cancelled
-        - name: pageNumber
-          in: query
-          required: false
-          description: Page number (1-indexed). Defaults to `1`.
-          schema:
-            type: integer
-            default: 1
-            example: 1
-        - name: pageSize
-          in: query
-          required: false
-          description: Records per page. Minimum `1`, maximum `50`. Defaults to `10`.
-          schema:
-            type: integer
-            default: 10
-            example: 10
-      responses:
-        '200':
-          description: Request processed successfully.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: integer
-                    description: '`0` = success.'
-                    example: 0
-                  message:
-                    type: string
-                    example: success
-                  result:
-                    type: object
-                    nullable: true
-                    properties:
-                      total:
-                        type: integer
-                        description: Total number of matching links across all pages.
-                        example: 42
-                      pageNumber:
-                        type: integer
-                        example: 1
-                      pageSize:
-                        type: integer
-                        example: 10
-                      data:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            invoiceNumber:
-                              type: string
-                              example: ORD-2026-88421
-                            paymentLink:
-                              type: string
-                              example: https://pp72.pmny.in/WxYzAbCdEfGh
-                            description:
-                              type: string
-                              example: 'Order #ORD-2026-88421'
-                            totalAmount:
-                              type: integer
-                              example: 1499
-                            active:
-                              type: boolean
-                              example: true
-                            expiryDate:
-                              type: string
-                              example: '2026-10-15 23:59:59'
-              examples:
-                success:
-                  summary: Results returned
-                  value:
-                    status: 0
-                    message: success
-                    result:
-                      total: 2
-                      pageNumber: 1
-                      pageSize: 10
-                      data:
-                        - invoiceNumber: ORD-2026-88421
-                          paymentLink: https://pp72.pmny.in/WxYzAbCdEfGh
-                          description: 'Order #ORD-2026-88421'
-                          totalAmount: 1499
-                          active: true
-                          expiryDate: '2026-10-15 23:59:59'
-                        - invoiceNumber: DON-2026-001
-                          paymentLink: https://pp72.pmny.in/DonAbCdEf
-                          description: Donation — Help us plant 1,000 trees
-                          totalAmount: null
-                          active: true
-                          expiryDate: '2026-12-31 23:59:59'
-                empty:
-                  summary: No results
-                  value:
-                    status: 0
-                    message: No records found
-                    result:
-                      total: 0
-                      pageNumber: 1
-                      pageSize: 10
-                      data: []
-        '400':
-          description: >-
-            Validation failure. The response body uses `status: -1` and
-            `message`.
-
-
-            > **Note:** PayU Payment Links API always returns HTTP 200. This
-            block documents error patterns returned when `status: -1`.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: integer
-                    example: -1
-                  message:
-                    type: string
-                    example: Invalid pageSize. Must be between 1 and 50.
-                  result:
-                    nullable: true
-                    example: null
-              examples:
-                invalidPageSize:
-                  summary: Invalid pageSize
-                  value:
-                    status: -1
-                    message: Invalid pageSize. Must be between 1 and 50.
-                    result: null
         '401':
           description: Authentication failure.
           content:
