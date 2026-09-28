@@ -709,7 +709,7 @@ Use this endpoint to generate a shareable payment link and optionally deliver it
   </Tab>
 
   <Tab title="Parameter Description">
-    Refer to [Headers](https://docs.payu.in/reference/create-payment-link#header-params) and \[[Body Params](https://docs.payu.in/reference/create-payment-link#body-params)]\([https://docs.payu.in/reference/create-payment-link#body-params](https://docs.payu.in/reference/create-payment-link#body-params)) sections for a full description of all request parameters and use cases.
+    Refer to [Headers](https://docs.payu.in/reference/create-payment-link#header-params) and [Body Params](https://docs.payu.in/reference/create-payment-link#body-params) sections for a full description of all request parameters and use cases.
   </Tab>
 </Tabs>
 
