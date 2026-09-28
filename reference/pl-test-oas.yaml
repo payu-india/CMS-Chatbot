@@ -1717,22 +1717,22 @@ paths:
           in: header
           required: true
           description: >-
-            Bearer token obtained from `POST /oauth/token`. Format: `Bearer
-            {access_token}`
+            The bearer token obtained by calling the Generate an Access Token
+            API in the `Bearer {access_token}` format.
           schema:
             type: string
             example: Bearer {{access_token}}
         - name: merchantId
           in: header
           required: true
-          description: Your PayU Merchant ID.
+          description: Your unique PayU merchant ID.
           schema:
             type: string
             example: '{{merchantId}}'
         - name: invoiceNumber
           in: path
           required: true
-          description: The `invoiceNumber` of the payment link.
+          description: The unique invoice number of the payment link.
           schema:
             type: string
             example: ORD-2026-88421
@@ -1775,11 +1775,12 @@ paths:
                 properties:
                   status:
                     type: integer
-                    description: '`0` = success.'
+                    description: The status of the API call.
                     example: 0
                   message:
                     type: string
                     example: Notification sent successfully
+                    description: The status message.
               examples:
                 success:
                   summary: Notification sent
