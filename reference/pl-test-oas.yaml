@@ -1012,19 +1012,24 @@ paths:
                 properties:
                   status:
                     type: integer
-                    description: '`0`: success.'
+                    description: >-
+                      Determines the status whether payment links are fetched.
+                      Possible values:
+
+                      - `0`: success.
                     example: 0
                     default: ''
                   message:
                     type: string
                     example: success
+                    description: The message displayed.
                   result:
                     type: object
                     nullable: true
                     properties:
                       total:
                         type: integer
-                        description: Total number of matching links across all pages.
+                        description: The total number of matching links across all pages.
                         example: 42
                       pageNumber:
                         type: integer
@@ -1055,6 +1060,7 @@ paths:
                             expiryDate:
                               type: string
                               example: '2026-10-15 23:59:59'
+                    description: Contains the fetch result details.
               examples:
                 success:
                   summary: Results returned
@@ -1078,16 +1084,6 @@ paths:
                           totalAmount: null
                           active: true
                           expiryDate: '2026-12-31 23:59:59'
-                empty:
-                  summary: No results
-                  value:
-                    status: 0
-                    message: No records found
-                    result:
-                      total: 0
-                      pageNumber: 1
-                      pageSize: 10
-                      data: []
         '400':
           description: >-
             Validation failure. The response body uses `status: -1` and
