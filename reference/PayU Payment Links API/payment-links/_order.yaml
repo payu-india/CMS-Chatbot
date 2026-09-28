@@ -1,7 +1,7 @@
 - authentication-1
 - create-payment-links-1
 - fetchallpaymentlinksapi
-- fetchpaymentlinkapi
+- fetch-payment-link
 - update-payment-link
 - cancelpaymentlinkapi
 - sharepaymentlinkapi
