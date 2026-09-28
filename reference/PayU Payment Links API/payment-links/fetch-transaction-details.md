@@ -80,33 +80,33 @@ Use this to verify payment completion, reconcile partial payments, or displaypay
     ```json Success Respone
     {
       "status": 0,
-      "message": "paymentLink generated",
+      "message": null,
       "result": {
-        "subAmount": 1499,
-        "tax": 0,
-        "shippingCharge": 0,
-        "totalAmount": 1499,
-        "invoiceNumber": "ORD-2026-88421",
-        "paymentLink": "https://pp72.pmny.in/WxYzAbCdEfGh",
-        "description": "Order #ORD-2026-88421 – Wireless Headphones",
-        "active": true,
-        "isPartialPaymentAllowed": false,
-        "expiryDate": "2026-10-15 23:59:59",
-        "emailStatus": "sent",
-        "smsStatus": "sent"
+        "pageSize": 10,
+        "pages": 1,
+        "rows": 1,
+        "pageOffset": 0,
+        "data": [
+          {
+            "createdOn": "2024-10-16 15:34:52.0",
+            "transactionId": "403993715532491867",
+            "merchantReferenceId": "80203",
+            "paymentId": null,
+            "settledAmount": 19,
+            "customerEmail": "ganesh.desai@payu.in",
+            "status": "success",
+            "mode": "CC",
+            "bankCode": "CC",
+            "cardNum": "XXXXXXXXXXXX2346",
+            "subscriptionDetails": null
+          }
+        ]
       },
       "errorCode": null,
-      "guid": null
+      "guid": "3755efc8-60d3-4a8e-b0dc-642d02c77c8f"
     }
     ```
     ```json Error Response
-    {
-      "status": -1,
-      "message": "description is required.",
-      "result": null,
-      "errorCode": null,
-      "guid": null
-    }
     ```
   </Tab>
 
