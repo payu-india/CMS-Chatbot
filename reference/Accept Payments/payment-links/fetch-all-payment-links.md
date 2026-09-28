@@ -54,9 +54,9 @@ Use this endpoint to retrieve a paginated list of all payment links for your mer
 <Tabs>
   <Tab title="Request Payload">
     ```curl
-    curl --location -g --request GET 'https://uatoneapi.payu.in/payment-links?pageSize=20&pageOffset=0&orderBy=amount&order=desc&dateFrom=2022-03-21&dateTo=2022-03-22' \
-    --header 'merchantId: {{merchantId}}' \
-    --header 'Authorization: Bearer {{access_token}}'h
+    curl --location -g 'https://uatoneapi.payu.in/payment-links?pageSize=20&pageOffset=0&orderBy=amount&order=desc&dateFrom=2022-03-21&dateTo=2022-03-22' \
+      --header 'merchantId: {{merchantId}}' \
+      --header 'Authorization: Bearer {{access_token}}'
     ```
     ```python
     import http.client
@@ -96,6 +96,56 @@ Use this endpoint to retrieve a paginated list of all payment links for your mer
       .addHeader("Authorization", "Bearer {{access_token}}")
       .build();
     Response response = client.newCall(request).execute();
+    ```
+    ```csharp
+    using var client = new HttpClient();
+
+    var request = new HttpRequestMessage(
+        HttpMethod.Get,
+        "https://uatoneapi.payu.in/payment-links?pageSize=20&pageOffset=0&orderBy=amount&order=desc&dateFrom=2022-03-21&dateTo=2022-03-22"
+    );
+
+    request.Headers.Add("merchantId", "{{merchantId}}");
+    request.Headers.Add("Authorization", "Bearer {{access_token}}");
+
+    var response = await client.SendAsync(request);
+    var responseBody = await response.Content.ReadAsStringAsync();
+    ```
+    ```javascript
+    const response = await fetch(
+      "https://uatoneapi.payu.in/payment-links?pageSize=20&pageOffset=0&orderBy=amount&order=desc&dateFrom=2022-03-21&dateTo=2022-03-22",
+      {
+        method: "GET",
+        headers: {
+          "merchantId": "{{merchantId}}",
+          "Authorization": "Bearer {{access_token}}"
+        }
+      }
+    );
+
+    const responseBody = await response.text();
+    console.log(responseBody);
+    ```
+    ```php
+    <?php
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, [
+        CURLOPT_URL => 'https://uatoneapi.payu.in/payment-links?pageSize=20&pageOffset=0&orderBy=amount&order=desc&dateFrom=2022-03-21&dateTo=2022-03-22',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_HTTPHEADER => [
+            'merchantId: {{merchantId}}',
+            'Authorization: Bearer {{access_token}}'
+        ]
+    ]);
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+
+    echo $response;
     ```
   </Tab>
 
