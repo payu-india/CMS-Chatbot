@@ -68,7 +68,7 @@ These are the Payment Links APIs.
     Generate a Bearer token with one or more Payment Links scopes. Required before calling any other endpoint.
   </Card>
 
-  <Card title="Revoke a Token" href="https://docs.payu.in/v3.0/reference/revoke-token" target="_blank">
+  <Card title="Revoke a Token" href="https://docs.payu.in/reference/revoke-token" target="_blank">
     Invalidate an existing access token before its natural expiry.
   </Card>
 </Cards>
