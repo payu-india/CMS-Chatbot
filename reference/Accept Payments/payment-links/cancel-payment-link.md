@@ -169,7 +169,7 @@ Use this endpoint to deactivate an existing payment link so it can no longer acc
   </Tab>
 
   <Tab title="Parameter Description">
-    Refer to the [Path Params](https://docs.payu.in/v3.0/reference/cancelpaymentlinkapi#path-params) and [Headers](https://docs.payu.in/v3.0/reference/cancelpaymentlinkapi#header-params) sections for a full description of all parameters and use cases.
+    Refer to the [Path Params](https://docs.payu.in/reference/cancel-payment-link#path-params) and [Headers](https://docs.payu.in/reference/cancel-payment-link#header-params) sections for a full description of all parameters and use cases.
   </Tab>
 </Tabs>
 
@@ -200,6 +200,6 @@ Use this endpoint to deactivate an existing payment link so it can no longer acc
   </Tab>
 
   <Tab title="Parameter Description">
-    Refer to the [Response](https://docs.payu.in/v3.0/reference/cancelpaymentlinkapi#response-schemas) section for a full description of all response fields.
+    Refer to the [Response](https://docs.payu.in/reference/cancel-payment-link#response-schemas) section for a full description of all response fields.
   </Tab>
 </Tabs>
