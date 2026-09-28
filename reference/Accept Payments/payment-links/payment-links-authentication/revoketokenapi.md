@@ -3,6 +3,10 @@ api:
   file: pl-test-oas.yaml
   operationId: RevokeTokenAPI
 hidden: true
+metadata:
+  title: Revoke a Token
+next:
+  description: Explore related information and resources.
 ---
 Invalidate a Bearer token before its natural expiry. Use this endpoint when rotating credentials or if you suspect a token has been exposed.<br />
 
