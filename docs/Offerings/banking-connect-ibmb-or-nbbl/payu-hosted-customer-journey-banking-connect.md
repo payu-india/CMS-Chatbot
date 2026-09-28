@@ -2,7 +2,13 @@
 title: ' PayU Hosted Customer Journey - Banking Connect'
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
+  title: >-
+    Banking Connect for PayU Hosted,  IBMP PayU Hosted Banking Connect, Banking
+    Connect with Prebuilt integration, IBMP PayU Hosted Integration, PayU Hosted
+    Integration for NBBL, NBBL PayU Hosted Integration
   robots: index
 ---
 This section describes the customer journey for PayU Hosted integration on Desktop and Mobile devices.
