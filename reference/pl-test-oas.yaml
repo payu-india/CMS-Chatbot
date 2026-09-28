@@ -77,12 +77,13 @@ paths:
                 source:
                   type: string
                   description: >
-                    Identifies the link category.
+                    Determines the link category. Possible values:
 
 
-                    - `"API"` — Standard, Open Amount, or Partial Payment links.
+                    - `API`: For standard, open amount, or partial payment
+                    links.
 
-                    - `"si_payment_link"` — SI Recurring and eNACH mandate
+                    - `si_payment_link`: For SI recurring and eNACH mandate
                     registration links.
                   enum:
                     - API
