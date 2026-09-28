@@ -1605,14 +1605,16 @@ paths:
                 properties:
                   status:
                     type: integer
-                    description: '`0` = success.'
+                    description: The status of the operation.
                     example: 0
                   message:
                     type: string
                     example: Payment link cancelled successfully
+                    description: The status message.
                   result:
                     nullable: true
                     example: null
+                    description: The payment links fetched.
               examples:
                 success:
                   summary: Link cancelled successfully
