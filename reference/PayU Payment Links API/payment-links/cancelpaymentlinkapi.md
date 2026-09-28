@@ -101,6 +101,6 @@ Use this endpoint to deactivate an existing payment link so it can no longer acc
   </Tab>
 
   <Tab title="Parameter Description">
-    Refer to the [Response](https://docs.payu.in/v3.0/reference/cancelpaymentlinkapi#header-params) section for a full description of all response fields.
+    Refer to the [Response](https://docs.payu.in/v3.0/reference/cancelpaymentlinkapi#response-schemas) section for a full description of all response fields.
   </Tab>
 </Tabs>
