@@ -101,6 +101,6 @@ Use this endpoint to deactivate an existing payment link so it can no longer acc
   </Tab>
 
   <Tab title="Parameter Description">
-
+    Refer to the [Response](ref:create-payment-links#response-schemas) section for a full description of all response fields.
   </Tab>
 </Tabs>
