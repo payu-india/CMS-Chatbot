@@ -99,29 +99,16 @@ Only send the fields you want to change. Your omitted fields retain their curren
     ```json Success Respone
     {
       "status": 0,
-      "message": "paymentLink generated",
-      "result": {
-        "subAmount": 1499,
-        "tax": 0,
-        "shippingCharge": 0,
-        "totalAmount": 1499,
-        "invoiceNumber": "ORD-2026-88421",
-        "paymentLink": "https://pp72.pmny.in/WxYzAbCdEfGh",
-        "description": "Order #ORD-2026-88421 – Wireless Headphones",
-        "active": true,
-        "isPartialPaymentAllowed": false,
-        "expiryDate": "2026-10-15 23:59:59",
-        "emailStatus": "sent",
-        "smsStatus": "sent"
-      },
-      "errorCode": null,
-      "guid": null
+      "message": "string",
+      "result": {},
+      "errorCode": 170,
+      "guid": "f529e375-739f-4c8a-b5f5-0e67fa3f533f"
     }
     ```
     ```json Error Response
     {
       "status": -1,
-      "message": "description is required.",
+      "message": "expiry cannot be less than the current date",
       "result": null,
       "errorCode": null,
       "guid": null
