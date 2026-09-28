@@ -108,6 +108,52 @@ Token validity is returned as `expires_in` seconds (typically 7200 — 2 hours).
     curl_close($ch);
     echo $response['access_token'];
     ```
+    ```csharp
+    using var client = new HttpClient();
+
+    var request = new HttpRequestMessage(
+        HttpMethod.Post,
+        "https://uat-accounts.payu.in/oauth/token"
+    );
+
+    request.Content = new FormUrlEncodedContent(new[]
+    {
+        new KeyValuePair<string, string>("client_id", "{{client_id}}"),
+        new KeyValuePair<string, string>("client_secret", "{{client_secret}}"),
+        new KeyValuePair<string, string>("grant_type", "client_credentials"),
+        new KeyValuePair<string, string>("scope", "create_payment_links update_payment_links read_payment_links")
+    });
+
+    var response = await client.SendAsync(request);
+    var responseBody = await response.Content.ReadAsStringAsync();
+    ```
+    ```java
+    import java.net.URI;
+    import java.net.http.HttpClient;
+    import java.net.http.HttpRequest;
+    import java.net.http.HttpResponse;
+
+    HttpClient client = HttpClient.newHttpClient();
+
+    String formData =
+        "client_id={{client_id}}" +
+        "&client_secret={{client_secret}}" +
+        "&grant_type=client_credentials" +
+        "&scope=create_payment_links update_payment_links read_payment_links";
+
+    HttpRequest request = HttpRequest.newBuilder()
+        .uri(URI.create("https://uat-accounts.payu.in/oauth/token"))
+        .header("Content-Type", "application/x-www-form-urlencoded")
+        .POST(HttpRequest.BodyPublishers.ofString(formData))
+        .build();
+
+    HttpResponse<String> response = client.send(
+        request,
+        HttpResponse.BodyHandlers.ofString()
+    );
+
+    System.out.println(response.body());
+    ```
   </Tab>
 
   <Tab title="Parameter Description">
