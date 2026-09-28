@@ -1179,126 +1179,6 @@ paths:
                     error: insufficient_scope
                     error_description: The access token does not have the required scope.
   /payment-links/{invoiceNumber}:
-    delete:
-      summary: Cancel a Payment Link
-      operationId: CancelPaymentLinkAPI
-      description: ''
-      tags:
-        - Payment Links
-      parameters:
-        - name: Authorization
-          in: header
-          required: true
-          description: >-
-            Bearer token obtained from `POST /oauth/token`. Format: `Bearer
-            {access_token}`
-          schema:
-            type: string
-            example: Bearer {{access_token}}
-        - name: merchantId
-          in: header
-          required: true
-          description: Your PayU Merchant ID.
-          schema:
-            type: string
-            example: '{{merchantId}}'
-        - name: invoiceNumber
-          in: path
-          required: true
-          description: The `invoiceNumber` of the payment link.
-          schema:
-            type: string
-            example: ORD-2026-88421
-      responses:
-        '200':
-          description: Request processed successfully.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: integer
-                    description: '`0` = success.'
-                    example: 0
-                  message:
-                    type: string
-                    example: Payment link cancelled successfully
-                  result:
-                    nullable: true
-                    example: null
-              examples:
-                success:
-                  summary: Link cancelled successfully
-                  value:
-                    status: 0
-                    message: Payment link cancelled successfully
-                    result: null
-        '400':
-          description: >-
-            Validation or business-rule failure. The response body uses `status:
-            -1` and `message`.
-
-
-            > **Note:** PayU Payment Links API always returns HTTP 200. This
-            block documents error patterns returned when `status: -1`.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: integer
-                    example: -1
-                  message:
-                    type: string
-                    example: Payment link is already cancelled.
-                  result:
-                    nullable: true
-                    example: null
-              examples:
-                notFound:
-                  summary: Link not found
-                  value:
-                    status: -1
-                    message: Payment link not found.
-                    result: null
-                alreadyCancelled:
-                  summary: Already cancelled
-                  value:
-                    status: -1
-                    message: Payment link is already cancelled.
-                    result: null
-                alreadyPaid:
-                  summary: Link already paid
-                  value:
-                    status: -1
-                    message: Cannot cancel a payment link that has already been paid.
-                    result: null
-        '401':
-          description: Authentication failure.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    example: invalid_token
-                  error_description:
-                    type: string
-                    example: The access token is invalid or has expired.
-              examples:
-                expiredToken:
-                  summary: Token expired or revoked
-                  value:
-                    error: invalid_token
-                    error_description: The access token is invalid or has expired.
-                insufficientScope:
-                  summary: Missing required scope
-                  value:
-                    error: insufficient_scope
-                    error_description: The access token does not have the required scope.
     get:
       summary: Fetch a Payment Link
       operationId: FetchPaymentLinkAPI
@@ -1660,6 +1540,131 @@ paths:
                   value:
                     status: -1
                     message: Cannot update a cancelled payment link.
+                    result: null
+        '401':
+          description: Authentication failure.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: invalid_token
+                  error_description:
+                    type: string
+                    example: The access token is invalid or has expired.
+              examples:
+                expiredToken:
+                  summary: Token expired or revoked
+                  value:
+                    error: invalid_token
+                    error_description: The access token is invalid or has expired.
+                insufficientScope:
+                  summary: Missing required scope
+                  value:
+                    error: insufficient_scope
+                    error_description: The access token does not have the required scope.
+    delete:
+      summary: Cancel a Payment Link
+      operationId: CancelPaymentLinkAPI
+      description: ''
+      tags:
+        - Payment Links
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          description: >-
+            The bearer token obtained by calling the Generate an Access Token
+            API in the `Bearer {access_token}` format
+          schema:
+            type: string
+            example: Bearer {{access_token}}
+        - name: merchantId
+          in: header
+          required: true
+          description: Your unique PayU merchant ID.
+          schema:
+            type: string
+            example: '{{merchantId}}'
+        - name: invoiceNumber
+          in: path
+          required: true
+          description: The unique invoice number used to fetch the payment link.
+          schema:
+            type: string
+            example: ORD-2026-88421
+      responses:
+        '200':
+          description: Request processed successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    description: '`0` = success.'
+                    example: 0
+                  message:
+                    type: string
+                    example: Payment link cancelled successfully
+                  result:
+                    nullable: true
+                    example: null
+              examples:
+                success:
+                  summary: Link cancelled successfully
+                  value:
+                    status: 0
+                    message: Payment link cancelled successfully
+                    result: null
+        '400':
+          description: >-
+            Validation or business-rule failure. The response body uses `status:
+            -1` and `message`.
+
+
+            > **Note:** PayU Payment Links API always returns HTTP 200. This
+            block documents error patterns returned when `status: -1`.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: -1
+                    description: The status of the API call.
+                  message:
+                    type: string
+                    example: Payment link is already cancelled.
+                    description: The status message.
+                  result:
+                    nullable: true
+                    example: null
+                    description: The payment link fetched results.
+                    type: object
+                    properties: {}
+              examples:
+                notFound:
+                  summary: Link not found
+                  value:
+                    status: -1
+                    message: Payment link not found.
+                    result: null
+                alreadyCancelled:
+                  summary: Already cancelled
+                  value:
+                    status: -1
+                    message: Payment link is already cancelled.
+                    result: null
+                alreadyPaid:
+                  summary: Link already paid
+                  value:
+                    status: -1
+                    message: Cannot cancel a payment link that has already been paid.
                     result: null
         '401':
           description: Authentication failure.
