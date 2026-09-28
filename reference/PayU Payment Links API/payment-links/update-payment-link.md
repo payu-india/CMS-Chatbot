@@ -21,3 +21,24 @@ Only send the fields you want to change. Your omitted fields retain their curren
   - Update a link that has been fully paid.
   - Reduce `subAmount` below the amount already collected on a partial payment link.
 </Callout>
+
+***
+
+<Cards>
+  <Card title="Method">
+    PUT
+  </Card>
+
+  <Card title="Endpoint">
+    /payment-links/{invoiceNumber}
+  </Card>
+</Cards>
+
+***
+
+## Environments
+
+| Environment                | URL                         |
+| :------------------------- | :-------------------------- |
+| **Test Environment**       | `https://uatoneapi.payu.in` |
+| **Production Environment** | `https://oneapi.payu.in`    |
