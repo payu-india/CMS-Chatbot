@@ -24,7 +24,7 @@ The revoked token becomes invalid immediately. After revoking, generate a newtok
 <Callout icon="📘" theme="info">
   ### **When Should I Revoke a Token?**
 
-  You do not need to revoke tokens as part of a normal flow as they expire automatically after `expires_in` seconds. Revoke only when you need to invalidate a token early. For example, on user logout, credential rotation, or if a token may have been exposed.
+  Revoke your token only when you need to invalidate a token early. For example, on user logout, credential rotation, or if a token may have been exposed.
 </Callout>
 
 ***
