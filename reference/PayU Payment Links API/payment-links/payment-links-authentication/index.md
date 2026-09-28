@@ -74,7 +74,7 @@ These are the authentication APIs
 </Accordion>
 
 <Accordion title="3. Use the Token" icon="fa-paper-plane">
-  Pass the token in the `Authorization` header of every Payment Links API call:
+  Pass the token in the `Authorization` header of every Payment Links API call as shown below:
 
   ```
   Authorization: Bearer {access_token}
@@ -86,7 +86,7 @@ These are the authentication APIs
 </Accordion>
 
 <Accordion title="5. Revoke if Needed" icon="fa-ban">
-  Call `POST /oauth/revoke` to invalidate a token early — for example, when rotating credentials or if a token may have been exposed.
+  Call the Revoke a Token API to invalidate a token early if needed. For example, when rotating credentials or if a token may have been exposed.
 </Accordion>
 
 ##
