@@ -42,18 +42,19 @@ You can use the Payment Links APIs to perform various actions on payment links p
 
 ## Authentication
 
-| API                                                                                                                       | Description                                |
-| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
-| <Anchor target="_blank" href="https://docs.payu.in/reference/generate-access-token">**Generate an Access Token**</Anchor> | API to generate an access token.           |
-| [**Revoke a Token**](https://docs.payu.in/reference/revoke-token)                                                         | API to revoke/deactivate the access token. |
+| API                                                                                                                       | Description                               |
+| ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| <Anchor target="_blank" href="https://docs.payu.in/reference/generate-access-token">**Generate an Access Token**</Anchor> | API to generate an access token           |
+| [**Revoke a Token**](https://docs.payu.in/reference/revoke-token)                                                         | API to revoke/deactivate the access token |
 
 ## Payment Link APIs
 
-| API                                                                                                                                                  | Description                                                                           |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| <Anchor target="_blank" href="https://docs.payu.in/reference/create-payment-links">Create a Payment Link</Anchor>                                    | API to create a new payment link.                                                     |
-| <Anchor target="_blank" href="https://docs.payu.in/reference/share_payment_link_api">Share a Payment Link</Anchor>                                   | API to share an existing payment link with a customer via SMS or email.               |
-| <Anchor target="_blank" href="https://docs.payu.in/reference/get-single-payment-link">Fetch a Payment Link</Anchor>                                  | API to fetch the details of a payment link by its invoice number.                     |
-| <Anchor target="_blank" href="https://docs.payu.in/reference/get-all-payment-links-api">Fetch All Payment Links</Anchor>                             | API to fetch all the created payment links with date, status, and pagination filters. |
-| <Anchor target="_blank" href="https://docs.payu.in/reference/change-status-of-a-payment-link-api">Change Status or Expiry of a Payment Link</Anchor> | API to update the status or expiry of a payment link.                                 |
-| <Anchor target="_blank" href="https://docs.payu.in/reference/get-transaction-details-api">Get Transaction Details</Anchor>                           | API to get transaction details of a payment link.                                     |
+| API                                                                                                                            | Description                                             |
+| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------- |
+| <Anchor target="_blank" href="https://docs.payu.in/reference/create-payment-link">**Create a Payment Link**</Anchor>           | API to create a new payment link                        |
+| <Anchor target="_blank" href="https://docs.payu.in/reference/fetch-all-payment-links">**Fetch All Payment Links**</Anchor>     | API to fetch a list of all payment links                |
+| <Anchor target="_blank" href="https://docs.payu.in/reference/fetch-payment-link">**Fetch a Payment Link**</Anchor>             | API to fetch a particular payment link                  |
+| <Anchor target="_blank" href="https://docs.payu.in/reference/update-payment-link">**Update a Payment Link**</Anchor>           | API to update a payment link details                    |
+| <Anchor target="_blank" href="https://docs.payu.in/reference/cancel-payment-link">**Cancel a Payment Link**</Anchor>           | API to deactivate a payment link                        |
+| <Anchor target="_blank" href="https://docs.payu.in/reference/share-payment-link">**Share a Payment Link**</Anchor>             | API to share the payment link                           |
+| <Anchor target="_blank" href="https://docs.payu.in/reference/fetch-transaction-details">**Fetch Transaction Details**</Anchor> | API to fetch transaction details made on a payment link |
