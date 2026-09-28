@@ -581,10 +581,11 @@ paths:
                 reminder:
                   type: object
                   description: >-
-                    **Use case 6 — Payment Reminder.** Schedule a notification
-                    before or after the `paymentDeadline`. Set `isScheduled:
-                    true`, pick timing with `type` (`0` = before deadline, `1` =
-                    after), and list channels (`email`, `phone`).
+                    Schedule a notification before or after the
+                    `paymentDeadline`. Set `isScheduled: true`, select the
+                    timing with the `type` parameter value as `0` = before
+                    deadline, or `1` = after, and list channels as `email`, and
+                    `phone`.
                   properties:
                     isScheduled:
                       type: boolean
@@ -607,10 +608,9 @@ paths:
                 whatsappRecipients:
                   type: array
                   description: >-
-                    **Use case 7 — Multiple WhatsApp recipients.** Send the link
-                    to up to 4 WhatsApp numbers at creation. Use with
-                    `viaWhatsapp: true` and `whatsappTemplateName`. Each entry
-                    must contain a `phone` field (10-15 digits).
+                    Send the link to up to 4 WhatsApp numbers at creation. Use
+                    with `viaWhatsapp: true` and `whatsappTemplateName`. Each
+                    entry must contain a `phone` field with 10-15 digits.
                   items:
                     type: object
                     properties:
@@ -621,15 +621,15 @@ paths:
                 whatsappTemplateName:
                   type: string
                   description: >-
-                    WhatsApp notification template name. Used with `viaWhatsapp:
-                    true`.
+                    Determines the WhatsApp notification template name. Used
+                    with `viaWhatsapp: true`.
                   example: '{{whatsappTemplateName}}'
                 offerKey:
                   type: string
                   description: >-
-                    **Use case 8 — Offer or coupon.** Pass the offer or coupon
-                    identifier to attach a promotional discount to this payment
-                    link. Maximum 255 characters.
+                    Pass the offer or coupon identifier to attach a promotional
+                    discount to the payment link. The value should contain
+                    maximum of 255 characters.
                   example: '{{offerKey}}'
                 blockDaysForPreAuthorizeLinks:
                   type: integer
