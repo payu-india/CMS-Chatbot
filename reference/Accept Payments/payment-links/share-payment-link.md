@@ -3,6 +3,8 @@ api:
   file: pl-test-oas.yaml
   operationId: SharePaymentLinkAPI
 hidden: true
+link:
+  new_tab: false
 metadata:
   title: Share a Payment Link | Payment Links API
 next:
