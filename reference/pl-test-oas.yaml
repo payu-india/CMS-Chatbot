@@ -1034,32 +1034,67 @@ paths:
                       pageNumber:
                         type: integer
                         example: 1
+                        description: The current page number
                       pageSize:
                         type: integer
                         example: 10
-                      data:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            invoiceNumber:
-                              type: string
-                              example: ORD-2026-88421
-                            paymentLink:
-                              type: string
-                              example: https://pp72.pmny.in/WxYzAbCdEfGh
-                            description:
-                              type: string
-                              example: 'Order #ORD-2026-88421'
-                            totalAmount:
-                              type: integer
-                              example: 1499
-                            active:
-                              type: boolean
-                              example: true
-                            expiryDate:
-                              type: string
-                              example: '2026-10-15 23:59:59'
+                        description: Determines the number of entries in the page.
+                      paymentLinksList:
+                        type: object
+                        properties:
+                          invoiceNumber:
+                            type: string
+                            description: >-
+                              The unique invoice number of the fetched payment
+                              link.
+                          description:
+                            type: string
+                            description: >-
+                              The description of the payment link displayed in
+                              the checkout.
+                          createDate:
+                            type: string
+                            format: date-time
+                            description: >-
+                              The date and time on which the payment link was
+                              created.
+                          paymentLinkURL:
+                            type: string
+                            description: >-
+                              The actual payment link URL used to make the
+                              payment.
+                          customerName:
+                            type: string
+                            description: The customer name.
+                          amount:
+                            type: number
+                            format: float
+                            description: The amount associated with the link.
+                          active:
+                            type: string
+                            description: >-
+                              Determines whether the link is active. Possible
+                              values:
+
+                              - `true`: The link is active
+
+                              - `false`: The link is inactive
+                          expiry:
+                            type: string
+                            format: date-time
+                            description: The expiry date and time of the link.
+                          isAmountFilledByCustomer:
+                            type: number
+                            description: >-
+                              Determines whether the amount to be filled by the
+                              customer.
+
+                              - `true`: The amount will be filled by the
+                              customer
+
+                              - `false`: The amount will not be filled by the
+                              customer
+                        description: The list of payment links.
                     description: Contains the fetch result details.
               examples:
                 success:
