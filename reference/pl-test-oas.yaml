@@ -400,16 +400,15 @@ paths:
                 dropCategory:
                   type: string
                   description: >
-                    Hide specific payment categories from checkout. Separate
-                    values with `|`.
-
-                    Example: `"EMI"` hides the EMI option.
+                    Use this parameter to hide specific payment categories from
+                    checkout. Separate values with `|`. For example: `"EMI"`
+                    hides the EMI option.
                   example: EMI
                 customer:
                   type: object
                   description: >-
-                    Customer contact details. Required when using `viaEmail`,
-                    `viaSms`, or `viaWhatsapp`.
+                    The customer contact details. This is required when using
+                    `viaEmail`, `viaSms`, or `viaWhatsapp` parameters.
                   properties:
                     name:
                       type: string
@@ -430,8 +429,8 @@ paths:
                 address:
                   type: object
                   description: >-
-                    Customer billing address. Stored against the link and passed
-                    through to webhooks.
+                    The customer billing address stored against the link and
+                    passed through to webhooks.
                   properties:
                     line1:
                       type: string
@@ -451,11 +450,10 @@ paths:
                 udf:
                   type: object
                   description: >
-                    User-defined fields 1–5. Stored against the link and passed
-                    through unchanged to
-
-                    webhook callbacks. Use for internal order IDs, customer
-                    segments, or campaign codes.
+                    User-defined fields 1 to 5 (udf1, udf2 and so on) stored
+                    against the link and passed through unchanged to webhook
+                    callbacks. Use for internal order IDs, customer segments, or
+                    campaign codes.
                   properties:
                     udf1:
                       type: string
@@ -472,13 +470,12 @@ paths:
                 siDetails:
                   type: object
                   description: >
-                    **Required for SI Recurring and eNACH links** (`source:
-                    "si_payment_link"`).
+                    Use this parameter for **Required for SI Recurring and eNACH
+                    links (`source: "si_payment_link"`).<br/>
+
 
                     Defines the recurring billing schedule. Omit for Standard,
-                    Open Amount, and
-
-                    Partial Payment links.
+                    Open Amount, and Partial Payment links.
                   properties:
                     billingAmount:
                       type: integer
@@ -578,8 +575,8 @@ paths:
                 paymentDeadline:
                   type: string
                   description: >-
-                    Payment deadline independent of `expiryDate`. Format:
-                    `YYYY-MM-DD HH:mm:ss`.
+                    Determines the payment deadline in the `YYYY-MM-DD HH:mm:ss`
+                    format. This is independent from the expiry date.
                   example: '2026-10-15 23:59:59'
                 reminder:
                   type: object
