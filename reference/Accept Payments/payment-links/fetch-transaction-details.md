@@ -185,6 +185,6 @@ Use this to verify payment completion, reconcile partial payments, or displaypay
   </Tab>
 
   <Tab title="Parameter Description">
-    Refer to the [Response](https://docs.payu.in/v3.0/reference/fetch-transaction-details#response-schemas) section for a full description of all response fields.
+    Refer to the [Response](https://docs.payu.in/reference/fetch-transaction-details#response-schemas) section for a full description of all response fields.
   </Tab>
 </Tabs>
