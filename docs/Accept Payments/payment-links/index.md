@@ -18,14 +18,14 @@ metadata:
 
 ## What Can I Do with Payment Links?
 
-Payment Links lets you collect payments by creating a secure payment link and sharing it with your customer through WhatsApp, SMS, email, or any other channel you use to communicate with them.
+Payment Links lets you collect payments by creating a secure payment link and sharing it with your customer through WhatsApp, SMS, email, or any other channel you use to communicate with them.<br />
 
-You can use Payment Links to:
+You can use Payment Links to:<br />
 
 - Create a payment request without a website
 - Share it through WhatsApp, SMS, email, etc.
 - Collect payments using multiple payment methods
-- Track and manage payments from the Dashboard
+- Track and manage payments from the Dashboard<br />
 
 Check this video to see how PayU Payment Links work: _should decide whether to keep this here or move to Payment Link Workflow_
 
