@@ -66,7 +66,7 @@ These are the authentication APIs
 ## How It Works
 
 <Accordion title="1. Generate a Token" icon="fa-key">
-  Call `POST /oauth/token` with your `client_id`, `client_secret`, `grant_type: client_credentials`, and the scopes your integration needs.
+  Call Get an Access Token API with your `client_id`, `client_secret`, `grant_type: client_credentials`, and the scopes your integration needs.
 </Accordion>
 
 <Accordion title="2. Cache the Token" icon="fa-database">
