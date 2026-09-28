@@ -70,7 +70,7 @@ Use this endpoint to deactivate an existing payment link so it can no longer acc
   </Tab>
 
   <Tab title="Parameter Description">
-    Refer to the [Body Params](ref:create-payment-links#body-params) section for a full description of all request parameters and use cases.
+    Refer to the [Path](ref:create-payment-links#body-params) Params and Headers sections for a full description of all parameters and use cases.
   </Tab>
 </Tabs>
 
