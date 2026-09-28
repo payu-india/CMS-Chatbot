@@ -672,6 +672,6 @@ Check whether a link is active, verify its amount and configuration, or poll for
   </Tab>
 
   <Tab title="Parameter Description">
-    Refer to the [Response](ref:create-payment-links#response-schemas) section for a full description of all response fields.
+    Refer to the [Response](https://docs.payu.in/reference/fetch-payment-link#response-schemas) section for a full description of all response fields.
   </Tab>
 </Tabs>
