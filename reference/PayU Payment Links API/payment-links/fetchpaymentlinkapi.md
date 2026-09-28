@@ -602,3 +602,72 @@ Check whether a link is active, verify its amount and configuration, or poll for
     Refer to the [Body Params](ref:create-payment-links#body-params) section for a full description of all request parameters and use cases.
   </Tab>
 </Tabs>
+
+***
+
+## Sample Response
+
+<Tabs>
+  <Tab title="Success and Error Response">
+    ```json Success Respone
+    {
+      "status": 0,
+      "message": null,
+      "result": {
+        "summary": {
+          "amountRequested": 2,
+          "totalRevenue": 0,
+          "totalViews": 0
+        },
+        "subAmount": 2,
+        "tax": 0,
+        "shippingCharge": 0,
+        "totalAmount": 2,
+        "totalAmountCollected": 0,
+        "invoiceNumber": "INV8446471886220",
+        "paymentLink": "http://pp72.pmny.in/4IwlctBtwp2V",
+        "description": "paymentLink for testing",
+        "active": true,
+        "isPartialPaymentAllowed": false,
+        "status": "active",
+        "expiryDate": "2023-03-21T14:53:52.000+0530",
+        "udf": {
+          "udf1": null,
+          "udf2": null,
+          "udf3": null,
+          "udf4": null,
+          "udf5": null
+        },
+        "address": {
+          "line1": null,
+          "line2": null,
+          "city": null,
+          "state": null,
+          "country": null,
+          "zipCode": null
+        },
+        "addedOn": "2022-03-21T14:53:53.000+0530",
+        "isAmountFilledByCustomer": false,
+        "isScheduled": 0,
+        "reminderCount": 0,
+        "customAttributes": []
+      },
+      "errorCode": null,
+      "guid": null
+    }
+    ```
+    ```json Error Response
+    {
+      "status": -1,
+      "message": "paymentLink not found",
+      "result": null,
+      "errorCode": null,
+      "guid": null
+    }
+    ```
+  </Tab>
+
+  <Tab title="Parameter Description">
+    Refer to the [Response](ref:create-payment-links#response-schemas) section for a full description of all response fields.
+  </Tab>
+</Tabs>
