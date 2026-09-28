@@ -58,9 +58,9 @@ Check whether a link is active, verify its amount and configuration, or poll for
 <Tabs>
   <Tab title="Request Payload">
     ```curl
-    curl --location --request GET 'https://uatoneapi.payu.in/payment-links/INV0063002462' \
-    --header 'merchantId: 8237550' \
-    --header 'Authorization: Bearer e53f7d25071e6c2e631a920f38b9dbceeb571d6aadaed7e100f55fc7dab110ff'
+    curl --location 'https://uatoneapi.payu.in/payment-links/{{invoice_number}}' \
+      --header 'merchantId: {{merchantId}}' \
+      --header 'Authorization: Bearer {{access_token}}'
     ```
     ```python
     import requests
@@ -603,7 +603,7 @@ Check whether a link is active, verify its amount and configuration, or poll for
   </Tab>
 
   <Tab title="Parameter Description">
-    Refer to the [Path Params](https://docs.payu.in/v3.0/reference/fetchpaymentlinkapi#path-params) and [Headers](https://docs.payu.in/v3.0/reference/fetchpaymentlinkapi#header-params) sections for a full description of all parameters and use cases.
+    Refer to the [Path Params](https://docs.payu.in/reference/fetch-payment-link#path-params) and [Headers](https://docs.payu.in/reference/fetch-payment-link#header-params) sections for a full description of all parameters and use cases.
   </Tab>
 </Tabs>
 
