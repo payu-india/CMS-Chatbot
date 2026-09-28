@@ -44,11 +44,99 @@ Use this to verify payment completion, reconcile partial payments, or displaypay
 <Tabs>
   <Tab title="Request Payload">
     ```curl
-      curl --location '
-      https://uatoneapi.payu.in/payment-links/INV2669646610062/txns?pageSize=10&dateFrom=2024-10-16&dateTo=2024-10-17'
-      \
-      --header 'merchantId: 8237736' \
-      --header 'Authorization: Bearer 8e400beadad72c5d00c22d98df690bcf04cff2eff4be51cc30e0783492bd8091'
+    curl --location 'https://uatoneapi.payu.in/payment-links/{{invoice_number}}/txns?pageSize=10&dateFrom=2024-10-16&dateTo=2024-10-17' \
+      --header 'merchantId: {{merchantId}}' \
+      --header 'Authorization: Bearer {{access_token}}'
+    ```
+    ```csharp
+    using var client = new HttpClient();
+
+    var request = new HttpRequestMessage(
+        HttpMethod.Get,
+        "https://uatoneapi.payu.in/payment-links/{{invoice_number}}/txns?pageSize=10&dateFrom=2024-10-16&dateTo=2024-10-17"
+    );
+
+    request.Headers.Add("merchantId", "{{merchantId}}");
+    request.Headers.Add("Authorization", "Bearer {{access_token}}");
+
+    var response = await client.SendAsync(request);
+    var responseBody = await response.Content.ReadAsStringAsync();
+
+    Console.WriteLine(responseBody);
+    ```
+    ```python
+    import requests
+
+    url = "https://uatoneapi.payu.in/payment-links/{{invoice_number}}/txns?pageSize=10&dateFrom=2024-10-16&dateTo=2024-10-17"
+
+    headers = {
+        "merchantId": "{{merchantId}}",
+        "Authorization": "Bearer {{access_token}}"
+    }
+
+    response = requests.get(url, headers=headers)
+
+    print(response.text)
+    ```
+    ```javascript
+    const response = await fetch(
+      "https://uatoneapi.payu.in/payment-links/{{invoice_number}}/txns?pageSize=10&dateFrom=2024-10-16&dateTo=2024-10-17",
+      {
+        method: "GET",
+        headers: {
+          "merchantId": "{{merchantId}}",
+          "Authorization": "Bearer {{access_token}}"
+        }
+      }
+    );
+
+    const responseBody = await response.text();
+
+    console.log(responseBody);
+    ```
+    ```java
+    import java.net.URI;
+    import java.net.http.HttpClient;
+    import java.net.http.HttpRequest;
+    import java.net.http.HttpResponse;
+
+    HttpClient client = HttpClient.newHttpClient();
+
+    HttpRequest request = HttpRequest.newBuilder()
+        .uri(URI.create(
+            "https://uatoneapi.payu.in/payment-links/{{invoice_number}}/txns?pageSize=10&dateFrom=2024-10-16&dateTo=2024-10-17"
+        ))
+        .header("merchantId", "{{merchantId}}")
+        .header("Authorization", "Bearer {{access_token}}")
+        .GET()
+        .build();
+
+    HttpResponse<String> response = client.send(
+        request,
+        HttpResponse.BodyHandlers.ofString()
+    );
+
+    System.out.println(response.body());
+    ```
+    ```php
+    <?php
+
+    $curl = curl_init();
+
+    curl_setopt_array($curl, [
+        CURLOPT_URL => 'https://uatoneapi.payu.in/payment-links/{{invoice_number}}/txns?pageSize=10&dateFrom=2024-10-16&dateTo=2024-10-17',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_HTTPHEADER => [
+            'merchantId: {{merchantId}}',
+            'Authorization: Bearer {{access_token}}'
+        ]
+    ]);
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+
+    echo $response;
     ```
   </Tab>
 
