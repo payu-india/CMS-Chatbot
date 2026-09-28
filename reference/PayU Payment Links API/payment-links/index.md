@@ -111,7 +111,7 @@ A typical payment links integration flow looks like this:'
 </Accordion>
 
 <Accordion title="Share the Link" icon="fad fa-share-nodes">
-  Either pass delivery flags at creation time, or call `/notify` later to send the link on-demand.
+  Either pass delivery flags at creation time, or call the Share a Payment Link API later to send the link on-demand.
 </Accordion>
 
 <Accordion title="Receive Payment Notification" icon="fad fa-hand-point-left">
@@ -119,7 +119,7 @@ A typical payment links integration flow looks like this:'
 </Accordion>
 
 <Accordion title="Fetch Status" icon="fab fa-searchengin">
-  Call `GET /payment-links/{invoiceNumber}` or `GET /payment-links/{invoiceNumber}/transactions` to reconcile payment state in your system.
+  Call the Fetch all Payment Links or Fetch Transaction Details to reconcile payment state in your system.
 </Accordion>
 
 ***
