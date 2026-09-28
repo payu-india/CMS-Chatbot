@@ -599,7 +599,7 @@ Check whether a link is active, verify its amount and configuration, or poll for
   </Tab>
 
   <Tab title="Parameter Description">
-    Refer to the [Path Parameters](https://docs.payu.in/v3.0/reference/fetchpaymentlinkapi#path-params) and Header Parmeters sections for a full description of all parameters and use cases.
+    Refer to the [Path Params](https://docs.payu.in/v3.0/reference/fetchpaymentlinkapi#path-params) and [Headers](https://docs.payu.in/v3.0/reference/fetchpaymentlinkapi#header-params) sections for a full description of all parameters and use cases.
   </Tab>
 </Tabs>
 
