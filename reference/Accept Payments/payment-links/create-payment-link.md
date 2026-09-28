@@ -996,7 +996,7 @@ PayU's Create Payment Link API supports five distinct link types, all from the s
     </Tab>
 
     <Tab title="Request Parameter Description">
-      Refer to the [Body Params](ref:create-payment-links#body-params) section for a full description of all request parameters and use cases.
+      Refer to [Headers](https://docs.payu.in/reference/create-payment-link#header-params) and [Body Params](https://docs.payu.in/reference/create-payment-link#body-params]\(https://docs.payu.in/reference/create-payment-link#body-params) sections for a full description of all request parameters and use cases.
     </Tab>
   </Tabs>
 </Accordion>
@@ -1204,7 +1204,7 @@ PayU's Create Payment Link API supports five distinct link types, all from the s
     </Tab>
 
     <Tab title="Request Parameter Description">
-      Refer to the [Body Params](ref:create-payment-links#body-params) section for a full description of all request parameters and use cases.
+      Refer to [Headers](https://docs.payu.in/reference/create-payment-link#header-params) and [Body Params](https://docs.payu.in/reference/create-payment-link#body-params]\(https://docs.payu.in/reference/create-payment-link#body-params) sections for a full description of all request parameters and use cases.
     </Tab>
   </Tabs>
 </Accordion>
@@ -1426,7 +1426,7 @@ PayU's Create Payment Link API supports five distinct link types, all from the s
     </Tab>
 
     <Tab title="Request Parameter Description">
-      Refer to the [Body Params](ref:create-payment-links#body-params) section for a full description of all request parameters and use cases.
+      Refer to [Headers](https://docs.payu.in/reference/create-payment-link#header-params) and [Body Params](https://docs.payu.in/reference/create-payment-link#body-params]\(https://docs.payu.in/reference/create-payment-link#body-params) sections for a full description of all request parameters and use cases.
     </Tab>
   </Tabs>
 </Accordion>
@@ -1683,7 +1683,7 @@ PayU's Create Payment Link API supports five distinct link types, all from the s
     </Tab>
 
     <Tab title="Request Parameter Description">
-      Refer to the [Body Params](ref:create-payment-links#body-params) section for a full description of all request parameters and use cases.
+      Refer to [Headers](https://docs.payu.in/reference/create-payment-link#header-params) and [Body Params](https://docs.payu.in/reference/create-payment-link#body-params]\(https://docs.payu.in/reference/create-payment-link#body-params) sections for a full description of all request parameters and use cases.
     </Tab>
   </Tabs>
 </Accordion>
@@ -1965,7 +1965,7 @@ PayU's Create Payment Link API supports five distinct link types, all from the s
     </Tab>
 
     <Tab title="Request Parameter Description">
-      Refer to the [Body Params](ref:create-payment-links#body-params) section for a full description of all request parameters and use cases.
+      Refer to [Headers](https://docs.payu.in/reference/create-payment-link#header-params) and [Body Params](https://docs.payu.in/reference/create-payment-link#body-params]\(https://docs.payu.in/reference/create-payment-link#body-params) sections for a full description of all request parameters and use cases.
     </Tab>
   </Tabs>
 </Accordion>
@@ -2212,7 +2212,7 @@ PayU's Create Payment Link API supports five distinct link types, all from the s
     </Tab>
 
     <Tab title="Request Parameter Description">
-      Refer to the [Body Params](ref:create-payment-links#body-params) section for a full description of all request parameters and use cases.
+      Refer to [Headers](https://docs.payu.in/reference/create-payment-link#header-params) and [Body Params](https://docs.payu.in/reference/create-payment-link#body-params]\(https://docs.payu.in/reference/create-payment-link#body-params) sections for a full description of all request parameters and use cases.
     </Tab>
   </Tabs>
 </Accordion>
@@ -2469,7 +2469,7 @@ PayU's Create Payment Link API supports five distinct link types, all from the s
     </Tab>
 
     <Tab title="Request Parameter Description">
-      Refer to the [Body Params](ref:create-payment-links#body-params) section for a full description of all request parameters and use cases.
+      Refer to [Headers](https://docs.payu.in/reference/create-payment-link#header-params) and [Body Params](https://docs.payu.in/reference/create-payment-link#body-params]\(https://docs.payu.in/reference/create-payment-link#body-params) sections for a full description of all request parameters and use cases.
     </Tab>
   </Tabs>
 </Accordion>
@@ -2676,7 +2676,7 @@ PayU's Create Payment Link API supports five distinct link types, all from the s
     </Tab>
 
     <Tab title="Request Parameter Description">
-      Refer to the [Body Params](ref:create-payment-links#body-params) section for a full description of all request parameters and use cases.
+      Refer to [Headers](https://docs.payu.in/reference/create-payment-link#header-params) and [Body Params](https://docs.payu.in/reference/create-payment-link#body-params]\(https://docs.payu.in/reference/create-payment-link#body-params) sections for a full description of all request parameters and use cases.
     </Tab>
   </Tabs>
 </Accordion>
@@ -2883,7 +2883,7 @@ PayU's Create Payment Link API supports five distinct link types, all from the s
     </Tab>
 
     <Tab title="Parameter Description">
-      Refer to the [Body Params](ref:create-payment-links#body-params) section for a full description of all request parameters and use cases.
+      Refer to [Headers](https://docs.payu.in/reference/create-payment-link#header-params) and [Body Params](https://docs.payu.in/reference/create-payment-link#body-params]\(https://docs.payu.in/reference/create-payment-link#body-params) sections for a full description of all request parameters and use cases.
     </Tab>
   </Tabs>
 </Accordion>
@@ -3155,7 +3155,7 @@ PayU's Create Payment Link API supports five distinct link types, all from the s
     </Tab>
 
     <Tab title="Parameter Description">
-      Refer to the [Body Params](ref:create-payment-links#body-params) section for a full description of all request parameters and use cases.
+      Refer to [Headers](https://docs.payu.in/reference/create-payment-link#header-params) and [Body Params](https://docs.payu.in/reference/create-payment-link#body-params]\(https://docs.payu.in/reference/create-payment-link#body-params) sections for a full description of all request parameters and use cases.
     </Tab>
   </Tabs>
 </Accordion>
