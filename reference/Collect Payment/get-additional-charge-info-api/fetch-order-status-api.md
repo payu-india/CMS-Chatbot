@@ -21,6 +21,7 @@ Use this API:
 | **Production Environment** | `https://api.payu.in/cart/order`     |
 
 ## Request Parameters
+
 ### Request Headers
 
 | Header                                         | Description                                                                                                                             | Example                                                                      |
@@ -37,6 +38,7 @@ Use this API:
 | Date          | `String` Current date and time in RFC 1123 format (EEE, dd MMM yyyy HH:mm:ss 'GMT').                                                                                                                                                                        | Wed, 15 Jan 2025 10:30:00 GMT                                                    |
 | Authorization | `String` HMAC SHA-512 signature header in the format: `hmac username="{merchantKey}", algorithm="sha512", headers="date", signature="{hash}"`. The signature is computed as HMAC-SHA512 over the signed header string using the merchant secret as the key. | hmac username="smsplus", algorithm="sha512", headers="date", signature="d260..." |
 | orderId       | `String` The unique merchant order ID provided during order creation.                                                                                                                                                                                       | RDU2a6PSKX                                                                       |
+
 ## Sample Request
 
 ```bash
@@ -252,6 +254,7 @@ echo "Response: " . $response . "\n";
     }
   }
 }
+```
 ## Response Parameters
 
 | Parameter                    | Description                                                                                                                            | Example           |
