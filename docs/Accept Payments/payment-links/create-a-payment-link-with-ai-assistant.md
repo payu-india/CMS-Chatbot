@@ -478,6 +478,74 @@ Webhook runtime:
 Begin integration now.
 ```
 
+***
+
+## How this Prompt Works
+
+The prompt is a self-contained spec that tells your AI coding assistant exactly what to build and how PayU behaves. Here is what you need to do at each stage:
+
+### Stage 1: Before You Paste
+
+Open the prompt and find the `=== CREDENTIALS ===` block at the very top. It looks like this:
+
+```
+PAYU_CLIENT_ID: {{clientId}}
+PAYU_CLIENT_SECRET: {{clientSecret}}
+PAYU_MERCHANT_ID: {{merchantId}}
+```
+
+Replace the `{{...}}` placeholders with your actual values:
+
+| Placeholder        | What to put here                           | Where to find it                                                                    |
+| ------------------ | ------------------------------------------ | ----------------------------------------------------------------------------------- |
+| `{{clientId}}`     | Your OAuth2 Client ID in the Test Mode     | **Dashboard** → **Settings** → **API Keys** → **Client ID & Client secret details** |
+| `{{clientSecret}}` | Your OAuth2 Client Secret in the Test Mode | **Dashboard** → **Settings** → **API Keys** → **Client ID & Client secret details** |
+| `{{merchantId}}`   | Your Merchant test ID (MID)                | **Dashboard** → **Settings** → **Profile Details** → **Merchant test ID**           |
+
+<Callout icon="🚧" theme="warning">
+  If you leave a placeholder unfilled (still shows `{{clientId}}` etc.), the prompt instructs the AI to **stop and ask you for the values before writing any code**. This is intentional — the AI will not guess or invent credentials.
+</Callout>
+
+### Stage 2 — Choose your environment
+
+Scroll to the `=== ENVIRONMENTS ===` section in the prompt. It maps two environments to their base URLs:
+
+| Environment  | When to use it                                                                |
+| ------------ | ----------------------------------------------------------------------------- |
+| `test`       | Start here — uses UAT credentials and sandbox endpoints. No real money moves. |
+| `production` | Switch to this only when you are ready to go live with real transactions.     |
+
+The generated code will read a `PAYU_ENVIRONMENT` variable at startup (`"test"` or `"production"`) and automatically switch between UAT and production URLs. You do not need to change any code when you go live — only the environment variable.
+
+### Stage 3 — Paste into your AI coding assistant
+
+Paste the entire prompt (credentials filled in) into:
+
+- **Cursor** — open the AI chat panel, paste, and press Enter
+- **Claude Code** — paste in the terminal or chat window
+- **GitHub Copilot Chat** — paste into the chat panel in VS Code
+
+The assistant will then:
+
+1. Detect your project's language and framework from existing files
+2. Ask you to clarify the target package if your project is a monorepo
+3. Create a token cache module, a route to create payment links, and a webhook endpoint
+4. Edit only the files needed — it will not refactor unrelated code
+5. Output a summary of every file changed and the manual steps remaining for you
+
+### Stage 4 — Manual steps after the AI finishes
+
+The AI will list these, but they always apply:
+
+1. **Set environment variables** — add `PAYU_CLIENT_ID`, `PAYU_CLIENT_SECRET`, `PAYU_MERCHANT_ID`, and `PAYU_ENVIRONMENT` to your environment (`.env` on local, secrets manager in production)
+2. **Run the install command** — if the AI added a new HTTP dependency, it will give you the exact command to run
+3. **Register the webhook URL** — go to PayU Dashboard → Settings → Webhooks and add your endpoint URL
+4. **Start a tunnel for local testing** — use `ngrok` or `cloudflared` so PayU can reach your local webhook endpoint during development
+
+<Callout icon="📘" theme="info">
+  The AI will not commit code, run your server, or touch your `.env` file — these are intentional guardrails built into the prompt. All changes are left uncommitted for you to review.
+</Callout>
+
 <Callout icon="fad fa-brake-warning" theme="error">
   ### **Confidential!**
 
