@@ -503,10 +503,12 @@ Replace the `{{...}}` placeholders with your actual values:
 | `{{merchantId}}`   | Your Merchant test ID (MID)                | **Dashboard** → **Settings** → **Profile Details** → **Merchant test ID**           |
 
 <Callout icon="🚧" theme="warning">
-  If you leave a placeholder unfilled (still shows `{{clientId}}` etc.), the prompt instructs the AI to **stop and ask you for the values before writing any code**. This is intentional — the AI will not guess or invent credentials.
+  ### **Watch Out!**
+
+  If you leave a placeholder unfilled (still shows `{{clientId}}` etc.), the prompt instructs the AI to **stop and ask you for the values before writing any code**. This is intentional, the AI will not guess or invent credentials.
 </Callout>
 
-### Stage 2 — Choose your environment
+### Stage 2: Choose Your Environment
 
 Scroll to the `=== ENVIRONMENTS ===` section in the prompt. It maps two environments to their base URLs:
 
@@ -515,35 +517,37 @@ Scroll to the `=== ENVIRONMENTS ===` section in the prompt. It maps two environm
 | `test`       | Start here — uses UAT credentials and sandbox endpoints. No real money moves. |
 | `production` | Switch to this only when you are ready to go live with real transactions.     |
 
-The generated code will read a `PAYU_ENVIRONMENT` variable at startup (`"test"` or `"production"`) and automatically switch between UAT and production URLs. You do not need to change any code when you go live — only the environment variable.
+The generated code will read a `PAYU_ENVIRONMENT` variable at startup (`"test"` or `"production"`) and automatically switch between UAT and production URLs. You do not need to change any code when you go live.
 
-### Stage 3 — Paste into your AI coding assistant
+### Stage 3: Paste into Your AI Coding Assistant
 
 Paste the entire prompt (credentials filled in) into:
 
-- **Cursor** — open the AI chat panel, paste, and press Enter
-- **Claude Code** — paste in the terminal or chat window
-- **GitHub Copilot Chat** — paste into the chat panel in VS Code
+- **Cursor**: Open the AI chat panel, paste, and press Enter
+- **Claude Code**: Paste in the terminal or chat window
+- **GitHub Copilot Chat**: Paste into the chat panel in VS Code
 
 The assistant will then:
 
 1. Detect your project's language and framework from existing files
 2. Ask you to clarify the target package if your project is a monorepo
 3. Create a token cache module, a route to create payment links, and a webhook endpoint
-4. Edit only the files needed — it will not refactor unrelated code
+4. Edit only the files needed. It will not refactor unrelated code
 5. Output a summary of every file changed and the manual steps remaining for you
 
-### Stage 4 — Manual steps after the AI finishes
+### Stage 4: Manual Steps After the AI Finishes
 
 The AI will list these, but they always apply:
 
-1. **Set environment variables** — add `PAYU_CLIENT_ID`, `PAYU_CLIENT_SECRET`, `PAYU_MERCHANT_ID`, and `PAYU_ENVIRONMENT` to your environment (`.env` on local, secrets manager in production)
-2. **Run the install command** — if the AI added a new HTTP dependency, it will give you the exact command to run
-3. **Register the webhook URL** — go to PayU Dashboard → Settings → Webhooks and add your endpoint URL
-4. **Start a tunnel for local testing** — use `ngrok` or `cloudflared` so PayU can reach your local webhook endpoint during development
+1. **Set environment variables**: Add `PAYU_CLIENT_ID`, `PAYU_CLIENT_SECRET`, `PAYU_MERCHANT_ID`, and `PAYU_ENVIRONMENT` to your environment (`.env` on local, secrets manager in production)
+2. **Run the install command**: If the AI added a new HTTP dependency, it will give you the exact command to run
+3. **Register the webhook URL**: Go to **PayU Dashboard** → **Developers** → **Webhooks** and add your endpoint URL
+4. **Start a Tunnel for Local Testing** — use `ngrok` or `cloudflared` so PayU can reach your local webhook endpoint during development
 
 <Callout icon="📘" theme="info">
-  The AI will not commit code, run your server, or touch your `.env` file — these are intentional guardrails built into the prompt. All changes are left uncommitted for you to review.
+  ### **Note:**
+
+  The AI will not commit code, run your server, or touch your `.env` file. These are intentional guardrails built into the prompt. All changes are left uncommitted for you to review.
 </Callout>
 
 <Callout icon="fad fa-brake-warning" theme="error">
