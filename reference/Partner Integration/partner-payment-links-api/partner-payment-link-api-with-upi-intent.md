@@ -9,6 +9,12 @@ The **Payment Link UPI Intent API (**`UPI_PL`**)** allows external partners and 
 
 By omitting `redirect_url` in the initiation request, PayU returns a standardized `upi_intent_url`. The partner invokes native UPI apps installed on the customer's device without requiring a browser redirect.
 
+<Callout icon="📘" theme="info">
+  ### Reference
+  For details on how to integrate, refer to [Partner Payment Links with UPI Intent](https://docs.payu.in/docs/partner-payment-links-via-upi-intent)
+  
+</Callout>
+
 HTTP Method: **POST**
 
 ### Endpoints
