@@ -5,3 +5,4 @@
 - create-transaction-api
 - fetch-order-status-api
 - payment-options-api
+- payment-options-filtered-api-l2-load
