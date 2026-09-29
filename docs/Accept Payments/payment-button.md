@@ -115,19 +115,19 @@ All You need is:<br />
 
 <Columns layout="fixed">
   <Column>
-    **A PayU merchant account:** <Anchor target="_blank" href="doc:set-up-your-account">Sign up here</Anchor> if you do not have an account.
+    - **A PayU merchant account:** <Anchor target="_blank" href="doc:set-up-your-account">Sign up here</Anchor> if you do not have an account.
   </Column>
 </Columns>
 
 <Columns layout="fixed">
   <Column>
-    **A website, blog, or page builder:** Any site where you can add content to your pages. For example WordPress, Wix, Squarespace, or any website with a page editor.
+    - **A website, blog, or page builder:** Any site where you can add content to your pages. For example WordPress, Wix, Squarespace, or any website with a page editor.
   </Column>
 </Columns>
 
 <Columns layout="fixed">
   <Column>
-    **Access to the PayU Dashboard:** Where you will create and manage your payment buttons.
+    - **Access to the PayU Dashboard:** Where you will create and manage your payment buttons.
   </Column>
 </Columns>
 
