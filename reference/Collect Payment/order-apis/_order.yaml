@@ -4,3 +4,4 @@
 - validate-offer-api-1
 - create-transaction-api
 - fetch-order-status-api
+- payment-options-api
