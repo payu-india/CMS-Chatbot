@@ -1,7 +1,7 @@
 ---
 title: Payment Options Filtered API [L2 Load]
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -172,4 +172,3 @@ echo "Response: " . $response . "\n";
 | paymentMethods.emi | `Object` Container for EMI configuration breakdown across Credit Card (`cc`) and Debit Card (`dc`).                      |         |
 | tenureOptions      | `Object` Map of available tenure keys (e.g. `HDFCD06`, `HDFCD12`) with tenure duration in months and eligibility status. |         |
 | hasEligible        | `Boolean` Indicates whether at least one eligible tenure option exists for the order amount.                             | true    |
-
