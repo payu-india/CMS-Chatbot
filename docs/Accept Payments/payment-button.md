@@ -79,20 +79,6 @@ You can use Payment Buttons to:
 
 ***
 
-## What Can I Do with a Payment Button?
-
-Payment Buttons let you accept payments directly on your website or blog — no technical setup needed.<br />
-
-<br />
-
-* <br />
-
-
-<Image src="https://files.readme.io/a494bb1de682ae83ec3d1023e1e13dfb65e02db0ef5332ca52b6e85232638c63-Screenshot_2025-06-02_at_7.09.40_PM.png" align="center" caption="Payment Buttons list in the PayU Dashboard" border={true} />
-
-
-***
-
 ## Is a Payment Button Right for Me?
 
 A Payment Button is a good choice if: <br />
