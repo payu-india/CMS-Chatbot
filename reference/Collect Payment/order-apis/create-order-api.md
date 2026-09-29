@@ -5,29 +5,6 @@ hidden: true
 metadata:
   robots: index
 ---
----
-title: Create Order
-excerpt: 'Initiate a checkout session, register order details, and retrieve available payment methods with session access token'
-deprecated: false
-hidden: false
-metadata:
-  title: Create Order API Reference | Common Checkout
-  description: >-
-    Discover the PayU Common Checkout API Reference for creating orders, generating transaction session tokens, and retrieving eligible payment methods.
-  keywords:
-    - Create Order API
-    - PayU Common Checkout
-    - S2S Order Creation
-    - /v1/checkout/l1
-    - Checkout session token
-  robots: index
-next:
-  description: ''
-  pages:
-    - type: basic
-      slug: bin-details
-      title: Bin Details
----
 The **Create Order** API initiates the checkout journey. It creates an order on PayU, returns available payment methods, and provides an `accessToken` and `encryptedOrderId` required for all subsequent API calls in the session (e.g., Bin Details, Fetch Offer, Create Transaction).
 
 ## Flow Overview
@@ -39,147 +16,110 @@ The **Create Order** API initiates the checkout journey. It creates an order on 
 
 **Environment**
 
-|                            |                                                                         |
-| -------------------------- | ----------------------------------------------------------------------- |
-| **Test Environment**       | `https://apitest.payu.in/v1/checkout/l1`                                |
-| **Production Environment** | `https://api.payu.in/v1/checkout/l1`                                    |
+|                            |                                          |
+| -------------------------- | ---------------------------------------- |
+| **Test Environment**       | `https://apitest.payu.in/v1/checkout/l1` |
+| **Production Environment** | `https://api.payu.in/v1/checkout/l1`     |
 
 ## Request Headers
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>Header</th>
-      <th>Description</th>
-      <th>Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <Glossary>Date</Glossary> `mandatory`
-      </td>
-      <td>
-        `String` Current date and time in RFC 1123 format (e.g. `EEE, dd MMM yyyy HH:mm:ss 'GMT'`).
-      </td>
-      <td>
-        Wed, 15 Jan 2025 10:30:00 GMT
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <Glossary>Authorization</Glossary> `mandatory`
-      </td>
-      <td>
-        `String` HMAC SHA-512 signature header format: `hmac username="{merchantKey}", algorithm="sha512", headers="date", signature="{hash}"`. Hash is generated over `requestBody|date|secret`.
-      </td>
-      <td>
-        hmac username="smsplus", algorithm="sha512", headers="date", signature="e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855..."
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <Glossary>Content-Type</Glossary> `mandatory`
-      </td>
-      <td>
-        `String` Media type of the request body.
-      </td>
-      <td>
-        application/json
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| Header                                         | Description                                                                                                                                                                                 | Example                                                                                                                                      |
+| :--------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------- |
+| <Glossary>Date</Glossary> `mandatory`          | `String` Current date and time in RFC 1123 format (e.g. `EEE, dd MMM yyyy HH:mm:ss 'GMT'`).                                                                                                 | Wed, 15 Jan 2025 10:30:00 GMT                                                                                                                |
+| <Glossary>Authorization</Glossary> `mandatory` | `String` HMAC SHA-512 signature header format: `hmac username="{merchantKey}", algorithm="sha512", headers="date", signature="{hash}"`. Hash is generated over `requestBody\|date\|secret`. | hmac username="smsplus", algorithm="sha512", headers="date", signature="e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855..." |
+| <Glossary>Content-Type</Glossary> `mandatory`  | `String` Media type of the request body.                                                                                                                                                    | application/json                                                                                                                             |
 
 ## Request Parameters
 
-> 📘 Reference:
->
-> If `paymentSource` is not set to `direct` or `SDK`, the API returns a redirect URL with HTTP 302.
+<Callout icon="📘" theme="info">
+  ### Reference:
+
+  If `paymentSource` is not set to `direct` or `SDK`, the API returns a redirect URL with HTTP 302.
+</Callout>
 
 **Mandatory Parameters**
 
-| Parameter | Description | Example |
-| :--- | :--- | :--- |
-| orderId | `String` Unique order identifier generated by the merchant. | ORD123446789 |
-| currency | `String` Currency code. Defaults to `INR`. | INR |
-| paymentSource | `String` Integration type. Pass `direct` for S2S integration or `SDK` for mobile SDKs. | direct |
-| productinfo | `String` Product description or summary. | Tickets |
-| order | `Object` Container for order monetary amount, items, and taxes. See **order Object Fields** below. | See below |
-| customer | `Object` Customer profile details. See **customer Object Fields** below. | See below |
-| callBackActions | `Object` URLs for redirection and asynchronous webhook notifications. See **callBackActions Object Fields** below. | See below |
+| Parameter       | Description                                                                                                                                                                                             | Example      |
+| :-------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------- |
+| orderId         | `String` Unique order identifier generated by the merchant.                                                                                                                                             | ORD123446789 |
+| currency        | `String` Currency code. Defaults to `INR`.                                                                                                                                                              | INR          |
+| paymentSource   | `String` Integration type. Pass `direct` for S2S integration or `SDK` for mobile SDKs.                                                                                                                  | direct       |
+| productinfo     | `String` Product description or summary.                                                                                                                                                                | Tickets      |
+| order           | `Object` Container for order monetary amount, items, and taxes. For more informaton, refer to [order JSON Object Fields Description](#order-json-object-fields-description)**.**                        | See below    |
+| customer        | `Object` Customer profile details. For more informaton, refer to [customer JSON Object Fields Description](##customer-json-object-fields-description).                                                  | See below    |
+| callBackActions | `Object` URLs for redirection and asynchronous webhook notifications. For more information, refer to [callBackActions JSON Object Fields Description](#callBackActions-json-object-fields-description). | See below    |
 
 **Optional Parameters**
 
-| Parameter | Description | Example |
-| :--- | :--- | :--- |
-| merchantCacheExpiry | `Long` Cache TTL in seconds (default is 3600). | 3600 |
-| udf1 to udf5 | `String` Custom user-defined parameters for passing merchant metadata. | User Defined Field 1 |
+| Parameter               | Description                                                                                  | Example                        |
+| :---------------------- | :------------------------------------------------------------------------------------------- | :----------------------------- |
+| merchantCacheExpiry     | `Long` Cache TTL in seconds (default is 3600).                                               | 3600                           |
+| udf1 to udf5            | `String` Custom user-defined parameters for passing merchant metadata.                       | User Defined Field 1           |
 | additionalPaymentParams | `Object` Pre-configured payment parameters (e.g., `si_details`, `si` for recurring mandate). | {"si": 1, "si_details": {...}} |
 
----
+***
 
-### order Object Fields
-
-**Mandatory Fields**
-
-| Field | Description | Example |
-| :--- | :--- | :--- |
-| order.amount | `Number` Final payable amount for the order. | 550.00 |
-
-**Optional Fields**
-
-| Field | Description | Example |
-| :--- | :--- | :--- |
-| order.productinfo | `String` Display description of the order. | Order description |
-| order.skus | `Array` List of SKU objects containing `skuId`, `skuName`, `amountPerSku`, `quantity`, and `enforcedOfferKeys`. | [{"skuId": "123", "amountPerSku": 100.00, "quantity": 2}] |
-| order.enforcedOfferKeys | `Array<String>` Specific offer keys to enforce on the order. | ["OFFER_10"] |
-| order.extraCharges | `Object` Itemized extra charges (e.g., `shippingCharges`, `codFee`, `otherCharges`, `taxInfo`). | {"shippingCharges": 20.0, "codFee": 40.0} |
-
----
-
-### customer Object Fields
+### order JSON Object Fields Description
 
 **Mandatory Fields**
 
-| Field | Description | Example |
-| :--- | :--- | :--- |
-| customer.firstName | `String` Customer's first name. | John |
-| customer.email | `String` Customer's email address. | john.doe@example.com |
-| customer.phoneNumber | `String` 10-digit mobile number of the customer. | 9886575652 |
+| Field  | Description                                  | Example |
+| :----- | :------------------------------------------- | :------ |
+| amount | `Number` Final payable amount for the order. | 550.00  |
 
 **Optional Fields**
 
-| Field | Description | Example |
-| :--- | :--- | :--- |
-| customer.lastName | `String` Customer's last name. | Doe |
-| customer.address | `Object` Contains `billingAddress` and `shippingAddress` objects. | {"billingAddress": {...}, "shippingAddress": {...}} |
-| customer.deviceInfoDetails | `Object` Device information (`userAgent`, `ipAddress`, `screenResolution`). | {"ipAddress": "192.168.1.100"} |
+| Field             | Description                                                                                                     | Example                                                    |
+| :---------------- | :-------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------- |
+| productinfo       | `String` Display description of the order.                                                                      | Order description                                          |
+| skus              | `Array` List of SKU objects containing `skuId`, `skuName`, `amountPerSku`, `quantity`, and `enforcedOfferKeys`. | \[{"skuId": "123", "amountPerSku": 100.00, "quantity": 2}] |
+| enforcedOfferKeys | `Array<String>` Specific offer keys to enforce on the order.                                                    | \["OFFER_10"]                                              |
+| extraCharges      | `Object` Itemized extra charges (e.g., `shippingCharges`, `codFee`, `otherCharges`, `taxInfo`).                 | {"shippingCharges": 20.0, "codFee": 40.0}                  |
 
----
+***
 
-### callBackActions Object Fields
+### customer JSON Object Fields Description
 
 **Mandatory Fields**
 
-| Field | Description | Example |
-| :--- | :--- | :--- |
-| callBackActions.successUrl | `String` Merchant URL redirected to upon successful payment. | https://merchant.com/payment/success |
-| callBackActions.failureUrl | `String` Merchant URL redirected to upon failed payment. | https://merchant.com/payment/failure |
+| Field       | Description                                      | Example                                             |
+| :---------- | :----------------------------------------------- | :-------------------------------------------------- |
+| firstName   | `String` Customer's first name.                  | John                                                |
+| email       | `String` Customer's email address.               | [john.doe@example.com](mailto:john.doe@example.com) |
+| phoneNumber | `String` 10-digit mobile number of the customer. | 9886575652                                          |
 
 **Optional Fields**
 
-| Field | Description | Example |
-| :--- | :--- | :--- |
-| callBackActions.cancelUrl | `String` Merchant URL redirected to if customer cancels transaction. | https://merchant.com/payment/cancel |
-| callBackActions.webhookUrl | `String` Webhook URL for server-to-server payment notifications. | https://merchant.com/webhook/payment |
-| callBackActions.notifyUrl | `String` Server notification URL. | https://merchant.com/notify/payment |
-| callBackActions.webhookSuccess | `String` Partner webhook URL called on success. Comma-separated for multiple endpoints. | https://merchant.com/webhook/success |
-| callBackActions.webhookFailure | `String` Partner webhook URL called on failure. Comma-separated for multiple endpoints. | https://merchant.com/webhook/failure |
-| callBackActions.termUrl | `String` 3DS `TermUrl` for card payments using 3DS2 flow. | https://merchant.com/3ds/term |
-| callBackActions.returnUrl | `String` Explicit return URL override. | https://merchant.com/payment/return |
+| Field             | Description                                                                 | Example                                             |
+| :---------------- | :-------------------------------------------------------------------------- | :-------------------------------------------------- |
+| lastName          | `String` Customer's last name.                                              | Doe                                                 |
+| address           | `Object` Contains `billingAddress` and `shippingAddress` objects.           | {"billingAddress": {...}, "shippingAddress": {...}} |
+| deviceInfoDetails | `Object` Device information (`userAgent`, `ipAddress`, `screenResolution`). | {"ipAddress": "192.168.1.100"}                      |
 
+***
 
+### callBackActions JSON Object Fields Description
+
+**Mandatory Fields**
+
+| Field      | Description                                                  | Example                                                                      |
+| :--------- | :----------------------------------------------------------- | :--------------------------------------------------------------------------- |
+| successUrl | `String` Merchant URL redirected to upon successful payment. | [https://merchant.com/payment/success](https://merchant.com/payment/success) |
+| failureUrl | `String` Merchant URL redirected to upon failed payment.     | [https://merchant.com/payment/failure](https://merchant.com/payment/failure) |
+
+**Optional Fields**
+
+| Field          | Description                                                                             | Example                                                                      |
+| :------------- | :-------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------- |
+| cancelUrl      | `String` Merchant URL redirected to if customer cancels transaction.                    | [https://merchant.com/payment/cancel](https://merchant.com/payment/cancel)   |
+| webhookUrl     | `String` Webhook URL for server-to-server payment notifications.                        | [https://merchant.com/webhook/payment](https://merchant.com/webhook/payment) |
+| notifyUrl      | `String` Server notification URL.                                                       | [https://merchant.com/notify/payment](https://merchant.com/notify/payment)   |
+| webhookSuccess | `String` Partner webhook URL called on success. Comma-separated for multiple endpoints. | [https://merchant.com/webhook/success](https://merchant.com/webhook/success) |
+| webhookFailure | `String` Partner webhook URL called on failure. Comma-separated for multiple endpoints. | [https://merchant.com/webhook/failure](https://merchant.com/webhook/failure) |
+| termUrl        | `String` 3DS `TermUrl` for card payments using 3DS2 flow.                               | [https://merchant.com/3ds/term](https://merchant.com/3ds/term)               |
+| returnUrl      | `String` Explicit return URL override.                                                  | [https://merchant.com/payment/return](https://merchant.com/payment/return)   |
+
+<br />
 
 ## Sample Request
 
@@ -376,6 +316,7 @@ echo "Response: " . $response . "\n";
 ```
 
 ## Sample Response
+
 ```json
 {
   "paymentMethods": {
@@ -412,3 +353,23 @@ echo "Response: " . $response . "\n";
   "bankLogosUrl": "https://web-assets.payu.in/web/images/assets/bankLogo/"
 }
 ```
+
+## Response Parameters
+
+| Parameter      | Description                                                                                                       | Example                                                                                                          |
+| :------------- | :---------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------- |
+| paymentMethods | `Object` Available payment methods (EMI, Net Banking, Wallets, Cards, UPI) enabled for the merchant and order.    |                                                                                                                  |
+| downInfo       | `Object` List of payment options or banks currently experiencing downtime.                                        |                                                                                                                  |
+| broker         | `String` Payment broker identifier.                                                                               | PAYU                                                                                                             |
+| order          | `Object` Order echo details containing `amount` and `orderId`.                                                    |                                                                                                                  |
+| transaction    | `JSON Object` Refer to [transaction JSON Object Fields Description](#transaction-json-object-fields-description). | FFF3D2D1-5B20-<br />C1BC-728B-<br />08E47A374D00                                                                 |
+| bankLogosUrl   | `String` Base CDN URL for bank and provider logo assets.                                                          | [https://web-assets.payu.in/web/images/assets/bankLogo/](https://web-assets.payu.in/web/images/assets/bankLogo/) |
+
+### transaction JSON Object Fields Description
+
+| Parameter        | Description                                                                                          | Example                                                                            |
+| :--------------- | :--------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------- |
+| accessToken      | `String` Session access token required in the `accessToken` header of all subsequent API calls.      | FFF3D2D1-5B20-<br />C1BC-728B-<br />08E47A374D00                                   |
+| encryptedOrderId | `String` Encrypted order identifier required in the `encOrderId` header of all subsequent API calls. | c422540c33ef9<br />f1259f15f7b91646<br />9b7227dc1d41a767<br />96536885474ddadf312 |
+| orderid          | `String` Internal PayU order identifier.                                                             | ORDUAT0017                                                                         |
+| txnId            | `String` PayU transaction identifier.                                                                | mtx1754396543709                                                                   |
