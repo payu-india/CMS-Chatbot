@@ -22,6 +22,8 @@ metadata:
   fontWeight="bold"
 />
 
+## AI Prompt
+
 Copy the entire block below into your AI coding assistant of choice. Fill in your credentials where indicated, then let the assistant write the integration for you.
 
 <Callout icon="🔑" theme="info">
