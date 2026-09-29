@@ -1,7 +1,7 @@
 ---
 title: LazyPay Pay-in-3 - Merchant Hosted Checkout
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
