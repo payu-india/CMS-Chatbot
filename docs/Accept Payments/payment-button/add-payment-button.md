@@ -189,10 +189,6 @@ To add a payment button:
 
 
   4. Click **Add Field** to save each field.
-
-
-  <Image src="https://files.readme.io/865616d7519cf08e3ca37a1583db494fb638d457de658d32e0a157f9309388ac-Screenshot_2025-06-04_at_12.37.53_PM.png" align="center" caption="Custom fields shown to the customer on the payment page" border={true} />
-
 </Accordion>
 
 <Accordion title="5. Set up redirect pages (optional)" icon="far fa-arrow-right-from-bracket">
