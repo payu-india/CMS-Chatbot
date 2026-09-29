@@ -478,38 +478,8 @@ Webhook runtime:
 Begin integration now.
 ```
 
-***
+<Callout icon="fad fa-brake-warning" theme="error">
+  ### **Confidential!**
 
-## Where to Get Your Credentials
-
-| Credential           | Where to find it                                |
-| -------------------- | ----------------------------------------------- |
-| `PAYU_CLIENT_ID`     | Dashboard → Settings → API Keys → Client ID     |
-| `PAYU_CLIENT_SECRET` | Dashboard → Settings → API Keys → Client Secret |
-| `PAYU_MERCHANT_ID`   | Dashboard → Settings → Merchant ID (MID)        |
-
-<Callout icon="🚧" theme="warning">
   Never share your `CLIENT_SECRET` or paste it into a public chat, a GitHub issue, or any client-side code. It is used both to authenticate API calls and to verify incoming webhook signatures.
 </Callout>
-
-***
-
-## Related Pages
-
-<Cards>
-  <Card title="Authentication (Token)" href="doc:api-auth-token" icon="fa-key">
-    OAuth2 token flow in detail.
-  </Card>
-
-  <Card title="Create & Share a Payment Link" href="doc:api-create-share" icon="fa-plus">
-    Full API reference for the create and share endpoints.
-  </Card>
-
-  <Card title="Webhook Notifications" href="doc:webhook-notifications" icon="fa-bell">
-    Hash verification and payload reference.
-  </Card>
-
-  <Card title="Use with AI Agents via MCP" href="doc:use-with-mcp" icon="fa-robot">
-    Connect an AI agent to PayU via MCP — no direct API coding required.
-  </Card>
-</Cards>
