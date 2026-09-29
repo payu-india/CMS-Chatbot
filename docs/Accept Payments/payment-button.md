@@ -38,7 +38,7 @@ next:
 
 A Payment Button is a "Buy Now" or "Pay Now" button you add to your website or blog. When a visitor clicks it, PayU's payment page opens, they pay, and they're brought back to your site — you don't need to write any code or build anything.<br />
 
-You can use Payment Buttons to:
+You can use Payment Buttons to:<br />
 
 - Add a **Buy Now**, **Pay Now**, or **Donate** button to any webpage or blog post
 - Accept payments from website visitors without setting up a full online store
