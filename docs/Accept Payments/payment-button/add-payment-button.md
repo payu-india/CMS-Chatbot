@@ -247,26 +247,26 @@ After your customer clicks the button and completes a payment:
 
 1. PayU updates the payment status in your Dashboard right away.
 2. The payment appears in the **Transactions** tab in your PayU Dashboard.
-3. Your customer is taken to your success page — or your failure page if the payment did not go through.
+3. Your customer is taken to your success page or your failure page if the payment did not go through.
 4. The money is settled to your bank account on the standard settlement cycle.
 
 <Callout icon="📘" theme="info">
-  ### **Want to be notified the moment a payment comes in?**
+  ### **Webhooks for Notification**
 
-  You can set up webhooks under **Settings → Webhooks** in the Dashboard. Webhooks are optional — your Dashboard always shows you the latest payment status whether or not you set them up.
+  Webhooks are optional. Your Dashboard always reflects the current payment status without any webhook setup.
 </Callout>
 
 ***
 
 ## What Do I Do If Something Goes Wrong?
 
-| Problem                                              | Fix                                                                                                                                                                         |
-| ---------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| The button is not showing on my website              | Make sure the code was pasted into a code or HTML block — not as plain text. Clear your browser cache and reload the page.                                                  |
-| Customer clicks the button but nothing happens       | The button code may not have loaded correctly. Remove it, paste it again in a fresh code block, and reload the page.                                                        |
-| I entered the wrong amount or button text            | Payment Buttons cannot be changed after creation. Create a new button with the correct details, copy the new code, and replace the old code on your website.                |
-| Customer paid but I cannot see it in my Dashboard    | Wait a few minutes and refresh. If it still does not appear, see <Anchor target="_blank" href="doc:payment-button-troubleshooting">Payment Button Troubleshooting</Anchor>. |
-| Customer was not taken to my success or failure page | Check that you entered the correct page addresses under **Advanced Options**. Make sure each address starts with `https://`.                                                |
+| Problem                                              | Recommended Fix                                                                                                                                                         |
+| ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| The button is not showing on my website              | Make sure the code was pasted into a code or HTML block and not as plain text. Clear your browser cache and reload the page.                                            |
+| Customer clicks the button but nothing happens       | The button code may not have loaded correctly. Remove it, paste it again in a fresh code block, and reload the page.                                                    |
+| I entered the wrong amount or button text            | Edit the Payment Button to enter the correct amount.                                                                                                                    |
+| Customer paid but I cannot see it in my Dashboard    | Wait a few minutes and refresh. If it still does not appear, see <Anchor target="_blank" href="doc:payment-button-troubleshooting">Errors and Troubleshooting</Anchor>. |
+| Customer was not taken to my success or failure page | Check that you entered the correct page addresses under **Advanced Options**. Make sure each address starts with `https://`.                                            |
 
 ***
 
