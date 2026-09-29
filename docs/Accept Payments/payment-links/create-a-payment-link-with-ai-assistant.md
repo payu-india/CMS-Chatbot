@@ -27,7 +27,7 @@ Copy the entire block below into your AI coding assistant of choice. Fill in you
 <Callout icon="🔑" theme="info">
   ### **What Do You Need?**
 
-  You need your **Client ID**, **Client Secret**, and **Merchant ID** from the PayU Dashboard before starting. To get these:
+  You need your **Client ID**, **Client Secret**, and **Merchant ID** from the PayU Dashboard before starting. To get them:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin">PayU Dashboard</Anchor>.
   2. Go to **Developers** → **API Keys.**
