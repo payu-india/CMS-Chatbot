@@ -121,7 +121,7 @@ echo "Response: " . $response . "\n";
 
 | Parameter   | Description                                                                                          | Example                                                          |
 | :---------- | :--------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------- |
-| encOrderId  | `String` Encrypted order identifier from the Create Order response (`transaction.encryptedOrderId`). | c422540c33ef9f1259f15f7b916469b7227dc1d41a76796536885474ddadf312 |
+| encOrderId  | `String` Encrypted order identifier from the Create Order response (`transaction.encryptedOrderId`). | c422540c33ef9f12<br/>59f15f7b9164<br/>69b7227dc1d41<br/>a767965368854<br/>74ddadf312 |
 | accessToken | `String` Session access token from the Create Order response (`transaction.accessToken`).            | FFF3D2D1-5B20-C1BC-728B-08E47A374D00                             |
 
 > **Note:** Alternatively, authenticate using Order ID & Merchant Key by passing `orderId` (the order ID supplied during order creation), `X-Credential-Username` (merchant key), and `accessToken` as headers.
