@@ -10,9 +10,21 @@ metadata:
 next:
   description: ''
 ---
-For recurring payment use-case, you can use UPI as a payment instrument. It requires, registration of the mandate and then doing the debit in the customer's account. During registration, customer validates the billing details of the mandate on the respective application, enters their MPIN (Mobile PIN) and authorizes the mandate. After the registration transaction is successful, you can then use the **Recurring Payment Transaction** API to charge the customer without requiring further intervention. For more information on Recurring Payment API, refer to  [Recurring Payment Transaction API](ref:recurring_payment_api)
+---
+title: UPI Intent and Collect Autopay - TPV Integration
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
+For recurring payment use-case, you can use UPI as a payment instrument. It requires, registration of the <Glossary>Mandate</Glossary> and then doing the debit in the customer's account. During registration, customer validates the billing details of the mandate on the respective application, enters their MPIN (Mobile PIN) and authorizes the mandate. After the registration transaction is successful, you can then use the **Recurring Payment Transaction** API to charge the customer without requiring further intervention. For more information on Recurring Payment API, refer to  [Recurring Payment Transaction API](ref:recurring_payment_api)
 
-The Third-Party Verification (TPV) functionality is now being added to the UPI Autopay too.
+The Third-Party Verification (TPV) functionality is now being added to the <Glossary>UPI Autopay</Glossary> too.
 
 > 📘 Notes:
 >
@@ -62,7 +74,7 @@ Refer any of the following tabs based on the Intent or Collect Autopay Flow inte
   <Tab title="Intent Autopay TPV">
     ### Intent Autopay Workflow
 
-    The merchant initiates the call to PayU with SI details, **bankcode** as **INTTPV**, and account number + IFSC details. PayU then initiates a mandate call to the bank, including all the SI and account-related parameters. The bank responds to PayU with a reference-Id, which PayU passes to the merchant in an Intent URL. When the customer authorizes the transaction, the bank will validate the account. If the account details match, a success message will be sent to PayU. However, if the account details do not match, Bank will pass validation error to PayU. Internally, Bank will cancel the mandate that has been set up on customer's account.
+    The merchant initiates the call to PayU with <Glossary>SI</Glossary> details, **<Glossary>bankcode</Glossary>** as **INTTPV**, and account number + IFSC details. PayU then initiates a mandate call to the bank, including all the SI and account-related parameters. The bank responds to PayU with a reference-Id, which PayU passes to the merchant in an Intent URL. When the customer authorizes the transaction, the bank will validate the account. If the account details match, a success message will be sent to PayU. However, if the account details do not match, Bank will pass validation error to PayU. Internally, Bank will cancel the mandate that has been set up on customer's account.
 
     <Callout icon="📘" theme="info">
       **Note**: Validation is done only in the registration step of the mandate. If the account matches, rest of the journey for UPI Autopay will remain as-is.
@@ -221,57 +233,221 @@ Refer any of the following tabs based on the Intent or Collect Autopay Flow inte
     | Test Environment       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
     | Production Environment | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
-    <Accordion title="Request parameters" icon="fa-code">
-      In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is critical to calculate the hash correctly and post it to PayU in the request.
+    <Tabs>
+      <Tab title="Request Parameters">
+        In the merchant-initiated POST REQUEST, <Glossary>hash</Glossary> is a mandatory parameter. It is critical to calculate the hash correctly and post it to PayU in the request.
 
-      | Parameter                            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Value                                                                                                                                           |
-      | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-      | key <br /> `mandatory`               | `String` The merchant key is a unique identifier for a merchant account in PayU's database.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Your Test Key                                                                                                                                   |
-      | api\_version <br /> `optional`       | `String` The API version for this API.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | 7                                                                                                                                               |
-      | txnid <br /> `mandatory`             | `String` The transaction ID is a reference number for a specific order that is generated by the merchant. It is used to track the order and must be unique. PayU's system will not accept duplicate transaction IDs.                                                                                                                                                                                                                                                                                                                                                                                                                   | s7hhDQVWvbhBdN                                                                                                                                  |
-      | amount <br /> `mandatory`            | `String` This field should contain the payment amount for the transaction. The limit for recurring payments using UPI payment mode: \* **Auto-debit** is Rs.15000 (the auto-debit limit is higher for below listed purpose) \* **With PIN** is Rs.1,00,00 \* **Note**: The auto-debit limit for the following UPI recurring payments is one lakh rupees (Rs.1,00,000): \* Insurance premiums \* Credit card bill payments \* Insurance premium                                                                                                                                                                                         | 10.00                                                                                                                                           |
-      | productinfo <br /> `mandatory`       | `String` It should be a string containing a brief description of the product. `Character Limit-100`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | iPhone                                                                                                                                          |
-      | firstname <br /> `mandatory`         | `String` The first name of the customer. `Character Limit-60`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | Ashish                                                                                                                                          |
-      | email <br /> `mandatory`             | `String` The email of the customer. `Character Limit-50`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | [test@gmail.com](mailto:test@gmail.com)                                                                                                         |
-      | phone <br /> `mandatory`             | `String` The phone number of the customer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | 9876543210                                                                                                                                      |
-      | lastname <br /> `mandatory`          | `String` The last name of the customer. `Character Limit-60`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Verma                                                                                                                                           |
-      | address1 <br /> `optional`           | `String` The first line of the billing address. `Character Limit-100`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | H.No- 17, Block C, Kalyan Bldg, Khardilkar Road, Mumbai                                                                                         |
-      | address2 <br /> `optional`           | `String` The second line of the billing address. `Character Limit-100`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | 34 Saikripa-Estate, Tilak Nagar                                                                                                                 |
-      | city <br /> `optional`               | `String` The city where your customer resides as part of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | Mumbai                                                                                                                                          |
-      | state <br /> `optional`              | `String` The state where your customer resides as part of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Maharashtra                                                                                                                                     |
-      | country <br /> `optional`            | `String` The country where your customer resides. `Character Limit-50`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | India                                                                                                                                           |
-      | zipcode <br /> `optional`            | `String` Billing address zip code is mandatory for the cardless EMI option. `Character Limit-20`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | 400004                                                                                                                                          |
-      | surl  <br /> `mandatory`             | `String` The "surl" field is the success URL, which is the page PayU will redirect to if the transaction is successful. The merchant can handle the response at this URL after the customer is redirected there.                                                                                                                                                                                                                                                                                                                                                                                                                       | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)                                                  |
-      | furl <br /> `mandatory`              | `String` The "furl" field is the Failure URL, which is the page PayU will redirect to if the transaction is failed. The merchant can handle the response at this URL after the customer is redirected there.                                                                                                                                                                                                                                                                                                                                                                                                                           | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)                                                  |
-      | hash <br /> `mandatory`              | `String` It is used to avoid the possibility of transaction tampering. For the hash checksum logic, refer to [Checksum Logic for Hash](#checksum-logic-for-hash).                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | `eabec285da28fd 0e3054d41a4d24fe 9f7599c9d0b6664 6f7a9984303fd612 4044b6206daf831 e9a8bda28a6200d 318293a13d6c193 109b60bd4b4f8b09 c90972`      |
-      | pg <br /> `mandatory`                | `varchar` The **pg** parameter for UPI must be UPI.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | UPI                                                                                                                                             |
-      | bankcode <br /> `mandatory`          | `varchar` This parameter contains INTTPV for UPI Intent TPV Autopay.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | INTTPV                                                                                                                                          |
-      | si <br /> `mandatory`                | This parameter signifies a successful consent taken from the user by the merchant. This parameter must contain 1 for a successful consent. Without this parameter sent as 1, subscription cannot be set up.                                                                                                                                                                                                                                                                                                                                                                                                                            |                                                                                                                                                 |
-      | si\_details <br /> `mandatory`       | This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU. \* **Note**: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers (for more details refer – [https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0)) This is a JSON object and it includes a set of fields. For more information, refer to [SI Parameter JSON Details](ref:si-parameter-json-details) |                                                                                                                                                 |
-      | beneficiarydetail <br /> `mandatory` | This is a JSON format text and there should be key named **beneficiaryAccountNumber** with the list of account numbers and the ifscCode key with the list of corresponding IFSC codes (in the same order as provided in the beneficiaryAccountNumber key). You can post up to five account details in this parameter.                                                                                                                                                                                                                                                                                                                  | Refer to [beneficiarydetail JSON Object Fields](https://docs.payu.in/docs/net-banking-integration-for-tpv#beneficiarydetail-json-object-fields) |
-    </Accordion>
+        **Mandatory Parameters**
 
-    <Accordion title="beneficiarydetail JSON Object Fields" icon="fa-code">
-      It must contain the list of account numbers and the ifscCode key with the list of corresponding IFSC codes (in the same order as provided in the beneficiaryAccountNumber key). You can post up to five account details in this parameter. For example:
+        | Parameter | Description | Example |
+        | :--- | :--- | :--- |
+        | <Glossary>key</Glossary> | `String` The merchant key is a unique identifier for a merchant account in PayU's database. | Your Test Key |
+        | <Glossary>txnid</Glossary> | `String` The transaction ID is a reference number for a specific order that is generated by the merchant. It is used to track the order and must be unique. PayU's system will not accept duplicate transaction IDs. | s7hhDQVWvbhBdN |
+        | amount | `String` This field should contain the payment amount for the transaction. The limit for recurring payments using UPI payment mode: \* **<Glossary>Auto-debit</Glossary>** is Rs.15000 (the auto-debit limit is higher for below listed purpose) \* **With PIN** is Rs.1,00,000 \* **Note**: The auto-debit limit for the following UPI recurring payments is one lakh rupees (Rs.1,00,000): \* Insurance premiums \* Credit card bill payments \* Insurance premium | 10.00 |
+        | <Glossary>productinfo</Glossary> | `String` It should be a string containing a brief description of the product. `Character Limit-100` | iPhone |
+        | firstname | `String` The first name of the customer. `Character Limit-60` | Ashish |
+        | email | `String` The email of the customer. `Character Limit-50` | [test@gmail.com](mailto:test@gmail.com) |
+        | phone | `String` The phone number of the customer. | 9876543210 |
+        | lastname | `String` The last name of the customer. `Character Limit-60` | Verma |
+        | <Glossary>surl</Glossary> | `String` The "surl" field is the success URL, which is the page PayU will redirect to if the transaction is successful. The merchant can handle the response at this URL after the customer is redirected there. | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/) |
+        | <Glossary>furl</Glossary> | `String` The "furl" field is the Failure URL, which is the page PayU will redirect to if the transaction is failed. The merchant can handle the response at this URL after the customer is redirected there. | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/) |
+        | hash | `String` It is used to avoid the possibility of transaction tampering. The hash is calculated using <Glossary>SHA-512</Glossary> as follows: key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\| \|\|<Glossary>Salt</Glossary> For the hash checksum logic, refer to [Checksum Logic for Hash](#checksum-logic-for-hash). | `eabec285da28fd 0e3054d41a4d24fe 9f7599c9d0b6664 6f7a9984303fd612 4044b6206daf831 e9a8bda28a6200d 318293a13d6c193 109b60bd4b4f8b09 c90972` |
+        | <Glossary>pg</Glossary> | `varchar` The **pg** parameter for UPI must be UPI. | UPI |
+        | bankcode | `varchar` This parameter contains INTTPV for UPI Intent TPV Autopay. | INTTPV |
+        | si | This parameter signifies a successful consent taken from the user by the merchant. This parameter must contain 1 for a successful consent. Without this parameter sent as 1, subscription cannot be set up. | 1 |
+        | si_details | This parameter represents mandatory details which need to be passed during registration transaction from merchant system to PayU. \* **Note**: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers (for more details refer – [https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0)) This is a JSON object and it includes a set of fields. For more information, refer to [SI Parameter JSON Details](ref:si-parameter-json-details) | |
+        | beneficiarydetail | This is a JSON format text and there should be key named **beneficiaryAccountNumber** with the list of account numbers and the ifscCode key with the list of corresponding IFSC codes (in the same order as provided in the beneficiaryAccountNumber key). You can post up to five account details in this parameter. | Refer to [beneficiarydetail JSON Object Fields](#beneficiarydetail-json-object-fields) |
 
-      ```
-      {"beneficiaryAccountNumber":"002001600674|00000031957292212|00000035955239352|00000035955239352",  
-      "ifscCode":"KTKB0000046|KTKB0000023|KTKB0000035|KTKB0000035"}
-      ```
+        **Optional Parameters**
 
-      **Checksum Logic for Hash**
+        | Parameter | Description | Example |
+        | :--- | :--- | :--- |
+        | api_version | `String` The API version for this API. | 7 |
+        | address1 | `String` The first line of the billing address. `Character Limit-100` | H.No- 17, Block C, Kalyan Bldg, Khardilkar Road, Mumbai |
+        | address2 | `String` The second line of the billing address. `Character Limit-100` | 34 Saikripa-Estate, Tilak Nagar |
+        | city | `String` The city where your customer resides as part of the billing address. | Mumbai |
+        | state | `String` The state where your customer resides as part of the billing address. | Maharashtra |
+        | country | `String` The country where your customer resides. `Character Limit-50` | India |
+        | zipcode | `String` Billing address zip code is mandatory for the cardless EMI option. `Character Limit-20` | 400004 |
 
-      The following hash logic must be used for the parameters posted:
+        <Accordion title="beneficiarydetail JSON Object Fields" icon="fa-code">
+          It must contain the list of account numbers and the ifscCode key with the list of corresponding IFSC codes (in the same order as provided in the beneficiaryAccountNumber key). You can post up to five account details in this parameter. For example:
 
-      > 📘 si\_details parameter in Hashing:
-      >
-      > The **si\_details** parameter value will be at last or the last value to be appended.
-      >
-      > ```plaintext
-      > key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3
-      > |udf4|udf5||||||si_details|SALT
-      > ```
-    </Accordion>
+          ```
+          {"beneficiaryAccountNumber":"002001600674|00000031957292212|00000035955239352|00000035955239352",  
+          "ifscCode":"KTKB0000046|KTKB0000023|KTKB0000035|KTKB0000035"}
+          ```
+
+          **Checksum Logic for Hash**
+
+          The following hash logic must be used for the parameters posted:
+
+          > 📘 si\_details parameter in Hashing:
+          >
+          > The **si\_details** parameter value will be at last or the last value to be appended.
+          >
+          > ```plaintext
+          > key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3
+          > |udf4|udf5||||||si_details|SALT
+          > ```
+        </Accordion>
+      </Tab>
+      <Tab title="Sample Request">
+        ```curl
+        curl -X POST "https://test.payu.in/_payment" \
+          -H "Content-Type: application/x-www-form-urlencoded" \
+          -d "key=JP***g&txnid=s7hhDQVWvbhBdN&amount=10.00&productinfo=iPhone&firstname=Ashish&lastname=Verma&email=test@payu.in&phone=9876543210&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&pg=UPI&bankcode=INTTPV&si=1&si_details={...}&beneficiarydetail={\"beneficiaryAccountNumber\":\"002001600674\",\"ifscCode\":\"KTKB0000046\"}&hash=YOUR_HASH"
+        ```
+
+        ```python
+        import requests
+
+        url = "https://test.payu.in/_payment"
+
+        payload = {
+            "key": "JP***g",
+            "txnid": "s7hhDQVWvbhBdN",
+            "amount": "10.00",
+            "productinfo": "iPhone",
+            "firstname": "Ashish",
+            "lastname": "Verma",
+            "email": "test@payu.in",
+            "phone": "9876543210",
+            "surl": "https://apiplayground-response.herokuapp.com/",
+            "furl": "https://apiplayground-response.herokuapp.com/",
+            "pg": "UPI",
+            "bankcode": "INTTPV",
+            "si": "1",
+            "si_details": "{...}",
+            "beneficiarydetail": '{"beneficiaryAccountNumber":"002001600674","ifscCode":"KTKB0000046"}',
+            "hash": "YOUR_HASH"
+        }
+
+        headers = {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
+
+        response = requests.post(url, data=payload, headers=headers)
+        print(response.text)
+        ```
+
+        ```javascript
+        const axios = require('axios');
+        const qs = require('qs');
+
+        const url = 'https://test.payu.in/_payment';
+
+        const payload = qs.stringify({
+            key: 'JP***g',
+            txnid: 's7hhDQVWvbhBdN',
+            amount: '10.00',
+            productinfo: 'iPhone',
+            firstname: 'Ashish',
+            lastname: 'Verma',
+            email: 'test@payu.in',
+            phone: '9876543210',
+            surl: 'https://apiplayground-response.herokuapp.com/',
+            furl: 'https://apiplayground-response.herokuapp.com/',
+            pg: 'UPI',
+            bankcode: 'INTTPV',
+            si: '1',
+            si_details: '{...}',
+            beneficiarydetail: JSON.stringify({
+                beneficiaryAccountNumber: '002001600674',
+                ifscCode: 'KTKB0000046'
+            }),
+            hash: 'YOUR_HASH'
+        });
+
+        axios.post(url, payload, {
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        })
+        .then(response => console.log(response.data))
+        .catch(error => console.error(error));
+        ```
+
+        ```java
+        import java.net.URI;
+        import java.net.http.HttpClient;
+        import java.net.http.HttpRequest;
+        import java.net.http.HttpResponse;
+
+        public class PayUIntentTPV {
+            public static void main(String[] args) throws Exception {
+                HttpClient client = HttpClient.newHttpClient();
+
+                String body = "key=JP***g"
+                    + "&txnid=s7hhDQVWvbhBdN"
+                    + "&amount=10.00"
+                    + "&productinfo=iPhone"
+                    + "&firstname=Ashish"
+                    + "&lastname=Verma"
+                    + "&email=test@payu.in"
+                    + "&phone=9876543210"
+                    + "&surl=https://apiplayground-response.herokuapp.com/"
+                    + "&furl=https://apiplayground-response.herokuapp.com/"
+                    + "&pg=UPI"
+                    + "&bankcode=INTTPV"
+                    + "&si=1"
+                    + "&si_details={...}"
+                    + "&beneficiarydetail=%7B%22beneficiaryAccountNumber%22%3A%22002001600674%22%2C%22ifscCode%22%3A%22KTKB0000046%22%7D"
+                    + "&hash=YOUR_HASH";
+
+                HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("https://test.payu.in/_payment"))
+                    .header("Content-Type", "application/x-www-form-urlencoded")
+                    .POST(HttpRequest.BodyPublishers.ofString(body))
+                    .build();
+
+                HttpResponse<String> response = client.send(request,
+                    HttpResponse.BodyHandlers.ofString());
+                System.out.println(response.body());
+            }
+        }
+        ```
+
+        ```php
+        <?php
+
+        $url = 'https://test.payu.in/_payment';
+
+        $payload = http_build_query([
+            'key'               => 'JP***g',
+            'txnid'             => 's7hhDQVWvbhBdN',
+            'amount'            => '10.00',
+            'productinfo'       => 'iPhone',
+            'firstname'         => 'Ashish',
+            'lastname'          => 'Verma',
+            'email'             => 'test@payu.in',
+            'phone'             => '9876543210',
+            'surl'              => 'https://apiplayground-response.herokuapp.com/',
+            'furl'              => 'https://apiplayground-response.herokuapp.com/',
+            'pg'                => 'UPI',
+            'bankcode'          => 'INTTPV',
+            'si'                => '1',
+            'si_details'        => '{...}',
+            'beneficiarydetail' => json_encode([
+                'beneficiaryAccountNumber' => '002001600674',
+                'ifscCode'                 => 'KTKB0000046'
+            ]),
+            'hash'              => 'YOUR_HASH'
+        ]);
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Content-Type: application/x-www-form-urlencoded'
+        ]);
+
+        $response = curl_exec($ch);
+        curl_close($ch);
+        echo $response;
+        ?>
+        ```
+      </Tab>
+    </Tabs>
 
     ## Step 3: Check the response from PayU
 
@@ -288,7 +464,7 @@ Refer any of the following tabs based on the Intent or Collect Autopay Flow inte
     <Accordion title="Response parameters" icon="fa-code">
       For the response parameter description, refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis#response-for-initial-server-to-server-request).
 
-      > 📘 Store the mihpayid and txnid parameter values in response:
+      > 📘 Store the <Glossary>mihpayid</Glossary> and txnid parameter values in response:
       >
       > PayU recommends you to make provisions to store the **mihpayid** and **txnid** parameter values (in the response) in your server as proof that TPV has been completed for a customer.
     </Accordion>
@@ -344,7 +520,7 @@ Refer any of the following tabs based on the Intent or Collect Autopay Flow inte
 
     ### 1. Verify using Webhooks
 
-    Configure the webhooks to monitor the status of payments. Webhooks enable a server to communicate with another server by sending an HTTP callback or message. These callbacks are triggered by specific events or instances and operate at the server-to-server (S2S) level.
+    Configure the webhooks to monitor the <Glossary>status</Glossary> of payments. Webhooks enable a server to communicate with another server by sending an HTTP callback or message. These callbacks are triggered by specific events or instances and operate at the server-to-server (S2S) level.
 
     Know how to manage [Webhooks for Payments](https://docs.payu.in/reference/webhooks).
 
@@ -381,11 +557,11 @@ Refer any of the following tabs based on the Intent or Collect Autopay Flow inte
     > 📘 **Prerequisites**:
     >
     > S2S (Seamless) integration has to be done as per the standard kit. For more information, refer to [UPI Integrations - S2S](doc:upi-integrations-s2s).
-    > **PayU Hosted Checkout note supported** Currently, PayU supports UPI Collect Autopay TPV Integration with Seamless integration only.
+    > **PayU Hosted Checkout not supported** Currently, PayU supports UPI Collect Autopay TPV Integration with Seamless integration only.
 
     ## Step 1: Validate VPA
 
-    When your customer makes payment through UPI, you can validate the customer's Virtual Payment Address (VPA) and then initiate payment. The **validateVpa** API is used to validate the UPI handle. Validate the VPA (UPI handle) using the **validateVpa** API.  For Try-It experience of **validateVpa** API, refer to <Anchor label="Validate VPA Handle API" target="_blank" href="ref:validate_vpa_api">Validate VPA Handle API</Anchor>.
+    When your customer makes payment through UPI, you can validate the customer's Virtual Payment Address (VPA) and then initiate payment. The **validateVpa** API is used to validate the UPI handle. Validate the VPA (UPI handle) using the **validateVpa** API. For Try-It experience of **validateVpa** API, refer to <Anchor label="Validate VPA Handle API" target="_blank" href="ref:validate_vpa_api">Validate VPA Handle API</Anchor>.
 
     <GENERALAPIsEnvironment />
 
@@ -523,58 +699,226 @@ Refer any of the following tabs based on the Intent or Collect Autopay Flow inte
     | Test Environment       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
     | Production Environment | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
-    <Accordion title="Request parameters" icon="fa-code">
-      In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is critical to calculate the hash correctly and post it to PayU in the request.
+    <Tabs>
+      <Tab title="Request Parameters">
+        In the merchant-initiated POST REQUEST, hash is a mandatory parameter. It is critical to calculate the hash correctly and post it to PayU in the request.
 
-      | Parameter                            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Value                                                                                                                                           |
-      | ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-      | key <br /> `mandatory`               | `String` The merchant key is a unique identifier for a merchant account in PayU's database.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Your Test Key                                                                                                                                   |
-      | api\_version <br /> `optional`       | `String` The API version for this API.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | 7                                                                                                                                               |
-      | txnid <br /> `mandatory`             | `String` The transaction ID is a reference number for a specific order that is generated by the merchant. It is used to track the order and must be unique. PayU's system will not accept duplicate transaction IDs.                                                                                                                                                                                                                                                                                                                                                                                                                   | s7hhDQVWvbhBdN                                                                                                                                  |
-      | amount <br /> `mandatory`            | `String` This field should contain the payment amount for the transaction. The limit for recurring payments using UPI payment mode: \* **Auto-debit** is Rs.15000 (the auto-debit limit is higher for below listed purpose) \* **With PIN** is Rs.1,00,00 \* **Note**: The auto-debit limit for the following UPI recurring payments is one lakh rupees (Rs.1,00,000): \* Insurance premiums \* Credit card bill payments \* Insurance premium                                                                                                                                                                                         | 10.00                                                                                                                                           |
-      | productinfo <br /> `mandatory`       | `String` It should be a string containing a brief description of the product. `Character Limit-100`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | iPhone                                                                                                                                          |
-      | firstname <br /> `mandatory`         | `String` The first name of the customer. `Character Limit-60`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | Ashish                                                                                                                                          |
-      | email <br /> `mandatory`             | `String` The email of the customer. `Character Limit-50`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | [test@gmail.com](mailto:test@gmail.com)                                                                                                         |
-      | phone <br /> `mandatory`             | `String` The phone number of the customer.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | 9876543210                                                                                                                                      |
-      | lastname <br /> `mandatory`          | `String` The last name of the customer. `Character Limit-60`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | Verma                                                                                                                                           |
-      | address1 <br /> `optional`           | `String` The first line of the billing address. `Character Limit-100`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | H.No- 17, Block C, Kalyan Bldg, Khardilkar Road, Mumbai                                                                                         |
-      | address2 <br /> `optional`           | `String` The second line of the billing address. `Character Limit-100`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | 34 Saikripa-Estate, Tilak Nagar                                                                                                                 |
-      | city <br /> `optional`               | `String` The city where your customer resides as part of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | Mumbai                                                                                                                                          |
-      | state <br /> `optional`              | `String` The state where your customer resides as part of the billing address.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Maharashtra                                                                                                                                     |
-      | country <br /> `optional`            | `String` The country where your customer resides. `Character Limit-50`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | India                                                                                                                                           |
-      | zipcode <br /> `optional`            | `String` Billing address zip code is mandatory for the cardless EMI option. `Character Limit-20`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | 400004                                                                                                                                          |
-      | surl  <br /> `mandatory`             | `String` The "surl" field is the success URL, which is the page PayU will redirect to if the transaction is successful. The merchant can handle the response at this URL after the customer is redirected there.                                                                                                                                                                                                                                                                                                                                                                                                                       | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)                                                  |
-      | furl <br /> `mandatory`              | `String` The "furl" field is the Failure URL, which is the page PayU will redirect to if the transaction is failed. The merchant can handle the response at this URL after the customer is redirected there.                                                                                                                                                                                                                                                                                                                                                                                                                           | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/)                                                  |
-      | hash <br /> `mandatory`              | `String` It is used to avoid the possibility of transaction tampering. For the hash checksum logic, refer to [Checksum Logic for Hash](#checksum-logic-for-hash).                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | `eabec285da28fd 0e3054d41a4d24fe 9f7599c9d0b6664 6f7a9984303fd612 4044b6206daf831 e9a8bda28a6200d 318293a13d6c193 109b60bd4b4f8b09 c90972`      |
-      | pg <br /> `mandatory`                | `varchar` The **pg** parameter for UPI must be UPI.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | UPI                                                                                                                                             |
-      | bankcode <br /> `mandatory`          | `varchar` This parameter contains UPITPV for UPI TPV Collect.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | UPITPV                                                                                                                                          |
-      | si <br /> `mandatory`                | This parameter signifies a successful consent taken from the user by the merchant. This parameter must contain 1 for a successful consent. Without this parameter sent as 1, subscription cannot be set up.                                                                                                                                                                                                                                                                                                                                                                                                                            |                                                                                                                                                 |
-      | si\_details <br /> `mandatory`       | This parameter represents mandatory details which need to be passed to during registration transaction from merchant system to PayU. \* **Note**: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers (for more details refer – [https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0)) This is a JSON object and it includes a set of fields. For more information, refer to [SI Parameter JSON Details](ref:si-parameter-json-details) |                                                                                                                                                 |
-      | vpa <br /> `mandatory`               | `varchar` This parameter contains the customer's VPA handle. For the list UPI handles supported, refer to [UPI Handles](doc:upi-handles) The merchant is advised to check the validity of the VPA through using the VPA Validation API. PayU extends support for the same if required. For more information on using VPA Validation API, refer to [Validate VPA Handle API](ref:validate_vpa_api).                                                                                                                                                                                                                                     | abc\@upi                                                                                                                                        |
-      | beneficiarydetail <br /> `mandatory` | This is a JSON format text and there should be key named **beneficiaryAccountNumber** with the list of account numbers and the ifscCode key with the list of corresponding IFSC codes (in the same order as provided in the beneficiaryAccountNumber key). You can post up to five account details in this parameter.                                                                                                                                                                                                                                                                                                                  | Refer to [beneficiarydetail JSON Object Fields](https://docs.payu.in/docs/net-banking-integration-for-tpv#beneficiarydetail-json-object-fields) |
-    </Accordion>
+        **Mandatory Parameters**
 
-    <Accordion title="beneficiarydetail JSON Object Fields" icon="fa-code">
-      It must contain the list of account numbers and the ifscCode key with the list of corresponding IFSC codes (in the same order as provided in the beneficiaryAccountNumber key). You can post up to five account details in this parameter. For example:
+        | Parameter | Description | Example |
+        | :--- | :--- | :--- |
+        | key | `String` The merchant key is a unique identifier for a merchant account in PayU's database. | Your Test Key |
+        | txnid | `String` The transaction ID is a reference number for a specific order that is generated by the merchant. It is used to track the order and must be unique. PayU's system will not accept duplicate transaction IDs. | s7hhDQVWvbhBdN |
+        | amount | `String` This field should contain the payment amount for the transaction. The limit for recurring payments using UPI payment mode: \* **Auto-debit** is Rs.15000 (the auto-debit limit is higher for below listed purpose) \* **With PIN** is Rs.1,00,000 \* **Note**: The auto-debit limit for the following UPI recurring payments is one lakh rupees (Rs.1,00,000): \* Insurance premiums \* Credit card bill payments \* Insurance premium | 10.00 |
+        | productinfo | `String` It should be a string containing a brief description of the product. `Character Limit-100` | iPhone |
+        | firstname | `String` The first name of the customer. `Character Limit-60` | Ashish |
+        | email | `String` The email of the customer. `Character Limit-50` | [test@gmail.com](mailto:test@gmail.com) |
+        | phone | `String` The phone number of the customer. | 9876543210 |
+        | lastname | `String` The last name of the customer. `Character Limit-60` | Verma |
+        | surl | `String` The "surl" field is the success URL, which is the page PayU will redirect to if the transaction is successful. The merchant can handle the response at this URL after the customer is redirected there. | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/) |
+        | furl | `String` The "furl" field is the Failure URL, which is the page PayU will redirect to if the transaction is failed. The merchant can handle the response at this URL after the customer is redirected there. | [https://apiplayground-response.herokuapp.com/](https://apiplayground-response.herokuapp.com/) |
+        | hash | `String` It is used to avoid the possibility of transaction tampering. The hash is calculated using SHA-512 as follows: key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\| \|\|Salt For the hash checksum logic, refer to [Checksum Logic for Hash](#checksum-logic-for-hash). | `eabec285da28fd 0e3054d41a4d24fe 9f7599c9d0b6664 6f7a9984303fd612 4044b6206daf831 e9a8bda28a6200d 318293a13d6c193 109b60bd4b4f8b09 c90972` |
+        | pg | `varchar` The **pg** parameter for UPI must be UPI. | UPI |
+        | bankcode | `varchar` This parameter contains UPITPV for UPI TPV Collect. | UPITPV |
+        | si | This parameter signifies a successful consent taken from the user by the merchant. This parameter must contain 1 for a successful consent. Without this parameter sent as 1, subscription cannot be set up. | 1 |
+        | si_details | This parameter represents mandatory details which need to be passed during registration transaction from merchant system to PayU. \* **Note**: It is mandatory as per the latest RBI guidelines to pass this information to the payment processor so that same can be forwarded to acquirers and issuers (for more details refer – [https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668&Mode=0)) This is a JSON object and it includes a set of fields. For more information, refer to [SI Parameter JSON Details](ref:si-parameter-json-details) | |
+        | <Glossary>vpa</Glossary> | `varchar` This parameter contains the customer's VPA handle. For the list UPI handles supported, refer to [UPI Handles](doc:upi-handles). The merchant is advised to check the validity of the VPA through using the VPA Validation API. PayU extends support for the same if required. For more information on using VPA Validation API, refer to [Validate VPA Handle API](ref:validate_vpa_api). | abc\@upi |
+        | beneficiarydetail | This is a JSON format text and there should be key named **beneficiaryAccountNumber** with the list of account numbers and the ifscCode key with the list of corresponding IFSC codes (in the same order as provided in the beneficiaryAccountNumber key). You can post up to five account details in this parameter. | Refer to [beneficiarydetail JSON Object Fields](#beneficiarydetail-json-object-fields) |
 
-      ```
-      {"beneficiaryAccountNumber":"002001600674|00000031957292212|00000035955239352|00000035955239352",  
-      "ifscCode":"KTKB0000046|KTKB0000023|KTKB0000035|KTKB0000035"}
-      ```
+        **Optional Parameters**
 
-      **Checksum Logic for Hash**
+        | Parameter | Description | Example |
+        | :--- | :--- | :--- |
+        | api_version | `String` The API version for this API. | 7 |
+        | address1 | `String` The first line of the billing address. `Character Limit-100` | H.No- 17, Block C, Kalyan Bldg, Khardilkar Road, Mumbai |
+        | address2 | `String` The second line of the billing address. `Character Limit-100` | 34 Saikripa-Estate, Tilak Nagar |
+        | city | `String` The city where your customer resides as part of the billing address. | Mumbai |
+        | state | `String` The state where your customer resides as part of the billing address. | Maharashtra |
+        | country | `String` The country where your customer resides. `Character Limit-50` | India |
+        | zipcode | `String` Billing address zip code is mandatory for the cardless EMI option. `Character Limit-20` | 400004 |
 
-      The following hash logic must be used for the parameters posted:
+        <Accordion title="beneficiarydetail JSON Object Fields" icon="fa-code">
+          It must contain the list of account numbers and the ifscCode key with the list of corresponding IFSC codes (in the same order as provided in the beneficiaryAccountNumber key). You can post up to five account details in this parameter. For example:
 
-      > 📘 si\_details parameter in Hashing:
-      >
-      > The **si\_details** parameter value will be at last or the last value to be appended.
-      >
-      > ```plaintext
-      > key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3
-      > |udf4|udf5||||||si_details|SALT
-      > ```
-    </Accordion>
+          ```
+          {"beneficiaryAccountNumber":"002001600674|00000031957292212|00000035955239352|00000035955239352",  
+          "ifscCode":"KTKB0000046|KTKB0000023|KTKB0000035|KTKB0000035"}
+          ```
+
+          **Checksum Logic for Hash**
+
+          The following hash logic must be used for the parameters posted:
+
+          > 📘 si\_details parameter in Hashing:
+          >
+          > The **si\_details** parameter value will be at last or the last value to be appended.
+          >
+          > ```plaintext
+          > key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3
+          > |udf4|udf5||||||si_details|SALT
+          > ```
+        </Accordion>
+      </Tab>
+      <Tab title="Sample Request">
+        ```curl
+        curl -X POST "https://test.payu.in/_payment" \
+          -H "Content-Type: application/x-www-form-urlencoded" \
+          -d "key=JP***g&txnid=s7hhDQVWvbhBdN&amount=10.00&productinfo=iPhone&firstname=Ashish&lastname=Verma&email=test@payu.in&phone=9876543210&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&pg=UPI&bankcode=UPITPV&si=1&si_details={...}&vpa=abc@upi&beneficiarydetail={\"beneficiaryAccountNumber\":\"002001600674\",\"ifscCode\":\"KTKB0000046\"}&hash=YOUR_HASH"
+        ```
+
+        ```python
+        import requests
+
+        url = "https://test.payu.in/_payment"
+
+        payload = {
+            "key": "JP***g",
+            "txnid": "s7hhDQVWvbhBdN",
+            "amount": "10.00",
+            "productinfo": "iPhone",
+            "firstname": "Ashish",
+            "lastname": "Verma",
+            "email": "test@payu.in",
+            "phone": "9876543210",
+            "surl": "https://apiplayground-response.herokuapp.com/",
+            "furl": "https://apiplayground-response.herokuapp.com/",
+            "pg": "UPI",
+            "bankcode": "UPITPV",
+            "si": "1",
+            "si_details": "{...}",
+            "vpa": "abc@upi",
+            "beneficiarydetail": '{"beneficiaryAccountNumber":"002001600674","ifscCode":"KTKB0000046"}',
+            "hash": "YOUR_HASH"
+        }
+
+        headers = {
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
+
+        response = requests.post(url, data=payload, headers=headers)
+        print(response.text)
+        ```
+
+        ```javascript
+        const axios = require('axios');
+        const qs = require('qs');
+
+        const url = 'https://test.payu.in/_payment';
+
+        const payload = qs.stringify({
+            key: 'JP***g',
+            txnid: 's7hhDQVWvbhBdN',
+            amount: '10.00',
+            productinfo: 'iPhone',
+            firstname: 'Ashish',
+            lastname: 'Verma',
+            email: 'test@payu.in',
+            phone: '9876543210',
+            surl: 'https://apiplayground-response.herokuapp.com/',
+            furl: 'https://apiplayground-response.herokuapp.com/',
+            pg: 'UPI',
+            bankcode: 'UPITPV',
+            si: '1',
+            si_details: '{...}',
+            vpa: 'abc@upi',
+            beneficiarydetail: JSON.stringify({
+                beneficiaryAccountNumber: '002001600674',
+                ifscCode: 'KTKB0000046'
+            }),
+            hash: 'YOUR_HASH'
+        });
+
+        axios.post(url, payload, {
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        })
+        .then(response => console.log(response.data))
+        .catch(error => console.error(error));
+        ```
+
+        ```java
+        import java.net.URI;
+        import java.net.http.HttpClient;
+        import java.net.http.HttpRequest;
+        import java.net.http.HttpResponse;
+
+        public class PayUCollectTPV {
+            public static void main(String[] args) throws Exception {
+                HttpClient client = HttpClient.newHttpClient();
+
+                String body = "key=JP***g"
+                    + "&txnid=s7hhDQVWvbhBdN"
+                    + "&amount=10.00"
+                    + "&productinfo=iPhone"
+                    + "&firstname=Ashish"
+                    + "&lastname=Verma"
+                    + "&email=test@payu.in"
+                    + "&phone=9876543210"
+                    + "&surl=https://apiplayground-response.herokuapp.com/"
+                    + "&furl=https://apiplayground-response.herokuapp.com/"
+                    + "&pg=UPI"
+                    + "&bankcode=UPITPV"
+                    + "&si=1"
+                    + "&si_details={...}"
+                    + "&vpa=abc%40upi"
+                    + "&beneficiarydetail=%7B%22beneficiaryAccountNumber%22%3A%22002001600674%22%2C%22ifscCode%22%3A%22KTKB0000046%22%7D"
+                    + "&hash=YOUR_HASH";
+
+                HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("https://test.payu.in/_payment"))
+                    .header("Content-Type", "application/x-www-form-urlencoded")
+                    .POST(HttpRequest.BodyPublishers.ofString(body))
+                    .build();
+
+                HttpResponse<String> response = client.send(request,
+                    HttpResponse.BodyHandlers.ofString());
+                System.out.println(response.body());
+            }
+        }
+        ```
+
+        ```php
+        <?php
+
+        $url = 'https://test.payu.in/_payment';
+
+        $payload = http_build_query([
+            'key'               => 'JP***g',
+            'txnid'             => 's7hhDQVWvbhBdN',
+            'amount'            => '10.00',
+            'productinfo'       => 'iPhone',
+            'firstname'         => 'Ashish',
+            'lastname'          => 'Verma',
+            'email'             => 'test@payu.in',
+            'phone'             => '9876543210',
+            'surl'              => 'https://apiplayground-response.herokuapp.com/',
+            'furl'              => 'https://apiplayground-response.herokuapp.com/',
+            'pg'                => 'UPI',
+            'bankcode'          => 'UPITPV',
+            'si'                => '1',
+            'si_details'        => '{...}',
+            'vpa'               => 'abc@upi',
+            'beneficiarydetail' => json_encode([
+                'beneficiaryAccountNumber' => '002001600674',
+                'ifscCode'                 => 'KTKB0000046'
+            ]),
+            'hash'              => 'YOUR_HASH'
+        ]);
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Content-Type: application/x-www-form-urlencoded'
+        ]);
+
+        $response = curl_exec($ch);
+        curl_close($ch);
+        echo $response;
+        ?>
+        ```
+      </Tab>
+    </Tabs>
 
     ## Step 3: Check the response from PayU
 
