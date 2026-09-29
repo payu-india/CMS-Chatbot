@@ -178,14 +178,14 @@ To add a payment button:
 
   2. To add a field of your own, click **Add Fields** and fill in:
 
-  | Setting               | What to enter                                             |
+  | Field                 | What to Enter                                             |
   | --------------------- | --------------------------------------------------------- |
   | **Field Type**        | Text, Calendar, or Drop-down                              |
   | **Field Name**        | The question or label your customer will see              |
   | **Mark as mandatory** | Switch on if the customer must fill this in before paying |
 
 
-  <Image src="https://files.readme.io/1eb6333ecf79f41c3bb978bd2c289d2af3822688df83f22b10edda2199e93a21-Screenshot_2025-06-04_at_12.33.44_PM.png" align="center" width="312px" caption="Add a custom checkout field" border={true} />
+  <Image src="https://files.readme.io/85ce648929644ea85ad3a4474b95e6b6ad10df34254b6e1e49beeb132be6321c-Screenshot_2026-09-29_at_4.16.51_PM.png" align="center" width="312px" caption="Add Your Own Field" border={true} />
 
 
   4. Click **Add Field** to save each field.
