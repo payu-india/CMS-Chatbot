@@ -1,36 +1,68 @@
 ---
 name: PayUPaymentLinksWizard
 ---
-// PayUPaymentLinksWizard - Tier 1 Non-Technical Merchant Experience
-// 3-step wizard: Create → Try payment → Done
+---
+name: PayUPaymentLinksWizard
+---
+// PayUPaymentLinksWizard — ReadMe Custom Component
+// Dashboard-faithful Tier 1 experience: Create → Customer View → Done
+//
+// State machine: phase ('idle' | 'create' | 'customer' | 'done')
+// Outcome enforcement: only outcome === 'success' may transition to 'done'.
+// Failed and cancelled stay in 'customer' phase and can retry.
+//
+// Field names match the real PayU Dashboard:
+//   Amount, Purpose, Customer Details (Name / Email / Phone Number)
+// Section names: "Customer Details" (not "Customer Targeting")
+// Button label: "Create and Send Payment Link"
+// Navigation context: Payment Tools → Payment Links
+// Status label after payment: "Paid" (confirmed real Dashboard status)
+// Payment methods: UPI, Cards, Net Banking, Wallets (confirmed from docs)
+//
+// No real URL is generated. A sandbox reference ID (PL-XXXX) is used instead.
+// "Open Link" transitions the full modal to the customer-facing view — it does
+// not open a second modal overlay on top of the merchant view.
+//
+// TODO: Instrument analytics events using an existing project analytics mechanism
+//   when one is available. Events to track:
+//     lab_started, payment_link_creation_started, payment_link_created,
+//     payment_link_opened, payment_started, payment_success,
+//     payment_failed, payment_cancelled, lab_completed
+//   Do not send customer-entered data or PII.
 
 import { useState } from 'react';
 
 export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
-  var _step = useState(0);
-  var step = _step[0];
-  var setStep = _step[1];
+  var _phase = useState('idle');
+  var phase = _phase[0];
+  var setPhase = _phase[1];
 
-  var _amount = useState('100.00');
+  var _amount = useState('');
   var amount = _amount[0];
   var setAmount = _amount[1];
 
-  var _purpose = useState('Payment for Product X');
+  var _purpose = useState('');
   var purpose = _purpose[0];
   var setPurpose = _purpose[1];
 
-  var _customerName = useState('Aarav Kumar');
+  var _customerName = useState('');
   var customerName = _customerName[0];
   var setCustomerName = _customerName[1];
 
-  var _customerEmail = useState('aarav@example.com');
+  var _customerEmail = useState('');
   var customerEmail = _customerEmail[0];
   var setCustomerEmail = _customerEmail[1];
 
-  var _link = useState('');
-  var link = _link[0];
-  var setLink = _link[1];
+  var _customerPhone = useState('');
+  var customerPhone = _customerPhone[0];
+  var setCustomerPhone = _customerPhone[1];
 
+  // Sandbox reference ID — not a real URL
+  var _linkRef = useState('');
+  var linkRef = _linkRef[0];
+  var setLinkRef = _linkRef[1];
+
+  // '' | 'success' | 'failed' | 'cancelled'
   var _outcome = useState('');
   var outcome = _outcome[0];
   var setOutcome = _outcome[1];
@@ -38,14 +70,6 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
   var _feedback = useState('');
   var feedback = _feedback[0];
   var setFeedback = _feedback[1];
-
-  var _open = useState(false);
-  var open = _open[0];
-  var setOpen = _open[1];
-
-  var _showPreview = useState(false);
-  var showPreview = _showPreview[0];
-  var setShowPreview = _showPreview[1];
 
   var _copied = useState(false);
   var copied = _copied[0];
@@ -55,315 +79,524 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
   var GREEN_DARK = '#115e59';
   var GREEN_LIGHT = '#ecfdf5';
 
-  function openModal() {
-    setOpen(true);
-    setStep(0);
-    setLink('');
+  function openWizard() {
+    setPhase('create');
+    setAmount('');
+    setPurpose('');
+    setCustomerName('');
+    setCustomerEmail('');
+    setCustomerPhone('');
+    setLinkRef('');
     setOutcome('');
     setFeedback('');
     setCopied(false);
-    // TODO: Track event - lab_started
+    // TODO: analytics — lab_started
   }
 
-  function closeModal() {
-    setOpen(false);
-  }
-
-  function copyLink() {
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(link);
-    }
-    setCopied(true);
-    setTimeout(function() {
-      setCopied(false);
-    }, 2000);
+  function closeWizard() {
+    setPhase('idle');
   }
 
   function createLink() {
-    if (!purpose) {
-      alert('Item Description is required');
+    if (!purpose.trim()) {
+      alert('Purpose is required');
       return;
     }
-    var id = Date.now().toString(36) + Math.random().toString(36).substring(2, 8);
-    setLink('https://demo.payu.in/link/' + id);
-    // TODO: Track event - payment_link_created { amount, purpose }
+    var parsed = parseFloat(amount);
+    if (!amount.trim() || isNaN(parsed) || parsed <= 0) {
+      alert('Please enter a valid amount');
+      return;
+    }
+    var suffix = Date.now().toString(36).toUpperCase()
+      + Math.random().toString(36).substring(2, 6).toUpperCase();
+    setLinkRef('PL-' + suffix);
+    // TODO: analytics — payment_link_created
+  }
+
+  // Transitions the full wizard from merchant view to customer-facing payment view.
+  // This is NOT a secondary modal — the entire wizard content changes phase.
+  function openLink() {
+    setOutcome('');
+    setPhase('customer');
+    // TODO: analytics — payment_link_opened
   }
 
   function pickOutcome(choice) {
     setOutcome(choice);
-    setShowPreview(false);
-    setStep(1);
-    // TODO: Track event - test_payment_completed { outcome: choice }
+    // TODO: analytics — payment_success / payment_failed / payment_cancelled
   }
 
-  function giveFeedback(rating) {
-    setFeedback(rating);
+  // Clears outcome; user stays in 'customer' phase and can try again.
+  // Failed and cancelled outcomes NEVER call proceedToDone — they call retryPayment.
+  function retryPayment() {
+    setOutcome('');
   }
 
-  var canNext = (step === 0 && link) || (step === 1 && outcome) || step === 2;
+  // State machine enforcement: only outcome === 'success' may reach 'done'.
+  // Belt-and-suspenders: the "Back to Dashboard" button only renders on success,
+  // AND this function checks outcome before setting phase.
+  function proceedToDone() {
+    if (outcome !== 'success') return;
+    setPhase('done');
+    // TODO: analytics — lab_completed
+  }
+
+  function copyRef() {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(linkRef);
+    }
+    setCopied(true);
+    setTimeout(function () { setCopied(false); }, 2000);
+  }
+
+  var parsedAmount = amount.trim() ? parseFloat(amount) : 0;
+  var displayAmount = isNaN(parsedAmount) ? '0.00' : parsedAmount.toFixed(2);
 
   return (
-    <div style={{ fontFamily: 'system-ui' }}>
-      {/* Launcher Card */}
-      <div style={{ padding: '20px 24px', borderRadius: '12px', border: '1px solid #99f6e4', background: 'linear-gradient(135deg, #f0fdfa 0%, #fff 50%)', margin: '24px 0' }}>
-        <div style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', color: GREEN, marginBottom: '6px' }}>Sandbox for Your Testing</div>
-        <h3 style={{ margin: '0 0 8px', fontSize: '1.25rem', fontWeight: 700 }}>Create a Payment Link</h3>
-        <p style={{ margin: '0 0 12px', fontSize: '14px', color: '#4b5563' }}>Practice the Dashboard workflow in this safe sandbox. No account or real payment required.</p>
-        <ul style={{ margin: '0 0 16px', paddingLeft: '18px', fontSize: '13px', lineHeight: 1.7, color: '#374151' }}>
-          <li>Fill payment link details like in the Dashboard</li>
-          <li>See your link created instantly</li>
-          <li>Test the customer payment experience</li>
-        </ul>
-        <button onClick={openModal} style={{ padding: '12px 24px', background: GREEN, color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '15px', fontWeight: 600 }}>
+    <div style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+
+      {/* ── Launcher card ── */}
+      <div style={{
+        padding: '20px 24px',
+        borderRadius: '12px',
+        border: '1px solid #99f6e4',
+        background: 'linear-gradient(135deg, #f0fdfa 0%, #fff 50%)',
+        margin: '24px 0',
+      }}>
+        <div style={{ fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', color: GREEN, letterSpacing: '0.05em', marginBottom: '6px' }}>
+          No-code · Sandbox
+        </div>
+        <h3 style={{ margin: '0 0 8px', fontSize: '1.2rem', fontWeight: 700, color: '#111827' }}>
+          Try: Create a Payment Link
+        </h3>
+        <p style={{ margin: '0 0 14px', fontSize: '14px', color: '#4b5563', lineHeight: 1.6 }}>
+          Practice the PayU Dashboard workflow in a safe sandbox. No account or real payment needed.
+        </p>
+        <button
+          onClick={openWizard}
+          style={{ padding: '11px 22px', background: GREEN, color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', fontWeight: 700 }}>
           Create New Payment Link
         </button>
       </div>
 
-      {/* Main Modal */}
-      {open ? (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 99999, background: 'rgba(15,23,42,0.55)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px' }}>
-          <div style={{ width: '100%', maxWidth: '720px', maxHeight: '92vh', background: 'white', borderRadius: '14px', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      {/* ── Modal overlay ── */}
+      {phase !== 'idle' ? (
+        <div style={{
+          position: 'fixed', inset: 0, zIndex: 99999,
+          background: 'rgba(15,23,42,0.55)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          padding: '16px',
+        }}>
+          <div style={{
+            width: '100%', maxWidth: '520px', maxHeight: '92vh',
+            background: 'white', borderRadius: '14px',
+            display: 'flex', flexDirection: 'column', overflow: 'hidden',
+            boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
+          }}>
 
-            {/* Header */}
-            <div style={{ padding: '16px 20px', background: 'linear-gradient(135deg, ' + GREEN + ' 0%, ' + GREEN_DARK + ' 100%)', color: 'white' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            {/* Modal header */}
+            <div style={{
+              padding: '14px 18px',
+              background: 'linear-gradient(135deg, ' + GREEN + ' 0%, ' + GREEN_DARK + ' 100%)',
+              color: 'white', flexShrink: 0,
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
-                  <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', opacity: 0.85, marginBottom: '4px' }}>Payment Links</div>
-                  <h2 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 700 }}>
-                    {step === 0 ? 'Create New Payment Link' : step === 1 ? 'Customer Payment Experience' : 'Payment Link Created'}
-                  </h2>
+                  <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', opacity: 0.75, marginBottom: '3px', letterSpacing: '0.05em' }}>
+                    {phase === 'customer'
+                      ? 'Customer View — Sandbox'
+                      : 'Payment Tools → Payment Links'}
+                  </div>
+                  <div style={{ fontSize: '1.05rem', fontWeight: 700 }}>
+                    {phase === 'create'
+                      ? 'Create New Payment Link'
+                      : phase === 'customer'
+                      ? 'Payment Link'
+                      : 'Payment Received'}
+                  </div>
                 </div>
-                <button onClick={closeModal} style={{ background: 'rgba(255,255,255,0.2)', color: 'white', border: 'none', borderRadius: '8px', width: '44px', height: '44px', fontSize: '18px', cursor: 'pointer' }}>×</button>
+                <button
+                  onClick={closeWizard}
+                  style={{
+                    background: 'rgba(255,255,255,0.18)', color: 'white',
+                    border: 'none', borderRadius: '7px',
+                    width: '32px', height: '32px', fontSize: '17px',
+                    cursor: 'pointer', flexShrink: 0,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  }}>
+                  ×
+                </button>
               </div>
             </div>
 
-            {/* Body */}
-            <div style={{ flex: 1, overflow: 'auto', padding: '20px', background: '#fafafa' }}>
-              <div style={{ background: 'white', borderRadius: '10px', border: '1px solid #e5e7eb', padding: '16px' }}>
+            {/* Modal body */}
+            <div style={{ flex: 1, overflowY: 'auto', padding: '18px', background: '#f8fafc' }}>
 
-                {/* Step 0: Create */}
-                {step === 0 ? (
-                  <div>
-                    <div style={{ marginBottom: '20px' }}>
-                      <h3 style={{ margin: '0 0 4px', fontSize: '14px', fontWeight: 700, color: '#111827' }}>Payment Link Details</h3>
-                      <p style={{ margin: 0, fontSize: '13px', color: '#6b7280' }}>Fill in the required details to create your payment link</p>
-                    </div>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              {/* ── CREATE phase ── */}
+              {phase === 'create' ? (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+
+                  {/* Amount + Purpose */}
+                  <div style={{ background: 'white', borderRadius: '10px', border: '1px solid #e5e7eb', padding: '16px 18px' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
                       <div>
-                        <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: 700, color: '#111827' }}>Item Description *</label>
-                        <input type="text" value={purpose} onChange={function(e) { setPurpose(e.target.value); }} style={{ width: '100%', padding: '8px 12px', borderRadius: '6px', border: '1px solid #d1d5db', fontSize: '14px', boxSizing: 'border-box' }} placeholder="A short description about the link you are creating" />
-                      </div>
-                      <div>
-                        <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: 700, color: '#111827' }}>Total Amount</label>
-                        <input type="text" value={amount} onChange={function(e) { setAmount(e.target.value); }} style={{ width: '100%', padding: '8px 12px', borderRadius: '6px', border: '1px solid #d1d5db', fontSize: '14px', boxSizing: 'border-box' }} placeholder="Enter amount" />
-                      </div>
-                    </div>
-                    <div style={{ marginTop: '20px', marginBottom: '20px' }}>
-                      <h3 style={{ margin: '0 0 4px', fontSize: '14px', fontWeight: 700, color: '#111827' }}>Customer Targeting</h3>
-                      <p style={{ margin: 0, fontSize: '13px', color: '#6b7280' }}>Add customer details (optional)</p>
-                    </div>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                      <div>
-                        <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: 700, color: '#111827' }}>Name</label>
-                        <input type="text" value={customerName} onChange={function(e) { setCustomerName(e.target.value); }} style={{ width: '100%', padding: '8px 12px', borderRadius: '6px', border: '1px solid #d1d5db', fontSize: '14px', boxSizing: 'border-box' }} placeholder="Customer name" />
-                      </div>
-                      <div>
-                        <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px', fontWeight: 700, color: '#111827' }}>Email</label>
-                        <input type="email" value={customerEmail} onChange={function(e) { setCustomerEmail(e.target.value); }} style={{ width: '100%', padding: '8px 12px', borderRadius: '6px', border: '1px solid #d1d5db', fontSize: '14px', boxSizing: 'border-box' }} placeholder="Customer email" />
-                      </div>
-                    </div>
-                    <div style={{ marginTop: '20px' }}>
-                      <button onClick={createLink} style={{ padding: '10px 20px', background: GREEN, color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', fontWeight: 600 }}>
-                        Create and Send Payment link
-                      </button>
-                    </div>
-                    {link ? (
-                      <div style={{ marginTop: '16px', padding: '14px 16px', borderRadius: '8px', background: GREEN_LIGHT, border: '2px solid ' + GREEN }}>
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
-                          <p style={{ margin: 0, fontSize: '13px', fontWeight: 700, color: GREEN }}>✓ Payment Link Created</p>
-                          <span style={{ padding: '2px 8px', background: GREEN, color: 'white', borderRadius: '4px', fontSize: '11px', fontWeight: 600 }}>Active</span>
+                        <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px', fontWeight: 700, color: '#111827' }}>
+                          Amount *
+                        </label>
+                        <div style={{ display: 'flex', border: '1px solid #d1d5db', borderRadius: '6px', overflow: 'hidden' }}>
+                          <span style={{
+                            padding: '8px 12px', background: '#f3f4f6',
+                            fontSize: '14px', color: '#374151',
+                            borderRight: '1px solid #d1d5db', flexShrink: 0,
+                          }}>₹</span>
+                          <input
+                            type="text"
+                            value={amount}
+                            onChange={function (e) { setAmount(e.target.value); }}
+                            style={{ flex: 1, padding: '8px 12px', border: 'none', fontSize: '14px', outline: 'none', minWidth: 0 }}
+                            placeholder="0.00" />
                         </div>
-                        <div style={{ padding: '10px', background: 'white', borderRadius: '6px', marginBottom: '12px', border: '1px solid #e5e7eb' }}>
-                          <div style={{ fontSize: '11px', color: '#6b7280', marginBottom: '4px' }}>Payment Link</div>
-                          <a href="#" onClick={function(e) {
-                            e.preventDefault();
-                            setShowPreview(true);
-                          }} style={{ display: 'block', fontSize: '11px', wordBreak: 'break-all', color: GREEN, textDecoration: 'underline', cursor: 'pointer', fontFamily: 'monospace' }}>
-                            {link}
-                          </a>
-                        </div>
-                        <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '10px' }}>
-                          <button onClick={copyLink} style={{ padding: '8px 14px', background: copied ? GREEN : 'white', color: copied ? 'white' : GREEN, border: '1px solid ' + GREEN, borderRadius: '6px', cursor: 'pointer', fontSize: '13px', fontWeight: 600, transition: 'all 0.2s' }}>
-                            {copied ? '✓ Copied!' : 'Copy Link'}
-                          </button>
-                          <button onClick={function() {
-                            // TODO: Track event - test_payment_attempted
-                            setShowPreview(true);
-                          }} style={{ padding: '8px 14px', background: GREEN, color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '13px', fontWeight: 600 }}>
-                            Open Link
-                          </button>
-                        </div>
-                        <p style={{ margin: 0, fontSize: '12px', color: '#6b7280', lineHeight: 1.5 }}>
-                          <strong>Sandbox mode:</strong> This is a practice link (not a real URL). Click the <strong>link above</strong> or the <strong>Open Link</strong> button to see the customer payment experience.
-                        </p>
                       </div>
-                    ) : null}
+                      <div>
+                        <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px', fontWeight: 700, color: '#111827' }}>
+                          Purpose *
+                        </label>
+                        <input
+                          type="text"
+                          value={purpose}
+                          onChange={function (e) { setPurpose(e.target.value); }}
+                          style={{ width: '100%', padding: '8px 12px', borderRadius: '6px', border: '1px solid #d1d5db', fontSize: '14px', boxSizing: 'border-box', outline: 'none' }}
+                          placeholder="e.g. Payment for Order #1042" />
+                        <div style={{ fontSize: '12px', color: '#9ca3af', marginTop: '4px' }}>
+                          Shown to the customer on the payment page
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                ) : null}
 
-                {/* Step 1: Payment Result */}
-                {step === 1 ? (
-                  <div>
-                    <p style={{ marginBottom: '16px', fontSize: '14px', color: '#4b5563' }}>Payment result from your simulated customer transaction:</p>
-                    <div style={{ padding: '12px 14px', borderRadius: '8px', background: outcome === 'success' ? GREEN_LIGHT : '#fef2f2', border: '2px solid ' + (outcome === 'success' ? GREEN : '#dc2626'), marginBottom: '16px' }}>
-                      <p style={{ margin: 0, fontSize: '14px', fontWeight: 700, color: outcome === 'success' ? GREEN : '#dc2626', marginBottom: '8px' }}>
-                        {outcome === 'success' ? '✓ Payment Successful' : outcome === 'failed' ? '✗ Payment Failed' : '⊗ Payment Cancelled'}
-                      </p>
-                      <p style={{ margin: 0, fontSize: '13px', color: '#4b5563' }}>
-                        {outcome === 'success' ? 'The link status will update to "Paid" in your Dashboard. The transaction will appear in your Transactions tab.' : outcome === 'failed' ? 'Customer can retry the payment with the same link. The link remains Active.' : 'Customer closed the payment page without completing. The link remains Active for them to try again.'}
-                      </p>
+                  {/* Customer Details — matches real Dashboard "Customer Details" pane */}
+                  <div style={{ background: 'white', borderRadius: '10px', border: '1px solid #e5e7eb', padding: '16px 18px' }}>
+                    <div style={{ fontSize: '13px', fontWeight: 700, color: '#111827', marginBottom: '12px' }}>
+                      Customer Details
                     </div>
-                    {outcome !== 'success' ? (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                       <div>
-                        <p style={{ margin: '0 0 12px', fontSize: '13px', color: '#6b7280' }}>Want to simulate a different outcome?</p>
-                        <button onClick={function() {
-                          setOutcome('');
-                          setStep(0);
-                        }} style={{ padding: '8px 14px', background: 'white', color: GREEN, border: '1px solid ' + GREEN, borderRadius: '6px', cursor: 'pointer', fontSize: '14px', fontWeight: 600 }}>
-                          Open Link Again
+                        <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px', fontWeight: 600, color: '#374151' }}>
+                          Customer Name
+                        </label>
+                        <input
+                          type="text"
+                          value={customerName}
+                          onChange={function (e) { setCustomerName(e.target.value); }}
+                          style={{ width: '100%', padding: '8px 12px', borderRadius: '6px', border: '1px solid #d1d5db', fontSize: '14px', boxSizing: 'border-box', outline: 'none' }}
+                          placeholder="Optional" />
+                      </div>
+                      <div>
+                        <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px', fontWeight: 600, color: '#374151' }}>
+                          Email
+                        </label>
+                        <input
+                          type="email"
+                          value={customerEmail}
+                          onChange={function (e) { setCustomerEmail(e.target.value); }}
+                          style={{ width: '100%', padding: '8px 12px', borderRadius: '6px', border: '1px solid #d1d5db', fontSize: '14px', boxSizing: 'border-box', outline: 'none' }}
+                          placeholder="Optional" />
+                      </div>
+                      <div>
+                        <label style={{ display: 'block', marginBottom: '6px', fontSize: '13px', fontWeight: 600, color: '#374151' }}>
+                          Phone Number
+                        </label>
+                        <input
+                          type="tel"
+                          value={customerPhone}
+                          onChange={function (e) { setCustomerPhone(e.target.value); }}
+                          style={{ width: '100%', padding: '8px 12px', borderRadius: '6px', border: '1px solid #d1d5db', fontSize: '14px', boxSizing: 'border-box', outline: 'none' }}
+                          placeholder="Optional" />
+                      </div>
+                    </div>
+                    <div style={{ fontSize: '12px', color: '#9ca3af', marginTop: '10px' }}>
+                      The link can be sent to the customer via SMS or email after creation.
+                    </div>
+                  </div>
+
+                  {/* Submit — real Dashboard button label */}
+                  <button
+                    onClick={createLink}
+                    style={{ width: '100%', padding: '12px', background: GREEN, color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px', fontWeight: 700 }}>
+                    Create and Send Payment Link
+                  </button>
+
+                  {/* Link created confirmation */}
+                  {linkRef ? (
+                    <div style={{ padding: '16px', borderRadius: '10px', background: GREEN_LIGHT, border: '2px solid ' + GREEN }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+                        <span style={{ fontSize: '15px', color: GREEN }}>✓</span>
+                        <span style={{ fontSize: '14px', fontWeight: 700, color: GREEN, flex: 1 }}>Payment Link Created</span>
+                        <span style={{ padding: '2px 8px', background: GREEN, color: 'white', borderRadius: '4px', fontSize: '11px', fontWeight: 700 }}>Active</span>
+                      </div>
+
+                      <div style={{ background: 'white', borderRadius: '6px', padding: '10px 14px', marginBottom: '12px', border: '1px solid #d1fae5' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
+                          <div style={{ flex: 1, marginRight: '12px' }}>
+                            <div style={{ fontSize: '11px', color: '#6b7280', marginBottom: '3px' }}>Purpose of Payment</div>
+                            <div style={{ fontSize: '13px', fontWeight: 600, color: '#111827' }}>{purpose}</div>
+                          </div>
+                          <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                            <div style={{ fontSize: '11px', color: '#6b7280', marginBottom: '3px' }}>Amount</div>
+                            <div style={{ fontSize: '16px', fontWeight: 700, color: GREEN_DARK }}>₹{displayAmount}</div>
+                          </div>
+                        </div>
+                        <div style={{ fontSize: '11px', color: '#9ca3af' }}>
+                          Sandbox reference: <span style={{ fontFamily: 'monospace', color: '#374151' }}>{linkRef}</span>
+                        </div>
+                      </div>
+
+                      <div style={{ display: 'flex', gap: '8px' }}>
+                        <button
+                          onClick={copyRef}
+                          style={{
+                            flex: 1, padding: '9px',
+                            background: copied ? GREEN : 'white',
+                            color: copied ? 'white' : GREEN,
+                            border: '1px solid ' + GREEN,
+                            borderRadius: '6px', cursor: 'pointer', fontSize: '13px', fontWeight: 600,
+                          }}>
+                          {copied ? '✓ Copied' : 'Copy Link'}
+                        </button>
+                        {/* Open Link — transitions the entire wizard to the customer-facing view */}
+                        <button
+                          onClick={openLink}
+                          style={{ flex: 2, padding: '9px', background: GREEN, color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '13px', fontWeight: 700 }}>
+                          Open Link →
                         </button>
                       </div>
+
+                      <div style={{ fontSize: '12px', color: '#6b7280', marginTop: '10px', lineHeight: 1.5 }}>
+                        <strong>Sandbox:</strong> Click <strong>Open Link</strong> to see what your customer experiences when they open this payment link.
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
+              ) : null}
+
+              {/* ── CUSTOMER phase ── */}
+              {/* Represents the opened Payment Link as seen by the customer.
+                  This is a phase transition from the merchant view — not a modal overlay. */}
+              {phase === 'customer' ? (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+
+                  <div style={{
+                    padding: '8px 12px', background: '#fffbeb',
+                    border: '1px solid #fde68a', borderRadius: '8px',
+                    fontSize: '12px', color: '#92400e', textAlign: 'center', lineHeight: 1.5,
+                  }}>
+                    <strong>Sandbox</strong> — This is what your customer sees when they open the payment link
+                  </div>
+
+                  {/* Payment details shown to the customer */}
+                  <div style={{ background: 'white', borderRadius: '10px', border: '1px solid #e5e7eb', padding: '16px 18px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                      <div style={{ flex: 1, marginRight: '16px' }}>
+                        <div style={{ fontSize: '11px', color: '#6b7280', marginBottom: '4px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Purpose</div>
+                        <div style={{ fontSize: '15px', fontWeight: 700, color: '#111827' }}>{purpose}</div>
+                      </div>
+                      <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                        <div style={{ fontSize: '11px', color: '#6b7280', marginBottom: '4px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Amount</div>
+                        <div style={{ fontSize: '22px', fontWeight: 700, color: GREEN_DARK }}>₹{displayAmount}</div>
+                      </div>
+                    </div>
+                    {customerName ? (
+                      <div style={{ fontSize: '12px', color: '#6b7280', marginTop: '10px', paddingTop: '8px', borderTop: '1px solid #f3f4f6' }}>
+                        For: {customerName}
+                      </div>
                     ) : null}
                   </div>
-                ) : null}
 
-                {/* Step 2: Completion */}
-                {step === 2 ? (
-                  <div>
-                    {/* TODO: Track event - lab_completed (track when step 2 is first reached) */}
-                    <div style={{ textAlign: 'center', padding: '20px 0' }}>
-                      <div style={{ fontSize: '48px', marginBottom: '12px' }}>✅</div>
-                      <h3 style={{ margin: '0 0 8px', fontSize: '1.5rem', fontWeight: 700 }}>Payment Link Created Successfully</h3>
-                      <p style={{ margin: 0, fontSize: '15px', color: '#6b7280' }}>You've practiced the complete workflow from creation to payment.</p>
+                  {/* Payment options — shown before any outcome is selected */}
+                  {!outcome ? (
+                    <div style={{ background: 'white', borderRadius: '10px', border: '1px solid #e5e7eb', padding: '16px 18px' }}>
+                      <div style={{ fontSize: '13px', fontWeight: 700, color: '#111827', marginBottom: '4px' }}>Pay using</div>
+                      <div style={{ fontSize: '12px', color: '#6b7280', marginBottom: '16px' }}>
+                        UPI · Cards · Net Banking · Wallets
+                      </div>
+                      <div style={{
+                        padding: '8px 10px', background: '#fffbeb',
+                        border: '1px solid #fde68a', borderRadius: '6px',
+                        marginBottom: '14px', fontSize: '12px', color: '#92400e', textAlign: 'center',
+                      }}>
+                        Sandbox: choose a test outcome to simulate payment
+                      </div>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                        <button
+                          onClick={function () { pickOutcome('success'); }}
+                          style={{ padding: '11px', background: GREEN, color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', fontWeight: 700 }}>
+                          Pay ₹{displayAmount} — Simulate Success
+                        </button>
+                        <button
+                          onClick={function () { pickOutcome('failed'); }}
+                          style={{ padding: '11px', background: 'white', color: '#dc2626', border: '1px solid #dc2626', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', fontWeight: 600 }}>
+                          Simulate Payment Failure
+                        </button>
+                        <button
+                          onClick={function () { pickOutcome('cancelled'); }}
+                          style={{ padding: '11px', background: 'white', color: '#6b7280', border: '1px solid #d1d5db', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', fontWeight: 600 }}>
+                          Cancel
+                        </button>
+                      </div>
                     </div>
-                    {link ? (
-                      <div style={{ padding: '14px 16px', borderRadius: '8px', background: '#f9fafb', border: '1px solid #e5e7eb', marginBottom: '20px' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
-                          <p style={{ margin: 0, fontSize: '13px', fontWeight: 600, color: '#111827' }}>Sandbox Link (Practice)</p>
-                          <span style={{ padding: '2px 8px', background: '#10b981', color: 'white', borderRadius: '4px', fontSize: '11px', fontWeight: 600 }}>Paid</span>
-                        </div>
-                        <div style={{ padding: '8px', background: 'white', borderRadius: '6px', marginBottom: '8px', border: '1px solid #e5e7eb' }}>
-                          <code style={{ display: 'block', fontSize: '11px', wordBreak: 'break-all', color: '#6b7280' }}>{link}</code>
-                        </div>
-                        <p style={{ margin: 0, fontSize: '12px', color: '#6b7280' }}>
-                          💡 In the real Dashboard, the link status updates automatically and appears in your Payment Links table.
-                        </p>
+                  ) : null}
+
+                  {/* Success outcome — only this outcome provides the path to 'done' */}
+                  {outcome === 'success' ? (
+                    <div style={{ background: 'white', borderRadius: '10px', border: '2px solid ' + GREEN, padding: '22px 18px', textAlign: 'center' }}>
+                      <div style={{
+                        width: '48px', height: '48px', borderRadius: '50%',
+                        background: GREEN_LIGHT, margin: '0 auto 12px',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        fontSize: '22px', color: GREEN,
+                      }}>✓</div>
+                      <div style={{ fontSize: '17px', fontWeight: 700, color: GREEN, marginBottom: '6px' }}>Payment Successful</div>
+                      <div style={{ fontSize: '13px', color: '#6b7280', marginBottom: '18px' }}>
+                        ₹{displayAmount} · {purpose}
                       </div>
-                    ) : null}
-                    <div style={{ padding: '16px', background: 'linear-gradient(135deg, ' + GREEN_LIGHT + ' 0%, #ffffff 100%)', borderRadius: '8px', border: '2px solid ' + GREEN, marginBottom: '16px' }}>
-                      <p style={{ margin: '0 0 8px', fontSize: '15px', fontWeight: 700, color: '#111827' }}>Ready to Create Real Payment Links?</p>
-                      <p style={{ margin: '0 0 14px', fontSize: '13px', color: '#4b5563', lineHeight: 1.6 }}>
-                        Log in to the PayU Dashboard and follow the same workflow you just practiced:<br />
-                        <strong>Payment Tools → Payment Links → Create New Payment Link</strong>
-                      </p>
-                      <a href="https://onboarding.payu.in/" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', padding: '10px 18px', background: GREEN, color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', fontWeight: 600, textDecoration: 'none' }}>
-                        Open PayU Dashboard
-                      </a>
+                      <button
+                        onClick={proceedToDone}
+                        style={{ padding: '10px 22px', background: GREEN, color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', fontWeight: 700 }}>
+                        Back to Dashboard
+                      </button>
                     </div>
-                    {!feedback ? (
-                      <div style={{ padding: '16px', background: '#f9fafb', borderRadius: '8px', border: '1px solid #e5e7eb' }}>
-                        <p style={{ margin: '0 0 12px', fontSize: '14px', fontWeight: 600 }}>How easy was it to complete this?</p>
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px' }}>
-                          {['Very easy', 'Easy', 'Difficult', 'Very difficult'].map(function(rating) {
-                            return (
-                              <button key={rating} onClick={function() { giveFeedback(rating); }} style={{ padding: '8px 12px', background: 'white', color: GREEN, border: '1px solid ' + GREEN, borderRadius: '6px', cursor: 'pointer', fontSize: '13px', fontWeight: 600 }}>
-                                {rating}
-                              </button>
-                            );
-                          })}
-                        </div>
+                  ) : null}
+
+                  {/* Failed outcome — stays in customer phase, can retry */}
+                  {outcome === 'failed' ? (
+                    <div style={{ background: 'white', borderRadius: '10px', border: '2px solid #dc2626', padding: '22px 18px', textAlign: 'center' }}>
+                      <div style={{
+                        width: '48px', height: '48px', borderRadius: '50%',
+                        background: '#fef2f2', margin: '0 auto 12px',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        fontSize: '22px', color: '#dc2626',
+                      }}>✗</div>
+                      <div style={{ fontSize: '17px', fontWeight: 700, color: '#dc2626', marginBottom: '6px' }}>Payment Failed</div>
+                      <div style={{ fontSize: '13px', color: '#6b7280', marginBottom: '18px' }}>
+                        The payment could not be processed. The link is still active — you can try again.
                       </div>
-                    ) : (
-                      <div style={{ padding: '12px 14px', borderRadius: '8px', background: GREEN_LIGHT, border: '1px solid ' + GREEN }}>
-                        <p style={{ margin: 0, fontSize: '14px', color: GREEN, fontWeight: 600 }}>✓ Thanks for your feedback!</p>
+                      <button
+                        onClick={retryPayment}
+                        style={{ padding: '10px 22px', background: '#dc2626', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', fontWeight: 600 }}>
+                        Try Again
+                      </button>
+                    </div>
+                  ) : null}
+
+                  {/* Cancelled outcome — stays in customer phase, can retry */}
+                  {outcome === 'cancelled' ? (
+                    <div style={{ background: 'white', borderRadius: '10px', border: '1px solid #d1d5db', padding: '22px 18px', textAlign: 'center' }}>
+                      <div style={{
+                        width: '48px', height: '48px', borderRadius: '50%',
+                        background: '#f3f4f6', margin: '0 auto 12px',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        fontSize: '20px', color: '#6b7280',
+                      }}>⊗</div>
+                      <div style={{ fontSize: '17px', fontWeight: 700, color: '#374151', marginBottom: '6px' }}>Payment Cancelled</div>
+                      <div style={{ fontSize: '13px', color: '#6b7280', marginBottom: '18px' }}>
+                        You closed the payment page. The link is still active — you can try again.
                       </div>
-                    )}
+                      <button
+                        onClick={retryPayment}
+                        style={{ padding: '10px 22px', background: 'white', color: GREEN, border: '1px solid ' + GREEN, borderRadius: '6px', cursor: 'pointer', fontSize: '14px', fontWeight: 600 }}>
+                        Try Again
+                      </button>
+                    </div>
+                  ) : null}
+                </div>
+              ) : null}
+
+              {/* ── DONE phase ── */}
+              {/* Reachable only via proceedToDone(), which requires outcome === 'success'. */}
+              {phase === 'done' ? (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+
+                  <div style={{ textAlign: 'center', padding: '16px 0 8px' }}>
+                    <div style={{ fontSize: '40px', marginBottom: '10px' }}>✅</div>
+                    <div style={{ fontSize: '1.2rem', fontWeight: 700, marginBottom: '6px' }}>Payment Received</div>
+                    <div style={{ fontSize: '14px', color: '#6b7280' }}>You've completed the full Payment Links workflow.</div>
                   </div>
-                ) : null}
 
-              </div>
+                  {/* Simulated Dashboard table row showing the real "Paid" status */}
+                  <div style={{ background: 'white', borderRadius: '10px', border: '1px solid #e5e7eb', padding: '14px 18px' }}>
+                    <div style={{ fontSize: '11px', fontWeight: 700, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '10px' }}>
+                      Payment Links Dashboard
+                    </div>
+                    <div style={{ display: 'flex', gap: '8px', borderBottom: '1px solid #f3f4f6', paddingBottom: '8px', marginBottom: '10px' }}>
+                      <span style={{ flex: 1, fontSize: '11px', color: '#9ca3af', fontWeight: 600 }}>PURPOSE OF PAYMENT</span>
+                      <span style={{ fontSize: '11px', color: '#9ca3af', fontWeight: 600, width: '72px', textAlign: 'right' }}>AMOUNT</span>
+                      <span style={{ fontSize: '11px', color: '#9ca3af', fontWeight: 600, width: '58px', textAlign: 'right' }}>STATUS</span>
+                    </div>
+                    <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                      <span style={{ flex: 1, fontSize: '13px', color: '#111827', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        {purpose}
+                      </span>
+                      <span style={{ fontSize: '13px', fontWeight: 600, color: '#111827', width: '72px', textAlign: 'right' }}>
+                        ₹{displayAmount}
+                      </span>
+                      <span style={{ width: '58px', textAlign: 'right' }}>
+                        <span style={{ padding: '2px 7px', background: '#d1fae5', color: '#065f46', borderRadius: '4px', fontSize: '11px', fontWeight: 700 }}>Paid</span>
+                      </span>
+                    </div>
+                    <div style={{ fontSize: '11px', color: '#9ca3af', marginTop: '10px' }}>
+                      Sandbox simulation — in the real Dashboard, status updates automatically after your customer pays.
+                    </div>
+                  </div>
+
+                  {/* Real Dashboard CTA — navigation path confirmed from repository docs */}
+                  <div style={{
+                    padding: '16px 18px',
+                    background: 'linear-gradient(135deg, ' + GREEN_LIGHT + ' 0%, #ffffff 100%)',
+                    borderRadius: '10px', border: '2px solid ' + GREEN,
+                  }}>
+                    <div style={{ fontSize: '15px', fontWeight: 700, marginBottom: '6px' }}>Ready to accept real payments?</div>
+                    <div style={{ fontSize: '13px', color: '#4b5563', lineHeight: 1.6, marginBottom: '14px' }}>
+                      Log in to the PayU Dashboard and follow the same workflow:<br />
+                      <strong>Payment Tools → Payment Links → Create New Payment Link</strong>
+                    </div>
+                    <a
+                      href="https://onboarding.payu.in/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ display: 'inline-block', padding: '10px 18px', background: GREEN, color: 'white', borderRadius: '6px', fontSize: '14px', fontWeight: 700, textDecoration: 'none' }}>
+                      Open PayU Dashboard
+                    </a>
+                  </div>
+
+                  {/* Feedback */}
+                  {!feedback ? (
+                    <div style={{ background: 'white', borderRadius: '10px', border: '1px solid #e5e7eb', padding: '14px 18px' }}>
+                      <div style={{ fontSize: '13px', fontWeight: 600, marginBottom: '10px' }}>How easy was this to complete?</div>
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px' }}>
+                        {['Very easy', 'Easy', 'Difficult', 'Very difficult'].map(function (r) {
+                          return (
+                            <button
+                              key={r}
+                              onClick={function () { setFeedback(r); }}
+                              style={{ padding: '8px', background: 'white', color: GREEN, border: '1px solid ' + GREEN, borderRadius: '6px', cursor: 'pointer', fontSize: '13px', fontWeight: 600 }}>
+                              {r}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ) : (
+                    <div style={{ padding: '12px 14px', borderRadius: '8px', background: GREEN_LIGHT, border: '1px solid ' + GREEN }}>
+                      <div style={{ fontSize: '14px', color: GREEN, fontWeight: 600 }}>✓ Thanks for your feedback!</div>
+                    </div>
+                  )}
+                </div>
+              ) : null}
+
             </div>
-
-            {/* Footer */}
-            <div style={{ padding: '14px 20px', borderTop: '1px solid #e5e7eb', background: 'white' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                {step > 0 ? (
-                  <button onClick={function() { setStep(step - 1); }} style={{ padding: '10px 16px', background: 'white', color: GREEN, border: '1px solid ' + GREEN, borderRadius: '6px', cursor: 'pointer', fontSize: '14px', fontWeight: 600 }}>
-                    Back
-                  </button>
-                ) : <span />}
-                {step === 1 ? (
-                  <button onClick={function() { if (canNext) setStep(step + 1); }} disabled={!canNext} style={{ padding: '10px 16px', background: canNext ? GREEN : '#94a3b8', color: 'white', border: 'none', borderRadius: '6px', cursor: canNext ? 'pointer' : 'not-allowed', fontSize: '14px', fontWeight: 600 }}>
-                    Continue
-                  </button>
-                ) : null}
-              </div>
-            </div>
-
           </div>
         </div>
       ) : null}
-
-      {/* Customer Payment Page Modal */}
-      {showPreview ? (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 100000, background: 'rgba(0,0,0,0.7)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px' }}>
-          <div style={{ width: '100%', maxWidth: '420px', background: 'white', borderRadius: '12px', overflow: 'hidden' }}>
-            <div style={{ padding: '16px 20px', background: GREEN_DARK, color: 'white', textAlign: 'center' }}>
-              <div style={{ fontSize: '20px', fontWeight: 700 }}>PayU Secure Checkout</div>
-              <div style={{ fontSize: '11px', opacity: 0.9, marginTop: '4px' }}>Powered by PayU India</div>
-            </div>
-            <div style={{ padding: '20px' }}>
-              <div style={{ padding: '14px', background: '#f9fafb', borderRadius: '8px', marginBottom: '16px', border: '1px solid #e5e7eb' }}>
-                <div style={{ fontSize: '12px', color: '#6b7280', marginBottom: '6px' }}>Description</div>
-                <div style={{ fontSize: '15px', fontWeight: 600, color: '#111827', marginBottom: '12px' }}>{purpose}</div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <div style={{ fontSize: '12px', color: '#6b7280' }}>Amount to Pay</div>
-                  <div style={{ fontSize: '22px', fontWeight: 700, color: GREEN_DARK }}>₹{amount}</div>
-                </div>
-              </div>
-              <div style={{ padding: '12px', background: '#fffbeb', border: '1px solid #fde68a', borderRadius: '8px', marginBottom: '16px' }}>
-                <div style={{ fontSize: '12px', color: '#92400e', lineHeight: 1.5, textAlign: 'center' }}>
-                  <strong>🧪 Sandbox Mode</strong><br />This is a test environment. Pick an outcome below to simulate payment.
-                </div>
-              </div>
-              <div style={{ marginBottom: '10px' }}>
-                <p style={{ margin: '0 0 10px', fontSize: '13px', fontWeight: 600, color: '#111827' }}>Select Payment Method</p>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginBottom: '16px' }}>
-                  <div style={{ padding: '10px', background: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: '6px', textAlign: 'center', fontSize: '12px', color: '#6b7280' }}>💳 Cards</div>
-                  <div style={{ padding: '10px', background: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: '6px', textAlign: 'center', fontSize: '12px', color: '#6b7280' }}>📱 UPI</div>
-                  <div style={{ padding: '10px', background: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: '6px', textAlign: 'center', fontSize: '12px', color: '#6b7280' }}>🏦 Net Banking</div>
-                  <div style={{ padding: '10px', background: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: '6px', textAlign: 'center', fontSize: '12px', color: '#6b7280' }}>👛 Wallets</div>
-                </div>
-              </div>
-              <div style={{ marginBottom: '12px' }}>
-                <p style={{ margin: '0 0 10px', fontSize: '13px', fontWeight: 600, color: '#111827' }}>Simulate Payment Outcome</p>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <button onClick={function() { pickOutcome('success'); }} style={{ padding: '12px', background: GREEN, color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', fontWeight: 600 }}>
-                  ✓ Payment Successful
-                </button>
-                <button onClick={function() { pickOutcome('failed'); }} style={{ padding: '12px', background: '#dc2626', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', fontWeight: 600 }}>
-                  ✗ Payment Failed
-                </button>
-                <button onClick={function() { pickOutcome('cancelled'); }} style={{ padding: '12px', background: 'white', color: '#6b7280', border: '1px solid #d1d5db', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', fontWeight: 600 }}>
-                  Cancel Payment
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      ) : null}
-
     </div>
   );
 };
