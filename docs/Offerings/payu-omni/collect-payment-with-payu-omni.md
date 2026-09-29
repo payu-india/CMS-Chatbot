@@ -1079,19 +1079,9 @@ Replace all UAT credentials and endpoints with production values:
 | Partner Client Secret | UAT client_secret                                                                                        | Production client_secret                                                                       |
 | Merchant Key/Salt     | Test key/salt                                                                                            | Production key/salt                                                                            |
 
-<Warning>
+<Callout>
 **Critical:** Store production credentials in secure environment variables, NOT in code or version control.
-</Warning>
-
-### Update Production Device IDs
-
-- **Important:** UAT device IDs are different from production device IDs
-- Log in to Production Partner Dashboard
-- Map production POS devices to merchant accounts
-- Copy production `posDeviceId` values
-- Update your configuration with production device IDs
-
-**Checkpoint:** ✅ All production credentials updated | ✅ Production device IDs configured | ✅ Code deployed to production environment
+</Callout>
 
 ***
 
