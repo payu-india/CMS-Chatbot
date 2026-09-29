@@ -181,8 +181,8 @@ echo "Response: " . $response . "\n";
 
 | Parameter    | Description                                                                                          | Example                                                          |
 | :----------- | :--------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------- |
-| encOrderId   | `String` Encrypted order identifier from the Create Order response (`transaction.encryptedOrderId`). | c422540c33ef9f1259f15f7b916469b7227dc1d41a76796536885474ddadf312 |
-| accessToken  | `String` Session access token from Create Order response (`transaction.accessToken`).                | FFF3D2D1-5B20-C1BC-728B-08E47A374D00                             |
+| encOrderId   | `String` Encrypted order identifier from the Create Order response (`transaction.encryptedOrderId`). | c422540c33ef9f1259f1<br/>5f7b916469b7227<br/>dc1d41a76796536<br/>885474ddadf312 |
+| accessToken  | `String` Session access token from Create Order response (`transaction.accessToken`).                | FFF3D2D1-<br/>5B20-C1BC-<br/>728B-08E47A374D00                             |
 | Content-Type | `String` Content type of the request body.                                                           | application/json                                                 |
 | offerKeys    | `Array<String>` One or more offer keys to be evaluated.                                              | \["OFFER_KEY_1"]                                                 |
 | autoApply    | `Boolean` If `true`, the offers engine auto-applies the best eligible offer for the transaction.     | true                                                             |
