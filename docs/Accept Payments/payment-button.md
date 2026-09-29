@@ -155,7 +155,7 @@ Here is how it works:
 
 <Columns layout="fixed">
   <Column>
-    You can create multiple payment buttons — one for each product, service, or event — and add them to different pages of your site.
+    You can create multiple payment buttons and add them to different pages of your site.
   </Column>
 </Columns>
 
@@ -163,33 +163,27 @@ Here is how it works:
 
 ## How does My Customer Pay?
 
-When a visitor sees your payment button on your website:
+When your customer visits your website:
 
-<Accordion title="1. Sees the button" icon="far fa-eye">
+<Accordion title="1. Sees the Button" icon="far fa-eye">
   The button appears on your page exactly where you added it.
 </Accordion>
 
-<Accordion title="2. Clicks the button" icon="far fa-computer-mouse">
+<Accordion title="2. Clicks the Button" icon="far fa-computer-mouse">
   PayU's payment page opens and the customer can complete their payment.
 </Accordion>
 
-<Accordion title="3. Answers any extra questions you've set up (optional)" icon="far fa-keyboard-down">
-  If you asked for extra details — like name, email, or a note — the customer fills those in.
+<Accordion title="3. Answers Any Extra Questions You Have Added (optional)" icon="far fa-keyboard-down">
+  If you have asked for extra details such as name, email, or a note, the customer fills those in.
 </Accordion>
 
-<Accordion title="4. Chooses a payment method" icon="far fa-credit-card">
-  They can pay by UPI, card, net banking, wallet, and more — whatever payment options you've turned on for your account.
+<Accordion title="4. Completes payment" icon="far fa-money-bills">
+  The customer chooses the payment method, enters their payment details and confirms. PayU handles the rest securely.
 </Accordion>
 
-<Accordion title="5. Completes payment" icon="far fa-money-bills">
-  The customer enters their payment details and confirms. PayU handles the rest securely.
+<Accordion title="5. Brought Back to Your Site" icon="far fa-diagram-successor">
+  Once the payment is done, the customer is taken to your website or an error page if something went wrong.
 </Accordion>
-
-<Accordion title="6. Brought back to your site" icon="far fa-diagram-successor">
-  Once the payment is done, the customer is taken to your thank-you page or an error page if something went wrong.
-</Accordion>
-
-Your customer doesn't need a PayU account or any special app — it works in any browser.
 
 ***
 
