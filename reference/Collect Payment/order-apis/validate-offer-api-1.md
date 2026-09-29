@@ -7,8 +7,6 @@ metadata:
 ---
 The **Validate Offer** API validates selected offer keys, promo codes, or SKU-level discounts against the order amount and specific payment method (Cards, UPI, Net Banking) before the final payment is initiated.
 
-## Overview
-
 Call this API when:
 
 - The customer enters a promo code.
@@ -281,4 +279,3 @@ echo "Response: " . $response . "\n";
 | result.totalDiscountDetail            | `Object` Consolidated summary of instant discounts and cashback amounts. |         |
 
 <br />
-
