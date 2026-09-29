@@ -7,33 +7,55 @@ link:
 metadata:
   robots: index
 ---
-# Initiate Payment API
+---
+title: Initiate Payment API - Omni
+excerpt: API reference for initiating POS payments via PayU Omni
+category: 65ee4b13ba7bd6003d0c61b4
+slug: initiate-payment-api-omni
+---
 
-The Initiate Payment API allows merchants to push payment requests from their billing system to PayU-enabled devices (POS terminals or DBQR displays). This API is the core of the PayU Omni Integrated Flow.
+The Initiate Payment API allows partners to initiate in-person payment collection via PayU Omni POS devices. This API pushes a payment request to the specified device, enabling customers to complete payment using their preferred method.
 
-***
+<Warning>
+**Critical Prerequisite:** The POS device specified in `posDeviceId` **MUST be activated and mapped** to the merchant account before initiating payments. Unmapped or inactive devices will result in error **E342** or **E343**.
+
+See [Device Activation Guide →](doc:collect-payment-using-payu-omni#step-12-activate-your-pos-device)
+</Warning>
+
+---
 
 ## Endpoint
 
 **HTTP Method:** `POST`
 
-**URL:** `/partner/initiatePayment`
+**URL Path:** `/partner/initiatePayment`
 
 **Content-Type:** `application/json`
 
-***
+---
 
 ## Environment URLs
 
-| Environment | URL                                           |
-| ----------- | --------------------------------------------- |
+| Environment | URL |
+| ----------- | --------- |
+| UAT         | `https://apitest.payu.in/partner/initiatePayment` |
 | Production  | `https://api.payu.in/partner/initiatePayment` |
 
-<Warning>
-⚠️ **Info Gap:** Test/sandbox environment URL not documented. Contact PayU support for test endpoint details and test credentials.
-</Warning>
+---
 
-***
+## Prerequisites
+
+Before calling this API, ensure:
+
+<Info>
+✅ **Partner Access Token** obtained from OAuth API (valid for 4 hours)  
+✅ **POS Device activated** and mapped to merchant in Partner Dashboard  
+✅ **Payment methods enabled** for merchant account AND device  
+✅ **Merchant credentials** (`key` and `salt`) available  
+✅ **Webhook URL** configured in Partner Dashboard (HTTPS required)
+</Info>
+
+---
 
 ## Sample Request
 
@@ -41,53 +63,34 @@ The Initiate Payment API allows merchants to push payment requests from their bi
 
 ```bash
 curl --location 'https://api.payu.in/partner/initiatePayment' \
---header 'Content-Type: application/json' \
---header 'X-Partner-Token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...' \
+--header 'X-Partner-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.example_token' \
 --header 'X-PayU-Reseller-UUID: 550e8400-e29b-41d4-a716-446655440000' \
---header 'date: Tue, 15 Nov 2023 08:12:31 GMT' \
---header 'authorization: hmac username="payu_client_id", algorithm="sha512", headers="date", signature="a1b2c3d4e5f6..."' \
+--header 'date: Mon, 15 Jan 2024 10:30:00 GMT' \
+--header 'authorization: HMAC 9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a0b9c8d7e6f5a4b3c2d1e0f9a8b' \
+--header 'Content-Type: application/json' \
 --data '{
-  "accountId": "merchant_12345",
-  "txnId": "ORD_20231115_001",
-  "amount": 1500.00,
+  "accountId": "ACC_12345",
+  "txnId": "TXN_2024011501",
+  "amount": "500.00",
   "currency": "INR",
-  "paymentSource": "WEB",
-  "paymentMethod": {
-    "name": "POS",
-    "bankCode": "POS"
-  },
-  "additionalInfo": {
-    "txnFlow": "seamless",
-    "txnS2sFlow": "4"
-  },
+  "paymentSource": "omni",
+  "paymentMethod": "pos",
+  "posDeviceId": "DEVICE_ABC123",
+  "posPaymentMethod": "sale",
   "callBackActions": {
-    "successAction": "https://yoursite.com/webhook/success",
-    "failureAction": "https://yoursite.com/webhook/failure"
+    "successAction": "https://yourserver.com/webhook/success",
+    "failureAction": "https://yourserver.com/webhook/failure"
   },
   "order": {
-    "productInfo": "Coffee and Pastry",
-    "paymentChargeSpecification": {
-      "price": 1500.00
-    }
-  },
-  "omniChannelDetails": {
-    "posDeviceId": "DEVICE_POS_12345",
-    "posPaymentMethod": "sale"
-  },
-  "gstParams": {
-    "gstIn": "29ABCDE1234F1Z5",
-    "gst": "18.00",
-    "cgst": "9.00",
-    "sgst": "9.00"
-  },
-  "printInfo": {
-    "field1": "Table 5",
-    "field2": "Server: John"
+    "orderId": "ORD_2024011501",
+    "orderAmount": "500.00",
+    "orderNote": "Payment for 2 items",
+    "udf1": "Store_Location_A"
   }
 }'
 ```
 
-> **Note:** Replace all placeholder values with your actual credentials before use.
+> **Note:** Replace all placeholder values with your actual credentials and transaction data before execution.
 
 ### Python
 
@@ -98,128 +101,95 @@ import json
 url = "https://api.payu.in/partner/initiatePayment"
 
 headers = {
-    "Content-Type": "application/json",
-    "X-Partner-Token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "X-Partner-Token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.example_token",
     "X-PayU-Reseller-UUID": "550e8400-e29b-41d4-a716-446655440000",
-    "date": "Tue, 15 Nov 2023 08:12:31 GMT",
-    "authorization": "hmac username=\"payu_client_id\", algorithm=\"sha512\", headers=\"date\", signature=\"a1b2c3d4e5f6...\""
+    "date": "Mon, 15 Jan 2024 10:30:00 GMT",
+    "authorization": "HMAC 9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a0b9c8d7e6f5a4b3c2d1e0f9a8b",
+    "Content-Type": "application/json"
 }
 
 payload = {
-    "accountId": "merchant_12345",
-    "txnId": "ORD_20231115_001",
-    "amount": 1500.00,
+    "accountId": "ACC_12345",
+    "txnId": "TXN_2024011501",
+    "amount": "500.00",
     "currency": "INR",
-    "paymentSource": "WEB",
-    "paymentMethod": {
-        "name": "POS",
-        "bankCode": "POS"
-    },
-    "additionalInfo": {
-        "txnFlow": "seamless",
-        "txnS2sFlow": "4"
-    },
+    "paymentSource": "omni",
+    "paymentMethod": "pos",
+    "posDeviceId": "DEVICE_ABC123",
+    "posPaymentMethod": "sale",
     "callBackActions": {
-        "successAction": "https://yoursite.com/webhook/success",
-        "failureAction": "https://yoursite.com/webhook/failure"
+        "successAction": "https://yourserver.com/webhook/success",
+        "failureAction": "https://yourserver.com/webhook/failure"
     },
     "order": {
-        "productInfo": "Coffee and Pastry",
-        "paymentChargeSpecification": {
-            "price": 1500.00
-        }
-    },
-    "omniChannelDetails": {
-        "posDeviceId": "DEVICE_POS_12345",
-        "posPaymentMethod": "sale"
-    },
-    "gstParams": {
-        "gstIn": "29ABCDE1234F1Z5",
-        "gst": "18.00",
-        "cgst": "9.00",
-        "sgst": "9.00"
-    },
-    "printInfo": {
-        "field1": "Table 5",
-        "field2": "Server: John"
+        "orderId": "ORD_2024011501",
+        "orderAmount": "500.00",
+        "orderNote": "Payment for 2 items",
+        "udf1": "Store_Location_A"
     }
 }
 
 try:
-    response = requests.post(url, headers=headers, json=payload)
-    print(f"Status Code: {response.status_code}")
-    print(f"Response: {response.text}")
-except Exception as e:
-    print(f"Error: {str(e)}")
+    response = requests.post(url, headers=headers, data=json.dumps(payload))
+    print("Status Code:", response.status_code)
+    print("Response:", response.text)
+except requests.exceptions.RequestException as e:
+    print("Error:", e)
 ```
 
 ### PHP
 
 ```php
 <?php
+
 $url = "https://api.payu.in/partner/initiatePayment";
 
 $headers = [
-    "Content-Type: application/json",
-    "X-Partner-Token: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "X-Partner-Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.example_token",
     "X-PayU-Reseller-UUID: 550e8400-e29b-41d4-a716-446655440000",
-    "date: Tue, 15 Nov 2023 08:12:31 GMT",
-    "authorization: hmac username=\"payu_client_id\", algorithm=\"sha512\", headers=\"date\", signature=\"a1b2c3d4e5f6...\""
+    "date: Mon, 15 Jan 2024 10:30:00 GMT",
+    "authorization: HMAC 9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a0b9c8d7e6f5a4b3c2d1e0f9a8b",
+    "Content-Type: application/json"
 ];
 
 $payload = json_encode([
-    "accountId" => "merchant_12345",
-    "txnId" => "ORD_20231115_001",
-    "amount" => 1500.00,
-    "currency" => "INR",
-    "paymentSource" => "WEB",
-    "paymentMethod" => [
-        "name" => "POS",
-        "bankCode" => "POS"
-    ],
-    "additionalInfo" => [
-        "txnFlow" => "seamless",
-        "txnS2sFlow" => "4"
-    ],
-    "callBackActions" => [
-        "successAction" => "https://yoursite.com/webhook/success",
-        "failureAction" => "https://yoursite.com/webhook/failure"
+    "accountId"        => "ACC_12345",
+    "txnId"            => "TXN_2024011501",
+    "amount"           => "500.00",
+    "currency"         => "INR",
+    "paymentSource"    => "omni",
+    "paymentMethod"    => "pos",
+    "posDeviceId"      => "DEVICE_ABC123",
+    "posPaymentMethod" => "sale",
+    "callBackActions"  => [
+        "successAction" => "https://yourserver.com/webhook/success",
+        "failureAction" => "https://yourserver.com/webhook/failure"
     ],
     "order" => [
-        "productInfo" => "Coffee and Pastry",
-        "paymentChargeSpecification" => [
-            "price" => 1500.00
-        ]
-    ],
-    "omniChannelDetails" => [
-        "posDeviceId" => "DEVICE_POS_12345",
-        "posPaymentMethod" => "sale"
-    ],
-    "gstParams" => [
-        "gstIn" => "29ABCDE1234F1Z5",
-        "gst" => "18.00",
-        "cgst" => "9.00",
-        "sgst" => "9.00"
-    ],
-    "printInfo" => [
-        "field1" => "Table 5",
-        "field2" => "Server: John"
+        "orderId"     => "ORD_2024011501",
+        "orderAmount" => "500.00",
+        "orderNote"   => "Payment for 2 items",
+        "udf1"        => "Store_Location_A"
     ]
 ]);
 
-$ch = curl_init($url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 $response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+if (curl_errno($ch)) {
+    echo "Error: " . curl_error($ch);
+} else {
+    echo "Status Code: " . curl_getinfo($ch, CURLINFO_HTTP_CODE) . PHP_EOL;
+    echo "Response: " . $response . PHP_EOL;
+}
 
 curl_close($ch);
-
-echo "Status Code: " . $httpCode . "\n";
-echo "Response: " . $response . "\n";
 ?>
 ```
 
@@ -232,443 +202,464 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class InitiatePayment {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         String url = "https://api.payu.in/partner/initiatePayment";
-        
-        String payload = """
-        {
-          "accountId": "merchant_12345",
-          "txnId": "ORD_20231115_001",
-          "amount": 1500.00,
-          "currency": "INR",
-          "paymentSource": "WEB",
-          "paymentMethod": {
-            "name": "POS",
-            "bankCode": "POS"
-          },
-          "additionalInfo": {
-            "txnFlow": "seamless",
-            "txnS2sFlow": "4"
-          },
-          "callBackActions": {
-            "successAction": "https://yoursite.com/webhook/success",
-            "failureAction": "https://yoursite.com/webhook/failure"
-          },
-          "order": {
-            "productInfo": "Coffee and Pastry",
-            "paymentChargeSpecification": {
-              "price": 1500.00
-            }
-          },
-          "omniChannelDetails": {
-            "posDeviceId": "DEVICE_POS_12345",
-            "posPaymentMethod": "sale"
-          },
-          "gstParams": {
-            "gstIn": "29ABCDE1234F1Z5",
-            "gst": "18.00",
-            "cgst": "9.00",
-            "sgst": "9.00"
-          },
-          "printInfo": {
-            "field1": "Table 5",
-            "field2": "Server: John"
-          }
+
+        String payload = "{"
+            + ""accountId": "ACC_12345","
+            + ""txnId": "TXN_2024011501","
+            + ""amount": "500.00","
+            + ""currency": "INR","
+            + ""paymentSource": "omni","
+            + ""paymentMethod": "pos","
+            + ""posDeviceId": "DEVICE_ABC123","
+            + ""posPaymentMethod": "sale","
+            + ""callBackActions": {"
+            +     ""successAction": "https://yourserver.com/webhook/success","
+            +     ""failureAction": "https://yourserver.com/webhook/failure""
+            + "},"
+            + ""order": {"
+            +     ""orderId": "ORD_2024011501","
+            +     ""orderAmount": "500.00","
+            +     ""orderNote": "Payment for 2 items","
+            +     ""udf1": "Store_Location_A""
+            + "}"
+            + "}";
+
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+
+            HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .header("X-Partner-Token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.example_token")
+                .header("X-PayU-Reseller-UUID", "550e8400-e29b-41d4-a716-446655440000")
+                .header("date", "Mon, 15 Jan 2024 10:30:00 GMT")
+                .header("authorization", "HMAC 9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a0b9c8d7e6f5a4b3c2d1e0f9a8b")
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(payload))
+                .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            System.out.println("Status Code: " + response.statusCode());
+            System.out.println("Response: " + response.body());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
-        """;
-
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create(url))
-            .header("Content-Type", "application/json")
-            .header("X-Partner-Token", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...")
-            .header("X-PayU-Reseller-UUID", "550e8400-e29b-41d4-a716-446655440000")
-            .header("date", "Tue, 15 Nov 2023 08:12:31 GMT")
-            .header("authorization", "hmac username=\"payu_client_id\", algorithm=\"sha512\", headers=\"date\", signature=\"a1b2c3d4e5f6...\"")
-            .POST(HttpRequest.BodyPublishers.ofString(payload))
-            .build();
-
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println("Status Code: " + response.statusCode());
-        System.out.println("Response: " + response.body());
     }
 }
 ```
 
-***
+### C#
+
+```csharp
+using System;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+
+class InitiatePayment
+{
+    static async Task Main(string[] args)
+    {
+        string url = "https://api.payu.in/partner/initiatePayment";
+
+        string payload = @"{
+            ""accountId"": ""ACC_12345"",
+            ""txnId"": ""TXN_2024011501"",
+            ""amount"": ""500.00"",
+            ""currency"": ""INR"",
+            ""paymentSource"": ""omni"",
+            ""paymentMethod"": ""pos"",
+            ""posDeviceId"": ""DEVICE_ABC123"",
+            ""posPaymentMethod"": ""sale"",
+            ""callBackActions"": {
+                ""successAction"": ""https://yourserver.com/webhook/success"",
+                ""failureAction"": ""https://yourserver.com/webhook/failure""
+            },
+            ""order"": {
+                ""orderId"": ""ORD_2024011501"",
+                ""orderAmount"": ""500.00"",
+                ""orderNote"": ""Payment for 2 items"",
+                ""udf1"": ""Store_Location_A""
+            }
+        }";
+
+        try
+        {
+            using HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Add("X-Partner-Token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.example_token");
+            client.DefaultRequestHeaders.Add("X-PayU-Reseller-UUID", "550e8400-e29b-41d4-a716-446655440000");
+            client.DefaultRequestHeaders.Add("date", "Mon, 15 Jan 2024 10:30:00 GMT");
+            client.DefaultRequestHeaders.Add("authorization", "HMAC 9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a0b9c8d7e6f5a4b3c2d1e0f9a8b");
+
+            StringContent content = new StringContent(payload, Encoding.UTF8, "application/json");
+
+            HttpResponseMessage response = await client.PostAsync(url, content);
+            string responseBody = await response.Content.ReadAsStringAsync();
+
+            Console.WriteLine("Status Code: " + (int)response.StatusCode);
+            Console.WriteLine("Response: " + responseBody);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("Error: " + e.Message);
+        }
+    }
+}
+```
+
+### JavaScript
+
+```javascript
+const url = "https://api.payu.in/partner/initiatePayment";
+
+const headers = {
+    "X-Partner-Token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.example_token",
+    "X-PayU-Reseller-UUID": "550e8400-e29b-41d4-a716-446655440000",
+    "date": "Mon, 15 Jan 2024 10:30:00 GMT",
+    "authorization": "HMAC 9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a0b9c8d7e6f5a4b3c2d1e0f9a8b",
+    "Content-Type": "application/json"
+};
+
+const payload = {
+    accountId: "ACC_12345",
+    txnId: "TXN_2024011501",
+    amount: "500.00",
+    currency: "INR",
+    paymentSource: "omni",
+    paymentMethod: "pos",
+    posDeviceId: "DEVICE_ABC123",
+    posPaymentMethod: "sale",
+    callBackActions: {
+        successAction: "https://yourserver.com/webhook/success",
+        failureAction: "https://yourserver.com/webhook/failure"
+    },
+    order: {
+        orderId: "ORD_2024011501",
+        orderAmount: "500.00",
+        orderNote: "Payment for 2 items",
+        udf1: "Store_Location_A"
+    }
+};
+
+const initiatePayment = async () => {
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(payload)
+        });
+
+        const responseText = await response.text();
+        console.log("Status Code:", response.status);
+        console.log("Response:", responseText);
+    } catch (error) {
+        console.error("Error:", error.message);
+    }
+};
+
+initiatePayment();
+```
+
+---
 
 ## Sample Response
 
-### Success Response
+### Success Response (Request Accepted)
 
 ```json
 {
   "metaData": {
-    "message": "Payment initiated successfully",
-    "referenceId": "REF_20231115_12345",
-    "statusCode": "E000",
-    "txnId": "ORD_20231115_001",
-    "txnStatus": "pending",
-    "unmappedStatus": "pending"
+    "statusCode": "SUCCESS",
+    "message": "Payment request initiated successfully"
   },
   "result": {
-    "paymentId": "PAY_abc123xyz789",
-    "authAction": null,
-    "otpPostUrl": null
+    "txnId": "TXN_2024011501",
+    "accountId": "ACC_12345",
+    "txnStatus": "INITIATED",
+    "paymentId": "PAYU_TXN_12345ABC",
+    "timestamp": "2024-01-15T10:30:00Z"
   }
 }
 ```
 
-### Failure Response (Invalid Device ID)
+**Status:** `INITIATED` means the payment push was sent to the device. Wait for webhook notification for final status.
+
+### Failure Response (Invalid Device ID - E342)
 
 ```json
 {
   "metaData": {
-    "message": "Invalid Device Id",
-    "referenceId": "REF_20231115_12346",
-    "statusCode": "E2081",
-    "txnId": "ORD_20231115_002",
-    "txnStatus": "failed",
-    "unmappedStatus": "failure"
+    "statusCode": "FAILED",
+    "message": "Device not found or not mapped to merchant",
+    "errorCode": "E342"
   },
   "result": null
 }
 ```
 
-### Failure Response (Invalid PG & Bank Code)
+**Cause:** Device is not registered OR not activated in Partner Dashboard.  
+**Resolution:** Activate and map device in Partner Dashboard ([Guide →](doc:collect-payment-using-payu-omni#step-12-activate-your-pos-device))
+
+### Failure Response (Device Not Mapped to Merchant - E343)
 
 ```json
 {
   "metaData": {
-    "message": "Invalid PG & Bank Code Combination",
-    "referenceId": "REF_20231115_12347",
-    "statusCode": "E1101",
-    "txnId": "ORD_20231115_003",
-    "txnStatus": "failed",
-    "unmappedStatus": "failure"
+    "statusCode": "FAILED",
+    "message": "Device not mapped to this merchant account",
+    "errorCode": "E343"
   },
   "result": null
 }
 ```
 
-### Webhook Payload (Sent to successAction/failureAction)
+**Cause:** Device exists but is mapped to a different merchant account.  
+**Resolution:** Verify `accountId` and re-map device to correct merchant in Partner Dashboard.
 
-After the payment completes on the device, PayU sends a webhook:
+### Failure Response (Configuration Not Enabled - E344)
 
 ```json
 {
-  "vendorTxnId": "ORD_20231115_001",
-  "txnId": "ORD_20231115_001",
-  "mihpayId": "403993715534895620",
-  "flowType": "ominichannel",
-  "message": "Please use the checkBqrStatusAPI to fetch the final status of the transaction",
-  "status": "pending"
+  "metaData": {
+    "statusCode": "FAILED",
+    "message": "Required payment method not enabled",
+    "errorCode": "E344"
+  },
+  "result": null
+}
+```
+
+**Cause:** Payment method not enabled at merchant level OR device level.  
+**Resolution:** Enable payment methods in merchant settings AND device configuration.
+
+### Webhook Payload (Final Transaction Status)
+
+After the customer completes payment on the device, PayU sends a webhook to your `successAction` or `failureAction` URL:
+
+#### Success Webhook
+
+```json
+{
+  "txnId": "TXN_2024011501",
+  "paymentId": "PAYU_TXN_12345ABC",
+  "orderId": "ORD_2024011501",
+  "amount": "500.00",
+  "txnStatus": "SUCCESS",
+  "message": "Transaction successful",
+  "paymentMethod": "CARD",
+  "cardDetails": {
+    "cardType": "CREDIT",
+    "cardNetwork": "VISA",
+    "last4Digits": "1234"
+  },
+  "timestamp": "2024-01-15T10:32:45Z",
+  "hash": "a3b2c1d0e9f8a7b6c5d4e3f2a1b0c9d8e7f6a5b4c3d2e1f0"
 }
 ```
 
 <Warning>
-⚠️ **Important:** The webhook status may still be "pending". Always call the **Check Transaction Status API** to retrieve final, authoritative payment details.
+**Always verify the `hash` in webhook payloads** to ensure authenticity. See [Webhook Verification Guide →](doc:collect-payment-using-payu-omni#step-17-response-handling--verification)
 </Warning>
 
-***
+---
 
 ## Request Headers
 
-| Parameter              | Type   | Description                                                                                                                         | Example                                                                                     |
-| :--------------------- | :----- | :---------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------ |
-| `Content-Type`         | String | Must be `application/json`                                                                                                          | `application/json`                                                                          |
-| `X-Partner-Token`      | String | Bearer OAuth token obtained from PayU token API                                                                                     | `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...`                                            |
-| `X-PayU-Reseller-UUID` | String | Partner UUID provided by PayU during onboarding                                                                                     | `550e8400-e29b-41d4-a716-446655440000`                                                      |
-| `date`                 | String | Current request date and time in GMT format (RFC 7231)                                                                              | `Tue, 15 Nov 2023 08:12:31 GMT`                                                             |
-| `authorization`        | String | HMAC-SHA512 signature header. Format: `hmac username="<clientId>", algorithm="sha512", headers="date", signature="<hex-signature>"` | `hmac username="your_client_id", algorithm="sha512", headers="date", signature="a1b2c3..."` |
+**Mandatory parameters**
+
+| Parameter | Type | Description | Example |
+| :--- | :--- | :--- | :--- |
+| X-Partner-Token | String | Partner access token from OAuth API (valid for 4 hours) | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9... |
+| X-PayU-Reseller-UUID | String | Partner UUID from registration | 550e8400-e29b-41d4-a716-446655440000 |
+| date | String | Current date-time in GMT format | Mon, 15 Jan 2024 10:30:00 GMT |
+| authorization | String | HMAC-SHA512 signature (format: "HMAC <hash>") | HMAC 9a8b7c6d5e4f3a2b1c0d9e8f... |
+| Content-Type | String | Must be application/json | application/json |
 
 <Info>
-**HMAC Signature Generation:**
-1. Use partner `clientId` as username
-2. Use partner `clientSecret` to compute HMAC-SHA512 hash
-3. Hash the exact value of the `date` header
-4. Output as lowercase hexadecimal
-5. Format: `hmac username="<clientId>", algorithm="sha512", headers="date", signature="<hex>"`
+**Signature Generation:** See [Authentication Guide →](doc:collect-payment-using-payu-omni#step-15-generate-authentication-headers) for HMAC-SHA512 signature generation steps.
 </Info>
 
-***
+---
 
 ## Request Parameters
 
-### Mandatory Parameters
+**Mandatory parameters**
 
 <table>
   <thead>
     <tr>
-      <th style="text-align:left">Parameter</th>
-      <th style="text-align:left">Type</th>
-      <th style="text-align:left">Description</th>
-      <th style="text-align:left">Example</th>
+      <th align="left">Parameter</th>
+      <th align="left">Type</th>
+      <th align="left">Description</th>
+      <th align="left">Example</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code>accountId</code></td>
+      <td>accountId</td>
       <td>String</td>
-      <td>Merchant account identifier provided by PayU</td>
-      <td><code>merchant_12345</code></td>
+      <td>Merchant's unique account identifier provided by PayU</td>
+      <td>ACC_12345</td>
     </tr>
     <tr>
-      <td><code>txnId</code></td>
+      <td>txnId</td>
       <td>String</td>
-      <td>Unique transaction ID from your billing system. Must be alphanumeric and unique per transaction.</td>
-      <td><code>ORD_20231115_001</code></td>
+      <td>Unique transaction ID from your ERP/billing system. Can be reused for retry only if previous attempt failed.</td>
+      <td>TXN_2024011501</td>
     </tr>
     <tr>
-      <td><code>amount</code></td>
-      <td>Double</td>
-      <td>Transaction amount with exactly 2 decimal places</td>
-      <td><code>1500.00</code></td>
-    </tr>
-    <tr>
-      <td><code>currency</code></td>
+      <td>amount</td>
       <td>String</td>
-      <td>ISO 4217 currency code</td>
-      <td><code>INR</code></td>
+      <td>Transaction amount in decimal format (INR)</td>
+      <td>"500.00"</td>
     </tr>
     <tr>
-      <td><code>paymentSource</code></td>
+      <td>currency</td>
       <td>String</td>
-      <td>For POS/Omni integrations, use <code>WEB</code></td>
-      <td><code>WEB</code></td>
+      <td>Currency code. Always use "INR" for India</td>
+      <td>INR</td>
     </tr>
     <tr>
-      <td><code>paymentMethod</code></td>
+      <td>paymentSource</td>
+      <td>String</td>
+      <td><strong>Must be "omni" for POS transactions</strong></td>
+      <td>omni</td>
+    </tr>
+    <tr>
+      <td>paymentMethod</td>
+      <td>String</td>
+      <td><strong>Must be "pos" for POS device payments</strong></td>
+      <td>pos</td>
+    </tr>
+    <tr>
+      <td>posDeviceId</td>
+      <td>String</td>
+      <td><strong>Device ID from Partner Dashboard. Device MUST be activated and mapped to merchant before use.</strong></td>
+      <td>DEVICE_ABC123</td>
+    </tr>
+    <tr>
+      <td>posPaymentMethod</td>
+      <td>String</td>
+      <td>Payment method on device: "sale" (auto-detect - recommended), "qr" (UPI QR), "wallet", "emi", "preauth"</td>
+      <td>sale</td>
+    </tr>
+    <tr>
+      <td>callBackActions</td>
       <td>Object</td>
-      <td>Payment method details. For Omni/POS, use <code>{"name":"POS", "bankCode":"POS"}</code></td>
-      <td><code>{"name":"POS", "bankCode":"POS"}</code></td>
+      <td>Webhook URLs for success and failure notifications (HTTPS required)</td>
+      <td>See below</td>
     </tr>
     <tr>
-      <td><code>paymentMethod.name</code></td>
-      <td>String</td>
-      <td>Payment method name. Use <code>POS</code> for Omni devices</td>
-      <td><code>POS</code></td>
-    </tr>
-    <tr>
-      <td><code>paymentMethod.bankCode</code></td>
-      <td>String</td>
-      <td>Bank/PG code. Use <code>POS</code> for Omni devices</td>
-      <td><code>POS</code></td>
-    </tr>
-    <tr>
-      <td><code>additionalInfo</code></td>
+      <td>order</td>
       <td>Object</td>
-      <td>Contains transaction flow configuration</td>
-      <td><code>{"txnFlow":"seamless", "txnS2sFlow":"4"}</code></td>
-    </tr>
-    <tr>
-      <td><code>additionalInfo.txnFlow</code></td>
-      <td>String</td>
-      <td>Transaction flow type. Use <code>seamless</code> for integrated flow</td>
-      <td><code>seamless</code></td>
-    </tr>
-    <tr>
-      <td><code>additionalInfo.txnS2sFlow</code></td>
-      <td>String</td>
-      <td>Server-to-server flow identifier. Use <code>4</code> for Omni</td>
-      <td><code>4</code></td>
-    </tr>
-    <tr>
-      <td><code>callBackActions</code></td>
-      <td>Object</td>
-      <td>Webhook URLs for transaction callbacks</td>
-      <td><code>{"successAction":"https://yoursite.com/success"}</code></td>
-    </tr>
-    <tr>
-      <td><code>callBackActions.successAction</code></td>
-      <td>String (URL)</td>
-      <td>URL to receive success webhook notifications</td>
-      <td><code>https://yoursite.com/webhook/success</code></td>
-    </tr>
-    <tr>
-      <td><code>order</code></td>
-      <td>Object</td>
-      <td>Order details including product info and pricing</td>
-      <td><code>{"productInfo":"Product Name", "paymentChargeSpecification":{"price":1500.00}}</code></td>
-    </tr>
-    <tr>
-      <td><code>order.productInfo</code></td>
-      <td>String</td>
-      <td>Product or service description</td>
-      <td><code>Coffee and Pastry</code></td>
-    </tr>
-    <tr>
-      <td><code>order.paymentChargeSpecification</code></td>
-      <td>Object</td>
-      <td>Payment charge details</td>
-      <td><code>{"price":1500.00}</code></td>
-    </tr>
-    <tr>
-      <td><code>order.paymentChargeSpecification.price</code></td>
-      <td>Double</td>
-      <td>Order price (should match top-level amount)</td>
-      <td><code>1500.00</code></td>
-    </tr>
-    <tr>
-      <td><code>omniChannelDetails</code></td>
-      <td>Object</td>
-      <td>Omni device and payment method configuration</td>
-      <td><code>{"posDeviceId":"DEVICE_12345", "posPaymentMethod":"sale"}</code></td>
-    </tr>
-    <tr>
-      <td><code>omniChannelDetails.posDeviceId</code></td>
-      <td>String</td>
-      <td>Unique device ID of the POS terminal or DBQR display where payment should be accepted</td>
-      <td><code>DEVICE_POS_12345</code></td>
-    </tr>
-    <tr>
-      <td><code>omniChannelDetails.posPaymentMethod</code></td>
-      <td>String</td>
-      <td>Payment method to activate on device. Use <code>sale</code> for card payments, <code>qr</code> for DBQR/UPI. If omitted, device may show all options</td>
-      <td><code>sale</code></td>
+      <td>Order details including line items and UDF fields</td>
+      <td>See below</td>
     </tr>
   </tbody>
 </table>
 
-### Optional Parameters
+**Optional parameters**
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left">Parameter</th>
-      <th style="text-align:left">Type</th>
-      <th style="text-align:left">Description</th>
-      <th style="text-align:left">Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>callBackActions.failureAction</code></td>
-      <td>String (URL)</td>
-      <td>URL to receive failure webhook notifications</td>
-      <td><code>https://yoursite.com/webhook/failure</code></td>
-    </tr>
-    <tr>
-      <td><code>callBackActions.cancelAction</code></td>
-      <td>String (URL)</td>
-      <td>URL to receive cancel webhook notifications</td>
-      <td><code>https://yoursite.com/webhook/cancel</code></td>
-    </tr>
-    <tr>
-      <td><code>gstParams</code></td>
-      <td>Object</td>
-      <td>GST invoice parameters for GST-compliant receipts</td>
-      <td><code>{"gstIn":"29ABCDE1234F1Z5", "gst":"18.00"}</code></td>
-    </tr>
-    <tr>
-      <td><code>gstParams.gstIn</code></td>
-      <td>String</td>
-      <td>Merchant GSTIN number</td>
-      <td><code>29ABCDE1234F1Z5</code></td>
-    </tr>
-    <tr>
-      <td><code>gstParams.gst</code></td>
-      <td>String</td>
-      <td>Total GST amount</td>
-      <td><code>18.00</code></td>
-    </tr>
-    <tr>
-      <td><code>gstParams.cgst</code></td>
-      <td>String</td>
-      <td>Central GST amount</td>
-      <td><code>9.00</code></td>
-    </tr>
-    <tr>
-      <td><code>gstParams.sgst</code></td>
-      <td>String</td>
-      <td>State GST amount</td>
-      <td><code>9.00</code></td>
-    </tr>
-    <tr>
-      <td><code>gstParams.igst</code></td>
-      <td>String</td>
-      <td>Integrated GST amount (for inter-state transactions)</td>
-      <td><code>18.00</code></td>
-    </tr>
-    <tr>
-      <td><code>gstParams.cess</code></td>
-      <td>String</td>
-      <td>GST Cess amount if applicable</td>
-      <td><code>1.00</code></td>
-    </tr>
-    <tr>
-      <td><code>printInfo</code></td>
-      <td>Object</td>
-      <td>Custom fields to print on receipt</td>
-      <td><code>{"field1":"Table 5", "field2":"Server: John"}</code></td>
-    </tr>
-    <tr>
-      <td><code>field1</code> through <code>field9</code></td>
-      <td>String</td>
-      <td>Custom data fields (UDFs) for reporting and receipts. Can store values like table number, customer name, salesperson ID, etc.</td>
-      <td><code>Table 5</code></td>
-    </tr>
-  </tbody>
-</table>
+| Parameter | Type | Description | Example |
+| :--- | :--- | :--- | :--- |
+| additionalInfo | Object | Additional transaction metadata (e.g., custom messages) | See below |
+| omniChannelDetails | Object | Channel and location details | See below |
+| gstParams | Object | GST parameters for invoicing | See below |
 
-***
+---
+
+### callBackActions Object
+
+**Mandatory parameters**
+
+| Parameter | Type | Description | Example |
+| :--- | :--- | :--- | :--- |
+| successAction | String | Webhook URL called on successful payment (HTTPS required) | https://yourserver.com/webhook/success |
+| failureAction | String | Webhook URL called on failed payment (HTTPS required) | https://yourserver.com/webhook/failure |
+
+---
+
+### order Object
+
+**Mandatory parameters**
+
+| Parameter | Type | Description | Example |
+| :--- | :--- | :--- | :--- |
+| orderId | String | Order ID from your ERP/billing system | ORD_2024011501 |
+| orderAmount | String | Total order amount (should match amount field) | "500.00" |
+
+**Optional parameters**
+
+| Parameter | Type | Description | Example |
+| :--- | :--- | :--- | :--- |
+| orderNote | String | Additional notes about the order | "2 items purchased" |
+| udf1 to udf5 | String | User-defined fields for custom data (useful for reconciliation) | "Store_Location_A" |
+
+---
+
+### gstParams Object
+
+**Optional parameters**
+
+| Parameter | Type | Description | Example |
+| :--- | :--- | :--- | :--- |
+| gstNumber | String | Merchant's GST number | 27AAPFU0939F1ZV |
+| gstAmount | String | Total GST amount | "90.00" |
+| cgst | String | Central GST amount | "45.00" |
+| sgst | String | State GST amount | "45.00" |
+| igst | String | Integrated GST amount | "0.00" |
+
+---
 
 ## Response Schema
 
 ### metaData Object
 
-| Field            | Type   | Description                                   | Example                          |
-| :--------------- | :----- | :-------------------------------------------- | :------------------------------- |
-| `message`        | String | Human-readable message describing the result  | `Payment initiated successfully` |
-| `referenceId`    | String | PayU's internal reference ID for this request | `REF_20231115_12345`             |
-| `statusCode`     | String | Result status code (see Error Codes section)  | `E000`                           |
-| `txnId`          | String | Your transaction ID (echoed back)             | `ORD_20231115_001`               |
-| `txnStatus`      | String | Transaction status: `pending` or `failed`     | `pending`                        |
-| `unmappedStatus` | String | Internal PayU status: `pending` or `failure`  | `pending`                        |
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| statusCode | String | "SUCCESS" or "FAILED" |
+| message | String | Human-readable status message |
+| errorCode | String | Error code (present only on failure) |
 
 ### result Object
 
-| Field        | Type   | Description                               | Example            |
-| :----------- | :----- | :---------------------------------------- | :----------------- |
-| `paymentId`  | String | PayU's unique payment identifier          | `PAY_abc123xyz789` |
-| `authAction` | String | Authentication action URL (null for Omni) | `null`             |
-| `otpPostUrl` | String | OTP post URL (null for Omni)              | `null`             |
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| txnId | String | Transaction ID from request |
+| accountId | String | Merchant account ID |
+| txnStatus | String | "INITIATED", "SUCCESS", "FAILED", "PENDING", "USER_CANCELLED" |
+| paymentId | String | PayU-generated payment ID |
+| timestamp | String | ISO 8601 timestamp |
 
-***
+---
 
 ## Error Codes
 
-| Code    | Status  | Message                                                  | Meaning                                                            | Action Required                                                                                         |
-| :------ | :------ | :------------------------------------------------------- | :----------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------ |
-| `E000`  | Success | Payment initiated successfully                           | Payment request accepted. Device activated. Customer can now pay.  | Wait for webhook. Then call Check Status API to verify final status.                                    |
-| `E2081` | Failed  | Invalid Device Id                                        | The `posDeviceId` does not exist or is not linked to your account. | Verify the device ID in your PayU dashboard. Ensure the device is registered and active.                |
-| `E1101` | Failed  | Invalid PG & Bank Code Combination                       | The `paymentMethod` values are incorrect.                          | Ensure `paymentMethod.name` and `paymentMethod.bankCode` are both set to `"POS"`.                       |
-| `EX158` | Failed  | Merchant Integration Exception - Inactive payment option | Omni product is not enabled for your merchant account.             | Contact PayU support to enable the Omni product for your account.                                       |
-| `E342`  | Failed  | Transaction not initiated                                | Generic failure. Payment request could not be processed.           | Check all mandatory parameters. Review API logs for validation errors. Retry with corrected parameters. |
+| Error Code | Message | Cause | Resolution |
+|------------|---------|-------|------------|
+| E342 | Device not found or not mapped to merchant | Device not registered OR not activated in Partner Dashboard | Activate and map device ([Guide →](doc:collect-payment-using-payu-omni#step-12-activate-your-pos-device)) |
+| E343 | Device not mapped to merchant | Device mapped to different merchant account | Verify `accountId` and re-map device |
+| E344 | Required configurations not enabled | Payment method not enabled for merchant or device | Enable methods in merchant settings AND device config |
+| E2081 | Invalid PG or Bank Code | Incorrect payment gateway or bank code | Use `posPaymentMethod: "sale"` for auto-detect |
+| 401 | Unauthorized | Invalid/expired token or incorrect signature | Refresh token and verify signature logic |
+| E_DEVICE_OFFLINE | Device unreachable | Device not connected or powered off | Check device connectivity and retry |
+| E_TIMEOUT | Payment timeout | Customer didn't complete payment in time | Use Check Status API to verify state |
 
-***
+For complete troubleshooting guide, see [Troubleshooting →](doc:collect-payment-using-payu-omni#troubleshooting)
 
-## Webhook Schema
-
-After the customer completes payment on the device, PayU sends a webhook to your `successAction` or `failureAction` URL.
-
-| Field         | Type   | Description                                    | Example                                                      |
-| :------------ | :----- | :--------------------------------------------- | :----------------------------------------------------------- |
-| `vendorTxnId` | String | Your transaction ID                            | `ORD_20231115_001`                                           |
-| `txnId`       | String | Your transaction ID (duplicate of vendorTxnId) | `ORD_20231115_001`                                           |
-| `mihpayId`    | String | PayU's internal transaction ID                 | `403993715534895620`                                         |
-| `flowType`    | String | Always "ominichannel" for Omni payments        | `ominichannel`                                               |
-| `message`     | String | Instruction to call Status API                 | `Please use the checkBqrStatusAPI to fetch the final status` |
-| `status`      | String | May be "pending" (not final)                   | `pending`                                                    |
-
-<Warning>
-⚠️ **Critical:** Do NOT rely solely on the webhook status. Always call the **Check Transaction Status API** to retrieve authoritative payment details before marking an order as paid.
-</Warning>
-
-***
+---
 
 ## Related Resources
 
-- [Check Transaction Status API Reference](#check-transaction-status-api)
-- [Integration Guide — Initiate Payment](#integrate-payu-omni-initiate-payment)
-- [PayU Omni Overview](#payu-omni-integrated-flow)
+- **[Collect Payment Using PayU Omni →](doc:collect-payment-using-payu-omni)** - Complete integration guide
+- **[Check Transaction Status API →](doc:check-transaction-status-api-omni)** - Verify payment status
+- **[PayU Omni Overview →](doc:payu-omni)** - Product features and benefits
+
+---
+
+## Need Help?
+
+**Integration Support:** integration-support@payu.in  
+Include: Partner ID, Merchant ID, Transaction ID, error code, and steps tried
