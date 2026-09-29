@@ -14,33 +14,31 @@ metadata:
   fontWeight="bold"
 />
 
-Go through every path available to use AI with PayU Payment Links. Pick the one that matches what you are trying to build, follow the steps in order, and you will have a working integration at the end.
+This page covers every path for using AI with PayU Payment Links. Pick the one that matches what you are trying to build, follow the steps in order, and you will have a working integration at the end.
 
 ***
 
 ## Which Path Are You On?
 
-| I want to…                                                                 | Path                   | Time to live |
-| -------------------------------------------------------------------------- | ---------------------- | ------------ |
-| Write backend code that creates links automatically when orders come in    | **Direct API**         | \~2 hours    |
-| Connect Claude, ChatGPT, or a custom agent to manage links by conversation | **AI Agent via MCP**   | \~20 minutes |
-| Use an AI assistant to help me create and manage links — no code           | **Merchant / No-code** | \~5 minutes  |
+| I want to…                                                                 | Path                            | Time to live |
+| -------------------------------------------------------------------------- | ------------------------------- | ------------ |
+| Write backend code that creates links automatically when orders come in    | **Path 1 — Direct API**         | \~2 hours    |
+| Connect Claude, ChatGPT, or a custom agent to manage links by conversation | **Path 2 — AI Agent via MCP**   | \~20 minutes |
+| Use an AI assistant to help me create and manage links — no code           | **Path 3 — Merchant / No-code** | \~5 minutes  |
 
 <Callout icon="📘" theme="info">
-  ### **Note:**
-
   These paths are not mutually exclusive. Many teams use Path 1 for automated backend flows and Path 2 for the merchant-facing assistant layer. Start with the one you need first.
 </Callout>
 
 ***
 
-## Developer: Direct API Integration
+## Path 1 — Developer: AI Coding Assistant Integration
 
-Build a backend service that creates payment links, delivers them to customers, and receives payment confirmation via webhook.
+You describe what you need. The AI writes the full integration for you — token caching, payment link creation, webhook verification — matched to your existing codebase. No reading API docs required.
 
-### Get your credentials first
+### Step 1 — Get your three credentials
 
-Before writing any code, grab these three values from **PayU Dashboard → Settings → API Keys**:
+The AI needs these to generate working code. Get them from **PayU Dashboard → Settings → API Keys**:
 
 | Credential           | Where to find it                                |
 | -------------------- | ----------------------------------------------- |
@@ -48,25 +46,32 @@ Before writing any code, grab these three values from **PayU Dashboard → Setti
 | `PAYU_CLIENT_SECRET` | Dashboard → Settings → API Keys → Client Secret |
 | `PAYU_MERCHANT_ID`   | Dashboard → Settings → Merchant ID              |
 
-Set `PAYU_ENVIRONMENT` to `test` to start — no real money moves in UAT. Switch to `production` only when you are ready to go live.
-
 <Callout icon="🚧" theme="warning">
-  **PAYU_CLIENT_SECRET is not your merchant salt.** It is the OAuth credential from API Keys — a different value. It serves double duty: it authenticates your API calls and verifies your webhooks. Using the wrong one breaks webhook verification silently.
+  **PAYU_CLIENT_SECRET is not your merchant salt** — it is a separate OAuth credential from API Keys. The prompt will tell you this, but it's worth knowing upfront: using the wrong value breaks webhook verification and produces no error message.
 </Callout>
 
-### Steps
+### Step 2 — Paste the prompt into your AI coding assistant
 
-| Step | What to build                                                                                                 | Full reference                                        |
-| ---- | ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| 1    | Acquire an OAuth2 Bearer token and cache it — tokens expire in 3,600s, never request one per call             | [Authentication (Token)](doc:api-auth-token)          |
-| 2    | Build a backend endpoint that calls `POST /payment-links/` and returns the shareable link and `invoiceNumber` | [Create & Share a Payment Link](doc:api-create-share) |
-| 3    | Build a webhook endpoint that verifies the SHA-512 signature and marks orders as paid on `status=success`     | [Webhook Notifications](doc:webhook-notifications)    |
-| 4    | Register your webhook URL in PayU Dashboard → Settings → Webhooks                                             | [Webhook Notifications](doc:webhook-notifications)    |
-| 5    | Test end-to-end using UAT credentials — create a link, pay, confirm the webhook fires                         | [Key & Salt Reference](doc:key-salt-reference)        |
+Open [AI Coding Assistants](doc:use-with-ai), copy the full prompt, fill in your three credentials at the top, and paste it into **Cursor, Claude Code, or GitHub Copilot**.
 
-### Fastest path to implementation
+The AI will then:
 
-Instead of building from scratch, paste the ready-made coding agent prompt from [AI Coding Assistants](doc:use-with-ai) into Cursor, Claude Code, or GitHub Copilot. Fill in your three credentials at the top and the AI writes the entire integration — token cache, create endpoint, webhook handler — for your existing stack in one shot.
+1. Detect your project stack from existing files
+2. Build a token cache module — handles OAuth, expiry, and refresh automatically
+3. Create a backend endpoint that calls PayU and returns a shareable payment link
+4. Create a webhook endpoint with signature verification and idempotency handling
+5. Output a summary of every file changed and every manual step remaining
+
+### Step 3 — Do the two manual steps the AI cannot do
+
+The AI will remind you, but these always apply:
+
+- **Set your environment variables** — add `PAYU_CLIENT_ID`, `PAYU_CLIENT_SECRET`, `PAYU_MERCHANT_ID`, and `PAYU_ENVIRONMENT` to your environment
+- **Register your webhook URL** in PayU Dashboard → Settings → Webhooks — the AI writes the endpoint but cannot register it for you
+
+### Step 4 — Test and go live
+
+Use UAT credentials to run a test payment end-to-end, confirm your webhook fires, then switch `PAYU_ENVIRONMENT` to `production` to go live. No code changes needed — just the environment variable.
 
 ***
 
@@ -74,20 +79,20 @@ Instead of building from scratch, paste the ready-made coding agent prompt from 
 
 Connect Claude, ChatGPT, or any MCP-compatible agent to your PayU account. The agent creates, sends, checks, and updates payment links from natural language instructions — no API coding required on your end.
 
-### What you need before starting
+###
 
 <Callout icon="🔑" theme="warning">
+  ### What You Need Before Starting
+
   - A **PayU merchant account** with Payment Links enabled
   - An **MCP-compatible client**: Claude Desktop, Cursor, or a custom agent framework
   - **Access to the PayU MCP service** — if you have not been onboarded, email [ai-solutions@payu.in](mailto:ai-solutions@payu.in)
 </Callout>
 
-### Steps
-
 <Accordion title="Step 1 — Add the PayU Remote MCP server" icon="fa-plug">
   Add `https://api.payu.in/mcp` as a remote MCP server in your client.
 
-  **Claude Desktop** — add to `claude_desktop_config.json`:
+  **Claude Desktop**: Add to `claude_desktop_config.json`:
 
   ```json
   {
@@ -99,10 +104,10 @@ Connect Claude, ChatGPT, or any MCP-compatible agent to your PayU account. The a
   }
   ```
 
-  **Cursor / other clients** — paste the URL into the remote MCP server field in settings.
+  **Cursor / other clients**: Paste the URL into the remote MCP server field in settings.
 </Accordion>
 
-<Accordion title="Step 2 — Complete OAuth 2.1 login" icon="fa-lock">
+<Accordion title="Step 2: Complete OAuth 2.1 login" icon="fa-lock">
   After adding the server, your MCP client detects authentication is required and opens a browser window automatically. You do not manage tokens.
 
   1. A PayU login page opens in your browser
@@ -115,7 +120,7 @@ Connect Claude, ChatGPT, or any MCP-compatible agent to your PayU account. The a
   **If you are building an agent for a merchant (not your own account):** the merchant must complete this OAuth flow using their own credentials. Tokens are per-account — an agent cannot act across merchants without each one authenticating separately.
 </Accordion>
 
-<Accordion title="Step 3 — Verify the connection" icon="fa-circle-check">
+<Accordion title="Step 3: Verify the Connection" icon="fa-circle-check">
   Ask the agent:
 
   > "List my available PayU merchant accounts"
