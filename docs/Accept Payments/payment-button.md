@@ -131,7 +131,7 @@ All You need is:<br />
 
 ***
 
-## How do I Add a Payment Button?
+## How Do I Add a Payment Button?
 
 Here is how it works:
 
