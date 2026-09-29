@@ -20,13 +20,15 @@ Go through every path for using AI with PayU Payment Links. Pick the one that ma
 
 ## Which Path Are You On?
 
-| I want to…                                                                 | Path                            | Time to live |
-| -------------------------------------------------------------------------- | ------------------------------- | ------------ |
-| Write backend code that creates links automatically when orders come in    | **Path 1 — Direct API**         | \~2 hours    |
-| Connect Claude, ChatGPT, or a custom agent to manage links by conversation | **Path 2 — AI Agent via MCP**   | \~20 minutes |
-| Use an AI assistant to help me create and manage links — no code           | **Path 3 — Merchant / No-code** | \~5 minutes  |
+| I want to…                                                                 | Path                   | Time to live |
+| -------------------------------------------------------------------------- | ---------------------- | ------------ |
+| Write backend code that creates links automatically when orders come in    | **Direct API**         | \~2 hours    |
+| Connect Claude, ChatGPT, or a custom agent to manage links by conversation | **AI Agent via MCP**   | \~20 minutes |
+| Use an AI assistant to help me create and manage links — no code           | **Merchant / No-code** | \~5 minutes  |
 
 <Callout icon="📘" theme="info">
+  ### **Note:**
+
   These paths are not mutually exclusive. Many teams use Path 1 for automated backend flows and Path 2 for the merchant-facing assistant layer. Start with the one you need first.
 </Callout>
 
