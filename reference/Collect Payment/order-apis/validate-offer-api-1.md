@@ -156,16 +156,18 @@ echo "Response: " . $response . "\n";
 
 ?>
 ```
+
 ## Request Parameters
+
 ### Request Headers
 
 ### Option 1: Session Token Authentication (Recommended)
 
-| Header                                        | Description                                                     | Example                                                          |
-| :-------------------------------------------- | :-------------------------------------------------------------- | :--------------------------------------------------------------- |
-| <Glossary>encOrderId</Glossary> `mandatory`   | `String` Encrypted order identifier from Create Order response. | c422540c33ef9f1259f15f7b916469b7227dc1d41a76796536885474ddadf312 |
-| <Glossary>accessToken</Glossary> `mandatory`  | `String` Session access token from Create Order response.       | FFF3D2D1-5B20-C1BC-728B-08E47A374D00                             |
-| <Glossary>Content-Type</Glossary> `mandatory` | `String` Content type.                                          | application/json                                                 |
+| Header                                        | Description                                                     | Example                                                                                  |
+| :-------------------------------------------- | :-------------------------------------------------------------- | :--------------------------------------------------------------------------------------- |
+| <Glossary>encOrderId</Glossary> `mandatory`   | `String` Encrypted order identifier from Create Order response. | c422540c33e<br />f9f1259f15f7b<br />916469b7227dc<br />1d41a767965368<br />85474ddadf312 |
+| <Glossary>accessToken</Glossary> `mandatory`  | `String` Session access token from Create Order response.       | FFF3D2D1-5B20-C1BC-728B-08E47A374D00                                                     |
+| <Glossary>Content-Type</Glossary> `mandatory` | `String` Content type.                                          | application/json                                                                         |
 
 ### Option 2: Order ID & Merchant Key Authentication
 
@@ -179,13 +181,13 @@ echo "Response: " . $response . "\n";
 
 **Mandatory Parameters**
 
-| Parameter    | Description                                                                                          | Example                                                          |
-| :----------- | :--------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------- |
-| encOrderId   | `String` Encrypted order identifier from the Create Order response (`transaction.encryptedOrderId`). | c422540c33ef9f1259f1<br/>5f7b916469b7227<br/>dc1d41a76796536<br/>885474ddadf312 |
-| accessToken  | `String` Session access token from Create Order response (`transaction.accessToken`).                | FFF3D2D1-<br/>5B20-C1BC-<br/>728B-08E47A374D00                             |
-| Content-Type | `String` Content type of the request body.                                                           | application/json                                                 |
-| offerKeys    | `Array<String>` One or more offer keys to be evaluated.                                              | \["OFFER_KEY_1"]                                                 |
-| autoApply    | `Boolean` If `true`, the offers engine auto-applies the best eligible offer for the transaction.     | true                                                             |
+| Parameter    | Description                                                                                          | Example                                                                            |
+| :----------- | :--------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------- |
+| encOrderId   | `String` Encrypted order identifier from the Create Order response (`transaction.encryptedOrderId`). | c422540c33ef9f1259f1<br />5f7b916469b7227<br />dc1d41a76796536<br />885474ddadf312 |
+| accessToken  | `String` Session access token from Create Order response (`transaction.accessToken`).                | FFF3D2D1-<br />5B20-C1BC-<br />728B-08E47A374D00                                   |
+| Content-Type | `String` Content type of the request body.                                                           | application/json                                                                   |
+| offerKeys    | `Array<String>` One or more offer keys to be evaluated.                                              | \["OFFER_KEY_1"]                                                                   |
+| autoApply    | `Boolean` If `true`, the offers engine auto-applies the best eligible offer for the transaction.     | true                                                                               |
 
 > **Note:** Alternatively, authenticate using Order ID & Merchant Key by passing `orderId` (the order ID supplied during order creation), `X-Credential-Username` (merchant key), and `accessToken` as headers.
 
@@ -266,6 +268,7 @@ echo "Response: " . $response . "\n";
   }
 }
 ```
+
 ## Response Parameters
 
 | Parameter                             | Description                                                              | Example |
@@ -277,5 +280,3 @@ echo "Response: " . $response . "\n";
 | result.offerDiscount.discount         | `Number` Discount amount deducted.                                       | 23.65   |
 | result.offerDiscount.discountedAmount | `Number` Final payable amount after deducting discount.                  | 449.35  |
 | result.totalDiscountDetail            | `Object` Consolidated summary of instant discounts and cashback amounts. |         |
-
-<br />
