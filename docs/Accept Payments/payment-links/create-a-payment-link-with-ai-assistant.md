@@ -513,24 +513,3 @@ Begin integration now.
     Connect an AI agent to PayU via MCP — no direct API coding required.
   </Card>
 </Cards>
-
-***
-
-## What About Payment Buttons?
-
-[Payment Buttons](doc:payment-button-overview) are a **no-code, Dashboard-managed feature** — they generate an embeddable HTML snippet you copy onto your page. There is no OAuth2 endpoint, no programmatic creation API, and no backend route to build. The coding agent prompt above covers the Payment Links API only and **does not apply to Payment Buttons**.
-
-### AI options for Payment Buttons
-
-**Option 1 — Use PayU Ask AI or any AI assistant** for guided Dashboard setup. These prompts work with Claude, ChatGPT, or PayU Ask AI:
-
-- _"You are a PayU merchant assistant. Help me create a PayU Payment Button for ₹499 — fixed amount, single payment."_
-- _"Generate the embed code for a PayU Payment Button on my website. My merchant key is {{merchantKey}}."_
-- _"What Payment Button settings are available in the PayU Dashboard?"_
-- _"Walk me through adding a PayU Payment Button to a static HTML page."_
-
-**Option 2 — Use the PayU Remote MCP Server** if you are building an AI agent that manages your merchant account conversationally. The MCP server connects your agent to your PayU account over OAuth 2.1 and handles account and payment link operations by conversation. See [Use with AI Agents via MCP](doc:use-with-mcp) and [PayU Remote MCP Server Integration](doc:payu-remote-mcp-server-integration).
-
-<Callout icon="📘" theme="info">
-  Payment Buttons are best for merchants who want a simple pay-now button on a page. If you need programmatic creation, expiry controls, per-customer amounts, or webhook delivery — use Payment Links (this page) instead.
-</Callout>
