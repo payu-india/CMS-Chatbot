@@ -22,7 +22,7 @@ metadata:
   fontWeight="bold"
 />
 
-There are two ways to use AI to create a Payment Link. Choose based on how much automation you want.
+These are the two ways to use AI to create a Payment Link. Choose based on how much automation you want.
 
 |                    | Ask AI                               | AI Agent (Remote MCP)                                |
 | ------------------ | ------------------------------------ | ---------------------------------------------------- |
@@ -33,7 +33,7 @@ There are two ways to use AI to create a Payment Link. Choose based on how much 
 
 ***
 
-## Option 1 — Ask AI for Guidance
+## Option 1: Ask AI for Guidance
 
 The PayU Ask AI chatbot knows the full Payment Links product. Instead of reading the docs, ask it directly — it will walk you through every field, answer edge-case questions, and suggest the right settings for your situation.
 
