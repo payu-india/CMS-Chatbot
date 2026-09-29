@@ -1,7 +1,7 @@
 ---
 title: 'Fetch Offer API '
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -243,4 +243,3 @@ You can authenticate using either the session tokens or merchant credential head
 | <Glossary>result.couponsAvailable</Glossary>                  | `Boolean` | Indicates whether manual coupon codes are configured for the merchant.                                                                            |
 | <Glossary>result.isUserPersonalizedOffersAvailable</Glossary> | `Boolean` | Indicates if targeted user offers exist for this customer.                                                                                        |
 | <Glossary>result.offers</Glossary>                            | `Array`   | List of applicable offer objects including `offerKey`, `title`, `description`, `minTxnAmount`, `maxTxnAmount`, `offerType`, and `discountDetail`. |
-
