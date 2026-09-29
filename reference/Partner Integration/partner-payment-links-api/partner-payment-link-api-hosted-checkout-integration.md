@@ -22,6 +22,10 @@ HTTP Method: **POST**
 
 ## Request Parameters
 
+<Callout icon="📘" theme="info">
+  ### All the parameters are mandatory in header and body.
+</Callout>
+
 ### Request Headers
 
 | Header          | Description                                                                                                         |
@@ -32,10 +36,6 @@ HTTP Method: **POST**
 ***
 
 ### Body Parameters
-
-<Callout icon="📘" theme="info">
-  ### **All the parameters are mandatory**
-</Callout>
 
 | Parameter         | Description                                                                                                                                | Example                                              |
 | :---------------- | :----------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------- |
