@@ -21,21 +21,25 @@ HTTP Method: **POST**
 ***
 
 ## Request Parameters
+
+<Callout icon="📘" theme="info">
+  ### All the parameters are mandatory in header and body.
+</Callout>
+
 ### Request Headers
 
-| Header          | Type     | Mandatory | Description                                                                                                         |
-| :-------------- | :------- | :-------- | :------------------------------------------------------------------------------------------------------------------ |
-| `Authorization` | `string` | **Yes**   | Bearer token obtained from the OAuth Token API with `scope=partner_payment_links`. Format: `Bearer <access_token>`. |
-| `Content-Type`  | `string` | **Yes**   | Must be `application/json`.                                                                                         |
+| Header          | Description                                                                                                         |
+| :-------------- | :------------------------------------------------------------------------------------------------------------------ |
+| `Authorization` | Bearer token obtained from the OAuth Token API with `scope=partner_payment_links`. Format: `Bearer <access_token>`. |
+| `Content-Type`  | Must be `application/json`.                                                                                         |
 
 ### Body Parameters
 
-| Parameter | Type | Mandatory | Description | Example |
-| :--- | :--- | :--- | :--- | :--- |
-| `payment_link_id` | `string` | **Yes** | The full PayU payment link URL. Must belong to an allowlisted PayU domain (e.g., `v.payu.in`). | `https://v.payu.in/PAYUMN/abc123` |
-| `phone_number` | `string` | **Yes** | Customer mobile phone number (5–16 numeric digits). Country code prefix is recommended. | `919820988398` |
-| `redirect_url` | `string` | **No** | **Do not pass** or leave empty. When omitted, PayU evaluates the link configuration and returns the UPI Intent response (`upi_intent_url`). | `""` or omitted |
-
+| Parameter         | Description                                                                                                                                 | Example                           |
+| :---------------- | :------------------------------------------------------------------------------------------------------------------------------------------ | :-------------------------------- |
+| `payment_link_id` | The full PayU payment link URL. Must belong to an allowlisted PayU domain (e.g., `v.payu.in`).                                              | `https://v.payu.in/PAYUMN/abc123` |
+| `phone_number`    | Customer mobile phone number (5–16 numeric digits). Country code prefix is recommended.                                                     | `919820988398`                    |
+| `redirect_url`    | **Do not pass** or leave empty. When omitted, PayU evaluates the link configuration and returns the UPI Intent response (`upi_intent_url`). | `""` or omitted                   |
 
 <Warning>
 **UPI Configuration Requirement:**
@@ -44,7 +48,7 @@ For the `UPI_PL` flow to succeed, the underlying payment link configuration must
 
 ***
 
-## Sample Code
+## Sample Request
 
 ```curl
 curl --location 'https://test-partnerapilayer.payu.in/apilayer/partner/payment-link/payment' \
@@ -144,7 +148,6 @@ curl_close($ch);
 echo $response;
 ?>
 ```
-
 ```csharp
 using System;
 using System.Net.Http;
@@ -199,7 +202,6 @@ class Program
 | `expiry_time`    | `integer` | Expiration time of the generated payment session in Unix epoch format (seconds).                                                     |
 
 ***
-
 
 ## Error Codes and Handling
 
