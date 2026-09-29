@@ -28,6 +28,8 @@ next:
 ---
 {/* EXISTING CONTENT: adapted from payment-buttons-dashboard.md */}
 
+{/* NEW CONTENT */}
+
 <Banner
   isInline={true}
   message="Integration effort: No code or website developer required"
@@ -37,176 +39,203 @@ next:
   fontWeight="bold"
 />
 
-{/* NEW CONTENT */}
+Add a payment button to your website or blog from the PayU Dashboard in just a few minutes without any code.
+
+***
+
+## What All I Need?
+
+<Cards>
+  <Card title="A PayU Merchant Account" icon="far fa-table-cells-column-unlock">
+    <Columns layout="fixed">
+      <Column>
+        <Anchor target="_blank" href="doc:set-up-your-account">Set up your account</Anchor> if you have not already done so.
+      </Column>
+    </Columns>
+  </Card>
+
+  <Card title="A Website or Page Builder" icon="far fa-pager">
+    Any website where you can add content to your pages — WordPress, Wix, Squarespace, or any site with a page editor.
+  </Card>
+</Cards>
+
+***
+
+## How Do I Add a Payment Button?
+
+<Accordion title="1. Open Payment Buttons on the Dashboard" icon="far fa-grid-2">
+  1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor>.
+  2. Expand **Payment Tools** and click **Payment Buttons** from the menu on the left.
+
+  All your existing buttons are listed here.
+
+
+  <Image src="https://files.readme.io/a494bb1de682ae83ec3d1023e1e13dfb65e02db0ef5332ca52b6e85232638c63-Screenshot_2025-06-02_at_7.09.40_PM.png" align="center" caption="Payment Buttons list in the PayU Dashboard" border={true} />
+
+</Accordion>
+
+<Accordion title="2. Create a new button" icon="far fa-plus">
+  Click **Create New Button** at the top-right corner of the page.
+
+  The **Create New Payment Button** panel opens.
+
+
+  <Image src="https://files.readme.io/dace80a25807f722b25d1ee7054db2836a7a3d44d97cb7ca82f67664bdbfd54b-Screenshot_2025-06-02_at_7.09.15_PM.png" align="center" caption="Create New Payment Button panel" border={true} />
+
+</Accordion>
+
+<Accordion title="3. Set up your button" icon="far fa-sliders">
+  Fill in these details to set up how your button looks and works:
+
+  | Setting         | What to do                                                | Notes                                                                      |
+  | --------------- | --------------------------------------------------------- | -------------------------------------------------------------------------- |
+  | **Button Text** | Choose a label from the drop-down                         | Buy Now · Pay Now · Book Now · Donate Now                                  |
+  | **Item Name**   | Enter a short description of the product or service       | Shown to the customer on the payment page                                  |
+  | **Amount**      | Enter the amount you want to collect                      | Leave blank to let your customer type in the amount — useful for donations |
+  | **Colour**      | Choose a colour from the palette or enter a custom colour | Match your website's colours                                               |
+  | **Size**        | Choose Small, Medium, or Large                            | Medium works well for most pages                                           |
+</Accordion>
+
+<Accordion title="4. Add checkout fields (optional)" icon="far fa-list-check">
+  Add fields to collect information from your customer before they pay.
+
+  1. Scroll to the **Custom Details** section.
+
+
+  <Image src="https://files.readme.io/b3a27b5d2959197102e56442a3f0fa6054486c1db2caba39ba45c7bbab504f4f-Screenshot_2025-06-04_at_12.32.20_PM.png" align="center" width="250px" caption="Custom Details section" border={true} />
+
+
+  2. Switch on any of the ready-made fields you want to collect:
+     - Customer Name
+     - Customer Address
+     - Customer Email
+     - Customer Mobile
+
+  3. To add a field of your own, click **Add Fields** and fill in:
+
+  | Setting               | What to enter                                             |
+  | --------------------- | --------------------------------------------------------- |
+  | **Field Type**        | Text, Calendar, or Drop-down                              |
+  | **Field Name**        | The question or label your customer will see              |
+  | **Mark as mandatory** | Switch on if the customer must fill this in before paying |
+
+
+  <Image src="https://files.readme.io/1eb6333ecf79f41c3bb978bd2c289d2af3822688df83f22b10edda2199e93a21-Screenshot_2025-06-04_at_12.33.44_PM.png" align="center" width="312px" caption="Add a custom checkout field" border={true} />
+
+
+  4. Click **Add Field** to save each field.
+
+
+  <Image src="https://files.readme.io/865616d7519cf08e3ca37a1583db494fb638d457de658d32e0a157f9309388ac-Screenshot_2025-06-04_at_12.37.53_PM.png" align="center" caption="Custom fields shown to the customer on the payment page" border={true} />
+
+</Accordion>
+
+<Accordion title="5. Set up redirect pages (optional)" icon="far fa-arrow-right-from-bracket">
+  Under **Advanced Options**, you can tell PayU where to send your customer after they pay:
+
+  | Page            | When it is used                                                           |
+  | --------------- | ------------------------------------------------------------------------- |
+  | **Success URL** | Your customer is taken here after a successful payment                    |
+  | **Cancel URL**  | Your customer is taken here if they close the payment page without paying |
+  | **Failure URL** | Your customer is taken here if the payment does not go through            |
+
+
+  <Image src="https://files.readme.io/414d861556b165c6f6065aa4eebc25ecbc543e74e4ba08a1d6ab5fc5d7ff4fbe-Screenshot_2025-06-02_at_7.22.41_PM.png" align="center" width="412px" caption="Set your redirect pages under Advanced Options" border={true} />
+
+
+  <Callout icon="📘" theme="info">
+    These pages are optional but we recommend setting them. Without a success page, customers end up on a default PayU page after paying and do not automatically come back to your website.
+  </Callout>
+</Accordion>
+
+<Accordion title="6. Generate the button and add it to your website" icon="far fa-code">
+  1. Click **Generate Button**.
+
+  PayU creates your button and gives you a short piece of code to copy.
+
+  2. Click **Copy** to copy the button code.
+
+  3. Go to your website and paste the code where you want the button to appear:
+
+  | Website builder    | How to add the code                                                   |
+  | ------------------ | --------------------------------------------------------------------- |
+  | **WordPress**      | Add a **Custom HTML** block to your page and paste the code inside it |
+  | **Wix**            | Add an **HTML iframe** element to your page and paste the code        |
+  | **Squarespace**    | Add a **Code Block** to your page and paste the code                  |
+  | **Other builders** | Look for an "HTML", "Code", or "Embed" block in your page editor      |
+
+  The button appears on your page right away.
+
+  <Callout icon="🚧" theme="warning">
+    **Payment Buttons cannot be changed after creation.** If you need to update the label, amount, colour, or any other setting — create a new button with the correct details and replace the code on your website.
+  </Callout>
+</Accordion>
+
+***
+
+## What Happens After My Customer Pays?
+
+After your customer clicks the button and completes a payment:
+
+1. PayU updates the payment status in your Dashboard right away.
+2. The payment appears in the **Transactions** tab in your PayU Dashboard.
+3. Your customer is taken to your success page — or your failure page if the payment did not go through.
+4. The money is settled to your bank account on the standard settlement cycle.
 
 <Callout icon="📘" theme="info">
-  **What you need:** An active PayU merchant account and a website or page editor where you can paste HTML.
+  ### **Want to be notified the moment a payment comes in?**
+
+  You can set up webhooks under **Settings → Webhooks** in the Dashboard. Webhooks are optional — your Dashboard always shows you the latest payment status whether or not you set them up.
 </Callout>
 
 ***
 
-## Step 1 — Open the Payment Buttons Dashboard
+## What Do I Do If Something Goes Wrong?
 
-{/* EXISTING CONTENT: adapted from payment-buttons-dashboard.md */}
-
-1. Log in to the [PayU Dashboard](https://onboarding.payu.in/).
-2. From the left sidebar, go to **Payment Tools → Payment Buttons**.
-
-   All existing buttons are listed here.
-
-
-<Image src="https://files.readme.io/a494bb1de682ae83ec3d1023e1e13dfb65e02db0ef5332ca52b6e85232638c63-Screenshot_2025-06-02_at_7.09.40_PM.png" align="center" caption="Payment Buttons list" border={true} />
-
-
-3. Click **Create New Button** at the top-right corner.
-
-   The **Create New Payment Button** page opens.
-
-
-<Image src="https://files.readme.io/dace80a25807f722b25d1ee7054db2836a7a3d44d97cb7ca82f67664bdbfd54b-Screenshot_2025-06-02_at_7.09.15_PM.png" align="center" caption="Create New Payment Button" border={true} />
-
+| Problem                                              | Fix                                                                                                                                                                         |
+| ---------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| The button is not showing on my website              | Make sure the code was pasted into a code or HTML block — not as plain text. Clear your browser cache and reload the page.                                                  |
+| Customer clicks the button but nothing happens       | The button code may not have loaded correctly. Remove it, paste it again in a fresh code block, and reload the page.                                                        |
+| I entered the wrong amount or button text            | Payment Buttons cannot be changed after creation. Create a new button with the correct details, copy the new code, and replace the old code on your website.                |
+| Customer paid but I cannot see it in my Dashboard    | Wait a few minutes and refresh. If it still does not appear, see <Anchor target="_blank" href="doc:payment-button-troubleshooting">Payment Button Troubleshooting</Anchor>. |
+| Customer was not taken to my success or failure page | Check that you entered the correct page addresses under **Advanced Options**. Make sure each address starts with `https://`.                                                |
 
 ***
 
-## Step 2 — Configure the Button
+## What If My Customer Wants the Money Back?
 
-{/* EXISTING CONTENT: adapted from payment-buttons-dashboard.md */}
+<Cards>
+  <Card title="Refunds" href="doc:introduction-refunds" icon="fad fa-arrow-rotate-left">
+    Return all or part of a payment to your customer — directly from the PayU Dashboard.
+  </Card>
 
-1. Choose a **Button Text** label from the drop-down:
-   - Buy Now
-   - Pay Now
-   - Book Now
-   - Donate Now
+  <Card title="Settlements" href="doc:split-settlments" icon="fad fa-building-columns">
+    Find out when your money will reach your bank account and see your settlement history.
+  </Card>
 
-2. Enter a description in the **Item Name** field — this is shown to the customer on the checkout page as the product or purpose.
-
-3. Enter the amount in the **Amount** field.
-
-<Callout icon="📘" theme="info">
-  Leave **Amount** blank if you want customers to enter the amount themselves at checkout — useful for donations or tip jars.
-</Callout>
-
-4. Select the **button colour** — choose from the preset palette or use the colour picker for a custom hex value.
-
-5. Select the **button size** that fits your page layout:
-   - Small
-   - Medium
-   - Large
-
-***
-
-## Step 3 — Configure Checkout Fields (Optional)
-
-{/* EXISTING CONTENT: adapted from payment-buttons-dashboard.md */}
-
-Add extra fields to the checkout page to collect information from customers before they pay.
-
-1. Scroll to the **Custom Details** section.
-
-
-<Image src="https://files.readme.io/b3a27b5d2959197102e56442a3f0fa6054486c1db2caba39ba45c7bbab504f4f-Screenshot_2025-06-04_at_12.32.20_PM.png" align="center" width="250px" caption="Custom Details section" border={true} />
-
-
-2. Toggle on any standard fields you want to collect: **Customer Name**, **Customer Address**, **Customer Email**, **Customer Mobile**.
-
-3. To add a custom field, click **Add Fields** and fill in:
-
-| Field             | What to enter                                           |
-| ----------------- | ------------------------------------------------------- |
-| Field Type        | Text, Calendar, or Drop-down                            |
-| Field Name        | The label the customer sees on the checkout page        |
-| Mark as mandatory | Toggle on to require this field before payment proceeds |
-
-
-<Image src="https://files.readme.io/1eb6333ecf79f41c3bb978bd2c289d2af3822688df83f22b10edda2199e93a21-Screenshot_2025-06-04_at_12.33.44_PM.png" align="center" width="312px" caption="Add custom field" border={true} />
-
-
-4. Click **Add Field** to save each field.
-
-
-<Image src="https://files.readme.io/865616d7519cf08e3ca37a1583db494fb638d457de658d32e0a157f9309388ac-Screenshot_2025-06-04_at_12.37.53_PM.png" align="center" caption="Custom fields displayed on the PayU checkout page" border={true} />
-
-
-***
-
-## Step 4 — Set Redirect URLs and Generate
-
-{/* EXISTING CONTENT: adapted from payment-buttons-dashboard.md */}
-
-1. Scroll down to the **Advanced Options** section.
-
-
-<Image src="https://files.readme.io/414d861556b165c6f6065aa4eebc25ecbc543e74e4ba08a1d6ab5fc5d7ff4fbe-Screenshot_2025-06-02_at_7.22.41_PM.png" align="center" width="412px" caption="Advanced options — redirect URLs" border={true} />
-
-
-2. Enter your redirect URLs:
-
-| URL             | When it is used                                                  |
-| --------------- | ---------------------------------------------------------------- |
-| **Success URL** | Customer is redirected here after a successful payment           |
-| **Cancel URL**  | Customer is redirected here if they cancel or close the checkout |
-| **Failure URL** | Customer is redirected here if the payment fails                 |
-
-{/* NEW CONTENT */}
-
-<Callout icon="🚧" theme="warning">
-  Redirect URLs are optional but strongly recommended. Without them, customers land on a default PayU confirmation page after payment — they won't return to your website automatically.
-</Callout>
-
-{/* EXISTING CONTENT: adapted from payment-buttons-dashboard.md */}
-
-3. Click **Generate Button**.
-
-   PayU generates your embed snippet.
-
-***
-
-## Step 5 — Copy and Embed the Snippet
-
-{/* NEW CONTENT */}
-
-1. Copy the generated HTML snippet.
-2. Paste it into your website wherever you want the button to appear:
-   - In your page builder's HTML block (WordPress, Wix, Squarespace, Webflow)
-   - Directly into your page's `<body>` HTML
-   - In a blog post's HTML editor
-
-The button renders immediately. No server setup or further configuration is required.
-
-<Callout icon="📘" theme="info">
-  The embed snippet contains your PayU merchant key. Each button has a unique snippet — do not reuse snippets across different buttons with different configurations.
-</Callout>
-
-***
-
-## What Happens Next
-
-{/* NEW CONTENT */}
-
-When a customer clicks the button:
-
-1. PayU's hosted checkout page opens.
-2. The customer selects a payment method and completes the payment.
-3. PayU redirects them to your **Success URL** (or **Failure URL** if the payment fails).
-4. The transaction appears in your **Transactions** tab in the PayU Dashboard.
-5. Funds are settled to your bank on the standard settlement cycle.
-
-For real-time payment notifications, configure a webhook under **Settings → Webhooks** in the Dashboard. → [Webhooks for Payments](doc:webhooks)
+  <Card title="Disputes and Chargebacks" href="doc:chargeback" icon="fad fa-shield-halved">
+    Handle cases where a customer has raised a complaint with their bank about a payment.
+  </Card>
+</Cards>
 
 ***
 
 ## Next Steps
 
 <Cards>
-  <Card title="Customize Payment Button" href="doc:customize-payment-button" icon="fa-sliders">
-    Change colours, size, amount type, and redirect URLs on an existing button.
+  <Card title="Customize Your Button" href="doc:customize-payment-button" icon="fa-sliders">
+    See all the ways you can configure your button — colours, size, amount type, and redirect pages.
+  </Card>
+
+  <Card title="Manage Payment Buttons" href="doc:manage-payment-buttons" icon="fa-list-check">
+    Check payments received, filter your buttons, and download records.
   </Card>
 
   <Card title="Payment Button Troubleshooting" href="doc:payment-button-troubleshooting" icon="fa-wrench">
-    Button not showing on your page? Fix common embedding issues.
+    Fix issues with buttons not showing, payments not going through, or records not appearing.
   </Card>
 
-  <Card title="Manage Payment Buttons" href="doc:add-a-payment-button" icon="fa-list-check">
-    Filter, export, and review your existing buttons.
+  <Card title="Payment Button FAQs" href="doc:payment-button-faqs" icon="fa-circle-question">
+    Common questions about Payment Buttons.
   </Card>
 </Cards>
