@@ -1,5 +1,5 @@
 ---
-title: Payment Links via UPI Intent
+title: 'Payment Links with UPI Intent '
 deprecated: false
 hidden: true
 metadata:
