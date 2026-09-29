@@ -1,7 +1,9 @@
 ---
 title: LazyPay Pay-in-3 Integration
 deprecated: false
-hidden: true
+hidden: false
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
@@ -11,9 +13,11 @@ Pay-in-3 is designed for everyday, mid-ticket purchases, making it easier for cu
 
 Pay-in-3 is offered by LazyPay and integrates directly into your existing checkout flow. Customers select Pay in 3 as a payment option at checkout, complete a quick one-time verification, and get instant approval — no lengthy forms, no credit card required.
 
-> 📘 Before you begin:
->
-> Register for an account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](https://docs.payu.in/docs/register-for-a-merchant-account-on-dashboard). 
+<Callout icon="📘" theme="info">
+  ### Before you begin:
+
+  Register for an account with PayU before you start integration. For more information, refer to [Register for a Merchant Account](https://docs.payu.in/docs/register-for-a-merchant-account-on-dashboard). 
+</Callout>
 
 ## How Pay in 3 Works
 
@@ -41,5 +45,3 @@ You can integrate with any of the following integrations:
 
 - PayU Hosted Checkout
 - [Merchant Hosted Checkout](doc:lazypay-pay-in-3-merchant-hosted-checkout)
-
-<br />
