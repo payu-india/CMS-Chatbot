@@ -111,7 +111,7 @@ Consider another PayU solution if:<br />
 
 You don't need a developer or any coding experience to get started.<br />
 
-All You need is:
+All You need is:<br />
 
 - <Columns layout="fixed">
     <Column>
