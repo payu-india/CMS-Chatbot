@@ -14,7 +14,7 @@ metadata:
   fontWeight="bold"
 />
 
-Go through every path for using AI with PayU Payment Links. Pick the one that matches what you are trying to build, follow the steps in order, and you will have a working integration at the end.
+Go through every path available to use AI with PayU Payment Links. Pick the one that matches what you are trying to build, follow the steps in order, and you will have a working integration at the end.
 
 ***
 
@@ -34,221 +34,39 @@ Go through every path for using AI with PayU Payment Links. Pick the one that ma
 
 ***
 
-## Path 1 — Developer: Direct API Integration
+## Developer: Direct API Integration
 
 Build a backend service that creates payment links, delivers them to customers, and receives payment confirmation via webhook.
 
-### What you need before starting
+### Get your credentials first
 
-<Callout icon="🔑" theme="warning">
-  Get these from **PayU Dashboard → Settings → API Keys** before writing a single line of code. Without them, nothing works.
+Before writing any code, grab these three values from **PayU Dashboard → Settings → API Keys**:
 
-  | Credential           | What it is                                                                 | Where to find it                                |
-  | -------------------- | -------------------------------------------------------------------------- | ----------------------------------------------- |
-  | `PAYU_CLIENT_ID`     | OAuth2 Client ID                                                           | Dashboard → Settings → API Keys → Client ID     |
-  | `PAYU_CLIENT_SECRET` | OAuth2 Client Secret — used for both API auth **and** webhook verification | Dashboard → Settings → API Keys → Client Secret |
-  | `PAYU_MERCHANT_ID`   | Your Merchant ID (MID)                                                     | Dashboard → Settings → Merchant ID              |
-  | `PAYU_ENVIRONMENT`   | `test` for UAT, `production` for live                                      | You set this yourself                           |
-</Callout>
+| Credential           | Where to find it                                |
+| -------------------- | ----------------------------------------------- |
+| `PAYU_CLIENT_ID`     | Dashboard → Settings → API Keys → Client ID     |
+| `PAYU_CLIENT_SECRET` | Dashboard → Settings → API Keys → Client Secret |
+| `PAYU_MERCHANT_ID`   | Dashboard → Settings → Merchant ID              |
+
+Set `PAYU_ENVIRONMENT` to `test` to start — no real money moves in UAT. Switch to `production` only when you are ready to go live.
 
 <Callout icon="🚧" theme="warning">
-  **PAYU_CLIENT_SECRET is not your merchant salt.** It is the OAuth credential from API Keys. These are two different values. Using the wrong one breaks webhook verification.
+  **PAYU_CLIENT_SECRET is not your merchant salt.** It is the OAuth credential from API Keys — a different value. It serves double duty: it authenticates your API calls and verifies your webhooks. Using the wrong one breaks webhook verification silently.
 </Callout>
-
-### Environment base URLs
-
-| Environment | Auth base URL                  | API base URL                |
-| ----------- | ------------------------------ | --------------------------- |
-| Test (UAT)  | `https://uat-accounts.payu.in` | `https://uatoneapi.payu.in` |
-| Production  | `https://accounts.payu.in`     | `https://oneapi.payu.in`    |
-
-Start with UAT. No real money moves in test mode.
 
 ### Steps
 
-<Accordion title="Step 1 — Build the token cache module" icon="fa-key">
-  Every API call needs a Bearer token. Tokens last 3,600 seconds. **Never request a new token per API call** — you will hit rate limits.
+| Step | What to build                                                                                                 | Full reference                                        |
+| ---- | ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| 1    | Acquire an OAuth2 Bearer token and cache it — tokens expire in 3,600s, never request one per call             | [Authentication (Token)](doc:api-auth-token)          |
+| 2    | Build a backend endpoint that calls `POST /payment-links/` and returns the shareable link and `invoiceNumber` | [Create & Share a Payment Link](doc:api-create-share) |
+| 3    | Build a webhook endpoint that verifies the SHA-512 signature and marks orders as paid on `status=success`     | [Webhook Notifications](doc:webhook-notifications)    |
+| 4    | Register your webhook URL in PayU Dashboard → Settings → Webhooks                                             | [Webhook Notifications](doc:webhook-notifications)    |
+| 5    | Test end-to-end using UAT credentials — create a link, pay, confirm the webhook fires                         | [Key & Salt Reference](doc:key-salt-reference)        |
 
-  **POST** `{auth_base}/oauth/token`
+### Fastest path to implementation
 
-  ```
-  Content-Type: application/x-www-form-urlencoded
-
-  client_id     = PAYU_CLIENT_ID
-  client_secret = PAYU_CLIENT_SECRET
-  grant_type    = client_credentials
-  scope         = create_payment_links update_payment_links read_payment_links
-  ```
-
-  **Successful response:**
-
-  ```json
-  {
-    "access_token": "eyJhbGc...",
-    "token_type": "Bearer",
-    "expires_in": 3600,
-    "created_at": 1694934000
-  }
-  ```
-
-  **Cache logic to implement:**
-
-  - Store `access_token` and calculate `expiry = created_at + expires_in`
-  - Before every API call, check: is the token within 60 seconds of expiry?
-  - If yes, refresh it. If no, reuse it.
-  - Add a mutex/lock to prevent multiple simultaneous refresh calls when the token expires under load.
-
-  **Token errors:**
-
-  - `401 invalid_client` → wrong CLIENT_ID or CLIENT_SECRET, or UAT credentials hitting production URL
-  - `400 invalid_scope` → wrong scope name — use exact spelling from the request above
-</Accordion>
-
-<Accordion title="Step 2 — Build the create payment link endpoint" icon="fa-plus">
-  Create a backend route: `POST /api/create-payment-link`
-
-  This route calls PayU on behalf of your user and returns the shareable link.
-
-  **PayU endpoint:** `POST {api_base}/payment-links/` ← trailing slash is required
-
-  **Required headers — all three, every call:**
-
-  | Header          | Value                                                          |
-  | --------------- | -------------------------------------------------------------- |
-  | `Authorization` | `Bearer {access_token}`                                        |
-  | `merchantId`    | `{PAYU_MERCHANT_ID}` — a separate HTTP header, not in the body |
-  | `Content-Type`  | `application/json`                                             |
-
-  **Minimum request body:**
-
-  ```json
-  {
-    "subAmount": 1000.00,
-    "description": "Invoice #1042",
-    "source": "API"
-  }
-  ```
-
-  `source: "API"`**&#x20;is required.** Omitting it fails the request. It does not exist in Razorpay or Stripe — it is PayU-specific.
-
-  **Amount is INR, not paise.** `1000.00` means ₹1,000. Do not multiply by 100.
-
-  **Full optional fields:**
-
-  ```json
-  {
-    "subAmount": 1000.00,
-    "description": "Invoice #1042",
-    "source": "API",
-    "expiryDate": "2026-12-31 23:59:59",
-    "customerName": "Priya Sharma",
-    "customerEmail": "priya@example.com",
-    "customerPhone": "+919876543210",
-    "invoiceNumber": "INV-2026-1042",
-    "successUrl": "https://yoursite.com/payment/success",
-    "failureUrl": "https://yoursite.com/payment/failure",
-    "isPartialPaymentAllowed": false,
-    "udf": { "udf1": "ORDER-7890" }
-  }
-  ```
-
-  `expiryDate`**&#x20;is IST, not UTC.** Generate timestamps in India Standard Time (UTC+5:30).
-
-  **Use&#x20;**`successUrl`**&#x20;/&#x20;**`failureUrl`**&#x20;— not&#x20;**`surl`**&#x20;/&#x20;**`furl`**.** The shorthand works in PayU Checkout but is not accepted by the Payment Links API.
-
-  **Success response (HTTP 200,&#x20;**`body.status === 0`**):**
-
-  ```json
-  {
-    "status": 0,
-    "message": "paymentLink generated",
-    "result": {
-      "invoiceNumber": "INV-2026-1042",
-      "paymentLink": "https://pp72.pmny.in/AbCdEfGhIjKl",
-      "totalAmount": 1000.00,
-      "active": true
-    }
-  }
-  ```
-
-  **HTTP always returns 200 — success or failure.** Check `body.status`: `0` = success, `-1` = failure. Do not rely on HTTP status codes alone.
-
-  **Save&#x20;**`invoiceNumber` — you need it for every subsequent fetch, update, share, or deactivate call. There is no separate numeric ID.
-</Accordion>
-
-<Accordion title="Step 3 — Build the webhook endpoint" icon="fa-bell">
-  Create a backend route: `POST /api/payu-webhook`
-
-  PayU POSTs to this URL the moment a payment completes. Your endpoint must return HTTP 200.
-
-  **Payload format:** `application/x-www-form-urlencoded`
-
-  **Step 1 — Verify the signature BEFORE processing anything:**
-
-  <Callout icon="🚧" theme="warning">
-    PayU Payment Links uses `CLIENT_SECRET` + SHA-512 for webhook verification. **Not HMAC-SHA256. Not your merchant salt. Not a separate webhook secret.** This is the most common integration mistake.
-  </Callout>
-
-  Hash formula (exact field order — do not rearrange):
-
-  ```
-  sha512(CLIENT_SECRET|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
-  ```
-
-  Steps:
-
-  1. URL-decode all fields from the POST body
-  2. Extract each named field (use empty string `""` for any missing field)
-  3. The six pipes after `status` represent five empty fields — do not collapse them
-  4. Compute `sha512(concatenated_string)` as a lowercase hex digest
-  5. Compare using constant-time comparison to the `hash` field in the payload
-  6. If mismatch → return HTTP 400, stop processing
-
-  **Key payload fields after verification passes:**
-
-  | Field         | Description                                                       |
-  | ------------- | ----------------------------------------------------------------- |
-  | `status`      | `success`, `failure`, or `pending`                                |
-  | `mihpayid`    | PayU's unique transaction ID — use for refunds and reconciliation |
-  | `txnid`       | Your transaction reference                                        |
-  | `amount`      | Payment amount as a string, e.g. `"1000.00"`                      |
-  | `udf1`–`udf5` | Custom fields you set when creating the link                      |
-
-  **On&#x20;**`status=success`**:** mark the order as paid using `mihpayid`. Implementation must be idempotent — PayU may retry the same event.
-
-  **On&#x20;**`status=pending`**:** do not mark as paid. Wait for a follow-up `success` or `failure` webhook.
-
-  Return HTTP 200 before running any slow processing. Enqueue heavy work asynchronously.
-</Accordion>
-
-<Accordion title="Step 4 — Register the webhook URL" icon="fa-gear">
-  This is a manual step — do it in the Dashboard, not in code.
-
-  1. Log in to [PayU Dashboard](https://onboarding.payu.in/)
-  2. Go to **Settings → Webhooks**
-  3. Enter your endpoint URL and click **Save**
-
-  Your endpoint must be publicly accessible over HTTPS. `localhost` URLs will not work — use `ngrok` or `cloudflared` during local development:
-
-  ```
-  ngrok http 3000
-  ```
-
-  Register the ngrok HTTPS URL in the Dashboard. Update it each time you restart ngrok.
-</Accordion>
-
-<Accordion title="Step 5 — Test end-to-end" icon="fa-vial">
-  1. Call your `POST /api/create-payment-link` and confirm you get back a `paymentLink` URL and `invoiceNumber`
-  2. Open the `paymentLink` URL in a browser
-  3. Complete a test payment using PayU test credentials: [Key & Salt Reference](doc:key-salt-reference)
-  4. Confirm your webhook fires and your order is marked as paid
-
-  **If your webhook hash keeps failing:** check that you are using `CLIENT_SECRET` (not merchant salt), that you are URL-decoding the payload before building the hash string, and that `amount` uses the exact decimal format from the payload (e.g. `"1000.00"`, not `"1000"`).
-</Accordion>
-
-### Fastest way to implement Path 1
-
-Paste the ready-made coding agent prompt from [Integrate with AI Coding Assistants](doc:use-with-ai) into Cursor, Claude Code, or GitHub Copilot. Fill in your three credentials at the top of the prompt and the AI writes the entire integration — token cache, create endpoint, webhook handler — for your existing stack.
+Instead of building from scratch, paste the ready-made coding agent prompt from [AI Coding Assistants](doc:use-with-ai) into Cursor, Claude Code, or GitHub Copilot. Fill in your three credentials at the top and the AI writes the entire integration — token cache, create endpoint, webhook handler — for your existing stack in one shot.
 
 ***
 
