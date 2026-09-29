@@ -92,15 +92,15 @@ PayU sends a **POST** request to your endpoint in the `application/x-www-form-ur
     Full payload reference for all webhook event types.
   </Card>
 
-  <Card title="Authentication" href="doc:api-auth-token" icon="fa-key">
+  <Card title="Authentication" href="https://docs.payu.in/reference/payment-links-authentication" icon="fa-key" target="_blank">
     Get the client_secret and OAuth2 token for Payment Links APIs.
   </Card>
 
-  <Card title="Fetch Payment Links" href="doc:api-fetch" icon="fa-magnifying-glass">
+  <Card title="Fetch All Payment Links" href="https://docs.payu.in/reference/fetch-all-payment-links" icon="fa-magnifying-glass" target="_blank">
     Poll payment status if you miss a webhook.
   </Card>
 
-  <Card title="Payment Links FAQs" href="doc:payment-links-faqs" icon="fa-circle-question">
+  <Card title="Payment Links FAQs" href="https://docs.payu.in/docs/payment-links-faqs" icon="fa-circle-question" target="_blank">
     Common questions about Payment Links.
   </Card>
 </Cards>
