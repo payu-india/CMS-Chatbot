@@ -72,18 +72,114 @@ To add a payment button:
   All your existing buttons are listed here.
 
 
-  <Image src="https://files.readme.io/e1baadd4cfb07131a0a41849f9b4f824cda27ee5d1f9129d458a44ecf4cfcc12-Screenshot_2026-09-29_at_3.41.17_PM.png" align="center" caption="Payment Buttons list in the PayU Dashboard" border={true} />
+  <Image src="https://files.readme.io/e1baadd4cfb07131a0a41849f9b4f824cda27ee5d1f9129d458a44ecf4cfcc12-Screenshot_2026-09-29_at_3.41.17_PM.png" align="center" caption="Access Payment Buttons" border={true} />
 
 </Accordion>
 
 <Accordion title="2. Create a New Payment Button" icon="far fa-plus">
-  Click **Create New Button** at the top-right corner of the page.
+  1. Click **Create New Button** displayed at the top-right corner of the page.
 
-  The **Create New Payment Button** panel opens.
+     The **Create New Payment Button** page is displayed.
 
 
-  <Image src="https://files.readme.io/dace80a25807f722b25d1ee7054db2836a7a3d44d97cb7ca82f67664bdbfd54b-Screenshot_2025-06-02_at_7.09.15_PM.png" align="center" caption="Create New Payment Button panel" border={true} />
+  <Image src="https://files.readme.io/dace80a25807f722b25d1ee7054db2836a7a3d44d97cb7ca82f67664bdbfd54b-Screenshot_2025-06-02_at_7.09.15_PM.png" align="center" caption="Create New Payment Button Page" border={true} />
 
+
+  2. Provide these **Button Details** to set up how your button looks and works:
+     <Table>
+       <thead>
+         <tr>
+           <th>
+             Field
+           </th>
+
+           <th>
+             Description
+           </th>
+
+           <th>
+             Notes
+           </th>
+         </tr>
+       </thead>
+
+       <tbody>
+         <tr>
+           <td>
+             **Button Text**
+           </td>
+
+           <td>
+             The text displayed on the button . Choose any of these text from the drop-down:
+
+             - **Buy Now**
+             - **Pay Now**
+             - **Book Now**
+             - **Donate Now**
+           </td>
+
+           <td>
+             Buy Now · Pay Now · Book Now · Donate Now
+           </td>
+         </tr>
+
+         <tr>
+           <td>
+             **Item Name**<br />_Required_
+           </td>
+
+           <td>
+             Enter a short description of the product or service. This is shown to the customer on the payment page
+           </td>
+
+           <td>
+
+           </td>
+         </tr>
+
+         <tr>
+           <td>
+             **Amount**
+           </td>
+
+           <td>
+             Enter the amount you want to collect
+           </td>
+
+           <td>
+             Leave blank to let your customer type in the amount — useful for donations
+           </td>
+         </tr>
+
+         <tr>
+           <td>
+             **Colour**
+           </td>
+
+           <td>
+             Choose a colour from the palette or enter a custom colour
+           </td>
+
+           <td>
+             Match your website's colours
+           </td>
+         </tr>
+
+         <tr>
+           <td>
+             **Size**
+           </td>
+
+           <td>
+             Choose Small, Medium, or Large
+           </td>
+
+           <td>
+             Medium works well for most pages
+           </td>
+         </tr>
+       </tbody>
+     </Table>
 </Accordion>
 
 <Accordion title="3. Set up your button" icon="far fa-sliders">
