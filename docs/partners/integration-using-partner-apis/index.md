@@ -143,7 +143,13 @@ Adds business category, sub-category, expected monthly volume, GST, business nam
 
 ### Step 3. Update Website/App Details
 
-Adds the merchant website and/or app store URLs. At least one channel URL is typically required depending on how the merchant sells. For the full parameter list and Try It experience, see [UpdateMerchant Website Details API](ref:updatemerchant_websitedetails).
+Adds the merchant website and/or app store URLs. At least one channel URL is typically required depending on how the merchant sells. For the full parameter list and Try It experience, see [Update Merchant Website Details API](ref:updatemerchant_websitedetails).
+
+<Callout icon="📘" theme="info">
+  ### Skip Website Details:&#x20;
+
+  If you are willing to skip updating the website details, refer to [Skip Website Details API.](ref:skip_merchant_website_details) You cannot accept payments through Partner Payments or Payment Links.
+</Callout>
 
 **HTTP Method**: PUT
 
