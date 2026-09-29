@@ -90,9 +90,8 @@ A Payment Button is a good choice if: <br />
 
 Consider another PayU solution if:<br />
 
-* You don't have a website and want to send a payment request → **Payment Links**
-* You want to collect payment by sharing a link over WhatsApp, SMS, or email → <Anchor target="_blank" href="doc:payment-links-overview">**Payment Links**</Anchor>
-* You need a full online store with a shopping cart → **PayU Hosted Checkout**
+* You do not have a website and want to send a payment request using a link → <Anchor target="_blank" href="https://docs.payu.in/docs/payment-links">**Payment Links**</Anchor>
+* You need a full online store with a shopping cart → <Anchor target="_blank" href="https://docs.payu.in/docs/prebuilt-checkout-payu-hosted">**PayU Hosted Checkout**</Anchor>
 * You want to build a custom checkout page that matches your website exactly → <Anchor target="_blank" href="doc:merchant-hosted-checkout">**Merchant Hosted Checkout**</Anchor>
 
 <Callout icon="far fa-face-thinking" theme="warn">
@@ -100,16 +99,16 @@ Consider another PayU solution if:<br />
 
   Tell us what you want to achieve and how you plan to accept payments. We will recommend the best PayU solution that fits your needs.
 
-  <Anchor target="_blank" href="doc:start-here">Find the right solution</Anchor> →
+  <Anchor target="_blank" href="https://docs.payu.in/docs/start-here">Find the right solution</Anchor> →
 </Callout>
 
 ***
 
 ## What Will I Need?
 
-You don't need a developer or any coding experience to get started.
+You don't need a developer or any coding experience to get started.<br />
 
-You'll need:
+All You need is:<br />
 
 <Columns layout="fixed">
   <Column>
@@ -119,7 +118,7 @@ You'll need:
 
 <Columns layout="fixed">
   <Column>
-    **A website, blog, or page builder:** Any site where you can add content to your pages — WordPress, Wix, Squarespace, or any website with a page editor.
+    **A website, blog, or page builder:** Any site where you can add content to your pages. For example WordPress, Wix, Squarespace, or any website with a page editor.
   </Column>
 </Columns>
 
