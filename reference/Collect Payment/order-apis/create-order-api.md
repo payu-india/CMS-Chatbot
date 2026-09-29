@@ -215,7 +215,6 @@ response = requests.post(url, headers=headers, data=payload)
 print(f'Status Code: {response.status_code}')
 print(f'Response: {response.text}')
 ```
-
 ```javascript
 const axios = require('axios');
 
