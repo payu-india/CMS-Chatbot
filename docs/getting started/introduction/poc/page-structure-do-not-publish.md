@@ -7,4 +7,4 @@ metadata:
 ---
 <PayUForwardHashGenerator hashProfile="hosted-checkout-v1" />
 
-<br />
+<PayUPaymentLinksWizard />
