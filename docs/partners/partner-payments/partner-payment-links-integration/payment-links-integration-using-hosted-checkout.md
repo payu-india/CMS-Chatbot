@@ -138,7 +138,7 @@ const data = await response.json();
 console.log(data);
 ```
 
-### Response Schema
+### Sample Response
 
 ```json
 {
@@ -184,7 +184,7 @@ Content-Type: application/json
 The domain of `redirect_url` must be pre-approved in PayU configurations. Supplying an unapproved domain results in an error: `redirect_url domain not allowed`.
 </Warning>
 
-### Code Samples
+### Sample Request
 
 ```curl
 curl --location 'https://test-partnerapilayer.payu.in/apilayer/partner/payment-link/payment' \
@@ -261,7 +261,7 @@ class Program
 }
 ```
 
-### Response Schema
+### Sample Response
 
 ```json
 {
@@ -270,6 +270,8 @@ class Program
   "expiry_time": 1735689900
 }
 ```
+
+### Response Parameters
 
 | Field          | Type    | Description                                                            |
 | :------------- | :------ | :--------------------------------------------------------------------- |
