@@ -9,6 +9,12 @@ The **Payment Link Hosted Checkout API (**`NON_UPI_PL`**)** allows external part
 
 When the partner provides an allowlisted `redirect_url` in the initiation request, PayU returns an `hpp_url`. The partner directs the customer's browser to this URL where they can pay using any merchant-supported payment method (Credit/Debit Cards, Net Banking, EMI, Wallets, and UPI). Upon completion, PayU redirects the customer back to the partner's `redirect_url`.
 
+<Callout icon="📘" theme="info">
+  ### Reference
+
+  For details on how to integrate, refer to [Partner Payment Links Integration using Hosted Checkout](https://docs.payu.in/docs/partner-payment-links-integration-using-hosted-checkout)
+</Callout>
+
 HTTP Method: **POST**
 
 ### Endpoints
