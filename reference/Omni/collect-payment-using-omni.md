@@ -39,14 +39,11 @@ See [Device Activation Guide →](doc:collect-payment-using-payu-omni#step-12-ac
 ## Prerequisites
 
 Before calling this API, ensure:
-
-<Info>
 ✅ **Partner Access Token** obtained from OAuth API (valid for 4 hours)  
 ✅ **POS Device activated** and mapped to merchant in Partner Dashboard  
 ✅ **Payment methods enabled** for merchant account AND device  
 ✅ **Merchant credentials** (`key` and `salt`) available  
 ✅ **Webhook URL** configured in Partner Dashboard (HTTPS required)
-</Info>
 
 ***
 
