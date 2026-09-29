@@ -161,7 +161,7 @@ To add a payment button:
        </tbody>
      </Table>
 
-     <Image src="https://files.readme.io/9b01f08aec2380807845c80220fb86be66b0908c5a3e4b2d444fdb99f3e1cdb0-Screenshot_2026-09-29_at_4.12.16_PM.png" align="center" caption="Add Custom Details" border={true} />
+     <Image src="https://files.readme.io/da83ac123dfde2852f1aae8a044448c59baf4b4fb0b4fe10a0fedc2a4f786bd6-Screenshot_2026-09-29_at_4.14.23_PM.png" align="center" caption="Add Button Details" border={true} />
 
 </Accordion>
 
@@ -174,8 +174,7 @@ To add a payment button:
      - **Customer Email**
      - **Customer Mobile**
 
-     <Image src="https://files.readme.io/d893d8273e9665d536d909092edbe6780c51957c63feff70e974b281fa9cf995-Screenshot_2026-09-29_at_4.09.36_PM.png" border={true} />
-
+     <Image src="https://files.readme.io/b1640075e80da6845b2db91376ddc70cf909ac9ebed3f6ed33230fcfe1387586-Screenshot_2026-09-29_at_4.12.16_PM.png" align="center" caption="Add Custom Detials" border={true} />
 
   2. To add a field of your own, click **Add Fields** and fill in:
 
