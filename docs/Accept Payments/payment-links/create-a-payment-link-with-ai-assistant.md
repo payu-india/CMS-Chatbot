@@ -478,6 +478,12 @@ Webhook runtime:
 Begin integration now.
 ```
 
+<Callout icon="fad fa-brake-warning" theme="error">
+  ### **Confidential!**
+
+  Never share your `CLIENT_SECRET` or paste it into a public chat, a GitHub issue, or any client-side code. It is used both to authenticate API calls and to verify incoming webhook signatures.
+</Callout>
+
 ***
 
 ## How this Prompt Works
@@ -548,10 +554,4 @@ The AI will list these, but they always apply:
   ### **Note:**
 
   The AI will not commit code, run your server, or touch your `.env` file. These are intentional guardrails built into the prompt. All changes are left uncommitted for you to review.
-</Callout>
-
-<Callout icon="fad fa-brake-warning" theme="error">
-  ### **Confidential!**
-
-  Never share your `CLIENT_SECRET` or paste it into a public chat, a GitHub issue, or any client-side code. It is used both to authenticate API calls and to verify incoming webhook signatures.
 </Callout>
