@@ -1,7 +1,9 @@
 ---
-title: Payment Links Integration using Hosted Checkout
+title: Partner Payment Links Integration using Hosted Checkout
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
