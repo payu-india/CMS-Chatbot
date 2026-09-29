@@ -8,16 +8,15 @@ metadata:
 The **Get Checkout Details** (get_checkout_details) API is a generic API using which they can get information when you create the custom checkout pages, that will contain the payment options, offers, recommendations, and downtime details. The API provides the following details:
 
 * **Payment option details**: The extended details for each payment option are available for the merchant.
-* **Additional charges**: The additional charges are configured for all payment options.  
-  eligibility details
+* **Additional charges**: The additional charges are configured for all payment options.<br />eligibility details
 * **Downtime details**: The downtime status of the payment options.
 
 **Environment**
 
-|                        |                                                                                      |
-| :--------------------- | :----------------------------------------------------------------------------------- |
-| Production Environment | [https://test.payu.in/v3/checkout/details](https://test.payu.in/v3/checkout/details) |
-| Test Environment       | https://info.payu.in/v3/checkout/details                                             |
+|                      |                                                                                            |
+| -------------------- | ------------------------------------------------------------------------------------------ |
+| **Test**             | [https://apitest.payu.in/v3/checkout/details](https://apitest.payu.in/v3/checkout/details) |
+| **Production&#x20;** | [https://api.payu.in/v3/checkout/details](https://api.payu.in/v3/checkout/details)         |
 
 ## Request headers
 
