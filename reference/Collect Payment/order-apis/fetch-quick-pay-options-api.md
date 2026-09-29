@@ -1,7 +1,7 @@
 ---
 title: Fetch Quick Pay Options API
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
