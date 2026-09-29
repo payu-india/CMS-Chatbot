@@ -148,7 +148,7 @@ Adds the merchant website and/or app store URLs. At least one channel URL is typ
 <Callout icon="📘" theme="info">
   ### Skip Website Details:&#x20;
 
-  If you are willing to skip updating the website details, refer to [Skip Website Details API.](ref:skip_merchant_website_details) You cannot accept payments through Partner Payments or Payment Links.
+  If you are willing to skip updating the website details, refer to [Skip Website Details API.](ref:skip_merchant_website_details) If you skjp this step or don't update website/app, you cannot accept payments through Partner Payments or Payment Links.
 </Callout>
 
 **HTTP Method**: PUT
