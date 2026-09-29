@@ -22,7 +22,7 @@ metadata:
   fontWeight="bold"
 />
 
-There are two ways to use AI to create a Payment Link — choose based on how much automation you want.
+There are two ways to use AI to create a Payment Link. Choose based on how much automation you want.
 
 |                    | Ask AI                               | AI Agent (Remote MCP)                                |
 | ------------------ | ------------------------------------ | ---------------------------------------------------- |
