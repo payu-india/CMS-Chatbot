@@ -1,3 +1,4 @@
 - get-payment-link-metadata-api
 - partner-payment-link-api-with-upi-intent
 - partner-payment-link-api-hosted-checkout-integration
+- verify-payment-link-transaction-api
