@@ -5,15 +5,4 @@ hidden: true
 metadata:
   robots: index
 ---
-<PayUIntegrationPathRecommender />
-
-<br />
-
-<br />
-
-<br />
-
-<PayUHostedIntegrationWizard />
-
-
-<br />
+<PayUPaymentLinksWizard />
