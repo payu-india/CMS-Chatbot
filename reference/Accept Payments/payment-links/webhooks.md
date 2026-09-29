@@ -88,11 +88,11 @@ PayU sends a **POST** request to your endpoint in the `application/x-www-form-ur
 ## Related Pages
 
 <Cards>
-  <Card title="Webhook Events and Sample Payloads" href="doc:webhook-events-and-sample-payloads" icon="fa-code">
+  <Card title="Webhook Events and Payloads" href="https://docs.payu.in/docs/webhook-events" icon="fa-code" target="_blank">
     Full payload reference for all webhook event types.
   </Card>
 
-  <Card title="Authentication (Token)" href="doc:api-auth-token" icon="fa-key">
+  <Card title="Authentication" href="doc:api-auth-token" icon="fa-key">
     Get the client_secret and OAuth2 token for Payment Links APIs.
   </Card>
 
