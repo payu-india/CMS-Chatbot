@@ -1,9 +1,5 @@
 ---
 title: AI Coding Assistants to Create a Payment Link
-excerpt: >-
-  Two ways to create PayU Payment Links using AI — ask the PayU Ask AI chatbot
-  to guide you through the Dashboard, or let an AI agent create the link
-  autonomously on your behalf using the Remote MCP server.
 deprecated: false
 hidden: true
 link:
