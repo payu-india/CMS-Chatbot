@@ -380,7 +380,7 @@ This step sends the payment initiation request to PayU, which pushes the payment
 | UAT         | `https://apitest.payu.in/partner/initiatePayment` |
 | Production  | `https://api.payu.in/partner/initiatePayment`     |
 
-### Sample Request (cURL)
+### Sample Request
 
 ```bash
 curl --location 'https://api.payu.in/partner/initiatePayment' \
@@ -1123,4 +1123,3 @@ Replace all UAT credentials and endpoints with production values:
 4. Set up alerts for missing webhooks or status mismatches
 
 **Checkpoint:** ✅ Live transaction successful | ✅ All verifications passed | ✅ Reconciliation process active
-
