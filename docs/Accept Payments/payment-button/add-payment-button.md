@@ -285,25 +285,3 @@ After your customer clicks the button and completes a payment:
     Handle cases where a customer has raised a complaint with their bank about a payment.
   </Card>
 </Cards>
-
-***
-
-## Next Steps
-
-<Cards>
-  <Card title="Customize Your Button" href="doc:customize-payment-button" icon="fa-sliders">
-    See all the ways you can configure your button — colours, size, amount type, and redirect pages.
-  </Card>
-
-  <Card title="Manage Payment Buttons" href="doc:manage-payment-buttons" icon="fa-list-check">
-    Check payments received, filter your buttons, and download records.
-  </Card>
-
-  <Card title="Payment Button Troubleshooting" href="doc:payment-button-troubleshooting" icon="fa-wrench">
-    Fix issues with buttons not showing, payments not going through, or records not appearing.
-  </Card>
-
-  <Card title="Payment Button FAQs" href="doc:payment-button-faqs" icon="fa-circle-question">
-    Common questions about Payment Buttons.
-  </Card>
-</Cards>
