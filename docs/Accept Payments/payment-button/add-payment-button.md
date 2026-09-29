@@ -221,10 +221,9 @@ To add a payment button:
      <Image src="https://files.readme.io/0d5b65c380ca96a02549e4a8af8c31f9f890bc3b3cadd3d91a564328aee7b2e9-Screenshot_2026-09-29_at_4.26.21_PM.png" align="center" caption="Add the Code to Your Website" border={true} />
 
 
-
   3. Go to your website and paste the code where you want the button to appear:
 
-  | Website builder    | How to add the code                                                   |
+  | Website Builder    | How To Add the Code                                                   |
   | ------------------ | --------------------------------------------------------------------- |
   | **WordPress**      | Add a **Custom HTML** block to your page and paste the code inside it |
   | **Wix**            | Add an **HTML iframe** element to your page and paste the code        |
@@ -234,7 +233,9 @@ To add a payment button:
   The button appears on your page right away.
 
   <Callout icon="🚧" theme="warning">
-    **Payment Buttons cannot be changed after creation.** If you need to update the label, amount, colour, or any other setting — create a new button with the correct details and replace the code on your website.
+    ### **Watch Out!**
+
+    Payment Buttons cannot be changed after creatio&#x6E;**.** If you need to update the label, amount, colour, or any other setting, create a new button with the correct details and replace the code on your website.
   </Callout>
 </Accordion>
 
