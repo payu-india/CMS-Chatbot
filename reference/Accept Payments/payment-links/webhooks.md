@@ -19,11 +19,13 @@ When a customer pays via a Payment Link, PayU sends a webhook POST to your regis
 
 ## Step 1: Register Your Webhook Endpoint
 
-1. Log in to the [PayU Dashboard](https://onboarding.payu.in/).
+1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor>.
 2. Go to **Settings → Webhooks**.
 3. Enter your endpoint URL under **Webhook URL** and click **Save**.
 
 <Callout icon="🚧" theme="warning">
+  ### **Note:**
+
   Your endpoint must be publicly accessible over HTTPS. `localhost` and HTTP URLs will not receive webhooks.
 </Callout>
 
