@@ -96,10 +96,6 @@ To add a payment button:
            <th>
              Description
            </th>
-
-           <th>
-             Notes
-           </th>
          </tr>
        </thead>
 
@@ -117,10 +113,6 @@ To add a payment button:
              - **Book Now**
              - **Donate Now**
            </td>
-
-           <td>
-             Buy Now · Pay Now · Book Now · Donate Now
-           </td>
          </tr>
 
          <tr>
@@ -131,10 +123,6 @@ To add a payment button:
            <td>
              Enter a short description of the product or service. This is shown to the customer on the payment page
            </td>
-
-           <td>
-
-           </td>
          </tr>
 
          <tr>
@@ -143,11 +131,7 @@ To add a payment button:
            </td>
 
            <td>
-             Enter the amount you want to collect
-           </td>
-
-           <td>
-             Leave blank to let your customer type in the amount — useful for donations
+             Enter the amount you want to collect. You can leave blank to let your customer type in the amount
            </td>
          </tr>
 
@@ -159,10 +143,6 @@ To add a payment button:
            <td>
              Choose a colour from the palette or enter a custom colour
            </td>
-
-           <td>
-             Match your website's colours
-           </td>
          </tr>
 
          <tr>
@@ -171,45 +151,33 @@ To add a payment button:
            </td>
 
            <td>
-             Choose Small, Medium, or Large
-           </td>
+             The size of the button. Choose any of these from the drop-down:&#x20;
 
-           <td>
-             Medium works well for most pages
+             - **Small**
+             - **Medium**
+             - **Large**
            </td>
          </tr>
        </tbody>
      </Table>
+
+     <Image src="https://files.readme.io/9b01f08aec2380807845c80220fb86be66b0908c5a3e4b2d444fdb99f3e1cdb0-Screenshot_2026-09-29_at_4.12.16_PM.png" align="center" caption="Add Custom Details" border={true} />
+
 </Accordion>
 
-<Accordion title="3. Set up your button" icon="far fa-sliders">
-  Fill in these details to set up how your button looks and works:
+<Accordion title="3. Add Checkout Fields (Optional)" icon="far fa-list-check">
+  Add custom fields to collect information from your customer before they pay.
 
-  | Setting         | What to do                                                | Notes                                                                      |
-  | --------------- | --------------------------------------------------------- | -------------------------------------------------------------------------- |
-  | **Button Text** | Choose a label from the drop-down                         | Buy Now · Pay Now · Book Now · Donate Now                                  |
-  | **Item Name**   | Enter a short description of the product or service       | Shown to the customer on the payment page                                  |
-  | **Amount**      | Enter the amount you want to collect                      | Leave blank to let your customer type in the amount — useful for donations |
-  | **Colour**      | Choose a colour from the palette or enter a custom colour | Match your website's colours                                               |
-  | **Size**        | Choose Small, Medium, or Large                            | Medium works well for most pages                                           |
-</Accordion>
+  1. Scroll to the **Custom Details** section and switch on any of the ready-made fields you want to collect:
+     - **Customer Name**
+     - **Customer Address**
+     - **Customer Email**
+     - **Customer Mobile**
 
-<Accordion title="4. Add checkout fields (optional)" icon="far fa-list-check">
-  Add fields to collect information from your customer before they pay.
-
-  1. Scroll to the **Custom Details** section.
+     <Image src="https://files.readme.io/d893d8273e9665d536d909092edbe6780c51957c63feff70e974b281fa9cf995-Screenshot_2026-09-29_at_4.09.36_PM.png" border={true} />
 
 
-  <Image src="https://files.readme.io/b3a27b5d2959197102e56442a3f0fa6054486c1db2caba39ba45c7bbab504f4f-Screenshot_2025-06-04_at_12.32.20_PM.png" align="center" width="250px" caption="Custom Details section" border={true} />
-
-
-  2. Switch on any of the ready-made fields you want to collect:
-     - Customer Name
-     - Customer Address
-     - Customer Email
-     - Customer Mobile
-
-  3. To add a field of your own, click **Add Fields** and fill in:
+  2. To add a field of your own, click **Add Fields** and fill in:
 
   | Setting               | What to enter                                             |
   | --------------------- | --------------------------------------------------------- |
