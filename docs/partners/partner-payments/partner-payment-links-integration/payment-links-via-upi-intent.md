@@ -1,7 +1,7 @@
 ---
 title: Payment Links via UPI Intent
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
@@ -157,7 +157,7 @@ const data = await response.json();
 console.log(data);
 ```
 
-### Response Schema
+### Sample Response
 
 ```json
 {
@@ -172,7 +172,7 @@ console.log(data);
 
 ***
 
-## Step 3: Initiate UPI Intent Payment (`UPI_PL`)
+## Step 3: Collect Payment
 
 To trigger the **`UPI_PL` flow**, send a `POST` request with `payment_link_id` and customer's `phone_number`. **Do not include `redirect_url`** in the payload.
 
@@ -202,7 +202,7 @@ Content-Type: application/json
 When `redirect_url` is omitted, PayU evaluates the merchant configuration and returns `upi_intent_url`. Ensure UPI is enabled on the payment link.
 </Callout>
 
-### Code Samples
+### Sample Request
 
 ```curl
 curl --location 'https://test-partnerapilayer.payu.in/apilayer/partner/payment-link/payment' \
@@ -273,7 +273,7 @@ public class InitiateUPIIntentPL {
 }
 ```
 
-### Response Schema
+### Sample Response
 
 ```json
 {
@@ -282,7 +282,7 @@ public class InitiateUPIIntentPL {
   "expiry_time": 1735689900
 }
 ```
-
+### Response Parameters
 | Field | Type | Description |
 | :--- | :--- | :--- |
 | `order_ref_id` | string | PayU unique order reference identifier |
@@ -316,7 +316,7 @@ if let url = URL(string: upiIntentUrl) {
 
 ***
 
-## Step 5: Verify Transaction Status
+## Step 5: Verify Payment
 
 Always perform server-to-server payment verification before fulfilling orders or services.
 
@@ -334,7 +334,7 @@ curl --location 'https://test-partnerapilayer.payu.in/apilayer/partner/payment-l
 --header 'Authorization: Bearer your_access_token_here'
 ```
 
-### Sample Response (`UPI_PL`)
+### Sample Response
 
 ```json
 {
