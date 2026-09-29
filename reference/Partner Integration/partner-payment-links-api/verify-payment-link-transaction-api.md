@@ -20,9 +20,9 @@ HTTP Method: **GET**
 
 ***
 
-## Sample Request
+## Request Parameters
 
-## Request Headers
+### Request Headers
 
 | Header          | Type     | Mandatory | Description                                                                                                           |
 | :-------------- | :------- | :-------- | :-------------------------------------------------------------------------------------------------------------------- |
