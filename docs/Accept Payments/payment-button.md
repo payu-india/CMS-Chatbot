@@ -31,7 +31,17 @@ next:
   fontWeight="bold"
 />
 
-A Payment Button is a small, embeddable widget you add directly to your website or blog. Visitors click it, pay on PayU's hosted checkout page, and are redirected back to your site — without you writing a single line of payment code.
+## What Can I Do with a Payment Button?
+
+Payment Buttons let you accept payments directly on your website or blog without building a custom checkout.<br />
+
+You can use Payment Buttons to:<br />
+
+* Add a "Buy Now", "Pay Now", or "Donate" button to any webpage or blog post
+* Accept payments from website visitors without a shopping cart or checkout integration
+* Collect donations with a variable-amount button your visitors fill in
+* Customise the button label, colour, size, and amount from the Dashboard
+* Track all transactions in the PayU Dashboard
 
 <HTMLBlock>{`
                 <style>
@@ -70,7 +80,7 @@ A Payment Button is a small, embeddable widget you add directly to your website 
 
 ***
 
-## What Can I Do with a Payment Button?
+##
 
 Payment Buttons let you accept payments directly on your website or blog without building a custom checkout.<br />
 
