@@ -189,7 +189,7 @@ When your customer visits your website:
 
 ## How do I Manage My Payment Buttons?
 
-Once your button is live:
+Once your button is live:<br />
 
 <Columns layout="fixed">
   <Column>
@@ -222,7 +222,6 @@ Once your button is live:
 <Cards>
   <Card title="Add a Payment Button" href="doc:add-a-payment-button" icon="far fa-plus">
     - **Create a Payment Button:** Simple steps to set up your button in the PayU Dashboard.
-    - **Add to your website:** Copy the code and paste it anywhere on your site.
   </Card>
 
   <Card title="Customize Your Button" href="doc:customize-payment-button" icon="fa-sliders">
@@ -231,9 +230,5 @@ Once your button is live:
 
   <Card title="Payment Button FAQs" href="doc:payment-button-faqs" icon="fa-circle-question">
     Common questions about Payment Buttons — display issues, setup tips, and tracking your payments.
-  </Card>
-
-  <Card title="Payment Links" href="doc:payment-links-overview" icon="fa-link">
-    Need to share a payment request instead of adding a button to your site? Use Payment Links.
   </Card>
 </Cards>
