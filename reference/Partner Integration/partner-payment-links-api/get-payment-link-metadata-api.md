@@ -18,7 +18,13 @@ HTTP Method: **GET**
 
 ***
 
-## Request Headers
+## Request Parameters
+
+<Callout icon="📘" theme="info">
+  ### All the parameters are mandatory in header and body.
+</Callout>
+
+### Request Headers
 
 | Header          | Description                                                                                                                    |
 | :-------------- | :----------------------------------------------------------------------------------------------------------------------------- |
@@ -26,9 +32,7 @@ HTTP Method: **GET**
 
 ***
 
-## Query Parameters
-
-**The&#x20;**`payment_link `**parameter is mandatory.**
+### Query Parameters
 
 | Parameter      | Description                                                                                                               | Example                           |
 | :------------- | :------------------------------------------------------------------------------------------------------------------------ | :-------------------------------- |
