@@ -63,9 +63,11 @@ Add a payment button to your website or blog from the PayU Dashboard in just a f
 
 ## How Do I Add a Payment Button?
 
+To add a payment button:
+
 <Accordion title="1. Open Payment Buttons on the Dashboard" icon="far fa-grid-2">
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor>.
-  2. Expand **Payment Tools** and click **Payment Buttons** from the menu on the left.
+  2. Expand **Payment Tools&#x20;**&#x61;nd clic&#x6B;**&#x20;Payment Links&#x20;**&#x64;isplayed in the left navigation.
 
   All your existing buttons are listed here.
 
