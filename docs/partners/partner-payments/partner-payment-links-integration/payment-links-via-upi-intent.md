@@ -1,35 +1,13 @@
 ---
-title: 'Payment Links with UPI Intent '
+title: Partner  Payment Links with UPI Intent
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
----
-title: 'Payment Links via UPI Intent - Partner Payments'
-deprecated: false
-hidden: false
-metadata:
-  title: Payment Links via UPI Intent (UPI_PL) Integration Guide | PayU Partner Payments
-  description: Step-by-step developer integration guide for partners to fulfill PayU payment links directly via UPI Intent (UPI_PL) without browser redirection.
-  keywords:
-    - PayU Payment Links
-    - UPI_PL
-    - UPI Intent Payment Link
-    - Partner Payments
-    - Reseller Payments
-    - S2S Payment Link
-    - verifyPayment
-  robots: index
-next:
-  description: ''
-  pages:
-    - slug: payment-links-hosted-checkout-partner
-      title: Payment Links via Hosted Checkout (NON_UPI_PL)
-      type: doc
----
-
-PayU Partner Payments **Payment Links via UPI Intent (`UPI_PL`)** enables partners and resellers to fulfill standard merchant payment links directly on mobile devices using installed UPI applications (Google Pay, PhonePe, Paytm, BHIM, Cred, etc.) without requiring a web browser redirect.
+PayU Partner Payments **Payment Links via UPI Intent (**`UPI_PL`**)** enables partners and resellers to fulfill standard merchant payment links directly on mobile devices using installed UPI applications (Google Pay, PhonePe, Paytm, BHIM, Cred, etc.) without requiring a web browser redirect.
 
 In this integration, the partner queries the metadata of an existing PayU payment link and initiates an S2S transaction request without passing a `redirect_url`. PayU returns an `upi_intent_url` (deep link) which the partner app triggers on the customer's device.
 
@@ -90,10 +68,10 @@ Obtain an OAuth Bearer token using the `client_credentials` grant type.
 
 ### Endpoint URLs
 
-| Environment | URL |
-| :--- | :--- |
+| Environment       | URL                                             |
+| :---------------- | :---------------------------------------------- |
 | **Sandbox (UAT)** | `POST https://uat-accounts.payu.in/oauth/token` |
-| **Production** | `POST https://accounts.payu.in/oauth/token` |
+| **Production**    | `POST https://accounts.payu.in/oauth/token`     |
 
 ```bash
 curl --location 'https://uat-accounts.payu.in/oauth/token' \
@@ -105,6 +83,7 @@ curl --location 'https://uat-accounts.payu.in/oauth/token' \
 ```
 
 **Response:**
+
 ```json
 {
   "access_token": "a1b2c3d4e5f67890abcdef1234567890",
@@ -122,10 +101,10 @@ Verify that the payment link is valid, active (`PENDING`), and capture the amoun
 
 ### Endpoint URLs
 
-| Environment | URL |
-| :--- | :--- |
+| Environment       | URL                                                                                                               |
+| :---------------- | :---------------------------------------------------------------------------------------------------------------- |
 | **Sandbox (UAT)** | `GET https://test-partnerapilayer.payu.in/apilayer/partner/payment-link/metadata?payment_link=<PAYMENT_LINK_URL>` |
-| **Production** | `GET https://partnerapilayer.payu.in/apilayer/partner/payment-link/metadata?payment_link=<PAYMENT_LINK_URL>` |
+| **Production**    | `GET https://partnerapilayer.payu.in/apilayer/partner/payment-link/metadata?payment_link=<PAYMENT_LINK_URL>`      |
 
 ### Request Headers
 
@@ -174,14 +153,14 @@ console.log(data);
 
 ## Step 3: Collect Payment
 
-To trigger the **`UPI_PL` flow**, send a `POST` request with `payment_link_id` and customer's `phone_number`. **Do not include `redirect_url`** in the payload.
+To trigger the `UPI_PL`**&#x20;flow**, send a `POST` request with `payment_link_id` and customer's `phone_number`. **Do not include&#x20;**`redirect_url` in the payload.
 
 ### Endpoint URLs
 
-| Environment | URL |
-| :--- | :--- |
+| Environment       | URL                                                                               |
+| :---------------- | :-------------------------------------------------------------------------------- |
 | **Sandbox (UAT)** | `POST https://test-partnerapilayer.payu.in/apilayer/partner/payment-link/payment` |
-| **Production** | `POST https://partnerapilayer.payu.in/apilayer/partner/payment-link/payment` |
+| **Production**    | `POST https://partnerapilayer.payu.in/apilayer/partner/payment-link/payment`      |
 
 ### Request Headers
 
@@ -192,14 +171,14 @@ Content-Type: application/json
 
 ### Request Body Parameters
 
-| Parameter | Type | Required | Description | Example |
-| :--- | :--- | :--- | :--- | :--- |
-| `payment_link_id` | string | **Yes** | Full URL of the PayU payment link | `https://v.payu.in/PAYUMN/abc123` |
-| `phone_number` | string | **Yes** | Customer 10-digit mobile number | `919820988398` |
-| `redirect_url` | string | **No (Omit)** | **Must be omitted or null** to trigger the UPI Intent flow. | *(omitted)* |
+| Parameter         | Type   | Required      | Description                                                 | Example                           |
+| :---------------- | :----- | :------------ | :---------------------------------------------------------- | :-------------------------------- |
+| `payment_link_id` | string | **Yes**       | Full URL of the PayU payment link                           | `https://v.payu.in/PAYUMN/abc123` |
+| `phone_number`    | string | **Yes**       | Customer 10-digit mobile number                             | `919820988398`                    |
+| `redirect_url`    | string | **No (Omit)** | **Must be omitted or null** to trigger the UPI Intent flow. | _(omitted)_                       |
 
 <Callout icon="💡" theme="info">
-When `redirect_url` is omitted, PayU evaluates the merchant configuration and returns `upi_intent_url`. Ensure UPI is enabled on the payment link.
+  When `redirect_url` is omitted, PayU evaluates the merchant configuration and returns `upi_intent_url`. Ensure UPI is enabled on the payment link.
 </Callout>
 
 ### Sample Request
@@ -282,12 +261,14 @@ public class InitiateUPIIntentPL {
   "expiry_time": 1735689900
 }
 ```
+
 ### Response Parameters
-| Field | Type | Description |
-| :--- | :--- | :--- |
-| `order_ref_id` | string | PayU unique order reference identifier |
-| `upi_intent_url` | string | Deep-link URI to trigger installed UPI applications on the customer's device |
-| `expiry_time` | integer | Intent link expiration Unix timestamp |
+
+| Field            | Type    | Description                                                                  |
+| :--------------- | :------ | :--------------------------------------------------------------------------- |
+| `order_ref_id`   | string  | PayU unique order reference identifier                                       |
+| `upi_intent_url` | string  | Deep-link URI to trigger installed UPI applications on the customer's device |
+| `expiry_time`    | integer | Intent link expiration Unix timestamp                                        |
 
 ***
 
@@ -296,6 +277,7 @@ public class InitiateUPIIntentPL {
 Pass the `upi_intent_url` to the customer's mobile device to trigger UPI apps:
 
 ### Android (Intent Invocation)
+
 ```kotlin
 val intentUri = Uri.parse(upiIntentUrl)
 val upiIntent = Intent(Intent.ACTION_VIEW, intentUri)
@@ -306,6 +288,7 @@ if (upiIntent.resolveActivity(packageManager) != null) {
 ```
 
 ### iOS (Custom URL Scheme)
+
 ```swift
 if let url = URL(string: upiIntentUrl) {
     if UIApplication.shared.canOpenURL(url) {
@@ -322,10 +305,10 @@ Always perform server-to-server payment verification before fulfilling orders or
 
 ### Endpoint URLs
 
-| Environment | URL |
-| :--- | :--- |
+| Environment       | URL                                                                                                                                                   |
+| :---------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Sandbox (UAT)** | `GET https://test-partnerapilayer.payu.in/apilayer/partner/payment-link/verifyPayment?order_ref_id=<ORDER_REF_ID>&payment_link_id=<PAYMENT_LINK_URL>` |
-| **Production** | `GET https://partnerapilayer.payu.in/apilayer/partner/payment-link/verifyPayment?order_ref_id=<ORDER_REF_ID>&payment_link_id=<PAYMENT_LINK_URL>` |
+| **Production**    | `GET https://partnerapilayer.payu.in/apilayer/partner/payment-link/verifyPayment?order_ref_id=<ORDER_REF_ID>&payment_link_id=<PAYMENT_LINK_URL>`      |
 
 ### Sample Request
 
@@ -379,9 +362,9 @@ INSERT INTO partner_merchant_params (
 
 ## Troubleshooting & FAQ
 
-| Error / Issue | Probable Cause | Action |
-| :--- | :--- | :--- |
+| Error / Issue               | Probable Cause                                              | Action                                                                    |
+| :-------------------------- | :---------------------------------------------------------- | :------------------------------------------------------------------------ |
 | `Link does not support UPI` | Merchant configuration on payment link does not permit UPI. | Merchant must reconfigure the link or use Hosted Checkout (`NON_UPI_PL`). |
-| `Payment link expired` | The link has passed `expiry_time`. | Customer cannot pay. A new link must be created. |
-| `Payment link already used` | Link has already been marked as paid. | Cannot be reused. |
-| `Invalid phone number` | Phone number formatting error. | Pass digits only (between 5 and 16 characters). |
+| `Payment link expired`      | The link has passed `expiry_time`.                          | Customer cannot pay. A new link must be created.                          |
+| `Payment link already used` | Link has already been marked as paid.                       | Cannot be reused.                                                         |
+| `Invalid phone number`      | Phone number formatting error.                              | Pass digits only (between 5 and 16 characters).                           |
