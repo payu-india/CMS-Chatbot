@@ -221,7 +221,7 @@ Once your button is live:<br />
 
 <Cards>
   <Card title="Add a Payment Button" href="doc:add-a-payment-button" icon="far fa-plus">
-    - **Create a Payment Button:** Simple steps to set up your button in the PayU Dashboard.
+    **Create a Payment Button:** Simple steps to set up your button in the PayU Dashboard.
   </Card>
 
   <Card title="Customize Your Button" href="doc:customize-payment-button" icon="fa-sliders">
