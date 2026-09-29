@@ -6,7 +6,25 @@ excerpt: >-
 deprecated: false
 hidden: true
 metadata:
+  title: Add a PayU Payment Button to Your Website | Developer Docs
+  description: >-
+    Create a PayU payment button in the Dashboard, configure label, amount,
+    colour, and redirect URLs, then copy the embed snippet to your website.
+  keywords:
+    - add payment button payu
+    - create payment button dashboard
+    - embed payment button website
+    - payu buy now button
+    - payu donate now button
+    - payment button embed code
+    - payu payment button quickstart
   robots: index
+next:
+  description: Explore related information and resources.
+  pages:
+    - slug: payment-button
+      title: Payment Button
+      type: basic
 ---
 {/* EXISTING CONTENT: adapted from payment-buttons-dashboard.md */}
 
