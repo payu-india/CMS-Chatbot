@@ -28,7 +28,7 @@ Use this API:
 | <Glossary>Date</Glossary> `mandatory`          | `String` Current date and time in RFC 1123 format.                                                                                      | Wed, 15 Jan 2025 10:30:00 GMT                                                |
 | <Glossary>Authorization</Glossary> `mandatory` | `String` HMAC SHA-512 signature header format: `hmac username="{merchantKey}", algorithm="sha512", headers="date", signature="{hash}"`. | hmac username="smsplus", algorithm="sha512", headers="date", signature="..." |
 
-### Request Parameters
+### Body Parameters
 
 **Mandatory Parameters**
 
