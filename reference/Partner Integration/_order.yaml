@@ -2,7 +2,6 @@
 - get_token_partner_integration
 - onboarding-and-kyc-apis
 - merchant-rates
-- manage-invoices-or-payment-links
 - partner-qr-integration-apis
 - collect-payment-for-partners
 - using-webhooks-for-merchant-status
