@@ -7,13 +7,6 @@ link:
 metadata:
   robots: index
 ---
----
-title: Initiate Payment API - Omni
-excerpt: API reference for initiating POS payments via PayU Omni
-category: 65ee4b13ba7bd6003d0c61b4
-slug: initiate-payment-api-omni
----
-
 The Initiate Payment API allows partners to initiate in-person payment collection via PayU Omni POS devices. This API pushes a payment request to the specified device, enabling customers to complete payment using their preferred method.
 
 <Warning>
@@ -22,7 +15,7 @@ The Initiate Payment API allows partners to initiate in-person payment collectio
 See [Device Activation Guide →](doc:collect-payment-using-payu-omni#step-12-activate-your-pos-device)
 </Warning>
 
----
+***
 
 ## Endpoint
 
@@ -32,16 +25,16 @@ See [Device Activation Guide →](doc:collect-payment-using-payu-omni#step-12-ac
 
 **Content-Type:** `application/json`
 
----
+***
 
 ## Environment URLs
 
-| Environment | URL |
-| ----------- | --------- |
+| Environment | URL                                               |
+| ----------- | ------------------------------------------------- |
 | UAT         | `https://apitest.payu.in/partner/initiatePayment` |
-| Production  | `https://api.payu.in/partner/initiatePayment` |
+| Production  | `https://api.payu.in/partner/initiatePayment`     |
 
----
+***
 
 ## Prerequisites
 
@@ -55,11 +48,9 @@ Before calling this API, ensure:
 ✅ **Webhook URL** configured in Partner Dashboard (HTTPS required)
 </Info>
 
----
+***
 
 ## Sample Request
-
-### cURL
 
 ```bash
 curl --location 'https://api.payu.in/partner/initiatePayment' \
@@ -89,11 +80,6 @@ curl --location 'https://api.payu.in/partner/initiatePayment' \
   }
 }'
 ```
-
-> **Note:** Replace all placeholder values with your actual credentials and transaction data before execution.
-
-### Python
-
 ```python
 import requests
 import json
@@ -136,9 +122,6 @@ try:
 except requests.exceptions.RequestException as e:
     print("Error:", e)
 ```
-
-### PHP
-
 ```php
 <?php
 
@@ -192,9 +175,6 @@ if (curl_errno($ch)) {
 curl_close($ch);
 ?>
 ```
-
-### Java
-
 ```java
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -249,9 +229,6 @@ public class InitiatePayment {
     }
 }
 ```
-
-### C#
-
 ```csharp
 using System;
 using System.Net.Http;
@@ -308,9 +285,6 @@ class InitiatePayment
     }
 }
 ```
-
-### JavaScript
-
 ```javascript
 const url = "https://api.payu.in/partner/initiatePayment";
 
@@ -362,128 +336,29 @@ const initiatePayment = async () => {
 initiatePayment();
 ```
 
----
+***
 
-## Sample Response
+## Request Parameters
 
-### Success Response (Request Accepted)
-
-```json
-{
-  "metaData": {
-    "statusCode": "SUCCESS",
-    "message": "Payment request initiated successfully"
-  },
-  "result": {
-    "txnId": "TXN_2024011501",
-    "accountId": "ACC_12345",
-    "txnStatus": "INITIATED",
-    "paymentId": "PAYU_TXN_12345ABC",
-    "timestamp": "2024-01-15T10:30:00Z"
-  }
-}
-```
-
-**Status:** `INITIATED` means the payment push was sent to the device. Wait for webhook notification for final status.
-
-### Failure Response (Invalid Device ID - E342)
-
-```json
-{
-  "metaData": {
-    "statusCode": "FAILED",
-    "message": "Device not found or not mapped to merchant",
-    "errorCode": "E342"
-  },
-  "result": null
-}
-```
-
-**Cause:** Device is not registered OR not activated in Partner Dashboard.  
-**Resolution:** Activate and map device in Partner Dashboard ([Guide →](doc:collect-payment-using-payu-omni#step-12-activate-your-pos-device))
-
-### Failure Response (Device Not Mapped to Merchant - E343)
-
-```json
-{
-  "metaData": {
-    "statusCode": "FAILED",
-    "message": "Device not mapped to this merchant account",
-    "errorCode": "E343"
-  },
-  "result": null
-}
-```
-
-**Cause:** Device exists but is mapped to a different merchant account.  
-**Resolution:** Verify `accountId` and re-map device to correct merchant in Partner Dashboard.
-
-### Failure Response (Configuration Not Enabled - E344)
-
-```json
-{
-  "metaData": {
-    "statusCode": "FAILED",
-    "message": "Required payment method not enabled",
-    "errorCode": "E344"
-  },
-  "result": null
-}
-```
-
-**Cause:** Payment method not enabled at merchant level OR device level.  
-**Resolution:** Enable payment methods in merchant settings AND device configuration.
-
-### Webhook Payload (Final Transaction Status)
-
-After the customer completes payment on the device, PayU sends a webhook to your `successAction` or `failureAction` URL:
-
-#### Success Webhook
-
-```json
-{
-  "txnId": "TXN_2024011501",
-  "paymentId": "PAYU_TXN_12345ABC",
-  "orderId": "ORD_2024011501",
-  "amount": "500.00",
-  "txnStatus": "SUCCESS",
-  "message": "Transaction successful",
-  "paymentMethod": "CARD",
-  "cardDetails": {
-    "cardType": "CREDIT",
-    "cardNetwork": "VISA",
-    "last4Digits": "1234"
-  },
-  "timestamp": "2024-01-15T10:32:45Z",
-  "hash": "a3b2c1d0e9f8a7b6c5d4e3f2a1b0c9d8e7f6a5b4c3d2e1f0"
-}
-```
-
-<Warning>
-**Always verify the `hash` in webhook payloads** to ensure authenticity. See [Webhook Verification Guide →](doc:collect-payment-using-payu-omni#step-17-response-handling--verification)
-</Warning>
-
----
-
-## Request Headers
+### Request Headers
 
 **Mandatory parameters**
 
-| Parameter | Type | Description | Example |
-| :--- | :--- | :--- | :--- |
-| X-Partner-Token | String | Partner access token from OAuth API (valid for 4 hours) | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9... |
-| X-PayU-Reseller-UUID | String | Partner UUID from registration | 550e8400-e29b-41d4-a716-446655440000 |
-| date | String | Current date-time in GMT format | Mon, 15 Jan 2024 10:30:00 GMT |
-| authorization | String | HMAC-SHA512 signature (format: "HMAC <hash>") | HMAC 9a8b7c6d5e4f3a2b1c0d9e8f... |
-| Content-Type | String | Must be application/json | application/json |
+| Parameter            | Type   | Description                                             | Example                                 |
+| :------------------- | :----- | :------------------------------------------------------ | :-------------------------------------- |
+| X-Partner-Token      | String | Partner access token from OAuth API (valid for 4 hours) | eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9... |
+| X-PayU-Reseller-UUID | String | Partner UUID from registration                          | 550e8400-e29b-41d4-a716-446655440000    |
+| date                 | String | Current date-time in GMT format                         | Mon, 15 Jan 2024 10:30:00 GMT           |
+| authorization        | String | HMAC-SHA512 signature (format: "HMAC <hash>")           | HMAC 9a8b7c6d5e4f3a2b1c0d9e8f...        |
+| Content-Type         | String | Must be application/json                                | application/json                        |
 
 <Info>
 **Signature Generation:** See [Authentication Guide →](doc:collect-payment-using-payu-omni#step-15-generate-authentication-headers) for HMAC-SHA512 signature generation steps.
 </Info>
 
----
+***
 
-## Request Parameters
+### Body Parameters
 
 **Mandatory parameters**
 
@@ -562,104 +437,207 @@ After the customer completes payment on the device, PayU sends a webhook to your
 
 **Optional parameters**
 
-| Parameter | Type | Description | Example |
-| :--- | :--- | :--- | :--- |
-| additionalInfo | Object | Additional transaction metadata (e.g., custom messages) | See below |
-| omniChannelDetails | Object | Channel and location details | See below |
-| gstParams | Object | GST parameters for invoicing | See below |
+| Parameter          | Type   | Description                                             | Example   |
+| :----------------- | :----- | :------------------------------------------------------ | :-------- |
+| additionalInfo     | Object | Additional transaction metadata (e.g., custom messages) | See below |
+| omniChannelDetails | Object | Channel and location details                            | See below |
+| gstParams          | Object | GST parameters for invoicing                            | See below |
 
----
+***
 
 ### callBackActions Object
 
 **Mandatory parameters**
 
-| Parameter | Type | Description | Example |
-| :--- | :--- | :--- | :--- |
-| successAction | String | Webhook URL called on successful payment (HTTPS required) | https://yourserver.com/webhook/success |
-| failureAction | String | Webhook URL called on failed payment (HTTPS required) | https://yourserver.com/webhook/failure |
+| Parameter     | Type   | Description                                               | Example                                                                          |
+| :------------ | :----- | :-------------------------------------------------------- | :------------------------------------------------------------------------------- |
+| successAction | String | Webhook URL called on successful payment (HTTPS required) | [https://yourserver.com/webhook/success](https://yourserver.com/webhook/success) |
+| failureAction | String | Webhook URL called on failed payment (HTTPS required)     | [https://yourserver.com/webhook/failure](https://yourserver.com/webhook/failure) |
 
----
+***
 
 ### order Object
 
 **Mandatory parameters**
 
-| Parameter | Type | Description | Example |
-| :--- | :--- | :--- | :--- |
-| orderId | String | Order ID from your ERP/billing system | ORD_2024011501 |
-| orderAmount | String | Total order amount (should match amount field) | "500.00" |
+| Parameter   | Type   | Description                                    | Example        |
+| :---------- | :----- | :--------------------------------------------- | :------------- |
+| orderId     | String | Order ID from your ERP/billing system          | ORD_2024011501 |
+| orderAmount | String | Total order amount (should match amount field) | "500.00"       |
 
 **Optional parameters**
 
-| Parameter | Type | Description | Example |
-| :--- | :--- | :--- | :--- |
-| orderNote | String | Additional notes about the order | "2 items purchased" |
-| udf1 to udf5 | String | User-defined fields for custom data (useful for reconciliation) | "Store_Location_A" |
+| Parameter    | Type   | Description                                                     | Example             |
+| :----------- | :----- | :-------------------------------------------------------------- | :------------------ |
+| orderNote    | String | Additional notes about the order                                | "2 items purchased" |
+| udf1 to udf5 | String | User-defined fields for custom data (useful for reconciliation) | "Store_Location_A"  |
 
----
+***
 
 ### gstParams Object
 
 **Optional parameters**
 
-| Parameter | Type | Description | Example |
-| :--- | :--- | :--- | :--- |
+| Parameter | Type   | Description           | Example         |
+| :-------- | :----- | :-------------------- | :-------------- |
 | gstNumber | String | Merchant's GST number | 27AAPFU0939F1ZV |
-| gstAmount | String | Total GST amount | "90.00" |
-| cgst | String | Central GST amount | "45.00" |
-| sgst | String | State GST amount | "45.00" |
-| igst | String | Integrated GST amount | "0.00" |
+| gstAmount | String | Total GST amount      | "90.00"         |
+| cgst      | String | Central GST amount    | "45.00"         |
+| sgst      | String | State GST amount      | "45.00"         |
+| igst      | String | Integrated GST amount | "0.00"          |
 
----
+***
 
-## Response Schema
+***
+
+## Sample Response
+
+### Success Scenario
+
+```json
+{
+  "metaData": {
+    "statusCode": "SUCCESS",
+    "message": "Payment request initiated successfully"
+  },
+  "result": {
+    "txnId": "TXN_2024011501",
+    "accountId": "ACC_12345",
+    "txnStatus": "INITIATED",
+    "paymentId": "PAYU_TXN_12345ABC",
+    "timestamp": "2024-01-15T10:30:00Z"
+  }
+}
+```
+
+**Status:** `INITIATED` means the payment push was sent to the device. Wait for webhook notification for final status.
+
+### Failure Scenario
+**Invalid Device ID - E342)**
+
+```json
+{
+  "metaData": {
+    "statusCode": "FAILED",
+    "message": "Device not found or not mapped to merchant",
+    "errorCode": "E342"
+  },
+  "result": null
+}
+```
+
+**Cause:** Device is not registered OR not activated in Partner Dashboard.<br />**Resolution:** Activate and map device in Partner Dashboard ([Guide →](doc:collect-payment-using-payu-omni#step-12-activate-your-pos-device))
+
+**Device Not Mapped to Merchant - E343)**
+
+```json
+{
+  "metaData": {
+    "statusCode": "FAILED",
+    "message": "Device not mapped to this merchant account",
+    "errorCode": "E343"
+  },
+  "result": null
+}
+```
+
+**Cause:** Device exists but is mapped to a different merchant account.<br />**Resolution:** Verify `accountId` and re-map device to correct merchant in Partner Dashboard.
+
+**Configuration Not Enabled - E344**
+
+```json
+{
+  "metaData": {
+    "statusCode": "FAILED",
+    "message": "Required payment method not enabled",
+    "errorCode": "E344"
+  },
+  "result": null
+}
+```
+
+**Cause:** Payment method not enabled at merchant level OR device level.<br />**Resolution:** Enable payment methods in merchant settings AND device configuration.
+
+### Webhook Payload (Final Transaction Status)
+
+After the customer completes payment on the device, PayU sends a webhook to your `successAction` or `failureAction` URL:
+
+#### Success Webhook
+
+```json
+{
+  "txnId": "TXN_2024011501",
+  "paymentId": "PAYU_TXN_12345ABC",
+  "orderId": "ORD_2024011501",
+  "amount": "500.00",
+  "txnStatus": "SUCCESS",
+  "message": "Transaction successful",
+  "paymentMethod": "CARD",
+  "cardDetails": {
+    "cardType": "CREDIT",
+    "cardNetwork": "VISA",
+    "last4Digits": "1234"
+  },
+  "timestamp": "2024-01-15T10:32:45Z",
+  "hash": "a3b2c1d0e9f8a7b6c5d4e3f2a1b0c9d8e7f6a5b4c3d2e1f0"
+}
+```
+
+<Warning>
+**Always verify the `hash` in webhook payloads** to ensure authenticity. See [Webhook Verification Guide →](doc:collect-payment-using-payu-omni#step-17-response-handling--verification)
+</Warning>
+
+***
+
+
+***
+
+## Response Parameters
 
 ### metaData Object
 
-| Field | Type | Description |
-| :--- | :--- | :--- |
-| statusCode | String | "SUCCESS" or "FAILED" |
-| message | String | Human-readable status message |
-| errorCode | String | Error code (present only on failure) |
+| Field      | Type   | Description                          |
+| :--------- | :----- | :----------------------------------- |
+| statusCode | String | "SUCCESS" or "FAILED"                |
+| message    | String | Human-readable status message        |
+| errorCode  | String | Error code (present only on failure) |
 
 ### result Object
 
-| Field | Type | Description |
-| :--- | :--- | :--- |
-| txnId | String | Transaction ID from request |
-| accountId | String | Merchant account ID |
+| Field     | Type   | Description                                                   |
+| :-------- | :----- | :------------------------------------------------------------ |
+| txnId     | String | Transaction ID from request                                   |
+| accountId | String | Merchant account ID                                           |
 | txnStatus | String | "INITIATED", "SUCCESS", "FAILED", "PENDING", "USER_CANCELLED" |
-| paymentId | String | PayU-generated payment ID |
-| timestamp | String | ISO 8601 timestamp |
+| paymentId | String | PayU-generated payment ID                                     |
+| timestamp | String | ISO 8601 timestamp                                            |
 
----
+***
 
 ## Error Codes
 
-| Error Code | Message | Cause | Resolution |
-|------------|---------|-------|------------|
-| E342 | Device not found or not mapped to merchant | Device not registered OR not activated in Partner Dashboard | Activate and map device ([Guide →](doc:collect-payment-using-payu-omni#step-12-activate-your-pos-device)) |
-| E343 | Device not mapped to merchant | Device mapped to different merchant account | Verify `accountId` and re-map device |
-| E344 | Required configurations not enabled | Payment method not enabled for merchant or device | Enable methods in merchant settings AND device config |
-| E2081 | Invalid PG or Bank Code | Incorrect payment gateway or bank code | Use `posPaymentMethod: "sale"` for auto-detect |
-| 401 | Unauthorized | Invalid/expired token or incorrect signature | Refresh token and verify signature logic |
-| E_DEVICE_OFFLINE | Device unreachable | Device not connected or powered off | Check device connectivity and retry |
-| E_TIMEOUT | Payment timeout | Customer didn't complete payment in time | Use Check Status API to verify state |
+| Error Code       | Message                                    | Cause                                                       | Resolution                                                                                                |
+| ---------------- | ------------------------------------------ | ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| E342             | Device not found or not mapped to merchant | Device not registered OR not activated in Partner Dashboard | Activate and map device ([Guide →](doc:collect-payment-using-payu-omni#step-12-activate-your-pos-device)) |
+| E343             | Device not mapped to merchant              | Device mapped to different merchant account                 | Verify `accountId` and re-map device                                                                      |
+| E344             | Required configurations not enabled        | Payment method not enabled for merchant or device           | Enable methods in merchant settings AND device config                                                     |
+| E2081            | Invalid PG or Bank Code                    | Incorrect payment gateway or bank code                      | Use `posPaymentMethod: "sale"` for auto-detect                                                            |
+| 401              | Unauthorized                               | Invalid/expired token or incorrect signature                | Refresh token and verify signature logic                                                                  |
+| E_DEVICE_OFFLINE | Device unreachable                         | Device not connected or powered off                         | Check device connectivity and retry                                                                       |
+| E_TIMEOUT        | Payment timeout                            | Customer didn't complete payment in time                    | Use Check Status API to verify state                                                                      |
 
 For complete troubleshooting guide, see [Troubleshooting →](doc:collect-payment-using-payu-omni#troubleshooting)
 
----
+***
 
 ## Related Resources
 
-- **[Collect Payment Using PayU Omni →](doc:collect-payment-using-payu-omni)** - Complete integration guide
-- **[Check Transaction Status API →](doc:check-transaction-status-api-omni)** - Verify payment status
-- **[PayU Omni Overview →](doc:payu-omni)** - Product features and benefits
+- [Collect Payment Using PayU Omni →](doc:collect-payment-using-payu-omni) - Complete integration guide
+- [Check Transaction Status API →](doc:check-transaction-status-api-omni) - Verify payment status
+- [PayU Omni Overview →](doc:payu-omni) - Product features and benefits
 
----
+***
 
 ## Need Help?
 
-**Integration Support:** integration-support@payu.in  
-Include: Partner ID, Merchant ID, Transaction ID, error code, and steps tried
+**Integration Support:** [integration-support@payu.in](mailto:integration-support@payu.in)<br />Include: Partner ID, Merchant ID, Transaction ID, error code, and steps tried
