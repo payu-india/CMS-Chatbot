@@ -79,7 +79,7 @@ You can use Payment Buttons to:
 
 ***
 
-## Is a Payment Button Right for Me?
+## Is Payment Button Right for Me?
 
 A Payment Button is a good choice if: <br />
 
