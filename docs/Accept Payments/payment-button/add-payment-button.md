@@ -72,11 +72,11 @@ To add a payment button:
   All your existing buttons are listed here.
 
 
-  <Image src="https://files.readme.io/a494bb1de682ae83ec3d1023e1e13dfb65e02db0ef5332ca52b6e85232638c63-Screenshot_2025-06-02_at_7.09.40_PM.png" align="center" caption="Payment Buttons list in the PayU Dashboard" border={true} />
+  <Image src="https://files.readme.io/e1baadd4cfb07131a0a41849f9b4f824cda27ee5d1f9129d458a44ecf4cfcc12-Screenshot_2026-09-29_at_3.41.17_PM.png" align="center" caption="Payment Buttons list in the PayU Dashboard" border={true} />
 
 </Accordion>
 
-<Accordion title="2. Create a new button" icon="far fa-plus">
+<Accordion title="2. Create a New Payment Button" icon="far fa-plus">
   Click **Create New Button** at the top-right corner of the page.
 
   The **Create New Payment Button** panel opens.
