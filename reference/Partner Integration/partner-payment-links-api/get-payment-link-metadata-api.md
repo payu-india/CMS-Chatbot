@@ -11,10 +11,10 @@ HTTP Method: **GET**
 
 ### Endpoints
 
-| Environment       | URL                                                                           |
-| :---------------- | :---------------------------------------------------------------------------- |
-| **Sandbox (UAT)** | `https://test-partnerapilayer.payu.in/apilayer/partner/payment-link/metadata` |
-| **Production**    | `https://partnerapilayer.payu.in/apilayer/partner/payment-link/metadata`      |
+| Environment    | URL                                                                           |
+| :------------- | :---------------------------------------------------------------------------- |
+| **Test**       | `https://test-partnerapilayer.payu.in/apilayer/partner/payment-link/metadata` |
+| **Production** | `https://partnerapilayer.payu.in/apilayer/partner/payment-link/metadata`      |
 
 ***
 
