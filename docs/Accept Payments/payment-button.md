@@ -134,17 +134,17 @@ All You need is:<br />
 
 Here is how it works:
 
-<Accordion title="1. Create the button in the Dashboard" icon="far fa-grid-2">
-  1. Log in to your PayU Dashboard and go to **Payment Tools** → **Payment Buttons** from the menu on the left.
-  2. Click **Create New Button** and choose the button text, amount, colour, and size.
+<Accordion title="1. Create a Button in the Dashboard" icon="far fa-grid-2">
+  1. Log in to your <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin">PayU Dashboard</Anchor> and go to **Payment Tools** → **Payment Buttons** from the menu on the left.
+  2. Click **Create Payment Button** and and enter the button details.
 </Accordion>
 
-<Accordion title="2. Get your button code" icon="far fa-code">
-  Click **Generate Button**. PayU creates your button and gives you a short piece of text to add to your website. Click **Copy** — that's all you need.
+<Accordion title="2. Get Your Button Code" icon="far fa-code">
+  Click **Generate Button**. PayU creates your button and gives you a short piece of text to add to your website. Click **Copy**. That is all you need.
 </Accordion>
 
-<Accordion title="3. Paste it on your website" icon="far fa-paste">
-  Go to your website editor and paste the code where you want the button to appear. The button shows up right away — nothing else to set up.
+<Accordion title="3. Paste It on Your Website" icon="far fa-paste">
+  Go to your website editor and paste the code where you want the button to appear. The button shows up right away. No other set up is required.
 </Accordion>
 
 <Columns layout="fixed">
