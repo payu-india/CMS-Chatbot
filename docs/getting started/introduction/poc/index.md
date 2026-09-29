@@ -128,7 +128,7 @@ Accelerate your integration workflow with our net banking Postman collection for
 <br />
 
 <Callout icon="📘" theme="info">
-  <NewBadge title="What's New!" asHeading={false} />
+    <NewBadge title="What's New!" asHeading={false} />
 
   Lorem Ispum
 </Callout>
@@ -231,3 +231,5 @@ Accelerate your integration workflow with our net banking Postman collection for
     },
   ]}
 />
+
+<PayUPaymentLinksWizard />
