@@ -1,11 +1,11 @@
 ---
-title: Payment Options API
+title: Payment Options API [L1 Load]
 deprecated: false
 hidden: true
 metadata:
   robots: index
 ---
-The **Payment Options** API returns all eligible payment instruments (EMI, Net Banking, Wallets, Cards, UPI, Standing Instructions, COD) configured for the merchant and the specific order amount.
+The **Payment Options** API [L1 Load] returns all eligible payment instruments (EMI, Net Banking, Wallets, Cards, UPI, Standing Instructions, COD) configured for the merchant and the specific order amount.
 
 Call this API when rendering the checkout page or initial payment selector screen.
 
