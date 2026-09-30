@@ -35,12 +35,12 @@ next:
 ---
 {/* NEW CONTENT */}
 
-Something not working after adding your <Anchor target="_blank" href="doc:add-a-payment-button">Payment Button</Anchor> to your website? Go through the most common issues such as button not showing on your page, the payment page not opening, payments not reflecting in your Dashboard, and ways to fix them.
+Something not working after adding your <Anchor target="_blank" href="https://docs.payu.in/docs/payment-button">Payment Button</Anchor> to your website? Go through the most common issues such as button not showing on your page, the payment page not opening, payments not reflecting in your Dashboard, and ways to fix them.
 
 <Callout icon="📘" theme="info">
   ### **Payment Buttons**
 
-  Haven't added a payment button yet? → <Anchor target="_blank" href="doc:add-a-payment-button">Add a Payment Button</Anchor>
+  Haven't added a payment button yet? → <Anchor target="_blank" href="https://docs.payu.in/docs/add-payment-button">Add a Payment Button</Anchor>
 </Callout>
 
 ***
