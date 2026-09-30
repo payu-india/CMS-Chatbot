@@ -282,7 +282,7 @@ You can filter the payment buttons list using the following options:
     Set the button text, colour, amount, and redirect pages before you create it.
   </Card>
 
-  <Card title="Payment Button Troubleshooting" href="doc:payment-button-troubleshooting" icon="fa-wrench">
+  <Card title="Payment Button Errors and Troubleshooting" href="doc:payment-button-troubleshooting" icon="fa-wrench">
     Fix issues with buttons not showing, payments not going through, or records not appearing.
   </Card>
 
