@@ -1,5 +1,5 @@
 ---
-title: Cards - 3DS & ALT ID
+title: Cards - 3DS & Guest Checkout
 deprecated: false
 hidden: true
 link:
