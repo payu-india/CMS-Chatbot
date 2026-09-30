@@ -170,7 +170,7 @@ You can perform the following actions after a button is created:
 
   4. Click **Update Button** to generate a new code.
 
-  5. Click **Copy Code** to copy the new button code and .
+  5. Click **Copy Code** to copy the new button code and replace it in your website.
 </Accordion>
 
 <Accordion title="Turn Off a Button" icon="far fa-ban">
