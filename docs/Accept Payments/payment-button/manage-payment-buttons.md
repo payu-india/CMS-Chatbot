@@ -49,38 +49,57 @@ To open payment buttons: log in to [PayU Dashboard](https://onboarding.payu.in/)
 
 ***
 
-## What Can I Do With a Button After It Is Created?
-
-<Callout icon="🚧" theme="warning">
-  **Payment Buttons cannot be changed after creation.** If you need to update the label, amount, colour, or any other setting — create a new button with the correct details and replace the code on your website.
-</Callout>
+## What Can I Do With a Payment Button After It Is Created?
 
 You can perform the following actions after a button is created:
 
-<Accordion title="View Button Details" icon="far fa-rectangle-list">
-  To see the details and payment history for a button:
+- View Payment Button Details
+- Edit Payment Button Details
+- Delete a Payment Button
+
+### View Payment Button Details
+
+<Accordion title="Steps to View Button Details" icon="far fa-rectangle-list">
+  To see the details and payment history for a payment button:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Payment Buttons** under **Payment Tools**.
 
+     <Image src="https://files.readme.io/b11382e235cabbde457cdb61efa569f6680bb561c03b067c79c540f425e7a4f4-image.png" align="center" caption="Access Payment Buttons" border={true} />
 
-  <Image src="https://files.readme.io/a494bb1de682ae83ec3d1023e1e13dfb65e02db0ef5332ca52b6e85232638c63-Screenshot_2025-06-02_at_7.09.40_PM.png" align="center" caption="Payment Buttons list" border={true} />
 
-
-  A list of all your payment buttons is displayed with:
+  A list of all your payment buttons is displayed with the following information:
 
   - **Created On**
-  - **Button Name**
+  - **Button ID**
+  - **Button Text**
+  - **Item Name**
   - **Amount**
-  - **Button Type**
-  - **Status**
+  - **Actions:&#x20;**&#x43;ontains buttons to perform varios actions.
 
   2. Click the button you want to view.
 
   The details are split into the following sections:
 
-  <Accordion title="Button Details" icon="fad fa-credit-card">
+  <Accordion title="Button Details" icon="fad fa-tablet-button">
+    The upper half of the **Button Details&#x20;**&#x70;age displays the following information:
+
+    - **Button ID:&#x20;**&#x54;he unique button ID.
+
+    - **Created On:&#x20;**&#x54;he date and time on which the payment button was created.
+
+    - **Button Text:&#x20;**&#x54;he button text you have selected while creating the payment button.
+
+    - **Action Buttons:&#x20;**&#x41;ction buttons to edit, duplicate and view the code of the payment button.
+
+      <Image src="https://files.readme.io/c5ce7b7324ea3e725ccaefce214c591f5d59fcddbc1b3b6fd787e94a9249cfe8-Screenshot_2026-09-30_at_11.35.04_AM.png" align="center" caption="Payment Button Details" border={true} />
+
+  </Accordion>
+
+  <Accordion title="Details and Transactions" icon="fad fa-money-bills">
     <Tabs>
-      <Tab title="Button Settings">
+      <Tab title="Details">
+        The **Details&#x20;**&#x74;ab displays the following information:
+
         - **Button Text:** The label on the button — Buy Now, Pay Now, Book Now, or Donate Now.
         - **Item Name:** The product or purpose description shown to the customer at checkout.
         - **Amount:** The fixed amount, or blank if the customer enters it themselves.
