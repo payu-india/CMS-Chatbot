@@ -98,14 +98,28 @@ You can perform the following actions after a button is created:
   <Accordion title="Details and Transactions" icon="fad fa-money-bills">
     <Tabs>
       <Tab title="Details">
-        The **Details&#x20;**&#x74;ab displays the following information:
+        The **Details&#x20;**&#x74;ab displays the following information in two sections:
+
+        **Button Details:**
 
         - **Button Text:** The label on the button — Buy Now, Pay Now, Book Now, or Donate Now.
-        - **Item Name:** The product or purpose description shown to the customer at checkout.
+        - **Button Color:** The button you have selected while creating the payment button
         - **Amount:** The fixed amount, or blank if the customer enters it themselves.
-        - **Colour and Size:** The visual settings for the button on your website.
+        - **Button Size:&#x20;**&#x54;he button size you have selected while creating the payment button.
         - **Status:** Whether the button is active or turned off.
         - **Button Code:** The code you added to your website. Copy it from here if you need to add it to another page.
+
+        **Custom Details:**
+
+        - **Required Fields**
+        - **Success URL**
+        - **Cancel URL**
+        - **Success URL**
+        - **Failure URL**
+
+
+        <Image src="https://files.readme.io/f2c11d29400ec27b30076b9ad8064147caf5cabaaf8bdff9416e5b31fe9a8864-Screenshot_2026-09-30_at_12.01.10_PM.png" align="center" caption="Button and Customer Details" border={true} />
+
       </Tab>
 
       <Tab title="Transactions">
