@@ -195,14 +195,6 @@ You can perform the following actions after a button is created:
      <Image src="https://files.readme.io/1cc49d01db067ddb1a29ecca4ca30d0d7c7f5da4d86115e095dadab01642ecf3-Screenshot_2026-09-30_at_1.57.21_PM.png" align="center" caption="Delete a Payment Button" border={true} />
 
   3) Click **Yes, Delete** in the confirmation window.
-
-  The button status changes to **Inactive**.
-
-  <Callout icon="🚧" theme="warning">
-    ### **Watch Out!**
-
-    Once a button is turned off, it cannot be turned back on. If you need to accept payments again for the same product or purpose, create a new button and add it to your website.
-  </Callout>
 </Accordion>
 
 ***
