@@ -41,10 +41,10 @@ You can manage your payment buttons from the PayU Dashboard after they are creat
 
 ## How Do I Access My Payment Buttons?
 
-To open your buttons: log in to [PayU Dashboard](https://onboarding.payu.in/) and click **Payment Buttons** under **Payment Tools**.
+To open payment buttons: log in to [PayU Dashboard](https://onboarding.payu.in/) and click **Payment Buttons** under **Payment Tools**.
 
 
-<Image src="https://files.readme.io/a494bb1de682ae83ec3d1023e1e13dfb65e02db0ef5332ca52b6e85232638c63-Screenshot_2025-06-02_at_7.09.40_PM.png" align="center" caption="Payment Buttons list in the PayU Dashboard" border={true} />
+<Image src="https://files.readme.io/ac2a025ae66a2cd9b63d9fa8f3a9ac924b697623f07dc73137cd1b69d8215ce0-Screenshot_2026-09-30_at_10.33.20_AM.png" align="center" caption="Access Payment Buttons" border={true} />
 
 
 ***
