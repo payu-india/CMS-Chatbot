@@ -218,6 +218,14 @@ Once your button is live:<br />
 
 ***
 
+## Is a Payment Button Secure?
+
+Yes. When a customer clicks your button, PayU's PCI-DSS compliant hosted payment page opens, their card and UPI details are entered directly on PayU's page and never pass through your website. You do not need to configure anything for this.
+
+Make sure **the page where you embed the button should be HTTPS.** If your page loads over HTTP, some browsers will show a mixed-content warning when the button tries to open PayU's secure checkout. Most modern website builders (WordPress, Wix, Squarespace) use HTTPS by default. If you are not sure, check your site settings.
+
+***
+
 ## Next Steps
 
 <Cards>
