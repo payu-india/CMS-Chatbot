@@ -23,9 +23,23 @@ Integrate card payments using PayU's Classic Server-to-Server (S2S) flow with fu
 <Accordion title="Step 1.1: Prepare the Request Parameters" icon="fa-table">
   Before making the payment request, prepare all required parameters:
 
-  #### Mandatory Parameters
+#### Mandatory Parameters
 
-   support. This integration handles all authentication redirects internally while your server maintains control over the payment flow.
+support. This integration handles all authentication redirects internally while your server maintains control over the payment flow.
+
+<Callout icon="📘" theme="info">
+  **Prerequisites:**
+
+  - Merchant account enabled for S2S flow (`txn_s2s_flow = 1`)
+  - Valid PayU merchant key and salt
+  - Payment gateway (PG) enabled for card payments on your account
+  - PCI DSS compliance or tokenization setup
+
+
+</Callout>
+
+
+  This integration handles all authentication redirects internally while your server maintains control over the payment flow.
 
   <Callout icon="📘" theme="info">
     **Prerequisites:**
@@ -38,87 +52,118 @@ Integrate card payments using PayU's Classic Server-to-Server (S2S) flow with fu
 
   ## Step 1: Start Integration
 
-  ### Step 1.1: Prepare the Request Parameters
+    ### Step 1.1: Prepare the Request Parameters and Post Request
 
-  <Accordion title="Step 1.1: Prepare the Request Parameters" icon="fa-table">
-  Before making the payment request, prepare all required parameters:
+<Tabs>
+<Tab title="Request Parameters">
+    Before making the payment request, prepare all required parameters:
 
-  #### Mandatory Parameters
+    #### Mandatory Parameters
 
-  <table>
-    <thead>
-      <tr>
-        <th align="left">Parameter</th>
-        <th align="left">Type &amp; Description</th>
-        <th align="left">Example</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>key</td>
-        <td>String. Merchant key (posted).</td>
-        <td>OgAFEC</td>
-      </tr>
-      <tr>
-        <td>txnid</td>
-        <td>String. Unique merchant transaction ID.</td>
-        <td>xriK2cGsCl</td>
-      </tr>
-      <tr>
-        <td>amount</td>
-        <td>Decimal/String. Transaction amount.</td>
-        <td>1 or 1.00</td>
-      </tr>
-      <tr>
-        <td>productinfo</td>
-        <td>String. Product description.</td>
-        <td>Product_info</td>
-      </tr>
-      <tr>
-        <td>firstname</td>
-        <td>String. Customer first name.</td>
-        <td>PayU</td>
-      </tr>
-      <tr>
-        <td>email</td>
-        <td>String. Customer email address.</td>
-        <td>test@example.com</td>
-      </tr>
-      <tr>
-        <td>phone</td>
-        <td>String. Customer phone number.</td>
-        <td>1234567890</td>
-      </tr>
-      <tr>
-        <td>surl</td>
-        <td>String. Merchant success redirect URL (postback).</td>
-        <td>https://admin.payu.in/test_response</td>
-      </tr>
-      <tr>
-        <td>furl</td>
-        <td>String. Merchant failure redirect URL (postback).</td>
-        <td>https://admin.payu.in/test_response</td>
-      </tr>
-      <tr>
-        <td>hash</td>
-        <td>String. SHA512 hash for request validation. Computed as: SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||Salt)</td>
-        <td>f6e733f1e8e95e2b...</td>
-      </tr>
-      <tr>
-        <td>pg</td>
-        <td>String. Payment gateway code (PG type).</td>
-        <td>CC</td>
-      </tr>
-      <tr>
-        <td>bankcode</td>
-        <td>String. Bank/payment method code.</td>
-        <td>CC</td>
-    
+<table>
+  <thead>
+    <tr>
+      <th align="left">Parameter</th>
+      <th align="left">Type &amp; Description</th>
+      <th align="left">Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>key</td>
+      <td>String. Merchant key (posted).</td>
+      <td>OgAFEC</td>
+    </tr>
+    <tr>
+      <td>txnid</td>
+      <td>String. Unique merchant transaction ID.</td>
+      <td>xriK2cGsCl</td>
+    </tr>
+    <tr>
+      <td>amount</td>
+      <td>Decimal/String. Transaction amount.</td>
+      <td>1 or 1.00</td>
+    </tr>
+    <tr>
+      <td>productinfo</td>
+      <td>String. Product description.</td>
+      <td>Product_info</td>
+    </tr>
+    <tr>
+      <td>firstname</td>
+      <td>String. Customer first name.</td>
+      <td>PayU</td>
+    </tr>
+    <tr>
+      <td>email</td>
+      <td>String. Customer email address.</td>
+      <td>test@example.com</td>
+    </tr>
+    <tr>
+      <td>phone</td>
+      <td>String. Customer phone number.</td>
+      <td>1234567890</td>
+    </tr>
+    <tr>
+      <td>surl</td>
+      <td>String. Merchant success redirect URL (postback).</td>
+      <td>https://admin.payu.in/test_response</td>
+    </tr>
+    <tr>
+      <td>furl</td>
+      <td>String. Merchant failure redirect URL (postback).</td>
+      <td>https://admin.payu.in/test_response</td>
+    </tr>
+    <tr>
+      <td>hash</td>
+      <td>String. SHA512 hash for request validation. Computed as: SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||Salt)</td>
+      <td>f6e733f1e8e95e2b...</td>
+    </tr>
+    <tr>
+      <td>pg</td>
+      <td>String. Payment gateway code (PG type).</td>
+      <td>CC</td>
+    </tr>
+    <tr>
+      <td>bankcode</td>
+      <td>String. Bank/payment method code.</td>
+      <td>CC</td>
+    </tr>
+    <tr>
+      <td>ccnum</td>
+      <td>String. Card number.</td>
+      <td>XXXXXXXXXXXX1036</td>
+    </tr>
+    <tr>
+      <td>ccname</td>
+      <td>String. Cardholder name.</td>
+      <td>Test User</td>
+    </tr>
+    <tr>
+      <td>ccvv</td>
+      <td>String. Card CVV.</td>
+      <td>XXX</td>
+    </tr>
+    <tr>
+      <td>ccexpmon</td>
+      <td>String. Card expiry month (MM).</td>
+      <td>05</td>
+    </tr>
+    <tr>
+      <td>ccexpyr</td>
+      <td>String. Card expiry year (YYYY).</td>
+      <td>2026</td>
+    </tr>
+    <tr>
+      <td>txn_s2s_flow</td>
+      <td>Integer. Flag to enable S2S flow.</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
 
 
-</Accordion>
-
-### Step 1.2: Generate Hash
+### Generate Hash
 
 <Accordion title="Generate Hash" icon="fa-info-circle">
   Generate a SHA512 hash to secure your payment request:
@@ -137,10 +182,8 @@ Integrate card payments using PayU's Classic Server-to-Server (S2S) flow with fu
 
   <HashingSample />
 </Accordion>
-
-### Step 1.3: POST the Request
-
-<Accordion title=" POST the Request" icon="fa-info-circle">
+</Tab>
+<Tab title="Sample Request">
   ```bash
   curl --location 'https://test.payu.in/_payment' \
   --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -297,9 +340,10 @@ Integrate card payments using PayU's Classic Server-to-Server (S2S) flow with fu
       }
   }
   ```
-</Accordion>
+</Tab>
+<Tabs>
 
-### Step 1.4: Response Handling & Hash Verification
+### Step 1.2: Response Handling & Hash Verification
 
 <Accordion title="Success Response Example" icon="fa-code">
   **Success Scenario**
