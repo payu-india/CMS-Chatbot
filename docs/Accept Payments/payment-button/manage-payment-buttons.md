@@ -123,10 +123,10 @@ You can perform the following actions after a button is created:
       </Tab>
 
       <Tab title="Transactions">
-        Every payment made through this button is listed here:
+        Every payment made through this button is listed here with the following information:
 
-        - **Date:** When the payment was made.
-        - **Transaction ID:** PayU's unique ID for each payment. You can copy it.
+        - **Amount Requested:** The requested amount you have added while creating the payment button.
+        - **Revenue:** The total amount collected using the payment button.
         - **Customer Email**
         - **Amount:** How much was paid.
         - **Status:** Whether the payment went through successfully.
