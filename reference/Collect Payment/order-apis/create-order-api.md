@@ -14,6 +14,10 @@ The **Create Order** API initiates the checkout journey. It creates an order on 
 3. PayU returns the order context, available payment methods, `accessToken`, and `encryptedOrderId`.
 4. Merchant uses the returned tokens to render payment options and proceed with the payment flow.
 
+![](https://files.readme.io/ce59121b18e87a0c4a9c651f6121280c06a488407062a6228fb68f92cfdb6373-order_api_v1_flow_diagram.webp)
+
+<br />
+
 **Environment**
 
 |                            |                                          |
