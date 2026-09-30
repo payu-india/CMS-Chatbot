@@ -7,30 +7,23 @@ name: PayUPaymentLinksWizard
 // PayUPaymentLinksWizard — ReadMe Custom Component
 // Dashboard-faithful Tier 1 merchant experience.
 //
-// SANDBOX CONSTRAINTS (documented, not hidden):
-//   - Real Payment Link URLs require a server-side call to
-//     POST https://uatoneapi.payu.in/payment-links with OAuth credentials.
-//     That API cannot be called from client-side code without a backend.
-//     No backend exists in this repository. A sandbox reference is shown instead.
-//   - Email/SMS delivery requires PayU's server-side API. No mailer exists here.
-//     An honest notification preview is shown instead.
-//   - The real checkout page (pp72.pmny.in) requires a real generated link.
-//     The customer experience is reproduced in-component instead.
+// HOW "OPEN LINK" WORKS:
+//   Creating a real Payment Link requires a server-side call to
+//   POST https://uatoneapi.payu.in/payment-links with OAuth credentials.
+//   This component builds the exact API request from your form data.
+//   Paste the result.paymentLink URL from the API response into the
+//   URL field, then "Open Link" calls window.open() on that real URL.
+//   A sandboxed simulation is also available for users without credentials.
 //
 // Form fields match the actual PayU Dashboard (create-a-new-payment-link.md):
 //   Required: Amount, Purpose
 //   Optional: Allow Partial Payment, Max Transactions Allowed
-//   Customer Details: Customer Name, Email, Phone Number,
-//                     Notify via Email, Notify via SMS, Link Expiry
+//   Customer Details: Name, Email, Phone, Notify via Email/SMS, Link Expiry
 //
 // State machine: phase ('idle' | 'create' | 'customer' | 'done')
 //   outcome === 'success'   → proceedToDone() allowed
 //   outcome === 'failed'    → retryPayment() only; cannot reach 'done'
 //   outcome === 'cancelled' → retryPayment() only; cannot reach 'done'
-//
-// TODO: Wire analytics events to an existing project mechanism when available:
-//   lab_started, payment_link_created, payment_link_opened,
-//   payment_success, payment_failed, payment_cancelled, lab_completed
 
 import { useState } from 'react';
 
@@ -39,7 +32,6 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
   var phase = _phase[0];
   var setPhase = _phase[1];
 
-  // Payment Details (required)
   var _amount = useState('');
   var amount = _amount[0];
   var setAmount = _amount[1];
@@ -48,7 +40,6 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
   var purpose = _purpose[0];
   var setPurpose = _purpose[1];
 
-  // Payment Options (optional)
   var _isPartialPayment = useState(false);
   var isPartialPayment = _isPartialPayment[0];
   var setIsPartialPayment = _isPartialPayment[1];
@@ -57,7 +48,6 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
   var maxTransactions = _maxTransactions[0];
   var setMaxTransactions = _maxTransactions[1];
 
-  // Customer Details (optional; required conditionally for notifications)
   var _customerName = useState('');
   var customerName = _customerName[0];
   var setCustomerName = _customerName[1];
@@ -82,17 +72,20 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
   var linkExpiry = _linkExpiry[0];
   var setLinkExpiry = _linkExpiry[1];
 
-  // Sandbox reference (not a real URL — see constraints note above)
-  var _linkRef = useState('');
-  var linkRef = _linkRef[0];
-  var setLinkRef = _linkRef[1];
+  // true once the form passes validation and is submitted
+  var _formSubmitted = useState(false);
+  var formSubmitted = _formSubmitted[0];
+  var setFormSubmitted = _formSubmitted[1];
 
-  // Inline validation errors
+  // real URL pasted by the user from the API response (result.paymentLink)
+  var _linkUrl = useState('');
+  var linkUrl = _linkUrl[0];
+  var setLinkUrl = _linkUrl[1];
+
   var _errors = useState({});
   var errors = _errors[0];
   var setErrors = _errors[1];
 
-  // Payment outcome: '' | 'success' | 'failed' | 'cancelled'
   var _outcome = useState('');
   var outcome = _outcome[0];
   var setOutcome = _outcome[1];
@@ -101,10 +94,17 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
   var feedback = _feedback[0];
   var setFeedback = _feedback[1];
 
-  // Copy-to-clipboard state
-  var _copied = useState(false);
-  var copied = _copied[0];
-  var setCopied = _copied[1];
+  var _linkCopied = useState(false);
+  var linkCopied = _linkCopied[0];
+  var setLinkCopied = _linkCopied[1];
+
+  var _curl1Copied = useState(false);
+  var curl1Copied = _curl1Copied[0];
+  var setCurl1Copied = _curl1Copied[1];
+
+  var _curl2Copied = useState(false);
+  var curl2Copied = _curl2Copied[0];
+  var setCurl2Copied = _curl2Copied[1];
 
   var GREEN = '#0f766e';
   var GREEN_DARK = '#115e59';
@@ -126,12 +126,14 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
     setNotifyViaEmail(false);
     setNotifyViaSms(false);
     setLinkExpiry('1 year');
-    setLinkRef('');
+    setFormSubmitted(false);
+    setLinkUrl('');
     setErrors({});
     setOutcome('');
     setFeedback('');
-    setCopied(false);
-    // TODO: analytics — lab_started
+    setLinkCopied(false);
+    setCurl1Copied(false);
+    setCurl2Copied(false);
   }
 
   function closeWizard() {
@@ -140,7 +142,6 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
 
   function validateForm() {
     var errs = {};
-
     if (!amount.trim()) {
       errs.amount = 'Amount is required';
     } else {
@@ -149,41 +150,34 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
         errs.amount = 'Enter a valid amount greater than ₹0';
       }
     }
-
     if (!purpose.trim()) {
       errs.purpose = 'Purpose is required';
     } else if (purpose.trim().length > 255) {
       errs.purpose = 'Purpose must be 255 characters or less';
     }
-
     if (customerEmail.trim()) {
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(customerEmail.trim())) {
         errs.email = 'Enter a valid email address';
       }
     }
-
     if (notifyViaEmail && !customerEmail.trim()) {
       errs.email = 'Email address is required for email notification';
     }
-
     if (customerPhone.trim()) {
       var phoneClean = customerPhone.trim().replace(/[\s\-]/g, '');
       if (!/^\d{10}$/.test(phoneClean)) {
         errs.phone = 'Enter a 10-digit mobile number (no country code)';
       }
     }
-
     if (notifyViaSms && !customerPhone.trim()) {
       errs.phone = 'Phone number is required for SMS notification';
     }
-
     if (maxTransactions.trim()) {
       var mt = parseInt(maxTransactions, 10);
       if (isNaN(mt) || mt < 1 || mt !== parseFloat(maxTransactions)) {
         errs.maxTransactions = 'Enter a whole number greater than 0, or leave blank for 1';
       }
     }
-
     return errs;
   }
 
@@ -191,48 +185,26 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
     var errs = validateForm();
     setErrors(errs);
     if (Object.keys(errs).length > 0) return;
-    var id = Date.now().toString(36).toUpperCase()
-      + Math.random().toString(36).substring(2, 6).toUpperCase();
-    setLinkRef('SBX-' + id);
-    // TODO: analytics — payment_link_created
+    setFormSubmitted(true);
+    setLinkUrl('');
+    setLinkCopied(false);
+    setCurl1Copied(false);
+    setCurl2Copied(false);
   }
 
-  // Transitions the full wizard to the customer-facing view.
-  // This is not a modal overlay — the entire modal content changes phase.
-  function openLink() {
-    setOutcome('');
-    setPhase('customer');
-    // TODO: analytics — payment_link_opened
+  function isValidUrl(url) {
+    return url.trim().length > 0 && /^https?:\/\/.+/.test(url.trim());
   }
 
-  function pickOutcome(choice) {
-    setOutcome(choice);
-    // TODO: analytics — payment_success / payment_failed / payment_cancelled
-  }
-
-  // Stays in 'customer' phase — failed/cancelled can only retry, never proceed to done.
-  function retryPayment() {
-    setOutcome('');
-  }
-
-  // State machine enforcement: only outcome === 'success' may set phase to 'done'.
-  // Belt-and-suspenders: the button is only rendered for success AND this check guards the function.
-  function proceedToDone() {
-    if (outcome !== 'success') return;
-    setPhase('done');
-    // TODO: analytics — lab_completed
-  }
-
-  // Copies the sandbox reference. Labelled honestly as "reference" — not a real link URL.
-  function copyRef() {
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(linkRef)
-        .then(function () { setCopied(true); setTimeout(function () { setCopied(false); }, 2500); })
-        .catch(function () { setCopied(false); });
-    } else {
-      setCopied(true);
-      setTimeout(function () { setCopied(false); }, 2500);
-    }
+  function getExpiryDateForApi(expiry) {
+    var d = new Date();
+    if (expiry === '7 days') { d.setDate(d.getDate() + 7); }
+    else if (expiry === '30 days') { d.setDate(d.getDate() + 30); }
+    else if (expiry === '3 months') { d.setMonth(d.getMonth() + 3); }
+    else if (expiry === '6 months') { d.setMonth(d.getMonth() + 6); }
+    else { d.setFullYear(d.getFullYear() + 1); }
+    var pad = function(n) { return n < 10 ? '0' + n : String(n); };
+    return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) + ' 23:59:59';
   }
 
   function getExpiryDateStr(expiry) {
@@ -241,16 +213,115 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
     else if (expiry === '30 days') { d.setDate(d.getDate() + 30); }
     else if (expiry === '3 months') { d.setMonth(d.getMonth() + 3); }
     else if (expiry === '6 months') { d.setMonth(d.getMonth() + 6); }
-    else { d.setFullYear(d.getFullYear() + 1); } // 1 year
+    else { d.setFullYear(d.getFullYear() + 1); }
     var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     return d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+  }
+
+  function buildOAuthCurlStr() {
+    return "curl --request POST 'https://uat-accounts.payu.in/oauth/token' \\\n" +
+      "  --header 'Content-Type: application/x-www-form-urlencoded' \\\n" +
+      "  --data-urlencode 'client_id=YOUR_CLIENT_ID' \\\n" +
+      "  --data-urlencode 'client_secret=YOUR_CLIENT_SECRET' \\\n" +
+      "  --data-urlencode 'grant_type=client_credentials' \\\n" +
+      "  --data-urlencode 'scope=create_payment_links'";
+  }
+
+  function buildCreateCurlStr() {
+    var payload = {};
+    payload.subAmount = parseFloat(amount);
+    payload.description = purpose.trim();
+    payload.source = 'API';
+    if (isPartialPayment) { payload.isPartialPaymentAllowed = true; }
+    if (maxTransactions.trim()) { payload.maxPaymentsAllowed = parseInt(maxTransactions, 10); }
+    payload.expiryDate = getExpiryDateForApi(linkExpiry);
+    var customer = {};
+    if (customerName.trim()) { customer.name = customerName.trim(); }
+    if (customerEmail.trim()) { customer.email = customerEmail.trim(); }
+    if (customerPhone.trim()) { customer.phone = customerPhone.trim().replace(/[\s\-]/g, ''); }
+    if (Object.keys(customer).length > 0) { payload.customer = customer; }
+    if (notifyViaEmail) { payload.viaEmail = true; }
+    if (notifyViaSms) { payload.viaSms = true; }
+    var jsonBody = JSON.stringify(payload, null, 2);
+    return "curl --request POST 'https://uatoneapi.payu.in/payment-links' \\\n" +
+      "  --header 'Authorization: Bearer YOUR_ACCESS_TOKEN' \\\n" +
+      "  --header 'merchantId: YOUR_MERCHANT_ID' \\\n" +
+      "  --header 'Content-Type: application/json' \\\n" +
+      "  --data-raw '" + jsonBody + "'";
+  }
+
+  function copyCurl1() {
+    var txt = buildOAuthCurlStr();
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(txt)
+        .then(function() { setCurl1Copied(true); setTimeout(function() { setCurl1Copied(false); }, 2500); })
+        .catch(function() {});
+    } else {
+      setCurl1Copied(true);
+      setTimeout(function() { setCurl1Copied(false); }, 2500);
+    }
+  }
+
+  function copyCurl2() {
+    var txt = buildCreateCurlStr();
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(txt)
+        .then(function() { setCurl2Copied(true); setTimeout(function() { setCurl2Copied(false); }, 2500); })
+        .catch(function() {});
+    } else {
+      setCurl2Copied(true);
+      setTimeout(function() { setCurl2Copied(false); }, 2500);
+    }
+  }
+
+  function copyLink() {
+    if (!isValidUrl(linkUrl)) return;
+    var txt = linkUrl.trim();
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(txt)
+        .then(function() { setLinkCopied(true); setTimeout(function() { setLinkCopied(false); }, 2500); })
+        .catch(function() {});
+    } else {
+      setLinkCopied(true);
+      setTimeout(function() { setLinkCopied(false); }, 2500);
+    }
+  }
+
+  // Opens the real Payment Link URL in a new tab.
+  // Only callable when a valid URL has been pasted into the linkUrl field.
+  function openLink() {
+    if (isValidUrl(linkUrl)) {
+      window.open(linkUrl.trim(), '_blank', 'noopener,noreferrer');
+    }
+  }
+
+  function openSandbox() {
+    setOutcome('');
+    setPhase('customer');
+  }
+
+  function pickOutcome(choice) {
+    setOutcome(choice);
+  }
+
+  function retryPayment() {
+    setOutcome('');
+  }
+
+  // State machine enforcement: only outcome === 'success' may set phase to 'done'.
+  function proceedToDone() {
+    if (outcome !== 'success') return;
+    setPhase('done');
   }
 
   var parsedAmount = amount.trim() ? parseFloat(amount) : 0;
   var displayAmount = isNaN(parsedAmount) ? '0.00' : parsedAmount.toFixed(2);
   var expiryDateStr = getExpiryDateStr(linkExpiry);
-  var showEmailPreview = linkRef && notifyViaEmail && customerEmail.trim();
-  var showSmsPreview = linkRef && notifyViaSms && customerPhone.trim();
+  var urlValid = isValidUrl(linkUrl);
+  var showEmailPreview = formSubmitted && notifyViaEmail && customerEmail.trim();
+  var showSmsPreview = formSubmitted && notifyViaSms && customerPhone.trim();
+  var oauthCurlStr = buildOAuthCurlStr();
+  var createCurlStr = formSubmitted ? buildCreateCurlStr() : '';
 
   // ── Shared styles ─────────────────────────────────────────────────────────
 
@@ -268,8 +339,16 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
     boxSizing: 'border-box', outline: 'none',
   };
   var inputErrStyle = Object.assign({}, inputStyle, { borderColor: RED_ERR });
+  var inputOkStyle = Object.assign({}, inputStyle, { borderColor: GREEN });
   var errMsgStyle = { fontSize: '12px', color: RED_ERR, marginTop: '4px' };
   var hintStyle = { fontSize: '12px', color: '#9ca3af', marginTop: '4px' };
+  var preStyle = {
+    background: '#1e293b', color: '#e2e8f0',
+    padding: '12px 14px', borderRadius: '6px',
+    fontSize: '11px', fontFamily: 'monospace',
+    overflowX: 'auto', margin: 0,
+    lineHeight: 1.6, whiteSpace: 'pre',
+  };
 
   function Toggle(props) {
     return (
@@ -318,7 +397,7 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
           Try: Create a Payment Link
         </h3>
         <p style={{ margin: '0 0 14px', fontSize: '14px', color: '#4b5563', lineHeight: 1.6 }}>
-          Practice the PayU Dashboard workflow in a safe sandbox. No account or real payment needed.
+          Practice the PayU Dashboard workflow. Generates the real API call for your data.
         </p>
         <button
           onClick={openWizard}
@@ -335,7 +414,7 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
           display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px',
         }}>
           <div style={{
-            width: '100%', maxWidth: '540px', maxHeight: '92vh',
+            width: '100%', maxWidth: '560px', maxHeight: '92vh',
             background: 'white', borderRadius: '14px',
             display: 'flex', flexDirection: 'column', overflow: 'hidden',
             boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
@@ -350,7 +429,7 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
                   <div style={{ fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', opacity: 0.75, marginBottom: '3px', letterSpacing: '0.05em' }}>
-                    {phase === 'customer' ? 'Customer View — Sandbox' : 'Payment Tools → Payment Links'}
+                    {phase === 'customer' ? 'Customer View' : 'Payment Tools → Payment Links'}
                   </div>
                   <div style={{ fontSize: '1.05rem', fontWeight: 700 }}>
                     {phase === 'create' ? 'Create New Payment Link'
@@ -375,20 +454,17 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
             {/* Body */}
             <div style={{ flex: 1, overflowY: 'auto', padding: '18px', background: '#f8fafc' }}>
 
-              {/* ──────────────────────────────────────────────────────
-                  CREATE phase
-                  ────────────────────────────────────────────────────── */}
+              {/* ── CREATE phase ── */}
               {phase === 'create' ? (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
 
-                  {/* Card 1: Payment Details */}
+                  {/* Payment Details */}
                   <div style={cardStyle}>
                     <div style={{ fontSize: '12px', fontWeight: 700, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '14px' }}>
                       Payment Details
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
 
-                      {/* Amount */}
                       <div>
                         <label style={labelStyle}>
                           Amount<span style={{ color: REQ_COLOR, marginLeft: '2px' }}>*</span>
@@ -402,14 +478,13 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
                           <input
                             type="text"
                             value={amount}
-                            onChange={function (e) { setAmount(e.target.value); setErrors(function (prev) { var n = Object.assign({}, prev); delete n.amount; return n; }); }}
+                            onChange={function(e) { setAmount(e.target.value); setErrors(function(prev) { var n = Object.assign({}, prev); delete n.amount; return n; }); }}
                             style={{ flex: 1, padding: '8px 12px', border: 'none', fontSize: '14px', outline: 'none', minWidth: 0 }}
                             placeholder="0.00" />
                         </div>
                         {errors.amount ? <div style={errMsgStyle}>{errors.amount}</div> : null}
                       </div>
 
-                      {/* Purpose */}
                       <div>
                         <label style={labelStyle}>
                           Purpose<span style={{ color: REQ_COLOR, marginLeft: '2px' }}>*</span>
@@ -417,7 +492,7 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
                         <input
                           type="text"
                           value={purpose}
-                          onChange={function (e) { setPurpose(e.target.value); setErrors(function (prev) { var n = Object.assign({}, prev); delete n.purpose; return n; }); }}
+                          onChange={function(e) { setPurpose(e.target.value); setErrors(function(prev) { var n = Object.assign({}, prev); delete n.purpose; return n; }); }}
                           style={errors.purpose ? inputErrStyle : inputStyle}
                           placeholder="e.g. Payment for Order #1042" />
                         {errors.purpose
@@ -425,13 +500,11 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
                           : <div style={hintStyle}>Shown to the customer on the payment page · {purpose.length}/255</div>}
                       </div>
 
-                      {/* Allow Partial Payment */}
                       <ToggleRow
                         label="Allow Partial Payment"
                         checked={isPartialPayment}
-                        onClick={function () { setIsPartialPayment(!isPartialPayment); }} />
+                        onClick={function() { setIsPartialPayment(!isPartialPayment); }} />
 
-                      {/* Max Transactions Allowed */}
                       <div>
                         <label style={Object.assign({}, labelStyle, { fontWeight: 600, color: '#374151' })}>
                           Max Transactions Allowed
@@ -439,7 +512,7 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
                         <input
                           type="text"
                           value={maxTransactions}
-                          onChange={function (e) { setMaxTransactions(e.target.value); setErrors(function (prev) { var n = Object.assign({}, prev); delete n.maxTransactions; return n; }); }}
+                          onChange={function(e) { setMaxTransactions(e.target.value); setErrors(function(prev) { var n = Object.assign({}, prev); delete n.maxTransactions; return n; }); }}
                           style={errors.maxTransactions ? inputErrStyle : inputStyle}
                           placeholder="1 (default)" />
                         {errors.maxTransactions
@@ -449,25 +522,23 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
                     </div>
                   </div>
 
-                  {/* Card 2: Customer Details */}
+                  {/* Customer Details */}
                   <div style={cardStyle}>
                     <div style={{ fontSize: '12px', fontWeight: 700, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '14px' }}>
                       Customer Details
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
 
-                      {/* Customer Name */}
                       <div>
                         <label style={Object.assign({}, labelStyle, { fontWeight: 600, color: '#374151' })}>Customer Name</label>
                         <input
                           type="text"
                           value={customerName}
-                          onChange={function (e) { setCustomerName(e.target.value); }}
+                          onChange={function(e) { setCustomerName(e.target.value); }}
                           style={inputStyle}
                           placeholder="Optional" />
                       </div>
 
-                      {/* Email */}
                       <div>
                         <label style={Object.assign({}, labelStyle, { fontWeight: 600, color: '#374151' })}>
                           Email
@@ -476,13 +547,12 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
                         <input
                           type="email"
                           value={customerEmail}
-                          onChange={function (e) { setCustomerEmail(e.target.value); setErrors(function (prev) { var n = Object.assign({}, prev); delete n.email; return n; }); }}
+                          onChange={function(e) { setCustomerEmail(e.target.value); setErrors(function(prev) { var n = Object.assign({}, prev); delete n.email; return n; }); }}
                           style={errors.email ? inputErrStyle : inputStyle}
                           placeholder={notifyViaEmail ? 'Required for email notification' : 'Optional'} />
                         {errors.email ? <div style={errMsgStyle}>{errors.email}</div> : null}
                       </div>
 
-                      {/* Phone Number */}
                       <div>
                         <label style={Object.assign({}, labelStyle, { fontWeight: 600, color: '#374151' })}>
                           Phone Number
@@ -491,30 +561,28 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
                         <input
                           type="tel"
                           value={customerPhone}
-                          onChange={function (e) { setCustomerPhone(e.target.value); setErrors(function (prev) { var n = Object.assign({}, prev); delete n.phone; return n; }); }}
+                          onChange={function(e) { setCustomerPhone(e.target.value); setErrors(function(prev) { var n = Object.assign({}, prev); delete n.phone; return n; }); }}
                           style={errors.phone ? inputErrStyle : inputStyle}
                           placeholder={notifyViaSms ? 'Required for SMS notification' : '10-digit number, optional'} />
                         {errors.phone ? <div style={errMsgStyle}>{errors.phone}</div> : null}
                       </div>
 
-                      {/* Notify toggles */}
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', paddingTop: '4px' }}>
                         <ToggleRow
                           label="Notify via Email"
                           checked={notifyViaEmail}
-                          onClick={function () { setNotifyViaEmail(!notifyViaEmail); }} />
+                          onClick={function() { setNotifyViaEmail(!notifyViaEmail); }} />
                         <ToggleRow
                           label="Notify via SMS"
                           checked={notifyViaSms}
-                          onClick={function () { setNotifyViaSms(!notifyViaSms); }} />
+                          onClick={function() { setNotifyViaSms(!notifyViaSms); }} />
                       </div>
 
-                      {/* Link Expiry */}
                       <div>
                         <label style={Object.assign({}, labelStyle, { fontWeight: 600, color: '#374151' })}>Link Expiry</label>
                         <select
                           value={linkExpiry}
-                          onChange={function (e) { setLinkExpiry(e.target.value); }}
+                          onChange={function(e) { setLinkExpiry(e.target.value); }}
                           style={Object.assign({}, inputStyle, { background: 'white', cursor: 'pointer' })}>
                           <option value="7 days">7 days</option>
                           <option value="30 days">30 days</option>
@@ -527,108 +595,182 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
                     </div>
                   </div>
 
-                  {/* Submit */}
                   <button
                     onClick={createLink}
                     style={{ width: '100%', padding: '12px', background: GREEN, color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontSize: '14px', fontWeight: 700 }}>
                     Create and Send Payment Link
                   </button>
 
-                  {/* ── Link created ── */}
-                  {linkRef ? (
+                  {/* ── Post-submission: API call + Open Link ── */}
+                  {formSubmitted ? (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
 
-                      {/* Confirmation card */}
-                      <div style={{ padding: '16px', borderRadius: '10px', background: GREEN_LIGHT, border: '2px solid ' + GREEN }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+                      {/* Confirmation summary */}
+                      <div style={{ padding: '14px 16px', borderRadius: '10px', background: GREEN_LIGHT, border: '2px solid ' + GREEN }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
                           <span style={{ fontSize: '15px', color: GREEN }}>✓</span>
-                          <span style={{ fontSize: '14px', fontWeight: 700, color: GREEN, flex: 1 }}>Payment Link Created</span>
-                          <span style={{ padding: '2px 8px', background: GREEN, color: 'white', borderRadius: '4px', fontSize: '11px', fontWeight: 700 }}>Active</span>
+                          <span style={{ fontSize: '14px', fontWeight: 700, color: GREEN, flex: 1 }}>Link configuration ready</span>
+                          <span style={{ padding: '2px 8px', background: GREEN, color: 'white', borderRadius: '4px', fontSize: '11px', fontWeight: 700 }}>Active once created</span>
                         </div>
-
-                        <div style={{ background: 'white', borderRadius: '6px', padding: '10px 14px', marginBottom: '12px', border: '1px solid #d1fae5' }}>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
-                            <div style={{ flex: 1, marginRight: '12px' }}>
-                              <div style={{ fontSize: '11px', color: '#6b7280', marginBottom: '3px' }}>Purpose of Payment</div>
-                              <div style={{ fontSize: '13px', fontWeight: 600, color: '#111827' }}>{purpose}</div>
-                            </div>
-                            <div style={{ textAlign: 'right', flexShrink: 0 }}>
-                              <div style={{ fontSize: '11px', color: '#6b7280', marginBottom: '3px' }}>Amount</div>
-                              <div style={{ fontSize: '16px', fontWeight: 700, color: GREEN_DARK }}>₹{displayAmount}</div>
-                            </div>
-                          </div>
-                          {isPartialPayment ? (
-                            <div style={{ fontSize: '11px', color: '#6b7280', marginBottom: '6px' }}>Partial payment allowed</div>
-                          ) : null}
-                          <div style={{ fontSize: '11px', color: '#9ca3af' }}>
-                            Expires: {expiryDateStr} ·{' '}
-                            Max payments: {maxTransactions.trim() ? maxTransactions : '1'}
-                          </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', color: '#374151' }}>
+                          <span>{purpose}</span>
+                          <strong>₹{displayAmount}</strong>
                         </div>
-
-                        {/* Sandbox reference — honest disclosure */}
-                        <div style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: '6px', padding: '10px 12px', marginBottom: '12px' }}>
-                          <div style={{ fontSize: '11px', fontWeight: 700, color: '#92400e', marginBottom: '4px' }}>
-                            Sandbox — not a real Payment Link URL
-                          </div>
-                          <div style={{ fontSize: '11px', color: '#374151', fontFamily: 'monospace' }}>{linkRef}</div>
-                          <div style={{ fontSize: '11px', color: '#92400e', marginTop: '4px', lineHeight: 1.4 }}>
-                            Real links (e.g. https://pp72.pmny.in/...) are generated by PayU's API when using the actual Dashboard. Creating real links requires merchant credentials.
-                          </div>
-                        </div>
-
-                        <div style={{ display: 'flex', gap: '8px' }}>
-                          {/* Copy Reference — labelled honestly */}
-                          <button
-                            onClick={copyRef}
-                            style={{
-                              flex: 1, padding: '9px',
-                              background: copied ? GREEN : 'white',
-                              color: copied ? 'white' : GREEN,
-                              border: '1px solid ' + GREEN,
-                              borderRadius: '6px', cursor: 'pointer', fontSize: '12px', fontWeight: 700,
-                            }}>
-                            {copied ? '✓ Reference copied' : 'Copy Reference'}
-                          </button>
-                          {/* Open Link — transitions to customer view */}
-                          <button
-                            onClick={openLink}
-                            style={{ flex: 2, padding: '9px', background: GREEN, color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '13px', fontWeight: 700 }}>
-                            Open Link →
-                          </button>
-                        </div>
-                        <div style={{ fontSize: '12px', color: '#6b7280', marginTop: '10px', lineHeight: 1.5 }}>
-                          Click <strong>Open Link</strong> to see what your customer experiences when they open this payment link.
+                        <div style={{ fontSize: '11px', color: '#6b7280', marginTop: '6px' }}>
+                          Expires {expiryDateStr} · Max payments: {maxTransactions.trim() ? maxTransactions : '1'}
+                          {isPartialPayment ? ' · Partial payment allowed' : ''}
                         </div>
                       </div>
 
-                      {/* ── Notification previews ── */}
-                      {(showEmailPreview || showSmsPreview) ? (
-                        <div style={{ padding: '14px 16px', background: 'white', borderRadius: '10px', border: '1px solid #e5e7eb' }}>
-                          <div style={{ display: 'flex', align: 'center', gap: '8px', marginBottom: '12px' }}>
-                            <div style={{ flex: 1 }}>
-                              <div style={{ fontSize: '12px', fontWeight: 700, color: '#111827' }}>Customer Notification Preview</div>
-                              <div style={{ fontSize: '11px', color: '#9ca3af', marginTop: '2px' }}>
-                                Preview only — notifications require merchant credentials and the real PayU Dashboard
-                              </div>
+                      {/* API call section */}
+                      <div style={{ background: 'white', borderRadius: '10px', border: '1px solid #e5e7eb', overflow: 'hidden' }}>
+                        <div style={{ padding: '12px 16px', borderBottom: '1px solid #f3f4f6', background: '#f8fafc' }}>
+                          <div style={{ fontSize: '12px', fontWeight: 700, color: '#374151', marginBottom: '2px' }}>
+                            Create this link via the PayU API
+                          </div>
+                          <div style={{ fontSize: '11px', color: '#6b7280' }}>
+                            Run these on your server — the response will contain the real Payment Link URL
+                          </div>
+                        </div>
+                        <div style={{ padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+
+                          <div>
+                            <div style={{ fontSize: '11px', fontWeight: 700, color: '#6b7280', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                              Step 1 — Get an access token
+                            </div>
+                            <div style={{ position: 'relative' }}>
+                              <pre style={preStyle}>{oauthCurlStr}</pre>
+                              <button
+                                onClick={copyCurl1}
+                                style={{
+                                  position: 'absolute', top: '6px', right: '6px',
+                                  padding: '3px 8px',
+                                  background: curl1Copied ? '#22c55e' : 'rgba(255,255,255,0.12)',
+                                  color: 'white', border: '1px solid rgba(255,255,255,0.25)',
+                                  borderRadius: '4px', fontSize: '10px', cursor: 'pointer', fontWeight: 600,
+                                }}>
+                                {curl1Copied ? '✓ Copied' : 'Copy'}
+                              </button>
                             </div>
                           </div>
 
-                          {/* Email preview */}
+                          <div>
+                            <div style={{ fontSize: '11px', fontWeight: 700, color: '#6b7280', marginBottom: '6px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                              Step 2 — Create the Payment Link (your data pre-filled)
+                            </div>
+                            <div style={{ position: 'relative' }}>
+                              <pre style={preStyle}>{createCurlStr}</pre>
+                              <button
+                                onClick={copyCurl2}
+                                style={{
+                                  position: 'absolute', top: '6px', right: '6px',
+                                  padding: '3px 8px',
+                                  background: curl2Copied ? '#22c55e' : 'rgba(255,255,255,0.12)',
+                                  color: 'white', border: '1px solid rgba(255,255,255,0.25)',
+                                  borderRadius: '4px', fontSize: '10px', cursor: 'pointer', fontWeight: 600,
+                                }}>
+                                {curl2Copied ? '✓ Copied' : 'Copy'}
+                              </button>
+                            </div>
+                          </div>
+
+                          <div style={{ padding: '8px 10px', background: '#f0fdf4', borderRadius: '6px', border: '1px solid #bbf7d0', fontSize: '12px', color: '#166534' }}>
+                            The response contains <code style={{ background: 'rgba(0,0,0,0.06)', padding: '1px 4px', borderRadius: '3px' }}>result.paymentLink</code> — a real URL at <code style={{ background: 'rgba(0,0,0,0.06)', padding: '1px 4px', borderRadius: '3px' }}>https://pp72.pmny.in/…</code>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* URL paste + Open Link */}
+                      <div style={{
+                        background: 'white', borderRadius: '10px', padding: '16px',
+                        border: '2px dashed ' + (urlValid ? GREEN : '#d1d5db'),
+                      }}>
+                        <div style={{ fontSize: '13px', fontWeight: 700, color: '#111827', marginBottom: '4px' }}>
+                          Open or share the Payment Link
+                        </div>
+                        <div style={{ fontSize: '12px', color: '#6b7280', marginBottom: '10px' }}>
+                          Paste the <code style={{ background: '#f1f5f9', padding: '1px 4px', borderRadius: '3px', fontSize: '11px' }}>result.paymentLink</code> URL from the API response:
+                        </div>
+                        <input
+                          type="url"
+                          value={linkUrl}
+                          onChange={function(e) { setLinkUrl(e.target.value); setLinkCopied(false); }}
+                          placeholder="https://pp72.pmny.in/..."
+                          style={urlValid ? inputOkStyle : inputStyle} />
+                        <div style={{ display: 'flex', gap: '8px', marginTop: '10px' }}>
+                          <button
+                            onClick={urlValid ? copyLink : undefined}
+                            style={{
+                              flex: 1, padding: '9px',
+                              background: urlValid ? (linkCopied ? GREEN : 'white') : '#f9fafb',
+                              color: urlValid ? (linkCopied ? 'white' : GREEN) : '#c4c4c4',
+                              border: '1px solid ' + (urlValid ? GREEN : '#e5e7eb'),
+                              borderRadius: '6px',
+                              cursor: urlValid ? 'pointer' : 'default',
+                              fontSize: '12px', fontWeight: 700,
+                            }}>
+                            {linkCopied ? '✓ Link copied' : 'Copy Link'}
+                          </button>
+                          <button
+                            onClick={urlValid ? openLink : undefined}
+                            style={{
+                              flex: 2, padding: '9px',
+                              background: urlValid ? GREEN : '#f9fafb',
+                              color: urlValid ? 'white' : '#c4c4c4',
+                              border: urlValid ? 'none' : '1px solid #e5e7eb',
+                              borderRadius: '6px',
+                              cursor: urlValid ? 'pointer' : 'default',
+                              fontSize: '13px', fontWeight: 700,
+                            }}>
+                            Open Link →
+                          </button>
+                        </div>
+                        {urlValid ? (
+                          <div style={{ fontSize: '11px', color: '#6b7280', marginTop: '8px' }}>
+                            Opens the real PayU checkout in a new tab
+                          </div>
+                        ) : null}
+                      </div>
+
+                      {/* Sandbox path */}
+                      <div style={{ borderTop: '1px solid #f3f4f6', paddingTop: '14px' }}>
+                        <div style={{ fontSize: '12px', color: '#9ca3af', marginBottom: '8px', textAlign: 'center' }}>
+                          No credentials? Simulate the customer experience in the sandbox:
+                        </div>
+                        <button
+                          onClick={openSandbox}
+                          style={{
+                            width: '100%', padding: '10px',
+                            background: 'white', color: GREEN,
+                            border: '1px solid ' + GREEN,
+                            borderRadius: '6px', cursor: 'pointer',
+                            fontSize: '13px', fontWeight: 600,
+                          }}>
+                          Simulate Customer Checkout (Sandbox) →
+                        </button>
+                      </div>
+
+                      {/* Notification previews */}
+                      {(showEmailPreview || showSmsPreview) ? (
+                        <div style={{ padding: '14px 16px', background: 'white', borderRadius: '10px', border: '1px solid #e5e7eb' }}>
+                          <div style={{ marginBottom: '12px' }}>
+                            <div style={{ fontSize: '12px', fontWeight: 700, color: '#111827' }}>Customer Notification Preview</div>
+                            <div style={{ fontSize: '11px', color: '#9ca3af', marginTop: '2px' }}>
+                              Preview only — notifications are sent by the real PayU API after link creation
+                            </div>
+                          </div>
+
                           {showEmailPreview ? (
                             <div style={{ background: '#f9fafb', borderRadius: '8px', border: '1px solid #e5e7eb', padding: '12px 14px', marginBottom: showSmsPreview ? '10px' : 0 }}>
-                              <div style={{ fontSize: '11px', fontWeight: 700, color: '#6b7280', marginBottom: '8px', textTransform: 'uppercase' }}>Email preview → {customerEmail}</div>
+                              <div style={{ fontSize: '11px', fontWeight: 700, color: '#6b7280', marginBottom: '8px', textTransform: 'uppercase' }}>Email → {customerEmail}</div>
                               <div style={{ fontSize: '12px', color: '#374151', lineHeight: 1.6 }}>
                                 <strong>Subject:</strong> Payment request — {purpose}<br />
                                 <br />
                                 {customerName ? 'Hi ' + customerName + ',' : 'Hi,'}<br />
                                 <br />
-                                You have received a payment request of{' '}
-                                <strong>₹{displayAmount}</strong> for{' '}
-                                <strong>{purpose}</strong>.<br />
+                                You have received a payment request of <strong>₹{displayAmount}</strong> for <strong>{purpose}</strong>.<br />
                                 <br />
-                                To complete your payment, use the link below:<br />
-                                <span style={{ fontFamily: 'monospace', color: '#92400e' }}>[{linkRef}]</span><br />
+                                Click to pay: {urlValid ? linkUrl : '[payment link URL]'}<br />
                                 <br />
                                 Link expires on {expiryDateStr}.<br />
                                 <br />
@@ -637,29 +779,25 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
                             </div>
                           ) : null}
 
-                          {/* SMS preview */}
                           {showSmsPreview ? (
                             <div style={{ background: '#f9fafb', borderRadius: '8px', border: '1px solid #e5e7eb', padding: '12px 14px' }}>
                               <div style={{ fontSize: '11px', fontWeight: 700, color: '#6b7280', marginBottom: '8px', textTransform: 'uppercase' }}>
-                                SMS preview → {customerPhone}
+                                SMS → {customerPhone}
                               </div>
                               <div style={{ fontSize: '12px', color: '#374151', fontFamily: 'monospace', lineHeight: 1.6, background: 'white', padding: '8px 10px', borderRadius: '6px', border: '1px solid #e5e7eb' }}>
-                                Payment request of ₹{displayAmount} for {purpose}. Pay here: [{linkRef}]. Expires {expiryDateStr}. -PayU
+                                Payment request of ₹{displayAmount} for {purpose}. Pay here: {urlValid ? linkUrl : '[payment link URL]'}. Expires {expiryDateStr}. -PayU
                               </div>
                             </div>
                           ) : null}
                         </div>
                       ) : null}
+
                     </div>
                   ) : null}
                 </div>
               ) : null}
 
-              {/* ──────────────────────────────────────────────────────
-                  CUSTOMER phase
-                  Represents the opened Payment Link as seen by the customer.
-                  Phase transition from the merchant view — not a modal overlay.
-                  ────────────────────────────────────────────────────── */}
+              {/* ── CUSTOMER phase ── */}
               {phase === 'customer' ? (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
 
@@ -671,7 +809,6 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
                     <strong>Sandbox</strong> — This is what your customer sees when they open the payment link
                   </div>
 
-                  {/* Payment details */}
                   <div style={cardStyle}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                       <div style={{ flex: 1, marginRight: '16px' }}>
@@ -695,7 +832,6 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
                     ) : null}
                   </div>
 
-                  {/* Payment options — before any outcome */}
                   {!outcome ? (
                     <div style={cardStyle}>
                       <div style={{ fontSize: '13px', fontWeight: 700, color: '#111827', marginBottom: '4px' }}>Pay using</div>
@@ -707,21 +843,21 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
                         border: '1px solid #fde68a', borderRadius: '6px',
                         marginBottom: '14px', fontSize: '12px', color: '#92400e', textAlign: 'center',
                       }}>
-                        Sandbox: choose a test outcome below to simulate payment
+                        Sandbox: choose a test outcome below
                       </div>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                         <button
-                          onClick={function () { pickOutcome('success'); }}
+                          onClick={function() { pickOutcome('success'); }}
                           style={{ padding: '11px', background: GREEN, color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', fontWeight: 700 }}>
                           Pay ₹{displayAmount} — Simulate Success
                         </button>
                         <button
-                          onClick={function () { pickOutcome('failed'); }}
+                          onClick={function() { pickOutcome('failed'); }}
                           style={{ padding: '11px', background: 'white', color: RED_ERR, border: '1px solid ' + RED_ERR, borderRadius: '6px', cursor: 'pointer', fontSize: '14px', fontWeight: 600 }}>
                           Simulate Payment Failure
                         </button>
                         <button
-                          onClick={function () { pickOutcome('cancelled'); }}
+                          onClick={function() { pickOutcome('cancelled'); }}
                           style={{ padding: '11px', background: 'white', color: '#6b7280', border: '1px solid #d1d5db', borderRadius: '6px', cursor: 'pointer', fontSize: '14px', fontWeight: 600 }}>
                           Cancel
                         </button>
@@ -729,7 +865,6 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
                     </div>
                   ) : null}
 
-                  {/* Success — only this path leads to proceedToDone */}
                   {outcome === 'success' ? (
                     <div style={{ background: 'white', borderRadius: '10px', border: '2px solid ' + GREEN, padding: '22px 18px', textAlign: 'center' }}>
                       <div style={{
@@ -748,7 +883,6 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
                     </div>
                   ) : null}
 
-                  {/* Failed — stays in customer phase, can retry only */}
                   {outcome === 'failed' ? (
                     <div style={{ background: 'white', borderRadius: '10px', border: '2px solid ' + RED_ERR, padding: '22px 18px', textAlign: 'center' }}>
                       <div style={{
@@ -759,7 +893,7 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
                       }}>✗</div>
                       <div style={{ fontSize: '17px', fontWeight: 700, color: RED_ERR, marginBottom: '6px' }}>Payment Failed</div>
                       <div style={{ fontSize: '13px', color: '#6b7280', marginBottom: '18px' }}>
-                        The payment could not be processed. The link is still active — you can try again.
+                        The payment could not be processed. The link is still active.
                       </div>
                       <button
                         onClick={retryPayment}
@@ -769,7 +903,6 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
                     </div>
                   ) : null}
 
-                  {/* Cancelled — stays in customer phase, can retry only */}
                   {outcome === 'cancelled' ? (
                     <div style={{ background: 'white', borderRadius: '10px', border: '1px solid #d1d5db', padding: '22px 18px', textAlign: 'center' }}>
                       <div style={{
@@ -780,7 +913,7 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
                       }}>⊗</div>
                       <div style={{ fontSize: '17px', fontWeight: 700, color: '#374151', marginBottom: '6px' }}>Payment Cancelled</div>
                       <div style={{ fontSize: '13px', color: '#6b7280', marginBottom: '18px' }}>
-                        You closed the payment page. The link is still active — you can try again.
+                        You closed the payment page. The link is still active.
                       </div>
                       <button
                         onClick={retryPayment}
@@ -792,10 +925,7 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
                 </div>
               ) : null}
 
-              {/* ──────────────────────────────────────────────────────
-                  DONE phase
-                  Reachable only via proceedToDone() when outcome === 'success'.
-                  ────────────────────────────────────────────────────── */}
+              {/* ── DONE phase — reachable only via proceedToDone() when outcome === 'success' ── */}
               {phase === 'done' ? (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
 
@@ -805,7 +935,6 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
                     <div style={{ fontSize: '14px', color: '#6b7280' }}>You've completed the full Payment Links workflow.</div>
                   </div>
 
-                  {/* Simulated Dashboard row */}
                   <div style={cardStyle}>
                     <div style={{ fontSize: '11px', fontWeight: 700, color: '#6b7280', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '10px' }}>
                       Payment Links Dashboard
@@ -823,11 +952,10 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
                       </span>
                     </div>
                     <div style={{ fontSize: '11px', color: '#9ca3af', marginTop: '10px' }}>
-                      Sandbox simulation — in the real Dashboard, the status updates to Paid automatically after your customer completes payment.
+                      Sandbox simulation — in the real Dashboard, status updates to Paid after payment.
                     </div>
                   </div>
 
-                  {/* Dashboard CTA */}
                   <div style={{
                     padding: '16px 18px',
                     background: 'linear-gradient(135deg, ' + GREEN_LIGHT + ' 0%, #ffffff 100%)',
@@ -847,16 +975,15 @@ export const PayUPaymentLinksWizard = function PayUPaymentLinksWizard() {
                     </a>
                   </div>
 
-                  {/* Feedback */}
                   {!feedback ? (
                     <div style={Object.assign({}, cardStyle, { padding: '14px 18px' })}>
                       <div style={{ fontSize: '13px', fontWeight: 600, marginBottom: '10px' }}>How easy was this to complete?</div>
                       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px' }}>
-                        {['Very easy', 'Easy', 'Difficult', 'Very difficult'].map(function (r) {
+                        {['Very easy', 'Easy', 'Difficult', 'Very difficult'].map(function(r) {
                           return (
                             <button
                               key={r}
-                              onClick={function () { setFeedback(r); }}
+                              onClick={function() { setFeedback(r); }}
                               style={{ padding: '8px', background: 'white', color: GREEN, border: '1px solid ' + GREEN, borderRadius: '6px', cursor: 'pointer', fontSize: '13px', fontWeight: 600 }}>
                               {r}
                             </button>
