@@ -176,19 +176,25 @@ You can perform the following actions after a button is created:
 
 </Accordion>
 
-<Accordion title="Turn Off a Button" icon="far fa-ban">
-  Turning off a button stops any further payments through it. Anyone who clicks it on your website will see a message that it is no longer active.
+***
 
-  To turn off a button:
+### Delete a Payment Button
+
+<Accordion title="Steps to Delete a Payment Button" icon="far fa-ban">
+  Deleting a button stops any further payments through it. Anyone who clicks it on your website will see a message that it is no longer active.
+
+  To delete a button:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Payment Buttons** under **Payment Tools**.
 
+     <Image src="https://files.readme.io/5a6ab7bcf843383c38b726968733e2571d29d869b5beffaf392915263aef95a5-image.png" align="center" caption="Access Payment Buttons" border={true} />
 
-  <Image src="https://files.readme.io/a494bb1de682ae83ec3d1023e1e13dfb65e02db0ef5332ca52b6e85232638c63-Screenshot_2025-06-02_at_7.09.40_PM.png" align="center" caption="Payment Buttons list" border={true} />
 
+  2) Click the delete icon next to the button you want to delete.
 
-  2. Click the menu icon next to the button you want to turn off and click **Disable**.
-  3. Click **Yes** in the confirmation window.
+     <Image src="https://files.readme.io/1cc49d01db067ddb1a29ecca4ca30d0d7c7f5da4d86115e095dadab01642ecf3-Screenshot_2026-09-30_at_1.57.21_PM.png" align="center" caption="Delete a Payment Button" border={true} />
+
+  3) Click **Yes, Delete** in the confirmation window.
 
   The button status changes to **Inactive**.
 
