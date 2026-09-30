@@ -141,6 +141,28 @@ You can perform the following actions after a button is created:
   </Accordion>
 </Accordion>
 
+***
+
+### Edit Payment Button Details
+
+<Accordion title="Steps to Edit a Payment Button" icon="fad fa-door-closed">
+  To edit payment button details:
+
+  1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Payment Buttons** under **Payment Tools**.
+
+     <Image src="https://files.readme.io/b11382e235cabbde457cdb61efa569f6680bb561c03b067c79c540f425e7a4f4-image.png" align="center" caption="Access Payment Buttons" border={true} />
+
+  2. Click edit icon against the required payment button.
+
+     <Image src="https://files.readme.io/f3f00cad4fda45b296e63406c1f249b3b5a00eb1b799be08660f4be37f4bead9-Screenshot_2026-09-30_at_1.37.14_PM.png" align="center" caption="Edit Payment Button" border={true} />
+
+  3. Enter the required details in the **Update Button&#x20;**&#x70;age. You can edit all the information you have provided while creating the button.
+
+     <Image src="https://files.readme.io/358b239dae8ca88a857d4eeb9d43fe88365c538624dc57c88131c42f1226a5b6-Screenshot_2026-09-30_at_1.42.43_PM.png" align="center" caption="Edit Payment Button Details" border={true} />
+
+  4. Click **Update Button** to save the changes.
+</Accordion>
+
 <Accordion title="Turn Off a Button" icon="far fa-ban">
   Turning off a button stops any further payments through it. Anyone who clicks it on your website will see a message that it is no longer active.
 
