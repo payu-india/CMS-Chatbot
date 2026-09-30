@@ -341,7 +341,7 @@ support. This integration handles all authentication redirects internally while 
   }
   ```
 </Tab>
-<Tabs>
+</Tabs>
 
 ### Step 1.2: Response Handling & Hash Verification
 
