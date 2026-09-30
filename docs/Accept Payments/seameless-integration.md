@@ -1,7 +1,9 @@
 ---
 title: Seameless Integration
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
