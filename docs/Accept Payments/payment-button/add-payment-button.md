@@ -86,6 +86,7 @@ To add a payment button:
 
 
   2. Provide these **Button Details** to set up how your button looks and works:
+
      <Table>
        <thead>
          <tr>
@@ -161,6 +162,7 @@ To add a payment button:
        </tbody>
      </Table>
 
+
      <Image src="https://files.readme.io/da83ac123dfde2852f1aae8a044448c59baf4b4fb0b4fe10a0fedc2a4f786bd6-Screenshot_2026-09-29_at_4.14.23_PM.png" align="center" caption="Add Button Details" border={true} />
 
 </Accordion>
@@ -169,12 +171,15 @@ To add a payment button:
   Add custom fields to collect information from your customer before they pay.
 
   1. Scroll to the **Custom Details** section and switch on any of the ready-made fields you want to collect:
+
      - **Customer Name**
      - **Customer Address**
      - **Customer Email**
      - **Customer Mobile**
 
+
      <Image src="https://files.readme.io/b1640075e80da6845b2db91376ddc70cf909ac9ebed3f6ed33230fcfe1387586-Screenshot_2026-09-29_at_4.12.16_PM.png" align="center" caption="Add Custom Detials" border={true} />
+
 
   2. To add a field of your own, click **Add Fields** and fill in:
 
@@ -218,6 +223,7 @@ To add a payment button:
 
   2. Click **Copy Code** to copy the button code.
 
+
      <Image src="https://files.readme.io/0d5b65c380ca96a02549e4a8af8c31f9f890bc3b3cadd3d91a564328aee7b2e9-Screenshot_2026-09-29_at_4.26.21_PM.png" align="center" caption="Add the Code to Your Website" border={true} />
 
 
@@ -231,12 +237,6 @@ To add a payment button:
   | **Other builders** | Look for an "HTML", "Code", or "Embed" block in your page editor      |
 
   The button appears on your page right away.
-
-  <Callout icon="🚧" theme="warning">
-    ### **Watch Out!**
-
-    Payment Buttons cannot be changed after creatio&#x6E;**.** If you need to update the label, amount, colour, or any other setting, create a new button with the correct details and replace the code on your website.
-  </Callout>
 </Accordion>
 
 ***
