@@ -199,27 +199,25 @@ You can perform the following actions after a button is created:
 
 ***
 
-## How Do I Search for a Button?
+## How Do I Search for a Payment Button?
 
 You can filter the payment buttons list using the following options:
 
-<Accordion title="Filter by Button Type" icon="far fa-filter">
+<Accordion title="Filter by Button Text" icon="far fa-filter">
   To filter your buttons by type:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Payment Buttons** under **Payment Tools**.
 
-
-  <Image src="https://files.readme.io/a494bb1de682ae83ec3d1023e1e13dfb65e02db0ef5332ca52b6e85232638c63-Screenshot_2025-06-02_at_7.09.40_PM.png" align="center" caption="Payment Buttons list" border={true} />
-
-
-  2. Click the **Filter** drop-down at the top of the list and select the button types you want to see.
-  3. Click **Apply** to filter the list.
+     <Image src="https://files.readme.io/630faa7ce2b9d8eeaf3e24e29b1ae0fa9ed2ebed0665717fbc4b621af3dc0dde-image.png" align="center" caption="Access Payment Button" border={true} />
 
 
-  <Image src="https://files.readme.io/aa8017f76337f733c85c604f5405b654e85a9d2ab165d9b60e1f34dc716fda54-Screenshot_2025-06-02_at_7.25.33_PM.png" align="center" caption="Filter by button type" border={true} />
+  2) Click the **Filter** drop-down at the top bar and select the button text of buttons you want to see.
 
+     <Image src="https://files.readme.io/b614836bdd2f518d2c81d009b2506ce32dcb94213d20a9aebca813c0baf4e6c5-Screenshot_2026-09-30_at_2.08.51_PM.png" align="center" caption="Filter the Payment Button List" border={true} />
 
-  4. To remove the filter and see all buttons again, click **Reset** inside the filter panel.
+  3) Click **Apply** to filter the list.
+
+  To remove the filter and see all buttons again, click **Reset** inside the filter panel.
 </Accordion>
 
 <Accordion title="Filter by Date" icon="far fa-calendar">
