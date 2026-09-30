@@ -225,11 +225,10 @@ You can filter the payment buttons list using the following options:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Payment Buttons** under **Payment Tools**.
 
+     <Image src="https://files.readme.io/351a9b927e58b9b501fb8739b9ac498991bb208b167f7451ad3bb308a6ffe029-image.png" align="center" caption="Access Payment Button" border={true} />
 
-  <Image src="https://files.readme.io/a494bb1de682ae83ec3d1023e1e13dfb65e02db0ef5332ca52b6e85232638c63-Screenshot_2025-06-02_at_7.09.40_PM.png" align="center" caption="Payment Buttons list" border={true} />
 
-
-  2. Click the **Past 1 Year** drop-down at the top of the list and select a time period:
+  2) Click the calendar at the top bar and select a time period:
      - Today
      - Yesterday
      - Past 7 days
@@ -237,10 +236,10 @@ You can filter the payment buttons list using the following options:
      - Past 1 year
      - Custom Range
 
-  3. For a custom range, pick a start and end date and click **Apply**.
+  3) For a custom range, pick a start and end date and click **Apply**.
 
+     <Image src="https://files.readme.io/cf93235602975bba48633305ef440a9670730cf0eba7afddd8c2439a42853530-Screenshot_2026-09-30_at_2.12.12_PM.png" align="center" caption="Filter by dates" border={true} />
 
-  <Image src="https://files.readme.io/aa8017f76337f733c85c604f5405b654e85a9d2ab165d9b60e1f34dc716fda54-Screenshot_2025-06-02_at_7.25.33_PM.png" align="center" caption="Date filter on the Payment Buttons list" border={true} />
 
 </Accordion>
 
