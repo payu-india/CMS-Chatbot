@@ -16,35 +16,6 @@ Integrate card payments using PayU's Classic Server-to-Server (S2S) flow with fu
   - PCI DSS compliance or tokenization setup
 </Callout>
 
-## Step 1: Start Integration
-
-### Step 1.1: Prepare the Request Parameters
-
-  Before making the payment request, prepare all required parameters:
-
-#### Mandatory Parameters
-
-support. This integration handles all authentication redirects internally while your server maintains control over the payment flow.
-
-<Callout icon="📘" theme="info">
-  **Prerequisites:**
-
-  - Merchant account enabled for S2S flow (`txn_s2s_flow = 1`)
-  - Valid PayU merchant key and salt
-  - Payment gateway (PG) enabled for card payments on your account
-  - PCI DSS compliance or tokenization setup
-</Callout>
-
-This integration handles all authentication redirects internally while your server maintains control over the payment flow.
-
-<Callout icon="📘" theme="info">
-  **Prerequisites:**
-
-  - Merchant account enabled for S2S flow (`txn_s2s_flow = 1`)
-  - Valid PayU merchant key and salt
-  - Payment gateway (PG) enabled for card payments on your account
-  - PCI DSS compliance or tokenization setup
-</Callout>
 
 ## Step 1: Start Integration
 
