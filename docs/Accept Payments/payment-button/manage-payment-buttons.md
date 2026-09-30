@@ -51,7 +51,7 @@ To open payment buttons: log in to [PayU Dashboard](https://onboarding.payu.in/)
 
 ## What Can I Do With a Payment Button After It Is Created?
 
-You can perform the following actions after a button is created:
+You can perform the following actions after a button is created:<br />
 
 - View Payment Button Details
 - Edit Payment Button Details
@@ -172,6 +172,7 @@ You can perform the following actions after a button is created:
 
   5. Click **Copy Code** to copy the new button code and replace it in your website.
 
+
      <Image src="https://files.readme.io/437f5b5fa9f1d23759ea4cfbf5676e1dba3fb4b7912b6c4ab0b99a24103240e2-Screenshot_2026-09-30_at_1.48.58_PM.png" align="center" caption="Embed the new code in your website" border={true} />
 
 </Accordion>
@@ -187,12 +188,15 @@ You can perform the following actions after a button is created:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Payment Buttons** under **Payment Tools**.
 
+
      <Image src="https://files.readme.io/5a6ab7bcf843383c38b726968733e2571d29d869b5beffaf392915263aef95a5-image.png" align="center" caption="Access Payment Buttons" border={true} />
 
 
   2) Click the delete icon next to the button you want to delete.
 
+
      <Image src="https://files.readme.io/1cc49d01db067ddb1a29ecca4ca30d0d7c7f5da4d86115e095dadab01642ecf3-Screenshot_2026-09-30_at_1.57.21_PM.png" align="center" caption="Delete a Payment Button" border={true} />
+
 
   3) Click **Yes, Delete** in the confirmation window.
 </Accordion>
@@ -208,12 +212,15 @@ You can filter the payment buttons list using the following options:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Payment Buttons** under **Payment Tools**.
 
+
      <Image src="https://files.readme.io/630faa7ce2b9d8eeaf3e24e29b1ae0fa9ed2ebed0665717fbc4b621af3dc0dde-image.png" align="center" caption="Access Payment Button" border={true} />
 
 
   2) Click the **Filter** drop-down at the top bar and select the button text of buttons you want to see.
 
+
      <Image src="https://files.readme.io/b614836bdd2f518d2c81d009b2506ce32dcb94213d20a9aebca813c0baf4e6c5-Screenshot_2026-09-30_at_2.08.51_PM.png" align="center" caption="Filter the Payment Button List" border={true} />
+
 
   3) Click **Apply** to filter the list.
 
@@ -224,6 +231,7 @@ You can filter the payment buttons list using the following options:
   To filter your buttons by when they were created:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Payment Buttons** under **Payment Tools**.
+
 
      <Image src="https://files.readme.io/351a9b927e58b9b501fb8739b9ac498991bb208b167f7451ad3bb308a6ffe029-image.png" align="center" caption="Access Payment Button" border={true} />
 
@@ -237,6 +245,7 @@ You can filter the payment buttons list using the following options:
 
   3) For a custom range, pick a start and end date and click **Apply**.
 
+
      <Image src="https://files.readme.io/cf93235602975bba48633305ef440a9670730cf0eba7afddd8c2439a42853530-Screenshot_2026-09-30_at_2.12.12_PM.png" align="center" caption="Filter by dates" border={true} />
 
 </Accordion>
@@ -249,6 +258,7 @@ You can filter the payment buttons list using the following options:
   To download payment button records:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Payment Buttons** under **Payment Tools**.
+
 
      <Image src="https://files.readme.io/2b1a7e6bd269426003ad449cd615f00366105e1cb897607ecc9e60de9c7ab735-image.png" align="center" caption="Access Payment Button" border={true} />
 
