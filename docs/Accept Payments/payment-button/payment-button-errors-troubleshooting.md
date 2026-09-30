@@ -141,16 +141,14 @@ Something not working after adding your <Anchor target="_blank" href="https://do
 ## How Do I Fix a Button with Wrong Details?
 
 <Accordion title="Wrong Amount, Label, or Redirect Page on the Button" icon="far fa-pen-to-square">
-  Payment Buttons cannot be changed after creation.
-
-  **What to do:** Create a new button with the correct details, copy the new button code, and replace the old code on your website. If the old button is still live on any page, replace it there too so customers do not accidentally use it.
+  <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-buttons#edit-payment-button-details">Edit the payment button</Anchor> details to add the correct information.
 </Accordion>
 
 ***
 
 ## Still Stuck?
 
-Contact PayU support with these details:
+Contact <Anchor target="_blank" href="https://help.payu.in/raise-ticket">PayU support</Anchor> with these details:
 
 * [x] Payment Button name (from your Dashboard)
 * [x] The page on your website where the button is added
