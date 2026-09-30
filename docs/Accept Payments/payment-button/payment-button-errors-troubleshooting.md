@@ -86,14 +86,14 @@ Something not working after adding your <Anchor target="_blank" href="https://do
 <Accordion title="Customer Reaches the Payment Page but Payment Fails" icon="far fa-circle-xmark">
   Ask your customer: what payment method did they try, and what message did they see?
 
-  | Message the Customer Saw       | Likely Reason                                      | What to Do                                                                                           |
-  | ------------------------------ | -------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-  | "Transaction declined by bank" | Their bank or card issuer declined the payment     | Ask them to try a different card or contact their bank                                               |
-  | "Payment method not available" | That method is not turned on for your account      | Contact <Anchor target="_blank" href="https://help.payu.in/query">PayU support</Anchor> to enable it |
-  | Page stuck or keeps loading    | Poor internet connection on the customer's side    | Ask them to try on a better connection or a different browser                                        |
-  | "Amount exceeds limit"         | The customer's card or UPI daily limit was reached | Ask them to try a different payment method                                                           |
+  | Message the Customer Saw       | Likely Reason                                      | What to Do                                                                                                  |
+  | ------------------------------ | -------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+  | `Transaction declined by bank` | Their bank or card issuer declined the payment     | Ask them to try a different card or contact their bank                                                      |
+  | `Payment method not available` | That method is not turned on for your account      | Contact <Anchor target="_blank" href="https://help.payu.in/raise-ticket">PayU support</Anchor> to enable it |
+  | Page stuck or keeps loading    | Poor internet connection on the customer's side    | Ask them to try on a better connection or a different browser                                               |
+  | `Amount exceeds limit`         | The customer's card or UPI daily limit was reached | Ask them to try a different payment method                                                                  |
 
-  **If no payment methods appear at all on the payment page:** contact <Anchor target="_blank" href="https://help.payu.in/query">PayU support</Anchor> — your account may need specific payment methods turned on.
+  **If no payment methods appear at all on the payment page:** contact <Anchor target="_blank" href="https://help.payu.in/raise-ticket">PayU support</Anchor> — your account may need specific payment methods turned on.
 </Accordion>
 
 ***
