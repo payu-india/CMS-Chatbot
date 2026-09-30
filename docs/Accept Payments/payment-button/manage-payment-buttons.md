@@ -245,31 +245,28 @@ You can filter the payment buttons list using the following options:
 
 ## How Do I Download My Payment Button Records?
 
-<Accordion title="Export Payment Button Records" icon="far fa-download">
+<Accordion title="Steps to Export Payment Button Records" icon="far fa-download">
   To download payment button records:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Payment Buttons** under **Payment Tools**.
 
-
-  <Image src="https://files.readme.io/a494bb1de682ae83ec3d1023e1e13dfb65e02db0ef5332ca52b6e85232638c63-Screenshot_2025-06-02_at_7.09.40_PM.png" align="center" caption="Payment Buttons list" border={true} />
-
-
-  2. Click the **Download** drop-down at the top of the list and select a format:
-
-  | Format   | What it includes                            |
-  | -------- | ------------------------------------------- |
-  | **CSV**  | All payment button records as a spreadsheet |
-  | **XLSX** | The same records in Excel format            |
+     <Image src="https://files.readme.io/2b1a7e6bd269426003ad449cd615f00366105e1cb897607ecc9e60de9c7ab735-image.png" align="center" caption="Access Payment Button" border={true} />
 
 
-  <Image src="https://files.readme.io/7e99a0e3631c410b75ab966f9d02613852a8565cb802ce7be22f23347bcddaab-Screenshot_2025-06-02_at_7.26.33_PM.png" align="center" caption="Download menu for payment button records" border={true} />
+  2) Click the **Download** drop-down at the top bar and select any of these formats:
+
+  | Format          | What it includes                                       |
+  | --------------- | ------------------------------------------------------ |
+  | **CSV**         | All payment button records as a spreadsheet            |
+  | **XLSX**        | The same records in Excel format                       |
+  | **Txns - csv**  | Transaction-level detail per button in the CSV format  |
+  | **Txns - xlsx** | Transaction-level detail per button in the XLSX format |
 
 
-  3. Click **Download** on the pop-up when your report is ready.
+  <Image src="https://files.readme.io/400c188d7def54848393bc47a2eacd74bdd999efe241727fb3a27e9433fe58e7-Screenshot_2026-09-30_at_2.18.32_PM.png" align="center" caption="Downlaod reports" border={true} />
 
-  <Callout icon="📘" theme="info">
-    You can also send the report to an email address. In the pop-up, enter one or more email addresses separated by commas and click **Share**.
-  </Callout>
+
+  3. Click **Downloaded Reports** on the **Generating Report&#x20;**&#x70;op-up when your report is ready.
 </Accordion>
 
 ***
