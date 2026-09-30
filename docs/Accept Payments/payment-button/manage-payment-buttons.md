@@ -127,9 +127,15 @@ You can perform the following actions after a button is created:
 
         - **Amount Requested:** The requested amount you have added while creating the payment button.
         - **Revenue:** The total amount collected using the payment button.
+        - **Total Clicks:&#x20;**&#x54;he number of recorded clicks on the payment button.
+        - **Date:&#x20;**&#x54;ransaction date
+        - **PayU ID (Transaction ID):&#x20;**&#x54;he unique transaction ID of the payment.
+        - **Settled Amount:&#x20;**&#x54;he amount settled.
         - **Customer Email**
-        - **Amount:** How much was paid.
-        - **Status:** Whether the payment went through successfully.
+
+
+        <Image src="https://files.readme.io/6b67d8ec0b69a96ee3c14a0ecd67bd57a9cf028a828dca1ac4f1d0d841238cc2-Screenshot_2026-09-30_at_12.23.37_PM.png" align="center" caption="Transaction Details" border={true} />
+
       </Tab>
     </Tabs>
   </Accordion>
