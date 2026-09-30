@@ -229,17 +229,15 @@ You can filter the payment buttons list using the following options:
 
 
   2) Click the calendar at the top bar and select a time period:
-     - Today
-     - Yesterday
-     - Past 7 days
-     - Past 30 days
-     - Past 1 year
-     - Custom Range
+     - **Today**
+     - **Yesterday**
+     - **Past 7 days**
+     - **Past 30 days**
+     - **Custom Range**
 
   3) For a custom range, pick a start and end date and click **Apply**.
 
      <Image src="https://files.readme.io/cf93235602975bba48633305ef440a9670730cf0eba7afddd8c2439a42853530-Screenshot_2026-09-30_at_2.12.12_PM.png" align="center" caption="Filter by dates" border={true} />
-
 
 </Accordion>
 
