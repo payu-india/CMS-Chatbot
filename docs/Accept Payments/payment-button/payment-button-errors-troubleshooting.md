@@ -115,15 +115,15 @@ Something not working after adding your <Anchor target="_blank" href="https://do
 <Accordion title="Payment Looks Successful but I Cannot Find It" icon="far fa-clock">
   Follow these steps:
 
-  1. **Wait 5–10 minutes and refresh.** The Dashboard updates in near-real-time but can occasionally take a few minutes.
-  2. **Look in the Transactions tab** — not the Payment Buttons tab. Payments made through your buttons appear in the main **Transactions** section of your Dashboard.
-  3. **Search by amount or date** to find the specific payment.
+  - **Wait 5–10 minutes and refresh:&#x20;**&#x54;he Dashboard updates in near-real-time but can occasionally take a few minutes.
+  - **Look in the Transactions tab**: Not the Payment Buttons tab, payments made through your buttons appear in the main **Transactions** section of your Dashboard.
+  - **Search by amount or date** to find the specific payment.
 
   <Columns layout="fixed">
     <Column>
-      **If the transaction appears in Transactions but the button status has not updated:**
+      **If the transaction appears in Transactions but the button status is not updated:**
 
-      The payment has been received. The button record will update within 30 minutes. Contact <Anchor target="_blank" href="https://help.payu.in/query">PayU support</Anchor> with the transaction ID if it does not update within an hour.
+      The payment has been received. The button record will update within 30 minutes. Contact <Anchor target="_blank" href="https://help.payu.in/raise-ticket">PayU support</Anchor> with the transaction ID if it does not update within an hour.
     </Column>
   </Columns>
 
@@ -131,7 +131,7 @@ Something not working after adding your <Anchor target="_blank" href="https://do
     <Column>
       **If the transaction does not appear anywhere after 30 minutes:**
 
-      The payment may have failed on the customer's bank side, even if it appeared to go through. Banks sometimes automatically reverse such charges within 5–7 business days. Ask your customer to check their bank statement. If the charge was not reversed, contact <Anchor target="_blank" href="https://help.payu.in/query">PayU support</Anchor> with the customer's bank reference number.
+      The payment may have failed on the customer's bank side, even if it appeared to go through. Banks sometimes automatically reverse such charges within 5–7 business days. Ask your customer to check their bank statement. If the charge was not reversed, contact <Anchor target="_blank" href="https://help.payu.in/raise-ticket">PayU support</Anchor> with the customer's bank reference number.
     </Column>
   </Columns>
 </Accordion>
