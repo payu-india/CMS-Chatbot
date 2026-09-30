@@ -103,15 +103,9 @@ Something not working after adding your <Anchor target="_blank" href="https://do
 <Accordion title="Customer Is Not Redirected to My Thank-You or Error Page" icon="far fa-arrow-right-arrow-left">
   Check the following:
 
-  1. **Were redirect pages set when the button was created?** Redirect pages are set at the time you create the button and cannot be changed after. If you did not set them, your customer will land on PayU's default confirmation page — not your website. Create a new button with the correct pages filled in under **Advanced Options**.
-
-  2. **Check for typos in the page addresses.** A single character error — missing `https://`, wrong domain name — causes the redirect to fail. Make sure each address starts with `https://` and points to a real, live page on your website.
-
-  3. **Make sure the pages are live and publicly accessible.** The redirect pages must be reachable by anyone on the internet. Pages that are behind a login or still in draft will not work.
-
-  <Callout icon="📘" theme="info">
-    Payment Buttons cannot be changed after creation. If your redirect pages are wrong, create a new button with the correct addresses and replace the code on your website.
-  </Callout>
+  - **Were redirect pages set when the button was created?**: Redirect pages are set at the time you create the payment button. If you did not set them, your customer will land on PayU's default confirmation page and not on your website. <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-buttons#edit-payment-button-details">Edit the payment button</Anchor> to add URLs under **Advanced Options**.
+  - **Check for typos in the page addresses.** A single character error such as missing `https://`, wrong domain name such as causes the redirect to fail. Make sure each address starts with `https://` and points to a real, live page on your website.
+  - **Make sure the pages are live and publicly accessible.** The redirect pages must be reachable by anyone on the internet. Pages that are behind a login or still in draft will not work.
 </Accordion>
 
 ***
