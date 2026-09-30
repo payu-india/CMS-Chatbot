@@ -1,11 +1,13 @@
 ---
-title: Payment Button Troubleshooting
+title: Errors and Troubleshooting
 excerpt: >-
   Fix common Payment Button problems — button not showing on your page, payment
   not completing, redirect not working, and transaction not reflecting in the
   Dashboard.
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
   title: Payment Button Troubleshooting | PayU Developer Docs
   description: >-
