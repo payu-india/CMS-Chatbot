@@ -2,20 +2,14 @@
 name: PayUQuickStartWizard
 ---
 // PayUQuickStartWizard - ReadMe CMS Custom Component
-// Version: 2.1 (with all fixes applied)
+// Version: 4.0 (Audited against PayU Developer Docs repository)
 // Minimum-question integration path recommender for PayU Quick Start Guide
-// Usage: <PayUQuickStartWizard />
+// Doc page: add PayUQuickStartWizard to your MDX page to use this component
 
 import { useState, useRef, useEffect } from 'react';
 
 export const PayUQuickStartWizard = function PayUQuickStartWizard() {
-  /**
-   * PayU Product Catalog Data
-   *
-   * Single source of truth for PayU product offerings.
-   * Edit this object directly when product information, URLs, or prerequisites change.
-   * This data is also maintained in payu-product-catalog.data.js for reference by other pages.
-   */
+
   var products = {
     payment_links: {
       key: 'payment_links',
@@ -23,14 +17,15 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
       category: 'No-code solution',
       tier: 1,
       effortLabel: 'No coding required',
-      requiresEnablement: true,
-      description: 'Share payment links via SMS, email, WhatsApp, or social media. Customers click the link and pay online — no website needed.',
+      requiresEnablement: false,
+      description: 'Create and share payment links directly from your PayU Dashboard. Customers click the link and pay online — no website, no code.',
       prerequisites: [
         'A registered PayU merchant account',
-        'Payment Links enabled on your account (contact your Key Account Manager if not already enabled)'
+        'Dashboard access (https://onboarding.payu.in/)',
+        'Customer contact details to share the link'
       ],
-      docsUrl: 'https://docs.payu.in/collect-payments/introduction-no-code-payments-integration/payment-links-dashboard',
-      webhooksUrl: 'https://docs.payu.in/developer-tools/webhooks-consolidated',
+      docsUrl: 'https://docs.payu.in/docs/payment-links-dashboard',
+      webhooksUrl: 'https://docs.payu.in/docs/callbacks-webhook-reference',
       paymentMethodsSummary: 'UPI, cards, net banking, and wallets'
     },
     upi_qr: {
@@ -40,14 +35,14 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
       tier: 1,
       effortLabel: 'No coding required',
       requiresEnablement: false,
-      description: 'Display a QR code at your counter, shop, or kiosk. Customers scan and pay using any UPI app.',
+      description: 'Display a QR code at your counter, shop, or kiosk. Customers scan and pay using any UPI app — no website needed.',
       prerequisites: [
         'A registered PayU merchant account',
-        'In-person payment methods enabled on your account'
+        'A device to display the QR code (phone, tablet, printed sheet, or screen)'
       ],
-      docsUrl: 'https://docs.payu.in/collect-payments/in-person-payments',
-      webhooksUrl: 'https://docs.payu.in/developer-tools/webhooks-consolidated',
-      paymentMethodsSummary: 'UPI payments via QR code'
+      docsUrl: 'https://docs.payu.in/docs/integrate-upi-qr',
+      webhooksUrl: 'https://docs.payu.in/docs/callbacks-webhook-reference',
+      paymentMethodsSummary: 'UPI (any UPI app)'
     },
     recurring_payments: {
       key: 'recurring_payments',
@@ -56,32 +51,33 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
       tier: 3,
       effortLabel: 'Developer required',
       requiresEnablement: true,
-      description: 'Set up automatic recurring charges for subscriptions, memberships, or installment payments. Customers authorize once; subsequent charges happen automatically.',
+      description: 'Set up automatic recurring charges for subscriptions, memberships, or installment payments. Customers authorise once; subsequent charges happen automatically on the schedule you define.',
       prerequisites: [
         'A registered PayU merchant account',
-        'Recurring payments enabled on your account (contact your Key Account Manager)',
-        'Choose an implementation method: API integration, Zion platform, or Dashboard bulk upload'
+        'Recurring Payments enabled on your account — contact your PayU Key Account Manager',
+        'Choose an implementation path: API integration, Zion subscription platform, or Dashboard bulk upload'
       ],
-      docsUrl: 'https://docs.payu.in/offerings/introduction-recurring-payments-integration',
-      webhooksUrl: 'https://docs.payu.in/developer-tools/webhooks-consolidated',
-      paymentMethodsSummary: 'cards, UPI, and net banking with standing instructions'
+      docsUrl: 'https://docs.payu.in/docs/introduction-recurring-payments-integration',
+      webhooksUrl: 'https://docs.payu.in/docs/callbacks-webhook-reference',
+      paymentMethodsSummary: 'Cards, net banking, and UPI (with standing instructions)'
     },
     split_settlement: {
       key: 'split_settlement',
-      name: 'Server-to-Server / Split Settlement',
-      category: 'Marketplace & platform',
+      name: 'Split Settlements',
+      category: 'Marketplace and platform',
       tier: 3,
       effortLabel: 'Developer required',
       requiresEnablement: true,
-      description: 'Split transaction amounts between multiple sellers or service providers automatically. Suitable for marketplaces, aggregators, and multi-vendor platforms.',
+      description: 'Automatically split transaction amounts between your platform and multiple sellers at the time of payment. Built for marketplaces, aggregators, and multi-vendor platforms.',
       prerequisites: [
         'A registered PayU merchant account',
-        'Split Settlement feature enabled on your account (contact your Key Account Manager)',
-        'Technical integration capability — this path uses server-side APIs'
+        'Split Settlements enabled on your account — contact your PayU Key Account Manager',
+        'Sub-merchant accounts configured in the PayU Dashboard before integration',
+        'Technical capability to build a server-side integration'
       ],
-      docsUrl: 'https://docs.payu.in/offerings/split-settlments',
-      webhooksUrl: 'https://docs.payu.in/developer-tools/webhooks-consolidated',
-      paymentMethodsSummary: 'all PayU-supported payment methods with automated distribution'
+      docsUrl: 'https://docs.payu.in/docs/split-settlments',
+      webhooksUrl: 'https://docs.payu.in/docs/callbacks-webhook-reference',
+      paymentMethodsSummary: 'All PayU-supported payment methods with automated distribution'
     },
     hosted_checkout: {
       key: 'hosted_checkout',
@@ -90,14 +86,15 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
       tier: 2,
       effortLabel: 'Some technical setup required',
       requiresEnablement: false,
-      description: 'Redirect customers to a secure PayU-hosted payment page. PayU handles the payment interface; you control the checkout flow from your website.',
+      description: 'Redirect customers to a secure PayU-hosted payment page. PayU handles the entire payment interface. Customers return to your site after payment.',
       prerequisites: [
         'A registered PayU merchant account',
-        'Your Merchant Key and Salt (available in the PayU Dashboard under Payment Gateway → Web Integration → Key Salt Details)',
-        'A website or web application where customers initiate checkout'
+        'Your Merchant Key and Salt (available in the PayU Dashboard)',
+        'A website with HTTPS',
+        'A developer to implement the redirect and handle the response'
       ],
-      docsUrl: 'https://docs.payu.in/collect-payments/introduction-web/prebuilt-checkout-payu-hosted',
-      webhooksUrl: 'https://docs.payu.in/developer-tools/webhooks-consolidated',
+      docsUrl: 'https://docs.payu.in/docs/prebuilt-checkout-payu-hosted',
+      webhooksUrl: 'https://docs.payu.in/docs/callbacks-webhook-reference',
       paymentMethodsSummary: 'UPI, cards, net banking, and wallets'
     },
     merchant_hosted: {
@@ -107,16 +104,17 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
       tier: 3,
       effortLabel: 'Developer required',
       requiresEnablement: false,
-      description: 'Build a payment page that matches your website\'s design exactly. You control the entire payment interface; PayU processes the payment in the background.',
+      description: 'Build a payment form that matches your website exactly. You control the entire payment interface; PayU processes the payment in the background.',
       prerequisites: [
         'A registered PayU merchant account',
         'Your Merchant Key and Salt (available in the PayU Dashboard)',
+        'A website with HTTPS',
         'Technical capability to build a custom payment form and handle API requests',
-        'PCI-DSS compliance if you collect card details directly (or use PayU\'s tokenization to avoid this requirement)'
+        'PCI-DSS compliance if you collect card details directly — or use PayU tokenisation to avoid this'
       ],
-      docsUrl: 'https://docs.payu.in/collect-payments/introduction-web/custom-checkout-merchant-hosted',
-      webhooksUrl: 'https://docs.payu.in/developer-tools/webhooks-consolidated',
-      paymentMethodsSummary: 'UPI, cards, net banking, and wallets'
+      docsUrl: 'https://docs.payu.in/docs/custom-checkout-merchant-hosted',
+      webhooksUrl: 'https://docs.payu.in/docs/callbacks-webhook-reference',
+      paymentMethodsSummary: 'UPI, cards, net banking, wallets, EMI, BNPL, and more'
     },
     plugin_shopify: {
       key: 'plugin_shopify',
@@ -125,14 +123,14 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
       tier: 2,
       effortLabel: 'Some technical setup required',
       requiresEnablement: false,
-      description: 'Install the PayU payment gateway on your Shopify store. No coding required — configure it directly in Shopify\'s admin panel.',
+      description: 'Add PayU as a payment method on your Shopify store from the Shopify admin panel. No custom code required.',
       prerequisites: [
         'A registered PayU merchant account',
         'An active Shopify store',
         'Your PayU Merchant Key and Salt'
       ],
-      docsUrl: 'https://docs.payu.in/collect-payments/ecommerce-platform-plugins/shopify',
-      webhooksUrl: 'https://docs.payu.in/developer-tools/webhooks-consolidated',
+      docsUrl: 'https://docs.payu.in/docs/shopify-integration',
+      webhooksUrl: 'https://docs.payu.in/docs/callbacks-webhook-reference',
       paymentMethodsSummary: 'UPI, cards, net banking, and wallets'
     },
     plugin_woocommerce: {
@@ -142,14 +140,14 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
       tier: 2,
       effortLabel: 'Some technical setup required',
       requiresEnablement: false,
-      description: 'Install the PayU plugin on your WooCommerce-powered WordPress site. Download, install, and configure from your WordPress admin panel.',
+      description: 'Install the PayU plugin on your WooCommerce-powered WordPress site. Configure it directly from your WordPress admin panel.',
       prerequisites: [
         'A registered PayU merchant account',
         'A WordPress site with WooCommerce installed',
         'Your PayU Merchant Key and Salt'
       ],
-      docsUrl: 'https://docs.payu.in/collect-payments/ecommerce-platform-plugins/woocommerce',
-      webhooksUrl: 'https://docs.payu.in/developer-tools/webhooks-consolidated',
+      docsUrl: 'https://docs.payu.in/docs/woocommerce-integration',
+      webhooksUrl: 'https://docs.payu.in/docs/callbacks-webhook-reference',
       paymentMethodsSummary: 'UPI, cards, net banking, and wallets'
     },
     plugin_magento: {
@@ -159,14 +157,14 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
       tier: 2,
       effortLabel: 'Some technical setup required',
       requiresEnablement: false,
-      description: 'Install the PayU extension on your Magento store. Configure payment settings directly from the Magento admin panel.',
+      description: 'Install the PayU extension on your Magento store and configure payment settings from the Magento admin panel.',
       prerequisites: [
         'A registered PayU merchant account',
-        'A Magento store (Magento 2.x or compatible version)',
+        'A Magento 2.x store',
         'Your PayU Merchant Key and Salt'
       ],
-      docsUrl: 'https://docs.payu.in/collect-payments/ecommerce-platform-plugins/magento',
-      webhooksUrl: 'https://docs.payu.in/developer-tools/webhooks-consolidated',
+      docsUrl: 'https://docs.payu.in/docs/magento-integration',
+      webhooksUrl: 'https://docs.payu.in/docs/callbacks-webhook-reference',
       paymentMethodsSummary: 'UPI, cards, net banking, and wallets'
     },
     plugin_other: {
@@ -176,26 +174,49 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
       tier: 2,
       effortLabel: 'Some technical setup required',
       requiresEnablement: false,
-      description: 'PayU supports plugins for Wix, BigCommerce, OpenCart, PrestaShop, and other platforms. Find your platform\'s integration guide.',
+      description: 'PayU supports plugins for Wix, BigCommerce, OpenCart, PrestaShop, Bagisto, Zoho, Odoo, and other platforms. Find your platform\'s guide in the PayU documentation.',
       prerequisites: [
         'A registered PayU merchant account',
         'An active store on a supported eCommerce platform',
         'Your PayU Merchant Key and Salt'
       ],
       docsUrl: 'https://docs.payu.in/collect-payments/ecommerce-platform-plugins',
-      webhooksUrl: 'https://docs.payu.in/developer-tools/webhooks-consolidated',
+      webhooksUrl: 'https://docs.payu.in/docs/callbacks-webhook-reference',
       paymentMethodsSummary: 'UPI, cards, net banking, and wallets'
     }
   };
 
-  var [currentQuestion, setCurrentQuestion] = useState('Q1');
-  var [answers, setAnswers] = useState({});
-  var [result, setResult] = useState(null);
-  var [activePanel, setActivePanel] = useState('myself');
-  var [showStep2, setShowStep2] = useState(false);
-  var [modalOpen, setModalOpen] = useState(false);
-  var [hoveredOpt, setHoveredOpt] = useState(null);
-  var [hoveredLaunch, setHoveredLaunch] = useState(false);
+  var _currentQuestion = useState('Q1');
+  var currentQuestion = _currentQuestion[0];
+  var setCurrentQuestion = _currentQuestion[1];
+
+  var _answers = useState({});
+  var answers = _answers[0];
+  var setAnswers = _answers[1];
+
+  var _result = useState(null);
+  var result = _result[0];
+  var setResult = _result[1];
+
+  var _activePanel = useState('myself');
+  var activePanel = _activePanel[0];
+  var setActivePanel = _activePanel[1];
+
+  var _showStep2 = useState(false);
+  var showStep2 = _showStep2[0];
+  var setShowStep2 = _showStep2[1];
+
+  var _modalOpen = useState(false);
+  var modalOpen = _modalOpen[0];
+  var setModalOpen = _modalOpen[1];
+
+  var _hoveredOpt = useState(null);
+  var hoveredOpt = _hoveredOpt[0];
+  var setHoveredOpt = _hoveredOpt[1];
+
+  var _hoveredLaunch = useState(false);
+  var hoveredLaunch = _hoveredLaunch[0];
+  var setHoveredLaunch = _hoveredLaunch[1];
 
   var questionRef = useRef(null);
   var launchBtnRef = useRef(null);
@@ -253,7 +274,7 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
       } else if (answerKey === 'in_person') {
         showResult('upi_qr', newAnswers);
       } else if (answerKey === 'still_unsure') {
-        window.open('https://docs.payu.in/#TODO-ask-ai-deeplink', '_blank');
+        window.open('https://docs.payu.in/docs/what-can-you-do-next', '_blank');
       }
     } else if (questionKey === 'Q2') {
       if (answerKey === 'platform') {
@@ -292,7 +313,6 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
     setResult(null);
     setShowStep2(false);
     setActivePanel('myself');
-    // Keep currentQuestion and answers as they were before showing result
   }
 
   function goBack() {
@@ -330,35 +350,102 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
     restart();
   }
 
-  function restartAndOpen() {
-    restart();
-    setModalOpen(true);
+  function productHasStep2(productKey) {
+    return productKey === 'hosted_checkout' ||
+           productKey === 'merchant_hosted' ||
+           productKey === 'recurring_payments' ||
+           productKey === 'split_settlement';
+  }
+
+  function getStep2Label(productKey) {
+    if (productKey === 'recurring_payments') return 'Show Step 2: Set up recurring charges';
+    if (productKey === 'split_settlement') return 'Show Step 2: Settlement verification';
+    return 'Show Step 2: Handle PayU response';
   }
 
   function buildAIPrompt(product, step) {
-    var context = answers.Q2 === 'custom' || answers.Q2 === 'platform' ? 'website' : 'business';
-    if (step === 1) {
-      var productActionMap = {
-        payment_links: 'Create a payment link with the required amount and customer details.',
-        upi_qr: 'Generate a static or dynamic QR code for in-person payments.',
-        recurring_payments: 'Create a mandate or standing instruction for recurring charges.',
-        split_settlement: 'Create a payment request with split configuration for multiple parties.',
-        hosted_checkout: 'Redirect the customer to the PayU Hosted Checkout URL with the signed payload.',
-        merchant_hosted: 'Submit the payment request to PayU and handle the response inline or via redirect.',
-        plugin_shopify: 'Configure the PayU plugin settings in the Shopify admin panel.',
-        plugin_woocommerce: 'Install and configure the PayU plugin in WordPress admin.',
-        plugin_magento: 'Install the PayU extension and configure payment settings in Magento admin.',
-        plugin_other: 'Follow your platform\'s plugin installation and configuration guide.'
-      };
-      var productAction = productActionMap[product.key] || 'Complete the integration as specified in the documentation.';
-      return 'I\'m integrating ' + product.name + ' into my ' + context + ' to accept ' + product.paymentMethodsSummary + '.\n\nHere is the official PayU documentation — treat it as the only source of truth. Do not invent or guess at endpoints, parameters, hashing logic, credentials, security requirements, or response fields that are not explicitly written in this documentation. If something I ask isn\'t covered there, tell me it isn\'t covered instead of guessing.\n\nDocumentation: ' + product.docsUrl + '\n\nDo this in two steps:\n\nSTEP 1 — Core integration\n1. Generate a signed payment request using a Merchant Key and Salt (I will provide these separately — never hardcode them in code you write for me).\n2. Build the request with the required fields exactly as specified in the documentation above.\n3. Generate the request hash using the exact algorithm in the documentation.\n4. ' + productAction + '\n\nAsk me for my tech stack (language/framework) before writing code, and ask me anything else you need that isn\'t in the documentation rather than assuming it.\n\nOnce Step 1 works, I\'ll come back with Step 2 for handling PayU\'s response.';
-    } else if (step === 2) {
-      return 'Now that the core integration works, handle PayU\'s response:\n\nSTEP 2 — Response and webhook handling\n1. Set up a server endpoint to receive PayU\'s callback (webhook) after payment completion.\n2. Validate the hash in the response to confirm it\'s from PayU and hasn\'t been tampered with.\n3. Update your order or transaction status based on the payment result.\n4. Handle success, failure, and pending states appropriately for your ' + context + '.\n\nRefer to PayU\'s webhook documentation: ' + product.webhooksUrl + '\n\nFollow the same rule: use only what\'s in the documentation. If unclear, ask instead of guessing.';
+    if (product.key === 'payment_links') {
+      if (step === 1) {
+        return 'I want to use PayU Payment Links to collect payments.\n\nOfficial documentation (source of truth): ' + product.docsUrl + '\n\nThere are two approaches:\n\nOPTION A - No-code (Dashboard):\n1. Go to your PayU Dashboard, find Payment Links\n2. Fill in amount, customer name, expiry, and description\n3. Share the generated link via WhatsApp, SMS, or email\nNo developer or code needed for this option.\n\nOPTION B - API integration (create links programmatically):\nBefore writing any code, read the documentation above carefully. Then:\n1. Authenticate using your Merchant Key and Salt (I will provide these separately - never hardcode them)\n2. Use only the endpoints, request fields, and response fields documented on that page\n3. Do not apply the standard PayU payment-form hash flow to Payment Links - Payment Links have their own API\n\nRules:\n- Never guess at endpoints or parameters not in the documentation\n- Ask me my programming language and framework before writing any code\n- If something is not in the documentation, say so rather than inventing it';
+      }
+      return null;
     }
+
+    if (product.key === 'upi_qr') {
+      if (step === 1) {
+        return 'I want to set up PayU UPI QR codes for in-person payments at my shop or counter.\n\nOfficial documentation (source of truth): ' + product.docsUrl + '\n\nThere are two QR types:\n1. Static QR: A fixed QR displayed on screen, printed, or saved. Customers scan and pay any amount. Set up from your PayU Dashboard.\n2. Dynamic QR: Generated per transaction via API - the amount is pre-set in each QR code.\n\nGuide me through setup using only the documentation above.\n\nRules:\n- Do not apply a generic PayU form-redirect or hash-based checkout flow - this is a QR payment setup, not a web checkout\n- If API steps are involved, ask me what platform or language I am using before writing code\n- Do not invent QR parameters, API endpoints, or auth methods not in the documentation\n- Credentials stay in environment variables, never in code';
+      }
+      return null;
+    }
+
+    if (product.key === 'plugin_shopify') {
+      if (step === 1) {
+        return 'I want to install and configure the PayU payment method on my Shopify store.\n\nOfficial documentation (source of truth): ' + product.docsUrl + '\n\nThis is a Shopify admin configuration task - not a custom code integration. Walk me through:\n1. What I need before I start (PayU merchant account, Merchant Key and Salt)\n2. How to activate or install PayU as a payment provider in my Shopify admin\n3. Where to enter my Merchant Key and Salt in Shopify settings\n4. How to run a test payment before going live\n\nRules:\n- Base your answers on the PayU Shopify documentation above\n- Do not generate custom API or checkout code - this is admin-panel configuration only\n- I will enter my Merchant Key and Salt into the Shopify admin myself - do not ask me to paste them here\n- If something is not in the documentation, say so rather than guessing';
+      }
+      return null;
+    }
+
+    if (product.key === 'plugin_woocommerce') {
+      if (step === 1) {
+        return 'I want to install and configure the PayU payment plugin on my WooCommerce (WordPress) store.\n\nOfficial documentation (source of truth): ' + product.docsUrl + '\n\nThis is a WordPress plugin configuration task - not a custom code integration. Walk me through:\n1. Prerequisites (PayU account, WooCommerce version, Merchant Key and Salt)\n2. How to install the PayU plugin (via WordPress Plugin Directory or manually)\n3. Where to configure the plugin settings in WordPress admin\n4. How to run a test payment before going live\n\nRules:\n- Base your answers on the PayU WooCommerce documentation above\n- Do not generate custom checkout code unless the documentation specifically requires it\n- I will enter my Merchant Key and Salt into WordPress admin myself - do not ask me to paste them here\n- If something is not in the documentation, say so rather than guessing';
+      }
+      return null;
+    }
+
+    if (product.key === 'plugin_magento') {
+      if (step === 1) {
+        return 'I want to install and configure the PayU extension on my Magento store.\n\nOfficial documentation (source of truth): ' + product.docsUrl + '\n\nThis is a Magento admin configuration task - not a custom code integration. Walk me through:\n1. Prerequisites (PayU account, Magento version compatibility, Merchant Key and Salt)\n2. How to download and install the PayU Magento extension\n3. Where to configure payment settings in the Magento admin panel\n4. How to run a test payment before going live\n\nRules:\n- Base your answers on the PayU Magento documentation above\n- Do not generate custom payment code unless the documentation specifically requires it\n- I will enter my Merchant Key and Salt into Magento admin myself - do not ask me to paste them here\n- If something is not in the documentation, say so rather than guessing';
+      }
+      return null;
+    }
+
+    if (product.key === 'plugin_other') {
+      if (step === 1) {
+        return 'I want to integrate PayU with my eCommerce store. My platform may be Wix, BigCommerce, OpenCart, PrestaShop, or another supported platform.\n\nOfficial documentation index: ' + product.docsUrl + '\n\nFirst, ask me which platform I am on so you can find the correct PayU plugin guide for my specific platform. Then walk me through:\n1. Prerequisites (PayU account, Merchant Key and Salt)\n2. How to install or connect PayU as a payment method on my platform\n3. Where to configure settings in my platform admin\n4. How to run a test payment before going live\n\nRules:\n- Match your answer to the specific platform PayU plugin documentation\n- This is an admin-panel configuration task - do not generate custom API code unless the documentation requires it\n- I will enter my Merchant Key and Salt into my platform admin myself - do not ask me to paste them here\n- If something is not in the documentation, say so rather than guessing';
+      }
+      return null;
+    }
+
+    if (product.key === 'hosted_checkout') {
+      if (step === 1) {
+        return 'I am integrating PayU Hosted Checkout into my website. Customers will be redirected from my site to a PayU payment page, then back to my site after payment.\n\nOfficial documentation (source of truth): ' + product.docsUrl + '\n\nSTEP 1 - Build the payment initiation request:\n1. Collect the required fields: key, txnid (unique per transaction), amount, productinfo, firstname, email, surl (success URL), furl (failure URL), and hash\n2. Generate the hash on your server using the SHA-512 formula exactly as documented: key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT\n3. POST these fields to the PayU test endpoint; customers are redirected to complete payment\n\nRules:\n- Merchant Key and Salt must stay in server-side environment variables - never hardcode them or expose them to the browser\n- Use only the fields and formula specified in the documentation\n- Ask me my server-side programming language and framework before writing code\n- Once Step 1 is working (customers can reach the PayU payment page), come back for Step 2 (handling the response)\n- If anything is unclear from the docs, ask rather than guessing';
+      }
+      if (step === 2) {
+        return 'My PayU Hosted Checkout integration is working - customers can reach the payment page. Now I need to handle PayU\'s response after payment.\n\nIMPORTANT from the PayU documentation: Always verify the transaction on your backend via the PayU verification API. Never trust the browser redirect alone - customers can modify redirect URLs.\n\nSTEP 2 - Handle the response and verify the transaction:\n1. Set up a server-side handler for PayU\'s POST to your success_url, failure_url, and notify_url (webhook)\n2. Verify the response hash to confirm it is genuinely from PayU and has not been tampered with\n3. Call the PayU transaction verification API to independently confirm payment status\n4. Update your order status based on the verified result\n5. Handle success, failure, and pending states appropriately\n\nCallbacks and webhook reference: ' + product.webhooksUrl + '\n\nRules:\n- Never accept a payment status based solely on the browser redirect\n- Follow the exact field names and hash verification formula from the documentation\n- Ask me what backend and database stack I am using before writing update logic';
+      }
+    }
+
+    if (product.key === 'merchant_hosted') {
+      if (step === 1) {
+        return 'I am building a Merchant Hosted Checkout for PayU - a custom payment form on my own website that collects payment details and submits them to PayU.\n\nOfficial documentation (source of truth): ' + product.docsUrl + '\n\nSTEP 1 - Build the payment form and integrate with PayU:\n1. Build a payment form on your site with the required PayU fields\n2. On your server: generate a SHA-512 hash using the exact formula from the documentation: key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT\n3. Submit the form to the PayU endpoint with all required fields\n4. Handle the response (inline or redirect)\n\nImportant from the PayU documentation:\n- PCI-DSS compliance is required if you collect card details directly on your site\n- PayU tokenisation lets you avoid storing card data and reduces your PCI scope\n\nRules:\n- Merchant Key and Salt must stay in server-side environment variables - never in frontend code\n- Use only fields and endpoints documented by PayU\n- Ask me my frontend framework and server-side language before writing code\n- Once Step 1 is working, come back for Step 2 (response and webhook handling)';
+      }
+      if (step === 2) {
+        return 'My Merchant Hosted Checkout integration is working - the payment form submits to PayU correctly. Now I need to handle PayU\'s response after payment.\n\nIMPORTANT from the PayU documentation: Always verify the transaction on your backend. Never rely on browser-side data alone.\n\nSTEP 2 - Handle the payment response:\n1. Set up a server-side handler for PayU\'s POST to your success_url, failure_url, and notify_url (webhook)\n2. Verify the response hash to confirm it is genuinely from PayU\n3. Call the PayU transaction verification API to independently confirm payment status\n4. Update your order status based on the verified result\n5. Handle success, failure, and pending states\n\nCallbacks and webhook reference: ' + product.webhooksUrl + '\n\nRules:\n- Never accept a payment status based only on browser redirect data\n- Follow the exact field names and hash verification formula from the documentation\n- Ask me what backend and database stack I am using before writing update logic';
+      }
+    }
+
+    if (product.key === 'recurring_payments') {
+      if (step === 1) {
+        return 'I am integrating PayU Recurring Payments (Standing Instructions / Subscriptions) into my application.\n\nOfficial documentation (source of truth): ' + product.docsUrl + '\n\nIMPORTANT: Recurring Payments must first be enabled on your PayU account by your Key Account Manager.\n\nThere are three implementation paths: API integration, the Zion subscription platform, or the PayU Dashboard. Ask me which path I am using before proceeding.\n\nFor the API path, STEP 1 is the Consent Transaction (mandate registration):\n\nThe flow differs by payment instrument:\n- Cards: Consent Transaction then (later) Pre-Debit Notification then Recurring Charge\n- Net Banking: Consent Transaction then (later) Recurring Charge\n- UPI: Consent Transaction then (later) Pre-Debit Notification then Recurring Charge\n\nFor Step 1 (Consent Transaction):\n1. Build the consent/registration request with all required SI fields (additional fields beyond a standard payment request - refer to the documentation for the exact list)\n2. The customer completes authentication once; this registers the Standing Instruction mandate on their payment instrument\n3. Future charges debit automatically against this mandate\n\nRules:\n- This is NOT a standard one-time payment request - SI registration uses different and additional fields\n- Read the documentation carefully for each instrument type (Cards, Net Banking, and UPI have different parameters)\n- Merchant Key and Salt must stay in server-side environment variables - never hardcode them\n- Ask me which payment instrument(s) I need to support and my programming language before writing code';
+      }
+      if (step === 2) {
+        return 'My PayU Recurring Payments consent transaction (mandate registration) is working. Now I need to implement the ongoing recurring charge flow.\n\nReference documentation: ' + product.docsUrl + '\n\nSTEP 2 - Pre-debit notification and recurring transactions:\n\nFor Cards and UPI (both steps required before each recurring charge):\n1. Send a Pre-Debit Notification to the customer a set number of days before each charge - required by NPCI/RBI for mandates\n2. After the notification window, execute the recurring payment transaction against the mandate\n\nFor Net Banking:\n1. Execute the recurring payment transaction directly (no pre-debit notification required)\n\nFor all instruments:\n1. Handle the recurring transaction response (success, failure, pending)\n2. Manage SI failures: expired mandates, insufficient funds, customer-cancelled mandates\n3. Set up webhooks to receive recurring payment status notifications\n\nWebhook reference: ' + product.webhooksUrl + '\n\nRules:\n- The pre-debit notification timing requirement is regulatory - do not skip it for Cards and UPI\n- The recurring transaction API request is different from the consent transaction and from a standard one-time payment - refer to the docs for the exact fields\n- Ask me which instrument(s) I am handling before writing code';
+      }
+    }
+
+    if (product.key === 'split_settlement') {
+      if (step === 1) {
+        return 'I am integrating PayU Split Settlements for my marketplace or multi-vendor platform.\n\nOfficial documentation (source of truth): ' + product.docsUrl + '\n\nIMPORTANT: Split Settlements must first be enabled on your PayU account, and sub-merchant accounts must be configured in the PayU Dashboard before you start coding.\n\nSTEP 1 - Set up sub-accounts and your first split payment:\n1. In the PayU Dashboard: activate Split Settlements and create sub-merchant accounts for each seller or vendor\n2. In your integration: Split Settlements build on top of standard PayU checkout (Hosted Checkout or Merchant Hosted). Ask me which base checkout I am using.\n3. Add the split configuration parameter(s) documented by PayU to specify how the transaction amount is distributed between your platform account and sub-merchants\n4. Splits can be absolute (fixed amount per party) or percentage-based - refer to the documentation for the exact request fields\n\nRules:\n- Do not reinvent the base checkout integration - Split Settlements add parameters on top of a standard PayU integration\n- Sub-merchant IDs come from your PayU Dashboard - never hardcode merchant credentials in code\n- Use only the split parameters documented by PayU; do not invent field names\n- Ask me whether I am using Hosted Checkout or Merchant Hosted, and my server-side language, before writing code';
+      }
+      if (step === 2) {
+        return 'My Split Settlements integration is creating split transactions. Now I need to verify settlement status and manage sub-merchant payouts.\n\nReference documentation: ' + product.docsUrl + '\n\nSTEP 2 - Verify settlements and manage sub-merchant payouts:\n1. Verify each transaction status using the PayU transaction verification API\n2. Confirm that the split distribution was applied correctly\n3. Use the Split Settlements dashboard or settlement APIs to monitor payouts to sub-merchants\n4. Handle settlement disputes and partial failures via the documented APIs\n5. Set up webhooks to receive payment and settlement status notifications\n\nWebhook reference: ' + product.webhooksUrl + '\n\nRules:\n- Reconciliation should rely on PayU settlement reporting, not just frontend redirect data\n- Use only the settlement and payout APIs documented by PayU\n- If something is not in the documentation, ask rather than guessing';
+      }
+    }
+
+    return null;
   }
 
   function renderWhyText(product, userAnswers) {
-    var Q1 = userAnswers.Q1;
     var Q2 = userAnswers.Q2;
     var Q3 = userAnswers.Q3;
     if (product.key === 'payment_links') {
@@ -371,10 +458,10 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
       return 'You wanted to accept payments in person at your shop, counter, or kiosk. UPI QR codes let customers scan and pay instantly using any UPI app on their phone.';
     }
     if (product.key === 'recurring_payments') {
-      return 'You wanted to set up recurring or subscription billing. PayU Recurring Payments let customers authorize once, and subsequent charges happen automatically on the schedule you define.';
+      return 'You wanted to set up recurring or subscription billing. PayU Recurring Payments let customers authorise once, and subsequent charges happen automatically on the schedule you define.';
     }
     if (product.key === 'split_settlement') {
-      return 'You run a platform or marketplace where multiple sellers get paid. Split Settlements automatically divide transaction amounts between your platform and sellers, with configurable commission structures.';
+      return 'You run a platform or marketplace where multiple sellers get paid. PayU Split Settlements automatically divide transaction amounts between your platform and sellers according to rules you configure.';
     }
     if (product.key === 'hosted_checkout') {
       if (Q3 === 'not_sure') {
@@ -454,9 +541,9 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
   }
 
   function getTierIndicator(tier, effortLabel) {
-    if (tier === 1) return { emoji: '🟢', label: effortLabel };
-    if (tier === 3) return { emoji: '🔴', label: effortLabel };
-    return { emoji: '🟡', label: effortLabel };
+    if (tier === 1) return { emoji: '\uD83D\uDFE2', label: effortLabel };
+    if (tier === 3) return { emoji: '\uD83D\uDD34', label: effortLabel };
+    return { emoji: '\uD83D\uDFE1', label: effortLabel };
   }
 
   var shell = {
@@ -510,333 +597,341 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
     transition: 'transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease',
   };
 
-  var wizardBody = null;
+  function computeWizardBody() {
+    if (!result) {
+      var questionTitle = '';
+      var questionOptions = [];
 
-  if (!result) {
-    var questionTitle = '';
-    var questionOptions = [];
+      if (currentQuestion === 'Q1') {
+        questionTitle = 'What do you want to do?';
+        questionOptions = [
+          { id: 'website', label: 'Accept payments on a website' },
+          { id: 'payment_link', label: 'Send a payment link — no website needed' },
+          { id: 'in_person', label: 'Accept payments in person' },
+          { id: 'recurring', label: 'Set up recurring or subscription billing' },
+          { id: 'platform', label: 'I run a platform where multiple sellers get paid' },
+          { id: 'not_sure', label: 'Not sure' }
+        ];
+      } else if (currentQuestion === 'Q1_fallback') {
+        questionTitle = 'What are you using today to sell?';
+        questionOptions = [
+          { id: 'website', label: 'A website' },
+          { id: 'social', label: 'Social media or messaging' },
+          { id: 'in_person', label: 'In person' },
+          { id: 'nothing', label: 'Nothing yet' },
+          { id: 'still_unsure', label: 'Browse PayU documentation' }
+        ];
+      } else if (currentQuestion === 'Q2') {
+        questionTitle = 'Is your website on a platform like Shopify or WooCommerce, or is it custom-built?';
+        questionOptions = [
+          { id: 'platform', label: 'It\'s on a store platform (Shopify, WooCommerce, Magento, etc.)' },
+          { id: 'custom', label: 'It\'s custom-built / coded' },
+          { id: 'no_website', label: 'I don\'t have a website yet' }
+        ];
+      } else if (currentQuestion === 'Q2_platform') {
+        questionTitle = 'Which platform?';
+        questionOptions = [
+          { id: 'shopify', label: 'Shopify' },
+          { id: 'woocommerce', label: 'WooCommerce' },
+          { id: 'magento', label: 'Magento' },
+          { id: 'other', label: 'Something else' }
+        ];
+      } else if (currentQuestion === 'Q3') {
+        questionTitle = 'Does the payment page need to look exactly like the rest of your website, or is a simple, secure PayU page fine?';
+        questionOptions = [
+          { id: 'simple', label: 'A simple, secure PayU page is fine' },
+          { id: 'exact_match', label: 'It needs to match my website exactly' },
+          { id: 'not_sure', label: 'Not sure' }
+        ];
+      }
 
-    if (currentQuestion === 'Q1') {
-      questionTitle = 'What do you want to do?';
-      questionOptions = [
-        { id: 'website', label: 'Accept payments on a website' },
-        { id: 'payment_link', label: 'Send a payment link — no website needed' },
-        { id: 'in_person', label: 'Accept payments in person' },
-        { id: 'recurring', label: 'Set up recurring or subscription billing' },
-        { id: 'platform', label: 'I run a platform where multiple sellers get paid' },
-        { id: 'not_sure', label: 'Not sure' }
-      ];
-    } else if (currentQuestion === 'Q1_fallback') {
-      questionTitle = 'What are you using today to sell?';
-      questionOptions = [
-        { id: 'website', label: 'A website' },
-        { id: 'social', label: 'Social media or messaging' },
-        { id: 'in_person', label: 'In person' },
-        { id: 'nothing', label: 'Nothing yet' },
-        { id: 'still_unsure', label: 'Browse PayU documentation' }
-      ];
-    } else if (currentQuestion === 'Q2') {
-      questionTitle = 'Is your website on a platform like Shopify or WooCommerce, or is it custom-built?';
-      questionOptions = [
-        { id: 'platform', label: 'It\'s on a store platform (Shopify, WooCommerce, Magento, etc.)' },
-        { id: 'custom', label: 'It\'s custom-built / coded' },
-        { id: 'no_website', label: 'I don\'t have a website yet' }
-      ];
-    } else if (currentQuestion === 'Q2_platform') {
-      questionTitle = 'Which platform?';
-      questionOptions = [
-        { id: 'shopify', label: 'Shopify' },
-        { id: 'woocommerce', label: 'WooCommerce' },
-        { id: 'magento', label: 'Magento' },
-        { id: 'other', label: 'Something else' }
-      ];
-    } else if (currentQuestion === 'Q3') {
-      questionTitle = 'Does the payment page need to look exactly like the rest of your website, or is a simple, secure PayU page fine?';
-      questionOptions = [
-        { id: 'simple', label: 'A simple, secure PayU page is fine' },
-        { id: 'exact_match', label: 'It needs to match my website exactly' },
-        { id: 'not_sure', label: 'Not sure' }
-      ];
-    }
-
-    wizardBody = (
-      <div>
-        <div aria-live="polite" aria-atomic="true">
-          <h3 ref={questionRef} tabIndex={-1} style={{ margin: '0 0 4px', fontSize: '1.05rem', fontWeight: 600, color: '#1e3a5f', outline: 'none' }}>
-            {questionTitle}
-          </h3>
-          <p style={{ margin: '0 0 12px', fontSize: '12px', color: '#00A651', fontWeight: 500 }}>Tap an option to continue</p>
-          <div style={{ display: 'grid', gap: '10px' }}>
-            {questionOptions.map(function (opt) {
-              return (
-                <button
-                  key={opt.id}
-                  type="button"
-                  onMouseEnter={function () { setHoveredOpt(opt.id); }}
-                  onMouseLeave={function () { setHoveredOpt(null); }}
-                  onFocus={function () { setHoveredOpt(opt.id); }}
-                  onBlur={function () { setHoveredOpt(null); }}
-                  onClick={function () { handleAnswer(currentQuestion, opt.id); }}
-                  style={optionBtnStyle(opt.id, hoveredOpt)}
-                >
-                  <span style={{ fontWeight: 600 }}>{opt.label}</span>
-                </button>
-              );
-            })}
-          </div>
-          {currentQuestion === 'Q3' && (
-            <p style={{ marginTop: '12px', fontSize: '12px', color: '#6b7280', fontStyle: 'italic' }}>
-              Most merchants start with a simple, secure PayU page — you can add full design control later.
-            </p>
-          )}
-        </div>
-
-        <div style={{ marginTop: '16px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: '#6b7280', marginBottom: '6px' }}>
-            <span>Step {getProgressValue()} of up to 3</span>
-          </div>
-          <div
-            role="progressbar"
-            aria-valuenow={getProgressValue()}
-            aria-valuemin={0}
-            aria-valuemax={3}
-            aria-label={'Quick Start progress: step ' + getProgressValue() + ' of 3'}
-            style={{ height: '6px', background: '#e5e7eb', borderRadius: '999px', overflow: 'hidden' }}
-          >
-            <div style={{ height: '100%', width: (getProgressValue() * 33.33) + '%', background: '#00A651', borderRadius: '999px', transition: 'width 0.25s ease' }} />
-          </div>
-        </div>
-
-        <div style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', marginTop: '16px', paddingTop: '12px', borderTop: '1px solid #e5e7eb' }}>
-          {currentQuestion !== 'Q1' ? (
-            <button type="button" onClick={goBack} style={{ padding: '8px 14px', borderRadius: '8px', fontSize: '13px', fontWeight: 600, cursor: 'pointer', background: '#fff', border: '1px solid #e5e7eb', color: '#374151' }}>
-              Back
-            </button>
-          ) : (
-            <span />
-          )}
-          <button type="button" onClick={restart} style={{ padding: '8px 14px', borderRadius: '8px', fontSize: '13px', fontWeight: 600, cursor: 'pointer', background: '#00A651', border: 'none', color: '#fff' }}>
-            Start over
-          </button>
-        </div>
-      </div>
-    );
-  } else {
-    var product = result.product;
-    var whyText = renderWhyText(product, result.answers);
-    var tierInfo = getTierIndicator(product.tier, product.effortLabel);
-
-    wizardBody = (
-      <div>
-        <div style={{ marginBottom: '16px', padding: '12px 14px', borderRadius: '10px', border: '1px solid rgba(0,166,81,.25)', background: 'rgba(0,166,81,.06)', fontSize: '13px', color: '#374151' }}>
-          {whyText}
-        </div>
-
-        <div style={{ border: '2px solid #00A651', borderRadius: '12px', overflow: 'hidden', marginBottom: '16px' }}>
-          <div style={{ background: '#00A651', color: '#fff', fontSize: '12px', fontWeight: 600, padding: '8px 14px' }}>
-            Your recommended setup
-          </div>
-          <div style={{ padding: '16px' }}>
-            <h3 style={{ margin: 0, fontSize: '1.1rem', color: '#1e3a5f' }}>{product.name}</h3>
-            <p style={{ margin: '4px 0 0', fontSize: '12px', color: '#6b7280' }}>{product.category}</p>
-            <p style={{ margin: '10px 0', fontSize: '13px' }}>{product.description}</p>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', borderRadius: '8px', background: '#f3f4f6', fontSize: '12px', fontWeight: 600, color: '#374151', marginTop: '8px' }}>
-              <span>{tierInfo.emoji}</span>
-              <span>{tierInfo.label}</span>
+      return (
+        <div>
+          <div aria-live="polite" aria-atomic="true">
+            <h3 ref={questionRef} tabIndex={-1} style={{ margin: '0 0 4px', fontSize: '1.05rem', fontWeight: 600, color: '#1e3a5f', outline: 'none' }}>
+              {questionTitle}
+            </h3>
+            <p style={{ margin: '0 0 12px', fontSize: '12px', color: '#00A651', fontWeight: 500 }}>Tap an option to continue</p>
+            <div style={{ display: 'grid', gap: '10px' }}>
+              {questionOptions.map(function (opt) {
+                return (
+                  <button
+                    key={opt.id}
+                    type="button"
+                    onMouseEnter={function () { setHoveredOpt(opt.id); }}
+                    onMouseLeave={function () { setHoveredOpt(null); }}
+                    onFocus={function () { setHoveredOpt(opt.id); }}
+                    onBlur={function () { setHoveredOpt(null); }}
+                    onClick={function () { handleAnswer(currentQuestion, opt.id); }}
+                    style={optionBtnStyle(opt.id, hoveredOpt)}
+                  >
+                    <span style={{ fontWeight: 600 }}>{opt.label}</span>
+                  </button>
+                );
+              })}
             </div>
-            {product.requiresEnablement && (
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', borderRadius: '8px', background: '#fef3c7', border: '1px solid #fbbf24', fontSize: '12px', fontWeight: 600, color: '#78350f', marginTop: '8px', marginLeft: '8px' }}>
-                <span>⏳</span>
-                <span>May require enabling by your account team first</span>
-              </div>
+            {currentQuestion === 'Q3' && (
+              <p style={{ marginTop: '12px', fontSize: '12px', color: '#6b7280', fontStyle: 'italic' }}>
+                Most merchants start with a simple, secure PayU page — you can add full design control later.
+              </p>
             )}
           </div>
-        </div>
 
-        <div style={{ marginBottom: '16px' }}>
-          <h4 style={{ fontSize: '14px', fontWeight: '600', color: '#1e3a5f', marginBottom: '8px' }}>What you'll need</h4>
-          <ul style={{ lineHeight: '1.8', paddingLeft: '20px', fontSize: '13px', color: '#4b5563', margin: 0 }}>
-            {product.prerequisites.map(function (prereq, index) {
-              return <li key={index}>{prereq}</li>;
-            })}
-          </ul>
-        </div>
-
-        <div style={{ marginBottom: '16px' }}>
-          <h4 style={{ fontSize: '14px', fontWeight: '600', color: '#1e3a5f', marginBottom: '12px' }}>How do you want to proceed?</h4>
-          <div style={{ display: 'flex', gap: '8px', marginBottom: '12px', flexWrap: 'wrap' }}>
-            <button
-              onClick={function () { setActivePanel('myself'); setShowStep2(false); }}
-              style={{
-                padding: '10px 16px',
-                fontSize: '14px',
-                backgroundColor: activePanel === 'myself' ? '#00A651' : '#fff',
-                color: activePanel === 'myself' ? '#fff' : '#374151',
-                border: '1px solid ' + (activePanel === 'myself' ? '#00A651' : '#e5e7eb'),
-                borderRadius: '8px',
-                cursor: 'pointer',
-                transition: 'all 0.2s',
-                fontWeight: 600
-              }}
-              type="button"
+          <div style={{ marginTop: '16px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', color: '#6b7280', marginBottom: '6px' }}>
+              <span>Step {getProgressValue()} of up to 3</span>
+            </div>
+            <div
+              role="progressbar"
+              aria-valuenow={getProgressValue()}
+              aria-valuemin={0}
+              aria-valuemax={3}
+              aria-label={'Quick Start progress: step ' + getProgressValue() + ' of 3'}
+              style={{ height: '6px', background: '#e5e7eb', borderRadius: '999px', overflow: 'hidden' }}
             >
-              I'll do it myself
-            </button>
-            <button
-              onClick={function () { setActivePanel('developer'); setShowStep2(false); }}
-              style={{
-                padding: '10px 16px',
-                fontSize: '14px',
-                backgroundColor: activePanel === 'developer' ? '#00A651' : '#fff',
-                color: activePanel === 'developer' ? '#fff' : '#374151',
-                border: '1px solid ' + (activePanel === 'developer' ? '#00A651' : '#e5e7eb'),
-                borderRadius: '8px',
-                cursor: 'pointer',
-                transition: 'all 0.2s',
-                fontWeight: 600
-              }}
-              type="button"
-            >
-              I have a developer
-            </button>
-            <button
-              onClick={function () { setActivePanel('ai'); setShowStep2(false); }}
-              style={{
-                padding: '10px 16px',
-                fontSize: '14px',
-                backgroundColor: activePanel === 'ai' ? '#00A651' : '#fff',
-                color: activePanel === 'ai' ? '#fff' : '#374151',
-                border: '1px solid ' + (activePanel === 'ai' ? '#00A651' : '#e5e7eb'),
-                borderRadius: '8px',
-                cursor: 'pointer',
-                transition: 'all 0.2s',
-                fontWeight: 600
-              }}
-              type="button"
-            >
-              I'll use AI to build it
-            </button>
+              <div style={{ height: '100%', width: (getProgressValue() * 33.33) + '%', background: '#00A651', borderRadius: '999px', transition: 'width 0.25s ease' }} />
+            </div>
           </div>
 
-          <div style={{ border: '1px solid #e5e7eb', borderRadius: '10px', padding: '16px', backgroundColor: '#f9fafb', minHeight: '200px' }}>
-            {activePanel === 'myself' && (
-              <div style={{ fontSize: '14px', lineHeight: '1.6' }}>
-                <p style={{ margin: '0 0 12px', fontSize: '13px', color: '#4b5563' }}>{product.description}</p>
-                <h5 style={{ fontSize: '13px', fontWeight: '600', color: '#1e3a5f', marginBottom: '8px', marginTop: '16px' }}>Next steps</h5>
-                <ol style={{ lineHeight: '1.7', paddingLeft: '20px', marginBottom: '12px', fontSize: '13px', color: '#4b5563' }}>
-                  {product.prerequisites.map(function (prereq, index) {
-                    return <li key={index}>{prereq}</li>;
-                  })}
-                </ol>
-                <a href={product.docsUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', marginTop: '8px', fontSize: '13px', fontWeight: 600, color: '#00A651' }}>
-                  View PayU documentation →
-                </a>
-              </div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', marginTop: '16px', paddingTop: '12px', borderTop: '1px solid #e5e7eb' }}>
+            {currentQuestion !== 'Q1' ? (
+              <button type="button" onClick={goBack} style={{ padding: '8px 14px', borderRadius: '8px', fontSize: '13px', fontWeight: 600, cursor: 'pointer', background: '#fff', border: '1px solid #e5e7eb', color: '#374151' }}>
+                Back
+              </button>
+            ) : (
+              <span />
             )}
+            <button type="button" onClick={restart} style={{ padding: '8px 14px', borderRadius: '8px', fontSize: '13px', fontWeight: 600, cursor: 'pointer', background: '#00A651', border: 'none', color: '#fff' }}>
+              Start over
+            </button>
+          </div>
+        </div>
+      );
+    } else {
+      var product = result.product;
+      var whyText = renderWhyText(product, result.answers);
+      var tierInfo = getTierIndicator(product.tier, product.effortLabel);
+      var hasStep2 = productHasStep2(product.key);
+      var step2Label = getStep2Label(product.key);
+      var prompt1 = buildAIPrompt(product, 1);
+      var prompt2 = buildAIPrompt(product, 2);
 
-            {activePanel === 'developer' && (
-              <div style={{ fontSize: '14px', lineHeight: '1.6' }}>
-                <p style={{ margin: '0 0 12px', fontSize: '13px', color: '#4b5563' }}>Share this setup summary with your developer or agency:</p>
-                <div style={{ backgroundColor: '#f9fafb', padding: '12px 14px', borderRadius: '8px', fontSize: '13px', fontFamily: 'monospace', lineHeight: '1.7', border: '1px solid #e5e7eb' }}>
-                  <p style={{ margin: '0 0 8px' }}><strong>What I want to achieve:</strong> {getQ1AnswerText(result.answers)}</p>
-                  {(result.answers.Q2 || result.answers.Q3) && (
-                    <p style={{ margin: '0 0 8px' }}><strong>Where I want to accept payments:</strong> {result.answers.Q2 === 'custom' || result.answers.Q2 === 'platform' ? 'On my website' : 'For my business'}</p>
-                  )}
-                  <p style={{ margin: '0 0 8px' }}><strong>Recommended PayU solution:</strong> {product.name}</p>
-                  <p style={{ margin: '0 0 4px' }}><strong>What's needed before starting:</strong></p>
-                  <ul style={{ paddingLeft: '20px', margin: '4px 0 8px 0', fontSize: '12px' }}>
+      return (
+        <div>
+          <div style={{ marginBottom: '16px', padding: '12px 14px', borderRadius: '10px', border: '1px solid rgba(0,166,81,.25)', background: 'rgba(0,166,81,.06)', fontSize: '13px', color: '#374151' }}>
+            {whyText}
+          </div>
+
+          <div style={{ border: '2px solid #00A651', borderRadius: '12px', overflow: 'hidden', marginBottom: '16px' }}>
+            <div style={{ background: '#00A651', color: '#fff', fontSize: '12px', fontWeight: 600, padding: '8px 14px' }}>
+              Your recommended setup
+            </div>
+            <div style={{ padding: '16px' }}>
+              <h3 style={{ margin: 0, fontSize: '1.1rem', color: '#1e3a5f' }}>{product.name}</h3>
+              <p style={{ margin: '4px 0 0', fontSize: '12px', color: '#6b7280' }}>{product.category}</p>
+              <p style={{ margin: '10px 0', fontSize: '13px' }}>{product.description}</p>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', borderRadius: '8px', background: '#f3f4f6', fontSize: '12px', fontWeight: 600, color: '#374151', marginTop: '8px' }}>
+                <span>{tierInfo.emoji}</span>
+                <span>{tierInfo.label}</span>
+              </div>
+              {product.requiresEnablement && (
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', borderRadius: '8px', background: '#fef3c7', border: '1px solid #fbbf24', fontSize: '12px', fontWeight: 600, color: '#78350f', marginTop: '8px', marginLeft: '8px' }}>
+                  <span>&#x23F3;</span>
+                  <span>Requires enabling by your account team first</span>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div style={{ marginBottom: '16px' }}>
+            <h4 style={{ fontSize: '14px', fontWeight: '600', color: '#1e3a5f', marginBottom: '8px' }}>What you'll need</h4>
+            <ul style={{ lineHeight: '1.8', paddingLeft: '20px', fontSize: '13px', color: '#4b5563', margin: 0 }}>
+              {product.prerequisites.map(function (prereq, index) {
+                return <li key={index}>{prereq}</li>;
+              })}
+            </ul>
+          </div>
+
+          <div style={{ marginBottom: '16px' }}>
+            <h4 style={{ fontSize: '14px', fontWeight: '600', color: '#1e3a5f', marginBottom: '12px' }}>How do you want to proceed?</h4>
+            <div style={{ display: 'flex', gap: '8px', marginBottom: '12px', flexWrap: 'wrap' }}>
+              <button
+                onClick={function () { setActivePanel('myself'); setShowStep2(false); }}
+                style={{
+                  padding: '10px 16px',
+                  fontSize: '14px',
+                  backgroundColor: activePanel === 'myself' ? '#00A651' : '#fff',
+                  color: activePanel === 'myself' ? '#fff' : '#374151',
+                  border: '1px solid ' + (activePanel === 'myself' ? '#00A651' : '#e5e7eb'),
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s',
+                  fontWeight: 600
+                }}
+                type="button"
+              >
+                I'll do it myself
+              </button>
+              <button
+                onClick={function () { setActivePanel('developer'); setShowStep2(false); }}
+                style={{
+                  padding: '10px 16px',
+                  fontSize: '14px',
+                  backgroundColor: activePanel === 'developer' ? '#00A651' : '#fff',
+                  color: activePanel === 'developer' ? '#fff' : '#374151',
+                  border: '1px solid ' + (activePanel === 'developer' ? '#00A651' : '#e5e7eb'),
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s',
+                  fontWeight: 600
+                }}
+                type="button"
+              >
+                I have a developer
+              </button>
+              <button
+                onClick={function () { setActivePanel('ai'); setShowStep2(false); }}
+                style={{
+                  padding: '10px 16px',
+                  fontSize: '14px',
+                  backgroundColor: activePanel === 'ai' ? '#00A651' : '#fff',
+                  color: activePanel === 'ai' ? '#fff' : '#374151',
+                  border: '1px solid ' + (activePanel === 'ai' ? '#00A651' : '#e5e7eb'),
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s',
+                  fontWeight: 600
+                }}
+                type="button"
+              >
+                I'll use AI to build it
+              </button>
+            </div>
+
+            <div style={{ border: '1px solid #e5e7eb', borderRadius: '10px', padding: '16px', backgroundColor: '#f9fafb', minHeight: '200px' }}>
+              {activePanel === 'myself' && (
+                <div style={{ fontSize: '14px', lineHeight: '1.6' }}>
+                  <p style={{ margin: '0 0 12px', fontSize: '13px', color: '#4b5563' }}>{product.description}</p>
+                  <h5 style={{ fontSize: '13px', fontWeight: '600', color: '#1e3a5f', marginBottom: '8px', marginTop: '16px' }}>Next steps</h5>
+                  <ol style={{ lineHeight: '1.7', paddingLeft: '20px', marginBottom: '12px', fontSize: '13px', color: '#4b5563' }}>
                     {product.prerequisites.map(function (prereq, index) {
                       return <li key={index}>{prereq}</li>;
                     })}
-                  </ul>
-                  <p style={{ margin: 0 }}><strong>Technical guide:</strong> <a href={product.docsUrl} target="_blank" rel="noopener noreferrer" style={{ color: '#00A651', fontWeight: 600 }}>{product.docsUrl}</a></p>
+                  </ol>
+                  <a href={product.docsUrl} target="_blank" rel="noopener noreferrer" style={{ display: 'inline-block', marginTop: '8px', fontSize: '13px', fontWeight: 600, color: '#00A651' }}>
+                    View PayU documentation &#x2192;
+                  </a>
                 </div>
-                <button
-                  onClick={function () {
-                    var summary = 'What I want to achieve: ' + getQ1AnswerText(result.answers) + '\n\nRecommended PayU solution: ' + product.name + '\n\nWhat\'s needed:\n' + product.prerequisites.map(function (p) { return '- ' + p; }).join('\n') + '\n\nTechnical guide: ' + product.docsUrl;
-                    copyToClipboard(summary);
-                  }}
-                  style={{ marginTop: '12px', padding: '8px 14px', fontSize: '13px', fontWeight: 600, borderRadius: '8px', border: '1px solid #e5e7eb', background: '#fff', color: '#374151', cursor: 'pointer' }}
-                  type="button"
-                >
-                  Copy summary
-                </button>
-                <div style={{ backgroundColor: '#fff3cd', border: '1px solid #ffc107', padding: '10px 12px', borderRadius: '8px', marginTop: '16px', fontSize: '12px' }}>
-                  <p style={{ fontWeight: '600', marginBottom: '4px', color: '#92400e' }}>⚠️ Before you send this</p>
-                  <p style={{ lineHeight: '1.6', margin: 0, color: '#78350f' }}>
-                    This summary describes what your developer needs — it does not include your actual Merchant Key or Salt. Do not add your real credential values into this message before sending it. If your developer doesn't have PayU Dashboard access, check with your account team on the right way to share access — this isn't yet a documented process.
-                  </p>
-                </div>
-              </div>
-            )}
+              )}
 
-            {activePanel === 'ai' && (
-              <div style={{ fontSize: '14px', lineHeight: '1.6' }}>
-                <p style={{ lineHeight: '1.6', marginBottom: '12px', fontSize: '12px', color: '#6b7280' }}>
-                  Use this with Claude, ChatGPT, or another AI coding assistant. Copy the entire prompt and paste it into your conversation.
-                </p>
-                <div style={{ position: 'relative' }}>
-                  <pre style={{ backgroundColor: '#f9fafb', padding: '12px', borderRadius: '8px', fontSize: '12px', lineHeight: '1.6', overflowX: 'auto', whiteSpace: 'pre-wrap', wordWrap: 'break-word', border: '1px solid #e5e7eb', margin: 0 }}>
-                    {buildAIPrompt(product, 1)}
-                  </pre>
+              {activePanel === 'developer' && (
+                <div style={{ fontSize: '14px', lineHeight: '1.6' }}>
+                  <p style={{ margin: '0 0 12px', fontSize: '13px', color: '#4b5563' }}>Share this setup summary with your developer or agency:</p>
+                  <div style={{ backgroundColor: '#f9fafb', padding: '12px 14px', borderRadius: '8px', fontSize: '13px', fontFamily: 'monospace', lineHeight: '1.7', border: '1px solid #e5e7eb' }}>
+                    <p style={{ margin: '0 0 8px' }}><strong>What I want to achieve:</strong> {getQ1AnswerText(result.answers)}</p>
+                    {(result.answers.Q2 || result.answers.Q3) && (
+                      <p style={{ margin: '0 0 8px' }}><strong>Where I want to accept payments:</strong> {result.answers.Q2 === 'custom' || result.answers.Q2 === 'platform' ? 'On my website' : 'For my business'}</p>
+                    )}
+                    <p style={{ margin: '0 0 8px' }}><strong>Recommended PayU solution:</strong> {product.name}</p>
+                    <p style={{ margin: '0 0 4px' }}><strong>What's needed before starting:</strong></p>
+                    <ul style={{ paddingLeft: '20px', margin: '4px 0 8px 0', fontSize: '12px' }}>
+                      {product.prerequisites.map(function (prereq, index) {
+                        return <li key={index}>{prereq}</li>;
+                      })}
+                    </ul>
+                    <p style={{ margin: 0 }}><strong>Technical guide:</strong> <a href={product.docsUrl} target="_blank" rel="noopener noreferrer" style={{ color: '#00A651', fontWeight: 600 }}>{product.docsUrl}</a></p>
+                  </div>
                   <button
-                    onClick={function () { copyToClipboard(buildAIPrompt(product, 1)); }}
-                    style={{ position: 'absolute', top: '8px', right: '8px', padding: '6px 10px', fontSize: '11px', fontWeight: 600, borderRadius: '6px', border: '1px solid #e5e7eb', background: '#fff', color: '#374151', cursor: 'pointer' }}
+                    onClick={function () {
+                      var summary = 'What I want to achieve: ' + getQ1AnswerText(result.answers) + '\n\nRecommended PayU solution: ' + product.name + '\n\nWhat\'s needed:\n' + product.prerequisites.map(function (p) { return '- ' + p; }).join('\n') + '\n\nTechnical guide: ' + product.docsUrl;
+                      copyToClipboard(summary);
+                    }}
+                    style={{ marginTop: '12px', padding: '8px 14px', fontSize: '13px', fontWeight: 600, borderRadius: '8px', border: '1px solid #e5e7eb', background: '#fff', color: '#374151', cursor: 'pointer' }}
                     type="button"
                   >
-                    Copy
+                    Copy summary
                   </button>
+                  <div style={{ backgroundColor: '#fff3cd', border: '1px solid #ffc107', padding: '10px 12px', borderRadius: '8px', marginTop: '16px', fontSize: '12px' }}>
+                    <p style={{ fontWeight: '600', marginBottom: '4px', color: '#92400e' }}>&#x26A0;&#xFE0F; Before you send this</p>
+                    <p style={{ lineHeight: '1.6', margin: 0, color: '#78350f' }}>
+                      This summary does not include your Merchant Key or Salt. Do not add your real credential values to this message. If your developer needs Dashboard access, check with your PayU account team on the correct way to share access.
+                    </p>
+                  </div>
                 </div>
-                {showStep2 && (
-                  <div style={{ marginTop: '16px' }}>
-                    <p style={{ fontSize: '13px', fontWeight: 600, color: '#1e3a5f', marginBottom: '8px' }}>Step 2: Handle webhook response</p>
+              )}
+
+              {activePanel === 'ai' && (
+                <div style={{ fontSize: '14px', lineHeight: '1.6' }}>
+                  <p style={{ lineHeight: '1.6', marginBottom: '12px', fontSize: '12px', color: '#6b7280' }}>
+                    Use this with Claude, ChatGPT, or another AI coding assistant. Copy the entire prompt and paste it into your conversation.
+                  </p>
+                  {prompt1 && (
                     <div style={{ position: 'relative' }}>
                       <pre style={{ backgroundColor: '#f9fafb', padding: '12px', borderRadius: '8px', fontSize: '12px', lineHeight: '1.6', overflowX: 'auto', whiteSpace: 'pre-wrap', wordWrap: 'break-word', border: '1px solid #e5e7eb', margin: 0 }}>
-                        {buildAIPrompt(product, 2)}
+                        {prompt1}
                       </pre>
                       <button
-                        onClick={function () { copyToClipboard(buildAIPrompt(product, 2)); }}
+                        onClick={function () { copyToClipboard(prompt1); }}
                         style={{ position: 'absolute', top: '8px', right: '8px', padding: '6px 10px', fontSize: '11px', fontWeight: 600, borderRadius: '6px', border: '1px solid #e5e7eb', background: '#fff', color: '#374151', cursor: 'pointer' }}
                         type="button"
                       >
                         Copy
                       </button>
                     </div>
-                  </div>
-                )}
-                <div style={{ marginTop: '12px', display: 'flex', gap: '8px' }}>
-                  {!showStep2 && (
-                    <button
-                      onClick={function () { setShowStep2(true); }}
-                      style={{ padding: '8px 14px', fontSize: '13px', fontWeight: 600, borderRadius: '8px', background: '#00A651', color: '#fff', border: 'none', cursor: 'pointer' }}
-                      type="button"
-                    >
-                      Show Step 2
-                    </button>
                   )}
+                  {hasStep2 && showStep2 && prompt2 && (
+                    <div style={{ marginTop: '16px' }}>
+                      <p style={{ fontSize: '13px', fontWeight: 600, color: '#1e3a5f', marginBottom: '8px' }}>{step2Label.replace('Show ', '')}</p>
+                      <div style={{ position: 'relative' }}>
+                        <pre style={{ backgroundColor: '#f9fafb', padding: '12px', borderRadius: '8px', fontSize: '12px', lineHeight: '1.6', overflowX: 'auto', whiteSpace: 'pre-wrap', wordWrap: 'break-word', border: '1px solid #e5e7eb', margin: 0 }}>
+                          {prompt2}
+                        </pre>
+                        <button
+                          onClick={function () { copyToClipboard(prompt2); }}
+                          style={{ position: 'absolute', top: '8px', right: '8px', padding: '6px 10px', fontSize: '11px', fontWeight: 600, borderRadius: '6px', border: '1px solid #e5e7eb', background: '#fff', color: '#374151', cursor: 'pointer' }}
+                          type="button"
+                        >
+                          Copy
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                  <div style={{ marginTop: '12px', display: 'flex', gap: '8px' }}>
+                    {hasStep2 && !showStep2 && (
+                      <button
+                        onClick={function () { setShowStep2(true); }}
+                        style={{ padding: '8px 14px', fontSize: '13px', fontWeight: 600, borderRadius: '8px', background: '#00A651', color: '#fff', border: 'none', cursor: 'pointer' }}
+                        type="button"
+                      >
+                        {step2Label}
+                      </button>
+                    )}
+                  </div>
+                  <div style={{ backgroundColor: '#fff3cd', border: '1px solid #ffc107', padding: '10px 12px', borderRadius: '8px', marginTop: '16px', fontSize: '12px' }}>
+                    <p style={{ fontWeight: '600', marginBottom: '4px', color: '#92400e' }}>&#x26A0;&#xFE0F; Security reminder</p>
+                    <p style={{ lineHeight: '1.6', margin: 0, color: '#78350f' }}>
+                      Never share your Merchant Key, Salt, API secrets, or access tokens in AI prompts. Keep credentials in server-side environment variables, not in code.
+                    </p>
+                  </div>
                 </div>
-                <div style={{ backgroundColor: '#fff3cd', border: '1px solid #ffc107', padding: '10px 12px', borderRadius: '8px', marginTop: '16px', fontSize: '12px' }}>
-                  <p style={{ fontWeight: '600', marginBottom: '4px', color: '#92400e' }}>⚠️ Security reminder</p>
-                  <p style={{ lineHeight: '1.6', margin: 0, color: '#78350f' }}>
-                    Never share your Merchant Key or Salt in prompts to AI. Keep credentials in environment variables, not in code.
-                  </p>
-                </div>
-              </div>
-            )}
+              )}
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', marginTop: '16px', paddingTop: '12px', borderTop: '1px solid #e5e7eb' }}>
+            <button type="button" onClick={goBackFromResult} style={{ padding: '8px 14px', borderRadius: '8px', fontSize: '13px', fontWeight: 600, cursor: 'pointer', background: '#fff', border: '1px solid #e5e7eb', color: '#374151' }}>
+              Back
+            </button>
+            <button type="button" onClick={restart} style={{ padding: '8px 14px', borderRadius: '8px', fontSize: '13px', fontWeight: 600, cursor: 'pointer', background: '#00A651', border: 'none', color: '#fff' }}>
+              Start over
+            </button>
           </div>
         </div>
-
-        <div style={{ display: 'flex', justifyContent: 'space-between', gap: '12px', marginTop: '16px', paddingTop: '12px', borderTop: '1px solid #e5e7eb' }}>
-          <button type="button" onClick={goBackFromResult} style={{ padding: '8px 14px', borderRadius: '8px', fontSize: '13px', fontWeight: 600, cursor: 'pointer', background: '#fff', border: '1px solid #e5e7eb', color: '#374151' }}>
-            Back
-          </button>
-          <button type="button" onClick={restart} style={{ padding: '8px 14px', borderRadius: '8px', fontSize: '13px', fontWeight: 600, cursor: 'pointer', background: '#00A651', border: 'none', color: '#fff' }}>
-            Start over
-          </button>
-        </div>
-      </div>
-    );
+      );
+    }
   }
+
+  var wizardBody = computeWizardBody();
 
   return (
     <div style={shell}>
@@ -850,7 +945,7 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
             onMouseLeave={function () { setHoveredLaunch(false); }}
             style={launchBtnStyle}
           >
-            <span style={{ fontSize: '20px' }}>🚀</span>
+            <span style={{ fontSize: '20px' }}>{'\uD83D\uDE80'}</span>
             <span>Find Your Integration Path</span>
           </button>
         </div>
@@ -929,7 +1024,7 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
                 onMouseEnter={function (e) { e.currentTarget.style.opacity = '1'; }}
                 onMouseLeave={function (e) { e.currentTarget.style.opacity = '0.9'; }}
               >
-                ×
+                &#x00D7;
               </button>
             </div>
 
@@ -948,3 +1043,5 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
     </div>
   );
 };
+
+<PayUQuickStartWizard />
