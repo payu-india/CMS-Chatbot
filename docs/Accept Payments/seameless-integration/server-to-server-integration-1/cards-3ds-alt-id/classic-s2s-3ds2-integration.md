@@ -124,7 +124,10 @@ Integrate card payments using PayU's Classic Server-to-Server (S2S) flow with fu
         <tr>
           <td>txn_s2s_flow</td>
           <td>Integer. Flag to enable S2S flow.</td>
-          <td>1</
+          <td>1</td>
+        </tr>
+    </tbody>
+</table>
 
     ### Generate Hash
 
