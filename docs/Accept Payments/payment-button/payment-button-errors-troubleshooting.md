@@ -164,11 +164,11 @@ Contact PayU Support via the Dashboard **Help** section, or email `support@payu.
 ## Next Steps
 
 <Cards>
-  <Card title="Add a Payment Button" href="doc:add-a-payment-button" icon="far fa-plus">
+  <Card title="Add a Payment Button" href="https://docs.payu.in/docs/add-payment-button" icon="far fa-plus" target="_blank">
     Create a new payment button and add it to your website.
   </Card>
 
-  <Card title="Manage Payment Buttons" href="doc:manage-payment-buttons" icon="fa-list-check">
+  <Card title="Manage Payment Buttons" href="https://docs.payu.in/docs/manage-payment-buttons" icon="fa-list-check">
     View payments, filter your buttons, and download records.
   </Card>
 
