@@ -199,5 +199,6 @@ curl POST 'https://test.payu.in/AuthorizeTransaction' \
 }
 '
 ```
+</Accordion>
 
 <br />
