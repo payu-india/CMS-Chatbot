@@ -81,7 +81,7 @@ next:
 4. #### Which payment methods can customers use?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Customers can pay using any method enabled on your merchant account — credit and debit cards (Visa, Mastercard, RuPay, Amex), UPI, Net Banking, Wallets, EMI, and BNPL. Contact <Anchor target="_blank" href="https://help.payu.in/query">PayU support</Anchor> to enable or disable specific methods.
+  Customers can pay using any method enabled on your merchant account such as credit and debit cards (Visa, Mastercard, RuPay, Amex), UPI, Net Banking, Wallets, EMI, and BNPL. Contact <Anchor target="_blank" href="https://help.payu.in/raise-ticket">PayU support</Anchor> to enable or disable specific methods.
 </Accordion>
 
 ***
@@ -89,15 +89,9 @@ next:
 5. #### Can I turn off a Payment Button and re-enable it later? <Badge type="success">New</Badge>
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Once a Payment Button is turned off, it cannot be turned back on from the Dashboard. When you disable a button, it stops accepting payments permanently.
+  You cannot turn-off a payment button. However, you can [delete](https://docs.payu.in/docs/manage-payment-buttons#delete-a-payment-button) it to stop accepting payments permanently.
 
-  If you want to pause a button temporarily — for example, after an event ends — the recommended approach is to **not turn it off**. Simply leave it active but stop sharing or promoting it. No customer can pay through a button they don't know about.
-
-  If you have already turned off a button and need to accept payments again for the same purpose, create a new button with the same settings and add it to your website.
-
-  <Callout icon="📘" theme="info">
-    This is different from Payment Links, which can be reactivated after being deactivated. Payment Buttons, once turned off, are permanently inactive.
-  </Callout>
+  If you have already deleted a button and need to accept payments again for the same purpose, create a new button with the same settings and add it to your website.
 </Accordion>
 
 ***
