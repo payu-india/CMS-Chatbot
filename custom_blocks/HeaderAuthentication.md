@@ -26,27 +26,28 @@ name: HeaderAuthentication
 </Accordion>
 
 <Accordion title="Sample authorization header code" icon="fa-info-circle">
-```javascript
-var merchant_key = pm.environment.get('merchantKey') || 'PRiQvJ';
-var merchant_secret = pm.environment.get('merchantSalt') || 'mGHSxpD2iBVywParGQrGBlaXjnwkGJMQ';
+  ```javascript
+  var merchant_key = pm.environment.get('merchantKey') || '<Your Key>';
+  var merchant_secret = pm.environment.get('merchantSalt') || '<Your Salt>';
 
-// Generate current date in RFC 1123 format
-var date = new Date().toUTCString();
+  // Generate current date in RFC 1123 format
+  var date = new Date().toUTCString();
 
-// Get request body data (empty for GET/DELETE)
-var data = "";
-if (pm.request.method === "POST" && pm.request.body && pm.request.body.raw) {
-    data = pm.request.body.raw;
-}
+  // Get request body data (empty for GET/DELETE)
+  var data = "";
+  if (pm.request.method === "POST" && pm.request.body && pm.request.body.raw) {
+      data = pm.request.body.raw;
+  }
 
-// Generate authorization header
-var hash_string = data + '|' + date + '|' + merchant_secret;
-var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
-var authorization = 'hmac username="' + merchant_key + '", algorithm="sha512", headers="date", signature="' + hash + '"';
+  // Generate authorization header
+  var hash_string = data + '|' + date + '|' + merchant_secret;
+  var hash = CryptoJS.SHA512(hash_string).toString(CryptoJS.enc.Hex);
+  var authorization = 'hmac username="' + merchant_key + '", algorithm="sha512", headers="date", signature="' + hash + '"';
 
-// Set environment variables
-pm.environment.set('date', date);
-pm.environment.set('authorization', authorization);
-```
-<br />
+  // Set environment variables
+  pm.environment.set('date', date);
+  pm.environment.set('authorization', authorization);
+  ```
+
+
 </Accordion>
