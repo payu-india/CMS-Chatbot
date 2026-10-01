@@ -10,6 +10,18 @@ metadata:
 next:
   description: ''
 ---
+---
+title: BNPL - v2 Payment API
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
 Buy Now Pay Later (BNPL) allows your customers to spread their payments over a relatively short period instead of paying upfront. You can collect payments from customers with BNPL using the Merchant Hosted Checkout integration.
 
 You need to ensure that **BNPL** for the **paymentMethod.name** parameter and BNPL code based on the provider and tenure for the **paymentMethod.bankcode** parameter is posted.
@@ -17,15 +29,12 @@ You need to ensure that **BNPL** for the **paymentMethod.name** parameter and BN
 For the list of supported BNPL codes, refer to <Anchor label="BNPL Codes" target="_blank" href="https://docs.payu.in/v1/docs/bnpl-codes">BNPL Codes</Anchor>.
 
 ### Environment
-
 <V2_payment_envrionment />
 
 ## Request header
-
 <V2_payment_header_params />
 
 ### Request body
-
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -76,7 +85,6 @@ For the list of supported BNPL codes, refer to <Anchor label="BNPL Codes" target
 `}</HTMLBlock>
 
 ### paymentMethod object fields description
-
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -102,11 +110,9 @@ For the list of supported BNPL codes, refer to <Anchor label="BNPL Codes" target
 `}</HTMLBlock>
 
 ### order object fields description
-
 <V2_order_object />
 
 ### additionalInfo object fields description
-
 <AdditionalI_Info_object />
 
 **BNPL-specific parameters:**
@@ -136,22 +142,19 @@ For the list of supported BNPL codes, refer to <Anchor label="BNPL Codes" target
 `}</HTMLBlock>
 
 ### callBackActions object fields description
-
 <CallbackActions_object />
 
 ### billingDetails object fields description
-
 <BillingDetails_object />
 
 ## Sample request
-
 ```curl
 curl --location 'https://apitest.payu.in/v2/payments' \
---header 'date: Thu, 27 Mar 2025 10:12:27 GMT' \
---header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="ec84843a663143bb89391f6fa2d4b9404bab1543a3eee81263b4a507ebf5d289d8fad1fbcdd59da820951e3e0f9b0b0b3d1bad9b41338804e7c42a8a6197c6e9"' \
+--header 'date: <RFC_7231_DATE_UTC>' \
+--header 'authorization: hmac username="<YOUR_TEST_KEY>", algorithm="sha512", headers="date", signature="<SIGNATURE_PLACEHOLDER>"' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "accountId": "smsplus",
+    "accountId": "<YOUR_TEST_KEY>",
     "referenceId": "b5f2d8785768087678fn4",
     "amount": 5000,
     "currency": "INR",
@@ -201,7 +204,6 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 ```
 
 ## Sample response
-
 ```json
 {
     "referenceId": "b5f2d8785768087678fn4",
@@ -211,7 +213,6 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 ```
 
 ## Response parameters
-
 <V2_payment_response_params />
 
 > 📘 **Reference:**
