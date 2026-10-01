@@ -10,18 +10,6 @@ metadata:
 next:
   description: ''
 ---
----
-title: Collect Payment API - PayU Hosted v2 Payment
-excerpt: ''
-deprecated: false
-hidden: false
-metadata:
-  title: ''
-  description: ''
-  robots: index
-next:
-  description: ''
----
 The PayU v2 Payment API enables merchants to process payments through a hosted checkout flow where customers are redirected to PayU's payment page to complete the transaction.
 
 <Callout icon="📘" theme="info">
@@ -33,9 +21,11 @@ The PayU v2 Payment API enables merchants to process payments through a hosted c
 <V2_payment_envrionment />
 
 ## Request header
+
 <V2_payment_header_params />
 
 ## Request parameters
+
 | Parameter                                   | Description                                                                                                                                                            | Example        |
 | ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- |
 | accountId<br /><code>mandatory</code>       | Merchant key provided by PayU. Type: <code>String</code>. Character limit: 50                                                                                          | jBR7XXXXXXXXXX |
@@ -47,15 +37,19 @@ The PayU v2 Payment API enables merchants to process payments through a hosted c
 | additionalInfo<br /><code>mandatory</code>  | Additional transaction parameters including flow type. Type: <code>Object</code>. See [additionalInfo object](#additionalinfo-object) for detailed field descriptions. |                |
 
 ### order Object
+
 <V2_order_object />
 
 ### billingDetails Object
+
 <BillingDetails_object />
 
 ### callBackActions Object
+
 <CallbackActions_object />
 
 ### additionalInfo Object
+
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -86,6 +80,7 @@ The PayU v2 Payment API enables merchants to process payments through a hosted c
 `}</HTMLBlock>
 
 ## Sample Request
+
 <V2_Dev_Plugin />
 
 ```bash
@@ -95,7 +90,7 @@ curl -X POST \
   -H 'authorization: <AUTHORIZATION_HEADER_PENDING_ENGINEERING_CONFIRMATION>' \
   -H 'content-type: application/json' \
   -d '{
-  "accountId": "<SANDBOX_MERCHANT_KEY>",
+  "accountId": "<YOUR_TEST_KEY>",
   "txnId": "<EXAMPLE_TXN_ID>",
   "order": {
     "productInfo": "iPhone 13",
@@ -133,10 +128,13 @@ curl -X POST \
 ```
 
 ## Response parameters
+
 <V2_payment_response_params />
 
 ## Sample response
+
 ### Without order
+
 It returns a URL similar to the following:
 
 ```
@@ -144,6 +142,7 @@ It returns a URL similar to the following:
 ```
 
 ### With order
+
 ```
 {"result":{"checkoutUrl":"https://pp78secure.payu.in/_payment_options?mihpayid=ff2bd7a285ea39d90d31e8d916ce1305&userToken="},"orderId":"b5f2d8785768087678f5","status":"PENDING"}
 ```
@@ -159,6 +158,9 @@ The parsed response is similar the following:
 ```
 
 ## Verify Payment
-> ⚠️ **Important**
->
-> After creating a payment, you **must** call the [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api/) to get the final transaction status. The initial payment creation response will typically show "PENDING" status.
+
+<Callout icon="⚠️" theme="warn">
+  ### **Important**
+
+  After creating a payment, you **must** call the [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api/) to get the final transaction status. The initial payment creation response will typically show "PENDING" status.
+</Callout>
