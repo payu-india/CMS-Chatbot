@@ -10,20 +10,29 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Cards Classic Integration - v2 Payment API
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
 You can collect card payments using classic seamless integration. For seamless Classic integration, the **additionalInfo.txnS2sFlow** field is set to **4**.
 
 The Classic Seamless Integration supports both physical card details and saved card tokens, providing a complete server-to-server payment solution with 3DS authentication redirection.
 
 ## Environment
-
 <V2_payment_envrionment />
 
 ## Request header
-
 <V2_payment_header_params />
 
 ## Request body
-
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -37,7 +46,7 @@ The Classic Seamless Integration supports both physical card details and saved c
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>accountId<br><code>mandatory</code></p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant key provided by PayU during onboarding.</p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>UMXDPA</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><TEST_ACCT_ID></p></td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>txnId<br><code>mandatory</code></p></td>
@@ -74,7 +83,6 @@ The Classic Seamless Integration supports both physical card details and saved c
 `}</HTMLBlock>
 
 ### paymentMethod object fields description
-
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -105,15 +113,12 @@ The Classic Seamless Integration supports both physical card details and saved c
 `}</HTMLBlock>
 
 ### paymentCard object fields description
-
 <V2_paymentCard />
 
 ### order object fields description
-
 <V2_order_object />
 
 ### additionalInfo object fields description
-
 <AdditionalI_Info_object />
 
 <HTMLBlock>{`
@@ -151,30 +156,27 @@ The Classic Seamless Integration supports both physical card details and saved c
 `}</HTMLBlock>
 
 ### callBackActions object fields description
-
 <CallbackActions_object />
 
 ### billingDetails object fields description
-
 <BillingDetails_object />
 
 ## Sample request
-
 ```curl
 curl --location 'https://apitest.payu.in/v2/payments' \
---header 'date: Thu, 27 Mar 2025 10:12:27 GMT' \
---header 'authorization: hmac username="UMXDPA", algorithm="sha512", headers="date", signature="ec84843a663143bb89391f6fa2d4b9404bab1543a3eee81263b4a507ebf5d289d8fad1fbcdd59da820951e3e0f9b0b0b3d1bad9b41338804e7c42a8a6197c6e9"' \
+--header 'date: <RFC_7231_DATE_UTC>' \
+--header 'authorization: hmac username="<TEST_USERNAME>", algorithm="sha512", headers="date", signature="<SIGNATURE_PLACEHOLDER>"' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "accountId": "UMXDPA",
+    "accountId": "<TESTL_USERNAME>",
     "txnId": "ZP6267f0d2996ce",
     "amount": 10,
     "paymentMethod": {
         "name": "CreditCard",
         "bankCode": "CC",
         "paymentCard": {
-            "cardNumber": "5004461234560000",
-            "validThrough": "04/2025",
+            "cardNumber": "500***1234***000",
+            "validThrough": "<TEST_CARD_EXPIRY_MM_YY>",
             "ownerName": "John Doe",
             "cvv": "987"
         }
@@ -232,7 +234,6 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 ```
 
 ## Sample response
-
 ```json
 {
     "result": {
@@ -253,7 +254,6 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 ```
 
 ## Response parameters
-
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
