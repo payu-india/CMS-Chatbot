@@ -10,20 +10,29 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Wallet – v2 Payment API
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
 You can collect payments from customers with leading wallets using the Merchant Hosted integration. You need to ensure that **Wallet** for the **paymentMethod.name** field and wallet code based on the desired wallet for the **paymentMethod.bankcode** field is posted.
 
 For the list of supported wallet codes, refer to <Anchor label="Wallet Codes" target="_blank" href="https://docs.payu.in/v1/docs/wallet-codes">Wallet Codes</Anchor>.
 
 ### Environment
-
 <V2_payment_envrionment />
 
 ## Request header
-
 <V2_payment_header_params />
 
 ## Request body
-
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -74,7 +83,6 @@ For the list of supported wallet codes, refer to <Anchor label="Wallet Codes" ta
 `}</HTMLBlock>
 
 ### paymentMethod object
-
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -105,11 +113,9 @@ For the list of supported wallet codes, refer to <Anchor label="Wallet Codes" ta
 `}</HTMLBlock>
 
 ### order object fields description
-
 <V2_order_object />
 
 ### additionalInfo object fields description
-
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -140,23 +146,20 @@ For the list of supported wallet codes, refer to <Anchor label="Wallet Codes" ta
 `}</HTMLBlock>
 
 ### callBackActions object fields description
-
 <CallbackActions_object />
 
 ### billingDetails object fields description
-
 <BillingDetails_object />
 
 ## Sample request
-
 ```curl
 curl --location 'https://apitest.payu.in/v2/payments' \
---header 'date: Thu, 27 Mar 2025 10:12:27 GMT' \
---header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="ec84843a663143bb89391f6fa2d4b9404bab1543a3eee81263b4a507ebf5d289d8fad1fbcdd59da820951e3e0f9b0b0b3d1bad9b41338804e7c42a8a6197c6e9"' \
+--header 'date: <RFC_7231_DATE_UTC>' \
+--header 'authorization: hmac username="<YOUR_TEST_KEY>", algorithm="sha512", headers="date", signature="<SIGNATURE_PLACEHOLDER>"' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "accountId": "smsplus",
-    "referenceId": "b5f2d8785768087678fn4",
+    "accountId": "<YOUR_TEST_KEY>",
+    "referenceId": "b5f2d8***768087***fn4",
     "amount": 10,
     "currency": "INR",
     "paymentSource": "WEB",
@@ -206,17 +209,15 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 ```
 
 ## Sample response
-
 ```json
 {
-    "referenceId": "b5f2d8785768087678fn4",
+    "referenceId": "b5f2d***5768087***fn4",
     "paymentId": "1999110000001769",
     "message": "Please call verify api to get the transaction status"
 }
 ```
 
 ## Response parameters
-
 <V2_payment_response_params />
 
 > 📘 **Reference:**
