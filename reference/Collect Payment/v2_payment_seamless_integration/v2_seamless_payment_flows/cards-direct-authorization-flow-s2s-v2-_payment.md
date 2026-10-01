@@ -10,6 +10,18 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Cards Direct Authorization Flow - v2 Payment API
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
 PayU enables merchants to process direct authorization for pre-authenticated transactions (external MPI/3DSS). This section describes how to integrate with PayU's direct authorization flow. Initiate an authorization request with the payment details provided post a successful authentication through the MPI/3DSS as explained in this API Reference.
 
 The Cards Redirect Flow provides structured redirection handling for card authentication and transaction processing with comprehensive 3DS support.
@@ -19,15 +31,12 @@ The Cards Redirect Flow provides structured redirection handling for card authen
 > This API is backward compatible and you can continue to use the existing integration parameters to process the 3DS 1.0.2 transactions.
 
 ### Environment
-
 <V2_payment_envrionment />
 
 ## Request header
-
 <V2_payment_header_params />
 
 ## Request body
-
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -41,7 +50,7 @@ The Cards Redirect Flow provides structured redirection handling for card authen
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>accountId<br><code>mandatory</code></p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant key provided by PayU during onboarding.</p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>UMXDPA</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><YOUR_TEST_USERNAME></p></td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>txnId<br><code>mandatory</code></p></td>
@@ -88,7 +97,6 @@ The Cards Redirect Flow provides structured redirection handling for card authen
 `}</HTMLBlock>
 
 ### paymentMethod object fields description
-
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -119,15 +127,12 @@ The Cards Redirect Flow provides structured redirection handling for card authen
 `}</HTMLBlock>
 
 ### paymentCard object fields description
-
 <V2_paymentCard />
 
 ### order object fields description
-
 <V2_order_object />
 
 ### additionalInfo object fields description
-
 <AdditionalI_Info_object />
 
 **Cards Redirect Flow-specific parameters:**
@@ -162,30 +167,25 @@ The Cards Redirect Flow provides structured redirection handling for card authen
 `}</HTMLBlock>
 
 ### callBackActions object fields description
-
 <CallbackActions_object />
 
 ### billingDetails object fields description
-
 <BillingDetails_object />
 
 ### authorization object fields description
-
 <V2_authorization_cards />
 
 ### threeDS2RequestData object fields description
-
 <ThreeDSRequestData_object />
 
 ## Sample request
-
 ```curl
 curl --location 'https://apitest.payu.in/v2/payments' \
---header 'date: Thu, 27 Mar 2025 10:12:27 GMT' \
---header 'authorization: hmac username="UMXDPA", algorithm="sha512", headers="date", signature="ec84843a663143bb89391f6fa2d4b9404bab1543a3eee81263b4a507ebf5d289d8fad1fbcdd59da820951e3e0f9b0b0b3d1bad9b41338804e7c42a8a6197c6e9"' \
+--header 'date: <RFC_7231_DATE_UTC>' \
+--header 'authorization: hmac username="<YOUR_TEST_USERNAME>", algorithm="sha512", headers="date", signature="<SIGNATURE_PLACEHOLDER>"' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "accountId": "UMXDPA",
+    "accountId": "<YOUR_TEST_USERNAME>",
     "txnId": "ZP6267f0d2996ce",
     "amount": 10,
     "paymentMethod": {
@@ -193,7 +193,7 @@ curl --location 'https://apitest.payu.in/v2/payments' \
         "bankCode": "CC",
         "paymentCard": {
             "cardNumber": "5004461234560000",
-            "validThrough": "04/2025",
+            "validThrough": "<SANDBOX_CARD_EXPIRY_MM_YY>",
             "ownerName": "John Doe",
             "cvv": "987",
             "last4Digits": "0000",
@@ -258,14 +258,13 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 ```
 
 ## Sample response
-
 ```json
 {
     "result": {
         "redirectUrl": "https://secure.payu.in/ResponseHandler.php",
         "authAction": "https://api.payu.in/payments/21667772394/otps",
         "paymentId": "21667772394",
-        "redirectTemplate": "PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0IiBpZD0icGF5bWVudF9wb3N0IiBhY3Rpb249Imh0dHBzOi8vbmV0YmFua2luZy5oZGZjYmFuay5jb20vbmV0YmFua2luZy9tZXJjaGFudD9DbGllbnRDb2RlPTE1NDkxMyZNZXJjaGFudENvZGU9UEFZVUZBQ0VCT09LJlR4bkN1cnJlbmN5PUlOUiZUeG5BbW91bnQ9MjUwMDAuMDAmVHhuU2NBbW91bnQ9MCZNZXJjaGFudFJlZk5vPWs0cWh3NGVsYXY2MmxwNjJjbSZTdWNjZXNzU3RhdGljRmxhZz1OJkZhaWx1cmVTdGF0aWNGbGFnPU4mRGF0ZT0yNi8xMS8yMDI0IDAwOjAwOjAwJlJlZjE9JlJlZjI9NDAzYmIzODkxY2Y5NGEzNmI0ZGQxOTlkOWNjZWVjNmUmUmVmMz0mUmVmND0mUmVmNT0mRHluYW1pY1VybD1odHRwczovL3NlY3VyZS5wYXl1LmluL2I0NDdmZmViZDg4NDNjZTEzYzlmODVhZjhlOTA0ZmQyL0NvbW1vblBnUmVzcG9uc2VIYW5kbGVyLnBocCZDaGVja1N1bT0zMTAxMzgyNDM2",
+        "redirectTemplate": "<EXAMPLE_REDIRECT_TEMPLATE_REDACTED>",
         "card": {
             "binData": {
                 "pureS2SSupported": false,
@@ -281,7 +280,6 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 ```
 
 ## Response parameters
-
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
