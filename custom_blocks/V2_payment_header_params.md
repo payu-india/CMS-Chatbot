@@ -27,8 +27,8 @@ Where `<Body data>` contains the request body posted with the request.
 
 <Accordion title="Sample header code" icon="fa-code">
   ```javascript
-    var merchant_key = 'smsplus';
-    var merchant_secret = 'izF09TlpX4ZOwmf9MvXijwYsBPUmxYHD';
+    var merchant_key = '<YOUR_TEST_KEY>';
+    var merchant_secret = 'YOUR_TEST_SALT';
     // date
     var date = new Date();
     date = date.toUTCString();
@@ -45,5 +45,3 @@ Where `<Body data>` contains the request body posted with the request.
     }
   ```
 </Accordion>
-
-<br />
