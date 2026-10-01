@@ -10,7 +10,7 @@ metadata:
 next:
   description: ''
 ---
-You can collect payments from customers with leading wallets using the Merchant Hosted integration. You need to ensure that **CreditCard** or **DebitCard** for the **paymentMethod.name** parameter and  card code based on the desired card provider for the **paymentMethod.bankcode** parameter is posted.
+You can collect payments from customers with cards using the Merchant Hosted integration. You need to ensure that **CreditCard** or **DebitCard** for the **paymentMethod.name** parameter and  card code based on the desired card provider for the **paymentMethod.bankcode** parameter is posted.
 
 <Callout icon="📘" theme="info">
   **Note**: PayU accepts domestic and international transactions, but international transactions need to be enabled by writing to PayU Integration Team ([integration@pay.in](mailto:integration@pay.in)).
@@ -237,5 +237,3 @@ Array
 <Callout icon="📘" theme="info">
   **Reference**: To check the transaction status, refer to[Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api).
 </Callout>
-
-<br />
