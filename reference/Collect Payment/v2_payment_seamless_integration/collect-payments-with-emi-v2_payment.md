@@ -10,6 +10,18 @@ metadata:
 next:
   description: ''
 ---
+---
+title: EMI - v2 Payment API
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
 EMI as a payment option gives your customers the freedom and affordability to purchase expensive items without having to deal with banks or NBFCs as intermediaries.
 
 You can collect payments from customers in EMI using the Merchant Hosted integration. You need to ensure that **EMI** for the **paymentMethod.name** field and EMI code based on the card issuer and tenure for the **paymentMethod.bankcode** parameter is posted.
@@ -17,15 +29,12 @@ You can collect payments from customers in EMI using the Merchant Hosted integra
 For the list of supported EMI codes, refer to [EMI Codes](https://docs.payu.in/v1/docs/emi-codes).
 
 ## Environment
-
 <V2_payment_envrionment />
 
 ## Request header
-
 <V2_payment_header_params />
 
 ## Request body
-
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -76,7 +85,6 @@ For the list of supported EMI codes, refer to [EMI Codes](https://docs.payu.in/v
 `}</HTMLBlock>
 
 ### paymentMethod object fields description
-
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -107,15 +115,12 @@ For the list of supported EMI codes, refer to [EMI Codes](https://docs.payu.in/v
 `}</HTMLBlock>
 
 ### paymentCard object fields description
-
 <V2_paymentCard />
 
 ### order object fields description
-
 <V2_order_object />
 
 ### additionalInfo object fields description
-
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -152,22 +157,19 @@ For the list of supported EMI codes, refer to [EMI Codes](https://docs.payu.in/v
 <br />
 
 ### callBackActions object fields description
-
 <CallbackActions_object />
 
 ### billingDetails object fields description
-
 <BillingDetails_object />
 
 ## Sample request
-
 ```curl
 curl --location 'https://apitest.payu.in/v2/payments' \
---header 'date: Thu, 27 Mar 2025 10:12:27 GMT' \
---header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="ec84843a663143bb89391f6fa2d4b9404bab1543a3eee81263b4a507ebf5d289d8fad1fbcdd59da820951e3e0f9b0b0b3d1bad9b41338804e7c42a8a6197c6e9"' \
+--header 'date: <RFC_7231_DATE_UTC>' \
+--header 'authorization: hmac username="<YOUR_TEST_KEY>", algorithm="sha512", headers="date", signature="<SIGNATURE_PLACEHOLDER>"' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "accountId": "smsplus",
+    "accountId": "<YOUR_TEST_KEY>",
     "referenceId": "b5f2d8785768087678fn4",
     "amount": 10000,
     "currency": "INR",
@@ -177,7 +179,7 @@ curl --location 'https://apitest.payu.in/v2/payments' \
         "bankCode": "EMI6",
         "paymentCard": {
             "cardNumber": "5004461234560000",
-            "validThrough": "04/2025",
+            "validThrough": "<TEST_CARD_EXPIRY_MM_YY>",
             "ownerName": "John Doe",
             "cvv": "123"
         }
@@ -223,7 +225,6 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 ```
 
 ## Sample response
-
 ```json
 {
     "referenceId": "b5f2d8785768087678fn4",
@@ -233,7 +234,6 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 ```
 
 ## Response parameters
-
 <V2_payment_response_params />
 
 > 📘 **Reference:**
