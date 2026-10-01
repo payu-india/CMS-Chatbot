@@ -5,7 +5,7 @@ hidden: true
 metadata:
   robots: index
 ---
-The **Payment Options** API [L1 Load] returns all eligible payment instruments (EMI, Net Banking, Wallets, Cards, UPI, Standing Instructions, COD) configured for the merchant and the specific order amount.
+The **Payment Options** API \[L1 Load] returns all eligible payment instruments (EMI, Net Banking, Wallets, Cards, UPI, Standing Instructions, COD) configured for the merchant and the specific order amount.
 
 Call this API when rendering the checkout page or initial payment selector screen.
 
@@ -112,6 +112,7 @@ echo "Response: " . $response . "\n";
 ```
 
 <br />
+
 ## Request Parameters
 
 **Mandatory Parameters**
@@ -164,14 +165,125 @@ echo "Response: " . $response . "\n";
   }
 }
 ```
+
 ## Response Parameters
 
-| Parameter               | Description                                                                                                                                             | Example                                                                                                          |
-| :---------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------ | :--------------------------------------------------------------------------------------------------------------- |
-| paymentMethods.nb       | `Object` Contains all supported Net Banking banks (`all`) and prioritized banks (`top`) with bank codes (`ibibo_code`) and health status (`up_status`). |                                                                                                                  |
-| paymentMethods.upi      | `Object` Contains UPI L1/L2 app configurations, package names, deep link schemes, and recommended UPI apps.                                             |                                                                                                                  |
-| paymentMethods.emi      | `Object` Eligible credit and debit card EMI providers with minimum transaction thresholds.                                                              |                                                                                                                  |
-| paymentMethods.cashcard | `Object` Supported mobile wallets (e.g. Amazon Pay, Airtel Money).                                                                                      |                                                                                                                  |
-| paymentMethods.cc / dc  | `Object` Supported card schemes (VISA, MasterCard, RuPay, etc.).                                                                                        |                                                                                                                  |
-| downInfo                | `Object` List of banks or channels currently experiencing server downtime.                                                                              |                                                                                                                  |
-| bankLogosUrl            | `String` Base CDN URL to render bank and wallet logo icons.                                                                                             | [https://web-assets.payu.in/web/images/assets/bankLogo/](https://web-assets.payu.in/web/images/assets/bankLogo/) |
+<Table align={["left","left","left"]}>
+  <thead>
+    <tr>
+      <th>
+        Parameter
+      </th>
+
+      <th>
+        Description
+      </th>
+
+      <th>
+        Example
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        paymentMethods.nb
+      </td>
+
+      <td>
+        `Object` Contains all supported Net Banking banks (`all`) and prioritized banks (`top`) with bank codes (`ibibo_code`) and health status (`up_status`).
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        paymentMethods.upi
+      </td>
+
+      <td>
+        `Object` Contains UPI L1/L2 app configurations, package names, deep link schemes, and recommended UPI apps.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        paymentMethods.emi
+      </td>
+
+      <td>
+        `Object` Eligible credit and debit card EMI providers with minimum transaction thresholds.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        paymentMethods.cashcard
+      </td>
+
+      <td>
+        `Object` Supported mobile wallets (e.g. Amazon Pay, Airtel Money).
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        paymentMethods.cc / dc
+      </td>
+
+      <td>
+        `Object` Supported card schemes (VISA, MasterCard, RuPay, etc.).
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        downInfo
+      </td>
+
+      <td>
+        `Object` List of banks or channels currently experiencing server downtime.
+      </td>
+
+      <td>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        bankLogosUrl
+      </td>
+
+      <td>
+        `String` Base CDN URL to render bank and wallet logo icons.
+      </td>
+
+      <td>
+        [https://web-assets.payu.in/](https://web-assets.payu.in/web/images/assets/bankLogo/)
+
+        [web/images/assets/bankLogo/](https://web-assets.payu.in/web/images/assets/bankLogo/)
+      </td>
+    </tr>
+  </tbody>
+</Table>
