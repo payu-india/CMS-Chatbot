@@ -14,17 +14,17 @@ name: V2_paymentCard
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;">cardNumber<br/><code>mandatory for physical card</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Card number.</td>
-  <td style="border: 1px solid #ddd; padding: 8px;">5497774415170603</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">5***77***517***7</td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;">validThrough<br/><code>mandatory for physical card</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Expiry date in MM/YYYY format.</td>
-  <td style="border: 1px solid #ddd; padding: 8px;">05/2025</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><SANDBOX_CARD_EXPIRY_MM_YY></td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;">ownerName<br/><code>optional</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Name of the card owner.</td>
-  <td style="border: 1px solid #ddd; padding: 8px;">Ashish</td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><EXAMPLE_CARDHOLDER_NAME></td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;">cvv<br/><code>mandatory for physical card</code></td>
@@ -34,7 +34,7 @@ name: V2_paymentCard
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;">tavv<br/><code>mandatory for saved card</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Cryptogram of the card for tokenized payments.</td>
-  <td style="border: 1px solid #ddd; padding: 8px;">AAABAWFlmQAAAABjRWWZEEFgFz</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">AAABA***mQAAAABjRWWZEEFgFz</td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;">last4Digits<br/><code>mandatory for saved card</code></td>
@@ -49,7 +49,7 @@ name: V2_paymentCard
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;">cardToken<br/><code>mandatory for saved card</code></td>
   <td style="border: 1px solid #ddd; padding: 8px;">Card token of the stored card.</td>
-  <td style="border: 1px solid #ddd; padding: 8px;">b5f2d8785768087678fm9</td>
+  <td style="border: 1px solid #ddd; padding: 8px;">b5**7857680876***m9</td>
 </tr>
 </tbody>
 </table>
