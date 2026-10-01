@@ -87,7 +87,7 @@ The PayU v2 Payment API enables merchants to process payments through a hosted c
 curl -X POST \
   https://apitest.payu.in/v2/payments \
   -H 'date: <RFC_7231_DATE_UTC>' \
-  -H 'authorization: <AUTHORIZATION_HEADER_PENDING_ENGINEERING_CONFIRMATION>' \
+  -H 'authorization: <AUTHORIZATION_HEADER>' \
   -H 'content-type: application/json' \
   -d '{
   "accountId": "<YOUR_TEST_KEY>",
