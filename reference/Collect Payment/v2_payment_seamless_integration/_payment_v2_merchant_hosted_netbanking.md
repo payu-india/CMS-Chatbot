@@ -30,6 +30,38 @@ next:
       slug: collect-payments-with-net-banking-seamless
       title: Net Banking Integration
 ---
+---
+title: Net Banking - v2 Payment API
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: Collect Payment using Net Banking with Merchant Checkout API Reference
+  description: >-
+    Discover the PayU API Reference for integrating NetBanking payments with
+    Merchant Hosted Checkout. Access detailed guides on secure authentication
+    and transaction processing NetBanking payments or Net Banking.  Ideal for
+    developers looking to incorporate efficient NetBanking, internet banking,
+    virtual banking or web banking solutions into their custom checkout systems.
+  keywords:
+    - Net Banking Merchant Hosted Checkout Collect Payment API
+    - Simulator for PayU payment collection
+    - Net Banking Custom Checkout integration with PayU
+    - Collect payments using PayU API
+    - Collect Payment API for Net Banking Merchant Hosted Checkout
+    - _payment API for Net Banking Merchant Hosted Checkout
+    - _payment API simulation for Net Banking Custom Checkout
+    - _payment API simulation for Net Banking Merchant Hosted Checkout
+    - NetBanking Custom Checkout API Reference
+    - NetBanking Merchant Hosted Checkout API Reference
+  robots: index
+next:
+  description: ''
+  pages:
+    - type: basic
+      slug: collect-payments-with-net-banking-seamless
+      title: Net Banking Integration
+---
 The PayU v2 seamless Net Banking integration allows merchants to collect Net Banking payments directly without redirecting customers to PayU's hosted checkout page.
 
 > 📘 **Note**
@@ -41,11 +73,9 @@ The PayU v2 seamless Net Banking integration allows merchants to collect Net Ban
 <V2_payment_envrionment />
 
 ## Request header
-
 <V2_payment_header_params />
 
 ## Request body
-
 <HTMLBlock>{`
 <table>
 <thead>
@@ -59,7 +89,7 @@ The PayU v2 seamless Net Banking integration allows merchants to collect Net Ban
 <tr>
 <td>accountId<br/><code>mandatory</code></td>
 <td>Merchant key provided by PayU. Character limit: 50</td>
-<td><code>"smsplus"</code></td>
+<td><code>"<SANDBOX_MERCHANT_KEY>"</code></td>
 </tr>
 <tr>
 <td>txnId<br/><code>mandatory</code></td>
@@ -96,7 +126,6 @@ The PayU v2 seamless Net Banking integration allows merchants to collect Net Ban
 `}</HTMLBlock>
 
 ### paymentMethod object
-
 <Table>
   <thead>
     <tr>
@@ -138,19 +167,15 @@ The PayU v2 seamless Net Banking integration allows merchants to collect Net Ban
 </Table>
 
 ### order Object
-
 <V2_order_object />
 
 ### billingDetails Object
-
 <BillingDetails_object />
 
 ### callBackActions Object
-
 <CallbackActions_object />
 
 ### additionalInfo Object
-
 <HTMLBlock>{`
         <table style="width: 100%; border-collapse: collapse;">
         <thead>
@@ -187,7 +212,6 @@ The PayU v2 seamless Net Banking integration allows merchants to collect Net Ban
 `}</HTMLBlock>
 
 ### beneficiaryDetail object
-
 <HTMLBlock>{`
 <table>
 <thead>
@@ -218,15 +242,14 @@ The PayU v2 seamless Net Banking integration allows merchants to collect Net Ban
 `}</HTMLBlock>
 
 ## Sample request
-
 ```bash
 curl -X POST \
   https://apitest.payu.in/v2/payments \
-  -H 'date: Mon, 05 Oct 2024 11:00:00 GMT' \
-  -H 'authorization: HMAC smsplus:4d1ea4e74243ea5b2b5b8b1d8a7b1a2e3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9' \
+  -H 'date: <RFC_7231_DATE_UTC>' \
+  -H 'authorization: <AUTHORIZATION_HEADER_PENDING_ENGINEERING_CONFIRMATION>' \
   -H 'content-type: application/json' \
   -d '{
-  "accountId": "smsplus",
+  "accountId": "<SANDBOX_MERCHANT_KEY>",
   "referenceId": "REF_" + Math.random().toString(36).substring(7),
   "paymentMethod": {
     "name": "NetBanking",
@@ -274,24 +297,19 @@ curl -X POST \
 ```
 
 ## Response parameters
-
 <V2_payment_response_params />
 
 ## Sample response
-
 ### Success scenario
-
 ```json
-Array
-(
-    [txnId] => b5f2d8785768087678fm9
-    [paymentId] => 1999110000001769
-    [message] => Please call verify api to get the transaction status
-)
+{
+  "txnId": "<EXAMPLE_TXNID>",
+  "paymentId": "<EXAMPLE_PAYMENTID>",
+  "message": "Please call verify api to get the transaction status"
+}
 ```
 
 ## Verify Payment
-
 > ⚠️ **Important**
 >
 > After creating a payment, you **must** call the <Anchor label="Verify Payment API" target="_blank" href="https://docs.payu.in/v2/reference/v2_verify_payment_api">Verify Payment API</Anchor> to get the final transaction status. Net Banking transactions may require additional verification steps.
