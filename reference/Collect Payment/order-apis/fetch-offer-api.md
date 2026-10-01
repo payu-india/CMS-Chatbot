@@ -15,6 +15,7 @@ Use this API to display promotional banners, payment mode-specific savings (such
 | -------------------------- | ----------------------------------- |
 | **Test Environment**       | `https://apitest.payu.in/v1/offers` |
 | **Production Environment** | `https://api.payu.in/v1/offers`     |
+
 ## Sample Request
 
 ```bash
@@ -145,6 +146,7 @@ echo "Response: " . $response . "\n";
 ```
 
 ## Request Parameters
+
 ### Request Headers
 
 You can authenticate using either the session tokens or merchant credential headers:
@@ -182,7 +184,6 @@ You can authenticate using either the session tokens or merchant credential head
 | Parameter    | Description                                                                                                      | Example |
 | :----------- | :--------------------------------------------------------------------------------------------------------------- | :------ |
 | Request Body | `Object` Can be sent as an empty JSON object `{}`. No additional body parameters are required for this endpoint. | {}      |
-
 
 ## Sample Response
 
@@ -229,17 +230,23 @@ You can authenticate using either the session tokens or merchant credential head
   }
 }
 ```
+
 ## Response Parameters
 
-| Parameter                                | Description                                                                                                                                               | Example                       |
-| :--------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------- |
-| code                                     | `String` Status code (e.g. `SUCCESS`).                                                                                                                    | SUCCESS                       |
-| message                                  | `String` Status description.                                                                                                                              | Offers retrieved successfully |
-| result.amount                            | `Number` Base order amount eligible for offer calculation.                                                                                                | 1000.00                       |
-| result.couponsAvailable                  | `Boolean` Indicates whether manual coupon codes are configured for the merchant.                                                                          | true                          |
-| result.isUserPersonalizedOffersAvailable | `Boolean` Indicates if targeted user offers exist for this customer.                                                                                      | true                          |
-| result.offers                            | `Array` List of applicable offer objects including `offerKey`, `title`, `description`, `minTxnAmount`, `maxTxnAmount`, `offerType`, and `discountDetail`. |                               |
-| <Glossary>result.amount</Glossary>                            | `Number`  | Base order amount eligible for offer calculation.                                                                                                 |
-| <Glossary>result.couponsAvailable</Glossary>                  | `Boolean` | Indicates whether manual coupon codes are configured for the merchant.                                                                            |
-| <Glossary>result.isUserPersonalizedOffersAvailable</Glossary> | `Boolean` | Indicates if targeted user offers exist for this customer.                                                                                        |
-| <Glossary>result.offers</Glossary>                            | `Array`   | List of applicable offer objects including `offerKey`, `title`, `description`, `minTxnAmount`, `maxTxnAmount`, `offerType`, and `discountDetail`. |
+| Parameter | Description                                                                                                                                                              | Example                       |
+| :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------- |
+| code      | `String` Status code (e.g. `SUCCESS`).                                                                                                                                   | SUCCESS                       |
+| message   | `String` Status description.                                                                                                                                             | Offers retrieved successfully |
+| result    | `JSON` Contains the transaction result in a JSON format. For more information, refer to [result JSON Object Fields Description](#result-json-object-fields-description). | 1000.00                       |
+
+### result JSON Object Fields Description
+
+| Parameter                         | Description                                                                                                                                                    | Example |
+| :-------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------ |
+| amount                            | `Number` Base order amount eligible for offer calculation.                                                                                                     | 1000.00 |
+| couponsAvailable                  | `Boolean` Indicates whether manual coupon codes are configured for the merchant.                                                                               | true    |
+| offers                            | `Array` List of applicable offer objects including `offerKey`, `title`, `description`, `minTxnAmount`, `maxTxnAmount`, `offerType`, and `discountDetail`.      |         |
+| amount                            | `Number`Base order amount eligible for offer calculation.                                                                                                      |         |
+| couponsAvailable                  | `Boolean`Indicates whether manual coupon codes are configured for the merchant.                                                                                |         |
+| isUserPersonalizedOffersAvailable | `Boolean `Indicates if targeted user offers exist for this customer.                                                                                           |         |
+| offers                            | `Array`<br />List of applicable offer objects including `offerKey`, `title`, `description`, `minTxnAmount`, `maxTxnAmount`, `offerType`, and `discountDetail`. |         |
