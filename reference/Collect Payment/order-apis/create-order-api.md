@@ -71,14 +71,7 @@ The **Create Order** API initiates the checkout journey. It creates an order on 
 | :----- | :------------------------------------------- | :------ |
 | amount | `Number` Final payable amount for the order. | 550.00  |
 
-**Optional Fields**
-
-| Field             | Description                                                                                                     | Example                                                    |
-| :---------------- | :-------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------- |
-| productinfo       | `String` Display description of the order.                                                                      | Order description                                          |
-| skus              | `Array` List of SKU objects containing `skuId`, `skuName`, `amountPerSku`, `quantity`, and `enforcedOfferKeys`. | \[{"skuId": "123", "amountPerSku": 100.00, "quantity": 2}] |
-| enforcedOfferKeys | `Array<String>` Specific offer keys to enforce on the order.                                                    | \["OFFER_10"]                                              |
-| extraCharges      | `Object` Itemized extra charges (e.g., `shippingCharges`, `codFee`, `otherCharges`, `taxInfo`).                 | {"shippingCharges": 20.0, "codFee": 40.0}                  |
+<br />
 
 ***
 
