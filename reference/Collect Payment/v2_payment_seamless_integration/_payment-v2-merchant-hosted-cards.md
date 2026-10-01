@@ -10,10 +10,22 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Cards – v2 Payment API
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
 You can collect payments from customers with cards using the Merchant Hosted integration. You need to ensure that **CreditCard** or **DebitCard** for the **paymentMethod.name** parameter and  card code based on the desired card provider for the **paymentMethod.bankcode** parameter is posted.
 
 <Callout icon="📘" theme="info">
-  **Note**: PayU accepts domestic and international transactions, but international transactions need to be enabled by writing to PayU Integration Team ([integration@pay.in](mailto:integration@pay.in)).
+  **Note**: PayU accepts domestic and international transactions, but international transactions need to be enabled by writing to PayU Integration Team PayU Integration Team (contact details to be confirmed).
 </Callout>
 
 **Environment**
@@ -21,11 +33,9 @@ You can collect payments from customers with cards using the Merchant Hosted int
 <V2_payment_envrionment />
 
 ## Request header
-
 <V2_payment_header_params />
 
 ## Request body
-
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -81,7 +91,6 @@ You can collect payments from customers with cards using the Merchant Hosted int
 `}</HTMLBlock>
 
 ### paymentMethod object fields description
-
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -112,48 +121,40 @@ You can collect payments from customers with cards using the Merchant Hosted int
 `}</HTMLBlock>
 
 ### paymentCard object fields description
-
 <V2_paymentCard />
 
 ### order object fields description
-
 <V2_order_object />
 
 ### additionalInfo object fields description
-
 <AdditionalI_Info_object />
 
 ### callBackActions object fields description
-
 <CallbackActions_object />
 
 ### billingDetails object fields description
-
 <BillingDetails_object />
 
 ### authorization object fields description
-
 <V2_authorization_cards />
 
 ### threeDS2RequestData
-
 <ThreeDSRequestData_object />
 
 ## Sample request
-
 ```json
 {
-    "accountId": "smsplus",
+    "accountId": "<YOUR_TEST_KEY>",
     "txnId": "b5f2d8785768087678fm9",
     "amount": "1000",
     "paymentMethod": {
         "name": "CreditCard",
         "bankCode": "CC",
         "paymentCard": {
-            "cardNumber": "5497774415170603",
-            "validThrough": "05/2025",
+            "cardNumber": "549***4415***603",
+            "validThrough": "<TEST_CARD_EXPIRY_MM_YY>",
             "cvv": "123",
-            "ownerName": "Ashish"
+            "ownerName": "<TEST_CARDHOLDER_NAME>"
         }
     },
     "order": {
@@ -188,7 +189,7 @@ You can collect payments from customers with cards using the Merchant Hosted int
         "cancelAction": "https://checkout.payu.in/testCB/cancel"
     },
     "billingDetails": {
-        "firstName": "Ashish",
+        "firstName": "<TEST_CARDHOLDER_NAME>",
         "lastName": "Kumar",
         "address1": "123 Main Street",
         "phone": "9123456789",
@@ -220,20 +221,19 @@ You can collect payments from customers with cards using the Merchant Hosted int
 ```
 
 ## Response parameters
-
 <V2_payment_response_params />
 
 ## Sample response
-
-```
-Array
-(
-    [txnId] => b5f2d8785768087678fm9
-    [paymentId] => 1999110000001769
-    [message] => Please call verify api to get the transaction status
-)
+```json
+{
+  "txnId": "<EXAMPLE_TXN_ID>",
+  "paymentId": "<EXAMPLE_PAYU_TRANSACTION_ID>",
+  "message": "Please call Verify Payment API to get the transaction status"
+}
 ```
 
 <Callout icon="📘" theme="info">
   **Reference**: To check the transaction status, refer to[Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api).
 </Callout>
+
+<br />
