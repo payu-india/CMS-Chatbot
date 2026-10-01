@@ -246,7 +246,7 @@ The PayU v2 seamless Net Banking integration allows merchants to collect Net Ban
 curl -X POST \
   https://apitest.payu.in/v2/payments \
   -H 'date: <RFC_7231_DATE_UTC>' \
-  -H 'authorization: <AUTHORIZATION_HEADER_PENDING_ENGINEERING_CONFIRMATION>' \
+  -H 'authorization: <AUTHORIZATION_HEADER>' \
   -H 'content-type: application/json' \
   -d '{
   "accountId": "<SANDBOX_MERCHANT_KEY>",
