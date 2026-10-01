@@ -99,7 +99,7 @@ next:
 6. #### Are Payment Buttons secure?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Yes. PayU Payment Buttons are PCI DSS compliant. PayU uses encryption and tokenisation to protect customer payment data. No card or bank details are ever handled by your website — everything goes through PayU's secure payment page.
+  Yes. PayU Payment Buttons are PCI DSS compliant. We use encryption and tokenisation to protect customer payment data. No card or bank details are ever handled by your website, everything goes through PayU's secure payment page.
 </Accordion>
 
 ***
