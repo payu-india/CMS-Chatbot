@@ -42,9 +42,7 @@ next:
 1. #### What is a Payment Button and how does it work?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  A PayU Payment Button is a **Buy Now**, **Pay Now**, **Book Now**, or **Donate Now** button you add to your website or blog. You create and configure it in the PayU Dashboard. We give you a short piece of code to paste on your page. When a visitor clicks the button, PayU's payment page opens and they can complete their payment. Once done, they are sent back to your website. No developer or server setup is required.
-
-  → <Anchor target="_blank" href="https://docs.payu.in/docs/payment-button">Add a Payment Button</Anchor>
+  A PayU <Anchor target="_blank" href="https://docs.payu.in/docs/payment-button">Payment Button</Anchor> is a **Buy Now**, **Pay Now**, **Book Now**, or **Donate Now** button you add to your website or blog. You create and configure it in the PayU Dashboard. We give you a short piece of code to paste on your page. When a visitor clicks the button, PayU's payment page opens and they can complete their payment. Once done, they are sent back to your website. No developer or server setup is required. Refer to <Anchor target="_blank" href="https://docs.payu.in/docs/add-payment-button">Add a Payment Button</Anchor> for steps top add a payment button
 </Accordion>
 
 ***
@@ -52,9 +50,9 @@ next:
 2. #### Do I need a developer or any code to create a Payment Button?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  No developer is needed to create the button. You set it up in the PayU Dashboard and PayU gives you the button code.
+  You do not need a developer to create the payment button. You set it up in the PayU Dashboard and we give you the button code.
 
-  You do need to paste that code onto your website. Most website builders — WordPress, Wix, Squarespace, Webflow — have an HTML or Code block where you can do this without writing code. If your site is fully managed and you cannot add content yourself, ask whoever looks after your website to paste the code for you.
+  You should paste that code onto your website. Most website builders such as WordPress, Wix, Squarespace, Webflow, have an HTML or Code block where you can do this without writing code. If your site is fully managed and you cannot add content yourself, ask whoever looks after your website to paste the code for you.
 </Accordion>
 
 ***
@@ -62,16 +60,20 @@ next:
 3. #### Is a Payment Button the same as a Payment Link?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  No — they serve different purposes:
+  No. They serve different purposes:
 
-  |                    | Payment Button                                         | Payment Link                             |
-  | ------------------ | ------------------------------------------------------ | ---------------------------------------- |
-  | How it works       | Sits on your webpage and customers click it            | A URL you share with a customer directly |
-  | How it's shared    | Customer finds it on your website                      | You send it via WhatsApp, SMS, or email  |
-  | Requires a website | Yes — you need a page to add it to                     | No — you just share the link             |
-  | Best for           | Always-available buy or donate buttons on a fixed page | One-off or personalised payment requests |
+  | Queries               | Payment Button                                         | Payment Link                             |
+  | --------------------- | ------------------------------------------------------ | ---------------------------------------- |
+  | How it works          | Sits on your webpage and customers click it            | A URL you share with a customer directly |
+  | How it is shared      | Customer finds it on your website                      | You send it via WhatsApp, SMS, or email  |
+  | Is a website Required | Yes. You need a page to add it to                      | No. You just share the link              |
+  | Best for              | Always-available buy or donate buttons on a fixed page | One-off or personalised payment requests |
 
-  Both use PayU's payment page and support the same payment methods.
+  <Callout icon="📘" theme="info">
+    ### **Tips:**
+
+    Both use PayU's payment page and support the same payment methods.
+  </Callout>
 </Accordion>
 
 ***
