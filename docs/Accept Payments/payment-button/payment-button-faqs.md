@@ -109,7 +109,7 @@ next:
 1. #### Can I have multiple Payment Buttons on the same website?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Yes. You can create as many Payment Buttons as you need — there is no limit. Each button has its own unique code. For example, you could have a "Buy Now" button on a product page, a "Donate Now" button on a fundraising page, and a "Book Now" button on an events page — all on the same website.
+  Yes. You can create as many Payment Buttons as you need. Each button has its own unique code. For example, you can have a **Buy Now** button on a product page, a **Donate Now** button on a fundraising page, and a **Book Now** button on an events page, all on the same website.
 
   Each button is independent: changing or removing one does not affect the others.
 </Accordion>
