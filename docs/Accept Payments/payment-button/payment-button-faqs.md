@@ -199,7 +199,7 @@ next:
 2. #### Can I use the same button code on multiple pages?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Yes — the same code can be pasted on as many pages as you like. Every customer who clicks the button will see the same settings (same amount, label, and checkout fields). If you need different settings on different pages, create a separate button for each page.
+  Yes. You can paste the same button code on as many pages as you like. Every customer who clicks the button will see the same settings (same amount, label, and checkout fields). If you need different settings on different pages, create a separate button for each page.
 </Accordion>
 
 ***
