@@ -88,11 +88,11 @@ The steps below give a detailed view of the lifecycle of a PayU Payment Button.
   Every payment made through your button appears in the **Transactions** tab of your PayU Dashboard right away. You can filter by date, search by amount, view individual transaction details, and download payment records as CSV or Excel. All your buttons and their statuses are listed under **Payment Tools → Payment Buttons**.
 
   <Callout icon="💡" theme="info">
-    **Handy Tip**
+    ### **Handy Tip**
 
     Use the **Download** option on the Payment Buttons list to export all button records for reconciliation or your own reporting.
 
-    - [Manage Payment Buttons — Dashboard](doc:manage-payment-buttons)
+    - <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-buttons">Manage Payment Buttons</Anchor>
   </Callout>
 </Accordion>
 
