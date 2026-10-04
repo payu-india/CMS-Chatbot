@@ -250,9 +250,9 @@ next:
 1. #### How will I know when a customer has paid via a button?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  The payment appears in the **Transactions** tab of your PayU Dashboard right away. For instant notifications, set up a webhook under **Settings → Webhooks** in the Dashboard — PayU will send a `payment.success` event to your server each time a payment is completed.
+  The payment appears in the **Transactions** tab of your PayU Dashboard right away. For instant notifications, set up a webhook under **Settings → Webhooks** in the Dashboard. PayU will send a `payment.success` event to your server each time a payment is completed.
 
-  → [Webhooks for Payments](doc:webhooks)
+  → <Anchor target="_blank" href="https://docs.payu.in/docs/manage-webhooks-using-dashboard">Webhooks for Payments</Anchor>
 </Accordion>
 
 ***
@@ -268,9 +268,9 @@ next:
 3. #### Can I use Payment Buttons for subscription or recurring payments? <Badge type="success">New</Badge>
 
 <Accordion title="Answer" icon="fab fa-adn">
-  No. Payment Buttons are for one-time payments only. Each time a customer clicks the button, it is a separate, individual payment.
+  No. Payment Buttons are for one-time payments only. Each time a customer clicks the button, it is a separate, individual payment.<br />
 
-  If you need to charge customers on a recurring schedule — for example monthly fees, membership dues, or subscription plans — use PayU's <Anchor target="_blank" href="doc:recurring-payments">Recurring Payments</Anchor> product instead.
+  If you need to charge customers on a recurring schedule, for example monthly fees, membership dues, or subscription plans, use PayU's <Anchor target="_blank" href="https://docs.payu.in/docs/introduction-recurring-payments-integration">Recurring Payments</Anchor> product instead.
 </Accordion>
 
 ***
