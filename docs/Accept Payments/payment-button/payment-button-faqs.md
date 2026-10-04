@@ -282,7 +282,7 @@ next:
 
   If a transaction stays in Pending for more than 30 minutes, the customer's bank may not have completed the authorisation. The amount (if debited) is typically returned automatically by the bank within 5–7 business days.<br />
 
-  If the Pending status does not resolve after an hour, contact <Anchor target="_blank" href="https://help.payu.in/query">PayU support</Anchor> with the transaction date, amount, and the customer's payment method.
+  If the Pending status does not resolve after an hour, contact <Anchor target="_blank" href="https://help.payu.in/raise-ticket">PayU support</Anchor> with the transaction date, amount, and the customer's payment method.
 </Accordion>
 
 ***
