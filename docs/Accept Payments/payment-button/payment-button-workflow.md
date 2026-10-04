@@ -70,17 +70,17 @@ The steps below give a detailed view of the lifecycle of a PayU Payment Button.
 </Accordion>
 
 <Accordion title="Step 4: Customer Visits Your Page and Pays" icon="far fa-credit-card">
-  When a customer visits your page and clicks the button, PayU's payment page opens automatically. They choose their preferred payment method — cards, UPI, net banking, wallets, EMI, and more — and complete the payment. Once done, they are sent to your success page, or your failure page if the payment did not go through.
+  When a customer visits your page and clicks the button, PayU's payment page opens automatically. They choose their preferred payment method such as cards, UPI, net banking, wallets, EMI, and more to complete the payment. Once done, they are sent to your success page, or your failure page if the payment did not go through.<br />
 
   If you have webhooks configured, PayU sends a `payment.success` event to your server the moment the payment completes.
 
   <Callout icon="💡" theme="info">
-    **Handy Tip**
+    ### **Handy Tip**
 
-    Webhooks are optional — your Dashboard always reflects the current payment status without any webhook setup.
+    Webhooks are optional. Your Dashboard always reflects the current payment status without any webhook setup.
 
-    - [Set Redirect Pages](doc:customize-payment-button)
-    - [Webhooks for Payments](doc:webhooks)
+    - [Set Redirect Pages](https://docs.payu.in/docs/add-payment-button#how-do-i-add-a-payment-button)
+    - <Anchor target="_blank" href="https://docs.payu.in/docs/manage-webhooks-using-dashboard">Webhooks for Payments</Anchor>
   </Callout>
 </Accordion>
 
