@@ -144,7 +144,7 @@ next:
 <Accordion title="Answer" icon="fab fa-adn">
   No. The button label drop-down is limited to four options such as, **Buy Now**, **Pay Now**, **Book Now**, and **Donate Now**. Custom labels are not currently supported from the Dashboard.
 
-  If none of the presets fit your use case, you can create your own button on your website and attach a <Anchor target="_blank" href="doc:payment-links-overview">Payment Link URL</Anchor> to it. This way, you get full control over the button text while still using PayU's payment page.
+  If none of the presets fit your use case, you can create your own button on your website and attach a <Anchor target="_blank" href="https://docs.payu.in/docs/payment-links">Payment Link</Anchor> to it. This way, you get full control over the button text while still using PayU's payment page.
 </Accordion>
 
 ***
@@ -152,7 +152,7 @@ next:
 5. #### Can I edit a Payment Button after creating it?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  No. Payment Button settings cannot be changed after the button is created. To update any setting — amount, label, colour, redirect pages, or custom fields — create a new button with the correct details, copy the new code, and replace the old code on your website.
+  Yes. You can <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-buttons#edit-payment-button-details">edit a Payment Button</Anchor> settings cannot be changed after it is created. Afer you save the new btton configuration, a new code will be generated. You should copy and paste the new code in your website.
 </Accordion>
 
 ***
