@@ -142,9 +142,9 @@ next:
 4. #### Can I change the button label to something other than the four preset options?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  No. The button label drop-down is limited to four options: **Buy Now**, **Pay Now**, **Book Now**, and **Donate Now**. Custom labels are not currently supported from the Dashboard.
+  No. The button label drop-down is limited to four options such as, **Buy Now**, **Pay Now**, **Book Now**, and **Donate Now**. Custom labels are not currently supported from the Dashboard.
 
-  If none of the presets fit your use case, you can create your own button on your website and attach a <Anchor target="_blank" href="doc:payment-links-overview">Payment Link URL</Anchor> to it — you get full control over the button text while still using PayU's payment page.
+  If none of the presets fit your use case, you can create your own button on your website and attach a <Anchor target="_blank" href="doc:payment-links-overview">Payment Link URL</Anchor> to it. This way, you get full control over the button text while still using PayU's payment page.
 </Accordion>
 
 ***
