@@ -160,7 +160,7 @@ next:
 6. #### Can I collect customer details (name, email, phone) with the payment?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Yes. When creating the button, switch on any standard fields in the **Custom Details** section: Customer Name, Customer Address, Customer Email, Customer Mobile. You can also add your own custom fields (text, calendar, or drop-down) with any label. Mark any field as mandatory to require it before the customer can proceed to pay.
+  Yes. When <Anchor target="_blank" href="https://docs.payu.in/docs/add-payment-button#how-do-i-add-a-payment-button">creating the button</Anchor>, switch on any standard fields in the **Custom Details** section such as **Customer Name**, **Customer Address**, **Customer Email**, and **Customer Mobile**. You can also add your own custom fields (text, calendar, or drop-down) with any label. Mark any field as mandatory to require it before the customer can proceed to pay.
 </Accordion>
 
 ***
