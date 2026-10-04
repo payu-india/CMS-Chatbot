@@ -31,7 +31,7 @@ next:
   fontWeight="bold"
 />
 
-A PayU Invoice is a professional, GST-compliant invoice you create in the Dashboard and send directly to your customer. They receive it by email or SMS, click to open it, and pay through PayU's secure payment page — no website or technical setup required.
+A PayU Invoice is a professional, GST-compliant invoice you create in the Dashboard and send directly to your customer. They receive it by email or SMS, click to open it, and pay through PayU's secure payment page without an website or technical setup required.
 
 <HTMLBlock>{`
   <style>
