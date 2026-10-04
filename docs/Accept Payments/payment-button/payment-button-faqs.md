@@ -121,8 +121,8 @@ next:
 <Accordion title="Answer" icon="fab fa-adn">
   Both options are available:
 
-  - **Fixed amount** — enter a specific amount in the **Amount** field when creating the button. Customers cannot change it at checkout.
-  - **Open amount** — leave the **Amount** field blank. Customers will be asked to type in the amount themselves on the payment page.
+  - **Fixed amount**: Enter a specific amount in the **Amount** field when creating the button. Customers cannot change it at checkout.
+  - **Open amount**: Leave the **Amount** field blank. Customers will enter the amount themselves on the payment page.
 
   The open amount option is well suited for donations, tips, or any payment where the value differs per customer.
 </Accordion>
@@ -134,7 +134,7 @@ next:
 <Accordion title="Answer" icon="fab fa-adn">
   When creating a Payment Button from the **PayU Dashboard**, enter the amount in **rupees (INR)**. For example, enter `500` for ₹500.
 
-  Do not enter the amount in paise. Paise values are only used in certain API integrations — they do not apply to Payment Buttons created from the Dashboard.
+  Do not enter the amount in paise. Paise values are only used in certain API integrations.
 </Accordion>
 
 ***
