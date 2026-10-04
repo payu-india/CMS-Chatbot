@@ -275,12 +275,12 @@ next:
 
 ***
 
-4. #### Why is a transaction showing as "Pending" in my Dashboard? <Badge type="success">New</Badge>
+4. #### Why is a transaction showing as `Pending` in my Dashboard?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  "Pending" means the payment was started but not yet confirmed by the customer's bank. This usually resolves within a few minutes.
+  'Pending' means the payment was started but not yet confirmed by the customer's bank. This usually resolves within a few minutes.<br />
 
-  If a transaction stays in Pending for more than 30 minutes, the customer's bank may not have completed the authorisation. The amount — if it was debited from the customer's account — is typically returned automatically by the bank within 5–7 business days.
+  If a transaction stays in Pending for more than 30 minutes, the customer's bank may not have completed the authorisation. The amount (if debited) is typically returned automatically by the bank within 5–7 business days.<br />
 
   If the Pending status does not resolve after an hour, contact <Anchor target="_blank" href="https://help.payu.in/query">PayU support</Anchor> with the transaction date, amount, and the customer's payment method.
 </Accordion>
