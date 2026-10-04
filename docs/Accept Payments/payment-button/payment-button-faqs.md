@@ -204,27 +204,27 @@ next:
 
 ***
 
-3. #### Can I customize the button's appearance beyond what the Dashboard offers?
+3. #### Can I customise the button's appearance beyond what the Dashboard offers?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  The Dashboard lets you choose colour, size, and label. Further styling — custom fonts, border radius, hover effects, and so on — is not supported through the Dashboard.
+  The Dashboard lets you choose colour, size, and label. Further styling such as custom fonts, border radius, hover effects, and so on is not supported through the Dashboard.
 
-  If you need a fully custom-styled button, create your own button design on your website and attach a <Anchor target="_blank" href="doc:payment-links-overview">Payment Link URL</Anchor> to it — you get complete visual control while still using PayU's payment page.
+  If you need a fully custom-styled button, create your own button design on your website and attach a <Anchor target="_blank" href="https://docs.payu.in/docs/payment-links">Payment Link URL</Anchor> to it to get complete visual control while still using PayU's payment page.
 </Accordion>
 
 ***
 
-4. #### My success page shows an error after a customer pays — why? <Badge type="success">New</Badge>
+4. #### My success page shows an error after a customer pays. Why? <Badge type="success">New</Badge>
 
 <Accordion title="Answer" icon="fab fa-adn">
-  This is almost always a **POST vs GET** issue. PayU sends the customer to your success page using a **POST request**, not a GET request. The payment details (transaction ID, amount, status) are sent as POST parameters in the request body — not as URL parameters.
+  This is almost always a **POST vs GET** issue. PayU sends the customer to your success page using a **POST request**, not a GET request. The payment details (transaction ID, amount, status) are sent as POST parameters in the request body.<br />
 
-  If your success page is set up to read URL parameters (GET), it will not find the payment data and may show an error, even though the payment went through successfully.
+  If your success page is set up to read URL parameters (GET), it will not find the payment data and may show an error, even though the payment went through successfully.<br />
 
   **How to fix:**
 
   - Update your success page to read POST parameters from the request body instead of URL parameters.
-  - If your success page just shows a thank-you message and does not need to read payment data, it should load without issues — check for any server-side errors on the page itself.
+  - If your success page just shows a thank-you message and does not need to read payment data, it should load without issues. Check for any server-side errors on the page itself.<br />
 
   You can confirm the payment went through by checking the **Transactions** tab in your PayU Dashboard.
 </Accordion>
