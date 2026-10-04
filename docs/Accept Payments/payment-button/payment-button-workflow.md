@@ -97,10 +97,10 @@ The steps below give a detailed view of the lifecycle of a PayU Payment Button.
 </Accordion>
 
 <Accordion title="Step 6: Funds Are Settled to Your Account" icon="far fa-building-columns">
-  After a successful payment, PayU settles the funds to your registered bank account as per the settlement schedule — minus applicable fees and taxes. You can track settlement reports from the PayU Dashboard.
+  After a successful payment, PayU settles the funds to your registered bank account as per the settlement schedule excluding applicable fees and taxes. You can track settlement reports from the PayU Dashboard.
 
   <Callout icon="💡" theme="info">
-    **Handy Tip**
+    ### **Handy Tip**
 
     If a customer requests a refund or raises a dispute with their bank, PayU has a process for each.
 
@@ -109,14 +109,3 @@ The steps below give a detailed view of the lifecycle of a PayU Payment Button.
     - [Disputes and Chargebacks](doc:chargeback)
   </Callout>
 </Accordion>
-
-***
-
-## Related Information
-
-- [Payment Button Overview](doc:payment-button-overview)
-- [Add a Payment Button](doc:add-a-payment-button)
-- [Customize Your Button](doc:customize-payment-button)
-- [Manage Payment Buttons](doc:manage-payment-buttons)
-- [Payment Button Troubleshooting](doc:payment-button-troubleshooting)
-- [Payment Button FAQs](doc:payment-button-faqs)
