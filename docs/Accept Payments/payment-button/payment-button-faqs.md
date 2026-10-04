@@ -284,25 +284,3 @@ next:
 
   If the Pending status does not resolve after an hour, contact <Anchor target="_blank" href="https://help.payu.in/raise-ticket">PayU support</Anchor> with the transaction date, amount, and the customer's payment method.
 </Accordion>
-
-***
-
-## Next Steps
-
-<Cards>
-  <Card title="Add a Payment Button" href="doc:add-a-payment-button" icon="far fa-plus">
-    Step-by-step guide to creating and adding a button to your website.
-  </Card>
-
-  <Card title="Manage Payment Buttons" href="doc:manage-payment-buttons" icon="fa-list-check">
-    View payments, filter, download records, and manage your buttons.
-  </Card>
-
-  <Card title="Payment Button Troubleshooting" href="doc:payment-button-troubleshooting" icon="fa-wrench">
-    Fix issues with buttons not showing, payments failing, or redirects not working.
-  </Card>
-
-  <Card title="Payment Links" href="doc:payment-links-overview" icon="fa-link">
-    Need to share a payment request instead of embedding a button? Use Payment Links.
-  </Card>
-</Cards>
