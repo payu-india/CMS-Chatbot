@@ -231,7 +231,7 @@ next:
 
 ***
 
-5. #### The payment page opens on its own without my customer clicking the button — why? <Badge type="success">New</Badge>
+5. #### The payment page opens on its own without my customer clicking the button. Why? <Badge type="success">New</Badge>
 
 <Accordion title="Answer" icon="fab fa-adn">
   This can happen for one of these reasons:
@@ -240,7 +240,7 @@ next:
   2. **A JavaScript conflict on your page.** Another script on your website may be triggering a click event on the button automatically. Check your browser console (`F12 → Console`) for JavaScript errors and test the page with other scripts temporarily disabled.
   3. **The page is caching an old session.** Clear your browser cache and test again in a private or incognito window.
 
-  If the issue persists, contact <Anchor target="_blank" href="https://help.payu.in/query">PayU support</Anchor> with your button name and the page URL where the button is added.
+  If the issue persists, contact <Anchor target="_blank" href="https://help.payu.in/raise-ticket">PayU support</Anchor> with your button name and the page URL where the button is added.
 </Accordion>
 
 ***
