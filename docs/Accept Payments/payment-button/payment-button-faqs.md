@@ -165,18 +165,16 @@ next:
 
 ***
 
-7. #### Can I set where customers are sent after they pay? <Badge type="success">New</Badge>
+7. #### Can I add the custom redirect URL where customers are sent after they payment? <Badge type="success">New</Badge>
 
 <Accordion title="Answer" icon="fab fa-adn">
   Yes. Under **Advanced Options** when creating the button, you can enter:
 
-  - **Success URL** — where customers are sent after a successful payment
-  - **Cancel URL** — where customers are sent if they close the payment page without paying
-  - **Failure URL** — where customers are sent if the payment does not go through
+  - **Success URL**: Where customers are sent after a successful payment
+  - **Cancel URL**: Where customers are sent if they close the payment page without paying
+  - **Failure URL**: Where customers are sent if the payment does not go through<br />
 
   These are optional but recommended. Without them, customers land on a default PayU confirmation page and are not automatically returned to your website.
-
-  These URLs are set at creation and cannot be changed afterward. If they need to be updated, create a new button with the correct addresses.
 </Accordion>
 
 ***
