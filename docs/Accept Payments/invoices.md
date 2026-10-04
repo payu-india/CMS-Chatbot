@@ -1,9 +1,26 @@
 ---
 title: Invoices
+excerpt: >-
+  Create GST-compliant invoices, send them to customers, and collect payment
+  through PayU — all from the Dashboard. No developer needed.
 deprecated: false
 hidden: true
 metadata:
+  title: PayU Invoices — Overview | Developer Docs
+  description: >-
+    Create GST-compliant invoices, send them to customers, and collect payment
+    through PayU. No developer or technical setup needed.
+  keywords:
+    - payu invoices
+    - payu gst invoice
+    - create invoice payu dashboard
+    - payu no-code invoice
+    - send invoice to customer payu
+    - payu invoice payment
+    - payu invoice vs payment link
   robots: index
+next:
+  description: Explore related information and resources.
 ---
 <Banner
   isInline={true}
