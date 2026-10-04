@@ -184,14 +184,14 @@ next:
 1. #### Where do I paste the button code on my website?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Paste the code in any **HTML or Code block** on your website — not in a text or rich-text editor. Common placements:
+  Paste the code in any **HTML or Code block** on your website. Common placements:
 
-  - **WordPress** — use a Custom HTML widget or block
-  - **Wix** — use an Embed HTML element
-  - **Squarespace / Webflow** — use a Code block
-  - **Plain website** — paste inside the `<body>` section of your page wherever you want the button to appear
+  - **WordPress**: Use a Custom HTML widget or block
+  - **Wix**: Use an Embed HTML element
+  - **Squarespace / Webflow**: Use a Code block
+  - **Plain website**: Paste inside the `<body>` section of your page wherever you want the button to appear<br />
 
-  The button appears as soon as the page loads — no further setup needed.
+  The button appears as soon as the page loads.
 </Accordion>
 
 ***
