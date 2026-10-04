@@ -31,7 +31,17 @@ next:
   fontWeight="bold"
 />
 
-A PayU Invoice is a professional, GST-compliant invoice you create in the Dashboard and send directly to your customer. They receive it by email or SMS, click to open it, and pay through PayU's secure payment page without an website or technical setup required.
+PayU Invoices let you create and send professional billing documents to your customers — with GST calculations built in, line items for each product or service, and a pay-now button included.<br />
+
+You can use Invoices to:<br />
+
+* Create itemized invoices with multiple products or services
+* Add GST automatically — including inter-state and intra-state tax, cess, and HSN/SAC codes
+* Set a due date so customers know when payment is expected
+* Enable partial payments so customers can pay in installments
+* Send invoices directly to customers by email or SMS from the Dashboard
+* Track which invoices are paid, pending, or overdue — all in one place
+* Download invoice and transaction records as CSV or Excel
 
 <HTMLBlock>{`
   <style>
@@ -66,26 +76,6 @@ A PayU Invoice is a professional, GST-compliant invoice you create in the Dashbo
     Create your first invoice →
   </button>
 `}</HTMLBlock>
-
-***
-
-## What Can I Do with Invoices?
-
-PayU Invoices let you create and send professional billing documents to your customers — with GST calculations built in, line items for each product or service, and a pay-now button included.<br />
-
-You can use Invoices to:<br />
-
-* Create itemized invoices with multiple products or services
-* Add GST automatically — including inter-state and intra-state tax, cess, and HSN/SAC codes
-* Set a due date so customers know when payment is expected
-* Enable partial payments so customers can pay in installments
-* Send invoices directly to customers by email or SMS from the Dashboard
-* Track which invoices are paid, pending, or overdue — all in one place
-* Download invoice and transaction records as CSV or Excel<br />
-
-
-<Image src="https://files.readme.io/38614931076cc05791bfba99a8241cc8ee9bb5bfe7d3a5ebc49c06704cf1d674-Screenshot_2025-06-02_at_7.31.48_PM.png" align="center" caption="Invoices list in the PayU Dashboard" border={true} />
-
 
 ***
 
