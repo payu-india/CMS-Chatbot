@@ -123,8 +123,6 @@ Create a professional, GST-compliant invoice in the PayU Dashboard and send it d
 
         <Image src="https://files.readme.io/a4e68c9994e4b7d785548e45dc1f4362d1079136a4a0bc0fa7eb7043ee359e07-Screenshot_2026-10-05_at_10.22.26_AM.png" align="center" caption="Billing Address" border={true} />
 
-
-
       </Tab>
 
       <Tab title="Shipping Address (optional)">
@@ -145,9 +143,8 @@ Create a professional, GST-compliant invoice in the PayU Dashboard and send it d
 </Accordion>
 
 <Accordion title="4. Add line items" icon="far fa-list-check">
-  Click **Add Item** to add the first product or service to the invoice.
-
-  In the row that appears, click **Enter Item Name** and select the item from your catalog.
+  1. Click **Add Item** to add the first product or service to the invoice.
+  2. In the row that appears, click **Enter Item Name** and select the item from your catalog.
 
 
   <Image src="https://files.readme.io/3daf144fb955f8a78881701fc5da7331a02f3d8a3ceba2320c1e99ef698c198d-Screenshot_2025-06-02_at_7.47.23_PM.png" align="center" caption="Adding line items to the invoice" border={true} />
@@ -155,9 +152,11 @@ Create a professional, GST-compliant invoice in the PayU Dashboard and send it d
 
   The item's rate is filled in automatically. You can adjust the quantity if needed — the line total updates automatically.
 
-  Click **Add Item** again to add more items. You can add as many line items as needed.
+  3. Click **Add Item** again to add more items. You can add as many line items as needed.
 
   <Callout icon="📘" theme="info">
+    ### **Tips:**
+
     If an item is not in your catalog yet, select **Create New Item** from the drop-down to add it on the spot. → [Manage Invoice Items](doc:manage-invoice-items)
   </Callout>
 </Accordion>
