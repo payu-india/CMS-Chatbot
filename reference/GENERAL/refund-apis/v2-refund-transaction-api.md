@@ -5,13 +5,6 @@ hidden: false
 metadata:
   robots: index
 ---
----
-title: 'Refund Initiation API'
-deprecated: false
-hidden: false
-metadata:
-  robots: index
----
 The **Refund Initiation** API allows merchants to initiate refunds for transactions. Its functionality similar to the v1 **Cancel Refund Transaction** API, but is available for refund initiation (confirm current support status with the API team) with existing integrations. The v2 API offers enhanced functionality and improved response formats compared to the v1 API.
 
 **Endpoint**
@@ -26,64 +19,31 @@ The **Refund Initiation** API allows merchants to initiate refunds for transacti
 </Callout>
 
 ## Request header
+
 <V2_payment_header_params />
 
 ## Request body
-<HTMLBlock>{`
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>payuId<br/><code>mandatory</code></td>
-      <td><code>String</code> The unique PayU transaction identifier for which the refund is being initiated.</td>
-      <td>9999999900009081231239182</td>
-    </tr>
-    <tr>
-      <td>token<br/><code>mandatory</code></td>
-      <td><code>String</code> Unique token identifier for the refund request.</td>
-      <td>test_3</td>
-    </tr>
-    <tr>
-      <td>amount<br/><code>mandatory</code></td>
-      <td><code>Number</code> The refund amount to be processed.</td>
-      <td>6</td>
-    </tr>
-    <tr>
-      <td>source<br/><code>optional</code></td>
-      <td><code>Number</code> Source identifier for the refund initiation request.</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <td>merchantCallbackUrl<br/><code>optional</code></td>
-      <td><code>String</code> URL where PayU sends the merchant callback for this refund.</td>
-      <td>https://merchant.example.com/refund/callback</td>
-    </tr>
-    <tr>
-      <td>customerPhone<br/><code>optional</code></td>
-      <td><code>String</code> This will be the customer's phone number against which wallet is created. It must be 10-digit mobile number</td>
-      <td>8127531459</td>
-    </tr>
-    <tr>
-      <td>refundDetails<br/><code>optional</code></td>
-      <td><code>Object</code> This field tells that refund should be process into customer's closed-loop wallet (CLW) instead of original back to source account. It must include the <code>refundType</code> field with the value as "wallet".</td>
-      <td><code>{"refundType": "wallet"}</code></td>
-    </tr>
-    <tr>
-      <td>refundSplitRequest<br/><code>optional</code></td>
-      <td><code>Object</code> Information for split refund requests when applicable.</td>
-      <td>null</td>
-    </tr>
-  </tbody>
-</table>
-`}</HTMLBlock>
+
+**Mandatory parameters**
+
+| Parameter | Description                                                                              | Example                   |
+| :-------- | :--------------------------------------------------------------------------------------- | :------------------------ |
+| payuId    | `String` The unique PayU transaction identifier for which the refund is being initiated. | 9999999900009081231239182 |
+| token     | `String` Unique token identifier for the refund request.                                 | test_3                    |
+| amount    | `Number` The refund amount to be processed.                                              | 6                         |
+
+**Optional parameters**
+
+| Parameter           | Description                                                                                                                                                                                                     | Example                                                                                      |
+| :------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------- |
+| source              | `Number` Source identifier for the refund initiation request.                                                                                                                                                   | 1                                                                                            |
+| merchantCallbackUrl | `String` URL where PayU sends the merchant callback for this refund.                                                                                                                                            | [https://merchant.example.com/refund/callback](https://merchant.example.com/refund/callback) |
+| customerPhone       | `String` This will be the customer's phone number against which wallet is created. It must be 10-digit mobile number.                                                                                           | 8127531459                                                                                   |
+| refundDetails       | `Object` This field tells that refund should be process into customer's closed-loop wallet (CLW) instead of original back to source account. It must include the `refundType` field with the value as "wallet". | `{"refundType": "wallet"}`                                                                   |
+| refundSplitRequest  | `Object` Information for split refund requests when applicable.                                                                                                                                                 | null                                                                                         |
 
 ## Sample request
+
 <Callout icon="📘" theme="info">
   **Note**: The following sample request is for Test Environment.
 </Callout>
@@ -200,6 +160,7 @@ fetch(url, options)
 ```
 
 ### Refund Initiation for Closed-Loop Wallet (CLW)
+
 ```bash
 curl --location 'https://apitest.payu.in/v2/refund/' \
 --header 'Content-Type: application/json' \
@@ -220,6 +181,7 @@ curl --location 'https://apitest.payu.in/v2/refund/' \
 <br />
 
 ### Refund Initiation with Split Settlements
+
 ```bash
 curl --location 'https://apitest.payu.in/refund/v1/refundInitiation' \
 --header 'Content-Type: application/json' \
@@ -237,6 +199,7 @@ curl --location 'https://apitest.payu.in/refund/v1/refundInitiation' \
 ```
 
 ## Response parameters
+
 | Parameter   | Description                                                        | Example                     |
 | ----------- | ------------------------------------------------------------------ | --------------------------- |
 | status      | Indicates success (1) or failure (0) of the refund request         | `1`                         |
@@ -249,7 +212,9 @@ curl --location 'https://apitest.payu.in/refund/v1/refundInitiation' \
 | splitInfo   | Contains details of refunds for split transactions (if applicable) | See JSON example            |
 
 ### Sample Response
+
 #### Success Response
+
 * General transaction
 
 ```json
@@ -267,6 +232,7 @@ curl --location 'https://apitest.payu.in/refund/v1/refundInitiation' \
     }
 }
 ```
+
 * With Split Settlements
   ```
   {
@@ -292,11 +258,13 @@ curl --location 'https://apitest.payu.in/refund/v1/refundInitiation' \
 
   ```
 
-
 #### Failure Response
+
 Any of the following response is displayed when the refund request is rejected:
+
 * Invalid PayU ID
-```
+
+````
 {
     "status": "success",
     "data": {
@@ -308,8 +276,10 @@ Any of the following response is displayed when the refund request is rejected:
 }```
 
 <br />
+
 * Same Token 
-```
+````
+
 {
     "status": "success",
     "data": {
@@ -319,11 +289,14 @@ Any of the following response is displayed when the refund request is rejected:
         "mihpayid": 17661088664
     }
 }
+
 ```
 
 <br />
+
 * Invalid MID
 ```
+
 {
     "status": "success",
     "data": {
@@ -333,6 +306,7 @@ Any of the following response is displayed when the refund request is rejected:
         "mihpayid": 999000000000461
     }
 }
+
 ```
 
 ## Error Codes
@@ -428,3 +402,4 @@ Any of the following response is displayed when the refund request is rejected:
 - [Verify Payment](ref:v2_verify_payment_api)
 - [Transaction Details](ref:v2-get-transaction-details-api)
 - [Refund](ref:v2-refund-transaction-api)
+```
