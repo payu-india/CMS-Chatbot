@@ -22,23 +22,23 @@ The **Get Issuing Bank Status** API (**getIssuingBankStatus**) is used to help y
 
 **Mandatory parameters**
 
-| Parameter | Description | Example |
-| :--- | :--- | :--- |
-| `bin` | `String` The first 6 digits of the card number (Bank Identification Number) to get issuing bank status. | `512345` |
+| Parameter | Description                                                                                             | Example  |
+| :-------- | :------------------------------------------------------------------------------------------------------ | :------- |
+| `bin`     | `String` The first 6 digits of the card number (Bank Identification Number) to get issuing bank status. | `512345` |
 
 **Optional parameters**
 
-| Parameter | Description | Example |
-| :--- | :--- | :--- |
-| `issuing_bank_status` | `Boolean` Flag to include issuing bank status information in the response. | `true` |
+| Parameter             | Description                                                                | Example |
+| :-------------------- | :------------------------------------------------------------------------- | :------ |
+| `issuing_bank_status` | `Boolean` Flag to include issuing bank status information in the response. | `true`  |
 
 ## Request body
 
 **Mandatory parameters**
 
-| Parameter | Description | Example |
-| :--- | :--- | :--- |
-| `bin` | `String` The first six digits of card (card BIN) must be specified here. | `512345` |
+| Parameter | Description                                                              | Example  |
+| :-------- | :----------------------------------------------------------------------- | :------- |
+| `bin`     | `String` The first six digits of card (card BIN) must be specified here. | `512345` |
 
 ## Sample request
 
@@ -51,6 +51,7 @@ curl --location 'https://info.payu.in/issuing-bank/v1/bin/?bin=512345&issuing_ba
     "bin": "512345"
   }'
 ```
+
 The `--data` flag implies a **POST** request. Note that `bin` appears in **both the query string and the request body** — this is preserved exactly as in the original cURL. The `{{date}}` and `{{authorization}}` placeholders follow a template/collection variable style (e.g., Postman) and are kept as-is for you to substitute.
 
 ```python
@@ -330,6 +331,7 @@ Fields description
         "is_atmpin_card": 1,
         "oobEligible": false
     }
+```
 ## Next Steps
 
 1. **Proactive Downtime Warnings**:
@@ -339,4 +341,3 @@ Fields description
 3. **Proceed with Payment**:
    - If the bank is active (`1`), seamlessly proceed with the **[Cards v2 Payment API](ref:_payment-v2-merchant-hosted-cards)**.
 }
-```
