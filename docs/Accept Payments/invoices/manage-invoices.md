@@ -200,12 +200,6 @@ You can perform the following actions after a button is created:<br />
   3. Click **Yes, Deactivate** on the **Are you sure?&#x20;**&#x63;onfirmation pop-up menu.
 
   The invoice status changes to **Deactivated**.
-
-  <Callout icon="🚧" theme="warning">
-    ### **Watch Out!**
-
-    Once an invoice is deactivated, it cannot be restored. If you need to bill the same customer again, create a new invoice.
-  </Callout>
 </Accordion>
 
 ***
