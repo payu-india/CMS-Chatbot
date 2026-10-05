@@ -35,7 +35,7 @@ next:
   fontWeight="bold"
 />
 
-Create a professional, GST-compliant invoice in the PayU Dashboard and send it directly to your customer. No developer needed.
+Create a professional, GST-compliant <Anchor target="_blank" href="https://docs.payu.in/docs/invoices">invoice</Anchor> in the PayU Dashboard and send it directly to your customer. No developer needed.
 
 ***
 
@@ -66,6 +66,7 @@ Create a professional, GST-compliant invoice in the PayU Dashboard and send it d
 <Accordion title="1. Open Invoices on the Dashboard" icon="far fa-grid-2">
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor>.
   2. Expand **Payment Tools** and click **Invoices** from the left navigation bar.
+
 
      <Image src="https://files.readme.io/cdfb8317ce8e544a7adea38a03005bbe88a9493bf443d9a122052ac918b37373-Screenshot_2026-10-05_at_10.07.25_AM.png" align="center" caption="Access Invoices" border={true} />
 
@@ -108,8 +109,6 @@ Create a professional, GST-compliant invoice in the PayU Dashboard and send it d
         - **GSTIN**
 
         ![](https://files.readme.io/b1fe174ebd8879834b28682b8c1cf15509cdd53ad526b8d6fe07f83fcf8bd64b-Screenshot_2026-10-05_at_10.21.21_AM.png)
-
-
       </Tab>
 
       <Tab title="Billing Address (optional)">
@@ -130,8 +129,6 @@ Create a professional, GST-compliant invoice in the PayU Dashboard and send it d
 
 
         <Image src="https://files.readme.io/f8da5af5d58d23013867e996844bb8c99c21b7fdf220573341a0f2d0f952d79b-Screenshot_2026-10-05_at_10.25.02_AM.png" align="center" caption="Shipping Address" border={true} />
-
-
 
       </Tab>
 
@@ -174,8 +171,6 @@ Create a professional, GST-compliant invoice in the PayU Dashboard and send it d
       - **HSN/SAC Code**
 
         ![](https://files.readme.io/d5259d5575d3ed2467c1afd6380ce2dd20f20643a72286fc2091fc2563a7d812-Screenshot_2026-10-05_at_10.41.36_AM.png)
-
-
     </Tab>
 
     <Tab title="New Tab">
@@ -185,7 +180,9 @@ Create a professional, GST-compliant invoice in the PayU Dashboard and send it d
 
   2. The item's rate is filled in automatically. You can adjust the quantity if needed. The total **Amount** updates automatically.
 
+
      <Image src="https://files.readme.io/2371fd7b8f51d252e05f5f9ffe3feff781f3a2e91f1383dd90117b384b9f582d-Screenshot_2026-10-05_at_10.46.29_AM.png" align="center" caption="Line Items" border={true} />
+
 
   3. Click **Add Item** again to add more items. You can add as many line items as required.
 </Accordion>
@@ -244,13 +241,13 @@ After your customer receives the invoice and completes a payment:
 
 ## What Do I Do If Something Goes Wrong?
 
-| Issue                                                    | Recommended Fix                                                                                                                                          |
-| -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Customer says they did not receive the invoice           | Ask the customer to check their spam folder. If not received, resend it from the Dashboard. To resend, find the invoice, open it, and click **Resend**.  |
-| Wrong item, amount, or due date on the invoice           | Invoices cannot be edited after they are sent. Cancel the invoice and create a new one with the correct details.                                         |
-| Customer paid but the invoice is still showing as unpaid | Wait a few minutes and refresh. If it does not update after 30 minutes, see [Invoice Troubleshooting](doc:invoice-troubleshooting).                      |
-| GST not showing on the invoice                           | Enable GST in the **Settings** panel when creating the invoice, and make sure tax details are set for each item in the Item Catalog.                     |
-| Customer cannot complete the payment                     | Ask what error they saw. See [Invoice Troubleshooting](doc:invoice-troubleshooting) for common payment issues.                                           |
+| Issue                                                    | Recommended Fix                                                                                                                                         |
+| -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Customer says they did not receive the invoice           | Ask the customer to check their spam folder. If not received, resend it from the Dashboard. To resend, find the invoice, open it, and click **Resend**. |
+| Wrong item, amount, or due date on the invoice           | Invoices cannot be edited after they are sent. Cancel the invoice and create a new one with the correct details.                                        |
+| Customer paid but the invoice is still showing as unpaid | Wait a few minutes and refresh. If it does not update after 30 minutes, see [Invoice Troubleshooting](doc:invoice-troubleshooting).                     |
+| GST not showing on the invoice                           | Enable GST in the **Settings** panel when creating the invoice, and make sure tax details are set for each item in the Item Catalog.                    |
+| Customer cannot complete the payment                     | Ask what error they saw. See [Invoice Troubleshooting](doc:invoice-troubleshooting) for common payment issues.                                          |
 
 ***
 
