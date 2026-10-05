@@ -44,13 +44,17 @@ To open the item catalog: log in to the <Anchor target="_blank" href="https://on
 <Image src="https://files.readme.io/0ecd8c420de9ec7e8a8324d187cf710d87f87ce0f9d89dc8d4ba4d1beb4f9145-Screenshot_2025-06-02_at_7.52.31_PM.png" align="center" caption="Access invoice items" border={true} />
 
 
-The list shows all your items with their **Item ID**, **Item Name**, **Description**, **Rate**, and an **Actions** menu for editing or deleting each item.
-
-Use the **Search** field at the top to find a specific item by name.
+The list shows all your items with their **Item ID**, **Item Name**, **Description**, **Rate**, and an **Actions** menu for editing or deleting each item. Use the **Search** field at the top to find a specific item by name.
 
 ***
 
 ## What Can I Do With Items?
+
+You can perform the following actions:
+
+- Create an item
+- Edit an item
+- Delete an item
 
 <Accordion title="Create a New Item" icon="far fa-plus">
   To add a product or service to your catalog:
