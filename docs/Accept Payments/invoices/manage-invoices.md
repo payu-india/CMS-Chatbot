@@ -40,7 +40,7 @@ next:
   fontWeight="bold"
 />
 
-You can view and manage all your invoices from the PayU Dashboard after they are created and sent.
+You can view and manage all your <Anchor target="_blank" href="https://docs.payu.in/docs/invoices">invoices</Anchor> from the PayU Dashboard after they are created and sent.
 
 ***
 
