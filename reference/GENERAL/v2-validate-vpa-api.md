@@ -5,157 +5,175 @@ hidden: false
 metadata:
   robots: index
 ---
-This API allows merchants to validate a UPI (Unified Payment Interface) Virtual Payment Address.
+---
+title: Validate VPA API
+deprecated: false
+hidden: false
+metadata:
+  title: Validate VPA API
+  description: Verify customer Virtual Payment Address (VPA) validity and check auto-pay mandate capability prior to transaction processing.
+  robots: index
+---
 
-HTTP Request Method: GET
+The **Validate VPA** API enables merchants to verify whether a customer's UPI Virtual Payment Address (VPA / UPI ID) is active and valid with the National Payments Corporation of India (NPCI) and issuing bank handle. It also verifies if the VPA is eligible for UPI Auto-Pay recurring mandates.
+
+HTTP Method: **GET**
 
 **Environment**
 
-|            |                                                                                            |
-| :--------- | :----------------------------------------------------------------------------------------- |
-| Production | [https://info.payu.inpayment-mode/v1/upi/vpa](https://info.payu.inpayment-mode/v1/upi/vpa) |
-| Test       | [https://info.payu.inpayment-mode/v1/upi/vpa](https://info.payu.inpayment-mode/v1/upi/vpa) |
+| Environment | URL |
+| :--- | :--- |
+| **Test Environment** | `<redacted URL>` |
+| **Production Environment** | `<redacted URL>` |
 
-## Request headers
+## Request Headers
 
 <V2_payment_header_params />
 
-## Request body
+| Header | Type | Description |
+| :--- | :--- | :--- |
+| `Date` | String | Current GMT timestamp (e.g. `Tue, 17 Jun 2025 06:48:55 GMT`). |
+| `Authorization` | String | Standard PayU HMAC authorization header (`hmac username="<KEY>", algorithm="sha512", headers="date", signature="<SIG>"`). |
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
+---
 
-      <th>
-        Description
-      </th>
-    </tr>
-  </thead>
+## Query Parameters
 
-  <tbody>
-    <tr>
-      <td>
-        isAutoVPAValid
-        `mandatory`
-      </td>
+**Mandatory parameters**
 
-      <td>
-        `Boolean` Determines whether to check for auto-pay VPA validation.
-      </td>
-    </tr>
+| Parameter | Description | Example |
+| :--- | :--- | :--- |
+| `vpa` | `String` The UPI Virtual Payment Address (UPI ID) to validate. | `customer@oksbi` |
 
-    <tr>
-      <td>
-        vpa
-        `mandatory`
-      </td>
+**Optional parameters**
 
-      <td>
-        `String` The UPI Virtual Payment Address to be validated.
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| Parameter | Description | Example |
+| :--- | :--- | :--- |
+| `isAutoVPAValid` | `Boolean` Pass `true` to check whether the VPA supports UPI Auto-Pay recurring mandate registration. Default is `false`. | `true` |
 
-## Sample request
+---
+
+## Sample Request
 
 ```bash
-curl --location 'https://info.payu.in/payment-mode/v1/upi/vpa?isAutoVPAValid=true&vpa=test@payu' \
---header 'Content-Type: application/json' \
---header 'date: Tue, 17 Jun 2025 06:48:55 GMT' \
---header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="b4db4b20d1d9146edfd846fc11c2145ab1ac99c001df5923e3a412672f577b73f3b2cee4dc492f18ea55a0be8a4ec9f0df4475ad6eb03bedc0c6ef46235f0ed7"'
+curl --location '<redacted URL>' \
+--header 'Date: Tue, 17 Jun 2025 06:48:55 GMT' \
+--header 'Authorization: hmac username="<YOUR_MERCHANT_KEY>", algorithm="sha512", headers="date", signature="<YOUR_SIGNATURE>"'
 ```
+```python
+import requests
 
-## Sample response
+url = "<redacted URL>"
+params = {
+    "vpa": "customer@oksbi",
+    "isAutoVPAValid": "true"
+}
 
-```json
-{
-    "message": "Success",
-    "status": 1,
-    "result": {
-        "isValidVpa": true,
-        "payerAccountName": "Test",
-        "vpa": "test@payu",
-        "isAutoPayVPAValid": true
+headers = {
+    "Date": "Tue, 17 Jun 2025 06:48:55 GMT",
+    "Authorization": "hmac username=\"<YOUR_MERCHANT_KEY>\", algorithm=\"sha512\", headers=\"date\", signature=\"<YOUR_SIGNATURE>\""
+}
+
+response = requests.get(url, headers=headers, params=params)
+print(response.json())
+```
+```php
+<?php
+$url = "<redacted URL>";
+
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    "Date: Tue, 17 Jun 2025 06:48:55 GMT",
+    "Authorization: hmac username=\"<YOUR_MERCHANT_KEY>\", algorithm=\"sha512\", headers=\"date\", signature=\"<YOUR_SIGNATURE>\""
+]);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class PayURequest {
+    public static void main(String[] args) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("<redacted URL>"))
+            .header("Date", "Tue, 17 Jun 2025 06:48:55 GMT")
+            .header("Authorization", "hmac username=\"<YOUR_MERCHANT_KEY>\", algorithm=\"sha512\", headers=\"date\", signature=\"<YOUR_SIGNATURE>\"")
+            .GET()
+            .build();
+        
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
     }
 }
 ```
+```javascript
+const url = "<redacted URL>";
 
-## Response parameters
+const options = {
+  method: "GET",
+  headers: {
+    "Date": "Tue, 17 Jun 2025 06:48:55 GMT",
+    "Authorization": "hmac username=\"<YOUR_MERCHANT_KEY>\", algorithm=\"sha512\", headers=\"date\", signature=\"<YOUR_SIGNATURE>\""
+  }
+};
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
+fetch(url, options)
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error("Error:", error));
+```
 
-      <th>
-        Description
-      </th>
+---
 
-      <th>
-        Example
-      </th>
-    </tr>
-  </thead>
+## Response Parameters
 
-  <tbody>
-    <tr>
-      <td>
-        message
-      </td>
+| Parameter | Type | Description | Example |
+| :--- | :--- | :--- | :--- |
+| `message` | String | Outcome message describing the validation result. | `Success` |
+| `status` | Number | Outcome flag: `1` for successful validation call, `0` for failed. | `1` |
+| `result.isValidVpa` | Boolean | `true` if the VPA is registered with NPCI and capable of accepting payments. | `true` |
+| `result.payerAccountName` | String | Registered account holder name associated with the VPA (as returned by the PSP). | `AARAV SHARMA` |
+| `result.vpa` | String | Canonical VPA validated. | `customer@oksbi` |
+| `result.isAutoPayVPAValid` | Boolean | `true` if this VPA is eligible for UPI Auto-Pay recurring mandates. | `true` |
 
-      <td>
-        Response message indicating the operation result.
-      </td>
+---
 
-      <td>
-        Success
-      </td>
-    </tr>
+## Sample Responses
 
-    <tr>
-      <td>
-        status
-      </td>
+### Valid VPA
+```json
+{
+  "message": "Success",
+  "status": 1,
+  "result": {
+    "isValidVpa": true,
+    "payerAccountName": "AARAV SHARMA",
+    "vpa": "customer@oksbi",
+    "isAutoPayVPAValid": true
+  }
+}
+```
 
-      <td>
-        Status code for the operation. It can be any of the following:
-
-        * `1` for success
-        * `0` for failure.
-      </td>
-
-      <td>
-        1
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        result
-      </td>
-
-      <td>
-        The result of the response in a JSON format. For more information, refer [result JSON fields description](#result-json-fields-description)
-      </td>
-
-      <td>
-        true
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-### result JSON fields description
-
-| Parameter         | Description                                      | Example             |
-| ----------------- | ------------------------------------------------ | ------------------- |
-| isValidVpa        | Indicates whether the provided VPA is valid.     | true                |
-| payerAccountName  | Name associated with the VPA.                    | RIDHI GARG          |
-| vpa               | The validated VPA.                               | ridhigarg95@okicici |
-| isAutoPayVPAValid | Indicates whether the VPA is valid for auto-pay. | true                |
+### Invalid VPA
+```json
+{
+  "message": "Invalid VPA",
+  "status": 0,
+  "result": {
+    "isValidVpa": false,
+    "payerAccountName": null,
+    "vpa": "invalidvpa@handle",
+    "isAutoPayVPAValid": false
+  }
+}
+```
