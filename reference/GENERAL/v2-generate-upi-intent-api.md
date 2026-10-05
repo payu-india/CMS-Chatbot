@@ -5,83 +5,207 @@ hidden: false
 metadata:
   robots: index
 ---
-This API allows merchants to generate a UPI payment intent for accepting UPI payments.
+---
+title: Generate UPI Intent API
+deprecated: false
+hidden: false
+metadata:
+  title: Generate UPI Intent API
+  description: Generate server-side UPI payment intent URIs and QR code links for deep linking to UPI applications.
+  robots: index
+---
+
+The **Generate UPI Intent** API enables merchants to create UPI payment intents dynamically on the server. This allows mobile applications to invoke installed UPI apps (Google Pay, PhonePe, Paytm, BHIM, Cred) via deep linking, or web applications to display dynamic payment QR codes for scanning.
 
 HTTP Method: **POST**
 
 **Environment**
 
-|                        |                                                                              |
-| :--------------------- | :--------------------------------------------------------------------------- |
-| Test Environment       | [https://test.payu.in/info/v1/intent`](https://test.payu.in/info/v1/intent`) |
-| Production Environment | [https://info.payu.in/v1/intent](https://info.payu.in/v1/intent)             |
+| Environment | URL |
+| :--- | :--- |
+| **Test Environment** | `<redacted URL>` |
+| **Production Environment** | `https://info.payu.in/v1/intent` |
 
-## Request headers
+## Request Headers
 
 <V2_payment_header_params />
 
-## Request parameters
+| Header | Type | Description |
+| :--- | :--- | :--- |
+| `Content-Type` | String | Must be `application/json`. |
+| `Date` | String | Current GMT timestamp (e.g. `Tue, 17 Jun 2025 06:48:55 GMT`). |
+| `Authorization` | String | Standard PayU HMAC authorization header. |
 
-| Parameter                                     | Description                                                                                                                        | Example                                  |
-| --------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
-| transactionId<br /><code>mandatory</code>     | <code>String</code> Unique identifier for the transaction. This should be unique for each request.                                 | 0fd9829f68                               |
-| transactionAmount<br /><code>mandatory</code> | <code>String</code> Amount to be paid. The amount should be in the format of "XX.XX".                                              | 190                                      |
-| expiryTime<br /><code>mandatory</code>        | <code>String</code> Expiry time for the intent in seconds. After this time, the intent will expire and cannot be used for payment. | 10000                                    |
-| refUrl<br /><code>optional</code>             | <code>String</code> Reference URL for the transaction. This can be your website URL or any reference page.                         | [http://www.payu.in](http://www.payu.in) |
-| category<br /><code>optional</code>           | <code>String</code> Category code for the transaction. This helps in categorizing the payment for reporting purposes.              | 01                                       |
+---
 
-## Sample request
+## Request Body Parameters
+
+**Mandatory parameters**
+
+| Parameter | Description | Example |
+| :--- | :--- | :--- |
+| `transactionId` | `String` Unique merchant transaction identifier (`txnId`). Must be unique for every payment request. | `TXN_UPI_9829f68` |
+| `transactionAmount` | `String` Amount to be paid by the customer, formatted with two decimal places (`XX.XX`). | `190.00` |
+| `expiryTime` | `String` Intent validity window in seconds. After this duration, the intent expires. | `600` |
+
+**Optional parameters**
+
+| Parameter | Description | Example |
+| :--- | :--- | :--- |
+| `refUrl` | `String` Reference URL for the transaction or merchant application callback. | `<redacted URL>` |
+| `category` | `String` Merchant Category Code (MCC) identifier for reporting purposes. | `5411` |
+
+---
+
+## Sample Request
 
 ```bash
 curl --location 'https://info.payu.in/v1/intent' \
---header 'mid: 2' \
 --header 'Content-Type: application/json' \
+--header 'Date: Tue, 17 Jun 2025 06:48:55 GMT' \
+--header 'Authorization: hmac username="<YOUR_MERCHANT_KEY>", algorithm="sha512", headers="date", signature="<YOUR_SIGNATURE>"' \
 --data '{
- "transactionId": "0fd9829f68",
- "transactionAmount": "190",
- "expiryTime": "10000",
- "refUrl": "http://www.payu.in",
- "category": "01"
+    "transactionId": "TXN_UPI_9829f68",
+    "transactionAmount": "190.00",
+    "expiryTime": "600",
+    "refUrl": "<redacted URL>",
+    "category": "5411"
 }'
 ```
+```python
+import requests
+import json
 
-## Sample response
+url = "https://info.payu.in/v1/intent"
 
-```json
-{
-    "message": "Success",
-    "status": 1,
-    "result": {
-        "intentId": "upi://pay?pa=payumoney@hdfcbank&pn=PayUMoney&tr=0fd9829f68&am=190.00&cu=INR&mc=5411&tn=Payment%20to%20Merchant",
-        "intentUri": "upi://pay?pa=payumoney@hdfcbank&pn=PayUMoney&tr=0fd9829f68&am=190.00&cu=INR&mc=5411&tn=Payment%20to%20Merchant",
-        "intentUrl": "https://secure.payu.in/omni?id=000b",
-        "intentUrlWithQR": "https://secure.payu.in/omni?id=000b",
-        "bankAccounts": [
-            {
-                "bankName": "HDFC Bank",
-                "accountNumber": "XXXXXXXX1234",
-                "ifscCode": "HDFC0000001"
-            }
-        ],
-        "transactionId": "0fd9829f68",
-        "expiryTime": 10000
+headers = {
+    "Content-Type": "application/json",
+    "Date": "Tue, 17 Jun 2025 06:48:55 GMT",
+    "Authorization": "hmac username=\"<YOUR_MERCHANT_KEY>\", algorithm=\"sha512\", headers=\"date\", signature=\"<YOUR_SIGNATURE>\""
+}
+
+payload = {
+    "transactionId": "TXN_UPI_9829f68",
+    "transactionAmount": "190.00",
+    "expiryTime": "600",
+    "refUrl": "<redacted URL>",
+    "category": "5411"
+}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.json())
+```
+```php
+<?php
+$url = "https://info.payu.in/v1/intent";
+
+$payload = json_encode([
+    "transactionId" => "TXN_UPI_9829f68",
+    "transactionAmount" => "190.00",
+    "expiryTime" => "600",
+    "refUrl" => "<redacted URL>",
+    "category" => "5411"
+]);
+
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    "Content-Type: application/json",
+    "Date: Tue, 17 Jun 2025 06:48:55 GMT",
+    "Authorization: hmac username=\"<YOUR_MERCHANT_KEY>\", algorithm=\"sha512\", headers=\"date\", signature=\"<YOUR_SIGNATURE>\""
+]);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class PayURequest {
+    public static void main(String[] args) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String payload = "{\"transactionId\": \"TXN_UPI_9829f68\", \"transactionAmount\": \"190.00\", \"expiryTime\": \"600\", \"refUrl\": \"<redacted URL>", \"category\": \"5411\"}";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://info.payu.in/v1/intent"))
+            .header("Content-Type", "application/json")
+            .header("Date", "Tue, 17 Jun 2025 06:48:55 GMT")
+            .header("Authorization", "hmac username=\"<YOUR_MERCHANT_KEY>\", algorithm=\"sha512\", headers=\"date\", signature=\"<YOUR_SIGNATURE>\"")
+            .POST(HttpRequest.BodyPublishers.ofString(payload))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
     }
 }
 ```
 
+```javascript
+const url = "https://info.payu.in/v1/intent";
+
+const payload = {
+  transactionId: "TXN_UPI_9829f68",
+  transactionAmount: "190.00",
+  expiryTime: "600",
+  refUrl: "<redacted URL>",
+  category: "5411"
+};
+
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Date": "Tue, 17 Jun 2025 06:48:55 GMT",
+    "Authorization": "hmac username=\"<YOUR_MERCHANT_KEY>\", algorithm=\"sha512\", headers=\"date\", signature=\"<YOUR_SIGNATURE>\""
+  },
+  body: JSON.stringify(payload)
+};
+
+fetch(url, options)
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error("Error:", error));
+```
+
+---
+
 ## Response Parameters
 
-| Parameter                           | Description                                                                                           | Example                                                                                                        |
-| ----------------------------------- | ----------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| message                             | <code>String</code> Response message indicating the operation result.                                 | Success                                                                                                        |
-| status                              | <code>Integer</code> Status code for the operation. 1 for success, 0 for failure.                     | 1                                                                                                              |
-| result.intentId                     | <code>String</code> Generated UPI intent ID in the format of a UPI URI that can be used for payment.  | upi://pay?pa=payumoney@hdfcbank&pn=PayUMoney&tr=0fd9829f68&am=190.00&cu=INR&mc=5411&tn=Payment%20to%20Merchant |
-| result.intentUri                    | <code>String</code> URI for UPI payment that can be used in mobile apps for deep linking to UPI apps. | upi://pay?pa=payumoney@hdfcbank&pn=PayUMoney&tr=0fd9829f68&am=190.00&cu=INR&mc=5411&tn=Payment%20to%20Merchant |
-| result.intentUrl                    | <code>String</code> URL for payment that can be used in web applications.                             | [https://secure.payu.in/omni?id=000b](https://secure.payu.in/omni?id=000b)                                     |
-| result.intentUrlWithQR              | <code>String</code> URL with QR code for payment that can be displayed to users for scanning.         | [https://secure.payu.in/omni?id=000b](https://secure.payu.in/omni?id=000b)                                     |
-| result.bankAccounts                 | <code>Array</code> Array of bank account details associated with the merchant.                        | [Object]                                                                                                       |
-| result.bankAccounts[].bankName      | <code>String</code> Name of the bank.                                                                 | HDFC Bank                                                                                                      |
-| result.bankAccounts[].accountNumber | <code>String</code> Partially masked account number.                                                  | XXXXXXXX1234                                                                                                   |
-| result.bankAccounts[].ifscCode      | <code>String</code> IFSC code of the bank branch.                                                     | HDFC0000001                                                                                                    |
-| result.transactionId                | <code>String</code> Transaction ID provided in the request.                                           | 0fd9829f68                                                                                                     |
-| result.expiryTime                   | <code>Integer</code> Expiry time in seconds as provided in the request.                               | 10000                                                                                                          |
+| Parameter | Type | Description | Example |
+| :--- | :--- | :--- | :--- |
+| `message` | String | Status description of the API call. | `Success` |
+| `status` | Number | Outcome flag: `1` for success, `0` for failure. | `1` |
+| `result.intentId` | String | Standard `upi://pay` URI string formatted for deep linking. | `upi://pay?pa=payumoney@hdfcbank&...` |
+| `result.intentUri` | String | Direct URI compatible with Android and iOS native intent handlers. | `upi://pay?pa=payumoney@hdfcbank&...` |
+| `result.intentUrl` | String | Web-hosted checkout URL for customer browser display. | `https://secure.payu.in/omni?id=000b` |
+| `result.intentUrlWithQR` | String | Web URL rendering a dynamic QR code for desktop/mobile scanning. | `https://secure.payu.in/omni?id=000b` |
+| `result.transactionId` | String | Merchant transaction identifier confirmed by the engine. | `TXN_UPI_9829f68` |
+| `result.expiryTime` | Number | Validity duration in seconds. | `600` |
+
+---
+
+## Sample Response
+
+```json
+{
+  "message": "Success",
+  "status": 1,
+  "result": {
+    "intentId": "upi://pay?pa=payumoney@hdfcbank&pn=MerchantEnterprise&tr=TXN_UPI_9829f68&am=190.00&cu=INR&mc=5411&tn=Order%20Payment",
+    "intentUri": "upi://pay?pa=payumoney@hdfcbank&pn=MerchantEnterprise&tr=TXN_UPI_9829f68&am=190.00&cu=INR&mc=5411&tn=Order%20Payment",
+    "intentUrl": "https://secure.payu.in/omni?id=000b",
+    "intentUrlWithQR": "https://secure.payu.in/omni?id=000b",
+    "transactionId": "TXN_UPI_9829f68",
+    "expiryTime": 600
+  }
+}
+```
