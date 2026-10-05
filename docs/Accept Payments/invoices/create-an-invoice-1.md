@@ -275,10 +275,6 @@ After your customer receives the invoice and completes a payment:
 ## Next Steps
 
 <Cards>
-  <Card title="Manage Invoice Items" href="doc:manage-invoice-items" icon="fa-box-open">
-    Build your product and service catalog with rates and GST details before creating invoices.
-  </Card>
-
   <Card title="Manage Invoices" href="doc:manage-invoices" icon="fa-list-check">
     View, filter, resend, cancel, and download your invoice records.
   </Card>
