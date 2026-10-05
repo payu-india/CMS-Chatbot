@@ -150,7 +150,7 @@ The table has 7 rows, so here it is in **HTML format**:
 
 ## Sample request
 
-```bash
+```curl
 curl --location '<redacted URL>' \
 --header 'date: <CURRENT_DATE_GMT>' \
 --header 'authorization: hmac username="<YOUR_TEST_KEY>", algorithm="sha512", headers="date", signature="<YOUR_SIGNATURE>"' \
@@ -214,7 +214,6 @@ curl --location '<redacted URL>' \
     }
 }'
 ```
-
 ```python
 import requests
 import json
@@ -274,7 +273,6 @@ payload = {
 response = requests.post(url, headers=headers, json=payload)
 print(response.json())
 ```
-
 ```php
 <?php
 $url = "<redacted URL>";
@@ -339,7 +337,6 @@ curl_close($ch);
 echo $response;
 ?>
 ```
-
 ```java
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -406,7 +403,6 @@ public class ClassicRequest {
     }
 }
 ```
-
 ```javascript
 const url = "<redacted URL>";
 
