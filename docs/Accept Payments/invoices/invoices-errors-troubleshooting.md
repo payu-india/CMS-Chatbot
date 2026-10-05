@@ -53,13 +53,13 @@ Something not working after creating and sending your <Anchor target="_blank" hr
 <Accordion title="Invoice Not Arriving by Email or SMS" icon="far fa-envelope-open">
   Check these in order:
 
-  1. **Confirm the customer's contact details are correct.** Open the invoice in your Dashboard and check the email address and mobile number under **Billed To**. A single typo will prevent delivery. If the details are wrong, cancel the invoice, create a new one with the correct contact, and resend.
+  1. **Confirm the customer's contact details are correct:&#x20;**&#x4F;pen the invoice in your Dashboard and check the email address and mobile number under **Billed To**. A single typo will prevent delivery. If the details are wrong, <Anchor target="_blank" href="https://docs.payu.in/docs/manage-invoices#deactivate-an-invoice">deactivate</Anchor> the invoice, <Anchor target="_blank" href="https://docs.payu.in/docs/create-an-invoice-1">create a new</Anchor> one with the correct contact, and resend.
 
-  2. **Ask the customer to check their spam or junk folder.** Invoice emails can sometimes be filtered by email providers, especially for first-time senders. Ask your customer to mark PayU as a trusted sender.
+  2. **Ask the customer to check their spam or junk folder:&#x20;**&#x49;nvoice emails can sometimes be filtered by email providers, especially for first-time senders. Ask your customer to mark PayU as a trusted sender.
 
-  3. **Resend the invoice.** From the Dashboard, open the invoice and click **Resend** to send it again.
+  3. **Resend the invoice:&#x20;**&#x46;rom the Dashboard, open the invoice and click <Anchor target="_blank" href="https://docs.payu.in/docs/manage-invoices#resend-an-invoice">**Resend**</Anchor> to send it again.
 
-  4. **Check the invoice status in your Dashboard.** If the status shows **Draft**, the invoice was saved but never sent — click **Send Invoice** to send it now.
+  4. **Check the invoice status in your Dashboard:** If the status shows **Draft**, the invoice was saved but never sent. Click **Send Invoice** to send it now.
 </Accordion>
 
 ***
