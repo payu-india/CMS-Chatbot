@@ -46,7 +46,7 @@ All the parameters are mandatory.
 | order | `Object` Details about the transaction order including product info and payment charge specification. | Refer to order section |
 | additionalInfo | `Object` S2S flow configuration and transaction options. | Refer to [additionalInfo object fields description](#additionalInfo-object-fields-description). |
 | callBackActions | `Object` Redirection URLs for payment outcomes. | Refer to [callBackActions object fields description](#callbackactions-object-fields-description) |
-| billingDetails | `Object` Billing contact and address details of customer. | Refer to billingDetails section |
+| billingDetails | `Object` Billing contact and address details of customer. | Refer to [billingDetails object fields description](#billingdetails-object-fields-description)  |
 
 
 ### paymentMethod object fields description
