@@ -5,224 +5,194 @@ hidden: false
 metadata:
   robots: index
 ---
-The v2 **Get BIN Info** API is used to determine the following for a single card or multiple cards:
+---
+title: Get BIN Info API
+deprecated: false
+hidden: false
+metadata:
+  title: Get BIN Info API
+  description: Retrieve card BIN metadata including issuing bank, card type, category, ATM PIN capabilities, zero-redirect, and Standing Instruction (SI) support.
+  robots: index
+---
 
-* Card's issuing bank
-* Card type such as, Visa, Master, etc.
-* Card category such as Credit/Debit, etc.
-* Cards with zero redirect support
-* Cards with SI support
+The **Get BIN Info** API provides detailed metadata for a given card Bank Identification Number (BIN). Merchants can inspect card capabilities such as ATM PIN authentication, OTP-on-the-fly support, Zero-Redirect eligibility, and Standing Instruction (e-Mandate / Recurring) support.
 
-You can fetch cards details with the following specific feature-level information:
-
-* Complete BIN list having ATM PIN support is required
-* Complete BIN list with OTP-on-the-fly support (IVR) is required
-
-When fetching multiple card details, you can limit the number of card details in the response using the start index and offset.
+HTTP Method: **POST**
 
 **Environment**
 
-|                        |                                                                                      |
-| :--------------------- | :----------------------------------------------------------------------------------- |
-| Test Environment       | [https://test.payu.in/issuing-bank/v1/bin](https://test.payu.in/issuing-bank/v1/bin) |
-| Production Environment | [https://info.payu.in/issuing-bank/v1/bin](https://info.payu.in/issuing-bank/v1/bin) |
+| Environment | URL |
+| :--- | :--- |
+| **Test Environment** | `<redacted URL>` |
+| **Production Environment** | `<redacted URL>` |
 
-## Request header
+## Request Headers
 
 <V2_payment_header_params />
 
-## Request body
+| Header | Type | Description |
+| :--- | :--- | :--- |
+| `Content-Type` | String | Must be `application/json`. |
+| `Date` | String | Current GMT timestamp (e.g. `Tue, 17 Jun 2025 06:48:55 GMT`). |
+| `Authorization` | String | Standard PayU HMAC authorization header. |
 
-<HTMLBlock>{`
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>bin<br/><code>mandatory</code></td>
-      <td><code>Integer</code> Specific output request type:<br/>• <strong>1</strong>: Fetch information for a single BIN level.<br/>• <strong>2</strong>: Fetch specific feature-level BIN list.<br/>• <strong>3</strong>: Fetch all BIN and related information.</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-`}</HTMLBlock>
+---
 
-<br />
+## Request Body Parameters
 
-## Sample request
+| Parameter | Description | Example |
+| :--- | :--- | :--- |
+| `bin` | `String` The first 6 or 8 digits of the card number to query. | `512345` |
 
-```bash
-curl --location 'https://info.payu.in/issuing-bank/v1/bin' \
+---
+
+## Sample Request
+
+```curl
+curl --location '<redacted URL>' \
 --header 'Content-Type: application/json' \
---header 'date: {{date}}' \
---header 'Authorization: {{authorization}}' \
+--header 'Date: Tue, 17 Jun 2025 06:48:55 GMT' \
+--header 'Authorization: hmac username="<YOUR_MERCHANT_KEY>", algorithm="sha512", headers="date", signature="<YOUR_SIGNATURE>"' \
 --data '{
     "bin": "512345"
-  }'
+}'
+```
+```python
+import requests
+
+url = "<redacted URL>"
+
+headers = {
+    "Content-Type": "application/json",
+    "Date": "Tue, 17 Jun 2025 06:48:55 GMT",
+    "Authorization": "hmac username=\"<YOUR_MERCHANT_KEY>\", algorithm=\"sha512\", headers=\"date\", signature=\"<YOUR_SIGNATURE>\""
+}
+
+payload = {
+    "bin": "512345"
+}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.json())
+```
+```php
+<?php
+$url = "<redacted URL>";
+
+$payload = json_encode([
+    "bin" => "512345"
+]);
+
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    "Content-Type: application/json",
+    "Date: Tue, 17 Jun 2025 06:48:55 GMT",
+    "Authorization: hmac username=\"<YOUR_MERCHANT_KEY>\", algorithm=\"sha512\", headers=\"date\", signature=\"<YOUR_SIGNATURE>\""
+]);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class PayURequest {
+    public static void main(String[] args) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String payload = "{\"bin\": \"512345\"}";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("<redacted URL>"))
+            .header("Content-Type", "application/json")
+            .header("Date", "Tue, 17 Jun 2025 06:48:55 GMT")
+            .header("Authorization", "hmac username=\"<YOUR_MERCHANT_KEY>\", algorithm=\"sha512\", headers=\"date\", signature=\"<YOUR_SIGNATURE>\"")
+            .POST(HttpRequest.BodyPublishers.ofString(payload))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
+}
+```
+```javascript
+const url = "<redacted URL>";
+
+const payload = {
+  bin: "512345"
+};
+
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Date": "Tue, 17 Jun 2025 06:48:55 GMT",
+    "Authorization": "hmac username=\"<YOUR_MERCHANT_KEY>\", algorithm=\"sha512\", headers=\"date\", signature=\"<YOUR_SIGNATURE>\""
+  },
+  body: JSON.stringify(payload)
+};
+
+fetch(url, options)
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error("Error:", error));
 ```
 
-## Response parameters
+---
 
-| Parameter | Description                                                                                                                                                                                                                                                                     |
-| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| status    | This parameters provides the response whether the API was successful or not. This response value can contain any of the following: • **0** signifies that the API was not successful or invalid details. • **1** signifies that the API was successful in fetching the details. |
-| data      | The card details are displayed in a JSON format. For more information, refer to the next table.                                                                                                                                                                                 |
+## Response Parameters
 
-## Card Details in bins_data Field
+| Parameter | Type | Description | Example |
+| :--- | :--- | :--- | :--- |
+| `message` | String | Status description of the query execution. | `Success` |
+| `status` | Number | Outcome flag: `1` for success, `0` for failure. | `1` |
+| `data.bins_data.issuing_bank` | String | PayU bank identifier for the issuing bank. | `HDFC` |
+| `data.bins_data.bin` | String | The queried BIN digits. | `512345` |
+| `data.bins_data.category` | String | Card category: `creditcard` or `debitcard`. | `creditcard` |
+| `data.bins_data.card_type` | String | Card brand network: `MAST`, `VISA`, `AMEX`, `RUPAY`, `DINR`. | `MAST` |
+| `data.bins_data.is_domestic` | Number | `1` for domestic Indian cards; `0` for international cards. | `1` |
+| `data.bins_data.is_atmpin_card` | Number | `1` if ATM PIN authentication is supported; `0` otherwise. | `1` |
+| `data.bins_data.is_otp_on_the_fly` | Number | `1` if the issuing bank supports OTP-on-the-fly; `0` otherwise. | `1` |
+| `data.bins_data.is_zero_redirect_supported` | Number | `1` if Zero-Redirect checkout is supported; `0` otherwise. | `1` |
+| `data.bins_data.is_si_supported` | Number | `1` if Standing Instructions (e-Mandate / Recurring) are supported; `0` otherwise. | `0` |
 
-For multiple cards, the card details in the **bins_data** field are in a JSON array format, and fields in each JSON are described in the following table. For a single card, only the fields are displayed in JSON format.
+---
 
-> 📘 **Enable additionalCardType parameter:**
->
-> To receive the response for the **additionalCardType** parameter or enable this parameter, you need to contact your PayU Key Account Manager (KAM) or [PayU Support](https://help.payu.in).
+## Sample Response
 
-<Table align={["left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        **Field**
-      </th>
-
-      <th>
-        **Description**
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        issuingBank
-      </td>
-
-      <td>
-        The issuing bank of the card used for the transaction
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        bin
-      </td>
-
-      <td>
-        The BIN number of the card is displayed in the response.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        category
-      </td>
-
-      <td>
-        Response value can contain any of the following: • **creditcard** signifies that the particular bin is a credit card BIN • **debitcard** signifies that the particular bin is a debit card BIN
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        card_type
-      </td>
-
-      <td>
-        Response value can contain any of the following: • MAST • VISA • MAES • AMEX • DINR • Unknown
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        isDomestic
-      </td>
-
-      <td>
-        Response value can contain any of the following:
-        • **1** signifies that the particular BIN is Domestic.
-        • **0** signifies that the particular BIN is International.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        additonalCardType
-      </td>
-
-      <td>
-        The response contains any of the following values to show if it is corporate or prepaid card:
-        • **CE** - Corporate card
-        • **PE** - Prepaid card
-        **Note**: To receive the response for this parameter or enable this parameter, you need to contact your PayU Key Account Manager (KAM) or
-
-        [PayU Support](https://help.payu.in)
-
-        .
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        is_atmpin_card
-      </td>
-
-      <td>
-        Response value can contain any of the following:
-        • **0** signifies that the card is not an ATM card.
-        • **1** signifies that the card is an ATM card.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        is_otp_on_the_fly
-      </td>
-
-      <td>
-        Response value can contain any of the following:
-        • **0** signifies that the card does not have OTP on the fly facility.
-        • **1** signifies that the card have OTP on the fly facility.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        messageVersion
-      </td>
-
-      <td>
-        Response value will contain the 3DS version supported by the CardBin/CardNumber. For example, it can be any of the following: • 1.0.2 • 2.1.0 • 2.2.0
-        **Note**: This response parameter value is shown only if **var7** parameter value is posted in the request.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes).
-
-## Sample response
-
+```json
+{
+  "message": "Success",
+  "status": 1,
+  "data": {
+    "bins_data": {
+      "bin": "512345",
+      "issuing_bank": "HDFC",
+      "category": "creditcard",
+      "card_type": "MAST",
+      "is_domestic": 1,
+      "is_atmpin_card": 1,
+      "is_otp_on_the_fly": 1,
+      "is_zero_redirect_supported": 1,
+      "is_si_supported": 0
+    }
+  }
+}
 ```
-Array
-(
-    [status] => 1
-    [data] => Array
-        (
-            [bins_data] => Array
-                (
-                    [issuing_bank] => HDFC
-                    [bin] => 512345
-                    [category] => creditcard
-                    [card_type] => MAST
-                    [is_domestic] => 1
-                    [is_atmpin_card] => 1
-                    [is_otp_on_the_fly] => 1
-                    [is_zero_redirect_supported] => 1
-                    [is_si_supported] => 0
-                )
-        )
-)
-```
+## Next Steps
+
+1. **Configure Transaction Capabilities**:
+   - Check if the card BIN supports recurring payments / standing instructions (SI), Zero-Redirect flows, or ATM PIN authentication.
+2. **Optimize Payment Payload**:
+   - Set relevant flags in the `additionalInfo` object of your payment request based on the capabilities confirmed for this card BIN.
+3. **Proceed to Card Processing**:
+   - Route the payment through the **[Cards v2 Payment API](ref:_payment-v2-merchant-hosted-cards)**.
