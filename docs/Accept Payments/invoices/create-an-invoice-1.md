@@ -224,7 +224,7 @@ Create a professional, GST-compliant <Anchor target="_blank" href="https://docs.
 
 ## What Happens After My Customer Pays?
 
-After your customer receives the invoice and completes a payment:
+After your customer receives the invoice and completes a payment:<br />
 
 1. The invoice status in your Dashboard updates to **Paid** immediately.
 2. The payment appears in the **Transactions** tab in your PayU Dashboard.
