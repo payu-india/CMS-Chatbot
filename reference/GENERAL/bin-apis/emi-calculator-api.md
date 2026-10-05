@@ -34,32 +34,120 @@ You can use it for the following:
 
 ## Request Headers
 
-| Header | Type | Required | Description | Example |
-| :--- | :--- | :--- | :--- | :--- |
-| `Accept` | String | Mandatory | Expected response format. | `application/json` |
-| `Content-Type` | String | Mandatory | Media type of the request body. | `application/json` |
-| `x-credential-username` | String | Mandatory | Your PayU merchant key. | `<YOUR_MERCHANT_KEY>` |
+
 
 ---
 
 ## Request Parameters
 
-| Parameter | Type | Required | Description | Example |
-| :--- | :--- | :--- | :--- | :--- |
-| `txnAmount` | Number | Mandatory | Principal transaction amount that needs to be converted into EMI. | `10000` |
-| `additionalCharges` | Number | Optional | Convenience fee or additional charges to collect with the transaction. Defaults to `0`. | `0` |
-| `offerKeys` | Array of Strings | Optional | List of offer keys for transaction-level discount/cashback offers. Pass `null` if none. | `["OFFER123"]` |
-| `autoApplyOffer` | Boolean | Optional | Set to `true` to automatically apply the best available transaction offer when no `offerKeys` are specified. | `true` |
-| `bankCodes` | Array of Strings | Optional | List of bank codes to filter plans (e.g. `["HDFC", "ICICI"]`). Pass `null` to return all eligible banks. | `["HDFCB", "ICICI"]` |
-| `emiCodes` | Array of Strings | Optional | List of specific EMI plan codes to filter (e.g. `["EMIH3", "EMIH6"]`). Pass `null` for all tenures. | `["EMIH6"]` |
-| `disableOverrideNceConfig` | Boolean | Optional | When set to `true`, PayU will not consider No-Cost EMI (NCE) overrides passed via merchant parameters. | `true` |
-| `skus` | Array of Objects | Optional | Product SKU details for SKU-level discount/offer calculations. | Array |
-| `skus[].skuId` | String | Mandatory (if `skus` passed) | Unique SKU identifier. | `"Product1"` |
-| `skus[].skuAmount` | Number | Mandatory (if `skus` passed) | Unit price of the SKU. | `8000` |
-| `skus[].quantity` | Integer | Mandatory (if `skus` passed) | Quantity of this SKU item. | `1` |
-| `skus[].offerKeys` | Array of Strings | Optional | List of SKU-specific offer keys. | `null` |
-| `skus[].autoApplyOffer` | Boolean | Optional | Set to `true` to auto-apply the best offer on this SKU when no SKU offer key is passed. | `false` |
+The table has 13 rows, so here it is in **HTML format**:
 
+**Mandatory parameters**
+
+<table>
+  <thead>
+    <tr>
+      <th align="left">Parameter</th>
+      <th align="left">Description</th>
+      <th align="left">Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>txnAmount</code></td>
+      <td><code>Number</code> Principal transaction amount that needs to be converted into EMI.</td>
+      <td><code>10000</code></td>
+    </tr>
+  </tbody>
+</table>
+
+**Conditional parameters**
+
+<table>
+  <thead>
+    <tr>
+      <th align="left">Parameter</th>
+      <th align="left">Description</th>
+      <th align="left">Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>skus[].skuId</code></td>
+      <td><code>String</code> Unique SKU identifier. Mandatory if <code>skus</code> is passed.</td>
+      <td><code>"Product1"</code></td>
+    </tr>
+    <tr>
+      <td><code>skus[].skuAmount</code></td>
+      <td><code>Number</code> Unit price of the SKU. Mandatory if <code>skus</code> is passed.</td>
+      <td><code>8000</code></td>
+    </tr>
+    <tr>
+      <td><code>skus[].quantity</code></td>
+      <td><code>Integer</code> Quantity of this SKU item. Mandatory if <code>skus</code> is passed.</td>
+      <td><code>1</code></td>
+    </tr>
+  </tbody>
+</table>
+
+**Optional parameters**
+
+<table>
+  <thead>
+    <tr>
+      <th align="left">Parameter</th>
+      <th align="left">Description</th>
+      <th align="left">Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>additionalCharges</code></td>
+      <td><code>Number</code> Convenience fee or additional charges to collect with the transaction. Defaults to <code>0</code>.</td>
+      <td><code>0</code></td>
+    </tr>
+    <tr>
+      <td><code>offerKeys</code></td>
+      <td><code>Array of Strings</code> List of offer keys for transaction-level discount/cashback offers. Pass <code>null</code> if none.</td>
+      <td><code>["OFFER123"]</code></td>
+    </tr>
+    <tr>
+      <td><code>autoApplyOffer</code></td>
+      <td><code>Boolean</code> Set to <code>true</code> to automatically apply the best available transaction offer when no <code>offerKeys</code> are specified.</td>
+      <td><code>true</code></td>
+    </tr>
+    <tr>
+      <td><code>bankCodes</code></td>
+      <td><code>Array of Strings</code> List of bank codes to filter plans (e.g. <code>["HDFC", "ICICI"]</code>). Pass <code>null</code> to return all eligible banks.</td>
+      <td><code>["HDFCB", "ICICI"]</code></td>
+    </tr>
+    <tr>
+      <td><code>emiCodes</code></td>
+      <td><code>Array of Strings</code> List of specific EMI plan codes to filter (e.g. <code>["EMIH3", "EMIH6"]</code>). Pass <code>null</code> for all tenures.</td>
+      <td><code>["EMIH6"]</code></td>
+    </tr>
+    <tr>
+      <td><code>disableOverrideNceConfig</code></td>
+      <td><code>Boolean</code> When set to <code>true</code>, PayU will not consider No-Cost EMI (NCE) overrides passed via merchant parameters.</td>
+      <td><code>true</code></td>
+    </tr>
+    <tr>
+      <td><code>skus</code></td>
+      <td><code>Array of Objects</code> Product SKU details for SKU-level discount/offer calculations.</td>
+      <td>Array</td>
+    </tr>
+    <tr>
+      <td><code>skus[].offerKeys</code></td>
+      <td><code>Array of Strings</code> List of SKU-specific offer keys.</td>
+      <td><code>null</code></td>
+    </tr>
+    <tr>
+      <td><code>skus[].autoApplyOffer</code></td>
+      <td><code>Boolean</code> Set to <code>true</code> to auto-apply the best offer on this SKU when no SKU offer key is passed.</td>
+      <td><code>false</code></td>
+    </tr>
+  </tbody>
+</table>
 ---
 
 ## Sample Request
