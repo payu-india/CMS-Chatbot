@@ -158,6 +158,14 @@ You can perform the following actions after a button is created:<br />
   </Callout>
 </Accordion>
 
+***
+
+### Duplicate an Invoice
+
+<Accordion title="" icon="fa-info-circle">
+
+</Accordion>
+
 <Accordion title="Cancel an Invoice" icon="far fa-ban">
   Cancelling an invoice marks it as void — the customer can no longer pay it.
 
