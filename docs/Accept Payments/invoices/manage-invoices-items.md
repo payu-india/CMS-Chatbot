@@ -146,13 +146,21 @@ You can perform the following actions:
   To remove an item from your catalog:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and go to **Payment Tools → Invoices → Items**.
-  2. Find the item you want to delete and click **Delete** in the **Actions** column.
-  3. Confirm the deletion in the prompt.
+
+     <Image src="https://files.readme.io/0c73be528be5f1125184abccdad445a78f934b98d19f3deab510312624efa903-image.png" align="center" caption="Access invouce items" border={true} />
+
+  2. Find the item you want to delete and click the delete icon in the **Actions** column.
+
+     <Image src="https://files.readme.io/a243c92fc31cc9ee8b6f6cdea692bd566b1efd96168e4f9f1aa9ae4499c637b2-Screenshot_2026-10-05_at_3.12.12_PM.png" align="center" caption="Delete an item" border={true} />
+
+  3. Click **Yes, Delete** in the pop-up menu.
 
   The item is removed from the catalog and will no longer appear in the **Enter Item Name** drop-down when creating invoices.
 
   <Callout icon="🚧" theme="warning">
-    Deleting an item is permanent. It does not affect invoices that have already been created or sent — those invoices keep their original item details.
+    ### Important!
+
+    Deleting an item is permanent. It does not affect invoices that have already been created or sent.
   </Callout>
 </Accordion>
 
