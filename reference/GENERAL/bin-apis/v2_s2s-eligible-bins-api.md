@@ -30,25 +30,27 @@ HTTP Method: **POST**
 
 <V2_payment_header_params />
 
-| Header | Type | Description |
-| :--- | :--- | :--- |
-| `Content-Type` | String | Must be `application/json`. |
-| `Date` | String | Current GMT timestamp (e.g. `Tue, 17 Jun 2025 06:48:55 GMT`). |
-| `Authorization` | String | Standard PayU HMAC authorization header. |
+
 
 ---
 
 ## Query Parameters
 
-| Parameter | Type | Required | Description | Example |
-| :--- | :--- | :--- | :--- | :--- |
-| `s2s` | String | Optional | Flag activating the streamlined S2S response payload. | `s2s` |
+**Optional parameters**
+
+| Parameter | Description | Example |
+| :--- | :--- | :--- |
+| `s2s` | `String` Flag activating the streamlined S2S response payload. | `s2s` |
 
 ---
 
 ## Request Body Parameters
 
+**Mandatory parameters**
 
+| Parameter | Description | Example |
+| :--- | :--- | :--- |
+| `bin` | `String` The first 6 or 8 digits of the card number (Bank Identification Number). | `512345` |
 
 ---
 
