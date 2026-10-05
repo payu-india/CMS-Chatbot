@@ -97,11 +97,123 @@ None
 ### Request
 
 ```bash
-curl --location 'https://apitest.payu.in/storecard/instrument/v1?userCredentials=sms%3A123' \
+curl --location --request POST '<redacted URL>' \
 --header 'Content-Type: application/json' \
---header 'authorization: hmac username="PRiQvJ", algorithm="sha512", headers="date", signature="30d8f518edda5b0962c35c0057024cabb6e7f19727488cb1874e75652bcea7499811dbf3ddac419c50c2fe56a8e032129bb0d6eaeaa3f971b3c2b5ccbfd12aa3"' \
---header 'date: Fri, 24 Apr 2026 07:05:59 GMT' \
---header 'Cookie: PHPSESSID=krida5voc39gqosfud8tt6n8as'
+--header 'Date: Mon, 05 Oct 2026 08:30:00 GMT' \
+--header 'Authorization: hmac username="merchant_key", algorithm="sha512", headers="date", signature="<SIGNATURE>"' \
+--data-raw '{
+  "userCredential": "sms:user12345",
+  "cardToken": "29850879bf39848ca078727b8e1a95165a41cea1",
+  "amount": 1000.00,
+  "currency_type": "INR",
+  "source": "merchant_web"
+}'
+```
+```python
+import requests
+
+url = "<redacted URL>"
+payload = {
+    "userCredential": "sms:user12345",
+    "cardToken": "29850879bf39848ca078727b8e1a95165a41cea1",
+    "amount": 1000.00,
+    "currency_type": "INR",
+    "source": "merchant_web"
+}
+headers = {
+    "Content-Type": "application/json",
+    "Date": "Mon, 05 Oct 2026 08:30:00 GMT",
+    "Authorization": 'hmac username="merchant_key", algorithm="sha512", headers="date", signature="<SIGNATURE>"'
+}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.json())
+```
+```php
+<?php
+$curl = curl_init();
+
+$payload = json_encode([
+  "userCredential" => "sms:user12345",
+  "cardToken" => "29850879bf39848ca078727b8e1a95165a41cea1",
+  "amount" => 1000.00,
+  "currency_type" => "INR",
+  "source" => "merchant_web"
+]);
+
+curl_setopt_array($curl, [
+  CURLOPT_URL => '<redacted URL>',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_POSTFIELDS => $payload,
+  CURLOPT_HTTPHEADER => [
+    'Content-Type: application/json',
+    'Date: Mon, 05 Oct 2026 08:30:00 GMT',
+    'Authorization: hmac username="merchant_key", algorithm="sha512", headers="date", signature="<SIGNATURE>"'
+  ],
+]);
+
+$response = curl_exec($curl);
+curl_close($curl);
+echo $response;
+```
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class GetCryptogram {
+    public static void main(String[] args) throws Exception {
+        String payload = """
+        {
+          "userCredential": "sms:user12345",
+          "cardToken": "29850879bf39848ca078727b8e1a95165a41cea1",
+          "amount": 1000.00,
+          "currency_type": "INR",
+          "source": "merchant_web"
+        }
+        """;
+
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("<redacted URL>"))
+            .header("Content-Type", "application/json")
+            .header("Date", "Mon, 05 Oct 2026 08:30:00 GMT")
+            .header("Authorization", "hmac username=\"merchant_key\", algorithm=\"sha512\", headers=\"date\", signature=\"<SIGNATURE>\"")
+            .POST(HttpRequest.BodyPublishers.ofString(payload))
+            .build();
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
+}
+```
+```javascript
+const axios = require('axios');
+
+const data = {
+  userCredential: "sms:user12345",
+  cardToken: "29850879bf39848ca078727b8e1a95165a41cea1",
+  amount: 1000.00,
+  currency_type: "INR",
+  source: "merchant_web"
+};
+
+const config = {
+  method: 'post',
+  url: '<redacted URL>',
+  headers: { 
+    'Content-Type': 'application/json',
+    'Date': 'Mon, 05 Oct 2026 08:30:00 GMT',
+    'Authorization': 'hmac username="merchant_key", algorithm="sha512", headers="date", signature="<SIGNATURE>"'
+  },
+  data: data
+};
+
+axios(config)
+  .then(response => console.log(JSON.stringify(response.data)))
+  .catch(error => console.error(error));
 ```
 
 ### Response
