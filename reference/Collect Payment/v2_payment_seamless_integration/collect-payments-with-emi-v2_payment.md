@@ -454,8 +454,6 @@ fetch(url, {
 
 ## Next Steps
 
-## Next Steps
-
 1. **Redirect for Bank 3DS Authentication**:
    - Redirect the cardholder to the issuing bank's 3DS page via `result.paymentUrl` to authenticate the EMI transaction.
 2. **Display Loan & Repayment Summary**:
