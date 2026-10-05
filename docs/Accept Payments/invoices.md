@@ -31,16 +31,16 @@ next:
   fontWeight="bold"
 />
 
-PayU Invoices let you create and send professional billing documents to your customers — with GST calculations built in, line items for each product or service, and a pay-now button included.<br />
+PayU Invoices let you create and send professional billing documents to your customers including GST calculations built in, line items for each product or service, and a pay-now button included.<br />
 
 You can use Invoices to:<br />
 
 * Create itemized invoices with multiple products or services
-* Add GST automatically — including inter-state and intra-state tax, cess, and HSN/SAC codes
+* Add GST automatically including inter-state and intra-state tax, cess, and HSN/SAC codes
 * Set a due date so customers know when payment is expected
 * Enable partial payments so customers can pay in installments
 * Send invoices directly to customers by email or SMS from the Dashboard
-* Track which invoices are paid, pending, or overdue — all in one place
+* Track which invoices are paid, pending, or overdue in one place
 * Download invoice and transaction records as CSV or Excel
 
 <HTMLBlock>{`
@@ -81,18 +81,18 @@ You can use Invoices to:<br />
 
 ## Is Invoicing Right for Me?
 
-An Invoice is a good choice if:<br />
+An Invoice is a good choice if you:<br />
 
-* **You bill customers for services or multiple products** and need an itemized breakdown.
-* **You need GST-compliant invoices** for your business records or to share with customers.
-* **You want to send formal payment requests** with your invoice number, due date, and line items.
-* **You run a service business** — consulting, freelancing, events, logistics, or any work-based billing.<br />
+* **Bill customers for services or multiple products** and need an itemized breakdown.
+* **Need GST-compliant invoices** for your business records or to share with customers.
+* **Want to send formal payment requests** with your invoice number, due date, and line items.
+* **Run a service business** such as consulting, freelancing, events, logistics, or any work-based billing.<br />
 
-Consider another PayU solution if:<br />
+Consider another PayU solution if you:<br />
 
-* You need a simple payment request without line items → <Anchor target="_blank" href="doc:payment-links-overview">**Payment Links**</Anchor>
-* You want a buy or donate button on your website → <Anchor target="_blank" href="doc:payment-button-overview">**Payment Buttons**</Anchor>
-* You need to collect payments from many customers at once → <Anchor target="_blank" href="doc:payment-links-overview">**Bulk Payment Links**</Anchor>
+* Need a simple payment request without line items → <Anchor target="_blank" href="https://docs.payu.in/docs/payment-links">**Payment Links**</Anchor>
+* Want a buy or donate button on your website → <Anchor target="_blank" href="https://docs.payu.in/docs/payment-button">**Payment Buttons**</Anchor>
+* Want customers to pay on your website → PayU Hosted Checkout
 * You need a fully custom checkout experience → <Anchor target="_blank" href="doc:merchant-hosted-checkout">**Merchant Hosted Checkout**</Anchor>
 
 <Callout icon="far fa-face-thinking" theme="warn">
