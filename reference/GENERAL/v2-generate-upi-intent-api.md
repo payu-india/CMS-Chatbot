@@ -148,7 +148,6 @@ public class PayURequest {
     }
 }
 ```
-
 ```javascript
 const url = "https://info.payu.in/v1/intent";
 
