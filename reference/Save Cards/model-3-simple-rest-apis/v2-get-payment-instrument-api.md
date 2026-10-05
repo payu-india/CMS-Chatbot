@@ -5,14 +5,6 @@ hidden: false
 metadata:
   robots: index
 ---
----
-title: Get Payment Instrument API
-deprecated: false
-hidden: false
-metadata:
-  robots: index
----
-
 The v2 **Get Payment Instrument** API allows merchants to fetch all saved cards for a specific user. This API returns comprehensive card details including tokenized information, expiry status, and network tokens for secure transactions.
 
 HTTP Method:  **GET**
@@ -26,74 +18,25 @@ HTTP Method:  **GET**
 
 ## Request header
 
-### Authorization header
-
 <HeaderAuthentication />
 
 ### Header parameters
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
-
-      <th>
-        Description
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        date
-        `mandatory`
-      </td>
-
-      <td>
-        The current date and time. For example, format of the date is Wed, 28 Jun 2023 11:25:19 GMT.
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| Parameter             | Description                                                                                  |
+| --------------------- | -------------------------------------------------------------------------------------------- |
+| date<br />`mandatory` | The current date and time. For example, format of the date is Wed, 28 Jun 2023 11:25:19 GMT. |
 
 ### Query parameters
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
+| Parameter       | Description                                                             |
+| --------------- | ----------------------------------------------------------------------- |
+| userCredentials | `String` Encrypted user credentials, typically `<username>:<password>`. |
 
-      <th>
-        Description
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        userCredentials
-      </td>
-
-      <td>
-        `String` Encrypted user credentials, typically `<username>:<password>`.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-## Request body
+## Request Body
 
 None
 
-## Sample Request and Response
-
-### Request
+## Sample Request
 
 ```bash
 curl --location --request POST '<redacted URL>' \
@@ -215,7 +158,7 @@ axios(config)
   .catch(error => console.error(error));
 ```
 
-### Response
+## Sample Response
 
 ```json
 {
@@ -295,13 +238,13 @@ Each entry under `result.user_cards` is keyed by the card's `cardToken` and cont
 | tokenBin         | Bank Identification Number for the network token.     | 476136           |
 | tokenExpiryMonth | Expiry month of the network token.                    | 12               |
 | tokenExpiryYear  | Expiry year of the network token.                     | 2026             |
-| isExpired        | Boolean flag indicating whether the token is expired. | false           |
+| isExpired        | Boolean flag indicating whether the token is expired. | false            |
 
 ## Next Steps
 
 1. **Render Saved Instruments on Checkout UI**:
    - Parse `user_cards` and `user_instruments` to display masked cards and linked wallets on your checkout payment screen.
 2. **Obtain Cryptogram (For Network Tokens)**:
-   - For PCI-DSS compliant merchants using network tokens, call the **[Get Payment Details API](ref:v2-get-payment-details-api)** to obtain the transaction-specific cryptogram (`tavv`).
+   - For PCI-DSS compliant merchants using network tokens, call the [Get Payment Details API](ref:v2-get-payment-details-api) to obtain the transaction-specific cryptogram (`tavv`).
 3. **Execute Payment**:
-   - Charge the stored card using the **[Process Transaction with a Saved Card API](ref:process-transaction-with-a-saved-card)**.
+   - Charge the stored card using the [Process Transaction with a Saved Card API](ref:process-transaction-with-a-saved-card).
