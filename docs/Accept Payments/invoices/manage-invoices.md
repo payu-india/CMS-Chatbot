@@ -73,7 +73,7 @@ The list shows all your invoices for the past 7 days by default, with the follow
 
 ## What Can I Do With an Invoice?
 
-You can perform the following actions after a button is created:<br />
+You can perform the following actions after an invoice is created:<br />
 
 - View invoice Details
 - Edit an invoice
@@ -81,7 +81,6 @@ You can perform the following actions after a button is created:<br />
 - Duplicate an invoive
 - Deactivate an invoice
 - Reactivate an invoice
--
 
 ### View Invoice Details
 
@@ -89,6 +88,7 @@ You can perform the following actions after a button is created:<br />
   To view the full details of an invoice:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Invoices** under **Payment Tools**.
+
 
      <Image src="https://files.readme.io/68e34abad2b271fdea9cf5e50ae9641a1f996f642786e88b0412403483f227c9-image.png" align="center" caption="Access Invoices" border={true} />
 
@@ -98,16 +98,21 @@ You can perform the following actions after a button is created:<br />
   The invoice detail page displays:
 
   - Invoice number, title, issue date, and due date
+
   - Customer name and contact details
+
   - Itemized breakdown with quantities, rates, and GST
+
   - Total amount, GST breakdown, and amount paid (if partial payments were made)
+
 
     <Image src="https://files.readme.io/a58aa6ab445bf626540bc72014a28f2ca8c0fac0274ff63230f1dc4699c6d4bb-Screenshot_2026-10-05_at_11.58.43_AM.png" align="center" caption="Invoice details" border={true} />
 
+
   - Transaction details
 
-    <Image src="https://files.readme.io/4c70ecb593e3cf08f56e2ed2d2565d348eb3d7bb4d8d466de20904976626e1b4-Screenshot_2026-10-05_at_12.00.55_PM.png" align="center" caption="Transaction details" border={true} />
 
+    <Image src="https://files.readme.io/4c70ecb593e3cf08f56e2ed2d2565d348eb3d7bb4d8d466de20904976626e1b4-Screenshot_2026-10-05_at_12.00.55_PM.png" align="center" caption="Transaction details" border={true} />
 
 </Accordion>
 
@@ -121,13 +126,17 @@ You can perform the following actions after a button is created:<br />
 
         <Image src="https://files.readme.io/68e34abad2b271fdea9cf5e50ae9641a1f996f642786e88b0412403483f227c9-image.png" align="center" caption="Access Invoices" border={true} />
 
+
   2. Click the edit icon against the required invoice you want to resend.
 
+
      <Image src="https://files.readme.io/6d4dd564b8ec47078d78a226479264b617c5b0327f9f3349529ab92760c3e32e-Screenshot_2026-10-05_at_12.20.34_PM.png" align="center" caption="Edit an invoice" border={true} />
+
 
   3. You can only add or update these information of an invoice:
      - **Due Date:&#x20;**&#x43;hange the due date if required
      - Add **Notes&#x20;**&#x61;nd **TERMS AND CONDITIONS&#x20;**&#x64;isplayed at the bottom of the page. You should click **Save&#x20;**&#x64;isplayed next to the respoective sections headings to save the changes.
+
 
        <Image src="https://files.readme.io/23dfa5ee4dde79210d3f0e30e76a199aae38bc3b52700797435738f986b51d38-Screenshot_2026-10-05_at_12.27.05_PM.png" align="center" caption="Add Notes and Terms and Conditions" border={true} />
 
@@ -141,14 +150,19 @@ You can perform the following actions after a button is created:<br />
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Invoices** under **Payment Tools**.
 
      ![](https://files.readme.io/b921c38c7c7ac7b29a674b25d3abf60daf8bfd0db5fecaba632abfde9e0cd46e-image.png)
+
   2. Click the share icon against the required invoice you want to resend.
+
 
      <Image src="https://files.readme.io/be99b1f5a5970c3f58a90bd4aa96ed96bf7a25317d41494a34dd2b4f09450510-Screenshot_2026-10-05_at_12.09.32_PM.png" align="center" caption="Share an invoice" border={true} />
 
+
   3. Share the invoice using any of the following options:
+
      - Copy the link and share it manually
      - Share the link via WhatsApp or Facebook
      - Phone or email by entering either of the details and clicking **Send Invoice**
+
 
      <Image src="https://files.readme.io/6cf82fadbc0731416a7bed17c3e41920e99f4344ab3cec6435663677ce9d5b5f-Screenshot_2026-10-05_at_12.17.07_PM.png" align="center" caption="3 ways to resend an invoice" border={true} />
 
@@ -172,11 +186,15 @@ You can perform the following actions after a button is created:<br />
 
 
   2. Click the invoice you want to duplicate.
+
   3. Click **Duplicate Invoice&#x20;**&#x64;isplayed on the top-right of the page.
+
 
      <Image src="https://files.readme.io/6fc6afe245bb5142e58217737eba749a0281579f61ffabe51ef260d99c6eaa06-Screenshot_2026-10-05_at_1.31.43_PM.png" align="center" caption="Duplicate an invoice" border={true} />
 
+
   4. Enter the details and change the settings as required.
+
   5. Click either of the following:
      1. **Save&#x20;**&#x74;o save the invoice
      2. **Send Invoice&#x20;**&#x74;o send the invoice using the available options
@@ -193,11 +211,15 @@ You can perform the following actions after a button is created:<br />
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Invoices** under **Payment Tools**.
 
+
      <Image src="https://files.readme.io/062dfc9778dc06bf9f02a84c4dd4388a14c8596e9341a21a263f40d603416ff6-image.png" align="center" caption="Access invoices" border={true} />
+
 
   2. Click the deactivate icon against the required invoice.
 
+
      <Image src="https://files.readme.io/a564b37e68dc153f44991c77cc23d9b36090f9ff5014760e2ddd8a8a90402069-Screenshot_2026-10-05_at_1.40.33_PM.png" align="center" caption="Deactivate an invoice" border={true} />
+
 
   3. Click **Yes, Deactivate** on the **Are you sure?&#x20;**&#x63;onfirmation pop-up menu.
 
@@ -211,11 +233,15 @@ You can perform the following actions after a button is created:<br />
 <Accordion title="Steps to Reactivate an Invoice" icon="fad fa-repeat">
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Invoices** under **Payment Tools**.
 
+
      <Image src="https://files.readme.io/629adf8c5db24dca0a4c78b619ec1ccbe86c4154515cfbdbca7bf7c9f2d98d7d-image.png" align="center" caption="Access Invoices" border={true} />
+
 
   2. Find the deactivated invoice you want to activate again and click the activate icon.
 
+
      <Image src="https://files.readme.io/f4be6ca2aad6a0a76e4336216b17e80708cb4b56fd201d1abf4261d901d9a1d7-Screenshot_2026-10-05_at_1.47.40_PM.png" align="center" caption="Reactivate an invoice" border={true} />
+
 
   3. Click **Yes, Activate&#x20;**&#x6F;n the **Are you sure?&#x20;**&#x63;onfirmation pop-up menu.
 
@@ -239,6 +265,7 @@ You can search for an invoice with these options:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Invoices** under **Payment Tools**.
 
+
      <Image src="https://files.readme.io/40e3b71d01f845e1c95f7ddf0aa7a449270abf0371502cfcb163c23fb5d55384-image.png" align="center" caption="Access invoices" border={true} />
 
 
@@ -253,6 +280,7 @@ You can search for an invoice with these options:
 
   3. Click **Apply** to filter the list.
 
+
      <Image src="https://files.readme.io/70ea76ae12ebd5bfec0e865064274a8b476c8855d17fd46b160ff79389e80193-Screenshot_2026-10-05_at_2.03.47_PM.png" align="center" caption="Filter the list of invoices" border={true} />
 
 </Accordion>
@@ -261,6 +289,7 @@ You can search for an invoice with these options:
   To filter invoices by when they were created:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Invoices** under **Payment Tools**.
+
 
      <Image src="https://files.readme.io/e1922e29e0fd851c91e5770bce06ae81f88e55ca68988c95cd95d4c209d51312-image.png" align="center" caption="Access invoices" border={true} />
 
@@ -287,6 +316,7 @@ You can search for an invoice with these options:
   To download invoice and transaction records:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Invoices** under **Payment Tools**.
+
 
      <Image src="https://files.readme.io/e0fd83fdca4f97d9e960e46702530725d354ed5097739c3a6512e8fbd054f83c-image.png" align="center" caption="Access invoices" border={true} />
 
