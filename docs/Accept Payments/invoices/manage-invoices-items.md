@@ -32,15 +32,6 @@ next:
       title: Manage Invoices
       type: basic
 ---
-<Banner
-  isInline={true}
-  message="Integration effort: No code or website developer required"
-  color="#15C614"
-  textColor="#ffffff"
-  fontSize="14px"
-  fontWeight="bold"
-/>
-
 Your item catalog is a reusable library of the products and services you bill for. Add items here once — with their rates and tax details — and you can quickly select them when creating any invoice.
 
 ***
