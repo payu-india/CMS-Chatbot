@@ -143,7 +143,7 @@ Create a professional, GST-compliant invoice in the PayU Dashboard and send it d
 </Accordion>
 
 <Accordion title="4. Add line items" icon="far fa-list-check">
-  1. Slect items from the Enter Item Name drop-down or click **Create New Item** to add the first product or service to the invoice.
+  1. Slect items from the **Enter Item Name** drop-down or click **Create New Item** to add the first product or service to the invoice.
 
 
   <Image src="https://files.readme.io/3daf144fb955f8a78881701fc5da7331a02f3d8a3ceba2320c1e99ef698c198d-Screenshot_2025-06-02_at_7.47.23_PM.png" border={true} />
@@ -183,9 +183,11 @@ Create a professional, GST-compliant invoice in the PayU Dashboard and send it d
     </Tab>
   </Tabs>
 
-  The item's rate is filled in automatically. You can adjust the quantity if needed — the line total updates automatically.
+  2. The item's rate is filled in automatically. You can adjust the quantity if needed. The total **Amount** updates automatically.
 
-  2. Click **Add Item** again to add more items. You can add as many line items as needed.
+     <Image src="https://files.readme.io/2371fd7b8f51d252e05f5f9ffe3feff781f3a2e91f1383dd90117b384b9f582d-Screenshot_2026-10-05_at_10.46.29_AM.png" align="center" caption="Line Items" border={true} />
+
+  3. Click **Add Item** again to add more items. You can add as many line items as required.
 </Accordion>
 
 <Accordion title="5. Configure settings (optional)" icon="far fa-sliders">
