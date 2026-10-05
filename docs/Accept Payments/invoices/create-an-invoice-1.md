@@ -96,6 +96,8 @@ Create a professional, GST-compliant invoice in the PayU Dashboard and send it d
   Click the **Billed To** drop-down and select the customer this invoice is for.
 
   <Callout icon="📘" theme="info">
+    ### **Tips:**
+
     If the customer is not in the list yet, you can add them as a new customer from the drop-down. Enter their name, email, and mobile number.
   </Callout>
 </Accordion>
