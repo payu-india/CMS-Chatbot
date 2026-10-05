@@ -210,7 +210,7 @@ After generating the UPI intent URI (`intentURI`) and QR code link (`qrUrl`), in
 2. **Set Up Real-time Payment Status Polling**:
    Because UPI Intent transactions are completed asynchronously on the customer's UPI app:
    - Implement client-side polling or a WebSocket listener against your server to check transaction completion.
-   - Query transaction status server-to-server using the **[Verify Payment API](./v2_verify_payment_api.md)** or check recent activity via the **[Get Transaction Details API](./v2-get-transaction-details-api.md)**.
+   - Query transaction status server-to-server using the [Verify Payment API](ref:v2_verify_payment_api) or check recent activity via the [Get Transaction Details API](ref:/v2-get-transaction-details-api).
 
 3. **Handle Intent Expiry & Timeouts**:
    - If the payment is not completed within the designated `expiryTime` window, expire the QR code/intent link on your frontend.
