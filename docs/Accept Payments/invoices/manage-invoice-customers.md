@@ -81,10 +81,6 @@ You can perfrom the following actions:
 
   The **Add Customer** panel opens.
 
-
-  <Image align="center" caption="Add Customer — basic details" />
-
-
   3. Fill in the customer's basic details:
 
   | Field              | What to enter                                                                 |
