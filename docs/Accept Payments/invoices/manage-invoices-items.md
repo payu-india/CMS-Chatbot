@@ -32,7 +32,7 @@ next:
       title: Manage Invoices
       type: basic
 ---
-Your item catalog is a reusable library of the products and services you bill for. Add items here once with their rates and tax details and you can quickly select them when creating any invoice.
+Your item catalog is a reusable library of the products and services you bill for in an <Anchor target="_blank" href="https://docs.payu.in/docs/invoices">invoice</Anchor>. Add items here once with their rates and tax details and you can quickly select them when creating any invoice.
 
 ***
 
@@ -63,7 +63,9 @@ You can perform the following actions:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and go to **Payment Tools → Invoices → Items**.
 
+
      <Image src="https://files.readme.io/94dfa65d0a446791a15b16e521d968d5ffe489bd2a57fb8ee68836ae4e0eafd8-Screenshot_2026-10-05_at_2.47.50_PM.png" align="center" caption="Access invoice items" border={true} />
+
 
   2. Click **New Item** at the top-right corner.
 
@@ -116,7 +118,9 @@ You can perform the following actions:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and go to **Payment Tools → Invoices → Items**.
 
+
      <Image src="https://files.readme.io/a2ea6afb2fdf3c21f19368281176f8ab2ed3b9b973b7e878f6b5eea8c677e804-image.png" align="center" caption="Access invoice items" border={true} />
+
 
   2. Find the item you want to update and click the edit icon in the **Actions** column.
 
@@ -132,8 +136,8 @@ You can perform the following actions:
   <Image src="https://files.readme.io/353b75654a9e586d4380cb15bc660d71049bb62f1c7a0edea839094937dfadc4-Screenshot_2025-06-02_at_7.54.18_PM.png" border={true} />
 
 
-  3. Click **Update Item** to go to the **Tax Details** section and update the tax settings if required.
-  4. Click **Save** to save the changes.
+  4. Click **Update Item** to go to the **Tax Details** section and update the tax settings if required.
+  5. Click **Save** to save the changes.
 
   <Callout icon="📘" theme="info">
     ### **Tips:**
@@ -147,11 +151,15 @@ You can perform the following actions:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and go to **Payment Tools → Invoices → Items**.
 
+
      <Image src="https://files.readme.io/0c73be528be5f1125184abccdad445a78f934b98d19f3deab510312624efa903-image.png" align="center" caption="Access invouce items" border={true} />
+
 
   2. Find the item you want to delete and click the delete icon in the **Actions** column.
 
+
      <Image src="https://files.readme.io/a243c92fc31cc9ee8b6f6cdea692bd566b1efd96168e4f9f1aa9ae4499c637b2-Screenshot_2026-10-05_at_3.12.12_PM.png" align="center" caption="Delete an item" border={true} />
+
 
   3. Click **Yes, Delete** in the pop-up menu.
 
