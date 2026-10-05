@@ -395,11 +395,10 @@ Any of the following response is displayed when the refund request is rejected:
 | 81 | 270         | FAILURE - Transaction not eligible for Instant Refund                                                        |
 | 82 | 132         | Error - wallet refunds are not allowed for this request                                                      |
 
-
+```
 ## Next Steps
 
 **Related APIs:**
 - [Verify Payment](ref:v2_verify_payment_api)
 - [Transaction Details](ref:v2-get-transaction-details-api)
 - [Refund](ref:v2-refund-transaction-api)
-```
