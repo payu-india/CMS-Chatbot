@@ -69,13 +69,13 @@ Something not working after creating and sending your <Anchor target="_blank" hr
 <Accordion title="Customer Clicks Pay but Nothing Loads" icon="far fa-rectangle-xmark">
   Ask your customer to try the following:
 
-  1. **Check their internet connection.** A poor connection can prevent PayU's payment page from loading.
+  1. **Check the internet connection:&#x20;**&#x41; poor connection can prevent PayU's payment page from loading.
 
-  2. **Try a different browser.** Some older browsers or those with strict security settings may block the payment page. Ask them to try Chrome, Firefox, or Safari with extensions turned off.
+  2. **Try a different browser:&#x20;**&#x53;ome older browsers or those with strict security settings may block the payment page. Ask them to try Chrome, Firefox, or Safari with extensions turned off.
 
-  3. **Check if the invoice link has expired.** If the invoice is past its due date, the pay button may no longer be active. Check the invoice status in your Dashboard. If it shows **Overdue**, contact <Anchor target="_blank" href="https://help.payu.in/query">PayU support</Anchor> to check if payment can still be accepted.
+  3. **Check if the invoice link has expired:&#x20;**&#x49;f the invoice is past its due date, the pay button may no longer be active. Check the invoice status in your Dashboard. If it shows **Overdue**, contact <Anchor target="_blank" href="https://help.payu.in/raise-ticket">PayU support</Anchor> to check if payment can still be accepted.
 
-  4. **Check if the invoice was cancelled.** A **Cancelled** invoice cannot be paid. Create a new invoice if needed.
+  4. **Check if the invoice was deactivated:&#x20;**&#x41; **Deactivated** invoice cannot be paid. You can <Anchor target="_blank" href="https://docs.payu.in/docs/manage-invoices#reactivate-an-invoice">reactivate</Anchor> the same invoice to accept payments.
 </Accordion>
 
 ***
