@@ -81,23 +81,30 @@ You can perform the following actions after a button is created:<br />
 ### View Invoice Details
 
 <Accordion title="Steps to View Invoice Details" icon="far fa-rectangle-list">
-  To see the full details of an invoice:
+  To view the full details of an invoice:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Invoices** under **Payment Tools**.
 
+     <Image src="https://files.readme.io/68e34abad2b271fdea9cf5e50ae9641a1f996f642786e88b0412403483f227c9-image.png" align="center" caption="Access Invoices" border={true} />
 
-  <Image src="https://files.readme.io/38614931076cc05791bfba99a8241cc8ee9bb5bfe7d3a5ebc49c06704cf1d674-Screenshot_2025-06-02_at_7.31.48_PM.png" align="center" caption="Invoices list" border={true} />
 
+  2) Click the invoice you want to view.
 
-  2. Click the invoice you want to view.
-
-  The invoice detail page shows:
+  The invoice detail page displays:
 
   - Invoice number, title, issue date, and due date
   - Customer name and contact details
   - Itemized breakdown with quantities, rates, and GST
   - Total amount, GST breakdown, and amount paid (if partial payments were made)
-  - Current status and payment history
+
+    <Image src="https://files.readme.io/a58aa6ab445bf626540bc72014a28f2ca8c0fac0274ff63230f1dc4699c6d4bb-Screenshot_2026-10-05_at_11.58.43_AM.png" align="center" caption="Invoice details" border={true} />
+
+  - Transaction details
+
+    <Image src="https://files.readme.io/4c70ecb593e3cf08f56e2ed2d2565d348eb3d7bb4d8d466de20904976626e1b4-Screenshot_2026-10-05_at_12.00.55_PM.png" align="center" caption="Transaction details" border={true} />
+
+    <br />
+
 </Accordion>
 
 <Accordion title="Resend an Invoice" icon="far fa-paper-plane">
