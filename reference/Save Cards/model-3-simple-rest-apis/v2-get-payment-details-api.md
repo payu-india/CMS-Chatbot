@@ -18,7 +18,7 @@ The **Get Payment Details API** allows merchants to fetch tokenized card payment
 
 ## Headers
 
-<br />
+<V2_payment_header_params />
 
 ***
 
@@ -42,6 +42,7 @@ The table has 5 rows, so here it is in **Markdown format**:
 | `source`  | `String` Channel identifier (e.g. `merchant_web`, `merchant_app`). |
 
 ## Sample Request
+
 ```curl
 curl --location --request POST '<redacted URL>' \
 --header 'Content-Type: application/json' \
@@ -161,6 +162,7 @@ axios(config)
   .then(response => console.log(JSON.stringify(response.data)))
   .catch(error => console.error(error));
 ```
+
 ***
 
 ## Response Parameters
@@ -209,7 +211,6 @@ axios(config)
   "msg": "Failed to fetch cryptogram from card network"
 }
 ```
-
 
 ## Next Steps
 
