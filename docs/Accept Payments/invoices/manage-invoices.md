@@ -129,7 +129,6 @@ You can perform the following actions after a button is created:<br />
 
        <Image src="https://files.readme.io/23dfa5ee4dde79210d3f0e30e76a199aae38bc3b52700797435738f986b51d38-Screenshot_2026-10-05_at_12.27.05_PM.png" align="center" caption="Add Notes and Terms and Conditions" border={true} />
 
-  4.
 </Accordion>
 
 ### Resend an Invoice
