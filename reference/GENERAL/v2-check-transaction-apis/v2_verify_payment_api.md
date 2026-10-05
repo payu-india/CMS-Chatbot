@@ -10,19 +10,7 @@ metadata:
 next:
   description: ''
 ---
----
-title: Verify Payment API
-excerpt: ''
-deprecated: false
-hidden: false
-metadata:
-  title: ''
-  description: ''
-  robots: index
-next:
-  description: ''
----
-To know the status of the payment, you need to integrate the\*\* Verify Payment\*\* API as below. You need to post the **txnId** sent by the **v2/payments** API in the **txnId** parameter.
+To know the status of the payment, you need to integrate the **Verify Payment** API as below. You need to post the **txnId** sent by the **v2/payments** API in the **txnId** parameter.
 
 HTTP Method: **POST**
 
@@ -34,10 +22,13 @@ HTTP Method: **POST**
 | Production Environment | [https://info.payu.in/v3/transaction](https://info.payu.in/v3/transaction) |
 
 ## Request parameters
+
 ### Request header
+
 <V2_payment_header_params />
 
 ### Body parameters
+
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -65,6 +56,7 @@ HTTP Method: **POST**
 `}</HTMLBlock>
 
 ## Sample request
+
 ```
 curl --location 'https://test.payu.in/v3/transaction' \
 --header 'Content-Type: application/json' \
@@ -215,6 +207,7 @@ echo "Response: " . $response . "\n";
 ```
 
 ## Response parameters
+
 The fields in the result parameter JSON are described in the following table:
 
 | Field               | Description                                                                                                                          | Example                      |
@@ -228,8 +221,8 @@ The fields in the result parameter JSON are described in the following table:
 | additionalCharges   | Additional charges, if any, applied to the transaction amount.                                                                       | 0.00                         |
 | discount            | Any discount amount applied to the transaction.                                                                                      | 0.00                         |
 | netDebitAmount      | Total amount debited from the payer's account after additional charges and discounts.                                                | 100.00                       |
-| productInfo         | A brief description of the product or service for which the payment was being made.                                                  | example_product                |
-| firstName           | The payer’s first name involved in the transaction.                                                                                  | Example Payer                         |
+| productInfo         | A brief description of the product or service for which the payment was being made.                                                  | example_product              |
+| firstName           | The payer’s first name involved in the transaction.                                                                                  | Example Payer                |
 | bankcode            | The code of the bank used for the transaction.                                                                                       | AMEX                         |
 | nameOnCard          | Cardholder's name (null if the value is not captured).                                                                               | (null)                       |
 | cardNo              | Masked card number for enhanced security.                                                                                            | XXXXXXXXXXXX2001             |
@@ -254,7 +247,9 @@ The fields in the result parameter JSON are described in the following table:
 | threeDSVersion      | Version of the 3D Secure protocol used for securing the transaction.                                                                 | 2.2.0                        |
 
 ## Sample response
+
 ### Success scenario
+
 Formatted JSON Response:
 
 If successfully fetched:
@@ -314,6 +309,7 @@ If successfully fetched:
 ```
 
 ### Failure scenarios
+
 * Transaction not found
 
 ```plaintext
@@ -378,18 +374,23 @@ If successfully fetched:
 
 ## Error Codes
 
-| Code | HTTP Status | Description | Resolution |
-| ---- | ----------- | ----------- | ---------- |
-| `INVALID_AMOUNT` | 400 | Invalid amount value | Check amount format and value |
-| `INVALID_CURRENCY` | 400 | Unsupported currency | Use supported currency codes |
-| `AUTHENTICATION_FAILED` | 401 | Invalid token | Verify authentication credentials |
-| `DUPLICATE_REFERENCE` | 409 | Reference ID already used | Use unique reference ID |
-| `PAYMENT_DECLINED` | 422 | Payment declined | Try different payment method |
+| Code                    | HTTP Status | Description               | Resolution                        |
+| ----------------------- | ----------- | ------------------------- | --------------------------------- |
+| `INVALID_AMOUNT`        | 400         | Invalid amount value      | Check amount format and value     |
+| `INVALID_CURRENCY`      | 400         | Unsupported currency      | Use supported currency codes      |
+| `AUTHENTICATION_FAILED` | 401         | Invalid token             | Verify authentication credentials |
+| `DUPLICATE_REFERENCE`   | 409         | Reference ID already used | Use unique reference ID           |
+| `PAYMENT_DECLINED`      | 422         | Payment declined          | Try different payment method      |
 
 > For complete error code list, see [Error Codes Reference](ref:error-codes).
 
 ## Next Steps
 
-1. Update order status based on verification
-2. Process [Refund](ref:v2-refund-transaction-api) if needed
-3. Fetch [Transaction Details](ref:v2-get-transaction-details-api)
+1. **Order Fulfillment**:
+   - If `status` is `success`, record the `mihpayId` and `bankReferenceNumber` in your order database and mark the order as **Paid**.
+2. **Handle Pending Transactions**:
+   - If `status` is `pending`, schedule a background retry queue (e.g. check after 5 mins, 15 mins, and 1 hour) before marking the transaction as failed.
+3. **Handle Failed Transactions**:
+   - If `status` is `failure`, inspect `errorCode` and `errorMessage` to display user-friendly troubleshooting guidance or allow the customer to retry payment.
+4. **Reconciliation**:
+   - Match the returned `amount` and `netDebitAmount` against your ledger and bank settlement sheets.
