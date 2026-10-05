@@ -13,36 +13,28 @@ metadata:
 next:
   description: ''
 ---
----
-title: Complete Card Details for Guest Checkout
-description: Process online card payments using plain card credentials for guest shoppers.
----
-
-# Complete Card Details for Guest Checkout
-
-The **Collect Payment API (`POST /v2/payments`)** allows PCI-DSS compliant merchants to process card transactions for guest shoppers by submitting raw card attributes (Primary Account Number, expiry date, cardholder name, and CVV).
+The **Collect Payment API (**`POST /v2/payments`**)** allows PCI-DSS compliant merchants to process card transactions for guest shoppers by submitting raw card attributes (Primary Account Number, expiry date, cardholder name, and CVV).
 
 ## Endpoint & Environments
 
-| Environment | Method | URL |
-| :--- | :--- | :--- |
-| **Test** | `POST` | `<redacted URL>` |
+| Environment    | Method | URL              |
+| :------------- | :----- | :--------------- |
+| **Test**       | `POST` | `<redacted URL>` |
 | **Production** | `POST` | `<redacted URL>` |
 
----
+***
 
 ## Headers
 
-| Header | Type | Required | Description |
-| :--- | :--- | :--- | :--- |
-| `Content-Type` | String | Mandatory | Must be `application/json`. |
-| `Date` | String | Mandatory | Current UTC timestamp formatted as HTTP Date (e.g. `Mon, 05 Oct 2026 08:30:00 GMT`). |
-| `Authorization` | String | Mandatory | PayU HMAC signature header:<br>`hmac username="<YOUR_MERCHANT_KEY>", algorithm="sha512", headers="date", signature="<SIGNATURE>"` |
+| Header          | Type   | Required  | Description                                                                                                                         |
+| :-------------- | :----- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------- |
+| `Content-Type`  | String | Mandatory | Must be `application/json`.                                                                                                         |
+| `Date`          | String | Mandatory | Current UTC timestamp formatted as HTTP Date (e.g. `Mon, 05 Oct 2026 08:30:00 GMT`).                                                |
+| `Authorization` | String | Mandatory | PayU HMAC signature header:<br />`hmac username="<YOUR_MERCHANT_KEY>", algorithm="sha512", headers="date", signature="<SIGNATURE>"` |
 
----
+***
 
 ## Request Parameters
-
 
 The table has 8 rows, so here it is in **HTML format**:
 
@@ -105,6 +97,7 @@ The table has 8 rows, so here it is in **HTML format**:
 </table>
 
 ### `paymentMethod` Object (Plain Card Details)
+
 The table has 6 rows, so here it is in **HTML format**:
 
 **Mandatory parameters**
@@ -144,8 +137,8 @@ The table has 6 rows, so here it is in **HTML format**:
   </tbody>
 </table>
 
-
 ### Sample Request
+
 ```bash
 curl --location --request POST '<redacted URL>' \
 --header 'Content-Type: application/json' \
@@ -434,20 +427,20 @@ axios(config)
   .catch(error => console.error(error));
 ```
 
----
+***
 
 ## Response Parameters
 
-| Parameter | Type | Description |
-| :--- | :--- | :--- |
-| **status** | String | Payment transaction status: `PENDING`, `SUCCESS`, or `FAILURE`. |
-| **message** | String | Transaction status message. |
-| **result** | Object | Execution metadata. |
-| **result.paymentId** | String | Unique PayU transaction identifier (`mihpayId`). |
-| **result.txnId** | String | Merchant transaction identifier. |
-| **result.authAction** | Object | 3DS redirection instructions for cardholder challenge. |
-| **result.authAction.type** | String | Redirection method (`REDIRECT`). |
-| **result.authAction.url** | String | 3DS Access Control Server (ACS) redirection URL. |
+| Parameter                  | Type   | Description                                                     |
+| :------------------------- | :----- | :-------------------------------------------------------------- |
+| **status**                 | String | Payment transaction status: `PENDING`, `SUCCESS`, or `FAILURE`. |
+| **message**                | String | Transaction status message.                                     |
+| **result**                 | Object | Execution metadata.                                             |
+| **result.paymentId**       | String | Unique PayU transaction identifier (`mihpayId`).                |
+| **result.txnId**           | String | Merchant transaction identifier.                                |
+| **result.authAction**      | Object | 3DS redirection instructions for cardholder challenge.          |
+| **result.authAction.type** | String | Redirection method (`REDIRECT`).                                |
+| **result.authAction.url**  | String | 3DS Access Control Server (ACS) redirection URL.                |
 
 ### Sample Response
 
@@ -466,7 +459,6 @@ axios(config)
 }
 ```
 
-
 ## Next Steps
 
 1. **Perform 3DS Challenge**:
@@ -474,6 +466,6 @@ axios(config)
 2. **Handle Post-Authentication Callback**:
    - Capture the response at `callBackActions.termAction` or `callBackActions.successAction`.
 3. **Verify Payment State**:
-   - Execute a server-to-server check via the **[Verify Payment API](./v2_verify_payment_api.md)** to ensure transaction settlement before order dispatch.
+   - Execute a server-to-server check via the [Verify Payment API](./v2_verify_payment_api.md) to ensure transaction settlement before order dispatch.
 4. **Offer Card Tokenization**:
-   - If the customer opted to save their card for future checkouts, invoke the **[Save Card API](./v2_save_card_api.md)** using the customer's authorization reference.
+   - If the customer opted to save their card for future checkouts, invoke the [Save Card API](./v2_save_card_api.md) using the customer's authorization reference.
