@@ -41,7 +41,7 @@ Your item catalog is a reusable library of the products and services you bill fo
 To open the item catalog: log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor>, click **Invoices** under **Payment Tools**, then click the **Items** tab.
 
 
-<Image src="https://files.readme.io/0ecd8c420de9ec7e8a8324d187cf710d87f87ce0f9d89dc8d4ba4d1beb4f9145-Screenshot_2025-06-02_at_7.52.31_PM.png" align="center" caption="Items tab in the Invoices section" border={true} />
+<Image src="https://files.readme.io/0ecd8c420de9ec7e8a8324d187cf710d87f87ce0f9d89dc8d4ba4d1beb4f9145-Screenshot_2025-06-02_at_7.52.31_PM.png" align="center" caption="Access invoice items" border={true} />
 
 
 The list shows all your items with their **Item ID**, **Item Name**, **Description**, **Rate**, and an **Actions** menu for editing or deleting each item.
