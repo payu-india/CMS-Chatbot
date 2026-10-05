@@ -39,6 +39,84 @@ The table has 2 rows, so here it is in **Markdown format**. Also, noting that no
 | `getSoftDeleted` | `Integer` Pass `1` to retrieve soft-deleted cards if permitted by merchant vault settings. Default is `0`. |
 
 ***
+## Sample Request
+```curl
+curl --location --request GET '<redacted URL>' \
+--header 'Date: Mon, 05 Oct 2026 08:30:00 GMT' \
+--header 'Authorization: hmac username="merchant_key", algorithm="sha512", headers="date", signature="<SIGNATURE>"'
+```
+```python
+import requests
+
+url = "<redacted URL>"
+params = {
+    "userCredentials": "sms:user12345"
+}
+headers = {
+    "Date": "Mon, 05 Oct 2026 08:30:00 GMT",
+    "Authorization": 'hmac username="merchant_key", algorithm="sha512", headers="date", signature="<SIGNATURE>"'
+}
+
+response = requests.get(url, headers=headers, params=params)
+print(response.json())
+```
+```php
+<?php
+$curl = curl_init();
+
+curl_setopt_array($curl, [
+  CURLOPT_URL => '<redacted URL>',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_CUSTOMREQUEST => 'GET',
+  CURLOPT_HTTPHEADER => [
+    'Date: Mon, 05 Oct 2026 08:30:00 GMT',
+    'Authorization: hmac username="merchant_key", algorithm="sha512", headers="date", signature="<SIGNATURE>"'
+  ],
+]);
+
+$response = curl_exec($curl);
+curl_close($curl);
+echo $response;
+```
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class GetUserCards {
+    public static void main(String[] args) throws Exception {
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("<redacted URL>"))
+            .header("Date", "Mon, 05 Oct 2026 08:30:00 GMT")
+            .header("Authorization", "hmac username=\"merchant_key\", algorithm=\"sha512\", headers=\"date\", signature=\"<SIGNATURE>\"")
+            .GET()
+            .build();
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
+}
+```
+```javascript
+const axios = require('axios');
+
+const config = {
+  method: 'get',
+  url: '<redacted URL>',
+  headers: { 
+    'Date': 'Mon, 05 Oct 2026 08:30:00 GMT',
+    'Authorization': 'hmac username="merchant_key", algorithm="sha512", headers="date", signature="<SIGNATURE>"'
+  }
+};
+
+axios(config)
+  .then(response => console.log(JSON.stringify(response.data)))
+  .catch(error => console.error(error));
+```
+
+***
 
 ## Response Parameters
 
@@ -133,102 +211,6 @@ The table has 12 rows, so here it is in **HTML format**. Also, noting that no Re
   "msg": "No cards found for this user"
 }
 ```
-
-***
-
-## Code Samples
-
-### cURL
-
-```bash
-curl --location --request GET '<redacted URL>' \
---header 'Date: Mon, 05 Oct 2026 08:30:00 GMT' \
---header 'Authorization: hmac username="merchant_key", algorithm="sha512", headers="date", signature="<SIGNATURE>"'
-```
-
-### Python
-
-```python
-import requests
-
-url = "<redacted URL>"
-params = {
-    "userCredentials": "sms:user12345"
-}
-headers = {
-    "Date": "Mon, 05 Oct 2026 08:30:00 GMT",
-    "Authorization": 'hmac username="merchant_key", algorithm="sha512", headers="date", signature="<SIGNATURE>"'
-}
-
-response = requests.get(url, headers=headers, params=params)
-print(response.json())
-```
-
-### PHP
-
-```php
-<?php
-$curl = curl_init();
-
-curl_setopt_array($curl, [
-  CURLOPT_URL => '<redacted URL>',
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_CUSTOMREQUEST => 'GET',
-  CURLOPT_HTTPHEADER => [
-    'Date: Mon, 05 Oct 2026 08:30:00 GMT',
-    'Authorization: hmac username="merchant_key", algorithm="sha512", headers="date", signature="<SIGNATURE>"'
-  ],
-]);
-
-$response = curl_exec($curl);
-curl_close($curl);
-echo $response;
-```
-
-### Java
-
-```java
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-
-public class GetUserCards {
-    public static void main(String[] args) throws Exception {
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("<redacted URL>"))
-            .header("Date", "Mon, 05 Oct 2026 08:30:00 GMT")
-            .header("Authorization", "hmac username=\"merchant_key\", algorithm=\"sha512\", headers=\"date\", signature=\"<SIGNATURE>\"")
-            .GET()
-            .build();
-
-        HttpClient client = HttpClient.newHttpClient();
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println(response.body());
-    }
-}
-```
-
-### Node.js
-
-```javascript
-const axios = require('axios');
-
-const config = {
-  method: 'get',
-  url: '<redacted URL>',
-  headers: { 
-    'Date': 'Mon, 05 Oct 2026 08:30:00 GMT',
-    'Authorization': 'hmac username="merchant_key", algorithm="sha512", headers="date", signature="<SIGNATURE>"'
-  }
-};
-
-axios(config)
-  .then(response => console.log(JSON.stringify(response.data)))
-  .catch(error => console.error(error));
-```
-
-***
 
 ## Next Steps
 
