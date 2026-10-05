@@ -143,11 +143,47 @@ Create a professional, GST-compliant invoice in the PayU Dashboard and send it d
 </Accordion>
 
 <Accordion title="4. Add line items" icon="far fa-list-check">
-  1. Click **Add Item** to add the first product or service to the invoice.
-  2. In the row that appears, click **Enter Item Name** and select the item from your catalog.
+  1. Slect items from the Enter Item Name drop-down or click **Create New Item** to add the first product or service to the invoice.
 
 
-  <Image src="https://files.readme.io/3daf144fb955f8a78881701fc5da7331a02f3d8a3ceba2320c1e99ef698c198d-Screenshot_2025-06-02_at_7.47.23_PM.png" align="center" caption="Adding line items to the invoice" border={true} />
+  <Image src="https://files.readme.io/3daf144fb955f8a78881701fc5da7331a02f3d8a3ceba2320c1e99ef698c198d-Screenshot_2025-06-02_at_7.47.23_PM.png" border={true} />
+
+
+  2. Enter these details in the **Add Item&#x20;**&#x70;op-up menu and click **Create Item**:
+     <Tabs>
+       <Tab title="Basic Details">
+         - **Item Name**
+         - **Rate:&#x20;**&#x54;he cost of the item.
+         - **Item Description**
+
+         ![](https://files.readme.io/320cffcee8032e83ed82b9eb10d7c56d0cfdbe97d26ab41484064587a498d6cf-Screenshot_2026-10-05_at_10.37.52_AM.png)
+
+         <br />
+
+         &#x20;
+       </Tab>
+
+       <Tab title="Tax Details (optional)">
+         These are optional. You can add them later.
+
+         - **Inter State Tax**
+         - **Intra State Tax**
+         - **Cess**
+         - **Tax Inclusive/Tax Exclusive**
+         - **HSN/SAC Code**
+
+           ![](https://files.readme.io/d5259d5575d3ed2467c1afd6380ce2dd20f20643a72286fc2091fc2563a7d812-Screenshot_2026-10-05_at_10.41.36_AM.png)
+
+
+       </Tab>
+
+       <Tab title="New Tab">
+
+       </Tab>
+     </Tabs>
+
+
+  <Image align="center" caption="Adding line items to the invoice" />
 
 
   The item's rate is filled in automatically. You can adjust the quantity if needed — the line total updates automatically.
