@@ -413,6 +413,10 @@ fetch(url, {
 | `PAYMENT_DECLINED` | 422 | BNPL provider declined credit | Customer should choose another payment option |
 
 ## Next Steps
-1. **Redirect Customer**: Direct customer to `checkoutUrl` to approve the BNPL installment.
-2. **Handle Callbacks**: Receive customer on `successAction` or `failureAction`.
-3. **Verify Payment**: Confirm final transaction state using [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api).
+
+1. **Redirect to Provider Gateway**:
+   - Redirect the customer to `result.paymentUrl` to enter their OTP and complete approval on the chosen BNPL provider's screen.
+2. **Handle Ineligibility & Credit Rejections**:
+   - If the provider rejects credit authorization, gracefully direct the user back to your checkout to choose standard Cards, UPI, or Net Banking.
+3. **Verify Payment & Fulfill Order**:
+   - Validate the callback response hash and verify transaction status via the **[Verify Payment API](ref:v2_verify_payment_api)**.
