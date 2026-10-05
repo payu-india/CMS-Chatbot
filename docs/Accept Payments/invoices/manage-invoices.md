@@ -78,7 +78,9 @@ You can perform the following actions after a button is created:<br />
 - Duplicate an invoive
 - Deactivate an invoice
 
-<Accordion title="View Invoice Details" icon="far fa-rectangle-list">
+### View Invoice Details
+
+<Accordion title="Steps to View Invoice Details" icon="far fa-rectangle-list">
   To see the full details of an invoice:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Invoices** under **Payment Tools**.
