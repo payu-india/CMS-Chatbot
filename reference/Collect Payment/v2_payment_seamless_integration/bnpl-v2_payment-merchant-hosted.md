@@ -157,7 +157,6 @@ curl -X POST 'https://apitest.payu.in/v2/payments' \
     }
 }'
 ```
-
 ```python
 import requests
 import json
