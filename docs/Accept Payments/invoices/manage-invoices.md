@@ -71,6 +71,13 @@ The list shows all your invoices for the past 7 days by default, with the follow
 
 ## What Can I Do With an Invoice?
 
+You can perform the following actions after a button is created:<br />
+
+- View invoice Details
+- Edit an invoice
+- Duplicate an invoive
+- Deactivate an invoice
+
 <Accordion title="View Invoice Details" icon="far fa-rectangle-list">
   To see the full details of an invoice:
 
