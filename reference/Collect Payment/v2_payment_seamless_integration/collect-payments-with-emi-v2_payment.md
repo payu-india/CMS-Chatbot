@@ -363,7 +363,6 @@ public class PayUEMIRequest {
     }
 }
 ```
-
 ```javascript
 const url = "https://apitest.payu.in/v2/payments";
 
