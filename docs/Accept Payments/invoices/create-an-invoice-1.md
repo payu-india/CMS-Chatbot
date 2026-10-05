@@ -98,7 +98,43 @@ Create a professional, GST-compliant invoice in the PayU Dashboard and send it d
   <Callout icon="📘" theme="info">
     ### **Tips:**
 
-    If the customer is not in the list yet, you can add them as a new customer from the drop-down. Enter their name, email, and mobile number.
+    If the customer is not in the list yet, you can add them as a new customer from the drop-down. Enter these details of the customer:
+
+    <Tabs>
+      <Tab title="Basic Details">
+        - **Customer Name**
+        - **Email**
+        - **Contact Number**
+        - **GSTIN**
+
+        ![](https://files.readme.io/b1fe174ebd8879834b28682b8c1cf15509cdd53ad526b8d6fe07f83fcf8bd64b-Screenshot_2026-10-05_at_10.21.21_AM.png)
+
+
+      </Tab>
+
+      <Tab title="Billing Address (optional)">
+        - **Address line 1**
+        - **Address line 2**
+        - **PIN Code**
+        - **City**
+        - **State**
+        - **Country**
+
+        ![](https://files.readme.io/a4e68c9994e4b7d785548e45dc1f4362d1079136a4a0bc0fa7eb7043ee359e07-Screenshot_2026-10-05_at_10.22.26_AM.png)
+
+
+      </Tab>
+
+      <Tab title="Shipping Address (optional)">
+        **Use same as Billing Address:&#x20;**&#x53;elect this checkbox if your shiping address is as same as billing address. If not you can provide the shipping address.
+
+
+        <Image src="https://files.readme.io/f8da5af5d58d23013867e996844bb8c99c21b7fdf220573341a0f2d0f952d79b-Screenshot_2026-10-05_at_10.25.02_AM.png" align="center" caption="Shipping Address" border={true} />
+
+
+
+      </Tab>
+    </Tabs>
   </Callout>
 </Accordion>
 
