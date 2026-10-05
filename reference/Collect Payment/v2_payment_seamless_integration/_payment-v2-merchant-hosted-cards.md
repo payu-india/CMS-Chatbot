@@ -538,6 +538,15 @@ The card payment response returns a `checkoutUrl` to redirect the customer to th
 
 ## Next Steps
 
-1. **Redirect Customer**: Direct customer to `checkoutUrl` to complete 3DS OTP verification.
-2. **Handle Callbacks**: Receive customer on `successAction` or `failureAction`.
-3. **Verify Payment**: Run server-side verification using [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api).
+## Next Steps
+
+1. **Handle Customer 3DS Authentication**:
+   - Inspect the `result.paymentUrl` or redirection payload returned in the API response.
+   - Redirect the customer or render the 3D Secure ACS challenge screen in an in-app browser/webview to complete two-factor authentication (OTP / Biometric).
+2. **Process Post-Authentication Callback**:
+   - Listen on your configured `callBackActions.termAction` or `callBackActions.successAction` for the final transaction response from the issuing bank.
+3. **Verify Transaction Integrity**:
+   - Calculate and verify the response hash to confirm authenticity.
+   - Perform a server-to-server transaction status check using the [Verify Payment API](ref:v2_verify_payment_api) before fulfilling the order.
+4. **Support Saved Cards & Tokenization**:
+   - If the customer opted to save their card, store the returned `cardToken` and `cardTokenType` to enable seamless one-click checkouts for future visits.
