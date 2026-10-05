@@ -111,6 +111,27 @@ You can perform the following actions after a button is created:<br />
 
 ***
 
+### Edit an Invoice
+
+<Accordion title="Steps to Edit an Invoice" icon="fad fa-pen-nib">
+  1. 1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Invoices** under **Payment Tools**.
+
+
+        <Image src="https://files.readme.io/68e34abad2b271fdea9cf5e50ae9641a1f996f642786e88b0412403483f227c9-image.png" align="center" caption="Access Invoices" border={true} />
+
+  2. Click the edit icon against the required invoice you want to resend.
+
+     <Image src="https://files.readme.io/6d4dd564b8ec47078d78a226479264b617c5b0327f9f3349529ab92760c3e32e-Screenshot_2026-10-05_at_12.20.34_PM.png" align="center" caption="Edit an invoice" border={true} />
+
+  3. You can only add or update these information of an invoice:
+     - **Due Date:&#x20;**&#x43;hange the due date if required
+     - Add **Notes&#x20;**&#x61;nd **TERMS AND CONDITIONS&#x20;**&#x64;isplayed at the bottom of the page. You should click **Save&#x20;**&#x64;isplayed next to the respoective sections headings to save the changes.
+
+       <Image src="https://files.readme.io/23dfa5ee4dde79210d3f0e30e76a199aae38bc3b52700797435738f986b51d38-Screenshot_2026-10-05_at_12.27.05_PM.png" align="center" caption="Add Notes and Terms and Conditions" border={true} />
+
+  4.
+</Accordion>
+
 ### Resend an Invoice
 
 <Accordion title="Steps to Resend an Invoice" icon="far fa-paper-plane">
