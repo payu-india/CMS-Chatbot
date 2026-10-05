@@ -5,57 +5,47 @@ hidden: false
 metadata:
   robots: index
 ---
----
-title: Generate UPI Intent API
-deprecated: false
-hidden: false
-metadata:
-  title: Generate UPI Intent API
-  description: Generate server-side UPI payment intent URIs and QR code links for deep linking to UPI applications.
-  robots: index
----
-
 The **Generate UPI Intent** API enables merchants to create UPI payment intents dynamically on the server. This allows mobile applications to invoke installed UPI apps (Google Pay, PhonePe, Paytm, BHIM, Cred) via deep linking, or web applications to display dynamic payment QR codes for scanning.
 
 HTTP Method: **POST**
 
 **Environment**
 
-| Environment | URL |
-| :--- | :--- |
-| **Test Environment** | `<redacted URL>` |
+| Environment                | URL                              |
+| :------------------------- | :------------------------------- |
+| **Test Environment**       | `<redacted URL>`                 |
 | **Production Environment** | `https://info.payu.in/v1/intent` |
 
 ## Request Headers
 
 <V2_payment_header_params />
 
-| Header | Type | Description |
-| :--- | :--- | :--- |
-| `Content-Type` | String | Must be `application/json`. |
-| `Date` | String | Current GMT timestamp (e.g. `Tue, 17 Jun 2025 06:48:55 GMT`). |
-| `Authorization` | String | Standard PayU HMAC authorization header. |
+| Header          | Type   | Description                                                   |
+| :-------------- | :----- | :------------------------------------------------------------ |
+| `Content-Type`  | String | Must be `application/json`.                                   |
+| `Date`          | String | Current GMT timestamp (e.g. `Tue, 17 Jun 2025 06:48:55 GMT`). |
+| `Authorization` | String | Standard PayU HMAC authorization header.                      |
 
----
+***
 
 ## Request Body Parameters
 
 **Mandatory parameters**
 
-| Parameter | Description | Example |
-| :--- | :--- | :--- |
-| `transactionId` | `String` Unique merchant transaction identifier (`txnId`). Must be unique for every payment request. | `TXN_UPI_9829f68` |
-| `transactionAmount` | `String` Amount to be paid by the customer, formatted with two decimal places (`XX.XX`). | `190.00` |
-| `expiryTime` | `String` Intent validity window in seconds. After this duration, the intent expires. | `600` |
+| Parameter           | Description                                                                                          | Example           |
+| :------------------ | :--------------------------------------------------------------------------------------------------- | :---------------- |
+| `transactionId`     | `String` Unique merchant transaction identifier (`txnId`). Must be unique for every payment request. | `TXN_UPI_9829f68` |
+| `transactionAmount` | `String` Amount to be paid by the customer, formatted with two decimal places (`XX.XX`).             | `190.00`          |
+| `expiryTime`        | `String` Intent validity window in seconds. After this duration, the intent expires.                 | `600`             |
 
 **Optional parameters**
 
-| Parameter | Description | Example |
-| :--- | :--- | :--- |
-| `refUrl` | `String` Reference URL for the transaction or merchant application callback. | `<redacted URL>` |
-| `category` | `String` Merchant Category Code (MCC) identifier for reporting purposes. | `5411` |
+| Parameter  | Description                                                                  | Example          |
+| :--------- | :--------------------------------------------------------------------------- | :--------------- |
+| `refUrl`   | `String` Reference URL for the transaction or merchant application callback. | `<redacted URL>` |
+| `category` | `String` Merchant Category Code (MCC) identifier for reporting purposes.     | `5411`           |
 
----
+***
 
 ## Sample Request
 
@@ -175,22 +165,22 @@ fetch(url, options)
   .catch(error => console.error("Error:", error));
 ```
 
----
+***
 
 ## Response Parameters
 
-| Parameter | Type | Description | Example |
-| :--- | :--- | :--- | :--- |
-| `message` | String | Status description of the API call. | `Success` |
-| `status` | Number | Outcome flag: `1` for success, `0` for failure. | `1` |
-| `result.intentId` | String | Standard `upi://pay` URI string formatted for deep linking. | `upi://pay?pa=payumoney@hdfcbank&...` |
-| `result.intentUri` | String | Direct URI compatible with Android and iOS native intent handlers. | `upi://pay?pa=payumoney@hdfcbank&...` |
-| `result.intentUrl` | String | Web-hosted checkout URL for customer browser display. | `https://secure.payu.in/omni?id=000b` |
-| `result.intentUrlWithQR` | String | Web URL rendering a dynamic QR code for desktop/mobile scanning. | `https://secure.payu.in/omni?id=000b` |
-| `result.transactionId` | String | Merchant transaction identifier confirmed by the engine. | `TXN_UPI_9829f68` |
-| `result.expiryTime` | Number | Validity duration in seconds. | `600` |
+| Parameter                | Type   | Description                                                        | Example                               |
+| :----------------------- | :----- | :----------------------------------------------------------------- | :------------------------------------ |
+| `message`                | String | Status description of the API call.                                | `Success`                             |
+| `status`                 | Number | Outcome flag: `1` for success, `0` for failure.                    | `1`                                   |
+| `result.intentId`        | String | Standard `upi://pay` URI string formatted for deep linking.        | `upi://pay?pa=payumoney@hdfcbank&...` |
+| `result.intentUri`       | String | Direct URI compatible with Android and iOS native intent handlers. | `upi://pay?pa=payumoney@hdfcbank&...` |
+| `result.intentUrl`       | String | Web-hosted checkout URL for customer browser display.              | `https://secure.payu.in/omni?id=000b` |
+| `result.intentUrlWithQR` | String | Web URL rendering a dynamic QR code for desktop/mobile scanning.   | `https://secure.payu.in/omni?id=000b` |
+| `result.transactionId`   | String | Merchant transaction identifier confirmed by the engine.           | `TXN_UPI_9829f68`                     |
+| `result.expiryTime`      | Number | Validity duration in seconds.                                      | `600`                                 |
 
----
+***
 
 ## Sample Response
 
@@ -208,3 +198,23 @@ fetch(url, options)
   }
 }
 ```
+
+## Next Steps
+
+After generating the UPI intent URI (`intentURI`) and QR code link (`qrUrl`), integrate the customer presentation and payment confirmation steps:
+
+1. **Present Payment Options on Merchant UI**:
+   - **Mobile Web / Apps**: Detect installed UPI applications (GPay, PhonePe, Paytm, BHIM) and trigger the application chooser using the `intentURI` (`upi://pay?...`).
+   - **Desktop Web**: Display dynamic QR codes by rendering the returned `qrUrl` or generating a local SVG/Canvas QR using the `intentURI` string so the customer can scan and pay from their mobile device.
+
+2. **Set Up Real-time Payment Status Polling**:
+   Because UPI Intent transactions are completed asynchronously on the customer's UPI app:
+   - Implement client-side polling or a WebSocket listener against your server to check transaction completion.
+   - Query transaction status server-to-server using the **[Verify Payment API](./v2_verify_payment_api.md)** or check recent activity via the **[Get Transaction Details API](./v2-get-transaction-details-api.md)**.
+
+3. **Handle Intent Expiry & Timeouts**:
+   - If the payment is not completed within the designated `expiryTime` window, expire the QR code/intent link on your frontend.
+   - Give the customer the option to retry by generating a fresh intent request with a new or same `transactionId`.
+
+4. **Listen to Webhooks**:
+   Ensure your server's webhook endpoint is configured to consume PayU's asynchronous payment notifications for final transaction reconciliation.
