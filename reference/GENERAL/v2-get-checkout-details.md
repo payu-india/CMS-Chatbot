@@ -5,38 +5,28 @@ hidden: false
 metadata:
   robots: index
 ---
----
-title: Get Checkout Details API
-deprecated: false
-hidden: false
-metadata:
-  title: Get Checkout Details API
-  description: Retrieve live payment options, bank downtime status, customer eligibility, and payment filters for custom checkout interfaces.
-  robots: index
----
-
 The **Get Checkout Details** API enables merchants to retrieve configuration and health metadata required to construct dynamic, custom checkout experiences. This endpoint returns active payment methods, credit/debit card downtime indicators, net banking availability, and eligible EMI tenures.
 
 HTTP Method: **POST**
 
 **Environment**
 
-| Environment | URL |
-| :--- | :--- |
-| **Test Environment** | `https://apitest.payu.in/v3/checkout/details` |
-| **Production Environment** | `https://api.payu.in/v3/checkout/details` |
+| Environment                | URL                                           |
+| :------------------------- | :-------------------------------------------- |
+| **Test Environment**       | `https://apitest.payu.in/v3/checkout/details` |
+| **Production Environment** | `https://api.payu.in/v3/checkout/details`     |
 
 ## Request Headers
 
 <V2_payment_header_params />
 
-| Header | Type | Description |
-| :--- | :--- | :--- |
-| `Content-Type` | String | Must be `application/json`. |
-| `Date` | String | Current GMT timestamp (e.g. `Tue, 17 Jun 2025 06:48:55 GMT`). |
-| `Authorization` | String | Standard PayU HMAC authorization header. |
+| Header          | Type   | Description                                                   |
+| :-------------- | :----- | :------------------------------------------------------------ |
+| `Content-Type`  | String | Must be `application/json`.                                   |
+| `Date`          | String | Current GMT timestamp (e.g. `Tue, 17 Jun 2025 06:48:55 GMT`). |
+| `Authorization` | String | Standard PayU HMAC authorization header.                      |
 
----
+***
 
 ## Request Body Parameters
 
@@ -100,7 +90,7 @@ The table has 6 rows, so per the formatting rules, here it is in **HTML format**
   </tbody>
 </table>
 
----
+***
 
 ## Sample Request
 
@@ -251,22 +241,22 @@ fetch(url, options)
   .catch(error => console.error("Error:", error));
 ```
 
----
+***
 
 ## Response Parameters
 
-| Parameter | Type | Description | Example |
-| :--- | :--- | :--- | :--- |
-| `status` | Number | Status code of the response: `1` for success, `0` for failure. | `1` |
-| `message` | String | Status description message. | `Success` |
-| `result.requestId` | String | Merchant request identifier passed in the request. | `REQ_CHK_12345678` |
-| `result.paymentOptions.cards` | Object | Enabled card instruments (Credit & Debit) with bank downtime indicators. | See schema below. |
-| `result.paymentOptions.netBanking` | Object | Enabled Net Banking options with live status flags (`isDown`). | See schema below. |
-| `result.paymentOptions.emi` | Object | Supported Credit Card and Debit Card EMI tenures and minimum amount thresholds. | See schema below. |
-| `result.paymentOptions.upi` | Object | UPI payment mode status. | `{"status": true, "isDown": false}` |
-| `result.paymentOptions.wallet` | Object | Enabled digital wallet instruments (Payzapp, Mobikwik, etc.). | See schema below. |
+| Parameter                          | Type   | Description                                                                     | Example                             |
+| :--------------------------------- | :----- | :------------------------------------------------------------------------------ | :---------------------------------- |
+| `status`                           | Number | Status code of the response: `1` for success, `0` for failure.                  | `1`                                 |
+| `message`                          | String | Status description message.                                                     | `Success`                           |
+| `result.requestId`                 | String | Merchant request identifier passed in the request.                              | `REQ_CHK_12345678`                  |
+| `result.paymentOptions.cards`      | Object | Enabled card instruments (Credit & Debit) with bank downtime indicators.        | See schema below.                   |
+| `result.paymentOptions.netBanking` | Object | Enabled Net Banking options with live status flags (`isDown`).                  | See schema below.                   |
+| `result.paymentOptions.emi`        | Object | Supported Credit Card and Debit Card EMI tenures and minimum amount thresholds. | See schema below.                   |
+| `result.paymentOptions.upi`        | Object | UPI payment mode status.                                                        | `{"status": true, "isDown": false}` |
+| `result.paymentOptions.wallet`     | Object | Enabled digital wallet instruments (Payzapp, Mobikwik, etc.).                   | See schema below.                   |
 
----
+***
 
 ## Sample Response
 
@@ -364,3 +354,14 @@ fetch(url, options)
   }
 }
 ```
+
+## Next Steps
+
+1. **Render Dynamic Checkout Options**:
+   - Dynamically display only active payment options returned in `paymentOptions` and suppress or flag banks marked with `isDown: true`.
+2. **Display Applicable Offers & Affordability**:
+   - Render eligible bank discounts, cashback offers, and supported EMI tenure options returned in the response.
+3. **Proceed to Payment Collection**:
+   - When the customer selects their preferred instrument, pass the relevant method details to the Payment. For more information, refer to any of the following:
+     - &#x20;[Collect Payment API - PayU Hosted v2 Payment](ref:collect-payment-api-payu-hosted-v2-_payment)
+     - [Collect Payment API - Merchant Hosted & S2S v2 Payment](ref:v2_payment_seamless_integration)
