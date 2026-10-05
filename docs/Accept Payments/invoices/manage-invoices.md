@@ -262,18 +262,21 @@ You can search for an invoice with these options:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Invoices** under **Payment Tools**.
 
+     <Image src="https://files.readme.io/e1922e29e0fd851c91e5770bce06ae81f88e55ca68988c95cd95d4c209d51312-image.png" align="center" caption="Access invoices" border={true} />
 
-  <Image src="https://files.readme.io/2663edeacdcb8096f1001d53edbfe843bf0a71900b19be818c5bc74ad23918da-Screenshot_2025-06-02_at_7.32.45_PM.png" align="center" caption="Date range calendar on the Invoices list" border={true} />
+
+  2) Click the **Calendar** icon at the top of the list and select a time period:
+     - **Today**
+     - **Yesterday**
+     - **Past 7 days**
+     - **Past 30 days**
+     - **Custom Range**
+
+  3) For a custom range, select a start and end date from the calendar and click **Apply**.
 
 
-  2. Click the **Calendar** icon at the top of the list and select a time period:
-     - Today
-     - Yesterday
-     - Past 7 days
-     - Past 30 days
-     - Custom Range
+  <Image src="https://files.readme.io/2663edeacdcb8096f1001d53edbfe843bf0a71900b19be818c5bc74ad23918da-Screenshot_2025-06-02_at_7.32.45_PM.png" align="center" caption="Filter by date range" border={true} />
 
-  3. For a custom range, select a start and end date from the calendar and click **Apply**.
 </Accordion>
 
 ***
