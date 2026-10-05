@@ -5,7 +5,14 @@ hidden: false
 metadata:
   robots: index
 ---
-The **Refund Initiation** API allows merchants to initiate refunds for transactions. Its functionally similar to the v1 **Cancel Refund Transaction** API, but is maintained only for backward compatibility with existing integrations. The v2 API offers enhanced functionality and improved response formats compared to the v1 API.
+---
+title: 'Refund Initiation API'
+deprecated: false
+hidden: false
+metadata:
+  robots: index
+---
+The **Refund Initiation** API allows merchants to initiate refunds for transactions. Its functionality similar to the v1 **Cancel Refund Transaction** API, but is available for refund initiation (confirm current support status with the API team) with existing integrations. The v2 API offers enhanced functionality and improved response formats compared to the v1 API.
 
 **Endpoint**
 
@@ -19,11 +26,9 @@ The **Refund Initiation** API allows merchants to initiate refunds for transacti
 </Callout>
 
 ## Request header
-
 <V2_payment_header_params />
 
 ## Request body
-
 <HTMLBlock>{`
 <table>
   <thead>
@@ -61,7 +66,7 @@ The **Refund Initiation** API allows merchants to initiate refunds for transacti
     </tr>
     <tr>
       <td>customerPhone<br/><code>optional</code></td>
-      <td><code>String</code> This will the customer's phone number against which wallet is created. It must be 10-digit mobile number</td>
+      <td><code>String</code> This will be the customer's phone number against which wallet is created. It must be 10-digit mobile number</td>
       <td>8127531459</td>
     </tr>
     <tr>
@@ -79,67 +84,159 @@ The **Refund Initiation** API allows merchants to initiate refunds for transacti
 `}</HTMLBlock>
 
 ## Sample request
-
 <Callout icon="📘" theme="info">
   **Note**: The following sample request is for Test Environment.
 </Callout>
 
-```curl
+```bash
 curl --location 'https://apitest.payu.in/v2/refund/' \
---header 'Authorization: hmac username="a4vGC2", algorithm="sha512", headers="date", signature="2f7f7de82ee5b8b4760d4a526ef69938cea6a0f3e6789a5438f2f0447c556b88a4daedf41e57fb79983e47d6b60ab2364787d6f4f7d4659c893636bb56b04f27"' \
---header 'date: Wed, 06 May 2026 06:55:44 GMT' \
+--header 'Authorization: hmac username="<YOUR_TEST_KEY>", algorithm="sha512", headers="date", signature="<YOUR_SIGNATURE>"' \
+--header 'date: <CURRENT_DATE_GMT>' \
 --header 'Content-Type: application/json' \
---header 'Cookie: PHPSESSID=sd0tpvqmpokf6bmbjkmflgfd5u' \
---data '{
+--data "{ \
+    \"payuId\": \"403993715537366555\",
+    \"amount\": 100,
+    \"refundToken\": \"Refund-403993715537322\",
+    \"source\": 1,
+    \"merchantCallbackUrl\": \"https://merchant.example.com/refund/callback"
+}'
+```
+```python
+import requests
+import json
+
+url = "https://apitest.payu.in/v2/refund/"
+
+headers = {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer YOUR_TOKEN"
+}
+
+payload = {
     "payuId": "403993715537366555",
     "amount": 100,
     "refundToken": "Refund-403993715537322",
     "source": 1,
-    "merchantCallbackUrl": "https://merchant.example.com/refund/callback"
-}'
+    "merchantCallbackUrl": "https://merchant.example.com/refund/callback
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.json())
+```
+```php
+<?php
+$url = "https://apitest.payu.in/v2/refund/";
+
+$payload = '{
+    "payuId": "403993715537366555",
+    "amount": 100,
+    "refundToken": "Refund-403993715537322",
+    "source": 1,
+    "merchantCallbackUrl": "https://merchant.example.com/refund/callback';
+
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    "Content-Type: application/json",
+    "Authorization: Bearer YOUR_TOKEN"
+));
+curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class PayURequest {
+    public static void main(String[] args) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String payload = "{     \"payuId\": \"403993715537366555\",     \"amount\": 100,     \"refundToken\": \"Refund-403993715537322\",     \"source\": 1,     \"merchantCallbackUrl\": \"https://merchant.example.com/refund/callback";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://apitest.payu.in/v2/refund/"))
+            .header("Content-Type", "application/json")
+            .header("Authorization", "Bearer YOUR_TOKEN")
+            .POST(HttpRequest.BodyPublishers.ofString(payload))
+            .build();
+        
+        HttpResponse<String> response = client.send(request,
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
+    }
+}
+```
+```javascript
+const url = "https://apitest.payu.in/v2/refund/";
+
+const payload = {
+    "payuId": "403993715537366555",
+    "amount": 100,
+    "refundToken": "Refund-403993715537322",
+    "source": 1,
+    "merchantCallbackUrl": "https://merchant.example.com/refund/callback;
+
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer YOUR_TOKEN"
+  },
+  body: JSON.stringify(payload)
+};
+
+fetch(url, options)
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error("Error:", error));
 ```
 
 ### Refund Initiation for Closed-Loop Wallet (CLW)
-
-```curl
+```bash
 curl --location 'https://apitest.payu.in/v2/refund/' \
 --header 'Content-Type: application/json' \
---header 'mid: 180012' \
---data '{
-    "payuId": "99999000000592959",
-    "amount":6,
-    "refundToken": "test_3",
-    "source": 1,
-    "merchantCallbackUrl": "https://merchant.example.com/refund/callback",
-    "customerPhone": "8127531459",
-    "refundDetails": {
-        "refundType": "wallet"
+--header 'mid: <YOUR_MERCHANT_ID>' \
+--data "{ \
+    \"payuId\": \"99999000000592959\",
+    \"amount\":6,
+    \"refundToken\": \"test_3\",
+    \"source\": 1,
+    \"merchantCallbackUrl\": \"https://merchant.example.com/refund/callback\",
+    \"customerPhone\": \"8127531459\",
+    \"refundDetails\": {
+        \"refundType\": \"wallet"
     }
 }'
 ```
 
 <br />
 
-### Refund Initiaition With Split Settlements
-
-```curl
-curl --location 'http://apitest.payu.in/refund/v1/refundInitiation' \
+### Refund Initiation with Split Settlements
+```bash
+curl --location 'https://apitest.payu.in/refund/v1/refundInitiation' \
 --header 'Content-Type: application/json' \
---header 'mid: 8006653' \
---data '{
-    "payuId": "999000000000478",
-    "refundToken": "a*bv***w",
-    "amount": 0.21,
-    "refundSplitRequest": {
-        "33rOiT": {
-            "amount": 0.21
-        }
+--header 'mid: <YOUR_MERCHANT_ID>' \
+--data "{ \
+  \"payuId\": \"999000000000478\",
+  \"refundToken\": \"<EXAMPLE_REFUND_TOKEN>\",
+  \"amount\": 0.21,
+  \"refundSplitRequest\": {
+    \"<EXAMPLE_SPLIT_ID>\": {
+      \"amount\": 0.21
     }
-}'
+  }
+}"
 ```
 
 ## Response parameters
-
 | Parameter   | Description                                                        | Example                     |
 | ----------- | ------------------------------------------------------------------ | --------------------------- |
 | status      | Indicates success (1) or failure (0) of the refund request         | `1`                         |
@@ -152,22 +249,24 @@ curl --location 'http://apitest.payu.in/refund/v1/refundInitiation' \
 | splitInfo   | Contains details of refunds for split transactions (if applicable) | See JSON example            |
 
 ### Sample Response
-
 #### Success Response
-
 * General transaction
 
 ```json
 {
-    "status": 1,
-    "statusCode": 102,
-    "message": "Refund request accepted",
-    "payuId": 403993715535614124,
-    "requestId": "139136064",
-    "refundToken": "435239928"
+    "status": "success",
+    "data": {
+        "status": 1,
+        "msg": "Refund Request Queued",
+        "request_id": "4993824101265",
+
+        “refund_id”: “refund_id”,
+        "bank_ref_num": null,
+        "mihpayid": 999000000000461,
+        "error_code": 102
+    }
 }
 ```
-
 * With Split Settlements
   ```
   {
@@ -180,7 +279,7 @@ curl --location 'http://apitest.payu.in/refund/v1/refundInitiation' \
         "status": 1,
         "message": "Success",
         "splitInfo": {
-          "33rOiT": {
+          "<EXAMPLE_SPLIT_ID>": {
             "status": 1,
             "statusCode": "102",
             "message": "Refund request accepted",
@@ -192,48 +291,51 @@ curl --location 'http://apitest.payu.in/refund/v1/refundInitiation' \
   }
 
   ```
-  ###
+
 
 #### Failure Response
-
 Any of the following response is displayed when the refund request is rejected:
-
+* Invalid PayU ID
 ```
 {
-    "status": 0,
-    "statusCode": 106,
-    "message": "Error code 106",
-    "payuId": 403993715535614400,
-    "refundToken": "43221129280909"
+    "status": "success",
+    "data": {
+        "status": 0,
+        "msg": "Refund FAILURE - Invalid transaction status",
+        "error_code": 111,
+        "mihpayid": 99900000000046
+    }
+}```
+
+<br />
+* Same Token 
+```
+{
+    "status": "success",
+    "data": {
+        "status": 0,
+        "msg": "Refund FAILURE - Transactions with same amount and same token not allowed",
+        "error_code": 227,
+        "mihpayid": 17661088664
+    }
 }
 ```
 
 <br />
-
+* Invalid MID
 ```
 {
-    "status": 0,
-    "statusCode": 231,
-    "message": "Error code 231",
-    "payuId": 403993715535614400,
-    "refundToken": "43221129280909"
-}
-```
-
-<br />
-
-```
-{
-    "status": 0,
-    "statusCode": 214,
-    "message": "Error code 214",
-    "payuId": 403993715535614400,
-    "refundToken": "43221129280909"
+    "status": "success",
+    "data": {
+        "status": 0,
+        "msg": "Refund FAILURE - Transaction Not Found",
+        "error_code": 116,
+        "mihpayid": 999000000000461
+    }
 }
 ```
 
 ## Error Codes
-
 | ID | status_code | Description                                                                                                  |
 | -- | ----------- | ------------------------------------------------------------------------------------------------------------ |
 | 1  | 100         | SUCCESS                                                                                                      |
@@ -318,3 +420,11 @@ Any of the following response is displayed when the refund request is rejected:
 | 80 | 502         | Failed to update                                                                                             |
 | 81 | 270         | FAILURE - Transaction not eligible for Instant Refund                                                        |
 | 82 | 132         | Error - wallet refunds are not allowed for this request                                                      |
+
+
+## Next Steps
+
+**Related APIs:**
+- [Verify Payment](ref:v2_verify_payment_api)
+- [Transaction Details](ref:v2-get-transaction-details-api)
+- [Refund](ref:v2-refund-transaction-api)
