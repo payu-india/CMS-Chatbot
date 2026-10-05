@@ -216,6 +216,8 @@ You can perform the following actions after a button is created:<br />
      <Image src="https://files.readme.io/f4be6ca2aad6a0a76e4336216b17e80708cb4b56fd201d1abf4261d901d9a1d7-Screenshot_2026-10-05_at_1.47.40_PM.png" align="center" caption="Reactivate an invoice" border={true} />
 
   3. Click **Yes, Activate&#x20;**&#x6F;n the **Are you sure?&#x20;**&#x63;onfirmation pop-up menu.
+
+  The invoice status changes to **Active**.
 </Accordion>
 
 ## How Do I Search for an Invoice?
