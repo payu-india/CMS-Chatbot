@@ -244,12 +244,12 @@ You can search for an invoice with these options:
 
   2) Click the **Filter** drop-down and select one or more statuses:
 
-  | Status        | What it means                                           |
-  | ------------- | ------------------------------------------------------- |
-  | **Draft**     | Saved but not sent to the customer yet                  |
-  | **Actice**    | Sent to the customer and active                         |
-  | **Cancelled** | Manually deactivated. This invoice is no longer payable |
-  | **Expired**   | The invoice is expired                                  |
+  | Status          | What it means                                           |
+  | --------------- | ------------------------------------------------------- |
+  | **Draft**       | Saved but not sent to the customer yet                  |
+  | **Actice**      | Sent to the customer and active                         |
+  | **Deactivated** | Manually deactivated. This invoice is no longer payable |
+  | **Expired**     | The invoice is expired                                  |
 
   3. Click **Apply** to filter the list.
 
