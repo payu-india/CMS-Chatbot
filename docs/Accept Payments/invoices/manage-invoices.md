@@ -204,6 +204,20 @@ You can perform the following actions after a button is created:<br />
 
 ***
 
+### Reactivate an Invoice
+
+<Accordion title="Steps to Reactivate an Invoice" icon="fad fa-repeat">
+  1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Invoices** under **Payment Tools**.
+
+     <Image src="https://files.readme.io/629adf8c5db24dca0a4c78b619ec1ccbe86c4154515cfbdbca7bf7c9f2d98d7d-image.png" align="center" caption="Access Invoices" border={true} />
+
+  2. Find the deactivated invoice you want to activate again and click the activate icon.
+
+     <Image src="https://files.readme.io/f4be6ca2aad6a0a76e4336216b17e80708cb4b56fd201d1abf4261d901d9a1d7-Screenshot_2026-10-05_at_1.47.40_PM.png" align="center" caption="Reactivate an invoice" border={true} />
+
+  3. Click **Yes, Activate&#x20;**&#x6F;n the **Are you sure?&#x20;**&#x63;onfirmation pop-up menu.
+</Accordion>
+
 ## How Do I Search for an Invoice?
 
 <Accordion title="Search by Invoice Number or Title" icon="far fa-magnifying-glass">
