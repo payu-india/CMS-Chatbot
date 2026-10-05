@@ -203,7 +203,7 @@ Create a professional, GST-compliant invoice in the PayU Dashboard and send it d
   <Callout icon="📘" theme="info">
     ### **Tips:**
 
-    GST details — rate, HSN/SAC code, inter-state or intra-state tax, and cess — are set at the item level in the Item Catalog.
+    GST details such as rate, HSN/SAC code, inter-state or intra-state tax, and cess are set at the item level in the Item Catalog.
   </Callout>
 </Accordion>
 
