@@ -533,6 +533,13 @@ The response provides a `checkoutUrl` to redirect the customer to their bank por
 
 ## Next Steps
 
-1. **Redirect Customer**: Direct customer's browser to the returned `checkoutUrl`.
-2. **Handle Callbacks**: Receive customer on `successAction` or `failureAction`.
-3. **Verify Payment**: Run server-side verification using [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api).
+## Next Steps
+
+1. **Redirect Customer to Bank Portal**:
+   - Extract `result.paymentUrl` and redirect the customer to their issuing bank's secure login/authentication portal.
+2. **Listen for Redirect Callbacks**:
+   - Once authentication is complete at the bank, PayU posts the transaction outcome to your `callBackActions.successAction`, `failureAction`, or `cancelAction`.
+3. **Confirm Final Status Server-to-Server**:
+   - Net Banking transactions occasionally encounter customer drop-offs or bank session timeouts. Run a server-side check via the [Verify Payment API](ref:v2_verify_payment_api) to confirm the final debited status.
+4. **Third-Party Verification (TPV) Checks (If Applicable)**:
+   - For investment or regulated trading accounts where `beneficiaryDetail` was supplied, verify that the returned bank account number matches the customer's registered profile.
