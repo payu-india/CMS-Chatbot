@@ -7,222 +7,274 @@ metadata:
 ---
 ---
 title: Save Card API
-deprecated: false
-hidden: false
-metadata:
-  robots: index
+description: Store customer card details securely in PayU Vault and generate reusable card tokens.
 ---
 
-The v2 **Save Card** API is used for saving a card to the vault. After successfully storing a card, it returns the `cardToken`.
+# Save Card API
 
-HTTP Method: **POST**
+The **Save Card API** enables merchants to store customer card details securely in PayU Vault and obtain a unique token (`cardToken`) for future recurring or one-click checkouts, ensuring compliance with RBI tokenization directives and PCI-DSS standards.
 
-**Environment**
+## Endpoint & Environments
 
-|                        |                                                                                        |
-| :--------------------- | :------------------------------------------------------------------------------------- |
-| Production Environment | [https://info.payu.in/storecard/card/v1](https://info.payu.in/storecard/card/v1)       |
-| Test Environment       | [https://apitest.payu.in/storecard/card/v1](https://apitest.payu.in/storecard/card/v1) |
+| Environment | Method | URL |
+| :--- | :--- | :--- |
+| **Test** | `POST` | `<redacted URL>` |
+| **Production** | `POST` | `<redacted URL>` |
+
+---
+
+## Headers
+
+| Header | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| `Content-Type` | String | Mandatory | Must be `application/json`. |
+| `Date` | String | Mandatory | Current UTC timestamp formatted as HTTP Date (e.g. `Mon, 05 Oct 2026 08:30:00 GMT`). |
+| `Authorization` | String | Mandatory | PayU HMAC signature header in the format:<br>`hmac username="<YOUR_MERCHANT_KEY>", algorithm="sha512", headers="date", signature="<SIGNATURE>"`<br>where `signature` = `sha512(raw_body + '|' + date + '|' + merchant_salt)`. |
+
+---
 
 ## Request Parameters
 
-### Authentication header
+The table has 7 rows, so here it is in **HTML format**:
 
-<HeaderAuthentication />
+**Mandatory parameters**
 
-### Header parameters
-
-<Table>
+<table>
   <thead>
     <tr>
-      <th>
-        Parameter
-      </th>
-
-      <th>
-        Description
-      </th>
+      <th align="left">Parameter</th>
+      <th align="left">Description</th>
     </tr>
   </thead>
-
   <tbody>
     <tr>
-      <td>
-        date  
-        `mandatory`
-      </td>
-
-      <td>
-        The current date and time. For example, format of the date is Wed, 28 Jun 2023 11:25:19 GMT.
-      </td>
+      <td><code>userCredential</code></td>
+      <td><code>String</code> Plaintext identifier representing the merchant key and customer ID in the format <code>&lt;merchantKey&gt;:&lt;customerId&gt;</code> (e.g. <code>sms:user12345</code>). Max 100 characters.</td>
+    </tr>
+    <tr>
+      <td><code>cardNumber</code></td>
+      <td><code>String</code> 15- or 16-digit Primary Account Number (PAN).</td>
+    </tr>
+    <tr>
+      <td><code>cardName</code></td>
+      <td><code>String</code> Name of the cardholder as embossed on the card.</td>
+    </tr>
+    <tr>
+      <td><code>cardExpiryMonth</code></td>
+      <td><code>String</code> 2-digit expiry month (<code>01</code>–<code>12</code>).</td>
+    </tr>
+    <tr>
+      <td><code>cardExpiryYear</code></td>
+      <td><code>String</code> 4-digit expiry year (e.g. <code>2029</code>).</td>
+    </tr>
+    <tr>
+      <td><code>cardMode</code></td>
+      <td><code>String</code> Card type: <code>CC</code> (Credit Card) or <code>DC</code> (Debit Card).</td>
     </tr>
   </tbody>
-</Table>
+</table>
 
-### Body parameters
+**Conditional parameters**
 
-| Parameter                                               | Reference                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | Example                |
-| :------------------------------------------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------- |
-| userCredential<br />`mandatory`                         | `String` The user credentials are posted in this parameter in the following format: MerchantKey:UserId                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | JP***G:abc             |
-| cardName<br />`mandatory`                               | `String` The nickname of the card is specified in this parameter.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | My_card                |
-| cardMode<br />`mandatory`                               | `String` The card mode is specified in this parameter. For more information on card mode codes, refer to [Card Type Codes and Supported Banks for Cards](https://docs.payu.in/v1/docs/card-type-codes-and-supported-banks-for-cards).                                                                                                                                                                                                                                                                                                                                                                                              | CC                     |
-| cardType<br />`mandatory`                               | `String` The card type of the card is specified in this parameter. For more information on card type codes, refer to [Card Type Codes and Supported Banks for Cards](https://docs.payu.in/v1/docs/card-type-codes-and-supported-banks-for-cards)                                                                                                                                                                                                                                                                                                                                                                                   | AMEX                   |
-| nameOnCard<br />`mandatory`                             | `String` The name on the card is specified in this parameter.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Ashish                 |
-| cardNo<br />`mandatory`                                 | `String` The card number is specified in this parameter. For the **test cards** to do mock API calls, refer to [Test Cards, UPI ID and Wallets](https://docs.payu.in/v1/docs/test-cards-upi-id-and-wallets).                                                                                                                                                                                                                                                                                                                                                                                                                       | 4761360079851258       |
-| cardExpiryMonth<br />`mandatory`                        | `Integer` The card expiry month is specified in this parameter.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | 12                     |
-| cardExpiryYear<br />`mandatory`                         | `Integer` The card expiry year is specified in this parameter.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | 2029                   |
-| authRefNumber<br />`mandatory for Rupay and AMEX cards` | `String` This parameter can be any of the following based on the Rupay or AMEX card used:<br />• The authorization reference number received during authorization call of Rupay card transactions.<br />• The AEVV received during authorization call of Amex card transactions.<br />**Notes**:<br />• This parameter is mandatory for Rupay cards. Authentication reference number will be sent by the PG in the authorization response. Currently, this check is skipped by Rupay.<br />• This parameter is mandatory for AMEX cards. American Express Verification Value will be sent by the PG in the authorization response. | 6381242223626382106105 |
+<table>
+  <thead>
+    <tr>
+      <th align="left">Parameter</th>
+      <th align="left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>authRefNumber</code></td>
+      <td><code>String</code> Authorization Reference Number provided by issuing bank / card network during customer authentication. Mandatory for <strong>RuPay</strong> and <strong>AMEX</strong> (AEVV) tokenization; optional for Visa and Mastercard.</td>
+    </tr>
+  </tbody>
+</table>
 
-## Sample request
-
+### Sample Request
 ```bash
-curl --location 'https://apitest.payu.in/storecard/card/v1' \
---header 'authorization: hmac username="PRiQvJ", algorithm="sha512", headers="date", signature="30d8f518edda5b0962c35c0057024cabb6e7f19727488cb1874e75652bcea7499811dbf3ddac419c50c2fe56a8e032129bb0d6eaeaa3f971b3c2b5ccbfd12aa3"' \
---header 'date: Fri, 24 Apr 2026 07:05:59 GMT' \
+curl --location --request POST '<redacted URL>' \
 --header 'Content-Type: application/json' \
---header 'Cookie: PHPSESSID=krida5voc39gqosfud8tt6n8as' \
---data '{
-    "userCredential": "sms:123",
-    "cardName": "testAll",
-    "cardMode": "CC",
-    "cardType": "CC",
-    "nameOnCard": "test",
-    "cardNo": "4761360079851258",
-    "cardExpiryMonth": 12,
-    "cardExpiryYear": 2029
+--header 'Date: Mon, 05 Oct 2026 08:30:00 GMT' \
+--header 'Authorization: hmac username="merchant_key", algorithm="sha512", headers="date", signature="e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"' \
+--data-raw '{
+  "userCredential": "sms:user12345",
+  "cardNumber": "5123456789012346",
+  "cardName": "John Doe",
+  "cardExpiryMonth": "12",
+  "cardExpiryYear": "2029",
+  "cardMode": "CC",
+  "authRefNumber": "AUTH12345678"
 }'
 ```
+```python
+import requests
+import json
 
-## Sample response
+url = "<redacted URL>"
 
-### Success scenario
+payload = {
+    "userCredential": "sms:user12345",
+    "cardNumber": "5123456789012346",
+    "cardName": "John Doe",
+    "cardExpiryMonth": "12",
+    "cardExpiryYear": "2029",
+    "cardMode": "CC",
+    "authRefNumber": "AUTH12345678"
+}
+
+headers = {
+    "Content-Type": "application/json",
+    "Date": "Mon, 05 Oct 2026 08:30:00 GMT",
+    "Authorization": 'hmac username="merchant_key", algorithm="sha512", headers="date", signature="<SIGNATURE>"'
+}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.json())
+```
+```php
+<?php
+$curl = curl_init();
+
+$payload = json_encode([
+  "userCredential" => "sms:user12345",
+  "cardNumber" => "5123456789012346",
+  "cardName" => "John Doe",
+  "cardExpiryMonth" => "12",
+  "cardExpiryYear" => "2029",
+  "cardMode" => "CC",
+  "authRefNumber" => "AUTH12345678"
+]);
+
+curl_setopt_array($curl, [
+  CURLOPT_URL => '<redacted URL>',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_POSTFIELDS => $payload,
+  CURLOPT_HTTPHEADER => [
+    'Content-Type: application/json',
+    'Date: Mon, 05 Oct 2026 08:30:00 GMT',
+    'Authorization: hmac username="merchant_key", algorithm="sha512", headers="date", signature="<SIGNATURE>"'
+  ],
+]);
+
+$response = curl_exec($curl);
+curl_close($curl);
+echo $response;
+```
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class SaveCard {
+    public static void main(String[] args) throws Exception {
+        String payload = """
+        {
+          "userCredential": "sms:user12345",
+          "cardNumber": "5123456789012346",
+          "cardName": "John Doe",
+          "cardExpiryMonth": "12",
+          "cardExpiryYear": "2029",
+          "cardMode": "CC",
+          "authRefNumber": "AUTH12345678"
+        }
+        """;
+
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("<redacted URL>"))
+            .header("Content-Type", "application/json")
+            .header("Date", "Mon, 05 Oct 2026 08:30:00 GMT")
+            .header("Authorization", "hmac username=\"merchant_key\", algorithm=\"sha512\", headers=\"date\", signature=\"<SIGNATURE>\"")
+            .POST(HttpRequest.BodyPublishers.ofString(payload))
+            .build();
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
+}
+```
+```javascript
+const axios = require('axios');
+
+const data = {
+  userCredential: "sms:user12345",
+  cardNumber: "5123456789012346",
+  cardName: "John Doe",
+  cardExpiryMonth: "12",
+  cardExpiryYear: "2029",
+  cardMode: "CC",
+  authRefNumber: "AUTH12345678"
+};
+
+const config = {
+  method: 'post',
+  url: '<redacted URL>',
+  headers: { 
+    'Content-Type': 'application/json',
+    'Date': 'Mon, 05 Oct 2026 08:30:00 GMT',
+    'Authorization': 'hmac username="merchant_key", algorithm="sha512", headers="date", signature="<SIGNATURE>"'
+  },
+  data: data
+};
+
+axios(config)
+  .then(response => console.log(JSON.stringify(response.data)))
+  .catch(error => console.error(error));
+```
+
+---
+
+## Response Parameters
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| **status** | Integer | Status flag: `1` (Success) or `0` (Failure). |
+| **message** | String | Descriptive message detailing the operation outcome. |
+| **cardToken** | String | Unique token identifier generated by PayU Vault for the stored card. Use this token in subsequent payment requests. |
+| **cardNo** | String | Masked card number (e.g. `512345XXXXXX2346`). |
+| **cardType** | String | Card network brand (e.g. `MAST`, `VISA`, `RUPAY`, `AMEX`). |
+| **cardCategory** | String | Category of card: `CC` or `DC`. |
+| **cardExpiryYear** | String | 4-digit card expiry year. |
+| **cardExpiryMonth** | String | 2-digit card expiry month. |
+| **isExpired** | Boolean | Indicates whether the card is expired (`true` / `false`). |
+| **networkToken** | String | Network-generated token (returned if tokenization was processed via card network and merchant has requisite PCI-DSS permissions). |
+| **issuerToken** | String | Issuer-generated token (returned for supported issuing banks). |
+
+### Sample Response (Success)
 
 ```json
 {
-  "message": "Card Stored Successfully.",
   "status": 1,
-  "result": {
-    "cardToken": "18cc810671348c3d3241",
-    "cardNo": "XXXXXXXXXXXX1258",
-    "cardName": "testAll",
-    "networkToken": "4761360000000009"
-  }
+  "message": "Card saved successfully",
+  "cardToken": "29850879bf39848ca078727b8e1a95165a41cea1",
+  "cardNo": "512345XXXXXX2346",
+  "cardType": "MAST",
+  "cardCategory": "CC",
+  "cardExpiryYear": "2029",
+  "cardExpiryMonth": "12",
+  "isExpired": false
 }
 ```
 
-### Success scenarios for various cards
-
-#### VISA
+### Sample Response (Failure)
 
 ```json
 {
-  "message": "Card Stored Successfully.",
-  "status": 1,
-  "result": {
-    "cardToken": "917757449926e57ff2662",
-    "cardNo": "XXXXXXXXXXXX1165",
-    "cardName": "My_card",
-    "networkToken": "44173XXX1000XXX1",
-    "issuerToken": "QQ3LkzgZOnEjY428"
-  }
+  "status": 0,
+  "message": "CardNumber is invalid"
 }
 ```
 
-#### Mastercard
+---
 
-```json
-{
-  "message": "Card Stored Successfully.",
-  "status": 1,
-  "result": {
-    "cardToken": "917e296b5b6da5d20fbfb",
-    "cardNo": "XXXXXXXXXXXX2346",
-    "cardName": "Test_Card",
-    "networkToken": "3117328711111210",
-    "issuerToken": "AQ3LkzgBNyEjY213"
-  }
-}
-```
+## Next Steps
 
-#### American Express
-
-```json
-{
-  "message": "Card Stored Successfully.",
-  "status": 1,
-  "result": {
-    "cardToken": "917e29XXX6da5XXCbfb",
-    "cardNo": "XXXXXXXXXXX1002",
-    "cardName": "AMEX_Card",
-    "networkToken": "51273287XXX61215",
-    "issuerToken": "Va3RaqBNyPnY673"
-  }
-}
-```
-
-#### Rupay
-
-```json
-{
-  "message": "Card Stored Successfully.",
-  "status": 1,
-  "result": {
-    "cardToken": "91XXX96b5b6da5dXXXbfb",
-    "cardNo": "XXXXXXXXXXXX0001",
-    "cardName": "Rupay_Card",
-    "networkToken": "712XXX870976XX2",
-    "issuerToken": "Ya4HawKgbLmr312"
-  }
-}
-```
-
-#### Diners
-
-```json
-{
-  "message": "Card Stored Successfully.",
-  "status": 1,
-  "result": {
-    "cardToken": "91XXX296b5b6da5XXXbfb",
-    "cardNo": "XXXXXXXXXXXX0009",
-    "cardName": "Diner_Card",
-    "networkToken": "8koNXXXC1bT0Hv5a",
-    "issuerToken": "LQ3QkzXXXnEjY428"
-  }
-}
-```
-
-### Failure scenario
-
-* If card number is invalid
-
-```json
-{
-  "message": "CardNumber is invalid",
-  "status": 0
-}
-```
-
-## Response parameters for Save a Card API
-
-The following table describes the parameters in the response:
-
-<Callout icon="📘" theme="info">
-  **Note**: For every successful payment transaction, PayU returns the **mihpayid** and **cardToken** parameters to the merchants, but `networkToken` and `issuerToken` are returned only if you are PCI-DSS compliant.
-</Callout>
-
-| Parameter | Description                                                                                                                                         | Example                   |
-| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
-| message   | The description of the response whether the card details were stored successfully or not stored.                                                    | Card Stored Successfully. |
-| status    | The status of the response can be any of the following:<br />• 1: Success<br />• 0: Failure                                                         | 1                         |
-| result    | This contains the token details in a JSON format. For more information, refer to [result JSON fields description](#result-json-fields-description). |                           |
-
-### result JSON fields description
-
-| Parameter    | Description                                                                                          | Example               |
-| ------------ | ---------------------------------------------------------------------------------------------------- | --------------------- |
-| cardToken    | The cardToken returned by PayU for the successful response.                                          | 18cc810671348c3d3241  |
-| cardNo       | The redacted card number with the last four digits that was saved.                                   | XXXXXXXXXXXX1258      |
-| cardName     | The nickname of the card that was saved.                                                             | testAll               |
-| networkToken | The network token returned in this parameter (returned only when the merchant is PCI-DSS compliant). | `1234 5*** 9*** 3456` |
-| issuerToken  | The issuer token returned in this parameter (returned only when the merchant is PCI-DSS compliant).  | `3456 7*** A*** EFGH` |
+1. **Store Card Token**:
+   - Save the returned `cardToken` in your database linked to the customer's profile for 1-click checkout.
+2. **Retrieve Customer Cards at Checkout**:
+   - Use the **[Get User Cards API](ref:v2_get_user_cards_api)** or **[Get Payment Instrument API](ref:v2-get-payment-instrument-api)** to show saved cards on your payment screen.
+3. **Execute Payment with Saved Card**:
+   - Pass the `cardToken` and `cvv` in the **[Process Transaction with a Saved Card API](ref:process-transaction-with-a-saved-card)**.
