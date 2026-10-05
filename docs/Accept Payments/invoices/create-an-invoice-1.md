@@ -120,7 +120,9 @@ Create a professional, GST-compliant invoice in the PayU Dashboard and send it d
         - **State**
         - **Country**
 
-        ![](https://files.readme.io/a4e68c9994e4b7d785548e45dc1f4362d1079136a4a0bc0fa7eb7043ee359e07-Screenshot_2026-10-05_at_10.22.26_AM.png)
+
+        <Image src="https://files.readme.io/a4e68c9994e4b7d785548e45dc1f4362d1079136a4a0bc0fa7eb7043ee359e07-Screenshot_2026-10-05_at_10.22.26_AM.png" align="center" caption="Billing Address" border={true} />
+
 
 
       </Tab>
@@ -132,6 +134,10 @@ Create a professional, GST-compliant invoice in the PayU Dashboard and send it d
         <Image src="https://files.readme.io/f8da5af5d58d23013867e996844bb8c99c21b7fdf220573341a0f2d0f952d79b-Screenshot_2026-10-05_at_10.25.02_AM.png" align="center" caption="Shipping Address" border={true} />
 
 
+
+      </Tab>
+
+      <Tab title="New Tab">
 
       </Tab>
     </Tabs>
