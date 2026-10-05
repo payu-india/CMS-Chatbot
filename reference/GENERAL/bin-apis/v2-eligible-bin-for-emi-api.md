@@ -48,37 +48,24 @@ HTTP Method: **POST**
 
 Merchants can verify BIN eligibility either with or without pre-specifying the issuing bank:
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>`bintype`<br/>`mandatory`</td>
-      <td>`String` Mode of card identification: pass `bin` for card BIN digits, or `NET` for network token lookup.</td>
-      <td>`bin`</td>
-    </tr>
-    <tr>
-      <td>`value`<br/>`mandatory`</td>
-      <td>`String` The first 6, 8, or 9 digits of the card number (or full token if `bintype` is `NET`).</td>
-      <td>`416104`</td>
-    </tr>
-    <tr>
-      <td>`amount`<br/>`conditional`</td>
-      <td>`Number` Transaction order amount. Mandatory when checking eligibility for specific non-bank issuers (e.g., `ONEC` or `BAJFIN`).</td>
-      <td>`10000.00`</td>
-    </tr>
-    <tr>
-      <td>`bank`<br/>`optional`</td>
-      <td>`String` Specific issuing bank code (e.g. `ICICI`, `HDFC`, `AXIS`). If provided, checks eligibility specifically for that institution.</td>
-      <td>`ICICI`</td>
-    </tr>
-  </tbody>
-</Table>
+**Mandatory parameters**
+
+| Parameter | Description | Example |
+| :--- | :--- | :--- |
+| `bintype` | `String` Mode of card identification: pass `bin` for card BIN digits, or `NET` for network token lookup. | `bin` |
+| `value` | `String` The first 6, 8, or 9 digits of the card number (or full token if `bintype` is `NET`). | `416104` |
+
+**Conditional parameters**
+
+| Parameter | Description | Example |
+| :--- | :--- | :--- |
+| `amount` | `Number` Transaction order amount. Mandatory when checking eligibility for specific non-bank issuers (e.g., `ONEC` or `BAJFIN`). | `10000.00` |
+
+**Optional parameters**
+
+| Parameter | Description | Example |
+| :--- | :--- | :--- |
+| `bank` | `String` Specific issuing bank code (e.g. `ICICI`, `HDFC`, `AXIS`). If provided, checks eligibility specifically for that institution. | `ICICI` |
 
 ---
 
