@@ -50,23 +50,23 @@ To open your invoices: log in to the <Anchor target="_blank" href="https://onboa
 <Image src="https://files.readme.io/67d1d45f0ad241f6d9225c7c9b5066b38e5ece5dbb426a1a56c26d4da3dd0e94-Screenshot_2026-10-05_at_11.45.06_AM.png" align="center" caption="Access Invoices" border={true} />
 
 
-<br />
-
 The list shows all your invoices for the past 7 days by default, with the following columns:
 
-| Column             | What it shows                                            |
-| ------------------ | -------------------------------------------------------- |
-| **Invoice Number** | Your unique reference for the invoice                    |
-| **Title**          | The invoice title you entered when creating it           |
-| **Customer**       | Who the invoice was billed to                            |
-| **Amount**         | The total amount on the invoice                          |
-| **Due Date**       | When payment is due                                      |
-| **Status**         | Current state — Draft, Sent, Paid, Overdue, or Cancelled |
+| Column            | What it shows                                            |
+| ----------------- | -------------------------------------------------------- |
+| **Created On**    | The date on which the invoice was created                |
+| **Invoice Links** | The invoice link that is shared with customers           |
+| **Title**         | The invoice title you entered when creating it           |
+| **Amount**        | The total amount on the invoice                          |
+| **Status**        | Current state — Draft, Sent, Paid, Overdue, or Cancelled |
+| **Actions**       | Buttons to perform various actions on an invoice         |
 
 ***
 
 <Callout icon="🚧" theme="warning">
-  **Invoices cannot be edited after they are sent.** If an invoice has wrong details — item, amount, or due date — cancel it and create a new one with the correct information.
+  ### **Important!**
+
+  Note that you cannot edit invoices after you send the&#x6D;**.** If an invoice has wrong details, deactivate it and create a new one with the correct information.
 </Callout>
 
 ## What Can I Do With an Invoice?
