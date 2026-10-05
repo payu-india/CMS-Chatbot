@@ -224,10 +224,14 @@ You can perform the following actions after a button is created:<br />
 
 ## How Do I Search for an Invoice?
 
-You can search for an invoice with these options
+You can search for an invoice with these options:
 
 <Accordion title="Search by Invoice Number or Title" icon="far fa-magnifying-glass">
   Use the **Search** field at the top of the Invoices list to find a specific invoice by its number or title. Type any part of the invoice number or title and the list filters in real time.
+
+
+  <Image src="https://files.readme.io/ed92abe072724f0d80c3cfc617383a819b971b4481142f2cd3385eb6f5dd4eb4-Screenshot_2026-10-05_at_1.59.21_PM.png" align="center" caption="Seacrh by invoice number or title" border={true} />
+
 </Accordion>
 
 <Accordion title="Filter by Status" icon="far fa-filter">
@@ -235,11 +239,7 @@ You can search for an invoice with these options
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Invoices** under **Payment Tools**.
 
-
-  <Image src="https://files.readme.io/f5a14c138742dab206b151381602bffe494ea9e60099fe919cb5a21b9fa6c664-Screenshot_2025-06-02_at_7.33.50_PM.png" align="center" caption="Filter invoices by status" border={true} />
-
-
-  2. Click the **Filter** drop-down and select one or more statuses:
+  2) Click the **Filter** drop-down and select one or more statuses:
 
   | Status        | What it means                          |
   | ------------- | -------------------------------------- |
