@@ -418,6 +418,11 @@ The wallet API responds with a redirection URL for the customer to log into thei
 | `PAYMENT_DECLINED` | 422 | Wallet debit declined | Customer should retry or use alternative wallet |
 
 ## Next Steps
-1. **Redirect Customer**: Direct customer to `checkoutUrl`.
-2. **Handle Callbacks**: Process response on your `successAction` or `failureAction` URLs.
+
+1. **Customer Wallet Authentication**:
+   - Redirect the customer to `result.paymentUrl` to log in to their digital wallet and authorize the debit.
+2. **Handle Insufficient Balance**:
+   - If the wallet returns a failed or cancelled status, prompt the customer on your checkout page to top up their wallet or select an alternate payment method.
+3. **Server-Side Status Check**:
+   - Query the **[Verify Payment API](ref:v2_verify_payment_api)** with your `txnId` to ensure the funds were successfully captured.
 3. **Verify Payment**: Perform server-to-server status check via [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api).
