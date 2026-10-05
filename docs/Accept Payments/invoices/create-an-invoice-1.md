@@ -79,17 +79,17 @@ Create a professional, GST-compliant invoice in the PayU Dashboard and send it d
   The **Create New Invoice** page opens.
 
 
-  <Image src="https://files.readme.io/e4fb62f4da41f7913d72ed32ad292fa6b317d6ae078e01920c67cfdbe63bf542-Screenshot_2025-06-02_at_7.43.06_PM.png" align="center" caption="Create New Invoice page" border={true} />
+  <Image src="https://files.readme.io/e4fb62f4da41f7913d72ed32ad292fa6b317d6ae078e01920c67cfdbe63bf542-Screenshot_2025-06-02_at_7.43.06_PM.png" align="center" caption="Create New Invoice" border={true} />
 
 
-  Fill in the basic invoice details:
+  Fill in the these invoice details:
 
-  | Field             | What to enter                                                                       |
-  | ----------------- | ----------------------------------------------------------------------------------- |
-  | **Invoice**       | A unique invoice number for your records                                            |
-  | **Issue Date**    | Filled automatically with today's date                                              |
-  | **Due Date**      | Click the calendar and select when payment is due                                   |
-  | **Invoice Title** | A short description of the invoice — for example, "Consulting Services — July 2025" |
+  | Field             | What To Enter                                                                      |
+  | ----------------- | ---------------------------------------------------------------------------------- |
+  | **Invoice Title** | A short description of the invoice. For example, "Consulting Services — July 2025" |
+  | **Invoice #**     | A unique invoice number for your records                                           |
+  | **Issue Date**    | Filled automatically with today's date                                             |
+  | **Due Date**      | Click the calendar and select when payment is due                                  |
 </Accordion>
 
 <Accordion title="3. Select the customer" icon="far fa-user">
