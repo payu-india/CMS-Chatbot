@@ -239,18 +239,22 @@ You can search for an invoice with these options:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Invoices** under **Payment Tools**.
 
+     <Image src="https://files.readme.io/40e3b71d01f845e1c95f7ddf0aa7a449270abf0371502cfcb163c23fb5d55384-image.png" align="center" caption="Access invoices" border={true} />
+
+
   2) Click the **Filter** drop-down and select one or more statuses:
 
-  | Status        | What it means                          |
-  | ------------- | -------------------------------------- |
-  | **Draft**     | Saved but not sent to the customer yet |
-  | **Sent**      | Sent to the customer, awaiting payment |
-  | **Paid**      | Payment received in full               |
-  | **Overdue**   | Past the due date with no payment      |
-  | **Cancelled** | Manually cancelled — no longer payable |
+  | Status        | What it means                                           |
+  | ------------- | ------------------------------------------------------- |
+  | **Draft**     | Saved but not sent to the customer yet                  |
+  | **Actice**    | Sent to the customer and active                         |
+  | **Cancelled** | Manually deactivated. This invoice is no longer payable |
+  | **Expired**   | The invoice is expired                                  |
 
   3. Click **Apply** to filter the list.
-  4. Click **Reset** to clear the filter and see all invoices.
+
+     <Image src="https://files.readme.io/70ea76ae12ebd5bfec0e865064274a8b476c8855d17fd46b160ff79389e80193-Screenshot_2026-10-05_at_2.03.47_PM.png" align="center" caption="Filter the list of invoices" border={true} />
+
 </Accordion>
 
 <Accordion title="Filter by Date" icon="far fa-calendar">
