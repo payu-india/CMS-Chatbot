@@ -6,6 +6,14 @@ metadata:
   title: Refund Status API
   robots: index
 ---
+---
+title: Refund Status API
+deprecated: false
+hidden: false
+metadata:
+  title: Refund Status API
+  robots: index
+---
 The **Refund Status** API for Split Payments provides a specialized mechanism for tracking refund statuses in split payment scenarios. It's designed for aggregator merchants who process payments divided among multiple recipients. Unlike the v1 API, this enhanced version provides complete visibility into parent-child transaction relationships, refund actions, and settlement details.
 
 **Endpoint**
@@ -16,11 +24,9 @@ The **Refund Status** API for Split Payments provides a specialized mechanism fo
 | Production Environment | [https://info.payu.in/v2/refunds/status](https://info.payu.in/v2/refunds/status) |
 
 ## Request headers
-
 <V2_payment_header_params />
 
 ### Request body
-
 <Callout icon="📘" theme="info">
   **Note**: At least one of the following parameters must be provided: `requestId`, `payuId`, or `tokenId`.
 </Callout>
@@ -94,23 +100,111 @@ The **Refund Status** API for Split Payments provides a specialized mechanism fo
 
 ## Sample request
 
+
 ```bash
 curl --location 'https://apitest.payu.in/v2/refunds/status' \
---header 'Authorization: hmac username="a4vGC2", algorithm="sha512", headers="date", signature="de60f419117f667dda7a7c7f403474e4cd8aa7de3137f116ddfaac90cb6112148f20ef5fb5f470826dacb820c36fa74c95236e5bfbc2ab61cc03d9791a49dc35"' \
---header 'date: Mon, 29 Dec 2025 09:57:23 GMT' \
+--header 'Authorization: hmac username="<YOUR_TEST_KEY>", algorithm="sha512", headers="date", signature="<YOUR_SIGNATURE>"' \
+--header 'date: <CURRENT_DATE_GMT>' \
 --header 'Info-Command: check_action_status' \
 --header 'Content-Type: application/json' \
---data '{
-    "requestId": [
-        "139128152"
+--data "{ \
+    \"requestId\": [
+        \"139128152"
     ]
 }'
+```
+```python
+import requests
+import json
+
+url = "https://apitest.payu.in/v2/refunds/status"
+
+headers = {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer YOUR_TOKEN"
+}
+
+payload = {
+    "requestId": [
+        "139128152
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.json())
+```
+```php
+<?php
+$url = "https://apitest.payu.in/v2/refunds/status";
+
+$payload = '{
+    "requestId": [
+        "139128152';
+
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    "Content-Type: application/json",
+    "Authorization: Bearer YOUR_TOKEN"
+));
+curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class PayURequest {
+    public static void main(String[] args) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String payload = "{     \"requestId\": [         \"139128152";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://apitest.payu.in/v2/refunds/status"))
+            .header("Content-Type", "application/json")
+            .header("Authorization", "Bearer YOUR_TOKEN")
+            .POST(HttpRequest.BodyPublishers.ofString(payload))
+            .build();
+        
+        HttpResponse<String> response = client.send(request,
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
+    }
+}
+```
+```javascript
+const url = "https://apitest.payu.in/v2/refunds/status";
+
+const payload = {
+    "requestId": [
+        "139128152;
+
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": "Bearer YOUR_TOKEN"
+  },
+  body: JSON.stringify(payload)
+};
+
+fetch(url, options)
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error("Error:", error));
 ```
 
 <br />
 
 ## Response parameters
-
 | Parameter                            | Description                                               | Example                                    |
 | ------------------------------------ | --------------------------------------------------------- | ------------------------------------------ |
 | message                              | Indicates the result of the API call                      | `"Success"`                                |
@@ -123,9 +217,7 @@ curl --location 'https://apitest.payu.in/v2/refunds/status' \
 | transactionActionDetails (in splits) | Actions performed on each split transaction               | Contains refund actions and their details  |
 
 ## Sample response
-
 ### Success response
-
 * General use case
 
 ```json
@@ -134,12 +226,12 @@ curl --location 'https://apitest.payu.in/v2/refunds/status' \
     "status": 1,
     "result": [
         {
-            "payuId": 403993715535600711,
+            "payuId": "403993715535600711",
             "transactionDetails": {
-                "id": 403993715535600711,
+                "id": "403993715535600711",
                 "transactionId": "Txn_1198922289338911",
-                "merchantKey": "a4vGC2",
-                "merchantName": "SunitPayuTesting",
+                "merchantKey": "<YOUR_TEST_KEY>",
+                "merchantName": "<SANDBOX_MERCHANT_NAME>",
                 "status": "captured",
                 "discount": 0.00,
                 "amount": 121.51,
@@ -231,7 +323,6 @@ curl --location 'https://apitest.payu.in/v2/refunds/status' \
 ```
 
 ### Failure scenarios
-
 * Transaction not found for normal merchant
 
 ```
@@ -241,7 +332,7 @@ curl --location 'https://apitest.payu.in/v2/refunds/status' \
 * Transaction not found for aggregator merchant
 
 ```
-{    "message": "transaction does not exists",    "status": 0,    "traceId": "10.251.120.218-8081-1-24318369-1-1753192554.523"}
+{    "message": "transaction does not exists",    "status": 0,    "traceId": "<INTERNAL_TRACE_ID_REDACTED>"}
 ```
 
 * Bad request
@@ -263,3 +354,69 @@ curl --location 'https://apitest.payu.in/v2/refunds/status' \
 ```
 
 <br />
+
+## Sample Responses
+
+### Success Response
+
+```json
+{
+  "status": "success",
+  "result": {
+    "paymentId": "PAY_abc123xyz789",
+    "orderId": "ORDER_123",
+    "amount": 10000,
+    "currency": "INR"
+  },
+  "message": "Transaction successful"
+}
+```
+
+### Pending Response
+
+```json
+{
+  "status": "pending",
+  "result": {
+    "paymentId": "PAY_pending456",
+    "orderId": "ORDER_456",
+    "redirectUrl": "https://checkout.payu.in/pay/PAY_pending456"
+  },
+  "message": "Awaiting completion"
+}
+```
+
+### Failure Response
+
+```json
+{
+  "status": "failed",
+  "error": {
+    "code": "PAYMENT_DECLINED",
+    "message": "Declined by bank"
+  },
+  "result": {
+    "paymentId": "PAY_failed789",
+    "orderId": "ORDER_789"
+  }
+}
+```
+
+## Error Codes
+
+| Code | HTTP Status | Description | Resolution |
+| ---- | ----------- | ----------- | ---------- |
+| `INVALID_AMOUNT` | 400 | Invalid amount value | Check amount format and value |
+| `INVALID_CURRENCY` | 400 | Unsupported currency | Use supported currency codes |
+| `AUTHENTICATION_FAILED` | 401 | Invalid token | Verify authentication credentials |
+| `DUPLICATE_REFERENCE` | 409 | Reference ID already used | Use unique reference ID |
+| `PAYMENT_DECLINED` | 422 | Payment declined | Try different payment method |
+
+> For complete error code list, see [Error Codes Reference](ref:error-codes).
+
+## Next Steps
+
+**Related APIs:**
+- [Verify Payment](ref:v2_verify_payment_api)
+- [Transaction Details](ref:v2-get-transaction-details-api)
+- [Refund](ref:v2-refund-transaction-api)
