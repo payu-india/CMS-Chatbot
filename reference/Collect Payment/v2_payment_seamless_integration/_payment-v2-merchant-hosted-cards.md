@@ -175,6 +175,32 @@ Here is the converted table, split into **Mandatory** and **Optional** parameter
 ### billingDetails object fields description
 <BillingDetails_object />
 
+### authorization object fields description
+**Mandatory parameters**
+
+| Parameter | Required | Description | Example |
+| :--- | :--- | :--- | :--- |
+| eci | Mandatory for 3DS2 | Electronic Commerce Indicator returned by Access Control Server (ACS) / Directory Server (DS). | `"05"` |
+| cavv | Mandatory for 3DS2 | Cardholder Authentication Verification Value (cryptogram validating 3DS authentication). | `"AAABAWFlmQAAAABjRWWZEEFgFz"` |
+| threeDSTransID | Mandatory for 3DS2 | Universally unique 3DS Transaction Identifier assigned by Directory Server (DS). | `"67b4c71f-19bf-4d97-bd09-4e3687dc9e42"` |
+| threeDSServerTransID | Mandatory for 3DS2 | Transaction ID assigned by the merchant's 3DS Server (MPI). | `"eea30d14-71cf-41af-b961-f95b7d67dc93"` |
+| threeDSTransStatus | Mandatory for 3DS2 | Authentication outcome code: `Y` (Authenticated), `A` (Attempted), `C` (Challenge), `N` (Failed). | `"Y"` |
+| threeDSenrolled | Mandatory for 3DS 1.x | Card 3DS enrollment flag: `Y` (Enrolled), `N` (Not Enrolled), `U` (Unable to Verify). | `"Y"` |
+| threeDSstatus | Mandatory for 3DS 1.x | 3DS 1.x payer authentication status (e.g. `SUCCESS`). | `"SUCCESS"` |
+| xid | Mandatory for 3DS 1.x | Transaction identifier for 3D Secure 1.x protocol (Base64 encoded). | `"MDAwMDAwMDAwMDAwMDAwMDEyMzQ="` |
+| pares | Mandatory for 3DS 1.x | Payer Authentication Response received from issuing bank ACS. | `"eJzVWFmTokoWfrMABXXOtgSL..."` |
+
+**Optional parameters**
+
+| Parameter | Description | Example |
+| :--- | :--- | :--- |
+| threeDSTransStatusReason | Diagnostic reason code explaining why authentication was not successful or exempt. | `"01"` |
+| flowType | 3DS authentication flow type (`Frictionless` or `Challenge`). | `"Frictionless"` |
+| messageDigest | Security digest value for 3DS 1.x message integrity verification (used with `pares`). | `"3a4df2b5c8e7f9a1d6b0c3e9"` |
+| bankData | Additional bank-specific authorization payload returned by issuing banks. | `"fGpDiuSMy8FjxQHDla5kFwVr"` |
+| additionalInfo | Additional MPI metadata: `paymentGatewayIdentifier` and `authenticationFlow`. | `{"paymentGatewayIdentifier": "MPI_01", "authenticationFlow": "3DS2"}` |
+
+
 ## Sample request
 
 ```bash
@@ -228,7 +254,6 @@ curl -X POST 'https://apitest.payu.in/v2/payments' \
     }
 }'
 ```
-
 ```python
 import requests
 import json
@@ -289,7 +314,6 @@ payload = {
 response = requests.post(url, headers=headers, json=payload)
 print(response.json())
 ```
-
 ```php
 <?php
 $url = "https://apitest.payu.in/v2/payments";
@@ -352,7 +376,6 @@ curl_close($ch);
 echo $response;
 ?>
 ```
-
 ```java
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -420,7 +443,6 @@ public class PayUCardRequest {
     }
 }
 ```
-
 ```javascript
 const url = "https://apitest.payu.in/v2/payments";
 
