@@ -1,5 +1,8 @@
 ---
 title: Errors and Troubleshooting
+excerpt: >-
+  Fix common PayU Invoice problems — invoice not received by customer, payment
+  page not loading, GST not calculating, payment not reflecting, and more.
 deprecated: false
 hidden: true
 metadata:
