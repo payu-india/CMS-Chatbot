@@ -78,7 +78,6 @@ HTTP Method:  **GET**
     <tr>
       <td>
         userCredentials
-        `mandatory`
       </td>
 
       <td>
@@ -296,4 +295,13 @@ Each entry under `result.user_cards` is keyed by the card's `cardToken` and cont
 | tokenBin         | Bank Identification Number for the network token.     | 476136           |
 | tokenExpiryMonth | Expiry month of the network token.                    | 12               |
 | tokenExpiryYear  | Expiry year of the network token.                     | 2026             |
-| isExpired        | Boolean flag indicating whether the token is expired. | false            |
+| isExpired        | Boolean flag indicating whether the token is expired. | false           |
+
+## Next Steps
+
+1. **Render Saved Instruments on Checkout UI**:
+   - Parse `user_cards` and `user_instruments` to display masked cards and linked wallets on your checkout payment screen.
+2. **Obtain Cryptogram (For Network Tokens)**:
+   - For PCI-DSS compliant merchants using network tokens, call the **[Get Payment Details API](ref:v2-get-payment-details-api)** to obtain the transaction-specific cryptogram (`tavv`).
+3. **Execute Payment**:
+   - Charge the stored card using the **[Process Transaction with a Saved Card API](ref:process-transaction-with-a-saved-card)**.
