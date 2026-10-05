@@ -5,66 +5,174 @@ hidden: false
 metadata:
   robots: index
 ---
-The **Check is Domestic** or **Card BIN** API is used to detect whether a particular BIN number is international or domestic. It is also useful to determine:
+---
+title: Check is Domestic Card API
+deprecated: false
+hidden: false
+metadata:
+  title: Check is Domestic Card API
+  description: Fast evaluation of card BIN nationality (domestic vs international), issuing bank, card type, and category.
+  robots: index
+---
 
-* Card's issuing bank
-* Card type such as, Visa, Master, etc.
-* Card category such as Credit/Debit, etc.
-* bin number is the first 6 digits of a Credit/Debit card.
+The **Check is Domestic Card** API allows merchants to verify whether a given card Bank Identification Number (BIN) belongs to a domestic Indian financial institution or an international issuer. This information enables merchants to route payments effectively and adjust processing fees or authentication paths.
+
+HTTP Method: **POST**
 
 **Environment**
 
-| Environment            | URL                                                                                  |
-| :--------------------- | :----------------------------------------------------------------------------------- |
-| Test Environment       | [https://test.payu.in/issuing-bank/v1/bin](https://test.payu.in/issuing-bank/v1/bin) |
-| Production Environment | [https://info.payu.in/issuing-bank/v1/bin](https://info.payu.in/issuing-bank/v1/bin) |
+| Environment | URL |
+| :--- | :--- |
+| **Test Environment** | `<redacted URL>` |
+| **Production Environment** | `<redacted URL>` |
 
-## Request header
+## Request Headers
 
 <V2_payment_header_params />
 
-## Request body
+| Header | Type | Description |
+| :--- | :--- | :--- |
+| `Content-Type` | String | Must be `application/json`. |
+| `Date` | String | Current GMT timestamp (e.g. `Tue, 17 Jun 2025 06:48:55 GMT`). |
+| `Authorization` | String | Standard PayU HMAC authorization header. |
 
-<HTMLBlock>{`
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th>Description</th>
-      <th>Example</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>bin<br/><code>mandatory</code></td>
-      <td><code>Integer/String</code> The first 6 digits of the card (i.e., the BIN number).</td>
-      <td>462273</td>
-    </tr>
-  </tbody>
-</table>
-`}</HTMLBlock>
+---
 
-## Sample request
+## Query Parameters
+
+| Parameter | Type | Required | Description | Example |
+| :--- | :--- | :--- | :--- | :--- |
+| `is_domestic` | Boolean | Mandatory | Flag instructing the engine to evaluate domestic card status. Set to `true`. | `true` |
+
+---
+
+## Request Body Parameters
+
+| Parameter | Description | Example |
+| :--- | :--- | :--- |
+| `bin` | `String` The first 6 or 8 digits of the card number (BIN). | `462273` |
+
+---
+
+## Sample Request
 
 ```bash
-curl --location 'https://info.payu.in/issuing-bank/v1/bin?is_domestic=true' \
+curl --location '<redacted URL>' \
 --header 'Content-Type: application/json' \
---header 'date: {{date}}' \
---header 'Authorization: {{authorization}}' \
+--header 'Date: Tue, 17 Jun 2025 06:48:55 GMT' \
+--header 'Authorization: hmac username="<YOUR_MERCHANT_KEY>", algorithm="sha512", headers="date", signature="<YOUR_SIGNATURE>"' \
 --data '{
-  "bin": "512345"
+  "bin": "462273"
 }'
 ```
+```python
+import requests
 
-<br />
+url = "<redacted URL>"
 
-## Sample response
+headers = {
+    "Content-Type": "application/json",
+    "Date": "Tue, 17 Jun 2025 06:48:55 GMT",
+    "Authorization": "hmac username=\"<YOUR_MERCHANT_KEY>\", algorithm=\"sha512\", headers=\"date\", signature=\"<YOUR_SIGNATURE>\""
+}
 
-<br />
+payload = {
+    "bin": "462273"
+}
 
-### If the card is domestic
-
+response = requests.post(url, headers=headers, json=payload)
+print(response.json())
 ```
+
+```php
+<?php
+$url = "<redacted URL>";
+
+$payload = json_encode([
+    "bin" => "462273"
+]);
+
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    "Content-Type: application/json",
+    "Date: Tue, 17 Jun 2025 06:48:55 GMT",
+    "Authorization: hmac username=\"<YOUR_MERCHANT_KEY>\", algorithm=\"sha512\", headers=\"date\", signature=\"<YOUR_SIGNATURE>\""
+]);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class PayURequest {
+    public static void main(String[] args) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String payload = "{\"bin\": \"462273\"}";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("<redacted URL>"))
+            .header("Content-Type", "application/json")
+            .header("Date", "Tue, 17 Jun 2025 06:48:55 GMT")
+            .header("Authorization", "hmac username=\"<YOUR_MERCHANT_KEY>\", algorithm=\"sha512\", headers=\"date\", signature=\"<YOUR_SIGNATURE>\"")
+            .POST(HttpRequest.BodyPublishers.ofString(payload))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
+}
+```
+```javascript
+const url = "<redacted URL>";
+
+const payload = {
+  bin: "462273"
+};
+
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Date": "Tue, 17 Jun 2025 06:48:55 GMT",
+    "Authorization": "hmac username=\"<YOUR_MERCHANT_KEY>\", algorithm=\"sha512\", headers=\"date\", signature=\"<YOUR_SIGNATURE>\""
+  },
+  body: JSON.stringify(payload)
+};
+
+fetch(url, options)
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error("Error:", error));
+```
+
+---
+
+## Response Parameters
+
+| Parameter | Type | Description | Example |
+| :--- | :--- | :--- | :--- |
+| `isDomestic` | String | `Y` if domestic Indian card; `N` if international card. | `Y` |
+| `issuingBank` | String | Identified card issuing bank code (e.g. `SCB`, `HDFC`, `ICICI`, or `UNKNOWN`). | `SCB` |
+| `cardType` | String | Card network brand: `VISA`, `MAST`, `AMEX`, `RUPAY`, `DINER`. | `VISA` |
+| `cardCategory` | String | Card instrument category: `CC` (Credit Card) or `DC` (Debit Card). | `CC` |
+
+---
+
+## Sample Responses
+
+### Domestic Card
+```json
 {
   "isDomestic": "Y",
   "issuingBank": "SCB",
@@ -73,11 +181,8 @@ curl --location 'https://info.payu.in/issuing-bank/v1/bin?is_domestic=true' \
 }
 ```
 
-<br />
-
-### If the card is international
-
-```
+### International Card
+```json
 {
   "isDomestic": "N",
   "issuingBank": "UNKNOWN",
@@ -85,30 +190,3 @@ curl --location 'https://info.payu.in/issuing-bank/v1/bin?is_domestic=true' \
   "cardCategory": "CC"
 }
 ```
-
-## Response parameters
-
-| Parameter    | Description                                                                                                                                                                     |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| isDomestic   | Response value can contain any of the following: • **Y** signifies that the particular BIN is domestic. • **N** signifies that the particular BIN is International.             |
-| cardType     | Response value can contain any of the following: • MAST • VISA • MAES • AMEX • DINER • Unknown                                                                                  |
-| issuingBank  | The issuing bank of the card used for the transaction.                                                                                                                          |
-| cardCategory | Response value can contain any of the following: • **CC** signifies that the particular bin is a credit card BIN • **DC** signifies that the particular bin is a debit card BIN |
-
-To learn more about the possible error codes and their description, refer to [Error Codes](https://docs.payu.in/reference/error-codes) .
-
-<br />
-
-<br />
-
-**Important Notes:**
-
-<br />
-
-1. **BIN Number**: The var1 parameter should contain exactly the first 6 digits of the card number
-   2. **Domestic vs International**:- Domestic cards (isDomestic: "Y") will show detailed issuing bank information
-   * International cards (isDomestic: "N") typically show "UNKNOWN" for issuing bank
-   3. **Card Types**: The API supports detection of major card types including VISA, MAST, AMEX, MAES, DINER
-      4. **Card Categories**: Distinguishes between Credit Cards (CC) and Debit Cards (DC)
-         5. **Hash Calculation**: Use the sha512 algorithm with the format: key|command|var1|salt\
-            \</Accordion>
