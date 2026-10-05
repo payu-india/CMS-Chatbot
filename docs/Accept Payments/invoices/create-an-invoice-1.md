@@ -244,13 +244,13 @@ After your customer receives the invoice and completes a payment:
 
 ## What Do I Do If Something Goes Wrong?
 
-| Problem                                                  | Fix                                                                                                                                  |
-| -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| Customer says they did not receive the invoice           | Resend it from the Dashboard — find the invoice, open it, and click **Resend**. Also ask the customer to check their spam folder.    |
-| Wrong item, amount, or due date on the invoice           | Invoices cannot be edited after they are sent. Cancel the invoice and create a new one with the correct details.                     |
-| Customer paid but the invoice is still showing as unpaid | Wait a few minutes and refresh. If it does not update after 30 minutes, see [Invoice Troubleshooting](doc:invoice-troubleshooting).  |
-| GST not showing on the invoice                           | Enable GST in the **Settings** panel when creating the invoice, and make sure tax details are set for each item in the Item Catalog. |
-| Customer cannot complete the payment                     | Ask what error they saw. See [Invoice Troubleshooting](doc:invoice-troubleshooting) for common payment issues.                       |
+| Issue                                                    | Recommended Fix                                                                                                                                          |
+| -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Customer says they did not receive the invoice           | Ask the customer to check their spam folder. If not received, resend it from the Dashboard. To resend, find the invoice, open it, and click **Resend**.  |
+| Wrong item, amount, or due date on the invoice           | Invoices cannot be edited after they are sent. Cancel the invoice and create a new one with the correct details.                                         |
+| Customer paid but the invoice is still showing as unpaid | Wait a few minutes and refresh. If it does not update after 30 minutes, see [Invoice Troubleshooting](doc:invoice-troubleshooting).                      |
+| GST not showing on the invoice                           | Enable GST in the **Settings** panel when creating the invoice, and make sure tax details are set for each item in the Item Catalog.                     |
+| Customer cannot complete the payment                     | Ask what error they saw. See [Invoice Troubleshooting](doc:invoice-troubleshooting) for common payment issues.                                           |
 
 ***
 
