@@ -5,396 +5,215 @@ hidden: false
 metadata:
   robots: index
 ---
----
-title: Get Payment Details API
-deprecated: false
-hidden: false
-metadata:
-  robots: index
----
+The **Get Payment Details API** allows merchants to fetch tokenized card payment details and generate a transaction-specific cryptographic authentication value (**cryptogram / TAVV**) from the card network or token service provider (TSP) to authenticate online card transactions.
 
-This API allows merchants to retrieve payment details (including the cryptogram for a network token) for a stored card token.
+## Endpoint & Environments
 
-HTTP Method:  **POST**
+| Environment    | Method | URL              |
+| :------------- | :----- | :--------------- |
+| **Test**       | `POST` | `<redacted URL>` |
+| **Production** | `POST` | `<redacted URL>` |
 
-**Environment**
+***
 
-|            |                                                                                                              |
-| :--------- | :----------------------------------------------------------------------------------------------------------- |
-| Test       | [https://apitest.payu.in/storecard/card/v1/cryptogram](https://apitest.payu.in/storecard/card/v1/cryptogram) |
-| Production | [https://info.payu.in/storecard/card/v1/cryptogram](https://info.payu.in/storecard/card/v1/cryptogram)       |
+## Headers
 
-## Request header
+<br />
 
-### Authorization header
+***
 
-<HeaderAuthentication />
+## Request Parameters
 
-### Header parameters
+The table has 5 rows, so here it is in **Markdown format**:
 
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
+**Mandatory parameters**
 
-      <th>
-        Description
-      </th>
-    </tr>
-  </thead>
+| Parameter        | Description                                                                                                                                                |
+| :--------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `userCredential` | `String` Plaintext identifier representing merchant key and customer ID in format `<merchantKey>:<customerId>` (e.g. `sms:user12345`). Max 100 characters. |
+| `cardToken`      | `String` The unique card token identifier representing the saved card.                                                                                     |
+| `amount`         | `Number` Transaction amount (e.g. `1000.00`). Cryptograms are cryptographically bound to the amount.                                                       |
+| `currency_type`  | `String` 3-letter currency code (e.g. `INR`).                                                                                                              |
 
-  <tbody>
-    <tr>
-      <td>
-        mid
-        `mandatory`
-      </td>
+**Optional parameters**
 
-      <td>
-        Merchant ID provided by PayU. Use the value provided in your PayU dashboard.
-      </td>
-    </tr>
+| Parameter | Description                                                        |
+| :-------- | :----------------------------------------------------------------- |
+| `source`  | `String` Channel identifier (e.g. `merchant_web`, `merchant_app`). |
 
-    <tr>
-      <td>
-        date  
-        `mandatory`
-      </td>
-
-      <td>
-        The current date and time. For example, format of the date is Wed, 28 Jun 2023 11:25:19 GMT.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-### Query parameters
-
-<Table>
-  <thead>
-    <tr>
-      <th>
-        Parameter
-      </th>
-
-      <th>
-        Description
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        userCredential
-        `mandatory`
-      </td>
-
-      <td>
-        `String` Encrypted user credentials, typically `<username>:<password>`.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        cardToken
-        `mandatory`
-      </td>
-
-      <td>
-        `String` Token for the card whose payment details are being fetched.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        amount
-        `mandatory`
-      </td>
-
-      <td>
-        `Number` Amount to validate or process for this payment.
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        currency_type
-        `mandatory`
-      </td>
-
-      <td>
-        `String` Currency in which the payment is being processed (for example, `INR`).
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        tokenType
-        `optional`
-      </td>
-
-      <td>
-        `String` Type of token. Possible values include `PAYU`, `NETWORK`, `ISSUER`, or `null`.
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-## Sample request
-
-```bash
-curl --location --request POST 'https://apitest.payu.in/storecard/card/v1/cryptogram?userCredential=sms%3A123&cardToken=2d264984a4fa7253d4a4d9&amount=10&currency_type=INR&tokenType=PAYU' \
+## Sample Request
+```curl
+curl --location --request POST '<redacted URL>' \
 --header 'Content-Type: application/json' \
---header 'mid: 117256' \
---header 'date: Fri, 24 Apr 2026 09:32:42 GMT' \
---header 'Authorization: hmac username="PRiQvJ", algorithm="sha512", headers="date", signature="f65970652dcd74b0cbd00361636fe04fc340274fa4f86984580032182b7c1a8911d9c18c637504c5809f630dde189349f3aa49572274fa9e909e3edc3a19996c"' \
---header 'Cookie: PHPSESSID=krida5voc39gqosfud8tt6n8as' \
---data ''
+--header 'Date: Mon, 05 Oct 2026 08:30:00 GMT' \
+--header 'Authorization: hmac username="merchant_key", algorithm="sha512", headers="date", signature="<SIGNATURE>"' \
+--data-raw '{
+  "userCredential": "sms:user12345",
+  "cardToken": "29850879bf39848ca078727b8e1a95165a41cea1",
+  "amount": 1000.00,
+  "currency_type": "INR",
+  "source": "merchant_web"
+}'
 ```
+```python
+import requests
 
-## Sample response
+url = "<redacted URL>"
+payload = {
+    "userCredential": "sms:user12345",
+    "cardToken": "29850879bf39848ca078727b8e1a95165a41cea1",
+    "amount": 1000.00,
+    "currency_type": "INR",
+    "source": "merchant_web"
+}
+headers = {
+    "Content-Type": "application/json",
+    "Date": "Mon, 05 Oct 2026 08:30:00 GMT",
+    "Authorization": 'hmac username="merchant_key", algorithm="sha512", headers="date", signature="<SIGNATURE>"'
+}
 
-```json
-{
-    "message": "Instrument details",
-    "status": 1,
-    "result": {
-        "oneClickFlow": "",
-        "oneClickStatus": "",
-        "cardType": "VISA",
-        "trid": "400000340044",
-        "networkToken": {
-            "tokenValue": "4489682380114436",
-            "tokenExpiryMonth": 12,
-            "tokenExpiryYear": 2034
-        },
-        "cardMode": "",
-        "par": "V0010013021320427651459792018",
-        "tokenReferenceId": "d708fb5c7273580e21d91faa506b4301",
-        "cardNo": "XXXXXXXXXXXX1258",
-        "oneClickCardAlias": "",
-        "cardToken": "2d1e569bf1f6b150a32f70",
-        "cardName": "",
-        "cryptogram": "BAAAAAAAtZF+jUIAmbHTgnIAAAg="
+response = requests.post(url, headers=headers, json=payload)
+print(response.json())
+```
+```php
+<?php
+$curl = curl_init();
+
+$payload = json_encode([
+  "userCredential" => "sms:user12345",
+  "cardToken" => "29850879bf39848ca078727b8e1a95165a41cea1",
+  "amount" => 1000.00,
+  "currency_type" => "INR",
+  "source" => "merchant_web"
+]);
+
+curl_setopt_array($curl, [
+  CURLOPT_URL => '<redacted URL>',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_POSTFIELDS => $payload,
+  CURLOPT_HTTPHEADER => [
+    'Content-Type: application/json',
+    'Date: Mon, 05 Oct 2026 08:30:00 GMT',
+    'Authorization: hmac username="merchant_key", algorithm="sha512", headers="date", signature="<SIGNATURE>"'
+  ],
+]);
+
+$response = curl_exec($curl);
+curl_close($curl);
+echo $response;
+```
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class GetCryptogram {
+    public static void main(String[] args) throws Exception {
+        String payload = """
+        {
+          "userCredential": "sms:user12345",
+          "cardToken": "29850879bf39848ca078727b8e1a95165a41cea1",
+          "amount": 1000.00,
+          "currency_type": "INR",
+          "source": "merchant_web"
+        }
+        """;
+
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("<redacted URL>"))
+            .header("Content-Type", "application/json")
+            .header("Date", "Mon, 05 Oct 2026 08:30:00 GMT")
+            .header("Authorization", "hmac username=\"merchant_key\", algorithm=\"sha512\", headers=\"date\", signature=\"<SIGNATURE>\"")
+            .POST(HttpRequest.BodyPublishers.ofString(payload))
+            .build();
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
     }
 }
 ```
+```javascript
+const axios = require('axios');
 
-## Response parameters
+const data = {
+  userCredential: "sms:user12345",
+  cardToken: "29850879bf39848ca078727b8e1a95165a41cea1",
+  amount: 1000.00,
+  currency_type: "INR",
+  source: "merchant_web"
+};
 
-| Parameter | Description                                                                                                                                              | Example              |
-| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------- |
-| message   | Response message indicating the operation result.                                                                                                        | `Instrument details` |
-| status    | Status code for the operation. `1` for success, `0` for failure.                                                                                         | `1`                  |
-| result    | JSON object containing the payment instrument details. For more information, refer to [result JSON fields description](#result-json-fields-description). |                      |
+const config = {
+  method: 'post',
+  url: '<redacted URL>',
+  headers: { 
+    'Content-Type': 'application/json',
+    'Date': 'Mon, 05 Oct 2026 08:30:00 GMT',
+    'Authorization': 'hmac username="merchant_key", algorithm="sha512", headers="date", signature="<SIGNATURE>"'
+  },
+  data: data
+};
 
-### result JSON fields description
+axios(config)
+  .then(response => console.log(JSON.stringify(response.data)))
+  .catch(error => console.error(error));
+```
+***
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        Field
-      </th>
+## Response Parameters
 
-      <th>
-        Description
-      </th>
+| Parameter           | Type    | Description                                                                                                                            |
+| :------------------ | :------ | :------------------------------------------------------------------------------------------------------------------------------------- |
+| **status**          | Integer | Status indicator: `1` (Success) or `0` (Failure).                                                                                      |
+| **msg**             | String  | Outcome description.                                                                                                                   |
+| **cardToken**       | String  | The card token identifier queried.                                                                                                     |
+| **cardNo**          | String  | Masked card number (e.g. `512345XXXXXX2346`).                                                                                          |
+| **cardName**        | String  | Name of the cardholder.                                                                                                                |
+| **cardType**        | String  | Network brand (e.g. `MAST`, `VISA`, `RUPAY`).                                                                                          |
+| **cardMode**        | String  | Card category: `CC` (Credit Card) or `DC` (Debit Card).                                                                                |
+| **cryptogram**      | String  | Base64-encoded Token Authentication Verification Value (TAVV / cryptogram) to pass into `paymentCard.tavv` for transaction processing. |
+| **eci**             | String  | Electronic Commerce Indicator returned by the card network (e.g. `05`, `07`).                                                          |
+| **oneClickStatus**  | String  | Status of 1-click checkout eligibility for this card instrument (`ELIGIBLE` / `INELIGIBLE`).                                           |
+| **oneClickFlow**    | String  | Supported 1-click checkout authorization flow (`DEVICE_BINDING` / `OTP`).                                                              |
+| **cardExpiryMonth** | String  | 2-digit expiry month.                                                                                                                  |
+| **cardExpiryYear**  | String  | 4-digit expiry year.                                                                                                                   |
 
-      <th>
-        Example
-      </th>
-    </tr>
-  </thead>
+### Sample Response (Success)
 
-  <tbody>
-    <tr>
-      <td>
-        oneClickFlow
-      </td>
+```json
+{
+  "status": 1,
+  "msg": "Cryptogram generated successfully",
+  "cardToken": "29850879bf39848ca078727b8e1a95165a41cea1",
+  "cardNo": "512345XXXXXX2346",
+  "cardName": "John Doe",
+  "cardType": "MAST",
+  "cardMode": "CC",
+  "cryptogram": "/wAAAAAAPtP+g6IAmbSeg1gAAAA=",
+  "eci": "05",
+  "oneClickStatus": "ELIGIBLE",
+  "oneClickFlow": "OTP",
+  "cardExpiryMonth": "12",
+  "cardExpiryYear": "2029"
+}
+```
 
-      <td>
-        A one-click flow in a saved card system is a fast, secure payment checkout experience that allows returning customers to finalize purchases with a single click or tap, without re-entering card details, CVV, or authentication codes like OTP.
-      </td>
+### Sample Response (Failure)
 
-      <td>
+```json
+{
+  "status": 0,
+  "msg": "Failed to fetch cryptogram from card network"
+}
+```
 
-      </td>
-    </tr>
 
-    <tr>
-      <td>
-        oneClickStatus
-      </td>
+## Next Steps
 
-      <td>
-        Indicates whether the saved card allows the customer to complete a purchase with a single click or tap, without re-entering card details (card number, CVV, or expiry date) or undergoing additional 3D Secure authentication for every transaction.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        cardType
-      </td>
-
-      <td>
-        Card type.
-      </td>
-
-      <td>
-        `VISA`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        trid
-      </td>
-
-      <td>
-        Token Reference ID assigned by the network.
-      </td>
-
-      <td>
-        `400000340044`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        networkToken
-      </td>
-
-      <td>
-        Object containing the network token details:
-
-        * **tokenValue**: The actual card/network token.
-        * **tokenExpiryMonth**: Token expiry month.
-        * **tokenExpiryYear**: Token expiry year.
-      </td>
-
-      <td>
-        `{ "tokenValue": "4761360000000009", "tokenExpiryMonth": 12, "tokenExpiryYear": 2026 }`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        cardMode
-      </td>
-
-      <td>
-        Card mode (for example, `CC` for Credit Card or `DC` for Debit Card).
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        par
-      </td>
-
-      <td>
-        Payment Account Reference – unique identifier for the card across environments.
-      </td>
-
-      <td>
-        `ZCLY85YBYQ4Q8D6162O8M0V414GK7`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        tokenReferenceId
-      </td>
-
-      <td>
-        Reference ID associated with the token.
-      </td>
-
-      <td>
-        `3dc50cce023cf4d7dd243c9af272c5c6`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        cardNo
-      </td>
-
-      <td>
-        Masked card number.
-      </td>
-
-      <td>
-        `XXXXXXXXXXXX1258`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        oneClickCardAlias
-      </td>
-
-      <td>
-        Non-sensitive, unique identifier (or token) that represents a customer's actual credit or debit card number (PAN), allowing them to make future purchases with a single click without re-entering card details.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        cardToken
-      </td>
-
-      <td>
-        Card token.
-      </td>
-
-      <td>
-        `9350516de374f7bab4cd2`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        cardName
-      </td>
-
-      <td>
-        Nickname assigned to the card at the time of saving.
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        cryptogram
-      </td>
-
-      <td>
-        Generated encrypted string used for payment security.
-      </td>
-
-      <td>
-        `AgAAAGQBdCZtW8sAmbHTg0UAAAA=`
-      </td>
-    </tr>
-  </tbody>
-</Table>
+1. **Pass Cryptogram to Payment API**:
+   - Pass the returned `cryptogram` string into `paymentCard.tavv` and `eci` into `authorization.eci` when calling the [Using Network Tokens API](./using-network-tokens.md) or [Process Transaction with a Saved Card API](ref:process-transaction-with-a-saved-card).
+2. **Handle Timeouts & Expirations**:
+   - Cryptograms possess short validity windows (typically 15 minutes). Ensure cryptograms are generated just prior to initiating the payment collection request.
