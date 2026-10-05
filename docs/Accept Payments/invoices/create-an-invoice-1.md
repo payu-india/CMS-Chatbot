@@ -193,13 +193,17 @@ Create a professional, GST-compliant invoice in the PayU Dashboard and send it d
 <Accordion title="5. Configure settings (optional)" icon="far fa-sliders">
   On the **Settings** panel on the right side of the page, you can turn on:
 
-  | Setting                     | What it does                                                                                              |
-  | --------------------------- | --------------------------------------------------------------------------------------------------------- |
-  | **Enable GST**              | Calculates and adds GST to each line item automatically, based on the tax details set in the item catalog |
-  | **Enable Partial Payments** | Lets your customer choose to pay a part of the invoice now and the rest later                             |
+  | Setting                     | What it does                                                                                                                                                                                                            |
+  | --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | **Enable GST**              | Calculates and adds GST to each line item automatically, based on the tax details set in the item catalog. Upon clicking, you should add the **GSTIN&#x20;**&#x69;n the **Add your GST Details&#x20;**&#x70;op-up menu. |
+  | **Enable Partial Payments** | Lets your customer choose to pay a part of the invoice now and the rest later                                                                                                                                           |
+
+  ![](https://files.readme.io/a199c3d9b2a663928af6078b565a8401adfa9dc7da3ddfdbacf3592c54d26a30-Screenshot_2026-10-05_at_10.49.40_AM.png)
 
   <Callout icon="📘" theme="info">
-    GST details — rate, HSN/SAC code, inter-state or intra-state tax, and cess — are set at the item level in the Item Catalog. → [Manage Invoice Items](doc:manage-invoice-items)
+    ### **Tips:**
+
+    GST details — rate, HSN/SAC code, inter-state or intra-state tax, and cess — are set at the item level in the Item Catalog.
   </Callout>
 </Accordion>
 
