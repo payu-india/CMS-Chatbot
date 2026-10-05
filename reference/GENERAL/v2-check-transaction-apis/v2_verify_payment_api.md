@@ -75,6 +75,144 @@ curl --location 'https://test.payu.in/v3/transaction' \
     "txnId":["512345678901234"]
 }'
 ```
+```python
+import requests
+import json
+
+url = "https://test.payu.in/v3/transaction"
+
+headers = {
+    "Content-Type": "application/json",
+    "date": "<CURRENT_DATE_GMT>",
+    "authorization": 'hmac username="<YOUR_TEST_KEY>", algorithm="sha512", headers="date", signature="<YOUR_SIGNATURE>"',
+    "Info-Command": "verify_payment"
+}
+
+payload = {
+    "txnId": ["512345678901234"]
+}
+
+response = requests.post(url, headers=headers, data=json.dumps(payload))
+
+print("Status Code:", response.status_code)
+print("Response:", response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        using HttpClient client = new HttpClient();
+
+        client.DefaultRequestHeaders.Add("date", "<CURRENT_DATE_GMT>");
+        client.DefaultRequestHeaders.Add("authorization", "hmac username=\"<YOUR_TEST_KEY>\", algorithm=\"sha512\", headers=\"date\", signature=\"<YOUR_SIGNATURE>\"");
+        client.DefaultRequestHeaders.Add("Info-Command", "verify_payment");
+
+        string jsonBody = "{\"txnId\":[\"512345678901234\"]}";
+        StringContent content = new StringContent(jsonBody, Encoding.UTF8, "application/json");
+
+        HttpResponseMessage response = await client.PostAsync("https://test.payu.in/v3/transaction", content);
+
+        Console.WriteLine("Status Code: " + (int)response.StatusCode);
+        Console.WriteLine("Response: " + await response.Content.ReadAsStringAsync());
+    }
+}
+```
+```javascript
+const url = "https://test.payu.in/v3/transaction";
+
+const headers = {
+  "Content-Type": "application/json",
+  "date": "<CURRENT_DATE_GMT>",
+  "authorization": 'hmac username="<YOUR_TEST_KEY>", algorithm="sha512", headers="date", signature="<YOUR_SIGNATURE>"',
+  "Info-Command": "verify_payment"
+};
+
+const body = JSON.stringify({
+  txnId: ["512345678901234"]
+});
+
+const response = await fetch(url, {
+  method: "POST",
+  headers: headers,
+  body: body
+});
+
+console.log("Status Code:", response.status);
+console.log("Response:", await response.text());
+```
+```java
+import java.io.OutputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        URL url = new URL("https://test.payu.in/v3/transaction");
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+        conn.setRequestMethod("POST");
+        conn.setDoOutput(true);
+        conn.setRequestProperty("Content-Type", "application/json");
+        conn.setRequestProperty("date", "<CURRENT_DATE_GMT>");
+        conn.setRequestProperty("authorization", "hmac username=\"<YOUR_TEST_KEY>\", algorithm=\"sha512\", headers=\"date\", signature=\"<YOUR_SIGNATURE>\"");
+        conn.setRequestProperty("Info-Command", "verify_payment");
+
+        String jsonBody = "{\"txnId\":[\"512345678901234\"]}";
+        try (OutputStream os = conn.getOutputStream()) {
+            os.write(jsonBody.getBytes("UTF-8"));
+        }
+
+        int statusCode = conn.getResponseCode();
+        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        StringBuilder response = new StringBuilder();
+        String line;
+        while ((line = br.readLine()) != null) {
+            response.append(line);
+        }
+        br.close();
+
+        System.out.println("Status Code: " + statusCode);
+        System.out.println("Response: " + response.toString());
+    }
+}
+```
+```php
+<?php
+
+$url = "https://test.payu.in/v3/transaction";
+
+$headers = [
+    "Content-Type: application/json",
+    "date: <CURRENT_DATE_GMT>",
+    'authorization: hmac username="<YOUR_TEST_KEY>", algorithm="sha512", headers="date", signature="<YOUR_SIGNATURE>"',
+    "Info-Command: verify_payment"
+];
+
+$body = json_encode([
+    "txnId" => ["512345678901234"]
+]);
+
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+$statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+
+echo "Status Code: " . $statusCode . "\n";
+echo "Response: " . $response . "\n";
+```
 
 ## Response parameters
 The fields in the result parameter JSON are described in the following table:
