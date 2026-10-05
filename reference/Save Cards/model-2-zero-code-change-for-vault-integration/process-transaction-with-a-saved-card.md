@@ -1,14 +1,13 @@
 ---
 title: Process Transaction with a Saved Card
-excerpt: ''
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
 # Processing Payments with Saved Card Tokens
 
