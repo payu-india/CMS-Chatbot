@@ -211,7 +211,6 @@ curl -X POST 'https://apitest.payu.in/v2/payments' \
     }
 }'
 ```
-
 ```python
 import requests
 import json
@@ -267,7 +266,6 @@ payload = {
 response = requests.post(url, headers=headers, json=payload)
 print(response.json())
 ```
-
 ```php
 <?php
 $url = "https://apitest.payu.in/v2/payments";
@@ -325,7 +323,6 @@ curl_close($ch);
 echo $response;
 ?>
 ```
-
 ```java
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -388,7 +385,6 @@ public class PayUUPIRefRequest {
     }
 }
 ```
-
 ```javascript
 const url = "https://apitest.payu.in/v2/payments";
 
