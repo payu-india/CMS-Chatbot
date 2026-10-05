@@ -538,8 +538,6 @@ The card payment response returns a `checkoutUrl` to redirect the customer to th
 
 ## Next Steps
 
-## Next Steps
-
 1. **Handle Customer 3DS Authentication**:
    - Inspect the `result.paymentUrl` or redirection payload returned in the API response.
    - Redirect the customer or render the 3D Secure ACS challenge screen in an in-app browser/webview to complete two-factor authentication (OTP / Biometric).
