@@ -180,21 +180,31 @@ You can perform the following actions after a button is created:<br />
      2. **Send Invoice&#x20;**&#x74;o send the invoice using the available options
 </Accordion>
 
-<Accordion title="Cancel an Invoice" icon="far fa-ban">
-  Cancelling an invoice marks it as void — the customer can no longer pay it.
+***
 
-  To cancel an invoice:
+### Deactivate an Invoice
+
+<Accordion title="Steps to Deactivate an Invoice" icon="far fa-ban">
+  Deactivating an invoice marks it as void. The customer can no longer pay it.
+
+  To deactivater an invoice:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Invoices** under **Payment Tools**.
-  2. Find the invoice you want to cancel and click it to open the detail page.
-  3. Click **Cancel Invoice** and confirm.
 
-  The invoice status changes to **Cancelled**.
+     <Image src="https://files.readme.io/062dfc9778dc06bf9f02a84c4dd4388a14c8596e9341a21a263f40d603416ff6-image.png" align="center" caption="Access invoices" border={true} />
+
+  2. Click the deactivate icon against the required invoice.
+
+     <Image src="https://files.readme.io/a564b37e68dc153f44991c77cc23d9b36090f9ff5014760e2ddd8a8a90402069-Screenshot_2026-10-05_at_1.40.33_PM.png" align="center" caption="Deactivate an invoice" border={true} />
+
+  3. Click **Yes, Deactivate** on the **Are you sure?&#x20;**&#x63;onfirmation pop-up menu.
+
+  The invoice status changes to **Deactivated**.
 
   <Callout icon="🚧" theme="warning">
     ### **Watch Out!**
 
-    Once an invoice is cancelled, it cannot be restored. If you need to bill the same customer again, create a new invoice.
+    Once an invoice is deactivated, it cannot be restored. If you need to bill the same customer again, create a new invoice.
   </Callout>
 </Accordion>
 
