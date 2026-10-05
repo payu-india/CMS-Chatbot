@@ -235,9 +235,9 @@ After your customer receives the invoice and completes a payment:
 4. The money is settled to your bank account on the standard settlement cycle.
 
 <Callout icon="📘" theme="info">
-  ### **Want to be notified the moment a payment comes in?**
+  ### **Want to be notified after a payment?**
 
-  Set up webhooks under **Settings → Webhooks** in the Dashboard. Webhooks are optional — your Dashboard always shows you the latest payment and invoice status whether or not you set them up.
+  Set up webhooks under **Settings → Webhooks** in the Dashboard. <Anchor target="_blank" href="https://docs.payu.in/docs/manage-webhooks-using-dashboard">Webhooks</Anchor> are optional — your Dashboard always shows you the latest payment and invoice status whether or not you set them up.
 </Callout>
 
 ***
