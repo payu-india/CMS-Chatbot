@@ -9,613 +9,253 @@ metadata:
   description: ''
   robots: index
 ---
-The Eligible Bin for EMI API v2.0 is used only when the merchant needs the EMI feature of PayU. If you are managing card details on your website, this API can tell the issuing bank of the card bin. It also provides the minimum eligible amount for a particular bank.
+---
+title: Eligible BIN for EMI API
+deprecated: false
+hidden: false
+metadata:
+  title: Eligible BIN for EMI API
+  description: Verify card BIN eligibility for Equated Monthly Installment (EMI) payment options and fetch minimum order transaction thresholds per bank.
+  robots: index
+---
 
-
-<Image src="https://files.readme.io/2eaac64-emi_eligible_bins_flow.png" align="center" />
-
+The **Eligible BIN for EMI** API allows merchants to verify if a customer's credit or debit card BIN is eligible for EMI plans. It also returns the issuing bank identifier and the minimum transaction amount required to qualify for EMI financing.
 
 HTTP Method: **POST**
 
-You can post a request using any of the following methods:
+**Environment**
 
-* [Request without bank selection](#request-without-bank-selection)
-* [Request with bank selection](#request-with-bank-selection)
+| Environment | URL |
+| :--- | :--- |
+| **Test Environment** | `<redacted URL>` |
+| **Production Environment** | `<redacted URL>` |
 
-### Environment
+## Request Headers
 
-<br />
+<V2_payment_header_params />
 
-|            |                                                                                                                    |
-| :--------- | :----------------------------------------------------------------------------------------------------------------- |
-| Production | [https://info.payu.in/issuing-bank/v1/bin/binEligibility](https://info.payu.in/issuing-bank/v1/bin/binEligibility) |
+| Header | Type | Description | Example |
+| :--- | :--- | :--- | :--- |
+| `Content-Type` | String | Must be `application/json`. | `application/json` |
+| `Date` | String | Current GMT timestamp (e.g. `Thu, 17 Feb 2025 08:17:59 GMT`). | `Thu, 17 Feb 2025 08:17:59 GMT` |
+| `Digest` | String | Base64-encoded SHA-256 hash of the JSON request payload. | `vpGay5D/dmfoDupALPpl...=` |
+| `Authorization` | String | HMAC-SHA256 signature calculated over the `Date` and `Digest` headers. | `hmac username="<KEY>", algorithm="hmac-sha256", headers="date digest", signature="..."` |
+| `platformId` | String | Static platform identifier for API routing. Pass `1`. | `1` |
 
-## Request headers
+---
 
-The request header contains the following fields:
+## Request Body Parameters
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        **Field**
-      </th>
-
-      <th>
-        **Description**
-      </th>
-
-      <th>
-        **Example**
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        Date
-        **mandatory**
-      </td>
-
-      <td>
-        The date and time should be in the GMT time conversion(not the IST). For example, current time in India is 18:00:00 IST, the time in the date header should be 12:30:00 GMT.
-      </td>
-
-      <td>
-        Thu, 17 Feb 2022 08:17:59 GMT
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Digest
-        **mandatory**
-      </td>
-
-      <td>
-        Base 64 encode of (sha256 hash of the JSON data (post to server).
-      </td>
-
-      <td>
-        `vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=`
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        Authorization
-        **mandatory**
-      </td>
-
-      <td>
-        This field is in the following format:
-        `hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="CkGfgbho69uTMMOGU0mHWf+1CUAlIp3AjvsON9n9/E4="`
-        Where the above format includes the following:
-
-        * **username**: The merchant key of the merchant.
-        * **algorithm**: This must have the value as **hmac-sha256** that is used for this API
-        * **headers**: This must have the value as **date digest**
-        * **signature**: This must contain the hmacsha256 of (signing_string, merchant_secret), where:
-          * **signing_string**: This is in the "**Date**"+"\n"+"**Digest**" format. Here, the Date and Digest is the same values in the fields listed in this table For example, "Thu, 17 Feb 2022 08:17:59 GMT""\n"+“vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=“
-          * **merchant_secret**: The merchant Salt of the merchant. For more information on getting the merchant Salt, refer to [Generate Merchant Key and Salt on PayU Dashboard](doc:generate-merchant-key-and-salt-on-payu-dashboard)
-      </td>
-
-      <td>
-         hmac username="smsplus", algorithm="hmac-sha256", headers="date digest", signature="zGmP5Zeqm1pxNa+d68DWfQFXhxoqf3st353SkYvX8HI="
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        platformId
-        **mandatory**
-      </td>
-
-      <td>
-        This field contains the platform ID and include the value as **1**.
-      </td>
-
-      <td>
-        1
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-The following sample Java code contains the logic used to encrypt as described in the above table:
-
-```java
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import org.apache.commons.codec.binary.Base64;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
-import java.security.InvalidKeyException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
-public class HmacAuth {
-
-    public static String getSha256(String input) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            byte[] digest = md.digest(input.getBytes());
-            return Base64.encodeBase64String(digest);
-        } catch (NoSuchAlgorithmException ignored) {}
-        return null;
-    }
-
-    public static JsonObject getRequestBody(){
-        JsonObject requestJson = new JsonObject();
-        requestJson.addProperty("firstname","John");
-        requestJson.addProperty("lastname","Doe");
-        return requestJson;
-    }
-
-    public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeyException {
-        String key = "smsplus";
-        String secret = "admin";
-        Gson gson = new Gson();
-        String date = DateTimeFormat.forPattern("EEE, dd MMM yyyy HH:mm:ss 'GMT'").withZoneUTC().print(new DateTime());
-        System.out.println(date);
-        JsonObject requestJson = getRequestBody();
-        String digest = getSha256(gson.toJson(requestJson));
-        System.out.println(digest);
-        String signingString = new StringBuilder()
-            .append("date: " + date)
-            .append("\ndigest: " + digest).toString();
-        Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
-        SecretKeySpec secret_key = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
-        sha256_HMAC.init(secret_key);
-        String signature = Base64.encodeBase64String(sha256_HMAC.doFinal(signingString.getBytes()));
-        String authorization = new StringBuilder()
-            .append("hmac username=\"")
-            .append(key)
-            .append("\", algorithm=\"hmac-sha256\", headers=\"date digest\", signature=\"")
-            .append(signature)
-            .append("\"").toString();
-        System.out.println(authorization);
-    }
-}
-```
-
-## Request without bank selection
-
-### Request parameters
+Merchants can verify BIN eligibility either with or without pre-specifying the issuing bank:
 
 <Table align={["left","left","left"]}>
   <thead>
     <tr>
-      <th>
-        **Parameter**
-      </th>
-
-      <th>
-        **Description**
-      </th>
-
-      <th>
-        **Example**
-      </th>
+      <th>Parameter</th>
+      <th>Description</th>
+      <th>Example</th>
     </tr>
   </thead>
-
   <tbody>
     <tr>
-      <td>
-        bintype
-        **mandatory**
-      </td>
-
-      <td>
-        This parameter needs can include any of the following the values:
-
-        * **bin**: If you want to check on the basis of the first 6/8/9 digits of card number or network token.
-        * **NET**: If you want to check on the basis of network token.
-      </td>
-
-      <td>
-        bin
-      </td>
+      <td>`bintype`<br/>`mandatory`</td>
+      <td>`String` Mode of card identification: pass `bin` for card BIN digits, or `NET` for network token lookup.</td>
+      <td>`bin`</td>
     </tr>
-
     <tr>
-      <td>
-        value
-        **mandatory**
-      </td>
-
-      <td>
-        This parameter can contain any of the following:
-
-        * If **bin** used in var1 parameter, the first 6/8/9 digits of card number or network token.
-        * If **NET** used in the var1 parameter, the entire network token must be passed.
-      </td>
-
-      <td>
-        4161041969147181
-      </td>
+      <td>`value`<br/>`mandatory`</td>
+      <td>`String` The first 6, 8, or 9 digits of the card number (or full token if `bintype` is `NET`).</td>
+      <td>`416104`</td>
     </tr>
-
     <tr>
-      <td>
-        amount
-        **conditional**
-      </td>
-
-      <td>
-        This parameter needs to include the transaction amount.
-
-        * _Note_\*: Amount is a non-mandatory field, but is mandatory if bank code is ONEC or BAJFIN .
-      </td>
-
-      <td>
-        10000
-      </td>
+      <td>`amount`<br/>`conditional`</td>
+      <td>`Number` Transaction order amount. Mandatory when checking eligibility for specific non-bank issuers (e.g., `ONEC` or `BAJFIN`).</td>
+      <td>`10000.00`</td>
+    </tr>
+    <tr>
+      <td>`bank`<br/>`optional`</td>
+      <td>`String` Specific issuing bank code (e.g. `ICICI`, `HDFC`, `AXIS`). If provided, checks eligibility specifically for that institution.</td>
+      <td>`ICICI`</td>
     </tr>
   </tbody>
 </Table>
 
-### Response parameters
+---
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        **Parameter**
-      </th>
+## Sample Request
 
-      <th>
-        **Description**
-      </th>
-
-      <th>
-        **Example**
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        status
-      </td>
-
-      <td>
-        This parameter returns the status of web service call.
-        The status can be any of the following:
-
-        * 0 - If web service call failed.
-          * 1 - If web service call succeeded
-      </td>
-
-      <td>
-        1
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        msg
-      </td>
-
-      <td>
-        This parameter returns whether the EMI details were fetched successfully or not found.
-      </td>
-
-      <td>
-        Details fetched successfully
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        details
-      </td>
-
-      <td>
-        The details of the EMI offer is displayed in a JSON format and it contains the following fields:
-      </td>
-
-      <td>
-         
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-### Sample Request
-
-```
-curl -X POST \
-  'https://info.payu.in/issuing-bank/v1/bin/binEligibility' \
-  -H 'Date: $(date -u "+%a, %d %b %Y %H:%M:%S GMT")' \
-  -H 'Digest: YOUR_BASE64_ENCODED_SHA256_DIGEST' \
-  -H 'Authorization: hmac username="YOUR_MERCHANT_KEY", algorithm="hmac-sha256", headers="date digest", signature="YOUR_CALCULATED_SIGNATURE"' \
-  -H 'platformId: 1' \
-  -H 'Content-Type: application/json' \
-  -d '{
+```bash
+curl --location '<redacted URL>' \
+--header 'Content-Type: application/json' \
+--header 'platformId: 1' \
+--header 'Date: Thu, 17 Feb 2025 08:17:59 GMT' \
+--header 'Digest: vpGay5D/dmfoDupALPplYGucJAln9gS29g5Orn+8TC0=' \
+--header 'Authorization: hmac username="<YOUR_MERCHANT_KEY>", algorithm="hmac-sha256", headers="date digest", signature="zGmP5Zeqm1pxNa+d68DWfQFXhxoqf3st353SkYvX8HI="' \
+--data '{
     "bintype": "bin",
     "value": "416104",
-    "amount": 10000
-  }'
-
-```
-
-<br />
-
-### Sample response
-
-* If successfully fetched:
-
-If successfully fetched:
-
-```plaintext
-{ 
-    "message": "Details fetched successfully", 
-    "status": 1, 
-    "result": [ 
-        { 
-            "isEligible": 1, 
-            "bank": "ICICI", 
-            "minAmount": 1500.0 
-        } 
-    ] 
-```
-
-* If not found:
-
-If not found:
-
-```plaintext
-{ 
-
-    "message": "Details fetched successfully", 
-
-    "status": 1, 
-
-    "result": [ 
-
-        { 
-
-            "isEligible": 0, 
-
-            "bank": "ICICI", 
-
-            "minAmount": 1500.0 
-
-        } 
-
-    ] 
-
-} 
-```
-
-## Request with bank selection
-
-### Request parameters
-
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        **Parameter**
-      </th>
-
-      <th>
-        **Description**
-      </th>
-
-      <th>
-        **Example**
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        bintype
-        **mandatory**
-      </td>
-
-      <td>
-        This parameter needs can include any of the following the values:
-
-        * **bin**: If you want to check on the basis of the first 6/8/9 digits of card number or network token.
-        * **NET**: If you want to check on the basis of network token.
-      </td>
-
-      <td>
-        bin
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        value
-        **mandatory**
-      </td>
-
-      <td>
-        This parameter can contain any of the following:
-
-        * If **bin** used in var1 parameter, the first 6/8/9 digits of card number or network token.
-        * If **NET** used in the var1 parameter, the entire network token must be passed.
-      </td>
-
-      <td>
-        4161041969147181
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        amount
-        **conditional**
-      </td>
-
-      <td>
-        This parameter needs to include the transaction amount. **Note**: Amount is a non-mandatory field, but is mandatory if bank code is ONEC or BAJFIN .
-      </td>
-
-      <td>
-        10000
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        bank
-        **mandatory**
-      </td>
-
-      <td>
-        This parameter contains the bank code for which the request is sent.
-      </td>
-
-      <td>
-        ICICI
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-### Sample request
-
-```
-curl -X POST \
-  'https://info.payu.in/issuing-bank/v1/bin/binEligibility' \
-  -H 'Date: $(date -u "+%a, %d %b %Y %H:%M:%S GMT")' \
-  -H 'Digest: YOUR_BASE64_ENCODED_SHA256_DIGEST' \
-  -H 'Authorization: hmac username="YOUR_MERCHANT_KEY", algorithm="hmac-sha256", headers="date digest", signature="YOUR_CALCULATED_SIGNATURE"' \
-  -H 'platformId: 1' \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "bintype": "bin",
-    "value": "416104",
-    "amount": 10000,
+    "amount": 10000.00,
     "bank": "ICICI"
-  }'
-
+}'
 ```
+```python
+import requests
+import json
 
-### Response parameters
+url = "<redacted URL>"
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        **Parameter**
-      </th>
+headers = {
+    "Content-Type": "application/json",
+    "platformId": "1",
+    "Date": "Thu, 17 Feb 2025 08:17:59 GMT",
+    "Digest": "YOUR_BASE64_SHA256_DIGEST",
+    "Authorization": "hmac username=\"<YOUR_MERCHANT_KEY>\", algorithm=\"hmac-sha256\", headers=\"date digest\", signature=\"YOUR_SIGNATURE\""
+}
 
-      <th>
-        **Description**
-      </th>
+payload = {
+    "bintype": "bin",
+    "value": "416104",
+    "amount": 10000.00,
+    "bank": "ICICI"
+}
 
-      <th>
-        **Example**
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        status
-      </td>
-
-      <td>
-        This parameter returns the status of web service call.
-        The status can be any of the following:
-
-        * 0 - If web service call failed.
-          * 1 - If web service call succeeded
-      </td>
-
-      <td>
-        1
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        msg
-      </td>
-
-      <td>
-        This parameter returns whether the EMI details were fetched successfully or not found.
-      </td>
-
-      <td>
-        Details fetched successfully
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        details
-      </td>
-
-      <td>
-        The details of the EMI offer is displayed in a JSON format and it contains the following fields:
-      </td>
-
-      <td>
-        "isEligible": 0, 
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-### Sample response
-
-#### Success scenario
-
-Formatted JSON Response:
-
-If successfully fetched:
-
-```plaintext
-Array
-(
-    [status] => 1
-    [msg] => Details fetched successfully
-    [details] => Array
-        (
-            [isEligible] => 1
-            [bank] => AXIS
-            [minAmount] => 2500
-        )
-
-)
+response = requests.post(url, headers=headers, json=payload)
+print(response.json())
 ```
+```php
+<?php
+$url = "<redacted URL>";
 
-#### Failure scenarios
+$payload = json_encode([
+    "bintype" => "bin",
+    "value" => "416104",
+    "amount" => 10000.00,
+    "bank" => "ICICI"
+]);
 
-* If **var3** (input bank name) does not match with the bank name in the PayU Database, the bin given in the input is of a different bank name:
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    "Content-Type: application/json",
+    "platformId: 1",
+    "Date: Thu, 17 Feb 2025 08:17:59 GMT",
+    "Digest: YOUR_BASE64_SHA256_DIGEST",
+    "Authorization: hmac username=\"<YOUR_MERCHANT_KEY>\", algorithm=\"hmac-sha256\", headers=\"date digest\", signature=\"YOUR_SIGNATURE\""
+]);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-```plaintext
-Array (
-[status] => 0
-[msg] => Invalid Bin )
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
 ```
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
-* When the BIN passed does not match with the bankName passed in the request:”
-
-```plaintext
-{
-    "message": "This Card does not belong to Axis Bank Credit Card. Please make the payment via ICICI Bank Credit Card",
-    "status": 0,
-    "result": [
-        {
-            "isEligible": 0,
-            "bank": "Axis"
-        }
-    ]
+public class PayURequest {
+    public static void main(String[] args) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String payload = "{\"bintype\": \"bin\", \"value\": \"416104\", \"amount\": 10000.00, \"bank\": \"ICICI\"}";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("<redacted URL>"))
+            .header("Content-Type", "application/json")
+            .header("platformId", "1")
+            .header("Date", "Thu, 17 Feb 2025 08:17:59 GMT")
+            .header("Digest", "YOUR_BASE64_SHA256_DIGEST")
+            .header("Authorization", "hmac username=\"<YOUR_MERCHANT_KEY>\", algorithm=\"hmac-sha256\", headers=\"date digest\", signature=\"YOUR_SIGNATURE\"")
+            .POST(HttpRequest.BodyPublishers.ofString(payload))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
 }
 ```
+```javascript
+const url = "<redacted URL>";
+
+const payload = {
+  bintype: "bin",
+  value: "416104",
+  amount: 10000.00,
+  bank: "ICICI"
+};
+
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "platformId": "1",
+    "Date": "Thu, 17 Feb 2025 08:17:59 GMT",
+    "Digest": "YOUR_BASE64_SHA256_DIGEST",
+    "Authorization": "hmac username=\"<YOUR_MERCHANT_KEY>\", algorithm=\"hmac-sha256\", headers=\"date digest\", signature=\"YOUR_SIGNATURE\""
+  },
+  body: JSON.stringify(payload)
+};
+
+fetch(url, options)
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error("Error:", error));
+```
+
+---
+
+## Response Parameters
+
+| Parameter | Type | Description | Example |
+| :--- | :--- | :--- | :--- |
+| `message` | String | Description message of the eligibility lookup. | `Details fetched successfully` |
+| `status` | Number | Status flag: `1` for success, `0` for failure or ineligible BIN. | `1` |
+| `result[].isEligible` | Number | `1` if the card BIN is eligible for EMI financing; `0` if not eligible. | `1` |
+| `result[].bank` | String | Issuing bank code associated with the card BIN. | `ICICI` |
+| `result[].minAmount` | Number | Minimum order transaction amount required to activate EMI options. | `1500.00` |
+
+---
+
+## Sample Responses
+
+### Eligible BIN Response
+```json
+{
+  "message": "Details fetched successfully",
+  "status": 1,
+  "result": [
+    {
+      "isEligible": 1,
+      "bank": "ICICI",
+      "minAmount": 1500.00
+    }
+  ]
+}
+```
+
+### Ineligible BIN Response
+```json
+{
+  "message": "Details fetched successfully",
+  "status": 1,
+  "result": [
+    {
+      "isEligible": 0,
+      "bank": "ICICI",
+      "minAmount": 1500.00
+    }
+  ]
+}
+```
+## Next Steps
+
+1. **Validate Card for EMI**:
+   - As the customer enters the first 6 or 8 digits of their card, call this endpoint to confirm if their card BIN is eligible for EMI plans.
+2. **Fetch Detailed EMI Schedules**:
+   - Once BIN eligibility is confirmed, query the **[EMI Calculator API](ref:emi-calculator-api.md) using the identified bank code to fetch specific monthly instalments.
+3. **Handle Ineligible Cards**:
+   - If the card BIN is not eligible, inform the customer and suggest paying via full swipe or switching to a supported issuing bank.
