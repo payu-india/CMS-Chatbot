@@ -10,10 +10,21 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Additional Info for Payment APIs
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
 This section describes the additional information on **v2/payment** API such as character limit and data type of each parameter or fields of various JSON objects.
 
 ## Request headers
-
 <HTMLBlock>{`
 <Table>
 <thead>
@@ -41,7 +52,7 @@ date
 </td>
 
 <td>
-<code>string</code> Current date and time in GMT/UTC format. This header is required for generating the authorization signature.
+<code>string</code> Current date and time in GMT/UTC format (RFC 7231 / IMF-fixdate). This header is required for generating the authorization signature.
 </td>
 
 <td>
@@ -58,7 +69,7 @@ authorization
 
 <td>
 <code>string</code> HMAC signature generated using SHA512 algorithm. Format: 
-username="[accountId]",<br/>algorithm="sha512",<br/>headers="date",signature="[calculated_signature]"
+hmac username="[accountId]", algorithm="sha512", headers="date", signature="[calculated_signature]"
 
 The signature is calculated as: sha512(request_body + '|' + date + '|' + merchant_secret)
 
@@ -66,7 +77,23 @@ This replaces the 'hash' parameter from v1 API.
 </td>
 
 <td>
-username="smsplus",<br/>algorithm="sha512",headers="date",<br/>signature="abcd1234..."
+hmac username="<YOUR_TEST_KEY>", algorithm="sha512", headers="date", signature="abcd1234..."
+</td>
+</tr>
+
+<tr>
+<td>
+content-type
+<br/>
+<code>mandatory</code>
+</td>
+
+<td>
+<code>string</code> Must be set to <code>application/json</code>.
+</td>
+
+<td>
+application/json
 </td>
 </tr>
 
@@ -75,7 +102,6 @@ username="smsplus",<br/>algorithm="sha512",headers="date",<br/>signature="abcd12
 `}</HTMLBlock>
 
 ## Request body
-
 <HTMLBlock>{`
 <Table>
 <thead>
@@ -103,33 +129,51 @@ accountId
 </td>
 
 <td>
-<code>string</code> This parameter is the unique Merchant Key provided by PayU for your merchant account. In v2, this replaces the 'key' parameter from v1.
+<code>string</code> The unique Merchant Key provided by PayU for your merchant account. In v2, this replaces the 'key' parameter from v1.
 <br/>
-<code>Character limit</code>: 10
+<code>Character limit</code>: 50
 </td>
 
 <td>
-smsplus
+<YOUR_TEST_KEY>
 </td>
 </tr>
 
 <tr>
 <td>
-referenceId
+txnId
 <br/>
 <code>mandatory</code>
 </td>
 
 <td>
-<code>string</code> This parameter is known as Transaction ID (or Order ID). It is the order reference number generated at your (Merchant's) end. In v2, this replaces the 'txnid' parameter from v1. It is an identifier that you (merchant) would use to track a particular order. If a transaction using a particular reference ID has already been successful at PayU, the usage of the same Reference ID again would fail. Hence, you must post us a unique reference ID for every new transaction.
+<code>string</code> Unique Transaction ID generated at your (Merchant's) end to track a particular order. In v2, this replaces the 'txnid' parameter from v1. If a transaction using a particular txnId has already been processed at PayU, reusing the same txnId will fail.
 <br/>
-<code>Character limit</code>: 25
+<code>Character limit</code>: 50
 
-* **Note**: Ensure that the reference ID sent in every transaction request is unique.
+* **Note**: Ensure that the txnId sent in every transaction request is unique.
 </td>
 
 <td>
-order_12345
+txn_12345
+</td>
+</tr>
+
+<tr>
+<td>
+currency
+<br/>
+<code>mandatory</code>
+</td>
+
+<td>
+<code>string</code> Three-letter ISO currency code for the transaction.
+<br/>
+<code>Character limit</code>: 3
+</td>
+
+<td>
+INR
 </td>
 </tr>
 
@@ -141,11 +185,11 @@ order
 </td>
 
 <td>
-<code>object</code> Contains order-related information including product details, payment charge specification, and user defined fields. See detailed fields in the order Object Fields section below.
+<code>object</code> Contains order-related information including product details, payment charge specification, and user defined fields. See detailed fields in the <a href="#order-json-object-fields">order JSON object fields</a> section below.
 </td>
 
 <td>
-  Refer to <a href="#order-object-fields">order JSON object field description</a>.
+  Refer to <a href="#order-json-object-fields">order JSON object fields</a>.
 </td>
 </tr>
 
@@ -157,11 +201,11 @@ billingDetails
 </td>
 
 <td>
-<code>object</code> Customer billing information. This object combines and replaces individual v1 parameters like 'firstname', 'email', 'phone'. See detailed fields. For more information, refer to <a href="#billingDetails-json-object-fields"> billingDetails JSON object field description</a>.
+<code>object</code> Customer billing information. Combines customer contact and address details. See detailed fields in <a href="#billingdetails-json-object-fields">billingDetails JSON object fields</a>.
 </td>
 
 <td>
-  Refer to <a href="#billingDetails-json-object-fields"> billingDetails JSON object field description</a>.
+  Refer to <a href="#billingdetails-json-object-fields">billingDetails JSON object fields</a>.
 </td>
 </tr>
 
@@ -173,10 +217,10 @@ callBackActions
 </td>
 
 <td>
-<code>object</code> Callback URLs for different payment outcomes. This object replaces the individual 'surl' and 'furl' parameters from v1. For more information, refer to <a href="#callBackActions-json-object-fields"> callBackActions JSON object field description</a>.
+<code>object</code> Callback URLs for different payment outcomes. Replaces individual 'surl', 'furl', and 'curl' parameters from v1. See detailed fields in <a href="#callbackactions-json-object-fields">callBackActions JSON object fields</a>.
 </td>
 <td>
-  Refer to <a href="#callBackActions-json-object-fields"> callBackActions JSON object field description</a>.
+  Refer to <a href="#callbackactions-json-object-fields">callBackActions JSON object fields</a>.
 </td>
 </tr>
 
@@ -188,7 +232,7 @@ additionalInfo
 </td>
 
 <td>
-<code>object</code> Additional information required for payment processing.
+<code>object</code> Additional configuration parameters for routing and transaction flow. See flow-specific documentation for details.
 </td>
 
 <td>
@@ -200,48 +244,17 @@ additionalInfo
 
 <tr>
 <td>
-additionalInfo.txnFlow
-<br/>
-<code>mandatory for non-seamless</code>
-</td>
-
-<td>
-<code>string</code> Specifies the transaction flow type. Must be set to "nonseamless" for PayU-hosted integration. Not required for seamless integration.
-</td>
-
-<td>
-nonseamless
-</td>
-</tr>
-
-<tr>
-<td>
 paymentMethod
 <br/>
 <code>mandatory for seamless</code>
 </td>
 
 <td>
-<code>object</code> Payment method details required for seamless integration. This object replaces the 'pg' and 'bankcode' parameters from v1. For more information, refer to <a href="#paymentmethod-json-object-fields-only-for-seamless-integration">paymentMethod JSON object fields</a>.
+<code>object</code> Payment method details required for seamless integration. Replaces 'pg' and 'bankcode' parameters from v1. For more information, refer to <a href="#paymentmethod-json-object-fields-only-for-seamless-integration">paymentMethod JSON object fields</a>.
 </td>
 
 <td>
 Refer to <a href="#paymentmethod-json-object-fields-only-for-seamless-integration">paymentMethod JSON object fields</a>.
-</td>
-</tr>
-
-<tr>
-<td>
-paymentCard
-<br/>
-<code>mandatory for seamless card payments</code>
-</td>
-
-<td>
-<code>object</code> Card details for seamless card payments. This object combines v1 parameters like 'ccnum', 'ccvv', 'ccexpmon', 'ccexpyr'. For more information, refer to <a href="#paymentcard-json-object-fields-only-for-seamless-card-payments">paymentCard JSON object fields</a>.
-</td>
-<td>
-Refer to <a href="#paymentcard-json-object-fields-only-for-seamless-card-payments">paymentCard JSON object fields</a>.  
 </td>
 </tr>
 
@@ -252,7 +265,6 @@ Refer to <a href="#paymentcard-json-object-fields-only-for-seamless-card-payment
 <br />
 
 ### order JSON object fields
-
 <HTMLBlock>{`
 <table>
 <thead>
@@ -269,11 +281,11 @@ productInfo<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Brief description of the product(s). This parameter replaces the 'productinfo' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Brief description of the product(s) or service being purchased. Replaces the 'productinfo' parameter from v1.<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 100
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-iPhone
+iPhone 13
 </td>
 </tr>
 
@@ -283,11 +295,11 @@ paymentChargeSpecification<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">object</code> Contains payment charge information including the transaction amount.
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">object</code> Contains payment charge information including the transaction price and convenience fees.
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
 {<br/>
-&nbsp;&nbsp;"price": "1000.00"<br/>
+&nbsp;&nbsp;"price": 1000.00<br/>
 }
 </td>
 </tr>
@@ -298,10 +310,23 @@ paymentChargeSpecification.price<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">float</code> The payment amount for the transaction. In v2, this is nested within the order object instead of being a top-level parameter like 'amount' in v1.
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">number</code> The transaction amount. In v2, this is passed as a numeric value inside the order object.
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
 1000.00
+</td>
+</tr>
+
+<tr>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+paymentChargeSpecification.convenienceFee<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Convenience fee specification if dynamic convenience fee is configured on your merchant account.
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+CC:12,AMEX:19
 </td>
 </tr>
 
@@ -311,87 +336,28 @@ userDefinedFields<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">object</code> User-defined parameters that can be used for various purposes. These replace the individual udf1-udf5 parameters from v1. Available fields: udf1, udf2, udf3, udf4, udf5<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">object</code> User-defined parameters for passing merchant metadata. These replace individual udf1–udf5 parameters from v1. Only udf1 through udf5 are supported and returned in payment responses.<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 255 for each field
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
 {<br/>
 &nbsp;&nbsp;"udf1": "value1",<br/>
-&nbsp;&nbsp;"udf2": "value2",<br/>
-&nbsp;&nbsp;"udf3": "value3",<br/>
-&nbsp;&nbsp;"udf4": "value4",<br/>
-&nbsp;&nbsp;"udf5": "value5"<br/>
+&nbsp;&nbsp;"udf2": "value2"<br/>
 }
 </td>
 </tr>
 
 <tr>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-userDefinedFields.udf1<br/>
+userDefinedFields.udf1 – udf5<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> User defined field 1. This replaces the 'udf1' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Merchant-defined metadata strings.<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 255
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-value1
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-userDefinedFields.udf2<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> User defined field 2. This replaces the 'udf2' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 255
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-value2
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-userDefinedFields.udf3<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> User defined field 3. This replaces the 'udf3' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 255
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-value3
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-userDefinedFields.udf4<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> User defined field 4. This replaces the 'udf4' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 255
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-value4
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-userDefinedFields.udf5<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> User defined field 5. This replaces the 'udf5' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 255
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-value5
+order_ref_meta
 </td>
 </tr>
 
@@ -400,7 +366,6 @@ value5
 `}</HTMLBlock>
 
 ### billingDetails JSON object fields
-
 <HTMLBlock>{`
 <table>
 <thead>
@@ -417,8 +382,8 @@ firstName<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's first name. This replaces the 'firstname' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 60 (Production), 20 (Test)
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's first name. Replaces the 'firstname' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 60
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
 John
@@ -431,7 +396,7 @@ lastName<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's last name. This replaces the 'lastname' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's last name. Replaces the 'lastname' parameter from v1.<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 20
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
@@ -445,7 +410,7 @@ email<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's email address. This replaces the 'email' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's valid email address. Replaces the 'email' parameter from v1.<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
@@ -459,7 +424,7 @@ phone<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's phone number. This replaces the 'phone' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's contact phone number (10-digit mobile number for Indian transactions). Replaces the 'phone' parameter from v1.<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
@@ -473,7 +438,7 @@ address1<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's billing address line 1. This replaces the 'address1' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's billing address line 1. Replaces 'address1' from v1.<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 100
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
@@ -487,7 +452,7 @@ address2<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's billing address line 2. This replaces the 'address2' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's billing address line 2. Replaces 'address2' from v1.<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 100
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
@@ -501,7 +466,7 @@ city<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's billing city. This replaces the 'city' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's billing city.<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
@@ -515,7 +480,7 @@ state<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's billing state. This replaces the 'state' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's billing state.<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
@@ -529,7 +494,7 @@ country<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's billing country. This replaces the 'country' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's billing country.<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
@@ -543,7 +508,7 @@ zipCode<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's billing postal code. This replaces the 'zipcode' parameter from v1.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Customer's billing postal/zip code.<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 20
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
@@ -556,7 +521,6 @@ zipCode<br/>
 `}</HTMLBlock>
 
 ### callBackActions JSON object fields
-
 <HTMLBlock>{`
 <table>
 <thead>
@@ -573,27 +537,10 @@ successAction<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">object</code> Action to be taken upon successful payment completion. This replaces the 'surl' parameter from v1.
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Full HTTPS URL where PayU redirects the customer upon successful payment completion. Replaces 'surl' from v1.
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-{<br/>
-&nbsp;&nbsp;"redirectUrl": "https://example.com/success"<br/>
-}
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-successAction.redirectUrl<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> URL to redirect after successful payment. This replaces the 'surl' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50<br/><br/>
-<strong>Requirements:</strong> Must use HTTP/HTTPS protocol and be accessible for handling PayU responses.
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-https://example.com/success
+<redacted URL>
 </td>
 </tr>
 
@@ -603,27 +550,10 @@ failureAction<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">object</code> Action to be taken upon payment failure. This replaces the 'furl' parameter from v1.
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Full HTTPS URL where PayU redirects the customer upon payment failure. Replaces 'furl' from v1.
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-{<br/>
-&nbsp;&nbsp;"redirectUrl": "https://example.com/failure"<br/>
-}
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-failureAction.redirectUrl<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> URL to redirect after failed payment. This replaces the 'furl' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50<br/><br/>
-<strong>Requirements:</strong> Must use HTTP/HTTPS protocol and be accessible for handling PayU responses.
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-https://example.com/failure
+<redacted URL>
 </td>
 </tr>
 
@@ -633,27 +563,10 @@ cancelAction<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">object</code> Action to be taken when payment is cancelled by the user. This replaces the 'curl' parameter from v1.
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Full HTTPS URL where PayU redirects the customer if the transaction is cancelled on the payment page. Replaces 'curl' from v1.
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-{<br/>
-&nbsp;&nbsp;"redirectUrl": "https://example.com/cancel"<br/>
-}
-</td>
-</tr>
-
-<tr>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-cancelAction.redirectUrl<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">optional</code>
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> URL to redirect when payment is cancelled. This replaces the 'curl' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50<br/><br/>
-<strong>Requirements:</strong> Must use HTTP/HTTPS protocol and be accessible for handling PayU responses.
-</td>
-<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-https://example.com/cancel
+<redacted URL>
 </td>
 </tr>
 
@@ -661,8 +574,7 @@ https://example.com/cancel
 </table>
 `}</HTMLBlock>
 
-### paymentMethod JSON object Fields (only for Seamless Integration)
-
+### paymentMethod JSON object fields (only for Seamless Integration)
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -674,71 +586,33 @@ https://example.com/cancel
 </thead>
 <tbody>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>accountId<br> <code>mandatory</code></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>name<br> <code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant key provided by PayU during onboarding.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> Payment mode identifier. Valid values: <code>CreditCard</code>, <code>DebitCard</code>, <code>NetBanking</code>, <code>UPI</code>, <code>Wallet</code>, <code>EMI</code>, <code>BNPL</code>.</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>MERCHANT123</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Reference ID for transaction tracking and this must be unique for every transaction.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>REF123456</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>NetBanking</p>
 </td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>amount<br> <code>optional</code></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>bankCode<br> <code>mandatory</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Amount of the transaction.<br><strong>Note</strong>: This value will not be considered as the transaction. Only the details in the <code>order.paymentChargeSpecificationparameter.price</code>field will be considered.</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>string</code> Bank, provider, or network identifier for the chosen payment method.</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>1000</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentMethod<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the payment method used. For more information, refer to <a href="#paymentmethod-object-fields-description">paymentMethod object fields description</a>.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> {<br>        &quot;name&quot;: &quot;NetBanking&quot;,	<br>        &quot;bankCode&quot;: &quot;TESTNB&quot;<br>    }</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>SBIN</p>
 </td>
 </tr>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>order<br> <code>mandatory</code></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentCard<br> <code>mandatory for Cards &amp; EMI</code></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. For more information, refer to <a href="#order-object-fields-description">order object fields description</a></p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>object</code> Contains card or token details when paying with cards or card-based EMI. See <a href="#paymentcard-json-object-fields-only-for-seamless-card-payments">paymentCard JSON object fields</a>.</p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>additionalInfo<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Additional information including enforced payment methods, single instalment, virtual payment address (VPA), and various options for user preferences during the transaction. For more information, refer to <a href="#additionalinfo-object-fields-description">additionalInfo object fields description</a></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>callBackActions<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Actions to perform on the payment server in different scenarios. For example, success, failure, cancellation, cash on delivery, etc. For more information, refer to <a href="#callbackactions-object-fields-description">callbackActions object fields description</a></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>billingDetails<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Billing details of the customer including name, address, phone number, email, etc. For more information, refer to <a href="#billingdetails-object-field-descriptions">billingDetails object field descriptions</a>.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
+  <td style="border: 1px solid #ddd; padding: 8px;">Refer to paymentCard section</td>
 </tr>
 </tbody>
 </table>
 `}</HTMLBlock>
 
 ### paymentCard JSON object fields (only for Seamless Card Payments)
-
 <HTMLBlock>{`
 <table>
 <thead>
@@ -752,12 +626,11 @@ https://example.com/cancel
 <tr>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
 cardNumber<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for new card payments</code>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for new card</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Credit/Debit card number. This replaces the 'ccnum' parameter from v1. Must be between 13-19 digits (15 digits for AMEX, 13-19 digits for Maestro) and must be validated using the LUHN algorithm.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 13-19 digits<br/><br/>
-<strong>Note:</strong> Not required when using saved card tokens.
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Credit/Debit card number. Must be between 13-19 digits and pass Luhn algorithm validation.<br/>
+<strong>Note:</strong> Omit when processing saved card tokens.
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
 4111111111111111
@@ -770,24 +643,22 @@ validThrough<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for card payments</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Card expiry date in MM/YY format. This replaces the separate 'ccexpmon' and 'ccexpyr' parameters from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 5 characters (MM/YY)<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Format</code>: MM/YY where MM is two-digit month (01-12) and YY is two-digit year
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Card expiry date in <code>MM/YYYY</code> format.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 7 characters (MM/YYYY)
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-12/25
+12/2026
 </td>
 </tr>
 
 <tr>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
 ownerName<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for new card payments</code>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for new card</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Cardholder name as printed on the card. This replaces the 'ccname' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50<br/><br/>
-<strong>Note:</strong> Not required when using saved card tokens.
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Cardholder name printed on the card.<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 50
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
 John Doe
@@ -800,9 +671,8 @@ cvv<br/>
 <code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for card payments</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Card verification value. This replaces the 'ccvv' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 3-4 digits<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Format</code>: 3-4 digit number (3 digits for most cards, 4 digits for AMEX)
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Card verification value (CVV/CVC).<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: 3-4 digits (3 for Visa/Mastercard, 4 for AMEX)
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
 123
@@ -812,12 +682,10 @@ cvv<br/>
 <tr>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
 cardToken<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for saved card payments</code>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for tokenized cards</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Saved card token for repeat transactions. This replaces the 'store_card_token' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: Variable length<br/><br/>
-<strong>Usage:</strong> When using saved cards, provide this token instead of cardNumber and ownerName.
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Saved card token for repeat / tokenized card transactions. Replaces 'store_card_token' from v1.
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
 token_12345
@@ -826,19 +694,41 @@ token_12345
 
 <tr>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-tokenType<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for saved card payments</code>
+cardTokenType<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">mandatory for tokenized cards</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Type of token being used. This replaces the 'storecard_token_type' parameter from v1.<br/>
-<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">Character limit</code>: Variable length<br/><br/>
-<strong>Possible values:</strong><br/>
-• NETWORK_TOKEN (Network tokenization)<br/>
-• ISSUER_TOKEN (Bank issued tokens)<br/>
-• PAYU_TOKEN (PayU generated tokens)
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Classification of the token.<br/>
+<strong>Allowed values:</strong> <code>PAYU</code>, <code>NETWORK</code>, <code>ISSUER</code>
 </td>
 <td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
-NETWORK_TOKEN
+NETWORK
+</td>
+</tr>
+
+<tr>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+tavv<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">conditional</code>
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Token Authentication Verification Value (TAVV), required for network token transactions when performing device authentication.
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+kH8e...
+</td>
+</tr>
+
+<tr>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+last4Digits<br/>
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">conditional</code>
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+<code style="background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px;">string</code> Last 4 digits of the actual card number for tokenized transactions.
+</td>
+<td style="border: 1px solid #ddd; padding: 12px; vertical-align: top;">
+1111
 </td>
 </tr>
 
@@ -846,102 +736,115 @@ NETWORK_TOKEN
 </table>
 `}</HTMLBlock>
 
-## Character Limits Summary
-
-### Production vs Test Environment Differences:
-
-* **firstName**: 60 characters (Production), 20 characters (Test)
-* All other parameters have the same limits across both environments
-
-### Key Parameter Limits:
-
-* **referenceId** (txnid): 25 characters
-* **productInfo**: 100 characters
-* **firstName**: 60 characters (Production), 20 characters (Test)
-* **lastName**: 20 characters
-* **email**: 50 characters
-* **phone**: 50 characters
-* **address1**: 100 characters
-* **address2**: 100 characters
-* **city**: 50 characters
-* **state**: 50 characters
-* **country**: 50 characters
-* **zipCode**: 20 characters
-* **successAction/failureAction/cancelAction URLs**: 50 characters
-* **userDefinedFields (udf1-udf5)**: 255 characters each
-
-### Card-Specific Formats:
-
-* **cardNumber**: 13-19 digits (15 for AMEX, 13-19 for Maestro)
-* **validThrough**: MM/YY format (MM: 01-12, YY: two-digit year)
-* **cvv**: 3-4 digits (3 for most cards, 4 for AMEX)
-
-## Key Differences between v1 and v2 \_payment API
-
+## Key Differences between v1 and v2 Payment API
 ### Parameter Changes:
-
-1. **key** → **accountId**: Merchant key parameter renamed
-2. **txnid** → **referenceId**: Transaction ID parameter renamed
-3. **amount** → **order.paymentChargeSpecification.price**: Amount moved to nested object
-4. **productinfo** → **order.productInfo**: Product info moved to order object
-5. **firstname, lastname, email, phone** → **billingDetails object**: Customer details grouped into object
-6. **address1, address2, city, state, country, zipcode** → **billingDetails object**: Address fields grouped
-7. **surl, furl, curl** → **callBackActions object**: Callback URLs restructured
-8. **pg, bankcode** → **paymentMethod object**: Payment method details grouped (seamless only)
-9. **ccnum, ccvv, ccexpmon, ccexpyr** → **paymentCard object**: Card details grouped (seamless only)
-10. **hash** → **authorization header**: Authentication moved to header
-11. **udf1-udf5** → **order.userDefinedFields object**: User defined fields grouped
-
-### New Parameters in v2:
-
-* **currency**: Transaction currency (mandatory)
-* **paymentSource**: Payment source identifier (optional)
-* **additionalInfo.txnFlow**: Flow type for non-seamless integration
-* **callBackActions.cancelAction**: Cancel callback support
-
-### Integration Flow Changes:
-
-* **Non-seamless**: Must include `additionalInfo.txnFlow = "nonseamless"`
-* **Seamless**: Requires `paymentMethod` and `paymentCard` objects
-* **Headers**: Authentication moved to headers with date-based signature
-* **Structure**: More modular with nested objects for better organization
+1. **key** → **accountId**: Merchant key parameter renamed (max 50 chars).
+2. **txnid** → **txnId**: Transaction ID parameter renamed (max 50 chars).
+3. **amount** → **order.paymentChargeSpecification.price**: Amount passed as a number inside the order object.
+4. **productinfo** → **order.productInfo**: Product info organized inside the order object.
+5. **firstname, lastname, email, phone** → **billingDetails object**: Customer details grouped into a structured object.
+6. **address1, address2, city, state, country, zipcode** → **billingDetails object**: Address parameters structured under billingDetails.
+7. **surl, furl, curl** → **callBackActions object**: Direct string URLs for `successAction`, `failureAction`, and `cancelAction`.
+8. **pg, bankcode** → **paymentMethod object**: Grouped into `paymentMethod.name` and `paymentMethod.bankCode` (seamless only).
+9. **ccnum, ccvv, ccexpmon, ccexpyr** → **paymentMethod.paymentCard object**: Card parameters consolidated with `validThrough` in `MM/YYYY`.
+10. **hash** → **authorization header**: Cryptographic authentication generated per request and passed via HTTP headers.
+11. **udf1-udf5** → **order.userDefinedFields object**: User-defined metadata passed as key-value pairs (udf1 to udf5 supported).
 
 ## API Endpoints
-
-### v2 Endpoints:
-
 * **Test Environment**: `https://apitest.payu.in/v2/payments`
 * **Production Environment**: `https://api.payu.in/v2/payments`
 * **HTTP Method**: `POST`
 
-### Request Format:
-
+### Sample Request Format (Hosted Checkout):
 ```json
 {
-  "accountId": "merchant_key",
-  "referenceId": "unique_transaction_id",
+  "accountId": "<YOUR_MERCHANT_KEY>",
+  "txnId": "ORDER_TXN_1001",
   "currency": "INR",
   "order": {
-    "productInfo": "Product description",
+    "productInfo": "iPhone 13",
     "paymentChargeSpecification": {
-      "price": "1000.00"
+      "price": 25000.00
+    },
+    "userDefinedFields": {
+      "udf1": "meta1",
+      "udf2": "meta2"
     }
   },
   "billingDetails": {
     "firstName": "John",
-    "email": "john@example.com",
-    "phone": "9876543210"
+    "lastName": "Doe",
+    "email": "john.doe@example.com",
+    "phone": "9876543210",
+    "address1": "123 Main Street",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "country": "India",
+    "zipCode": "400001"
   },
   "callBackActions": {
-    "successAction": {
-      "redirectUrl": "https://example.com/success"
-    },
-    "failureAction": {
-      "redirectUrl": "https://example.com/failure"
-    }
+    "successAction": "<redacted URL>",
+    "failureAction": "<redacted URL>",
+    "cancelAction": "<redacted URL>"
   },
   "additionalInfo": {
     "txnFlow": "nonseamless"
   }
 }
 ```
+
+## Sample Responses
+
+### Success Response (Seamless Final Status)
+```json
+{
+  "status": "success",
+  "result": {
+    "paymentId": "PAY_abc123xyz789",
+    "txnId": "ORDER_TXN_1001",
+    "amount": 25000.00,
+    "currency": "INR"
+  },
+  "message": "Transaction successful"
+}
+```
+
+### Pending Response (Hosted / 3DS Redirect)
+```json
+{
+  "status": "PENDING",
+  "result": {
+    "checkoutUrl": "https://checkout.payu.in/pay/PAY_pending456"
+  },
+  "message": "Awaiting customer authentication"
+}
+```
+
+### Failure Response
+```json
+{
+  "status": "failed",
+  "error": {
+    "code": "PAYMENT_DECLINED",
+    "message": "Declined by bank"
+  },
+  "result": {
+    "paymentId": "PAY_failed789",
+    "txnId": "ORDER_TXN_1001"
+  }
+}
+```
+
+## Error Codes
+
+| Code | HTTP Status | Description | Resolution |
+| ---- | ----------- | ----------- | ---------- |
+| `INVALID_AMOUNT` | 400 | Invalid amount value | Ensure price is positive number |
+| `INVALID_CURRENCY` | 400 | Unsupported currency | Use supported currency code (e.g. INR) |
+| `AUTHENTICATION_FAILED` | 401 | Invalid HMAC signature or key | Verify authorization signature format and merchant secret |
+| `DUPLICATE_REFERENCE` | 409 | txnId already processed | Provide a new unique txnId |
+| `PAYMENT_DECLINED` | 422 | Payment declined by downstream issuer | Retry with another payment mode |
+
+## Next Steps
+1. **Verify Transaction**: Always call the [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api/) to retrieve the final transaction state.
+2. **Handle Webhooks**: Configure webhooks on the PayU merchant dashboard for server-to-server notifications.
