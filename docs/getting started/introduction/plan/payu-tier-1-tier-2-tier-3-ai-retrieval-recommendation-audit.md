@@ -1,7 +1,9 @@
 ---
 title: PayU Tier 1 / Tier 2 / Tier 3 — AI Retrieval & Recommendation Audit
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
