@@ -288,32 +288,29 @@ You can search for an invoice with these options:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Invoices** under **Payment Tools**.
 
+     <Image src="https://files.readme.io/e0fd83fdca4f97d9e960e46702530725d354ed5097739c3a6512e8fbd054f83c-image.png" align="center" caption="Access invoices" border={true} />
 
-  <Image src="https://files.readme.io/38614931076cc05791bfba99a8241cc8ee9bb5bfe7d3a5ebc49c06704cf1d674-Screenshot_2025-06-02_at_7.31.48_PM.png" align="center" caption="Invoices list" border={true} />
 
-
-  2. Click the **Download** drop-down at the top of the list and select a format:
+  2) Click the **Download** drop-down at the top of the list and select a format:
 
   | Format        | What it includes                                           |
   | ------------- | ---------------------------------------------------------- |
   | **CSV**       | Invoice records as a spreadsheet                           |
-  | **XLSX**      | Invoice records in Excel format                            |
+  | **XLSX**      | Invoice records in the Excel format                        |
   | **TXNS-CSV**  | Transaction records (individual payments) as a spreadsheet |
-  | **TXNS-XLSX** | Transaction records in Excel format                        |
+  | **TXNS-XLSX** | Transaction records in the Excel format                    |
 
 
-  <Image src="https://files.readme.io/6bfdbd8a5aa0302f25076d3779d2ff01d5ee80cafc87811baab72634d1491022-Screenshot_2025-06-02_at_7.35.59_PM.png" align="center" caption="Download options for invoice records" border={true} />
+  <Image src="https://files.readme.io/b5611208a0d854c16d59c28edf2a2cbdbde4b91ba63f7663bf7eb423c04911e6-Screenshot_2026-10-05_at_2.12.13_PM.png" align="center" caption="Download invoices and transaction details" border={true} />
 
 
   3. Click **Download Report** on the pop-up when your report is ready.
 
   <Callout icon="📘" theme="info">
+    ### **Tips:**
+
     You can also share the report to one or more email addresses. In the pop-up, enter the email addresses separated by commas and click **Share**.
   </Callout>
-
-
-  <Image src="https://files.readme.io/30347f87a23905772d7560b05acf0b520004f90911c51441277f4a8b4b93261b-Screenshot_2025-06-02_at_7.36.43_PM.png" align="center" width="412px" caption="Download and share pop-up" border={true} />
-
 </Accordion>
 
 ***
