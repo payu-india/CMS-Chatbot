@@ -5,38 +5,29 @@ hidden: false
 metadata:
   robots: index
 ---
----
-title: EMI Calculator API
-deprecated: false
-hidden: false
-metadata:
-  robots: index
----
-
 You can use this API to display the EMI plans along with all offers on the checkout page. This API may also be used to display EMI plans on product pages or any other screen deemed fit.
 
 You can use it for the following:
+
 * **Fetch EMI plans**: Retrieve EMI amounts, interest rates, and total payable amounts across eligible banks.
 * **Filter by bank**: Retrieve EMI plans for a specific bank code.
 * **Filter by tenure**: Retrieve EMI plans for a specific bank and tenure.
 * **Offers integration**: Fetch EMI plans with the best applicable offer, a specific transaction offer, or SKU-based offers.
 
----
+***
 
 ## Environment
 
-| Environment | URL |
-| :--- | :--- |
-| **Test Environment** | `https://apitest.payu.in/calculateEmi/v2` |
-| **Production Environment** | `https://api.payu.in/calculateEmi/v2` |
+| Environment                | URL                                       |
+| :------------------------- | :---------------------------------------- |
+| **Test Environment**       | `https://apitest.payu.in/calculateEmi/v2` |
+| **Production Environment** | `https://api.payu.in/calculateEmi/v2`     |
 
----
+***
 
 ## Request Headers
 
-
-
----
+<V2_payment_header_params />
 
 ## Request Parameters
 
@@ -148,7 +139,8 @@ The table has 13 rows, so here it is in **HTML format**:
     </tr>
   </tbody>
 </table>
----
+
+***
 
 ## Sample Request
 
@@ -377,51 +369,51 @@ fetch(url, {
   .catch(err => console.error("Error:", err));
 ```
 
----
+***
 
 ## Response Parameters
 
-| Parameter | Type | Description | Example |
-| :--- | :--- | :--- | :--- |
-| `status` | Integer | Indicates whether the request succeeded (`1`) or failed (`0`). | `1` |
-| `message` | String | Status description message. | `"Success"` |
-| `result` | Object | Map of bank codes containing all available EMI plans and tenures. | Object |
+| Parameter | Type    | Description                                                       | Example     |
+| :-------- | :------ | :---------------------------------------------------------------- | :---------- |
+| `status`  | Integer | Indicates whether the request succeeded (`1`) or failed (`0`).    | `1`         |
+| `message` | String  | Status description message.                                       | `"Success"` |
+| `result`  | Object  | Map of bank codes containing all available EMI plans and tenures. | Object      |
 
 ### Plan Details (`result.<BANK_CODE>.<PLAN_CODE>`)
 
-| Parameter | Type | Description | Example |
-| :--- | :--- | :--- | :--- |
-| `transactionAmount` | Number | Total transaction amount for which EMI was calculated. | `10000.0` |
-| `payBackAmount` | Number | Total amount to be repaid over the EMI tenure, including interest. | `0.0` |
-| `emiAmount` | Number | Monthly installment amount to be paid by the customer. | `555.56` |
-| `additionalCost` | String | Additional fee or cost associated with the plan. | `"0.0"` |
-| `emiMdrNote` | Number | Merchant discount rate note related to EMI. | `0.0` |
-| `emiBankInterest` | Number | Annual percentage rate (APR) charged by the issuing bank. | `15.0` |
-| `bankRate` | Number | Bank's base rate for EMI calculation. | `0.0` |
-| `bankCharge` | Number | Additional bank charge associated with the plan. | `0.0` |
-| `amount` | Number | Amount per EMI installment including charges. | `555.56` |
-| `cardType` | String | Card category supported for this plan (e.g. `credit card`, `debit card`). | `"credit card"` |
-| `tenure` | String | Duration of the EMI repayment schedule. | `"18 months"` |
-| `loanAmount` | Number | Principal loan amount financed by the bank. | `10000.0` |
-| `totalPayableAmount` | Number | Total amount payable by the customer after discounts. | `10000.0` |
-| `subventionAmount` | Number | Subvention amount considered for the transaction. | `10000.0` |
-| `gstSubvention` | Boolean | Indicates if GST is included in the subvention calculation. | `true` |
-| `nceViaConfig` | Boolean | Indicates if No-Cost EMI discount is applied via configuration. | `true` |
-| `bankCode` | String | Bank code of the participating issuer. | `"YESB"` |
-| `emi_value` | Number | Calculated monthly EMI value. | `555.55` |
-| `emi_interest_paid` | Number | Total interest paid by the customer over the full tenure. | `1266.78` |
-| `revisedPrincipal` | Number | Net principal loan amount after applying instant discounts. | `10000.0` |
-| `offerDiscount` | Object | Discount details applied through merchant/bank offers. | Object |
-| `offerDiscount.total` | Number | Total offer discount applied. | `0.0` |
-| `offerDiscount.instant` | Number | Instant discount deducted from transaction amount. | `0.0` |
-| `offerDiscount.cashback` | Number | Cashback credited back to the customer. | `0.0` |
-| `nceDiscount` | Object | No-Cost EMI discount breakdown. | Object |
-| `nceDiscount.total` | Number | Total No-Cost EMI interest discount provided. | `1266.78` |
-| `nceDiscount.instant` | Number | Instant discount applied to offset the bank interest charges. | `1266.78` |
-| `nceDiscount.cashback` | Number | Cashback credit for NCE subvention. | `0.0` |
-| `sku` | Array of Objects | SKU-level calculations and discount distribution. | Array |
+| Parameter                | Type             | Description                                                               | Example         |
+| :----------------------- | :--------------- | :------------------------------------------------------------------------ | :-------------- |
+| `transactionAmount`      | Number           | Total transaction amount for which EMI was calculated.                    | `10000.0`       |
+| `payBackAmount`          | Number           | Total amount to be repaid over the EMI tenure, including interest.        | `0.0`           |
+| `emiAmount`              | Number           | Monthly installment amount to be paid by the customer.                    | `555.56`        |
+| `additionalCost`         | String           | Additional fee or cost associated with the plan.                          | `"0.0"`         |
+| `emiMdrNote`             | Number           | Merchant discount rate note related to EMI.                               | `0.0`           |
+| `emiBankInterest`        | Number           | Annual percentage rate (APR) charged by the issuing bank.                 | `15.0`          |
+| `bankRate`               | Number           | Bank's base rate for EMI calculation.                                     | `0.0`           |
+| `bankCharge`             | Number           | Additional bank charge associated with the plan.                          | `0.0`           |
+| `amount`                 | Number           | Amount per EMI installment including charges.                             | `555.56`        |
+| `cardType`               | String           | Card category supported for this plan (e.g. `credit card`, `debit card`). | `"credit card"` |
+| `tenure`                 | String           | Duration of the EMI repayment schedule.                                   | `"18 months"`   |
+| `loanAmount`             | Number           | Principal loan amount financed by the bank.                               | `10000.0`       |
+| `totalPayableAmount`     | Number           | Total amount payable by the customer after discounts.                     | `10000.0`       |
+| `subventionAmount`       | Number           | Subvention amount considered for the transaction.                         | `10000.0`       |
+| `gstSubvention`          | Boolean          | Indicates if GST is included in the subvention calculation.               | `true`          |
+| `nceViaConfig`           | Boolean          | Indicates if No-Cost EMI discount is applied via configuration.           | `true`          |
+| `bankCode`               | String           | Bank code of the participating issuer.                                    | `"YESB"`        |
+| `emi_value`              | Number           | Calculated monthly EMI value.                                             | `555.55`        |
+| `emi_interest_paid`      | Number           | Total interest paid by the customer over the full tenure.                 | `1266.78`       |
+| `revisedPrincipal`       | Number           | Net principal loan amount after applying instant discounts.               | `10000.0`       |
+| `offerDiscount`          | Object           | Discount details applied through merchant/bank offers.                    | Object          |
+| `offerDiscount.total`    | Number           | Total offer discount applied.                                             | `0.0`           |
+| `offerDiscount.instant`  | Number           | Instant discount deducted from transaction amount.                        | `0.0`           |
+| `offerDiscount.cashback` | Number           | Cashback credited back to the customer.                                   | `0.0`           |
+| `nceDiscount`            | Object           | No-Cost EMI discount breakdown.                                           | Object          |
+| `nceDiscount.total`      | Number           | Total No-Cost EMI interest discount provided.                             | `1266.78`       |
+| `nceDiscount.instant`    | Number           | Instant discount applied to offset the bank interest charges.             | `1266.78`       |
+| `nceDiscount.cashback`   | Number           | Cashback credit for NCE subvention.                                       | `0.0`           |
+| `sku`                    | Array of Objects | SKU-level calculations and discount distribution.                         | Array           |
 
----
+***
 
 ## Sample Response
 
@@ -524,7 +516,7 @@ fetch(url, {
 }
 ```
 
----
+***
 
 ## Next Steps
 
@@ -533,6 +525,6 @@ fetch(url, {
 2. **Promote No-Cost EMI (NCE)**:
    When `nceDiscount.total` is greater than `0`, highlight No-Cost EMI savings prominently to increase cart conversion.
 3. **Verify Card BIN Eligibility**:
-   Before initiating payment, optionally verify the cardholder's 6 or 8-digit BIN using the **[Eligible BIN for EMI API](ref:v2-eligible-bin-for-emi-api)**.
+   Before initiating payment, optionally verify the cardholder's 6 or 8-digit BIN using the [Eligible BIN for EMI API](ref:v2-eligible-bin-for-emi-api).
 4. **Initiate EMI Payment**:
-   Pass the selected bank code, tenure code, and card details into the **[Collect Payments with EMI (v2/payment) API](ref:collect-payments-with-emi-v2_payment)** to complete the payment.
+   Pass the selected bank code, tenure code, and card details into the [Collect Payments with EMI (v2/payment) API](ref:collect-payments-with-emi-v2_payment) to complete the payment.
