@@ -208,11 +208,17 @@ Create a professional, GST-compliant invoice in the PayU Dashboard and send it d
 </Accordion>
 
 <Accordion title="6. Send the invoice" icon="far fa-paper-plane">
-  When the invoice is ready, click **Send Invoice**.
+  When the invoice is ready, click **Send Invoice&#x20;**&#x64;isplayed on the bottom or top-right of the page.
+
+
+  <Image src="https://files.readme.io/951789ead7e348771c11bdd7c2d2b2f89364bd92b8db5d3ce2218ba9a3c76fd7-Screenshot_2026-10-05_at_10.52.14_AM.png" align="center" caption="Send the invoice" border={true} />
+
 
   PayU sends the invoice to your customer by email or SMS. The message includes a link to view the invoice and a pay-now button.
 
   <Callout icon="📘" theme="info">
+    ### **Tips:**
+
     You can also **Save** the invoice as a draft to send later, or **Cancel** to discard it. These options are in the top-right corner of the page.
   </Callout>
 </Accordion>
