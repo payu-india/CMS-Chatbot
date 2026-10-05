@@ -107,13 +107,13 @@ Consider another PayU solution if you:<br />
 
 ## What Will I Need?
 
-You don't need a developer or any coding experience to get started.
+You don't need a developer or any coding experience to get started.<br />
 
-You'll need:
+You'll need:<br />
 
 <Columns layout="fixed">
   <Column>
-    **A PayU merchant account:** <Anchor target="_blank" href="doc:set-up-your-account">Sign up here</Anchor> if you do not have one.
+    **A PayU merchant account:** <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signup">Sign up here</Anchor> if you do not have one.
   </Column>
 </Columns>
 
@@ -135,17 +135,11 @@ You'll need:
 
 Here is how it works:
 
-<Accordion title="1. Set up your item catalog" icon="far fa-box-open">
-  Before creating your first invoice, add the products or services you bill for to the **Items** catalog. You only need to do this once — items are reusable across all future invoices.
-
-  Go to **Payment Tools → Invoices → Items** and click **New Item**.
-</Accordion>
-
-<Accordion title="2. Create the invoice" icon="far fa-file-invoice">
+<Accordion title="1. Create the invoice" icon="far fa-file-invoice">
   Go to **Payment Tools → Invoices** and click **Create New Invoice**. Enter the invoice number, due date, invoice title, and select the customer. Add your line items, enable GST if needed, and enable partial payments if you want to let the customer pay in installments.
 </Accordion>
 
-<Accordion title="3. Send it to your customer" icon="far fa-paper-plane">
+<Accordion title="2. Send it to your customer" icon="far fa-paper-plane">
   Click **Send Invoice**. PayU sends the invoice to your customer by email or SMS. The invoice includes a pay-now button linked to PayU's secure checkout page.
 </Accordion>
 
@@ -170,14 +164,18 @@ When your customer receives the invoice:
 </Accordion>
 
 <Accordion title="3. Chooses a payment method" icon="far fa-credit-card">
-  They can pay by UPI, card, net banking, wallet, and more — whatever payment methods are turned on for your account.
+  They can pay by UPI, card, net banking, wallet, and more, whatever payment methods are turned on for your account.
 </Accordion>
 
 <Accordion title="4. Pays and receives confirmation" icon="far fa-circle-check">
   The customer completes the payment and receives a confirmation. The invoice status in your Dashboard updates to **Paid** immediately.
 </Accordion>
 
-Your customer does not need a PayU account — they can pay from any browser or mobile device.
+<Callout icon="📘" theme="success">
+  ### **Tips:**
+
+  Your customer does not need a PayU account — they can pay from any browser or mobile device.
+</Callout>
 
 ***
 
