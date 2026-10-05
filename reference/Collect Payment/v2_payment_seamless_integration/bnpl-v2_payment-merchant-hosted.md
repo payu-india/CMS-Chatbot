@@ -22,11 +22,11 @@ metadata:
 next:
   description: ''
 ---
-Buy Now Pay Later (BNPL) allows your customers to spread their payments over a relatively short period instead of paying upfront. You can collect payments from customers with BNPL using the Merchant Hosted Checkout integration.
+Buy Now Pay Later (BNPL) allows your customers to spread their purchases over manageable installments or pay later at the end of the billing cycle. You can collect payments from customers with BNPL using the Merchant Hosted (seamless) integration.
 
-You need to ensure that **BNPL** for the **paymentMethod.name** parameter and BNPL code based on the provider and tenure for the **paymentMethod.bankcode** parameter is posted.
+To initiate a BNPL transaction, provide **`"BNPL"`** for **`paymentMethod.name`** and the relevant provider code for **`paymentMethod.bankCode`**.
 
-For the list of supported BNPL codes, refer to <Anchor label="BNPL Codes" target="_blank" href="https://docs.payu.in/v1/docs/bnpl-codes">BNPL Codes</Anchor>.
+For the list of supported BNPL provider codes, refer to [BNPL Codes](https://docs.payu.in/v1/docs/bnpl-codes).
 
 ### Environment
 <V2_payment_envrionment />
@@ -35,54 +35,16 @@ For the list of supported BNPL codes, refer to <Anchor label="BNPL Codes" target
 <V2_payment_header_params />
 
 ### Request body
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>accountId<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant key provided by PayU during onboarding.</p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>MERCHANT123</p></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>txnId<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Transaction ID for transaction tracking and this must be unique for every transaction.</p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>REF123456</p></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentMethod<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the payment method used. For BNPL payments:<br>• name: Must be "BNPL"<br>• bankCode: BNPL provider code (refer to <a href="https://docs.payu.in/v1/docs/bnpl-codes">BNPL Codes</a>)</p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>{"name": "BNPL", "bankCode": "LAZYPAY"}</p></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>order<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. For more information, refer to <a href="#order-object-fields-description">order object fields description</a>.</p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>additionalInfo<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Additional information including transaction flow configuration and BNPL-specific options. For more information, refer to <a href="#additionalinfo-object-fields-description">additionalInfo object fields description</a>.</p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>callBackActions<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Actions to perform on the payment server in different scenarios. For more information, refer to <a href="#callbackactions-object-fields-description">callBackActions object fields description</a>.</p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>billingDetails<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Billing details of the customer including name, address, phone number, email, etc. For more information, refer to <a href="#billingdetails-object-fields-description">billingDetails object fields description</a>.</p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
+| Parameter | Description | Example |
+| :--- | :--- | :--- |
+| accountId | `String` The merchant key provided by PayU. | MERCHANT123 |
+| txnId | `String` Unique transaction identifier generated by merchant. Character limit: 50. | TXN_BNPL_20261005 |
+| currency | `String` Currency code. Must be `"INR"`. | INR |
+| paymentMethod | `Object` Details about BNPL method. For more information, refer to [paymentMethod object](#paymentmethod-object-fields-description). | {"name": "BNPL", "bankCode": "LAZYPAY"} |
+| order | `Object` Details about the transaction order. For more information, refer to [order object](#order-object-fields-description). | Refer to order section |
+| additionalInfo | `Object` S2S flow configuration and BNPL options. For more information, refer to [additionalInfo object](#additionalinfo-object-fields-description). | Refer to additionalInfo section |
+| callBackActions | `Object` Redirection callback URLs. For more information, refer to [callBackActions object](#callbackactions-object-fields-description). | Refer to callBackActions section |
+| billingDetails | `Object` Customer contact and billing address details. See [billingDetails object](#billingdetails-object-fields-description). | Refer to billingDetails section |
 
 ### paymentMethod object fields description
 <HTMLBlock>{`
@@ -97,12 +59,12 @@ For the list of supported BNPL codes, refer to <Anchor label="BNPL Codes" target
 <tbody>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>name<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field must contain the payment mode code. For BNPL payments, this must be "BNPL". For more information, refer to <a href="https://docs.payu.in/v1/docs/payment-mode-codes">Payment Mode Codes</a>.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Payment mode identifier. Must be set to <code>"BNPL"</code>.</p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>BNPL</p></td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>bankCode<br><code>mandatory</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> This field must contain the BNPL provider code based on the provider and tenure. For more information, refer to <a href="https://docs.payu.in/v1/docs/bnpl-codes">BNPL Codes</a>.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> BNPL provider code. Refer to <a href="https://docs.payu.in/v1/docs/bnpl-codes">BNPL Codes</a>.</p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>LAZYPAY</p></td>
 </tr>
 </tbody>
@@ -113,29 +75,30 @@ For the list of supported BNPL codes, refer to <Anchor label="BNPL Codes" target
 <V2_order_object />
 
 ### additionalInfo object fields description
-<AdditionalI_Info_object />
-
-**BNPL-specific parameters:**
-
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
 <tr>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Field</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Field</th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
+  <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>txnS2sFlow<br><code>optional</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Transaction server-to-server flow configuration for BNPL payments.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>txnS2sFlow<br><code>mandatory</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Flow configuration. Set to <code>"4"</code> for redirection to BNPL provider authentication.</p></td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>4</p></td>
 </tr>
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>createOrder<br><code>optional</code></p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Whether to create an order during the payment process.</p></td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>false</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Boolean</code> Flag to store order details in PayU (<code>true</code> / <code>false</code>).</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>true</p></td>
+</tr>
+<tr>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>enforcePaymethod<br><code>optional</code></p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Set to <code>"BNPL"</code> to restrict payment methods.</p></td>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>BNPL</p></td>
 </tr>
 </tbody>
 </table>
@@ -148,53 +111,45 @@ For the list of supported BNPL codes, refer to <Anchor label="BNPL Codes" target
 <BillingDetails_object />
 
 ## Sample request
-```curl
-curl --location 'https://apitest.payu.in/v2/payments' \
---header 'date: <RFC_7231_DATE_UTC>' \
---header 'authorization: hmac username="<YOUR_TEST_KEY>", algorithm="sha512", headers="date", signature="<SIGNATURE_PLACEHOLDER>"' \
---header 'Content-Type: application/json' \
---data-raw '{
+
+```bash
+curl -X POST 'https://apitest.payu.in/v2/payments' \
+  -H 'date: Mon, 05 Oct 2026 10:00:00 GMT' \
+  -H 'authorization: hmac username="<YOUR_TEST_KEY>", algorithm="sha512", headers="date", signature="<SIGNATURE>"' \
+  -H 'content-type: application/json' \
+  -d '{
     "accountId": "<YOUR_TEST_KEY>",
-    "referenceId": "b5f2d8785768087678fn4",
-    "amount": 5000,
+    "txnId": "TXN_BNPL_20261005",
     "currency": "INR",
-    "paymentSource": "WEB",
     "paymentMethod": {
         "name": "BNPL",
         "bankCode": "LAZYPAY"
     },
     "order": {
-        "productInfo": "BNPL Payment for Fashion Items",
-        "userDefinedFields": {
-            "udf1": "",
-            "udf2": "",
-            "udf3": "",
-            "udf4": "",
-            "udf5": "",
-            "udf6": "",
-            "udf7": "",
-            "udf8": "",
-            "udf9": "",
-            "udf10": ""
-        },
+        "productInfo": "Fashion Apparel",
         "paymentChargeSpecification": {
-            "price": "5000.00"
+            "price": 5000.00
+        },
+        "userDefinedFields": {
+            "udf1": "cart_123",
+            "udf2": "app_checkout"
         }
     },
     "additionalInfo": {
         "txnS2sFlow": "4",
-        "createOrder": "false"
+        "createOrder": true
     },
     "callBackActions": {
-        "successAction": "https://yoursite.com/success",
-        "failureAction": "https://yoursite.com/failure",
-        "cancelAction": "https://yoursite.com/cancel"
+        "successAction": "<redacted URL>",
+        "failureAction": "<redacted URL>",
+        "cancelAction": "<redacted URL>"
     },
     "billingDetails": {
         "firstName": "John",
         "lastName": "Doe",
         "phone": "9876543210",
         "email": "john.doe@example.com",
+        "address1": "123 Main Street",
         "city": "Mumbai",
         "state": "Maharashtra",
         "country": "India",
@@ -203,12 +158,241 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 }'
 ```
 
+```python
+import requests
+import json
+
+url = "https://apitest.payu.in/v2/payments"
+
+headers = {
+    "date": "Mon, 05 Oct 2026 10:00:00 GMT",
+    "authorization": 'hmac username="<YOUR_TEST_KEY>", algorithm="sha512", headers="date", signature="<SIGNATURE>"',
+    "content-type": "application/json"
+}
+
+payload = {
+    "accountId": "<YOUR_TEST_KEY>",
+    "txnId": "TXN_BNPL_20261005",
+    "currency": "INR",
+    "paymentMethod": {
+        "name": "BNPL",
+        "bankCode": "LAZYPAY"
+    },
+    "order": {
+        "productInfo": "Fashion Apparel",
+        "paymentChargeSpecification": {
+            "price": 5000.00
+        },
+        "userDefinedFields": {
+            "udf1": "cart_123"
+        }
+    },
+    "additionalInfo": {
+        "txnS2sFlow": "4",
+        "createOrder": True
+    },
+    "callBackActions": {
+        "successAction": "<redacted URL>",
+        "failureAction": "<redacted URL>",
+        "cancelAction": "<redacted URL>"
+    },
+    "billingDetails": {
+        "firstName": "John",
+        "lastName": "Doe",
+        "phone": "9876543210",
+        "email": "john.doe@example.com",
+        "address1": "123 Main Street",
+        "city": "Mumbai",
+        "state": "Maharashtra",
+        "country": "India",
+        "zipCode": "400001"
+    }
+}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.json())
+```
+```php
+<?php
+$url = "https://apitest.payu.in/v2/payments";
+
+$payload = json_encode([
+    "accountId" => "<YOUR_TEST_KEY>",
+    "txnId" => "TXN_BNPL_20261005",
+    "currency" => "INR",
+    "paymentMethod" => [
+        "name" => "BNPL",
+        "bankCode" => "LAZYPAY"
+    ],
+    "order" => [
+        "productInfo" => "Fashion Apparel",
+        "paymentChargeSpecification" => [
+            "price" => 5000.00
+        ]
+    ],
+    "additionalInfo" => [
+        "txnS2sFlow" => "4",
+        "createOrder" => true
+    ],
+    "callBackActions" => [
+        "successAction" => "<redacted URL>",
+        "failureAction" => "<redacted URL>",
+        "cancelAction" => "<redacted URL>"
+    ],
+    "billingDetails" => [
+        "firstName" => "John",
+        "lastName" => "Doe",
+        "phone" => "9876543210",
+        "email" => "john.doe@example.com",
+        "address1" => "123 Main Street",
+        "city" => "Mumbai",
+        "state" => "Maharashtra",
+        "country" => "India",
+        "zipCode" => "400001"
+    ]
+]);
+
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    "date: Mon, 05 Oct 2026 10:00:00 GMT",
+    "authorization: hmac username=\"<YOUR_TEST_KEY>\", algorithm=\"sha512\", headers=\"date\", signature=\"<SIGNATURE>\"",
+    "content-type: application/json"
+]);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class PayUBNPLRequest {
+    public static void main(String[] args) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String payload = """
+            {
+              "accountId": "<YOUR_TEST_KEY>",
+              "txnId": "TXN_BNPL_20261005",
+              "currency": "INR",
+              "paymentMethod": {
+                "name": "BNPL",
+                "bankCode": "LAZYPAY"
+              },
+              "order": {
+                "productInfo": "Fashion Apparel",
+                "paymentChargeSpecification": {
+                  "price": 5000.00
+                }
+              },
+              "additionalInfo": {
+                "txnS2sFlow": "4",
+                "createOrder": true
+              },
+              "callBackActions": {
+                "successAction": "<redacted URL>",
+                "failureAction": "<redacted URL>",
+                "cancelAction": "<redacted URL>"
+              },
+              "billingDetails": {
+                "firstName": "John",
+                "lastName": "Doe",
+                "phone": "9876543210",
+                "email": "john.doe@example.com",
+                "address1": "123 Main Street",
+                "city": "Mumbai",
+                "state": "Maharashtra",
+                "country": "India",
+                "zipCode": "400001"
+              }
+            }
+            """;
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://apitest.payu.in/v2/payments"))
+            .header("date", "Mon, 05 Oct 2026 10:00:00 GMT")
+            .header("authorization", "hmac username=\"<YOUR_TEST_KEY>\", algorithm=\"sha512\", headers=\"date\", signature=\"<SIGNATURE>\"")
+            .header("content-type", "application/json")
+            .POST(HttpRequest.BodyPublishers.ofString(payload))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
+}
+```
+```javascript
+const url = "https://apitest.payu.in/v2/payments";
+
+const payload = {
+  accountId: "<YOUR_TEST_KEY>",
+  txnId: "TXN_BNPL_20261005",
+  currency: "INR",
+  paymentMethod: {
+    name: "BNPL",
+    bankCode: "LAZYPAY"
+  },
+  order: {
+    productInfo: "Fashion Apparel",
+    paymentChargeSpecification: {
+      price: 5000.00
+    }
+  },
+  additionalInfo: {
+    txnS2sFlow: "4",
+    createOrder: true
+  },
+  callBackActions: {
+    successAction: "<redacted URL>",
+    failureAction: "<redacted URL>",
+    cancelAction: "<redacted URL>"
+  },
+  billingDetails: {
+    firstName: "John",
+    lastName: "Doe",
+    phone: "9876543210",
+    email: "john.doe@example.com",
+    address1: "123 Main Street",
+    city: "Mumbai",
+    state: "Maharashtra",
+    country: "India",
+    zipCode: "400001"
+  }
+};
+
+fetch(url, {
+  method: "POST",
+  headers: {
+    "date": "Mon, 05 Oct 2026 10:00:00 GMT",
+    "authorization": 'hmac username="<YOUR_TEST_KEY>", algorithm="sha512", headers="date", signature="<SIGNATURE>"',
+    "content-type": "application/json"
+  },
+  body: JSON.stringify(payload)
+})
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => console.error("Error:", err));
+```
+
 ## Sample response
+
 ```json
 {
-    "referenceId": "b5f2d8785768087678fn4",
-    "paymentId": "1999110000001769",
-    "message": "Please call verify api to get the transaction status"
+  "status": "PENDING",
+  "result": {
+    "checkoutUrl": "<redacted URL>"
+  },
+  "txnId": "TXN_BNPL_20261005",
+  "paymentId": "1999110000001769",
+  "message": "Redirect customer to checkoutUrl to authenticate BNPL credit line"
 }
 ```
 
@@ -217,4 +401,19 @@ curl --location 'https://apitest.payu.in/v2/payments' \
 
 > 📘 **Reference:**
 >
-> To check the transaction status, refer to <Anchor label="Verify Payment API" target="_blank" href="https://docs.payu.in/v2/reference/v2_verify_payment_api">Verify Payment API</Anchor>.
+> To check the transaction status, refer to [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api).
+
+## Error Codes
+
+| Code | HTTP Status | Description | Resolution |
+| :--- | :--- | :--- | :--- |
+| `INVALID_AMOUNT` | 400 | Amount exceeds BNPL credit limit | Verify customer credit line or use another method |
+| `INVALID_CURRENCY` | 400 | Unsupported currency | Set `currency: "INR"` |
+| `AUTHENTICATION_FAILED` | 401 | Invalid token or signature | Verify authorization credentials |
+| `DUPLICATE_REFERENCE` | 409 | `txnId` already used | Use unique transaction ID |
+| `PAYMENT_DECLINED` | 422 | BNPL provider declined credit | Customer should choose another payment option |
+
+## Next Steps
+1. **Redirect Customer**: Direct customer to `checkoutUrl` to approve the BNPL installment.
+2. **Handle Callbacks**: Receive customer on `successAction` or `failureAction`.
+3. **Verify Payment**: Confirm final transaction state using [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api).
