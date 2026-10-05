@@ -43,7 +43,7 @@ Something not working after creating and sending your <Anchor target="_blank" hr
 <Callout icon="📘" theme="info">
   ### **Invoices**
 
-  Haven't created an invoice yet? → <Anchor target="_blank" href="doc:create-an-invoice">Create an Invoice</Anchor>
+  Haven't created an invoice yet? → <Anchor target="_blank" href="https://docs.payu.in/docs/create-an-invoice-1">Create an Invoice</Anchor>
 </Callout>
 
 ***
