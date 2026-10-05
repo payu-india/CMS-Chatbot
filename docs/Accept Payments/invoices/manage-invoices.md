@@ -77,6 +77,7 @@ You can perform the following actions after a button is created:<br />
 
 - View invoice Details
 - Edit an invoice
+- Resend an invoice
 - Duplicate an invoive
 - Deactivate an invoice
 
@@ -108,7 +109,11 @@ You can perform the following actions after a button is created:<br />
 
 </Accordion>
 
-<Accordion title="Resend an Invoice" icon="far fa-paper-plane">
+***
+
+### Resend an Invoice
+
+<Accordion title="Steps to Resend an Invoice" icon="far fa-paper-plane">
   If your customer did not receive the invoice or needs it again:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Invoices** under **Payment Tools**.
