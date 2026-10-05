@@ -190,3 +190,11 @@ fetch(url, options)
   "cardCategory": "CC"
 }
 ```
+## Next Steps
+
+1. **Apply Surcharges or Currency Adjustments (If Applicable)**:
+   - If `isDomestic: "N"`, trigger international card handling (e.g. Multi-Currency Pricing or international gateway routing).
+2. **Enforce Merchant Acceptance Policies**:
+   - If your merchant account does not accept international cards, block the transaction before submission and notify the customer.
+3. **Initiate Card Payment**:
+   - Submit the transaction to the **[Cards v2 Payment API](ref:_payment-v2-merchant-hosted-cards)**.
