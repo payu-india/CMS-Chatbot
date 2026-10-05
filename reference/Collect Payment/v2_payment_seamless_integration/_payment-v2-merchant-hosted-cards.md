@@ -47,9 +47,9 @@ Here is the converted table, split into **Mandatory** and **Optional** parameter
 
 **Optional parameters**
 
-| Parameter     | Description                                                                                                                                                                                                                           | Example |
-| :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------ |
-| authorization | Pre-authenticated 3DS 2.0 metadata (ECI, CAVV, 3DS Trans ID) if the merchant performs 3DS authentication directly. For more information, refer to [authorization object fields description](#authorization-object-fields-description) | Object  |
+| Parameter     | Description                                                                                                                                                                                                                            | Example |
+| :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------ |
+| authorization | Pre-authenticated 3DS 2.0 metadata (ECI, CAVV, 3DS Trans ID) if the merchant performs 3DS authentication directly. For more information, refer to [authorization object fields description.](#authorization-object-fields-description) | Object  |
 
 ### paymentMethod object fields description
 
