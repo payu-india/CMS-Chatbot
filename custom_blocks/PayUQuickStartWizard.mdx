@@ -129,7 +129,7 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
         'An active Shopify store',
         'Your PayU Merchant Key and Salt'
       ],
-      docsUrl: 'https://docs.payu.in/docs/shopify-integration',
+      docsUrl: 'https://docs.payu.in/docs/shopify',
       webhooksUrl: 'https://docs.payu.in/docs/callbacks-webhook-reference',
       paymentMethodsSummary: 'UPI, cards, net banking, and wallets'
     },
@@ -146,7 +146,7 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
         'A WordPress site with WooCommerce installed',
         'Your PayU Merchant Key and Salt'
       ],
-      docsUrl: 'https://docs.payu.in/docs/woocommerce-integration',
+      docsUrl: 'https://docs.payu.in/docs/woocommerce',
       webhooksUrl: 'https://docs.payu.in/docs/callbacks-webhook-reference',
       paymentMethodsSummary: 'UPI, cards, net banking, and wallets'
     },
@@ -163,7 +163,7 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
         'A Magento 2.x store',
         'Your PayU Merchant Key and Salt'
       ],
-      docsUrl: 'https://docs.payu.in/docs/magento-integration',
+      docsUrl: 'https://docs.payu.in/docs/magento',
       webhooksUrl: 'https://docs.payu.in/docs/callbacks-webhook-reference',
       paymentMethodsSummary: 'UPI, cards, net banking, and wallets'
     },
@@ -180,7 +180,7 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
         'An active store on a supported eCommerce platform',
         'Your PayU Merchant Key and Salt'
       ],
-      docsUrl: 'https://docs.payu.in/collect-payments/ecommerce-platform-plugins',
+      docsUrl: 'https://docs.payu.in/docs/ecommerce-platform-plugins',
       webhooksUrl: 'https://docs.payu.in/docs/callbacks-webhook-reference',
       paymentMethodsSummary: 'UPI, cards, net banking, and wallets'
     }
@@ -442,6 +442,35 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
       }
     }
 
+    return null;
+  }
+
+  function getPromptHints(productKey, step) {
+    if (productKey === 'payment_links') {
+      if (step === 1) return 'Have ready: whether you want the no-code Dashboard option or the API integration, and your programming language if using the API.';
+    }
+    if (productKey === 'upi_qr') {
+      if (step === 1) return 'Have ready: whether you need Static QR (Dashboard setup) or Dynamic QR (per-transaction API), and your platform or language if using Dynamic QR.';
+    }
+    if (productKey === 'plugin_other') {
+      if (step === 1) return 'Have ready: which eCommerce platform you are using.';
+    }
+    if (productKey === 'hosted_checkout') {
+      if (step === 1) return 'Have ready: your server-side programming language and framework (e.g. Node.js, PHP, Python).';
+      if (step === 2) return 'Have ready: your backend and database stack (e.g. Node.js + PostgreSQL).';
+    }
+    if (productKey === 'merchant_hosted') {
+      if (step === 1) return 'Have ready: your frontend framework (e.g. React, Vue, plain HTML) and server-side language.';
+      if (step === 2) return 'Have ready: your backend and database stack.';
+    }
+    if (productKey === 'recurring_payments') {
+      if (step === 1) return 'Have ready: your implementation path (API / Zion / Dashboard), which instruments you need (Cards / UPI / Net Banking), and your programming language.';
+      if (step === 2) return 'Have ready: which payment instrument(s) you are handling (Cards / UPI / Net Banking).';
+    }
+    if (productKey === 'split_settlement') {
+      if (step === 1) return 'Have ready: whether you are using Hosted Checkout or Merchant Hosted, and your server-side language.';
+      if (step === 2) return 'Have ready: your backend and reconciliation setup.';
+    }
     return null;
   }
 
@@ -715,6 +744,8 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
       var step2Label = getStep2Label(product.key);
       var prompt1 = buildAIPrompt(product, 1);
       var prompt2 = buildAIPrompt(product, 2);
+      var hint1 = getPromptHints(product.key, 1);
+      var hint2 = getPromptHints(product.key, 2);
 
       return (
         <div>
@@ -866,22 +897,34 @@ export const PayUQuickStartWizard = function PayUQuickStartWizard() {
                     Use this with Claude, ChatGPT, or another AI coding assistant. Copy the entire prompt and paste it into your conversation.
                   </p>
                   {prompt1 && (
-                    <div style={{ position: 'relative' }}>
-                      <pre style={{ backgroundColor: '#f9fafb', padding: '12px', borderRadius: '8px', fontSize: '12px', lineHeight: '1.6', overflowX: 'auto', whiteSpace: 'pre-wrap', wordWrap: 'break-word', border: '1px solid #e5e7eb', margin: 0 }}>
-                        {prompt1}
-                      </pre>
-                      <button
-                        onClick={function () { copyToClipboard(prompt1); }}
-                        style={{ position: 'absolute', top: '8px', right: '8px', padding: '6px 10px', fontSize: '11px', fontWeight: 600, borderRadius: '6px', border: '1px solid #e5e7eb', background: '#fff', color: '#374151', cursor: 'pointer' }}
-                        type="button"
-                      >
-                        Copy
-                      </button>
+                    <div>
+                      {hint1 && (
+                        <p style={{ fontSize: '12px', color: '#6b7280', fontStyle: 'italic', margin: '0 0 6px 0' }}>
+                          {hint1}
+                        </p>
+                      )}
+                      <div style={{ position: 'relative' }}>
+                        <pre style={{ backgroundColor: '#f9fafb', padding: '12px', borderRadius: '8px', fontSize: '12px', lineHeight: '1.6', overflowX: 'auto', whiteSpace: 'pre-wrap', wordWrap: 'break-word', border: '1px solid #e5e7eb', margin: 0 }}>
+                          {prompt1}
+                        </pre>
+                        <button
+                          onClick={function () { copyToClipboard(prompt1); }}
+                          style={{ position: 'absolute', top: '8px', right: '8px', padding: '6px 10px', fontSize: '11px', fontWeight: 600, borderRadius: '6px', border: '1px solid #e5e7eb', background: '#fff', color: '#374151', cursor: 'pointer' }}
+                          type="button"
+                        >
+                          Copy
+                        </button>
+                      </div>
                     </div>
                   )}
                   {hasStep2 && showStep2 && prompt2 && (
                     <div style={{ marginTop: '16px' }}>
                       <p style={{ fontSize: '13px', fontWeight: 600, color: '#1e3a5f', marginBottom: '8px' }}>{step2Label.replace('Show ', '')}</p>
+                      {hint2 && (
+                        <p style={{ fontSize: '12px', color: '#6b7280', fontStyle: 'italic', margin: '0 0 6px 0' }}>
+                          {hint2}
+                        </p>
+                      )}
                       <div style={{ position: 'relative' }}>
                         <pre style={{ backgroundColor: '#f9fafb', padding: '12px', borderRadius: '8px', fontSize: '12px', lineHeight: '1.6', overflowX: 'auto', whiteSpace: 'pre-wrap', wordWrap: 'break-word', border: '1px solid #e5e7eb', margin: 0 }}>
                           {prompt2}
