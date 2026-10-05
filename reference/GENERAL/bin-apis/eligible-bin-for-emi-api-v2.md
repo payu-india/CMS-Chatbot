@@ -1,18 +1,19 @@
 ---
 title: Eligible Bin for EMI API
-excerpt: ''
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
 The Eligible Bin for EMI API v2.0 is used only when the merchant needs the EMI feature of PayU. If you are managing card details on your website, this API can tell the issuing bank of the card bin. It also provides the minimum eligible amount for a particular bank.
 
-<Image align="center" border={false} src="https://files.readme.io/2eaac64-emi_eligible_bins_flow.png" />
+
+<Image src="https://files.readme.io/2eaac64-emi_eligible_bins_flow.png" align="center" />
+
 
 HTTP Method: **POST**
 
@@ -249,7 +250,7 @@ public class HmacAuth {
       <td>
         This parameter needs to include the transaction amount.
 
-        * _Note_*: Amount is a non-mandatory field, but is mandatory if bank code is ONEC or BAJFIN .
+        * _Note_\*: Amount is a non-mandatory field, but is mandatory if bank code is ONEC or BAJFIN .
       </td>
 
       <td>
