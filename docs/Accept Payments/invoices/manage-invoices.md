@@ -5,6 +5,8 @@ excerpt: >-
   Dashboard.
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
   title: Manage PayU Invoices — Dashboard Guide | Developer Docs
   description: >-
@@ -103,7 +105,6 @@ You can perform the following actions after a button is created:<br />
 
     <Image src="https://files.readme.io/4c70ecb593e3cf08f56e2ed2d2565d348eb3d7bb4d8d466de20904976626e1b4-Screenshot_2026-10-05_at_12.00.55_PM.png" align="center" caption="Transaction details" border={true} />
 
-    <br />
 
 </Accordion>
 
