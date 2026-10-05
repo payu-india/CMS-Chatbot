@@ -243,6 +243,6 @@ fetch(url, options)
 1. **Validate Card for EMI**:
    - As the customer enters the first 6 or 8 digits of their card, call this endpoint to confirm if their card BIN is eligible for EMI plans.
 2. **Fetch Detailed EMI Schedules**:
-   - Once BIN eligibility is confirmed, query the **[EMI Calculator API](ref:emi-calculator-api.md) using the identified bank code to fetch specific monthly instalments.
+   - Once BIN eligibility is confirmed, query the [EMI Calculator API](ref:emi-calculator-api.md) using the identified bank code to fetch specific monthly instalments.
 3. **Handle Ineligible Cards**:
    - If the card BIN is not eligible, inform the customer and suggest paying via full swipe or switching to a supported issuing bank.
