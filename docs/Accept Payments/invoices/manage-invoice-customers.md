@@ -134,12 +134,17 @@ You can perfrom the following actions:
 
      <Image src="https://files.readme.io/e526f369ab650ab8b72d495d8d89cef913c2b4fafef8f4932a72dbe21bdf66a1-image.png" align="center" caption="Access customers under invoices" border={true} />
 
-  2. Find the customer you want to update and click **Edit** in the **Actions** column.
-  3. Update the relevant fields — basic details, billing address, or shipping address.
+  2. Find the customer you want to update and click the edit icon in the **Actions** column.
+
+     <Image src="https://files.readme.io/09d8187cef231b1f42e328991009655774d8da803c93d51e9155449cf11f27b9-Screenshot_2026-10-05_at_3.35.38_PM.png" align="center" caption="Edit customer detials" border={true} />
+
+  3. Update the relevant fields such as basic details, billing address, or shipping address.
   4. Click **Save** to apply the changes.
 
   <Callout icon="📘" theme="info">
-    Editing a customer updates the directory for future invoices. It does not change the contact details on invoices that have already been created or sent.
+    ### **Tips:**
+
+    Editing a customer updates the directory for future invoices. It does not change the contact details on invoices that have already been sent.
   </Callout>
 </Accordion>
 
