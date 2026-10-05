@@ -65,13 +65,12 @@ Create a professional, GST-compliant invoice in the PayU Dashboard and send it d
 
 <Accordion title="1. Open Invoices on the Dashboard" icon="far fa-grid-2">
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor>.
-  2. Expand **Payment Tools** and click **Invoices** from the menu on the left.
+  2. Expand **Payment Tools** and click **Invoices** from the left navigation bar.
+
+     <Image src="https://files.readme.io/cdfb8317ce8e544a7adea38a03005bbe88a9493bf443d9a122052ac918b37373-Screenshot_2026-10-05_at_10.07.25_AM.png" align="center" caption="Access Invoices" border={true} />
+
 
   All your existing invoices are listed here, showing their status, due date, and amount.
-
-
-  <Image src="https://files.readme.io/38614931076cc05791bfba99a8241cc8ee9bb5bfe7d3a5ebc49c06704cf1d674-Screenshot_2025-06-02_at_7.31.48_PM.png" align="center" caption="Invoices list in the PayU Dashboard" border={true} />
-
 </Accordion>
 
 <Accordion title="2. Start a new invoice" icon="far fa-plus">
