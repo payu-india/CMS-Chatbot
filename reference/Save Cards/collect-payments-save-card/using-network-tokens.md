@@ -30,330 +30,400 @@ HTTP Method: **POST**
 
 <V2_payment_header_params />
 
-## Request body
+## Request Parameters
 
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Parameter</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Description</strong></th>
-  <th style="border: 1px solid #ddd; padding: 8px;"><strong>Example</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>accountId<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> The merchant key provided by PayU during onboarding.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>MERCHANT123</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>referenceId<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Reference ID for transaction tracking and this must be unique for every transaction.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>REF123456</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>amount<br> <code>optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Amount of the transaction.<br><strong>Note</strong>: This value will not be considered as the transaction. Only the details in the <code>order.paymentChargeSpecificationparameter.price</code>field will be considered.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>1000</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>currency<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code> Currency of the transaction. By default, <code>INR</code> is posted.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>INR</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentSource<code> optional</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>String</code>Contains the payment source.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>WEB</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>paymentMethod<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the payment method used. For more information, refer to <a href="#paymentmethod-object-fields-description">paymentMethod object fields description target="_blank" </a>.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p> {<br>        &quot;name&quot;: &quot;NetBanking&quot;,	<br>        &quot;bankCode&quot;: &quot;TESTNB&quot;<br>    }</p>
-</td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>order<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Details about the transaction order including product information, ordered items, user-defined fields, and payment charge specifications. For more information, refer to <a href="https://docs.payu.in/v2/reference/addl_info-payment-apis##order-object-fields-description">order object fields description target="_blank"</a></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>additionalInfo<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Additional information including enforced payment methods, single instalment, virtual payment address (VPA), and various options for user preferences during the transaction. For more information, refer to <a href="https://docs.payu.in/v2/reference/addl_info-payment-api#additionalinfo-object-fields-description">additionalInfo object fields description target="_blank"</a></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>callBackActions<br> <code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Actions to perform on the payment server in different scenarios. For example, success, failure, cancellation, cash on delivery, etc. For more information, refer to <a href="https://docs.payu.in/v2/reference/addl_info-payment-api#callbackactions-object-fields-description">callbackActions object fields description target="_blank"</a></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
-<tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>billingDetails<br><code>mandatory</code></p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p><code>Object</code> Billing details of the customer including name, address, phone number, email, etc. For more information, refer to <a href="href="https://docs.payu.in/v2/reference/addl_info-payment-api#billingdetails-object-field-descriptions">billingDetails object field descriptions target="_blank"</a>.</p>
-</td>
-  <td style="border: 1px solid #ddd; padding: 8px;"></td>
-</tr>
-</tbody>
+
+
+### `paymentMethod` Object (Network Token)
+
+The table has 7 rows, so here it is in **HTML format**:
+
+**Mandatory parameters**
+
+<table>
+  <thead>
+    <tr>
+      <th align="left">Parameter</th>
+      <th align="left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>name</code></td>
+      <td><code>String</code> Set to <code>"CreditCard"</code> or <code>"DebitCard"</code>.</td>
+    </tr>
+    <tr>
+      <td><code>paymentCard</code></td>
+      <td><code>Object</code> Token details issued by the card network.</td>
+    </tr>
+    <tr>
+      <td><code>paymentCard.cardToken</code></td>
+      <td><code>String</code> Network token string issued by Visa, Mastercard, or RuPay.</td>
+    </tr>
+    <tr>
+      <td><code>paymentCard.cardTokenType</code></td>
+      <td><code>String</code> Set to <code>"NETWORK"</code>.</td>
+    </tr>
+    <tr>
+      <td><code>paymentCard.tavv</code></td>
+      <td><code>String</code> Dynamic cryptogram generated for the transaction (obtained via <strong><a href="./v2-get-payment-details-api.md">Get Payment Details API</a></strong>).</td>
+    </tr>
+    <tr>
+      <td><code>paymentCard.last4Digits</code></td>
+      <td><code>String</code> Last 4 digits of the underlying primary account number (e.g. <code>"2346"</code>).</td>
+    </tr>
+  </tbody>
 </table>
-`}</HTMLBlock>
 
-### Payment method object
+**Optional parameters**
 
-<Accordion title="Payment Method Object" icon="fa-code">
-  For Cards seamless integration, the payment method object should contain:
+<table>
+  <thead>
+    <tr>
+      <th align="left">Parameter</th>
+      <th align="left">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>paymentCard.cvv</code></td>
+      <td><code>String</code> 3-digit CVV (if required by merchant terminal profile).</td>
+    </tr>
+  </tbody>
+</table>
 
-  | Parameter     | Type   | Description                                                                     | Required |
-  | ------------- | ------ | ------------------------------------------------------------------------------- | -------- |
-  | `name`        | String | Must be "CreditCard" for credit cards or "DebitCard" for debit cards            | Yes      |
-  | `bankCode`    | String | Bank code for the card type (e.g., "CC" for credit cards, "DC" for debit cards) | Yes      |
-  | `paymentCard` | Object | Card details including card number, CVV, expiry, etc.                           | Yes      |
-
-  **Example:**
-
-  ```json
-  {
-    "name": "CreditCard",
-    "bankCode": "CC",
-    "paymentCard": {
-      "cardNumber": "5004461234560000",
-      "validThrough": "04/2025",
-      "ownerName": "John Doe",
-      "cvv": "123"
+### Sample Request
+```bash
+curl --location --request POST '<redacted URL>' \
+--header 'Content-Type: application/json' \
+--header 'Date: Mon, 05 Oct 2026 08:30:00 GMT' \
+--header 'Authorization: hmac username="merchant_key", algorithm="sha512", headers="date", signature="<SIGNATURE>"' \
+--data-raw '{
+  "accountId": "merchant_key",
+  "txnId": "TXN_NETTOK_1728135000",
+  "order": {
+    "currency": "INR",
+    "paymentChargeSpecification": {
+      "price": 1000.00
     }
-  }
-  ```
-</Accordion>
-
-### Payment Card Object
-
-For new card payments:
-
-| Parameter      | Type   | Description                        | Required |
-| -------------- | ------ | ---------------------------------- | -------- |
-| `cardNumber`   | String | Full card number                   | Yes      |
-| `validThrough` | String | Card expiry date in MM/YYYY format | Yes      |
-| `ownerName`    | String | Cardholder name as on card         | No       |
-| `cvv`          | String | Card Verification Value            | Yes      |
-
-For saved card payments:
-
-| Parameter       | Type   | Description                        | Required |
-| --------------- | ------ | ---------------------------------- | -------- |
-| `cardToken`     | String | Saved card token                   | Yes      |
-| `cardTokenType` | String | Token type (PAYU, NETWORK, ISSUER) | Yes      |
-| `tavv`          | String | Cryptogram for saved cards         | Yes      |
-| `last4Digits`   | String | Last 4 digits of saved card        | Yes      |
-| `cvv`           | String | Card Verification Value            | Yes      |
-
-**Example - New Card:**
-
-```json
-{
-  "cardNumber": "5004461234560000",
-  "validThrough": "04/2025",
-  "ownerName": "John Doe",
-  "cvv": "123"
-}
-```
-
-**Example - Saved Card:**
-
-```json
-{
-  "cardToken": "29850879bf39848ca078727b8e1a95165a41cea1",
-  "cardTokenType": "NETWORK",
-  "tavv": "/wAAAAAAPtP+g6IAmbSeg1gAAAA=",
-  "last4Digits": "0000",
-  "cvv": "123"
-}
-```
-
-#### Order object
-
-<V2_order_object />
-
-#### Additional Info Object
-
-<AdditionalI_Info_object />
-
-#### Callback Actions Object
-
-<CallbackActions_object />
-
-#### Billing Details Object
-
-<BillingDetails_object />
-
-### Authorization Object
-
-<HTMLBlock>{`
-<table style="width: 100%; border-collapse: collapse;">
-<thead>
-<tr>
- <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Field</th>
- <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Description</th>
- <th style="border: 1px solid #ddd; padding: 8px; background-color: #f2f2f2;">Example</th>
-</tr>
-</thead>
-<tbody>
-<tr>
- <td style="border: 1px solid #ddd; padding: 8px;">eci<br/><code>optional</code></td>
- <td style="border: 1px solid #ddd; padding: 8px;">Electronic Commerce Indicator.</td>
- <td style="border: 1px solid #ddd; padding: 8px;">05</td>
-</tr>
-<tr>
- <td style="border: 1px solid #ddd; padding: 8px;">cavv<br/><code>optional</code></td>
- <td style="border: 1px solid #ddd; padding: 8px;">Cardholder Authentication Verification Value.</td>
- <td style="border: 1px solid #ddd; padding: 8px;">AAABAWFlmQAAAABjRWWZEEFgFz</td>
-</tr>
-<tr>
- <td style="border: 1px solid #ddd; padding: 8px;">threeDSTransID<br/><code>optional</code></td>
- <td style="border: 1px solid #ddd; padding: 8px;">3DS Transaction ID.</td>
- <td style="border: 1px solid #ddd; padding: 8px;">67b4c71f-4e6b-4f98-9f2a-1234567890ab</td>
-</tr>
-<tr>
- <td style="border: 1px solid #ddd; padding: 8px;">threeDSenrolled<br/><code>optional</code></td>
- <td style="border: 1px solid #ddd; padding: 8px;">Indicates if the card is enrolled in 3D Secure.</td>
- <td style="border: 1px solid #ddd; padding: 8px;">Y</td>
-</tr>
-<tr>
- <td style="border: 1px solid #ddd; padding: 8px;">threeDSstatus<br/><code>optional</code></td>
- <td style="border: 1px solid #ddd; padding: 8px;">Status of the 3D Secure authentication.</td>
- <td style="border: 1px solid #ddd; padding: 8px;">Success</td>
-</tr>
-</tbody>
-</table>
-`}</HTMLBlock>
-
-#### ThreeDS2 Request Data Object
-
-<ThreeDSRequestData_object />
-
-### Sample request
-
-```json
-curl -X POST \
-  https://apitest.payu.in/v2/payments \
-  -H 'date: Mon, 05 Oct 2024 11:00:00 GMT' \
-  -H 'authorization: HMAC smsplus:4d1ea4e74243ea5b2b5b8b1d8a7b1a2e3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9' \
-  -H 'content-type: application/json' \
-  -d {
-  "accountId": "smsplus",
-  "txnId": "b5f2d8785768087678fn4",
+  },
+  "customer": {
+    "email": "customer@example.com",
+    "phone": "9876543210",
+    "name": "Jane Smith"
+  },
   "paymentMethod": {
     "name": "CreditCard",
-    "bankCode": "CC",
     "paymentCard": {
-      "cardNumber": "5004461234560000",
-      "validThrough": "04/2025",
-      "ownerName": "John Doe",
+      "cardToken": "29850879bf39848ca078727b8e1a95165a41cea1",
+      "cardTokenType": "NETWORK",
+      "tavv": "/wAAAAAAPtP+g6IAmbSeg1gAAAA=",
+      "last4Digits": "2346",
       "cvv": "123"
     }
   },
-  "order": {
-    "productInfo": "Credit Card Test Product",
-    "orderedItem": [
-      {
-        "itemId": "ITEM001",
-        "description": "Test Product for Credit Card",
-        "quantity": 1
-      }
-    ],
-    "paymentChargeSpecification": {
-      "price": 100.00
-    },
-    "userDefinedFields": {
-      "udf1": "",
-      "udf2": "",
-      "udf3": "",
-      "udf4": "",
-      "udf5": ""
-    }
-  },
-  "additionalInfo": {
-    "txnS2sFlow": "2",
-    "createOrder": false,
-    "storeCard": "1",
-    "oneClickCheckout": "1",
-    "preAuthorize": "0"
+  "billingDetails": {
+    "address1": "456 Commerce Avenue",
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "country": "India",
+    "postalCode": "400001"
   },
   "callBackActions": {
-    "successAction": "https://example.com/success",
-    "failureAction": "https://example.com/failure",
-    "cancelAction": "https://example.com/cancel"
+    "successAction": "<redacted URL>",
+    "failureAction": "<redacted URL>",
+    "cancelAction": "<redacted URL>",
+    "termAction": "<redacted URL>"
   },
-  "billingDetails": {
-    "firstName": "John",
-    "lastName": "Doe",
-    "phone": "9876543210",
-    "email": "john.doe@example.com",
-    "address": {
-      "address1": "123 Main Street",
-      "city": "Mumbai",
-      "state": "Maharashtra",
-      "country": "India",
-      "zipCode": "400001"
+  "additionalInfo": {
+    "txnS2sFlow": "4"
+  }
+}'
+```
+```python
+import requests
+import json
+
+url = "<redacted URL>"
+
+payload = {
+    "accountId": "merchant_key",
+    "txnId": "TXN_NETTOK_1728135000",
+    "order": {
+        "currency": "INR",
+        "paymentChargeSpecification": {
+            "price": 1000.00
+        }
+    },
+    "customer": {
+        "email": "customer@example.com",
+        "phone": "9876543210",
+        "name": "Jane Smith"
+    },
+    "paymentMethod": {
+        "name": "CreditCard",
+        "paymentCard": {
+            "cardToken": "29850879bf39848ca078727b8e1a95165a41cea1",
+            "cardTokenType": "NETWORK",
+            "tavv": "/wAAAAAAPtP+g6IAmbSeg1gAAAA=",
+            "last4Digits": "2346",
+            "cvv": "123"
+        }
+    },
+    "billingDetails": {
+        "address1": "456 Commerce Avenue",
+        "city": "Mumbai",
+        "state": "Maharashtra",
+        "country": "India",
+        "postalCode": "400001"
+    },
+    "callBackActions": {
+        "successAction": "<redacted URL>",
+        "failureAction": "<redacted URL>",
+        "cancelAction": "<redacted URL>",
+        "termAction": "<redacted URL>"
+    },
+    "additionalInfo": {
+        "txnS2sFlow": "4"
+    }
+}
+
+headers = {
+    "Content-Type": "application/json",
+    "Date": "Mon, 05 Oct 2026 08:30:00 GMT",
+    "Authorization": 'hmac username="merchant_key", algorithm="sha512", headers="date", signature="<SIGNATURE>"'
+}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.json())
+```
+```php
+<?php
+$curl = curl_init();
+
+$payload = json_encode([
+  "accountId" => "merchant_key",
+  "txnId" => "TXN_NETTOK_1728135000",
+  "order" => [
+    "currency" => "INR",
+    "paymentChargeSpecification" => [
+      "price" => 1000.00
+    ]
+  ],
+  "customer" => [
+    "email" => "customer@example.com",
+    "phone" => "9876543210",
+    "name" => "Jane Smith"
+  ],
+  "paymentMethod" => [
+    "name" => "CreditCard",
+    "paymentCard" => [
+      "cardToken" => "29850879bf39848ca078727b8e1a95165a41cea1",
+      "cardTokenType" => "NETWORK",
+      "tavv" => "/wAAAAAAPtP+g6IAmbSeg1gAAAA=",
+      "last4Digits" => "2346",
+      "cvv" => "123"
+    ]
+  ],
+  "billingDetails" => [
+    "address1" => "456 Commerce Avenue",
+    "city" => "Mumbai",
+    "state" => "Maharashtra",
+    "country" => "India",
+    "postalCode" => "400001"
+  ],
+  "callBackActions" => [
+    "successAction" => "<redacted URL>",
+    "failureAction" => "<redacted URL>",
+    "cancelAction" => "<redacted URL>",
+    "termAction" => "<redacted URL>"
+  ],
+  "additionalInfo" => [
+    "txnS2sFlow" => "4"
+  ]
+]);
+
+curl_setopt_array($curl, [
+  CURLOPT_URL => '<redacted URL>',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+  CURLOPT_POSTFIELDS => $payload,
+  CURLOPT_HTTPHEADER => [
+    'Content-Type: application/json',
+    'Date: Mon, 05 Oct 2026 08:30:00 GMT',
+    'Authorization: hmac username="merchant_key", algorithm="sha512", headers="date", signature="<SIGNATURE>"'
+  ],
+]);
+
+$response = curl_exec($curl);
+curl_close($curl);
+echo $response;
+```
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class NetworkTokenPayment {
+    public static void main(String[] args) throws Exception {
+        String payload = """
+        {
+          "accountId": "merchant_key",
+          "txnId": "TXN_NETTOK_1728135000",
+          "order": {
+            "currency": "INR",
+            "paymentChargeSpecification": {
+              "price": 1000.00
+            }
+          },
+          "customer": {
+            "email": "customer@example.com",
+            "phone": "9876543210",
+            "name": "Jane Smith"
+          },
+          "paymentMethod": {
+            "name": "CreditCard",
+            "paymentCard": {
+              "cardToken": "29850879bf39848ca078727b8e1a95165a41cea1",
+              "cardTokenType": "NETWORK",
+              "tavv": "/wAAAAAAPtP+g6IAmbSeg1gAAAA=",
+              "last4Digits": "2346",
+              "cvv": "123"
+            }
+          },
+          "billingDetails": {
+            "address1": "456 Commerce Avenue",
+            "city": "Mumbai",
+            "state": "Maharashtra",
+            "country": "India",
+            "postalCode": "400001"
+          },
+          "callBackActions": {
+            "successAction": "<redacted URL>",
+            "failureAction": "<redacted URL>",
+            "cancelAction": "<redacted URL>",
+            "termAction": "<redacted URL>"
+          },
+          "additionalInfo": {
+            "txnS2sFlow": "4"
+          }
+        }
+        """;
+
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("<redacted URL>"))
+            .header("Content-Type", "application/json")
+            .header("Date", "Mon, 05 Oct 2026 08:30:00 GMT")
+            .header("Authorization", "hmac username=\"merchant_key\", algorithm=\"sha512\", headers=\"date\", signature=\"<SIGNATURE>\"")
+            .POST(HttpRequest.BodyPublishers.ofString(payload))
+            .build();
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
+}
+```
+```javascript
+const axios = require('axios');
+
+const data = {
+  accountId: "merchant_key",
+  txnId: "TXN_NETTOK_1728135000",
+  order: {
+    currency: "INR",
+    paymentChargeSpecification: {
+      price: 1000.00
     }
   },
-  "authorization": {
-    "eci": "05",
-    "cavv": "AAABAWFlmQAAAABjRWWZEEFgFz",
-    "threeDSTransID": "67b4c71f-4e6b-4f98-9f2a-1234567890ab",
-    "threeDSenrolled": "Y",
-    "threeDSstatus": "Success"
+  customer: {
+    email: "customer@example.com",
+    phone: "9876543210",
+    name: "Jane Smith"
   },
-  "threeDS2RequestData": {
-    "threeDSVersion": "2.2.0",
-    "deviceChannel": "APP"
+  paymentMethod: {
+    name: "CreditCard",
+    paymentCard: {
+      cardToken: "29850879bf39848ca078727b8e1a95165a41cea1",
+      cardTokenType: "NETWORK",
+      tavv: "/wAAAAAAPtP+g6IAmbSeg1gAAAA=",
+      last4Digits: "2346",
+      cvv: "123"
+    }
+  },
+  billingDetails: {
+    address1: "456 Commerce Avenue",
+    city: "Mumbai",
+    state: "Maharashtra",
+    country: "India",
+    postalCode: "400001"
+  },
+  callBackActions: {
+    successAction: "<redacted URL>",
+    failureAction: "<redacted URL>",
+    cancelAction: "<redacted URL>",
+    termAction: "<redacted URL>"
+  },
+  additionalInfo: {
+    txnS2sFlow: "4"
   }
-  }'
+};
+
+const config = {
+  method: 'post',
+  url: '<redacted URL>',
+  headers: { 
+    'Content-Type': 'application/json',
+    'Date': 'Mon, 05 Oct 2026 08:30:00 GMT',
+    'Authorization': 'hmac username="merchant_key", algorithm="sha512", headers="date", signature="<SIGNATURE>"'
+  },
+  data: data
+};
+
+axios(config)
+  .then(response => console.log(JSON.stringify(response.data)))
+  .catch(error => console.error(error));
 ```
 
-### Sample response
+***
+
+## Response Parameters
+
+| Parameter                  | Type   | Description                                            |
+| :------------------------- | :----- | :----------------------------------------------------- |
+| **status**                 | String | Transaction state: `PENDING`, `SUCCESS`, or `FAILURE`. |
+| **message**                | String | Status description.                                    |
+| **result**                 | Object | Execution metadata.                                    |
+| **result.paymentId**       | String | PayU transaction identifier (`mihpayId`).              |
+| **result.txnId**           | String | Merchant transaction identifier.                       |
+| **result.authAction**      | Object | Redirection challenge metadata.                        |
+| **result.authAction.type** | String | Method of challenge: `REDIRECT`.                       |
+| **result.authAction.url**  | String | 3DS Access Control Server (ACS) redirection endpoint.  |
+
+### Sample Response
 
 ```json
 {
-  "result": {
-    "paymentId": "1999110000001769",
-    "redirectUrl": "https://secure.payu.in/ResponseHandler.php",
-    "authAction": "https://apitest.payu.in/v2/payments/1999110000001769/auth",
-    "redirectTemplate": "<html><body>...</body></html>",
-    "card": {
-      "binData": {
-        "pureS2SSupported": false,
-        "issuingBank": "ICICI",
-        "category": "creditcard",
-        "cardType": "VISA",
-        "isDomestic": true
-      }
-    }
-  },
   "status": "PENDING",
-  "message": "Please call verify API to get the transaction status"
+  "message": "Payment initiated successfully. Please redirect the customer to complete 3D Secure authentication.",
+  "result": {
+    "paymentId": "403993715535615888",
+    "txnId": "TXN_NETTOK_1728135000",
+    "authAction": {
+      "type": "REDIRECT",
+      "url": "<redacted URL>"
+    }
+  }
 }
 ```
+
+
+## Next Steps
+
+1. **Complete 3DS Authentication**:
+   - Redirect the cardholder to `result.authAction.url` to complete issuing bank challenge verification.
+2. **Handle Postbacks**:
+   - Capture authentication response at `callBackActions.termAction` or `callBackActions.successAction`.
+3. **Verify Transaction State**:
+   - Query the **[Verify Payment API](./v2_verify_payment_api.md)** to verify payment capture.
