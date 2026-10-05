@@ -383,6 +383,12 @@ Upon a successful initiation call, PayU responds with `status: "PENDING"` and re
 | `PAYMENT_DECLINED` | 422 | Payment declined | Ask customer to retry with another method |
 
 ## Next Steps
-1. **Redirect Customer**: Direct customer's browser to the returned `checkoutUrl`.
-2. **Handle Callbacks**: Receive customer on `successAction`, `failureAction`, or `cancelAction`.
-3. **Verify Payment**: Run server-side verification using [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api/).
+
+1. **Redirect Customer to Checkout**:
+   - Redirect the customer to the `result.checkoutUrl` returned by PayU to render the responsive, hosted payment page.
+2. **Handle Return URLs**:
+   - Intercept the browser redirect at your `callBackActions.successAction` or `failureAction` URLs when the customer finishes their payment.
+3. **Verify Payment Integrity**:
+   - Validate the response hash and confirm the final state with the **[Verify Payment API](ref:v2_verify_payment_api)**.
+4. **Order Tracking**:
+   - If `additionalInfo.createOrder` was enabled, correlate the PayU `orderId` with your internal shopping cart for post-order fulfillment.(https://docs.payu.in/v2/reference/v2_verify_payment_api/).
