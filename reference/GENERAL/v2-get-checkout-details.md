@@ -5,65 +5,121 @@ hidden: false
 metadata:
   robots: index
 ---
-The **Get Checkout Details** (get_checkout_details) API is a generic API using which they can get information when you create the custom checkout pages, that will contain the payment options, offers, recommendations, and downtime details. The API provides the following details:
+---
+title: Get Checkout Details API
+deprecated: false
+hidden: false
+metadata:
+  title: Get Checkout Details API
+  description: Retrieve live payment options, bank downtime status, customer eligibility, and payment filters for custom checkout interfaces.
+  robots: index
+---
 
-* **Payment option details**: The extended details for each payment option are available for the merchant.
-* **Additional charges**: The additional charges are configured for all payment options.<br />eligibility details
-* **Downtime details**: The downtime status of the payment options.
+The **Get Checkout Details** API enables merchants to retrieve configuration and health metadata required to construct dynamic, custom checkout experiences. This endpoint returns active payment methods, credit/debit card downtime indicators, net banking availability, and eligible EMI tenures.
+
+HTTP Method: **POST**
 
 **Environment**
 
-|                      |                                                                                            |
-| -------------------- | ------------------------------------------------------------------------------------------ |
-| **Test**             | [https://apitest.payu.in/v3/checkout/details](https://apitest.payu.in/v3/checkout/details) |
-| **Production&#x20;** | [https://api.payu.in/v3/checkout/details](https://api.payu.in/v3/checkout/details)         |
+| Environment | URL |
+| :--- | :--- |
+| **Test Environment** | `https://apitest.payu.in/v3/checkout/details` |
+| **Production Environment** | `https://api.payu.in/v3/checkout/details` |
 
-## Request headers
+## Request Headers
 
 <V2_payment_header_params />
 
-## Request parameters
+| Header | Type | Description |
+| :--- | :--- | :--- |
+| `Content-Type` | String | Must be `application/json`. |
+| `Date` | String | Current GMT timestamp (e.g. `Tue, 17 Jun 2025 06:48:55 GMT`). |
+| `Authorization` | String | Standard PayU HMAC authorization header. |
 
-| Parameter                                 | Description                                                                     | Example                     |
-| ----------------------------------------- | ------------------------------------------------------------------------------- | --------------------------- |
-| `key`<br /><code>mandatory</code>         | <code>String</code> The merchant key provided by PayU.                          | JPM7Fg                      |
-| `requestData`<br /><code>mandatory</code> | <code>JSON Object</code> A JSON object containing detailed request information. | See JSON fields table below |
+---
 
-### requestData JSON Fields
+## Request Body Parameters
 
-| Field                                                          | Description                                                                     | Example              |
-| -------------------------------------------------------------- | ------------------------------------------------------------------------------- | -------------------- |
-| `requestId`<br /><code>mandatory</code>                        | <code>String</code> A unique identifier for the request.                        | 12345678             |
-| `transactionDetails`<br /><code>mandatory</code>               | <code>JSON Object</code> Details about the transaction.                         | See sub-fields below |
-| `transactionDetails.amount`<br /><code>mandatory</code>        | <code>Number</code> The transaction amount.                                     | 12345.12             |
-| `useCase`<br /><code>optional</code>                           | <code>JSON Object</code> Specific use cases for the API.                        | See sub-fields below |
-| `useCase.getExtendedPaymentDetails`<br /><code>optional</code> | <code>Boolean</code> Whether to fetch extended payment details.                 | true                 |
-| `useCase.checkCustomerEligibility`<br /><code>optional</code>  | <code>Boolean</code> Whether to check customer eligibility for payment options. | true                 |
-| `customerDetails`<br /><code>optional</code>                   | <code>JSON Object</code> Details about the customer.                            | See sub-fields below |
-| `customerDetails.mobile`<br /><code>optional</code>            | <code>String</code> Mobile number of the customer.                              | 9098765432           |
-| `filters`<br /><code>optional</code>                           | <code>JSON Object</code> Filters to apply on the payment options.               | See sub-fields below |
-| `filters.paymentOptions`<br /><code>optional</code>            | <code>JSON Object</code> Filters for specific payment options.                  | See sub-fields below |
-| `filters.paymentOptions.emi`<br /><code>optional</code>        | <code>JSON Object</code> Filters for EMI options.                               | See sub-fields below |
-| `filters.paymentOptions.emi.dc`<br /><code>optional</code>     | <code>String</code> Comma-separated list of bank codes for debit card EMI.      | SBIN,KKBK,ICIC       |
+The table has 6 rows, so per the formatting rules, here it is in **HTML format**:
 
-## Sample Request (cURL)
+**Mandatory parameters**
+
+<table>
+  <thead>
+    <tr>
+      <th align="left">Parameter</th>
+      <th align="left">Description</th>
+      <th align="left">Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>requestId</code></td>
+      <td><code>String</code> A unique merchant request identifier for this checkout query.</td>
+      <td><code>REQ_CHK_12345678</code></td>
+    </tr>
+    <tr>
+      <td><code>transactionDetails.amount</code></td>
+      <td><code>Number</code> Transaction order amount to evaluate minimum and maximum limits per payment option.</td>
+      <td><code>12345.00</code></td>
+    </tr>
+  </tbody>
+</table>
+
+**Optional parameters**
+
+<table>
+  <thead>
+    <tr>
+      <th align="left">Parameter</th>
+      <th align="left">Description</th>
+      <th align="left">Example</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>useCase.getExtendedPaymentDetails</code></td>
+      <td><code>Boolean</code> Set to <code>true</code> to retrieve extended bank downtime status and health messages. Default is <code>true</code>.</td>
+      <td><code>true</code></td>
+    </tr>
+    <tr>
+      <td><code>useCase.checkCustomerEligibility</code></td>
+      <td><code>Boolean</code> Set to <code>true</code> to check customer-specific credit/debit eligibility (e.g. Cardless EMI / BNPL).</td>
+      <td><code>true</code></td>
+    </tr>
+    <tr>
+      <td><code>customerDetails.mobile</code></td>
+      <td><code>String</code> Customer mobile number used for eligibility checks.</td>
+      <td><code>9876543210</code></td>
+    </tr>
+    <tr>
+      <td><code>filters.paymentOptions</code></td>
+      <td><code>Object</code> Restrict query to specific payment instruments or EMI bank codes.</td>
+      <td><code>{"emi": {"dc": "SBIN,KKBK,ICIC"}}</code></td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+## Sample Request
 
 ```bash
-curl --location 'https://info.payu.in/v3/checkout/details' \
+curl --location 'https://api.payu.in/v3/checkout/details' \
 --header 'Content-Type: application/json' \
---header 'date: {{date}}' \
---header 'Authorization: {{authorization}}' \
+--header 'Date: Tue, 17 Jun 2025 06:48:55 GMT' \
+--header 'Authorization: hmac username="<YOUR_MERCHANT_KEY>", algorithm="sha512", headers="date", signature="<YOUR_SIGNATURE>"' \
 --data '{
-  "requestId": "12345678",
+  "requestId": "REQ_CHK_12345678",
   "transactionDetails": {
-    "amount": 12345.12
+    "amount": 12345.00
   },
   "useCase": {
     "getExtendedPaymentDetails": true,
     "checkCustomerEligibility": true
   },
   "customerDetails": {
-    "mobile": "9098765432"
+    "mobile": "9876543210"
   },
   "filters": {
     "paymentOptions": {
@@ -74,17 +130,152 @@ curl --location 'https://info.payu.in/v3/checkout/details' \
   }
 }'
 ```
+```python
+import requests
+import json
+
+url = "https://api.payu.in/v3/checkout/details"
+
+headers = {
+    "Content-Type": "application/json",
+    "Date": "Tue, 17 Jun 2025 06:48:55 GMT",
+    "Authorization": "hmac username=\"<YOUR_MERCHANT_KEY>\", algorithm=\"sha512\", headers=\"date\", signature=\"<YOUR_SIGNATURE>\""
+}
+
+payload = {
+    "requestId": "REQ_CHK_12345678",
+    "transactionDetails": {
+        "amount": 12345.00
+    },
+    "useCase": {
+        "getExtendedPaymentDetails": True,
+        "checkCustomerEligibility": True
+    },
+    "customerDetails": {
+        "mobile": "9876543210"
+    }
+}
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.json())
+```
+```php
+<?php
+$url = "https://api.payu.in/v3/checkout/details";
+
+$payload = json_encode([
+    "requestId" => "REQ_CHK_12345678",
+    "transactionDetails" => [
+        "amount" => 12345.00
+    ],
+    "useCase" => [
+        "getExtendedPaymentDetails" => true,
+        "checkCustomerEligibility" => true
+    ],
+    "customerDetails" => [
+        "mobile" => "9876543210"
+    ]
+]);
+
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    "Content-Type: application/json",
+    "Date: Tue, 17 Jun 2025 06:48:55 GMT",
+    "Authorization: hmac username=\"<YOUR_MERCHANT_KEY>\", algorithm=\"sha512\", headers=\"date\", signature=\"<YOUR_SIGNATURE>\""
+]);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class PayURequest {
+    public static void main(String[] args) throws Exception {
+        HttpClient client = HttpClient.newHttpClient();
+        
+        String payload = "{\"requestId\": \"REQ_CHK_12345678\", \"transactionDetails\": {\"amount\": 12345.00}, \"useCase\": {\"getExtendedPaymentDetails\": true}}";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://api.payu.in/v3/checkout/details"))
+            .header("Content-Type", "application/json")
+            .header("Date", "Tue, 17 Jun 2025 06:48:55 GMT")
+            .header("Authorization", "hmac username=\"<YOUR_MERCHANT_KEY>\", algorithm=\"sha512\", headers=\"date\", signature=\"<YOUR_SIGNATURE>\"")
+            .POST(HttpRequest.BodyPublishers.ofString(payload))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
+    }
+}
+```
+```javascript
+const url = "https://api.payu.in/v3/checkout/details";
+
+const payload = {
+  requestId: "REQ_CHK_12345678",
+  transactionDetails: {
+    amount: 12345.00
+  },
+  useCase: {
+    getExtendedPaymentDetails: true,
+    checkCustomerEligibility: true
+  },
+  customerDetails: {
+    mobile: "9876543210"
+  }
+};
+
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Date": "Tue, 17 Jun 2025 06:48:55 GMT",
+    "Authorization": "hmac username=\"<YOUR_MERCHANT_KEY>\", algorithm=\"sha512\", headers=\"date\", signature=\"<YOUR_SIGNATURE>\""
+  },
+  body: JSON.stringify(payload)
+};
+
+fetch(url, options)
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error("Error:", error));
+```
+
+---
+
+## Response Parameters
+
+| Parameter | Type | Description | Example |
+| :--- | :--- | :--- | :--- |
+| `status` | Number | Status code of the response: `1` for success, `0` for failure. | `1` |
+| `message` | String | Status description message. | `Success` |
+| `result.requestId` | String | Merchant request identifier passed in the request. | `REQ_CHK_12345678` |
+| `result.paymentOptions.cards` | Object | Enabled card instruments (Credit & Debit) with bank downtime indicators. | See schema below. |
+| `result.paymentOptions.netBanking` | Object | Enabled Net Banking options with live status flags (`isDown`). | See schema below. |
+| `result.paymentOptions.emi` | Object | Supported Credit Card and Debit Card EMI tenures and minimum amount thresholds. | See schema below. |
+| `result.paymentOptions.upi` | Object | UPI payment mode status. | `{"status": true, "isDown": false}` |
+| `result.paymentOptions.wallet` | Object | Enabled digital wallet instruments (Payzapp, Mobikwik, etc.). | See schema below. |
+
+---
 
 ## Sample Response
-
-### Success Response
 
 ```json
 {
   "status": 1,
   "message": "Success",
   "result": {
-    "requestId": "12345678",
+    "requestId": "REQ_CHK_12345678",
     "paymentOptions": {
       "cards": {
         "status": true,
@@ -138,7 +329,7 @@ curl --location 'https://info.payu.in/v3/checkout/details' \
               "bankName": "ICICI Bank",
               "isDown": false,
               "tenures": [3, 6, 9, 12],
-              "minAmount": 3000
+              "minAmount": 3000.00
             }
           ]
         },
@@ -150,7 +341,7 @@ curl --location 'https://info.payu.in/v3/checkout/details' \
               "bankName": "State Bank of India",
               "isDown": false,
               "tenures": [3, 6, 9],
-              "minAmount": 5000
+              "minAmount": 5000.00
             }
           ]
         }
@@ -173,34 +364,3 @@ curl --location 'https://info.payu.in/v3/checkout/details' \
   }
 }
 ```
-
-### Error Response
-
-```json
-{
-  "status": 0,
-  "message": "Invalid request parameters",
-  "error_code": "E1001"
-}
-```
-
-## Response Parameters
-
-| Parameter    | Description                                               | Example                     |
-| ------------ | --------------------------------------------------------- | --------------------------- |
-| `status`     | Status of the API call. `1` for success, `0` for failure. | `1`                         |
-| `message`    | Status message of the API call.                           | `Success`                   |
-| `result`     | JSON object containing the checkout details.              | See JSON fields table below |
-| `error_code` | Error code in case of failure.                            | `E1001`                     |
-
-### result JSON Fields
-
-| Field                       | Description                                               | Example              |
-| --------------------------- | --------------------------------------------------------- | -------------------- |
-| `requestId`                 | The request ID provided in the request.                   | `12345678`           |
-| `paymentOptions`            | JSON object containing various payment options available. | See sub-fields below |
-| `paymentOptions.cards`      | Details about card payment options.                       | See sub-fields below |
-| `paymentOptions.netBanking` | Details about net banking payment options.                | See sub-fields below |
-| `paymentOptions.emi`        | Details about EMI payment options.                        | See sub-fields below |
-| `paymentOptions.upi`        | Details about UPI payment options.                        | See sub-fields below |
-| `paymentOptions.wallet`     | Details about wallet payment options.                     | See sub-fields below |
