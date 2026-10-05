@@ -1,0 +1,212 @@
+---
+title: Create an Invoice
+excerpt: >-
+  Create a GST-compliant invoice in the PayU Dashboard, add your line items, and
+  send it to your customer — all in a few minutes. No developer needed.
+deprecated: false
+hidden: true
+metadata:
+  title: Create a PayU Invoice | Developer Docs
+  description: >-
+    Create a GST-compliant invoice in the PayU Dashboard. Add line items, set a
+    due date, enable GST, and send to your customer via email or SMS.
+  keywords:
+    - create invoice payu
+    - payu gst invoice
+    - payu dashboard invoice
+    - send invoice to customer payu
+    - payu invoice line items
+    - payu invoice due date
+    - payu invoice partial payment
+  robots: index
+next:
+  description: Explore related information and resources.
+  pages:
+    - slug: invoices
+      title: Invoices
+      type: basic
+---
+<Banner
+  isInline={true}
+  message="Integration effort: No code or website developer required"
+  color="#15C614"
+  textColor="#ffffff"
+  fontSize="14px"
+  fontWeight="bold"
+/>
+
+Create a professional, GST-compliant invoice in the PayU Dashboard and send it directly to your customer. No developer needed.
+
+***
+
+## What Will I Need?
+
+<Cards>
+  <Card title="A PayU Merchant Account" icon="far fa-table-cells-column-unlock">
+    <Columns layout="fixed">
+      <Column>
+        <Anchor target="_blank" href="doc:set-up-your-account">Set up your account</Anchor> if you have not already done so.
+      </Column>
+    </Columns>
+  </Card>
+
+  <Card title="Your Customer's Contact Details" icon="far fa-address-card">
+    Name and email address or mobile number to send the invoice to.
+  </Card>
+
+  <Card title="Your Item or Service Details" icon="far fa-box-open">
+    Name, rate, and tax details (GST rate, HSN/SAC code) for the products or services on the invoice. Add these to your <Anchor target="_blank" href="doc:manage-invoice-items">Item Catalog</Anchor> first.
+  </Card>
+</Cards>
+
+***
+
+## How Do I Create an Invoice?
+
+<Accordion title="1. Open Invoices on the Dashboard" icon="far fa-grid-2">
+  1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor>.
+  2. Expand **Payment Tools** and click **Invoices** from the menu on the left.
+
+  All your existing invoices are listed here, showing their status, due date, and amount.
+
+
+  <Image src="https://files.readme.io/38614931076cc05791bfba99a8241cc8ee9bb5bfe7d3a5ebc49c06704cf1d674-Screenshot_2025-06-02_at_7.31.48_PM.png" align="center" caption="Invoices list in the PayU Dashboard" border={true} />
+
+</Accordion>
+
+<Accordion title="2. Start a new invoice" icon="far fa-plus">
+  Click **Create New Invoice** at the top-right corner of the page.
+
+  The **Create New Invoice** page opens.
+
+
+  <Image src="https://files.readme.io/e4fb62f4da41f7913d72ed32ad292fa6b317d6ae078e01920c67cfdbe63bf542-Screenshot_2025-06-02_at_7.43.06_PM.png" align="center" caption="Create New Invoice page" border={true} />
+
+
+  Fill in the basic invoice details:
+
+  | Field             | What to enter                                                                       |
+  | ----------------- | ----------------------------------------------------------------------------------- |
+  | **Invoice**       | A unique invoice number for your records                                            |
+  | **Issue Date**    | Filled automatically with today's date                                              |
+  | **Due Date**      | Click the calendar and select when payment is due                                   |
+  | **Invoice Title** | A short description of the invoice — for example, "Consulting Services — July 2025" |
+</Accordion>
+
+<Accordion title="3. Select the customer" icon="far fa-user">
+  Click the **Billed To** drop-down and select the customer this invoice is for.
+
+  <Callout icon="📘" theme="info">
+    If the customer is not in the list yet, you can add them as a new customer from the drop-down. Enter their name, email, and mobile number.
+  </Callout>
+</Accordion>
+
+<Accordion title="4. Add line items" icon="far fa-list-check">
+  Click **Add Item** to add the first product or service to the invoice.
+
+  In the row that appears, click **Enter Item Name** and select the item from your catalog.
+
+
+  <Image src="https://files.readme.io/3daf144fb955f8a78881701fc5da7331a02f3d8a3ceba2320c1e99ef698c198d-Screenshot_2025-06-02_at_7.47.23_PM.png" align="center" caption="Adding line items to the invoice" border={true} />
+
+
+  The item's rate is filled in automatically. You can adjust the quantity if needed — the line total updates automatically.
+
+  Click **Add Item** again to add more items. You can add as many line items as needed.
+
+  <Callout icon="📘" theme="info">
+    If an item is not in your catalog yet, select **Create New Item** from the drop-down to add it on the spot. → [Manage Invoice Items](doc:manage-invoice-items)
+  </Callout>
+</Accordion>
+
+<Accordion title="5. Configure settings (optional)" icon="far fa-sliders">
+  On the **Settings** panel on the right side of the page, you can turn on:
+
+  | Setting                     | What it does                                                                                              |
+  | --------------------------- | --------------------------------------------------------------------------------------------------------- |
+  | **Enable GST**              | Calculates and adds GST to each line item automatically, based on the tax details set in the item catalog |
+  | **Enable Partial Payments** | Lets your customer choose to pay a part of the invoice now and the rest later                             |
+
+  <Callout icon="📘" theme="info">
+    GST details — rate, HSN/SAC code, inter-state or intra-state tax, and cess — are set at the item level in the Item Catalog. → [Manage Invoice Items](doc:manage-invoice-items)
+  </Callout>
+</Accordion>
+
+<Accordion title="6. Send the invoice" icon="far fa-paper-plane">
+  When the invoice is ready, click **Send Invoice**.
+
+  PayU sends the invoice to your customer by email or SMS. The message includes a link to view the invoice and a pay-now button.
+
+  <Callout icon="📘" theme="info">
+    You can also **Save** the invoice as a draft to send later, or **Cancel** to discard it. These options are in the top-right corner of the page.
+  </Callout>
+</Accordion>
+
+***
+
+## What Happens After My Customer Pays?
+
+After your customer receives the invoice and completes a payment:
+
+1. The invoice status in your Dashboard updates to **Paid** immediately.
+2. The payment appears in the **Transactions** tab in your PayU Dashboard.
+3. If partial payments are enabled, the invoice shows how much has been paid and how much is still outstanding.
+4. The money is settled to your bank account on the standard settlement cycle.
+
+<Callout icon="📘" theme="info">
+  ### **Want to be notified the moment a payment comes in?**
+
+  Set up webhooks under **Settings → Webhooks** in the Dashboard. Webhooks are optional — your Dashboard always shows you the latest payment and invoice status whether or not you set them up.
+</Callout>
+
+***
+
+## What Do I Do If Something Goes Wrong?
+
+| Problem                                                  | Fix                                                                                                                                  |
+| -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Customer says they did not receive the invoice           | Resend it from the Dashboard — find the invoice, open it, and click **Resend**. Also ask the customer to check their spam folder.    |
+| Wrong item, amount, or due date on the invoice           | Invoices cannot be edited after they are sent. Cancel the invoice and create a new one with the correct details.                     |
+| Customer paid but the invoice is still showing as unpaid | Wait a few minutes and refresh. If it does not update after 30 minutes, see [Invoice Troubleshooting](doc:invoice-troubleshooting).  |
+| GST not showing on the invoice                           | Enable GST in the **Settings** panel when creating the invoice, and make sure tax details are set for each item in the Item Catalog. |
+| Customer cannot complete the payment                     | Ask what error they saw. See [Invoice Troubleshooting](doc:invoice-troubleshooting) for common payment issues.                       |
+
+***
+
+## What If My Customer Wants the Money Back?
+
+<Cards>
+  <Card title="Refunds" href="doc:introduction-refunds" icon="fad fa-arrow-rotate-left">
+    Return all or part of a payment to your customer — directly from the PayU Dashboard.
+  </Card>
+
+  <Card title="Settlements" href="doc:split-settlments" icon="fad fa-building-columns">
+    Find out when your money will reach your bank account and see your settlement history.
+  </Card>
+
+  <Card title="Disputes and Chargebacks" href="doc:chargeback" icon="fad fa-shield-halved">
+    Handle cases where a customer has raised a complaint with their bank about a payment.
+  </Card>
+</Cards>
+
+***
+
+## Next Steps
+
+<Cards>
+  <Card title="Manage Invoice Items" href="doc:manage-invoice-items" icon="fa-box-open">
+    Build your product and service catalog with rates and GST details before creating invoices.
+  </Card>
+
+  <Card title="Manage Invoices" href="doc:manage-invoices" icon="fa-list-check">
+    View, filter, resend, cancel, and download your invoice records.
+  </Card>
+
+  <Card title="Invoice Troubleshooting" href="doc:invoice-troubleshooting" icon="fa-wrench">
+    Fix issues with invoices not being received, payments failing, or status not updating.
+  </Card>
+
+  <Card title="Invoice FAQs" href="doc:invoice-faqs" icon="fa-circle-question">
+    Common questions about PayU Invoices.
+  </Card>
+</Cards>
