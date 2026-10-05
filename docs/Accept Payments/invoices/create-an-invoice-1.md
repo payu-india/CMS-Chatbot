@@ -39,13 +39,13 @@ Create a professional, GST-compliant invoice in the PayU Dashboard and send it d
 
 ***
 
-## What Will I Need?
+## What All I Need?
 
 <Cards>
   <Card title="A PayU Merchant Account" icon="far fa-table-cells-column-unlock">
     <Columns layout="fixed">
       <Column>
-        <Anchor target="_blank" href="doc:set-up-your-account">Set up your account</Anchor> if you have not already done so.
+        <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signup">Set up your account</Anchor> if you have not already done so.
       </Column>
     </Columns>
   </Card>
@@ -55,7 +55,7 @@ Create a professional, GST-compliant invoice in the PayU Dashboard and send it d
   </Card>
 
   <Card title="Your Item or Service Details" icon="far fa-box-open">
-    Name, rate, and tax details (GST rate, HSN/SAC code) for the products or services on the invoice. Add these to your <Anchor target="_blank" href="doc:manage-invoice-items">Item Catalog</Anchor> first.
+    Name, rate, and tax details (GST rate, HSN/SAC code) for the products or services on the invoice.
   </Card>
 </Cards>
 
