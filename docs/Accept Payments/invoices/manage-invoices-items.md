@@ -52,33 +52,38 @@ The list shows all your items with their **Item ID**, **Item Name**, **Descripti
 
 You can perform the following actions:
 
-- Create an item
+- Create a new item
 - Edit an item
 - Delete an item
 
-<Accordion title="Create a New Item" icon="far fa-plus">
+### Create a New Item
+
+<Accordion title="Steps to Create a New Item" icon="far fa-plus">
   To add a product or service to your catalog:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and go to **Payment Tools → Invoices → Items**.
+
+     <Image src="https://files.readme.io/94dfa65d0a446791a15b16e521d968d5ffe489bd2a57fb8ee68836ae4e0eafd8-Screenshot_2026-10-05_at_2.47.50_PM.png" align="center" caption="Access invoice items" border={true} />
+
   2. Click **New Item** at the top-right corner.
 
   The **Add Item** panel opens.
 
-
-  <Image src="https://files.readme.io/035c4754ff78e35b7b83189255b7466927c3d3a09b26460b7606ed9f98808fc8-Screenshot_2025-06-02_at_7.53.17_PM.png" align="center" caption="Add Item panel" border={true} />
-
-
   3. Fill in the basic details:
 
-  | Field                | What to enter                                                                            |
-  | -------------------- | ---------------------------------------------------------------------------------------- |
-  | **Item Name**        | The name of the product or service — for example, "Website Design" or "Monthly Retainer" |
-  | **Rate**             | The price per unit in rupees                                                             |
-  | **Item Description** | A short description of what the item is (optional but useful for the customer)           |
+  | Field                            | What to enter                                                                           |
+  | -------------------------------- | --------------------------------------------------------------------------------------- |
+  | **Item Name**                    | The name of the product or service. For example, "Website Design" or "Monthly Retainer" |
+  | **Rate**                         | The price per unit in rupees                                                            |
+  | **Item Description (optional )** | A short description of what the item is (optional but useful for the customer)          |
 
-  4. Click **Next** (or **Skip** if you do not need to add tax details now).
 
-  5. To add tax details, fill in the **Tax Details** section:
+  <Image src="https://files.readme.io/035c4754ff78e35b7b83189255b7466927c3d3a09b26460b7606ed9f98808fc8-Screenshot_2025-06-02_at_7.53.17_PM.png" align="center" caption="Item basic details" border={true} />
+
+
+  4. Click **Create Item**.
+
+  5. Fill in the **Tax Details** section:
 
   | Field                             | What to enter                                                                                                 |
   | --------------------------------- | ------------------------------------------------------------------------------------------------------------- |
@@ -89,31 +94,50 @@ You can perform the following actions:
   | **Tax Inclusive / Exclusive**     | Whether the rate you entered already includes tax (inclusive) or whether tax will be added on top (exclusive) |
 
 
-  <Image src="https://files.readme.io/9384f328520e599c79f2b146a9868b343bc67d6c22274906d90028e3df59a23a-Screenshot_2025-06-02_at_7.55.24_PM.png" align="center" caption="Tax details for an item" border={true} />
+  <Image src="https://files.readme.io/340f21aba87184dad28da9f4893ebc6f3042c95b438d9b453d41d0c737febe22-Screenshot_2026-10-05_at_2.52.55_PM.png" align="center" caption="Item tax details" border={true} />
 
 
-  6. Click **Create Item** to save.
+  6. Click **Save** to save the tax details.
+     <Callout icon="📘" theme="info">
+       ### **Tips:**
 
-  The item is now available in the **Enter Item Name** drop-down when creating any invoice.
+       You can choose to skip this step and add these details later.
+     </Callout>
+
+  The item is now available in the **Enter Item Name** drop-down when <Anchor target="_blank" href="https://docs.payu.in/docs/create-an-invoice-1">creating any invoice</Anchor>.
 </Accordion>
 
-<Accordion title="Edit an Item" icon="far fa-pen-to-square">
+***
+
+### Edit an Item
+
+<Accordion title="Steps to Edit an Item" icon="far fa-pen-to-square">
   To update an item's details:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and go to **Payment Tools → Invoices → Items**.
-  2. Find the item you want to update and click **Edit** in the **Actions** column.
+
+     <Image src="https://files.readme.io/a2ea6afb2fdf3c21f19368281176f8ab2ed3b9b973b7e878f6b5eea8c677e804-image.png" align="center" caption="Access invoice items" border={true} />
+
+  2. Find the item you want to update and click the edit icon in the **Actions** column.
+
+
+  <Image src="https://files.readme.io/2233d746b18292f5b3494252f563a9e2da15d4da491127c00d25467b599d23df-Screenshot_2026-10-05_at_2.56.08_PM.png" align="center" caption="Edit an item" border={true} />
+
 
   The **Update Item** panel opens.
 
-
-  <Image src="https://files.readme.io/353b75654a9e586d4380cb15bc660d71049bb62f1c7a0edea839094937dfadc4-Screenshot_2025-06-02_at_7.54.18_PM.png" align="center" caption="Update Item panel" border={true} />
-
-
   3. Update the **Item Name**, **Rate**, or **Item Description** as needed.
-  4. Click **Next** to go to the Tax Details section and update the tax settings if required.
-  5. Click **Update Item** to save the changes.
+
+
+  <Image src="https://files.readme.io/353b75654a9e586d4380cb15bc660d71049bb62f1c7a0edea839094937dfadc4-Screenshot_2025-06-02_at_7.54.18_PM.png" border={true} />
+
+
+  3. Click **Update Item** to go to the **Tax Details** section and update the tax settings if required.
+  4. Click **Save** to save the changes.
 
   <Callout icon="📘" theme="info">
+    ### **Tips:**
+
     Editing an item updates the catalog for future invoices. It does not change any invoices that have already been created or sent.
   </Callout>
 </Accordion>
