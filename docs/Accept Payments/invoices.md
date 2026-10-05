@@ -174,7 +174,7 @@ When your customer receives the invoice:
 <Callout icon="📘" theme="success">
   ### **Tips:**
 
-  Your customer does not need a PayU account — they can pay from any browser or mobile device.
+  Your customer does not need a PayU account. They can pay from any browser or mobile device.
 </Callout>
 
 ***
@@ -185,7 +185,7 @@ Once invoices are sent:
 
 <Columns layout="fixed">
   <Column>
-    **Track all invoices in one place** — Paid, Sent, Overdue, or Draft — from **Payment Tools → Invoices** in your Dashboard.
+    **Track all invoices such as Paid**, **Sent**, **Overdue**, or **Draft in one place** from **Payment Tools → Invoices** in your Dashboard.
   </Column>
 </Columns>
 
@@ -197,7 +197,7 @@ Once invoices are sent:
 
 <Columns layout="fixed">
   <Column>
-    **Download records** — export invoice data or transaction data in CSV or Excel format for your accounts.
+    **Download records**. Export invoice data or transaction data in CSV or Excel format for your accounts.
   </Column>
 </Columns>
 
@@ -226,9 +226,5 @@ Once invoices are sent:
 
   <Card title="Invoice FAQs" href="doc:invoice-faqs" icon="fa-circle-question">
     Common questions about PayU Invoices.
-  </Card>
-
-  <Card title="Payment Links" href="doc:payment-links-overview" icon="fa-link">
-    Need a simpler payment request without line items? Use Payment Links.
   </Card>
 </Cards>
