@@ -80,6 +80,8 @@ You can perform the following actions after a button is created:<br />
 - Resend an invoice
 - Duplicate an invoive
 - Deactivate an invoice
+- Reactivate an invoice
+-
 
 ### View Invoice Details
 
@@ -221,6 +223,8 @@ You can perform the following actions after a button is created:<br />
 </Accordion>
 
 ## How Do I Search for an Invoice?
+
+You can search for an invoice with these options
 
 <Accordion title="Search by Invoice Number or Title" icon="far fa-magnifying-glass">
   Use the **Search** field at the top of the Invoices list to find a specific invoice by its number or title. Type any part of the invoice number or title and the list filters in real time.
