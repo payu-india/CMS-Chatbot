@@ -10,7 +10,19 @@ metadata:
 next:
   description: ''
 ---
-To know the status of the payment, you need to integrate the\*\* Verify Payment\*\* API as below. You need post the **txnId** sent by the **v2/payments** API in the **txnId** parameter.
+---
+title: Verify Payment API
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: ''
+  description: ''
+  robots: index
+next:
+  description: ''
+---
+To know the status of the payment, you need to integrate the\*\* Verify Payment\*\* API as below. You need to post the **txnId** sent by the **v2/payments** API in the **txnId** parameter.
 
 HTTP Method: **POST**
 
@@ -22,13 +34,10 @@ HTTP Method: **POST**
 | Production Environment | [https://info.payu.in/v3/transaction](https://info.payu.in/v3/transaction) |
 
 ## Request parameters
-
 ### Request header
-
 <V2_payment_header_params />
 
 ### Body parameters
-
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -42,7 +51,7 @@ HTTP Method: **POST**
 <tr>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>txnId<br><strong>mandatory</strong></p>
 </td>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>You need post the <strong>txnId</strong> sent by the <strong>v2/payments</strong> API. For more information, refer to any of the following:  </p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>You need to post the <strong>txnId</strong> sent by the <strong>v2/payments</strong> API. For more information, refer to any of the following:  </p>
 <ul>
 <li><a href="https://docs.payu.in/v2/reference/collect-payment-api-payu-hosted-v2-_payment">Collect Payment API - Non-Seamless v2 Payment</a></li>
 <li><a href="https://docs.payu.in/v2/reference/v2_payment_seamless_integration">Collect Payment API - Seamless v2 Payment</a></li>
@@ -56,12 +65,11 @@ HTTP Method: **POST**
 `}</HTMLBlock>
 
 ## Sample request
-
 ```
 curl --location 'https://test.payu.in/v3/transaction' \
 --header 'Content-Type: application/json' \
---header 'date: Thu, 27 Mar 2025 06:35:21 GMT' \
---header 'authorization: hmac username="PRiQvJ", algorithm="sha512", headers="date", signature="42a54cc7450fe1e7a3cf35ebfaed1b828e37062964266fd33186c7b2526e85e3ea2d46946a728ca50e46423ea9a6b2edb8c1315b58fa69297e1e91d3d34804a1"' \
+--header 'date: <CURRENT_DATE_GMT>' \
+--header 'authorization: hmac username="<YOUR_TEST_KEY>", algorithm="sha512", headers="date", signature="<YOUR_SIGNATURE>"' \
 --header 'Info-Command: verify_payment' \
 --data '{
     "txnId":["512345678901234"]
@@ -69,7 +77,6 @@ curl --location 'https://test.payu.in/v3/transaction' \
 ```
 
 ## Response parameters
-
 The fields in the result parameter JSON are described in the following table:
 
 | Field               | Description                                                                                                                          | Example                      |
@@ -83,8 +90,8 @@ The fields in the result parameter JSON are described in the following table:
 | additionalCharges   | Additional charges, if any, applied to the transaction amount.                                                                       | 0.00                         |
 | discount            | Any discount amount applied to the transaction.                                                                                      | 0.00                         |
 | netDebitAmount      | Total amount debited from the payer's account after additional charges and discounts.                                                | 100.00                       |
-| productInfo         | A brief description of the product or service for which the payment was being made.                                                  | cred\_product                |
-| firstName           | The payer’s first name involved in the transaction.                                                                                  | CRED                         |
+| productInfo         | A brief description of the product or service for which the payment was being made.                                                  | example_product                |
+| firstName           | The payer’s first name involved in the transaction.                                                                                  | Example Payer                         |
 | bankcode            | The code of the bank used for the transaction.                                                                                       | AMEX                         |
 | nameOnCard          | Cardholder's name (null if the value is not captured).                                                                               | (null)                       |
 | cardNo              | Masked card number for enhanced security.                                                                                            | XXXXXXXXXXXX2001             |
@@ -109,9 +116,7 @@ The fields in the result parameter JSON are described in the following table:
 | threeDSVersion      | Version of the 3D Secure protocol used for securing the transaction.                                                                 | 2.2.0                        |
 
 ## Sample response
-
 ### Success scenario
-
 Formatted JSON Response:
 
 If successfully fetched:
@@ -124,15 +129,15 @@ If successfully fetched:
         {
             "mihpayId": 21612493009,
             "bankReferenceNumber": "2411194544",
-            "amount": 0.00,
+            "amount": 100.00,
             "mode": "CC",
             "requestId": "",
             "originalAmount": 100.00,
             "additionalCharges": 0.00,
             "discount": 0.00,
             "netDebitAmount": 100.00,
-            "productInfo": "cred_product",
-            "firstName": "CRED",
+            "productInfo": "example_product",
+            "firstName": "Example Payer",
             "bankcode": "AMEX",
             "nameOnCard": null,
             "cardNo": "XXXXXXXXXXXX2001",
@@ -171,7 +176,6 @@ If successfully fetched:
 ```
 
 ### Failure scenarios
-
 * Transaction not found
 
 ```plaintext
@@ -186,3 +190,68 @@ If successfully fetched:
     ]
 }
 ```
+
+## Sample Responses
+
+### Success Response
+
+```json
+{
+  "status": "success",
+  "result": {
+    "paymentId": "PAY_abc123xyz789",
+    "orderId": "ORDER_123",
+    "amount": 10000,
+    "currency": "INR"
+  },
+  "message": "Transaction successful"
+}
+```
+
+### Pending Response
+
+```json
+{
+  "status": "pending",
+  "result": {
+    "paymentId": "PAY_pending456",
+    "orderId": "ORDER_456",
+    "redirectUrl": "https://checkout.payu.in/pay/PAY_pending456"
+  },
+  "message": "Awaiting completion"
+}
+```
+
+### Failure Response
+
+```json
+{
+  "status": "failed",
+  "error": {
+    "code": "PAYMENT_DECLINED",
+    "message": "Declined by bank"
+  },
+  "result": {
+    "paymentId": "PAY_failed789",
+    "orderId": "ORDER_789"
+  }
+}
+```
+
+## Error Codes
+
+| Code | HTTP Status | Description | Resolution |
+| ---- | ----------- | ----------- | ---------- |
+| `INVALID_AMOUNT` | 400 | Invalid amount value | Check amount format and value |
+| `INVALID_CURRENCY` | 400 | Unsupported currency | Use supported currency codes |
+| `AUTHENTICATION_FAILED` | 401 | Invalid token | Verify authentication credentials |
+| `DUPLICATE_REFERENCE` | 409 | Reference ID already used | Use unique reference ID |
+| `PAYMENT_DECLINED` | 422 | Payment declined | Try different payment method |
+
+> For complete error code list, see [Error Codes Reference](ref:error-codes).
+
+## Next Steps
+
+1. Update order status based on verification
+2. Process [Refund](ref:v2-refund-transaction-api) if needed
+3. Fetch [Transaction Details](ref:v2-get-transaction-details-api)
