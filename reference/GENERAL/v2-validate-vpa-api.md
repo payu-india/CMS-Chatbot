@@ -175,7 +175,7 @@ fetch(url, options)
 Once you have verified that the customer's VPA is valid and active (`isVPAValid: 1`), proceed with the following steps depending on your checkout flow:
 
 1. **Initiate UPI Collect Payment**:
-   Pass the validated VPA in the `additionalInfo.vpa` parameter of the **[Collect Payment (v2/payment) API](./_payment_v2_merchant_hosted_upi.md)** with `"txnS2sFlow": "4"`. This triggers a payment collect request directly to the customer's UPI mobile application.
+   Pass the validated VPA in the `additionalInfo.vpa` parameter of the [Collect Payment (v2/payment) API](ref:_payment_v2_merchant_hosted_upi) with `"txnS2sFlow": "4"`. This triggers a payment collect request directly to the customer's UPI mobile application.
 
 2. **Handle Invalid or Inactive VPAs**:
    If the API returns `isVPAValid: 0`:
@@ -186,4 +186,4 @@ Once you have verified that the customer's VPA is valid and active (`isVPAValid:
    If your integration supports recurring subscriptions or UPI AutoPay, check the `isAutoVPAValid` attribute in the response before initiating mandate registration requests.
 
 4. **Poll or Verify Payment Status**:
-   After triggering the collect request, listen for PayU's server-to-server webhook callback on your configured `callBackActions.successAction` / `failureAction` URLs, or poll transaction status using the **[Verify Payment API](./v2_verify_payment_api.md)**.
+   After triggering the collect request, listen for PayU's server-to-server webhook callback on your configured `callBackActions.successAction` / `failureAction` URLs, or poll transaction status using the [Verify Payment API](ref:v2_verify_payment_api).
