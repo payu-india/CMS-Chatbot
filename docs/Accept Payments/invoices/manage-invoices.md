@@ -47,8 +47,10 @@ You can view and manage all your invoices from the PayU Dashboard after they are
 To open your invoices: log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Invoices** under **Payment Tools**.
 
 
-<Image src="https://files.readme.io/38614931076cc05791bfba99a8241cc8ee9bb5bfe7d3a5ebc49c06704cf1d674-Screenshot_2025-06-02_at_7.31.48_PM.png" align="center" caption="Invoices list in the PayU Dashboard" border={true} />
+<Image src="https://files.readme.io/67d1d45f0ad241f6d9225c7c9b5066b38e5ece5dbb426a1a56c26d4da3dd0e94-Screenshot_2026-10-05_at_11.45.06_AM.png" align="center" caption="Access Invoices" border={true} />
 
+
+<br />
 
 The list shows all your invoices for the past 7 days by default, with the following columns:
 
