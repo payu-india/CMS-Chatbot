@@ -471,5 +471,11 @@ For UPI Collect, the collect request is dispatched to the customer's UPI mobile 
 | `PAYMENT_DECLINED` | 422 | Collect request expired or rejected by user | Ask customer to re-initiate |
 
 ## Next Steps
-1. **Poll Status**: For UPI Collect, initiate background polling via [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api).
-2. **Listen to Webhooks**: Capture UPI authorization webhooks.
+
+1. **Monitor Real-time Payment Status**:
+   - For **UPI Collect**: Show a countdown timer (typically 5–8 minutes) on your checkout screen while the customer approves the collect request on their UPI app. Implement polling against your server to check approval.
+   - For **UPI Intent**: Launch the requested UPI app using the returned intent URI or display the QR code.
+2. **Consume Webhooks**:
+   - Configure a webhook endpoint on your server to capture PayU's asynchronous notification as soon as the customer authorizes the payment.
+3. **Verify Payment**:
+   - Always call the **[Verify Payment API](ref:v2_verify_payment_api)** using the `txnId` to ensure the payment status is `success` prior to updating customer order records.
