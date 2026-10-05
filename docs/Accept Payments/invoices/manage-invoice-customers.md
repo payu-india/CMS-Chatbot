@@ -123,7 +123,11 @@ You can perfrom the following actions:
   The customer is now available in the **Billed To** drop-down when <Anchor target="_blank" href="https://docs.payu.in/docs/create-an-invoice-1">creating any invoice</Anchor>.
 </Accordion>
 
-<Accordion title="Edit a Customer" icon="far fa-pen-to-square">
+***
+
+### Edit customer Details
+
+<Accordion title="Steps to Edit Customer Details" icon="far fa-pen-to-square">
   To update a customer's details:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and go to **Payment Tools → Invoices → Customers**.
@@ -144,17 +148,29 @@ You can perfrom the following actions:
   </Callout>
 </Accordion>
 
+***
+
+### Delete a Customer
+
 <Accordion title="Delete a Customer" icon="far fa-trash">
   To remove a customer from your directory:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and go to **Payment Tools → Invoices → Customers**.
-  2. Find the customer you want to delete and click **Delete** in the **Actions** column.
-  3. Confirm the deletion in the prompt.
+
+     <Image src="https://files.readme.io/0c40e803847d5cf9d0937144dfdf8727e0695a53c800e03c280d41fce8cf6862-image.png" align="center" caption="Access customers under invoices" border={true} />
+
+  2. Find the customer you want to delete and click the delete icone in the **Actions** column.
+
+     <Image src="https://files.readme.io/f70422fc4c23431c15ef9ee2fca9ae736f92264bba950f94ebf0b50faf326ed0-Screenshot_2026-10-05_at_3.40.31_PM.png" align="center" caption="Delete a customer" border={true} />
+
+  3. Click **Yes, Delete** in the pop-up menu.
 
   The customer is removed from the directory and will no longer appear in the **Billed To** drop-down when creating invoices.
 
-  <Callout icon="🚧" theme="warning">
-    Deleting a customer is permanent. It does not affect invoices that have already been created or sent — those invoices keep their original customer details.
+  <Callout icon="fad fa-alarm-exclamation" theme="error">
+    ### Important!
+
+    Deleting a customer is permanent. It does not affect invoices that have already been sent.
   </Callout>
 </Accordion>
 
