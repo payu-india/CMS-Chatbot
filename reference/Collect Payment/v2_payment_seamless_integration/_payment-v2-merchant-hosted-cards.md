@@ -10,21 +10,9 @@ metadata:
 next:
   description: ''
 ---
----
-title: Cards – v2 Payment API
-excerpt: ''
-deprecated: false
-hidden: false
-metadata:
-  title: ''
-  description: ''
-  robots: index
-next:
-  description: ''
----
-You can collect payments from customers with credit and debit cards using the Merchant Hosted (seamless) integration. 
+You can collect payments from customers with credit and debit cards using the Merchant Hosted (seamless) integration.
 
-You need to pass **`"CreditCard"`** or **`"DebitCard"`** for **`paymentMethod.name`**, the card provider code (e.g. `CC`, `MAST`, `VISA`, `RUPAY`) for **`paymentMethod.bankCode`**, and the card details or saved card token in **`paymentMethod.paymentCard`**.
+You need to pass `"CreditCard"` or `"DebitCard"` for `paymentMethod.name`, the card provider code (e.g. `CC`, `MAST`, `VISA`, `RUPAY`) for `paymentMethod.bankCode`, and the card details or saved card token in `paymentMethod.paymentCard`.
 
 <Callout icon="📘" theme="info">
   **International Cards**: PayU accepts domestic and international cards. International card processing must be enabled for your account by the PayU Integration and Risk teams.
@@ -35,33 +23,36 @@ You need to pass **`"CreditCard"`** or **`"DebitCard"`** for **`paymentMethod.na
 <V2_payment_envrionment />
 
 ## Request header
+
 <V2_payment_header_params />
 
 ## Request body
+
 Here is the converted table, split into **Mandatory** and **Optional** parameters with the `mandatory`/`optional` labels removed from the Parameter column:
 
----
+***
 
 **Mandatory parameters**
 
-| Parameter | Description | Example |
-| :--- | :--- | :--- |
-| accountId | The unique merchant key provided by PayU. Character limit: 50. | MERCHANT123 |
-| txnId | Transaction ID for transaction tracking. Must be unique for every transaction. Character limit: 50. | TXN_CARD_20261005 |
-| currency | Three-letter ISO currency code. Must be `"INR"`. | INR |
-| paymentMethod | Card payment details including card number, expiry, CVV, or saved token. See [paymentMethod object](#paymentmethod-object-fields-description). | Object |
-| order | Transaction order details such as product info and price. See [order object](#order-object-fields-description). | Object |
-| additionalInfo | Transaction flow options and order flags. See [additionalInfo object](#additionalinfo-object-fields-description). | Object |
-| callBackActions | Redirection URLs following 3DS authentication. See [callBackActions object](#callbackactions-object-fields-description). | Object |
-| billingDetails | Customer billing details including name, phone, email, and address. See [billingDetails object](#billingdetails-object-fields-description). | Object |
+| Parameter       | Description                                                                                                                                    | Example           |
+| :-------------- | :--------------------------------------------------------------------------------------------------------------------------------------------- | :---------------- |
+| accountId       | The unique merchant key provided by PayU. Character limit: 50.                                                                                 | MERCHANT123       |
+| txnId           | Transaction ID for transaction tracking. Must be unique for every transaction. Character limit: 50.                                            | TXN_CARD_20261005 |
+| currency        | Three-letter ISO currency code. Must be `"INR"`.                                                                                               | INR               |
+| paymentMethod   | Card payment details including card number, expiry, CVV, or saved token. See [paymentMethod object](#paymentmethod-object-fields-description). | Object            |
+| order           | Transaction order details such as product info and price. See [order object](#order-object-fields-description).                                | Object            |
+| additionalInfo  | Transaction flow options and order flags. See [additionalInfo object](#additionalinfo-object-fields-description).                              | Object            |
+| callBackActions | Redirection URLs following 3DS authentication. See [callBackActions object](#callbackactions-object-fields-description).                       | Object            |
+| billingDetails  | Customer billing details including name, phone, email, and address. See [billingDetails object](#billingdetails-object-fields-description).    | Object            |
 
 **Optional parameters**
 
-| Parameter | Description | Example |
-| :--- | :--- | :--- |
-| authorization | Pre-authenticated 3DS 2.0 metadata (ECI, CAVV, 3DS Trans ID) if the merchant performs 3DS authentication directly. For more information, refer to [authorization object fields description](#authorization-object-fields-description) | Object |
+| Parameter     | Description                                                                                                                                                                                                                           | Example |
+| :------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------ |
+| authorization | Pre-authenticated 3DS 2.0 metadata (ECI, CAVV, 3DS Trans ID) if the merchant performs 3DS authentication directly. For more information, refer to [authorization object fields description](#authorization-object-fields-description) | Object  |
 
 ### paymentMethod object fields description
+
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -92,6 +83,7 @@ Here is the converted table, split into **Mandatory** and **Optional** parameter
 `}</HTMLBlock>
 
 ### paymentCard object fields description
+
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -137,9 +129,11 @@ Here is the converted table, split into **Mandatory** and **Optional** parameter
 `}</HTMLBlock>
 
 ### order object fields description
+
 <V2_order_object />
 
 ### additionalInfo object fields description
+
 <HTMLBlock>{`
 <table style="width: 100%; border-collapse: collapse;">
 <thead>
@@ -170,36 +164,38 @@ Here is the converted table, split into **Mandatory** and **Optional** parameter
 `}</HTMLBlock>
 
 ### callBackActions object fields description
+
 <CallbackActions_object />
 
 ### billingDetails object fields description
+
 <BillingDetails_object />
 
 ### authorization object fields description
+
 **Mandatory parameters**
 
-| Parameter | Required | Description | Example |
-| :--- | :--- | :--- | :--- |
-| eci | Mandatory for 3DS2 | Electronic Commerce Indicator returned by Access Control Server (ACS) / Directory Server (DS). | `"05"` |
-| cavv | Mandatory for 3DS2 | Cardholder Authentication Verification Value (cryptogram validating 3DS authentication). | `"AAABAWFlmQAAAABjRWWZEEFgFz"` |
-| threeDSTransID | Mandatory for 3DS2 | Universally unique 3DS Transaction Identifier assigned by Directory Server (DS). | `"67b4c71f-19bf-4d97-bd09-4e3687dc9e42"` |
-| threeDSServerTransID | Mandatory for 3DS2 | Transaction ID assigned by the merchant's 3DS Server (MPI). | `"eea30d14-71cf-41af-b961-f95b7d67dc93"` |
-| threeDSTransStatus | Mandatory for 3DS2 | Authentication outcome code: `Y` (Authenticated), `A` (Attempted), `C` (Challenge), `N` (Failed). | `"Y"` |
-| threeDSenrolled | Mandatory for 3DS 1.x | Card 3DS enrollment flag: `Y` (Enrolled), `N` (Not Enrolled), `U` (Unable to Verify). | `"Y"` |
-| threeDSstatus | Mandatory for 3DS 1.x | 3DS 1.x payer authentication status (e.g. `SUCCESS`). | `"SUCCESS"` |
-| xid | Mandatory for 3DS 1.x | Transaction identifier for 3D Secure 1.x protocol (Base64 encoded). | `"MDAwMDAwMDAwMDAwMDAwMDEyMzQ="` |
-| pares | Mandatory for 3DS 1.x | Payer Authentication Response received from issuing bank ACS. | `"eJzVWFmTokoWfrMABXXOtgSL..."` |
+| Parameter            | Description                                                                                       | Example                                  |
+| :------------------- | :------------------------------------------------------------------------------------------------ | :--------------------------------------- |
+| eci                  | Electronic Commerce Indicator returned by Access Control Server (ACS) / Directory Server (DS).    | `"05"`                                   |
+| cavv                 | Cardholder Authentication Verification Value (cryptogram validating 3DS authentication).          | `"AAABAWFlmQAAAABjRWWZEEFgFz"`           |
+| threeDSTransID       | Universally unique 3DS Transaction Identifier assigned by Directory Server (DS).                  | `"67b4c71f-19bf-4d97-bd09-4e3687dc9e42"` |
+| threeDSServerTransID | Transaction ID assigned by the merchant's 3DS Server (MPI).                                       | `"eea30d14-71cf-41af-b961-f95b7d67dc93"` |
+| threeDSTransStatus   | Authentication outcome code: `Y` (Authenticated), `A` (Attempted), `C` (Challenge), `N` (Failed). | `"Y"`                                    |
+| threeDSenrolled      | Card 3DS enrollment flag: `Y` (Enrolled), `N` (Not Enrolled), `U` (Unable to Verify).             | `"Y"`                                    |
+| threeDSstatus        | 3DS 1.x payer authentication status (e.g. `SUCCESS`).                                             | `"SUCCESS"`                              |
+| xid                  | Transaction identifier for 3D Secure 1.x protocol (Base64 encoded).                               | `"MDAwMDAwMDAwMDAwMDAwMDEyMzQ="`         |
+| pares                | Payer Authentication Response received from issuing bank ACS.                                     | `"eJzVWFmTokoWfrMABXXOtgSL..."`          |
 
 **Optional parameters**
 
-| Parameter | Description | Example |
-| :--- | :--- | :--- |
-| threeDSTransStatusReason | Diagnostic reason code explaining why authentication was not successful or exempt. | `"01"` |
-| flowType | 3DS authentication flow type (`Frictionless` or `Challenge`). | `"Frictionless"` |
-| messageDigest | Security digest value for 3DS 1.x message integrity verification (used with `pares`). | `"3a4df2b5c8e7f9a1d6b0c3e9"` |
-| bankData | Additional bank-specific authorization payload returned by issuing banks. | `"fGpDiuSMy8FjxQHDla5kFwVr"` |
-| additionalInfo | Additional MPI metadata: `paymentGatewayIdentifier` and `authenticationFlow`. | `{"paymentGatewayIdentifier": "MPI_01", "authenticationFlow": "3DS2"}` |
-
+| Parameter                | Description                                                                           | Example                                                                |
+| :----------------------- | :------------------------------------------------------------------------------------ | :--------------------------------------------------------------------- |
+| threeDSTransStatusReason | Diagnostic reason code explaining why authentication was not successful or exempt.    | `"01"`                                                                 |
+| flowType                 | 3DS authentication flow type (`Frictionless` or `Challenge`).                         | `"Frictionless"`                                                       |
+| messageDigest            | Security digest value for 3DS 1.x message integrity verification (used with `pares`). | `"3a4df2b5c8e7f9a1d6b0c3e9"`                                           |
+| bankData                 | Additional bank-specific authorization payload returned by issuing banks.             | `"fGpDiuSMy8FjxQHDla5kFwVr"`                                           |
+| additionalInfo           | Additional MPI metadata: `paymentGatewayIdentifier` and `authenticationFlow`.         | `{"paymentGatewayIdentifier": "MPI_01", "authenticationFlow": "3DS2"}` |
 
 ## Sample request
 
@@ -519,25 +515,29 @@ The card payment response returns a `checkoutUrl` to redirect the customer to th
 ```
 
 ## Response parameters
+
 <V2_payment_response_params />
 
-> 📘 **Reference:**
->
-> To check the final status of the transaction following 3DS redirection, refer to [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api).
+<Callout icon="📘" theme="info">
+  ### **Reference:**
+
+  To check the final status of the transaction following 3DS redirection, refer to [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api).
+</Callout>
 
 ## Error Codes
 
-| Code | HTTP Status | Description | Resolution |
-| :--- | :--- | :--- | :--- |
-| `INVALID_CARD_NUMBER` | 400 | Card number failed Luhn validation | Check card number formatting |
-| `INVALID_EXPIRY` | 400 | Expiry date expired or format incorrect | Use `MM/YYYY` format with valid future date |
-| `INVALID_AMOUNT` | 400 | Invalid amount value | Ensure `price` is positive number |
-| `INVALID_CURRENCY` | 400 | Unsupported currency | Set `currency: "INR"` |
-| `AUTHENTICATION_FAILED` | 401 | Invalid token / signature | Verify HMAC SHA512 signature |
-| `DUPLICATE_REFERENCE` | 409 | `txnId` already used | Use unique transaction ID |
-| `PAYMENT_DECLINED` | 422 | Card issuer declined transaction | Customer should contact issuing bank |
+| Code                    | HTTP Status | Description                             | Resolution                                  |
+| :---------------------- | :---------- | :-------------------------------------- | :------------------------------------------ |
+| `INVALID_CARD_NUMBER`   | 400         | Card number failed Luhn validation      | Check card number formatting                |
+| `INVALID_EXPIRY`        | 400         | Expiry date expired or format incorrect | Use `MM/YYYY` format with valid future date |
+| `INVALID_AMOUNT`        | 400         | Invalid amount value                    | Ensure `price` is positive number           |
+| `INVALID_CURRENCY`      | 400         | Unsupported currency                    | Set `currency: "INR"`                       |
+| `AUTHENTICATION_FAILED` | 401         | Invalid token / signature               | Verify HMAC SHA512 signature                |
+| `DUPLICATE_REFERENCE`   | 409         | `txnId` already used                    | Use unique transaction ID                   |
+| `PAYMENT_DECLINED`      | 422         | Card issuer declined transaction        | Customer should contact issuing bank        |
 
 ## Next Steps
+
 1. **Redirect Customer**: Direct customer to `checkoutUrl` to complete 3DS OTP verification.
 2. **Handle Callbacks**: Receive customer on `successAction` or `failureAction`.
 3. **Verify Payment**: Run server-side verification using [Verify Payment API](https://docs.payu.in/v2/reference/v2_verify_payment_api).
