@@ -151,7 +151,7 @@ You can perform the following actions after a button is created:<br />
      <Image src="https://files.readme.io/6cf82fadbc0731416a7bed17c3e41920e99f4344ab3cec6435663677ce9d5b5f-Screenshot_2026-10-05_at_12.17.07_PM.png" align="center" caption="3 ways to resend an invoice" border={true} />
 
 
-  <Callout icon="📘" theme="error">
+  <Callout icon="fad fa-alarm-exclamation" theme="error">
     ### **Important!**
 
     You can only resend invoices that are in **Sent** or **Overdue** status. Paid and Cancelled invoices cannot be resent.
@@ -162,8 +162,22 @@ You can perform the following actions after a button is created:<br />
 
 ### Duplicate an Invoice
 
-<Accordion title="" icon="fa-info-circle">
+<Accordion title="Steps to Duplicate an Invoice" icon="fad fa-copy">
+  1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Invoices** under **Payment Tools**.
 
+
+  <Image src="https://files.readme.io/b921c38c7c7ac7b29a674b25d3abf60daf8bfd0db5fecaba632abfde9e0cd46e-image.png" align="center" caption="Access Invoices" border={true} />
+
+
+  2. Click the invoice you want to duplicate.
+  3. Click **Duplicate Invoice&#x20;**&#x64;isplayed on the top-right of the page.
+
+     <Image src="https://files.readme.io/6fc6afe245bb5142e58217737eba749a0281579f61ffabe51ef260d99c6eaa06-Screenshot_2026-10-05_at_1.31.43_PM.png" align="center" caption="Duplicate an invoice" border={true} />
+
+  4. Enter the details and change the settings as required.
+  5. Click either of the following:
+     1. **Save&#x20;**&#x74;o save the invoice
+     2. **Send Invoice&#x20;**&#x74;o send the invoice using the available options
 </Accordion>
 
 <Accordion title="Cancel an Invoice" icon="far fa-ban">
