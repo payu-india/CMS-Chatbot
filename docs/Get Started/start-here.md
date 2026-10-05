@@ -33,44 +33,7 @@ next:
 
 Whether you are a business owner who wants to start accepting payments today with no coding, or a developer building a fully custom checkout — this is where you start. PayU supports UPI, cards, net banking, wallets, EMI, and more across India. The sections below will help you find the right product and get to your first payment as quickly as possible.
 
-{/* NEW CONTENT — cards block showing what you can do with PayU.
-     Use case labels and capabilities are drawn from product docs across the repo.
-     Card descriptions are new editorial copy. Needs SME review for accuracy and completeness. */}
-
-<Cards>
-  <Card title="Collect one-time payments" icon="far fa-credit-card">
-    Accept UPI, cards, net banking, wallets, and EMI on your website or app — via a PayU-hosted page or your own custom checkout.
-  </Card>
-
-  <Card title="Share a payment link" icon="far fa-link">
-    Send a payment link over WhatsApp, email, or SMS. No website or technical setup required.
-  </Card>
-
-  <Card title="Set up recurring billing" icon="far fa-repeat">
-    Charge customers on a schedule — subscriptions, mandates, and EMI plans with automated retry handling.
-  </Card>
-
-  <Card title="Accept in-person payments" icon="far fa-barcode-scan">
-    Generate a UPI QR code for face-to-face or digital in-store payments.
-  </Card>
-
-  <Card title="Add checkout to your store" icon="far fa-cart-shopping">
-    Ready-made plugins for Shopify, WooCommerce, and Magento — no custom code needed.
-  </Card>
-
-  <Card title="Build for mobile" icon="far fa-mobile-vibrate">
-    Native SDKs for Android and iOS, plus React Native, Flutter, and Cordova wrappers.
-  </Card>
-</Cards>
-
 ***
-
-{/* SOURCE — wizard component reference.
-     The PayUQuickStartWizard component is defined and specced in:
-     docs/Quick Start/quick-start.md (currently hidden=true).
-     The component handles the full decision tree, product recommendation,
-     effort labelling, prerequisites, and "how do you want to proceed" panels.
-     It should be rendered inline here (not as a modal launch button). */}
 
 ## Find the Right Product for You
 
@@ -117,6 +80,42 @@ If you already know what you need, go directly to the right guide.
      is new. It surfaces the two universal prerequisites (account + credentials)
      that apply regardless of integration type, so users know what to do
      next after choosing a path. Needs SME review. */}
+
+{/* NEW CONTENT — cards block showing what you can do with PayU.
+     Use case labels and capabilities are drawn from product docs across the repo.
+     Card descriptions are new editorial copy. Needs SME review for accuracy and completeness. */}
+
+***
+
+## What You Can Do With PayU?
+
+<Cards>
+  <Card title="Collect one-time payments" icon="far fa-credit-card">
+    Accept UPI, cards, net banking, wallets, and EMI on your website or app — via a PayU-hosted page or your own custom checkout.
+  </Card>
+
+  <Card title="Share a payment link" icon="far fa-link">
+    Send a payment link over WhatsApp, email, or SMS. No website or technical setup required.
+  </Card>
+
+  <Card title="Set up recurring billing" icon="far fa-repeat">
+    Charge customers on a schedule — subscriptions, mandates, and EMI plans with automated retry handling.
+  </Card>
+
+  <Card title="Accept in-person payments" icon="far fa-barcode-scan">
+    Generate a UPI QR code for face-to-face or digital in-store payments.
+  </Card>
+
+  <Card title="Add checkout to your store" icon="far fa-cart-shopping">
+    Ready-made plugins for Shopify, WooCommerce, and Magento — no custom code needed.
+  </Card>
+
+  <Card title="Build for mobile" icon="far fa-mobile-vibrate">
+    Native SDKs for Android and iOS, plus React Native, Flutter, and Cordova wrappers.
+  </Card>
+</Cards>
+
+***
 
 <Callout icon="📘" theme="info">
   ### **Before You Start Integrating**
