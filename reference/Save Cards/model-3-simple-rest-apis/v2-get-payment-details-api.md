@@ -214,6 +214,6 @@ axios(config)
 ## Next Steps
 
 1. **Pass Cryptogram to Payment API**:
-   - Pass the returned `cryptogram` string into `paymentCard.tavv` and `eci` into `authorization.eci` when calling the [Using Network Tokens API](./using-network-tokens.md) or [Process Transaction with a Saved Card API](ref:process-transaction-with-a-saved-card).
+   - Pass the returned `cryptogram` string into `paymentCard.tavv` and `eci` into `authorization.eci` when calling the [Using Network Tokens API](ref:using-network-tokens) or [Process Transaction with a Saved Card API](ref:process-transaction-with-a-saved-card).
 2. **Handle Timeouts & Expirations**:
    - Cryptograms possess short validity windows (typically 15 minutes). Ensure cryptograms are generated just prior to initiating the payment collection request.
