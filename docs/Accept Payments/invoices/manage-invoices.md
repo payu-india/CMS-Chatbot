@@ -114,10 +114,15 @@ You can perform the following actions after a button is created:<br />
 ### Resend an Invoice
 
 <Accordion title="Steps to Resend an Invoice" icon="far fa-paper-plane">
-  If your customer did not receive the invoice or needs it again:
+  To resend an invoice:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/">PayU Dashboard</Anchor> and click **Invoices** under **Payment Tools**.
-  2. Find the invoice you want to resend and click it to open the detail page.
+
+     ![](https://files.readme.io/b921c38c7c7ac7b29a674b25d3abf60daf8bfd0db5fecaba632abfde9e0cd46e-image.png)
+  2. Click the share icon against the required invoice you want to resend.
+
+     <Image src="https://files.readme.io/be99b1f5a5970c3f58a90bd4aa96ed96bf7a25317d41494a34dd2b4f09450510-Screenshot_2026-10-05_at_12.09.32_PM.png" align="center" caption="Share an invoice" border={true} />
+
   3. Click **Resend** to send the invoice again to the customer's email or mobile number.
 
   <Callout icon="📘" theme="info">
