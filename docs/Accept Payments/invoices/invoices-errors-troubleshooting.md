@@ -38,9 +38,7 @@ next:
       title: Manage Customers
       type: basic
 ---
-Something not working after creating and sending your <Anchor target="_blank" href="doc:create-an-invoice">Invoice</Anchor>? Go through the most common issues — invoice not reaching the customer, payment page not loading, GST not appearing, and status not updating after payment.
-
-<br />
+Something not working after creating and sending your <Anchor target="_blank" href="https://docs.payu.in/docs/invoices">Invoice</Anchor>? Go through the most common issues — invoice not reaching the customer, payment page not loading, GST not appearing, and status not updating after payment.
 
 <Callout icon="📘" theme="info">
   ### **Invoices**
