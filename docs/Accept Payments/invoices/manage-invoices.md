@@ -123,9 +123,17 @@ You can perform the following actions after a button is created:<br />
 
      <Image src="https://files.readme.io/be99b1f5a5970c3f58a90bd4aa96ed96bf7a25317d41494a34dd2b4f09450510-Screenshot_2026-10-05_at_12.09.32_PM.png" align="center" caption="Share an invoice" border={true} />
 
-  3. Click **Resend** to send the invoice again to the customer's email or mobile number.
+  3. Share the invoice using any of the following options:
+     - Copy the link and share it manually
+     - Share the link via WhatsApp or Facebook
+     - Phone or email by entering either of the details and clicking **Send Invoice**
 
-  <Callout icon="📘" theme="info">
+     <Image src="https://files.readme.io/6cf82fadbc0731416a7bed17c3e41920e99f4344ab3cec6435663677ce9d5b5f-Screenshot_2026-10-05_at_12.17.07_PM.png" align="center" caption="3 ways to resend an invoice" border={true} />
+
+
+  <Callout icon="📘" theme="error">
+    ### **Important!**
+
     You can only resend invoices that are in **Sent** or **Overdue** status. Paid and Cancelled invoices cannot be resent.
   </Callout>
 </Accordion>
