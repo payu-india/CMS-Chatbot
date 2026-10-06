@@ -41,25 +41,12 @@ next:
       title: How Invoices Works
       type: basic
 ---
-<Banner
-  isInline={true}
-  message="Integration effort: No code or website developer required"
-  color="#15C614"
-  textColor="#ffffff"
-  fontSize="14px"
-  fontWeight="bold"
-/>
-
-***
-
 ## General
 
 1. #### What is a PayU Invoice and how does it work?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  A PayU Invoice is a professional, GST-compliant billing document you create in the PayU Dashboard and send to your customer. The customer receives it by email or SMS, opens it, and pays through PayU's secure checkout page. The invoice shows an itemized breakdown with GST, the due date, and a pay-now button. No website or developer is needed.
-
-  → [Create an Invoice](doc:create-an-invoice)
+  A <Anchor target="_blank" href="https://docs.payu.in/docs/invoices">PayU Invoice</Anchor> is a professional, GST-compliant billing document you <Anchor target="_blank" href="https://docs.payu.in/docs/create-an-invoice-1">create</Anchor> in the PayU Dashboard and send to your customer. The customer receives it by email or SMS, opens it, and pays through PayU's secure checkout page. The invoice shows an itemized breakdown with GST, the due date, and a pay-now button.
 </Accordion>
 
 ***
