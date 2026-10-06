@@ -18,7 +18,7 @@ metadata:
 
 ## What Can I Do with Payment Links?
 
-Payment Links lets you collect payments by creating a secure payment link and sharing it with your customer through WhatsApp, SMS, email, or any other channel you use to communicate with them.<br />
+<Glossary>Payment Links</Glossary> lets you collect payments by creating a secure payment link and sharing it with your customer through WhatsApp, SMS, email, or any other channel you use to communicate with them.<br />
 
 You can use Payment Links to:<br />
 
@@ -72,7 +72,7 @@ Check this video to see how PayU Payment Links work
 
 ## Is Payment Links Right for Me?
 
-Payment Links is a good choice if: <br />
+<Glossary>Payment Links</Glossary> is a good choice if: <br />
 
 - **You don't have a website** and run your business through social media, messaging apps, or in person.
 - **You want to request payment** from a specific customer for an invoice, order, or service.
@@ -96,9 +96,9 @@ Consider another PayU solution if:<br />
 
 ## What Will I Need?
 
-You don't need a website or developer to get started.
+You don't need a website or developer to get started.<br />
 
-You'll need:
+You'll need:<br />
 
 <Columns layout="fixed">
   <Column>
@@ -108,7 +108,7 @@ You'll need:
 
 <Columns layout="fixed">
   <Column>
-    **Access to the PayU Dashboard:** Where you will create and manage your payment links.
+    **Access to the PayU Dashboard:** Where you will create and manage your <Glossary>payment links</Glossary>.
   </Column>
 </Columns>
 
