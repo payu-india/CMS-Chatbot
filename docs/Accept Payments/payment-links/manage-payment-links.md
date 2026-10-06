@@ -62,6 +62,8 @@ You can perform the following actions after a payment link is created:
 - Share or Resend a Payment Link
 - Duplicate a Payment Link
 - Edit Payment Link Details
+- Deactivate a Payment Link
+- Reactivate a Payment Link
 
 ### View Payment Link Details
 
@@ -273,7 +275,11 @@ You can perform the following actions after a payment link is created:
   </Callout>
 </Accordion>
 
-<Accordion title="Deactivate a Payment Link" icon="far fa-ban">
+***
+
+### Deactivate a Payment Link
+
+<Accordion title="Steps to Deactivate a Payment Link" icon="far fa-ban">
   Deactivating stops any further payments on the link. Customers who click it will see a message that it is no longer active.
   To deactivate a link:
 
@@ -293,7 +299,11 @@ You can perform the following actions after a payment link is created:
      The link status changes to **Deactivated**.
 </Accordion>
 
-<Accordion title="Reactivate a Payment Link" icon="far fa-clock-rotate-left">
+***
+
+### Reactivate a Payment Link
+
+<Accordion title="Steps to Reactivate a Payment Link" icon="far fa-clock-rotate-left">
   You can reactivate a deactivated link from the dashboard:
   To reactivate a link:
 
