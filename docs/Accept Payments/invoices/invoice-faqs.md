@@ -169,10 +169,10 @@ next:
 
 ***
 
-8. #### Can I use PayU Invoices alongside my existing PayU payment gateway setup? <Badge type="success">New</Badge>
+8. #### Can I use PayU Invoices alongside my existing PayU payment gateway setup?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Yes. PayU Invoices is a separate module in the Dashboard and works independently of your payment gateway or checkout integration. You can use both at the same time — for example, using a hosted or merchant checkout on your website while also sending invoices to specific customers for custom orders or services.
+  Yes. PayU Invoices is a separate module in the Dashboard and works independently of your payment gateway or checkout integration. You can use both at the same time. For example, using a hosted or merchant checkout on your website while also sending invoices to specific customers for custom orders or services.<br />
 
   The same merchant account and settlement bank account are used for both, so all payments appear together in your **Transactions** tab.
 </Accordion>
