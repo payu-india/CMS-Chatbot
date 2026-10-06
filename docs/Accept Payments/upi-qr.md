@@ -231,12 +231,4 @@ Once your QR codes are live:
   <Card title="UPI QR FAQs" href="doc:upi-qr-faqs" icon="fa-circle-question">
     Common questions about PayU UPI QR.
   </Card>
-
-  <Card title="Payment Links" href="doc:payment-links-overview" icon="fa-link">
-    Need to collect payments remotely? Share a link over WhatsApp or SMS.
-  </Card>
-
-  <Card title="Invoices" href="doc:invoices-overview" icon="far fa-file-invoice">
-    Need to send a formal GST invoice to your customer?
-  </Card>
 </Cards>
