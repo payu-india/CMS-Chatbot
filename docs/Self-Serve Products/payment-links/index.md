@@ -81,7 +81,7 @@ Check this video to see how PayU Payment Links work
 
 Consider another PayU solution if:<br />
 
-- You want customers to pay directly on your website → **Hosted Checkout**
+- You want customers to pay directly on your website → <Anchor target="_blank" href="https://docs.payu.in/docs/prebuilt-checkout-payu-hosted">**Hosted Checkout**</Anchor>
 - You want to create payment links programmatically → <Anchor target="_blank" href="https://docs.payu.in/reference/payment-links">**Payment Links APIs**</Anchor>
 
 <Callout icon="far fa-face-thinking" theme="warn">
