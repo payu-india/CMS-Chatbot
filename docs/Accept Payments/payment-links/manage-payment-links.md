@@ -40,7 +40,7 @@ next:
   fontWeight="bold"
 />
 
-You can manage payment links from the PayU Dashboard after they are created and live.
+You can manage <Anchor target="_blank" href="https://docs.payu.in/docs/payment-links">payment links</Anchor> from the PayU Dashboard after they are created and live.
 
 ***
 
