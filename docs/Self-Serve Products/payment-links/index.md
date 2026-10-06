@@ -9,6 +9,20 @@ link:
   new_tab: false
 metadata:
   title: PayU Payment Links — No-Code Payment Collection | PayU Docs
+  description: >-
+    Create and share PayU Payment Links to collect payments from anyone — no
+    website or code needed. Share over WhatsApp, SMS, or email in minutes.
+  keywords:
+    - payu payment links
+    - create payment link india
+    - payment link whatsapp
+    - no code payment collection
+    - accept payment without website
+    - payment link upi india
+    - online payment link
+    - payu dashboard payment
+    - payment link sms email
+    - share payment request
   robots: index
 next:
   description: Explore related information and resources.
