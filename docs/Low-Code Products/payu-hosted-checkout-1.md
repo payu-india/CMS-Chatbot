@@ -7,5 +7,9 @@ excerpt: >-
 deprecated: false
 hidden: true
 metadata:
+  title: PayU Hosted Checkout — Overview
+  description: 'PayU Hosted Checkout: redirect customers to a secure PayU-hosted payment '
   robots: index
+next:
+  description: Explore related information and resources.
 ---
