@@ -102,7 +102,7 @@ Consider another PayU solution if:<br />
 
   Tell us what you want to achieve and how you plan to accept payments. We will recommend the best PayU solution for your needs.<br />
 
-  <Anchor target="_blank" href="doc:start-here">Find the right solution</Anchor> →
+  <Anchor target="_blank" href="doc:start-here">Find the Right Product for You</Anchor> →
 </Callout>
 
 ***
