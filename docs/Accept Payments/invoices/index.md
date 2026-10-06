@@ -70,7 +70,7 @@ You can use Invoices to:<br />
     z-index: 1;
   }
   </style>
-  <button onclick="window.open('https://docs.payu.in/docs/create-an-invoice', '_blank')"
+  <button onclick="window.open('https://docs.payu.in/docs/create-an-invoice-1', '_blank')"
           class="inv-btn"
           data-tooltip="Click to see steps to create your first invoice.">
     Create your first invoice →
