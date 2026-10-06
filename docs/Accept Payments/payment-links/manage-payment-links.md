@@ -58,7 +58,14 @@ To open your links: log in to [PayU Dashboard](https://onboarding.payu.in/) and 
 
 You can perform the following actions after a payment link is created:
 
-<Accordion title="View Payment Link Details" icon="far fa-rectangle-list">
+- View Payment Link Details
+- Share or Resend a Payment Link
+- Duplicate a Payment Link
+- Edit Payment Link Details
+
+### View Payment Link Details
+
+<Accordion title="Steps to View Payment Link Details" icon="far fa-rectangle-list">
   To see payment link details:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor> and go to **Payment Links&#x20;**&#x75;nder **Payment Tools.**
@@ -153,7 +160,11 @@ You can perform the following actions after a payment link is created:
   </Accordion>
 </Accordion>
 
-<Accordion title="Share or Resend a Payment Link" icon="far fa-share">
+***
+
+### Share or Resend a Payment Link
+
+<Accordion title="Steps to Share or Resend a Payment Link" icon="far fa-share">
   You can send the link to a customer at any time as long as it is still **Active**.
   To share or resend a link:
 
@@ -178,7 +189,11 @@ You can perform the following actions after a payment link is created:
   There is no limit on how many times you can share a link. Each share just sends the same URL again.
 </Accordion>
 
-<Accordion title="Duplicate a Payment Link" icon="far fa-copy">
+***
+
+### Duplicate a Payment Link
+
+<Accordion title="Steps to Duplicate a Payment Link" icon="far fa-copy">
   Duplicating creates a brand-new link pre-filled with the same details such as amount, purpose, and options so that you do not have to fill everything in again. Use it to reuse a configuration, correct a mistake on an existing link, or run the same payment request for a different customer.<br />
   To duplicate a link:
 
@@ -213,7 +228,11 @@ You can perform the following actions after a payment link is created:
      The link is created and sent to the customer. You can see it in the **Payment Links&#x20;**&#x70;age.
 </Accordion>
 
-<Accordion title="Edit Payment Link Details" icon="far fa-pen-to-square">
+***
+
+### Edit Payment Link Details
+
+<Accordion title="Steps to Edit Payment Link Details" icon="far fa-pen-to-square">
   You can edit certain details such as the expiry date, amount, and status of a payment link after it is created.
   To edit the details:
 
