@@ -85,14 +85,14 @@ Something not working after creating and sending your <Anchor target="_blank" hr
 <Accordion title="Customer Reaches the Payment Page but Payment Fails" icon="far fa-circle-xmark">
   Ask your customer what message they saw and which payment method they tried.
 
-  | Message the Customer Saw       | Likely Reason                                      | What to Do                                                                                           |
-  | ------------------------------ | -------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-  | "Transaction declined by bank" | Their bank or card issuer declined the payment     | Ask them to try a different card or contact their bank                                               |
-  | "Payment method not available" | That method is not turned on for your account      | Contact <Anchor target="_blank" href="https://help.payu.in/query">PayU support</Anchor> to enable it |
-  | Page stuck or keeps loading    | Poor internet connection on the customer's side    | Ask them to try on a better connection or different browser                                          |
-  | "Amount exceeds limit"         | The customer's card or UPI daily limit was reached | Ask them to try a different payment method                                                           |
+  | Message the Customer Saw                           | Likely Reason                                                          | What to Do                                                                                                  |
+  | -------------------------------------------------- | ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+  | `Transaction declined by bank`                     | Their bank or card issuer declined the payment                         | Ask them to try a different card or contact their bank                                                      |
+  | `Payment method not available`                     | The method customer is trying to use is not turned on for your account | Contact <Anchor target="_blank" href="https://help.payu.in/raise-ticket">PayU support</Anchor> to enable it |
+  | Page stuck or keeps loading (not an error message) | Poor internet connection on the customer's side                        | Ask them to try on a better connection or different browser                                                 |
+  | `Amount exceeds limit`                             | The customer's card or UPI daily limit was reached                     | Ask them to try a different payment method                                                                  |
 
-  **If no payment methods appear at all on the payment page:** contact <Anchor target="_blank" href="https://help.payu.in/query">PayU support</Anchor> — your account may need specific payment methods turned on.
+  **If no payment methods appear at all on the payment page:** contact <Anchor target="_blank" href="https://help.payu.in/raise-ticket">PayU support.</Anchor> Your account may need specific payment methods turned on.
 </Accordion>
 
 ***
@@ -102,9 +102,9 @@ Something not working after creating and sending your <Anchor target="_blank" hr
 <Accordion title="GST Amount Is Zero or Not Appearing" icon="far fa-receipt">
   Check the following:
 
-  1. **Make sure GST was enabled when creating the invoice.** GST is not turned on by default — you must switch on **Enable GST** in the **Settings** panel when creating the invoice. Since invoices cannot be edited after sending, if GST was not enabled, cancel the invoice and create a new one with GST turned on.
+  1. **Make sure GST was enabled when creating the invoice:** GST is not turned on by default, you should switch on **Enable GST** in the **Settings** panel when [creating the invoice](https://docs.payu.in/docs/create-an-invoice-1). Since invoices cannot be enable GST after sending, if it was not enabled, cancel the invoice and create a new one with GST turned on.
 
-  2. **Check that tax details are set for each item in the catalog.** GST is calculated from the tax details on each item — GST rate, inter-state or intra-state rate, and cess. If these are blank for an item, no GST will appear for that line. → [Manage Invoice Items](doc:manage-invoice-items)
+  2. **Check that tax details are set for each item in the catalog:** GST is calculated from the tax details on each item such as GST rate, inter-state or intra-state rate, and cess. If these are blank for an item, no GST will appear for that line.
 
   3. **Check whether the rate was set as tax inclusive.** If the item's rate was set to **Tax Inclusive**, GST is already included in the rate and will not be shown as a separate addition. Change it to **Tax Exclusive** if you want GST shown separately on top of the rate.
 </Accordion>
@@ -116,13 +116,13 @@ Something not working after creating and sending your <Anchor target="_blank" hr
 <Accordion title="Payment Was Made but Status Has Not Updated" icon="far fa-clock">
   Follow these steps:
 
-  1. **Wait 5–10 minutes and refresh.** The Dashboard updates in near-real-time but can occasionally take a few minutes after a payment.
+  1. **Wait for 5 to 10 minutes and refresh:&#x20;**&#x54;he Dashboard updates in near-real-time but can occasionally take a few minutes after a payment.
 
-  2. **Check the Transactions tab.** Payments received through invoices appear in the main **Transactions** section of your Dashboard. Search by amount or date to confirm the payment was received.
+  2. **Check the Transactions tab:&#x20;**&#x50;ayments received through invoices appear in the main **Transactions** section of your Dashboard. Search by amount or date to confirm the payment was received.
 
-  3. **If partial payments are enabled**, the invoice may still show as **Sent** if the customer paid only a portion of the total. The invoice updates to **Paid** only when the full amount is received.
+  3. **If partial payments are enabled**: The invoice may still show as **Sent** if the customer paid only a portion of the total. The invoice updates to **Paid** only when the full amount is received.
 
-  If the status does not update after 30 minutes and the payment appears confirmed in the customer's bank account, contact <Anchor target="_blank" href="https://help.payu.in/query">PayU support</Anchor> with the invoice number and the customer's bank reference number.
+  If the status does not update after 30 minutes and the payment appears confirmed in the customer's bank account, contact <Anchor target="_blank" href="https://help.payu.in/raise-ticket">PayU support</Anchor> with the invoice number and the customer's bank reference number.
 </Accordion>
 
 ***
