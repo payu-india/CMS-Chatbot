@@ -51,7 +51,7 @@ Understand the complete end-to-end flow of how PayU Invoices works — from crea
 The steps below give a detailed view of the lifecycle of a PayU Invoice.
 
 <Accordion title="Step 1: Create a PayU Merchant Account" icon="far fa-user">
-  <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signup">Sign up</Anchor> for a PayU merchant account and complete KYC verification. Once your account is approved, you can start <Anchor target="_blank" href="https://docs.payu.in/docs/create-an-invoice-1">creating invoices</Anchor> immediately from the Dashboard.
+  <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signup">Sign up</Anchor> for a PayU merchant account and complete KYC verification. Once your account is approved, you can start <Anchor target="_blank" href="https://docs.payu.in/docs/create-an-invoice-1">creating invoices</Anchor> immediately from the Dashboard.<br />
 
   <Callout icon="💡" theme="info">
     ### **Tips:**
@@ -63,7 +63,7 @@ The steps below give a detailed view of the lifecycle of a PayU Invoice.
 </Accordion>
 
 <Accordion title="Step 2: Create an Invoice" icon="far fa-file-invoice">
-  Go to **Payment Tools → Invoices** and click **Create New Invoice**. Enter the invoice number, due date, invoice title, and select the customer it is billed to. Add your line items, then configure settings: enable GST to calculate tax automatically, or enable partial payments to let the customer pay in installments.
+  Go to **Payment Tools → Invoices** and click **Create New Invoice**. Enter the invoice number, due date, invoice title, and select the customer it is billed to. Add your line items, then configure settings: enable GST to calculate tax automatically, or enable partial payments to let the customer pay in installments.<br />
 
   <Callout icon="💡" theme="info">
     ### **Tips:**
@@ -75,7 +75,7 @@ The steps below give a detailed view of the lifecycle of a PayU Invoice.
 </Accordion>
 
 <Accordion title="Step 3: Send the Invoice to Your Customer" icon="far fa-paper-plane">
-  Click **Send Invoice**. PayU sends the invoice to your customer by email or SMS. The invoice shows the invoice number, due date, itemized breakdown with GST, and a pay-now button linked to PayU's secure checkout page.
+  Click **Send Invoice**. PayU sends the invoice to your customer by email or SMS. The invoice shows the invoice number, due date, itemized breakdown with GST, and a pay-now button linked to PayU's secure checkout page.<br />
 
   <Callout icon="💡" theme="info">
     ### **Tips:**
@@ -87,9 +87,9 @@ The steps below give a detailed view of the lifecycle of a PayU Invoice.
 </Accordion>
 
 <Accordion title="Step 4: Customer Opens the Invoice and Pays" icon="far fa-credit-card">
-  Your customer clicks the pay button in the invoice email or SMS and is taken to PayU's secure checkout page. They choose their preferred payment method such as cards, UPI, net banking, wallets, and more and complete the payment. If partial payments are enabled, they can choose how much to pay now.
+  Your customer clicks the pay button in the invoice email or SMS and is taken to PayU's secure checkout page. They choose their preferred payment method such as cards, UPI, net banking, wallets, and more and complete the payment. If partial payments are enabled, they can choose how much to pay now.<br />
 
-  The invoice status updates to **Paid** once the payment is confirmed. If you have webhooks configured, PayU sends a `payment.success` event to your server.
+  The invoice status updates to **Paid** once the payment is confirmed. If you have webhooks configured, PayU sends a `payment.success` event to your server.<br />
 
   <Callout icon="💡" theme="info">
     ### **Tips:**
@@ -101,7 +101,7 @@ The steps below give a detailed view of the lifecycle of a PayU Invoice.
 </Accordion>
 
 <Accordion title="Step 5: Funds Are Settled to Your Account" icon="far fa-building-columns">
-  After a successful payment, PayU settles the funds to your registered bank account as per the settlement schedule excluding applicable fees and taxes. You can track settlement reports from the PayU Dashboard.
+  After a successful payment, PayU settles the funds to your registered bank account as per the settlement schedule excluding applicable fees and taxes. You can track settlement reports from the PayU Dashboard.<br />
 
   <Callout icon="💡" theme="info">
     ### **Tips:**
