@@ -51,38 +51,26 @@ Understand the complete end-to-end flow of how PayU Invoices works — from crea
 The steps below give a detailed view of the lifecycle of a PayU Invoice.
 
 <Accordion title="Step 1: Create a PayU Merchant Account" icon="far fa-user">
-  Sign up for a PayU merchant account and complete KYC verification. Once your account is approved, you can start creating invoices immediately from the Dashboard — no technical setup needed.
+  <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signup">Sign up</Anchor> for a PayU merchant account and complete KYC verification. Once your account is approved, you can start <Anchor target="_blank" href="https://docs.payu.in/docs/create-an-invoice-1">creating invoices</Anchor> immediately from the Dashboard.
 
   <Callout icon="💡" theme="info">
-    **Handy Tip**
+    ### **Tips:**
 
     Already have an account? Skip to Step 2.
 
-    - [Set Up Your Account](doc:set-up-your-account)
+    - <Anchor target="_blank" href="https://docs.payu.in/docs/set-up-your-account">Set Up Your Account</Anchor>
   </Callout>
 </Accordion>
 
-<Accordion title="Step 2: Add Items to Your Catalog" icon="far fa-box-open">
-  Before creating your first invoice, add the products or services you bill for to the **Items** catalog. You only need to do this once — items are reusable across all future invoices. For each item, set the name, rate, description, and any applicable tax details: GST rate, inter-state or intra-state tax, cess, and HSN/SAC code.
+<Accordion title="Step 2: Create an Invoice" icon="far fa-file-invoice">
+  Go to **Payment Tools → Invoices** and click **Create New Invoice**. Enter the invoice number, due date, invoice title, and select the customer it is billed to. Add your line items, then configure settings: enable GST to calculate tax automatically, or enable partial payments to let the customer pay in installments.
 
   <Callout icon="💡" theme="info">
-    **Handy Tip**
-
-    You can also create a new item on the fly while creating an invoice — no need to set up the catalog separately in advance.
-
-    - [Manage Invoice Items](doc:manage-invoice-items)
-  </Callout>
-</Accordion>
-
-<Accordion title="Step 3: Create an Invoice" icon="far fa-file-invoice">
-  Go to **Payment Tools → Invoices** and click **Create New Invoice**. Enter the invoice number, due date, invoice title, and select the customer it is billed to. Add your line items from the catalog, then configure settings: enable GST to calculate tax automatically, or enable partial payments to let the customer pay in installments.
-
-  <Callout icon="💡" theme="info">
-    **Handy Tip**
+    ### **Tips:**
 
     You can save the invoice as a draft and send it later, or send it right away.
 
-    - [Create an Invoice — Dashboard walkthrough](doc:create-an-invoice)
+    - <Anchor target="_blank" href="https://docs.payu.in/docs/create-an-invoice-1">Create an Invoice</Anchor>
   </Callout>
 </Accordion>
 
@@ -90,11 +78,11 @@ The steps below give a detailed view of the lifecycle of a PayU Invoice.
   Click **Send Invoice**. PayU sends the invoice to your customer by email or SMS. The invoice shows the invoice number, due date, itemized breakdown with GST, and a pay-now button linked to PayU's secure checkout page.
 
   <Callout icon="💡" theme="info">
-    **Handy Tip**
+    ### **Tips:**
 
-    You can resend an invoice at any time from the Dashboard as long as it has not been paid or cancelled.
+    You can resend an invoice at any time from the Dashboard as long as it has not been paid or deactivated.
 
-    - [Manage Invoices](doc:manage-invoices)
+    - [Manage Invoices](https://docs.payu.in/docs/manage-invoices#resend-an-invoice)
   </Callout>
 </Accordion>
 
