@@ -54,7 +54,7 @@ next:
 2. #### Do I need a developer or any code to use PayU Invoices?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  No. PayU Invoices are managed entirely from the Dashboard. You create the invoice, add your items, and click **Send Invoice** — PayU handles the delivery and payment page. No code or technical setup is required.
+  No. <Anchor target="_blank" href="https://docs.payu.in/docs/invoices">PayU Invoices</Anchor> are managed entirely from the Dashboard. You <Anchor target="_blank" href="https://docs.payu.in/docs/create-an-invoice-1">create the invoice</Anchor>, add your items, and click **Send Invoice**, PayU handles the delivery and payment page.
 </Accordion>
 
 ***
@@ -64,12 +64,12 @@ next:
 <Accordion title="Answer" icon="fab fa-adn">
   Both are ways to request payment from a customer, but they serve different needs:
 
-  |                    | Invoice                                                        | Payment Link                                |
-  | ------------------ | -------------------------------------------------------------- | ------------------------------------------- |
-  | **Structure**      | Formal document with line items, GST, invoice number, due date | Simple payment request with a single amount |
-  | **GST**            | Built-in GST calculation with HSN/SAC codes                    | Not applicable                              |
-  | **Multiple items** | Yes — add as many line items as needed                         | No — single amount only                     |
-  | **Best for**       | Service businesses, freelancers, B2B billing                   | One-off or quick payment requests           |
+  | What is the Difference | Invoice                                                        | Payment Link                                |
+  | ---------------------- | -------------------------------------------------------------- | ------------------------------------------- |
+  | **Structure**          | Formal document with line items, GST, invoice number, due date | Simple payment request with a single amount |
+  | **GST**                | Built-in GST calculation with HSN/SAC codes                    | Not applicable                              |
+  | **Multiple items**     | Yes. Add as many line items as needed                          | No. Single amount only                      |
+  | **Best for**           | Service businesses, freelancers, B2B billing                   | One-off or quick payment requests           |
 
   Both use PayU's secure payment page and support the same payment methods.
 </Accordion>
@@ -79,7 +79,7 @@ next:
 4. #### Which payment methods can my customer use?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Customers can pay using any method enabled on your merchant account — credit and debit cards (Visa, Mastercard, RuPay, Amex), UPI, Net Banking, Wallets, EMI, and BNPL. Contact <Anchor target="_blank" href="https://help.payu.in/query">PayU support</Anchor> to enable or disable specific methods.
+  Customers can pay using any method enabled on your merchant account such as credit and debit cards (Visa, Mastercard, RuPay, Amex), UPI, Net Banking, Wallets, EMI, and BNPL. Contact <Anchor target="_blank" href="https://help.payu.in/raise-ticket">PayU support</Anchor> to enable or disable specific methods.
 </Accordion>
 
 ***
