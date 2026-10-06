@@ -184,7 +184,7 @@ next:
 1. #### How does my customer receive the invoice?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  PayU sends the invoice to your customer by **email** and/or **SMS**, depending on the contact details you entered in the **Billed To** field. The message includes a link to view the full invoice and a pay-now button. Your customer does not need a PayU account to pay.
+  PayU sends the invoice to your customer by **email** and **SMS**, depending on the contact details you entered in the **Billed To** field. The message includes a link to view the full invoice and a pay-now button. Your customer does not need a PayU account to pay.
 </Accordion>
 
 ***
@@ -192,7 +192,7 @@ next:
 2. #### Can I resend an invoice if my customer did not receive it?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Yes. Open the invoice from the Invoices list in the Dashboard and click **Resend**. The invoice is sent again to the same email address and mobile number. Also ask your customer to check their spam or junk folder — invoice emails can sometimes be filtered.
+  Yes. Open the invoice from the Invoices list in the Dashboard and click **Resend**. The invoice is sent again to the same email address and mobile number. Also ask your customer to check their spam or junk folder — invoice emails can sometimes be filtered. Refer to the <Anchor target="_blank" href="https://docs.payu.in/docs/manage-invoices#resend-an-invoice">Resend an Invoice</Anchor> section for steps to resend an invoice.
 </Accordion>
 
 ***
@@ -200,7 +200,7 @@ next:
 3. #### Can I send the same invoice to multiple customers?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  No. Each invoice is created for a single customer in the **Billed To** field. To bill multiple customers for the same service, create a separate invoice for each one. If you need to bill many customers at once, consider using <Anchor target="_blank" href="doc:payment-links-overview">Payment Links</Anchor> with bulk upload instead.
+  No. Each invoice is created for a single customer in the **Billed To** field. To bill multiple customers for the same service, create a separate invoice for each one. If you need to bill many customers at once, consider using <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link#how-do-i-create-many-links-at-once">Payment Links</Anchor> with bulk upload instead.
 </Accordion>
 
 ***
@@ -286,29 +286,6 @@ next:
   For a single specific invoice, open it from the Invoices list — you can then print or save it as a PDF from your browser using **Print → Save as PDF**.
 
   → [Manage Invoices](doc:manage-invoices)
-</Accordion>
-
-***
-
-## APIs
-
-1. #### Are there APIs for managing invoices programmatically? <Badge type="success">New</Badge>
-
-<Accordion title="Answer" icon="fab fa-adn">
-  Yes. PayU Invoices use the same OAuth2-authenticated API as Payment Links, so you can create, fetch, update, and cancel invoices without using the Dashboard at all.
-
-  The key endpoints are:
-
-  | Action                      | API                                                     |
-  | --------------------------- | ------------------------------------------------------- |
-  | Create and share an invoice | [Create & Share Payment Link API](doc:api-create-share) |
-  | Fetch invoice details       | [Fetch Payment Link API](doc:api-fetch)                 |
-  | Cancel an invoice           | [Cancel Payment Link API](doc:api-cancel-status)        |
-  | Get invoice transactions    | [Fetch Transactions API](doc:api-transactions)          |
-
-  Authenticate using an OAuth2 access token with the `create_payment_links`, `read_payment_links`, and `update_payment_links` scopes. The `invoiceNumber` in the Dashboard corresponds directly to the `id` field in the API.
-
-  → [Invoice API Reference](doc:invoice-api-reference)
 </Accordion>
 
 ***
