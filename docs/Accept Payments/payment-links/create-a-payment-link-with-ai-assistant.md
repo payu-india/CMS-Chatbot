@@ -549,7 +549,7 @@ The AI will list these, but they always apply:
 4. **Start a Tunnel for Local Testing** — use `ngrok` or `cloudflared` so PayU can reach your local webhook endpoint during development
 
 <Callout icon="📘" theme="info">
-  ### **Note:**
+  ### **Tips:**
 
   The AI will not commit code, run your server, or touch your `.env` file. These are intentional guardrails built into the prompt. All changes are left uncommitted for you to review.
 </Callout>
