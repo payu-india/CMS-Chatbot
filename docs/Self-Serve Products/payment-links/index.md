@@ -273,9 +273,9 @@ If a payment fails, you can share the same link again for the customer to retry,
 
 ## Is Payment Links Secure?
 
-Yes. Every Payment Link is served over HTTPS on PayU's PCI-DSS compliant hosted payment page. Your customer's card and UPI details never pass through your system. You do not configure anything; PayU handles it.
+Yes. Every Payment Link is served over HTTPS on PayU's PCI-DSS compliant hosted payment page. Your customer's card and UPI details never pass through your system. You do not configure anything; PayU handles it.<br />
 
-You control additional fraud exposure through two settings available at link creation:
+You control additional fraud exposure through two settings available at link creation:<br />
 
 - **Expiry date**: the link stops accepting payments after the date you set.
 - **Single-use**: the link closes after the first successful payment, even if shared multiple times.
