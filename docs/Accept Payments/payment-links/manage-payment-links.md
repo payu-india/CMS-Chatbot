@@ -417,7 +417,7 @@ You can filter the <Glossary>payment links</Glossary> list using the following o
 ## How Do I Download My Payment Link Records?
 
 <Accordion title="Export Payment Link Records" icon="far fa-download">
-  To download payment link records:
+  To download <Glossary>payment link</Glossary> records:
 
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor> and go to **Payment Links&#x20;**&#x75;nder **Payment Tools.**
 
