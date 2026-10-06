@@ -64,7 +64,7 @@ Create a <Anchor target="_blank" href="https://docs.payu.in/update/docs/payment-
 
 ## How Do I Create a Payment Link?
 
-To create and send a <Glossary>Payment Link</Glossary>
+To create and send a <Glossary>payment link</Glossary>
 
 <Accordion title="1. Open Payment Links on the Dashboard" icon="far fa-grid-2">
   1. Log in to the <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signin?first_visit_url=https%3A%2F%2Fpayu.in%2F&last_visit_url=https%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F%2Chttps%3A%2F%2Fpayu.in%2Fbusiness%2Chttps%3A%2F%2Fpayu.in%2F">PayU dashboard</Anchor>.
