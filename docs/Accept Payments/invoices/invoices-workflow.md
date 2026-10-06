@@ -108,8 +108,8 @@ The steps below give a detailed view of the lifecycle of a PayU Invoice.
 
     If a customer requests a refund or raises a dispute with their bank, PayU has a process for each.
 
-    - [Refunds](doc:introduction-refunds)
-    - [Settlements](doc:split-settlments)
-    - [Disputes and Chargebacks](doc:chargeback)
+    - <Anchor target="_blank" href="https://docs.payu.in/docs/introduction-refunds">Refunds</Anchor>
+    - <Anchor target="_blank" href="doc:split-settlments">Settlements</Anchor>
+    - <Anchor target="_blank" href="doc:chargeback">Disputes and Chargebacks</Anchor>
   </Callout>
 </Accordion>
