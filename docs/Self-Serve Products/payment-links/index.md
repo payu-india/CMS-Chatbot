@@ -289,7 +289,7 @@ You control additional fraud exposure through two settings available at link cre
 ## Next Steps
 
 <Cards>
-  <Card title="Start using Payment Links" href="https://docs.payu.in/docs/create-a-payment-link" icon="far fa-link" target="_blank">
+  <Card title="Start Using Payment Links" href="https://docs.payu.in/docs/create-a-payment-link" icon="far fa-link" target="_blank">
     - **Create a Payment Link:&#x20;**&#x43;reate your first link from the PayU Dashboard.
     - **Create Payment Links in Bulk:** Create multiple payment links at once.
   </Card>
