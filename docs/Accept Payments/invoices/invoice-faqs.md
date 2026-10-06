@@ -1,9 +1,45 @@
 ---
 title: Invoice FAQs
+excerpt: >-
+  Answers to common questions about PayU Invoices — creation, GST, sending,
+  editing, payments, and managing your invoices.
 deprecated: false
 hidden: true
 metadata:
+  title: Invoice FAQs | PayU Developer Docs
+  description: >-
+    Answers to common PayU Invoice questions — creating invoices, GST setup,
+    sending to customers, editing after sending, partial payments, and more.
+  keywords:
+    - payu invoice faq
+    - payu gst invoice questions
+    - can i edit invoice payu
+    - payu invoice partial payment faq
+    - payu invoice vs payment link
+    - payu invoice customer not received
+    - payu invoice overdue
   robots: index
+next:
+  description: Explore related information and resources.
+  pages:
+    - slug: invoices
+      title: Invoices
+      type: basic
+    - slug: create-an-invoice-1
+      title: Create an Invoice
+      type: basic
+    - slug: manage-invoices
+      title: Manage Invoices
+      type: basic
+    - slug: manage-invoices-items
+      title: Manage Invoice Items
+      type: basic
+    - slug: manage-invoice-customers
+      title: Manage Customers
+      type: basic
+    - slug: invoices-workflow
+      title: How Invoices Works
+      type: basic
 ---
 <Banner
   isInline={true}
