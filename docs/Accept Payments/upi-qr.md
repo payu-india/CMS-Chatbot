@@ -34,16 +34,16 @@ next:
   fontWeight="bold"
 />
 
-PayU UPI QR lets you generate a QR code that your customers scan with any UPI app to pay you instantly — no POS terminal, no card machine, no website needed.<br />
+PayU UPI QR lets you generate a QR code that your customers scan with any UPI app to pay you instantly no card machine or website required.<br />
 
 You can use UPI QR to:<br />
 
 * Generate a static QR code for your store counter, table, or printed standee
-* Accept UPI payments from any app — PhonePe, Google Pay, Paytm, BHIM, and all other UPI-enabled apps
+* Accept UPI payments from any app such as PhonePe, Google Pay, Paytm, BHIM, and all other UPI-enabled apps
 * Set a fixed amount on the QR, or let the customer choose how much to pay
 * Track all payments received against your QR codes in the Dashboard
 * Download or print the QR code image directly from the Dashboard
-* Deactivate a QR code at any time if it is no longer needed<br />
+* Deactivate a QR code at any time if it is no longer required<br />
 
 <HTMLBlock>{`
   <style>
