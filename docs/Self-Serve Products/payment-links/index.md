@@ -225,13 +225,13 @@ When your customer receives the payment link:
   sees a success or failure message
 </Accordion>
 
-Your customer doesn't need a PayU account or any special app — the link works in any browser.
+Your customer does not need a PayU account or any special app. The link works in any browser.
 
 ***
 
 ## How do I Manage Payments?
 
-Once your customer completes the payment:
+Once your customer completes the payment:<br />
 
 <Columns layout="fixed">
   <Column>
