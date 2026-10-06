@@ -1,10 +1,12 @@
 ---
-title: Invoice FAQs
+title: FAQs (Frequently Asked Questions)
 excerpt: >-
   Answers to common questions about PayU Invoices — creation, GST, sending,
   editing, payments, and managing your invoices.
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
   title: Invoice FAQs | PayU Developer Docs
   description: >-
