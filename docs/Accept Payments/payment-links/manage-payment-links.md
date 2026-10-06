@@ -56,7 +56,7 @@ To open your links: log in to [PayU Dashboard](https://onboarding.payu.in/) and 
 
 ## What Can I Do With a Payment Link After It Is Created?
 
-You can perform the following actions after a link is created:
+You can perform the following actions after a payment link is created:
 
 <Accordion title="View Payment Link Details" icon="far fa-rectangle-list">
   To see payment link details:
