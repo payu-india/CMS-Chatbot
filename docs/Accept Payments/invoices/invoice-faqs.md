@@ -208,7 +208,7 @@ next:
 4. #### How will I know when my customer has paid?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  The invoice status in your Dashboard updates to **Paid** immediately after the customer completes payment. The payment also appears in the **Transactions** tab. For instant server-side notifications, set up a webhook under **Settings → Webhooks** — PayU will send a `payment.success` event each time a payment is received.
+  The invoice status in your Dashboard updates to **Paid** immediately after the customer completes payment. The payment also appears in the **Transactions** tab. For instant server-side notifications, set up a <Anchor target="_blank" href="https://docs.payu.in/docs/manage-webhooks-using-dashboard">webhook</Anchor> under **Settings → Webhooks** — PayU will send a `payment.success` event each time a payment is received.
 </Accordion>
 
 ***
@@ -216,7 +216,7 @@ next:
 5. #### What webhook events does PayU send for invoices? <Badge type="success">New</Badge>
 
 <Accordion title="Answer" icon="fab fa-adn">
-  PayU sends three dedicated webhook events for invoices:
+  PayU sends three dedicated webhook events for invoices:<br />
 
   | Event                    | When it fires                                     |
   | ------------------------ | ------------------------------------------------- |
@@ -224,9 +224,11 @@ next:
   | `INVOICE_FAILED_HTTP_V2` | A payment attempt on the invoice failed           |
   | `INVOICE_DUE_HTTP`       | Invoice is approaching or has passed its due date |
 
-  To receive these events, set up a webhook endpoint under **Settings → Webhooks** in the PayU Dashboard and subscribe to the invoice events. Your endpoint will receive a POST request with the invoice and payment details whenever one of these events occurs.
+  To receive these events, <Anchor target="_blank" href="https://docs.payu.in/docs/manage-webhooks-using-dashboard">set up a webhook</Anchor> endpoint under **Developer → Webhooks** in the PayU Dashboard and subscribe to the invoice events. Your endpoint will receive a POST request with the invoice and payment details whenever one of these events occurs.<br />
 
   <Callout icon="📘" theme="info">
+    ### **Tips:**
+
     If you only need to track payment status in the Dashboard and do not have a server to receive webhooks, you do not need to set this up. Your Dashboard always shows the latest invoice status.
   </Callout>
 </Accordion>
@@ -238,7 +240,7 @@ next:
 1. #### What happens if my customer does not pay by the due date?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  The invoice status changes to **Overdue** after the due date passes without payment. The customer can still open the invoice link and pay — the due date is informational. If you want to stop accepting payment on an overdue invoice, cancel it from the Dashboard.
+  The invoice status changes to **Overdue** after the due date passes without payment. The customer can still open the invoice link and pay. If you want to stop accepting payment on an overdue invoice, <Anchor target="_blank" href="https://docs.payu.in/docs/manage-invoices#deactivate-an-invoice">deactivate</Anchor> it from the Dashboard.
 </Accordion>
 
 ***
@@ -246,9 +248,7 @@ next:
 2. #### Can I issue a refund for an invoice payment?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Yes. Find the transaction in the **Transactions** tab of your Dashboard and start a refund from there. The refund process is the same regardless of how the payment was collected.
-
-  → [Refunds](doc:introduction-refunds)
+  Yes. Find the transaction in the **Transactions** tab of your Dashboard and <Anchor target="_blank" href="https://docs.payu.in/docs/introduction-refunds">start a refund</Anchor> from there. The refund process is the same regardless of how the payment was collected.
 </Accordion>
 
 ***
@@ -256,14 +256,12 @@ next:
 3. #### Can I download invoice records for my accounts?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Yes. From the Invoices list, click **Download** and choose a format:
+  Yes. From the Invoices list, click **Download** and choose a format:<br />
 
   - **CSV** or **XLSX** — Invoice records (invoice number, customer, amount, status, due date)
-  - **TXNS-CSV** or **TXNS-XLSX** — Transaction records (individual payment details)
+  - **TXNS-CSV** or **TXNS-XLSX** — Transaction records (individual payment details)<br />
 
-  You can also share the downloaded report to one or more email addresses directly from the export pop-up.
-
-  → [Manage Invoices](doc:manage-invoices)
+  You can also share the downloaded report to one or more email addresses directly from the export pop-up. Refer to the <Anchor target="_blank" href="https://docs.payu.in/docs/manage-invoices#how-do-i-download-my-invoice-records">How Do I Download My Invoice Records?</Anchor> for steps to download invoice records.
 </Accordion>
 
 ***
@@ -271,21 +269,19 @@ next:
 4. #### Can I use Invoices for recurring or subscription billing?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  No. PayU Invoices are for one-time billing. Each invoice represents a single payment request. You can create new invoices each billing cycle — for example, a monthly consulting invoice — but each invoice is a separate, independent payment.
+  No. PayU Invoices are for one-time billing. Each invoice represents a single payment request. You can create new invoices each billing cycle. For example, a monthly consulting invoice — but each invoice is a separate, independent payment.<br />
 
-  If you need to charge customers automatically on a recurring schedule, use PayU's <Anchor target="_blank" href="doc:recurring-payments">Recurring Payments</Anchor> product instead.
+  If you need to charge customers automatically on a recurring schedule, use PayU's <Anchor target="_blank" href="https://docs.payu.in/docs/introduction-recurring-payments-integration">Recurring Payments</Anchor> product instead.
 </Accordion>
 
 ***
 
-5. #### How do I download or save a copy of a single invoice? <Badge type="success">New</Badge>
+5. #### How do I download or save a copy of a single invoice?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  To export all your invoice records or transaction records in bulk, use the **Download** button at the top of the Invoices list and choose CSV, XLSX, TXNS-CSV, or TXNS-XLSX.
+  To export all your invoice records or transaction records in bulk, use the **Download** button at the top of the Invoices list and choose CSV, XLSX, TXNS-CSV, or TXNS-XLSX.<br />
 
-  For a single specific invoice, open it from the Invoices list — you can then print or save it as a PDF from your browser using **Print → Save as PDF**.
-
-  → [Manage Invoices](doc:manage-invoices)
+  For a single specific invoice, open it from the Invoices list — you can then print or save it as a PDF from your browser using **Print → Save as PDF**. Refer to the <Anchor target="_blank" href="https://docs.payu.in/docs/manage-invoices#how-do-i-download-my-invoice-records">How Do I Download My Invoice Records?</Anchor> for steps to download invoice records.
 </Accordion>
 
 ***
