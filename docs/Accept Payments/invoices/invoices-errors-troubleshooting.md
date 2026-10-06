@@ -130,12 +130,14 @@ Something not working after creating and sending your <Anchor target="_blank" hr
 ## How Do I Fix Wrong Details on a Sent Invoice?
 
 <Accordion title="Wrong Amount, Item, Due Date, or Customer on the Invoice" icon="far fa-pen-to-square">
-  Invoices cannot be changed after they are sent.
+  These invoice details cannot be changed after they are sent.
 
-  **What to do:** Cancel the incorrect invoice from the Dashboard, then create a new invoice with the correct details and send it to your customer. Let your customer know the original invoice has been cancelled and to use the new one for payment.
+  **What to do:** <Anchor target="_blank" href="https://docs.payu.in/docs/manage-invoices#deactivate-an-invoice">Deactivate</Anchor> the incorrect invoice from the Dashboard, then <Anchor target="_blank" href="https://docs.payu.in/docs/create-an-invoice-1">create a new invoice</Anchor> with the correct details and send it to your customer. Let your customer know the original invoice has been deactivated and to use the new one for payment.
 
   <Callout icon="📘" theme="info">
-    If the customer has already paid the incorrect invoice, issue a refund for the overpaid or wrong amount and send a corrected invoice for the right amount. → [Refunds](doc:introduction-refunds)
+    ### **Tips:**
+
+    If the customer has already paid the incorrect invoice, issue a <Anchor target="_blank" href="https://docs.payu.in/docs/introduction-refunds">refund</Anchor> for the overpaid or wrong amount and send a corrected invoice for the right amount.
   </Callout>
 </Accordion>
 
