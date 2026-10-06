@@ -93,8 +93,8 @@ A UPI QR code is a good choice if:<br />
 Consider another PayU solution if:<br />
 
 * You need to collect payments remotely or online using a simple link → <Anchor target="_blank" href="doc:payment-links-overview">**Payment Links**</Anchor>
-* You want a pay button on your website → <Anchor target="_blank" href="doc:payment-button-overview">**Payment Buttons**</Anchor>
 * You need to send a formal GST invoice to a customer → <Anchor target="_blank" href="doc:invoices-overview">**Invoices**</Anchor>
+* Want customers to pay on your website → PayU Hosted Checkout
 * You need a fully custom checkout with cards, net banking, and wallets → <Anchor target="_blank" href="doc:merchant-hosted-checkout">**Merchant Hosted Checkout**</Anchor>
 
 <Callout icon="far fa-face-thinking" theme="warn">
