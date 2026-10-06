@@ -200,7 +200,7 @@ next:
 3. #### Can I send the same invoice to multiple customers?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  No. Each invoice is created for a single customer in the **Billed To** field. To bill multiple customers for the same service, create a separate invoice for each one. If you need to bill many customers at once, consider using <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link#how-do-i-create-many-links-at-once">Payment Links</Anchor> with bulk upload instead.
+  No. Each invoice is created for a single customer in the **Billed To** field. To bill multiple customers for the same service, create a separate invoice for each one. If you need to bill many customers at once, consider using <Anchor target="_blank" href="https://docs.payu.in/docs/create-a-payment-link#how-do-i-create-many-links-at-once">Payment Links with bulk</Anchor> upload instead.
 </Accordion>
 
 ***
