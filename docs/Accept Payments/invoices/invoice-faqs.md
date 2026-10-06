@@ -62,7 +62,7 @@ next:
 3. #### How is an Invoice different from a Payment Link?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Both are ways to request payment from a customer, but they serve different needs:
+  Both are ways to request payment from a customer, but they serve different needs:<br />
 
   | What is the Difference | Invoice                                                        | Payment Link                                |
   | ---------------------- | -------------------------------------------------------------- | ------------------------------------------- |
@@ -70,6 +70,8 @@ next:
   | **GST**                | Built-in GST calculation with HSN/SAC codes                    | Not applicable                              |
   | **Multiple items**     | Yes. Add as many line items as needed                          | No. Single amount only                      |
   | **Best for**           | Service businesses, freelancers, B2B billing                   | One-off or quick payment requests           |
+
+  <br />
 
   Both use PayU's secure payment page and support the same payment methods.
 </Accordion>
@@ -87,15 +89,15 @@ next:
 5. #### Are PayU Invoices secure?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Yes. PayU Invoices are PCI DSS compliant. PayU uses encryption and tokenisation to protect customer payment data. No card or bank details are ever handled by your business — everything goes through PayU's secure payment page.
+  Yes. PayU Invoices are PCI DSS compliant. PayU uses encryption and tokenisation to protect customer payment data. No card or bank details are ever handled by your business.
 </Accordion>
 
 ***
 
-6. #### Does PayU send my customer a confirmation after they pay the invoice? <Badge type="success">New</Badge>
+6. #### Does PayU send my customer a confirmation after they pay the invoice?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Yes. After your customer completes payment, PayU sends them an automatic payment confirmation by email and/or SMS. The confirmation includes the transaction amount, transaction ID, and a summary of what was paid.
+  Yes. After your customer completes the payment, PayU sends them an automatic payment confirmation by email and SMS. The confirmation includes the transaction amount, transaction ID, and a summary of what was paid.<br />
 
   You will also see the invoice status update to **Paid** in your Dashboard immediately. The payment appears in the **Transactions** tab as well.
 </Accordion>
@@ -115,9 +117,7 @@ next:
 2. #### Do I need to set up my items before creating an invoice?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  You do not have to — you can create a new item directly from the **Enter Item Name** field while creating an invoice. However, adding items to your catalog first (under **Payment Tools → Invoices → Items**) saves time: you can reuse the same items with rates and tax details already filled in across all future invoices.
-
-  → [Manage Invoice Items](doc:manage-invoice-items)
+  No. You can create a new item directly from the **Enter Item Name** field while <Anchor target="_blank" href="https://docs.payu.in/docs/create-an-invoice-1">creating an invoice</Anchor>. You can reuse the same items with rates and tax details already filled in across all future invoices.
 </Accordion>
 
 ***
@@ -125,14 +125,12 @@ next:
 3. #### How do I set up GST on an invoice?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  GST on an invoice requires two things:
+  GST on an invoice requires two things:<br />
 
-  1. **Enable GST** in the **Settings** panel when creating the invoice.
-  2. **Add tax details to each item** in the Item Catalog — GST rate, inter-state tax (IGST) or intra-state tax (CGST + SGST), cess, and HSN/SAC code.
+  1. **Enable GST** in the **Settings** panel when <Anchor target="_blank" href="https://docs.payu.in/docs/create-an-invoice-1">creating the invoice</Anchor>.
+  2. **Add tax details to each item** in the Item Catalog — GST rate, inter-state tax (IGST) or intra-state tax (CGST + SGST), cess, and HSN/SAC code.<br />
 
   When both are set, the invoice calculates and shows the GST breakdown automatically.
-
-  → [Manage Invoice Items](doc:manage-invoice-items)
 </Accordion>
 
 ***
