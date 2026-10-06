@@ -327,7 +327,7 @@ You can perform the following actions after a <Glossary>payment link</Glossary> 
 
 ## How Do I Search for a Payment Link?
 
-You can filter the payment links list using the following options:
+You can filter the <Glossary>payment links</Glossary> list using the following options:
 
 <Accordion title="Filter by Status and Payment Type" icon="far fa-filter">
   To filter the list by status:
