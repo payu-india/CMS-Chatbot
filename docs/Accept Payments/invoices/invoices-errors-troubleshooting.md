@@ -145,7 +145,7 @@ Something not working after creating and sending your <Anchor target="_blank" hr
 
 ## Still Stuck?
 
-Contact PayU support with these details:
+Contact <Anchor target="_blank" href="https://help.payu.in/raise-ticket">PayU support</Anchor> with these details:
 
 * [x] Invoice number (from your Dashboard)
 * [x] Customer name and contact details (email or mobile)
