@@ -138,7 +138,7 @@ next:
 4. #### Can I let my customer pay in installments?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Yes. When creating the invoice, switch on **Enable Partial Payments** in the **Settings** panel. Your customer can then choose how much to pay when they open the invoice. The outstanding balance is tracked in the Dashboard — the invoice updates to **Paid** only when the full amount is received.
+  Yes. When <Anchor target="_blank" href="https://docs.payu.in/docs/create-an-invoice-1">creating the invoice</Anchor>, switch on **Enable Partial Payments** in the **Settings** panel. Your customer can then choose how much to pay when they open the invoice. The outstanding balance is tracked in the Dashboard. The invoice updates to **Paid** only when the full amount is received.
 </Accordion>
 
 ***
@@ -146,7 +146,7 @@ next:
 5. #### Can I edit an invoice after I send it?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  No. Invoices cannot be changed after they are sent. If you need to correct anything — the amount, line items, due date, or customer details — cancel the original invoice and create a new one with the correct information.
+  Yes. You can only change the due date, add notes and terms and conditions. If you need to correct anything other than these details such as the amount, line items, due date, or customer details, <Anchor target="_blank" href="https://docs.payu.in/docs/manage-invoices#deactivate-an-invoice">deactivate</Anchor> the original invoice and <Anchor target="_blank" href="https://docs.payu.in/docs/create-an-invoice-1">create a new</Anchor> one with the correct information.
 </Accordion>
 
 ***
