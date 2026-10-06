@@ -154,19 +154,17 @@ next:
 6. #### Can I save an invoice and send it later?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  Yes. When creating an invoice, click **Save** instead of **Send Invoice**. The invoice is saved as a **Draft** and will not be sent to the customer. You can open it from the Invoices list at any time and click **Send Invoice** when you are ready.
+  Yes. When <Anchor target="_blank" href="https://docs.payu.in/docs/create-an-invoice-1">creating an invoice</Anchor>, click **Save** instead of **Send Invoice**. The invoice is saved as a **Draft** and will not be sent to the customer. You can open it from the Invoices list at any time and click **Send Invoice** when you are ready.
 </Accordion>
 
 ***
 
-7. #### Can I create an invoice for a payment I have already collected? <Badge type="success">New</Badge>
+7. #### Can I create an invoice for a payment I have already collected?
 
 <Accordion title="Answer" icon="fab fa-adn">
-  PayU Invoices are designed to request payment — the invoice includes a pay-now button that your customer clicks to complete the transaction. They are not intended for documenting payments that have already been collected by other means (for example, cash or bank transfer).
+  PayU Invoices are designed to request payment. The invoice includes a pay-now button that your customer clicks to complete the transaction. They are not intended for documenting payments that have already been collected by other means (for example, cash or bank transfer).<br />
 
-  If a customer has already paid you, the invoice would still show as **Sent** / unpaid after you create and send it — there is no way to manually mark an invoice as paid from the Dashboard without the customer completing payment through the invoice link.
-
-  For a record of payments already processed through PayU, use the **Transactions** tab in your Dashboard to download transaction history.
+  If a customer has already paid you, the invoice would still show as **Sent** / unpaid after you create and send it. There is no way to manually mark an invoice as paid from the Dashboard without the customer completing payment through the invoice link.
 </Accordion>
 
 ***
