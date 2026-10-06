@@ -56,7 +56,7 @@ To open your links: log in to [PayU Dashboard](https://onboarding.payu.in/) and 
 
 ## What Can I Do With a Payment Link After It Is Created?
 
-You can perform the following actions after a payment link is created:
+You can perform the following actions after a <Glossary>payment link</Glossary> is created:
 
 - View Payment Link Details
 - Share or Resend a Payment Link
