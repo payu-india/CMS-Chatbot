@@ -1,11 +1,39 @@
 ---
 title: Payment Links
+excerpt: >-
+  Create a secure payment link in 2 minutes and share it over WhatsApp, SMS, or
+  email. No code, no website, no checkout page needed.
 deprecated: false
 hidden: true
 link:
   new_tab: false
 metadata:
+  title: PayU Payment Links — No-Code Payment Collection | PayU Docs
   robots: index
+next:
+  description: Explore related information and resources.
+  pages:
+    - slug: create-a-payment-link
+      title: Create a Payment Link
+      type: basic
+    - slug: create-a-payment-link-with-ai-assistant
+      title: AI Coding Assistants to Create a Payment Link
+      type: basic
+    - slug: manage-payment-links
+      title: Manage Payment Links
+      type: basic
+    - slug: payment-button-errors-troubleshooting
+      title: Errors and Troubleshooting
+      type: basic
+    - slug: payment-button-faqs
+      title: FAQs (Frequently Asked Questions)
+      type: basic
+    - slug: payment-links-apis
+      title: Payment Links APIs
+      type: basic
+    - slug: payment-links-workflow
+      title: How Payment Links Works
+      type: basic
 ---
 <Banner
   isInline={true}
