@@ -140,7 +140,7 @@ Consider another PayU solution if:<br />
 
 You don't need a website or developer to get started.<br />
 
-You'll need:<br />
+You will need:<br />
 
 <Columns layout="fixed">
   <Column>
@@ -169,8 +169,6 @@ You'll need:<br />
 ***
 
 ## How do I Create a Payment Link?
-
-Here is how it works:
 
 <Accordion title="1. Create a payment link" icon="far fa-link">
   1. Log in to your PayU Dashboard and go to **Payment Tools** → **Payment Links&#x20;**&#x66;rom then left navigation.
