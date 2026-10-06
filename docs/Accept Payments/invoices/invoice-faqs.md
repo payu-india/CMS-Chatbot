@@ -283,29 +283,3 @@ next:
 
   For a single specific invoice, open it from the Invoices list — you can then print or save it as a PDF from your browser using **Print → Save as PDF**. Refer to the <Anchor target="_blank" href="https://docs.payu.in/docs/manage-invoices#how-do-i-download-my-invoice-records">How Do I Download My Invoice Records?</Anchor> for steps to download invoice records.
 </Accordion>
-
-***
-
-## Next Steps
-
-<Cards>
-  <Card title="Create an Invoice" href="doc:create-an-invoice" icon="far fa-file-invoice">
-    Step-by-step guide to creating and sending your first invoice.
-  </Card>
-
-  <Card title="Manage Invoice Items" href="doc:manage-invoice-items" icon="fa-box-open">
-    Build your product and service catalog with rates and GST details.
-  </Card>
-
-  <Card title="Manage Invoices" href="doc:manage-invoices" icon="fa-list-check">
-    View, filter, resend, cancel, and download your invoice records.
-  </Card>
-
-  <Card title="Invoice Troubleshooting" href="doc:invoice-troubleshooting" icon="fa-wrench">
-    Fix issues with invoices not being received or payments not going through.
-  </Card>
-
-  <Card title="Payment Links" href="doc:payment-links-overview" icon="fa-link">
-    Need a simpler payment request without line items? Use Payment Links.
-  </Card>
-</Cards>
