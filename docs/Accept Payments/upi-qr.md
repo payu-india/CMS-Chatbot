@@ -100,7 +100,7 @@ Consider another PayU solution if:<br />
 <Callout icon="far fa-face-thinking" theme="warn">
   ### **Not Sure Which PayU Solution Is Right For You?**
 
-  Tell us what you want to achieve and how you plan to accept payments. We will recommend the best PayU solution for your needs.
+  Tell us what you want to achieve and how you plan to accept payments. We will recommend the best PayU solution for your needs.<br />
 
   <Anchor target="_blank" href="doc:start-here">Find the right solution</Anchor> →
 </Callout>
