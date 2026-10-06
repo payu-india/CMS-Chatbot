@@ -109,9 +109,9 @@ Consider another PayU solution if:<br />
 
 ## What Will I Need?
 
-You don't need a developer or any technical setup to get started.
+You don't need a developer or any technical setup to get started.<br />
 
-You'll need:
+You'll need:<br />
 
 <Columns layout="fixed">
   <Column>
