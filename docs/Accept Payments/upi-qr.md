@@ -87,12 +87,12 @@ A UPI QR code is a good choice if:<br />
 
 * **You have a physical store, stall, or counter** and want to accept digital payments without a card machine.
 * **You run events, pop-up shops, or mobile businesses** where a printed QR on a standee is the easiest option.
-* **Your customers already use UPI** — it is the most widely used payment method in India.
-* **You want zero setup** — generate a QR in one minute and start accepting payments immediately.<br />
+* **Your customers already use UPI**. It is the most widely used payment method in India.
+* **You want zero setup**. Generate a QR in one minute and start accepting payments immediately.<br />
 
 Consider another PayU solution if:<br />
 
-* You need to collect payments remotely or online → <Anchor target="_blank" href="doc:payment-links-overview">**Payment Links**</Anchor>
+* You need to collect payments remotely or online using a simple link → <Anchor target="_blank" href="doc:payment-links-overview">**Payment Links**</Anchor>
 * You want a pay button on your website → <Anchor target="_blank" href="doc:payment-button-overview">**Payment Buttons**</Anchor>
 * You need to send a formal GST invoice to a customer → <Anchor target="_blank" href="doc:invoices-overview">**Invoices**</Anchor>
 * You need a fully custom checkout with cards, net banking, and wallets → <Anchor target="_blank" href="doc:merchant-hosted-checkout">**Merchant Hosted Checkout**</Anchor>
