@@ -111,11 +111,11 @@ Consider another PayU solution if:<br />
 
 You don't need a developer or any technical setup to get started.<br />
 
-You'll need:<br />
+You will need:<br />
 
 <Columns layout="fixed">
   <Column>
-    **A PayU merchant account:** <Anchor target="_blank" href="doc:set-up-your-account">Sign up here</Anchor> if you do not have one.
+    **A PayU merchant account:** <Anchor target="_blank" href="https://onboarding.payu.in/app/account/signup">Sign up here</Anchor> if you do not have one.
   </Column>
 </Columns>
 
@@ -124,8 +124,6 @@ You'll need:<br />
     **A way to display the QR code:** A phone or tablet screen, a printed standee, a poster, or any surface your customers can point their UPI app at.
   </Column>
 </Columns>
-
-That's it. No developer needed.
 
 ***
 
