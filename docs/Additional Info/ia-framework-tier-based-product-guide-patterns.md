@@ -41,11 +41,11 @@ Understand → Start → Use → Manage
 ├── Overview
 ├── Get Started
 ├── Create / Set Up
-├── How It Works         (add when the mechanism needs explanation)
 ├── Manage
-├── Options / Capabilities
+├── Options / Capabilities (if required)
 ├── Troubleshooting
 └── FAQs
+├── How It Works         (add when the mechanism needs explanation)
 ```
 
 ### Specific Example: Payment Links
