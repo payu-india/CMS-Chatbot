@@ -204,27 +204,6 @@ Understanding these concepts makes the integration guide easier to follow.
   A server-to-server notification PayU sends to your server when a transaction completes. More reliable than the browser redirect, because it doesn't depend on the customer's browser session.
 </Accordion>
 
-&#x20;—  —&#x20;
-
-***
-
-## Transaction Outcomes
-
-After a payment attempt, PayU redirects the customer to one of your URLs and POSTs the result:
-
-| Outcome       | Redirect | What it means                                         |
-| ------------- | -------- | ----------------------------------------------------- |
-| **Success**   | `surl`   | Payment was captured by the bank                      |
-| **Failure**   | `furl`   | Payment was declined or failed                        |
-| **Pending**   | `surl`   | Transaction is in progress (NEFT/RTGS or delayed UPI) |
-| **Cancelled** | `furl`   | Customer cancelled before completing payment          |
-
-<Callout icon="⚠️" theme="warn">
-  **Always verify on your server**
-
-  Never mark an order as paid based on the browser redirect alone. Browser redirects can fail, be intercepted, or be spoofed. Always verify the response hash (reverse hash) on your backend before updating order status.
-</Callout>
-
 ***
 
 ## Next Step
