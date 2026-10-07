@@ -15,14 +15,14 @@ next:
 ---
 <Banner
   isInline={true}
-  message="Integration effort: Some technical setup required"
+  message="Integration effort: Minimal Technical Setup Required"
   color="#FFC107"
   textColor="#000000"
   fontSize="14px"
   fontWeight="bold"
 />
 
-## What is PayU Hosted Checkout?
+## What Can I Do with PayU Hosted Checkout?
 
 PayU Hosted Checkout is a payment integration method that lets you accept<br />online payments without building and hosting your own payment page.<br />
 
