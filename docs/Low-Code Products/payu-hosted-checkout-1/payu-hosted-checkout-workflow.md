@@ -42,15 +42,15 @@ Understanding this flow helps you build the integration correctly and handle edg
 A server-generated redirect that sends customers from your site to the PayU-hosted payment page, then returns them to your success or failure URLs. You prepare payment parameters server-side and POST them to PayU. We handle the payment UI, bank authentication, and payment processing.
 
 <Accordion title="Step 1: Prepare Request Parameters on Your Server" icon="fa-list-check">
-  When a customer proceeds to pay, your server collects the mandatory transaction fields: `key` (your merchant key), `txnid` (a unique transaction ID you generate), `amount`, `productinfo`, `firstname`, `email`, `phone`, `surl`, and `furl`.
+  When a customer proceeds to pay, your server collects the mandatory transaction fields: `key` (your merchant key), `txnid` (a unique transaction ID you generate), `amount`, `productinfo`, `firstname`, `email`, `phone`, `surl`, and `furl`.<br />
 
-  Generate a unique `txnid` for each transaction. This is your primary reference for tracking, reconciliation, and preventing duplicate processing.
+  Generate a unique `txnid` for each transaction. This is your primary reference for tracking, reconciliation, and preventing duplicate processing.<br />
 
   See [Build Integration](./integrate/build-integration) for the full mandatory and optional parameter list.
 </Accordion>
 
 <Accordion title="Step 2: Generate the SHA-512 Hash on Your Server" icon="fa-lock">
-  Before sending the request to PayU, your server computes a SHA-512 hash of the payment parameters. This hash authenticates the request and prevents parameter tampering in transit.
+  Before sending the request to PayU, your server computes a SHA-512 hash of the payment parameters. This hash authenticates the request and prevents parameter tampering in transit.<br />
 
   **Hash formula:**
 
@@ -58,26 +58,26 @@ A server-generated redirect that sends customers from your site to the PayU-host
   sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
   ```
 
-  The hash must be generated on your server using your merchant salt — never in the browser or in client-side code. Exposing the salt client-side allows attackers to forge payment requests.
+  The hash must be generated on your server using your merchant salt and never in the browser or in client-side code. Exposing the salt client-side allows attackers to forge payment requests.
 </Accordion>
 
-<Accordion title="Step 3: POST the payment request to PayU" icon="fa-paper-plane">
-  Submit all parameters — including the computed hash — as an HTML form `POST` to the PayU payment endpoint:
+<Accordion title="Step 3: POST the Payment Request to PayU" icon="fa-paper-plane">
+  Submit all parameters, including the computed hash as an HTML form `POST` to the PayU payment endpoint:<br />
 
   | Environment | Endpoint                          |
   | ----------- | --------------------------------- |
   | Test        | `https://test.payu.in/_payment`   |
   | Production  | `https://secure.payu.in/_payment` |
 
-  The customer's browser is redirected to the PayU-hosted checkout page. From this point, PayU handles the entire payment UI — collecting payment details, managing bank authentication (OTP, UPI approval, 3DS flows), and communicating with the bank or payment provider. Your server is not involved in this step and never receives raw card data.
+  The customer's browser is redirected to the PayU-hosted checkout page. After this point, we handle the entire payment UI such as collecting payment details, managing bank authentication (OTP, UPI approval, 3DS flows), and communicating with the bank or payment provider. Your server is not involved in this step and never receives raw card data.
 </Accordion>
 
-<Accordion title="Step 4: PayU POSTs the result to your callback URL" icon="fa-reply">
-  After the customer completes or abandons payment, PayU POSTs the payment result to your `surl` (on success) or `furl` (on failure or cancellation). The POST body contains the transaction status (`success`, `failure`, or `pending`), PayU's transaction ID (`mihpayid`), the original `txnid`, and a response hash.
+<Accordion title="Step 4: PayU POSTs the Result to Your Callback URL" icon="fa-reply">
+  After a customer completes or abandons payment, PayU POSTs the payment result to your `surl` (on success) or `furl` (on failure or cancellation). The POST body contains the transaction status (`success`, `failure`, or `pending`), PayU's transaction ID (`mihpayid`), the original `txnid`, and a response hash.
 </Accordion>
 
-<Accordion title="Step 5: Verify the response hash on your server" icon="fa-shield-check">
-  Before updating your order records, your server validates the response using the reverse hash:
+<Accordion title="Step 5: Verify the Response Hash on Your Server" icon="fa-shield-check">
+  Before updating your order records, your server validates the response using the reverse hash:<br />
 
   **Reverse hash formula:**
 
@@ -85,10 +85,7 @@ A server-generated redirect that sends customers from your site to the PayU-host
   sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
   ```
 
-  1. Compute the reverse hash from the response fields.
-  2. Compare it with the `hash` field in PayU's response.
-  3. If they match, the response is authentic — update order status based on `status`.
-  4. If they don't match, reject the response and log it as a security event.
+  Compare it with the `hash` field in PayU's response. If they match, the response is authentic — update order status based on `status`.<br />
 
   Never mark an order as paid based on the browser redirect or `status` field alone — always validate the reverse hash first.
 </Accordion>
