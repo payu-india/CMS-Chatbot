@@ -145,37 +145,39 @@ A complete PayU Hosted Checkout integration has five stages. This quick start wa
   - `email`
   - `salt`
 
-  ```Hash Logic
-  key|txnid|amount|productinfo|firstname|email|||||||||||salt
-  ```
-  ```Example Values
-  YOUR_KEY|txn_123456|10.00|TestProduct|Test|test@example.com|||||||||||salt_value
-  ```
+  <Tabs>
+    <Tab title="Hash Formula">
+      ```text Formula
+      sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
+      ```
+    </Tab>
+
+    <Tab title="Example with values">
+      ```text Example Hash String
+      sha512(YOUR_KEY|txn_123456|10.00|iPhone|Aarav|aarav@example.com|||||||||||YOUR_SALT)
+      ```
+    </Tab>
+
+    <Tab title="New Tab">
+
+    </Tab>
+  </Tabs>
 
   <Callout icon="⚠️" theme="warn">
+    ### **Critical Rules of Hash Generation**
+
     **Critical Rules**
 
     Follow these rules to create a correct hash value:
 
-    - Do not change the parameter order
-    - Do not skip pipes (|). Even if fields are empty, you must include separators.
-    - Keep the empty fields. Fields like `udf1`– `udf5` are optional, but their positions should remain empty even if you are not passing any values.
-    - No Extra Spaces or Hidden Characters. They will break the hash.
-    - Encode the string using UTF-8 before hashing.
+    - [x] Never generate the hash in the browser or mobile app.
+    - [x] Keep all pipe separators (`|`) even if UDF fields are empty.
+    - [x] Do not add spaces around the separators.
+    - [x] Use UTF-8 encoding before hashing.
+    - [x] Use SHA-512 (not SHA-256 or MD5).
   </Callout>
 
-  <Callout icon="📘" theme="info">
-    **Look For:**
-
-    - [ ] Extra spaces: Example `"Test "`
-    - [ ] Newline characters
-    - [ ] Missing pipes `(|)`
-    - [ ] Incorrect order
-
-    These may break the hash.
-  </Callout>
-
-  <Accordion title="Step 2.1 Generate SHA-512 Hash using Node " icon="fa-info-circle">
+  <Accordion title="Step 2.1 Generate Hash using Other Language Bindings " icon="fad fa-code">
     ```node Node.js
     const crypto = require("crypto");
 
@@ -188,19 +190,26 @@ A complete PayU Hosted Checkout integration has five stages. This quick start wa
 
     console.log(hash);
     ```
-  </Accordion>
-
-  <Accordion title="Step 2.2 Debug Your Hash (Highly Recommended)" icon="fa-info-circle">
-    Before using the hash, print the exact string using the following JS code:
-
-    ```javascript
-    console.log(JSON.stringify(hashString));
+    ```php
+    ?php
+        $hashString = "YOUR_KEY|txn_123456|10.00|iPhone|Aarav|aarav@example.com|||||||||||YOUR_SALT";
+        $hash = strtolower(hash('sha512', $hashString));
+        echo $hash;
+        ?>
     ```
+    ```python
+    import hashlib
+        hash_string = "YOUR_KEY|txn_123456|10.00|iPhone|Aarav|aarav@example.com|||||||||||YOUR_SALT"
+        hash_value = hashlib.sha512(hash_string.encode('utf-8')).hexdigest()
+        print(hash_value)
+    ```
+
+    For more language examples including Java and C#, see[ Generate Secure Hash](./integrate/build-integration#step-12-generate-secure-hash) in the Build Integration page.
   </Accordion>
 </Accordion>
 
-<Accordion title="Step 3: Create an HTML File to Accept The Payment" icon="fa-info-circle">
-  Now that you have all the parameters and the hash value, the next step is to create an HTML file using the below code.
+<Accordion title="Step 3: Create the payment HTML form" icon="fad fa-paper-plane">
+  Create a file called `payment.html` with the form below, replacing the placeholder values with your test credentials and the hash you generated in Step 2.
 
   ```html
   <!doctype html>
