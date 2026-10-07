@@ -249,6 +249,8 @@ A complete PayU Hosted Checkout integration has five stages. This quick start wa
     </Tab>
 
     <Tab title="Debit Card">
+
+
       | Card Number         | Network    | Expiry | CVV | OTP    |
       | ------------------- | ---------- | ------ | --- | ------ |
       | 5118-7000-0000-0003 | Mastercard | 05/30  | 123 | 123456 |
@@ -266,21 +268,44 @@ A complete PayU Hosted Checkout integration has five stages. This quick start wa
       Use `anything@payu` or `999999999@payu` as the VPA.
     </Tab>
   </Tabs>
+
+  After completing the payment, you'll be redirected to the `surl` or `furl` you set.
 </Accordion>
 
-<Accordion title="Errors and Troubleshooting" icon="fa-info-circle">
-  **Invalid Hash**
+<Accordion title="Step 5: Verify the response" icon="fa-shield-check">
+  After the redirect, PayU POSTs the payment result to your `surl` or `furl`. Your server must verify this response using reverse hashing before marking the order as paid.
 
-  - Check parameter order
-  - Ensure no extra spaces
-  - Use UTF-8 encoding
+  **Reverse hash formula:**
 
-  **Payment Page Not Loading**
+  ```
+  sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
+  ```
 
-  - Verify endpoint URL
-  - Ensure form uses POST
+  Generate this hash on your server and compare it to the `hash` field in the response. If they match, the response is authentic.
 
-  Refer to the Erors and Troubleshooting page for more information about errors and fixes.
+  <Callout icon="⚠️" theme="warn">
+    ### **Never Skip Response Verification**
+
+    A browser redirect can be spoofed. Only the reverse hash comparison that is done server-side can confirm the response came from PayU.
+  </Callout>
+
+  See [Verify Response via Reverse Hashing](./integrate/build-integration#step-14-verify-response-via-reverse-hashing) in the Build Integration page for the full verification logic.
+
+  As a fallback, for example if the callback didn't arrive, you can also confirm transaction status programmatically using the [Verify Payment API](ref:verify_payment_api) from your server.
+</Accordion>
+
+## Common First-Time Errors
+
+<Accordion title="Errors and Troubleshooting" icon="fab fa-first-order-alt">
+  **Invalid Hash:**
+
+  Check the parameter order in your hash string and ensure no extra spaces. Confirm you're using the correct test salt, not your production salt.
+
+  **Payment Page Not Loading:**
+
+  Ensure your form uses `method="post"` and the action URL is `https://test.payu.in/_payment` (not GET, not production URL).
+
+  For a full list of issues and fixes, see [Errors and Troubleshooting](./errors-and-troubleshooting).
 </Accordion>
 
 ***
@@ -297,6 +322,9 @@ After you complete the test payment:
 
 ## Next Steps
 
-Now that you have created your first test payment go to the
+Once your test payment works end-to-end, proceed to:
 
-- Integration Guide for the detailed steps and different language bindings.
+- [Build Integration:](./integrate/build-integration) Full technical guide with all parameters, hash scenarios, multi-language code samples, and response handling
+- [Test Integration:](./integrate/test-integration) Systematic testing scenarios before going live
+- [Go-live Checklist:](./integrate/go-live-checklist) Production readiness checklist
+- [PayU Hosted Checkout APIs:](./payu-hosted-checkout-apis) Complete API reference: Collect Payment, Verify Payment, EMI eligibility, and Webhooks
