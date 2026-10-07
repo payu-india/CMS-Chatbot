@@ -688,7 +688,6 @@ The authorization request is the final step of transaction processing. This agai
     "mihpayid": "613345778913360764",
     "mode": "CC",
     "status": "success",
-    "key": "iUqSve",
     "txnid": "my_order_13615",
     "amount": "100.00",
     "addedon": "2026-10-06 13:04:06",
@@ -702,7 +701,7 @@ The authorization request is the final step of transaction processing. This agai
     "country": "",
     "zipcode": "",
     "email": "test@gmail.com",
-    "phone": "9891186307",
+    "phone": "9999999999",
     "udf1": "",
     "udf2": "",
     "udf3": "",
@@ -740,9 +739,9 @@ The authorization request is the final step of transaction processing. This agai
     "bank_ref_no": "663705198375766800",
     "bank_ref_num": "663705198375766800",
     "bankcode": "CC",
-    "surl": "https://test.payu.in/admin/test_response",
-    "curl": "https://test.payu.in/admin/test_response",
-    "furl": "https://test.payu.in/admin/test_response",
+    "surl": "https://test.payu.in/test_response",
+    "curl": "https://test.payu.in/test_response",
+    "furl": "https://test.payu.in/test_response",
     "card_hash": "515a2cb0f0e6711f6a3d2c4704cc691d212d4dc0e065c7c8d3441a6b5fc23e97"
   }
   ```
