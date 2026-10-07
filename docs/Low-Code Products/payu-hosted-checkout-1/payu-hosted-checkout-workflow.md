@@ -29,31 +29,27 @@ next:
 ---
 {/* NEW CONTENT: This page was created to support the Tier 2 documentation model. The payment flow diagrams and customer journey cards are moved from the existing Overview page; the conceptual explanations of key terms are new. */}
 
-This page explains what happens during a PayU Hosted Checkout payment — from the moment a customer clicks **Pay Now** to the moment you confirm the transaction on your server.
+Learn how PayU Hosted Checkout works. Right from how you integrate to a moment customer makes the payment and you confirm the transaction on your server.<br />
 
 Understanding this flow helps you build the integration correctly and handle edge cases with confidence.
 
 ***
 
-## The Integration Workflow
+## What You are Building
 
 {/* Source: "What you're building" description — docs/Collect Payments/introduction-web/prebuilt-checkout-payu-hosted/prebuilt-checkout-page-integration.md; workflow image — docs/Docs For Internal Review/payu-hosted-checkout/index.md; hash formulas and endpoints confirmed across integrate/build-integration.md and accept-payments-using-payu-hosted-checkout.md. */}
 
-What you're building: a server-generated redirect that sends customers from your site to the PayU-hosted payment page, then returns them to your success or failure URLs. You prepare payment parameters server-side, generate a SHA-512 hash for request integrity, and POST them to PayU. PayU handles the payment UI, bank authentication, and payment processing.
+A server-generated redirect that sends customers from your site to the PayU-hosted payment page, then returns them to your success or failure URLs. You prepare payment parameters server-side and POST them to PayU. We handle the payment UI, bank authentication, and payment processing.
 
-
-<Image src="https://files.readme.io/932f800-payuhosted_wf.png" alt="PayU Hosted Checkout Integration Workflow" align="center" border={true} />
-
-
-<Accordion title="Step 1: Prepare request parameters on your server" icon="fa-list-check">
+<Accordion title="Step 1: Prepare Request Parameters on Your Server" icon="fa-list-check">
   When a customer proceeds to pay, your server collects the mandatory transaction fields: `key` (your merchant key), `txnid` (a unique transaction ID you generate), `amount`, `productinfo`, `firstname`, `email`, `phone`, `surl`, and `furl`.
 
-  Generate a unique `txnid` for each transaction — this is your primary reference for tracking, reconciliation, and preventing duplicate processing.
+  Generate a unique `txnid` for each transaction. This is your primary reference for tracking, reconciliation, and preventing duplicate processing.
 
   See [Build Integration](./integrate/build-integration) for the full mandatory and optional parameter list.
 </Accordion>
 
-<Accordion title="Step 2: Generate the SHA-512 hash on your server" icon="fa-lock">
+<Accordion title="Step 2: Generate the SHA-512 Hash on Your Server" icon="fa-lock">
   Before sending the request to PayU, your server computes a SHA-512 hash of the payment parameters. This hash authenticates the request and prevents parameter tampering in transit.
 
   **Hash formula:**
