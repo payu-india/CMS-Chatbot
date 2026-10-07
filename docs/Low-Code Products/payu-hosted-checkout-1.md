@@ -24,7 +24,7 @@ next:
 
 ## What Can I Do with PayU Hosted Checkout?
 
-PayU Hosted Checkout is a payment integration method that lets you accept<br />online payments without building and hosting your own payment page.<br />
+PayU Hosted Checkout is a payment integration method that lets you accept online payments without building and hosting your own payment page.<br />
 
 With the PayU Hosted Checkout:
 
