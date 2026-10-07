@@ -141,7 +141,7 @@ These are the payment methods supported in PayU Hosted Checkout:<br />
 
 ***
 
-## How does My Customer Pay?
+## How Does My Customer Pay?
 
 Below diagram depicts the customer experience during a payment using PayU Hosted Checkout:
 
