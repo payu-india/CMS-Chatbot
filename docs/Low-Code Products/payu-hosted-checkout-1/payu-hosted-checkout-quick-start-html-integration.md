@@ -1,10 +1,12 @@
 ---
-title: PayU Hosted Checkout Quick Start (HTML Integration)
+title: Quick Start
 excerpt: >-
   Integrate PayU Hosted Checkout using a simple HTML form. Learn how to generate
   hash, create payment request, and accept your first payment in minutes.
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
