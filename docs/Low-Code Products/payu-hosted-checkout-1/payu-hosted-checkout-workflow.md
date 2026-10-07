@@ -170,21 +170,41 @@ After you integrate the PayU Hosted Checkout, this is how the customer journey l
 
 Understanding these concepts makes the integration guide easier to follow.
 
-**Transaction** — A single payment attempt. Each transaction has a unique ID (`txnid`) that you generate and that PayU uses to track the payment across all systems.
+<Accordion title="Transaction" icon="fad fa-money-bill-1-wave">
+  A single payment attempt. Each transaction has a unique ID (`txnid`) that you generate and that PayU uses to track the payment across all systems.
+</Accordion>
 
-**Payment Request** — The data your server sends to PayU to initiate a transaction. It includes the order amount, customer information, callback URLs, and a secure hash.
+<Accordion title="Payment Request" icon="fad fa-code-pull-request-draft">
+  The data your server sends to PayU to initiate a transaction. It includes the order amount, customer information, callback URLs, and a secure hash.
+</Accordion>
 
-**Hash (forward hash)** — A SHA-512 digest of your payment parameters. It proves to PayU that the request hasn't been tampered with in transit. Generated on your server using your merchant salt — never in the browser.
+<Accordion title="Forward Hash" icon="fad fa-hashtag-lock">
+  A SHA-512 digest of your payment parameters. It proves to PayU that the request has not been tampered with in transit. Generated on your server using your merchant salt and never in the browser.
+</Accordion>
 
-**Redirect flow** — The customer's browser is redirected from your site to PayU's checkout page, then back to your site. You post the payment request as an HTML form `POST` to PayU's endpoint.
+<Accordion title="Redirect Flow" icon="fad fa-bridge-circle-exclamation">
+  The customer's browser is redirected from your site to PayU's checkout page, then back to your site. You post the payment request as an HTML form `POST` to PayU's endpoint.
+</Accordion>
 
-**surl / furl** — Your success URL and failure URL. PayU POSTs the payment result back to these endpoints after the transaction completes. They must be publicly reachable HTTPS URLs.
+<Accordion title="surl / furl" icon="fad fa-link-simple">
+  Your success URL and failure URL. PayU POSTs the payment result back to these endpoints after the transaction completes. They must be publicly reachable HTTPS URLs.
+</Accordion>
 
-**Payment Response** — What PayU sends back to your `surl` or `furl`. Contains the transaction status, PayU's transaction ID (`mihpayid`), and a response hash you must verify.
+<Accordion title="Payment Response" icon="fad fa-triangle-instrument">
+  What PayU sends back to your `surl` or `furl`. Contains the transaction status, PayU's transaction ID (`mihpayid`), and a response hash you must verify.
+</Accordion>
 
-**Reverse hash** — A SHA-512 hash generated from the response parameters. You generate it on your server and compare it with the hash in PayU's response. If they match, the response is authentic.
+<Accordion title="Reverse Hash" icon="fad fa-hashtag-lock">
+  A SHA-512 hash generated from the response parameters. You generate it on your server and compare it with the hash in PayU's response. If they match, the response is authentic.
 
-**Webhook** — A server-to-server notification PayU sends to your server when a transaction completes. More reliable than the browser redirect, because it doesn't depend on the customer's browser session.
+
+</Accordion>
+
+<Accordion title="Webhook" icon="fad fa-webhook">
+  A server-to-server notification PayU sends to your server when a transaction completes. More reliable than the browser redirect, because it doesn't depend on the customer's browser session.
+</Accordion>
+
+&#x20;—  —&#x20;
 
 ***
 
