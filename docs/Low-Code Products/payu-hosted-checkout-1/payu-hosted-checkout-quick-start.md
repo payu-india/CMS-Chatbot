@@ -33,7 +33,7 @@ next:
 ---
 ## When to Use PayU Hosted Checkout
 
-Use <Anchor target="_blank" href="https://docs.payu.in/docs/payu-hosted-checkout-1">PayU Hosted Checkout</Anchor> if you want to:
+Use <Anchor target="_blank" href="https://docs.payu.in/docs/payu-hosted-checkout-1">PayU Hosted Checkout</Anchor> if you want to:<br />
 
 - Accept payments on your website without building a custom payment page
 - Go live quickly with minimal development effort
@@ -65,7 +65,7 @@ Use <Anchor target="_blank" href="https://docs.payu.in/docs/payu-hosted-checkout
 
 ## Overview of Steps
 
-A complete PayU Hosted Checkout integration has five stages. This quick start walks through all five at a simplified level so you can make your first test payment now:
+A complete PayU Hosted Checkout integration has five stages. This quick start walks through all five at a simplified level so you can make your first test payment now:<br />
 
 1. Prepare payment request parameters
 2. Generate a SHA-512 hash on your server
@@ -249,8 +249,6 @@ A complete PayU Hosted Checkout integration has five stages. This quick start wa
     </Tab>
 
     <Tab title="Debit Card">
-
-
       | Card Number         | Network    | Expiry | CVV | OTP    |
       | ------------------- | ---------- | ------ | --- | ------ |
       | 5118-7000-0000-0003 | Mastercard | 05/30  | 123 | 123456 |
