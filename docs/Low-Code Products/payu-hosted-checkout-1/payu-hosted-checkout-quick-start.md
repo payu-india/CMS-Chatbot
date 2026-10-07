@@ -209,7 +209,64 @@ A complete PayU Hosted Checkout integration has five stages. This quick start wa
 </Accordion>
 
 <Accordion title="Step 3: Create the payment HTML form" icon="fad fa-paper-plane">
-  Create a file called `payment.html` with the form below, replacing the placeholder values with your test credentials and the hash you generated in Step 2.<br />
+  Create a file called `payment.html` with the form below, replacing the placeholder values with your test credentials and the hash you generated in Step 2.
+
+  <Tabs>
+    <Tab title="Sample Request">
+      ```html
+      <!doctype html>
+        <html>
+          <body onload="document.forms.payu.submit()">
+            <form name="payu" method="post" action="https://test.payu.in/_payment">
+              <input type="hidden" name="key"         value="YOUR_KEY" />
+              <input type="hidden" name="txnid"       value="txn_123456" />
+              <input type="hidden" name="amount"      value="10.00" />
+              <input type="hidden" name="productinfo" value="iPhone" />
+              <input type="hidden" name="firstname"   value="Aarav" />
+              <input type="hidden" name="email"       value="aarav@example.com" />
+              <input type="hidden" name="phone"       value="9999999999" />
+              <input type="hidden" name="surl"        value="https://test-payment-middleware.payu.in/simulatorResponse" />
+              <input type="hidden" name="furl"        value="https://test-payment-middleware.payu.in/simulatorResponse" />
+              <input type="hidden" name="hash"        value="GENERATED_HASH" />
+              <input type="submit" value="Pay Now" />
+            </form>
+          </body>
+        </html>
+      ```
+    </Tab>
+
+    <Tab title="Sample Response">
+      ```json Success Response
+      mihpayid=403993715537565049
+      mode=NB
+      status=success
+      unmappedstatus=captured
+      key=PRiQvJ
+      txnid=756609e32e92add4b5f2
+      amount=10.00
+      discount=0.00
+      net_amount_debit=10
+      addedon=2026-05-29 18:49:30
+      productinfo=Product Info
+      firstname=Payu-Admin
+      email=test@example.com
+      phone=1234567890
+      udf1=
+      udf2=
+      udf3=
+      udf4=
+      udf5=  hash=79d14afc4a3998a627d8fb431b2ee648b16fd6e31252397109ad5f44d77f7630daaaeedf0bbd5b3e7a81342c96bc087beb43125c0619cac1e5408243fdc29a04
+      bank_ref_num=ddb199f9-5f43-4441-8648-ce2bcb244568
+      bankcode=TESTPGNB
+      PG_TYPE=NB-PG
+      error=E000
+      error_Message=No Error
+      field9=Transaction Completed Successfully
+      ```
+    </Tab>
+  </Tabs>
+
+  <br />
 
   ```html
   <!doctype html>
