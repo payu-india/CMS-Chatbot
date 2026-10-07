@@ -27,15 +27,6 @@ next:
       title: PayU Hosted Checkout
       type: basic
 ---
-<Banner
-  isInline={true}
-  message="Integration effort: Minimal technical setup required"
-  color="#15C614"
-  textColor="#ffffff"
-  fontSize="14px"
-  fontWeight="bold"
- />
-
 {/* NEW CONTENT: This page was created to support the Tier 2 documentation model. The payment flow diagrams and customer journey cards are moved from the existing Overview page; the conceptual explanations of key terms are new. */}
 
 This page explains what happens during a PayU Hosted Checkout payment — from the moment a customer clicks **Pay Now** to the moment you confirm the transaction on your server.
