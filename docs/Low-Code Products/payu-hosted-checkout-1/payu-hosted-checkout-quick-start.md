@@ -342,16 +342,6 @@ A complete PayU Hosted Checkout integration has five stages. This quick start wa
 
 ***
 
-## What is Next?
-
-After you complete the test payment:<br />
-
-- Handle payment response
-- Verify transaction status
-- Move to production
-
-***
-
 ## Next Steps
 
 Once your test payment works end-to-end, proceed to:<br />
