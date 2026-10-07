@@ -70,7 +70,7 @@ You need these to get started:<br />
 
 <Columns layout="fixed">
   <Column>
-    - **Access to the PayU Dashboard:** Where you will create and manage your <Glossary>payment links</Glossary>.
+    - **Access to the PayU Dashboard:** Where you will manage checkout transactions.
   </Column>
 </Columns>
 
