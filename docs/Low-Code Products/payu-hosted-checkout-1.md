@@ -63,7 +63,7 @@ With the PayU Hosted Checkout:
                 <button onclick="window.open('https://docs.payu.in/docs/create-a-payment-link#how-do-i-create-a-payment-link', '_blank')" 
                         class="tooltip-btn" 
                         data-tooltip="Click to see steps to create your first payment link.">
-                    Create your first payment link →
+                    Create your Test PayU Hosted Checkout →
                 </button>
 `}</HTMLBlock>
 
