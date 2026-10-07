@@ -89,7 +89,7 @@ A complete PayU Hosted Checkout integration has five stages. This quick start wa
 | **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
 <Accordion title="Step 1: Prepare Request Parameters" icon="fad fa-table">
-  These are the minimum parameters you need. All should be present. Missing any of these will cause the request to fail.
+  These are the minimum parameters you need. All should be present. Missing any of these will cause the request to fail.<br />
 
   <Tabs>
     <Tab title="Mandatory Parameters">
@@ -133,9 +133,9 @@ A complete PayU Hosted Checkout integration has five stages. This quick start wa
 </Accordion>
 
 <Accordion title="Step 2: Generate SHA-512 Hash (Critical)" icon="fad fa-key">
-  The hash protects your payment request from tampering. PayU will reject any request with an invalid hash.
+  The hash protects your payment request from tampering. PayU will reject any request with an invalid hash.<br />
 
-  Create a hash value by by concatenating the following parameters in a specific order.
+  Create a hash value by by concatenating the following parameters in a specific order.<br />
 
   - `key`
   - `txnid`
@@ -168,7 +168,7 @@ A complete PayU Hosted Checkout integration has five stages. This quick start wa
 
     **Critical Rules**
 
-    Follow these rules to create a correct hash value:
+    Follow these rules to create a correct hash value:<br />
 
     - [x] Never generate the hash in the browser or mobile app.
     - [x] Keep all pipe separators (`|`) even if UDF fields are empty.
@@ -209,7 +209,7 @@ A complete PayU Hosted Checkout integration has five stages. This quick start wa
 </Accordion>
 
 <Accordion title="Step 3: Create the payment HTML form" icon="fad fa-paper-plane">
-  Create a file called `payment.html` with the form below, replacing the placeholder values with your test credentials and the hash you generated in Step 2.
+  Create a file called `payment.html` with the form below, replacing the placeholder values with your test credentials and the hash you generated in Step 2.<br />
 
   ```html
   <!doctype html>
@@ -232,16 +232,16 @@ A complete PayU Hosted Checkout integration has five stages. This quick start wa
     </html>
   ```
 
-  **Replace:**
+  **Replace:**<br />
 
   - `YOUR_KEY` with test key.
-  - `GENERATED_HASH` with the generated hash.
+  - `GENERATED_HASH` with the generated hash.<br />
 
   Open `payment.html` in your browser. The form auto-submits and redirects you to the PayU checkout page.
 </Accordion>
 
 <Accordion title="Step 4: Complete a Test Payment" icon="fad fa-credit-card-front">
-  On the PayU test checkout page, select a payment method and use one of the following test credentials:
+  On the PayU test checkout page, select a payment method and use one of the following test credentials:<br />
 
   <Tabs>
     <Tab title="NetBanking">
@@ -271,15 +271,15 @@ A complete PayU Hosted Checkout integration has five stages. This quick start wa
 </Accordion>
 
 <Accordion title="Step 5: Verify the response" icon="fa-shield-check">
-  After the redirect, PayU POSTs the payment result to your `surl` or `furl`. Your server must verify this response using reverse hashing before marking the order as paid.
+  After the redirect, PayU POSTs the payment result to your `surl` or `furl`. Your server must verify this response using reverse hashing before marking the order as paid.<br />
 
-  **Reverse hash formula:**
+  **Reverse hash formula:**<br />
 
   ```
   sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
   ```
 
-  Generate this hash on your server and compare it to the `hash` field in the response. If they match, the response is authentic.
+  Generate this hash on your server and compare it to the `hash` field in the response. If they match, the response is authentic.<br />
 
   <Callout icon="⚠️" theme="warn">
     ### **Never Skip Response Verification**
@@ -287,7 +287,7 @@ A complete PayU Hosted Checkout integration has five stages. This quick start wa
     A browser redirect can be spoofed. Only the reverse hash comparison that is done server-side can confirm the response came from PayU.
   </Callout>
 
-  See [Verify Response via Reverse Hashing](./integrate/build-integration#step-14-verify-response-via-reverse-hashing) in the Build Integration page for the full verification logic.
+  See [Verify Response via Reverse Hashing](./integrate/build-integration#step-14-verify-response-via-reverse-hashing) in the Build Integration page for the full verification logic.<br />
 
   As a fallback, for example if the callback didn't arrive, you can also confirm transaction status programmatically using the [Verify Payment API](ref:verify_payment_api) from your server.
 </Accordion>
@@ -295,11 +295,11 @@ A complete PayU Hosted Checkout integration has five stages. This quick start wa
 ## Common First-Time Errors
 
 <Accordion title="Errors and Troubleshooting" icon="fab fa-first-order-alt">
-  **Invalid Hash:**
+  **Invalid Hash:**<br />
 
   Check the parameter order in your hash string and ensure no extra spaces. Confirm you're using the correct test salt, not your production salt.
 
-  **Payment Page Not Loading:**
+  **Payment Page Not Loading:**<br />
 
   Ensure your form uses `method="post"` and the action URL is `https://test.payu.in/_payment` (not GET, not production URL).
 
@@ -310,7 +310,7 @@ A complete PayU Hosted Checkout integration has five stages. This quick start wa
 
 ## What is Next?
 
-After you complete the test payment:
+After you complete the test payment:<br />
 
 - Handle payment response
 - Verify transaction status
@@ -320,7 +320,7 @@ After you complete the test payment:
 
 ## Next Steps
 
-Once your test payment works end-to-end, proceed to:
+Once your test payment works end-to-end, proceed to:<br />
 
 - [Build Integration:](./integrate/build-integration) Full technical guide with all parameters, hash scenarios, multi-language code samples, and response handling
 - [Test Integration:](./integrate/test-integration) Systematic testing scenarios before going live
