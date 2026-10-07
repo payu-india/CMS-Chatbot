@@ -31,24 +31,20 @@ next:
       title: How PayU Hosted Checkout Works
       type: basic
 ---
-## When to Use PayU Hosted Checkout
+##
 
-Use this approach if you want to:
+## When to use PayU Hosted Checkout
 
-- Go live quickly
-- Avoid handling card or payment data
-- Use a ready-made payment experience
+Use this integration if you want to:
 
-Know More about PayU Hosted Checkout and how the payment flow works.
+- Accept payments on your website without building a custom payment page
+- Go live quickly with minimal development effort
+- Let PayU handle payment security, authentication, and PCI compliance
 
-<Callout icon="📘" theme="info">
-  ### **Other Integration Options:**
+<Callout icon="fad fa-comment-captions" theme="info">
+  ### **Other Integration Options**
 
-  Consider other integrations if you need:
-
-  - Full control over payment UI
-  - In-page checkout experience
-  - Backend-only payment processing
+  If you need complete control over the checkout UI, consider [Merchant Hosted Checkout](../../custom-checkout-merchant-hosted) instead. If you need no technical setup at all, consider [Payment Links](../../introduction-no-code-payments-integration/payment-links-dashboard).
 </Callout>
 
 ***
@@ -115,8 +111,6 @@ Follow the below steps to make your test payment:
   | **furl**        | `string` The failure URL to which PayU redirects the user after a failure transaction. For example, <a href="https://test-payment-middleware.payu.in/simulatorResponse" title="Example surl">Success URL Example</a> |
   | **salt**        | `string` The salt provided by PayU during onboarding.                                                                                                                                                                |
 
-
-
   <Callout icon="📘" theme="info">
     **Handy Tips**
 
@@ -168,8 +162,6 @@ Follow the below steps to make your test payment:
     These may break the hash.
   </Callout>
 
-
-
   <Accordion title="Step 2.1 Generate SHA-512 Hash using Node " icon="fa-info-circle">
     ```node Node.js
     const crypto = require("crypto");
@@ -185,8 +177,6 @@ Follow the below steps to make your test payment:
     ```
   </Accordion>
 
-
-
   <Accordion title="Step 2.2 Debug Your Hash (Highly Recommended)" icon="fa-info-circle">
     Before using the hash, print the exact string using the following JS code:
 
@@ -194,8 +184,6 @@ Follow the below steps to make your test payment:
     console.log(JSON.stringify(hashString));
     ```
   </Accordion>
-
-
 </Accordion>
 
 <Accordion title="Step 3: Create an HTML File to Accept The Payment" icon="fa-info-circle">
@@ -225,8 +213,6 @@ Follow the below steps to make your test payment:
     </body>
     </html>
   ```
-
-
 
   **Replace:**
 
