@@ -22,7 +22,7 @@ next:
   fontWeight="bold"
 />
 
-## What Can I Do with PayU Hosted Checkout?
+## What is PayU Hosted Checkout?
 
 PayU Hosted Checkout is a payment integration method that lets you accept online payments without building and hosting your own payment page.<br />
 
