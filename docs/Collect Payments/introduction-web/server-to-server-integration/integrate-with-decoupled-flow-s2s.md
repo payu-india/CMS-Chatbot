@@ -688,6 +688,7 @@ The authorization request is the final step of transaction processing. This agai
     "mihpayid": "613345778913360764",
     "mode": "CC",
     "status": "success",
+    "key": "{{Merchant_Key}}",
     "txnid": "my_order_13615",
     "amount": "100.00",
     "addedon": "2026-10-06 13:04:06",
