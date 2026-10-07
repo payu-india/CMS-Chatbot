@@ -614,7 +614,7 @@ On basis of a successful response of the Collect Payment (**\_payment**) API, yo
       ### Hash Formula
 
       ```text
-      merchantKey|referenceId|Salt|date
+      sha512(merchantKey|referenceId|Salt|date)
       ```
     </Tab>
 
