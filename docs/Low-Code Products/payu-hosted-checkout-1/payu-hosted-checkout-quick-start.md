@@ -209,7 +209,7 @@ A complete PayU Hosted Checkout integration has five stages. This quick start wa
 </Accordion>
 
 <Accordion title="Step 3: Create the payment HTML form" icon="fad fa-paper-plane">
-  Create a file called `payment.html` with the form below, replacing the placeholder values with your test credentials and the hash you generated in Step 2.
+  Create a file called `payment.html` with the form below, replacing the placeholder values with your test credentials and the hash you generated in Step 2.<br />
 
   <Tabs>
     <Tab title="Sample Request">
@@ -265,29 +265,6 @@ A complete PayU Hosted Checkout integration has five stages. This quick start wa
       ```
     </Tab>
   </Tabs>
-
-  <br />
-
-  ```html
-  <!doctype html>
-    <html>
-      <body onload="document.forms.payu.submit()">
-        <form name="payu" method="post" action="https://test.payu.in/_payment">
-          <input type="hidden" name="key"         value="YOUR_KEY" />
-          <input type="hidden" name="txnid"       value="txn_123456" />
-          <input type="hidden" name="amount"      value="10.00" />
-          <input type="hidden" name="productinfo" value="iPhone" />
-          <input type="hidden" name="firstname"   value="Aarav" />
-          <input type="hidden" name="email"       value="aarav@example.com" />
-          <input type="hidden" name="phone"       value="9999999999" />
-          <input type="hidden" name="surl"        value="https://test-payment-middleware.payu.in/simulatorResponse" />
-          <input type="hidden" name="furl"        value="https://test-payment-middleware.payu.in/simulatorResponse" />
-          <input type="hidden" name="hash"        value="GENERATED_HASH" />
-          <input type="submit" value="Pay Now" />
-        </form>
-      </body>
-    </html>
-  ```
 
   **Replace:**<br />
 
