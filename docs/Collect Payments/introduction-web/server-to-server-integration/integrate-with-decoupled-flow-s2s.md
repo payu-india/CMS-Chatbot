@@ -610,6 +610,12 @@ On basis of a successful response of the Collect Payment (**\_payment**) API, yo
           "cres": "eyJtZXNzYWdlVHlwZSI6IkNSZXMiLCJtZXNzYWdlVmVyc2lvbiI6IjIuMi4wIiwidGhyZWVEU1NlcnZlclRyYW5zSUQiOiJlYzI5NWMwNS0xNWViLTRjNjktYmYyNi1iMzQ4YzZjZmEwYzQiLCJUcmFuc2FjdGlvbklkIjoiOWRiYWFhNzQtZGNkYy00ZDBlLWJiYmEtYmE1ODk2MzFkZDg5IiwiY3JlcyI6ImV5SjBhSEpsWlVSVFUyVnlkbVZ5VkhKaGJuTkpSQ0k2SW1Wak1qazFZekExTFRFMVpXSXROR00yT1MxaVpqSTJMV0l6TkRoak5tTm1ZVEJqTkNJc0ltRmpjMVJ5WVc1elNVUWlPaUk0TnpKa05qRm1OeTFsTURWbExURXhaV1V0WWpnME1DMWxNelJsTUdZeE9XRXdNREVpTENKdFpYTnpZV2RsVkhsd1pTSTZJa05TWlhNaUxDSnRaWE56WVdkbFZtVnljMmx2YmlJNklqSXVNaTR3SWl3aVkyaGhiR3hsYm1kbFEyOXRjR3hsZEdsdmJrbHVaQ0k2SWxraUxDSjBjbUZ1YzFOMFlYUjFjeUk2SWs0aWZRIn0="
         }'
       ```
+
+      ### Hash Formula
+
+      ```text
+      merchantKey|referenceId|Salt|date
+      ```
     </Tab>
 
     <Tab title="Sample response">
