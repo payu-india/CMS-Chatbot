@@ -748,6 +748,44 @@ The authorization request is the final step of transaction processing. This agai
   ```
 </Accordion>
 
+<Callout icon="📘" theme="info">
+  ### **Get 3DS**
+
+  Poll this Auth Data API to get 3DS.
+
+  <Tabs>
+    <Tab title="Sample request">
+      ```curl
+      curl --location "https://secure.payu.in/decoupled/AuthData?referenceId=224845c3c891a0925d0554b390d70e71" \
+        --header "key: smsplus" \
+        --header "hash: 3f6759853702db56124ce7d1515e98cf7fdc58617253422a43c63f38aa7660e8a500bc97ba642ad3c1fb7d0a7264050b8cd28015c4448eb45c9d4cff2cdf61c1" \
+        --header "Date: Tue, 12 Mar 2024 10:54:29 GMT" \
+        --header "Content-Type: application/json" \
+        --data '{
+          "cres": "eyJtZXNzYWdlVHlwZSI6IkNSZXMiLCJtZXNzYWdlVmVyc2lvbiI6IjIuMi4wIiwidGhyZWVEU1NlcnZlclRyYW5zSUQiOiJlYzI5NWMwNS0xNWViLTRjNjktYmYyNi1iMzQ4YzZjZmEwYzQiLCJUcmFuc2FjdGlvbklkIjoiOWRiYWFhNzQtZGNkYy00ZDBlLWJiYmEtYmE1ODk2MzFkZDg5IiwiY3JlcyI6ImV5SjBhSEpsWlVSVFUyVnlkbVZ5VkhKaGJuTkpSQ0k2SW1Wak1qazFZekExTFRFMVpXSXROR00yT1MxaVpqSTJMV0l6TkRoak5tTm1ZVEJqTkNJc0ltRmpjMVJ5WVc1elNVUWlPaUk0TnpKa05qRm1OeTFsTURWbExURXhaV1V0WWpnME1DMWxNelJsTUdZeE9XRXdNREVpTENKdFpYTnpZV2RsVkhsd1pTSTZJa05TWlhNaUxDSnRaWE56WVdkbFZtVnljMmx2YmlJNklqSXVNaTR3SWl3aVkyaGhiR3hsYm1kbFEyOXRjR3hsZEdsdmJrbHVaQ0k2SWxraUxDSjBjbUZ1YzFOMFlYUjFjeUk2SWs0aWZRIn0="
+        }'
+      ```
+    </Tab>
+
+    <Tab title="Sample response">
+      ```json
+      {
+        "payuid": "999000000000542",
+        "eci": "05",
+        "cavv": "AAIBBGOAZgAAAABkNWAgdQAAAAA=",
+        "threeDSTransStatus": "Y",
+        "threeDSTransStatusReason": null,
+        "flowType": "Challenge",
+        "threeDSTransID": "c3947b6b-9f19-40fa-b184-6c489a22bedc",
+        "threeDSServerTransID": "505bbed1-fea8-42f4-a182-6b22c4a828cd",
+        "threeDSVersion": "2.2.0",
+        "status": "SUCCESS"
+      }
+      ```
+    </Tab>
+  </Tabs>
+</Callout>
+
 ## Step 4: Check the response from PayU
 
 The response from PayU for Merchant Hosted and S2S integration is similar.
