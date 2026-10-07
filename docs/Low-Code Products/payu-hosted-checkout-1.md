@@ -212,7 +212,18 @@ These are the PayU Hosted checkout integration benefits:
 
 ## Next Steps
 
-- **Quick Start:** Set up and test your first payment.
-- **Build Integration:** Implement PayU Hosted Checkout.
-- **Test Integration:** Verify your integration.
-- **Go-live Checklist:** Prepare your integration for production.
+<Cards>
+  <Card title="Quick Start" href="https://docs.payu.in/docs/create-a-payment-link" icon="fad fa-forward-fast" target="_blank">
+    Set up and test your first payment.
+  </Card>
+
+  <Card title="Integrate PayU Hosted Checkout" href="https://docs.payu.in/reference/payment-links" icon="far fa-gear-api" target="_blank">
+    - **Build Integration:** Details steps to implement PayU Hosted Checkout.
+    - **Test Integration:&#x20;**&#x56;erify your integration.
+    - **Go-live Checklist:&#x20;**&#x50;repare your integration for production.
+  </Card>
+
+  <Card title="How PayU Hosted Checkout Works" href="https://docs.payu.in/docs/payment-links-workflow" icon="fa-diagram-project" target="_blank">
+    See the end-to-end flow — from creating a checkout to receiving funds in your bank.
+  </Card>
+</Cards>
