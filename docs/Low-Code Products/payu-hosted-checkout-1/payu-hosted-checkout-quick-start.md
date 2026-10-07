@@ -213,26 +213,22 @@ A complete PayU Hosted Checkout integration has five stages. This quick start wa
 
   ```html
   <!doctype html>
-  <html>
-    <body onload="document.forms.payu.submit()">
-      <form name="payu" method="post" action="https://test.payu.in/_payment">
-        
-        <input type="hidden" name="key" value="YOUR_KEY" />
-        <input type="hidden" name="txnid" value="txn_123456" />
-        <input type="hidden" name="amount" value="10.00" />
-        <input type="hidden" name="productinfo" value="Test Product" />
-        <input type="hidden" name="firstname" value="Test" />
-        <input type="hidden" name="email" value="test@example.com" />
-        <input type="hidden" name="phone" value="9999999999" />
-
-        <input type="hidden" name="surl" value="https://yourwebsite.com/success" />
-        <input type="hidden" name="furl" value="https://yourwebsite.com/failure" />
-
-        <input type="hidden" name="hash" value="GENERATED_HASH" />
-
-        <input type="submit" value="Pay Now" />
-      </form>
-    </body>
+    <html>
+      <body onload="document.forms.payu.submit()">
+        <form name="payu" method="post" action="https://test.payu.in/_payment">
+          <input type="hidden" name="key"         value="YOUR_KEY" />
+          <input type="hidden" name="txnid"       value="txn_123456" />
+          <input type="hidden" name="amount"      value="10.00" />
+          <input type="hidden" name="productinfo" value="iPhone" />
+          <input type="hidden" name="firstname"   value="Aarav" />
+          <input type="hidden" name="email"       value="aarav@example.com" />
+          <input type="hidden" name="phone"       value="9999999999" />
+          <input type="hidden" name="surl"        value="https://test-payment-middleware.payu.in/simulatorResponse" />
+          <input type="hidden" name="furl"        value="https://test-payment-middleware.payu.in/simulatorResponse" />
+          <input type="hidden" name="hash"        value="GENERATED_HASH" />
+          <input type="submit" value="Pay Now" />
+        </form>
+      </body>
     </html>
   ```
 
@@ -240,15 +236,36 @@ A complete PayU Hosted Checkout integration has five stages. This quick start wa
 
   - `YOUR_KEY` with test key.
   - `GENERATED_HASH` with the generated hash.
+
+  Open `payment.html` in your browser. The form auto-submits and redirects you to the PayU checkout page.
 </Accordion>
 
-<Accordion title="Step 4: Complete the Test Payment" icon="fa-info-circle">
-  To complete the test payment:
+<Accordion title="Step 4: Complete a Test Payment" icon="fad fa-credit-card-front">
+  On the PayU test checkout page, select a payment method and use one of the following test credentials:
 
-  1. Open payment.html in your browser
-  2. The form will auto-submit to PayU and redirected to a payment page.
-  3. Choose any payment method and provide the <a href="https://docs.payu.in/docs/test-cards-upi-id-and-wallets" title="Access Test Credentials">test credentials</a>.
-  4. Complete the payment.
+  <Tabs>
+    <Tab title="NetBanking">
+      **Username:** `payu` | **Password:** `payu` | **OTP:** `123456`
+    </Tab>
+
+    <Tab title="Debit Card">
+      | Card Number         | Network    | Expiry | CVV | OTP    |
+      | ------------------- | ---------- | ------ | --- | ------ |
+      | 5118-7000-0000-0003 | Mastercard | 05/30  | 123 | 123456 |
+      | 4594-5380-5063-9999 | VISA       | 05/30  | 123 | 123456 |
+    </Tab>
+
+    <Tab title="Credit Card">
+      | Card Number      | Network    | Expiry | CVV | OTP    |
+      | ---------------- | ---------- | ------ | --- | ------ |
+      | 5123456789012346 | Mastercard | 05/30  | 123 | 123456 |
+      | 4012001037141112 | VISA       | 05/30  | 123 | 123456 |
+    </Tab>
+
+    <Tab title="UPI">
+      Use `anything@payu` or `999999999@payu` as the VPA.
+    </Tab>
+  </Tabs>
 </Accordion>
 
 <Accordion title="Errors and Troubleshooting" icon="fa-info-circle">
