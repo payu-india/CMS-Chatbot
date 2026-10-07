@@ -1,8 +1,9 @@
 ---
 title: POS Terminal Integration
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: PayU POS Terminal Integrations for POS Terminals | PayU Developer Guide
   description: >-
@@ -10,8 +11,6 @@ metadata:
     system, and start accepting payments seamlessly. Get started with our
     developer guide today.
   robots: index
-next:
-  description: ''
 ---
 PayU Point of Sale (POS) terminals are Electronic Data capture machines that facilitate the collection of customer payments at stores via payment methods such as cards, UPI QR and EMI. PayU provides four types of terminals with advanced, state-of-the-art technology that businesses can choose to collect payments from the customer in an integrated or non-integrated manner. PayU also provides advanced SDK and API integrations for merchants to integrate their billing/ERP applications with PayU terminals to enhance the merchant experience.
 
