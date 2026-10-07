@@ -26,7 +26,7 @@ next:
 
 PayU Hosted Checkout is a payment integration method that lets you accept online payments without building and hosting your own payment page.<br />
 
-With the PayU Hosted Checkout:
+With the PayU Hosted Checkout:<br />
 
 - Customers are redirected from your website or application to a secured <br />PayU-hosted payment page.
 - PayU handles the payment experience on the hosted page.
@@ -36,14 +36,14 @@ With the PayU Hosted Checkout:
 
 ## Is PayU Hosted Checkout Right for Me?
 
-PayU Hosted Checkout is a good choice if you:
+PayU Hosted Checkout is a good choice if you:<br />
 
 - **Have a website or application** where customers need to make payments.
 - **Want PayU to host** the payment page.
 - **Want a ready-made checkout experience** instead of building your own.
 - **Can handle some technical setup** or have a developer or technical team<br />to help.<br />
 
-Consider another PayU solution if:
+Consider another PayU solution if:<br />
 
 - **You don't have a website or don't want technical setup&#x20;**→ [Payment Links](...).
 - **You need complete control over the payment page&#x20;**→ [Merchant Hosted Checkout](...).
@@ -131,7 +131,7 @@ You need these to get started:<br />
 
 ## Supported Payment Methods
 
-These are the payment methods supported in PayU Hosted Checkout:
+These are the payment methods supported in PayU Hosted Checkout:<br />
 
 - Credit Cards
 - Debit Cards
@@ -149,7 +149,7 @@ Below diagram depicts the customer experience during a payment using PayU Hosted
 <Image src="https://files.readme.io/82a36292bc83035576726e9defb6f5c88591a33556a392867b68144b2a4f8b40-image.png" align="center" caption="Customer Journey" border={true} />
 
 
-The following is the customer journey using cards as a payment method:
+The following is the customer journey using cards as a payment method:<br />
 
 1. Customer clicks **Pay Now**.
 2. Your website starts a payment with PayU.
@@ -170,7 +170,7 @@ The following is the customer journey using cards as a payment method:
 
 ## What Happens After a Payment
 
-After the customer completes a payment:
+After the customer completes a payment:<br />
 
 - PayU determines the transaction result.
 - The customer is redirected back to your website.
