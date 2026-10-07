@@ -33,7 +33,7 @@ next:
 ---
 ## When to Use PayU Hosted Checkout
 
-Use PayU Hosted Checkout if you want to:
+Use <Anchor target="_blank" href="https://docs.payu.in/docs/payu-hosted-checkout-1">PayU Hosted Checkout</Anchor> if you want to:
 
 - Accept payments on your website without building a custom payment page
 - Go live quickly with minimal development effort
