@@ -35,8 +35,6 @@ The S2S decoupled flow for cards involves the following steps for the **redirect
 
   <Card title="5. Verify payment" href="#step-5-verify-the-payment">
     Verify the payment status using PayU's verification API and implement proper validation
-
-
   </Card>
 </Cards>
 
@@ -687,18 +685,65 @@ The authorization request is the final step of transaction processing. This agai
 <Accordion title="Sample response" icon="far fa-reply">
   ```json
   {
-      "payuid": 613345778913271610,
-      "eci": "02",
-      "cavv": "MTAwMjgyMDI2MTk0MDAwMDAwMDAy",
-      "threeDSTransStatus": "Y",
-      "threeDSTransStatusReason": null,
-      "flowType": "challenge",
-      "threeDSTransID": null,
-      "threeDSServerTransID": "bd710319-0aeb-4dda-9eae-ada42e7f4343",
-      "threeDSVersion": "2.2.0",
-      "authFlowType": "OTP",
-      "status": "SUCCESS",
-      "authenticationStatus": "SUCCESS"
+    "mihpayid": "613345778913360764",
+    "mode": "CC",
+    "status": "success",
+    "key": "iUqSve",
+    "txnid": "my_order_13615",
+    "amount": "100.00",
+    "addedon": "2026-10-06 13:04:06",
+    "productinfo": "iPhone",
+    "firstname": "pk",
+    "lastname": "",
+    "address1": "",
+    "address2": "",
+    "city": "",
+    "state": "",
+    "country": "",
+    "zipcode": "",
+    "email": "test@gmail.com",
+    "phone": "9891186307",
+    "udf1": "",
+    "udf2": "",
+    "udf3": "",
+    "udf4": "",
+    "udf5": "",
+    "udf6": "",
+    "udf7": "",
+    "udf8": "",
+    "udf9": "",
+    "udf10": "",
+    "card_token": "",
+    "card_no": "XXXXXXXXXXXX2346",
+    "field0": "",
+    "field1": "593766017005",
+    "field2": "695090",
+    "field3": "100.00",
+    "field4": "",
+    "field5": "00",
+    "field6": "02",
+    "field7": "AUTHPOSITIVE",
+    "field8": "AUTHORIZED",
+    "field9": "Transaction is Successful",
+    "payment_source": "payuS2SAuth",
+    "cardToken": "",
+    "authenticationMethod": "",
+    "PG_TYPE": "CC-PG",
+    "error": "E000",
+    "error_Message": "No Error",
+    "net_amount_debit": "100",
+    "discount": "0.00",
+    "offer_key": "",
+    "offer_availed": "",
+    "unmappedstatus": "captured",
+    "hash": "336001aef9c39caf2f40b6bd7eea5ad5b176f2faa3a08c10f5aa5a159561ebc8e0da842206eeb04885b6ee01d64d4d28e93f3a45e181c5c37ae3ee3874e56f3e",
+    "bank_ref_no": "663705198375766800",
+    "bank_ref_num": "663705198375766800",
+    "bankcode": "CC",
+    "surl": "https://test.payu.in/admin/test_response",
+    "curl": "https://test.payu.in/admin/test_response",
+    "furl": "https://test.payu.in/admin/test_response",
+    "card_hash": "515a2cb0f0e6711f6a3d2c4704cc691d212d4dc0e065c7c8d3441a6b5fc23e97"
   }
   ```
 </Accordion>
