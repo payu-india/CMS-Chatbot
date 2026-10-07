@@ -41,12 +41,12 @@ PayU Hosted Checkout is a good choice if you:<br />
 - **Have a website or application** where customers need to make payments.
 - **Want PayU to host** the payment page.
 - **Want a ready-made checkout experience** instead of building your own.
-- **Can handle some technical setup** or have a developer or technical team<br />to help.<br />
+- **Can handle some technical setup** or have a developer or technical team<br />to help.
 
-**Consider another PayU solution if:**<br />
+### **Consider another PayU solution if:**<br />
 
-- **You don't have a website or don't want technical setup&#x20;**→ [Payment Links](...).
-- **You need complete control over the payment page&#x20;**→ [Merchant Hosted Checkout](...).
+- **You don't have a website or don't want technical setup:&#x20;**&#x43;onsider [Payment Links](...).
+- **You need complete control over the payment page:&#x20;**&#x43;onside&#x72;**&#x20;**[Merchant Hosted Checkout](...).
 
 <Callout icon="far fa-face-thinking" theme="warn">
   ### **Not Sure Which PayU Solution is Right For You?**
@@ -123,7 +123,7 @@ You need these to get started:<br />
                 <button onclick="window.open('https://docs.payu.in/docs/create-a-payment-link#how-do-i-create-a-payment-link', '_blank')" 
                         class="tooltip-btn" 
                         data-tooltip="Follow the guided steps to set up and test your first payment.">
-                    Create and Test Your First Payment →
+                    Set Up and Test Your First Payment →
                 </button>
 `}</HTMLBlock>
 
