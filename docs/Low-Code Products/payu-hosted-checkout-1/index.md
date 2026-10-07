@@ -156,13 +156,11 @@ The following is the customer journey using cards as a payment method:<br />
 3. Customer is redirected to PayU's payment page.
 4. Customer selects a payment method and completes payment.
 5. PayU processes the payment.
-6. Customer returns to your website with the payment result.
+6. Customer returns to your website with the payment result.<br />
 
 <Columns layout="fixed">
   <Column>
-    **For Developers**<br />
-
-    The integration sends a payment request to PayU and receives a payment response. See the \[technical integration guide] for request parameters, hash generation and response handling.
+    For request parameters, hash generation, and response handling, see Build Integration.
   </Column>
 </Columns>
 
