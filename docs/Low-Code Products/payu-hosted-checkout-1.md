@@ -32,6 +32,66 @@ With the PayU Hosted Checkout:
 - PayU handles the payment experience on the hosted page.
 - Customers are redirected back to your website after the payment.
 
+***
+
+## Is PayU Hosted Checkout Right for Me?
+
+PayU Hosted Checkout is a good choice if you:
+
+- **Have a website or application** where customers need to make payments.
+- **Want PayU to host** the payment page.
+- **Want a ready-made checkout experience** instead of building your own.
+- **Can handle some technical setup** or have a developer or technical team<br />to help.<br />
+
+Consider another PayU solution if:
+
+- **You don't have a website or don't want technical setup&#x20;**→ [Payment Links](...).
+- **You need complete control over the payment page&#x20;**→ [Merchant Hosted Checkout](...).
+
+<Callout icon="far fa-face-thinking" theme="warn">
+  ### **Not Sure Which PayU Solution is Right For You?**
+
+  Tell us what you want to achieve and how you plan to accept payments. We will recommend the best PayU solution that fits your needs.<br />
+
+  <Anchor target="_blank" href="https://docs.payu.in/docs/start-here">Find the Right Product for You</Anchor> →
+</Callout>
+
+***
+
+## What Will I Need? (Prerequisites)
+
+You need these to get started:<br />
+
+<Columns layout="fixed">
+  <Column>
+    - **A PayU merchant account:** <Anchor target="_blank" href="https://docs.payu.in/docs/set-up-your-account">Sign up here</Anchor> if you do not have an account.
+  </Column>
+</Columns>
+
+<Columns layout="fixed">
+  <Column>
+    - **Access to the PayU Dashboard:** Where you will create and manage your <Glossary>payment links</Glossary>.
+  </Column>
+</Columns>
+
+<Columns layout="fixed">
+  <Column>
+    - **A website or application**: Where you want to accept payments.
+  </Column>
+</Columns>
+
+<Columns layout="fixed">
+  <Column>
+    - **Access to your website's technical setup**: Either yourself or through a developer to integrate PayU Hosted checkout.
+  </Column>
+</Columns>
+
+<Columns layout="fixed">
+  <Column>
+    - **A way to test the integration** before going live.
+  </Column>
+</Columns>
+
 <HTMLBlock>{`
                 <style>
                 .tooltip-btn {
@@ -62,77 +122,16 @@ With the PayU Hosted Checkout:
 
                 <button onclick="window.open('https://docs.payu.in/docs/create-a-payment-link#how-do-i-create-a-payment-link', '_blank')" 
                         class="tooltip-btn" 
-                        data-tooltip="Click to see steps to create your first payment link.">
-                    Create your Test PayU Hosted Checkout →
+                        data-tooltip="Follow the guided steps to set up and test your first payment.">
+                    Create and Test Your First Payment →
                 </button>
 `}</HTMLBlock>
 
 ***
 
-## Is PayU Hosted Checkout Right for Me?
-
-PayU Hosted Checkout is a good choice if you:
-
-- **Have a website or application** where customers need to make payments.
-- **Want PayU to host** the payment page.
-- **Want a ready-made checkout experience** instead of building your own.
-- **Can handle some technical setup** or have a developer or technical team<br />to help.<br />
-
-Consider another PayU solution if:
-
-- **You don't have a website or don't want technical setup&#x20;**→ [Payment Links](...).
-- **You need complete control over the payment page&#x20;**→ [Merchant Hosted Checkout](...).
-
-<Callout icon="far fa-face-thinking" theme="warn">
-  ### **Not Sure Which PayU Solution is Right For You?**
-
-  Tell us what you want to achieve and how you plan to accept payments. We will recommend the best PayU solution that fits your needs.<br />
-
-  <Anchor target="_blank" href="https://docs.payu.in/docs/start-here">Find the Right Product for You</Anchor> →
-</Callout>
-
-## How does PayU Hosted Checkout work?
-
-The payment flow is:
-
-1. The customer initiates a payment on your website or application.
-2. Your integration sends the payment request to PayU.
-3. The customer is redirected to the PayU-hosted payment page.
-4. The customer selects a payment method and completes the payment.
-5. PayU processes the payment.
-6. The customer is returned to your website with the payment result.
-
-\[Workflow diagram]
-
-For the detailed integration flow, see
-[How It Works](...).
-
-## What do you need to get started?
-
-You need:
-
-- A website or application where you want to accept payments.
-- A PayU account.
-- Access to your website's technical setup, either yourself or through
-  a developer.
-- A way to test the integration before going live.
-
-For the complete prerequisites and setup path, see
-[Quick Start](...).
-
-## What can you do with PayU Hosted Checkout?
-
-With Hosted Checkout, you can:
-
-- Accept payments through supported payment methods.
-- Use a ready-made payment page hosted by PayU.
-- Configure supported payment options.
-- Customize supported branding options.
-- Handle payment results and verify transactions.
-
 ## Supported Payment Methods
 
-PayU Hosted Checkout supports:
+These are the payment methods supported in PayU Hosted Checkout:
 
 - Credit Cards
 - Debit Cards
@@ -140,7 +139,34 @@ PayU Hosted Checkout supports:
 - NetBanking
 - Wallets
 
-## What happens after a payment?
+***
+
+## How does My Customer Pay?
+
+Below diagram depicts the customer experience during a payment using PayU Hosted Checkout:
+
+
+<Image src="https://files.readme.io/82a36292bc83035576726e9defb6f5c88591a33556a392867b68144b2a4f8b40-image.png" align="center" caption="Customer Journey" border={true} />
+
+
+The following is the customer journey using cards as a payment method:
+
+1. Customer clicks **Pay Now**.
+2. Your website starts a payment with PayU.
+3. Customer is redirected to PayU's payment page.
+4. Customer selects a payment method and completes payment.
+5. PayU processes the payment.
+6. Customer returns to your website with the payment result.
+
+<Columns layout="fixed">
+  <Column>
+    **For Developers**
+
+    The integration sends a payment request to PayU and receives a payment response. See the \[technical integration guide] for request parameters, hash generation and response handling.
+  </Column>
+</Columns>
+
+***
 
 After the customer completes a payment:
 
