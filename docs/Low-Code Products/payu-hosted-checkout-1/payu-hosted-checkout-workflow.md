@@ -27,42 +27,83 @@ next:
       title: PayU Hosted Checkout
       type: basic
 ---
+<Banner
+  isInline={true}
+  message="Integration effort: Minimal technical setup required"
+  color="#15C614"
+  textColor="#ffffff"
+  fontSize="14px"
+  fontWeight="bold"
+ />
+
 {/* NEW CONTENT: This page was created to support the Tier 2 documentation model. The payment flow diagrams and customer journey cards are moved from the existing Overview page; the conceptual explanations of key terms are new. */}
 
-Learn what happens during a PayU Hosted Checkout payment. Right from the moment a customer clicks **Pay Now** to the moment you confirm the transaction on your server.<br />
+This page explains what happens during a PayU Hosted Checkout payment — from the moment a customer clicks **Pay Now** to the moment you confirm the transaction on your server.
 
 Understanding this flow helps you build the integration correctly and handle edge cases with confidence.
 
 ***
 
-## The Payment Flow
+## The Integration Workflow
+
+{/* Source: "What you're building" description — docs/Collect Payments/introduction-web/prebuilt-checkout-payu-hosted/prebuilt-checkout-page-integration.md; workflow image — docs/Docs For Internal Review/payu-hosted-checkout/index.md; hash formulas and endpoints confirmed across integrate/build-integration.md and accept-payments-using-payu-hosted-checkout.md. */}
+
+What you're building: a server-generated redirect that sends customers from your site to the PayU-hosted payment page, then returns them to your success or failure URLs. You prepare payment parameters server-side, generate a SHA-512 hash for request integrity, and POST them to PayU. PayU handles the payment UI, bank authentication, and payment processing.
 
 
-<Image src="https://files.readme.io/932f800-payuhosted_wf.png" alt="PayU Hosted Checkout Workflow" align="center" border={true} />
+<Image src="https://files.readme.io/932f800-payuhosted_wf.png" alt="PayU Hosted Checkout Integration Workflow" align="center" border={true} />
 
 
-<Accordion title="Step 1: Customer initiates payment" icon="fa-shopping-cart">
-  The customer selects items and clicks **Pay Now** on your website or app. Your server prepares the payment request — an ordered set of transaction parameters including order amount, customer details, and a secure hash — and POSTs it to PayU's payment endpoint.
+<Accordion title="Step 1: Prepare request parameters on your server" icon="fa-list-check">
+  When a customer proceeds to pay, your server collects the mandatory transaction fields: `key` (your merchant key), `txnid` (a unique transaction ID you generate), `amount`, `productinfo`, `firstname`, `email`, `phone`, `surl`, and `furl`.
+
+  Generate a unique `txnid` for each transaction — this is your primary reference for tracking, reconciliation, and preventing duplicate processing.
+
+  See [Build Integration](./integrate/build-integration) for the full mandatory and optional parameter list.
 </Accordion>
 
-<Accordion title="Step 2: Redirect to PayU Checkout" icon="fa-external-link-alt">
-  The customer's browser is redirected to the PayU-hosted payment page. This page is fully managed by PayU: it displays the available payment methods, collects sensitive payment details (such as card numbers), and runs all bank authentication flows. Your server is not involved in this step and never receives raw card data.
+<Accordion title="Step 2: Generate the SHA-512 hash on your server" icon="fa-lock">
+  Before sending the request to PayU, your server computes a SHA-512 hash of the payment parameters. This hash authenticates the request and prevents parameter tampering in transit.
+
+  **Hash formula:**
+
+  ```text
+  sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
+  ```
+
+  The hash must be generated on your server using your merchant salt — never in the browser or in client-side code. Exposing the salt client-side allows attackers to forge payment requests.
 </Accordion>
 
-<Accordion title="Step 3: PayU processes the payment" icon="fa-paper-plane">
-  PayU sends the payment request to the relevant bank or payment provider (card network, UPI provider, netbanking gateway, etc.) and handles authentication — including 3DS OTP prompts, UPI collect/intent flows, and wallet logins.
+<Accordion title="Step 3: POST the payment request to PayU" icon="fa-paper-plane">
+  Submit all parameters — including the computed hash — as an HTML form `POST` to the PayU payment endpoint:
+
+  | Environment | Endpoint                          |
+  | ----------- | --------------------------------- |
+  | Test        | `https://test.payu.in/_payment`   |
+  | Production  | `https://secure.payu.in/_payment` |
+
+  The customer's browser is redirected to the PayU-hosted checkout page. From this point, PayU handles the entire payment UI — collecting payment details, managing bank authentication (OTP, UPI approval, 3DS flows), and communicating with the bank or payment provider. Your server is not involved in this step and never receives raw card data.
 </Accordion>
 
-<Accordion title="Step 4: Bank authorises and responds" icon="fa-university">
-  The bank processes the transaction and returns a result to PayU: success, failure, or pending. For UPI payments, the customer approves or declines the request in their UPI app.
+<Accordion title="Step 4: PayU POSTs the result to your callback URL" icon="fa-reply">
+  After the customer completes or abandons payment, PayU POSTs the payment result to your `surl` (on success) or `furl` (on failure or cancellation). The POST body contains the transaction status (`success`, `failure`, or `pending`), PayU's transaction ID (`mihpayid`), the original `txnid`, and a response hash.
 </Accordion>
 
-<Accordion title="Step 5: PayU redirects the customer back" icon="fa-reply">
-  PayU redirects the customer's browser back to your website — to the `surl` (success URL) if the transaction succeeded, or to the `furl` (failure URL) if it failed. PayU POST the payment response to these URLs, including the transaction status, PayU transaction ID, and a response hash.
-</Accordion>
+<Accordion title="Step 5: Verify the response hash on your server" icon="fa-shield-check">
+  Before updating your order records, your server validates the response using the reverse hash:
 
-<Accordion title="Step 6: You verify the response" icon="fa-shield-check">
-  Your server receives the POST from PayU at `surl` or `furl`, validates the response hash (reverse hash verification), and confirms the payment is authentic before updating your order records. Do not rely on the browser redirect alone — always verify server-side.
+  **Reverse hash formula:**
+
+  ```text
+  sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
+  ```
+
+  1. Compute the reverse hash from the response fields.
+  2. Compare it with the `hash` field in PayU's response.
+  3. If they match, the response is authentic — update order status based on `status`.
+  4. If they don't match, reject the response and log it as a security event.
+
+  Never mark an order as paid based on the browser redirect or `status` field alone — always validate the reverse hash first.
 </Accordion>
 
 ***
@@ -185,3 +226,5 @@ After a payment attempt, PayU redirects the customer to one of your URLs and POS
 ## Next Step
 
 Ready to build? Go to the [Quick Start](./quick-start) to make your first test payment, or go directly to [Build Integration](./integrate/build-integration) for the full step-by-step technical guide.
+
+<br />
