@@ -1,14 +1,35 @@
 ---
 title: Quick Start
 excerpt: >-
-  Integrate PayU Hosted Checkout using a simple HTML form. Learn how to generate
-  hash, create payment request, and accept your first payment in minutes.
+  Make your first PayU Hosted Checkout test payment in minutes. Get your test
+  credentials, generate a hash, and run your first transaction.
 deprecated: false
 hidden: true
 link:
   new_tab: false
 metadata:
+  title: PayU Hosted Checkout Quick Start
+  description: >-
+    Make your first PayU Hosted Checkout test payment: get test credentials,
+    generate SHA-512 hash, create an HTML form, and verify the result.
+  keywords:
+    - payu hosted checkout quick start
+    - payu hosted checkout first test payment
+    - payu test credentials india
+    - payu sha512 hash generation example
+    - payu html form post payment tutorial
+    - payu test.payu.in _payment endpoint
+    - payu checkout integration getting started
   robots: index
+next:
+  description: Explore related information and resources.
+  pages:
+    - slug: payu-hosted-checkout-1
+      title: PayU Hosted Checkout
+      type: basic
+    - slug: payu-hosted-checkout-workflow
+      title: How PayU Hosted Checkout Works
+      type: basic
 ---
 ## When to Use PayU Hosted Checkout
 
