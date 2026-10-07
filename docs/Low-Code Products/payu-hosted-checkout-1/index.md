@@ -180,17 +180,11 @@ After the customer completes a payment:<br />
   Don't treat the browser redirect alone as confirmation that a payment succeeded. Your integration should verify the payment status using PayU's server-side verification mechanism.
 </Callout>
 
-<Columns layout="fixed">
-  <Column>
-    **For Developers:**<br />
-
-    Learn how to verify payment status and handle webhooks in the technical integration guide.
-  </Column>
-</Columns>
+Learn how to verify payment status and handle webhooks in the technical integration guide.
 
 ***
 
-## What You Get
+## Why Use PayU Hosted Checkout?
 
 These are the PayU Hosted checkout integration benefits:
 
