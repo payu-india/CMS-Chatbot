@@ -160,7 +160,7 @@ The following is the customer journey using cards as a payment method:<br />
 
 <Columns layout="fixed">
   <Column>
-    **For Developers**
+    **For Developers**<br />
 
     The integration sends a payment request to PayU and receives a payment response. See the \[technical integration guide] for request parameters, hash generation and response handling.
   </Column>
@@ -184,7 +184,7 @@ After the customer completes a payment:<br />
 
 <Columns layout="fixed">
   <Column>
-    **For Developers:**
+    **For Developers:**<br />
 
     Learn how to verify payment status and handle webhooks in the technical integration guide.
   </Column>
