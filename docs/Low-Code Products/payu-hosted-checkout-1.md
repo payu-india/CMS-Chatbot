@@ -168,15 +168,47 @@ The following is the customer journey using cards as a payment method:
 
 ***
 
+## What Happens After a Payment
+
 After the customer completes a payment:
 
 - PayU determines the transaction result.
 - The customer is redirected back to your website.
-- Your integration receives the payment result.
+- A payment response is sent with transaction details.
 
-Do not rely only on the browser redirect to confirm a successful payment.
-Verify the transaction using the appropriate server-side verification
-mechanism.
+<Callout icon="⚠️" theme="warn">
+  ### **Important:**
+
+  Don't treat the browser redirect alone as confirmation that a payment succeeded. Your integration should verify the payment status using PayU's server-side verification mechanism.
+</Callout>
+
+<Columns layout="fixed">
+  <Column>
+    **For Developers:**
+
+    Learn how to verify payment status and handle webhooks in the technical integration guide.
+  </Column>
+</Columns>
+
+***
+
+## What You Get
+
+These are the PayU Hosted checkout integration benefits:
+
+<Accordion title="Key Benefits" icon="fa-rocket">
+  - **Ready-to-use payment page:** PayU hosts the checkout experience, so you do not need to build your own payment page.
+
+  - **Multiple payment methods**: Accept cards, UPI, NetBanking and wallets through one integration.
+
+  - **Secure payment handling**: PayU handles sensitive payment information on the hosted payment page.
+
+  - **Customization options**: Add your branding and configure supported payment options from the PayU Dashboard.
+
+  - **Faster implementation:** Start with a ready-made checkout instead of building a payment experience from scratch.
+</Accordion>
+
+***
 
 ## Next Steps
 
