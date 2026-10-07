@@ -43,7 +43,7 @@ PayU Hosted Checkout is a good choice if you:<br />
 - **Want a ready-made checkout experience** instead of building your own.
 - **Can handle some technical setup** or have a developer or technical team<br />to help.<br />
 
-Consider another PayU solution if:<br />
+**Consider another PayU solution if:**<br />
 
 - **You don't have a website or don't want technical setup&#x20;**→ [Payment Links](...).
 - **You need complete control over the payment page&#x20;**→ [Merchant Hosted Checkout](...).
