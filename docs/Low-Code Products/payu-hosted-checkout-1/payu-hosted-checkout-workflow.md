@@ -92,9 +92,9 @@ A server-generated redirect that sends customers from your site to the PayU-host
 
 ***
 
-## The Customer Experience
+## The Customer Journey
 
-The following shows the customer journey when paying by card. Other payment methods (UPI, netbanking, wallet) follow the same overall flow with method-specific authentication steps.
+After you integrate the PayU Hosted Checkout, this is how the customer journey looks like.
 
 
 <Image src="https://files.readme.io/bc1c758a83c0c601d161a5621e1fe47a6d4c757e847a893b33b05419972e693a-b7b3bc19c28693be346591ec8a2c29ee07fcf47cb088bc6c9a6c34950c2af0dc-payu_hosted_checkout-workflow.png" align="center" />
