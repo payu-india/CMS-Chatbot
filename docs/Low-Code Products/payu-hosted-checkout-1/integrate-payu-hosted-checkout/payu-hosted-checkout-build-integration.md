@@ -73,7 +73,7 @@ Go through the prerequisites before you proceed with the integration.
 
 Follow these steps to integrate PayU Hosted Checkout:
 
-### Step 1. Prepare Payment Request Parameters
+### Step 1: Prepare Payment Request Parameters
 
 Collect and structure the below parameters before initiating a transaction. This section has two parts, mandatory parameters required to test the integration and optional advanced parameters you can pass to collect additional  information.
 
