@@ -1,8 +1,10 @@
 ---
-title: '[INTERNAL REVIEW] Create and Manage Plans'
+title: Create and Manage Plans
 excerpt: Create a manage plans from the PayU dashboard.
 deprecated: false
-hidden: true
+hidden: false
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
