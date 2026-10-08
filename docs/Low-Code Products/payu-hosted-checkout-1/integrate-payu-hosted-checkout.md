@@ -41,11 +41,32 @@ next:
 
 {/* NEW CONTENT: Umbrella page created to support the Tier 2 Integrate section structure. */}
 
-This section covers everything you need to integrate PayU Hosted Checkout, from building the initial connection to going live in production.
+This section covers everything you need to integrate <Anchor target="_blank" href="https://docs.payu.in/docs/payu-hosted-checkout-1">PayU Hosted Checkout</Anchor>, from building the initial connection to going live in production.
+
+<Callout icon="📘" theme="info">
+  ### **API Reference**
+
+  You can integrate PayU Hosted Chekcout using APIs. Refer to the PayU Hosted Checkout API page for more information.
+</Callout>
+
+***
+
+## Before You Build (Prerequisites)
+
+Make sure you have:
+
+- A PayU merchant account
+- Your test merchant key and salt (from PayU Dashboard → Developer Settings)
+- A backend capable of SHA-512 hash generation
+- Publicly reachable HTTPS callback URLs (`surl` and `furl`)
+
+If you haven't completed a test payment yet, start with the [Quick Start](../quick-start) first.
 
 ***
 
 ## Integration Steps
+
+<HostedCheckoutStepsHoverCards />
 
 <Cards columns="3">
   <Card title="Build Integration" href="./build-integration">
@@ -68,22 +89,42 @@ This section covers everything you need to integrate PayU Hosted Checkout, from 
 If you are integrating PayU Hosted Checkout inside a WebView in your Android, iOS, or Flutter app, refer to [WebView for Mobile Apps](./webview-for-mobile-apps). This covers WebView configuration, UPI intent handling, and platform-specific setup required for mobile use.
 
 <Callout icon="❗️" theme="error">
-  ### **NPCI UPI Collect mandate**
-
-  If you are using PayU Hosted Checkout within a WebView, you must handle UPI deeplink URL redirects in your app. See [WebView for Mobile Apps](./webview-for-mobile-apps) for the required implementation.
+  **NPCI UPI Collect mandate**: If you are using PayU Hosted Checkout within a WebView, you must handle UPI deeplink URL redirects in your app. See [WebView for Mobile Apps](./webview-for-mobile-apps) for the required implementation.
 </Callout>
 
 ***
 
-## Before you build
-
-Make sure you have:
-
-- A PayU merchant account
-- Your test merchant key and salt (from PayU Dashboard → Developer Settings)
-- A backend capable of SHA-512 hash generation
-- Publicly reachable HTTPS callback URLs (`surl` and `furl`)
-
-If you haven't completed a test payment yet, start with the [Quick Start](../quick-start) first.
+##
 
 <br />
+
+***
+
+## Next Steps
+
+<Cards columns="3">
+  <Card title="PayU Hosted Checkout APIs" href="../payu-hosted-checkout-apis">
+    Complete API reference: Collect Payment, Verify Payment, EMI eligibility APIs, and Webhooks.
+  </Card>
+
+  <Card title="Customise Checkout" href="../customise-payu-hosted-checkout">
+    Configure payment methods, branding, language, and advanced display options on the PayU checkout page.
+  </Card>
+
+  <Card title="Errors & Troubleshooting" href="../errors-and-troubleshooting">
+    Diagnose and fix common integration issues — hash errors, callback failures, and payment declines.
+  </Card>
+</Cards>
+
+***
+
+<Callout icon="💡" theme="info">
+  **Exploring other PayU solutions?**
+
+  PayU offers multiple integration paths depending on how much control and setup you need:
+
+  - **No code needed**: [Payment Links](../../../introduction-no-code-payments-integration/payment-links-dashboard) — collect payments by sharing a link, no website or code required
+  - **Custom checkout UI**: [Merchant Hosted Checkout](../../../custom-checkout-merchant-hosted) — full control over the payment page design and branding
+  - **Mobile apps**: [Mobile SDKs](../../../mobile-sdks) — native SDKs for Android, iOS, React Native, and Flutter
+  - **eCommerce platforms**: [eCommerce Plugins](../../../ecommerce-platform-plugins) — ready-made plugins for WooCommerce, Shopify, and Magento
+</Callout>
