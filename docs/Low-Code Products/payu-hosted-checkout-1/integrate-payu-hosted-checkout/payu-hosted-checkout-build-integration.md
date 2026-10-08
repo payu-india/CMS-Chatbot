@@ -129,7 +129,7 @@ sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||
 | No UDFs                          | `sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|\|\|\|\|\|\|\|\|\|\|SALT)`                     |
 
 <Callout icon="⚠️" theme="warn">
-  **Critical rules**
+  ### **Critical Rules**
 
   - Generate the hash on your server only — never in browser or mobile app code, as this exposes your salt.
   - Keep all pipe (`|`) separators, even for empty fields.
