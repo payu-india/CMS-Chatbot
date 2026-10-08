@@ -31,6 +31,15 @@ next:
       title: How PayU Hosted Checkout Works
       type: basic
 ---
+<Banner
+  isInline={true}
+  message="Integration effort: Minimal technical setup required"
+  color="#FFC107"
+  textColor="#ffffff"
+  fontSize="14px"
+  fontWeight="bold"
+ />
+
 ## When to Use PayU Hosted Checkout
 
 Use <Anchor target="_blank" href="https://docs.payu.in/docs/payu-hosted-checkout-1">PayU Hosted Checkout</Anchor> if you want to:<br />
