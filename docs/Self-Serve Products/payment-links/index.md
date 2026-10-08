@@ -151,23 +151,23 @@ Consider another PayU solution if:<br />
 
 <Cards>
   <Card title="Local Retailer" icon="fa-store">
-    A customer places an order for a custom or pre-ordered product and needs to pay before it is made or dispatched. Create a Payment Link for the exact order amount, set an expiry, and share it over WhatsApp. The customer pays; you confirm payment in the Dashboard before beginning work.
+    Collect payment for a custom or pre-ordered product before you start work or dispatch.
   </Card>
 
   <Card title="Freelancer or Service Provider" icon="fa-briefcase">
-    A consultant, designer, or contractor has completed work and needs to collect payment from a client. Create a link with the invoice amount and a description, share it by email or SMS, and track payment status from the Dashboard — no bank transfer details or follow-up calls needed.
+    Send a payment link with your invoice amount and description — get paid without sharing bank details.
   </Card>
 
   <Card title="Educator or Training Institute" icon="fa-graduation-cap">
-    A coaching centre, online tutor, or training institute collects course fees or registration payments from students. Create individual links per student or upload a CSV to generate links for an entire batch, with expiry dates aligned to your enrolment deadline.
+    Collect course fees or registration payments individually or in bulk for an entire student batch.
   </Card>
 
   <Card title="Event Organiser or Hospitality Business" icon="fa-calendar-days">
-    A hotel, venue, or event organiser needs to collect an advance deposit before confirming a booking. Enable partial payment on the link so the customer pays a deposit now and settles the balance later — both amounts are tracked under the same link in the Dashboard.
+    Take a deposit to confirm a booking and let the customer settle the balance later.
   </Card>
 
   <Card title="Social Seller or D2C Brand" icon="fa-basket-shopping">
-    A seller on WhatsApp, Instagram, or Facebook receives an order and needs to collect payment quickly. Create a link in seconds from the Dashboard and share the URL directly in the conversation — no website or payment gateway integration required.
+    Share a payment link directly in a WhatsApp or Instagram conversation — no website needed.
   </Card>
 </Cards>
 
