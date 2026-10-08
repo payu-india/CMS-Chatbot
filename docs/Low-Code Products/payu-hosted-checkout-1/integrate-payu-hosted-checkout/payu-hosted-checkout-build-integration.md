@@ -45,7 +45,10 @@ Follow these steps to build a complete PayU Hosted Checkout integration on your 
 <HostedCheckoutStepsHoverCards />
 
 <Callout icon="📘" theme="info">
-  **API references** — [Collect Payment API](ref:_payment_payu_hosted_checkout) · [Verify Payment API](ref:verify_payment_api) · [All APIs](../payu-hosted-checkout-apis)
+  ### **API References:**
+
+  - Collect Payment API
+  - Verify Payment API
 </Callout>
 
 ***
