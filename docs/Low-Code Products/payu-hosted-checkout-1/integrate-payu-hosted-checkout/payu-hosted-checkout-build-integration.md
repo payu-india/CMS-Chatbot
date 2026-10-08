@@ -1394,13 +1394,9 @@ Customer selects a payment method and completes the payment. PayU then sends the
 
 ### Step 4: Verify Response via Reverse Hashing
 
-Response verification ensures that the response originated from PayU and has not been modified. It protects against:
+After the transaction completes, PayU POSTs a response to your `surl` or `furl`. This response includes the transaction status, PayU's transaction ID (`mihpayid`), and a hash. You must verify this hash on your server before marking any order as paid.
 
-\- Tampered responses
-\- Spoofed requests
-\- Fraudulent status updates
-
-After the payment is successful or failed, PayU POSTs back to your `surl` or `furl` respectively with URL-encoded fields (form post). This payload includes the transaction status, `txnid`, `mihpayid`, and a hash you must verify (reverse hashing) for verification. Below is how the reverse hashing works.
+**Why this matters:** Browser redirects can be spoofed. Reverse hash verification confirms the response genuinely came from PayU and was not tampered with in transit.
 
 <Callout icon="✅" theme="okay">
   ### **Validation Rules:**
@@ -1418,17 +1414,17 @@ After the payment is successful or failed, PayU POSTs back to your `surl` or `fu
   sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
   ```
 
-  You should compare the hash value you got from the above logic with the hash value you received in the response. The payment is verified if the hash values match and update the order state.
+  Generate this hash on your server using the values from the response. If your computed hash matches the `hash` field in the response, the response is authentic.
 </Accordion>
 
 <Callout icon="⚠️" theme="warn">
-  ### **Watch Out!**
+  ### **Important!**
 
-  If hash mismatches:
+  **If the hash mismatches:**
 
-  - Reject callback
-  - Log security event
-  - Do not mark payment successful
+  - Reject the callback immediately
+  - Log the event as a security alert
+  - Do not mark the payment as successful
 </Callout>
 
 You can also use the <Anchor target="_blank" href="https://payu-hashverificationtool.onrender.com/">PayU's Hash Verification System</Anchor> to generate a hash (reverse hash) for payment verification.
@@ -1437,14 +1433,14 @@ You can also use the <Anchor target="_blank" href="https://payu-hashverification
 
 ***
 
-### Step 1.5 Verify the Payment
+### Step 5: Verify the Payment
 
-After the transaction is complete, you should check the payment status. Use PayU verification mechanisms for reconciliation. This is the recommended verification order:
+After receiving and verifying the callback, confirm the payment status through one or more of the following methods. Use this recommended order:
 
-1\. Reverse hash validation (_step 1.4)_
-2\. Webhooks
-3\. Verify Payment API
-4\. PayU Dashboard
+1. **Reverse hash validation** (Step 1.4)
+2. **Webhooks:** Configure webhooks to receive server-to-server payment status notifications. Webhooks are more reliable than browser callbacks because they are independent of the customer's browser session. See [Manage Webhooks](https://docs.payu.in/docs/webhook-events-and-sample-payloads).
+3. **Verify Payment API:** Poll the [Verify Payment API](ref:verify_payment_api) from your server to confirm transaction status.
+4. **PayU Dashboard:** Log in to [**PayU Dashboard**](https://onboarding.payu.in/app/account/signin) → **Transactions** to check if a PayU ID is created and the status is Success.
 
 <Accordion title="Verify Payment Methods" icon="fa-check-double">
   <Tabs>
@@ -1455,7 +1451,54 @@ After the transaction is complete, you should check the payment status. Use PayU
 
       These callbacks are triggered by specific events or instances and operate at the server-to-server (S2S) level.<br />
 
-      Know how to <a href="https://docs.payu.in/docs/webhook-events-and-sample-payloads" target="_blank">manage Webhooks</a> for Payments.
+      Know how to <a href="https://docs.payu.in/docs/webhook-events-and-sample-payloads" target="_blank">manage Webhooks</a> for Payments.<br />
+    </Tab>
+
+    <Tab title="2. Verify using APIs">
+      You can poll the <a href="https://docs.payu.in/reference/verify_payment_api" target="_blank">Verify Payment API</a> to verify the payment.
+    </Tab>
+
+    <Tab title="3. Verify from Dashboard">
+      To verify the payment from the PayU Dashboard:<br />
+
+      1. Log in to the <a href="https://onboarding.payu.in/app/account/signin" target="_blank">PayU Dashboard</a> and click **Transactions** from the left menu.
+      2. Check if a **Payu ID (Transaction ID)** is created for the recent transaction and if the payment is successful, the status is marked as **Success**.<br />
+
+
+      <Image src="https://files.readme.io/30840455deadfe76c808f4954f9d18dcdb2a949d9e6851ee8566e9f58094bd3d-varify_payment_dashboard.png" align="center" caption="_Verify the Payment from Dashboard_" border={true} />
+
     </Tab>
   </Tabs>
 </Accordion>
+
+***
+
+## Security
+
+{/* Source: Security requirements consolidated from existing callouts in this file, go-live-checklist.md Section 3, prebuilt-checkout-page-integration.md prerequisites, and accept-payments-using-payu-hosted-checkout.md security notes. PCI scope reduction sourced from index.md Key Benefits accordion. */}
+
+PayU Hosted Checkout uses SHA-512 hashing to protect both the payment request and PayU's response. These requirements are not optional — PayU will reject requests with invalid hashes, and skipping response verification leaves your integration open to spoofing attacks.
+
+| Requirement                                                       | Where it applies      | Why                                                                                                                         |
+| ----------------------------------------------------------------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| Generate hash **server-side only**                                | Step 1.2              | Client-side hash generation exposes your merchant salt, allowing attackers to forge payment requests with arbitrary amounts |
+| Store merchant salt in environment variables or a secrets manager | Your server config    | Committing or logging the salt exposes it permanently; treat it as a password                                               |
+| Use **HTTPS** for `surl`, `furl`, and webhook URL                 | Your server endpoints | HTTP endpoints transmit payment data unencrypted and can be intercepted or modified in transit                              |
+| Validate reverse hash on **every** callback and webhook           | Step 1.4              | Confirms the response genuinely came from PayU and was not tampered with; browser redirects can be spoofed by anyone        |
+| Verify response `amount` matches your stored order amount         | Step 1.4              | Prevents response-level amount tampering — always check the amount from PayU matches what you originally sent               |
+| Verify response `txnid` matches a known, unpaid order             | Step 1.4              | Prevents replay attacks using transaction IDs from unrelated orders                                                         |
+| Implement idempotency on `txnid`                                  | Your order management | PayU may deliver callbacks or webhooks more than once; your handler must not process the same `txnid` twice                 |
+
+<Callout icon="🔐" theme="warn">
+  ### **Non-negotiable Rules**
+
+  - **Never generate the hash in the browser, mobile app, or any client-facing code.** If your salt is accessible client-side, an attacker can extract it and forge payment requests for any amount.
+  - **Never skip reverse hash validation.** A browser redirect to `surl` can be fabricated by anyone. Only the hash comparison — performed server-side using your salt — proves the response is authentic.
+  - **Never log your merchant salt.** You may log the final hash string for debugging, but never the salt value itself.
+</Callout>
+
+### PCI Scope Reduction
+
+Because card details are entered on PayU's payment page — not on your website — your server never handles raw card numbers. This removes the most sensitive payment data from your infrastructure and reduces your PCI-DSS compliance scope.
+
+You remain responsible for securing your backend, protecting your merchant credentials (key and salt), and enforcing HTTPS on all endpoints that receive payment data from PayU.
