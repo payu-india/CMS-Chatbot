@@ -37,56 +37,20 @@ PayU Hosted Checkout is a redirect-based payment integration. When a customer in
 <Image src="https://files.readme.io/932f800-payuhosted_wf.png" alt="PayU Hosted Checkout payment flow" align="center" border={true} />
 
 
-The payment moves through six stages:
+The payment moves through six stages:<br />
 
-1. **Initiation** — The customer proceeds to pay on your website or app. Your application prepares the payment details and redirects them to the PayU-hosted payment page.
-2. **Redirect** — The customer arrives at the PayU checkout page. Your application is no longer involved in the payment interaction from this point.
-3. **Payment selection and entry** — The customer selects a payment method and enters their payment details directly on PayU's hosted page.
-4. **Authentication** — PayU manages all authentication: OTP prompts for card payments, UPI collect or intent flows, wallet logins, and net banking redirects.
-5. **Processing** — PayU sends the transaction to the relevant bank, card network, or payment provider and receives the result.
-6. **Return** — PayU redirects the customer back to your application and posts the payment result to your configured callback URL.
-
-***
-
-## What Happens When a Customer Makes a Payment?
-
-The following shows the customer journey for a card payment. UPI, net banking, and wallet payments follow the same overall stages with method-specific authentication steps.
-
-
-<Image src="https://files.readme.io/bc1c758a83c0c601d161a5621e1fe47a6d4c757e847a893b33b05419972e693a-b7b3bc19c28693be346591ec8a2c29ee07fcf47cb088bc6c9a6c34950c2af0dc-payu_hosted_checkout-workflow.png" align="center" />
-
-
-<Cards columns="3">
-  <Card title="Initiate Payment" icon="fa-mouse-pointer">
-    Customer clicks **Pay Now** on your website or app.
-  </Card>
-
-  <Card title="Redirect to PayU" icon="fa-external-link-alt">
-    Customer is redirected to the PayU Hosted Checkout page.
-  </Card>
-
-  <Card title="Enter Payment Details" icon="fa-credit-card">
-    Customer selects a payment method and enters details (Card, UPI, NetBanking, Wallet).
-  </Card>
-
-  <Card title="Authenticate Payment" icon="fa-shield-alt">
-    Customer completes authentication (OTP, UPI approval, etc.).
-  </Card>
-
-  <Card title="Payment Processing" icon="fa-university">
-    PayU processes the transaction with the bank or payment provider.
-  </Card>
-
-  <Card title="Payment Status" icon="fa-check-circle">
-    Customer is redirected back to your website with success or failure status.
-  </Card>
-</Cards>
+1. **Initiation**: The customer proceeds to pay on your website or app. Your application prepares the payment details and redirects them to the PayU-hosted payment page.
+2. **Redirect**: The customer arrives at the PayU checkout page. Your application is no longer involved in the payment interaction from this point.
+3. **Payment selection and entry**: The customer selects a payment method and enters their payment details directly on PayU's hosted page.
+4. **Authentication**: PayU manages all authentication: OTP prompts for card payments, UPI collect or intent flows, wallet logins, and net banking redirects.
+5. **Processing**: PayU sends the transaction to the relevant bank, card network, or payment provider and receives the result.
+6. **Return**: PayU redirects the customer back to your application and posts the payment result to your configured callback URL.
 
 ***
 
 ## What Happens After the Payment?
 
-After the transaction completes, PayU determines the outcome and returns it to your application:
+After the transaction completes, PayU determines the outcome and returns it to your application:<br />
 
 | Outcome       | Callback | What it means                                                                |
 | ------------- | -------- | ---------------------------------------------------------------------------- |
@@ -95,12 +59,12 @@ After the transaction completes, PayU determines the outcome and returns it to y
 | **Pending**   | `surl`   | Transaction is still being processed (for example, NEFT/RTGS or delayed UPI) |
 | **Cancelled** | `furl`   | Customer cancelled before completing payment                                 |
 
-The payment result arrives at your application in two ways:
+The payment result arrives at your application in two ways:<br />
 
-- **Browser redirect** — PayU redirects the customer's browser to your `surl` or `furl` and posts the result. This depends on the customer's browser session remaining active through the redirect.
-- **Webhook** — PayU posts the result server-to-server to a webhook endpoint you configure. Webhooks arrive independently of the browser session and are the more reliable mechanism for confirming payment outcomes.
+- **Browser redirect**: PayU redirects the customer's browser to your `surl` or `furl` and posts the result. This depends on the customer's browser session remaining active through the redirect.
+- **Webhook**: PayU posts the result server-to-server to a webhook endpoint you configure. Webhooks arrive independently of the browser session and are the more reliable mechanism for confirming payment outcomes.<br />
 
-Your application should verify the result before treating the payment as confirmed and updating its order or payment state.
+Your application should verify the result before treating the payment as confirmed and updating its order or payment state.<br />
 
 For implementation details — callback URL configuration, result verification, and webhook setup — see [Build Integration](./integrate/build-integration).
 
