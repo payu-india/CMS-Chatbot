@@ -62,7 +62,7 @@ If you are integrating PayU Hosted Checkout inside a WebView in your Android, iO
 </Callout>
 
 <Callout icon="💡" theme="info">
-  ### **Exploring other PayU solutions?**
+  ### **Exploring Other PayU Solutions?**
 
   PayU offers multiple integration paths depending on how much control and setup you need:
 
