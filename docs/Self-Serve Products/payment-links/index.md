@@ -58,16 +58,27 @@ next:
   fontWeight="bold"
  />
 
-## What Can I Do with Payment Links?
+## Why Use Payment Links?
 
-<Glossary>Payment Links</Glossary> lets you collect payments by creating a secure payment link and sharing it with your customer through WhatsApp, SMS, email, or any other channel you use to communicate with them.<br />
+<Accordion title="Create-to-Collect in Minutes" icon="fa-bolt">
+  Create a Payment Link in a few clicks and start collecting money right away. No website, no developer, no waiting.
+</Accordion>
 
-You can use Payment Links to:<br />
+<Accordion title="Automatically Delivers Link to Your Customers" icon="fa-paper-plane">
+  Toggle on SMS and email delivery — PayU sends the link to your customer the moment it's created. No copy-pasting or manual sharing needed.
+</Accordion>
 
-- Create a payment request without a website
-- Share it through WhatsApp, SMS, email, etc.
-- Collect payments using multiple payment methods
-- Track and manage payments from the Dashboard<br />
+<Accordion title="Set Expiry Dates" icon="fa-clock">
+  Control exactly when a link stops accepting payments. Set a due date so your customers know when to act — and your links don't stay open indefinitely.
+</Accordion>
+
+<Accordion title="Collect a Deposit, Settle the Balance Later" icon="fa-money-bill-wave">
+  Enable partial payments so customers can pay a portion upfront and the rest when they are ready. You set the minimum first payment — keeping the transaction moving on your terms.
+</Accordion>
+
+<Accordion title="Supports Every Indian Payment Method" icon="fa-credit-card">
+  UPI (all apps), credit and debit cards, net banking (50+ banks), wallets, EMI, and BNPL. One link, every way to pay.
+</Accordion>
 
 Check this video to see how PayU Payment Links work
 
@@ -133,6 +144,32 @@ Consider another PayU solution if:<br />
 
   <Anchor target="_blank" href="https://docs.payu.in/docs/start-here">Find the Right Product for You</Anchor> →
 </Callout>
+
+***
+
+## Common Use Cases
+
+<Cards>
+  <Card title="Local Retailer" icon="fa-store">
+    A customer places an order for a custom or pre-ordered product and needs to pay before it is made or dispatched. Create a Payment Link for the exact order amount, set an expiry, and share it over WhatsApp. The customer pays; you confirm payment in the Dashboard before beginning work.
+  </Card>
+
+  <Card title="Freelancer or Service Provider" icon="fa-briefcase">
+    A consultant, designer, or contractor has completed work and needs to collect payment from a client. Create a link with the invoice amount and a description, share it by email or SMS, and track payment status from the Dashboard — no bank transfer details or follow-up calls needed.
+  </Card>
+
+  <Card title="Educator or Training Institute" icon="fa-graduation-cap">
+    A coaching centre, online tutor, or training institute collects course fees or registration payments from students. Create individual links per student or upload a CSV to generate links for an entire batch, with expiry dates aligned to your enrolment deadline.
+  </Card>
+
+  <Card title="Event Organiser or Hospitality Business" icon="fa-calendar-days">
+    A hotel, venue, or event organiser needs to collect an advance deposit before confirming a booking. Enable partial payment on the link so the customer pays a deposit now and settles the balance later — both amounts are tracked under the same link in the Dashboard.
+  </Card>
+
+  <Card title="Social Seller or D2C Brand" icon="fa-basket-shopping">
+    A seller on WhatsApp, Instagram, or Facebook receives an order and needs to collect payment quickly. Create a link in seconds from the Dashboard and share the URL directly in the conversation — no website or payment gateway integration required.
+  </Card>
+</Cards>
 
 ***
 
