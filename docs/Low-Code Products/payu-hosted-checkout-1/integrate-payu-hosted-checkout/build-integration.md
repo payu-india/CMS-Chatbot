@@ -7,7 +7,29 @@ excerpt: >-
 deprecated: false
 hidden: true
 metadata:
+  title: Build PayU Hosted Checkout Integration
+  description: >-
+    Complete technical guide: payment request parameters, SHA-512 hash
+    generation, form POST to PayU, response handling, reverse hash verification,
+    and payment status confirmation.
+  keywords:
+    - payu hosted checkout build integration
+    - payu payment request parameters mandatory optional
+    - payu sha512 hash generation php java python nodejs csharp
+    - payu html form post _payment endpoint
+    - payu reverse hash verification
+    - payu checkout code samples india
+    - payu txnid surl furl hash integration
   robots: index
+next:
+  description: Explore related information and resources.
+  pages:
+    - slug: payu-hosted-checkout-1
+      title: PayU Hosted Checkout
+      type: basic
+    - slug: integrate-payu-hosted-checkout
+      title: Integrate PayU Hosted Checkout
+      type: basic
 ---
 <Banner
   isInline={true}
