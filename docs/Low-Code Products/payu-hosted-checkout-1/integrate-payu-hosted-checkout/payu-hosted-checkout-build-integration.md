@@ -110,7 +110,7 @@ Collect and structure the parameters below before initiating a transaction.
 
 ***
 
-## Step 2. Generate Secure Hash
+### Step 2. Generate Secure Hash
 
 The hash authenticates the payment request and prevents tampering. PayU will reject any request where the hash does not match.
 
