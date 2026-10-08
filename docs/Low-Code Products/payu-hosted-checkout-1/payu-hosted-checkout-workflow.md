@@ -116,5 +116,5 @@ For implementation details — callback URL configuration, result verification, 
 
 ## Next Steps
 
-- [Quick Start](./quick-start) — Set up and run your first test payment in the sandbox.
-- [Build Integration](./integrate/build-integration) — Complete technical implementation: request parameters, security signature generation, endpoint configuration, response verification, and webhooks.
+- [Quick Start:](./quick-start) Set up and run your first test payment in the sandbox.
+- [Build Integration:](./integrate/build-integration) Complete technical implementation: request parameters, security signature generation, endpoint configuration, response verification, and webhooks.
