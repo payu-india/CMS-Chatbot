@@ -1508,3 +1508,17 @@ You remain responsible for securing your backend, protecting your merchant crede
 ## Using WebView in a mobile app?
 
 If you are embedding PayU Hosted Checkout inside a WebView in your Android, iOS, or Flutter app, see [WebView for Mobile Apps](./webview-for-mobile-apps) for the platform-specific configuration required for JavaScript, DOM storage, UPI intent handling, and deep-link routing.
+
+***
+
+## Next Steps
+
+<Cards columns="2">
+  <Card title="Test Integration" href="./test-integration" icon="fa-flask">
+    Run through test credentials, payment scenarios, and expected responses for every payment method before going live.
+  </Card>
+
+  <Card title="Go-live Checklist" href="./go-live-checklist" icon="fa-circle-check">
+    Switch to production credentials, verify security requirements, configure webhooks, and confirm production readiness.
+  </Card>
+</Cards>
