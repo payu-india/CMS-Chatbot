@@ -10,49 +10,11 @@ metadata:
 next:
   description: ''
 ---
----
-title: Customize PayU Payment Page
-excerpt: >-
-  Customize the PayU Hosted Checkout page: enforce payment modes with enforce_paymethod,
-  hide options with drop_category, set display language with display_lang, and
-  configure checkout payment methods.
-deprecated: false
-hidden: false
-metadata:
-  title: Customize PayU Payment Page or Checkout Page
-  description: >-
-    Customize PayU Hosted Checkout for the Collect Payment (/_payment) flow: use
-    enforce_paymethod to limit payment modes (cards, UPI, netbanking, EMI, wallet,
-    BNPL, QR, and more), drop_category to hide categories or bank/scheme codes,
-    and display_lang for Hindi, Tamil, Marathi, and other languages. Covers
-    checkout branding, payment method activation, and sample requests with hash,
-    surl, furl, key, and txnid.
-  keywords:
-    - enforce_paymethod
-    - drop_category
-    - display_lang
-    - language
-    - PayU Hosted Checkout
-    - payment page customization
-    - Collect Payment API
-    - _payment
-    - hash
-    - surl
-    - furl
-    - creditcard
-    - debitcard
-    - netbanking
-    - upi
-    - checkout settings
-    - payment methods
-  robots: index
-next:
-  description: ''
----
-
 After you complete PayU Hosted Checkout integration, you will be able to see the PayU Payment page similar to the following screenshot when calling the **Collect Payment** API:
 
-<Image align="center" alt="PayU Hosted Checkout payment page showing UPI, Cards, Net Banking, and Wallet options" border={true} width="400px" src="https://files.readme.io/1ee3893480e6e3d3c1e28d6ecffc4c52d1b3e8f2aba0247c9eb486dfef0fafc5-Screenshot_2024-09-06_at_11.54.02_AM.png" className="border" />
+
+<Image src="https://files.readme.io/1ee3893480e6e3d3c1e28d6ecffc4c52d1b3e8f2aba0247c9eb486dfef0fafc5-Screenshot_2024-09-06_at_11.54.02_AM.png" alt="PayU Hosted Checkout payment page showing UPI, Cards, Net Banking, and Wallet options" align="center" width="400px" border={true} />
+
 
 You can customize the following in the Checkout page:
 
@@ -69,7 +31,7 @@ You can customize the following in the Checkout page:
 You can append the parameter names in your transaction request to opt for all or some of the payment modes.
 
 <Accordion title="Enforce payment customization" icon="fa-code">
-  Parameter name: **enforce\_paymethod**
+  Parameter name: **enforce_paymethod**
 
   This parameter allows you to customize the payment options for each transaction. You can enforce specific payment modes, cards scheme, and specific banks under Net Banking using this method.
 
@@ -90,18 +52,18 @@ You can append the parameter names in your transaction request to opt for all or
 
   To enforce complete categories, use the values as described in the following table:
 
-  | Category    | Value of enforce\_paymethod |
-  | :---------- | :-------------------------- |
-  | Credit Card | creditcard                  |
-  | Debit Card  | debitcard                   |
-  | Net Banking | netbanking                  |
-  | NEFT/RTGS   | neftrtgs                    |
-  | EMI         | emi                         |
-  | UPI         | upi                         |
-  | Wallet      | cashcard                    |
-  | Sodexo      | SODEXO                      |
-  | BNPL        | bnpl                        |
-  | QR          | qr                          |
+  | Category    | Value of enforce_paymethod |
+  | :---------- | :------------------------- |
+  | Credit Card | creditcard                 |
+  | Debit Card  | debitcard                  |
+  | Net Banking | netbanking                 |
+  | NEFT/RTGS   | neftrtgs                   |
+  | EMI         | emi                        |
+  | UPI         | upi\|upicc                 |
+  | Wallet      | cashcard                   |
+  | Sodexo      | SODEXO                     |
+  | BNPL        | bnpl                       |
+  | QR          | qr                         |
 
   To enforce sub-categories, use the respective bank codes for them. Contact PayU Support or at help.payu.in to get the respective bank codes.
 
@@ -116,7 +78,7 @@ You can append the parameter names in your transaction request to opt for all or
   All the credit card and debit card options are displayed (as the whole category is enforced). The rest of the categories will not be displayed, that is, EMI, cash card, credit card, debit card, etc. – as they are not being mentioned in the string.
 
   <Accordion title="Sample request with single category" icon="fa-code">
-    **Credit Card only (`creditcard`)**
+    **Credit Card only (**`creditcard`**)**
 
     ```curl
     # PayU Hosted Checkout - enforce payment method customization
@@ -262,12 +224,12 @@ You can append the parameter names in your transaction request to opt for all or
     <?php
     // PayU Hosted Checkout - enforce payment method customization
     $url = 'https://test.payu.in/_payment';
-    
+
     $headers = array(
         'accept: application/json',
         'Content-Type: application/x-www-form-urlencoded'
     );
-    
+
     $payload = array(
         'key' => 'JP***g',  // Merchant key provided by PayU
         'txnid' => 'ENFCC001',  // Unique transaction ID generated by merchant
@@ -281,17 +243,17 @@ You can append the parameter names in your transaction request to opt for all or
         'enforce_paymethod' => 'creditcard',  // Enforce payment method(s): creditcard
         'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
     );
-    
+
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
+
     $response = curl_exec($ch);
     curl_close($ch);
-    
+
     echo $response;
     ?>
     ```
@@ -300,12 +262,12 @@ You can append the parameter names in your transaction request to opt for all or
     use warnings;
     use LWP::UserAgent;
     use HTTP::Request::Common;
-    
+
     # PayU Hosted Checkout - enforce payment method customization
     my $url = 'https://test.payu.in/_payment';
-    
+
     my $ua = LWP::UserAgent->new;
-    
+
     my %payload = (
         key => 'JP***g',  # Merchant key provided by PayU
         txnid => 'ENFCC001',  # Unique transaction ID generated by merchant
@@ -319,18 +281,18 @@ You can append the parameter names in your transaction request to opt for all or
         enforce_paymethod => 'creditcard',  # Enforce payment method(s): creditcard
         hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
     );
-    
+
     my $response = $ua->post(
         $url,
         'accept' => 'application/json',
         'Content-Type' => 'application/x-www-form-urlencoded',
         Content => \%payload
     );
-    
+
     print $response->content;
     ```
 
-    **Debit Card only (`debitcard`)**
+    **Debit Card only (**`debitcard`**)**
 
     ```curl
     # PayU Hosted Checkout - enforce payment method customization
@@ -476,12 +438,12 @@ You can append the parameter names in your transaction request to opt for all or
     <?php
     // PayU Hosted Checkout - enforce payment method customization
     $url = 'https://test.payu.in/_payment';
-    
+
     $headers = array(
         'accept: application/json',
         'Content-Type: application/x-www-form-urlencoded'
     );
-    
+
     $payload = array(
         'key' => 'JP***g',  // Merchant key provided by PayU
         'txnid' => 'ENFDC001',  // Unique transaction ID generated by merchant
@@ -495,17 +457,17 @@ You can append the parameter names in your transaction request to opt for all or
         'enforce_paymethod' => 'debitcard',  // Enforce payment method(s): debitcard
         'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
     );
-    
+
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
+
     $response = curl_exec($ch);
     curl_close($ch);
-    
+
     echo $response;
     ?>
     ```
@@ -514,12 +476,12 @@ You can append the parameter names in your transaction request to opt for all or
     use warnings;
     use LWP::UserAgent;
     use HTTP::Request::Common;
-    
+
     # PayU Hosted Checkout - enforce payment method customization
     my $url = 'https://test.payu.in/_payment';
-    
+
     my $ua = LWP::UserAgent->new;
-    
+
     my %payload = (
         key => 'JP***g',  # Merchant key provided by PayU
         txnid => 'ENFDC001',  # Unique transaction ID generated by merchant
@@ -533,18 +495,18 @@ You can append the parameter names in your transaction request to opt for all or
         enforce_paymethod => 'debitcard',  # Enforce payment method(s): debitcard
         hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
     );
-    
+
     my $response = $ua->post(
         $url,
         'accept' => 'application/json',
         'Content-Type' => 'application/x-www-form-urlencoded',
         Content => \%payload
     );
-    
+
     print $response->content;
     ```
 
-    **Net Banking only (`netbanking`)**
+    **Net Banking only (**`netbanking`**)**
 
     ```curl
     # PayU Hosted Checkout - enforce payment method customization
@@ -690,12 +652,12 @@ You can append the parameter names in your transaction request to opt for all or
     <?php
     // PayU Hosted Checkout - enforce payment method customization
     $url = 'https://test.payu.in/_payment';
-    
+
     $headers = array(
         'accept: application/json',
         'Content-Type: application/x-www-form-urlencoded'
     );
-    
+
     $payload = array(
         'key' => 'JP***g',  // Merchant key provided by PayU
         'txnid' => 'ENFNB001',  // Unique transaction ID generated by merchant
@@ -709,17 +671,17 @@ You can append the parameter names in your transaction request to opt for all or
         'enforce_paymethod' => 'netbanking',  // Enforce payment method(s): netbanking
         'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
     );
-    
+
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
+
     $response = curl_exec($ch);
     curl_close($ch);
-    
+
     echo $response;
     ?>
     ```
@@ -728,12 +690,12 @@ You can append the parameter names in your transaction request to opt for all or
     use warnings;
     use LWP::UserAgent;
     use HTTP::Request::Common;
-    
+
     # PayU Hosted Checkout - enforce payment method customization
     my $url = 'https://test.payu.in/_payment';
-    
+
     my $ua = LWP::UserAgent->new;
-    
+
     my %payload = (
         key => 'JP***g',  # Merchant key provided by PayU
         txnid => 'ENFNB001',  # Unique transaction ID generated by merchant
@@ -747,18 +709,18 @@ You can append the parameter names in your transaction request to opt for all or
         enforce_paymethod => 'netbanking',  # Enforce payment method(s): netbanking
         hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
     );
-    
+
     my $response = $ua->post(
         $url,
         'accept' => 'application/json',
         'Content-Type' => 'application/x-www-form-urlencoded',
         Content => \%payload
     );
-    
+
     print $response->content;
     ```
 
-    **NEFT/RTGS only (`neftrtgs`)**
+    **NEFT/RTGS only (**`neftrtgs`**)**
 
     ```curl
     # PayU Hosted Checkout - enforce payment method customization
@@ -904,12 +866,12 @@ You can append the parameter names in your transaction request to opt for all or
     <?php
     // PayU Hosted Checkout - enforce payment method customization
     $url = 'https://test.payu.in/_payment';
-    
+
     $headers = array(
         'accept: application/json',
         'Content-Type: application/x-www-form-urlencoded'
     );
-    
+
     $payload = array(
         'key' => 'JP***g',  // Merchant key provided by PayU
         'txnid' => 'ENFNEFT001',  // Unique transaction ID generated by merchant
@@ -923,17 +885,17 @@ You can append the parameter names in your transaction request to opt for all or
         'enforce_paymethod' => 'neftrtgs',  // Enforce payment method(s): neftrtgs
         'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
     );
-    
+
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
+
     $response = curl_exec($ch);
     curl_close($ch);
-    
+
     echo $response;
     ?>
     ```
@@ -942,12 +904,12 @@ You can append the parameter names in your transaction request to opt for all or
     use warnings;
     use LWP::UserAgent;
     use HTTP::Request::Common;
-    
+
     # PayU Hosted Checkout - enforce payment method customization
     my $url = 'https://test.payu.in/_payment';
-    
+
     my $ua = LWP::UserAgent->new;
-    
+
     my %payload = (
         key => 'JP***g',  # Merchant key provided by PayU
         txnid => 'ENFNEFT001',  # Unique transaction ID generated by merchant
@@ -961,18 +923,18 @@ You can append the parameter names in your transaction request to opt for all or
         enforce_paymethod => 'neftrtgs',  # Enforce payment method(s): neftrtgs
         hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
     );
-    
+
     my $response = $ua->post(
         $url,
         'accept' => 'application/json',
         'Content-Type' => 'application/x-www-form-urlencoded',
         Content => \%payload
     );
-    
+
     print $response->content;
     ```
 
-    **EMI only (`emi`)**
+    **EMI only (**`emi`**)**
 
     ```curl
     # PayU Hosted Checkout - enforce payment method customization
@@ -1118,12 +1080,12 @@ You can append the parameter names in your transaction request to opt for all or
     <?php
     // PayU Hosted Checkout - enforce payment method customization
     $url = 'https://test.payu.in/_payment';
-    
+
     $headers = array(
         'accept: application/json',
         'Content-Type: application/x-www-form-urlencoded'
     );
-    
+
     $payload = array(
         'key' => 'JP***g',  // Merchant key provided by PayU
         'txnid' => 'ENFEMI001',  // Unique transaction ID generated by merchant
@@ -1137,17 +1099,17 @@ You can append the parameter names in your transaction request to opt for all or
         'enforce_paymethod' => 'emi',  // Enforce payment method(s): emi
         'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
     );
-    
+
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
+
     $response = curl_exec($ch);
     curl_close($ch);
-    
+
     echo $response;
     ?>
     ```
@@ -1156,12 +1118,12 @@ You can append the parameter names in your transaction request to opt for all or
     use warnings;
     use LWP::UserAgent;
     use HTTP::Request::Common;
-    
+
     # PayU Hosted Checkout - enforce payment method customization
     my $url = 'https://test.payu.in/_payment';
-    
+
     my $ua = LWP::UserAgent->new;
-    
+
     my %payload = (
         key => 'JP***g',  # Merchant key provided by PayU
         txnid => 'ENFEMI001',  # Unique transaction ID generated by merchant
@@ -1175,18 +1137,18 @@ You can append the parameter names in your transaction request to opt for all or
         enforce_paymethod => 'emi',  # Enforce payment method(s): emi
         hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
     );
-    
+
     my $response = $ua->post(
         $url,
         'accept' => 'application/json',
         'Content-Type' => 'application/x-www-form-urlencoded',
         Content => \%payload
     );
-    
+
     print $response->content;
     ```
 
-    **UPI only (`upi`)**
+    **UPI only (**`upi`**)**
 
     ```curl
     # PayU Hosted Checkout - enforce payment method customization
@@ -1332,12 +1294,12 @@ You can append the parameter names in your transaction request to opt for all or
     <?php
     // PayU Hosted Checkout - enforce payment method customization
     $url = 'https://test.payu.in/_payment';
-    
+
     $headers = array(
         'accept: application/json',
         'Content-Type: application/x-www-form-urlencoded'
     );
-    
+
     $payload = array(
         'key' => 'JP***g',  // Merchant key provided by PayU
         'txnid' => 'ENFUPI001',  // Unique transaction ID generated by merchant
@@ -1351,17 +1313,17 @@ You can append the parameter names in your transaction request to opt for all or
         'enforce_paymethod' => 'upi',  // Enforce payment method(s): upi
         'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
     );
-    
+
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
+
     $response = curl_exec($ch);
     curl_close($ch);
-    
+
     echo $response;
     ?>
     ```
@@ -1370,12 +1332,12 @@ You can append the parameter names in your transaction request to opt for all or
     use warnings;
     use LWP::UserAgent;
     use HTTP::Request::Common;
-    
+
     # PayU Hosted Checkout - enforce payment method customization
     my $url = 'https://test.payu.in/_payment';
-    
+
     my $ua = LWP::UserAgent->new;
-    
+
     my %payload = (
         key => 'JP***g',  # Merchant key provided by PayU
         txnid => 'ENFUPI001',  # Unique transaction ID generated by merchant
@@ -1389,18 +1351,18 @@ You can append the parameter names in your transaction request to opt for all or
         enforce_paymethod => 'upi',  # Enforce payment method(s): upi
         hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
     );
-    
+
     my $response = $ua->post(
         $url,
         'accept' => 'application/json',
         'Content-Type' => 'application/x-www-form-urlencoded',
         Content => \%payload
     );
-    
+
     print $response->content;
     ```
 
-    **Wallet / Cash Card only (`cashcard`)**
+    **Wallet / Cash Card only (**`cashcard`**)**
 
     ```curl
     # PayU Hosted Checkout - enforce payment method customization
@@ -1546,12 +1508,12 @@ You can append the parameter names in your transaction request to opt for all or
     <?php
     // PayU Hosted Checkout - enforce payment method customization
     $url = 'https://test.payu.in/_payment';
-    
+
     $headers = array(
         'accept: application/json',
         'Content-Type: application/x-www-form-urlencoded'
     );
-    
+
     $payload = array(
         'key' => 'JP***g',  // Merchant key provided by PayU
         'txnid' => 'ENFCASH001',  // Unique transaction ID generated by merchant
@@ -1565,17 +1527,17 @@ You can append the parameter names in your transaction request to opt for all or
         'enforce_paymethod' => 'cashcard',  // Enforce payment method(s): cashcard
         'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
     );
-    
+
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
+
     $response = curl_exec($ch);
     curl_close($ch);
-    
+
     echo $response;
     ?>
     ```
@@ -1584,12 +1546,12 @@ You can append the parameter names in your transaction request to opt for all or
     use warnings;
     use LWP::UserAgent;
     use HTTP::Request::Common;
-    
+
     # PayU Hosted Checkout - enforce payment method customization
     my $url = 'https://test.payu.in/_payment';
-    
+
     my $ua = LWP::UserAgent->new;
-    
+
     my %payload = (
         key => 'JP***g',  # Merchant key provided by PayU
         txnid => 'ENFCASH001',  # Unique transaction ID generated by merchant
@@ -1603,18 +1565,18 @@ You can append the parameter names in your transaction request to opt for all or
         enforce_paymethod => 'cashcard',  # Enforce payment method(s): cashcard
         hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
     );
-    
+
     my $response = $ua->post(
         $url,
         'accept' => 'application/json',
         'Content-Type' => 'application/x-www-form-urlencoded',
         Content => \%payload
     );
-    
+
     print $response->content;
     ```
 
-    **Sodexo only (`SODEXO`)**
+    **Sodexo only (**`SODEXO`**)**
 
     ```curl
     # PayU Hosted Checkout - enforce payment method customization
@@ -1760,12 +1722,12 @@ You can append the parameter names in your transaction request to opt for all or
     <?php
     // PayU Hosted Checkout - enforce payment method customization
     $url = 'https://test.payu.in/_payment';
-    
+
     $headers = array(
         'accept: application/json',
         'Content-Type: application/x-www-form-urlencoded'
     );
-    
+
     $payload = array(
         'key' => 'JP***g',  // Merchant key provided by PayU
         'txnid' => 'ENFSODEXO001',  // Unique transaction ID generated by merchant
@@ -1779,17 +1741,17 @@ You can append the parameter names in your transaction request to opt for all or
         'enforce_paymethod' => 'SODEXO',  // Enforce payment method(s): SODEXO
         'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
     );
-    
+
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
+
     $response = curl_exec($ch);
     curl_close($ch);
-    
+
     echo $response;
     ?>
     ```
@@ -1798,12 +1760,12 @@ You can append the parameter names in your transaction request to opt for all or
     use warnings;
     use LWP::UserAgent;
     use HTTP::Request::Common;
-    
+
     # PayU Hosted Checkout - enforce payment method customization
     my $url = 'https://test.payu.in/_payment';
-    
+
     my $ua = LWP::UserAgent->new;
-    
+
     my %payload = (
         key => 'JP***g',  # Merchant key provided by PayU
         txnid => 'ENFSODEXO001',  # Unique transaction ID generated by merchant
@@ -1817,18 +1779,18 @@ You can append the parameter names in your transaction request to opt for all or
         enforce_paymethod => 'SODEXO',  # Enforce payment method(s): SODEXO
         hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
     );
-    
+
     my $response = $ua->post(
         $url,
         'accept' => 'application/json',
         'Content-Type' => 'application/x-www-form-urlencoded',
         Content => \%payload
     );
-    
+
     print $response->content;
     ```
 
-    **BNPL only (`bnpl`)**
+    **BNPL only (**`bnpl`**)**
 
     ```curl
     # PayU Hosted Checkout - enforce payment method customization
@@ -1974,12 +1936,12 @@ You can append the parameter names in your transaction request to opt for all or
     <?php
     // PayU Hosted Checkout - enforce payment method customization
     $url = 'https://test.payu.in/_payment';
-    
+
     $headers = array(
         'accept: application/json',
         'Content-Type: application/x-www-form-urlencoded'
     );
-    
+
     $payload = array(
         'key' => 'JP***g',  // Merchant key provided by PayU
         'txnid' => 'ENFBNPL001',  // Unique transaction ID generated by merchant
@@ -1993,17 +1955,17 @@ You can append the parameter names in your transaction request to opt for all or
         'enforce_paymethod' => 'bnpl',  // Enforce payment method(s): bnpl
         'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
     );
-    
+
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
+
     $response = curl_exec($ch);
     curl_close($ch);
-    
+
     echo $response;
     ?>
     ```
@@ -2012,12 +1974,12 @@ You can append the parameter names in your transaction request to opt for all or
     use warnings;
     use LWP::UserAgent;
     use HTTP::Request::Common;
-    
+
     # PayU Hosted Checkout - enforce payment method customization
     my $url = 'https://test.payu.in/_payment';
-    
+
     my $ua = LWP::UserAgent->new;
-    
+
     my %payload = (
         key => 'JP***g',  # Merchant key provided by PayU
         txnid => 'ENFBNPL001',  # Unique transaction ID generated by merchant
@@ -2031,18 +1993,18 @@ You can append the parameter names in your transaction request to opt for all or
         enforce_paymethod => 'bnpl',  # Enforce payment method(s): bnpl
         hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
     );
-    
+
     my $response = $ua->post(
         $url,
         'accept' => 'application/json',
         'Content-Type' => 'application/x-www-form-urlencoded',
         Content => \%payload
     );
-    
+
     print $response->content;
     ```
 
-    **QR only (`qr`)**
+    **QR only (**`qr`**)**
 
     ```curl
     # PayU Hosted Checkout - enforce payment method customization
@@ -2188,12 +2150,12 @@ You can append the parameter names in your transaction request to opt for all or
     <?php
     // PayU Hosted Checkout - enforce payment method customization
     $url = 'https://test.payu.in/_payment';
-    
+
     $headers = array(
         'accept: application/json',
         'Content-Type: application/x-www-form-urlencoded'
     );
-    
+
     $payload = array(
         'key' => 'JP***g',  // Merchant key provided by PayU
         'txnid' => 'ENFQR001',  // Unique transaction ID generated by merchant
@@ -2207,17 +2169,17 @@ You can append the parameter names in your transaction request to opt for all or
         'enforce_paymethod' => 'qr',  // Enforce payment method(s): qr
         'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
     );
-    
+
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
+
     $response = curl_exec($ch);
     curl_close($ch);
-    
+
     echo $response;
     ?>
     ```
@@ -2226,12 +2188,12 @@ You can append the parameter names in your transaction request to opt for all or
     use warnings;
     use LWP::UserAgent;
     use HTTP::Request::Common;
-    
+
     # PayU Hosted Checkout - enforce payment method customization
     my $url = 'https://test.payu.in/_payment';
-    
+
     my $ua = LWP::UserAgent->new;
-    
+
     my %payload = (
         key => 'JP***g',  # Merchant key provided by PayU
         txnid => 'ENFQR001',  # Unique transaction ID generated by merchant
@@ -2245,14 +2207,14 @@ You can append the parameter names in your transaction request to opt for all or
         enforce_paymethod => 'qr',  # Enforce payment method(s): qr
         hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
     );
-    
+
     my $response = $ua->post(
         $url,
         'accept' => 'application/json',
         'Content-Type' => 'application/x-www-form-urlencoded',
         Content => \%payload
     );
-    
+
     print $response->content;
     ```
   </Accordion>
@@ -2268,7 +2230,7 @@ You can append the parameter names in your transaction request to opt for all or
   For an example procedure on how to enforce payment with a credit card, refer to Enforce Payment with Credit Card.
 
   <Accordion title="Sample request with multiple categories" icon="fa-code">
-    **Credit Card and Debit Card (`creditcard|debitcard`)**
+    **Credit Card and Debit Card (**`creditcard|debitcard`**)**
 
     ```curl
     # PayU Hosted Checkout - enforce payment method customization
@@ -2414,12 +2376,12 @@ You can append the parameter names in your transaction request to opt for all or
     <?php
     // PayU Hosted Checkout - enforce payment method customization
     $url = 'https://test.payu.in/_payment';
-    
+
     $headers = array(
         'accept: application/json',
         'Content-Type: application/x-www-form-urlencoded'
     );
-    
+
     $payload = array(
         'key' => 'JP***g',  // Merchant key provided by PayU
         'txnid' => 'ENFCCDC001',  // Unique transaction ID generated by merchant
@@ -2433,17 +2395,17 @@ You can append the parameter names in your transaction request to opt for all or
         'enforce_paymethod' => 'creditcard|debitcard',  // Enforce payment method(s): creditcard|debitcard
         'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
     );
-    
+
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
+
     $response = curl_exec($ch);
     curl_close($ch);
-    
+
     echo $response;
     ?>
     ```
@@ -2452,12 +2414,12 @@ You can append the parameter names in your transaction request to opt for all or
     use warnings;
     use LWP::UserAgent;
     use HTTP::Request::Common;
-    
+
     # PayU Hosted Checkout - enforce payment method customization
     my $url = 'https://test.payu.in/_payment';
-    
+
     my $ua = LWP::UserAgent->new;
-    
+
     my %payload = (
         key => 'JP***g',  # Merchant key provided by PayU
         txnid => 'ENFCCDC001',  # Unique transaction ID generated by merchant
@@ -2471,18 +2433,18 @@ You can append the parameter names in your transaction request to opt for all or
         enforce_paymethod => 'creditcard|debitcard',  # Enforce payment method(s): creditcard|debitcard
         hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
     );
-    
+
     my $response = $ua->post(
         $url,
         'accept' => 'application/json',
         'Content-Type' => 'application/x-www-form-urlencoded',
         Content => \%payload
     );
-    
+
     print $response->content;
     ```
 
-    **Credit Card, Net Banking, and Wallet (`creditcard|netbanking|cashcard`)**
+    **Credit Card, Net Banking, and Wallet (**`creditcard|netbanking|cashcard`**)**
 
     ```curl
     # PayU Hosted Checkout - enforce payment method customization
@@ -2628,12 +2590,12 @@ You can append the parameter names in your transaction request to opt for all or
     <?php
     // PayU Hosted Checkout - enforce payment method customization
     $url = 'https://test.payu.in/_payment';
-    
+
     $headers = array(
         'accept: application/json',
         'Content-Type: application/x-www-form-urlencoded'
     );
-    
+
     $payload = array(
         'key' => 'JP***g',  // Merchant key provided by PayU
         'txnid' => 'ENFMIX001',  // Unique transaction ID generated by merchant
@@ -2647,17 +2609,17 @@ You can append the parameter names in your transaction request to opt for all or
         'enforce_paymethod' => 'creditcard|netbanking|cashcard',  // Enforce payment method(s): creditcard|netbanking|cashcard
         'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
     );
-    
+
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
+
     $response = curl_exec($ch);
     curl_close($ch);
-    
+
     echo $response;
     ?>
     ```
@@ -2666,12 +2628,12 @@ You can append the parameter names in your transaction request to opt for all or
     use warnings;
     use LWP::UserAgent;
     use HTTP::Request::Common;
-    
+
     # PayU Hosted Checkout - enforce payment method customization
     my $url = 'https://test.payu.in/_payment';
-    
+
     my $ua = LWP::UserAgent->new;
-    
+
     my %payload = (
         key => 'JP***g',  # Merchant key provided by PayU
         txnid => 'ENFMIX001',  # Unique transaction ID generated by merchant
@@ -2685,14 +2647,14 @@ You can append the parameter names in your transaction request to opt for all or
         enforce_paymethod => 'creditcard|netbanking|cashcard',  # Enforce payment method(s): creditcard|netbanking|cashcard
         hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
     );
-    
+
     my $response = $ua->post(
         $url,
         'accept' => 'application/json',
         'Content-Type' => 'application/x-www-form-urlencoded',
         Content => \%payload
     );
-    
+
     print $response->content;
     ```
   </Accordion>
@@ -2701,2363 +2663,2363 @@ You can append the parameter names in your transaction request to opt for all or
 <Accordion title="Hide Specific Payment Modes" icon="fa-code">
   **Parameter name : drop\_category**
 
-  The **drop\_category** parameter can be used if you want to hide one or multiple payment options. For example, if you consider the payment options such as credit card, debit card, and net banking, you can hide the credit card mode of payment.
+The **drop_category** parameter can be used if you want to hide one or multiple payment options. For example, if you consider the payment options such as credit card, debit card, and net banking, you can hide the credit card mode of payment.
 
-  If 30 Net Banking options are available and you want to drop two of those net banking options (that is, do not display those two options on the PayU page), the **drop\_category** parameter can be used effectively.
+If 30 Net Banking options are available and you want to drop two of those net banking options (that is, do not display those two options on the PayU page), the **drop_category** parameter can be used effectively.
 
-  To drop the whole category, use the following values:
+To drop the whole category, use the following values:
 
-  | Category    | Category Value |
-  | :---------- | :------------- |
-  | Credit Card | CC             |
-  | Debit Card  | DC             |
-  | Net Banking | NB             |
-  | NEFT/RTGS   | NEFTRTGS       |
-  | EMI         | EMI            |
-  | Wallet      | CASH           |
-  | BNPL        | BNPL           |
-  | Sodexo      | SODEXO         |
+| Category    | Category Value |
+| :---------- | :------------- |
+| Credit Card | CC             |
+| Debit Card  | DC             |
+| Net Banking | NB             |
+| NEFT/RTGS   | NEFTRTGS       |
+| EMI         | EMI            |
+| Wallet      | CASH           |
+| BNPL        | BNPL           |
+| Sodexo      | SODEXO         |
 
-  To drop sub-categories mentioned in the above table, use the respective bank codes for them. For the list bankcodes, refer to [Bank and Card Codes for Integration](doc:bank-and-card-codes-for-integration).
+To drop sub-categories mentioned in the above table, use the respective bank codes for them. For the list bankcodes, refer to [Bank and Card Codes for Integration](doc:bank-and-card-codes-for-integration).
 
-  <Accordion title="Checkout customization examples" icon="fa-code">
-    **drop\_category – DC|VISA|MAST**
+<Accordion title="Checkout customization examples" icon="fa-code">
+  **drop_category – DC|VISA|MAST**
 
-    In this example:
+  In this example:
 
-    * For the debit card category, only Visa and Master Card options will be dropped, so they are not displayed on the PayU page.
-    * All other active payment options are displayed.
+  * For the debit card category, only Visa and Master Card options will be dropped, so they are not displayed on the PayU page.
+  * All other active payment options are displayed.
 
-    In this example:
+  In this example:
 
-    * For the credit card category, only the AMEX option is dropped and not displayed on the PayU page.
-    * In the debit card category, only the VISA option would be dropped.
-    * In the EMI category, only HDFC 6 months EMI option (bank code – EMI6) will be dropped.
-    * All the other active payment options will be displayed on the PayU page.
+  * For the credit card category, only the AMEX option is dropped and not displayed on the PayU page.
+  * In the debit card category, only the VISA option would be dropped.
+  * In the EMI category, only HDFC 6 months EMI option (bank code – EMI6) will be dropped.
+  * All the other active payment options will be displayed on the PayU page.
 
-    <Callout icon="📘" theme="info">
-      **Note**: Use this parameter only after proper testing as an incorrect string will display undesirable payment modes.
-    </Callout>
-  </Accordion>
+  <Callout icon="📘" theme="info">
+    **Note**: Use this parameter only after proper testing as an incorrect string will display undesirable payment modes.
+  </Callout>
+</Accordion>
 
   <Accordion title="Sample request with a single payment method removed or dropped" icon="fa-code">
     **Hide Credit Card (`CC`)**
 
-    ```curl
-    # PayU Hosted Checkout - drop payment category customization
-    curl -X POST "https://test.payu.in/_payment" \
-          -H "accept: application/json" \
-          -H "Content-Type: application/x-www-form-urlencoded" \
-          -d "key=JP***g&txnid=DROPCC001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CC&hash=REPLACE_WITH_GENERATED_HASH"
-    # Parameters include key, txnid, amount, surl, furl, hash; drop_category=CC
-    ```
-    ```python
-    import requests
+```curl
+# PayU Hosted Checkout - drop payment category customization
+curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=DROPCC001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CC&hash=REPLACE_WITH_GENERATED_HASH"
+# Parameters include key, txnid, amount, surl, furl, hash; drop_category=CC
+```
+```python
+import requests
 
-    # PayU Hosted Checkout - drop payment category customization
-    # PayU Hosted Checkout Collect Payment API endpoint (test environment)
-    url = "https://test.payu.in/_payment"
+# PayU Hosted Checkout - drop payment category customization
+# PayU Hosted Checkout Collect Payment API endpoint (test environment)
+url = "https://test.payu.in/_payment"
 
-    headers = {
-        "accept": "application/json",
-        "Content-Type": "application/x-www-form-urlencoded"
-    }
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
 
-    payload = {
-        'key': 'JP***g',  # Merchant key provided by PayU
-        'txnid': 'DROPCC001',  # Unique transaction ID generated by merchant
-        'amount': '10.00',  # Transaction amount
-        'firstname': 'PayU User',  # Customer first name
-        'email': 'test@gmail.com',  # Customer email address
-        'phone': '9876543210',  # Customer phone number
-        'productinfo': 'iPhone',  # Product or order description
-        'surl': 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
-        'furl': 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
-        'drop_category': 'CC',  # Hide payment category or sub-category: CC
-        'hash': 'REPLACE_WITH_GENERATED_HASH',  # SHA-512 hash generated on server
-    }
+payload = {
+    'key': 'JP***g',  # Merchant key provided by PayU
+    'txnid': 'DROPCC001',  # Unique transaction ID generated by merchant
+    'amount': '10.00',  # Transaction amount
+    'firstname': 'PayU User',  # Customer first name
+    'email': 'test@gmail.com',  # Customer email address
+    'phone': '9876543210',  # Customer phone number
+    'productinfo': 'iPhone',  # Product or order description
+    'surl': 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
+    'furl': 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
+    'drop_category': 'CC',  # Hide payment category or sub-category: CC
+    'hash': 'REPLACE_WITH_GENERATED_HASH',  # SHA-512 hash generated on server
+}
 
-    response = requests.post(url, headers=headers, data=payload)
-    print(response.text)
-    ```
-    ```csharp
-    using System;
-    using System.Net.Http;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-    class Program
+class Program
+{
+    static async Task Main(string[] args)
     {
-        static async Task Main(string[] args)
+        // PayU Hosted Checkout - drop payment category customization
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
         {
-            // PayU Hosted Checkout - drop payment category customization
-            using var client = new HttpClient();
-            
-            var url = "https://test.payu.in/_payment";
-            
-            client.DefaultRequestHeaders.Add("accept", "application/json");
-            
-            var payload = new Dictionary<string, string>
-            {
-                { "key", "JP***g" },  // Merchant key provided by PayU
-                { "txnid", "DROPCC001" },  // Unique transaction ID generated by merchant
-                { "amount", "10.00" },  // Transaction amount
-                { "firstname", "PayU User" },  // Customer first name
-                { "email", "test@gmail.com" },  // Customer email address
-                { "phone", "9876543210" },  // Customer phone number
-                { "productinfo", "iPhone" },  // Product or order description
-                { "surl", "https://apiplayground-response.herokuapp.com/" },  // Success callback URL
-                { "furl", "https://apiplayground-response.herokuapp.com/" },  // Failure callback URL
-                { "drop_category", "CC" },  // Hide payment category or sub-category: CC
-                { "hash", "REPLACE_WITH_GENERATED_HASH" },  // SHA-512 hash generated on server
-            };
-            
-            var content = new FormUrlEncodedContent(payload);
-            
-            var response = await client.PostAsync(url, content);
-            var result = await response.Content.ReadAsStringAsync();
-            
-            Console.WriteLine(result);
-        }
+            { "key", "JP***g" },  // Merchant key provided by PayU
+            { "txnid", "DROPCC001" },  // Unique transaction ID generated by merchant
+            { "amount", "10.00" },  // Transaction amount
+            { "firstname", "PayU User" },  // Customer first name
+            { "email", "test@gmail.com" },  // Customer email address
+            { "phone", "9876543210" },  // Customer phone number
+            { "productinfo", "iPhone" },  // Product or order description
+            { "surl", "https://apiplayground-response.herokuapp.com/" },  // Success callback URL
+            { "furl", "https://apiplayground-response.herokuapp.com/" },  // Failure callback URL
+            { "drop_category", "CC" },  // Hide payment category or sub-category: CC
+            { "hash", "REPLACE_WITH_GENERATED_HASH" },  // SHA-512 hash generated on server
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
     }
-    ```
-    ```javascript
-    const axios = require('axios');
-    const qs = require('querystring');
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
 
-    // PayU Hosted Checkout - drop payment category customization
-    // PayU Hosted Checkout Collect Payment API endpoint (test environment)
-    const url = 'https://test.payu.in/_payment';
+// PayU Hosted Checkout - drop payment category customization
+// PayU Hosted Checkout Collect Payment API endpoint (test environment)
+const url = 'https://test.payu.in/_payment';
 
-    const headers = {
-        'accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded'
-    };
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
 
-    const payload = {
-        'key': 'JP***g',  // Merchant key provided by PayU
-        'txnid': 'DROPCC001',  // Unique transaction ID generated by merchant
-        'amount': '10.00',  // Transaction amount
-        'firstname': 'PayU User',  // Customer first name
-        'email': 'test@gmail.com',  // Customer email address
-        'phone': '9876543210',  // Customer phone number
-        'productinfo': 'iPhone',  // Product or order description
-        'surl': 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
-        'furl': 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
-        'drop_category': 'CC',  // Hide payment category or sub-category: CC
-        'hash': 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
-    };
+const payload = {
+    'key': 'JP***g',  // Merchant key provided by PayU
+    'txnid': 'DROPCC001',  // Unique transaction ID generated by merchant
+    'amount': '10.00',  // Transaction amount
+    'firstname': 'PayU User',  // Customer first name
+    'email': 'test@gmail.com',  // Customer email address
+    'phone': '9876543210',  // Customer phone number
+    'productinfo': 'iPhone',  // Product or order description
+    'surl': 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
+    'furl': 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
+    'drop_category': 'CC',  // Hide payment category or sub-category: CC
+    'hash': 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
+};
 
-    axios.post(url, qs.stringify(payload), { headers: headers })
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(error => {
-            console.error(error);
-        });
-    ```
-    ```java
-    import java.io.*;
-    import java.net.*;
-    import java.net.http.*;
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
 
-    public class PayUPayment {
-        public static void main(String[] args) throws IOException, InterruptedException {
-            // PayU Hosted Checkout - drop payment category customization
-            HttpClient client = HttpClient.newHttpClient();
-            
-            // Request body: key, txnid, amount, surl, furl, hash; drop_category=CC
-            String formData = "key=JP***g&txnid=DROPCC001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CC&hash=REPLACE_WITH_GENERATED_HASH";
-            
-            HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://test.payu.in/_payment"))
-                .header("accept", "application/json")
-                .header("Content-Type", "application/x-www-form-urlencoded")
-                .POST(HttpRequest.BodyPublishers.ofString(formData))
-                .build();
-            
-            HttpResponse<String> response = client.send(request, 
-                HttpResponse.BodyHandlers.ofString());
-            
-            System.out.println(response.body());
-        }
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        // PayU Hosted Checkout - drop payment category customization
+        HttpClient client = HttpClient.newHttpClient();
+        
+        // Request body: key, txnid, amount, surl, furl, hash; drop_category=CC
+        String formData = "key=JP***g&txnid=DROPCC001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CC&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
     }
-    ```
-    ```php
-    <?php
-    // PayU Hosted Checkout - drop payment category customization
-    $url = 'https://test.payu.in/_payment';
-    
-    $headers = array(
-        'accept: application/json',
-        'Content-Type: application/x-www-form-urlencoded'
-    );
-    
-    $payload = array(
-        'key' => 'JP***g',  // Merchant key provided by PayU
-        'txnid' => 'DROPCC001',  // Unique transaction ID generated by merchant
-        'amount' => '10.00',  // Transaction amount
-        'firstname' => 'PayU User',  // Customer first name
-        'email' => 'test@gmail.com',  // Customer email address
-        'phone' => '9876543210',  // Customer phone number
-        'productinfo' => 'iPhone',  // Product or order description
-        'surl' => 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
-        'furl' => 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
-        'drop_category' => 'CC',  // Hide payment category or sub-category: CC
-        'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
-    );
-    
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
-    $response = curl_exec($ch);
-    curl_close($ch);
-    
-    echo $response;
-    ?>
-    ```
-    ```perl
-    use strict;
-    use warnings;
-    use LWP::UserAgent;
-    use HTTP::Request::Common;
-    
-    # PayU Hosted Checkout - drop payment category customization
-    my $url = 'https://test.payu.in/_payment';
-    
-    my $ua = LWP::UserAgent->new;
-    
-    my %payload = (
-        key => 'JP***g',  # Merchant key provided by PayU
-        txnid => 'DROPCC001',  # Unique transaction ID generated by merchant
-        amount => '10.00',  # Transaction amount
-        firstname => 'PayU User',  # Customer first name
-        email => 'test@gmail.com',  # Customer email address
-        phone => '9876543210',  # Customer phone number
-        productinfo => 'iPhone',  # Product or order description
-        surl => 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
-        furl => 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
-        drop_category => 'CC',  # Hide payment category or sub-category: CC
-        hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
-    );
-    
-    my $response = $ua->post(
-        $url,
-        'accept' => 'application/json',
-        'Content-Type' => 'application/x-www-form-urlencoded',
-        Content => \%payload
-    );
-    
-    print $response->content;
-    ```
+}
+```
+```php
+<?php
+// PayU Hosted Checkout - drop payment category customization
+$url = 'https://test.payu.in/_payment';
 
-    **Hide Debit Card (`DC`)**
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
 
-    ```curl
-    # PayU Hosted Checkout - drop payment category customization
-    curl -X POST "https://test.payu.in/_payment" \
-          -H "accept: application/json" \
-          -H "Content-Type: application/x-www-form-urlencoded" \
-          -d "key=JP***g&txnid=DROPD001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=DC&hash=REPLACE_WITH_GENERATED_HASH"
-    # Parameters include key, txnid, amount, surl, furl, hash; drop_category=DC
-    ```
-    ```python
-    import requests
+$payload = array(
+    'key' => 'JP***g',  // Merchant key provided by PayU
+    'txnid' => 'DROPCC001',  // Unique transaction ID generated by merchant
+    'amount' => '10.00',  // Transaction amount
+    'firstname' => 'PayU User',  // Customer first name
+    'email' => 'test@gmail.com',  // Customer email address
+    'phone' => '9876543210',  // Customer phone number
+    'productinfo' => 'iPhone',  // Product or order description
+    'surl' => 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
+    'furl' => 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
+    'drop_category' => 'CC',  // Hide payment category or sub-category: CC
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
+);
 
-    # PayU Hosted Checkout - drop payment category customization
-    # PayU Hosted Checkout Collect Payment API endpoint (test environment)
-    url = "https://test.payu.in/_payment"
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-    headers = {
-        "accept": "application/json",
-        "Content-Type": "application/x-www-form-urlencoded"
-    }
+$response = curl_exec($ch);
+curl_close($ch);
 
-    payload = {
-        'key': 'JP***g',  # Merchant key provided by PayU
-        'txnid': 'DROPD001',  # Unique transaction ID generated by merchant
-        'amount': '10.00',  # Transaction amount
-        'firstname': 'PayU User',  # Customer first name
-        'email': 'test@gmail.com',  # Customer email address
-        'phone': '9876543210',  # Customer phone number
-        'productinfo': 'iPhone',  # Product or order description
-        'surl': 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
-        'furl': 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
-        'drop_category': 'DC',  # Hide payment category or sub-category: DC
-        'hash': 'REPLACE_WITH_GENERATED_HASH',  # SHA-512 hash generated on server
-    }
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
 
-    response = requests.post(url, headers=headers, data=payload)
-    print(response.text)
-    ```
-    ```csharp
-    using System;
-    using System.Net.Http;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+# PayU Hosted Checkout - drop payment category customization
+my $url = 'https://test.payu.in/_payment';
 
-    class Program
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',  # Merchant key provided by PayU
+    txnid => 'DROPCC001',  # Unique transaction ID generated by merchant
+    amount => '10.00',  # Transaction amount
+    firstname => 'PayU User',  # Customer first name
+    email => 'test@gmail.com',  # Customer email address
+    phone => '9876543210',  # Customer phone number
+    productinfo => 'iPhone',  # Product or order description
+    surl => 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
+    furl => 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
+    drop_category => 'CC',  # Hide payment category or sub-category: CC
+    hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
+
+**Hide Debit Card (**`DC`**)**
+
+```curl
+# PayU Hosted Checkout - drop payment category customization
+curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=DROPD001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=DC&hash=REPLACE_WITH_GENERATED_HASH"
+# Parameters include key, txnid, amount, surl, furl, hash; drop_category=DC
+```
+```python
+import requests
+
+# PayU Hosted Checkout - drop payment category customization
+# PayU Hosted Checkout Collect Payment API endpoint (test environment)
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {
+    'key': 'JP***g',  # Merchant key provided by PayU
+    'txnid': 'DROPD001',  # Unique transaction ID generated by merchant
+    'amount': '10.00',  # Transaction amount
+    'firstname': 'PayU User',  # Customer first name
+    'email': 'test@gmail.com',  # Customer email address
+    'phone': '9876543210',  # Customer phone number
+    'productinfo': 'iPhone',  # Product or order description
+    'surl': 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
+    'furl': 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
+    'drop_category': 'DC',  # Hide payment category or sub-category: DC
+    'hash': 'REPLACE_WITH_GENERATED_HASH',  # SHA-512 hash generated on server
+}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
     {
-        static async Task Main(string[] args)
+        // PayU Hosted Checkout - drop payment category customization
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
         {
-            // PayU Hosted Checkout - drop payment category customization
-            using var client = new HttpClient();
-            
-            var url = "https://test.payu.in/_payment";
-            
-            client.DefaultRequestHeaders.Add("accept", "application/json");
-            
-            var payload = new Dictionary<string, string>
-            {
-                { "key", "JP***g" },  // Merchant key provided by PayU
-                { "txnid", "DROPD001" },  // Unique transaction ID generated by merchant
-                { "amount", "10.00" },  // Transaction amount
-                { "firstname", "PayU User" },  // Customer first name
-                { "email", "test@gmail.com" },  // Customer email address
-                { "phone", "9876543210" },  // Customer phone number
-                { "productinfo", "iPhone" },  // Product or order description
-                { "surl", "https://apiplayground-response.herokuapp.com/" },  // Success callback URL
-                { "furl", "https://apiplayground-response.herokuapp.com/" },  // Failure callback URL
-                { "drop_category", "DC" },  // Hide payment category or sub-category: DC
-                { "hash", "REPLACE_WITH_GENERATED_HASH" },  // SHA-512 hash generated on server
-            };
-            
-            var content = new FormUrlEncodedContent(payload);
-            
-            var response = await client.PostAsync(url, content);
-            var result = await response.Content.ReadAsStringAsync();
-            
-            Console.WriteLine(result);
-        }
+            { "key", "JP***g" },  // Merchant key provided by PayU
+            { "txnid", "DROPD001" },  // Unique transaction ID generated by merchant
+            { "amount", "10.00" },  // Transaction amount
+            { "firstname", "PayU User" },  // Customer first name
+            { "email", "test@gmail.com" },  // Customer email address
+            { "phone", "9876543210" },  // Customer phone number
+            { "productinfo", "iPhone" },  // Product or order description
+            { "surl", "https://apiplayground-response.herokuapp.com/" },  // Success callback URL
+            { "furl", "https://apiplayground-response.herokuapp.com/" },  // Failure callback URL
+            { "drop_category", "DC" },  // Hide payment category or sub-category: DC
+            { "hash", "REPLACE_WITH_GENERATED_HASH" },  // SHA-512 hash generated on server
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
     }
-    ```
-    ```javascript
-    const axios = require('axios');
-    const qs = require('querystring');
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
 
-    // PayU Hosted Checkout - drop payment category customization
-    // PayU Hosted Checkout Collect Payment API endpoint (test environment)
-    const url = 'https://test.payu.in/_payment';
+// PayU Hosted Checkout - drop payment category customization
+// PayU Hosted Checkout Collect Payment API endpoint (test environment)
+const url = 'https://test.payu.in/_payment';
 
-    const headers = {
-        'accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded'
-    };
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
 
-    const payload = {
-        'key': 'JP***g',  // Merchant key provided by PayU
-        'txnid': 'DROPD001',  // Unique transaction ID generated by merchant
-        'amount': '10.00',  // Transaction amount
-        'firstname': 'PayU User',  // Customer first name
-        'email': 'test@gmail.com',  // Customer email address
-        'phone': '9876543210',  // Customer phone number
-        'productinfo': 'iPhone',  // Product or order description
-        'surl': 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
-        'furl': 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
-        'drop_category': 'DC',  // Hide payment category or sub-category: DC
-        'hash': 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
-    };
+const payload = {
+    'key': 'JP***g',  // Merchant key provided by PayU
+    'txnid': 'DROPD001',  // Unique transaction ID generated by merchant
+    'amount': '10.00',  // Transaction amount
+    'firstname': 'PayU User',  // Customer first name
+    'email': 'test@gmail.com',  // Customer email address
+    'phone': '9876543210',  // Customer phone number
+    'productinfo': 'iPhone',  // Product or order description
+    'surl': 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
+    'furl': 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
+    'drop_category': 'DC',  // Hide payment category or sub-category: DC
+    'hash': 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
+};
 
-    axios.post(url, qs.stringify(payload), { headers: headers })
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(error => {
-            console.error(error);
-        });
-    ```
-    ```java
-    import java.io.*;
-    import java.net.*;
-    import java.net.http.*;
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
 
-    public class PayUPayment {
-        public static void main(String[] args) throws IOException, InterruptedException {
-            // PayU Hosted Checkout - drop payment category customization
-            HttpClient client = HttpClient.newHttpClient();
-            
-            // Request body: key, txnid, amount, surl, furl, hash; drop_category=DC
-            String formData = "key=JP***g&txnid=DROPD001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=DC&hash=REPLACE_WITH_GENERATED_HASH";
-            
-            HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://test.payu.in/_payment"))
-                .header("accept", "application/json")
-                .header("Content-Type", "application/x-www-form-urlencoded")
-                .POST(HttpRequest.BodyPublishers.ofString(formData))
-                .build();
-            
-            HttpResponse<String> response = client.send(request, 
-                HttpResponse.BodyHandlers.ofString());
-            
-            System.out.println(response.body());
-        }
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        // PayU Hosted Checkout - drop payment category customization
+        HttpClient client = HttpClient.newHttpClient();
+        
+        // Request body: key, txnid, amount, surl, furl, hash; drop_category=DC
+        String formData = "key=JP***g&txnid=DROPD001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=DC&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
     }
-    ```
-    ```php
-    <?php
-    // PayU Hosted Checkout - drop payment category customization
-    $url = 'https://test.payu.in/_payment';
-    
-    $headers = array(
-        'accept: application/json',
-        'Content-Type: application/x-www-form-urlencoded'
-    );
-    
-    $payload = array(
-        'key' => 'JP***g',  // Merchant key provided by PayU
-        'txnid' => 'DROPD001',  // Unique transaction ID generated by merchant
-        'amount' => '10.00',  // Transaction amount
-        'firstname' => 'PayU User',  // Customer first name
-        'email' => 'test@gmail.com',  // Customer email address
-        'phone' => '9876543210',  // Customer phone number
-        'productinfo' => 'iPhone',  // Product or order description
-        'surl' => 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
-        'furl' => 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
-        'drop_category' => 'DC',  // Hide payment category or sub-category: DC
-        'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
-    );
-    
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
-    $response = curl_exec($ch);
-    curl_close($ch);
-    
-    echo $response;
-    ?>
-    ```
-    ```perl
-    use strict;
-    use warnings;
-    use LWP::UserAgent;
-    use HTTP::Request::Common;
-    
-    # PayU Hosted Checkout - drop payment category customization
-    my $url = 'https://test.payu.in/_payment';
-    
-    my $ua = LWP::UserAgent->new;
-    
-    my %payload = (
-        key => 'JP***g',  # Merchant key provided by PayU
-        txnid => 'DROPD001',  # Unique transaction ID generated by merchant
-        amount => '10.00',  # Transaction amount
-        firstname => 'PayU User',  # Customer first name
-        email => 'test@gmail.com',  # Customer email address
-        phone => '9876543210',  # Customer phone number
-        productinfo => 'iPhone',  # Product or order description
-        surl => 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
-        furl => 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
-        drop_category => 'DC',  # Hide payment category or sub-category: DC
-        hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
-    );
-    
-    my $response = $ua->post(
-        $url,
-        'accept' => 'application/json',
-        'Content-Type' => 'application/x-www-form-urlencoded',
-        Content => \%payload
-    );
-    
-    print $response->content;
-    ```
+}
+```
+```php
+<?php
+// PayU Hosted Checkout - drop payment category customization
+$url = 'https://test.payu.in/_payment';
 
-    **Hide Net Banking (`NB`)**
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
 
-    ```curl
-    # PayU Hosted Checkout - drop payment category customization
-    curl -X POST "https://test.payu.in/_payment" \
-          -H "accept: application/json" \
-          -H "Content-Type: application/x-www-form-urlencoded" \
-          -d "key=JP***g&txnid=DROPB001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=NB&hash=REPLACE_WITH_GENERATED_HASH"
-    # Parameters include key, txnid, amount, surl, furl, hash; drop_category=NB
-    ```
-    ```python
-    import requests
+$payload = array(
+    'key' => 'JP***g',  // Merchant key provided by PayU
+    'txnid' => 'DROPD001',  // Unique transaction ID generated by merchant
+    'amount' => '10.00',  // Transaction amount
+    'firstname' => 'PayU User',  // Customer first name
+    'email' => 'test@gmail.com',  // Customer email address
+    'phone' => '9876543210',  // Customer phone number
+    'productinfo' => 'iPhone',  // Product or order description
+    'surl' => 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
+    'furl' => 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
+    'drop_category' => 'DC',  // Hide payment category or sub-category: DC
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
+);
 
-    # PayU Hosted Checkout - drop payment category customization
-    # PayU Hosted Checkout Collect Payment API endpoint (test environment)
-    url = "https://test.payu.in/_payment"
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-    headers = {
-        "accept": "application/json",
-        "Content-Type": "application/x-www-form-urlencoded"
-    }
+$response = curl_exec($ch);
+curl_close($ch);
 
-    payload = {
-        'key': 'JP***g',  # Merchant key provided by PayU
-        'txnid': 'DROPB001',  # Unique transaction ID generated by merchant
-        'amount': '10.00',  # Transaction amount
-        'firstname': 'PayU User',  # Customer first name
-        'email': 'test@gmail.com',  # Customer email address
-        'phone': '9876543210',  # Customer phone number
-        'productinfo': 'iPhone',  # Product or order description
-        'surl': 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
-        'furl': 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
-        'drop_category': 'NB',  # Hide payment category or sub-category: NB
-        'hash': 'REPLACE_WITH_GENERATED_HASH',  # SHA-512 hash generated on server
-    }
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
 
-    response = requests.post(url, headers=headers, data=payload)
-    print(response.text)
-    ```
-    ```csharp
-    using System;
-    using System.Net.Http;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+# PayU Hosted Checkout - drop payment category customization
+my $url = 'https://test.payu.in/_payment';
 
-    class Program
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',  # Merchant key provided by PayU
+    txnid => 'DROPD001',  # Unique transaction ID generated by merchant
+    amount => '10.00',  # Transaction amount
+    firstname => 'PayU User',  # Customer first name
+    email => 'test@gmail.com',  # Customer email address
+    phone => '9876543210',  # Customer phone number
+    productinfo => 'iPhone',  # Product or order description
+    surl => 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
+    furl => 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
+    drop_category => 'DC',  # Hide payment category or sub-category: DC
+    hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
+
+**Hide Net Banking (**`NB`**)**
+
+```curl
+# PayU Hosted Checkout - drop payment category customization
+curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=DROPB001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=NB&hash=REPLACE_WITH_GENERATED_HASH"
+# Parameters include key, txnid, amount, surl, furl, hash; drop_category=NB
+```
+```python
+import requests
+
+# PayU Hosted Checkout - drop payment category customization
+# PayU Hosted Checkout Collect Payment API endpoint (test environment)
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {
+    'key': 'JP***g',  # Merchant key provided by PayU
+    'txnid': 'DROPB001',  # Unique transaction ID generated by merchant
+    'amount': '10.00',  # Transaction amount
+    'firstname': 'PayU User',  # Customer first name
+    'email': 'test@gmail.com',  # Customer email address
+    'phone': '9876543210',  # Customer phone number
+    'productinfo': 'iPhone',  # Product or order description
+    'surl': 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
+    'furl': 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
+    'drop_category': 'NB',  # Hide payment category or sub-category: NB
+    'hash': 'REPLACE_WITH_GENERATED_HASH',  # SHA-512 hash generated on server
+}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
     {
-        static async Task Main(string[] args)
+        // PayU Hosted Checkout - drop payment category customization
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
         {
-            // PayU Hosted Checkout - drop payment category customization
-            using var client = new HttpClient();
-            
-            var url = "https://test.payu.in/_payment";
-            
-            client.DefaultRequestHeaders.Add("accept", "application/json");
-            
-            var payload = new Dictionary<string, string>
-            {
-                { "key", "JP***g" },  // Merchant key provided by PayU
-                { "txnid", "DROPB001" },  // Unique transaction ID generated by merchant
-                { "amount", "10.00" },  // Transaction amount
-                { "firstname", "PayU User" },  // Customer first name
-                { "email", "test@gmail.com" },  // Customer email address
-                { "phone", "9876543210" },  // Customer phone number
-                { "productinfo", "iPhone" },  // Product or order description
-                { "surl", "https://apiplayground-response.herokuapp.com/" },  // Success callback URL
-                { "furl", "https://apiplayground-response.herokuapp.com/" },  // Failure callback URL
-                { "drop_category", "NB" },  // Hide payment category or sub-category: NB
-                { "hash", "REPLACE_WITH_GENERATED_HASH" },  // SHA-512 hash generated on server
-            };
-            
-            var content = new FormUrlEncodedContent(payload);
-            
-            var response = await client.PostAsync(url, content);
-            var result = await response.Content.ReadAsStringAsync();
-            
-            Console.WriteLine(result);
-        }
+            { "key", "JP***g" },  // Merchant key provided by PayU
+            { "txnid", "DROPB001" },  // Unique transaction ID generated by merchant
+            { "amount", "10.00" },  // Transaction amount
+            { "firstname", "PayU User" },  // Customer first name
+            { "email", "test@gmail.com" },  // Customer email address
+            { "phone", "9876543210" },  // Customer phone number
+            { "productinfo", "iPhone" },  // Product or order description
+            { "surl", "https://apiplayground-response.herokuapp.com/" },  // Success callback URL
+            { "furl", "https://apiplayground-response.herokuapp.com/" },  // Failure callback URL
+            { "drop_category", "NB" },  // Hide payment category or sub-category: NB
+            { "hash", "REPLACE_WITH_GENERATED_HASH" },  // SHA-512 hash generated on server
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
     }
-    ```
-    ```javascript
-    const axios = require('axios');
-    const qs = require('querystring');
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
 
-    // PayU Hosted Checkout - drop payment category customization
-    // PayU Hosted Checkout Collect Payment API endpoint (test environment)
-    const url = 'https://test.payu.in/_payment';
+// PayU Hosted Checkout - drop payment category customization
+// PayU Hosted Checkout Collect Payment API endpoint (test environment)
+const url = 'https://test.payu.in/_payment';
 
-    const headers = {
-        'accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded'
-    };
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
 
-    const payload = {
-        'key': 'JP***g',  // Merchant key provided by PayU
-        'txnid': 'DROPB001',  // Unique transaction ID generated by merchant
-        'amount': '10.00',  // Transaction amount
-        'firstname': 'PayU User',  // Customer first name
-        'email': 'test@gmail.com',  // Customer email address
-        'phone': '9876543210',  // Customer phone number
-        'productinfo': 'iPhone',  // Product or order description
-        'surl': 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
-        'furl': 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
-        'drop_category': 'NB',  // Hide payment category or sub-category: NB
-        'hash': 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
-    };
+const payload = {
+    'key': 'JP***g',  // Merchant key provided by PayU
+    'txnid': 'DROPB001',  // Unique transaction ID generated by merchant
+    'amount': '10.00',  // Transaction amount
+    'firstname': 'PayU User',  // Customer first name
+    'email': 'test@gmail.com',  // Customer email address
+    'phone': '9876543210',  // Customer phone number
+    'productinfo': 'iPhone',  // Product or order description
+    'surl': 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
+    'furl': 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
+    'drop_category': 'NB',  // Hide payment category or sub-category: NB
+    'hash': 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
+};
 
-    axios.post(url, qs.stringify(payload), { headers: headers })
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(error => {
-            console.error(error);
-        });
-    ```
-    ```java
-    import java.io.*;
-    import java.net.*;
-    import java.net.http.*;
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
 
-    public class PayUPayment {
-        public static void main(String[] args) throws IOException, InterruptedException {
-            // PayU Hosted Checkout - drop payment category customization
-            HttpClient client = HttpClient.newHttpClient();
-            
-            // Request body: key, txnid, amount, surl, furl, hash; drop_category=NB
-            String formData = "key=JP***g&txnid=DROPB001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=NB&hash=REPLACE_WITH_GENERATED_HASH";
-            
-            HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://test.payu.in/_payment"))
-                .header("accept", "application/json")
-                .header("Content-Type", "application/x-www-form-urlencoded")
-                .POST(HttpRequest.BodyPublishers.ofString(formData))
-                .build();
-            
-            HttpResponse<String> response = client.send(request, 
-                HttpResponse.BodyHandlers.ofString());
-            
-            System.out.println(response.body());
-        }
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        // PayU Hosted Checkout - drop payment category customization
+        HttpClient client = HttpClient.newHttpClient();
+        
+        // Request body: key, txnid, amount, surl, furl, hash; drop_category=NB
+        String formData = "key=JP***g&txnid=DROPB001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=NB&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
     }
-    ```
-    ```php
-    <?php
-    // PayU Hosted Checkout - drop payment category customization
-    $url = 'https://test.payu.in/_payment';
-    
-    $headers = array(
-        'accept: application/json',
-        'Content-Type: application/x-www-form-urlencoded'
-    );
-    
-    $payload = array(
-        'key' => 'JP***g',  // Merchant key provided by PayU
-        'txnid' => 'DROPB001',  // Unique transaction ID generated by merchant
-        'amount' => '10.00',  // Transaction amount
-        'firstname' => 'PayU User',  // Customer first name
-        'email' => 'test@gmail.com',  // Customer email address
-        'phone' => '9876543210',  // Customer phone number
-        'productinfo' => 'iPhone',  // Product or order description
-        'surl' => 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
-        'furl' => 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
-        'drop_category' => 'NB',  // Hide payment category or sub-category: NB
-        'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
-    );
-    
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
-    $response = curl_exec($ch);
-    curl_close($ch);
-    
-    echo $response;
-    ?>
-    ```
-    ```perl
-    use strict;
-    use warnings;
-    use LWP::UserAgent;
-    use HTTP::Request::Common;
-    
-    # PayU Hosted Checkout - drop payment category customization
-    my $url = 'https://test.payu.in/_payment';
-    
-    my $ua = LWP::UserAgent->new;
-    
-    my %payload = (
-        key => 'JP***g',  # Merchant key provided by PayU
-        txnid => 'DROPB001',  # Unique transaction ID generated by merchant
-        amount => '10.00',  # Transaction amount
-        firstname => 'PayU User',  # Customer first name
-        email => 'test@gmail.com',  # Customer email address
-        phone => '9876543210',  # Customer phone number
-        productinfo => 'iPhone',  # Product or order description
-        surl => 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
-        furl => 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
-        drop_category => 'NB',  # Hide payment category or sub-category: NB
-        hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
-    );
-    
-    my $response = $ua->post(
-        $url,
-        'accept' => 'application/json',
-        'Content-Type' => 'application/x-www-form-urlencoded',
-        Content => \%payload
-    );
-    
-    print $response->content;
-    ```
+}
+```
+```php
+<?php
+// PayU Hosted Checkout - drop payment category customization
+$url = 'https://test.payu.in/_payment';
 
-    **Hide NEFT/RTGS (`NEFTRTGS`)**
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
 
-    ```curl
-    # PayU Hosted Checkout - drop payment category customization
-    curl -X POST "https://test.payu.in/_payment" \
-          -H "accept: application/json" \
-          -H "Content-Type: application/x-www-form-urlencoded" \
-          -d "key=JP***g&txnid=DROPNE001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=NEFTRTGS&hash=REPLACE_WITH_GENERATED_HASH"
-    # Parameters include key, txnid, amount, surl, furl, hash; drop_category=NEFTRTGS
-    ```
-    ```python
-    import requests
+$payload = array(
+    'key' => 'JP***g',  // Merchant key provided by PayU
+    'txnid' => 'DROPB001',  // Unique transaction ID generated by merchant
+    'amount' => '10.00',  // Transaction amount
+    'firstname' => 'PayU User',  // Customer first name
+    'email' => 'test@gmail.com',  // Customer email address
+    'phone' => '9876543210',  // Customer phone number
+    'productinfo' => 'iPhone',  // Product or order description
+    'surl' => 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
+    'furl' => 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
+    'drop_category' => 'NB',  // Hide payment category or sub-category: NB
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
+);
 
-    # PayU Hosted Checkout - drop payment category customization
-    # PayU Hosted Checkout Collect Payment API endpoint (test environment)
-    url = "https://test.payu.in/_payment"
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-    headers = {
-        "accept": "application/json",
-        "Content-Type": "application/x-www-form-urlencoded"
-    }
+$response = curl_exec($ch);
+curl_close($ch);
 
-    payload = {
-        'key': 'JP***g',  # Merchant key provided by PayU
-        'txnid': 'DROPNE001',  # Unique transaction ID generated by merchant
-        'amount': '10.00',  # Transaction amount
-        'firstname': 'PayU User',  # Customer first name
-        'email': 'test@gmail.com',  # Customer email address
-        'phone': '9876543210',  # Customer phone number
-        'productinfo': 'iPhone',  # Product or order description
-        'surl': 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
-        'furl': 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
-        'drop_category': 'NEFTRTGS',  # Hide payment category or sub-category: NEFTRTGS
-        'hash': 'REPLACE_WITH_GENERATED_HASH',  # SHA-512 hash generated on server
-    }
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
 
-    response = requests.post(url, headers=headers, data=payload)
-    print(response.text)
-    ```
-    ```csharp
-    using System;
-    using System.Net.Http;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+# PayU Hosted Checkout - drop payment category customization
+my $url = 'https://test.payu.in/_payment';
 
-    class Program
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',  # Merchant key provided by PayU
+    txnid => 'DROPB001',  # Unique transaction ID generated by merchant
+    amount => '10.00',  # Transaction amount
+    firstname => 'PayU User',  # Customer first name
+    email => 'test@gmail.com',  # Customer email address
+    phone => '9876543210',  # Customer phone number
+    productinfo => 'iPhone',  # Product or order description
+    surl => 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
+    furl => 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
+    drop_category => 'NB',  # Hide payment category or sub-category: NB
+    hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
+
+**Hide NEFT/RTGS (**`NEFTRTGS`**)**
+
+```curl
+# PayU Hosted Checkout - drop payment category customization
+curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=DROPNE001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=NEFTRTGS&hash=REPLACE_WITH_GENERATED_HASH"
+# Parameters include key, txnid, amount, surl, furl, hash; drop_category=NEFTRTGS
+```
+```python
+import requests
+
+# PayU Hosted Checkout - drop payment category customization
+# PayU Hosted Checkout Collect Payment API endpoint (test environment)
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {
+    'key': 'JP***g',  # Merchant key provided by PayU
+    'txnid': 'DROPNE001',  # Unique transaction ID generated by merchant
+    'amount': '10.00',  # Transaction amount
+    'firstname': 'PayU User',  # Customer first name
+    'email': 'test@gmail.com',  # Customer email address
+    'phone': '9876543210',  # Customer phone number
+    'productinfo': 'iPhone',  # Product or order description
+    'surl': 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
+    'furl': 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
+    'drop_category': 'NEFTRTGS',  # Hide payment category or sub-category: NEFTRTGS
+    'hash': 'REPLACE_WITH_GENERATED_HASH',  # SHA-512 hash generated on server
+}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
     {
-        static async Task Main(string[] args)
+        // PayU Hosted Checkout - drop payment category customization
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
         {
-            // PayU Hosted Checkout - drop payment category customization
-            using var client = new HttpClient();
-            
-            var url = "https://test.payu.in/_payment";
-            
-            client.DefaultRequestHeaders.Add("accept", "application/json");
-            
-            var payload = new Dictionary<string, string>
-            {
-                { "key", "JP***g" },  // Merchant key provided by PayU
-                { "txnid", "DROPNE001" },  // Unique transaction ID generated by merchant
-                { "amount", "10.00" },  // Transaction amount
-                { "firstname", "PayU User" },  // Customer first name
-                { "email", "test@gmail.com" },  // Customer email address
-                { "phone", "9876543210" },  // Customer phone number
-                { "productinfo", "iPhone" },  // Product or order description
-                { "surl", "https://apiplayground-response.herokuapp.com/" },  // Success callback URL
-                { "furl", "https://apiplayground-response.herokuapp.com/" },  // Failure callback URL
-                { "drop_category", "NEFTRTGS" },  // Hide payment category or sub-category: NEFTRTGS
-                { "hash", "REPLACE_WITH_GENERATED_HASH" },  // SHA-512 hash generated on server
-            };
-            
-            var content = new FormUrlEncodedContent(payload);
-            
-            var response = await client.PostAsync(url, content);
-            var result = await response.Content.ReadAsStringAsync();
-            
-            Console.WriteLine(result);
-        }
+            { "key", "JP***g" },  // Merchant key provided by PayU
+            { "txnid", "DROPNE001" },  // Unique transaction ID generated by merchant
+            { "amount", "10.00" },  // Transaction amount
+            { "firstname", "PayU User" },  // Customer first name
+            { "email", "test@gmail.com" },  // Customer email address
+            { "phone", "9876543210" },  // Customer phone number
+            { "productinfo", "iPhone" },  // Product or order description
+            { "surl", "https://apiplayground-response.herokuapp.com/" },  // Success callback URL
+            { "furl", "https://apiplayground-response.herokuapp.com/" },  // Failure callback URL
+            { "drop_category", "NEFTRTGS" },  // Hide payment category or sub-category: NEFTRTGS
+            { "hash", "REPLACE_WITH_GENERATED_HASH" },  // SHA-512 hash generated on server
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
     }
-    ```
-    ```javascript
-    const axios = require('axios');
-    const qs = require('querystring');
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
 
-    // PayU Hosted Checkout - drop payment category customization
-    // PayU Hosted Checkout Collect Payment API endpoint (test environment)
-    const url = 'https://test.payu.in/_payment';
+// PayU Hosted Checkout - drop payment category customization
+// PayU Hosted Checkout Collect Payment API endpoint (test environment)
+const url = 'https://test.payu.in/_payment';
 
-    const headers = {
-        'accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded'
-    };
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
 
-    const payload = {
-        'key': 'JP***g',  // Merchant key provided by PayU
-        'txnid': 'DROPNE001',  // Unique transaction ID generated by merchant
-        'amount': '10.00',  // Transaction amount
-        'firstname': 'PayU User',  // Customer first name
-        'email': 'test@gmail.com',  // Customer email address
-        'phone': '9876543210',  // Customer phone number
-        'productinfo': 'iPhone',  // Product or order description
-        'surl': 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
-        'furl': 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
-        'drop_category': 'NEFTRTGS',  // Hide payment category or sub-category: NEFTRTGS
-        'hash': 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
-    };
+const payload = {
+    'key': 'JP***g',  // Merchant key provided by PayU
+    'txnid': 'DROPNE001',  // Unique transaction ID generated by merchant
+    'amount': '10.00',  // Transaction amount
+    'firstname': 'PayU User',  // Customer first name
+    'email': 'test@gmail.com',  // Customer email address
+    'phone': '9876543210',  // Customer phone number
+    'productinfo': 'iPhone',  // Product or order description
+    'surl': 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
+    'furl': 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
+    'drop_category': 'NEFTRTGS',  // Hide payment category or sub-category: NEFTRTGS
+    'hash': 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
+};
 
-    axios.post(url, qs.stringify(payload), { headers: headers })
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(error => {
-            console.error(error);
-        });
-    ```
-    ```java
-    import java.io.*;
-    import java.net.*;
-    import java.net.http.*;
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
 
-    public class PayUPayment {
-        public static void main(String[] args) throws IOException, InterruptedException {
-            // PayU Hosted Checkout - drop payment category customization
-            HttpClient client = HttpClient.newHttpClient();
-            
-            // Request body: key, txnid, amount, surl, furl, hash; drop_category=NEFTRTGS
-            String formData = "key=JP***g&txnid=DROPNE001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=NEFTRTGS&hash=REPLACE_WITH_GENERATED_HASH";
-            
-            HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://test.payu.in/_payment"))
-                .header("accept", "application/json")
-                .header("Content-Type", "application/x-www-form-urlencoded")
-                .POST(HttpRequest.BodyPublishers.ofString(formData))
-                .build();
-            
-            HttpResponse<String> response = client.send(request, 
-                HttpResponse.BodyHandlers.ofString());
-            
-            System.out.println(response.body());
-        }
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        // PayU Hosted Checkout - drop payment category customization
+        HttpClient client = HttpClient.newHttpClient();
+        
+        // Request body: key, txnid, amount, surl, furl, hash; drop_category=NEFTRTGS
+        String formData = "key=JP***g&txnid=DROPNE001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=NEFTRTGS&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
     }
-    ```
-    ```php
-    <?php
-    // PayU Hosted Checkout - drop payment category customization
-    $url = 'https://test.payu.in/_payment';
-    
-    $headers = array(
-        'accept: application/json',
-        'Content-Type: application/x-www-form-urlencoded'
-    );
-    
-    $payload = array(
-        'key' => 'JP***g',  // Merchant key provided by PayU
-        'txnid' => 'DROPNE001',  // Unique transaction ID generated by merchant
-        'amount' => '10.00',  // Transaction amount
-        'firstname' => 'PayU User',  // Customer first name
-        'email' => 'test@gmail.com',  // Customer email address
-        'phone' => '9876543210',  // Customer phone number
-        'productinfo' => 'iPhone',  // Product or order description
-        'surl' => 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
-        'furl' => 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
-        'drop_category' => 'NEFTRTGS',  // Hide payment category or sub-category: NEFTRTGS
-        'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
-    );
-    
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
-    $response = curl_exec($ch);
-    curl_close($ch);
-    
-    echo $response;
-    ?>
-    ```
-    ```perl
-    use strict;
-    use warnings;
-    use LWP::UserAgent;
-    use HTTP::Request::Common;
-    
-    # PayU Hosted Checkout - drop payment category customization
-    my $url = 'https://test.payu.in/_payment';
-    
-    my $ua = LWP::UserAgent->new;
-    
-    my %payload = (
-        key => 'JP***g',  # Merchant key provided by PayU
-        txnid => 'DROPNE001',  # Unique transaction ID generated by merchant
-        amount => '10.00',  # Transaction amount
-        firstname => 'PayU User',  # Customer first name
-        email => 'test@gmail.com',  # Customer email address
-        phone => '9876543210',  # Customer phone number
-        productinfo => 'iPhone',  # Product or order description
-        surl => 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
-        furl => 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
-        drop_category => 'NEFTRTGS',  # Hide payment category or sub-category: NEFTRTGS
-        hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
-    );
-    
-    my $response = $ua->post(
-        $url,
-        'accept' => 'application/json',
-        'Content-Type' => 'application/x-www-form-urlencoded',
-        Content => \%payload
-    );
-    
-    print $response->content;
-    ```
+}
+```
+```php
+<?php
+// PayU Hosted Checkout - drop payment category customization
+$url = 'https://test.payu.in/_payment';
 
-    **Hide EMI (`EMI`)**
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
 
-    ```curl
-    # PayU Hosted Checkout - drop payment category customization
-    curl -X POST "https://test.payu.in/_payment" \
-          -H "accept: application/json" \
-          -H "Content-Type: application/x-www-form-urlencoded" \
-          -d "key=JP***g&txnid=DROPEMI001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=EMI&hash=REPLACE_WITH_GENERATED_HASH"
-    # Parameters include key, txnid, amount, surl, furl, hash; drop_category=EMI
-    ```
-    ```python
-    import requests
+$payload = array(
+    'key' => 'JP***g',  // Merchant key provided by PayU
+    'txnid' => 'DROPNE001',  // Unique transaction ID generated by merchant
+    'amount' => '10.00',  // Transaction amount
+    'firstname' => 'PayU User',  // Customer first name
+    'email' => 'test@gmail.com',  // Customer email address
+    'phone' => '9876543210',  // Customer phone number
+    'productinfo' => 'iPhone',  // Product or order description
+    'surl' => 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
+    'furl' => 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
+    'drop_category' => 'NEFTRTGS',  // Hide payment category or sub-category: NEFTRTGS
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
+);
 
-    # PayU Hosted Checkout - drop payment category customization
-    # PayU Hosted Checkout Collect Payment API endpoint (test environment)
-    url = "https://test.payu.in/_payment"
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-    headers = {
-        "accept": "application/json",
-        "Content-Type": "application/x-www-form-urlencoded"
-    }
+$response = curl_exec($ch);
+curl_close($ch);
 
-    payload = {
-        'key': 'JP***g',  # Merchant key provided by PayU
-        'txnid': 'DROPEMI001',  # Unique transaction ID generated by merchant
-        'amount': '10.00',  # Transaction amount
-        'firstname': 'PayU User',  # Customer first name
-        'email': 'test@gmail.com',  # Customer email address
-        'phone': '9876543210',  # Customer phone number
-        'productinfo': 'iPhone',  # Product or order description
-        'surl': 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
-        'furl': 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
-        'drop_category': 'EMI',  # Hide payment category or sub-category: EMI
-        'hash': 'REPLACE_WITH_GENERATED_HASH',  # SHA-512 hash generated on server
-    }
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
 
-    response = requests.post(url, headers=headers, data=payload)
-    print(response.text)
-    ```
-    ```csharp
-    using System;
-    using System.Net.Http;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+# PayU Hosted Checkout - drop payment category customization
+my $url = 'https://test.payu.in/_payment';
 
-    class Program
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',  # Merchant key provided by PayU
+    txnid => 'DROPNE001',  # Unique transaction ID generated by merchant
+    amount => '10.00',  # Transaction amount
+    firstname => 'PayU User',  # Customer first name
+    email => 'test@gmail.com',  # Customer email address
+    phone => '9876543210',  # Customer phone number
+    productinfo => 'iPhone',  # Product or order description
+    surl => 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
+    furl => 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
+    drop_category => 'NEFTRTGS',  # Hide payment category or sub-category: NEFTRTGS
+    hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
+
+**Hide EMI (**`EMI`**)**
+
+```curl
+# PayU Hosted Checkout - drop payment category customization
+curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=DROPEMI001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=EMI&hash=REPLACE_WITH_GENERATED_HASH"
+# Parameters include key, txnid, amount, surl, furl, hash; drop_category=EMI
+```
+```python
+import requests
+
+# PayU Hosted Checkout - drop payment category customization
+# PayU Hosted Checkout Collect Payment API endpoint (test environment)
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {
+    'key': 'JP***g',  # Merchant key provided by PayU
+    'txnid': 'DROPEMI001',  # Unique transaction ID generated by merchant
+    'amount': '10.00',  # Transaction amount
+    'firstname': 'PayU User',  # Customer first name
+    'email': 'test@gmail.com',  # Customer email address
+    'phone': '9876543210',  # Customer phone number
+    'productinfo': 'iPhone',  # Product or order description
+    'surl': 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
+    'furl': 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
+    'drop_category': 'EMI',  # Hide payment category or sub-category: EMI
+    'hash': 'REPLACE_WITH_GENERATED_HASH',  # SHA-512 hash generated on server
+}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
     {
-        static async Task Main(string[] args)
+        // PayU Hosted Checkout - drop payment category customization
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
         {
-            // PayU Hosted Checkout - drop payment category customization
-            using var client = new HttpClient();
-            
-            var url = "https://test.payu.in/_payment";
-            
-            client.DefaultRequestHeaders.Add("accept", "application/json");
-            
-            var payload = new Dictionary<string, string>
-            {
-                { "key", "JP***g" },  // Merchant key provided by PayU
-                { "txnid", "DROPEMI001" },  // Unique transaction ID generated by merchant
-                { "amount", "10.00" },  // Transaction amount
-                { "firstname", "PayU User" },  // Customer first name
-                { "email", "test@gmail.com" },  // Customer email address
-                { "phone", "9876543210" },  // Customer phone number
-                { "productinfo", "iPhone" },  // Product or order description
-                { "surl", "https://apiplayground-response.herokuapp.com/" },  // Success callback URL
-                { "furl", "https://apiplayground-response.herokuapp.com/" },  // Failure callback URL
-                { "drop_category", "EMI" },  // Hide payment category or sub-category: EMI
-                { "hash", "REPLACE_WITH_GENERATED_HASH" },  // SHA-512 hash generated on server
-            };
-            
-            var content = new FormUrlEncodedContent(payload);
-            
-            var response = await client.PostAsync(url, content);
-            var result = await response.Content.ReadAsStringAsync();
-            
-            Console.WriteLine(result);
-        }
+            { "key", "JP***g" },  // Merchant key provided by PayU
+            { "txnid", "DROPEMI001" },  // Unique transaction ID generated by merchant
+            { "amount", "10.00" },  // Transaction amount
+            { "firstname", "PayU User" },  // Customer first name
+            { "email", "test@gmail.com" },  // Customer email address
+            { "phone", "9876543210" },  // Customer phone number
+            { "productinfo", "iPhone" },  // Product or order description
+            { "surl", "https://apiplayground-response.herokuapp.com/" },  // Success callback URL
+            { "furl", "https://apiplayground-response.herokuapp.com/" },  // Failure callback URL
+            { "drop_category", "EMI" },  // Hide payment category or sub-category: EMI
+            { "hash", "REPLACE_WITH_GENERATED_HASH" },  // SHA-512 hash generated on server
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
     }
-    ```
-    ```javascript
-    const axios = require('axios');
-    const qs = require('querystring');
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
 
-    // PayU Hosted Checkout - drop payment category customization
-    // PayU Hosted Checkout Collect Payment API endpoint (test environment)
-    const url = 'https://test.payu.in/_payment';
+// PayU Hosted Checkout - drop payment category customization
+// PayU Hosted Checkout Collect Payment API endpoint (test environment)
+const url = 'https://test.payu.in/_payment';
 
-    const headers = {
-        'accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded'
-    };
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
 
-    const payload = {
-        'key': 'JP***g',  // Merchant key provided by PayU
-        'txnid': 'DROPEMI001',  // Unique transaction ID generated by merchant
-        'amount': '10.00',  // Transaction amount
-        'firstname': 'PayU User',  // Customer first name
-        'email': 'test@gmail.com',  // Customer email address
-        'phone': '9876543210',  // Customer phone number
-        'productinfo': 'iPhone',  // Product or order description
-        'surl': 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
-        'furl': 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
-        'drop_category': 'EMI',  // Hide payment category or sub-category: EMI
-        'hash': 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
-    };
+const payload = {
+    'key': 'JP***g',  // Merchant key provided by PayU
+    'txnid': 'DROPEMI001',  // Unique transaction ID generated by merchant
+    'amount': '10.00',  // Transaction amount
+    'firstname': 'PayU User',  // Customer first name
+    'email': 'test@gmail.com',  // Customer email address
+    'phone': '9876543210',  // Customer phone number
+    'productinfo': 'iPhone',  // Product or order description
+    'surl': 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
+    'furl': 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
+    'drop_category': 'EMI',  // Hide payment category or sub-category: EMI
+    'hash': 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
+};
 
-    axios.post(url, qs.stringify(payload), { headers: headers })
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(error => {
-            console.error(error);
-        });
-    ```
-    ```java
-    import java.io.*;
-    import java.net.*;
-    import java.net.http.*;
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
 
-    public class PayUPayment {
-        public static void main(String[] args) throws IOException, InterruptedException {
-            // PayU Hosted Checkout - drop payment category customization
-            HttpClient client = HttpClient.newHttpClient();
-            
-            // Request body: key, txnid, amount, surl, furl, hash; drop_category=EMI
-            String formData = "key=JP***g&txnid=DROPEMI001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=EMI&hash=REPLACE_WITH_GENERATED_HASH";
-            
-            HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://test.payu.in/_payment"))
-                .header("accept", "application/json")
-                .header("Content-Type", "application/x-www-form-urlencoded")
-                .POST(HttpRequest.BodyPublishers.ofString(formData))
-                .build();
-            
-            HttpResponse<String> response = client.send(request, 
-                HttpResponse.BodyHandlers.ofString());
-            
-            System.out.println(response.body());
-        }
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        // PayU Hosted Checkout - drop payment category customization
+        HttpClient client = HttpClient.newHttpClient();
+        
+        // Request body: key, txnid, amount, surl, furl, hash; drop_category=EMI
+        String formData = "key=JP***g&txnid=DROPEMI001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=EMI&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
     }
-    ```
-    ```php
-    <?php
-    // PayU Hosted Checkout - drop payment category customization
-    $url = 'https://test.payu.in/_payment';
-    
-    $headers = array(
-        'accept: application/json',
-        'Content-Type: application/x-www-form-urlencoded'
-    );
-    
-    $payload = array(
-        'key' => 'JP***g',  // Merchant key provided by PayU
-        'txnid' => 'DROPEMI001',  // Unique transaction ID generated by merchant
-        'amount' => '10.00',  // Transaction amount
-        'firstname' => 'PayU User',  // Customer first name
-        'email' => 'test@gmail.com',  // Customer email address
-        'phone' => '9876543210',  // Customer phone number
-        'productinfo' => 'iPhone',  // Product or order description
-        'surl' => 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
-        'furl' => 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
-        'drop_category' => 'EMI',  // Hide payment category or sub-category: EMI
-        'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
-    );
-    
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
-    $response = curl_exec($ch);
-    curl_close($ch);
-    
-    echo $response;
-    ?>
-    ```
-    ```perl
-    use strict;
-    use warnings;
-    use LWP::UserAgent;
-    use HTTP::Request::Common;
-    
-    # PayU Hosted Checkout - drop payment category customization
-    my $url = 'https://test.payu.in/_payment';
-    
-    my $ua = LWP::UserAgent->new;
-    
-    my %payload = (
-        key => 'JP***g',  # Merchant key provided by PayU
-        txnid => 'DROPEMI001',  # Unique transaction ID generated by merchant
-        amount => '10.00',  # Transaction amount
-        firstname => 'PayU User',  # Customer first name
-        email => 'test@gmail.com',  # Customer email address
-        phone => '9876543210',  # Customer phone number
-        productinfo => 'iPhone',  # Product or order description
-        surl => 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
-        furl => 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
-        drop_category => 'EMI',  # Hide payment category or sub-category: EMI
-        hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
-    );
-    
-    my $response = $ua->post(
-        $url,
-        'accept' => 'application/json',
-        'Content-Type' => 'application/x-www-form-urlencoded',
-        Content => \%payload
-    );
-    
-    print $response->content;
-    ```
+}
+```
+```php
+<?php
+// PayU Hosted Checkout - drop payment category customization
+$url = 'https://test.payu.in/_payment';
 
-    **Hide Wallet (`CASH`)**
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
 
-    ```curl
-    # PayU Hosted Checkout - drop payment category customization
-    curl -X POST "https://test.payu.in/_payment" \
-          -H "accept: application/json" \
-          -H "Content-Type: application/x-www-form-urlencoded" \
-          -d "key=JP***g&txnid=DROPCASH001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CASH&hash=REPLACE_WITH_GENERATED_HASH"
-    # Parameters include key, txnid, amount, surl, furl, hash; drop_category=CASH
-    ```
-    ```python
-    import requests
+$payload = array(
+    'key' => 'JP***g',  // Merchant key provided by PayU
+    'txnid' => 'DROPEMI001',  // Unique transaction ID generated by merchant
+    'amount' => '10.00',  // Transaction amount
+    'firstname' => 'PayU User',  // Customer first name
+    'email' => 'test@gmail.com',  // Customer email address
+    'phone' => '9876543210',  // Customer phone number
+    'productinfo' => 'iPhone',  // Product or order description
+    'surl' => 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
+    'furl' => 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
+    'drop_category' => 'EMI',  // Hide payment category or sub-category: EMI
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
+);
 
-    # PayU Hosted Checkout - drop payment category customization
-    # PayU Hosted Checkout Collect Payment API endpoint (test environment)
-    url = "https://test.payu.in/_payment"
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-    headers = {
-        "accept": "application/json",
-        "Content-Type": "application/x-www-form-urlencoded"
-    }
+$response = curl_exec($ch);
+curl_close($ch);
 
-    payload = {
-        'key': 'JP***g',  # Merchant key provided by PayU
-        'txnid': 'DROPCASH001',  # Unique transaction ID generated by merchant
-        'amount': '10.00',  # Transaction amount
-        'firstname': 'PayU User',  # Customer first name
-        'email': 'test@gmail.com',  # Customer email address
-        'phone': '9876543210',  # Customer phone number
-        'productinfo': 'iPhone',  # Product or order description
-        'surl': 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
-        'furl': 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
-        'drop_category': 'CASH',  # Hide payment category or sub-category: CASH
-        'hash': 'REPLACE_WITH_GENERATED_HASH',  # SHA-512 hash generated on server
-    }
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
 
-    response = requests.post(url, headers=headers, data=payload)
-    print(response.text)
-    ```
-    ```csharp
-    using System;
-    using System.Net.Http;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+# PayU Hosted Checkout - drop payment category customization
+my $url = 'https://test.payu.in/_payment';
 
-    class Program
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',  # Merchant key provided by PayU
+    txnid => 'DROPEMI001',  # Unique transaction ID generated by merchant
+    amount => '10.00',  # Transaction amount
+    firstname => 'PayU User',  # Customer first name
+    email => 'test@gmail.com',  # Customer email address
+    phone => '9876543210',  # Customer phone number
+    productinfo => 'iPhone',  # Product or order description
+    surl => 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
+    furl => 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
+    drop_category => 'EMI',  # Hide payment category or sub-category: EMI
+    hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
+
+**Hide Wallet (**`CASH`**)**
+
+```curl
+# PayU Hosted Checkout - drop payment category customization
+curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=DROPCASH001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CASH&hash=REPLACE_WITH_GENERATED_HASH"
+# Parameters include key, txnid, amount, surl, furl, hash; drop_category=CASH
+```
+```python
+import requests
+
+# PayU Hosted Checkout - drop payment category customization
+# PayU Hosted Checkout Collect Payment API endpoint (test environment)
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {
+    'key': 'JP***g',  # Merchant key provided by PayU
+    'txnid': 'DROPCASH001',  # Unique transaction ID generated by merchant
+    'amount': '10.00',  # Transaction amount
+    'firstname': 'PayU User',  # Customer first name
+    'email': 'test@gmail.com',  # Customer email address
+    'phone': '9876543210',  # Customer phone number
+    'productinfo': 'iPhone',  # Product or order description
+    'surl': 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
+    'furl': 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
+    'drop_category': 'CASH',  # Hide payment category or sub-category: CASH
+    'hash': 'REPLACE_WITH_GENERATED_HASH',  # SHA-512 hash generated on server
+}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
     {
-        static async Task Main(string[] args)
+        // PayU Hosted Checkout - drop payment category customization
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
         {
-            // PayU Hosted Checkout - drop payment category customization
-            using var client = new HttpClient();
-            
-            var url = "https://test.payu.in/_payment";
-            
-            client.DefaultRequestHeaders.Add("accept", "application/json");
-            
-            var payload = new Dictionary<string, string>
-            {
-                { "key", "JP***g" },  // Merchant key provided by PayU
-                { "txnid", "DROPCASH001" },  // Unique transaction ID generated by merchant
-                { "amount", "10.00" },  // Transaction amount
-                { "firstname", "PayU User" },  // Customer first name
-                { "email", "test@gmail.com" },  // Customer email address
-                { "phone", "9876543210" },  // Customer phone number
-                { "productinfo", "iPhone" },  // Product or order description
-                { "surl", "https://apiplayground-response.herokuapp.com/" },  // Success callback URL
-                { "furl", "https://apiplayground-response.herokuapp.com/" },  // Failure callback URL
-                { "drop_category", "CASH" },  // Hide payment category or sub-category: CASH
-                { "hash", "REPLACE_WITH_GENERATED_HASH" },  // SHA-512 hash generated on server
-            };
-            
-            var content = new FormUrlEncodedContent(payload);
-            
-            var response = await client.PostAsync(url, content);
-            var result = await response.Content.ReadAsStringAsync();
-            
-            Console.WriteLine(result);
-        }
+            { "key", "JP***g" },  // Merchant key provided by PayU
+            { "txnid", "DROPCASH001" },  // Unique transaction ID generated by merchant
+            { "amount", "10.00" },  // Transaction amount
+            { "firstname", "PayU User" },  // Customer first name
+            { "email", "test@gmail.com" },  // Customer email address
+            { "phone", "9876543210" },  // Customer phone number
+            { "productinfo", "iPhone" },  // Product or order description
+            { "surl", "https://apiplayground-response.herokuapp.com/" },  // Success callback URL
+            { "furl", "https://apiplayground-response.herokuapp.com/" },  // Failure callback URL
+            { "drop_category", "CASH" },  // Hide payment category or sub-category: CASH
+            { "hash", "REPLACE_WITH_GENERATED_HASH" },  // SHA-512 hash generated on server
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
     }
-    ```
-    ```javascript
-    const axios = require('axios');
-    const qs = require('querystring');
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
 
-    // PayU Hosted Checkout - drop payment category customization
-    // PayU Hosted Checkout Collect Payment API endpoint (test environment)
-    const url = 'https://test.payu.in/_payment';
+// PayU Hosted Checkout - drop payment category customization
+// PayU Hosted Checkout Collect Payment API endpoint (test environment)
+const url = 'https://test.payu.in/_payment';
 
-    const headers = {
-        'accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded'
-    };
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
 
-    const payload = {
-        'key': 'JP***g',  // Merchant key provided by PayU
-        'txnid': 'DROPCASH001',  // Unique transaction ID generated by merchant
-        'amount': '10.00',  // Transaction amount
-        'firstname': 'PayU User',  // Customer first name
-        'email': 'test@gmail.com',  // Customer email address
-        'phone': '9876543210',  // Customer phone number
-        'productinfo': 'iPhone',  // Product or order description
-        'surl': 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
-        'furl': 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
-        'drop_category': 'CASH',  // Hide payment category or sub-category: CASH
-        'hash': 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
-    };
+const payload = {
+    'key': 'JP***g',  // Merchant key provided by PayU
+    'txnid': 'DROPCASH001',  // Unique transaction ID generated by merchant
+    'amount': '10.00',  // Transaction amount
+    'firstname': 'PayU User',  // Customer first name
+    'email': 'test@gmail.com',  // Customer email address
+    'phone': '9876543210',  // Customer phone number
+    'productinfo': 'iPhone',  // Product or order description
+    'surl': 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
+    'furl': 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
+    'drop_category': 'CASH',  // Hide payment category or sub-category: CASH
+    'hash': 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
+};
 
-    axios.post(url, qs.stringify(payload), { headers: headers })
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(error => {
-            console.error(error);
-        });
-    ```
-    ```java
-    import java.io.*;
-    import java.net.*;
-    import java.net.http.*;
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
 
-    public class PayUPayment {
-        public static void main(String[] args) throws IOException, InterruptedException {
-            // PayU Hosted Checkout - drop payment category customization
-            HttpClient client = HttpClient.newHttpClient();
-            
-            // Request body: key, txnid, amount, surl, furl, hash; drop_category=CASH
-            String formData = "key=JP***g&txnid=DROPCASH001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CASH&hash=REPLACE_WITH_GENERATED_HASH";
-            
-            HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://test.payu.in/_payment"))
-                .header("accept", "application/json")
-                .header("Content-Type", "application/x-www-form-urlencoded")
-                .POST(HttpRequest.BodyPublishers.ofString(formData))
-                .build();
-            
-            HttpResponse<String> response = client.send(request, 
-                HttpResponse.BodyHandlers.ofString());
-            
-            System.out.println(response.body());
-        }
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        // PayU Hosted Checkout - drop payment category customization
+        HttpClient client = HttpClient.newHttpClient();
+        
+        // Request body: key, txnid, amount, surl, furl, hash; drop_category=CASH
+        String formData = "key=JP***g&txnid=DROPCASH001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CASH&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
     }
-    ```
-    ```php
-    <?php
-    // PayU Hosted Checkout - drop payment category customization
-    $url = 'https://test.payu.in/_payment';
-    
-    $headers = array(
-        'accept: application/json',
-        'Content-Type: application/x-www-form-urlencoded'
-    );
-    
-    $payload = array(
-        'key' => 'JP***g',  // Merchant key provided by PayU
-        'txnid' => 'DROPCASH001',  // Unique transaction ID generated by merchant
-        'amount' => '10.00',  // Transaction amount
-        'firstname' => 'PayU User',  // Customer first name
-        'email' => 'test@gmail.com',  // Customer email address
-        'phone' => '9876543210',  // Customer phone number
-        'productinfo' => 'iPhone',  // Product or order description
-        'surl' => 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
-        'furl' => 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
-        'drop_category' => 'CASH',  // Hide payment category or sub-category: CASH
-        'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
-    );
-    
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
-    $response = curl_exec($ch);
-    curl_close($ch);
-    
-    echo $response;
-    ?>
-    ```
-    ```perl
-    use strict;
-    use warnings;
-    use LWP::UserAgent;
-    use HTTP::Request::Common;
-    
-    # PayU Hosted Checkout - drop payment category customization
-    my $url = 'https://test.payu.in/_payment';
-    
-    my $ua = LWP::UserAgent->new;
-    
-    my %payload = (
-        key => 'JP***g',  # Merchant key provided by PayU
-        txnid => 'DROPCASH001',  # Unique transaction ID generated by merchant
-        amount => '10.00',  # Transaction amount
-        firstname => 'PayU User',  # Customer first name
-        email => 'test@gmail.com',  # Customer email address
-        phone => '9876543210',  # Customer phone number
-        productinfo => 'iPhone',  # Product or order description
-        surl => 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
-        furl => 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
-        drop_category => 'CASH',  # Hide payment category or sub-category: CASH
-        hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
-    );
-    
-    my $response = $ua->post(
-        $url,
-        'accept' => 'application/json',
-        'Content-Type' => 'application/x-www-form-urlencoded',
-        Content => \%payload
-    );
-    
-    print $response->content;
-    ```
+}
+```
+```php
+<?php
+// PayU Hosted Checkout - drop payment category customization
+$url = 'https://test.payu.in/_payment';
 
-    **Hide BNPL (`BNPL`)**
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
 
-    ````curl
-    curl -X POST "https://test.payu.in/_payment" \
-          -H "accept: application/json" \
-          -H "Content-Type: application/x-www-form-urlencoded" \
-          -d "key=JP***g&txnid=DROPBNPL001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=BNPL&hash=REPLACE_WITH_GENERATED_HASH"
-    ```
-    ```python
-    import requests
+$payload = array(
+    'key' => 'JP***g',  // Merchant key provided by PayU
+    'txnid' => 'DROPCASH001',  // Unique transaction ID generated by merchant
+    'amount' => '10.00',  // Transaction amount
+    'firstname' => 'PayU User',  // Customer first name
+    'email' => 'test@gmail.com',  // Customer email address
+    'phone' => '9876543210',  // Customer phone number
+    'productinfo' => 'iPhone',  // Product or order description
+    'surl' => 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
+    'furl' => 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
+    'drop_category' => 'CASH',  // Hide payment category or sub-category: CASH
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
+);
 
-    # PayU Hosted Checkout - drop payment category customization
-    # PayU Hosted Checkout Collect Payment API endpoint (test environment)
-    url = "https://test.payu.in/_payment"
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-    headers = {
-        "accept": "application/json",
-        "Content-Type": "application/x-www-form-urlencoded"
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
+
+# PayU Hosted Checkout - drop payment category customization
+my $url = 'https://test.payu.in/_payment';
+
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',  # Merchant key provided by PayU
+    txnid => 'DROPCASH001',  # Unique transaction ID generated by merchant
+    amount => '10.00',  # Transaction amount
+    firstname => 'PayU User',  # Customer first name
+    email => 'test@gmail.com',  # Customer email address
+    phone => '9876543210',  # Customer phone number
+    productinfo => 'iPhone',  # Product or order description
+    surl => 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
+    furl => 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
+    drop_category => 'CASH',  # Hide payment category or sub-category: CASH
+    hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
+
+**Hide BNPL (**`BNPL`**)**
+
+````curl
+curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=DROPBNPL001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=BNPL&hash=REPLACE_WITH_GENERATED_HASH"
+```
+```python
+import requests
+
+# PayU Hosted Checkout - drop payment category customization
+# PayU Hosted Checkout Collect Payment API endpoint (test environment)
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {
+    'key': 'JP***g',  # Merchant key provided by PayU
+    'txnid': 'DROPBNPL001',  # Unique transaction ID generated by merchant
+    'amount': '10.00',  # Transaction amount
+    'firstname': 'PayU User',  # Customer first name
+    'email': 'test@gmail.com',  # Customer email address
+    'phone': '9876543210',  # Customer phone number
+    'productinfo': 'iPhone',  # Product or order description
+    'surl': 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
+    'furl': 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
+    'drop_category': 'BNPL',  # Hide payment category or sub-category: BNPL
+    'hash': 'REPLACE_WITH_GENERATED_HASH',  # SHA-512 hash generated on server
+}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
+
+// PayU Hosted Checkout - drop payment category customization
+// PayU Hosted Checkout Collect Payment API endpoint (test environment)
+const url = 'https://test.payu.in/_payment';
+
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+const payload = {
+    'key': 'JP***g',  // Merchant key provided by PayU
+    'txnid': 'DROPBNPL001',  // Unique transaction ID generated by merchant
+    'amount': '10.00',  // Transaction amount
+    'firstname': 'PayU User',  // Customer first name
+    'email': 'test@gmail.com',  // Customer email address
+    'phone': '9876543210',  // Customer phone number
+    'productinfo': 'iPhone',  // Product or order description
+    'surl': 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
+    'furl': 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
+    'drop_category': 'BNPL',  // Hide payment category or sub-category: BNPL
+    'hash': 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
+};
+
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
+
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        // PayU Hosted Checkout - drop payment category customization
+        HttpClient client = HttpClient.newHttpClient();
+        
+        // Request body: key, txnid, amount, surl, furl, hash; drop_category=BNPL
+        String formData = "key=JP***g&txnid=DROPBNPL001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=BNPL&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
     }
+}
+```
+```php
+<?php
+// PayU Hosted Checkout - drop payment category customization
+$url = 'https://test.payu.in/_payment';
 
-    payload = {
-        'key': 'JP***g',  # Merchant key provided by PayU
-        'txnid': 'DROPBNPL001',  # Unique transaction ID generated by merchant
-        'amount': '10.00',  # Transaction amount
-        'firstname': 'PayU User',  # Customer first name
-        'email': 'test@gmail.com',  # Customer email address
-        'phone': '9876543210',  # Customer phone number
-        'productinfo': 'iPhone',  # Product or order description
-        'surl': 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
-        'furl': 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
-        'drop_category': 'BNPL',  # Hide payment category or sub-category: BNPL
-        'hash': 'REPLACE_WITH_GENERATED_HASH',  # SHA-512 hash generated on server
-    }
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
 
-    response = requests.post(url, headers=headers, data=payload)
-    print(response.text)
-    ```
-    ```javascript
-    const axios = require('axios');
-    const qs = require('querystring');
+$payload = array(
+    'key' => 'JP***g',  // Merchant key provided by PayU
+    'txnid' => 'DROPBNPL001',  // Unique transaction ID generated by merchant
+    'amount' => '10.00',  // Transaction amount
+    'firstname' => 'PayU User',  // Customer first name
+    'email' => 'test@gmail.com',  // Customer email address
+    'phone' => '9876543210',  // Customer phone number
+    'productinfo' => 'iPhone',  // Product or order description
+    'surl' => 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
+    'furl' => 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
+    'drop_category' => 'BNPL',  // Hide payment category or sub-category: BNPL
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
+);
 
-    // PayU Hosted Checkout - drop payment category customization
-    // PayU Hosted Checkout Collect Payment API endpoint (test environment)
-    const url = 'https://test.payu.in/_payment';
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-    const headers = {
-        'accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded'
-    };
+$response = curl_exec($ch);
+curl_close($ch);
 
-    const payload = {
-        'key': 'JP***g',  // Merchant key provided by PayU
-        'txnid': 'DROPBNPL001',  // Unique transaction ID generated by merchant
-        'amount': '10.00',  // Transaction amount
-        'firstname': 'PayU User',  // Customer first name
-        'email': 'test@gmail.com',  // Customer email address
-        'phone': '9876543210',  // Customer phone number
-        'productinfo': 'iPhone',  // Product or order description
-        'surl': 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
-        'furl': 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
-        'drop_category': 'BNPL',  // Hide payment category or sub-category: BNPL
-        'hash': 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
-    };
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
 
-    axios.post(url, qs.stringify(payload), { headers: headers })
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(error => {
-            console.error(error);
-        });
-    ```
-    ```java
-    import java.io.*;
-    import java.net.*;
-    import java.net.http.*;
+# PayU Hosted Checkout - drop payment category customization
+my $url = 'https://test.payu.in/_payment';
 
-    public class PayUPayment {
-        public static void main(String[] args) throws IOException, InterruptedException {
-            // PayU Hosted Checkout - drop payment category customization
-            HttpClient client = HttpClient.newHttpClient();
-            
-            // Request body: key, txnid, amount, surl, furl, hash; drop_category=BNPL
-            String formData = "key=JP***g&txnid=DROPBNPL001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=BNPL&hash=REPLACE_WITH_GENERATED_HASH";
-            
-            HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://test.payu.in/_payment"))
-                .header("accept", "application/json")
-                .header("Content-Type", "application/x-www-form-urlencoded")
-                .POST(HttpRequest.BodyPublishers.ofString(formData))
-                .build();
-            
-            HttpResponse<String> response = client.send(request, 
-                HttpResponse.BodyHandlers.ofString());
-            
-            System.out.println(response.body());
-        }
-    }
-    ```
-    ```php
-    <?php
-    // PayU Hosted Checkout - drop payment category customization
-    $url = 'https://test.payu.in/_payment';
-    
-    $headers = array(
-        'accept: application/json',
-        'Content-Type: application/x-www-form-urlencoded'
-    );
-    
-    $payload = array(
-        'key' => 'JP***g',  // Merchant key provided by PayU
-        'txnid' => 'DROPBNPL001',  // Unique transaction ID generated by merchant
-        'amount' => '10.00',  // Transaction amount
-        'firstname' => 'PayU User',  // Customer first name
-        'email' => 'test@gmail.com',  // Customer email address
-        'phone' => '9876543210',  // Customer phone number
-        'productinfo' => 'iPhone',  // Product or order description
-        'surl' => 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
-        'furl' => 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
-        'drop_category' => 'BNPL',  // Hide payment category or sub-category: BNPL
-        'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
-    );
-    
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
-    $response = curl_exec($ch);
-    curl_close($ch);
-    
-    echo $response;
-    ?>
-    ```
-    ```perl
-    use strict;
-    use warnings;
-    use LWP::UserAgent;
-    use HTTP::Request::Common;
-    
-    # PayU Hosted Checkout - drop payment category customization
-    my $url = 'https://test.payu.in/_payment';
-    
-    my $ua = LWP::UserAgent->new;
-    
-    my %payload = (
-        key => 'JP***g',  # Merchant key provided by PayU
-        txnid => 'DROPBNPL001',  # Unique transaction ID generated by merchant
-        amount => '10.00',  # Transaction amount
-        firstname => 'PayU User',  # Customer first name
-        email => 'test@gmail.com',  # Customer email address
-        phone => '9876543210',  # Customer phone number
-        productinfo => 'iPhone',  # Product or order description
-        surl => 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
-        furl => 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
-        drop_category => 'BNPL',  # Hide payment category or sub-category: BNPL
-        hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
-    );
-    
-    my $response = $ua->post(
-        $url,
-        'accept' => 'application/json',
-        'Content-Type' => 'application/x-www-form-urlencoded',
-        Content => \%payload
-    );
-    
-    print $response->content;
-    ```
+my $ua = LWP::UserAgent->new;
 
-    **Hide Sodexo (`SODEXO`)**
+my %payload = (
+    key => 'JP***g',  # Merchant key provided by PayU
+    txnid => 'DROPBNPL001',  # Unique transaction ID generated by merchant
+    amount => '10.00',  # Transaction amount
+    firstname => 'PayU User',  # Customer first name
+    email => 'test@gmail.com',  # Customer email address
+    phone => '9876543210',  # Customer phone number
+    productinfo => 'iPhone',  # Product or order description
+    surl => 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
+    furl => 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
+    drop_category => 'BNPL',  # Hide payment category or sub-category: BNPL
+    hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
+);
 
-    ```curl
-    # PayU Hosted Checkout - drop payment category customization
-    curl -X POST "https://test.payu.in/_payment" \
-          -H "accept: application/json" \
-          -H "Content-Type: application/x-www-form-urlencoded" \
-          -d "key=JP***g&txnid=DROPSODEXO001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=SODEXO&hash=REPLACE_WITH_GENERATED_HASH"
-    # Parameters include key, txnid, amount, surl, furl, hash; drop_category=SODEXO
-    ```
-    ```python
-    import requests
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
 
-    # PayU Hosted Checkout - drop payment category customization
-    # PayU Hosted Checkout Collect Payment API endpoint (test environment)
-    url = "https://test.payu.in/_payment"
+print $response->content;
+```
 
-    headers = {
-        "accept": "application/json",
-        "Content-Type": "application/x-www-form-urlencoded"
-    }
+**Hide Sodexo (`SODEXO`)**
 
-    payload = {
-        'key': 'JP***g',  # Merchant key provided by PayU
-        'txnid': 'DROPSODEXO001',  # Unique transaction ID generated by merchant
-        'amount': '10.00',  # Transaction amount
-        'firstname': 'PayU User',  # Customer first name
-        'email': 'test@gmail.com',  # Customer email address
-        'phone': '9876543210',  # Customer phone number
-        'productinfo': 'iPhone',  # Product or order description
-        'surl': 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
-        'furl': 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
-        'drop_category': 'SODEXO',  # Hide payment category or sub-category: SODEXO
-        'hash': 'REPLACE_WITH_GENERATED_HASH',  # SHA-512 hash generated on server
-    }
+```curl
+# PayU Hosted Checkout - drop payment category customization
+curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=DROPSODEXO001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=SODEXO&hash=REPLACE_WITH_GENERATED_HASH"
+# Parameters include key, txnid, amount, surl, furl, hash; drop_category=SODEXO
+```
+```python
+import requests
 
-    response = requests.post(url, headers=headers, data=payload)
-    print(response.text)
-    ```
-    ```csharp
-    using System;
-    using System.Net.Http;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+# PayU Hosted Checkout - drop payment category customization
+# PayU Hosted Checkout Collect Payment API endpoint (test environment)
+url = "https://test.payu.in/_payment"
 
-    class Program
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {
+    'key': 'JP***g',  # Merchant key provided by PayU
+    'txnid': 'DROPSODEXO001',  # Unique transaction ID generated by merchant
+    'amount': '10.00',  # Transaction amount
+    'firstname': 'PayU User',  # Customer first name
+    'email': 'test@gmail.com',  # Customer email address
+    'phone': '9876543210',  # Customer phone number
+    'productinfo': 'iPhone',  # Product or order description
+    'surl': 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
+    'furl': 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
+    'drop_category': 'SODEXO',  # Hide payment category or sub-category: SODEXO
+    'hash': 'REPLACE_WITH_GENERATED_HASH',  # SHA-512 hash generated on server
+}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
     {
-        static async Task Main(string[] args)
+        // PayU Hosted Checkout - drop payment category customization
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
         {
-            // PayU Hosted Checkout - drop payment category customization
-            using var client = new HttpClient();
-            
-            var url = "https://test.payu.in/_payment";
-            
-            client.DefaultRequestHeaders.Add("accept", "application/json");
-            
-            var payload = new Dictionary<string, string>
-            {
-                { "key", "JP***g" },  // Merchant key provided by PayU
-                { "txnid", "DROPSODEXO001" },  // Unique transaction ID generated by merchant
-                { "amount", "10.00" },  // Transaction amount
-                { "firstname", "PayU User" },  // Customer first name
-                { "email", "test@gmail.com" },  // Customer email address
-                { "phone", "9876543210" },  // Customer phone number
-                { "productinfo", "iPhone" },  // Product or order description
-                { "surl", "https://apiplayground-response.herokuapp.com/" },  // Success callback URL
-                { "furl", "https://apiplayground-response.herokuapp.com/" },  // Failure callback URL
-                { "drop_category", "SODEXO" },  // Hide payment category or sub-category: SODEXO
-                { "hash", "REPLACE_WITH_GENERATED_HASH" },  // SHA-512 hash generated on server
-            };
-            
-            var content = new FormUrlEncodedContent(payload);
-            
-            var response = await client.PostAsync(url, content);
-            var result = await response.Content.ReadAsStringAsync();
-            
-            Console.WriteLine(result);
-        }
+            { "key", "JP***g" },  // Merchant key provided by PayU
+            { "txnid", "DROPSODEXO001" },  // Unique transaction ID generated by merchant
+            { "amount", "10.00" },  // Transaction amount
+            { "firstname", "PayU User" },  // Customer first name
+            { "email", "test@gmail.com" },  // Customer email address
+            { "phone", "9876543210" },  // Customer phone number
+            { "productinfo", "iPhone" },  // Product or order description
+            { "surl", "https://apiplayground-response.herokuapp.com/" },  // Success callback URL
+            { "furl", "https://apiplayground-response.herokuapp.com/" },  // Failure callback URL
+            { "drop_category", "SODEXO" },  // Hide payment category or sub-category: SODEXO
+            { "hash", "REPLACE_WITH_GENERATED_HASH" },  // SHA-512 hash generated on server
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
     }
-    ```
-    ```javascript
-    const axios = require('axios');
-    const qs = require('querystring');
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
 
-    // PayU Hosted Checkout - drop payment category customization
-    // PayU Hosted Checkout Collect Payment API endpoint (test environment)
-    const url = 'https://test.payu.in/_payment';
+// PayU Hosted Checkout - drop payment category customization
+// PayU Hosted Checkout Collect Payment API endpoint (test environment)
+const url = 'https://test.payu.in/_payment';
 
-    const headers = {
-        'accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded'
-    };
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
 
-    const payload = {
-        'key': 'JP***g',  // Merchant key provided by PayU
-        'txnid': 'DROPSODEXO001',  // Unique transaction ID generated by merchant
-        'amount': '10.00',  // Transaction amount
-        'firstname': 'PayU User',  // Customer first name
-        'email': 'test@gmail.com',  // Customer email address
-        'phone': '9876543210',  // Customer phone number
-        'productinfo': 'iPhone',  // Product or order description
-        'surl': 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
-        'furl': 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
-        'drop_category': 'SODEXO',  // Hide payment category or sub-category: SODEXO
-        'hash': 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
-    };
+const payload = {
+    'key': 'JP***g',  // Merchant key provided by PayU
+    'txnid': 'DROPSODEXO001',  // Unique transaction ID generated by merchant
+    'amount': '10.00',  // Transaction amount
+    'firstname': 'PayU User',  // Customer first name
+    'email': 'test@gmail.com',  // Customer email address
+    'phone': '9876543210',  // Customer phone number
+    'productinfo': 'iPhone',  // Product or order description
+    'surl': 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
+    'furl': 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
+    'drop_category': 'SODEXO',  // Hide payment category or sub-category: SODEXO
+    'hash': 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
+};
 
-    axios.post(url, qs.stringify(payload), { headers: headers })
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(error => {
-            console.error(error);
-        });
-    ```
-    ```java
-    import java.io.*;
-    import java.net.*;
-    import java.net.http.*;
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
 
-    public class PayUPayment {
-        public static void main(String[] args) throws IOException, InterruptedException {
-            // PayU Hosted Checkout - drop payment category customization
-            HttpClient client = HttpClient.newHttpClient();
-            
-            // Request body: key, txnid, amount, surl, furl, hash; drop_category=SODEXO
-            String formData = "key=JP***g&txnid=DROPSODEXO001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=SODEXO&hash=REPLACE_WITH_GENERATED_HASH";
-            
-            HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://test.payu.in/_payment"))
-                .header("accept", "application/json")
-                .header("Content-Type", "application/x-www-form-urlencoded")
-                .POST(HttpRequest.BodyPublishers.ofString(formData))
-                .build();
-            
-            HttpResponse<String> response = client.send(request, 
-                HttpResponse.BodyHandlers.ofString());
-            
-            System.out.println(response.body());
-        }
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        // PayU Hosted Checkout - drop payment category customization
+        HttpClient client = HttpClient.newHttpClient();
+        
+        // Request body: key, txnid, amount, surl, furl, hash; drop_category=SODEXO
+        String formData = "key=JP***g&txnid=DROPSODEXO001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=SODEXO&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
     }
-    ```
-    ```php
-    <?php
-    // PayU Hosted Checkout - drop payment category customization
-    $url = 'https://test.payu.in/_payment';
-    
-    $headers = array(
-        'accept: application/json',
-        'Content-Type: application/x-www-form-urlencoded'
-    );
-    
-    $payload = array(
-        'key' => 'JP***g',  // Merchant key provided by PayU
-        'txnid' => 'DROPSODEXO001',  // Unique transaction ID generated by merchant
-        'amount' => '10.00',  // Transaction amount
-        'firstname' => 'PayU User',  // Customer first name
-        'email' => 'test@gmail.com',  // Customer email address
-        'phone' => '9876543210',  // Customer phone number
-        'productinfo' => 'iPhone',  // Product or order description
-        'surl' => 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
-        'furl' => 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
-        'drop_category' => 'SODEXO',  // Hide payment category or sub-category: SODEXO
-        'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
-    );
-    
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
-    $response = curl_exec($ch);
-    curl_close($ch);
-    
-    echo $response;
-    ?>
-    ```
-    ```perl
-    use strict;
-    use warnings;
-    use LWP::UserAgent;
-    use HTTP::Request::Common;
-    
-    # PayU Hosted Checkout - drop payment category customization
-    my $url = 'https://test.payu.in/_payment';
-    
-    my $ua = LWP::UserAgent->new;
-    
-    my %payload = (
-        key => 'JP***g',  # Merchant key provided by PayU
-        txnid => 'DROPSODEXO001',  # Unique transaction ID generated by merchant
-        amount => '10.00',  # Transaction amount
-        firstname => 'PayU User',  # Customer first name
-        email => 'test@gmail.com',  # Customer email address
-        phone => '9876543210',  # Customer phone number
-        productinfo => 'iPhone',  # Product or order description
-        surl => 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
-        furl => 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
-        drop_category => 'SODEXO',  # Hide payment category or sub-category: SODEXO
-        hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
-    );
-    
-    my $response = $ua->post(
-        $url,
-        'accept' => 'application/json',
-        'Content-Type' => 'application/x-www-form-urlencoded',
-        Content => \%payload
-    );
-    
-    print $response->content;
-    ```
-  </Accordion>
+}
+```
+```php
+<?php
+// PayU Hosted Checkout - drop payment category customization
+$url = 'https://test.payu.in/_payment';
 
-  <Accordion title="Sample request with multiple payment method removed or dropped" icon="fa-code">
-    **Hide Credit Card and Net Banking (`CC|NB`)**
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
 
-    ```curl
-    # PayU Hosted Checkout - drop payment category customization
-    curl -X POST "https://test.payu.in/_payment" \
-          -H "accept: application/json" \
-          -H "Content-Type: application/x-www-form-urlencoded" \
-          -d "key=JP***g&txnid=DROP2CAT001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CC|NB&hash=REPLACE_WITH_GENERATED_HASH"
-    # Parameters include key, txnid, amount, surl, furl, hash; drop_category=CC|NB
-    ```
-    ```python
-    import requests
+$payload = array(
+    'key' => 'JP***g',  // Merchant key provided by PayU
+    'txnid' => 'DROPSODEXO001',  // Unique transaction ID generated by merchant
+    'amount' => '10.00',  // Transaction amount
+    'firstname' => 'PayU User',  // Customer first name
+    'email' => 'test@gmail.com',  // Customer email address
+    'phone' => '9876543210',  // Customer phone number
+    'productinfo' => 'iPhone',  // Product or order description
+    'surl' => 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
+    'furl' => 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
+    'drop_category' => 'SODEXO',  // Hide payment category or sub-category: SODEXO
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
+);
 
-    # PayU Hosted Checkout - drop payment category customization
-    # PayU Hosted Checkout Collect Payment API endpoint (test environment)
-    url = "https://test.payu.in/_payment"
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-    headers = {
-        "accept": "application/json",
-        "Content-Type": "application/x-www-form-urlencoded"
-    }
+$response = curl_exec($ch);
+curl_close($ch);
 
-    payload = {
-        'key': 'JP***g',  # Merchant key provided by PayU
-        'txnid': 'DROP2CAT001',  # Unique transaction ID generated by merchant
-        'amount': '10.00',  # Transaction amount
-        'firstname': 'PayU User',  # Customer first name
-        'email': 'test@gmail.com',  # Customer email address
-        'phone': '9876543210',  # Customer phone number
-        'productinfo': 'iPhone',  # Product or order description
-        'surl': 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
-        'furl': 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
-        'drop_category': 'CC|NB',  # Hide payment category or sub-category: CC|NB
-        'hash': 'REPLACE_WITH_GENERATED_HASH',  # SHA-512 hash generated on server
-    }
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
 
-    response = requests.post(url, headers=headers, data=payload)
-    print(response.text)
-    ```
-    ```csharp
-    using System;
-    using System.Net.Http;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+# PayU Hosted Checkout - drop payment category customization
+my $url = 'https://test.payu.in/_payment';
 
-    class Program
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',  # Merchant key provided by PayU
+    txnid => 'DROPSODEXO001',  # Unique transaction ID generated by merchant
+    amount => '10.00',  # Transaction amount
+    firstname => 'PayU User',  # Customer first name
+    email => 'test@gmail.com',  # Customer email address
+    phone => '9876543210',  # Customer phone number
+    productinfo => 'iPhone',  # Product or order description
+    surl => 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
+    furl => 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
+    drop_category => 'SODEXO',  # Hide payment category or sub-category: SODEXO
+    hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
+</Accordion>
+
+<Accordion title="Sample request with multiple payment method removed or dropped" icon="fa-code">
+**Hide Credit Card and Net Banking (`CC|NB`)**
+
+```curl
+# PayU Hosted Checkout - drop payment category customization
+curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=DROP2CAT001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CC|NB&hash=REPLACE_WITH_GENERATED_HASH"
+# Parameters include key, txnid, amount, surl, furl, hash; drop_category=CC|NB
+```
+```python
+import requests
+
+# PayU Hosted Checkout - drop payment category customization
+# PayU Hosted Checkout Collect Payment API endpoint (test environment)
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {
+    'key': 'JP***g',  # Merchant key provided by PayU
+    'txnid': 'DROP2CAT001',  # Unique transaction ID generated by merchant
+    'amount': '10.00',  # Transaction amount
+    'firstname': 'PayU User',  # Customer first name
+    'email': 'test@gmail.com',  # Customer email address
+    'phone': '9876543210',  # Customer phone number
+    'productinfo': 'iPhone',  # Product or order description
+    'surl': 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
+    'furl': 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
+    'drop_category': 'CC|NB',  # Hide payment category or sub-category: CC|NB
+    'hash': 'REPLACE_WITH_GENERATED_HASH',  # SHA-512 hash generated on server
+}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
     {
-        static async Task Main(string[] args)
+        // PayU Hosted Checkout - drop payment category customization
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
         {
-            // PayU Hosted Checkout - drop payment category customization
-            using var client = new HttpClient();
-            
-            var url = "https://test.payu.in/_payment";
-            
-            client.DefaultRequestHeaders.Add("accept", "application/json");
-            
-            var payload = new Dictionary<string, string>
-            {
-                { "key", "JP***g" },  // Merchant key provided by PayU
-                { "txnid", "DROP2CAT001" },  // Unique transaction ID generated by merchant
-                { "amount", "10.00" },  // Transaction amount
-                { "firstname", "PayU User" },  // Customer first name
-                { "email", "test@gmail.com" },  // Customer email address
-                { "phone", "9876543210" },  // Customer phone number
-                { "productinfo", "iPhone" },  // Product or order description
-                { "surl", "https://apiplayground-response.herokuapp.com/" },  // Success callback URL
-                { "furl", "https://apiplayground-response.herokuapp.com/" },  // Failure callback URL
-                { "drop_category", "CC|NB" },  // Hide payment category or sub-category: CC|NB
-                { "hash", "REPLACE_WITH_GENERATED_HASH" },  // SHA-512 hash generated on server
-            };
-            
-            var content = new FormUrlEncodedContent(payload);
-            
-            var response = await client.PostAsync(url, content);
-            var result = await response.Content.ReadAsStringAsync();
-            
-            Console.WriteLine(result);
-        }
+            { "key", "JP***g" },  // Merchant key provided by PayU
+            { "txnid", "DROP2CAT001" },  // Unique transaction ID generated by merchant
+            { "amount", "10.00" },  // Transaction amount
+            { "firstname", "PayU User" },  // Customer first name
+            { "email", "test@gmail.com" },  // Customer email address
+            { "phone", "9876543210" },  // Customer phone number
+            { "productinfo", "iPhone" },  // Product or order description
+            { "surl", "https://apiplayground-response.herokuapp.com/" },  // Success callback URL
+            { "furl", "https://apiplayground-response.herokuapp.com/" },  // Failure callback URL
+            { "drop_category", "CC|NB" },  // Hide payment category or sub-category: CC|NB
+            { "hash", "REPLACE_WITH_GENERATED_HASH" },  // SHA-512 hash generated on server
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
     }
-    ```
-    ```javascript
-    const axios = require('axios');
-    const qs = require('querystring');
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
 
-    // PayU Hosted Checkout - drop payment category customization
-    // PayU Hosted Checkout Collect Payment API endpoint (test environment)
-    const url = 'https://test.payu.in/_payment';
+// PayU Hosted Checkout - drop payment category customization
+// PayU Hosted Checkout Collect Payment API endpoint (test environment)
+const url = 'https://test.payu.in/_payment';
 
-    const headers = {
-        'accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded'
-    };
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
 
-    const payload = {
-        'key': 'JP***g',  // Merchant key provided by PayU
-        'txnid': 'DROP2CAT001',  // Unique transaction ID generated by merchant
-        'amount': '10.00',  // Transaction amount
-        'firstname': 'PayU User',  // Customer first name
-        'email': 'test@gmail.com',  // Customer email address
-        'phone': '9876543210',  // Customer phone number
-        'productinfo': 'iPhone',  // Product or order description
-        'surl': 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
-        'furl': 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
-        'drop_category': 'CC|NB',  // Hide payment category or sub-category: CC|NB
-        'hash': 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
-    };
+const payload = {
+    'key': 'JP***g',  // Merchant key provided by PayU
+    'txnid': 'DROP2CAT001',  // Unique transaction ID generated by merchant
+    'amount': '10.00',  // Transaction amount
+    'firstname': 'PayU User',  // Customer first name
+    'email': 'test@gmail.com',  // Customer email address
+    'phone': '9876543210',  // Customer phone number
+    'productinfo': 'iPhone',  // Product or order description
+    'surl': 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
+    'furl': 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
+    'drop_category': 'CC|NB',  // Hide payment category or sub-category: CC|NB
+    'hash': 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
+};
 
-    axios.post(url, qs.stringify(payload), { headers: headers })
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(error => {
-            console.error(error);
-        });
-    ```
-    ```java
-    import java.io.*;
-    import java.net.*;
-    import java.net.http.*;
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
 
-    public class PayUPayment {
-        public static void main(String[] args) throws IOException, InterruptedException {
-            // PayU Hosted Checkout - drop payment category customization
-            HttpClient client = HttpClient.newHttpClient();
-            
-            // Request body: key, txnid, amount, surl, furl, hash; drop_category=CC|NB
-            String formData = "key=JP***g&txnid=DROP2CAT001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CC|NB&hash=REPLACE_WITH_GENERATED_HASH";
-            
-            HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://test.payu.in/_payment"))
-                .header("accept", "application/json")
-                .header("Content-Type", "application/x-www-form-urlencoded")
-                .POST(HttpRequest.BodyPublishers.ofString(formData))
-                .build();
-            
-            HttpResponse<String> response = client.send(request, 
-                HttpResponse.BodyHandlers.ofString());
-            
-            System.out.println(response.body());
-        }
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        // PayU Hosted Checkout - drop payment category customization
+        HttpClient client = HttpClient.newHttpClient();
+        
+        // Request body: key, txnid, amount, surl, furl, hash; drop_category=CC|NB
+        String formData = "key=JP***g&txnid=DROP2CAT001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CC|NB&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
     }
-    ```
-    ```php
-    <?php
-    // PayU Hosted Checkout - drop payment category customization
-    $url = 'https://test.payu.in/_payment';
-    
-    $headers = array(
-        'accept: application/json',
-        'Content-Type: application/x-www-form-urlencoded'
-    );
-    
-    $payload = array(
-        'key' => 'JP***g',  // Merchant key provided by PayU
-        'txnid' => 'DROP2CAT001',  // Unique transaction ID generated by merchant
-        'amount' => '10.00',  // Transaction amount
-        'firstname' => 'PayU User',  // Customer first name
-        'email' => 'test@gmail.com',  // Customer email address
-        'phone' => '9876543210',  // Customer phone number
-        'productinfo' => 'iPhone',  // Product or order description
-        'surl' => 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
-        'furl' => 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
-        'drop_category' => 'CC|NB',  // Hide payment category or sub-category: CC|NB
-        'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
-    );
-    
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
-    $response = curl_exec($ch);
-    curl_close($ch);
-    
-    echo $response;
-    ?>
-    ```
-    ```perl
-    use strict;
-    use warnings;
-    use LWP::UserAgent;
-    use HTTP::Request::Common;
-    
-    # PayU Hosted Checkout - drop payment category customization
-    my $url = 'https://test.payu.in/_payment';
-    
-    my $ua = LWP::UserAgent->new;
-    
-    my %payload = (
-        key => 'JP***g',  # Merchant key provided by PayU
-        txnid => 'DROP2CAT001',  # Unique transaction ID generated by merchant
-        amount => '10.00',  # Transaction amount
-        firstname => 'PayU User',  # Customer first name
-        email => 'test@gmail.com',  # Customer email address
-        phone => '9876543210',  # Customer phone number
-        productinfo => 'iPhone',  # Product or order description
-        surl => 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
-        furl => 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
-        drop_category => 'CC|NB',  # Hide payment category or sub-category: CC|NB
-        hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
-    );
-    
-    my $response = $ua->post(
-        $url,
-        'accept' => 'application/json',
-        'Content-Type' => 'application/x-www-form-urlencoded',
-        Content => \%payload
-    );
-    
-    print $response->content;
-    ```
+}
+```
+```php
+<?php
+// PayU Hosted Checkout - drop payment category customization
+$url = 'https://test.payu.in/_payment';
 
-    #### `drop_category` — hide sub-options (bank / scheme codes)
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
 
-    Use the bank and scheme codes from [Bank and Card Codes for Integration](doc:bank-and-card-codes-for-integration) (illustrative codes below match the earlier examples in this page).
+$payload = array(
+    'key' => 'JP***g',  // Merchant key provided by PayU
+    'txnid' => 'DROP2CAT001',  // Unique transaction ID generated by merchant
+    'amount' => '10.00',  // Transaction amount
+    'firstname' => 'PayU User',  // Customer first name
+    'email' => 'test@gmail.com',  // Customer email address
+    'phone' => '9876543210',  // Customer phone number
+    'productinfo' => 'iPhone',  // Product or order description
+    'surl' => 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
+    'furl' => 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
+    'drop_category' => 'CC|NB',  // Hide payment category or sub-category: CC|NB
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
+);
 
-    **Debit Card: drop Visa and Mastercard only (`DC|VISA|MAST`)**
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-    ```curl
-    # PayU Hosted Checkout - drop payment category customization
-    curl -X POST "https://test.payu.in/_payment" \
-          -H "accept: application/json" \
-          -H "Content-Type: application/x-www-form-urlencoded" \
-          -d "key=JP***g&txnid=DROPSUB001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=DC|VISA|MAST&hash=REPLACE_WITH_GENERATED_HASH"
-    # Parameters include key, txnid, amount, surl, furl, hash; drop_category=DC|VISA|MAST
-    ```
-    ```python
-    import requests
+$response = curl_exec($ch);
+curl_close($ch);
 
-    # PayU Hosted Checkout - drop payment category customization
-    # PayU Hosted Checkout Collect Payment API endpoint (test environment)
-    url = "https://test.payu.in/_payment"
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
 
-    headers = {
-        "accept": "application/json",
-        "Content-Type": "application/x-www-form-urlencoded"
-    }
+# PayU Hosted Checkout - drop payment category customization
+my $url = 'https://test.payu.in/_payment';
 
-    payload = {
-        'key': 'JP***g',  # Merchant key provided by PayU
-        'txnid': 'DROPSUB001',  # Unique transaction ID generated by merchant
-        'amount': '10.00',  # Transaction amount
-        'firstname': 'PayU User',  # Customer first name
-        'email': 'test@gmail.com',  # Customer email address
-        'phone': '9876543210',  # Customer phone number
-        'productinfo': 'iPhone',  # Product or order description
-        'surl': 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
-        'furl': 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
-        'drop_category': 'DC|VISA|MAST',  # Hide payment category or sub-category: DC|VISA|MAST
-        'hash': 'REPLACE_WITH_GENERATED_HASH',  # SHA-512 hash generated on server
-    }
+my $ua = LWP::UserAgent->new;
 
-    response = requests.post(url, headers=headers, data=payload)
-    print(response.text)
-    ```
-    ```csharp
-    using System;
-    using System.Net.Http;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+my %payload = (
+    key => 'JP***g',  # Merchant key provided by PayU
+    txnid => 'DROP2CAT001',  # Unique transaction ID generated by merchant
+    amount => '10.00',  # Transaction amount
+    firstname => 'PayU User',  # Customer first name
+    email => 'test@gmail.com',  # Customer email address
+    phone => '9876543210',  # Customer phone number
+    productinfo => 'iPhone',  # Product or order description
+    surl => 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
+    furl => 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
+    drop_category => 'CC|NB',  # Hide payment category or sub-category: CC|NB
+    hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
+);
 
-    class Program
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
+
+#### `drop_category` — hide sub-options (bank / scheme codes)
+
+Use the bank and scheme codes from [Bank and Card Codes for Integration](doc:bank-and-card-codes-for-integration) (illustrative codes below match the earlier examples in this page).
+
+**Debit Card: drop Visa and Mastercard only (`DC|VISA|MAST`)**
+
+```curl
+# PayU Hosted Checkout - drop payment category customization
+curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=DROPSUB001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=DC|VISA|MAST&hash=REPLACE_WITH_GENERATED_HASH"
+# Parameters include key, txnid, amount, surl, furl, hash; drop_category=DC|VISA|MAST
+```
+```python
+import requests
+
+# PayU Hosted Checkout - drop payment category customization
+# PayU Hosted Checkout Collect Payment API endpoint (test environment)
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {
+    'key': 'JP***g',  # Merchant key provided by PayU
+    'txnid': 'DROPSUB001',  # Unique transaction ID generated by merchant
+    'amount': '10.00',  # Transaction amount
+    'firstname': 'PayU User',  # Customer first name
+    'email': 'test@gmail.com',  # Customer email address
+    'phone': '9876543210',  # Customer phone number
+    'productinfo': 'iPhone',  # Product or order description
+    'surl': 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
+    'furl': 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
+    'drop_category': 'DC|VISA|MAST',  # Hide payment category or sub-category: DC|VISA|MAST
+    'hash': 'REPLACE_WITH_GENERATED_HASH',  # SHA-512 hash generated on server
+}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
     {
-        static async Task Main(string[] args)
+        // PayU Hosted Checkout - drop payment category customization
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
         {
-            // PayU Hosted Checkout - drop payment category customization
-            using var client = new HttpClient();
-            
-            var url = "https://test.payu.in/_payment";
-            
-            client.DefaultRequestHeaders.Add("accept", "application/json");
-            
-            var payload = new Dictionary<string, string>
-            {
-                { "key", "JP***g" },  // Merchant key provided by PayU
-                { "txnid", "DROPSUB001" },  // Unique transaction ID generated by merchant
-                { "amount", "10.00" },  // Transaction amount
-                { "firstname", "PayU User" },  // Customer first name
-                { "email", "test@gmail.com" },  // Customer email address
-                { "phone", "9876543210" },  // Customer phone number
-                { "productinfo", "iPhone" },  // Product or order description
-                { "surl", "https://apiplayground-response.herokuapp.com/" },  // Success callback URL
-                { "furl", "https://apiplayground-response.herokuapp.com/" },  // Failure callback URL
-                { "drop_category", "DC|VISA|MAST" },  // Hide payment category or sub-category: DC|VISA|MAST
-                { "hash", "REPLACE_WITH_GENERATED_HASH" },  // SHA-512 hash generated on server
-            };
-            
-            var content = new FormUrlEncodedContent(payload);
-            
-            var response = await client.PostAsync(url, content);
-            var result = await response.Content.ReadAsStringAsync();
-            
-            Console.WriteLine(result);
-        }
+            { "key", "JP***g" },  // Merchant key provided by PayU
+            { "txnid", "DROPSUB001" },  // Unique transaction ID generated by merchant
+            { "amount", "10.00" },  // Transaction amount
+            { "firstname", "PayU User" },  // Customer first name
+            { "email", "test@gmail.com" },  // Customer email address
+            { "phone", "9876543210" },  // Customer phone number
+            { "productinfo", "iPhone" },  // Product or order description
+            { "surl", "https://apiplayground-response.herokuapp.com/" },  // Success callback URL
+            { "furl", "https://apiplayground-response.herokuapp.com/" },  // Failure callback URL
+            { "drop_category", "DC|VISA|MAST" },  // Hide payment category or sub-category: DC|VISA|MAST
+            { "hash", "REPLACE_WITH_GENERATED_HASH" },  // SHA-512 hash generated on server
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
     }
-    ```
-    ```javascript
-    const axios = require('axios');
-    const qs = require('querystring');
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
 
-    // PayU Hosted Checkout - drop payment category customization
-    // PayU Hosted Checkout Collect Payment API endpoint (test environment)
-    const url = 'https://test.payu.in/_payment';
+// PayU Hosted Checkout - drop payment category customization
+// PayU Hosted Checkout Collect Payment API endpoint (test environment)
+const url = 'https://test.payu.in/_payment';
 
-    const headers = {
-        'accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded'
-    };
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
 
-    const payload = {
-        'key': 'JP***g',  // Merchant key provided by PayU
-        'txnid': 'DROPSUB001',  // Unique transaction ID generated by merchant
-        'amount': '10.00',  // Transaction amount
-        'firstname': 'PayU User',  // Customer first name
-        'email': 'test@gmail.com',  // Customer email address
-        'phone': '9876543210',  // Customer phone number
-        'productinfo': 'iPhone',  // Product or order description
-        'surl': 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
-        'furl': 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
-        'drop_category': 'DC|VISA|MAST',  // Hide payment category or sub-category: DC|VISA|MAST
-        'hash': 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
-    };
+const payload = {
+    'key': 'JP***g',  // Merchant key provided by PayU
+    'txnid': 'DROPSUB001',  // Unique transaction ID generated by merchant
+    'amount': '10.00',  // Transaction amount
+    'firstname': 'PayU User',  // Customer first name
+    'email': 'test@gmail.com',  // Customer email address
+    'phone': '9876543210',  // Customer phone number
+    'productinfo': 'iPhone',  // Product or order description
+    'surl': 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
+    'furl': 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
+    'drop_category': 'DC|VISA|MAST',  // Hide payment category or sub-category: DC|VISA|MAST
+    'hash': 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
+};
 
-    axios.post(url, qs.stringify(payload), { headers: headers })
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(error => {
-            console.error(error);
-        });
-    ```
-    ```java
-    import java.io.*;
-    import java.net.*;
-    import java.net.http.*;
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
 
-    public class PayUPayment {
-        public static void main(String[] args) throws IOException, InterruptedException {
-            // PayU Hosted Checkout - drop payment category customization
-            HttpClient client = HttpClient.newHttpClient();
-            
-            // Request body: key, txnid, amount, surl, furl, hash; drop_category=DC|VISA|MAST
-            String formData = "key=JP***g&txnid=DROPSUB001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=DC|VISA|MAST&hash=REPLACE_WITH_GENERATED_HASH";
-            
-            HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://test.payu.in/_payment"))
-                .header("accept", "application/json")
-                .header("Content-Type", "application/x-www-form-urlencoded")
-                .POST(HttpRequest.BodyPublishers.ofString(formData))
-                .build();
-            
-            HttpResponse<String> response = client.send(request, 
-                HttpResponse.BodyHandlers.ofString());
-            
-            System.out.println(response.body());
-        }
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        // PayU Hosted Checkout - drop payment category customization
+        HttpClient client = HttpClient.newHttpClient();
+        
+        // Request body: key, txnid, amount, surl, furl, hash; drop_category=DC|VISA|MAST
+        String formData = "key=JP***g&txnid=DROPSUB001&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=DC|VISA|MAST&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
     }
-    ```
-    ```php
-    <?php
-    // PayU Hosted Checkout - drop payment category customization
-    $url = 'https://test.payu.in/_payment';
-    
-    $headers = array(
-        'accept: application/json',
-        'Content-Type: application/x-www-form-urlencoded'
-    );
-    
-    $payload = array(
-        'key' => 'JP***g',  // Merchant key provided by PayU
-        'txnid' => 'DROPSUB001',  // Unique transaction ID generated by merchant
-        'amount' => '10.00',  // Transaction amount
-        'firstname' => 'PayU User',  // Customer first name
-        'email' => 'test@gmail.com',  // Customer email address
-        'phone' => '9876543210',  // Customer phone number
-        'productinfo' => 'iPhone',  // Product or order description
-        'surl' => 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
-        'furl' => 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
-        'drop_category' => 'DC|VISA|MAST',  // Hide payment category or sub-category: DC|VISA|MAST
-        'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
-    );
-    
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
-    $response = curl_exec($ch);
-    curl_close($ch);
-    
-    echo $response;
-    ?>
-    ```
-    ```perl
-    use strict;
-    use warnings;
-    use LWP::UserAgent;
-    use HTTP::Request::Common;
-    
-    # PayU Hosted Checkout - drop payment category customization
-    my $url = 'https://test.payu.in/_payment';
-    
-    my $ua = LWP::UserAgent->new;
-    
-    my %payload = (
-        key => 'JP***g',  # Merchant key provided by PayU
-        txnid => 'DROPSUB001',  # Unique transaction ID generated by merchant
-        amount => '10.00',  # Transaction amount
-        firstname => 'PayU User',  # Customer first name
-        email => 'test@gmail.com',  # Customer email address
-        phone => '9876543210',  # Customer phone number
-        productinfo => 'iPhone',  # Product or order description
-        surl => 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
-        furl => 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
-        drop_category => 'DC|VISA|MAST',  # Hide payment category or sub-category: DC|VISA|MAST
-        hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
-    );
-    
-    my $response = $ua->post(
-        $url,
-        'accept' => 'application/json',
-        'Content-Type' => 'application/x-www-form-urlencoded',
-        Content => \%payload
-    );
-    
-    print $response->content;
-    ```
+}
+```
+```php
+<?php
+// PayU Hosted Checkout - drop payment category customization
+$url = 'https://test.payu.in/_payment';
 
-    **Mixed sub-category drops (`CC|AMEX, DC|VISA, EMI|EMI6`)**
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
 
-    ```curl
-    # PayU Hosted Checkout - drop payment category customization
-    curl -X POST "https://test.payu.in/_payment" \
-          -H "accept: application/json" \
-          -H "Content-Type: application/x-www-form-urlencoded" \
-          -d "key=JP***g&txnid=DROPSUB002&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CC|AMEX, DC|VISA, EMI|EMI6&hash=REPLACE_WITH_GENERATED_HASH"
-    # Parameters include key, txnid, amount, surl, furl, hash; drop_category=CC|AMEX, DC|VISA, EMI|EMI6
-    ```
-    ```python
-    import requests
+$payload = array(
+    'key' => 'JP***g',  // Merchant key provided by PayU
+    'txnid' => 'DROPSUB001',  // Unique transaction ID generated by merchant
+    'amount' => '10.00',  // Transaction amount
+    'firstname' => 'PayU User',  // Customer first name
+    'email' => 'test@gmail.com',  // Customer email address
+    'phone' => '9876543210',  // Customer phone number
+    'productinfo' => 'iPhone',  // Product or order description
+    'surl' => 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
+    'furl' => 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
+    'drop_category' => 'DC|VISA|MAST',  // Hide payment category or sub-category: DC|VISA|MAST
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
+);
 
-    # PayU Hosted Checkout - drop payment category customization
-    # PayU Hosted Checkout Collect Payment API endpoint (test environment)
-    url = "https://test.payu.in/_payment"
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-    headers = {
-        "accept": "application/json",
-        "Content-Type": "application/x-www-form-urlencoded"
-    }
+$response = curl_exec($ch);
+curl_close($ch);
 
-    payload = {
-        'key': 'JP***g',  # Merchant key provided by PayU
-        'txnid': 'DROPSUB002',  # Unique transaction ID generated by merchant
-        'amount': '10.00',  # Transaction amount
-        'firstname': 'PayU User',  # Customer first name
-        'email': 'test@gmail.com',  # Customer email address
-        'phone': '9876543210',  # Customer phone number
-        'productinfo': 'iPhone',  # Product or order description
-        'surl': 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
-        'furl': 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
-        'drop_category': 'CC|AMEX, DC|VISA, EMI|EMI6',  # Hide payment category or sub-category: CC|AMEX, DC|VISA, EMI|EMI6
-        'hash': 'REPLACE_WITH_GENERATED_HASH',  # SHA-512 hash generated on server
-    }
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
 
-    response = requests.post(url, headers=headers, data=payload)
-    print(response.text)
-    ```
-    ```csharp
-    using System;
-    using System.Net.Http;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+# PayU Hosted Checkout - drop payment category customization
+my $url = 'https://test.payu.in/_payment';
 
-    class Program
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',  # Merchant key provided by PayU
+    txnid => 'DROPSUB001',  # Unique transaction ID generated by merchant
+    amount => '10.00',  # Transaction amount
+    firstname => 'PayU User',  # Customer first name
+    email => 'test@gmail.com',  # Customer email address
+    phone => '9876543210',  # Customer phone number
+    productinfo => 'iPhone',  # Product or order description
+    surl => 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
+    furl => 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
+    drop_category => 'DC|VISA|MAST',  # Hide payment category or sub-category: DC|VISA|MAST
+    hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
+
+**Mixed sub-category drops (`CC|AMEX, DC|VISA, EMI|EMI6`)**
+
+```curl
+# PayU Hosted Checkout - drop payment category customization
+curl -X POST "https://test.payu.in/_payment" \
+      -H "accept: application/json" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g&txnid=DROPSUB002&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CC|AMEX, DC|VISA, EMI|EMI6&hash=REPLACE_WITH_GENERATED_HASH"
+# Parameters include key, txnid, amount, surl, furl, hash; drop_category=CC|AMEX, DC|VISA, EMI|EMI6
+```
+```python
+import requests
+
+# PayU Hosted Checkout - drop payment category customization
+# PayU Hosted Checkout Collect Payment API endpoint (test environment)
+url = "https://test.payu.in/_payment"
+
+headers = {
+    "accept": "application/json",
+    "Content-Type": "application/x-www-form-urlencoded"
+}
+
+payload = {
+    'key': 'JP***g',  # Merchant key provided by PayU
+    'txnid': 'DROPSUB002',  # Unique transaction ID generated by merchant
+    'amount': '10.00',  # Transaction amount
+    'firstname': 'PayU User',  # Customer first name
+    'email': 'test@gmail.com',  # Customer email address
+    'phone': '9876543210',  # Customer phone number
+    'productinfo': 'iPhone',  # Product or order description
+    'surl': 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
+    'furl': 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
+    'drop_category': 'CC|AMEX, DC|VISA, EMI|EMI6',  # Hide payment category or sub-category: CC|AMEX, DC|VISA, EMI|EMI6
+    'hash': 'REPLACE_WITH_GENERATED_HASH',  # SHA-512 hash generated on server
+}
+
+response = requests.post(url, headers=headers, data=payload)
+print(response.text)
+```
+```csharp
+using System;
+using System.Net.Http;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
     {
-        static async Task Main(string[] args)
+        // PayU Hosted Checkout - drop payment category customization
+        using var client = new HttpClient();
+        
+        var url = "https://test.payu.in/_payment";
+        
+        client.DefaultRequestHeaders.Add("accept", "application/json");
+        
+        var payload = new Dictionary<string, string>
         {
-            // PayU Hosted Checkout - drop payment category customization
-            using var client = new HttpClient();
-            
-            var url = "https://test.payu.in/_payment";
-            
-            client.DefaultRequestHeaders.Add("accept", "application/json");
-            
-            var payload = new Dictionary<string, string>
-            {
-                { "key", "JP***g" },  // Merchant key provided by PayU
-                { "txnid", "DROPSUB002" },  // Unique transaction ID generated by merchant
-                { "amount", "10.00" },  // Transaction amount
-                { "firstname", "PayU User" },  // Customer first name
-                { "email", "test@gmail.com" },  // Customer email address
-                { "phone", "9876543210" },  // Customer phone number
-                { "productinfo", "iPhone" },  // Product or order description
-                { "surl", "https://apiplayground-response.herokuapp.com/" },  // Success callback URL
-                { "furl", "https://apiplayground-response.herokuapp.com/" },  // Failure callback URL
-                { "drop_category", "CC|AMEX, DC|VISA, EMI|EMI6" },  // Hide payment category or sub-category: CC|AMEX, DC|VISA, EMI|EMI6
-                { "hash", "REPLACE_WITH_GENERATED_HASH" },  // SHA-512 hash generated on server
-            };
-            
-            var content = new FormUrlEncodedContent(payload);
-            
-            var response = await client.PostAsync(url, content);
-            var result = await response.Content.ReadAsStringAsync();
-            
-            Console.WriteLine(result);
-        }
+            { "key", "JP***g" },  // Merchant key provided by PayU
+            { "txnid", "DROPSUB002" },  // Unique transaction ID generated by merchant
+            { "amount", "10.00" },  // Transaction amount
+            { "firstname", "PayU User" },  // Customer first name
+            { "email", "test@gmail.com" },  // Customer email address
+            { "phone", "9876543210" },  // Customer phone number
+            { "productinfo", "iPhone" },  // Product or order description
+            { "surl", "https://apiplayground-response.herokuapp.com/" },  // Success callback URL
+            { "furl", "https://apiplayground-response.herokuapp.com/" },  // Failure callback URL
+            { "drop_category", "CC|AMEX, DC|VISA, EMI|EMI6" },  // Hide payment category or sub-category: CC|AMEX, DC|VISA, EMI|EMI6
+            { "hash", "REPLACE_WITH_GENERATED_HASH" },  // SHA-512 hash generated on server
+        };
+        
+        var content = new FormUrlEncodedContent(payload);
+        
+        var response = await client.PostAsync(url, content);
+        var result = await response.Content.ReadAsStringAsync();
+        
+        Console.WriteLine(result);
     }
-    ```
-    ```javascript
-    const axios = require('axios');
-    const qs = require('querystring');
+}
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
 
-    // PayU Hosted Checkout - drop payment category customization
-    // PayU Hosted Checkout Collect Payment API endpoint (test environment)
-    const url = 'https://test.payu.in/_payment';
+// PayU Hosted Checkout - drop payment category customization
+// PayU Hosted Checkout Collect Payment API endpoint (test environment)
+const url = 'https://test.payu.in/_payment';
 
-    const headers = {
-        'accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded'
-    };
+const headers = {
+    'accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded'
+};
 
-    const payload = {
-        'key': 'JP***g',  // Merchant key provided by PayU
-        'txnid': 'DROPSUB002',  // Unique transaction ID generated by merchant
-        'amount': '10.00',  // Transaction amount
-        'firstname': 'PayU User',  // Customer first name
-        'email': 'test@gmail.com',  // Customer email address
-        'phone': '9876543210',  // Customer phone number
-        'productinfo': 'iPhone',  // Product or order description
-        'surl': 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
-        'furl': 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
-        'drop_category': 'CC|AMEX, DC|VISA, EMI|EMI6',  // Hide payment category or sub-category: CC|AMEX, DC|VISA, EMI|EMI6
-        'hash': 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
-    };
+const payload = {
+    'key': 'JP***g',  // Merchant key provided by PayU
+    'txnid': 'DROPSUB002',  // Unique transaction ID generated by merchant
+    'amount': '10.00',  // Transaction amount
+    'firstname': 'PayU User',  // Customer first name
+    'email': 'test@gmail.com',  // Customer email address
+    'phone': '9876543210',  // Customer phone number
+    'productinfo': 'iPhone',  // Product or order description
+    'surl': 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
+    'furl': 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
+    'drop_category': 'CC|AMEX, DC|VISA, EMI|EMI6',  // Hide payment category or sub-category: CC|AMEX, DC|VISA, EMI|EMI6
+    'hash': 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
+};
 
-    axios.post(url, qs.stringify(payload), { headers: headers })
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(error => {
-            console.error(error);
-        });
-    ```
-    ```java
-    import java.io.*;
-    import java.net.*;
-    import java.net.http.*;
+axios.post(url, qs.stringify(payload), { headers: headers })
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+```
+```java
+import java.io.*;
+import java.net.*;
+import java.net.http.*;
 
-    public class PayUPayment {
-        public static void main(String[] args) throws IOException, InterruptedException {
-            // PayU Hosted Checkout - drop payment category customization
-            HttpClient client = HttpClient.newHttpClient();
-            
-            // Request body: key, txnid, amount, surl, furl, hash; drop_category=CC|AMEX, DC|VISA, EMI|EMI6
-            String formData = "key=JP***g&txnid=DROPSUB002&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CC|AMEX, DC|VISA, EMI|EMI6&hash=REPLACE_WITH_GENERATED_HASH";
-            
-            HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://test.payu.in/_payment"))
-                .header("accept", "application/json")
-                .header("Content-Type", "application/x-www-form-urlencoded")
-                .POST(HttpRequest.BodyPublishers.ofString(formData))
-                .build();
-            
-            HttpResponse<String> response = client.send(request, 
-                HttpResponse.BodyHandlers.ofString());
-            
-            System.out.println(response.body());
-        }
+public class PayUPayment {
+    public static void main(String[] args) throws IOException, InterruptedException {
+        // PayU Hosted Checkout - drop payment category customization
+        HttpClient client = HttpClient.newHttpClient();
+        
+        // Request body: key, txnid, amount, surl, furl, hash; drop_category=CC|AMEX, DC|VISA, EMI|EMI6
+        String formData = "key=JP***g&txnid=DROPSUB002&amount=10.00&firstname=PayU%20User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&drop_category=CC|AMEX, DC|VISA, EMI|EMI6&hash=REPLACE_WITH_GENERATED_HASH";
+        
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("https://test.payu.in/_payment"))
+            .header("accept", "application/json")
+            .header("Content-Type", "application/x-www-form-urlencoded")
+            .POST(HttpRequest.BodyPublishers.ofString(formData))
+            .build();
+        
+        HttpResponse<String> response = client.send(request, 
+            HttpResponse.BodyHandlers.ofString());
+        
+        System.out.println(response.body());
     }
-    ```
-    ```php
-    <?php
-    // PayU Hosted Checkout - drop payment category customization
-    $url = 'https://test.payu.in/_payment';
-    
-    $headers = array(
-        'accept: application/json',
-        'Content-Type: application/x-www-form-urlencoded'
-    );
-    
-    $payload = array(
-        'key' => 'JP***g',  // Merchant key provided by PayU
-        'txnid' => 'DROPSUB002',  // Unique transaction ID generated by merchant
-        'amount' => '10.00',  // Transaction amount
-        'firstname' => 'PayU User',  // Customer first name
-        'email' => 'test@gmail.com',  // Customer email address
-        'phone' => '9876543210',  // Customer phone number
-        'productinfo' => 'iPhone',  // Product or order description
-        'surl' => 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
-        'furl' => 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
-        'drop_category' => 'CC|AMEX, DC|VISA, EMI|EMI6',  // Hide payment category or sub-category: CC|AMEX, DC|VISA, EMI|EMI6
-        'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
-    );
-    
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    
-    $response = curl_exec($ch);
-    curl_close($ch);
-    
-    echo $response;
-    ?>
-    ```
-    ```perl
-    use strict;
-    use warnings;
-    use LWP::UserAgent;
-    use HTTP::Request::Common;
-    
-    # PayU Hosted Checkout - drop payment category customization
-    my $url = 'https://test.payu.in/_payment';
-    
-    my $ua = LWP::UserAgent->new;
-    
-    my %payload = (
-        key => 'JP***g',  # Merchant key provided by PayU
-        txnid => 'DROPSUB002',  # Unique transaction ID generated by merchant
-        amount => '10.00',  # Transaction amount
-        firstname => 'PayU User',  # Customer first name
-        email => 'test@gmail.com',  # Customer email address
-        phone => '9876543210',  # Customer phone number
-        productinfo => 'iPhone',  # Product or order description
-        surl => 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
-        furl => 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
-        drop_category => 'CC|AMEX, DC|VISA, EMI|EMI6',  # Hide payment category or sub-category: CC|AMEX, DC|VISA, EMI|EMI6
-        hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
-    );
-    
-    my $response = $ua->post(
-        $url,
-        'accept' => 'application/json',
-        'Content-Type' => 'application/x-www-form-urlencoded',
-        Content => \%payload
-    );
-    
-    print $response->content;
-    ```
-  </Accordion>
+}
+```
+```php
+<?php
+// PayU Hosted Checkout - drop payment category customization
+$url = 'https://test.payu.in/_payment';
+
+$headers = array(
+    'accept: application/json',
+    'Content-Type: application/x-www-form-urlencoded'
+);
+
+$payload = array(
+    'key' => 'JP***g',  // Merchant key provided by PayU
+    'txnid' => 'DROPSUB002',  // Unique transaction ID generated by merchant
+    'amount' => '10.00',  // Transaction amount
+    'firstname' => 'PayU User',  // Customer first name
+    'email' => 'test@gmail.com',  // Customer email address
+    'phone' => '9876543210',  // Customer phone number
+    'productinfo' => 'iPhone',  // Product or order description
+    'surl' => 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
+    'furl' => 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
+    'drop_category' => 'CC|AMEX, DC|VISA, EMI|EMI6',  // Hide payment category or sub-category: CC|AMEX, DC|VISA, EMI|EMI6
+    'hash' => 'REPLACE_WITH_GENERATED_HASH'  // SHA-512 hash generated on server
+);
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+echo $response;
+?>
+```
+```perl
+use strict;
+use warnings;
+use LWP::UserAgent;
+use HTTP::Request::Common;
+
+# PayU Hosted Checkout - drop payment category customization
+my $url = 'https://test.payu.in/_payment';
+
+my $ua = LWP::UserAgent->new;
+
+my %payload = (
+    key => 'JP***g',  # Merchant key provided by PayU
+    txnid => 'DROPSUB002',  # Unique transaction ID generated by merchant
+    amount => '10.00',  # Transaction amount
+    firstname => 'PayU User',  # Customer first name
+    email => 'test@gmail.com',  # Customer email address
+    phone => '9876543210',  # Customer phone number
+    productinfo => 'iPhone',  # Product or order description
+    surl => 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
+    furl => 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
+    drop_category => 'CC|AMEX, DC|VISA, EMI|EMI6',  # Hide payment category or sub-category: CC|AMEX, DC|VISA, EMI|EMI6
+    hash => 'REPLACE_WITH_GENERATED_HASH'  # SHA-512 hash generated on server
+);
+
+my $response = $ua->post(
+    $url,
+    'accept' => 'application/json',
+    'Content-Type' => 'application/x-www-form-urlencoded',
+    Content => \%payload
+);
+
+print $response->content;
+```
+</Accordion>
 </Accordion>
 
 ## Change the Language
@@ -5081,9 +5043,9 @@ Here is an example payment request API call with the `display_lang` parameter se
 ```curl
 # PayU Hosted Checkout - set checkout display language
 curl -X POST "https://test.payu.in/_payment" \
-      -H "accept: application/json" \
-      -H "Content-Type: application/x-www-form-urlencoded" \
-      -d "key=JP***g&txnid=PQI6MqpYrjEefU&amount=10.00&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&display_lang=Hindi&hash=05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072"
+  -H "accept: application/json" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "key=JP***g&txnid=PQI6MqpYrjEefU&amount=10.00&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&display_lang=Hindi&hash=05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072"
 # Parameters include key, txnid, amount, surl, furl, hash; display_lang=Hindi
 ```
 ```python
@@ -5094,22 +5056,22 @@ import requests
 url = "https://test.payu.in/_payment"
 
 headers = {
-    "accept": "application/json",
-    "Content-Type": "application/x-www-form-urlencoded"
+"accept": "application/json",
+"Content-Type": "application/x-www-form-urlencoded"
 }
 
 payload = {
-    'key': 'JP***g',  # Merchant key provided by PayU
-    'txnid': 'PQI6MqpYrjEefU',  # Unique transaction ID generated by merchant
-    'amount': '10.00',  # Transaction amount
-    'firstname': 'PayU User',  # Customer first name
-    'email': 'test@gmail.com',  # Customer email address
-    'phone': '9876543210',  # Customer phone number
-    'productinfo': 'iPhone',  # Product or order description
-    'surl': 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
-    'furl': 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
-    'display_lang': 'Hindi',  # Display checkout page in Hindi
-    'hash': '05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072',  # SHA-512 hash generated on server
+'key': 'JP***g',  # Merchant key provided by PayU
+'txnid': 'PQI6MqpYrjEefU',  # Unique transaction ID generated by merchant
+'amount': '10.00',  # Transaction amount
+'firstname': 'PayU User',  # Customer first name
+'email': 'test@gmail.com',  # Customer email address
+'phone': '9876543210',  # Customer phone number
+'productinfo': 'iPhone',  # Product or order description
+'surl': 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
+'furl': 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
+'display_lang': 'Hindi',  # Display checkout page in Hindi
+'hash': '05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072',  # SHA-512 hash generated on server
 }
 
 response = requests.post(url, headers=headers, data=payload)
@@ -5123,37 +5085,37 @@ using System.Threading.Tasks;
 
 class Program
 {
-    static async Task Main(string[] args)
+static async Task Main(string[] args)
+{
+    // PayU Hosted Checkout - set checkout display language
+    using var client = new HttpClient();
+    
+    var url = "https://test.payu.in/_payment";
+    
+    client.DefaultRequestHeaders.Add("accept", "application/json");
+    
+    var payload = new Dictionary<string, string>
     {
-        // PayU Hosted Checkout - set checkout display language
-        using var client = new HttpClient();
-        
-        var url = "https://test.payu.in/_payment";
-        
-        client.DefaultRequestHeaders.Add("accept", "application/json");
-        
-        var payload = new Dictionary<string, string>
-        {
-            { "key", "JP***g" },  // Merchant key provided by PayU
-            { "txnid", "PQI6MqpYrjEefU" },  // Unique transaction ID generated by merchant
-            { "amount", "10.00" },  // Transaction amount
-            { "firstname", "PayU User" },  // Customer first name
-            { "email", "test@gmail.com" },  // Customer email address
-            { "phone", "9876543210" },  // Customer phone number
-            { "productinfo", "iPhone" },  // Product or order description
-            { "surl", "https://apiplayground-response.herokuapp.com/" },  // Success callback URL
-            { "furl", "https://apiplayground-response.herokuapp.com/" },  // Failure callback URL
-            { "display_lang", "Hindi" },  // Display checkout page in Hindi
-            { "hash", "05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072" },  // SHA-512 hash generated on server
-        };
-        
-        var content = new FormUrlEncodedContent(payload);
-        
-        var response = await client.PostAsync(url, content);
-        var result = await response.Content.ReadAsStringAsync();
-        
-        Console.WriteLine(result);
-    }
+        { "key", "JP***g" },  // Merchant key provided by PayU
+        { "txnid", "PQI6MqpYrjEefU" },  // Unique transaction ID generated by merchant
+        { "amount", "10.00" },  // Transaction amount
+        { "firstname", "PayU User" },  // Customer first name
+        { "email", "test@gmail.com" },  // Customer email address
+        { "phone", "9876543210" },  // Customer phone number
+        { "productinfo", "iPhone" },  // Product or order description
+        { "surl", "https://apiplayground-response.herokuapp.com/" },  // Success callback URL
+        { "furl", "https://apiplayground-response.herokuapp.com/" },  // Failure callback URL
+        { "display_lang", "Hindi" },  // Display checkout page in Hindi
+        { "hash", "05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072" },  // SHA-512 hash generated on server
+    };
+    
+    var content = new FormUrlEncodedContent(payload);
+    
+    var response = await client.PostAsync(url, content);
+    var result = await response.Content.ReadAsStringAsync();
+    
+    Console.WriteLine(result);
+}
 }
 ```
 ```javascript
@@ -5165,31 +5127,31 @@ const qs = require('querystring');
 const url = 'https://test.payu.in/_payment';
 
 const headers = {
-    'accept': 'application/json',
-    'Content-Type': 'application/x-www-form-urlencoded'
+'accept': 'application/json',
+'Content-Type': 'application/x-www-form-urlencoded'
 };
 
 const payload = {
-    'key': 'JP***g',  // Merchant key provided by PayU
-    'txnid': 'PQI6MqpYrjEefU',  // Unique transaction ID generated by merchant
-    'amount': '10.00',  // Transaction amount
-    'firstname': 'PayU User',  // Customer first name
-    'email': 'test@gmail.com',  // Customer email address
-    'phone': '9876543210',  // Customer phone number
-    'productinfo': 'iPhone',  // Product or order description
-    'surl': 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
-    'furl': 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
-    'display_lang': 'Hindi',  // Display checkout page in Hindi
-    'hash': '05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072'  // SHA-512 hash generated on server
+'key': 'JP***g',  // Merchant key provided by PayU
+'txnid': 'PQI6MqpYrjEefU',  // Unique transaction ID generated by merchant
+'amount': '10.00',  // Transaction amount
+'firstname': 'PayU User',  // Customer first name
+'email': 'test@gmail.com',  // Customer email address
+'phone': '9876543210',  // Customer phone number
+'productinfo': 'iPhone',  // Product or order description
+'surl': 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
+'furl': 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
+'display_lang': 'Hindi',  // Display checkout page in Hindi
+'hash': '05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072'  // SHA-512 hash generated on server
 };
 
 axios.post(url, qs.stringify(payload), { headers: headers })
-    .then(response => {
-        console.log(response.data);
-    })
-    .catch(error => {
-        console.error(error);
-    });
+.then(response => {
+    console.log(response.data);
+})
+.catch(error => {
+    console.error(error);
+});
 ```
 ```java
 import java.io.*;
@@ -5197,25 +5159,25 @@ import java.net.*;
 import java.net.http.*;
 
 public class PayUPayment {
-    public static void main(String[] args) throws IOException, InterruptedException {
-        // PayU Hosted Checkout - set checkout display language
-        HttpClient client = HttpClient.newHttpClient();
-        
-        // Request body: key, txnid, amount, surl, furl, hash; display_lang=Hindi
-        String formData = "key=JP***g&txnid=PQI6MqpYrjEefU&amount=10.00&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&display_lang=Hindi&hash=05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072";
-        
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://test.payu.in/_payment"))
-            .header("accept", "application/json")
-            .header("Content-Type", "application/x-www-form-urlencoded")
-            .POST(HttpRequest.BodyPublishers.ofString(formData))
-            .build();
-        
-        HttpResponse<String> response = client.send(request, 
-            HttpResponse.BodyHandlers.ofString());
-        
-        System.out.println(response.body());
-    }
+public static void main(String[] args) throws IOException, InterruptedException {
+    // PayU Hosted Checkout - set checkout display language
+    HttpClient client = HttpClient.newHttpClient();
+    
+    // Request body: key, txnid, amount, surl, furl, hash; display_lang=Hindi
+    String formData = "key=JP***g&txnid=PQI6MqpYrjEefU&amount=10.00&firstname=PayU User&email=test@gmail.com&phone=9876543210&productinfo=iPhone&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&display_lang=Hindi&hash=05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072";
+    
+    HttpRequest request = HttpRequest.newBuilder()
+        .uri(URI.create("https://test.payu.in/_payment"))
+        .header("accept", "application/json")
+        .header("Content-Type", "application/x-www-form-urlencoded")
+        .POST(HttpRequest.BodyPublishers.ofString(formData))
+        .build();
+    
+    HttpResponse<String> response = client.send(request, 
+        HttpResponse.BodyHandlers.ofString());
+    
+    System.out.println(response.body());
+}
 }
 ```
 ```php
@@ -5224,22 +5186,22 @@ public class PayUPayment {
 $url = 'https://test.payu.in/_payment';
 
 $headers = array(
-    'accept: application/json',
-    'Content-Type: application/x-www-form-urlencoded'
+'accept: application/json',
+'Content-Type: application/x-www-form-urlencoded'
 );
 
 $payload = array(
-    'key' => 'JP***g',  // Merchant key provided by PayU
-    'txnid' => 'PQI6MqpYrjEefU',  // Unique transaction ID generated by merchant
-    'amount' => '10.00',  // Transaction amount
-    'firstname' => 'PayU User',  // Customer first name
-    'email' => 'test@gmail.com',  // Customer email address
-    'phone' => '9876543210',  // Customer phone number
-    'productinfo' => 'iPhone',  // Product or order description
-    'surl' => 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
-    'furl' => 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
-    'display_lang' => 'Hindi',  // Display checkout page in Hindi
-    'hash' => '05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072'  // SHA-512 hash generated on server
+'key' => 'JP***g',  // Merchant key provided by PayU
+'txnid' => 'PQI6MqpYrjEefU',  // Unique transaction ID generated by merchant
+'amount' => '10.00',  // Transaction amount
+'firstname' => 'PayU User',  // Customer first name
+'email' => 'test@gmail.com',  // Customer email address
+'phone' => '9876543210',  // Customer phone number
+'productinfo' => 'iPhone',  // Product or order description
+'surl' => 'https://apiplayground-response.herokuapp.com/',  // Success callback URL
+'furl' => 'https://apiplayground-response.herokuapp.com/',  // Failure callback URL
+'display_lang' => 'Hindi',  // Display checkout page in Hindi
+'hash' => '05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072'  // SHA-512 hash generated on server
 );
 
 $ch = curl_init();
@@ -5267,24 +5229,24 @@ my $url = 'https://test.payu.in/_payment';
 my $ua = LWP::UserAgent->new;
 
 my %payload = (
-    key => 'JP***g',  # Merchant key provided by PayU
-    txnid => 'PQI6MqpYrjEefU',  # Unique transaction ID generated by merchant
-    amount => '10.00',  # Transaction amount
-    firstname => 'PayU User',  # Customer first name
-    email => 'test@gmail.com',  # Customer email address
-    phone => '9876543210',  # Customer phone number
-    productinfo => 'iPhone',  # Product or order description
-    surl => 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
-    furl => 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
-    display_lang => 'Hindi',  # Display checkout page in Hindi
-    hash => '05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072'  # SHA-512 hash generated on server
+key => 'JP***g',  # Merchant key provided by PayU
+txnid => 'PQI6MqpYrjEefU',  # Unique transaction ID generated by merchant
+amount => '10.00',  # Transaction amount
+firstname => 'PayU User',  # Customer first name
+email => 'test@gmail.com',  # Customer email address
+phone => '9876543210',  # Customer phone number
+productinfo => 'iPhone',  # Product or order description
+surl => 'https://apiplayground-response.herokuapp.com/',  # Success callback URL
+furl => 'https://apiplayground-response.herokuapp.com/',  # Failure callback URL
+display_lang => 'Hindi',  # Display checkout page in Hindi
+hash => '05a397501918ec5c36ae52daa3b3e49b43e986b86940e109d060076e467c3ea7536617df7420e0e6863dced8c5b45f9fff15c13bdf0335512c05f0210b31b072'  # SHA-512 hash generated on server
 );
 
 my $response = $ua->post(
-    $url,
-    'accept' => 'application/json',
-    'Content-Type' => 'application/x-www-form-urlencoded',
-    Content => \%payload
+$url,
+'accept' => 'application/json',
+'Content-Type' => 'application/x-www-form-urlencoded',
+Content => \%payload
 );
 
 print $response->content;
@@ -5311,76 +5273,76 @@ You can enable the following modes if you are eligible using Dashboard:
 * International Payments
 
 <Callout icon="📘" theme="info">
-  **Note**: You can enable or activate any of the above payment modes only if your are eligible or you have signed an agreement with PayU. If you are unable to raise request using Dashboard, contact your PayU Key Account Manager.
+**Note**: You can enable or activate any of the above payment modes only if your are eligible or you have signed an agreement with PayU. If you are unable to raise request using Dashboard, contact your PayU Key Account Manager.
 </Callout>
 
 The following procedures describes how to enable payment mode or a feature.
 
 <Accordion title="Enable a payment method" icon="fa-table">
-  To configure the Dashboard to enable payment method:
+To configure the Dashboard to enable payment method:
 
-  1. Navigate to **Dashboard > Settings > Payment Methods.**
+1. Navigate to **Dashboard > Settings > Payment Methods.**
 
-     The *Manage Payment Methods* page is displayed with **Debit Card** tab selected by default.
+ The *Manage Payment Methods* page is displayed with **Debit Card** tab selected by default.
 
-  <Image align="center" alt="PayU Dashboard Manage Payment Methods page with Debit Card tab selected" border={true} src="https://files.readme.io/30b21d8-Screenshot_2024-07-19_at_10.34.10_AM.png" width="722px" />
+<Image align="center" alt="PayU Dashboard Manage Payment Methods page with Debit Card tab selected" border={true} src="https://files.readme.io/30b21d8-Screenshot_2024-07-19_at_10.34.10_AM.png" width="722px" />
 
-  2. Select any of the payment method tab that you wish to configure.
+2. Select any of the payment method tab that you wish to configure.
 
-     If you are eligible for the payment method, the **Activate Now** button is displayed. For example, the **Activate Now** button is enabled in the **International Payments** tab.
+ If you are eligible for the payment method, the **Activate Now** button is displayed. For example, the **Activate Now** button is enabled in the **International Payments** tab.
 
-  <Image align="center" alt="PayU Dashboard International Payments tab with Activate Now button for eligible merchants" border={true} src="https://files.readme.io/87d81fd-Screenshot_2024-07-19_at_10.35.59_AM.png" width="722px" />
+<Image align="center" alt="PayU Dashboard International Payments tab with Activate Now button for eligible merchants" border={true} src="https://files.readme.io/87d81fd-Screenshot_2024-07-19_at_10.35.59_AM.png" width="722px" />
 
-  3. Click **Activate Now**.
+3. Click **Activate Now**.
 
-     A pop-up dialog box is displayed similar to the following screenshot and this will vary according to the payment method:
+ A pop-up dialog box is displayed similar to the following screenshot and this will vary according to the payment method:
 
-  <Image align="center" alt="PayU Dashboard payment method activation dialog with Proceed button" src="https://files.readme.io/6d9c81f-Screenshot_2024-07-19_at_10.37.45_AM.png" width="622px" />
+<Image align="center" alt="PayU Dashboard payment method activation dialog with Proceed button" src="https://files.readme.io/6d9c81f-Screenshot_2024-07-19_at_10.37.45_AM.png" width="622px" />
 
-  4. Click **Proceed** to activate.
+4. Click **Proceed** to activate.
 
-     A confirmation message is displayed.
+ A confirmation message is displayed.
 </Accordion>
 
 <Accordion title="Activate PayPal wallet" icon="fa-table">
-  To activate PayPal wallet and start collecting payments with PayPal:
+To activate PayPal wallet and start collecting payments with PayPal:
 
-  1. Follow the steps as in [Enable a payment method](#enable-a-payment-method).
-  2. Click **Link PayPal account**.
+1. Follow the steps as in [Enable a payment method](#enable-a-payment-method).
+2. Click **Link PayPal account**.
 
-  You are redirected to the PayPal page similar to the following screenshot.
+You are redirected to the PayPal page similar to the following screenshot.
 
-  <Image align="center" alt="PayPal account linking page displayed after redirect from PayU Dashboard" border={true} src="https://files.readme.io/15f4290-Screenshot_2024-03-14_at_2.22.56_PM.png" width="320px" />
+<Image align="center" alt="PayPal account linking page displayed after redirect from PayU Dashboard" border={true} src="https://files.readme.io/15f4290-Screenshot_2024-03-14_at_2.22.56_PM.png" width="320px" />
 
-  3. Enter your email address that you want to use in future with PayPal.
+3. Enter your email address that you want to use in future with PayPal.
 
-  <Image align="center" alt="PayPal signup page prompting for email address" border={true} src="https://files.readme.io/fc21647-Screenshot_2024-03-14_at_2.23.12_PM.png" width="320px" />
+<Image align="center" alt="PayPal signup page prompting for email address" border={true} src="https://files.readme.io/fc21647-Screenshot_2024-03-14_at_2.23.12_PM.png" width="320px" />
 
-  4. Select your country as **India**.
-  5. Click **Next**.
-  6. Enter the password to create the account.
+4. Select your country as **India**.
+5. Click **Next**.
+6. Enter the password to create the account.
 
-  <Image align="center" alt="PayPal account creation page with password setup form" src="https://files.readme.io/c498645-Screenshot_2024-03-14_at_2.23.36_PM.png" width="320px" />
+<Image align="center" alt="PayPal account creation page with password setup form" src="https://files.readme.io/c498645-Screenshot_2024-03-14_at_2.23.36_PM.png" width="320px" />
 
-  7. Select your nature of your business and PAN details, name to displayed on statement and website URL as required and click **Next**.
+7. Select your nature of your business and PAN details, name to displayed on statement and website URL as required and click **Next**.
 
-  <Image align="center" alt="PayPal business details form with PAN, statement name, and website URL fields" border={true} src="https://files.readme.io/5d0d968-Screenshot_2024-03-14_at_5.07.28_PM.png" width="320px" />
+<Image align="center" alt="PayPal business details form with PAN, statement name, and website URL fields" border={true} src="https://files.readme.io/5d0d968-Screenshot_2024-03-14_at_5.07.28_PM.png" width="320px" />
 
-  8. Enter your name, date of birth and contact details.
+8. Enter your name, date of birth and contact details.
 
-  <Image align="center" alt="PayPal personal details form with name, date of birth, and contact fields" border={true} src="https://files.readme.io/e137009-paypal_name_dob.png" width="320px" />
+<Image align="center" alt="PayPal personal details form with name, date of birth, and contact fields" border={true} src="https://files.readme.io/e137009-paypal_name_dob.png" width="320px" />
 
-  9. Scroll down and enter the business contact phone number and primary
+9. Scroll down and enter the business contact phone number and primary
 
-  <Image align="center" alt="PayPal form for business contact phone number and primary currency" border={true} src="https://files.readme.io/2e3e74f-paypal_details_mobile_currency.png" width="320px" />
+<Image align="center" alt="PayPal form for business contact phone number and primary currency" border={true} src="https://files.readme.io/2e3e74f-paypal_details_mobile_currency.png" width="320px" />
 
-  10. Click **Next**.
+10. Click **Next**.
 
-  <Image align="center" alt="PayPal signup confirmation page after account creation" border={true} src="https://files.readme.io/32522a2-paypal_details_thanks_signup.png" width="320px" />
+<Image align="center" alt="PayPal signup confirmation page after account creation" border={true} src="https://files.readme.io/32522a2-paypal_details_thanks_signup.png" width="320px" />
 
-  <Callout icon="📘" theme="info">
-    **Note**:  Contact your PayU Key Account Manager to remove a payment mode from the Checkout page.
-  </Callout>
+<Callout icon="📘" theme="info">
+**Note**:  Contact your PayU Key Account Manager to remove a payment mode from the Checkout page.
+</Callout>
 </Accordion>
 
 ## Configure Checkout Settings
@@ -5401,135 +5363,136 @@ A live preview on the right-hand side of the page shows how your checkout page w
 > </Callout>
 
 <Accordion title="Configure Brandings" icon="fa-table">
-  To update your brand settings:
+To update your brand settings:
 
-  1. Navigate to **Dashboard > Settings > Checkout Settings.**
+1. Navigate to **Dashboard > Settings > Checkout Settings.**
 
-     The *Set up your brand* page is displayed.
+ The *Set up your brand* page is displayed.
 
-  <Image align="center" alt="PayU Dashboard Checkout Settings page for brand logo, colors, language, and owner signature" border={true} src="https://files.readme.io/eb8cf99-Screenshot_2024-07-19_at_10.43.53_AM.png" />
+<Image align="center" alt="PayU Dashboard Checkout Settings page for brand logo, colors, language, and owner signature" border={true} src="https://files.readme.io/eb8cf99-Screenshot_2024-07-19_at_10.43.53_AM.png" />
 
-  <br />
+<br />
 
-  2. Select or enter the details as described in the following table:
+2. Select or enter the details as described in the following table:
 
-  <Table align={["left","left"]}>
-    <thead>
-      <tr>
-        <th>
-          Field
-        </th>
+<Table align={["left","left"]}>
+<thead>
+  <tr>
+    <th>
+      Field
+    </th>
 
-        <th>
-          Description
-        </th>
-      </tr>
-    </thead>
+    <th>
+      Description
+    </th>
+  </tr>
+</thead>
 
-    <tbody>
-      <tr>
-        <td>
-          Brand Logo
-        </td>
+<tbody>
+  <tr>
+    <td>
+      Brand Logo
+    </td>
 
-        <td>
-          Enter the location or URL of the brand logo.
+    <td>
+      Enter the location or URL of the brand logo.
 
-          **Note**: You need to that the size of the logo image is 90×90 and format of the logo image is PNG
-        </td>
-      </tr>
+      **Note**: You need to that the size of the logo image is 90×90 and format of the logo image is PNG
+    </td>
+  </tr>
 
-      <tr>
-        <td>
-          Secondary Color
-        </td>
+  <tr>
+    <td>
+      Secondary Color
+    </td>
 
-        <td>
-          Click the color chooser to choose the color theme for the checkout page.
-        </td>
-      </tr>
+    <td>
+      Click the color chooser to choose the color theme for the checkout page.
+    </td>
+  </tr>
 
-      <tr>
-        <td>
-          Language
-        </td>
+  <tr>
+    <td>
+      Language
+    </td>
 
-        <td>
-          Select the language from the **Language** drop-down list that has to be displayed on the Checkout page.
-        </td>
-      </tr>
+    <td>
+      Select the language from the **Language** drop-down list that has to be displayed on the Checkout page.
+    </td>
+  </tr>
 
-      <tr>
-        <td>
-          Owner Signature
-        </td>
+  <tr>
+    <td>
+      Owner Signature
+    </td>
 
-        <td>
-          Click **Select the file from your library** to select the signature file and click **Upload** to complete the action.
-        </td>
-      </tr>
-    </tbody>
-  </Table>
+    <td>
+      Click **Select the file from your library** to select the signature file and click **Upload** to complete the action.
+    </td>
+  </tr>
+</tbody>
+</Table>
 
-  <br />
+<br />
 
-  <Callout icon="📘" theme="info">
-    **Note**: While you configure each field above on the ,  you can see the preview in the right pane. For example, if you add or update the brand logo URL, it will be updated in the right pane preview.
-  </Callout>
+<Callout icon="📘" theme="info">
+**Note**: While you configure each field above on the ,  you can see the preview in the right pane. For example, if you add or update the brand logo URL, it will be updated in the right pane preview.
+</Callout>
 </Accordion>
 
 <Accordion title="Customize the Payment Order" icon="fa-list">
-  You can choose either configure the custom payment method order or PayU recommended order as described in the following:
+You can choose either configure the custom payment method order or PayU recommended order as described in the following:
 
-  <Accordion title="Configure the Custom Payment Method Order" icon="fa-money-bill">
-    Set a custom order if you want to control exactly which payment method appears first, second, and so on at checkout.
+<Accordion title="Configure the Custom Payment Method Order" icon="fa-money-bill">
+Set a custom order if you want to control exactly which payment method appears first, second, and so on at checkout.
 
-    To set a custom payment method order:
+To set a custom payment method order:
 
-    1. Select **Manage Checkout** >  *Checkout Customisation* from the menu on left pane.
+1. Select **Manage Checkout** >  *Checkout Customisation* from the menu on left pane.
 
-    2. Select the **Features for Website platform** tab.
-       The  **Features for Website platform** tab is displayed.
+2. Select the **Features for Website platform** tab.
+   The  **Features for Website platform** tab is displayed.
 
-    3. Under **Payment Methods Order**, click **Set Order**.
+3. Under **Payment Methods Order**, click **Set Order**.
 
-    The `Payment Method Order` pop-up page is displayed with the list of your integrated payment methods.<br />
+The `Payment Method Order` pop-up page is displayed with the list of your integrated payment methods.<br />
 
-    <Image align="center" alt="PayU Dashboard Payment Method Order dialog with draggable payment method list" border={true} src="https://files.readme.io/721753e89db5f00f6bef65082da4a6b5ba42b3477cc9da91352fa42acb6b3580-Order_of_Payment_Modes.png" />
+<Image align="center" alt="PayU Dashboard Payment Method Order dialog with draggable payment method list" border={true} src="https://files.readme.io/721753e89db5f00f6bef65082da4a6b5ba42b3477cc9da91352fa42acb6b3580-Order_of_Payment_Modes.png" />
 
-    <br />
+<br />
 
-    4. To reorder the list, drag a payment method by the handle on the left and drop it in the position where you want it to appear.
+4. To reorder the list, drag a payment method by the handle on the left and drop it in the position where you want it to appear.
 
-       For example, to show **UPI** at the top of the checkout page, drag it above **Cards (Credit/Debit)**.
+   For example, to show **UPI** at the top of the checkout page, drag it above **Cards (Credit/Debit)**.
 
-    5. Repeat the previous step until the payment methods appear in the order you want.
+5. Repeat the previous step until the payment methods appear in the order you want.
 
-    6. Select **Save Changes** to apply the new order.
+6. Select **Save Changes** to apply the new order.
 
-       The custom order is reflected immediately in the preview pane.
-  </Accordion><br/>
+   The custom order is reflected immediately in the preview pane.
+</Accordion><br/>
 
-  <Accordion title="Enable PayU Recommended Order" icon="fa-shopping-cart">
-    Enable PayU Recommended Order if you want PayU to automatically prioritise payment methods based on real-time signals such as customer behaviour and cart value. This option helps to improve conversion without requiring you to manage the order manually.
+<Accordion title="Enable PayU Recommended Order" icon="fa-shopping-cart">
+Enable PayU Recommended Order if you want PayU to automatically prioritise payment methods based on real-time signals such as customer behaviour and cart value. This option helps to improve conversion without requiring you to manage the order manually.
 
-    To enable PayU Recommended Order:
+To enable PayU Recommended Order:
 
-    1. Select **Manage Checkout** >  *Checkout Customisation* from the menu on left pane.
-    2. Select the **Features for Website platform** tab.
+1. Select **Manage Checkout** >  *Checkout Customisation* from the menu on left pane.
+2. Select the **Features for Website platform** tab.
 
-    The  **Features for Website platform** tab is displayed.<br />
+The  **Features for Website platform** tab is displayed.<br />
 
-    <Image align="center" alt="PayU Dashboard Features for Website platform tab with PayU Recommended Order toggle" src="https://files.readme.io/33ebc38e106fa4e46d62398d3d15f475d0bab59ef9619319883c5db5bcfc10da-Features_for_Website_platform_tab_PayU_Recommended_Selected.png" />
+<Image align="center" alt="PayU Dashboard Features for Website platform tab with PayU Recommended Order toggle" src="https://files.readme.io/33ebc38e106fa4e46d62398d3d15f475d0bab59ef9619319883c5db5bcfc10da-Features_for_Website_platform_tab_PayU_Recommended_Selected.png" />
 
-    <br />
+<br />
 
-    3. Under **Payment Methods Order**, turn on the **PayU Recommended Order** toggle.
+3. Under **Payment Methods Order**, turn on the **PayU Recommended Order** toggle.
 
-       When this toggle is turned on, PayU automatically determines the order of payment methods at checkout, and the **Set Order** option is disabled.
+   When this toggle is turned on, PayU automatically determines the order of payment methods at checkout, and the **Set Order** option is disabled.
 
-    4. Select **Apply Changes** to save your settings.<br />
+4. Select **Apply Changes** to save your settings.<br />
 
-    > **Note:** To switch back to a custom order, turn off the **PayU Recommended Order** toggle, and then follow the steps in [Set a Custom Payment Method Order](#set-a-custom-payment-method-order).
-  </Accordion>
+> **Note:** To switch back to a custom order, turn off the **PayU Recommended Order** toggle, and then follow the steps in [Set a Custom Payment Method Order](#set-a-custom-payment-method-order).
 </Accordion>
+</Accordion>
+````
