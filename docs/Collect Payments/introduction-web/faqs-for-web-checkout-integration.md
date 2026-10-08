@@ -106,7 +106,7 @@ This issue is due to security certificate expiry. If you are using a custom keys
   * [Payment Consent Transaction with Merchant Hosted Checkout ](ref:payment-consent-transaction-merchant-hosted)(one-time)
   * [Recurring Payment API](ref:recurring_payment_api) (collect)
 
-* **How do I integrate my Web Checkout integration to collect international payments or** Multi-Currency Pricing (MCP)?**?
+* **How do I integrate my Web Checkout integration to collect international payments or** Multi-Currency Pricing (MCP)?\*\*?
 
   PayU offers Dynamic Currency Conversion (DCC) or Multi-Currency Pricing? API. For more information, refer to [Multi-Currency Pricing or International Payments](doc:introduction-dynamic-currency-conversion).
 
@@ -114,7 +114,7 @@ This issue is due to security certificate expiry. If you are using a custom keys
 
 * **Can I enforce specific payment modes with PayU Hosted Checkout integration?**
 
-Yes, you can enforce payment modes with PayU Hosted Checkout integration. For more information, refer to [Enforce Pay Method or Remove Category](doc:enforce-pay-method-or-remove-category).
+Yes, you can enforce payment modes with PayU Hosted Checkout integration. For more information, refer to [Customize PayU Payment Page.](doc:payu-payment-page-customization)
 
 * **What are the prerequisites for using the PayU Hosted Checkout or Redirection-Based Flow integration?**
 
@@ -132,18 +132,18 @@ Yes, you can enforce payment modes with PayU Hosted Checkout integration. For mo
 
 * **How do I handle payment failures or errors?**
 
-  When you post a payment request using the **Collect Paymen**t (_payment) API, you may face errors or payment failures. The **Collect Payment API** provides error codes and messages that can help you diagnose and handle payment failures or errors. You may also need to implement error handling and retry logic in your integration to ensure that payments are processed correctly and reliably. For more information, refer to [Error Handling](doc:error-handling)
+  When you post a payment request using the **Collect Paymen**t (\_payment) API, you may face errors or payment failures. The **Collect Payment API** provides error codes and messages that can help you diagnose and handle payment failures or errors. You may also need to implement error handling and retry logic in your integration to ensure that payments are processed correctly and reliably. For more information, refer to [Error Handling](doc:error-handling)
 
 * **l migrated my payment integration from PayUMoney to PayU. What is the endpoint or environment for the Collect Payment API?**
 
   The endpoint for PayUMoney or PayU remains the same, that is:
 
-  [https://secure.payu.in/_payment](https://secure.payu.in/_payment)
+  [https://secure.payu.in/\_payment](https://secure.payu.in/_payment)
 
 * **I migrated from PayUMoney to PayU and I am getting the payment failed error in the response with the following request parameters:**
 
-| key'=>9JpriI, 'productinfo'=>XYZ, 'UDF1'=>null, 'UDF2'=>null, 'UDF3'=>null, 'UDF4'=>null, 'UDF5'=>null, 'surl'=>[https://careuat.careinsurance.com/cms/public/payumoney/response](https://careuat.careinsurance.com/cms/public/payumoney/response), 'furl'=>[https://careuat.careinsurance.com/cms/public/payumoney/response](https://careuat.careinsurance.com/cms/public/payumoney/response), 'curl'=>[https://careuat.careinsurance.com/cms/public/payumoney/response](https://careuat.careinsurance.com/cms/public/payumoney/response), 'one_click_checkout'=>1, 'Hash'=>**********************************, 'PG'=>CC, 'bankcode'=>CC, 'txnid'=>********************, 'amount'=>3755, 'Firstname'=>Ashish, 'Email'=>[ashish.kumar@payu.in](mailto:ashish.kumar@payu.in), 'Phone'=>980********, 'ccnum'=>5123 4567 8901 2346, 'ccname'=>test, 'ccvv'=>123, 'ccexpmon'=>03, 'ccexpyr'=>2023, 'CHECKSUMHASH'=>'', |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| key'=>9JpriI, 'productinfo'=>XYZ, 'UDF1'=>null, 'UDF2'=>null, 'UDF3'=>null, 'UDF4'=>null, 'UDF5'=>null, 'surl'=>[https://careuat.careinsurance.com/cms/public/payumoney/response](https://careuat.careinsurance.com/cms/public/payumoney/response), 'furl'=>[https://careuat.careinsurance.com/cms/public/payumoney/response](https://careuat.careinsurance.com/cms/public/payumoney/response), 'curl'=>[https://careuat.careinsurance.com/cms/public/payumoney/response](https://careuat.careinsurance.com/cms/public/payumoney/response), 'one_click_checkout'=>1, 'Hash'=>\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*, 'PG'=>CC, 'bankcode'=>CC, 'txnid'=>\*\*\*\*\*\*\*\*\*\*\*\***, 'amount'=>3755, 'Firstname'=>Ashish, 'Email'=>**[ashish.kumar@payu.in](mailto:ashish.kumar@payu.in)**, 'Phone'=>980**, 'ccnum'=>5123 4567 8901 2346, 'ccname'=>test, 'ccvv'=>123, 'ccexpmon'=>03, 'ccexpyr'=>2023, 'CHECKSUMHASH'=>'', |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 You need to remove the ‘**one_click_checkout’=>1**‘ parameter and its value (on Line 11) from the request as it is applicable only for PayUMoney only. For more information on the request parameters, refer to any of the following based on the integration:
 
@@ -163,8 +163,8 @@ You need to remove the ‘**one_click_checkout’=>1**‘ parameter and its valu
 
 [https://secure.payu.in/merchant](https://secure.payu.in/merchant)
 
-| \{  "status": 1,  "msg": "1 out of 1 Transactions Fetched Successfully",  "transaction_details": \{  "a01bb54681889e62fe917e37ed70c78e": \{  "mihpayid": "16475396216",  "request_id": "",  "bank_ref_num": "6721435065356559506102",  "amt": "2.00",  "transaction_amount": "2.00",  "txnid": "a01bb54681889e62fe917e37ed70c78e",  "additional_charges": "0.00",  "productinfo": "Purchasing mediology2913 - Recurring Paid Digi 1",  "firstname": "user60f153242371c",  "bankcode": "CC",  "udf1": null,  "udf3": null,  "udf4": null,  "udf5": null,  "field2": "533085",  "field9": "Transaction is Successful",  "error_code": "E000",  "addedon": "2022-12-27 17:47:00",  "payment_source": "payu",  "card_type": "VISA",  "error_Message": "NO ERROR",  "net_amount_debit": 2,  "disc": "0.00",  "mode": "CC",  "PG_TYPE": "CC-PG",  "card_no": "XXXXXXXXXXXX0002",  "name_on_card": null,  "udf2": null,  "status": "success",  "unmappedstatus": "captured",  "Merchant_UTR": null,  "Settled_At": "0000-00-00 00:00:00"  }  } } |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| \{  "status": 1,  "msg": "1 out of 1 Transactions Fetched Successfully",  "transaction_details": \{  "a01bb54681889e62fe917e37ed70c78e": \{  "mihpayid": "16475396216",  "request_id": "",  "bank_ref_num": "6721435065356559506102",  "amt": "2.00",  "transaction_amount": "2.00",  "txnid": "a01bb54681889e62fe917e37ed70c78e",  "additional_charges": "0.00",  "productinfo": "Purchasing mediology2913 - Recurring Paid Digi 1",  "firstname": "user60f153242371c",  "bankcode": "CC",  "udf1": null,  "udf3": null,  "udf4": null,  "udf5": null,  "field2": "533085",  "field9": "Transaction is Successful",  "error_code": "E000",  "addedon": "2022-12-27 17:47:00",  "payment_source": "payu",  "card_type": "VISA",  "error_Message": "NO ERROR",  "net_amount_debit": 2,  "disc": "0.00",  "mode": "CC",  "PG_TYPE": "CC-PG",  "card_no": "XXXXXXXXXXXX0002",  "name_on_card": null,  "udf2": null,  "status": "success",  "unmappedstatus": "captured",  "Merchant_UTR": null,  "Settled_At": "0000-00-00 00:00:00"  \}  \} \} |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
 You must the following endpoint or environment for the **Verify Payment** API:
 
@@ -190,11 +190,11 @@ You must the following endpoint or environment for the **Verify Payment** API:
 
 * **The Key and Salt which I copied from Dashboard are not working**
 
-  Check whether you are using the **Production** endpoint for Production Key and Salt. For PayU Hosted or Merchant Hosted integrations, you have to use the following endpoints with **_payment** API:
+  Check whether you are using the **Production** endpoint for Production Key and Salt. For PayU Hosted or Merchant Hosted integrations, you have to use the following endpoints with **\_payment** API:
 
-| **Test Environment**       | [https://test.payu.in/_payment](https://test.payu.in/_payment)     |
-| -------------------------- | ------------------------------------------------------------------ |
-| **Production Environment** | [https://secure.payu.in/_payment](https://secure.payu.in/_payment) |
+| **Test Environment**       | [https://test.payu.in/\_payment](https://test.payu.in/_payment)     |
+| -------------------------- | ------------------------------------------------------------------- |
+| **Production Environment** | [https://secure.payu.in/\_payment](https://secure.payu.in/_payment) |
 
 If the Key and Salt are still not working, contact your KAM or raise a ticket with PayU support on [help.payu.in](https://help.payu.in/).
 
@@ -228,8 +228,8 @@ If the Key and Salt are still not working, contact your KAM or raise a ticket wi
 
   HTTP response code: 400
 
-| curl -X POST "[\<[https://test.payu.in/_payment](https://test.payu.in/_payment)>] -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP***g&txnid=c52cfa446d&amount=253.00&productinfo=rbl&firstname=ashish&email=[ashish@gmail.com](mailto:ashish@gmail.com)&phone=9876543210&txn_s2s_flow=4&lastname=kumar&surl=\<[https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=6935fd3653463af23cf90363e5bfafde89cc403f54f6d6e958fcfcfd9b4a03c87c2c76630b04c3238ed297cbdb9c58932154188b85987c0f9bc3f0862e836a22&enforce_paymethod=netbanking](https://apiplayground-response.herokuapp.com/\&furl=https://apiplayground-response.herokuapp.com/\&hash=6935fd3653463af23cf90363e5bfafde89cc403f54f6d6e958fcfcfd9b4a03c87c2c76630b04c3238ed297cbdb9c58932154188b85987c0f9bc3f0862e836a22\&enforce_paymethod=netbanking) | UPI&s2s_client_ip=0:0:0:0:0:0:0:1&s2s_device_info=PostmanRuntime/7.29.2&salt_version=1>" |
-| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------- |
+| curl -X POST "\[\<[https://test.payu.in/\_payment](https://test.payu.in/_payment)>] -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d "key=JP\*\*\*g\&txnid=c52cfa446d\&amount=253.00\&productinfo=rbl\&firstname=ashish\&email=[ashish@gmail.com](mailto:ashish@gmail.com)\&phone=9876543210\&txn_s2s_flow=4\&lastname=kumar\&surl=\<[https://apiplayground-response.herokuapp.com/\&furl=https://apiplayground-response.herokuapp.com/\&hash=6935fd3653463af23cf90363e5bfafde89cc403f54f6d6e958fcfcfd9b4a03c87c2c76630b04c3238ed297cbdb9c58932154188b85987c0f9bc3f0862e836a22\&enforce_paymethod=netbanking](https://apiplayground-response.herokuapp.com/\&furl=https://apiplayground-response.herokuapp.com/\&hash=6935fd3653463af23cf90363e5bfafde89cc403f54f6d6e958fcfcfd9b4a03c87c2c76630b04c3238ed297cbdb9c58932154188b85987c0f9bc3f0862e836a22\&enforce_paymethod=netbanking) | UPI\&s2s_client_ip=0:0:0:0:0:0:0:1\&s2s_device_info=PostmanRuntime/7.29.2\&salt_version=1>" |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------ |
 
 You must remove the **txn_s2s_flow=4** parameter from the payment request. The **txn_s2s_flow** parameter must be used only for Seamless integration (Merchant Hosted or S2S Integration).
 
@@ -237,11 +237,11 @@ You must remove the **txn_s2s_flow=4** parameter from the payment request. The *
 
   The payments made using AMEX card have the following response parameters:
 
-[mode] => **CC**
+\[mode] => **CC**
 
-[PG_TYPE][PG_TYPE] => **CC-PG**
+\[PG_TYPE]\[PG_TYPE] => **CC-PG**
 
-[bankcode] => **AMEX**
+\[bankcode] => **AMEX**
 
 ## Hashing
 
@@ -261,7 +261,7 @@ sha512(key|txnid|amount|productinfo|firstname|email||udf2||udf4|||||||SALT)
 
 sha512(key|txnid|amount|productinfo|firstname|email|||||||||||SALT)
 
-Check the request payload you have passed in the **Payment** API (**_payment**) and accordingly generate the hash value. For more information, refer to [Generate Hash](doc:generate-hash-merchant-hosted)
+Check the request payload you have passed in the **Payment** API (**\_payment**) and accordingly generate the hash value. For more information, refer to [Generate Hash](doc:generate-hash-merchant-hosted)
 
 * **If I want to include UDFs (udf1 to udf10) in hash, what is the hash format?**
 
