@@ -61,7 +61,7 @@ next:
 ## Why Use Payment Links?
 
 <Accordion title="Create-to-Collect in Minutes" icon="fa-bolt">
-  Create a Payment Link in a few clicks and start collecting money right away. No website, no developer, no waiting.
+  Create a <Glossary>payment links</Glossary> in a few clicks and start collecting money right away. No website, no developer, no waiting.
 </Accordion>
 
 <Accordion title="Automatically Delivers Link to Your Customers" icon="fa-paper-plane">
