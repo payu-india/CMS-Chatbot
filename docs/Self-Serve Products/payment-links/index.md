@@ -175,7 +175,7 @@ Consider another PayU solution if:<br />
 
 ## What Will I Need?
 
-You don't need a website or developer to get started.<br />
+You do not need a website or developer to get started.<br />
 
 You will need:<br />
 
