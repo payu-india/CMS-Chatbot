@@ -98,22 +98,22 @@ Collect and structure the parameters below before initiating a transaction.
   <Tab title="Optional Parameters">
     You can send these optional parameters in the request as needed.<br />
 
-    | Parameter           | Type   | Description                                                                                                                                       |
-    | ------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | `lastname`          | string | Customer's last name                                                                                                                              |
-    | `curl`              | string | Cancel URL — PayU redirects here if the transaction is cancelled                                                                                  |
-    | `address1`          | string | Customer billing address line 1. Aids fraud detection and chargebacks.                                                                            |
-    | `address2`          | string | Customer billing address line 2                                                                                                                   |
-    | `city`              | string | Customer city                                                                                                                                     |
-    | `state`             | string | Customer state                                                                                                                                    |
-    | `country`           | string | Customer country                                                                                                                                  |
-    | `zipcode`           | string | Billing zip code. Mandatory if payment method is cardless EMI.                                                                                    |
-    | `enforce_paymethod` | string | Restrict checkout to specific payment methods. E.g. `creditcard`, `upi`. See [Customise PayU Hosted Checkout](../customise-payu-hosted-checkout). |
-    | `drop_category`     | string | Hide specific payment methods from checkout. E.g. `CC`, `NB`.                                                                                     |
-    | `udf1`–`udf5`       | string | User-defined fields for storing additional transaction data. Leave empty pipes in hash logic if unused.                                           |
-    | `custom_note`       | string | Custom message displayed on the PayU payment page.                                                                                                |
-    | `note_category`     | string | Comma-separated payment options for which the `custom_note` should be shown. E.g. `CC, NB`.                                                       |
-    | `display_lang`      | string | Display language for the checkout page. E.g. `Hindi`, `Tamil`. See [Customise PayU Hosted Checkout](../customise-payu-hosted-checkout).           |
+    | Parameter           | Type   | Description                                                                                                                                                |
+    | ------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | `lastname`          | string | `string` Customer's last name                                                                                                                              |
+    | `curl`              | string | `string` Cancel URL — PayU redirects here if the transaction is cancelled                                                                                  |
+    | `address1`          | string | `string` Customer billing address line 1. Aids fraud detection and chargebacks.                                                                            |
+    | `address2`          | string | `string` Customer billing address line 2                                                                                                                   |
+    | `city`              | string | `string` Customer city                                                                                                                                     |
+    | `state`             | string | `string` Customer state                                                                                                                                    |
+    | `country`           | string | `string` Customer country                                                                                                                                  |
+    | `zipcode`           | string | `string` Billing zip code. Mandatory if payment method is cardless EMI.                                                                                    |
+    | `enforce_paymethod` | string | `string` Restrict checkout to specific payment methods. E.g. `creditcard`, `upi`. See [Customise PayU Hosted Checkout](../customise-payu-hosted-checkout). |
+    | `drop_category`     | string | `string` Hide specific payment methods from checkout. E.g. `CC`, `NB`.                                                                                     |
+    | `udf1`–`udf5`       | string | `string` User-defined fields for storing additional transaction data. Leave empty pipes in hash logic if unused.                                           |
+    | `custom_note`       | string | `string` Custom message displayed on the PayU payment page.                                                                                                |
+    | `note_category`     | string | `string` Comma-separated payment options for which the `custom_note` should be shown. E.g. `CC, NB`.                                                       |
+    | `display_lang`      | string | `string` Display language for the checkout page. E.g. `Hindi`, `Tamil`. See [Customise PayU Hosted Checkout](../customise-payu-hosted-checkout).           |
   </Tab>
 </Tabs>
 
