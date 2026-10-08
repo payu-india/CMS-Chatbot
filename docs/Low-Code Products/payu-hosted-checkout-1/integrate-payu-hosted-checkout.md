@@ -33,7 +33,7 @@ next:
 <Banner
   isInline={true}
   message="Integration effort: Minimal technical setup required"
-  color="#15C614"
+  color="#FFC107"
   textColor="#ffffff"
   fontSize="14px"
   fontWeight="bold"
