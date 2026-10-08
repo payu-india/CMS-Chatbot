@@ -45,7 +45,7 @@ This section covers everything you need to integrate PayU Hosted Checkout, from 
 
 ***
 
-## Integration path
+## Integration Steps
 
 <Cards columns="3">
   <Card title="Build Integration" href="./build-integration">
