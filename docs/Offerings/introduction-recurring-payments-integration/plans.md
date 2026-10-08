@@ -6,7 +6,7 @@ excerpt: >-
   flows, integration steps, request parameters, error handling, and best
   practices.
 deprecated: false
-hidden: true
+hidden: false
 link:
   new_tab: false
 metadata:
