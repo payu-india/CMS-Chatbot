@@ -1,5 +1,5 @@
 ---
-title: '[INTERNAL REVIEW] Plans'
+title: Plans
 excerpt: >-
   Learn how to create, manage, activate, and update SI subscription plans using
   PayU Dashboard and APIs. Explore plan lifecycle, statuses, recurring billing
@@ -7,6 +7,8 @@ excerpt: >-
   practices.
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
   title: SI Plan Management - Create, Update & Manage Subscription Plans | PayU Docs
   description: >-
