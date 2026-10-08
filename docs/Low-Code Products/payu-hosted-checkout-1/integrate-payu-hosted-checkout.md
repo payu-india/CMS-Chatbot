@@ -43,6 +43,17 @@ next:
 
 This section covers everything you need to integrate <Anchor target="_blank" href="https://docs.payu.in/docs/payu-hosted-checkout-1">PayU Hosted Checkout</Anchor>, from building the initial connection to going live in production.
 
+<Callout icon="💡" theme="info">
+  ### **Exploring other PayU solutions?**
+
+  PayU offers multiple integration paths depending on how much control and setup you need:
+
+  - **No code needed**: [Payment Links](../../../introduction-no-code-payments-integration/payment-links-dashboard) — collect payments by sharing a link, no website or code required
+  - **Custom checkout UI**: [Merchant Hosted Checkout](../../../custom-checkout-merchant-hosted) — full control over the payment page design and branding
+  - **Mobile apps**: [Mobile SDKs](../../../mobile-sdks) — native SDKs for Android, iOS, React Native, and Flutter
+  - **eCommerce platforms**: [eCommerce Plugins](../../../ecommerce-platform-plugins) — ready-made plugins for WooCommerce, Shopify, and Magento
+</Callout>
+
 <Callout icon="📘" theme="info">
   ### **API Reference**
 
@@ -68,43 +79,25 @@ If you haven't completed a test payment yet, start with the [Quick Start](../qui
 
 <HostedCheckoutStepsHoverCards />
 
-<Cards columns="3">
-  <Card title="Build Integration" href="./build-integration">
-    Request parameters, hash generation, HTML form POST, response handling, and verification. Includes multi-language code samples.
-  </Card>
-
-  <Card title="Test Integration" href="./test-integration">
-    Test credentials, payment scenarios, expected responses, and how to simulate failures before going live.
-  </Card>
-
-  <Card title="Go-live Checklist" href="./go-live-checklist">
-    Production credentials, security requirements, webhook configuration, and final readiness checks.
-  </Card>
-</Cards>
-
 ***
 
-## Using PayU Hosted Checkout in a mobile app?
+## Using PayU Hosted Checkout in a Mobile App?
 
 If you are integrating PayU Hosted Checkout inside a WebView in your Android, iOS, or Flutter app, refer to [WebView for Mobile Apps](./webview-for-mobile-apps). This covers WebView configuration, UPI intent handling, and platform-specific setup required for mobile use.
 
 <Callout icon="❗️" theme="error">
-  **NPCI UPI Collect mandate**: If you are using PayU Hosted Checkout within a WebView, you must handle UPI deeplink URL redirects in your app. See [WebView for Mobile Apps](./webview-for-mobile-apps) for the required implementation.
+  ### **NPCI UPI Collect mandate:**
+
+  &#x20;If you are using PayU Hosted Checkout within a WebView, you must handle UPI deeplink URL redirects in your app. See [WebView for Mobile Apps](./webview-for-mobile-apps) for the required implementation.
 </Callout>
-
-***
-
-##
-
-<br />
 
 ***
 
 ## Next Steps
 
 <Cards columns="3">
-  <Card title="PayU Hosted Checkout APIs" href="../payu-hosted-checkout-apis">
-    Complete API reference: Collect Payment, Verify Payment, EMI eligibility APIs, and Webhooks.
+  <Card title="Quick Start" href="../payu-hosted-checkout-apis">
+    Haven't run a test payment yet? Walk through all five integration steps in the sandbox before you build.
   </Card>
 
   <Card title="Customise Checkout" href="../customise-payu-hosted-checkout">
@@ -117,14 +110,3 @@ If you are integrating PayU Hosted Checkout inside a WebView in your Android, iO
 </Cards>
 
 ***
-
-<Callout icon="💡" theme="info">
-  **Exploring other PayU solutions?**
-
-  PayU offers multiple integration paths depending on how much control and setup you need:
-
-  - **No code needed**: [Payment Links](../../../introduction-no-code-payments-integration/payment-links-dashboard) — collect payments by sharing a link, no website or code required
-  - **Custom checkout UI**: [Merchant Hosted Checkout](../../../custom-checkout-merchant-hosted) — full control over the payment page design and branding
-  - **Mobile apps**: [Mobile SDKs](../../../mobile-sdks) — native SDKs for Android, iOS, React Native, and Flutter
-  - **eCommerce platforms**: [eCommerce Plugins](../../../ecommerce-platform-plugins) — ready-made plugins for WooCommerce, Shopify, and Magento
-</Callout>
