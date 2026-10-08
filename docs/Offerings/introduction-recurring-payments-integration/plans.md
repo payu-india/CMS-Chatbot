@@ -34,15 +34,15 @@ metadata:
 ---
 ## What is a Plan?
 
-A plan defines the subscription terms that the customer accepts before a Standing Instruction (SI) mandate is registered. In API-based SI integrations, the plan is managed by your system and shared with PayU during the consent transaction through `si_details`.&#x20;
+A plan defines the subscription terms that the customer accepts before a Standing Instruction (SI) mandate is registered. In API-based SI integrations, the plan is managed by your system and shared with PayU during the consent transaction through `si_details`. <br />
 
-A **plan** contains all subscription details except customer and payment method information. It defines:
+A **plan** contains all subscription details except customer and payment method information. It defines:<br />
 
 - Billing amount (how much to charge)
 - Billing type (recurring or one-time)
-- Plan description and merchant reference
+- Plan description and merchant reference<br />
 
-PayU does not require you to create a separate plan object before registering an SI mandate. Your frontend should maintain the plan configuration, show it to the customer, pass the approved values to PayU during consent, and use the returned mandate identifiers for future pre-debit notifications, recurring debits, and mandate management.
+PayU does not require you to create a separate plan object before registering an SI mandate. Your frontend should maintain the plan configuration, show it to the customer, pass the approved values to PayU during consent, and use the returned mandate identifiers for future pre-debit notifications, recurring debits, and mandate management.<br />
 
 <Callout icon="📘" theme="info">
   ### **Handy Tips**
@@ -51,10 +51,9 @@ PayU does not require you to create a separate plan object before registering an
   - You can create multiple subscriptions for a plan
 </Callout>
 
-**How Plan Becomes a Subscription:**
-When you associate a plan with a customer and their payment method, it becomes a **subscription**. The merchant defines the subscription plan, and the customer subscribes to it by providing their payment details and consent.
+**How Plan Becomes a Subscription:**<br /><br />When you associate a plan with a customer and their payment method, it becomes a **subscription**. The merchant defines the subscription plan, and the customer subscribes to it by providing their payment details and consent.<br />
 
-<Callout icon="far fa-tick" theme="success">
+<Callout icon="fad fa-exclamation" theme="success">
   ### For Example
 
   - You create a **Premium Monthly ₹499** plan (just a billing template)
@@ -80,12 +79,12 @@ When you associate a plan with a customer and their payment method, it becomes a
 
 ### When Should You Create Plans?
 
-You should create plans when you want to:
+You should create plans when you want to:<br />
 
 - **Offer standardized subscription packages**: Create reusable billing templates (e.g., "Basic ₹199/month", "Premium ₹499/month", "Enterprise ₹999/month") that multiple customers can subscribe to
 - **Enable self-service subscriptions**: Allow customers to choose and subscribe to pre-defined plans without manual setup for each customer
 - **Simplify subscription management**: Manage billing terms centrally - update a plan once, and it applies to all new subscriptions
-- **Generate payment links for subscriptions**: Create shareable links where customers select a plan, provide their details, and complete payment to create their subscription
+- **Generate payment links for subscriptions**: Create shareable links where customers select a plan, provide their details, and complete payment to create their subscription<br />
 
 <Callout icon="📘" theme="info">
   ### **Note**
@@ -128,11 +127,11 @@ Enable Subscriptions for your PayU merchant account. Contact your PayU Key Accou
 Using plans provides merchants with a structured approach to managing subscription-based recurring payments.
 
 <Accordion title="Plan Benefits" icon="fa-list-check">
-  <ul><li><strong>Reusable subscription templates:</strong> Create once, use for multiple customers with the same billing terms, reducing setup errors and saving time.</li>
-  <li><strong>Better dashboard controls:</strong> Manage all subscriptions from a centralized dashboard with clear visibility into plan status and associated subscriptions.</li>
-  <li><strong>Improved reconciliation:</strong> Plan ID or merchant reference, mandate ID, and transaction IDs can be mapped together for easier reporting and tracking.</li>
-  <li><strong>Safer modifications:</strong> Separate draft plan edits from active subscription changes, ensuring you don't accidentally modify live billing arrangements.</li>
-  <li><strong>Simplified subscription link generation:</strong> Quickly create payment links for customers to subscribe to predefined plans without recreating billing details each time.</li></ul>
+    <ul><li><strong>Reusable subscription templates:</strong> Create once, use for multiple customers with the same billing terms, reducing setup errors and saving time.</li>
+    <li><strong>Better dashboard controls:</strong> Manage all subscriptions from a centralized dashboard with clear visibility into plan status and associated subscriptions.</li>
+    <li><strong>Improved reconciliation:</strong> Plan ID or merchant reference, mandate ID, and transaction IDs can be mapped together for easier reporting and tracking.</li>
+    <li><strong>Safer modifications:</strong> Separate draft plan edits from active subscription changes, ensuring you don't accidentally modify live billing arrangements.</li>
+    <li><strong>Simplified subscription link generation:</strong> Quickly create payment links for customers to subscribe to predefined plans without recreating billing details each time.</li></ul>
 </Accordion>
 
 ***
@@ -169,7 +168,7 @@ You can access **Plans** under **Subscriptions&#x20;**&#x66;rom the left navigat
 
 ## Plan Management Actions
 
-From the PayU Dashboard, you can perform the following plan management actions:
+From the PayU Dashboard, you can perform the following plan management actions:<br />
 
 - <Anchor target="_blank" href="https://docs.payu.in/docs/internal-review-create-and-manage-plans#create-a-plan">Create a plan</Anchor>
 - <Anchor target="_blank" href="https://docs.payu.in/docs/internal-review-create-and-manage-plans#duplicate-a-plan">Duplicate a plan</Anchor>
@@ -196,12 +195,12 @@ Find answers to frequently asked questions about plans and subscription manageme
    <Accordion title="Answer" icon="fa-comment-dots">
      Create plans when you offer subscription-based services with recurring billing cycles. Plans are ideal for:
 
-     <ul>
-     <li><strong>SaaS platforms and digital services:</strong> Software subscriptions with monthly/annual billing</li>
-     <li><strong>OTT and streaming platforms:</strong> Content access with recurring charges</li>
-     <li><strong>Membership programs:</strong> Gym memberships, club subscriptions, loyalty programs</li>
-     <li><strong>Utility and service providers:</strong> Insurance premiums, utility bills, maintenance fees</li>
-     </ul>
+       <ul>
+       <li><strong>SaaS platforms and digital services:</strong> Software subscriptions with monthly/annual billing</li>
+       <li><strong>OTT and streaming platforms:</strong> Content access with recurring charges</li>
+       <li><strong>Membership programs:</strong> Gym memberships, club subscriptions, loyalty programs</li>
+       <li><strong>Utility and service providers:</strong> Insurance premiums, utility bills, maintenance fees</li>
+       </ul>
 
      Plans work best when you need reusable billing templates or want non-technical teams to manage subscriptions via the Dashboard.
    </Accordion>
@@ -225,12 +224,12 @@ Find answers to frequently asked questions about plans and subscription manageme
    <Accordion title="Answer" icon="fa-comment-dots">
      Billing cycle is configured using two parameters:<br /> <strong>Billing Cycle:</strong> The unit of time (DAILY, WEEKLY, MONTHLY, YEARLY)<br /> <strong>Billing Interval:</strong> How many units between charges<br /><br /> <strong>Examples:</strong>
 
-     <ul>
-     <li>Monthly subscription: billingCycle=MONTHLY, billingInterval=1</li>
-     <li>Quarterly subscription: billingCycle=MONTHLY, billingInterval=3</li>
-     <li>Every 3 days: billingCycle=DAILY, billingInterval=3</li>
-     <li>Bi-weekly: billingCycle=WEEKLY, billingInterval=2</li>
-     </ul>
+       <ul>
+       <li>Monthly subscription: billingCycle=MONTHLY, billingInterval=1</li>
+       <li>Quarterly subscription: billingCycle=MONTHLY, billingInterval=3</li>
+       <li>Every 3 days: billingCycle=DAILY, billingInterval=3</li>
+       <li>Bi-weekly: billingCycle=WEEKLY, billingInterval=2</li>
+       </ul>
    </Accordion>
 
 <br />
