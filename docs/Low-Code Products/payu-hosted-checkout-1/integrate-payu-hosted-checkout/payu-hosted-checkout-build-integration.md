@@ -42,6 +42,21 @@ next:
 
 PayU Hosted Checkout enables merchants to securely accept online payments by redirecting customers to a PayU-hosted payment page.&#x20;
 
+<Callout icon="📘" theme="info">
+  ### **API References:**
+
+  - Collect Payment API
+  - Verify Payment API
+</Callout>
+
+***
+
+## Using WebView in a mobile app?
+
+If you are embedding PayU Hosted Checkout inside a WebView in your Android, iOS, or Flutter app, see [WebView for Mobile Apps](./webview-for-mobile-apps) for the platform-specific configuration required for JavaScript, DOM storage, UPI intent handling, and deep-link routing.
+
+***
+
 ## Prerequisites
 
 Go through the prerequisites before you proceed with the integration.
@@ -563,14 +578,3 @@ After a transaction, PayU POSTs these fields to your `surl` or `furl` as `applic
 </Accordion>
 
 ***
-
-## Using WebView in a mobile app?
-
-If you are embedding PayU Hosted Checkout inside a WebView in your Android, iOS, or Flutter app, see [WebView for Mobile Apps](./webview-for-mobile-apps) for the platform-specific configuration required for JavaScript, DOM storage, UPI intent handling, and deep-link routing.
-
-<Callout icon="📘" theme="info">
-  ### **API References:**
-
-  - Collect Payment API
-  - Verify Payment API
-</Callout>
