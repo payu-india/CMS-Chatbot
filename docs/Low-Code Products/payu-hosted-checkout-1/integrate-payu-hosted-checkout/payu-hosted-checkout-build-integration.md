@@ -117,7 +117,7 @@ Follow these steps to integrate PayU Hosted Checkout.
   </Tabs>
 </Accordion>
 
-<Accordion title="Step 1.2 — Generate Secure Hash" icon="fa-key">
+<Accordion title="Step 2. Generate Secure Hash" icon="fa-key">
   The hash authenticates the payment request and prevents tampering. PayU will reject any request where the hash does not match.
 
   **Hash formula:**
@@ -135,7 +135,7 @@ Follow these steps to integrate PayU Hosted Checkout.
   | No UDFs                          | `sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|\|\|\|\|\|\|\|\|\|\|SALT)`                     |
 
   <Callout icon="⚠️" theme="warn">
-    **Critical rules**
+    ### **Critical Rules:**
 
     - Generate the hash on your server only — never in browser or mobile app code, as this exposes your salt.
     - Keep all pipe (`|`) separators, even for empty fields.
