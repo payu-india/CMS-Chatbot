@@ -41,7 +41,7 @@ next:
 
 {/* NEW CONTENT: Umbrella page created to support the Tier 2 Integrate section structure. */}
 
-This section covers everything you need to integrate <Anchor target="_blank" href="https://docs.payu.in/docs/payu-hosted-checkout-1">PayU Hosted Checkout</Anchor>, from building the initial connection to going live in production.
+This section covers everything you need to integrate <Anchor target="_blank" href="https://docs.payu.in/docs/payu-hosted-checkout-1">PayU Hosted Checkout</Anchor>, from building the initial connection to going live in production.<br />
 
 <Callout icon="📘" theme="info">
   ### **API Reference**
@@ -53,7 +53,7 @@ This section covers everything you need to integrate <Anchor target="_blank" hre
 
 ## Using PayU Hosted Checkout in a Mobile App?
 
-If you are integrating PayU Hosted Checkout inside a WebView in your Android, iOS, or Flutter app, refer to [WebView for Mobile Apps](./webview-for-mobile-apps). This covers WebView configuration, UPI intent handling, and platform-specific setup required for mobile use.
+If you are integrating PayU Hosted Checkout inside a WebView in your Android, iOS, or Flutter app, refer to [WebView for Mobile Apps](./webview-for-mobile-apps). This covers WebView configuration, UPI intent handling, and platform-specific setup required for mobile use.<br />
 
 <Callout icon="❗️" theme="error">
   ### **NPCI UPI Collect mandate:**
@@ -76,12 +76,12 @@ If you are integrating PayU Hosted Checkout inside a WebView in your Android, iO
 
 ## Before You Build (Prerequisites)
 
-Make sure you have:
+Make sure you have:<br />
 
 - A PayU merchant account
 - Your test merchant key and salt (from PayU Dashboard → Developer Settings)
 - A backend capable of SHA-512 hash generation
-- Publicly reachable HTTPS callback URLs (`surl` and `furl`)
+- Publicly reachable HTTPS callback URLs (`surl` and `furl`)<br />
 
 If you haven't completed a test payment yet, start with the [Quick Start](../quick-start) first.
 
@@ -90,8 +90,6 @@ If you haven't completed a test payment yet, start with the [Quick Start](../qui
 ## Integration Steps
 
 <HostedCheckoutStepsHoverCards />
-
-***
 
 ***
 
