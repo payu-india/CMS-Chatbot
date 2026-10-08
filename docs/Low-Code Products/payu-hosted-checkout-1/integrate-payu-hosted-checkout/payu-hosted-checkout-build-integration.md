@@ -40,21 +40,15 @@ next:
   fontWeight="bold"
  />
 
-## Supported Payment Methods
+PayU Hosted Checkout enables merchants to securely accept online payments by redirecting customers to a PayU-hosted payment page.&#x20;
 
-These payment methods are available by default for PayU Hosted Checkout:
+## Prerequisites
 
-- NetBanking
-- Credit Cards
-- Debit Cards
-- UPI
-- Wallets
-
-You can enable BNPL, EMI, and International Payments from your PayU Dashboard if you are eligible. See [Customise PayU Hosted Checkout](../customise-payu-hosted-checkout) for details.
+Go through the prerequisites before you proceed with the integration.
 
 ***
 
-Below are the steps to build an integration:
+## Overview of Steps
 
 1. To start with, you should [prepare payment request parameters](https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#step-11-prepare-payment-request-parameters) before passing them in the code.
 2. After knowing parameters, you should [generate a secure hash](https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#step-12-generate-secure-hash) using a logic and a certain parameters.
@@ -64,7 +58,13 @@ Below are the steps to build an integration:
    1. You should [create a reverse hash](https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#step-141-reverse-hashing) using a hash logic mentioned in this step.
 5. After the transaction is done, should [verify the payment](https://docs.payu.in/v3.0_pg-web-checkout-restcng-new/docs/integration-guide2#step-15-verify-the-payment) status as a final step.
 
-## Step 1. Prepare Payment Request Parameters
+***
+
+## Build Integration Steps
+
+Follow these steps to integrate PayU Hosted Checkout.
+
+### Step 1. Prepare Payment Request Parameters
 
 Collect and structure the parameters below before initiating a transaction.
 
