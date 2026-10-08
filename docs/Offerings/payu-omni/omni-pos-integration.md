@@ -326,7 +326,7 @@ echo $response;
   
 </Accordion>
 
-<Accordion title="Step 1.4: Response Handling & Status Codes" icon="fa-reply-all">
+<Accordion title="Step 1.2: Response Handling & Status Codes" icon="fa-reply-all">
   ### Synchronous API Initiation Response
 
   When you call `v2/payments`, the API returns an immediate acknowledgment indicating whether the payment was successfully pushed to the POS terminal.
@@ -429,7 +429,7 @@ echo $response;
   `}</HTMLBlock>
 </Accordion>
 
-<Accordion title="Step 1.5: Server-to-Server Webhook Handling" icon="fa-bell">
+<Accordion title="Step 1.3: Server-to-Server Webhook Handling" icon="fa-bell">
   Once the customer completes or cancels the payment on the terminal, PayU sends an asynchronous Server-to-Server (S2S) webhook notification to your configured webhook URL.
 
   ### Sample Webhook Payload
