@@ -1502,3 +1502,9 @@ PayU Hosted Checkout uses SHA-512 hashing to protect both the payment request an
 Because card details are entered on PayU's payment page — not on your website — your server never handles raw card numbers. This removes the most sensitive payment data from your infrastructure and reduces your PCI-DSS compliance scope.
 
 You remain responsible for securing your backend, protecting your merchant credentials (key and salt), and enforcing HTTPS on all endpoints that receive payment data from PayU.
+
+***
+
+## Using WebView in a mobile app?
+
+If you are embedding PayU Hosted Checkout inside a WebView in your Android, iOS, or Flutter app, see [WebView for Mobile Apps](./webview-for-mobile-apps) for the platform-specific configuration required for JavaScript, DOM storage, UPI intent handling, and deep-link routing.
