@@ -108,5 +108,3 @@ If you haven't completed a test payment yet, start with the [Quick Start](../qui
     Diagnose and fix common integration issues — hash errors, callback failures, and payment declines.
   </Card>
 </Cards>
-
-***
