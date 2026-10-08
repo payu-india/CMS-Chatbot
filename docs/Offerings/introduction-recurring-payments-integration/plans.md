@@ -207,7 +207,7 @@ Find answers to frequently asked questions about plans and subscription manageme
 
 3. #### What is the difference between a plan and a subscription?
    <Accordion title="Answer" icon="fa-comment-dots">
-     <strong>Plan:</strong> A billing template containing subscription details minus customer and payment method information (created by merchant).<br /> <strong>Subscription:</strong> Plan + Customer details + Payment method (created when customer subscribes).<br /><br /> <strong>Example:</strong> You create a "Premium Monthly ₹499" plan. When Customer A subscribes by providing their card details and consent, a subscription is created linking the plan to Customer A's card. The same plan can be used when Customer B subscribes with their own payment details, creating a separate subscription.
+     <strong>Plan:</strong> A billing template containing subscription details minus customer and payment method information (created by merchant).<br /><br /> <strong>Subscription:</strong> Plan + Customer details + Payment method (created when customer subscribes).<br /><br /> <strong>Example:</strong> You create a "Premium Monthly ₹499" plan. When Customer A subscribes by providing their card details and consent, a subscription is created linking the plan to Customer A's card. The same plan can be used when Customer B subscribes with their own payment details, creating a separate subscription.
    </Accordion>
 
 4. #### Can a customer have multiple subscriptions?
@@ -222,7 +222,7 @@ Find answers to frequently asked questions about plans and subscription manageme
 
 6. #### How does billing cycle configuration work?
    <Accordion title="Answer" icon="fa-comment-dots">
-     Billing cycle is configured using two parameters:<br /> <strong>Billing Cycle:</strong> The unit of time (DAILY, WEEKLY, MONTHLY, YEARLY)<br /> <strong>Billing Interval:</strong> How many units between charges<br /><br /> <strong>Examples:</strong>
+     Billing cycle is configured using two parameters:<br /> <strong>Billing Cycle:</strong> The unit of time (DAILY, WEEKLY, MONTHLY, YEARLY)<br /><br /> <strong>Billing Interval:</strong> How many units between charges<br /><br /> <strong>Examples:</strong>
 
        <ul>
        <li>Monthly subscription: billingCycle=MONTHLY, billingInterval=1</li>
