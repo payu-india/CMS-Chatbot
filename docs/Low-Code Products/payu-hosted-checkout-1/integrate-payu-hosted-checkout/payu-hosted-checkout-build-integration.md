@@ -415,16 +415,16 @@ To ensure the payment request is secure, you should generate a hash using your t
     - Use SHA-512 algorithm.
   </Callout>
 
-  #### Expected Output
+  #### Expected Output<br />
 
-  You get the hash value similar to the example below. You should pass this value along with other mandatory parameters in the next step.<br />
+  You get a 128-character hexadecimal hash value similar to the example below. You should pass this value along with other mandatory parameters in the next step.<br />
 
   ```text Example Hash Value
   1be625350f785a208a737f05151f8fee378aa332be1a5f361546f3bbe6fa42f000ea985765b686e11dce4e3ad934dac763bd755624996f82bb01cf7b4f2b468b
   ```
 
   <Callout icon="🚧" theme="warn">
-    **Common Causes of Invalid Hash:**
+    ### **Common Causes of Invalid Hash:**
 
     - Wrong parameter order.
     - Missing pipe separators
@@ -435,12 +435,9 @@ To ensure the payment request is secure, you should generate a hash using your t
 
 ***
 
-### Step 1.3 Redirect Customers to PayU Checkout
+### Step 3: Redirect Customers to PayU Checkout
 
-Now that you have created the hash value, combine the below to submit a payment request using POST in a HTML form.
-
-\- Payment parameters _(step 1.1)_
-\- Generated hash _(step 1.2)_
+POST the payment parameters _(step 1)_ and hash _(step 2)_ to PayU's payment endpoint using an HTML form. The form auto-submits and redirects the customer's browser to the PayU checkout page.
 
 <Accordion title="POST the HTML Form (server renders)" icon="fa-paper-plane">
   <Cards>
@@ -859,14 +856,14 @@ Now that you have created the hash value, combine the below to submit a payment 
 
 
   <Callout icon="🚧" theme="warn">
-    **Request Parameters**
+    ### **Request Parameters**
 
-    - Refer to the Prepare Payment Request Parameters section for parameters description.
+    - Refer to the step 1 section for parameters description.
     - Replace the value attributes with your actual data and the generated hash. You can add more parameters to the request as required.
   </Callout>
 
   <Callout icon="✅" theme="success">
-    **Best Practices:**
+    ### **Best Practices:**
 
     - Generate a unique `txnid` for every transaction..
     - Store the transaction ID in your database before redirecting the customer.
@@ -1379,25 +1376,9 @@ Now that you have created the hash value, combine the below to submit a payment 
 
 #### What Next - Customer Journey
 
-Customer selects a payment method and completes the payment. PayU then sends the transaction response parameters.
+Customer selects a payment method and completes the payment. PayU then sends the transaction response parameters. Refer to the How PayU Hosted Checkout Works page for more details.
 
-<Accordion title="Customer Journey Outcome" icon="fa-route">
-  **Expected Output**
-
-  These are the expected outcomes of the transaction.
-
-  - Success
-  - Failure
-  - Pending
-  - Cancelled
-
-  PayU then redirects to:
-
-  - `surl` for success
-  - `furl` for failure
-</Accordion>
-
-#### Step 1.3.1 Customize PayU Payment Page _(Optional)_
+#### Step 3.1 Customize PayU Payment Page _(Optional)_
 
 <Accordion title="Customize Checkout" icon="fa-gear">
   You can customize the following in the Checkout page:<br />
@@ -1409,11 +1390,9 @@ Customer selects a payment method and completes the payment. PayU then sends the
   Refer to the <a href="https://docs.payu.in/docs/payu-payment-page-customization" target="_blank">Customize PayU Payment Page</a> for more information about cutomizing the PayU payment page.
 </Accordion>
 
-<br />
-
 ***
 
-### Step 1.4 Verify Response via Reverse Hashing
+### Step 4: Verify Response via Reverse Hashing
 
 Response verification ensures that the response originated from PayU and has not been modified. It protects against:
 
