@@ -118,7 +118,7 @@ Collect and structure the below parameters before initiating a transaction. This
 
 ***
 
-### Step 1.2: Generate Secure Hash
+### Step 2: Generate Secure Hash
 
 To ensure the payment request is secure, you should generate a hash using your transaction details and merchant credentials. Hash protects the request from tampering.
 
@@ -134,10 +134,10 @@ To ensure the payment request is secure, you should generate a hash using your t
   \* `salt`
 
   ```Text Logic
-  key|txnid|amount|productinfo|firstname|email|||||||||||salt
+  sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
   ```
   ```Text Example Values
-  YOUR_KEY|txn_123456|10.00|TestProduct|Test|test@example.com|||||||||||salt_value
+  sha512(YOUR_KEY|txn_123456|10.00|TestProduct|Test|test@example.com|||||||||||salt_value)
   ```
   ```php
   <?php
@@ -392,17 +392,28 @@ To ensure the payment request is secure, you should generate a hash using your t
   ````
 
   <Callout icon="🚧" theme="warn">
-    **Watch Out!**
+    ### Important!
 
     Replace the key and salt values with your test values obtained from the dashboard. Know more about generating test values.
   </Callout>
 
-  #### Points to Remember
+  **Hash scenarios:**
 
-  These are the points to remember while concatenating params in the hash logic.
+  | UDF fields sent                  | Hash formula                                                                                              |
+  | -------------------------------- | --------------------------------------------------------------------------------------------------------- |
+  | All five UDFs                    | `sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|SALT)` |
+  | Some UDFs (e.g. udf2, udf4 only) | `sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|\|udf2\|\|udf4\|\|\|\|\|\|\|SALT)`             |
+  | No UDFs                          | `sha512(key\|txnid\|amount\|productinfo\|firstname\|email\|\|\|\|\|\|\|\|\|\|\|SALT)`                     |
 
-  _Maintain exact parameter order_ Keep empty pipes for missing UDFs
-  _Generate hash on backend only_ Never expose salt
+  <Callout icon="⚠️" theme="warn">
+    ### **Critical Rules**
+
+    - Generate the hash on your server only — never in browser or mobile app code, as this exposes your salt.
+    - Keep all pipe (`|`) separators, even for empty fields.
+    - No extra spaces in any parameter value.
+    - Use UTF-8 encoding before hashing.
+    - Use SHA-512 algorithm.
+  </Callout>
 
   #### Expected Output
 
