@@ -27,15 +27,6 @@ next:
       title: PayU Hosted Checkout
       type: basic
 ---
-<Banner
-  isInline={true}
-  message="Integration effort: Minimal technical setup required"
-  color="#15C614"
-  textColor="#ffffff"
-  fontSize="14px"
-  fontWeight="bold"
- />
-
 PayU Hosted Checkout is a redirect-based payment integration. When a customer initiates a payment, your application redirects them to a PayU-hosted payment page where they complete the transaction. PayU handles the hosted payment experience — payment method selection, authentication, and processing. The payment result is then returned to your application through a configured callback.
 
 ***
