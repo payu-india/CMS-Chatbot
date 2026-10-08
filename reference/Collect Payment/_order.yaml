@@ -9,3 +9,4 @@
 - sample-payu-hosted-checkout-api
 - get-additional-charge-info-api
 - order-apis
+- collect-payment-using-omni-pos-api
