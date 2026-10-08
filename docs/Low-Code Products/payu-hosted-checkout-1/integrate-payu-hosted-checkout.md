@@ -41,7 +41,7 @@ next:
 
 {/* NEW CONTENT: Umbrella page created to support the Tier 2 Integrate section structure. */}
 
-This section covers everything you need to integrate PayU Hosted Checkout — from building the initial connection to going live in production.
+This section covers everything you need to integrate PayU Hosted Checkout, from building the initial connection to going live in production.
 
 ***
 
@@ -68,7 +68,9 @@ This section covers everything you need to integrate PayU Hosted Checkout — fr
 If you are integrating PayU Hosted Checkout inside a WebView in your Android, iOS, or Flutter app, refer to [WebView for Mobile Apps](./webview-for-mobile-apps). This covers WebView configuration, UPI intent handling, and platform-specific setup required for mobile use.
 
 <Callout icon="❗️" theme="error">
-  **NPCI UPI Collect mandate**: If you are using PayU Hosted Checkout within a WebView, you must handle UPI deeplink URL redirects in your app. See [WebView for Mobile Apps](./webview-for-mobile-apps) for the required implementation.
+  ### **NPCI UPI Collect mandate**
+
+  If you are using PayU Hosted Checkout within a WebView, you must handle UPI deeplink URL redirects in your app. See [WebView for Mobile Apps](./webview-for-mobile-apps) for the required implementation.
 </Callout>
 
 ***
