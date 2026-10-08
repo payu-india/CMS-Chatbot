@@ -87,7 +87,7 @@ Collect and structure the parameters below before initiating a transaction.
   </Tab>
 
   <Tab title="Optional Parameters">
-    You can send these optional parameters in the request as needed.
+    You can send these optional parameters in the request as needed.<br />
 
     | Parameter           | Type   | Description                                                                                                                                       |
     | ------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
