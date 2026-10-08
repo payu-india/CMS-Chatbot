@@ -25,4 +25,3 @@ Both the previous and successor banks are supported in PayU Platform:
 | Previous Bank (with the Bank Code)     | Successor Bank (**with the Bank Code**) |
 | -------------------------------------- | --------------------------------------- |
 | Oriental Bank of Commerce (`OBCNBTPV`) | Punjab National Bank (`PNBNBTPV`)       |
-| Andhra Bank TPV (`ABNBTPV`)            | Union bank Of India TPV (`UBIBTPV`)     |
