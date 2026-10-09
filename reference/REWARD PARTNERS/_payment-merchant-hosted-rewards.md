@@ -596,7 +596,7 @@ curl -X POST "https://test.payu.in/_payment" \
 ## Sample response
 
 ### Success scenarios
-### Using TWID + Cards
+#### Using TWID + Cards
 
 ```json
 {
