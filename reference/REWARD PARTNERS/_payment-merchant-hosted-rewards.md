@@ -676,6 +676,62 @@ curl -X POST "https://test.payu.in/_payment" \
 }
 ```
 
+### Success Scenario Using Network Token
+
+```json
+Array
+(
+    [mihpayid] => 613355678912499024
+    [mode] => SPLITPAY
+    [status] => success
+    [unmappedstatus] => captured
+    [key] => KOEfPI
+    [txnid] => 77888009099443403099343
+    [amount] => 1000.00
+    [discount] => 0.00
+    [net_amount_debit] => 1000
+    [addedon] => 2026-07-07 12:18:26
+    [productinfo] => Product Info
+    [firstname] => Payu-Admin
+    [lastname] => 
+    [address1] => 
+    [address2] => 
+    [city] => 
+    [state] => 
+    [country] => 
+    [zipcode] => 
+    [email] => test@example.com
+    [phone] => 9304204920
+    [udf1] => 
+    [udf2] => 
+    [udf3] => 
+    [udf4] => 
+    [udf5] => 
+    [udf6] => 
+    [udf7] => 
+    [udf8] => 
+    [udf9] => 
+    [udf10] => 
+    [hash] => 8b7d2d646d72d9e8fff93ca122a4ce6ff3f8bd5b465a49f9bed601be4cccfe79b2a1e414ea21f18883d866109a91990ef51813b667098107de286231b99e33d6
+    [field1] => 
+    [field2] => 
+    [field3] => 
+    [field4] => 
+    [field5] => 
+    [field6] => 
+    [field7] => 
+    [field8] => 
+    [field9] => 
+    [payment_source] => payuS2S
+    [PG_TYPE] => SPLITPAY-PG
+    [bank_ref_num] => 1169
+    [bankcode] => TWIDX
+    [error] => E000
+    [error_Message] => No Error
+    [splitPayInfo] => {"cc":{"name":"CC","bankCode":"CC","networkToken":"5123456789012346","storecardTokenType":1,"transactionAmount":"997","additionalInfo":{"tavv":"wAAAAAAPtP+g6IAmbSeg1gAAAA=","last4digits":"2346"}},"rd":{"name":"RD","bankCode":"TWIDLS","transactionAmount":"3","rewardId":270943,"rewardName":"twid Cash","cardBin":"000000","cardLastFour":"0000"}}
+)
+```
+### Success Scenario (using )
 ### Failure scenario
 
 ```json
