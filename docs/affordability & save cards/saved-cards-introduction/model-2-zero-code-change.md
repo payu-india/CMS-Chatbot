@@ -1,7 +1,9 @@
 ---
 title: 'Model 2: Zero Code Change'
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
