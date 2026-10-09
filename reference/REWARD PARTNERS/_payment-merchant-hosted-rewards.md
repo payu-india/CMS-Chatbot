@@ -731,7 +731,114 @@ Array
     [splitPayInfo] => {"cc":{"name":"CC","bankCode":"CC","networkToken":"5123456789012346","storecardTokenType":1,"transactionAmount":"997","additionalInfo":{"tavv":"wAAAAAAPtP+g6IAmbSeg1gAAAA=","last4digits":"2346"}},"rd":{"name":"RD","bankCode":"TWIDLS","transactionAmount":"3","rewardId":270943,"rewardName":"twid Cash","cardBin":"000000","cardLastFour":"0000"}}
 )
 ```
-### Success Scenario (using )
+### Using Storecard
+```json
+Array
+(
+    [mihpayid] => 613355678912499035
+    [mode] => SPLITPAY
+    [status] => success
+    [unmappedstatus] => captured
+    [key] => KOEfPI
+    [txnid] => 778889000444434343
+    [amount] => 1000.00
+    [discount] => 0.00
+    [net_amount_debit] => 1000
+    [addedon] => 2026-07-07 12:25:29
+    [productinfo] => Product Info
+    [firstname] => Payu-Admin
+    [lastname] => 
+    [address1] => 
+    [address2] => 
+    [city] => 
+    [state] => 
+    [country] => 
+    [zipcode] => 
+    [email] => test@example.com
+    [phone] => 9304204920
+    [udf1] => 
+    [udf2] => 
+    [udf3] => 
+    [udf4] => 
+    [udf5] => 
+    [udf6] => 
+    [udf7] => 
+    [udf8] => 
+    [udf9] => 
+    [udf10] => 
+    [hash] => 1a27fb80369af57c98a6895f751f29e54b76d2f2702db1db31fd18489255d6fe722519943d1edcb978f5eb4312709636f0d6964466a7576fab3923257afc9178
+    [field1] => 
+    [field2] => 
+    [field3] => 
+    [field4] => 
+    [field5] => 
+    [field6] => 
+    [field7] => 
+    [field8] => 
+    [field9] => 
+    [payment_source] => payuS2S
+    [PG_TYPE] => SPLITPAY-PG
+    [bank_ref_num] => 1173
+    [bankcode] => TWIDX
+    [error] => E000
+    [error_Message] => No Error
+    [splitPayInfo] => {"cc":{"name":"CC","bankCode":"CC","storeCardToken":"c4dba91483c91772bb23c","userCredentials":"180012:9304204920","transactionAmount":"997","storecard_token_type":0},"rd":{"name":"RD","bankCode":"TWIDLS","transactionAmount":"3","rewardId":270943,"rewardName":"twid Cash","cardBin":"000000","cardLastFour":"0000"}}
+)
+```
+### Using AltId
+```json
+Array
+(
+    [mihpayid] => 613355678912499029
+    [mode] => SPLITPAY
+    [status] => success
+    [unmappedstatus] => captured
+    [key] => KOEfPI
+    [txnid] => 7788898770995434444343434333
+    [amount] => 1000.00
+    [discount] => 0.00
+    [net_amount_debit] => 1000
+    [addedon] => 2026-07-07 12:22:28
+    [productinfo] => Product Info
+    [firstname] => Payu-Admin
+    [lastname] => 
+    [address1] => 
+    [address2] => 
+    [city] => 
+    [state] => 
+    [country] => 
+    [zipcode] => 
+    [email] => test@example.com
+    [phone] => 9304204920
+    [udf1] => 
+    [udf2] => 
+    [udf3] => 
+    [udf4] => 
+    [udf5] => 
+    [udf6] => 
+    [udf7] => 
+    [udf8] => 
+    [udf9] => 
+    [udf10] => 
+    [hash] => 69f85c93a0b8fbd2daaef00c8097d14f8ffb4f9a2f7c94966c836b4fedbe3026908f5721aab06bd63bbcbcd8f229daeed7bfaa1a3535475038cfd632ae0663da
+    [field1] => 
+    [field2] => 
+    [field3] => 
+    [field4] => 
+    [field5] => 
+    [field6] => 
+    [field7] => 
+    [field8] => 
+    [field9] => 
+    [payment_source] => payuS2S
+    [PG_TYPE] => SPLITPAY-PG
+    [bank_ref_num] => 1171
+    [bankcode] => TWIDX
+    [error] => E000
+    [error_Message] => No Error
+    [splitPayInfo] => {"cc":{"name":"CC","bankCode":"CC","altId":"5123456789012346","transactionAmount":"997","additionalInfo":{"tavv":"wAAAAAAPtP+g6IAmbSeg1gAAAA=","last4digits":"2346"}},"rd":{"name":"RD","bankCode":"TWIDLS","transactionAmount":"3","rewardId":270943,"rewardName":"twid Cash","cardBin":"000000","cardLastFour":"0000"}}
+)
+```
 ### Failure scenario
 
 ```json
