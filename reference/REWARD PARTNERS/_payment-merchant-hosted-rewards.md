@@ -595,7 +595,8 @@ curl -X POST "https://test.payu.in/_payment" \
 
 ## Sample response
 
-### Success scenario (TWID + Cards)
+### Success scenarios
+### Using TWID + Cards
 
 ```json
 {
@@ -635,7 +636,7 @@ curl -X POST "https://test.payu.in/_payment" \
 }
 ```
 
-### Success scenario (Zillion + UPI)
+#### Using Zillion + UPI
 
 ```json
 {
@@ -676,7 +677,7 @@ curl -X POST "https://test.payu.in/_payment" \
 }
 ```
 
-### Success Scenario Using Network Token
+#### Using TWID + Network Token
 
 ```json
 Array
@@ -731,7 +732,7 @@ Array
     [splitPayInfo] => {"cc":{"name":"CC","bankCode":"CC","networkToken":"5123456789012346","storecardTokenType":1,"transactionAmount":"997","additionalInfo":{"tavv":"wAAAAAAPtP+g6IAmbSeg1gAAAA=","last4digits":"2346"}},"rd":{"name":"RD","bankCode":"TWIDLS","transactionAmount":"3","rewardId":270943,"rewardName":"twid Cash","cardBin":"000000","cardLastFour":"0000"}}
 )
 ```
-### Using Storecard
+#### Using TWID + Storecard
 ```json
 Array
 (
@@ -785,7 +786,7 @@ Array
     [splitPayInfo] => {"cc":{"name":"CC","bankCode":"CC","storeCardToken":"c4dba91483c91772bb23c","userCredentials":"180012:9304204920","transactionAmount":"997","storecard_token_type":0},"rd":{"name":"RD","bankCode":"TWIDLS","transactionAmount":"3","rewardId":270943,"rewardName":"twid Cash","cardBin":"000000","cardLastFour":"0000"}}
 )
 ```
-### Using AltId
+#### Using TWID + Alt ID
 ```json
 Array
 (
