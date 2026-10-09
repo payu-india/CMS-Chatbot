@@ -1,7 +1,9 @@
 ---
 title: 'Model 1: PayU Hosted Checkout Integration'
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
