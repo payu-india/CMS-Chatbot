@@ -281,7 +281,6 @@ Once your customer completes the payment:<br />
   <Column>
     **Export** — download transaction history as CSV or Excel for reconciliation.
   </Column>
-  {/* NEW */}
   <Column>
     **Deactivate** — stop a link from accepting further payments at any time from the Dashboard, or via the [Deactivate API](doc:api-cancel-status).
   </Column>
