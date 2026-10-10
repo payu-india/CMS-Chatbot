@@ -245,7 +245,7 @@ When your customer receives the payment link:
 </Accordion>
 
 <Accordion title="Fills in any required information (optional)" icon="far fa-keyboard-down">
-  If you have set up a form to collect details like name, delivery address, or customer ID
+  If you have set up a form to collect details like name, or delivery address,
 </Accordion>
 
 <Accordion title="Chooses payment method" icon="far fa-credit-card">
