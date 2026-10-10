@@ -266,25 +266,31 @@ Your customer does not need a PayU account or any special app. The link works in
 
 ## How do I Manage Payments?
 
-Once your customer completes the payment:<br />
+Once your customer completes the payment:
 
-<Columns layout="fixed">
-  <Column>
-    **Filter and search** — view links by status (Active, Paid, Expired, Deactivated) or by creation date.
-  </Column>
-  <Column>
-    **Duplicate** — create a new link pre-filled with the same settings. A single link can accept multiple payments unless you set a Max Transactions limit at creation.
-  </Column>
-  <Column>
-    **Resend** — share any active link again over SMS, email, or by copying the URL.
-  </Column>
-  <Column>
-    **Export** — download transaction history as CSV or Excel for reconciliation.
-  </Column>
-  <Column>
-    **Deactivate** — stop a link from accepting further payments at any time from the Dashboard, or via the [Deactivate API](doc:api-cancel-status).
-  </Column>
-</Columns>
+<Accordion title="Filter and search" icon="far fa-filter">
+  View links by status — **Active**, **Paid**, **Expired**, or **Deactivated** — or narrow by creation date. Use the calendar picker to set a custom date range.
+</Accordion>
+
+<Accordion title="Edit a link" icon="far fa-pen-to-square">
+  Open a link's Detail view and click **Edit** to update the amount, expiry date, partial payment settings, or customer details after the link has been created.
+</Accordion>
+
+<Accordion title="Duplicate a link" icon="far fa-copy">
+  Create a new link pre-filled with the same settings — amount, purpose, and options. Use it to reuse a configuration, correct a mistake, or send the same request to a different customer.
+</Accordion>
+
+<Accordion title="Resend a link" icon="far fa-share">
+  Share any Active link again via SMS, email, or by copying the URL and sending it over WhatsApp or any channel — no limit on how many times you can resend.
+</Accordion>
+
+<Accordion title="Export records" icon="far fa-download">
+  Download your payment link history as CSV or Excel — either a link-level summary or a transaction-level detail report — for reconciliation or reporting.
+</Accordion>
+
+<Accordion title="Deactivate a link" icon="far fa-ban">
+  Stop a link from accepting further payments at any time from the Dashboard. To re-activate a deactivated or expired link, use the [Cancel / Change Status API](doc:api-cancel-status).
+</Accordion>
 
 → [Manage Payment Links](doc:manage-payment-links)
 
