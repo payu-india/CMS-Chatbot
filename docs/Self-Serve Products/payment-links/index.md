@@ -296,7 +296,7 @@ Once your customer completes the payment:
 </Accordion>
 
 <Accordion title="Deactivate a link" icon="far fa-ban">
-  Stop a link from accepting further payments at any time from the Dashboard. To re-activate a deactivated or expired link, use the [Cancel / Change Status API](doc:api-cancel-status).
+  When a link is no longer needed, stop it from accepting further payments, either from the Dashboard or via the [Deactivate API](doc:api-cancel-status). To re-activate a deactivated or expired link, use the same API with `active: true`.
 </Accordion>
 
 Refer to the Manage Payment Links page for more information.
