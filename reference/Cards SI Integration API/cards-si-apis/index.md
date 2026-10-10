@@ -1,4 +1,6 @@
 ---
 title: Cards SI APIs
-hidden: false
+hidden: true
+link:
+  new_tab: false
 ---
