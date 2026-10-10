@@ -335,7 +335,7 @@ The merchant has already performed 3DS authentication externally (e.g., through 
   <Tab title="Parameter Description">
     All base parameters (key, txnid, amount, productinfo, firstname, email, phone, surl, furl, api_version, hash, pg, bankcode, si, si_details) apply. The following are added or changed:
 
-    <Table align={["left","left","left"]}>
+    <Table align={["left","left"]}>
       <thead>
         <tr>
           <th>
@@ -344,10 +344,6 @@ The merchant has already performed 3DS authentication externally (e.g., through 
 
           <th>
             Description
-          </th>
-
-          <th>
-            Example Value
           </th>
         </tr>
       </thead>
@@ -360,10 +356,6 @@ The merchant has already performed 3DS authentication externally (e.g., through 
 
           <td>
             `String` Set to **3** to indicate authentication was handled externally by the merchant.
-          </td>
-
-          <td>
-            3
           </td>
         </tr>
 
@@ -382,10 +374,6 @@ The merchant has already performed 3DS authentication externally (e.g., through 
             - `threeDSServerTransID`: 3DS server transaction ID.&#x20;
             - `threeDSTransStatus`: Authentication status. `Y` = successful.
           </td>
-
-          <td>
-            `{"cavv":"MTAwMjMyMD...","eci":"02","flowType":"challenge","threeDSTransID":"2c75dd4a-...","threeDSTransStatus":"Y"}`
-          </td>
         </tr>
 
         <tr>
@@ -394,11 +382,10 @@ The merchant has already performed 3DS authentication externally (e.g., through 
           </td>
 
           <td>
-            `JSON Object` 3DS2 device channel data. <br /><br /> **deviceChannel** — e.g., `BRW` (browser). <br /> **threeDSVersion** — 3DS version used, e.g., `2.1.0`.
-          </td>
+            `JSON Object` 3DS2 device channel data.&#x20;
 
-          <td>
-            `{"deviceChannel":"BRW","threeDSVersion":"2.1.0"}`
+            - `deviceChannel`: `BRW` (browser).&#x20;
+            - `threeDSVersion`: 3DS version used, e.g., `2.1.0`.
           </td>
         </tr>
 
@@ -410,10 +397,6 @@ The merchant has already performed 3DS authentication externally (e.g., through 
           <td>
             `Integer` Set to **1** for network token.
           </td>
-
-          <td>
-            1
-          </td>
         </tr>
 
         <tr>
@@ -424,10 +407,6 @@ The merchant has already performed 3DS authentication externally (e.g., through 
           <td>
             `varchar` The network token value for the card.
           </td>
-
-          <td>
-            5506900480000008
-          </td>
         </tr>
 
         <tr>
@@ -436,11 +415,11 @@ The merchant has already performed 3DS authentication externally (e.g., through 
           </td>
 
           <td>
-            `JSON Object` Network token metadata for the non-PayU auth flow. <br /><br /> **tavv** — Token Authentication Verification Value. <br /> **par** — Payment Account Reference. <br /> **last4digits** — Last 4 digits of the tokenised card.
-          </td>
+            `JSON Object` Network token metadata for the non-PayU auth flow.&#x20;
 
-          <td>
-            `{"tavv":"ADcBA4ZHFQAg...","par":"PN07d26452cf9a...","last4digits":"2656"}`
+            - `tavv`: Token Authentication Verification Value.&#x20;
+            - `par`: Payment Account Reference.&#x20;
+            - `last4digits`: Last 4 digits of the tokenised card.
           </td>
         </tr>
 
@@ -451,10 +430,6 @@ The merchant has already performed 3DS authentication externally (e.g., through 
 
           <td>
             Do not send `auth_only` for this flow. The mandate is registered directly in this call.
-          </td>
-
-          <td>
-            —
           </td>
         </tr>
       </tbody>
