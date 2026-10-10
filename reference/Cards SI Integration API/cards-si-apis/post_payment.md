@@ -436,3 +436,42 @@ The merchant has already performed 3DS authentication externally (e.g., through 
     </Table>
   </Tab>
 </Tabs>
+
+### Sample Response
+
+<Tabs>
+  <Tab title="Sample Payload">
+    For Flow 3, the mandate is registered in this single call. The response contains the final transaction authorization result directly — check `IsStandingInstructionSet: "1"` and save `mihpayid` as your `authPayuId`.
+
+    ```json
+    {
+        "status": "success",
+        "result": {
+          "mihpayid": "403993715537854832",
+          "mode": "DC",
+          "status": "success",
+          "txnid": "1234455566111111",
+          "amount": "100.00",
+          "addedon": "2026-07-08 12:00:56",
+          "productinfo": "YOUR_REFERENCE_NUMBER",
+          "firstname": "John",
+          "card_no": "XXXXXXXXXXXX2656",
+          "error": "E000",
+          "error_Message": "No Error",
+          "issuing_bank": "AXIS",
+          "card_type": "MAST",
+          "AuthCode": "729577",
+          "net_amount_debit": "100",
+          "IsStandingInstructionSet": "1",
+          "bank_ref_no": "519813603159458050",
+          "PG_TYPE": "DC-PG",
+          "payment_source": "sist"
+        }
+      }
+    ```
+  </Tab>
+
+  <Tab title="Tab 2">
+
+  </Tab>
+</Tabs>
