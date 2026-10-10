@@ -305,13 +305,13 @@ You can manage Payment Links by conversation instead of navigating the Dashboard
 
   <br />
 
-  - _"Create a PayU payment link for ₹500 that expires in 24 hours"_
-  - _"Show me all my unpaid active payment links"_
-  - _"Send invoice INV-2026-1042 to&#x20;_[priya@example.com](mailto:priya@example.com)_"_
-  - _"Deactivate the payment link for order INV-2026-1042 — the customer paid by cash"_
-  - _"How do I set up a partial payment link for a ₹10,000 deposit?"_
+  - `Create a PayU payment link for ₹500 that expires in 24 hours`
+  - `Show me all my unpaid active payment links`
+  - `Send invoice INV-2026-1042 to priya@example.com`
+  - `Deactivate the payment link for order INV-2026-1042 — the customer paid by cash`
+  - `How do I set up a partial payment link for a ₹10,000 deposit?`
 
-  For more context, prefix your prompt with: _"You are a PayU merchant assistant. I am using PayU Payment Links."_
+  For more context, prefix your prompt with: `You are a PayU merchant assistant. I am using PayU Payment Links.`
 </Callout>
 
 If you are a **developer** building a backend service or AI agent that manages payment links programmatically, see [Integrate with AI Coding Assistants](doc:use-with-ai) (direct API) or [Use with AI Agents via MCP](doc:use-with-mcp) (MCP tool calls).
