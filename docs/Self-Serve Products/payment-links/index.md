@@ -290,6 +290,28 @@ Once your customer completes the payment:<br />
 
 ***
 
+## Use AI to Help You
+
+You can manage Payment Links by conversation instead of navigating the Dashboard. Use **PayU Ask AI** — or paste these prompts directly into Claude, ChatGPT, or any AI assistant:
+
+<Callout icon="🤖" theme="info">
+  ### **Example Prompts to Try:**
+
+  <br />
+
+  - _"Create a PayU payment link for ₹500 that expires in 24 hours"_
+  - _"Show me all my unpaid active payment links"_
+  - _"Send invoice INV-2026-1042 to&#x20;_[priya@example.com](mailto:priya@example.com)_"_
+  - _"Deactivate the payment link for order INV-2026-1042 — the customer paid by cash"_
+  - _"How do I set up a partial payment link for a ₹10,000 deposit?"_
+
+  For more context, prefix your prompt with: _"You are a PayU merchant assistant. I am using PayU Payment Links."_
+</Callout>
+
+If you are a **developer** building a backend service or AI agent that manages payment links programmatically, see [Integrate with AI Coding Assistants](doc:use-with-ai) (direct API) or [Use with AI Agents via MCP](doc:use-with-mcp) (MCP tool calls).
+
+***
+
 ## Is Payment Links Secure?
 
 Yes. Every Payment Link is served over HTTPS on PayU's PCI-DSS compliant hosted payment page. Your customer's card and UPI details never pass through your system. You do not configure anything; PayU handles it.<br />
