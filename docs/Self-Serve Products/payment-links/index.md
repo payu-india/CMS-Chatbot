@@ -286,6 +286,8 @@ Once your customer completes the payment:<br />
   </Column>
 </Columns>
 
+→ [Manage Payment Links](doc:manage-payment-links)
+
 ***
 
 ## Is Payment Links Secure?
