@@ -665,6 +665,7 @@ paths:
                         category: creditcard
                         cardType: VISA
                         isDomestic: true
+      x-internal: false
   /AuthorizeTransaction.php:
     post:
       summary: Authorization (Step 2 — Mandate Registration)
