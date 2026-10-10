@@ -205,24 +205,29 @@ You will need:<br />
 
 ## How do I Create a Payment Link?
 
-<Accordion title="1. Create a payment link" icon="far fa-link">
-  1. Log in to your PayU Dashboard and go to **Payment Tools** → **Payment Links&#x20;**&#x66;rom then left navigation.
-  2. Enter the amount, purpose, and any additional details you want to collect from your customer.
+<Accordion title="1. Open Payment Links" icon="far fa-grid-2">
+  Log in to the [PayU Dashboard](https://onboarding.payu.in/) and go to **Payment Tools > Payment Links**.
 </Accordion>
 
-<Accordion title="2. Share the link" icon="far fa-share-nodes">
-  Share the payment link with your customer through WhatsApp, SMS, email, social media, or another channel.
+<Accordion title="2. Click Create New Payment Link" icon="far fa-plus">
+  Click **Create New Payment Link** in the top-right corner. Enter the **Amount** and a brief **Purpose** description (for example, _"Invoice #1042 — Web Design Services"_).
+
+  <Callout icon="👁️" theme="info">
+    ### **Payment Link Preview**
+
+    As you fill in the form, a live preview of the pre-payment page updates in real time — so you can see exactly what your customer will see before the link goes live.
+  </Callout>
 </Accordion>
 
-<Accordion title="3. Customer pays" icon="far fa-credit-card">
-  Your customer opens the link, provides any requested information, chooses a payment method, and completes the payment.
+<Accordion title="3. Set customer details and expiry (optional)" icon="far fa-user">
+  Add the customer's email or phone number and toggle **Notify via SMS/Email** on. PayU will send the link automatically when you create it. You can also set an expiry date (default is 1 year).
 </Accordion>
 
-<Columns layout="fixed">
-  <Column>
-    **Need detailed steps?**  See [Create a Payment Link →](https://docs.payu.in/docs/create-a-payment-link)
-  </Column>
-</Columns>
+<Accordion title="4. Create and send" icon="far fa-paper-plane">
+  Click **Create and Send Payment Link**. The link is created instantly. If you enabled notifications, it goes to the customer right away. Otherwise, copy the URL from your Dashboard and share it manually.
+</Accordion>
+
+Refer to the [Create a Payment Link](doc:send-a-payment-link) for full walkthrough with screenshots.
 
 <Columns layout="fixed">
   <Column>
@@ -245,7 +250,7 @@ When your customer receives the payment link:
 </Accordion>
 
 <Accordion title="Fills in any required information (optional)" icon="far fa-keyboard-down">
-  If you have set up a form to collect details like name, or delivery address,
+  If you have set up a form to collect details like name, or delivery address
 </Accordion>
 
 <Accordion title="Chooses payment method" icon="far fa-credit-card">
@@ -277,7 +282,9 @@ Once your customer completes the payment:
 </Accordion>
 
 <Accordion title="Duplicate a link" icon="far fa-copy">
-  Create a new link pre-filled with the same settings — amount, purpose, and options. Use it to reuse a configuration, correct a mistake, or send the same request to a different customer.
+  Create a new link pre-filled with the same settings such as amount, purpose, and options. Use it to reuse a configuration, correct a mistake, or send the same request to a different customer.<br />
+
+  Whether a link can be reused for multiple payments depends on how you configured it at creation. Specifically the **Max Transactions Allowed** and **Single-use** settings. A link with no transaction cap accepts payments until it expires or is deactivated.
 </Accordion>
 
 <Accordion title="Resend a link" icon="far fa-share">
