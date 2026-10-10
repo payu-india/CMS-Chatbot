@@ -510,17 +510,15 @@ paths:
                     paymentEndDate: '2028-12-01'
       responses:
         '200':
-          description: >
-            Authentication initiation or transaction result.
-
-
-            - **PayU-authenticated flows** (`auth_only=1`): Returns an
-            `acsTemplate` (Base64-encoded HTML).
-              Decode and render this HTML to redirect the customer to the OTP page.
-              After OTP submission, you receive `bankData` to pass to `AuthorizeTransaction`.
-            - **Non-PayU authentication** (`txn_s2s_flow=3`): Returns the final
-            transaction
-              authorisation result directly — no further `AuthorizeTransaction` call needed.
+          description: >-
+            Authentication initiation or transaction result.-
+            **PayU-authenticated flows** (`auth_only=1`): Returns an
+            `acsTemplate` (Base64-encoded HTML).  Decode and render this HTML to
+            redirect the customer to the OTP page.  After OTP submission, you
+            receive `bankData` to pass to `AuthorizeTransaction`.- **Non-PayU
+            authentication** (`txn_s2s_flow=3`): Returns the final transaction 
+            authorisation result directly — no further `AuthorizeTransaction`
+            call needed.
           content:
             application/json:
               schema:
