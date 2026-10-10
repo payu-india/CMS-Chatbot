@@ -292,7 +292,7 @@ Once your customer completes the payment:
   Stop a link from accepting further payments at any time from the Dashboard. To re-activate a deactivated or expired link, use the [Cancel / Change Status API](doc:api-cancel-status).
 </Accordion>
 
-→ [Manage Payment Links](doc:manage-payment-links)
+Refer to the Manage Payment Links page for more information.
 
 ***
 
