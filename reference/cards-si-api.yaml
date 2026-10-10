@@ -1,0 +1,1702 @@
+openapi: 3.0.0
+info:
+  title: Cards SI Integration API
+  description: >
+    APIs for card-based Standing Instruction (SI) mandate integration on PayU.
+
+    Covers end-to-end mandate creation via 3DS authentication (Visa, Mastercard,
+    AMEX),
+
+    pre-debit scheduling, recurring debit execution, invoice status retrieval,
+
+    and mandate management.
+
+
+    **Supported Networks:** Visa, Mastercard, and AMEX.
+
+
+    **Authentication and Authorisation** are handled as separate steps:
+
+    1. `_payment` — Initiates payment and 3DS authentication.
+
+    2. `AuthorizeTransaction` — Completes authorisation and registers the
+    mandate.
+
+    3. `merchant/postservice.php?form=2` — Schedules pre-debit notifications and
+    processes recurring debits.
+
+
+    **Authentication flows supported:**
+
+    - Authentication via PayU (new card)
+
+    - Authentication via PayU (saved card / network token)
+
+    - Authentication not done via PayU (merchant handles 3DS externally)
+  version: 1.0.0
+servers:
+  - url: https://secure.payu.in
+    description: Production Environment
+  - url: https://test.payu.in
+    description: Test Environment
+paths:
+  /_payment:
+    post:
+      summary: Payment and Authentication Initiation
+      description: >
+        Initiates a card payment request and begins the 3DS authentication
+        process for
+
+        mandate creation. PayU selects the acquiring bank, submits the
+        authentication
+
+        initiation request, and returns an `acsTemplate` (Base64-encoded HTML)
+        to redirect
+
+        the customer to the OTP page.
+
+
+        After the customer submits the OTP, use the `bankData` from the OTP
+        response
+
+        (plus `siTokenDetails`) as `authentication_info` in the
+        `AuthorizeTransaction` API.
+
+
+        **Authentication Flows:**
+
+        - **New card via PayU** — Send `auth_only=1`, `txn_s2s_flow=4`,
+        `authentication_flow=REDIRECT`,
+          and plain card details (`ccnum`, `ccname`, etc.).
+        - **Saved card via PayU** — Send `auth_only=1`, `txn_s2s_flow=4`, and
+          `storecard_token_type=1` with a stored network token (`store_card_token`).
+          `siTokenDetails` in the subsequent `AuthorizeTransaction` call is optional for this flow.
+        - **Authentication not via PayU** — Send `txn_s2s_flow=3` with
+        `authentication_info`
+          already containing the 3DS result (cavv, eci, etc.) and `additional_info` with
+          network token details. The mandate is registered in this single call.
+
+        **Hash formula:**
+
+        ```
+
+        SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|SALT)
+
+        ```
+
+        Use empty strings for any `udf` fields not included. Include the
+        serialised
+
+        `si_details` JSON string at position 16 (after six trailing pipes).
+      tags:
+        - Cards SI APIs
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - key
+                - txnid
+                - amount
+                - productinfo
+                - firstname
+                - email
+                - phone
+                - surl
+                - furl
+                - api_version
+                - hash
+                - pg
+                - bankcode
+                - si
+                - si_details
+              properties:
+                key:
+                  type: string
+                  description: >-
+                    The merchant key generated from the dashboard. Know how to
+                    generate the
+                    [test](https://docs.payu.in/docs/generate-test-merchant-key-and-salt)
+                    and
+                    [live](https://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard)
+                    keys.
+                  example: vqpS7W
+                txnid:
+                  type: string
+                  description: >-
+                    Unique merchant transaction identifier for this payment
+                    request.
+                  example: Txn080720261125
+                amount:
+                  type: string
+                  description: Transaction amount.
+                  example: '100'
+                productinfo:
+                  type: string
+                  description: Product or service description.
+                  example: iPhone
+                firstname:
+                  type: string
+                  description: Customer first name.
+                  example: Test User
+                lastname:
+                  type: string
+                  description: Customer last name.
+                  example: Smith
+                email:
+                  type: string
+                  description: Customer email address.
+                  example: test@gmail.com
+                phone:
+                  type: string
+                  description: Customer phone number.
+                  example: '9876543210'
+                surl:
+                  type: string
+                  description: Merchant success callback URL.
+                  example: https://your-domain.com/success
+                furl:
+                  type: string
+                  description: Merchant failure callback URL.
+                  example: https://your-domain.com/failure
+                api_version:
+                  type: string
+                  description: API version. Must be `7` for the S2S card flow.
+                  example: '7'
+                hash:
+                  type: string
+                  description: >
+                    SHA-512 hash generated using the formula:
+                    SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|SALT).
+                    Use empty strings for udf fields not sent. Include the
+                    serialised si_details JSON string at position 16 (after six
+                    trailing pipes).
+                auth_only:
+                  type: string
+                  description: >
+                    Set to `1` to initiate 3DS authentication via PayU without
+                    immediate capture.
+
+                    Required for new card and saved card flows
+                    (`txn_s2s_flow=4`).
+
+                    Omit for the non-PayU authentication flow
+                    (`txn_s2s_flow=3`).
+                  example: '1'
+                termUrl:
+                  type: string
+                  description: >-
+                    URL to receive the 3DS ACS response after OTP submission.
+                    Required when `auth_only=1`.
+                  example: https://test.payu.in/admin/test_response
+                s2s_client_ip:
+                  type: string
+                  description: >-
+                    Customer IP address used for fraud risk analysis. Required
+                    when `auth_only=1`.
+                  example: 66.15.149.87
+                s2s_device_info:
+                  type: string
+                  description: >-
+                    Customer browser or device user-agent string. Required when
+                    `auth_only=1`.
+                  example: Mozilla
+                authentication_flow:
+                  type: string
+                  description: >-
+                    Set to `REDIRECT` for the OTP redirect flow. Required when
+                    `auth_only=1`.
+                  example: REDIRECT
+                txn_s2s_flow:
+                  type: string
+                  description: >
+                    S2S authentication mode.
+
+                    - `4` — Authentication handled via PayU (new card or saved
+                    card flow).
+
+                    - `3` — Authentication was handled by the merchant
+                    externally (non-PayU flow).
+                  enum:
+                    - '3'
+                    - '4'
+                  example: '4'
+                pg:
+                  type: string
+                  description: Payment gateway type.
+                  enum:
+                    - CC
+                    - DC
+                  example: CC
+                bankcode:
+                  type: string
+                  description: Bank or card network code.
+                  example: CC
+                ccnum:
+                  type: string
+                  description: >-
+                    16-digit plain card number. Required for new card flow. Omit
+                    for saved card flow.
+                  example: '4761360079851258'
+                ccname:
+                  type: string
+                  description: >-
+                    Name as printed on the card. Required for new card and
+                    non-PayU auth flows.
+                  example: test
+                ccexpmon:
+                  type: string
+                  description: Card expiry month (2 digits).
+                  example: '05'
+                ccexpyr:
+                  type: string
+                  description: Card expiry year (2 or 4 digits).
+                  example: '28'
+                ccvv:
+                  type: string
+                  description: >-
+                    Card CVV. Optional — may be required depending on issuer
+                    rules.
+                  example: '123'
+                storecard_token_type:
+                  type: string
+                  description: >-
+                    Set to `1` to indicate a stored network token is being used
+                    (saved card flow).
+                  example: '1'
+                store_card_token:
+                  type: string
+                  description: >-
+                    Stored network token value. Replaces the plain card number
+                    for saved card and non-PayU auth flows.
+                  example: '4761360079851258'
+                additional_info:
+                  type: object
+                  description: |
+                    Additional token metadata. Content varies by flow:
+
+                    **Saved card flow:**
+                    - `last4Digits` — Last 4 digits of the original card.
+                    - `tavv` — Token Authentication Verification Value.
+                    - `trid` — Token Requestor ID.
+                    - `tokenRefNo` — Token reference number.
+
+                    **Non-PayU authentication flow:**
+                    - `tavv` — TAVV from the network token.
+                    - `par` — Payment Account Reference.
+                    - `last4digits` — Last 4 digits of the tokenised card.
+                  properties:
+                    last4Digits:
+                      type: string
+                      description: Last 4 digits of the original card (saved card flow).
+                      example: '1234'
+                    tavv:
+                      type: string
+                      description: Token Authentication Verification Value.
+                      example: ADcBA4ZHFQAgJRImEjklAAAAAAE=
+                    trid:
+                      type: string
+                      description: Token Requestor ID (saved card flow).
+                      example: '1234567890'
+                    tokenRefNo:
+                      type: string
+                      description: Token reference number (saved card flow).
+                      example: abcde123456
+                    par:
+                      type: string
+                      description: Payment Account Reference (non-PayU auth flow).
+                      example: PN07d26452cf9a1696e2744f470377ec48d5
+                    last4digits:
+                      type: string
+                      description: >-
+                        Last 4 digits of the tokenised card (non-PayU auth
+                        flow).
+                      example: '2656'
+                authentication_info:
+                  type: object
+                  description: >
+                    3DS authentication result from the merchant's external
+                    authentication.
+
+                    Required only when `txn_s2s_flow=3` (non-PayU authentication
+                    flow).
+                  properties:
+                    cavv:
+                      type: string
+                      description: Cardholder Authentication Verification Value.
+                      example: MTAwMjMyMDI2MTUxNzAwMDAwMDA5
+                    eci:
+                      type: string
+                      description: Electronic Commerce Indicator.
+                      example: '02'
+                    flowType:
+                      type: string
+                      description: 3DS authentication flow type.
+                      example: challenge
+                    threeDSTransID:
+                      type: string
+                      description: 3DS transaction ID from the ACS.
+                      example: 2c75dd4a-c899-2f42-9081-19c4be594f97
+                    threeDSServerTransID:
+                      type: string
+                      description: 3DS server transaction ID.
+                      example: 2c75dd4a-c899-2f42-9081-19c4be594f97
+                    threeDSTransStatus:
+                      type: string
+                      description: >-
+                        3DS authentication status. `Y` indicates successful
+                        authentication.
+                      example: 'Y'
+                threeDS2RequestData:
+                  type: object
+                  description: 3DS2 device data. Required when `txn_s2s_flow=3`.
+                  properties:
+                    deviceChannel:
+                      type: string
+                      description: Device channel identifier.
+                      example: BRW
+                    threeDSVersion:
+                      type: string
+                      description: 3DS version used.
+                      example: 2.1.0
+                si:
+                  type: string
+                  description: >-
+                    Set to `1` to indicate this is a Standing Instruction
+                    (SI/mandate) transaction.
+                  example: '1'
+                si_details:
+                  type: object
+                  description: >-
+                    Mandate parameters for the Standing Instruction
+                    registration.
+                  required:
+                    - billingAmount
+                    - billingCurrency
+                    - billingCycle
+                    - billingInterval
+                    - paymentStartDate
+                    - paymentEndDate
+                  properties:
+                    billingAmount:
+                      type: string
+                      description: Maximum mandate billing amount per cycle.
+                      example: '200.00'
+                    billingCurrency:
+                      type: string
+                      description: Currency for mandate billing.
+                      example: INR
+                    billingCycle:
+                      type: string
+                      description: >
+                        Billing frequency.
+
+                        - `ADHOC` — On-demand, triggered by the merchant.
+
+                        - `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY` — Fixed
+                        scheduled intervals.
+                      example: ADHOC
+                    billingInterval:
+                      type: integer
+                      description: Number of billing cycle units between debits.
+                      example: 1
+                    paymentStartDate:
+                      type: string
+                      format: date
+                      description: Mandate start date in YYYY-MM-DD format.
+                      example: '2026-07-08'
+                    paymentEndDate:
+                      type: string
+                      format: date
+                      description: Mandate end date in YYYY-MM-DD format.
+                      example: '2099-01-01'
+                udf1:
+                  type: string
+                  description: User-defined field 1.
+                udf2:
+                  type: string
+                  description: User-defined field 2.
+                udf3:
+                  type: string
+                  description: User-defined field 3.
+                udf4:
+                  type: string
+                  description: User-defined field 4.
+                udf5:
+                  type: string
+                  description: User-defined field 5.
+            examples:
+              newCardViaPayU:
+                summary: New Card — Authentication via PayU
+                value:
+                  key: vqpS7W
+                  txnid: Txn080720261125
+                  amount: '100'
+                  productinfo: iPhone
+                  firstname: Test User
+                  email: test@gmail.com
+                  phone: '9876543210'
+                  surl: https://test.payu.in/admin/test_response
+                  furl: https://test.payu.in/admin/test_response
+                  api_version: '7'
+                  hash: >-
+                    4a4074485ceacdb1093e7089655e327bd9a987f59daeab26d71a6f5011f6bb780c9a1fd26febcc00c091689887d8e0dbb0e17da16de9892658867a3d4deaa699
+                  auth_only: '1'
+                  termUrl: https://test.payu.in/admin/test_response
+                  s2s_client_ip: 66.15.149.87
+                  s2s_device_info: Mozilla
+                  authentication_flow: REDIRECT
+                  txn_s2s_flow: '4'
+                  pg: CC
+                  bankcode: CC
+                  ccnum: '4761360079851258'
+                  ccname: test
+                  ccexpmon: '05'
+                  ccexpyr: '28'
+                  ccvv: '123'
+                  si: '1'
+                  si_details:
+                    billingAmount: '200.00'
+                    billingCurrency: INR
+                    billingCycle: ADHOC
+                    billingInterval: 1
+                    paymentStartDate: '2026-07-08'
+                    paymentEndDate: '2099-01-01'
+              savedCardViaPayU:
+                summary: Saved Card (Network Token) — Authentication via PayU
+                value:
+                  key: vqpS7W
+                  txnid: Txn030720261622
+                  amount: '100'
+                  productinfo: iPhone
+                  firstname: Test User
+                  email: test@gmail.com
+                  phone: '9876543210'
+                  surl: https://test.payu.in/admin/test_response
+                  furl: https://test.payu.in/admin/test_response
+                  api_version: '7'
+                  hash: >-
+                    f2791c938b60cd7f06534d8efa296107c66c3a6f5116268d777d1f1d65d6c827ece56ff3517d09641dafaa88b157ecca2bbb1e4e6faca8f13e980628e204e034
+                  auth_only: '1'
+                  termUrl: https://test.payu.in/admin/test_response
+                  s2s_client_ip: 66.15.149.87
+                  s2s_device_info: Mozilla
+                  txn_s2s_flow: '4'
+                  pg: CC
+                  bankcode: CC
+                  storecard_token_type: '1'
+                  store_card_token: '4761360079851258'
+                  additional_info:
+                    last4Digits: '1234'
+                    tavv: ABCDEFGH
+                    trid: '1234567890'
+                    tokenRefNo: abcde123456
+                  ccexpmon: '05'
+                  ccexpyr: '28'
+                  si: '1'
+                  si_details:
+                    billingAmount: '200.00'
+                    billingCurrency: INR
+                    billingCycle: ADHOC
+                    billingInterval: 1
+                    paymentStartDate: '2026-07-08'
+                    paymentEndDate: '2099-01-01'
+              nonPayUAuth:
+                summary: Authentication Not via PayU (Merchant-handled 3DS)
+                value:
+                  key: vqpS7W
+                  txnid: '1234455566111111'
+                  amount: '100'
+                  productinfo: YOUR_REFERENCE_NUMBER
+                  firstname: John
+                  lastname: Smith
+                  email: s.hopper@test.com
+                  phone: '1234567890'
+                  surl: https://test.adyen.com
+                  furl: https://test.adyen.com
+                  api_version: '7'
+                  hash: >-
+                    8f158ff319ff023e92cc990d607c2e6a8ec725e799f31692320092f12904a1a081a705799b347c104220111b05dd0bd3d882b111eb01daf74c3a766a62f23b19
+                  txn_s2s_flow: '3'
+                  pg: CC
+                  bankcode: CC
+                  ccexpmon: '05'
+                  ccexpyr: '2028'
+                  ccvv: '123'
+                  ccname: test
+                  udf2: TestMerchant:355:visa
+                  udf5: YOUR_REFERENCE_NUMBER
+                  authentication_info:
+                    cavv: MTAwMjMyMDI2MTUxNzAwMDAwMDA5
+                    eci: '02'
+                    flowType: challenge
+                    threeDSTransID: 2c75dd4a-c899-2f42-9081-19c4be594f97
+                    threeDSServerTransID: 2c75dd4a-c899-2f42-9081-19c4be594f97
+                    threeDSTransStatus: 'Y'
+                  threeDS2RequestData:
+                    deviceChannel: BRW
+                    threeDSVersion: 2.1.0
+                  additional_info:
+                    tavv: ADcBA4ZHFQAgJRImEjklAAAAAAE=
+                    par: PN07d26452cf9a1696e2744f470377ec48d5
+                    last4digits: '2656'
+                  store_card_token: '5506900480000008'
+                  storecard_token_type: '1'
+                  si: '1'
+                  si_details:
+                    billingAmount: '1000.00'
+                    billingCurrency: INR
+                    billingCycle: ADHOC
+                    billingInterval: 1
+                    paymentStartDate: '2026-07-08'
+                    paymentEndDate: '2028-12-01'
+      responses:
+        '200':
+          description: >
+            Authentication initiation or transaction result.
+
+
+            - **PayU-authenticated flows** (`auth_only=1`): Returns an
+            `acsTemplate` (Base64-encoded HTML).
+              Decode and render this HTML to redirect the customer to the OTP page.
+              After OTP submission, you receive `bankData` to pass to `AuthorizeTransaction`.
+            - **Non-PayU authentication** (`txn_s2s_flow=3`): Returns the final
+            transaction
+              authorisation result directly — no further `AuthorizeTransaction` call needed.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  metaData:
+                    type: object
+                    description: Transaction metadata.
+                    properties:
+                      message:
+                        type: string
+                        nullable: true
+                      referenceId:
+                        type: string
+                        description: >-
+                          Unique PayU reference ID for this authentication
+                          session. Pass this in
+                          `authentication_info.referenceId` to
+                          `AuthorizeTransaction`.
+                      statusCode:
+                        type: string
+                        nullable: true
+                        example: E000
+                      txnId:
+                        type: string
+                        description: Merchant transaction ID echoed back.
+                      txnStatus:
+                        type: string
+                        description: >-
+                          `Enrolled` indicates 3DS authentication has been
+                          initiated.
+                        example: Enrolled
+                      unmappedStatus:
+                        type: string
+                        description: Internal payment lifecycle status.
+                        example: pending
+                  result:
+                    type: object
+                    description: >-
+                      Authentication result containing ACS template or
+                      transaction details.
+                    properties:
+                      otpPostUrl:
+                        type: string
+                        description: >-
+                          Legacy OTP post URL. Typically empty for the redirect
+                          flow.
+                      acsTemplate:
+                        type: string
+                        description: >
+                          Base64-encoded HTML page. Decode and open in a browser
+                          to redirect
+
+                          the customer to the card network OTP/authentication
+                          page.
+                      binData:
+                        type: object
+                        description: BIN-level card information.
+                        properties:
+                          pureS2SSupported:
+                            type: boolean
+                            description: >-
+                              Whether pure S2S (without redirect) is supported
+                              for this card.
+                          issuingBank:
+                            type: string
+                            description: Name of the issuing bank.
+                            example: 'YES'
+                          category:
+                            type: string
+                            description: Card category.
+                            example: creditcard
+                          cardType:
+                            type: string
+                            description: Card network.
+                            example: VISA
+                          isDomestic:
+                            type: boolean
+                            description: Whether the card is a domestic card.
+              examples:
+                enrolledResponse:
+                  summary: Authentication Enrolled (PayU flow — acsTemplate returned)
+                  value:
+                    metaData:
+                      message: null
+                      referenceId: >-
+                        4e0d4a1b8f093f9bb03ed6e5605071b62ce39a9d136698d703862953a0106c24
+                      statusCode: null
+                      txnId: Txn080720261125
+                      txnStatus: Enrolled
+                      unmappedStatus: pending
+                    result:
+                      otpPostUrl: ''
+                      acsTemplate: PGh0bWw+PGJvZHk+PGZvcm0gbmFtZT0icGF5bWVudF9wb3N0Ii4uLg==
+                      binData:
+                        pureS2SSupported: false
+                        issuingBank: 'YES'
+                        category: creditcard
+                        cardType: VISA
+                        isDomestic: true
+  /AuthorizeTransaction.php:
+    post:
+      summary: Authorization (Step 2 — Mandate Registration)
+      description: >
+        Completes card mandate creation by submitting the 3DS authentication
+        result to PayU.
+
+
+        After the customer submits the OTP, the merchant receives a response
+        containing
+
+        `bankData`. Add `siTokenDetails` (network token details) to this JSON
+        and pass it as
+
+        `authentication_info` to complete authorisation and register the
+        mandate.
+
+
+        On success, the response includes `IsStandingInstructionSet: "1"`
+        confirming the mandate
+
+        was registered. The `mihpayid` in the response is the `authPayuId`
+        required for all
+
+        subsequent pre-debit and recurring debit calls.
+
+
+        **Hash formula:**
+
+        ```
+
+        SHA512(key|txnid|amount|authentication_info|SALT)
+
+        ```
+
+        Use the exact serialised `authentication_info` JSON string (not the
+        object).
+
+
+        > `siTokenDetails` is optional for the saved card flow when
+        authentication was done via PayU.
+      tags:
+        - Cards SI APIs
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - key
+                - txnid
+                - amount
+                - hash
+                - authentication_info
+                - si
+                - si_details
+              properties:
+                key:
+                  type: string
+                  description: The merchant key.
+                  example: vqpS7W
+                txnid:
+                  type: string
+                  description: The same transaction ID used in the `_payment` request.
+                  example: Txn080720261125
+                amount:
+                  type: string
+                  description: The same amount used in the `_payment` request.
+                  example: '100.00'
+                hash:
+                  type: string
+                  description: >
+                    SHA-512 hash generated as:
+                    SHA512(key|txnid|amount|authentication_info|SALT). Use the
+                    exact serialised authentication_info JSON string for hash
+                    computation.
+                authentication_info:
+                  type: object
+                  description: >
+                    The `bankData` JSON received from the OTP response,
+                    augmented with `siTokenDetails`.
+
+                    This object must be serialised to a JSON string when
+                    submitted as a form field.
+                  required:
+                    - referenceId
+                    - cres
+                  properties:
+                    referenceId:
+                      type: string
+                      description: >-
+                        PayU reference ID from the `_payment` authentication
+                        response.
+                      example: >-
+                        4e0d4a1b8f093f9bb03ed6e5605071b62ce39a9d136698d703862953a0106c24
+                    cres:
+                      type: string
+                      description: >-
+                        Base64-encoded 3DS CRes message returned by the ACS
+                        after OTP submission.
+                    additionalInfo:
+                      type: object
+                      description: >-
+                        User-defined authentication fields (pass as empty
+                        strings if not used).
+                      properties:
+                        authUdf1:
+                          type: string
+                        authUdf2:
+                          type: string
+                        authUdf3:
+                          type: string
+                        authUdf4:
+                          type: string
+                        authUdf5:
+                          type: string
+                        authUdf6:
+                          type: string
+                        authUdf7:
+                          type: string
+                        authUdf8:
+                          type: string
+                        authUdf9:
+                          type: string
+                        authUdf10:
+                          type: string
+                    siTokenDetails:
+                      type: object
+                      description: >
+                        Network token details returned after successful
+                        tokenisation.
+
+                        Optional for the saved card flow when authentication is
+                        done via PayU.
+                      properties:
+                        token_exp_yr:
+                          type: string
+                          description: Token expiry year (4 digits).
+                          example: '2029'
+                        token_exp_mon:
+                          type: string
+                          description: Token expiry month (2 digits).
+                          example: '10'
+                        token_value:
+                          type: string
+                          description: The network token value.
+                          example: '6755390289370426'
+                        card_name:
+                          type: string
+                          description: Cardholder name associated with the token.
+                          example: test
+                        tavv:
+                          type: string
+                          description: Token Authentication Verification Value.
+                          example: ADcBA4ZHFQAgJRImEjklAAAAAAE=
+                        par:
+                          type: string
+                          description: Payment Account Reference.
+                          example: PN07d26452cf9a1696e2744f470377ec48d5
+                        last4digits:
+                          type: string
+                          description: Last 4 digits of the tokenised card.
+                          example: '2656'
+                si:
+                  type: string
+                  description: >-
+                    Must be `1` to flag this as an SI mandate creation
+                    transaction.
+                  example: '1'
+                si_details:
+                  type: object
+                  description: >-
+                    Mandate billing parameters. Use the same values submitted in
+                    `_payment`.
+                  required:
+                    - billingAmount
+                    - billingCurrency
+                    - billingCycle
+                    - billingInterval
+                    - paymentStartDate
+                    - paymentEndDate
+                  properties:
+                    billingAmount:
+                      type: string
+                      description: Maximum mandate billing amount per cycle.
+                      example: '200.00'
+                    billingCurrency:
+                      type: string
+                      description: Mandate currency.
+                      example: INR
+                    billingCycle:
+                      type: string
+                      description: Billing frequency (e.g. `ADHOC`, `MONTHLY`).
+                      example: ADHOC
+                    billingInterval:
+                      type: integer
+                      description: Number of billing cycle units between debits.
+                      example: 1
+                    paymentStartDate:
+                      type: string
+                      format: date
+                      description: Mandate start date in YYYY-MM-DD format.
+                      example: '2026-07-08'
+                    paymentEndDate:
+                      type: string
+                      format: date
+                      description: Mandate end date in YYYY-MM-DD format.
+                      example: '2099-01-01'
+            examples:
+              authorizationRequest:
+                summary: Authorization Request with siTokenDetails
+                value:
+                  key: vqpS7W
+                  txnid: Txn080720261125
+                  amount: '100.00'
+                  hash: >-
+                    e7929823f663946bf9f54a68567901da847e505555e187412cf21a3d8e8fd18b6db1904442f62a07f77e74237398bcbf689353903415bb89d42c2ef0117fff88
+                  authentication_info:
+                    referenceId: >-
+                      4e0d4a1b8f093f9bb03ed6e5605071b62ce39a9d136698d703862953a0106c24
+                    cres: >-
+                      eyJtZXNzYWdlVHlwZSI6IkNSZXMiLCJtZXNzYWdlVmVyc2lvbiI6IjIuMi4wIn0=
+                    additionalInfo:
+                      authUdf1: ''
+                      authUdf2: ''
+                      authUdf3: ''
+                      authUdf4: ''
+                      authUdf5: ''
+                      authUdf6: ''
+                      authUdf7: ''
+                      authUdf8: ''
+                      authUdf9: ''
+                      authUdf10: ''
+                    siTokenDetails:
+                      token_exp_yr: '2029'
+                      token_exp_mon: '10'
+                      token_value: '6755390289370426'
+                      card_name: test
+                      tavv: ADcBA4ZHFQAgJRImEjklAAAAAAE=
+                      par: PN07d26452cf9a1696e2744f470377ec48d5
+                      last4digits: '2656'
+                  si: '1'
+                  si_details:
+                    billingAmount: '200.00'
+                    billingCurrency: INR
+                    billingCycle: ADHOC
+                    billingInterval: 1
+                    paymentStartDate: '2026-07-08'
+                    paymentEndDate: '2099-01-01'
+      responses:
+        '200':
+          description: >
+            Mandate registration result. A successful response includes
+            `IsStandingInstructionSet: "1"`.
+
+            The `mihpayid` in the `result` object is the `authPayuId` to use for
+            all future
+
+            pre-debit and recurring debit calls via the `postservice` API.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  metaData:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: No Error
+                      referenceId:
+                        type: string
+                      statusCode:
+                        type: string
+                        description: '`E000` indicates no error.'
+                        example: E000
+                      txnId:
+                        type: string
+                      unmappedStatus:
+                        type: string
+                        example: success
+                      submitOtp:
+                        type: object
+                        properties:
+                          status:
+                            type: string
+                            example: success
+                  result:
+                    type: object
+                    description: >-
+                      Full transaction result on successful mandate
+                      registration.
+                    properties:
+                      mihpayid:
+                        type: string
+                        description: >
+                          PayU transaction ID. Use this value as `authPayuId` in
+                          all
+
+                          subsequent pre-debit and recurring debit API calls.
+                        example: '403993715537854394'
+                      mode:
+                        type: string
+                        description: Payment mode.
+                        example: CC
+                      status:
+                        type: string
+                        description: Transaction status.
+                        enum:
+                          - success
+                          - failure
+                          - pending
+                        example: success
+                      key:
+                        type: string
+                        description: Merchant key echoed back.
+                      txnid:
+                        type: string
+                        description: Merchant transaction ID.
+                      amount:
+                        type: string
+                        description: Authorised amount.
+                        example: '100.00'
+                      addedon:
+                        type: string
+                        description: Transaction creation timestamp (YYYY-MM-DD HH:MM:SS).
+                        example: '2026-07-08 11:26:39'
+                      productinfo:
+                        type: string
+                      firstname:
+                        type: string
+                      card_no:
+                        type: string
+                        description: Masked card number.
+                        example: XXXXXXXXXXXX1258
+                      error:
+                        type: string
+                        description: PayU error code. `E000` indicates success.
+                        example: E000
+                      error_Message:
+                        type: string
+                        description: Human-readable error description.
+                        example: No Error
+                      issuing_bank:
+                        type: string
+                        description: Name of the card-issuing bank.
+                        example: 'YES'
+                      card_type:
+                        type: string
+                        description: Card network (VISA, MAST, etc.).
+                        example: VISA
+                      bank_ref_no:
+                        type: string
+                        description: Bank reference number for the transaction.
+                      bankcode:
+                        type: string
+                        description: Bank or card code echoed back.
+                      AuthCode:
+                        type: string
+                        description: Acquirer authorisation code.
+                        example: '506907'
+                      net_amount_debit:
+                        type: string
+                        description: Net amount debited.
+                        example: '100'
+                      IsStandingInstructionSet:
+                        type: string
+                        description: >-
+                          `1` confirms the Standing Instruction mandate was
+                          successfully registered.
+                        example: '1'
+                      PG_TYPE:
+                        type: string
+                        description: Payment gateway type identifier.
+                        example: CC-PG
+                      hash:
+                        type: string
+                        description: Response hash for integrity verification.
+                      payment_source:
+                        type: string
+                        description: Internal payment source identifier.
+                        example: sist
+              examples:
+                success:
+                  summary: Mandate Registered Successfully
+                  value:
+                    metaData:
+                      message: No Error
+                      referenceId: >-
+                        4e0d4a1b8f093f9bb03ed6e5605071b62ce39a9d136698d703862953a0106c24
+                      statusCode: E000
+                      txnId: Txn080720261125
+                      unmappedStatus: success
+                      submitOtp:
+                        status: success
+                    result:
+                      mihpayid: '403993715537854394'
+                      mode: CC
+                      status: success
+                      key: vqpS7W
+                      txnid: Txn080720261125
+                      amount: '100.00'
+                      addedon: '2026-07-08 11:26:39'
+                      productinfo: iPhone
+                      firstname: Test User
+                      card_no: XXXXXXXXXXXX1258
+                      error: E000
+                      error_Message: No Error
+                      issuing_bank: 'YES'
+                      card_type: VISA
+                      AcqTID: PAYUPAYMENTCYBS
+                      AcqName: AxisCYBER
+                      AuthCode: '506907'
+                      net_amount_debit: '100'
+                      bank_ref_no: '295522556067763300'
+                      bankcode: CC
+                      PG_TYPE: CC-PG
+                      IsStandingInstructionSet: '1'
+                      payment_source: sist
+  /merchant/postservice.php?form=2:
+    servers:
+      - url: https://info.payu.in
+        description: Production Environment
+      - url: https://test.payu.in
+        description: Test Environment
+    post:
+      summary: Pre-Debit and Recurring Transaction API
+      description: >
+        Dual-purpose endpoint that schedules pre-debit notifications and
+        processes recurring
+
+        debits against an existing card mandate, or retrieves the current
+        invoice status.
+
+
+        Set `debitType` within `var1` to control the operation:
+
+        - **`PREDEBIT_AND_RECURRING`** (default) — Schedules pre-debit
+        notification and
+          processes the recurring debit in a single call.
+        - **`PREDEBIT`** — Sends the pre-debit notification only.
+
+        - **`RECURRING`** — Processes the recurring debit only.
+
+        - **`RETRIEVE`** — Fetches the current invoice and payment status for an
+        existing debit.
+
+
+        After a pre-debit or recurring debit is processed, PayU triggers a
+        webhook to the
+
+        merchant's configured URL. See webhook event types and payloads in the
+
+        [Cards SI Integration guide](https://docs.payu.in).
+
+
+        **Hash formula:**
+
+        ```
+
+        SHA512(key|command|var1|salt)
+
+        ```
+
+        Where `var1` is the exact serialised JSON string posted in the request.
+      tags:
+        - Cards SI APIs
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - key
+                - hash
+                - command
+                - var1
+              properties:
+                key:
+                  type: string
+                  description: The merchant key.
+                  example: JPM7Fg
+                hash:
+                  type: string
+                  description: >
+                    SHA-512 hash generated as: SHA512(key|command|var1|salt).
+                    Use the exact serialised var1 JSON string and merchant salt.
+                command:
+                  type: string
+                  description: API command identifier.
+                  example: si_transaction
+                var1:
+                  type: object
+                  description: JSON payload containing debit or retrieval parameters.
+                  required:
+                    - authPayuId
+                  properties:
+                    authPayuId:
+                      type: string
+                      description: >
+                        PayU mandate ID. This is the `mihpayid` value returned
+                        in the
+
+                        `AuthorizeTransaction` response on successful mandate
+                        registration.
+                      example: '403993715529787'
+                    debitType:
+                      type: string
+                      description: >
+                        Type of operation to perform.
+
+                        - `PREDEBIT_AND_RECURRING` — Schedule pre-debit and
+                        process recurring debit (default).
+
+                        - `PREDEBIT` — Send pre-debit notification only.
+
+                        - `RECURRING` — Process recurring debit only.
+
+                        - `RETRIEVE` — Fetch current invoice and debit status.
+                      enum:
+                        - PREDEBIT_AND_RECURRING
+                        - PREDEBIT
+                        - RECURRING
+                        - RETRIEVE
+                      default: PREDEBIT_AND_RECURRING
+                    txnId:
+                      type: string
+                      description: >
+                        Unique merchant transaction ID for this debit.
+
+                        Required for all schedule/execute operations
+                        (`debitType` ≠ `RETRIEVE`).
+                      example: TXN_20240415_001
+                    amount:
+                      type: string
+                      description: |
+                        Debit amount as a decimal string.
+                        Required for all schedule/execute operations.
+                      example: '200.00'
+                    debitDate:
+                      type: string
+                      format: date
+                      description: >
+                        Scheduled debit date in YYYY-MM-DD format.
+
+
+                        Required for Credit Card and Debit Card mandates.
+
+                        Must be a future date within the allowed billing cycle
+                        window.
+                    currency:
+                      type: string
+                      description: Transaction currency.
+                      default: INR
+                      example: INR
+                    planId:
+                      type: string
+                      description: >-
+                        Subscription plan identifier associated with this
+                        mandate.
+                      example: PLAN_MONTHLY_999
+                    mandateSeqNo:
+                      type: string
+                      description: Mandate sequence number for this debit.
+                      example: '2'
+                    invoiceDisplayNumber:
+                      type: string
+                      description: |
+                        Merchant invoice reference number.
+                        Mandatory when `debitType` is `PREDEBIT` or `RECURRING`.
+                    additional_charges:
+                      type: string
+                      description: Flat surcharge amount to add to the debit.
+                      example: '0.00'
+                    percentage_additional_charges:
+                      type: string
+                      description: Percentage-based surcharge to add to the debit.
+                      example: '0.00'
+                    udf2:
+                      type: string
+                      description: User-defined field 2.
+                    udf3:
+                      type: string
+                      description: User-defined field 3.
+                    udf4:
+                      type: string
+                      description: User-defined field 4.
+                    udf5:
+                      type: string
+                      description: User-defined field 5.
+                    email:
+                      type: string
+                      description: Customer email address.
+                    phone:
+                      type: string
+                      description: Customer phone number.
+                    firstname:
+                      type: string
+                      description: Customer first name.
+                    lastname:
+                      type: string
+                      description: Customer last name.
+            examples:
+              scheduleDebit:
+                summary: Schedule Pre-Debit and Recurring
+                value:
+                  key: JPM7Fg
+                  hash: >-
+                    1be625350f785a208a737f05151f8fee378aa332be1a5f361546f3bbe6fa42f000ea985765b686e11dce4e3ad934dac763bd755624996f82bb01cf7b4f2b468b
+                  command: si_transaction
+                  var1:
+                    authPayuId: '403993715529787'
+                    txnId: TXN_20240415_001
+                    amount: '200.00'
+                    debitDate: '2026-08-20'
+                    debitType: PREDEBIT_AND_RECURRING
+                    currency: INR
+                    email: test@gmail.com
+                    phone: '9876543210'
+                    firstname: Test User
+              retrieveStatus:
+                summary: Retrieve Invoice Status
+                value:
+                  key: test
+                  hash: YOUR_HASH_VALUE
+                  command: si_transaction
+                  var1:
+                    authPayuId: '403993715529787'
+                    debitType: RETRIEVE
+                    txnId: TXN_20240415_002
+      responses:
+        '200':
+          description: >
+            Response varies by `debitType`:
+
+
+            - **Schedule/execute** (`PREDEBIT_AND_RECURRING`, `PREDEBIT`,
+            `RECURRING`):
+              Returns `status: 1` with `message: "Debit Scheduled successfully"` on success.
+            - **`RETRIEVE`**: Returns `status: 1` with `message: "Invoice
+            details fetched successfully"`
+              and an `invoiceDetails` object containing the current lifecycle status.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    description: 1 indicates success; 0 indicates failure.
+                  message:
+                    type: string
+                    description: Human-readable response message.
+                  details:
+                    type: array
+                    description: Recurring debit response details.
+                    items:
+                      type: object
+                  predebitDetails:
+                    type: array
+                    description: Pre-debit response details.
+                    items:
+                      type: object
+                  invoiceDetails:
+                    type: object
+                    description: >-
+                      Present in `RETRIEVE` responses. Contains current invoice
+                      and payment lifecycle status.
+                    properties:
+                      id:
+                        type: integer
+                        description: Internal invoice ID.
+                        example: 146
+                      merchantId:
+                        type: integer
+                        description: Merchant's PayU ID.
+                        example: 87873863
+                      paymentType:
+                        type: string
+                        description: Payment instrument used for mandate creation.
+                        enum:
+                          - UPI
+                          - CC
+                          - DC
+                          - ENACH
+                        example: CC
+                      amount:
+                        type: number
+                        description: Debit amount.
+                        example: 100
+                      currency:
+                        type: string
+                        example: INR
+                      paymentStatus:
+                        type: string
+                        description: Status of the payment transaction.
+                        enum:
+                          - Paid
+                          - failed
+                          - pending
+                        example: Paid
+                      errorCode:
+                        type: string
+                        nullable: true
+                      createdon:
+                        type: string
+                        format: date-time
+                        description: Invoice creation timestamp.
+                        example: '2026-07-24T19:22:58.587056'
+                      authPayuId:
+                        type: integer
+                        description: PayU mandate ID.
+                        example: 613345778912466200
+                      planId:
+                        type: string
+                        nullable: true
+                      invoiceDisplayNumber:
+                        type: string
+                        description: Merchant invoice reference.
+                        example: in_613345778912466169
+                      txnId:
+                        type: string
+                        description: Recurring transaction ID.
+                        example: re_613345778912466169
+                      pgTxnId:
+                        type: string
+                        description: PayU PG transaction ID.
+                        example: '613345778912466346'
+                      description:
+                        type: string
+                        description: Transaction status description.
+                        example: Transaction is Successful
+                      invoice_status:
+                        type: string
+                        description: >
+                          Lifecycle status of the invoice.
+
+
+                          | Value | Meaning |
+
+                          |-------|---------|
+
+                          | `PD_SUCCESS` | Pre-debit notification processed
+                          successfully. Payment due; recurring debit will be
+                          attempted on the scheduled date. |
+
+                          | `PD_FAILED` | Pre-debit notification failed. Payment
+                          still due. |
+
+                          | `PD_SCHEDULED` | Pre-debit notification is
+                          scheduled. |
+
+                          | `RC_SUCCESS` | Recurring payment completed
+                          successfully. Invoice paid. |
+
+                          | `RC_FAILED` | Recurring payment failed. Payment
+                          remains due. |
+
+                          | `RC_SCHEDULED` | Recurring payment is scheduled. |
+
+                          | `RC_INPROGRESS` | Recurring payment is currently
+                          being processed. |
+                        enum:
+                          - PD_SUCCESS
+                          - PD_FAILED
+                          - PD_SCHEDULED
+                          - RC_SUCCESS
+                          - RC_FAILED
+                          - RC_SCHEDULED
+                          - RC_INPROGRESS
+                        example: RC_SUCCESS
+                      preDebitScheduledDate:
+                        type: string
+                        format: date-time
+                        description: Scheduled pre-debit notification date.
+                        example: '2026-07-24T19:22:58.585416'
+                      recurringScheduledDate:
+                        type: string
+                        format: date-time
+                        description: Scheduled recurring debit date.
+                        example: '2026-07-25T20:22:58.585416'
+                      recurringPaymentDate:
+                        type: string
+                        format: date-time
+                        nullable: true
+                        description: >-
+                          Actual date the recurring payment was processed. Null
+                          if not yet processed.
+              examples:
+                scheduleSuccess:
+                  summary: Debit Scheduled Successfully
+                  value:
+                    status: 1
+                    message: Debit Scheduled successfully
+                    details: []
+                    predebitDetails: []
+                retrieveSuccess:
+                  summary: Invoice Status Retrieved
+                  value:
+                    status: 1
+                    message: Invoice details fetched successfully
+                    details: []
+                    predebitDetails: []
+                    invoiceDetails:
+                      id: 146
+                      merchantId: 87873863
+                      paymentType: DC
+                      amount: 100
+                      currency: INR
+                      paymentStatus: Paid
+                      errorCode: null
+                      createdon: '2026-07-24T19:22:58.587056'
+                      authPayuId: 613345778912466200
+                      planId: null
+                      invoiceDisplayNumber: in_613345778912466169
+                      txnId: re_613345778912466169
+                      pgTxnId: '613345778912466346'
+                      description: Transaction is Successful
+                      invoice_status: RC_SUCCESS
+                      preDebitScheduledDate: '2026-07-24T19:22:58.585416'
+                      recurringScheduledDate: '2026-07-25T20:22:58.585416'
+                      recurringPaymentDate: null
+        '400':
+          description: >
+            Validation or business-rule failure. The JSON body uses `status: 0`.
+
+
+            **Envelope / request issues** (often no `errorCode` — match on
+            `message`)
+
+
+            <details>
+
+            <summary>Key is empty</summary>
+
+
+            - **Code:** *(none)*
+
+            - **Cause:** Merchant key not sent.
+
+            - **Recommended fix:** Send the `key` form field from the PayU
+            dashboard for the correct environment (test vs live).
+
+
+            </details>
+
+
+            <details>
+
+            <summary>Hash is empty / Invalid Hash.</summary>
+
+
+            - **Code:** *(none)*
+
+            - **Cause:** Hash missing or digest does not match.
+
+            - **Recommended fix:** Recompute SHA512 over pipe-delimited `key`,
+            `si_transaction`, `var1`, and `salt` using the exact posted `var1`
+            string and salt.
+
+
+            </details>
+
+
+            <details>
+
+            <summary>Invalid Data.</summary>
+
+
+            - **Code:** *(none)*
+
+            - **Cause:** `var1` is not valid JSON.
+
+            - **Recommended fix:** Serialise one JSON object to `var1`, validate
+            locally, and form-encode without corrupting quotes or braces.
+
+
+            </details>
+
+
+            <details>
+
+            <summary>Mandate entry not found</summary>
+
+
+            - **Code:** *(none)*
+
+            - **Cause:** `authPayuId` not present in PayU's records.
+
+            - **Recommended fix:** Use the `mihpayid` from the
+            `AuthorizeTransaction` response. Ensure you are calling the same
+            environment (test or live) where the mandate was created.
+
+
+            </details>
+
+
+            **SI validation codes**
+
+
+            <details>
+
+            <summary><code>SIR001</code>: amount is mandatory</summary>
+
+
+            - **Cause:** `amount` missing from `var1`.
+
+            - **Recommended fix:** Include `amount` as a decimal string (e.g.
+            `"200.00"`) in `var1`.
+
+
+            </details>
+
+
+            <details>
+
+            <summary><code>SIR002</code>: Invalid amount</summary>
+
+
+            - **Cause:** Amount is not a valid decimal.
+
+            - **Recommended fix:** Send a positive decimal string only; no
+            currency symbols or invalid characters.
+
+
+            </details>
+
+
+            <details>
+
+            <summary><code>SIR003</code>: txnid is mandatory</summary>
+
+
+            - **Cause:** `txnId` missing from `var1`.
+
+            - **Recommended fix:** Add a unique merchant `txnId` for this debit
+            in `var1`.
+
+
+            </details>
+
+
+            <details>
+
+            <summary><code>SIR004</code>: debitDate is mandatory</summary>
+
+
+            - **Cause:** `debitDate` missing for CC/DC mandates.
+
+            - **Recommended fix:** Include `debitDate` as `YYYY-MM-DD` in `var1`
+            per the API specification.
+
+
+            </details>
+
+
+            <details>
+
+            <summary><code>SIR005</code>: Invalid debitDate
+            (YYYY-MM-DD)</summary>
+
+
+            - **Cause:** Wrong date format supplied.
+
+            - **Recommended fix:** Use strict `YYYY-MM-DD` for `debitDate`.
+
+
+            </details>
+
+
+            <details>
+
+            <summary><code>SIR006</code>: debitDate must be a future
+            date</summary>
+
+
+            - **Cause:** A past date was supplied.
+
+            - **Recommended fix:** Choose a future `debitDate` allowed by PayU
+            and the issuer.
+
+
+            </details>
+
+
+            <details>
+
+            <summary><code>SIR007</code>: debitDate outside billing
+            window</summary>
+
+
+            - **Cause:** `debitDate` is outside the allowed window for the
+            mandate.
+
+            - **Recommended fix:** Pick a `debitDate` inside the permitted
+            pre-debit range for that billing cycle.
+
+
+            </details>
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    description: 0 indicates failure.
+                    example: 0
+                  message:
+                    type: string
+                    description: Human-readable error message.
+                    example: debitDate is mandatory
+                  errorCode:
+                    type: string
+                    description: API error code.
+                    example: SIR004
+                  action:
+                    type: string
+                    description: Action that failed.
+                    example: SI_RECURRING
+              examples:
+                missingDebitDate:
+                  summary: Missing Debit Date
+                  value:
+                    status: 0
+                    message: debitDate is mandatory
+                    errorCode: SIR004
+                    action: SI_RECURRING
+                mandateNotFound:
+                  summary: Mandate Not Found
+                  value:
+                    status: 0
+                    message: Mandate entry not found
