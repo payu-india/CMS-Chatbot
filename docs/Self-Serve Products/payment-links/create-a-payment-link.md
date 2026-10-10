@@ -414,8 +414,8 @@ Use bulk upload to create hundreds of payment links in one go. Each row in the C
 | --------------- | ---------------------------------------------- | ---------------------------------- | ---------------------------------- |
 | **Active**      | Live — accepting payments                      | Share, Duplicate, Edit, Deactivate | Share, Duplicate, Edit, Deactivate |
 | **Paid**        | Payment received (or max transactions reached) | Share, Duplicate, Edit, Deactivate | Share, Duplicate, Edit, Deactivate |
-| **Expired**     | Expiry date passed                             | Share, Duplicate, and Activate     | Share, Duplicate, Edit, Activate   |
-| **Deactivated** | Manually stopped                               | Share, Duplicate, and Activate     | Share, Duplicate, Edit, Activate   |
+| **Expired**     | Expiry date passed                             | Share, Duplicate, and Activate     | Share, Duplicate, and Activate     |
+| **Deactivated** | Manually stopped                               | Share, Duplicate, and Activate     | Share, Duplicate, and Activate     |
 
 ***
 
