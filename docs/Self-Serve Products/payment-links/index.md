@@ -125,17 +125,15 @@ Check this video to see how PayU Payment Links work
 
 ## Is Payment Links Right for Me?
 
-<Glossary>Payment Links</Glossary> is a good choice if: <br />
-
-- **You don't have a website** and run your business through social media, messaging apps, or in person.
-- **You want to request payment** from a specific customer for an invoice, order, or service.
-- **You want to start collecting payments** quickly without building or learning a technical integration.
-- **You run a small business or provide services** where you regularly send payment requests to individual customers.<br />
-
-Consider another PayU solution if:<br />
-
-- You want customers to pay directly on your website → <Anchor target="_blank" href="https://docs.payu.in/docs/prebuilt-checkout-payu-hosted">**Hosted Checkout**</Anchor>
-- You want to create payment links programmatically → <Anchor target="_blank" href="https://docs.payu.in/reference/payment-links">**Payment Links APIs**</Anchor>
+| I want to…                                      |                              Works?                             |
+| ----------------------------------------------- | :-------------------------------------------------------------: |
+| Collect payment without a website or app        |                                ✅                                |
+| Share payment requests on WhatsApp or SMS       |                                ✅                                |
+| Create hundreds of links at once                |                         ✅ (Bulk Upload)                         |
+| Automate link creation from my own system       |                           ✅ (via API)                           |
+| Embed a pay button on my website                |       ⚠️ Use [Payment Button](doc:payment-button-overview)      |
+| Set up recurring auto-debit or subscriptions    |       ⚠️ Use [Recurring Payments](doc:recurring-payments)       |
+| Full server-side control over the checkout flow | ⚠️ Use [Merchant Hosted Checkout](doc:merchant-hosted-checkout) |
 
 <Callout icon="far fa-face-thinking" theme="warn">
   ### **Not Sure Which PayU Solution is Right For You?**
@@ -272,37 +270,22 @@ Once your customer completes the payment:<br />
 
 <Columns layout="fixed">
   <Column>
-    **You see the payment status immediately&#x20;**&#x69;n your PayU Dashboard under **Payment Tools → Payment Links**
+    **Filter and search** — view links by status (Active, Paid, Expired, Deactivated) or by creation date.
   </Column>
-</Columns>
-
-<Columns layout="fixed">
   <Column>
-    <Columns layout="fixed">
-      <Column>
-        **Payment details are recorded**: You can see the amount, date, customer details, and transaction status
-      </Column>
-    </Columns>
+    **Duplicate** — create a new link pre-filled with the same settings. A single link can accept multiple payments unless you set a Max Transactions limit at creation.
   </Column>
-</Columns>
-
-<Columns layout="fixed">
   <Column>
-    <Columns layout="fixed">
-      <Column>
-        **You can export payment history**: <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links#what-can-i-do-with-a-payment-link-after-it-is-created">Download a report</Anchor> of all payments received through your links
-      </Column>
-    </Columns>
+    **Resend** — share any active link again over SMS, email, or by copying the URL.
   </Column>
-</Columns>
-
-<Columns layout="fixed">
   <Column>
-    **Links can be reused or deactivated**: You control whether a link can be used multiple times or just once, and you can disable links that are no longer needed
+    **Export** — download transaction history as CSV or Excel for reconciliation.
+  </Column>
+  {/* NEW */}
+  <Column>
+    **Deactivate** — stop a link from accepting further payments at any time from the Dashboard, or via the [Deactivate API](doc:api-cancel-status).
   </Column>
 </Columns>
-
-If a payment fails, you can share the same link again for the customer to retry, or create a new one.
 
 ***
 
