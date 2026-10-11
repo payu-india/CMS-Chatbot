@@ -48,7 +48,7 @@ Ensure the following are in place before starting integration:
 
 ***
 
-## Phase I — Mandate Creation Flow
+## Phase 1: Mandate Creation Flow
 
 The mandate creation flow uses a decoupled authentication and authorization model. Authentication and authorization happen in two separate API calls.
 
