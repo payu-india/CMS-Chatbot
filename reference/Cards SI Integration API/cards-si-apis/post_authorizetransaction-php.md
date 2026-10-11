@@ -159,37 +159,52 @@ After the customer completes OTP authentication in [Step 1](doc:cards-si-step1-p
   </Tab>
 
   <Tab title="Parameter Description">
-    | Parameter                         | Type   | Description                                                                                                                                          |
-    | :-------------------------------- | :----- | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | `metaData.message`                | String | `string` Human-readable status message from the authentication layer. `No Error` on success.                                                         |
-    | `metaData.referenceId`            | String | `string` PayU reference ID echoed from the request. Use this to correlate the response with the original `_payment` call.                            |
-    | `metaData.statusCode`             | String | `string` Authentication status code. `E000` indicates success.                                                                                       |
-    | `metaData.txnId`                  | String | `string` Merchant transaction ID echoed from the request.                                                                                            |
-    | `metaData.unmappedStatus`         | String | `string` Raw authentication status string. `success` on mandate registration.                                                                        |
-    | `metaData.submitOtp.status`       | String | `string` Status of the OTP submission step. `success` confirms the ACS challenge was completed.                                                      |
-    | `result.mihpayid`                 | String | `string` PayU's unique transaction identifier. **Save this as&#x20;**`authPayuId` — required for all subsequent pre-debit and recurring debit calls. |
-    | `result.mode`                     | String | `string` Payment mode used. `CC` = Credit Card, `DC` = Debit Card.                                                                                   |
-    | `result.status`                   | String | `string` Overall transaction status. `success` = mandate registered.                                                                                 |
-    | `result.key`                      | String | `string` Merchant key echoed from the request.                                                                                                       |
-    | `result.txnid`                    | String | `string` Merchant transaction ID echoed from the request.                                                                                            |
-    | `result.amount`                   | String | `string` Transaction amount echoed from the request.                                                                                                 |
-    | `result.addedon`                  | String | `string` Timestamp when the transaction was created on PayU (IST, `YYYY-MM-DD HH:MM:SS`).                                                            |
-    | `result.productinfo`              | String | `string` Product description echoed from the `_payment` request.                                                                                     |
-    | `result.firstname`                | String | `string` Customer first name echoed from the `_payment` request.                                                                                     |
-    | `result.card_no`                  | String | `string` Masked card number. All digits except the last 4 are replaced with `X`.                                                                     |
-    | `result.error`                    | String | `string` Error code. `E000` = no error.                                                                                                              |
-    | `result.error_Message`            | String | `string` Human-readable error description. `No Error` on success.                                                                                    |
-    | `result.issuing_bank`             | String | `string` Short code of the card-issuing bank.                                                                                                        |
-    | `result.card_type`                | String | `string` Card network. Possible values: `VISA`, `MAST`, `AMEX`, `DINR`.                                                                              |
-    | `result.AcqTID`                   | String | `string` Acquirer Terminal ID assigned by PayU.                                                                                                      |
-    | `result.AcqName`                  | String | `string` Acquirer name used to process the transaction.                                                                                              |
-    | `result.AuthCode`                 | String | `string` Authorization code returned by the issuing bank.                                                                                            |
-    | `result.net_amount_debit`         | String | `string` Net amount debited from the customer's card after any adjustments.                                                                          |
-    | `result.bank_ref_no`              | String | `string` Bank reference number for the transaction. Use for reconciliation.                                                                          |
-    | `result.bankcode`                 | String | `string` Payment instrument code. `CC` = Credit Card, `DC` = Debit Card.                                                                             |
-    | `result.PG_TYPE`                  | String | `string` Payment gateway type used to process the transaction.                                                                                       |
-    | `result.IsStandingInstructionSet` | String | `string` Mandate registration confirmation. `1` = mandate successfully registered at the bank.                                                       |
-    | `result.payment_source`           | String | `string` Identifies the payment source type. `sist` confirms the transaction is flagged as a Standing Instruction.                                   |
-    | `result.hash`                     | String | `string` Response hash for integrity verification. Validate this on your server before accepting the response.                                       |
+    | Parameter                         | Description                                                                                                                                          |
+    | :-------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | `metaData.message`                | `string` Human-readable status message from the authentication layer. `No Error` on success.                                                         |
+    | `metaData.referenceId`            | `string` PayU reference ID echoed from the request. Use this to correlate the response with the original `_payment` call.                            |
+    | `metaData.statusCode`             | `string` Authentication status code. `E000` indicates success.                                                                                       |
+    | `metaData.txnId`                  | `string` Merchant transaction ID echoed from the request.                                                                                            |
+    | `metaData.unmappedStatus`         | `string` Raw authentication status string. `success` on mandate registration.                                                                        |
+    | `metaData.submitOtp.status`       | `string` Status of the OTP submission step. `success` confirms the ACS challenge was completed.                                                      |
+    | `result.mihpayid`                 | `string` PayU's unique transaction identifier. **Save this as&#x20;**`authPayuId` — required for all subsequent pre-debit and recurring debit calls. |
+    | `result.mode`                     | `string` Payment mode used. `CC` = Credit Card, `DC` = Debit Card.                                                                                   |
+    | `result.status`                   | `string` Overall transaction status. `success` = mandate registered.                                                                                 |
+    | `result.key`                      | `string` Merchant key echoed from the request.                                                                                                       |
+    | `result.txnid`                    | `string` Merchant transaction ID echoed from the request.                                                                                            |
+    | `result.amount`                   | `string` Transaction amount echoed from the request.                                                                                                 |
+    | `result.addedon`                  | `string` Timestamp when the transaction was created on PayU (IST, `YYYY-MM-DD HH:MM:SS`).                                                            |
+    | `result.productinfo`              | `string` Product description echoed from the `_payment` request.                                                                                     |
+    | `result.firstname`                | `string` Customer first name echoed from the `_payment` request.                                                                                     |
+    | `result.card_no`                  | `string` Masked card number. All digits except the last 4 are replaced with `X`.                                                                     |
+    | `result.error`                    | `string` Error code. `E000` = no error.                                                                                                              |
+    | `result.error_Message`            | `string` Human-readable error description. `No Error` on success.                                                                                    |
+    | `result.issuing_bank`             | `string` Short code of the card-issuing bank.                                                                                                        |
+    | `result.card_type`                | `string` Card network. Possible values: `VISA`, `MAST`, `AMEX`, `DINR`.                                                                              |
+    | `result.AcqTID`                   | `string` Acquirer Terminal ID assigned by PayU.                                                                                                      |
+    | `result.AcqName`                  | `string` Acquirer name used to process the transaction.                                                                                              |
+    | `result.AuthCode`                 | `string` Authorization code returned by the issuing bank.                                                                                            |
+    | `result.net_amount_debit`         | `string` Net amount debited from the customer's card after any adjustments.                                                                          |
+    | `result.bank_ref_no`              | `string` Bank reference number for the transaction. Use for reconciliation.                                                                          |
+    | `result.bankcode`                 | `string` Payment instrument code. `CC` = Credit Card, `DC` = Debit Card.                                                                             |
+    | `result.PG_TYPE`                  | `string` Payment gateway type used to process the transaction.                                                                                       |
+    | `result.IsStandingInstructionSet` | `string` Mandate registration confirmation. `1` = mandate successfully registered at the bank.                                                       |
+    | `result.payment_source`           | `string` Identifies the payment source type. `sist` confirms the transaction is flagged as a Standing Instruction.                                   |
+    | `result.hash`                     | `string` Response hash for integrity verification. Validate this on your server before accepting the response.                                       |
+
+    <Callout icon="📘" theme="info">
+      ### **Verify Mandate Registration**
+
+      Check all four conditions in the response to confirm the mandate was successfully registered:
+
+      | Parameter                  | Expected Value      | Description                                    |
+      | :------------------------- | :------------------ | :--------------------------------------------- |
+      | `status`                   | `success`           | Transaction was successful                     |
+      | `payment_source`           | `sist`              | Card marked correctly for Standing Instruction |
+      | `IsStandingInstructionSet` | `1`                 | Mandate registered at the bank                 |
+      | `mihpayid`                 | Any non-empty value | PayU transaction acknowledgment                |
+
+      If any of these conditions is not met, the mandate has **not** been registered. Do not proceed to recurring debits.
+    </Callout>
   </Tab>
 </Tabs>
