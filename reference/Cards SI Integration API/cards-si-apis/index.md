@@ -1,5 +1,10 @@
 ---
-title: Cards SI APIs
+title: Cards SI Decoupled Integration
+excerpt: >-
+  Set up card-based Standing Instructions (SI) on PayU using a decoupled
+  authentication and authorization flow for Visa, Mastercard, and AMEX. Covers
+  mandate creation, pre-debit notifications, recurring payments, and mandate
+  management.
 hidden: true
 link:
   new_tab: false
