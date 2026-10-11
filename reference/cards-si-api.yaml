@@ -622,7 +622,7 @@ paths:
       x-internal: true
   /AuthorizeTransaction.php:
     post:
-      summary: Authorization (Step 2 — Mandate Registration)
+      summary: 'Step2: Authorization (Mandate Registration)'
       description: ''
       tags:
         - Cards SI APIs
