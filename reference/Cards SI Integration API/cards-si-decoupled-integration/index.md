@@ -108,6 +108,8 @@ The following steps describe the end-to-end Cards SI decoupled integration flow 
 10. **Callback** — If configured, PayU triggers a merchant callback with the final transaction response.
 
 <Callout icon="📘" theme="info">
+  ### **Tips:**
+
   For the **Authentication not via PayU** flow (`txn_s2s_flow=3`), steps 5–8 are replaced by a single `_payment` call that includes the merchant's 3DS result directly. The mandate is registered in that single call.
 </Callout>
 
@@ -124,6 +126,8 @@ Each API requires a SHA-512 hash computed from pipe-separated parameters using y
 | `si_transaction` (Pre-Debit / Recurring / Retrieve) | `SHA512(key\|command\|var1\|SALT)`                                                                                    |
 
 <Callout icon="📘" theme="info">
+  ### **Tips:**
+
   For the `_payment` hash, include the **serialised&#x20;**`si_details`**&#x20;JSON string** at position 16, after six trailing pipe characters. Use empty strings for any `udf` fields you are not sending.
 
   For `AuthorizeTransaction` and `si_transaction`, use the **exact serialised JSON string** posted as the field value — not the parsed object — when computing the hash.
@@ -131,18 +135,18 @@ Each API requires a SHA-512 hash computed from pipe-separated parameters using y
 
 ***
 
-## si_details Parameters
+## `si_details` Parameters
 
-The `si_details` JSON object is required in both the `_payment` and `AuthorizeTransaction` requests. Use identical values in both calls.
+The `si_details` JSON object is required in both the `_payment` and `AuthorizeTransaction` requests. Use identical values in both calls. All these parameters are mandatory.
 
-| Parameter          | Type    | Required | Description                                                            |
-| :----------------- | :------ | :------- | :--------------------------------------------------------------------- |
-| `billingAmount`    | String  | Yes      | Maximum mandate billing amount per cycle.                              |
-| `billingCurrency`  | String  | Yes      | Billing currency. Default: `INR`.                                      |
-| `billingCycle`     | String  | Yes      | Billing frequency: `ADHOC`, `DAILY`, `WEEKLY`, `MONTHLY`, or `YEARLY`. |
-| `billingInterval`  | Integer | Yes      | Number of billing cycle units between debits.                          |
-| `paymentStartDate` | String  | Yes      | Mandate start date in `YYYY-MM-DD` format.                             |
-| `paymentEndDate`   | String  | Yes      | Mandate end date in `YYYY-MM-DD` format.                               |
+| Parameter          | Type    | Description                                                            |
+| :----------------- | :------ | :--------------------------------------------------------------------- |
+| `billingAmount`    | String  | Maximum mandate billing amount per cycle.                              |
+| `billingCurrency`  | String  | Billing currency. Default: `INR`.                                      |
+| `billingCycle`     | String  | Billing frequency: `ADHOC`, `DAILY`, `WEEKLY`, `MONTHLY`, or `YEARLY`. |
+| `billingInterval`  | Integer | Number of billing cycle units between debits.                          |
+| `paymentStartDate` | String  | Mandate start date in `YYYY-MM-DD` format.                             |
+| `paymentEndDate`   | String  | Mandate end date in `YYYY-MM-DD` format.                               |
 
 ***
 
@@ -151,6 +155,8 @@ The `si_details` JSON object is required in both the `_payment` and `AuthorizeTr
 PayU sends webhook callbacks to your configured URL for all mandate and recurring payment lifecycle events. Callbacks are delivered in URL-encoded format.
 
 <Callout icon="📘" theme="info">
+  ### **Tips:**
+
   The sample payloads shown in this section have been converted to JSON format for readability only. The actual webhook data from PayU arrives in URL-encoded format.
 </Callout>
 
@@ -171,6 +177,8 @@ PayU sends webhook callbacks to your configured URL for all mandate and recurrin
 | `RECURRING_FAILED`  | `RC_FAILED`      | Due             | Recurring payment failed. May be retried based on gateway configuration.                                |
 
 <Callout icon="📘" theme="info">
+  ### **Tips:**
+
   Webhook status can also be independently verified at any time using the **Fetch Pre-Debit and Recurring Status** API with `debitType: RETRIEVE`. For more information, refer to [Fetch Pre-Debit and Recurring Status](ref:cards-si-fetch-status-api).
 </Callout>
 
@@ -188,5 +196,7 @@ After mandate creation, use the following APIs to manage the mandate lifecycle.
 | Cancel mandate — Visa, Mastercard, AMEX (new integration)   | Contact your PayU KAM for the updated cancellation API for the decoupled flow                 |
 
 <Callout icon="📘" theme="info">
+  ### **Tips:**
+
   Mandate cancellation requests for **Visa and Mastercard** are processed without Additional Factor of Authentication (AFA) in accordance with card network guidelines for mandate management.
 </Callout>
