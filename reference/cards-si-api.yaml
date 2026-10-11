@@ -42,7 +42,7 @@ servers:
 paths:
   /_payment:
     post:
-      summary: Payment and Authentication Initiation
+      summary: 'Step 1: Payment and Authentication Initiation'
       description: ''
       tags:
         - Cards SI APIs
