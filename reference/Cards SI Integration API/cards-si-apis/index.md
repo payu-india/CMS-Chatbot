@@ -8,6 +8,21 @@ excerpt: >-
 hidden: true
 link:
   new_tab: false
+metadata:
+  title: Cards SI Integration — Decoupled Authentication and Authorization Flow
+  description: >-
+    Set up card-based Standing Instructions (SI) on PayU using a decoupled
+    authentication and authorization flow for Visa, Mastercard, and AMEX. Covers
+    mandate creation, pre-debit notifications, recurring payments, and mandate
+    management.
+  keywords:
+    - Cards SI Integration Decoupled
+    - Card Mandate Registration PayU
+    - Recurring Payments Cards Decoupled
+    - Standing Instruction Cards API
+    - 3DS Authentication Authorization Flow
+    - AuthorizeTransaction PayU
+    - Cards SI Pre-Debit Recurring
 ---
 PayU's Cards SI (Standing Instruction) Integration with decoupled authentication lets merchants register card mandates for Visa, Mastercard, and AMEX through a two-step flow where **authentication and authorization are handled as separate steps**. This gives merchants greater control over the mandate registration process, supports stored network tokens (saved cards), and enables merchants who perform 3DS authentication externally to pass results directly into PayU.
 
