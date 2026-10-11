@@ -4,4 +4,27 @@ api:
   operationId: post_authorizetransaction-php
 hidden: true
 ---
-Completes card mandate creation by submitting the 3DS authentication result to PayU.After the customer submits the OTP, the merchant receives a response containing`bankData`. Add `siTokenDetails` (network token details) to this JSON and pass it as`authentication_info` to complete authorisation and register the mandate.On success, the response includes `IsStandingInstructionSet: "1"` confirming the mandatewas registered. The `mihpayid` in the response is the `authPayuId` required for allsubsequent pre-debit and recurring debit calls.**Hash formula:**`SHA512(key|txnid|amount|authentication_info|SALT)`Use the exact serialised `authentication_info` JSON string (not the object).> `siTokenDetails` is optional for the saved card flow when authentication was done via PayU.
+After the customer completes OTP authentication in [Step 1](doc:cards-si-step1-payment-authentication), the merchant receives a `bankData` JSON in the OTP submission response. This step passes that `bankData` augmented with `siTokenDetails` (network token details) — as `authentication_info` to the `AuthorizeTransaction` API to complete authorization and register the mandate.
+
+<Callout icon="👍" theme="okay">
+  ### **On Success**
+
+  The response contains `IsStandingInstructionSet: "1"` confirming the mandate is registered. Save the `mihpayid` from the `result` object — this is the `authPayuId` you will use in all subsequent [Pre-Debit and Recurring Payments](doc:cards-si-pre-debit-recurring) calls.
+</Callout>
+
+<Callout icon="📘" theme="info">
+  ### **Saved Card Flow**
+
+  `siTokenDetails` is **optional** when authentication was done via PayU for a saved card (Flow 2 in Step 1).
+</Callout>
+
+***
+
+## Environments
+
+| Environment | URL                                               |
+| :---------- | :------------------------------------------------ |
+| Test        | `https://test.payu.in/AuthorizeTransaction.php`   |
+| Production  | `https://secure.payu.in/AuthorizeTransaction.php` |
+
+***
