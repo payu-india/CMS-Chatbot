@@ -48,11 +48,15 @@ Ensure the following are in place before starting integration:
 
 ***
 
-## Phase 1: Mandate Creation Flow
+## Integration Steps
 
-The mandate creation flow uses a decoupled authentication and authorization model. Authentication and authorization happen in two separate API calls.
+The integration is split into two steps **Mandate Creation** and **Recurring Payments**.
 
-### Authentication Flows Supported
+### Step 1: Mandate Creation
+
+Authentication and authorization happen in two separate API calls.
+
+#### Authentication Flows Supported
 
 | Flow                                     | When to Use                                                                                                                                                                                                                                            |
 | :--------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -61,28 +65,28 @@ The mandate creation flow uses a decoupled authentication and authorization mode
 | **Authentication not via PayU**          | The merchant performs 3DS externally and passes the authentication result (`authentication_info` with `cavv`, `eci`, etc.) directly in the `_payment` call. The mandate is registered in this single call — no separate `AuthorizeTransaction` needed. |
 
 <Cards>
-  <Card title="Step 1 — Payment and Authentication Initiation" href="ref:cards-si-payment-authentication-initiation">
+  <Card title="Step 1.1: Payment and Authentication Initiation" href="doc:cards-si-step1-payment-authentication">
     Send the `_payment` request with card details, `si=1`, and `si_details`. PayU returns an `acsTemplate` (Base64-encoded HTML). Decode and render it to redirect the customer to the OTP page. After OTP submission, you receive `bankData` in the response.
   </Card>
 
-  <Card title="Step 2 — Authorization and Mandate Registration" href="ref:cards-si-authorize-transaction">
+  <Card title="Step 1.2: Authorization and Mandate Registration" href="doc:cards-si-step2-authorize-transaction">
     Pass `bankData` (augmented with `siTokenDetails`) as `authentication_info` to the `AuthorizeTransaction` API. On success, the response contains `IsStandingInstructionSet: "1"` confirming the mandate is registered. Save the `mihpayid` — this is the `authPayuId` for all future pre-debit and recurring calls.
   </Card>
 </Cards>
 
 ***
 
-## Phase II — Recurring Payment Flow
+### Step 2: Recurring Payments
 
 Once the mandate is registered, use these APIs to schedule and execute recurring debits against it.
 
 <Cards>
-  <Card title="Merge Pre-Debit and Recurring API" href="ref:cards-si-pre-debit-recurring-api">
+  <Card title="Step 2.1: Schedule Pre-Debit and Recurring Payment" href="ref:subscriptions-pdn-rp">
     Schedules the pre-debit notification and processes the recurring debit in a single call using `command=si_transaction`. Set `debitType` to `PREDEBIT_AND_RECURRING` (default), `PREDEBIT`, or `RECURRING` based on the operation needed.
   </Card>
 
-  <Card title="Fetch Pre-Debit and Recurring Status" href="ref:cards-si-fetch-status-api">
-    Retrieve the current invoice and payment lifecycle status for an existing debit. Pass `debitType: RETRIEVE` in the same `si_transaction` endpoint.
+  <Card title="Step 2.2: Fetch Pre-Debit and Recurring Status" href="doc:cards-si-fetch-status">
+    Retrieve the current invoice and payment lifecycle status for an existing debit. Pass `debitType: RETRIEVE` in the same `si_transaction` endpoint. Use this to confirm debit outcomes when webhooks are not received.
   </Card>
 </Cards>
 
