@@ -17,15 +17,15 @@ After the customer submits the OTP, use the `bankData` from the OTP response (pl
 ## Authentication Flows
 
 <Cards>
-  <Card title="Flow 1 — New Card via PayU" icon="fa-credit-card">
+  <Card title="Flow 1: New Card via PayU" icon="fa-credit-card">
     Send `auth_only=1`, `txn_s2s_flow=4`, `authentication_flow=REDIRECT`, and plain card details (`ccnum`, `ccname`, etc.).
   </Card>
 
-  <Card title="Flow 2 — Saved Card via PayU" icon="fa-bookmark">
+  <Card title="Flow 2: Saved Card via PayU" icon="fa-bookmark">
     Send `auth_only=1`, `txn_s2s_flow=4`, and `storecard_token_type=1` with a stored network token (`store_card_token`). `siTokenDetails` in the subsequent `AuthorizeTransaction` call is optional for this flow.
   </Card>
 
-  <Card title="Flow 3 — Authentication Not via PayU" icon="fa-server">
+  <Card title="Flow 3: Authentication Not via PayU" icon="fa-server">
     Send `txn_s2s_flow=3` with `authentication_info` already containing the 3DS result (`cavv`, `eci`, etc.) and `additional_info` with network token details. The mandate is registered in this single call.
   </Card>
 </Cards>
@@ -475,3 +475,10 @@ The merchant has already performed 3DS authentication externally (e.g., through 
 
   </Tab>
 </Tabs>
+
+***
+
+## Next Step
+
+- **Flows 1 and 2**: Proceed to [Step 2 — Authorization and Mandate Registration](doc:cards-si-step2-authorize-transaction) with the `bankData` received after OTP submission.
+- **Flow 3**: The mandate is already registered. Save `mihpayid` as your `authPayuId` and proceed to [Pre-Debit and Recurring Payments](doc:cards-si-pre-debit-recurring).
