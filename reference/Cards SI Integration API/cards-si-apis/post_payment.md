@@ -480,5 +480,5 @@ The merchant has already performed 3DS authentication externally (e.g., through 
 
 ## Next Step
 
-- **Flows 1 and 2**: Proceed to [Step 2 — Authorization and Mandate Registration](doc:cards-si-step2-authorize-transaction) with the `bankData` received after OTP submission.
-- **Flow 3**: The mandate is already registered. Save `mihpayid` as your `authPayuId` and proceed to [Pre-Debit and Recurring Payments](doc:cards-si-pre-debit-recurring).
+- **For Flows 1 and 2**: Proceed to [Step 2 — Authorization and Mandate Registration](doc:cards-si-step2-authorize-transaction) with the `bankData` received after OTP submission.
+- **For Flow 3**: The mandate is already registered. Save `mihpayid` as your `authPayuId` and proceed to [Pre-Debit and Recurring Payments](doc:cards-si-pre-debit-recurring).
