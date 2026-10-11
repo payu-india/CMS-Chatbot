@@ -109,3 +109,87 @@ After the customer completes OTP authentication in [Step 1](doc:cards-si-step1-p
     | `siTokenDetails.last4digits` <br /> `mandatory`   | `String` Last 4 digits of the tokenised card. For example `2656`.                                                                                                               |
   </Tab>
 </Tabs>
+
+## Sample Response
+
+<Tabs>
+  <Tab title="Response Payload">
+    A successful response includes `IsStandingInstructionSet: "1"` in the `result` object, confirming mandate registration.
+
+    ```json
+    {
+        "metaData": {
+          "message": "No Error",
+          "referenceId": "4e0d4a1b8f093f9bb03ed6e5605071b62ce39a9d136698d703862953a0106c24",
+          "statusCode": "E000",
+          "txnId": "Txn080720261125",
+          "unmappedStatus": "success",
+          "submitOtp": {
+            "status": "success"
+          }
+        },
+        "result": {
+          "mihpayid": "403993715537854394",
+          "mode": "CC",
+          "status": "success",
+          "key": "vqpS7W",
+          "txnid": "Txn080720261125",
+          "amount": "100.00",
+          "addedon": "2026-07-08 11:26:39",
+          "productinfo": "iPhone",
+          "firstname": "Test User",
+          "card_no": "XXXXXXXXXXXX1258",
+          "error": "E000",
+          "error_Message": "No Error",
+          "issuing_bank": "YES",
+          "card_type": "VISA",
+          "AcqTID": "PAYUPAYMENTCYBS",
+          "AcqName": "AxisCYBER",
+          "AuthCode": "506907",
+          "net_amount_debit": "100",
+          "bank_ref_no": "295522556067763300",
+          "bankcode": "CC",
+          "PG_TYPE": "CC-PG",
+          "IsStandingInstructionSet": "1",
+          "payment_source": "sist",
+          "hash": "5d7a542fcd45146b9bfb..."
+        }
+      }
+    ```
+  </Tab>
+
+  <Tab title="Parameter Description">
+    | Parameter                         | Type   | Description                                                                                                                                          |
+    | :-------------------------------- | :----- | :--------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | `metaData.message`                | String | `string` Human-readable status message from the authentication layer. `No Error` on success.                                                         |
+    | `metaData.referenceId`            | String | `string` PayU reference ID echoed from the request. Use this to correlate the response with the original `_payment` call.                            |
+    | `metaData.statusCode`             | String | `string` Authentication status code. `E000` indicates success.                                                                                       |
+    | `metaData.txnId`                  | String | `string` Merchant transaction ID echoed from the request.                                                                                            |
+    | `metaData.unmappedStatus`         | String | `string` Raw authentication status string. `success` on mandate registration.                                                                        |
+    | `metaData.submitOtp.status`       | String | `string` Status of the OTP submission step. `success` confirms the ACS challenge was completed.                                                      |
+    | `result.mihpayid`                 | String | `string` PayU's unique transaction identifier. **Save this as&#x20;**`authPayuId` — required for all subsequent pre-debit and recurring debit calls. |
+    | `result.mode`                     | String | `string` Payment mode used. `CC` = Credit Card, `DC` = Debit Card.                                                                                   |
+    | `result.status`                   | String | `string` Overall transaction status. `success` = mandate registered.                                                                                 |
+    | `result.key`                      | String | `string` Merchant key echoed from the request.                                                                                                       |
+    | `result.txnid`                    | String | `string` Merchant transaction ID echoed from the request.                                                                                            |
+    | `result.amount`                   | String | `string` Transaction amount echoed from the request.                                                                                                 |
+    | `result.addedon`                  | String | `string` Timestamp when the transaction was created on PayU (IST, `YYYY-MM-DD HH:MM:SS`).                                                            |
+    | `result.productinfo`              | String | `string` Product description echoed from the `_payment` request.                                                                                     |
+    | `result.firstname`                | String | `string` Customer first name echoed from the `_payment` request.                                                                                     |
+    | `result.card_no`                  | String | `string` Masked card number. All digits except the last 4 are replaced with `X`.                                                                     |
+    | `result.error`                    | String | `string` Error code. `E000` = no error.                                                                                                              |
+    | `result.error_Message`            | String | `string` Human-readable error description. `No Error` on success.                                                                                    |
+    | `result.issuing_bank`             | String | `string` Short code of the card-issuing bank.                                                                                                        |
+    | `result.card_type`                | String | `string` Card network. Possible values: `VISA`, `MAST`, `AMEX`, `DINR`.                                                                              |
+    | `result.AcqTID`                   | String | `string` Acquirer Terminal ID assigned by PayU.                                                                                                      |
+    | `result.AcqName`                  | String | `string` Acquirer name used to process the transaction.                                                                                              |
+    | `result.AuthCode`                 | String | `string` Authorization code returned by the issuing bank.                                                                                            |
+    | `result.net_amount_debit`         | String | `string` Net amount debited from the customer's card after any adjustments.                                                                          |
+    | `result.bank_ref_no`              | String | `string` Bank reference number for the transaction. Use for reconciliation.                                                                          |
+    | `result.bankcode`                 | String | `string` Payment instrument code. `CC` = Credit Card, `DC` = Debit Card.                                                                             |
+    | `result.PG_TYPE`                  | String | `string` Payment gateway type used to process the transaction.                                                                                       |
+    | `result.IsStandingInstructionSet` | String | `string` Mandate registration confirmation. `1` = mandate successfully registered at the bank.                                                       |
+    | `result.payment_source`           | String | `string` Identifies the payment source type. `sist` confirms the transaction is flagged as a Standing Instruction.                                   |
+    | `result.hash`                     | String | `string` Response hash for integrity verification. Validate this on your server before accepting the response.                                       |
+  </Tab>
+</Tabs>
