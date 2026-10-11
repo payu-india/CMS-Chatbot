@@ -16,14 +16,15 @@ PayU's Cards SI (Standing Instruction) Integration with decoupled authentication
 
 ## Before You Begin
 
-<Callout icon="👍" theme="okay">
-  Ensure the following are in place before starting integration:
+Ensure the following are in place before starting integration:
 
-  - Active PayU merchant account. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
-  - SI feature enabled on your MID. Contact your PayU Key Account Manager (KAM) to activate Standing Instructions for cards.
-  - Test credentials (key and salt) for the test environment. For more information, refer to [Check your API Key and Salt](doc:check-api-key-and-salt).
-  - Mandate cancellations for **Visa and Mastercard** are processed **without AFA** in accordance with card network guidelines.
-</Callout>
+- Active PayU merchant account. For more information, refer to [Register for a Merchant Account](doc:register-for-a-merchant-account-on-dashboard).
+
+- SI feature enabled on your MID. Contact your PayU Key Account Manager (KAM) to activate Standing Instructions for cards.
+
+- Test credentials (key and salt) for the test environment. For more information, refer to [Check your API Key and Salt](doc:check-api-key-and-salt).
+
+- Mandate cancellations for **Visa and Mastercard** are processed **without AFA** in accordance with card network guidelines.
 
 ***
 
