@@ -256,5 +256,5 @@ Refer to the [Errors and Troubleshooting](../errors-and-troubleshooting) page fo
 
 ## What's Next
 
-- Once all test scenarios pass, go to the [Go-live Checklist](./go-live-checklist) page to verify you're production-ready.
+- Once all test scenarios pass, go to the <Anchor target="_blank" href="https://docs.payu.in/docs/payu-hosted-checkout-go-live-checklist">Go-live Checklist</Anchor> page to verify you're production-ready.
 - For the full API reference used in this integration, see [PayU Hosted Checkout APIs](../payu-hosted-checkout-apis).
