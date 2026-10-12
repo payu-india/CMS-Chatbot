@@ -141,6 +141,8 @@ Verify the following before running test transactions:
   Use `anything@payu` or `999999999@payu` as the VPA (Virtual Payment Address).
 
   <Callout icon="📘" theme="info">
+    ### **Tips:**
+
     The `anything@payu` VPA works on the `_payment` endpoint test environment. It does not work with the Validate VPA API (which requires a real VPA).
   </Callout>
 </Accordion>
@@ -154,11 +156,11 @@ Verify the following before running test transactions:
 </Accordion>
 
 <Accordion title="BNPL (Buy Now Pay Later)" icon="fa-clock">
-  BNPL must be enabled on your PayU account before it appears on the checkout page. Contact PayU support or enable it from your PayU Dashboard if eligible.
+  BNPL must be enabled on your PayU account before it appears on the checkout page. Contact [PayU support](https://help.payu.in/raise-ticket) or enable it from your PayU Dashboard if eligible.
 
   **Test VPA / Phone:** Use `9876543210` as the phone number.
 
-  **Expected success response fields:**
+  **Expected Success Response Fields:**
 
   ```
   status=success
@@ -169,7 +171,7 @@ Verify the following before running test transactions:
   error_Message=No Error
   ```
 
-  **Expected failure response (user cancels OTP flow):**
+  **Expected Failure Response (User Cancels OTP Flow):**
 
   ```
   status=failure
@@ -180,8 +182,8 @@ Verify the following before running test transactions:
   ```
 </Accordion>
 
-<Callout icon="📘" theme="info">
-  **Additional payment methods available on request**
+<Callout icon="far fa-circle-check" theme="success">
+  ### Additional Payment Methods:
 
   BNPL, EMI, and International Payments are not enabled by default. You can enable them from your PayU Dashboard (subject to eligibility). See [Customise PayU Hosted Checkout](../customise-payu-hosted-checkout) for configuration details.
 </Callout>
@@ -192,15 +194,23 @@ Verify the following before running test transactions:
 
 After each test transaction, verify these on your server before marking the transaction as tested:
 
-1. **Reverse hash matches** — Compute `sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)` on your server and confirm it matches the `hash` field in the response.
+<Accordion title="Reverse Hash Matches" icon="fad fa-equals">
+  Compute `sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)` on your server and confirm it matches the `hash` field in the response.
+</Accordion>
 
-2. **Amount matches** — The `amount` in the response matches the amount you sent in the request.
+<Accordion title="Amount Matches" icon="fad fa-circle-indian-rupee">
+  The `amount` in the response matches the amount you sent in the request.
+</Accordion>
 
-3. **txnid matches** — The `txnid` in the response matches the one you stored in your database.
+<Accordion title="txnid Matches" icon="fad fa-laptop-mobile">
+  The `txnid` in the response matches the one you stored in your database.
+</Accordion>
 
-4. **Status is handled correctly** — Your system updates the order based on `status=success`, `status=failure`, or `status=pending`.
+<Accordion title="Status is Handled Correctly" icon="fad fa-sagittarius">
+  Your system updates the order based on `status=success`, `status=failure`, or `status=pending`.
+</Accordion>
 
-You can also confirm transaction status programmatically using the [Verify Payment API](ref:verify_payment_api) — useful if the callback didn't arrive or you want to double-check a specific test result from your server.
+You can also confirm transaction status programmatically using the [Verify Payment API.](ref:verify_payment_api) This API is useful if the callback did not arrive or you want to double-check a specific test result from your server.
 
 ***
 
@@ -208,7 +218,7 @@ You can also confirm transaction status programmatically using the [Verify Payme
 
 If you have configured webhooks, verify that your webhook endpoint receives a POST after the test transaction completes. The webhook payload mirrors the callback POST to `surl` / `furl`.
 
-See [Manage Webhooks](https://docs.payu.in/docs/webhook-events-and-sample-payloads) for webhook setup and payload format.
+See <Anchor target="_blank" href="https://docs.payu.in/docs/manage-webhooks-using-dashboard">Manage Webhooks</Anchor> for webhook setup and payload format.
 
 ***
 
