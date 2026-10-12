@@ -290,7 +290,7 @@ export const SearchableRichTable = (props) => {
                 {},
                 tdBase,
                 { borderBottom: isLast ? 'none' : '1px solid ' + border },
-                clampLast ? { maxWidth: '320px', whiteSpace: 'normal' } : {}
+                clampLast ? { whiteSpace: 'normal' } : {}
               );
               const content = renderJsonCell(cell, ci);
               return (
@@ -315,7 +315,7 @@ export const SearchableRichTable = (props) => {
           tdBase,
           { borderBottom: isLast ? 'none' : '1px solid ' + border },
           cell.props.style || {},
-          clampLast ? { maxWidth: '320px', whiteSpace: 'normal' } : {}
+          clampLast ? { whiteSpace: 'normal' } : {}
         );
         return (
           <td
