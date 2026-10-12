@@ -52,14 +52,18 @@ For the **Recurring** sub-tab, the following options are displayed:
 
 * Processed
 * Processing
+  <Callout icon="far fa-circle-info" theme="info">
+    ### **Note:**
+
+    Status of file for transactions scheduled for a future debit date will also appear under **Processing** until that date arrives, after which they are processed automatically.
+  </Callout>
 
 5. Click **Apply** to get the results.
 
 <Callout icon="📘" theme="info">
   ### **Tips:**
 
-  - You can filter the bulk upload transactions by last week, month or by custom date range similar to Transactions Dashboard. For more information, refer to [View Transactions for a Custom Period](doc:view-transactions-for-a-custom-period).
-  - Status of file for transactions scheduled for a future debit date will also appear under **Processing** until that date arrives, after which they are processed automatically.
+  You can filter the bulk upload transactions by last week, month or by custom date range similar to Transactions Dashboard. For more information, refer to [View Transactions for a Custom Period](doc:view-transactions-for-a-custom-period).
 </Callout>
 
 ## Download the Uploaded Transactions Report
