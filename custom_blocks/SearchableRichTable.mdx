@@ -5,14 +5,17 @@ import { useState, useMemo, useEffect } from 'react';
 
 export const SearchableRichTable = (props) => {
   const {
-    headers      = [],
-    headersJson  = '',
+    headers           = [],
+    headersJson       = '',
+    rowsJson          = '',
+    boldColumnsJson   = '',
+    codeColumnsJson   = '',
     placeholder       = 'Search in table...',
     maxHeight         = '480px',
     rowsPerPage       = 50,
     lastColumnMaxLines = 0,
     emptyMessage      = 'No results found. Try a different search.',
-    className    = '',
+    className         = '',
     children,
   } = props;
 
@@ -65,7 +68,26 @@ export const SearchableRichTable = (props) => {
     return [];
   }, [headers, headersJson]);
 
+  const jsonRows = useMemo(() => {
+    const parsed = parseJson(rowsJson, null);
+    if (Array.isArray(parsed)) return parsed.filter((r) => Array.isArray(r));
+    return null;
+  }, [rowsJson]);
+
+  const boldCols = useMemo(() => {
+    const p = parseJson(boldColumnsJson, null);
+    return Array.isArray(p) ? p : [];
+  }, [boldColumnsJson]);
+
+  const codeCols = useMemo(() => {
+    const p = parseJson(codeColumnsJson, null);
+    return Array.isArray(p) ? p : [];
+  }, [codeColumnsJson]);
+
+  const isJsonMode = jsonRows !== null;
+
   const allRows = useMemo(() => {
+    if (isJsonMode) return [];
     const result = [];
     const collect = (nodes) => {
       toArray(nodes).forEach((child) => {
@@ -80,27 +102,44 @@ export const SearchableRichTable = (props) => {
     };
     collect(children);
     return result;
-  }, [children]);
+  }, [children, isJsonMode]);
 
   const rowTextIndex = useMemo(
     () => allRows.map((row) => normalize(extractText(row))),
     [allRows]
   );
 
-  const filteredRows = useMemo(() => {
+  const filteredJsonRows = useMemo(() => {
+    if (!isJsonMode) return [];
+    const q = normalize(searchQuery);
+    if (!q) return jsonRows;
+    const words = q.split(/\s+/).filter(Boolean);
+    return jsonRows.filter((row) => {
+      const text = row.map((c) => normalize(c == null ? '' : String(c))).join(' ');
+      return words.every((w) => text.includes(w));
+    });
+  }, [jsonRows, isJsonMode, searchQuery]);
+
+  const filteredJsxRows = useMemo(() => {
+    if (isJsonMode) return [];
     const q = normalize(searchQuery);
     if (!q) return allRows;
     const words = q.split(/\s+/).filter(Boolean);
     return allRows.filter((_, i) => words.every((w) => rowTextIndex[i].includes(w)));
-  }, [allRows, rowTextIndex, searchQuery]);
+  }, [allRows, rowTextIndex, isJsonMode, searchQuery]);
 
   useEffect(() => { setCurrentPage(1); }, [searchQuery]);
 
+  const totalCount  = isJsonMode ? jsonRows.length  : allRows.length;
+  const activeCount = isJsonMode ? filteredJsonRows.length : filteredJsxRows.length;
+
   const perPage    = Math.max(1, Number(rowsPerPage) || 50);
-  const totalPages = Math.max(1, Math.ceil(filteredRows.length / perPage));
+  const totalPages = Math.max(1, Math.ceil(activeCount / perPage));
   const safePage   = Math.min(currentPage, totalPages);
   const pageStart  = (safePage - 1) * perPage;
-  const pageRows   = filteredRows.slice(pageStart, pageStart + perPage);
+  const pageRows   = isJsonMode
+    ? filteredJsonRows.slice(pageStart, pageStart + perPage)
+    : filteredJsxRows.slice(pageStart, pageStart + perPage);
 
   const goTo = (page) => {
     if (page >= 1 && page <= totalPages) setCurrentPage(page);
@@ -121,14 +160,15 @@ export const SearchableRichTable = (props) => {
   }, [totalPages, safePage]);
 
   const hasQuery   = normalize(searchQuery).length > 0;
-  const showEmpty  = hasQuery && filteredRows.length === 0;
-  const showNoRows = allRows.length === 0 && !showEmpty;
+  const showEmpty  = hasQuery && activeCount === 0;
+  const showNoRows = totalCount === 0 && !showEmpty;
   const colCount   = resolvedHeaders.length || 3;
 
-  const font   = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
-  const border = '#e5e7eb';
-  const blue   = '#3b82f6';
-  const blueBg = '#eff6ff';
+  const font     = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
+  const fontMono = 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace';
+  const border   = '#e5e7eb';
+  const blue     = '#3b82f6';
+  const blueBg   = '#eff6ff';
 
   const thStyle = {
     padding: '10px 16px',
@@ -161,6 +201,15 @@ export const SearchableRichTable = (props) => {
     overflowWrap: 'break-word',
   };
 
+  const codeStyle = {
+    padding: '2px 6px',
+    background: '#f3f4f6',
+    color: '#1f2937',
+    borderRadius: '4px',
+    fontFamily: fontMono,
+    fontSize: '13px',
+  };
+
   const msgStyle = {
     padding: '24px 16px',
     fontFamily: font,
@@ -190,13 +239,21 @@ export const SearchableRichTable = (props) => {
     minWidth: '30px',
   };
 
+  const renderJsonCell = (value, ci) => {
+    const s = value == null ? '' : String(value);
+    if (codeCols.indexOf(ci) >= 0) return <code style={codeStyle}>{s}</code>;
+    if (boldCols.indexOf(ci) >= 0) return <strong>{s}</strong>;
+    return s;
+  };
+
   const renderRows = () => {
     if (showNoRows) {
       return (
         <tr>
           <td colSpan={colCount} style={msgStyle}>
-            Add &lt;tr&gt; children to SearchableRichTable. Each &lt;td&gt; cell
-            supports any ReadMe component: Callout, Code, Image, Accordion, Tabs...
+            {isJsonMode
+              ? 'No rows loaded. Pass rowsJson or add <tr> children.'
+              : 'Add <tr> children to SearchableRichTable. Each <td> cell supports any ReadMe component.'}
           </td>
         </tr>
       );
@@ -205,17 +262,52 @@ export const SearchableRichTable = (props) => {
       return (
         <tr>
           <td colSpan={colCount} role="alert"
-            style={{ ...msgStyle, backgroundColor: '#fef2f2', color: '#b91c1c' }}>
+            style={Object.assign({}, msgStyle, { backgroundColor: '#fef2f2', color: '#b91c1c' })}>
             {emptyMessage}
           </td>
         </tr>
       );
     }
+
+    const maxLines = Number(lastColumnMaxLines);
+    const clampStyle = {
+      display: '-webkit-box',
+      WebkitLineClamp: maxLines,
+      WebkitBoxOrient: 'vertical',
+      overflow: 'hidden',
+      wordBreak: 'break-word',
+    };
+
+    if (isJsonMode) {
+      return pageRows.map((row, rowIdx) => {
+        const isLast = rowIdx === pageRows.length - 1;
+        const bg     = rowIdx % 2 === 0 ? '#ffffff' : '#fafafa';
+        return (
+          <tr key={pageStart + rowIdx} style={{ backgroundColor: bg }}>
+            {row.map((cell, ci) => {
+              const clampLast = maxLines > 0 && ci === row.length - 1;
+              const cellStyle = Object.assign(
+                {},
+                tdBase,
+                { borderBottom: isLast ? 'none' : '1px solid ' + border },
+                clampLast ? { maxWidth: '320px', whiteSpace: 'normal' } : {}
+              );
+              const content = renderJsonCell(cell, ci);
+              return (
+                <td key={ci} style={cellStyle}>
+                  {clampLast ? <div style={clampStyle}>{content}</div> : content}
+                </td>
+              );
+            })}
+          </tr>
+        );
+      });
+    }
+
     return pageRows.map((row, rowIdx) => {
       const isLast    = rowIdx === pageRows.length - 1;
       const bg        = rowIdx % 2 === 0 ? '#ffffff' : '#fafafa';
       const cellNodes = toArray(row.props.children).filter(isEl);
-      const maxLines  = Number(lastColumnMaxLines);
       const cells     = cellNodes.map((cell, ci) => {
         const clampLast = maxLines > 0 && ci === cellNodes.length - 1;
         const cellStyle = Object.assign(
@@ -225,13 +317,6 @@ export const SearchableRichTable = (props) => {
           cell.props.style || {},
           clampLast ? { maxWidth: '320px', whiteSpace: 'normal' } : {}
         );
-        const clampStyle = {
-          display: '-webkit-box',
-          WebkitLineClamp: maxLines,
-          WebkitBoxOrient: 'vertical',
-          overflow: 'hidden',
-          wordBreak: 'break-word',
-        };
         return (
           <td
             key={ci}
@@ -321,8 +406,8 @@ export const SearchableRichTable = (props) => {
           {!showNoRows ? (
             <span style={{ fontSize: '12px', color: '#6b7280', fontFamily: font, flexShrink: 0, whiteSpace: 'nowrap' }}>
               {hasQuery
-                ? filteredRows.length + ' of ' + allRows.length + ' rows match'
-                : allRows.length + (allRows.length === 1 ? ' row' : ' rows')}
+                ? activeCount + ' of ' + totalCount + ' rows match'
+                : totalCount + (totalCount === 1 ? ' row' : ' rows')}
             </span>
           ) : null}
         </div>
@@ -356,14 +441,14 @@ export const SearchableRichTable = (props) => {
             gap: '8px',
           }}>
             <span style={{ fontSize: '12px', color: '#6b7280', fontFamily: font, whiteSpace: 'nowrap' }}>
-              {(pageStart + 1) + '-' + Math.min(pageStart + perPage, filteredRows.length) + ' of ' + filteredRows.length + ' rows'}
+              {(pageStart + 1) + '-' + Math.min(pageStart + perPage, activeCount) + ' of ' + activeCount + ' rows'}
             </span>
             <div style={{ display: 'flex', alignItems: 'center', gap: '4px', flexWrap: 'wrap' }}>
               <button
                 onClick={() => goTo(safePage - 1)}
                 disabled={safePage === 1}
                 type="button"
-                style={{ ...btnBase, opacity: safePage === 1 ? 0.4 : 1, cursor: safePage === 1 ? 'default' : 'pointer' }}
+                style={Object.assign({}, btnBase, { opacity: safePage === 1 ? 0.4 : 1, cursor: safePage === 1 ? 'default' : 'pointer' })}
               >
                 Prev
               </button>
@@ -378,13 +463,12 @@ export const SearchableRichTable = (props) => {
                     key={i}
                     onClick={() => goTo(p)}
                     type="button"
-                    style={{
-                      ...btnBase,
+                    style={Object.assign({}, btnBase, {
                       backgroundColor: p === safePage ? blueBg : '#ffffff',
                       color: p === safePage ? blue : '#374151',
                       borderColor: p === safePage ? blue : border,
                       fontWeight: p === safePage ? '600' : '400',
-                    }}
+                    })}
                   >
                     {p}
                   </button>
@@ -394,7 +478,7 @@ export const SearchableRichTable = (props) => {
                 onClick={() => goTo(safePage + 1)}
                 disabled={safePage === totalPages}
                 type="button"
-                style={{ ...btnBase, opacity: safePage === totalPages ? 0.4 : 1, cursor: safePage === totalPages ? 'default' : 'pointer' }}
+                style={Object.assign({}, btnBase, { opacity: safePage === totalPages ? 0.4 : 1, cursor: safePage === totalPages ? 'default' : 'pointer' })}
               >
                 Next
               </button>
@@ -402,10 +486,10 @@ export const SearchableRichTable = (props) => {
           </div>
         ) : null}
 
-        {!showNoRows && !showEmpty && totalPages === 1 && filteredRows.length > 0 ? (
+        {!showNoRows && !showEmpty && totalPages === 1 && activeCount > 0 ? (
           <div style={{ padding: '8px 16px', borderTop: '1px solid ' + border, backgroundColor: '#f9fafb' }}>
             <span style={{ fontSize: '12px', color: '#6b7280', fontFamily: font }}>
-              {filteredRows.length + ' of ' + allRows.length + (allRows.length === 1 ? ' row' : ' rows') + (hasQuery ? ' match' : '')}
+              {activeCount + ' of ' + totalCount + (totalCount === 1 ? ' row' : ' rows') + (hasQuery ? ' match' : '')}
             </span>
           </div>
         ) : null}
