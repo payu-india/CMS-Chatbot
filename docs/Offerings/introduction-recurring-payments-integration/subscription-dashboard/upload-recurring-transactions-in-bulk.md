@@ -34,6 +34,8 @@ After you register for recurring payments in bulk, you can upload the recurring 
   You can schedule recurring debits for future date by passing the `debit_date` field in the YYYY-MM-DD format in the bulk upload file.
 </Callout>
 
+***
+
 ## Prerequisites
 
 * Download the sample file as in the below [procedure](#procedure) (Step 1 to 4) and update it to include the data to be uploaded.  
@@ -59,6 +61,8 @@ After you register for recurring payments in bulk, you can upload the recurring 
 * You can schedule a transaction for a future T+1 date or any date up to 3 month in advance.
 * You cannot schedule a transaction for a date more than 3 month from today — such rows will be rejected/marked as failed with an appropriate error.
 * If you don't provide a debit date, the transaction is processed right away.
+
+***
 
 ## Procedure
 
@@ -102,3 +106,31 @@ After your file is successfully uploaded, a message similar to the following scr
 <br />
 
 8. Click **Ok, Got it.**
+
+***
+
+## Sample Response
+
+You will receive the following data in the response
+
+| Column name             | value                                       |
+| ----------------------- | ------------------------------------------- |
+| authpayuid              | 30300810212                                 |
+| amount                  | 1.000000000000000000                        |
+| transactionid           | sample123497                                |
+| status                  | RC_DUE                                      |
+| pg_response             | Info Response: Invoice Created Successfully |
+| payuid                  |                                             |
+| scheduled_debit_date    | 06/10/26 19:26                              |
+| scheduled_predebit_date | 05/10/26 23:16                              |
+| predebit_status         | Success                                     |
+| recurring_status        | Scheduled                                   |
+| predebit_executed_at    | 05/10/26 23:16                              |
+| recurring_executed_at   |                                             |
+| failure_reason          | Info Response: Invoice Created Successfully |
+| currentstatus           | Scheduled                                   |
+| previousstatus          |                                             |
+| last_updated_at         | 05/10/26 23:16                              |
+| errormessage            |                                             |
+| errorcode               |                                             |
+| txndate                 |                                             |
