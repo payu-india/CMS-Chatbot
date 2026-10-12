@@ -6,7 +6,21 @@ excerpt: >-
 deprecated: false
 hidden: true
 metadata:
+  title: Test PayU Hosted Checkout Integration
+  description: >-
+    Test credentials and scenarios for PayU Hosted Checkout: NetBanking, debit
+    card, credit card, UPI, and wallet. Verify success and failure flows.
+  keywords:
+    - payu hosted checkout test integration
+    - payu test credentials netbanking card upi wallet
+    - payu test card numbers india mastercard visa rupay
+    - payu upi test vpa anything@payu
+    - payu sandbox test environment
+    - payu simulate success failure payment
+    - payu test.payu.in payment testing
   robots: index
+next:
+  description: Explore related information and resources.
 ---
 <Banner
   isInline={true}
