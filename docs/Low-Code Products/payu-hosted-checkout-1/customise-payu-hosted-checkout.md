@@ -100,75 +100,129 @@ Pass `enforce_paymethod` parameter in your <Anchor target="_blank" href="https:/
 
 To enforce multiple methods, separate values with `|`. For example `creditcard|upi`.
 
-### Single method (credit card only)
+### Use Cases
 
-<Tabs>
-  <Tab title="cURL">
-    ```bash
-    curl -X POST "https://test.payu.in/_payment" \
-      -H "Content-Type: application/x-www-form-urlencoded" \
-      -d "key=JP***g" \
-      -d "txnid=ENFCC001" \
-      -d "amount=10.00" \
-      -d "firstname=PayU%20User" \
-      -d "email=test@gmail.com" \
-      -d "phone=9876543210" \
-      -d "productinfo=iPhone" \
-      -d "surl=https://yourapp.com/success" \
-      -d "furl=https://yourapp.com/failure" \
-      -d "enforce_paymethod=creditcard" \
-      -d "hash=REPLACE_WITH_GENERATED_HASH"
-    ```
-  </Tab>
+Below are the multiple use cases.
 
-  <Tab title="Python">
-    ```python
-    import requests
+<Accordion title="Single Payment Method (Credit Card Only)" icon="fad fa-1">
+  Use below code to enforce only credit card.
 
-    payload = {
-        "key": "JP***g",
-        "txnid": "ENFCC001",
-        "amount": "10.00",
-        "firstname": "PayU User",
-        "email": "test@gmail.com",
-        "phone": "9876543210",
-        "productinfo": "iPhone",
-        "surl": "https://yourapp.com/success",
-        "furl": "https://yourapp.com/failure",
-        "enforce_paymethod": "creditcard",
-        "hash": "REPLACE_WITH_GENERATED_HASH",
-    }
-    response = requests.post("https://test.payu.in/_payment", data=payload)
-    print(response.text)
-    ```
-  </Tab>
+  ```curl
+  curl -X POST "https://test.payu.in/_payment" \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -d "key=JP***g" \
+    -d "txnid=ENFCC001" \
+    -d "amount=10.00" \
+    -d "firstname=PayU%20User" \
+    -d "email=test@gmail.com" \
+    -d "phone=9876543210" \
+    -d "productinfo=iPhone" \
+    -d "surl=https://yourapp.com/success" \
+    -d "furl=https://yourapp.com/failure" \
+    -d "enforce_paymethod=creditcard" \
+    -d "hash=REPLACE_WITH_GENERATED_HASH"
+  ```
+  ```python
+  import requests
 
-  <Tab title="Node.js">
-    ```javascript
-    const axios = require('axios');
-    const qs = require('querystring');
+  payload = {
+      "key": "JP***g",
+      "txnid": "ENFCC001",
+      "amount": "10.00",
+      "firstname": "PayU User",
+      "email": "test@gmail.com",
+      "phone": "9876543210",
+      "productinfo": "iPhone",
+      "surl": "https://yourapp.com/success",
+      "furl": "https://yourapp.com/failure",
+      "enforce_paymethod": "creditcard",
+      "hash": "REPLACE_WITH_GENERATED_HASH",
+  }
+  response = requests.post("https://test.payu.in/_payment", data=payload)
+  print(response.text)
+  ```
+  ```javascript
+  const axios = require('axios');
+  const qs = require('querystring');
 
-    const payload = {
-      key: 'JP***g',
-      txnid: 'ENFCC001',
-      amount: '10.00',
-      firstname: 'PayU User',
-      email: 'test@gmail.com',
-      phone: '9876543210',
-      productinfo: 'iPhone',
-      surl: 'https://yourapp.com/success',
-      furl: 'https://yourapp.com/failure',
-      enforce_paymethod: 'creditcard',
-      hash: 'REPLACE_WITH_GENERATED_HASH'
-    };
-    axios.post('https://test.payu.in/_payment', qs.stringify(payload));
-    ```
-  </Tab>
-</Tabs>
+  const payload = {
+    key: 'JP***g',
+    txnid: 'ENFCC001',
+    amount: '10.00',
+    firstname: 'PayU User',
+    email: 'test@gmail.com',
+    phone: '9876543210',
+    productinfo: 'iPhone',
+    surl: 'https://yourapp.com/success',
+    furl: 'https://yourapp.com/failure',
+    enforce_paymethod: 'creditcard',
+    hash: 'REPLACE_WITH_GENERATED_HASH'
+  };
+  axios.post('https://test.payu.in/_payment', qs.stringify(payload));
+  ```
+</Accordion>
 
-### Multiple methods (credit card and UPI only)
+<Accordion title="Multiple Methods (Credit Card and UPI Only)" icon="fad fa-list-timeline">
+  Pass `enforce_paymethod=creditcard|upi` — use `|` as separator, no spaces.
 
-Pass `enforce_paymethod=creditcard|upi` — use `|` as separator, no spaces.
+  ```curl
+  curl -X POST "https://test.payu.in/_payment" \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -d "key=JP***g" \
+    -d "txnid=ENFCC001" \
+    -d "amount=10.00" \
+    -d "firstname=PayU%20User" \
+    -d "email=test@gmail.com" \
+    -d "phone=9876543210" \
+    -d "productinfo=iPhone" \
+    -d "surl=https://yourapp.com/success" \
+    -d "furl=https://yourapp.com/failure" \
+    -d "enforce_paymethod=creditcard|upi" \
+    -d "hash=REPLACE_WITH_GENERATED_HASH"
+  ```
+  ```python
+  import requests
+
+  payload = {
+      "key": "JP***g",
+      "txnid": "ENFCC001",
+      "amount": "10.00",
+      "firstname": "PayU User",
+      "email": "test@gmail.com",
+      "phone": "9876543210",
+      "productinfo": "iPhone",
+      "surl": "https://yourapp.com/success",
+      "furl": "https://yourapp.com/failure",
+      "enforce_paymethod": "creditcard|upi",
+      "hash": "REPLACE_WITH_GENERATED_HASH",
+  }
+  response = requests.post("https://test.payu.in/_payment", data=payload)
+  print(response.text)
+  ```
+  ```javascript
+  const axios = require('axios');
+  const qs = require('querystring');
+
+  const payload = {
+    key: 'JP***g',
+    txnid: 'ENFCC001',
+    amount: '10.00',
+    firstname: 'PayU User',
+    email: 'test@gmail.com',
+    phone: '9876543210',
+    productinfo: 'iPhone',
+    surl: 'https://yourapp.com/success',
+    furl: 'https://yourapp.com/failure',
+    enforce_paymethod: 'creditcard|upi',
+    hash: 'REPLACE_WITH_GENERATED_HASH'
+  };
+  axios.post('https://test.payu.in/_payment', qs.stringify(payload));
+  ```
+</Accordion>
+
+###
+
+<br />
 
 ```bash
 curl -X POST "https://test.payu.in/_payment" \
