@@ -26,7 +26,7 @@ next:
 <Banner
   isInline={true}
   message="Integration effort: Minimal technical setup required"
-  color="#15C614"
+  color="#FFC107"
   textColor="#ffffff"
   fontSize="14px"
   fontWeight="bold"
@@ -64,9 +64,12 @@ These payment methods are enabled by default for all PayU Hosted Checkout integr
 
   1. Log in to [PayU Dashboard](https://payu.in/) and click **Payment Modes** under **Manage Checkout**.
 
+
      <Image src="https://files.readme.io/389134b9f74501150922f20236c09d7978f434c566cc4c073ba98f808342dd54-Screenshot_2026-10-12_at_3.25.34_PM.png" align="center" caption="Access Payment Modes" border={true} />
 
+
   2. Go to the required payment method tab.
+
   3. Click **Activate Now** (if the method is enabled and ready) or **Raise Request** (to request enablement).
 
   <Callout icon="fad fa-list-ol" theme="info">
