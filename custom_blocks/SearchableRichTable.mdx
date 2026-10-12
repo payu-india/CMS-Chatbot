@@ -7,10 +7,11 @@ export const SearchableRichTable = (props) => {
   const {
     headers      = [],
     headersJson  = '',
-    placeholder  = 'Search in table...',
-    maxHeight    = '480px',
-    rowsPerPage  = 50,
-    emptyMessage = 'No results found. Try a different search.',
+    placeholder       = 'Search in table...',
+    maxHeight         = '480px',
+    rowsPerPage       = 50,
+    lastColumnMaxLines = 0,
+    emptyMessage      = 'No results found. Try a different search.',
     className    = '',
     children,
   } = props;
@@ -211,22 +212,36 @@ export const SearchableRichTable = (props) => {
       );
     }
     return pageRows.map((row, rowIdx) => {
-      const isLast = rowIdx === pageRows.length - 1;
-      const bg     = rowIdx % 2 === 0 ? '#ffffff' : '#fafafa';
-      const cells  = toArray(row.props.children).map((cell, ci) => {
-        if (!isEl(cell)) return null;
+      const isLast    = rowIdx === pageRows.length - 1;
+      const bg        = rowIdx % 2 === 0 ? '#ffffff' : '#fafafa';
+      const cellNodes = toArray(row.props.children).filter(isEl);
+      const maxLines  = Number(lastColumnMaxLines);
+      const cells     = cellNodes.map((cell, ci) => {
+        const clampLast = maxLines > 0 && ci === cellNodes.length - 1;
+        const cellStyle = Object.assign(
+          {},
+          tdBase,
+          { borderBottom: isLast ? 'none' : '1px solid ' + border },
+          cell.props.style || {},
+          clampLast ? { maxWidth: '320px', whiteSpace: 'normal' } : {}
+        );
+        const clampStyle = {
+          display: '-webkit-box',
+          WebkitLineClamp: maxLines,
+          WebkitBoxOrient: 'vertical',
+          overflow: 'hidden',
+          wordBreak: 'break-word',
+        };
         return (
           <td
             key={ci}
             colSpan={cell.props.colSpan}
             rowSpan={cell.props.rowSpan}
-            style={{
-              ...tdBase,
-              borderBottom: isLast ? 'none' : '1px solid ' + border,
-              ...(cell.props.style || {}),
-            }}
+            style={cellStyle}
           >
-            {cell.props.children}
+            {clampLast ? (
+              <div style={clampStyle}>{cell.props.children}</div>
+            ) : cell.props.children}
           </td>
         );
       });
