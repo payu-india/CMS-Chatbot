@@ -361,7 +361,7 @@ Use bulk upload to create hundreds of payment links in one go. Each row in the C
   3. Once done, click **Generate Payment Links** (or the upload/submit button) to process your batch.
 
 
-     <Image src="https://files.readme.io/ed2ae0ea830f1c0c3cec866e2be547a59c9e589a2caf95dffa4075268d2b80f0-Screenshot_2026-09-18_at_3.39.58_PM.png" align="center" caption="Create and Send Payment Links" border={true} />
+     <Image src="https://files.readme.io/417233ce58e80c0b8af084094b475e307f574347144789853c3f70a90c30c728-Screenshot_2026-10-12_at_9.28.02_AM.png" align="center" caption="Create and Send Payment Links" border={true} />
 
 </Accordion>
 
