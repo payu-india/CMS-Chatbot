@@ -333,15 +333,16 @@ Use bulk upload to create hundreds of payment links in one go. Each row in the C
   3. Enter a **Batch description&#x20;**(optional): A label to help you identify this batch later.
 
 
-     <Image src="https://files.readme.io/b736def75c804d83e56904bd5b75f7c9538f35d522567cfc46200274e2f48209-Screenshot_2026-09-18_at_3.32.33_PM.png" align="center" caption="Upload and Set Batch Detials" border={true} />
+     <Image src="https://files.readme.io/39cc54ab1250e092ecda7bd4abf92fc3680665db9645b7d79cd8133326dfe64d-Screenshot_2026-10-12_at_9.23.53_AM.png" align="center" caption="Upload and Set Batch Detials" border={true} />
 
 </Accordion>
 
 <Accordion title="5. Choose Communication Channel Type" icon="far fa-bell">
-  Under **Communication Channel Type**, select how PayU should notify customers when their link is created. You can select both, one, or neither. If neither is selected, links are created but not sent. You can share them manually from the Payment Links Dashboard.
+  Under **Communication Channel Type**, select how PayU should notify customers when their link is created. You can select all, one, or neither. If neither is selected, links are created but not sent. You can share them manually from the Payment Links Dashboard.
 
-  - **Email**: sends the link to the customer's email address (if provided in the CSV)
-  - **SMS**: sends the link to the customer's mobile number (if provided in the CSV)
+  - **Email**: Sends the link to the customer's email address (if provided in the CSV)
+  - **SMS**: Sends the link to the customer's mobile number (if provided in the CSV)
+  - **WhatsApp:&#x20;**&#x53;ends the link to the customer's WhatsApp (if provided in the CSV)
 
   <Callout icon="📘" theme="info">
     ### **Note:**
