@@ -32,7 +32,7 @@ next:
   fontWeight="bold"
  />
 
-Customise your checkout experience for each transaction by passing optional parameters in the payment request. You can control which payment methods are available, which are hidden, and which language the checkout page displays in.
+Customise your <Anchor target="_blank" href="https://docs.payu.in/docs/payu-hosted-checkout-1">PayU Hosted checkout</Anchor> experience for each transaction by passing optional parameters in the payment request. You can control which payment methods are available, which are hidden, and which language the checkout page displays in.
 
 | Parameter                                | Goal                                     |
 | ---------------------------------------- | ---------------------------------------- |
