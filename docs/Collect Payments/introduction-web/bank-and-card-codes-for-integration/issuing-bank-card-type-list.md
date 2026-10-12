@@ -5,6 +5,8 @@ hidden: true
 metadata:
   robots: index
 ---
+This section lists the issuing-bank mappings supported for each card type. It includes the normalized issuing-bank identifier, the card-type code, and the original issuing-bank name provided in the source data.
+
 ## Visa (`VISA`)
 
 ### A–F
