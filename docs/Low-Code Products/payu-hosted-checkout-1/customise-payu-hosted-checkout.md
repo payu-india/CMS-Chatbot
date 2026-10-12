@@ -34,15 +34,15 @@ next:
 
 Customise your checkout experience for each transaction by passing optional parameters in the payment request. You can control which payment methods are available, which are hidden, and which language the checkout page displays in.
 
-| Goal                                     | Parameter                        |
-| ---------------------------------------- | -------------------------------- |
-| Show only specific payment methods       | `enforce_paymethod`              |
-| Hide specific payment methods            | `drop_category`                  |
-| Change checkout display language         | `display_lang`                   |
-| Enable BNPL, EMI, International Payments | PayU Dashboard → Manage Checkout |
+| Parameter                                | Goal                                     |
+| ---------------------------------------- | ---------------------------------------- |
+| `enforce_paymethod`                      | Show only specific payment methods       |
+| `drop_category`                          | Hide specific payment methods            |
+| `display_lang`                           | Change checkout display language         |
+| **PayU Dashboard** → **Manage Checkout** | Enable BNPL, EMI, International Payments |
 
 <Callout icon="📘" theme="info">
-  **Payment method eligibility**
+  ### **Payment Method Eligibility**
 
   Some payment methods (BNPL, EMI, International Payments) require PayU merchant eligibility or approval before they appear in checkout. Contact your PayU Key Account Manager to check eligibility and enable these methods.
 </Callout>
