@@ -34,7 +34,7 @@ next:
 Use this page to test your PayU Hosted Checkout integration end-to-end in the sandbox environment before going live.
 
 <Callout icon="⚠️" theme="warn">
-  **Use test credentials only**
+  ### **Use Test Credentials Only**
 
   The credentials on this page are for the PayU test environment (`https://test.payu.in`). Never use test keys or salts in production, and never use production keys in the test environment.
 </Callout>
