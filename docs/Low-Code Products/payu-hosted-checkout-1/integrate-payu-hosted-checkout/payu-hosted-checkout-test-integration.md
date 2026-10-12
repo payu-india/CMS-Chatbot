@@ -62,16 +62,16 @@ Verify the following before running test transactions:
 
 ### Scenario 1: Successful Payment
 
-<Accordion title="Steps to Test Successful Payment" icon="fa-circle-check">
+<Accordion title="Steps to Test the Successful Payment" icon="fa-circle-check">
   1. Open your payment HTML form in a browser.
   2. The form auto-submits and redirects you to the PayU test checkout page.
-  3. Select a payment method (see test credentials below).
-  4. Enter the test credentials for that method.
+  3. Select a payment method.
+  4. Enter the test credentials for that method. See the test credentials section below.
   5. Complete authentication (OTP where required).
   6. Verify you are redirected to your `surl`.
   7. On your server, verify the response hash using the reverse hash formula.
 
-  **Expected results:**
+  **Expected Results:**
 
   - Customer redirected to `surl`
   - Response `status=success`
@@ -81,12 +81,11 @@ Verify the following before running test transactions:
 
 ### Scenario 2: Failed Payment
 
-<Accordion title="Steps" icon="fa-vial">
+<Accordion title="Steps to Test the Failed Payment" icon="fa-vial">
   1. Open your payment HTML form in a browser.
   2. Select any payment method.
   3. Enter **invalid** test credentials (wrong OTP, wrong card number format, etc.).
   4. Verify you are redirected to your `furl`.
-  5. On your server, verify the response hash using the reverse hash formula.
 
   **Expected results:**
 
@@ -98,7 +97,7 @@ Verify the following before running test transactions:
 
 ### Scenario 3: Customer Abandons Payment
 
-<Accordion title="Steps" icon="fa-person-running">
+<Accordion title="Steps to Test the Payment Abandoned by the Customer" icon="fa-person-running">
   1. Open your payment HTML form in a browser.
   2. On the PayU checkout page, click **Back** or close the browser tab without completing payment.
   3. Verify your order system handles this gracefully.
