@@ -120,17 +120,17 @@ You will receive the following data in the response
 | transactionid           | sample123497                                |
 | status                  | RC_DUE                                      |
 | pg_response             | Info Response: Invoice Created Successfully |
-| payuid                  |                                             |
+| payuid                  | \{\{PAYU_ID\}\}                             |
 | scheduled_debit_date    | 06/10/26 19:26                              |
 | scheduled_predebit_date | 05/10/26 23:16                              |
 | predebit_status         | Success                                     |
 | recurring_status        | Scheduled                                   |
 | predebit_executed_at    | 05/10/26 23:16                              |
-| recurring_executed_at   |                                             |
+| recurring_executed_at   | \-                                          |
 | failure_reason          | Info Response: Invoice Created Successfully |
 | currentstatus           | Scheduled                                   |
-| previousstatus          |                                             |
+| previousstatus          | \-                                          |
 | last_updated_at         | 05/10/26 23:16                              |
-| errormessage            |                                             |
-| errorcode               |                                             |
-| txndate                 |                                             |
+| errormessage            | \-                                          |
+| errorcode               | \-                                          |
+| txndate                 | \-                                          |
