@@ -224,15 +224,25 @@ See <Anchor target="_blank" href="https://docs.payu.in/docs/manage-webhooks-usin
 
 ## Common Test Failures
 
-**Hash mismatch** — Check parameter order, confirm empty UDF pipes are present, verify you're using test salt not production salt.
+<Cards>
+  <Card title="Hash Mismatch" icon="fad fa-not-equal">
+    Check parameter order, confirm empty UDF pipes are present, verify you're using test salt not production salt.
+  </Card>
 
-**Page not loading** — Ensure `method="post"` in your form and the endpoint is `https://test.payu.in/_payment` (not production).
+  <Card title="Page Not Loading" icon="fad fa-link-slash">
+    Ensure `method="post"` in your form and the endpoint is `https://test.payu.in/_payment` (not production).
+  </Card>
 
-**Callback not arriving** — Your `surl`/`furl` must be a publicly reachable HTTPS URL. Localhost won't work — use `https://test-payment-middleware.payu.in/simulatorResponse` temporarily.
+  <Card title="Not Receiving Callback" icon="fad fa-webhook">
+    Your `surl`/`furl` must be a publicly reachable HTTPS URL. Localhost won't work — use `https://test-payment-middleware.payu.in/simulatorResponse` temporarily.
+  </Card>
 
-**Amount format issue** — Always send amount as `10.00` (decimal), not `10` or `₹10`. The hash is built with the exact string you pass.
+  <Card title="Amount Format Issue" icon="fad fa-money-from-bracket">
+    Always send amount as `10.00` (decimal), not `10` or `₹10`. The hash is built with the exact string you pass.
+  </Card>
+</Cards>
 
-For a full list, see [Errors and Troubleshooting](../errors-and-troubleshooting).
+Refer to thge [Errors and Troubleshooting](../errors-and-troubleshooting) page for a complete list.
 
 ***
 
