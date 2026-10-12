@@ -47,6 +47,14 @@ Customise your <Anchor target="_blank" href="https://docs.payu.in/docs/payu-host
   Payment methods such as BNPL, EMI, and International Payments require PayU merchant eligibility or approval before they appear in checkout. Contact your PayU Key Account Manager to check eligibility and enable these methods.
 </Callout>
 
+These parameters are added as optional fields in the same payment request you build in Build Integration:
+
+<Cards columns="1">
+  <Card title="Build Integration" href="./integrate/build-integration" icon="fa-code">
+    Add customisation parameters to your payment request — see <Anchor target="_blank" href="https://docs.payu.in/docs/payu-hosted-checkout-build-integration#step-1-prepare-payment-request-parameters">Step 1: Optional Parameters</Anchor> and <Anchor target="_blank" href="https://docs.payu.in/docs/payu-hosted-checkout-build-integration#step-3-redirect-customers-to-payu-checkout">Step 3</Anchor>.
+  </Card>
+</Cards>
+
 ***
 
 ## Enable or Activate Payment Methods
