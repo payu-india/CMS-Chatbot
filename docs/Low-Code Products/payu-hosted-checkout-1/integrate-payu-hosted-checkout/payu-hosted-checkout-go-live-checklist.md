@@ -84,39 +84,39 @@ Work through this checklist before switching your PayU Hosted Checkout integrati
 
 ## 4. Configure Webhooks
 
-<Accordion title="Set up server-to-server payment notifications" icon="fa-plug">
-  Webhooks are strongly recommended for production. They provide reliable payment confirmation that doesn't depend on the customer's browser session staying active.
+<Accordion title="Set Up Server-To-Server Payment Notifications" icon="fa-plug">
+  Webhooks are strongly recommended for production. They provide reliable payment confirmation that does not depend on the customer's browser session staying active.
 
-  - [ ] Configure your webhook endpoint in PayU Dashboard → Developer Settings → Webhooks.
-  - [ ] Webhook endpoint is a publicly reachable HTTPS URL.
-  - [ ] Webhook handler verifies the response hash before processing.
-  - [ ] Webhook handler returns HTTP 200 after successfully processing the notification.
-  - [ ] Webhook handler handles duplicate notifications idempotently (same `txnid` arriving twice does not create two successful orders).
+  - [x] Configure your webhook endpoint in **PayU Dashboard** → **Developer** → **Webhooks**.
+  - [x] Webhook endpoint is a publicly reachable HTTPS URL.
+  - [x] Webhook handler verifies the response hash before processing.
+  - [x] Webhook handler returns HTTP 200 after successfully processing the notification.
+  - [x] Webhook handler handles duplicate notifications idempotently (same `txnid` arriving twice does not create two successful orders).
 
-  See [Manage Webhooks](https://docs.payu.in/docs/webhook-events-and-sample-payloads) for setup details.
+  See <Anchor target="_blank" href="https://docs.payu.in/docs/manage-webhooks-using-dashboard">Manage Webhooks</Anchor> for setup details.
 </Accordion>
 
 ***
 
 ## 5. Production Readiness Verification
 
-<Accordion title="Functional verification" icon="fa-clipboard-check">
-  - [ ] Successful payment flow tested end-to-end in test environment.
-  - [ ] Failed payment flow tested — `furl` triggers, order remains unpaid.
-  - [ ] Pending payment flow handled — `surl` triggers with `status=pending`, order not marked as paid until confirmed.
-  - [ ] Customer browser-close / abandonment scenario handled gracefully.
-  - [ ] Reverse hash validation implemented and tested.
-  - [ ] Duplicate callback/webhook protection implemented.
-  - [ ] Callback retry handling: if `surl`/`furl` or webhook fails, PayU retries — ensure your handler is idempotent.
-  - [ ] Alerting or monitoring in place for failed hash validations and webhook delivery failures.
+<Accordion title="Functional Verification" icon="fa-clipboard-check">
+  - [x] Successful payment flow tested end-to-end in test environment.
+  - [x] Failed payment flow tested — `furl` triggers, order remains unpaid.
+  - [x] Pending payment flow handled — `surl` triggers with `status=pending`, order not marked as paid until confirmed.
+  - [x] Customer browser-close / abandonment scenario handled gracefully.
+  - [x] Reverse hash validation implemented and tested.
+  - [x] Duplicate callback/webhook protection implemented.
+  - [x] Callback retry handling: if `surl`/`furl` or webhook fails, PayU retries — ensure your handler is idempotent.
+  - [x] Alerting or monitoring in place for failed hash validations and webhook delivery failures.
 </Accordion>
 
-<Accordion title="Order management verification" icon="fa-list-check">
-  - [ ] Unique `txnid` generated for every payment attempt (including retries).
-  - [ ] `txnid` stored in your database before redirecting the customer.
-  - [ ] Order status transitions are consistent: Unpaid → Pending → Paid (or Failed).
-  - [ ] Amount validation: response `amount` is verified against the order amount in your system.
-  - [ ] `txnid` validation: response `txnid` is verified against a known order in your system.
+<Accordion title="Order Management Verification" icon="fa-list-check">
+  - [x] Unique `txnid` generated for every payment attempt (including retries).
+  - [x] `txnid` stored in your database before redirecting the customer.
+  - [x] Order status transitions are consistent: Unpaid → Pending → Paid (or Failed).
+  - [x] Amount validation: response `amount` is verified against the order amount in your system.
+  - [x] `txnid` validation: response `txnid` is verified against a known order in your system.
 </Accordion>
 
 ***
@@ -126,7 +126,9 @@ Work through this checklist before switching your PayU Hosted Checkout integrati
 Once all items above are checked, you are ready to go live.
 
 <Callout icon="✅" theme="success">
-  **After going live:** Monitor your first few live transactions closely. Check PayU Dashboard → Transactions to confirm payments appear with `status=success` and your webhook/callback handler is receiving and processing responses correctly.
+  ### **After Going Live:**
+
+  Monitor your first few live transactions closely. Check **PayU Dashboard** → **Transactions** to confirm payments appear with `status=success` and your webhook/callback handler is receiving and processing responses correctly.
 </Callout>
 
 If you run into issues during or after go-live, see [Errors and Troubleshooting](../errors-and-troubleshooting) or contact [PayU Support](https://support.payu.in/).
