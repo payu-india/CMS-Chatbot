@@ -45,13 +45,15 @@ Use this page to test your <Anchor target="_blank" href="https://docs.payu.in/do
 
 Verify the following before running test transactions:
 
-- You are using your **test** merchant key and salt (not production). Get these from PayU Dashboard → Developer Settings → Test Keys. See [Generate Test Key and Salt](https://docs.payu.in/docs/generate-test-merchant-key-and-salt).
-- Your HTML form `action` URL is `https://test.payu.in/_payment` — **not** the production URL.
+- You are using your **test** merchant key and salt (not production). Get these from PayU Dashboard → **Developer** → **API Keys**. See [Generate Test Key and Salt](https://docs.payu.in/docs/generate-test-merchant-key-and-salt).
+- Your HTML form `action` URL is `https://test.payu.in/_payment` and not the production URL.
 - Your hash is generated with the test salt.
 - Your `surl` and `furl` are publicly reachable HTTPS endpoints (not localhost). For initial testing, you can use `https://test-payment-middleware.payu.in/simulatorResponse`.
 
-<Callout icon="📘" theme="info">
-  **Tip:** The most common test failure is an incorrect hash. Print the exact string you pass to the SHA-512 function on your server, and verify it follows the formula `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT` with empty string placeholders for unused UDFs.
+<Callout icon="fad fa-exclamation" theme="error">
+  ### **Important:**
+
+  The most common test failure is an incorrect hash. Print the exact string you pass to the SHA-512 function on your server, and verify it follows the formula `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT` with empty string placeholders for unused UDFs.
 </Callout>
 
 ***
@@ -60,7 +62,7 @@ Verify the following before running test transactions:
 
 ### Scenario 1: Successful Payment
 
-<Accordion title="Steps" icon="fa-circle-check">
+<Accordion title="Steps to Test Successful Payment" icon="fa-circle-check">
   1. Open your payment HTML form in a browser.
   2. The form auto-submits and redirects you to the PayU test checkout page.
   3. Select a payment method (see test credentials below).
