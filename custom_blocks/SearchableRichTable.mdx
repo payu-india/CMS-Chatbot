@@ -1,0 +1,481 @@
+---
+name: SearchableRichTable
+---
+import { useState, useMemo, useEffect } from 'react';
+
+export const SearchableRichTable = (props) => {
+  const {
+    headers      = [],
+    headersJson  = '',
+    placeholder  = 'Search in table...',
+    maxHeight    = '480px',
+    rowsPerPage  = 50,
+    emptyMessage = 'No results found. Try a different search.',
+    className    = '',
+    children,
+  } = props;
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const parseJson = (text, fallback) => {
+    if (text == null || text === '') return fallback;
+    if (typeof text !== 'string') return text;
+    const t = text.trim();
+    if (!t) return fallback;
+    try { return JSON.parse(t); } catch (e) { return fallback; }
+  };
+
+  const toArray = (c) => {
+    if (c == null) return [];
+    if (Array.isArray(c)) return c;
+    return [c];
+  };
+
+  const isEl = (n) => (n != null && typeof n === 'object' && n.type != null && n.props != null);
+
+  const extractText = (node) => {
+    if (node == null || node === false || node === true) return '';
+    if (typeof node === 'string')  return node;
+    if (typeof node === 'number')  return String(node);
+    if (Array.isArray(node))       return node.map(extractText).join(' ');
+    if (isEl(node)) {
+      const p = node.props;
+      return [
+        extractText(p.children),
+        p.alt    ? String(p.alt)   : '',
+        p.title  ? String(p.title) : '',
+        p.label  ? String(p.label) : '',
+        typeof p.value === 'string' ? p.value : '',
+      ].join(' ');
+    }
+    return '';
+  };
+
+  const normalize = (str) =>
+    String(str == null ? '' : str).toLowerCase().trim().replace(/\s+/g, ' ');
+
+  const resolvedHeaders = useMemo(() => {
+    const fromJson = parseJson(headersJson, null);
+    if (Array.isArray(fromJson) && fromJson.length > 0)
+      return fromJson.map((h) => String(h == null ? '' : h));
+    if (Array.isArray(headers) && headers.length > 0)
+      return headers.map((h) => String(h == null ? '' : h));
+    return [];
+  }, [headers, headersJson]);
+
+  const allRows = useMemo(() => {
+    const result = [];
+    const collect = (nodes) => {
+      toArray(nodes).forEach((child) => {
+        if (!isEl(child)) return;
+        const tag = typeof child.type === 'string' ? child.type.toLowerCase() : '';
+        if (tag === 'tr') {
+          result.push(child);
+        } else if (tag === 'tbody' || tag === 'thead' || tag === 'table') {
+          collect(child.props.children);
+        }
+      });
+    };
+    collect(children);
+    return result;
+  }, [children]);
+
+  const rowTextIndex = useMemo(
+    () => allRows.map((row) => normalize(extractText(row))),
+    [allRows]
+  );
+
+  const filteredRows = useMemo(() => {
+    const q = normalize(searchQuery);
+    if (!q) return allRows;
+    const words = q.split(/\s+/).filter(Boolean);
+    return allRows.filter((_, i) => words.every((w) => rowTextIndex[i].includes(w)));
+  }, [allRows, rowTextIndex, searchQuery]);
+
+  useEffect(() => { setCurrentPage(1); }, [searchQuery]);
+
+  const perPage    = Math.max(1, Number(rowsPerPage) || 50);
+  const totalPages = Math.max(1, Math.ceil(filteredRows.length / perPage));
+  const safePage   = Math.min(currentPage, totalPages);
+  const pageStart  = (safePage - 1) * perPage;
+  const pageRows   = filteredRows.slice(pageStart, pageStart + perPage);
+
+  const goTo = (page) => {
+    if (page >= 1 && page <= totalPages) setCurrentPage(page);
+  };
+
+  const pageNumbers = useMemo(() => {
+    if (totalPages <= 7) return Array.from({ length: totalPages }, (_, i) => i + 1);
+    const list = [];
+    const add  = (v) => { if (!list.includes(v)) list.push(v); };
+    add(1);
+    if (safePage > 3) add('...');
+    const lo = Math.max(2, safePage - 1);
+    const hi = Math.min(totalPages - 1, safePage + 1);
+    for (let i = lo; i <= hi; i++) add(i);
+    if (safePage < totalPages - 2) add('...');
+    add(totalPages);
+    return list;
+  }, [totalPages, safePage]);
+
+  const hasQuery   = normalize(searchQuery).length > 0;
+  const showEmpty  = hasQuery && filteredRows.length === 0;
+  const showNoRows = allRows.length === 0 && !showEmpty;
+  const colCount   = resolvedHeaders.length || 3;
+
+  const font   = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
+  const border = '#e5e7eb';
+  const blue   = '#3b82f6';
+  const blueBg = '#eff6ff';
+
+  const thStyle = {
+    padding: '10px 16px',
+    textAlign: 'left',
+    fontFamily: font,
+    fontSize: '12px',
+    fontWeight: '700',
+    color: '#374151',
+    textTransform: 'uppercase',
+    letterSpacing: '0.06em',
+    backgroundColor: '#f9fafb',
+    borderBottom: '1px solid ' + border,
+    borderTop: 'none', borderLeft: 'none', borderRight: 'none',
+    verticalAlign: 'middle',
+    boxSizing: 'border-box',
+    whiteSpace: 'nowrap',
+  };
+
+  const tdBase = {
+    padding: '12px 16px',
+    fontFamily: font,
+    fontSize: '14px',
+    fontWeight: '400',
+    lineHeight: '1.6',
+    color: '#111827',
+    borderTop: 'none', borderLeft: 'none', borderRight: 'none',
+    verticalAlign: 'top',
+    boxSizing: 'border-box',
+    wordBreak: 'break-word',
+    overflowWrap: 'break-word',
+  };
+
+  const msgStyle = {
+    padding: '24px 16px',
+    fontFamily: font,
+    fontSize: '14px',
+    color: '#6b7280',
+    border: 'none',
+    textAlign: 'center',
+    boxSizing: 'border-box',
+  };
+
+  const btnBase = {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '30px',
+    padding: '0 10px',
+    border: '1px solid ' + border,
+    borderRadius: '6px',
+    backgroundColor: '#ffffff',
+    color: '#374151',
+    fontFamily: font,
+    fontSize: '13px',
+    fontWeight: '400',
+    cursor: 'pointer',
+    boxSizing: 'border-box',
+    userSelect: 'none',
+    minWidth: '30px',
+  };
+
+  const renderRows = () => {
+    if (showNoRows) {
+      return (
+        <tr>
+          <td colSpan={colCount} style={msgStyle}>
+            Add &lt;tr&gt; children to SearchableRichTable. Each &lt;td&gt; cell
+            supports any ReadMe component: Callout, Code, Image, Accordion, Tabs...
+          </td>
+        </tr>
+      );
+    }
+    if (showEmpty) {
+      return (
+        <tr>
+          <td colSpan={colCount} role="alert"
+            style={{ ...msgStyle, backgroundColor: '#fef2f2', color: '#b91c1c' }}>
+            {emptyMessage}
+          </td>
+        </tr>
+      );
+    }
+    return pageRows.map((row, rowIdx) => {
+      const isLast = rowIdx === pageRows.length - 1;
+      const bg     = rowIdx % 2 === 0 ? '#ffffff' : '#fafafa';
+      const cells  = toArray(row.props.children).map((cell, ci) => {
+        if (!isEl(cell)) return null;
+        return (
+          <td
+            key={ci}
+            colSpan={cell.props.colSpan}
+            rowSpan={cell.props.rowSpan}
+            style={{
+              ...tdBase,
+              borderBottom: isLast ? 'none' : '1px solid ' + border,
+              ...(cell.props.style || {}),
+            }}
+          >
+            {cell.props.children}
+          </td>
+        );
+      });
+      return (
+        <tr key={pageStart + rowIdx} style={{ backgroundColor: bg }}>
+          {cells}
+        </tr>
+      );
+    });
+  };
+
+  return (
+    <div
+      className={className}
+      style={{ width: '100%', fontFamily: font, fontSize: '14px', color: '#111827' }}
+    >
+      <div style={{
+        width: '100%',
+        border: '1px solid ' + border,
+        borderRadius: '8px',
+        overflow: 'hidden',
+        boxSizing: 'border-box',
+        backgroundColor: '#ffffff',
+      }}>
+
+        <div style={{
+          padding: '12px 16px',
+          backgroundColor: '#f9fafb',
+          borderBottom: '1px solid ' + border,
+          display: 'flex',
+          alignItems: 'center',
+          gap: '12px',
+          flexWrap: 'wrap',
+        }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            flex: '1 1 200px',
+            maxWidth: '400px',
+            border: '1px solid #d1d5db',
+            borderRadius: '6px',
+            backgroundColor: '#ffffff',
+            boxShadow: '0 1px 2px rgba(0,0,0,0.05)',
+          }}>
+            <span aria-hidden="true" style={{ display: 'flex', alignItems: 'center', paddingLeft: '12px', color: '#9ca3af', flexShrink: 0 }}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
+              </svg>
+            </span>
+            <input
+              type="search"
+              placeholder={placeholder}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              aria-label="Search table rows"
+              style={{
+                flex: 1, minWidth: 0,
+                padding: '8px 8px 8px 8px',
+                border: 0, backgroundColor: 'transparent', outline: 'none',
+                fontSize: '14px', fontFamily: font, color: '#111827',
+              }}
+            />
+            {searchQuery ? (
+              <button
+                onClick={() => setSearchQuery('')}
+                aria-label="Clear search"
+                type="button"
+                style={{ display: 'flex', alignItems: 'center', padding: '0 10px', border: 0, background: 'transparent', cursor: 'pointer', color: '#9ca3af', flexShrink: 0 }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 6 6 18M6 6l12 12" />
+                </svg>
+              </button>
+            ) : null}
+          </div>
+          {!showNoRows ? (
+            <span style={{ fontSize: '12px', color: '#6b7280', fontFamily: font, flexShrink: 0, whiteSpace: 'nowrap' }}>
+              {hasQuery
+                ? filteredRows.length + ' of ' + allRows.length + ' rows match'
+                : allRows.length + (allRows.length === 1 ? ' row' : ' rows')}
+            </span>
+          ) : null}
+        </div>
+
+        <div style={{ overflowX: 'auto', overflowY: 'auto', maxHeight: showEmpty || showNoRows ? 'none' : maxHeight, width: '100%' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', borderSpacing: 0, margin: 0, tableLayout: 'auto', fontFamily: font }}>
+            {resolvedHeaders.length > 0 ? (
+              <thead>
+                <tr>
+                  {resolvedHeaders.map((h, i) => (
+                    <th key={i} scope="col" style={thStyle}>{h}</th>
+                  ))}
+                </tr>
+              </thead>
+            ) : null}
+            <tbody>
+              {renderRows()}
+            </tbody>
+          </table>
+        </div>
+
+        {!showNoRows && !showEmpty && totalPages > 1 ? (
+          <div style={{
+            padding: '10px 16px',
+            borderTop: '1px solid ' + border,
+            backgroundColor: '#f9fafb',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: '8px',
+          }}>
+            <span style={{ fontSize: '12px', color: '#6b7280', fontFamily: font, whiteSpace: 'nowrap' }}>
+              {(pageStart + 1) + '-' + Math.min(pageStart + perPage, filteredRows.length) + ' of ' + filteredRows.length + ' rows'}
+            </span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '4px', flexWrap: 'wrap' }}>
+              <button
+                onClick={() => goTo(safePage - 1)}
+                disabled={safePage === 1}
+                type="button"
+                style={{ ...btnBase, opacity: safePage === 1 ? 0.4 : 1, cursor: safePage === 1 ? 'default' : 'pointer' }}
+              >
+                Prev
+              </button>
+              {pageNumbers.map((p, i) => {
+                if (p === '...') {
+                  return (
+                    <span key={i} style={{ padding: '0 4px', color: '#9ca3af', fontFamily: font, fontSize: '13px' }}>...</span>
+                  );
+                }
+                return (
+                  <button
+                    key={i}
+                    onClick={() => goTo(p)}
+                    type="button"
+                    style={{
+                      ...btnBase,
+                      backgroundColor: p === safePage ? blueBg : '#ffffff',
+                      color: p === safePage ? blue : '#374151',
+                      borderColor: p === safePage ? blue : border,
+                      fontWeight: p === safePage ? '600' : '400',
+                    }}
+                  >
+                    {p}
+                  </button>
+                );
+              })}
+              <button
+                onClick={() => goTo(safePage + 1)}
+                disabled={safePage === totalPages}
+                type="button"
+                style={{ ...btnBase, opacity: safePage === totalPages ? 0.4 : 1, cursor: safePage === totalPages ? 'default' : 'pointer' }}
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        ) : null}
+
+        {!showNoRows && !showEmpty && totalPages === 1 && filteredRows.length > 0 ? (
+          <div style={{ padding: '8px 16px', borderTop: '1px solid ' + border, backgroundColor: '#f9fafb' }}>
+            <span style={{ fontSize: '12px', color: '#6b7280', fontFamily: font }}>
+              {filteredRows.length + ' of ' + allRows.length + (allRows.length === 1 ? ' row' : ' rows') + (hasQuery ? ' match' : '')}
+            </span>
+          </div>
+        ) : null}
+
+      </div>
+    </div>
+  );
+};
+
+
+<SearchableRichTable
+  headersJson='["Parameter","Type","Required","Description"]'
+  placeholder="Search parameters..."
+  maxHeight="400px"
+>
+  <tr>
+    <td><code>key</code></td>
+    <td>string</td>
+    <td><strong>Yes</strong></td>
+    <td>Your PayU merchant API key obtained from the dashboard.</td>
+  </tr>
+  <tr>
+    <td><code>txnid</code></td>
+    <td>string</td>
+    <td><strong>Yes</strong></td>
+    <td>Unique transaction ID (alphanumeric, max 25 chars). Generated by you.</td>
+  </tr>
+  <tr>
+    <td><code>amount</code></td>
+    <td>number</td>
+    <td><strong>Yes</strong></td>
+    <td>Transaction amount in INR. Minimum value: 1.</td>
+  </tr>
+  <tr>
+    <td><code>productinfo</code></td>
+    <td>string</td>
+    <td><strong>Yes</strong></td>
+    <td>Short description of the product or service being purchased.</td>
+  </tr>
+  <tr>
+    <td><code>firstname</code></td>
+    <td>string</td>
+    <td><strong>Yes</strong></td>
+    <td>First name of the customer making the payment.</td>
+  </tr>
+  <tr>
+    <td><code>email</code></td>
+    <td>string</td>
+    <td><strong>Yes</strong></td>
+    <td>Email address of the customer.</td>
+  </tr>
+  <tr>
+    <td><code>phone</code></td>
+    <td>string</td>
+    <td><strong>Yes</strong></td>
+    <td>10-digit mobile number of the customer.</td>
+  </tr>
+  <tr>
+    <td><code>surl</code></td>
+    <td>string</td>
+    <td><strong>Yes</strong></td>
+    <td>Success redirect URL. PayU POST-redirects the payment response here on success.</td>
+  </tr>
+  <tr>
+    <td><code>furl</code></td>
+    <td>string</td>
+    <td><strong>Yes</strong></td>
+    <td>Failure redirect URL. PayU POST-redirects the payment response here on failure.</td>
+  </tr>
+  <tr>
+    <td><code>hash</code></td>
+    <td>string</td>
+    <td><strong>Yes</strong></td>
+    <td>SHA-512 HMAC of all required fields. See the Hashing guide for the exact formula.</td>
+  </tr>
+  <tr>
+    <td><code>udf1</code></td>
+    <td>string</td>
+    <td>No</td>
+    <td>User-defined field 1. Returned unchanged in the payment response.</td>
+  </tr>
+  <tr>
+    <td><code>udf2</code></td>
+    <td>string</td>
+    <td>No</td>
+    <td>User-defined field 2. Same pass-through behaviour as udf1.</td>
+  </tr>
+</SearchableRichTable>
