@@ -290,6 +290,7 @@ export const SearchableRichTable = (props) => {
                 {},
                 tdBase,
                 { borderBottom: isLast ? 'none' : '1px solid ' + border },
+                { borderRight: ci < row.length - 1 ? '1px solid ' + border : 'none' },
                 clampLast ? { whiteSpace: 'normal' } : {}
               );
               const content = renderJsonCell(cell, ci);
@@ -314,6 +315,7 @@ export const SearchableRichTable = (props) => {
           {},
           tdBase,
           { borderBottom: isLast ? 'none' : '1px solid ' + border },
+          { borderRight: ci < cellNodes.length - 1 ? '1px solid ' + border : 'none' },
           cell.props.style || {},
           clampLast ? { whiteSpace: 'normal' } : {}
         );
@@ -418,7 +420,7 @@ export const SearchableRichTable = (props) => {
               <thead>
                 <tr>
                   {resolvedHeaders.map((h, i) => (
-                    <th key={i} scope="col" style={thStyle}>{h}</th>
+                    <th key={i} scope="col" style={Object.assign({}, thStyle, { borderRight: i < resolvedHeaders.length - 1 ? '1px solid ' + border : 'none' })}>{h}</th>
                   ))}
                 </tr>
               </thead>
