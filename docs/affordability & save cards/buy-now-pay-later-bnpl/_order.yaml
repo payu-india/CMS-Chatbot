@@ -1,4 +1,5 @@
 - bnpl-integration-workflow
+- bnpl-quick-start-integration
 - net-banking-integration-bnpl-with-merchant-hosted
 - bnpl-link-pay-merchant-hosted
 - bnpl-merchant-hosted-integration
@@ -6,4 +7,3 @@
 - test-integration-bnpl
 - errors-and-troubleshooting-bnpl
 - bnpl-faqs
-- bnpl-quick-start-integration
