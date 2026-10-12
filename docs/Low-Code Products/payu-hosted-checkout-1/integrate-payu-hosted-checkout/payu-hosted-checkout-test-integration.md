@@ -31,7 +31,7 @@ next:
   fontWeight="bold"
  />
 
-Use this page to test your PayU Hosted Checkout integration end-to-end in the sandbox environment before going live.
+Use this page to test your <Anchor target="_blank" href="https://docs.payu.in/docs/payu-hosted-checkout-build-integration">built PayU Hosted Checkout</Anchor> integration end-to-end in the sandbox environment before going live.
 
 <Callout icon="⚠️" theme="warn">
   ### **Use Test Credentials Only**
