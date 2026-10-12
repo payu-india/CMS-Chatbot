@@ -44,7 +44,7 @@ Customise your checkout experience for each transaction by passing optional para
 <Callout icon="📘" theme="info">
   ### **Payment Method Eligibility**
 
-  Some payment methods (BNPL, EMI, International Payments) require PayU merchant eligibility or approval before they appear in checkout. Contact your PayU Key Account Manager to check eligibility and enable these methods.
+  Payment methods such as BNPL, EMI, and International Payments require PayU merchant eligibility or approval before they appear in checkout. Contact your PayU Key Account Manager to check eligibility and enable these methods.
 </Callout>
 
 ***
