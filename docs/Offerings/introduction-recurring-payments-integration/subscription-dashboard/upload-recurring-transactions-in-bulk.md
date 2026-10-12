@@ -95,4 +95,10 @@ After uploading the file, the system will automatically check for discrepancies.
 <Image src="https://files.readme.io/9870655ee9e9176030cb0cbd99f85e9dece3aabbda328c6f8be8d871d1b31bab-dashboard-subscription-recurring-bulk-upload-error.png" align="center" border={true} />
 
 
-After your file is successfully uploaded, a message similar to the following screenshot is displayed and then you will be redirected to the _Bulk Upload_ listing screen.
+After your file is successfully uploaded, a message similar to the following screenshot is displayed.&#x20;
+
+![](https://files.readme.io/c45881e015685b64795f94211d311a664f4d252d3482a98487ae4e6c49e7edb5-Screenshot_2026-10-12_at_11.43.29_AM.png)
+
+<br />
+
+8. Click **Ok, Got it.**
