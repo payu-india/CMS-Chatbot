@@ -420,7 +420,10 @@ export const SearchableRichTable = (props) => {
               <thead>
                 <tr>
                   {resolvedHeaders.map((h, i) => (
-                    <th key={i} scope="col" style={Object.assign({}, thStyle, { borderRight: i < resolvedHeaders.length - 1 ? '1px solid ' + border : 'none' })}>{h}</th>
+                    <th key={i} scope="col" style={Object.assign({}, thStyle, {
+                      borderRight: i < resolvedHeaders.length - 1 ? '1px solid ' + border : 'none',
+                      width: i === resolvedHeaders.length - 1 ? '100%' : 'auto',
+                    })}>{h}</th>
                   ))}
                 </tr>
               </thead>
