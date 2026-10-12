@@ -1,11 +1,13 @@
 ---
-title: Go-live Checklist
+title: Go-Live Checklist
 excerpt: >-
   Production readiness checklist for PayU Hosted Checkout. Switch credentials,
   update endpoints, verify security requirements, and configure webhooks before
   going live.
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
   title: PayU Hosted Checkout Go-live Checklist
   description: >-
