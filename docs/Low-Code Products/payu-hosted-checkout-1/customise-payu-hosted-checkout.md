@@ -67,6 +67,17 @@ These payment methods are enabled by default for all PayU Hosted Checkout integr
      <Image src="https://files.readme.io/389134b9f74501150922f20236c09d7978f434c566cc4c073ba98f808342dd54-Screenshot_2026-10-12_at_3.25.34_PM.png" align="center" caption="Access Payment Modes" border={true} />
 
   2. Go to the required payment method tab.
+  3. Click **Activate Now** (if the method is enabled and ready) or **Raise Request** (to request enablement).
+
+  <Callout icon="fad fa-list-ol" theme="info">
+    ### **Activate PayPal**
+
+    To activate PayPal as a wallet option, see the PayPal linking steps in the Dashboard under **Payment Modes** → **International Payments** → **Link Paypal**.
+
+
+    <Image src="https://files.readme.io/c87e3fd0acae9c085bf384990c3c4b2891bb7b96665d8ecbe43e9f753bf312b9-Screenshot_2026-10-12_at_3.34.59_PM.png" align="center" caption="Activate PayPal" border={true} />
+
+  </Callout>
 </Accordion>
 
 <br />
@@ -75,9 +86,9 @@ These payment methods are enabled by default for all PayU Hosted Checkout integr
 
 
 2.
-3. Click **Activate Now** (if the method is enabled and ready) or **Raise Request** (to request enablement).
+3.
 
-To activate PayPal as a wallet option, see the PayPal linking steps in the Dashboard under Payment Modes → Wallets → Link PayPal Account.
+<br />
 
 ***
 
