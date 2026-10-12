@@ -35,6 +35,18 @@ next:
 
 Work through this checklist before switching your PayU Hosted Checkout integration to production. Each item must be verified and confirmed.
 
+Before you start this checklist, make sure you have completed the previous two stages of the integration:
+
+<Cards columns="2">
+  <Card title="Build Integration" href="./build-integration" icon="fa-code">
+    Implement request parameters, hash generation, HTML form POST, response handling, and server-side verification.
+  </Card>
+
+  <Card title="Test Integration" href="./test-integration" icon="fa-flask">
+    Run all payment scenarios — success, failure, and abandonment — using test credentials in the sandbox.
+  </Card>
+</Cards>
+
 ***
 
 ## 1. Switch to Production Credentials
