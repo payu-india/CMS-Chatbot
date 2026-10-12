@@ -80,23 +80,11 @@ These payment methods are enabled by default for all PayU Hosted Checkout integr
   </Callout>
 </Accordion>
 
-<br />
-
-1.
-
-
-2.
-3.
-
-<br />
-
 ***
 
 ## Restrict to Specific Payment Methods (`enforce_paymethod`)
 
-Pass `enforce_paymethod` in your payment request to show only the payment methods you specify. Customers will only see those methods on the checkout page.
-
-**Supported values:**
+Pass `enforce_paymethod` parameter in your <Anchor target="_blank" href="https://docs.payu.in/docs/payu-hosted-checkout-build-integration#step-1-prepare-payment-request-parameters">payment request</Anchor> to show only the payment methods you specify. Customers will only see those methods on the checkout page. These are the supported values.
 
 | Category    | Value        |
 | ----------- | ------------ |
@@ -110,7 +98,7 @@ Pass `enforce_paymethod` in your payment request to show only the payment method
 | BNPL        | `bnpl`       |
 | QR          | `qr`         |
 
-To enforce multiple methods, separate values with `|`: `creditcard|upi`
+To enforce multiple methods, separate values with `|`. For example `creditcard|upi`.
 
 ### Single method (credit card only)
 
