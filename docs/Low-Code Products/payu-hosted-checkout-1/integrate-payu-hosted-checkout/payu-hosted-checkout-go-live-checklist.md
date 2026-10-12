@@ -40,11 +40,11 @@ Work through this checklist before switching your PayU Hosted Checkout integrati
 Before you start this checklist, make sure you have completed the previous two stages of the integration:
 
 <Cards columns="2">
-  <Card title="Build Integration" href="./build-integration" icon="fa-code">
+  <Card title="Build Integration" href="https://docs.payu.in/docs/payu-hosted-checkout-build-integration" icon="fa-code" target="_blank">
     Implement request parameters, hash generation, HTML form POST, response handling, and server-side verification.
   </Card>
 
-  <Card title="Test Integration" href="./test-integration" icon="fa-flask">
+  <Card title="Test Integration" href="https://docs.payu.in/docs/payu-hosted-checkout-test-integration" icon="fa-flask" target="_blank">
     Run all payment scenarios — success, failure, and abandonment — using test credentials in the sandbox.
   </Card>
 </Cards>
