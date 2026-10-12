@@ -2,6 +2,8 @@
 title: Check Refund Status API - Partner Integration
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
