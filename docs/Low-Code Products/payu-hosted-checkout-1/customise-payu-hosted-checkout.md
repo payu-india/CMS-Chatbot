@@ -385,23 +385,76 @@ Pass the `display_lang` parameter to display the PayU checkout page in one of th
 
 ### Sample Request
 
-```bash
+```curl
 curl -X POST "https://test.payu.in/_payment" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "key=JP***g" \
+  -d "txnid=ENFCC001" \
+  -d "amount=10.00" \
+  -d "firstname=PayU%20User" \
+  -d "email=test@gmail.com" \
+  -d "phone=9876543210" \
+  -d "productinfo=iPhone" \
+  -d "surl=https://yourapp.com/success" \
+  -d "furl=https://yourapp.com/failure" \
+  -d "drop_category=creditcard|upi" \
   -d "display_lang=Hindi" \
-  # ... other parameters
+  -d "hash=REPLACE_WITH_GENERATED_HASH"
+```
+```python
+import requests
+
+payload = {
+    "key": "JP***g",
+    "txnid": "ENFCC001",
+    "amount": "10.00",
+    "firstname": "PayU User",
+    "email": "test@gmail.com",
+    "phone": "9876543210",
+    "productinfo": "iPhone",
+    "surl": "https://yourapp.com/success",
+    "furl": "https://yourapp.com/failure",
+    "drop_category=creditcard|netbanking",
+    "display_lang=Hindi",
+    "hash": "REPLACE_WITH_GENERATED_HASH",
+}
+response = requests.post("https://test.payu.in/_payment", data=payload)
+print(response.text)
+```
+```javascript
+const axios = require('axios');
+const qs = require('querystring');
+
+const payload = {
+  key: 'JP***g',
+  txnid: 'ENFCC001',
+  amount: '10.00',
+  firstname: 'PayU User',
+  email: 'test@gmail.com',
+  phone: '9876543210',
+  productinfo: 'iPhone',
+  surl: 'https://yourapp.com/success',
+  furl: 'https://yourapp.com/failure',
+  drop_category: 'creditcard|netbanking',
+  display_lang: 'Hindi',
+  hash: 'REPLACE_WITH_GENERATED_HASH'
+};
+axios.post('https://test.payu.in/_payment', qs.stringify(payload));
 ```
 
 
-<Image src="https://files.readme.io/3aae0ef-hindipage.png" align="center" caption="_PayU Hosted Checkout displayed in Hindi_" framed={true} />
+<Image src="https://files.readme.io/3aae0ef-hindipage.png" align="center" caption="_PayU Hosted Checkout in hindi_" framed={true} />
 
 
 <Callout icon="📘" theme="info">
-  **Vernacular checkout** — Displaying checkout in the customer's preferred language can improve conversion rates, particularly for regional audiences. See this [video overview](https://www.youtube.com/watch?v=7UCT0jFbB90) for more context.
+  ### **Vernacular Checkout**
+
+  &#x20;Displaying checkout in the customer's preferred language can improve conversion rates, particularly for regional audiences. See this [video overview](https://www.youtube.com/watch?v=7UCT0jFbB90) for more context.
 </Callout>
 
 ***
 
-## Quick Reference: Customisation Parameters
+## Customisation Parameters
 
 | Parameter           | Type   | Effect                                    | Example value                  |
 | ------------------- | ------ | ----------------------------------------- | ------------------------------ |
