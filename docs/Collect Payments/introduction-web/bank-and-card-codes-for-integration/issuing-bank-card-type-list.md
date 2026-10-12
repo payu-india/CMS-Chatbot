@@ -106,7 +106,7 @@ metadata:
 | EROUTETECH   | RUPAYCC   | EROUTE TECHNOLOGIES PRIVATE LIMITED                |
 | EURONET      | RUPAYCC   | EURONET SERVICES INDIA PVT LTD- PREPAID            |
 
-#### G–M
+### G–M
 
 **Rows:** 9
 
@@ -153,7 +153,7 @@ metadata:
 
 ## RuPay (`RUPAY`)
 
-## A–F
+### A–F
 
 **Rows:** 158
 
@@ -1499,7 +1499,7 @@ metadata:
 | --------------------------------- | --------- | -------------------------------- |
 | SURYODAYA SMALL FINANCE BANK LTD. | DINR      | SURYODAYA SMALL FINANCE BANK LTD |
 
-### American Express (`AMEX`)
+## American Express (`AMEX`)
 
 ### A–F
 
