@@ -1,0 +1,251 @@
+---
+title: Customise PayU Hosted Checkout
+excerpt: >-
+  Control which payment methods appear on the checkout page, hide specific
+  methods, and set the checkout display language using request parameters.
+deprecated: false
+hidden: true
+metadata:
+  title: Customise PayU Hosted Checkout
+  description: >-
+    Restrict or hide payment methods on PayU Hosted Checkout using
+    enforce_paymethod and drop_category. Set checkout display language with
+    display_lang. Enable BNPL, EMI from Dashboard.
+  keywords:
+    - customise payu hosted checkout
+    - payu enforce_paymethod restrict payment methods
+    - payu drop_category hide payment methods
+    - payu display_lang hindi tamil kannada checkout
+    - payu checkout language customization india
+    - payu show only upi creditcard checkout
+    - payu bnpl emi enable dashboard
+  robots: index
+next:
+  description: Explore related information and resources.
+---
+<Banner
+  isInline={true}
+  message="Integration effort: Minimal technical setup required"
+  color="#15C614"
+  textColor="#ffffff"
+  fontSize="14px"
+  fontWeight="bold"
+ />
+
+Customise your checkout experience for each transaction by passing optional parameters in the payment request. You can control which payment methods are available, which are hidden, and which language the checkout page displays in.
+
+| Goal                                     | Parameter                        |
+| ---------------------------------------- | -------------------------------- |
+| Show only specific payment methods       | `enforce_paymethod`              |
+| Hide specific payment methods            | `drop_category`                  |
+| Change checkout display language         | `display_lang`                   |
+| Enable BNPL, EMI, International Payments | PayU Dashboard → Manage Checkout |
+
+<Callout icon="📘" theme="info">
+  **Payment method eligibility**
+
+  Some payment methods (BNPL, EMI, International Payments) require PayU merchant eligibility or approval before they appear in checkout. Contact your PayU Key Account Manager to check eligibility and enable these methods.
+</Callout>
+
+***
+
+## Enable or Activate Payment Methods
+
+These payment methods are enabled by default for all PayU Hosted Checkout integrations:
+
+- NetBanking, Debit Card, Credit Card, UPI, Wallet
+
+To enable additional methods (BNPL, EMI, International Payments):
+
+1. Log in to [PayU Dashboard](https://payu.in/) → Manage Checkout → Payment Modes.
+2. Go to the required payment method tab.
+3. Click **Activate Now** (if the method is enabled and ready) or **Raise Request** (to request enablement).
+
+To activate PayPal as a wallet option, see the PayPal linking steps in the Dashboard under Payment Modes → Wallets → Link PayPal Account.
+
+***
+
+## Restrict to Specific Payment Methods (`enforce_paymethod`)
+
+Pass `enforce_paymethod` in your payment request to show only the payment methods you specify. Customers will only see those methods on the checkout page.
+
+**Supported values:**
+
+| Category    | Value        |
+| ----------- | ------------ |
+| Credit Card | `creditcard` |
+| Debit Card  | `debitcard`  |
+| Net Banking | `netbanking` |
+| EMI         | `emi`        |
+| Wallet      | `cashcard`   |
+| UPI         | `upi`        |
+| Sodexo      | `SODEXO`     |
+| BNPL        | `bnpl`       |
+| QR          | `qr`         |
+
+To enforce multiple methods, separate values with `|`: `creditcard|upi`
+
+### Single method (credit card only)
+
+<Tabs>
+  <Tab title="cURL">
+    ```bash
+    curl -X POST "https://test.payu.in/_payment" \
+      -H "Content-Type: application/x-www-form-urlencoded" \
+      -d "key=JP***g" \
+      -d "txnid=ENFCC001" \
+      -d "amount=10.00" \
+      -d "firstname=PayU%20User" \
+      -d "email=test@gmail.com" \
+      -d "phone=9876543210" \
+      -d "productinfo=iPhone" \
+      -d "surl=https://yourapp.com/success" \
+      -d "furl=https://yourapp.com/failure" \
+      -d "enforce_paymethod=creditcard" \
+      -d "hash=REPLACE_WITH_GENERATED_HASH"
+    ```
+  </Tab>
+
+  <Tab title="Python">
+    ```python
+    import requests
+
+    payload = {
+        "key": "JP***g",
+        "txnid": "ENFCC001",
+        "amount": "10.00",
+        "firstname": "PayU User",
+        "email": "test@gmail.com",
+        "phone": "9876543210",
+        "productinfo": "iPhone",
+        "surl": "https://yourapp.com/success",
+        "furl": "https://yourapp.com/failure",
+        "enforce_paymethod": "creditcard",
+        "hash": "REPLACE_WITH_GENERATED_HASH",
+    }
+    response = requests.post("https://test.payu.in/_payment", data=payload)
+    print(response.text)
+    ```
+  </Tab>
+
+  <Tab title="Node.js">
+    ```javascript
+    const axios = require('axios');
+    const qs = require('querystring');
+
+    const payload = {
+      key: 'JP***g',
+      txnid: 'ENFCC001',
+      amount: '10.00',
+      firstname: 'PayU User',
+      email: 'test@gmail.com',
+      phone: '9876543210',
+      productinfo: 'iPhone',
+      surl: 'https://yourapp.com/success',
+      furl: 'https://yourapp.com/failure',
+      enforce_paymethod: 'creditcard',
+      hash: 'REPLACE_WITH_GENERATED_HASH'
+    };
+    axios.post('https://test.payu.in/_payment', qs.stringify(payload));
+    ```
+  </Tab>
+</Tabs>
+
+### Multiple methods (credit card and UPI only)
+
+Pass `enforce_paymethod=creditcard|upi` — use `|` as separator, no spaces.
+
+```bash
+curl -X POST "https://test.payu.in/_payment" \
+  -d "enforce_paymethod=creditcard|upi" \
+  # ... other parameters
+```
+
+***
+
+## Hide Specific Payment Methods (`drop_category`)
+
+Pass `drop_category` to hide specific payment methods from the checkout. All other enabled methods remain visible.
+
+**Supported values:**
+
+| Category    | Value        |
+| ----------- | ------------ |
+| Credit Card | `creditcard` |
+| Debit Card  | `debitcard`  |
+| Net Banking | `netbanking` |
+| NEFT/RTGS   | `NEFTRTGS`   |
+| EMI         | `emi`        |
+| Wallet      | `cashcard`   |
+| Sodexo      | `SODEXO`     |
+| BNPL        | `bnpl`       |
+
+To drop multiple methods, separate values with `|`: `creditcard|netbanking`
+
+### Hide a single method
+
+```bash
+curl -X POST "https://test.payu.in/_payment" \
+  -d "drop_category=creditcard" \
+  # ... other parameters
+```
+
+### Hide multiple methods
+
+```bash
+curl -X POST "https://test.payu.in/_payment" \
+  -d "drop_category=creditcard|netbanking" \
+  # ... other parameters
+```
+
+<Callout icon="📘" theme="info">
+  `enforce_paymethod`**&#x20;vs&#x20;**`drop_category`
+
+  Use `enforce_paymethod` when you have a short list of methods you want to show. Use `drop_category` when you want to show most methods but exclude a few. Do not use both in the same request — behaviour is undefined.
+</Callout>
+
+***
+
+## Set Checkout Display Language (`display_lang`)
+
+Pass `display_lang` to display the PayU checkout page in one of the supported Indian languages.
+
+**Supported values:**
+
+| Language          | Value      |
+| ----------------- | ---------- |
+| English (default) | `English`  |
+| Hindi             | `Hindi`    |
+| Kannada           | `Kannada`  |
+| Telugu            | `Telugu`   |
+| Tamil             | `Tamil`    |
+| Gujarati          | `Gujarati` |
+| Marathi           | `Marathi`  |
+
+### Sample Request
+
+```bash
+curl -X POST "https://test.payu.in/_payment" \
+  -d "display_lang=Hindi" \
+  # ... other parameters
+```
+
+
+<Image src="https://files.readme.io/3aae0ef-hindipage.png" align="center" caption="_PayU Hosted Checkout displayed in Hindi_" framed={true} />
+
+
+<Callout icon="📘" theme="info">
+  **Vernacular checkout** — Displaying checkout in the customer's preferred language can improve conversion rates, particularly for regional audiences. See this [video overview](https://www.youtube.com/watch?v=7UCT0jFbB90) for more context.
+</Callout>
+
+***
+
+## Quick Reference: Customisation Parameters
+
+| Parameter           | Type   | Effect                                    | Example value                  |
+| ------------------- | ------ | ----------------------------------------- | ------------------------------ |
+| `enforce_paymethod` | string | Show only these methods                   | `upi`, `creditcard\|upi`       |
+| `drop_category`     | string | Hide these methods                        | `creditcard`, `creditcard\|NB` |
+| `display_lang`      | string | Set checkout UI language                  | `Hindi`, `Tamil`               |
+| `custom_note`       | string | Display a message below payment options   | `Extra charge of ₹100 applies` |
+| `note_category`     | string | Show `custom_note` only for these methods | `CC, NB`                       |
