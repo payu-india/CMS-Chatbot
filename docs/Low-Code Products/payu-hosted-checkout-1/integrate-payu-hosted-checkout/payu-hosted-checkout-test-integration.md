@@ -242,7 +242,7 @@ See <Anchor target="_blank" href="https://docs.payu.in/docs/manage-webhooks-usin
   </Card>
 </Cards>
 
-Refer to thge [Errors and Troubleshooting](../errors-and-troubleshooting) page for a complete list.
+Refer to the [Errors and Troubleshooting](../errors-and-troubleshooting) page for a complete list.
 
 ***
 
