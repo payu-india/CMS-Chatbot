@@ -371,9 +371,7 @@ Below are the multiple use cases.
 
 ## Set Checkout Display Language (`display_lang`)
 
-Pass `display_lang` to display the PayU checkout page in one of the supported Indian languages.
-
-**Supported values:**
+Pass the `display_lang` parameter to display the PayU checkout page in one of the following supported Indian languages.
 
 | Language          | Value      |
 | ----------------- | ---------- |
