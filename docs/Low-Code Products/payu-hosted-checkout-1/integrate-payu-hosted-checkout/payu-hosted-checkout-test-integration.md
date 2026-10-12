@@ -248,6 +248,5 @@ Refer to thge [Errors and Troubleshooting](../errors-and-troubleshooting) page f
 
 ## What's Next
 
-Once all test scenarios pass, go to [Go-live Checklist](./go-live-checklist) to verify you're production-ready.
-
-For the full API reference used in this integration, see [PayU Hosted Checkout APIs](../payu-hosted-checkout-apis).
+- Once all test scenarios pass, go to the [Go-live Checklist](./go-live-checklist) page to verify you're production-ready.
+- For the full API reference used in this integration, see [PayU Hosted Checkout APIs](../payu-hosted-checkout-apis).
