@@ -220,23 +220,11 @@ Below are the multiple use cases.
   ```
 </Accordion>
 
-###
-
-<br />
-
-```bash
-curl -X POST "https://test.payu.in/_payment" \
-  -d "enforce_paymethod=creditcard|upi" \
-  # ... other parameters
-```
-
 ***
 
 ## Hide Specific Payment Methods (`drop_category`)
 
-Pass `drop_category` to hide specific payment methods from the checkout. All other enabled methods remain visible.
-
-**Supported values:**
+Pass the `drop_category` parameter to hide specific payment methods from the checkout. All other enabled methods remain visible. Below are the supported values:
 
 | Category    | Value        |
 | ----------- | ------------ |
@@ -249,26 +237,132 @@ Pass `drop_category` to hide specific payment methods from the checkout. All oth
 | Sodexo      | `SODEXO`     |
 | BNPL        | `bnpl`       |
 
-To drop multiple methods, separate values with `|`: `creditcard|netbanking`
+To drop multiple methods, separate values with `|`. For example `creditcard|netbanking`.
 
-### Hide a single method
+### Use Cases
 
-```bash
-curl -X POST "https://test.payu.in/_payment" \
-  -d "drop_category=creditcard" \
-  # ... other parameters
-```
+Below are the multiple use cases.
 
-### Hide multiple methods
+<Accordion title="Hide a Single Method" icon="fad fa-1">
+  Use below code to enforce only credit card.
 
-```bash
-curl -X POST "https://test.payu.in/_payment" \
-  -d "drop_category=creditcard|netbanking" \
-  # ... other parameters
-```
+  ```curl
+  curl -X POST "https://test.payu.in/_payment" \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -d "key=JP***g" \
+    -d "txnid=ENFCC001" \
+    -d "amount=10.00" \
+    -d "firstname=PayU%20User" \
+    -d "email=test@gmail.com" \
+    -d "phone=9876543210" \
+    -d "productinfo=iPhone" \
+    -d "surl=https://yourapp.com/success" \
+    -d "furl=https://yourapp.com/failure" \
+    -d "drop_category=creditcard" \
+    -d "hash=REPLACE_WITH_GENERATED_HASH"
+  ```
+  ```python
+  import requests
+
+  payload = {
+      "key": "JP***g",
+      "txnid": "ENFCC001",
+      "amount": "10.00",
+      "firstname": "PayU User",
+      "email": "test@gmail.com",
+      "phone": "9876543210",
+      "productinfo": "iPhone",
+      "surl": "https://yourapp.com/success",
+      "furl": "https://yourapp.com/failure",
+      "drop_category=creditcard",
+      "hash": "REPLACE_WITH_GENERATED_HASH",
+  }
+  response = requests.post("https://test.payu.in/_payment", data=payload)
+  print(response.text)
+  ```
+  ```javascript
+  const axios = require('axios');
+  const qs = require('querystring');
+
+  const payload = {
+    key: 'JP***g',
+    txnid: 'ENFCC001',
+    amount: '10.00',
+    firstname: 'PayU User',
+    email: 'test@gmail.com',
+    phone: '9876543210',
+    productinfo: 'iPhone',
+    surl: 'https://yourapp.com/success',
+    furl: 'https://yourapp.com/failure',
+    drop_category: 'creditcard',
+    hash: 'REPLACE_WITH_GENERATED_HASH'
+  };
+  axios.post('https://test.payu.in/_payment', qs.stringify(payload));
+  ```
+</Accordion>
+
+<Accordion title="Hide Multiple Methods" icon="fad fa-list-timeline">
+  Pass `drop_category=creditcard|upi` — use `|` as separator, no spaces.
+
+  ```curl
+  curl -X POST "https://test.payu.in/_payment" \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    -d "key=JP***g" \
+    -d "txnid=ENFCC001" \
+    -d "amount=10.00" \
+    -d "firstname=PayU%20User" \
+    -d "email=test@gmail.com" \
+    -d "phone=9876543210" \
+    -d "productinfo=iPhone" \
+    -d "surl=https://yourapp.com/success" \
+    -d "furl=https://yourapp.com/failure" \
+    -d "drop_category=creditcard|upi" \
+    -d "hash=REPLACE_WITH_GENERATED_HASH"
+  ```
+  ```python
+  import requests
+
+  payload = {
+      "key": "JP***g",
+      "txnid": "ENFCC001",
+      "amount": "10.00",
+      "firstname": "PayU User",
+      "email": "test@gmail.com",
+      "phone": "9876543210",
+      "productinfo": "iPhone",
+      "surl": "https://yourapp.com/success",
+      "furl": "https://yourapp.com/failure",
+      "drop_category=creditcard|netbanking",
+      "hash": "REPLACE_WITH_GENERATED_HASH",
+  }
+  response = requests.post("https://test.payu.in/_payment", data=payload)
+  print(response.text)
+  ```
+  ```javascript
+  const axios = require('axios');
+  const qs = require('querystring');
+
+  const payload = {
+    key: 'JP***g',
+    txnid: 'ENFCC001',
+    amount: '10.00',
+    firstname: 'PayU User',
+    email: 'test@gmail.com',
+    phone: '9876543210',
+    productinfo: 'iPhone',
+    surl: 'https://yourapp.com/success',
+    furl: 'https://yourapp.com/failure',
+    drop_category: 'creditcard|netbanking',
+    hash: 'REPLACE_WITH_GENERATED_HASH'
+  };
+  axios.post('https://test.payu.in/_payment', qs.stringify(payload));
+  ```
+</Accordion>
+
+###
 
 <Callout icon="📘" theme="info">
-  `enforce_paymethod`**&#x20;vs&#x20;**`drop_category`
+  ### `enforce_paymethod`**&#x20;vs&#x20;**`drop_category`
 
   Use `enforce_paymethod` when you have a short list of methods you want to show. Use `drop_category` when you want to show most methods but exclude a few. Do not use both in the same request — behaviour is undefined.
 </Callout>
