@@ -139,9 +139,9 @@ You will receive the following data in the response
 
 ## `debit_date` Validations Scenarios
 
-| Error Code | Failure Reason                                                               | Scenario                                                                                                                                              |
-| ---------- | ---------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ERR_104    | Invalid debit_date (must be yyyy-MM-dd, at most 3 months ahead): \<value>    | debitDate value is unparseable (not yyyy-MM-dd), OR the date is more than 3 months from today                                                         |
-| ERR_105    | debit_date is not enabled: \<value>                                          | Merchant has sent a debitDate in the file but the feature is not enabled for them                                                                     |
-| ERR_106    | debit_date does not leave enough lead time for this payment scheme: \<value> | Date is valid and in the future but does not leave enough time for pre-debit processing. Minimum lead time: Standard Card/UPI = 25 hrs, AMEX = 37 hrs |
-| ERR_107    | debit_date is in the past: \<value>                                          | The provided debitDate is before today's date                                                                                                         |
+| Error Code | Failure Reason                                                     | Scenario                                                                                                                                              |
+| ---------- | ------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ERR_104`  | Invalid debit_date (must be yyyy-MM-dd, at most 3 months ahead)    | Debit date value is unparseable (not yyyy-MM-dd), OR the date is more than 3 months from today                                                        |
+| `ERR_105`  | debit_date is not enabled                                          | Merchant has sent a debit date in the file but the feature is not enabled for them                                                                    |
+| `ERR_106`  | debit_date does not leave enough lead time for this payment scheme | Date is valid and in the future but does not leave enough time for pre-debit processing. Minimum lead time: Standard Card/UPI = 25 hrs, AMEX = 37 hrs |
+| `ERR_107`  | debit_date is in the past                                          | The provided debit date is before today's date                                                                                                        |
