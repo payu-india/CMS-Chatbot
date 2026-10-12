@@ -33,6 +33,14 @@ next:
 
 Use this page to test your <Anchor target="_blank" href="https://docs.payu.in/docs/payu-hosted-checkout-build-integration">built PayU Hosted Checkout</Anchor> integration end-to-end in the sandbox environment before going live.
 
+Before you test, make sure your integration is built:
+
+<Cards columns="1">
+  <Card title="Build Integration" href="./build-integration" icon="fa-code">
+    Implement request parameters, hash generation, HTML form POST, response handling, and server-side verification.
+  </Card>
+</Cards>
+
 <Callout icon="⚠️" theme="warn">
   ### **Use Test Credentials Only**
 
