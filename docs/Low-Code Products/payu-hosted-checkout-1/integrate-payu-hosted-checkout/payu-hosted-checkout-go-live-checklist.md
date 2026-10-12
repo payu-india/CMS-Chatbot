@@ -39,13 +39,15 @@ Work through this checklist before switching your PayU Hosted Checkout integrati
 
 ## 1. Switch to Production Credentials
 
-<Accordion title="Replace test credentials with live credentials" icon="fa-user-lock">
-  - [ ] **Generate your live merchant key and salt** from PayU Dashboard → Developer Settings → Live Keys. See [Generate Live Key and Salt](https://docs.payu.in/docs/generate-merchant-key-and-salt-on-payu-dashboard).
-  - [ ] Replace `key` in all payment requests with your **live key**.
-  - [ ] Update your server-side hash generation to use your **live salt** — not the test salt.
-  - [ ] Confirm that your live key and salt are stored in environment variables or a secrets manager, not in source code.
+<Accordion title="Replace Test Credentials With Live Credentials" icon="fa-user-lock">
+  - [x] **Generate your live merchant key and salt** from **PayU Dashboard** → **Developer** → **API Keys&#x20;**&#x69;n the live mode.
+  - [x] Replace `key` in all payment requests with your **live key**.
+  - [x] Update your server-side hash generation to use your **live salt**.
+  - [x] Confirm that your live key and salt are stored in environment variables or a secrets manager, not in source code.
 
-  <Callout icon="⚠️" theme="warn">
+  <Callout icon="far fa-octagon-exclamation" theme="error">
+    ### **Important:**
+
     Never commit keys or salts to version control. Treat them as passwords.
   </Callout>
 </Accordion>
@@ -54,10 +56,10 @@ Work through this checklist before switching your PayU Hosted Checkout integrati
 
 ## 2. Switch to the Production Endpoint
 
-<Accordion title="Update the payment form action URL" icon="fa-link">
-  - [ ] Update your HTML form `action` to `https://secure.payu.in/_payment`.
-  - [ ] Confirm the form still uses `method="post"`.
-  - [ ] Remove any references to `https://test.payu.in/_payment` from production code.
+<Accordion title="Update the Payment Form Action URL" icon="fa-link">
+  - [x] Update your HTML form `action` to `https://secure.payu.in/_payment`.
+  - [x] Confirm the form still uses `method="post"`.
+  - [x] Remove any references to `https://test.payu.in/_payment` from production code.
 
   | Environment    | URL                               |
   | -------------- | --------------------------------- |
@@ -69,13 +71,13 @@ Work through this checklist before switching your PayU Hosted Checkout integrati
 
 ## 3. Security Checklist
 
-<Accordion title="Verify all security requirements" icon="fa-shield-check">
-  - [ ] Hash is generated **server-side only** — never in browser JavaScript, mobile app code, or any client-facing code.
-  - [ ] Your merchant **salt is never exposed** in logs, API responses, client-side code, or source control.
-  - [ ] All callback endpoints (`surl`, `furl`, webhook URL) are served over **HTTPS**.
-  - [ ] Reverse hash validation is implemented and runs on every callback received.
-  - [ ] Sensitive parameters (key, salt, hash values) are **not logged** in application logs.
-  - [ ] Your payment request hash matches the documented SHA-512 formula exactly.
+<Accordion title="Verify All Security Requirements" icon="fa-shield-check">
+  - [x] Hash is generated **server-side only** and never in browser JavaScript, mobile app code, or any client-facing code.
+  - [x] Your merchant **salt is never exposed** in logs, API responses, client-side code, or source control.
+  - [x] All callback endpoints (`surl`, `furl`, webhook URL) are served over **HTTPS**.
+  - [x] Reverse hash validation is implemented and runs on every callback received.
+  - [x] Sensitive parameters (key, salt, and hash values) are **not logged** in application logs.
+  - [x] Your payment request hash matches the documented SHA-512 formula exactly.
 </Accordion>
 
 ***
