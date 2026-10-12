@@ -53,12 +53,28 @@ Customise your checkout experience for each transaction by passing optional para
 
 These payment methods are enabled by default for all PayU Hosted Checkout integrations:
 
-- NetBanking, Debit Card, Credit Card, UPI, Wallet
+- NetBanking
+- Debit Card
+- Credit Card
+- UPI
+- Wallet
 
-To enable additional methods (BNPL, EMI, International Payments):
+<Accordion title="Steps to Enable or Activate Payment Methods" icon="fad fa-table-rows-add-above">
+  To enable additional methods (BNPL, EMI, International Payments):
 
-1. Log in to [PayU Dashboard](https://payu.in/) → Manage Checkout → Payment Modes.
-2. Go to the required payment method tab.
+  1. Log in to [PayU Dashboard](https://payu.in/) and click **Payment Modes** under **Manage Checkout**.
+
+     <Image src="https://files.readme.io/389134b9f74501150922f20236c09d7978f434c566cc4c073ba98f808342dd54-Screenshot_2026-10-12_at_3.25.34_PM.png" align="center" caption="Access Payment Modes" border={true} />
+
+  2. Go to the required payment method tab.
+</Accordion>
+
+<br />
+
+1.
+
+
+2.
 3. Click **Activate Now** (if the method is enabled and ready) or **Raise Request** (to request enablement).
 
 To activate PayPal as a wallet option, see the PayPal linking steps in the Dashboard under Payment Modes → Wallets → Link PayPal Account.
