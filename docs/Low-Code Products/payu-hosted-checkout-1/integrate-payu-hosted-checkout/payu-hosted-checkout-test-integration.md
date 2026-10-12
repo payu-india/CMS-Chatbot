@@ -111,7 +111,7 @@ Verify the following before running test transactions:
 
 ***
 
-## Test Credentials by Payment Method
+## Test Credentials by a Payment Method
 
 <Accordion title="NetBanking" icon="fa-building-columns">
   | Field    | Value    |
