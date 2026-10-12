@@ -67,29 +67,29 @@ To upload recurring transactions using PayU Dashboard:
 1. Login to the Merchant Dashboard. For more information, refer to [Log in to Dashboard](https://docs.payu.in/docs/log-in-to-dashboard). 
 2. Navigate to **Subscriptions.** 
 3. Click **Bulk Upload** at the top-right corner. 
-4. Select any of the following type of file you want to upload. 
-
-* **Recurring**: This must be used for Enach mandates  
-* **Recurring + Pre-Debit**: This must be used for Cards and UPI mandates  
-
-For example, **Recurring** is selected in the following screenshot.
+4. Select any of the following file type you want to upload and click **Continue**. 
+   - **Recurring**: This should be used for Enach mandates  
+   - **Recurring + Pre-Debit**: This should be used for Cards and UPI mandates  
 
 
-<Image src="https://files.readme.io/d726f25bdae3121caf08b5c6cc35285c3bfd52f31d17da20589d8b4a509b7efc-dashboard-subscription-recurring-upload-selection.png" align="center" border={true} />
+<Image src="https://files.readme.io/d726f25bdae3121caf08b5c6cc35285c3bfd52f31d17da20589d8b4a509b7efc-dashboard-subscription-recurring-upload-selection.png" align="center" caption="Select the file type" border={true} />
 
 
-5. Click **Continue**. 
-
-> **Note:** Download the sample file for registration or mandate using the **Download** button. 
+5. Click the **Download&#x20;**&#x62;utton to download the sample file for registration or mandate. 
 
 
 <Image src="https://files.readme.io/9a8f99c19f1cb452a9bf8de652208e39027cc54ff53fd47836480a3326c14fbd-dashboard-subscription-recurring-bulk-upload.png" align="center" border={true} />
 
 
-6. Click **Choose file** and select the file containing all the mandates that need to be debited. This file should follow the format outlined in the provided sample file. For more information, refer to [Prerequisites](#prerequisites). 
-7. Click **Upload**. 
+6. You can either:
+   - Click **Choose file** and select the file containing all the mandates that need to be debited.
+   - Drag and drop the file in the dedicated area.
 
-After uploading the file, the system will automatically check for discrepancies. If there’s an issue, an error message will appear on the screen.  
+The file should follow the format outlined in the provided sample file. Refer to the [Prerequisites](#prerequisites) section for more details. 
+
+7. Click **Upload&#x20;**&#x74;o upload the file. 
+
+After uploading the file, the system will automatically check for discrepancies. If there’s an issue, an error message will appear on the screen as shown below.
 
 
 <Image src="https://files.readme.io/9870655ee9e9176030cb0cbd99f85e9dece3aabbda328c6f8be8d871d1b31bab-dashboard-subscription-recurring-bulk-upload-error.png" align="center" border={true} />
