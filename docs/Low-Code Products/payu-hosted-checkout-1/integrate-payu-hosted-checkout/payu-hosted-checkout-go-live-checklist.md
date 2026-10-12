@@ -35,7 +35,7 @@ next:
   fontWeight="bold"
  />
 
-Work through this checklist before switching your PayU Hosted Checkout integration to production. Each item must be verified and confirmed.
+Work through this checklist before switching your <Anchor target="_blank" href="https://docs.payu.in/docs/integrate-payu-hosted-checkout">PayU Hosted Checkout</Anchor> integration to production. Each item must be verified and confirmed.<br />
 
 Before you start this checklist, make sure you have completed the previous two stages of the integration:
 
