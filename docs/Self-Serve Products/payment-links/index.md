@@ -51,7 +51,7 @@ next:
 ---
 <Banner
   isInline={true}
-  message="Integration effort: No code or website required"
+  message="Integration effort: No code required"
   color="#15C614"
   textColor="#ffffff"
   fontSize="14px"
