@@ -428,62 +428,74 @@ A complete iOS WebView integration involves four steps:
 
 ## Flutter
 
-A complete Flutter WebView integration involves four steps:
+A complete Flutter WebView integration involves these 4 steps:
 
 1. Add dependencies
 2. Configure the WebView controller and JavaScript mode
 3. Handle navigation and UPI intents via `NavigationDelegate`
 4. POST payment parameters to PayU
 
-<Accordion title="Step 1 — Add Dependencies" icon="fa-cube">
+<Accordion title="Step 1: Add Dependencies" icon="fa-cube">
   Add the following to your `pubspec.yaml` and run `flutter pub get`:
 
-  | Package           | Purpose                                                                                  |
-  | ----------------- | ---------------------------------------------------------------------------------------- |
-  | `webview_flutter` | Renders the WebView widget and exposes a `NavigationDelegate` for intercepting URL loads |
-  | `url_launcher`    | Opens UPI payment apps and other external URLs from inside the Flutter app               |
+  <Tabs>
+    <Tab title="Request Payload">
+      ```yaml
+      dependencies:
+        webview_flutter: ^4.4.1
+        url_launcher: ^6.1.14
+      ```
+    </Tab>
 
-  ```yaml
-  dependencies:
-    webview_flutter: ^4.4.1
-    url_launcher: ^6.1.14
-  ```
+    <Tab title="Parameter Description">
+      | Package           | Purpose                                                                                  |
+      | ----------------- | ---------------------------------------------------------------------------------------- |
+      | `webview_flutter` | Renders the WebView widget and exposes a `NavigationDelegate` for intercepting URL loads |
+      | `url_launcher`    | Opens UPI payment apps and other external URLs from inside the Flutter app               |
+    </Tab>
+  </Tabs>
 </Accordion>
 
-<Accordion title="Step 2 — Configure the WebView Controller" icon="fa-gear">
+<Accordion title="Step 2: Configure the WebView Controller" icon="fa-gear">
   Create a `WebViewController` in `initState` with unrestricted JavaScript mode and a `NavigationDelegate`. Call `_submitPaymentForm()` immediately after configuration so the checkout loads as soon as the widget mounts.
 
-  | Setting                       | Why                                                                          |
-  | ----------------------------- | ---------------------------------------------------------------------------- |
-  | `JavaScriptMode.unrestricted` | PayU checkout requires JavaScript — without this the page will not render    |
-  | `NavigationDelegate`          | Intercepts all URL loads so you can handle UPI intents and payment callbacks |
+  <Tabs>
+    <Tab title="Sample Payload">
+      ```d dart
+      @override
+      void initState() {
+        super.initState();
+        _controller = WebViewController()
+          // Required: PayU checkout requires JavaScript to function
+          ..setJavaScriptMode(JavaScriptMode.unrestricted)
+          ..setNavigationDelegate(NavigationDelegate(
+            onNavigationRequest: (NavigationRequest request) {
+              // URL interception is handled in Step 3
+              return NavigationDecision.navigate;
+            },
+          ));
 
-  ```dart
-  @override
-  void initState() {
-    super.initState();
-    _controller = WebViewController()
-      // Required: PayU checkout requires JavaScript to function
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setNavigationDelegate(NavigationDelegate(
-        onNavigationRequest: (NavigationRequest request) {
-          // URL interception is handled in Step 3
-          return NavigationDecision.navigate;
-        },
-      ));
+        // Submit the payment form immediately after configuring the controller
+        _submitPaymentForm();
+      }
+      ```
+    </Tab>
 
-    // Submit the payment form immediately after configuring the controller
-    _submitPaymentForm();
-  }
-  ```
+    <Tab title="Parameter Description">
+      | Setting                       | Why                                                                          |
+      | ----------------------------- | ---------------------------------------------------------------------------- |
+      | `JavaScriptMode.unrestricted` | PayU checkout requires JavaScript — without this the page will not render    |
+      | `NavigationDelegate`          | Intercepts all URL loads so you can handle UPI intents and payment callbacks |
+    </Tab>
+  </Tabs>
 </Accordion>
 
-<Accordion title="Step 3 — Handle Navigation and UPI Intents" icon="fa-arrows-alt-h">
-  The `onNavigationRequest` callback fires for every URL the WebView attempts to load. Intercept three types:
+<Accordion title="Step 3: Handle Navigation and UPI Intents" icon="fa-arrows-alt-h">
+  The `onNavigationRequest` callback fires for every URL the WebView attempts to load. Intercept three types:<br />
 
-  - **UPI and intent URLs** (`upi://` or `intent://`) — launch the UPI app externally using `url_launcher` with `LaunchMode.externalApplication`, then prevent the WebView from loading the URL
-  - **Success callback** — when PayU navigates to your `surl`, prevent WebView navigation and route to your success screen
-  - **Failure callback** — when PayU navigates to your `furl`, prevent WebView navigation and route to your failure screen
+  - **UPI and intent URLs** (`upi://` or `intent://`): Launch the UPI app externally using `url_launcher` with `LaunchMode.externalApplication`, then prevent the WebView from loading the URL
+  - **Success callback**: When PayU navigates to your `surl`, prevent WebView navigation and route to your success screen
+  - **Failure callback**: When PayU navigates to your `furl`, prevent WebView navigation and route to your failure screen
 
   ```dart
   onNavigationRequest: (NavigationRequest request) {
