@@ -703,7 +703,7 @@ The authorization request is the final step of transaction processing. This agai
   ```
   curl POST 'https://test.payu.in/AuthorizeTransaction' \
     --header 'Cookie: PHPSESSID=ca4slgf2hlcc3a80tauvnh96cr; PHPSESSID=69c3e6c6a9ee8' \
-     --form 'key=PRiQvJ' \
+     --form 'key={{Merchant_key}}' \
      --form 'txnid=my_order_75942' \
      --form 'amount=2' \
      --form 'authentication_info={
