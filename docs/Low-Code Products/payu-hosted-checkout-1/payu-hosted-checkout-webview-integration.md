@@ -83,7 +83,7 @@ Have you not built your web integration yet? Start here:
 
 ## Android
 
-A complete Android WebView integration involves these four steps:
+A complete Android WebView integration involves these four steps:<br />
 
 1. Configure WebView settings
 2. Handle URL navigation — intercept UPI intents and `surl`/`furl` callbacks
