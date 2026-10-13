@@ -63,7 +63,9 @@ Have you not built your web integration yet? Start here:
 
 ***
 
-## Platforms Supported
+## Build Integration
+
+The following platforms are supported.
 
 <Cards columns="3">
   <Card title="Android" href="##android">
