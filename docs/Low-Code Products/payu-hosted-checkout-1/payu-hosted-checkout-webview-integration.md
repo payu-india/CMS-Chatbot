@@ -121,11 +121,11 @@ A complete Android WebView integration involves these four steps:<br />
 </Accordion>
 
 <Accordion title="Step 2: Handle URL Navigation" icon="fa-arrows-alt-h">
-  During the payment flow, PayU's checkout page triggers URL redirects for these 3 scenarios you must handle explicitly:
+  During the payment flow, PayU's checkout page triggers URL redirects for these 3 scenarios you must handle explicitly:<br />
 
   - **UPI intent launch**: When a customer selects a UPI app (Google Pay, PhonePe, Paytm), PayU generates a `upi://` or `intent://` URL. This must be passed to Android's intent system to open the correct UPI app; The WebView cannot open it on its own.
   - **Payment success**: When payment completes, PayU redirects the WebView to your `surl`.
-  - **Payment failure**: When payment fails or is cancelled, PayU redirects to your `furl`.
+  - **Payment failure**: When payment fails or is cancelled, PayU redirects to your `furl`.<br />
 
   Override `shouldOverrideUrlLoading` in your `WebViewClient` to intercept and handle each case:
 
@@ -331,7 +331,7 @@ A complete iOS WebView integration involves four steps:<br />
 </Accordion>
 
 <Accordion title="Step 3: Handle Navigation and Deep Links" icon="fa-arrows-alt-h">
-  Implement `WKNavigationDelegate` to intercept three types of navigation events during the payment flow:
+  Implement `WKNavigationDelegate` to intercept three types of navigation events during the payment flow:<br />
 
   - **UPI deep links** (`upi://`): When a customer selects a UPI app, open it via `UIApplication.shared.open(url)` and cancel the WebView navigation
   - **Success callback**: When PayU redirects to your `surl`, intercept it and route to your success screen
@@ -645,7 +645,7 @@ A complete Flutter WebView integration involves these 4 steps:<br />
     Android emulators and iOS simulators do not have UPI apps installed — UPI intent handling cannot be verified without a real device on either platform.
   </Callout>
 
-  Platform-specific things to verify:
+  Platform-specific things to verify:<br />
 
   | Platform | What to check                                                                                                                                    |
   | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -737,7 +737,7 @@ For additional issues, see [Errors and Troubleshooting](../errors-and-troublesho
   Mobile app binaries can be decompiled. If the salt is in the app — even harder to understand — an attacker can extract it and generate valid hashes for arbitrary amounts, effectively forging payment requests.
 </Callout>
 
-**Correct pattern for WebView integration:**
+**Correct pattern for WebView integration:**<br />
 
 1. Customer taps **Pay Now** in your app.
 2. Your app calls your backend with the order details.
