@@ -1,5 +1,5 @@
 ---
-title: Copy of Collect Additional Charges
+title: '[Internal Review]Collect Additional Charges'
 deprecated: false
 hidden: true
 metadata:
@@ -115,4 +115,59 @@ The **additionalCharges** value must be the same as the value posted from PayU t
 
 If both match, you must process the order. If they don’t match, the transaction has been tampered with and should not be processed further.
 
-<br />
+## Additional Charges for Standing Instruction (SI) Card Transactions
+
+When collecting dynamic convenience fees on **SI (recurring/subscription) card transactions**, use SI-specific ibibocodes instead of the regular bankcodes described above. The same two parameters apply — `additional_charges` and `percentage_additional_charges` — but with a different set of allowed values depending on the phase of the SI lifecycle.
+
+<Callout icon="📘" theme="info">
+  ### **Note**:&#x20;
+
+  SI convenience fee support requires the following flags to be enabled on your MID by PayU. Contact your PayU Key Account Manager (KAM) to enable them:
+
+  - `enableCardsSiDynamicConv`
+  - `enableSIPredebitConvFee`
+  - `DynamicConvFeeMerchant`
+</Callout>
+
+### SI Ibibocodes for Registration
+
+Pass these in `additional_charges` and `percentage_additional_charges` during the SI **registration (consent) transaction**:
+
+| Ibibocode | Description                           |
+| --------- | ------------------------------------- |
+| `CCSI`    | Credit Card Standing Instruction      |
+| `DCSI`    | Debit Card Standing Instruction       |
+| `VISASI`  | Visa Standing Instruction             |
+| `AMEXSI`  | American Express Standing Instruction |
+
+**Example (Registration)**:
+
+```plaintext
+additional_charges: CCSI:10,DCSI:20,AMEXSI:30
+percentage_additional_charges: CCSI:100,DCSI:90,AMEXSI:80
+```
+
+### SI Ibibocodes for Pre-Debit Notification
+
+Pass these in `additional_charges` and `percentage_additional_charges` in the `var1` JSON of the `pre_debit_SI` API call:
+
+| Ibibocode  | Description                           |
+| ---------- | ------------------------------------- |
+| `CCSI`     | Credit Card Standing Instruction      |
+| `DCSI`     | Debit Card Standing Instruction       |
+| `AMEXSI`   | American Express Standing Instruction |
+| `HDFCDCSI` | HDFC Debit Card Standing Instruction  |
+| `VISASI`   | Visa Standing Instruction             |
+
+**Example (Pre-Debit)**:
+
+```plaintext
+additional_charges: CCSI:10,DCSI:20,AMEXSI:30,HDFCDCSI:40,VISASI:50
+percentage_additional_charges: CCSI:100,DCSI:90,AMEXSI:80,HDFCDCSI:70,VISASI:60
+```
+
+<Callout icon="⚠️" theme="warn">
+  ### **Important**:&#x20;
+
+  The ibibocode sets for Registration and Pre-Debit are different. `HDFCDCSI` is valid only in the Pre-Debit phase, not during Registration.
+</Callout>
