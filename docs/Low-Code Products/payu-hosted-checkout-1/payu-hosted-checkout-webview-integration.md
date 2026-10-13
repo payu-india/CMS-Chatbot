@@ -421,10 +421,6 @@ A complete iOS WebView integration involves four steps:
 
       For the full parameter list including optional fields, see [Build Integration → Step 1](./build-integration).
     </Tab>
-
-    <Tab title="New Tab">
-
-    </Tab>
   </Tabs>
 </Accordion>
 
