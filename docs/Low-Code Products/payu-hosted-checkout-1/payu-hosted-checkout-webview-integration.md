@@ -446,7 +446,7 @@ A complete iOS WebView integration involves four steps:<br />
 
 ## Flutter
 
-A complete Flutter WebView integration involves these 4 steps:
+A complete Flutter WebView integration involves these 4 steps:<br />
 
 1. Add dependencies
 2. Configure the WebView controller and JavaScript mode
