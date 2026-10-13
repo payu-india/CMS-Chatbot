@@ -540,7 +540,7 @@ A complete Flutter WebView integration involves these 4 steps:<br />
   },
   ```
 
-  The `_handleUpiIntent` helper uses `url_launcher` to open the UPI app as a native external application:
+  The `_handleUpiIntent` helper uses `url_launcher` to open the UPI app as a native external application:<br />
 
   ```dart
   Future<void> _handleUpiIntent(String url) async {
@@ -610,14 +610,12 @@ A complete Flutter WebView integration involves these 4 steps:<br />
       | `successUrl`  | Your `surl` — publicly reachable HTTPS URL                                              |
       | `failureUrl`  | Your `furl` — publicly reachable HTTPS URL                                              |
       | `hash`        | SHA-512 hash generated server-side. See [Build Integration](./build-integration) Step 1 |
-    </Tab>
 
-    <Tab title="New Tab">
-
+      For the full parameter list including optional fields, see [Build Integration → Step 1.2](./build-integration).
     </Tab>
   </Tabs>
 
-  For the full parameter list including optional fields, see [Build Integration → Step 1.2](./build-integration).
+
 </Accordion>
 
 <Callout icon="✅" theme="success">
