@@ -1,4 +1,4 @@
 ---
 title: Misc
-hidden: false
+hidden: true
 ---
