@@ -255,7 +255,7 @@ A complete Android WebView integration involves these four steps:<br />
 
 ## iOS
 
-A complete iOS WebView integration involves four steps:
+A complete iOS WebView integration involves four steps:<br />
 
 1. Configure WKWebView
 2. Declare UPI URL schemes in `Info.plist`
