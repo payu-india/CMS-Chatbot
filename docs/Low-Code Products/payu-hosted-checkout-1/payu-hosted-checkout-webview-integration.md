@@ -615,8 +615,10 @@ A complete Flutter WebView integration involves these 4 steps:
 
   Use `anything@payu` as the VPA on the checkout page and verify that the UPI intent is intercepted and the UPI app selection screen opens natively.
 
-  <Callout icon="⚠️" theme="warn">
-    **Test UPI on real devices only.** Android emulators and iOS simulators do not have UPI apps installed — UPI intent handling cannot be verified without a real device on either platform.
+  <Callout icon="far fa-circle-info" theme="info">
+    ### **Tips: Test UPI on real devices only**
+
+    Android emulators and iOS simulators do not have UPI apps installed — UPI intent handling cannot be verified without a real device on either platform.
   </Callout>
 
   Platform-specific things to verify:
@@ -664,15 +666,38 @@ A complete Flutter WebView integration involves these 4 steps:
 
 ***
 
-## Common Errors
+## Common Issues
 
-**UPI payments not launching on Android** — Ensure `shouldOverrideUrlLoading` intercepts `upi://` and `intent://` URLs and passes them to `Intent.parseUri`. Without this, UPI intent URLs are treated as web URLs and fail.
+<Accordion title="UPI payments not launching on Android" icon="fa-mobile-screen-button">
+  Ensure `shouldOverrideUrlLoading` intercepts `upi://` and `intent://` URLs and passes them to `Intent.parseUri`. Without this override, the WebView treats UPI intent URLs as regular web URLs and fails to open the UPI app.<br />
 
-**Payment page not loading** — Check that `javaScriptEnabled = true` and `domStorageEnabled = true` are both set. The PayU checkout page requires JavaScript.
+  Also confirm you are testing on a **real Android device** — emulators do not have UPI apps installed and will always fail this step.
+</Accordion>
 
-**Back button dismisses the WebView instead of navigating back** — Override the device back button press to call `webView.goBack()` if `webView.canGoBack()` is true.
+<Accordion title="Payment page not loading" icon="fa-circle-xmark">
+  Check that both `javaScriptEnabled = true` and `domStorageEnabled = true` are set in your WebView configuration. PayU's checkout page requires JavaScript to render — if either setting is missing, the page will display as blank or fail to load entirely.
+</Accordion>
 
-**surl/furl not triggering on iOS** — Implement `decidePolicyFor navigationAction` in `WKNavigationDelegate` and match against your callback URLs.
+<Accordion title="Back button dismisses the WebView instead of navigating back" icon="fa-arrow-left">
+  Override the device back button to call `webView.goBack()` if `webView.canGoBack()` returns true. Without this, pressing back exits the WebView mid-payment instead of navigating to the previous checkout screen.
+
+  ```kotlin
+  // Android — in your Activity or Fragment
+  override fun onBackPressed() {
+      if (webView.canGoBack()) {
+          webView.goBack()
+      } else {
+          super.onBackPressed()
+      }
+  }
+  ```
+</Accordion>
+
+<Accordion title="surl/furl not triggering on iOS" icon="fa-link-slash">
+  Implement `decidePolicyFor navigationAction` in `WKNavigationDelegate` and match against your callback URLs using `urlString.hasPrefix(successUrl)` and `urlString.hasPrefix(failureUrl)`. Without this delegate method, the WebView will attempt to load the callback URLs as pages rather than returning control to your app.<br />
+
+  Also verify your `surl` and `furl` are publicly reachable HTTPS URLs — localhost or non-HTTPS URLs will not work.
+</Accordion>
 
 For additional issues, see [Errors and Troubleshooting](../errors-and-troubleshooting).
 
@@ -693,17 +718,17 @@ For additional issues, see [Errors and Troubleshooting](../errors-and-troublesho
 1. Customer taps **Pay Now** in your app.
 2. Your app calls your backend with the order details.
 3. Your backend generates the SHA-512 hash using the stored salt and returns the signed payment parameters.
-4. Your app POSTs those parameters to PayU via WebView using `postUrl` (Android) or a URLRequest (iOS/Flutter).
+4. Your app POSTs those parameters to PayU via WebView using `postUrl` (Android) or a URLRequest (iOS/Flutter).<br />
 
-The merchant salt never leaves your server. Your app handles the WebView and UPI intents — it never touches credentials.
+The merchant salt never leaves your server. Your app handles the WebView and UPI intents — it never touches credentials.<br />
 
-**Verify the response on your server, not in the app.** When the WebView navigates to your `surl` or `furl`, intercept the URL and pass the response parameters to your backend. Your backend validates the reverse hash and returns the verified payment status to the app. Do not update order status based on URL parameters in the app directly — the URL can be intercepted or modified.
+Verify the response on your server, not in the ap&#x70;**.** When the WebView navigates to your `surl` or `furl`, intercept the URL and pass the response parameters to your backend. Your backend validates the reverse hash and returns the verified payment status to the app. Do not update order status based on URL parameters in the app directly — the URL can be intercepted or modified.<br />
 
 See [Build Integration → Security](../integrate/build-integration#security) for the complete list of security requirements.
 
 ***
 
-## Platform FAQs
+## FAQs
 
 **Can I use the same PayU Hosted Checkout web integration in my app?**
 Yes. The WebView loads your existing payment form or directly POSTs parameters to the `_payment` endpoint. No separate mobile integration is needed.
