@@ -16,14 +16,10 @@ PayU's Card Subscription Integration using the Merchant-Hosted Checkout method e
 <Cards>
   <Card title="1. Consent Transaction" href="#step-1-consent-transaction">
     Initiate the recurring payment mandate by sending a POST request with mandatory parameters including key, txnid, amount, productinfo, customer details, pg='CC', bankcode, si=1, and si_details
-
-
   </Card>
 
   <Card title="2. Verify the Payment" href="#step-2-verify-the-payment">
     Use PayU's Verify Payment API or webhook setup to confirm successful consent transaction and mandate registration, handling any rejections or failures
-
-
   </Card>
 </Cards>
 
@@ -32,16 +28,22 @@ PayU's Card Subscription Integration using the Merchant-Hosted Checkout method e
 <Cards>
   <Card title="3. Pre-Debit Notification" href="#step-3-pre-debit-notification">
     Send advance notifications to customers 24-48 hours before recurring charges using authpayuid, invoiceDisplayNumber, and debit amount parameters
-
-
   </Card>
 
   <Card title="4. Recurring Payment Transaction" href="#step-4-recurring-payment-transaction">
     Execute automated recurring payments via server-to-server API without additional 2FA, using the registered mandate and billing schedule
-
-
   </Card>
 </Cards>
+
+## Enablement
+
+To collect dynamic convenience fees on SI card transactions, the following merchant-level flags must be enabled on your MID. Contact your PayU Key Account Manager (KAM) to activate them before attempting the integration below.
+
+| Flag                       | Description                                                          |
+| -------------------------- | -------------------------------------------------------------------- |
+| `enableCardsSiDynamicConv` | Enables dynamic convenience fee support for SI card transactions.    |
+| `enableSIPredebitConvFee`  | Enables passing convenience fee at the pre-debit notification stage. |
+| `DynamicConvFeeMerchant`   | Enables the merchant-level dynamic convenience fee capability.       |
 
 ## I. Payment Consent Flow
 
@@ -530,8 +532,8 @@ The **Pre-Debit Notification** API allows the merchants to send a pre-debit noti
   | message                              | Description of the pre-debit notification process                                                                                                                                                                                                                                                                                                                                                                                |
   | invoiceId<br />`only for cards`      | This is an acknowledgment ID that a pre debit notification has been sent for processing.                                                                                                                                                                                                                                                                                                                                         |
   | amount                               | The transaction amount for which the pre-debit notification has been sent.                                                                                                                                                                                                                                                                                                                                                       |
-  | invoiceStatus<br />`only for cards`  | This is the status of the invoice whether it has been charged for recurring or not. Values can be:<br />- Paid<br />- Unpaid<br />- Deleted<br />Since these statuses come from a third-party vendor, so these can vary if there is an addition of new status at the vendor end                                                                                                                                                  |
-  | approvedStatus<br />`only for cards` | This is for cases where the transaction is above 15000 as RBI guideline says approval is required through AFA (Additional Factor authentication). Values can be:<br />- Pending<br />- Approved<br />- Not_applicable<br />Since these statuses come from third-party vendors, so these can vary if there is an addition of new status at the vendor end.                                                                        |
+  | invoiceStatus<br />`only for cards`  | This is the status of the invoice whether it has been charged for recurring or not. Values can be:<br />\- Paid<br />\- Unpaid<br />\- Deleted<br />Since these statuses come from a third-party vendor, so these can vary if there is an addition of new status at the vendor end                                                                                                                                               |
+  | approvedStatus<br />`only for cards` | This is for cases where the transaction is above 15000 as RBI guideline says approval is required through AFA (Additional Factor authentication). Values can be:<br />\- Pending<br />\- Approved<br />\- Not_applicable<br />Since these statuses come from third-party vendors, so these can vary if there is an addition of new status at the vendor end.                                                                     |
 
   **var1 JSON fields description**
 
@@ -913,7 +915,7 @@ All successful registration transactions are charged over the recurring interfac
 
 ## Additional Resources
 
-• **[Manage Recurring Payment for Cards](https://docs.payu.in/docs/manage-recurring-payment-for-cards)** - Handle card-based recurring transactions<br />• **[SI Parameter JSON Details](https://docs.payu.in/reference/si-parameter-json-details)** - Detailed subscription parameter specifications
-• **[RBI Guidelines](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0)** - Regulatory compliance information
+• [Manage Recurring Payment for Cards](https://docs.payu.in/docs/manage-recurring-payment-for-cards) - Handle card-based recurring transactions<br />• [SI Parameter JSON Details](https://docs.payu.in/reference/si-parameter-json-details) - Detailed subscription parameter specifications
+• [RBI Guidelines](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=11668\&Mode=0) - Regulatory compliance information
 
 <br />
