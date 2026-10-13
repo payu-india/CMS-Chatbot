@@ -245,6 +245,12 @@ A complete Android WebView integration involves these four steps:
   </Callout>
 </Accordion>
 
+<Callout icon="✅" theme="success">
+  ### **Android Integration Complete**
+
+  Continue to [Test Your Integration](#test-your-integration) to verify UPI intent handling, callback interception, and payment flows end-to-end.
+</Callout>
+
 ***
 
 ## iOS
@@ -429,6 +435,12 @@ A complete iOS WebView integration involves four steps:
     </Tab>
   </Tabs>
 </Accordion>
+
+<Callout icon="✅" theme="success">
+  ### **iOS Integration Complete**
+
+  Continue to [Test Your Integration](#test-your-integration) to verify UPI deep link handling, WKNavigationDelegate callback interception, and payment flows end-to-end.
+</Callout>
 
 ***
 
