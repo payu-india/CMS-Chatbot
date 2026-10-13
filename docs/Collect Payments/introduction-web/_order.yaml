@@ -6,6 +6,7 @@
 - upi-collect-disablement-information
 - bank-and-card-codes-for-integration
 - collect-additional-charges
+- copy-of-collect-additional-charges
 - webhooks
 - hashing-request-and-response
 - error-handling
@@ -13,4 +14,3 @@
 - general-faqs
 - faqs-for-review
 - faqs-for-web-checkout-integration
-- copy-of-collect-additional-charges
