@@ -83,7 +83,7 @@ The following platforms are supported.
 
 ***
 
-## Android
+### Android
 
 A complete Android WebView integration involves these four steps:<br />
 
@@ -255,7 +255,7 @@ A complete Android WebView integration involves these four steps:<br />
 
 ***
 
-## iOS
+### iOS
 
 A complete iOS WebView integration involves four steps:<br />
 
@@ -446,7 +446,7 @@ A complete iOS WebView integration involves four steps:<br />
 
 ***
 
-## Flutter
+### Flutter
 
 A complete Flutter WebView integration involves these 4 steps:<br />
 
