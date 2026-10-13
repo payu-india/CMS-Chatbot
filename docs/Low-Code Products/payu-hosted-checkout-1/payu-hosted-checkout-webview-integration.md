@@ -50,7 +50,7 @@ WebView integration lets you embed the <Anchor target="_blank" href="https://doc
 Have you not built your web integration yet? Start here:
 
 <Cards columns="1">
-  <Card title="Build Integration" href="./build-integration" icon="fa-code">
+  <Card title="Build Integration" href="https://docs.payu.in/docs/payu-hosted-checkout-build-integration" icon="fa-code" target="_blank">
     Implement request parameters, hash generation, HTML form POST, and server-side response verification — required before embedding in a WebView.
   </Card>
 </Cards>
@@ -66,15 +66,15 @@ Have you not built your web integration yet? Start here:
 ## Platforms Supported
 
 <Cards columns="3">
-  <Card title="Android" href="#android">
+  <Card title="Android" href="##android">
     WebView settings, POST checkout, UPI intents, Chrome Custom Tab
   </Card>
 
-  <Card title="iOS" href="#ios">
+  <Card title="iOS" href="##ios">
     WKWebView POST checkout, deeplink handling, LSApplicationQueriesSchemes
   </Card>
 
-  <Card title="Flutter" href="#flutter">
+  <Card title="Flutter" href="##flutter">
     webview_flutter, method channels, UPI launch on Android and iOS
   </Card>
 </Cards>
