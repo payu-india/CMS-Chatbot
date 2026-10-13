@@ -602,7 +602,7 @@ On basis of a successful response of the Collect Payment (**\_payment**) API, yo
     <Tab title="Sample request">
       ```curl
       curl --location "https://secure.payu.in/decoupled/AuthData?referenceId=224845c3c891a0925d0554b390d70e71" \
-        --header "key: smsplus" \
+        --header "key: {{Merchant_Key}}" \
         --header "hash: 3f6759853702db56124ce7d1515e98cf7fdc58617253422a43c63f38aa7660e8a500bc97ba642ad3c1fb7d0a7264050b8cd28015c4448eb45c9d4cff2cdf61c1" \
         --header "Date: Tue, 12 Mar 2024 10:54:29 GMT" \
         --header "Content-Type: application/json" \
