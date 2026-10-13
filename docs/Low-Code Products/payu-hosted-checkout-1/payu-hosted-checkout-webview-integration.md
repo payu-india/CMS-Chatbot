@@ -730,16 +730,22 @@ See [Build Integration → Security](../integrate/build-integration#security) fo
 
 ## FAQs
 
-1. ####
+1. #### **Can I use the same PayU Hosted Checkout web integration in my app?**
+   <Accordion title="Answer" icon="fab fa-adn">
+     Yes. The WebView loads your existing payment form or directly POSTs parameters to the `_payment` endpoint. No separate mobile integration is needed.
+   </Accordion>
+2. #### **Does UPI work inside WebView?**
+   <Accordion title="Answer" icon="fab fa-adn">
+     UPI collect works. UPI intent (which launches the UPI app) requires that you intercept the `upi://` or `intent://` URL and pass it to the device's intent system. Without this interception, UPI app launch fails.
+   </Accordion>
+3. #### **Do I need to generate the hash in the app?**
+   <Accordion title="Answer" icon="fab fa-adn">
+     No. The hash must be generated on your server. The WebView integration calls your server to get the hash and other parameters, then POSTs them to PayU.
+   </Accordion>
+   #### <br />
 
-**Can I use the same PayU Hosted Checkout web integration in my app?**
-Yes. The WebView loads your existing payment form or directly POSTs parameters to the `_payment` endpoint. No separate mobile integration is needed.
 
-**Does UPI work inside WebView?**
-UPI collect works. UPI intent (which launches the UPI app) requires that you intercept the `upi://` or `intent://` URL and pass it to the device's intent system. Without this interception, UPI app launch fails.
 
-**Do I need to generate the hash in the app?**
-No. The hash must be generated on your server. The WebView integration calls your server to get the hash and other parameters, then POSTs them to PayU.
 
 ***
 
