@@ -1,14 +1,13 @@
 ---
 title: Decoupled Flow Integration
-excerpt: ''
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
 The S2S decoupled flow for cards involves the following steps for the **redirect** experience.
 
