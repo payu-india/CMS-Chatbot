@@ -58,25 +58,25 @@ next:
   fontWeight="bold"
  />
 
-## Why Use Payment Links?
+## How Does Payment Links Simplfies My Business?
 
-<Accordion title="Create-to-Collect in Minutes" icon="fa-bolt">
+<Accordion title="Create-to-Collect in Minutes">
   Create a <Glossary>payment links</Glossary> in a few clicks and start collecting money right away. No website, no developer, no waiting.
 </Accordion>
 
-<Accordion title="Automatically Delivers Link to Your Customers" icon="fa-paper-plane">
-  Toggle on SMS and email delivery — PayU sends the link to your customer the moment it's created. No copy-pasting or manual sharing needed.
+<Accordion title="Automatically Delivers Link to Your Customers">
+  Toggle on SMS and email delivery to send the link to your customer the moment it's created. No copy-pasting or manual sharing needed.
 </Accordion>
 
-<Accordion title="Set Expiry Dates" icon="fa-clock">
-  Control exactly when a link stops accepting payments. Set a due date so your customers know when to act — and your links don't stay open indefinitely.
+<Accordion title="Set Expiry Dates">
+  Control exactly when a link stops accepting payments. Set a due date so your customers know when to act, and your links don't stay open indefinitely.
 </Accordion>
 
-<Accordion title="Collect a Deposit, Settle the Balance Later" icon="fa-money-bill-wave">
-  Enable partial payments so customers can pay a portion upfront and the rest when they are ready. You set the minimum first payment — keeping the transaction moving on your terms.
+<Accordion title="Collect a Deposit, Settle the Balance Later">
+  Enable partial payments so customers can pay a portion upfront and the rest when they are ready. You set the minimum first payment, keeping the transaction moving on your terms.
 </Accordion>
 
-<Accordion title="Supports Every Indian Payment Method" icon="fa-credit-card">
+<Accordion title="Supports Every Indian Payment Method">
   UPI (all apps), credit and debit cards, net banking (50+ banks), wallets, EMI, and BNPL. One link, every way to pay.
 </Accordion>
 
