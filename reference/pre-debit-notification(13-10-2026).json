@@ -97,7 +97,8 @@
             "content": {}
           }
         },
-        "deprecated": false
+        "deprecated": false,
+        "x-internal": true
       },
       "parameters": []
     }
