@@ -55,6 +55,12 @@ Have you not built your web integration yet? Start here:
   </Card>
 </Cards>
 
+<Callout icon="📘" theme="info">
+  ### **Prefer a fully native mobile integration?**
+
+  If you want native payment UI without a WebView, PayU offers dedicated mobile SDKs for Android, iOS, React Native, and Flutter. See [Mobile SDKs](../../../../mobile-sdks) for the native integration path.
+</Callout>
+
 ***
 
 ## Platforms Supported
@@ -742,27 +748,3 @@ See [Build Integration → Security](../integrate/build-integration#security) fo
    <Accordion title="Answer" icon="fab fa-adn">
      No. The hash must be generated on your server. The WebView integration calls your server to get the hash and other parameters, then POSTs them to PayU.
    </Accordion>
-   #### <br />
-
-
-
-
-***
-
-## Next Steps
-
-<Cards columns="2">
-  <Card title="Test Integration" href="./test-integration" icon="fa-flask">
-    Test your WebView payment flow end-to-end using sandbox credentials — including UPI intent handling and callback routing.
-  </Card>
-
-  <Card title="Go-live Checklist" href="./go-live-checklist" icon="fa-circle-check">
-    Switch to production credentials, verify security requirements, configure webhooks, and confirm production readiness.
-  </Card>
-</Cards>
-
-<Callout icon="📘" theme="info">
-  **Prefer a fully native mobile integration?**
-
-  If you want native payment UI without a WebView, PayU offers dedicated mobile SDKs for Android, iOS, React Native, and Flutter. See [Mobile SDKs](../../../../mobile-sdks) for the native integration path.
-</Callout>
