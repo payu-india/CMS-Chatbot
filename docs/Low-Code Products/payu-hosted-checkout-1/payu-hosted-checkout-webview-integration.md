@@ -87,33 +87,39 @@ A complete Android WebView integration involves these four steps:
 <Accordion title="Step 1: Configure WebView Settings" icon="fa-gear">
   PayU's checkout page is a JavaScript application that uses DOM storage for session management. Without the settings below, the checkout will either fail to render or break mid-payment.
 
-  | Setting                                               | Required    | Why                                                                                              |
-  | ----------------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------ |
-  | `javaScriptEnabled = true`                            | ✅           | PayU checkout requires JavaScript to render and function                                         |
-  | `domStorageEnabled = true`                            | ✅           | PayU uses DOM storage for session management — disabling this causes checkout failures           |
-  | `loadWithOverviewMode = true`                         | ✅           | Ensures the checkout page fits the screen width without horizontal scrolling                     |
-  | `useWideViewPort = true`                              | ✅           | Tells the WebView to respect the viewport meta tag from PayU's page for correct layout           |
-  | `setSupportMultipleWindows(true)`                     | Recommended | Some bank authentication flows open a new window; this setting allows it                         |
-  | `mixedContentMode = MIXED_CONTENT_COMPATIBILITY_MODE` | Recommended | Allows the checkout to load assets from both HTTPS and HTTP origins, required by some bank pages |
+  <Tabs>
+    <Tab title="Sample Payload">
+      ```kotlin
+      webView.settings.apply {
+          javaScriptEnabled = true
+          domStorageEnabled = true
+          loadWithOverviewMode = true
+          useWideViewPort = true
+          setSupportMultipleWindows(true)
+          mixedContentMode = WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE
+      }
+      ```
+    </Tab>
 
-  ```kotlin
-  webView.settings.apply {
-      javaScriptEnabled = true
-      domStorageEnabled = true
-      loadWithOverviewMode = true
-      useWideViewPort = true
-      setSupportMultipleWindows(true)
-      mixedContentMode = WebSettings.MIXED_CONTENT_COMPATIBILITY_MODE
-  }
-  ```
+    <Tab title="Parameter Description">
+      | Setting                                               | Required    | Why                                                                                              |
+      | ----------------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------ |
+      | `javaScriptEnabled = true`                            | ✅           | PayU checkout requires JavaScript to render and function                                         |
+      | `domStorageEnabled = true`                            | ✅           | PayU uses DOM storage for session management — disabling this causes checkout failures           |
+      | `loadWithOverviewMode = true`                         | ✅           | Ensures the checkout page fits the screen width without horizontal scrolling                     |
+      | `useWideViewPort = true`                              | ✅           | Tells the WebView to respect the viewport meta tag from PayU's page for correct layout           |
+      | `setSupportMultipleWindows(true)`                     | Recommended | Some bank authentication flows open a new window; this setting allows it                         |
+      | `mixedContentMode = MIXED_CONTENT_COMPATIBILITY_MODE` | Recommended | Allows the checkout to load assets from both HTTPS and HTTP origins, required by some bank pages |
+    </Tab>
+  </Tabs>
 </Accordion>
 
-<Accordion title="Step 2 — Handle URL Navigation" icon="fa-arrows-alt-h">
-  During the payment flow, PayU's checkout page triggers URL redirects for three scenarios you must handle explicitly:
+<Accordion title="Step 2: Handle URL Navigation" icon="fa-arrows-alt-h">
+  During the payment flow, PayU's checkout page triggers URL redirects for these 3 scenarios you must handle explicitly:
 
-  - **UPI intent launch** — when a customer selects a UPI app (Google Pay, PhonePe, Paytm), PayU generates a `upi://` or `intent://` URL. This must be passed to Android's intent system to open the correct UPI app — the WebView cannot open it on its own.
-  - **Payment success** — when payment completes, PayU redirects the WebView to your `surl`.
-  - **Payment failure** — when payment fails or is cancelled, PayU redirects to your `furl`.
+  - **UPI intent launch**: When a customer selects a UPI app (Google Pay, PhonePe, Paytm), PayU generates a `upi://` or `intent://` URL. This must be passed to Android's intent system to open the correct UPI app; The WebView cannot open it on its own.
+  - **Payment success**: When payment completes, PayU redirects the WebView to your `surl`.
+  - **Payment failure**: When payment fails or is cancelled, PayU redirects to your `furl`.
 
   Override `shouldOverrideUrlLoading` in your `WebViewClient` to intercept and handle each case:
 
@@ -150,53 +156,61 @@ A complete Android WebView integration involves these four steps:
   }
   ```
 
-  <Callout icon="⚠️" theme="warn">
-    **Do not update order status in the app.** When `surl` or `furl` is triggered, pass the response parameters to your backend for reverse hash verification before marking any order as paid. The URL can be intercepted or spoofed.
+  <Callout icon="fad fa-bell-exclamation" theme="error">
+    ### Important: **Do not update order status in the app**
+
+    When `surl` or `furl` is triggered, pass the response parameters to your backend for reverse hash verification before marking any order as paid. The URL can be intercepted or spoofed.
   </Callout>
 </Accordion>
 
-<Accordion title="Step 3 — POST Payment Parameters to PayU" icon="fa-paper-plane">
-  Use `webView.postUrl()` to POST the payment parameters to PayU's `_payment` endpoint. This is the WebView equivalent of the HTML form POST used in the web integration — the parameters and endpoint are identical.
+<Accordion title="Step 3: POST Payment Parameters to PayU" icon="fa-paper-plane">
+  Use `webView.postUrl()` to POST the payment parameters to PayU's `_payment` endpoint. This is the WebView equivalent of the HTML form POST used in the web integration. Here, the parameters and endpoint are identical.<br />
 
   Your app must call your backend first to retrieve the signed payment parameters including the server-generated hash. Never generate the hash in the app.
 
-  | Parameter       | Description                                                                               |
-  | --------------- | ----------------------------------------------------------------------------------------- |
-  | `merchantKey`   | Your PayU merchant key                                                                    |
-  | `txnId`         | Unique transaction ID generated by your backend — store it before posting                 |
-  | `amount`        | Payment amount, two decimal places (e.g. `499.00`)                                        |
-  | `productInfo`   | Brief product description                                                                 |
-  | `firstName`     | Customer's first name                                                                     |
-  | `email`         | Customer's email address                                                                  |
-  | `phone`         | Customer's phone number                                                                   |
-  | `successUrl`    | Your `surl` — must be a publicly reachable HTTPS URL                                      |
-  | `failureUrl`    | Your `furl` — must be a publicly reachable HTTPS URL                                      |
-  | `generatedHash` | SHA-512 hash generated server-side. See [Build Integration](./build-integration) Step 1.2 |
+  <Tabs>
+    <Tab title="Request Payload">
+      ```kotlin
+      val paymentParams = mapOf(
+          "key"         to merchantKey,
+          "txnid"       to txnId,
+          "amount"      to amount,
+          "productinfo" to productInfo,
+          "firstname"   to firstName,
+          "email"       to email,
+          "phone"       to phone,
+          "surl"        to successUrl,
+          "furl"        to failureUrl,
+          "hash"        to generatedHash
+      )
 
-  ```kotlin
-  val paymentParams = mapOf(
-      "key"         to merchantKey,
-      "txnid"       to txnId,
-      "amount"      to amount,
-      "productinfo" to productInfo,
-      "firstname"   to firstName,
-      "email"       to email,
-      "phone"       to phone,
-      "surl"        to successUrl,
-      "furl"        to failureUrl,
-      "hash"        to generatedHash
-  )
+      // URL-encode each parameter value and join as an application/x-www-form-urlencoded body
+      val postData = paymentParams.entries
+          .joinToString("&") { "${it.key}=${URLEncoder.encode(it.value, "UTF-8")}" }
+          .toByteArray()
 
-  // URL-encode each parameter value and join as an application/x-www-form-urlencoded body
-  val postData = paymentParams.entries
-      .joinToString("&") { "${it.key}=${URLEncoder.encode(it.value, "UTF-8")}" }
-      .toByteArray()
+      // POST to PayU — use test.payu.in for sandbox, secure.payu.in for production
+      webView.postUrl("https://secure.payu.in/_payment", postData)
+      ```
+    </Tab>
 
-  // POST to PayU — use test.payu.in for sandbox, secure.payu.in for production
-  webView.postUrl("https://secure.payu.in/_payment", postData)
-  ```
+    <Tab title="Parameter Description">
+      | Parameter       | Description                                                                               |
+      | --------------- | ----------------------------------------------------------------------------------------- |
+      | `merchantKey`   | Your PayU merchant key                                                                    |
+      | `txnId`         | Unique transaction ID generated by your backend — store it before posting                 |
+      | `amount`        | Payment amount, two decimal places (e.g. `499.00`)                                        |
+      | `productInfo`   | Brief product description                                                                 |
+      | `firstName`     | Customer's first name                                                                     |
+      | `email`         | Customer's email address                                                                  |
+      | `phone`         | Customer's phone number                                                                   |
+      | `successUrl`    | Your `surl` — must be a publicly reachable HTTPS URL                                      |
+      | `failureUrl`    | Your `furl` — must be a publicly reachable HTTPS URL                                      |
+      | `generatedHash` | SHA-512 hash generated server-side. See [Build Integration](./build-integration) Step 1.2 |
 
-  For the full parameter list including optional fields (address, UDFs, `enforce_paymethod`, etc.), see [Build Integration → Step 1.1](./build-integration).
+      For the full parameter list including optional fields (address, UDFs, `enforce_paymethod`, etc.), see [Build Integration → Step 1.1](./build-integration).
+    </Tab>
+  </Tabs>
 </Accordion>
 
 <Accordion title="Step 4 — Handle Bank Authentication with Chrome Custom Tab (Optional)" icon="fa-window-restore">
