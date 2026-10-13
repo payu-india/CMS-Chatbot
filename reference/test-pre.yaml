@@ -15,7 +15,9 @@ paths:
   /merchant/postservice.php:
     post:
       operationId: createPredebitAndRecurringTransaction
-      summary: Create a Pre-debit Notification and Recurring Payments Transaction
+      summary: >-
+        [Internal review]Create a Pre-debit Notification and Recurring Payments
+        Transaction
       description: >-
         Use this endpoint to create a pre-debit notification or initiates a
         recurring paymenttransaction using the PayU subscription API.
