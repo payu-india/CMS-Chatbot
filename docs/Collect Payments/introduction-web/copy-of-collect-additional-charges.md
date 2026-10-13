@@ -115,7 +115,7 @@ The **additionalCharges** value must be the same as the value posted from PayU t
 
 If both match, you must process the order. If they don’t match, the transaction has been tampered with and should not be processed further.
 
-## Additional Charges for Standing Instruction (SI) Card Transactions
+## Additional Charges for Standing Instruction (SI) Card Transactions \[_new addition_]
 
 When collecting dynamic convenience fees on **SI (recurring/subscription) card transactions**, use SI-specific ibibocodes instead of the regular bankcodes described above. The same two parameters apply — `additional_charges` and `percentage_additional_charges` — but with a different set of allowed values depending on the phase of the SI lifecycle.
 
