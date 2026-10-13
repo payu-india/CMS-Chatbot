@@ -33,7 +33,7 @@ next:
   fontWeight="bold"
  />
 
-WebView integration lets you embed the PayU Hosted Checkout experience inside your mobile app without redirecting users to an external browser. Your existing PayU Hosted Checkout web integration works inside a WebView with platform-specific configuration.
+WebView integration lets you embed the <Anchor target="_blank" href="https://docs.payu.in/docs/payu-hosted-checkout-1">PayU Hosted Checkout</Anchor> experience inside your mobile app without redirecting users to an external browser. Your existing PayU Hosted Checkout web integration works inside a WebView with platform-specific configuration.
 
 <Callout icon="❗️" theme="error">
   **NPCI UPI mandate — required reading before you build**
