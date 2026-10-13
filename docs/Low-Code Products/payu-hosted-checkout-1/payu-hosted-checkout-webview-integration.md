@@ -620,6 +620,12 @@ A complete Flutter WebView integration involves these 4 steps:
   For the full parameter list including optional fields, see [Build Integration → Step 1.2](./build-integration).
 </Accordion>
 
+<Callout icon="✅" theme="success">
+  ### **Flutter Integration Complete**
+
+  Continue to [Test Your Integration](#test-your-integration) to verify UPI handling on both Android and iOS, NavigationDelegate callback interception, and payment flows end-to-end.
+</Callout>
+
 ***
 
 ## Test Your Integration
