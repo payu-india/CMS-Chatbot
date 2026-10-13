@@ -171,7 +171,7 @@ Check this video to see how PayU Payment Links work
 
 ***
 
-## What Will I Need?
+## What Will I Need to Get Started?
 
 You do not need a website or developer to get started.<br />
 
