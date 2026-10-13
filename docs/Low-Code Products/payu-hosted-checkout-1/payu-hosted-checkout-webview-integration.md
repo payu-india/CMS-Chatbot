@@ -82,7 +82,7 @@ A complete Android WebView integration involves these four steps:
 1. Configure WebView settings
 2. Handle URL navigation — intercept UPI intents and `surl`/`furl` callbacks
 3. POST payment parameters to PayU via the WebView
-4. (Optional) Handle bank authentication with Chrome Custom Tab
+4. Handle bank authentication with Chrome Custom Tab (Optional)
 
 <Accordion title="Step 1: Configure WebView Settings" icon="fa-gear">
   PayU's checkout page is a JavaScript application that uses DOM storage for session management. Without the settings below, the checkout will either fail to render or break mid-payment.
