@@ -730,6 +730,8 @@ See [Build Integration → Security](../integrate/build-integration#security) fo
 
 ## FAQs
 
+1. ####
+
 **Can I use the same PayU Hosted Checkout web integration in my app?**
 Yes. The WebView loads your existing payment form or directly POSTs parameters to the `_payment` endpoint. No separate mobile integration is needed.
 
