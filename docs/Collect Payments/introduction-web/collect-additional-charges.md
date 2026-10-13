@@ -170,5 +170,7 @@ percentage_additional_charges: CCSI:100,DCSI:90,AMEXSI:80,HDFCDCSI:70,VISASI:60
 ```
 
 <Callout icon="⚠️" theme="warn">
-  ### **Important**: The ibibocode sets for Registration and Pre-Debit are different. `HDFCDCSI` is valid only in the Pre-Debit phase, not during Registration.
+  ### **Important**:&#x20;
+
+  The ibibocode sets for Registration and Pre-Debit are different. `HDFCDCSI` is valid only in the Pre-Debit phase, not during Registration.
 </Callout>
