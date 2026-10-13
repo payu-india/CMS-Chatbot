@@ -5,6 +5,7 @@
 - pay-and-subscribe-consent-transaction
 - payment-consent-transaction-merchant-hosted
 - pre_debit_notification_api
+- predebit
 - recurring_payment_api
 - subscriptions-pdn-rp
 - manage-recurring-payment-for-cards
