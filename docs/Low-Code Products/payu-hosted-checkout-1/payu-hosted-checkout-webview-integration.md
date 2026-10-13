@@ -213,10 +213,10 @@ A complete Android WebView integration involves these four steps:
   </Tabs>
 </Accordion>
 
-<Accordion title="Step 4 — Handle Bank Authentication with Chrome Custom Tab (Optional)" icon="fa-window-restore">
-  Some bank 3DS flows and NetBanking portals do not render correctly inside a WebView. Chrome Custom Tab provides a full browser environment and improves compatibility with these bank pages.
+<Accordion title="Step 4: Handle Bank Authentication with Chrome Custom Tab (Optional)" icon="fa-window-restore">
+  Some bank 3DS flows and NetBanking portals do not render correctly inside a WebView. Chrome Custom Tab provides a full browser environment and improves compatibility with these bank pages.<br />
 
-  Add the dependency to your `build.gradle`:
+  Add the below dependency to your `build.gradle`:
 
   ```groovy
   implementation 'androidx.browser:browser:1.5.0'
@@ -233,6 +233,8 @@ A complete Android WebView integration involves these four steps:
   ```
 
   <Callout icon="📘" theme="info">
+    ### **Tips:**
+
     This step is optional. Add it if your users report bank authentication pages not loading or rendering incorrectly inside the WebView.
   </Callout>
 </Accordion>
@@ -248,66 +250,80 @@ A complete iOS WebView integration involves four steps:
 3. Handle navigation and deep links via `WKNavigationDelegate`
 4. POST payment parameters to PayU
 
-<Accordion title="Step 1 — Configure WKWebView" icon="fa-gear">
-  iOS uses `WKWebView` (WebKit). Configure it with JavaScript enabled and DOM storage support before loading any content — both are required for PayU's checkout page to function.
+<Accordion title="Step 1: Configure WKWebView" icon="fa-gear">
+  iOS uses `WKWebView` (WebKit). Configure it with JavaScript enabled and DOM storage support before loading any content. Here, both are required for PayU's checkout page to function.
 
-  | Setting                        | Required | Why                                                                        |
-  | ------------------------------ | -------- | -------------------------------------------------------------------------- |
-  | `javaScriptEnabled = true`     | ✅        | PayU checkout requires JavaScript to render and function                   |
-  | `WKWebsiteDataStore.default()` | ✅        | Enables DOM and session storage — required for checkout session management |
+  <Tabs>
+    <Tab title="Request Payload">
+      ```swift
+      let config = WKWebViewConfiguration()
+      let preferences = WKPreferences()
 
-  ```swift
-  let config = WKWebViewConfiguration()
-  let preferences = WKPreferences()
+      // Required: PayU checkout requires JavaScript to render and function
+      preferences.javaScriptEnabled = true
+      config.preferences = preferences
 
-  // Required: PayU checkout requires JavaScript to render and function
-  preferences.javaScriptEnabled = true
-  config.preferences = preferences
+      // Required: enables DOM storage for PayU's checkout session management
+      let userContentController = WKUserContentController()
+      config.userContentController = userContentController
+      config.websiteDataStore = WKWebsiteDataStore.default()
+      ```
+    </Tab>
 
-  // Required: enables DOM storage for PayU's checkout session management
-  let userContentController = WKUserContentController()
-  config.userContentController = userContentController
-  config.websiteDataStore = WKWebsiteDataStore.default()
-  ```
+    <Tab title="Parameter Description">
+      | Setting                        | Required | Why                                                                               |
+      | ------------------------------ | -------- | --------------------------------------------------------------------------------- |
+      | `javaScriptEnabled = true`     | ✅        | PayU checkout requires JavaScript to render and function                          |
+      | `WKWebsiteDataStore.default()` | ✅        | Enables DOM and session storage. This is required for checkout session management |
+    </Tab>
+  </Tabs>
 
   Create the `WKWebView` with this configuration and add it to your view hierarchy before submitting the payment form.
 </Accordion>
 
-<Accordion title="Step 2 — Declare UPI URL Schemes in Info.plist" icon="fa-file-code">
-  iOS requires apps to explicitly declare any URL schemes they intend to open. Without this, `canOpenURL()` always returns `false` for UPI app schemes and UPI payments will silently fail to launch.
+<Accordion title="Step 2: Declare UPI URL Schemes in Info.plist" icon="fa-file-code">
+  iOS requires apps to explicitly declare any URL schemes they intend to open. Without this, `canOpenURL()` always returns `false` for UPI app schemes and UPI payments will silently fail to launch.<br />
 
   Add the following to your `Info.plist` under the `LSApplicationQueriesSchemes` key:
 
-  | Scheme    | UPI App                                             |
-  | --------- | --------------------------------------------------- |
-  | `upi`     | Generic UPI handler — required for all UPI payments |
-  | `gpay`    | Google Pay                                          |
-  | `phonepe` | PhonePe                                             |
-  | `paytm`   | Paytm                                               |
-  | `bhim`    | BHIM / NPCI                                         |
+  <Tabs>
+    <Tab title="Request Payload">
+      ```xml
+      <key>LSApplicationQueriesSchemes</key>
+      <array>
+          <string>upi</string>
+          <string>gpay</string>
+          <string>phonepe</string>
+          <string>paytm</string>
+          <string>bhim</string>
+      </array>
+      ```
+    </Tab>
 
-  ```xml
-  <key>LSApplicationQueriesSchemes</key>
-  <array>
-      <string>upi</string>
-      <string>gpay</string>
-      <string>phonepe</string>
-      <string>paytm</string>
-      <string>bhim</string>
-  </array>
-  ```
+    <Tab title="Parameter Description">
+      | Scheme    | UPI App                                             |
+      | --------- | --------------------------------------------------- |
+      | `upi`     | Generic UPI handler — required for all UPI payments |
+      | `gpay`    | Google Pay                                          |
+      | `phonepe` | PhonePe                                             |
+      | `paytm`   | Paytm                                               |
+      | `bhim`    | BHIM / NPCI                                         |
+    </Tab>
+  </Tabs>
 
   <Callout icon="📘" theme="info">
+    ### **Tips:**
+
     Add only the schemes for UPI apps your customers are likely to use. Apple caps the total number of `LSApplicationQueriesSchemes` entries at 50.
   </Callout>
 </Accordion>
 
-<Accordion title="Step 3 — Handle Navigation and Deep Links" icon="fa-arrows-alt-h">
+<Accordion title="Step 3: Handle Navigation and Deep Links" icon="fa-arrows-alt-h">
   Implement `WKNavigationDelegate` to intercept three types of navigation events during the payment flow:
 
-  - **UPI deep links** (`upi://`) — when a customer selects a UPI app, open it via `UIApplication.shared.open(url)` and cancel the WebView navigation
-  - **Success callback** — when PayU redirects to your `surl`, intercept it and route to your success screen
-  - **Failure callback** — when PayU redirects to your `furl`, intercept it and route to your failure screen
+  - **UPI deep links** (`upi://`): When a customer selects a UPI app, open it via `UIApplication.shared.open(url)` and cancel the WebView navigation
+  - **Success callback**: When PayU redirects to your `surl`, intercept it and route to your success screen
+  - **Failure callback**: When PayU redirects to your `furl`, intercept it and route to your failure screen
 
   ```swift
   func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction,
@@ -345,59 +361,71 @@ A complete iOS WebView integration involves four steps:
   }
   ```
 
-  <Callout icon="⚠️" theme="warn">
-    **Do not update order status in the app.** When `surl` or `furl` is triggered, pass the response parameters to your backend for reverse hash verification before marking any order as paid.
+  <Callout icon="fad fa-bell-exclamation" theme="error">
+    ### Impotant: **Do not update order status in the app**
+
+    When `surl` or `furl` is triggered, pass the response parameters to your backend for reverse hash verification before marking any order as paid.
   </Callout>
 </Accordion>
 
-<Accordion title="Step 4 — POST Payment Parameters to PayU" icon="fa-paper-plane">
-  Construct a `URLRequest` with `httpMethod = "POST"` and a URL-encoded body, then load it into the `WKWebView`. This is the iOS equivalent of the HTML form POST from the web integration.
+<Accordion title="Step 4: POST Payment Parameters to PayU" icon="fa-paper-plane">
+  Construct a `URLRequest` with `httpMethod = "POST"` and a URL-encoded body, then load it into the `WKWebView`. This is the iOS equivalent of the HTML form POST from the web integration.<br />
 
-  Retrieve the signed payment parameters — including the server-generated hash — from your backend before constructing the request. Never generate the hash in the app.
+  Retrieve the signed payment parameters, including the server-generated hash from your backend before constructing the request. Never generate the hash in the app.
 
-  | Parameter       | Description                                                                               |
-  | --------------- | ----------------------------------------------------------------------------------------- |
-  | `merchantKey`   | Your PayU merchant key                                                                    |
-  | `txnId`         | Unique transaction ID generated by your backend — store it before posting                 |
-  | `amount`        | Payment amount, two decimal places (e.g. `499.00`)                                        |
-  | `productInfo`   | Brief product description                                                                 |
-  | `firstName`     | Customer's first name                                                                     |
-  | `email`         | Customer's email address                                                                  |
-  | `phone`         | Customer's phone number                                                                   |
-  | `successUrl`    | Your `surl` — publicly reachable HTTPS URL                                                |
-  | `failureUrl`    | Your `furl` — publicly reachable HTTPS URL                                                |
-  | `generatedHash` | SHA-512 hash generated server-side. See [Build Integration](./build-integration) Step 1.2 |
+  <Tabs>
+    <Tab title="Request Payload">
+      ```swift
+      func submitPaymentForm() {
+          let paymentParams: [String: String] = [
+              "key":         merchantKey,
+              "txnid":       txnId,
+              "amount":      amount,
+              "productinfo": productInfo,
+              "firstname":   firstName,
+              "email":       email,
+              "phone":       phone,
+              "surl":        successUrl,
+              "furl":        failureUrl,
+              "hash":        generatedHash
+          ]
 
-  ```swift
-  func submitPaymentForm() {
-      let paymentParams: [String: String] = [
-          "key":         merchantKey,
-          "txnid":       txnId,
-          "amount":      amount,
-          "productinfo": productInfo,
-          "firstname":   firstName,
-          "email":       email,
-          "phone":       phone,
-          "surl":        successUrl,
-          "furl":        failureUrl,
-          "hash":        generatedHash
-      ]
+          // URL-encode each value and join as an application/x-www-form-urlencoded body
+          let postBody = paymentParams
+              .map { "\($0.key)=\($0.value.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")" }
+              .joined(separator: "&")
 
-      // URL-encode each value and join as an application/x-www-form-urlencoded body
-      let postBody = paymentParams
-          .map { "\($0.key)=\($0.value.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")" }
-          .joined(separator: "&")
+          var request = URLRequest(url: URL(string: "https://secure.payu.in/_payment")!)
+          request.httpMethod = "POST"
+          request.httpBody = postBody.data(using: .utf8)
+          request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
 
-      var request = URLRequest(url: URL(string: "https://secure.payu.in/_payment")!)
-      request.httpMethod = "POST"
-      request.httpBody = postBody.data(using: .utf8)
-      request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+          webView.load(request)
+      }
+      ```
+    </Tab>
 
-      webView.load(request)
-  }
-  ```
+    <Tab title="Parameter Description">
+      | Parameter       | Description                                                                          |
+      | --------------- | ------------------------------------------------------------------------------------ |
+      | `merchantKey`   | Your PayU merchant key                                                               |
+      | `txnId`         | Unique transaction ID generated by your backend — store it before posting            |
+      | `amount`        | Payment amount, two decimal places (e.g. `499.00`)                                   |
+      | `productInfo`   | Brief product description                                                            |
+      | `firstName`     | Customer's first name                                                                |
+      | `email`         | Customer's email address                                                             |
+      | `phone`         | Customer's phone number                                                              |
+      | `successUrl`    | Your `surl` — publicly reachable HTTPS URL                                           |
+      | `failureUrl`    | Your `furl` — publicly reachable HTTPS URL                                           |
+      | `generatedHash` | SHA-512 hash generated server-side. See [Build Integration](./build-integration) 1.2 |
 
-  For the full parameter list including optional fields, see [Build Integration → Step 1.1](./build-integration).
+      For the full parameter list including optional fields, see [Build Integration → Step 1](./build-integration).
+    </Tab>
+
+    <Tab title="New Tab">
+
+    </Tab>
+  </Tabs>
 </Accordion>
 
 ***
