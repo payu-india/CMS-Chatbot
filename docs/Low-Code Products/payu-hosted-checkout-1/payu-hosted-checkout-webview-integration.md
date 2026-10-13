@@ -604,7 +604,67 @@ A complete Flutter WebView integration involves these 4 steps:
 
 ***
 
-## Common Issues
+## Test Your Integration
+
+<Accordion title="Test Your WebView Integration" icon="fa-flask">
+  **1. Use the test endpoint**
+
+  Set your payment form to POST to `https://test.payu.in/_payment`. Switch to `https://secure.payu.in/_payment` only when going live.
+
+  **2. Test UPI intent handling**
+
+  Use `anything@payu` as the VPA on the checkout page and verify that the UPI intent is intercepted and the UPI app selection screen opens natively.
+
+  <Callout icon="⚠️" theme="warn">
+    **Test UPI on real devices only.** Android emulators and iOS simulators do not have UPI apps installed — UPI intent handling cannot be verified without a real device on either platform.
+  </Callout>
+
+  Platform-specific things to verify:
+
+  | Platform | What to check                                                                                                                                    |
+  | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | Android  | `shouldOverrideUrlLoading` intercepts `upi://` and `intent://` URLs; `ActivityNotFoundException` is caught gracefully if no UPI app is installed |
+  | iOS      | `LSApplicationQueriesSchemes` entries are in `Info.plist`; `canOpenURL()` returns `true` for `upi://`; UPI app opens correctly                   |
+  | Flutter  | `onNavigationRequest` intercepts UPI URLs on both Android and iOS; `_handleUpiIntent()` launches the app via `url_launcher`                      |
+
+  **3. Test callback interception**
+
+  Use `https://test-payment-middleware.payu.in/simulatorResponse` as both `surl` and `furl` for initial testing. Once the callback fires, switch to your own HTTPS URLs and verify your URL interception handler fires correctly for both success and failure.
+
+  **4. Test failure and abandonment flows**
+
+  Enter invalid credentials to trigger a failure response and confirm the WebView routes to `furl`. Close the WebView mid-payment and verify your app handles the incomplete state gracefully — no order should be marked as paid.
+
+  For full test credentials across all payment methods, see [Test Integration](./test-integration).
+</Accordion>
+
+***
+
+## Go Live
+
+<Accordion title="Go-live Checklist (WebView)" icon="fa-rocket">
+  **1. Switch to the production endpoint**
+
+  Update your payment POST to `https://secure.payu.in/_payment` and replace test credentials with your live merchant key and salt.
+
+  **2. Platform-specific production requirements**
+
+  | Platform | What to verify                                                                                                                                                                                                                                          |
+  | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | Android  | `AndroidManifest.xml` has `<uses-permission android:name="android.permission.INTERNET" />`; test on a release build (`./gradlew assembleRelease`) — ProGuard/R8 can strip WebView classes; test on your minimum supported Android version               |
+  | iOS      | No conflicting `NSAppTransportSecurity` exceptions for `secure.payu.in`; `LSApplicationQueriesSchemes` entries are present and used (Apple flags unused declarations during App Store review); test the archived release build on a real device         |
+  | Flutter  | `android/app/src/main/AndroidManifest.xml` has the INTERNET permission; `ios/Runner/Info.plist` has `LSApplicationQueriesSchemes`; test `flutter build apk --release` and `flutter build ios --release` on real devices before submitting to app stores |
+
+  **3. Verify hash generation remains server-side**
+
+  Confirm your app is still retrieving the signed payment parameters from your backend — the hash must never be generated in the app binary. See [Security Notes](#security-notes) below.
+
+  For the full production readiness checklist including credentials, webhooks, and security requirements, see [Go-live Checklist](./go-live-checklist).
+</Accordion>
+
+***
+
+## Common Errors
 
 **UPI payments not launching on Android** — Ensure `shouldOverrideUrlLoading` intercepts `upi://` and `intent://` URLs and passes them to `Intent.parseUri`. Without this, UPI intent URLs are treated as web URLs and fail.
 
