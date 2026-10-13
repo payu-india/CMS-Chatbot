@@ -101,3 +101,4 @@ paths:
               schema:
                 type: object
                 additionalProperties: true
+      x-internal: true
