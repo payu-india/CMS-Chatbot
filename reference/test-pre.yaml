@@ -16,9 +16,9 @@ paths:
     post:
       operationId: createPredebitAndRecurringTransaction
       summary: Create a Pre-debit Notification and Recurring Payments Transaction
-      description: |
-        Creates a pre-debit notification or initiates a recurring payment
-        transaction using the PayU subscription API.
+      description: >-
+        Use this endpoint to create a pre-debit notification or initiates a
+        recurring paymenttransaction using the PayU subscription API.
       tags:
         - Subscription APIs
       parameters:
