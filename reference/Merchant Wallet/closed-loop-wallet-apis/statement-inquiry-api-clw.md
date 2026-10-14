@@ -92,6 +92,11 @@ The **Statement Inquiry** API allows you to retrieve wallet transaction details,
       <td>1</td>
     </tr>
     <tr>
+      <td>last4Digits <code>optional</code></td>
+      <td>Numeric (4) - Last four digits of the card</td>
+      <td>7009</td>
+    </tr>
+    <tr>
       <td>count <code>optional</code></td>
       <td>Numeric (5) - Maximum count should be 100</td>
       <td>50</td>
@@ -105,6 +110,27 @@ The **Statement Inquiry** API allows you to retrieve wallet transaction details,
 </table>
 `}</HTMLBlock>
 
+## Sample Request
+
+```curl
+curl --location --request POST 'https://apitest.payu.in/loyalty-points/v1/wallet/statement-inquiry' \
+--header 'walletIdentifier: CLW' \
+--header 'date: Tue, 13 Oct 2026 09:40:39 GMT' \
+--header 'digest: BASE64_SHA256_OF_REQUEST_BODY' \
+--header 'authorization: hmac username="YOUR_MERCHANT_KEY", algorithm="hmac-sha256", headers="date digest", signature="YOUR_HMAC_SIGNATURE"' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "messageCode": "1072",
+  "requestDateTime": "20260823030456",
+  "clientTxnId": "testRi18921",
+  "fromDate": "07/10/2026",
+  "toDate": "07/10/2026",
+  "last4Digits": "3877",
+  "urn": 1000000,
+  "customerId": "22019",
+  "count": "100"
+}'
+```
 ## Response Parameters
 
 | Parameter        | Description                                                                                                                                                                                       | Example          |
@@ -134,29 +160,6 @@ The **Statement Inquiry** API allows you to retrieve wallet transaction details,
 | status            | Transaction status                     | SUCCESS         |
 | referenceNumber   | Reference number for the transaction   | REF789012345    |
 
-## Sample Request
-
-```curl
-curl --location --request POST 'https://apitest.payu.in/loyalty-points/v1/wallet/statement-inquiry' \
---header 'walletIdentifier: CLW' \
---header 'date: Tue, 13 Oct 2026 09:40:39 GMT' \
---header 'digest: BASE64_SHA256_OF_REQUEST_BODY' \
---header 'authorization: hmac username="YOUR_MERCHANT_KEY", algorithm="hmac-sha256", headers="date digest", signature="YOUR_HMAC_SIGNATURE"' \
---header 'Content-Type: application/json' \
---data-raw '{
-  "messageCode": "1072",
-  "requestDateTime": "20260823030456",
-  "clientTxnId": "testRi18921",
-  "fromDate": "07/10/2026",
-  "toDate": "07/10/2026",
-  "last4Digits": "3877",
-  "urn": 1000000,
-  "customerId": "22019",
-  "count": "100"
-}'
-```
-
-{/* REVIEW: last4Digits is sent in the sample (and in the CTP-378 cURL) but is not in the Request Parameters table. Confirm whether to document it or remove it. */}
 
 ## Sample Response
 
