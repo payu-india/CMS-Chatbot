@@ -219,7 +219,7 @@ Refer to the [Create a Payment Link](doc:send-a-payment-link) for full walkthrou
 
 ***
 
-## Is Payment Links Secure?
+## Is My Payment Links Secure?
 
 Yes. Every Payment Link is served over HTTPS on PayU's PCI-DSS compliant hosted payment page. Your customer's card and UPI details never pass through your system. You do not configure anything; PayU handles it.<br />
 
