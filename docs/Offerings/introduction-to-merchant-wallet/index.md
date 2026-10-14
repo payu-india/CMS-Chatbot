@@ -13,8 +13,7 @@ next:
 ---
 ## What is a Merchant wallet?
 
-**Merchant wallet** is a white-labelled prepaid instrument offered to merchant. Merchant can provide this offering to customers for purchasing goods and services.  
-Prepaid Payment Instruments (PPIs) are a category of digital payment instruments that facilitate the day-to-day buying/selling, fund transfers, and other financial transactions against the value already stored in them. This value can be stored by various methods of payments like cards etc.
+**Merchant wallet** is a white-labelled prepaid instrument offered to merchant. Merchant can provide this offering to customers for purchasing goods and services.<br />Prepaid Payment Instruments (PPIs) are a category of digital payment instruments that facilitate the day-to-day buying/selling, fund transfers, and other financial transactions against the value already stored in them. This value can be stored by various methods of payments like cards etc.
 
 ## Why prepaid?
 
@@ -39,10 +38,6 @@ Prepaid Payment Instruments (PPIs) are a category of digital payment instruments
 * Automation of ops and expense management processes
 
 ## Merchant Wallet advantages
-
-Merchant Wallet is a white-labelled prepaid instrument offered to Merchant. Merchant can provide this offering to customers for purchasing goods and services.
-
-Prepaid Payment Instruments (PPIs) are a category of digital payment instruments that facilitate the day-to-day buying/selling, fund transfers, and other financial transactions against the value already stored in them. This value can be stored by various methods of payments like cards etc.
 
 This wallet can be of the form of digital wallet to be used for online transaction or physical card for offline/online stores.
 
