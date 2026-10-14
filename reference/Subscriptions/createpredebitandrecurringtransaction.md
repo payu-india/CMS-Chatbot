@@ -2,7 +2,7 @@
 api:
   file: test-pre.yaml
   operationId: createPredebitAndRecurringTransaction
-hidden: true
+hidden: false
 link:
   new_tab: false
 ---
