@@ -102,8 +102,6 @@ The merchant sends plain card details. PayU selects the acquirer, initiates 3DS 
     --data-urlencode 'ccexpmon=05' \
     --data-urlencode 'ccexpyr=28' \
     --data-urlencode 'ccvv=123' \
-    --data-urlencode 'si=1' \
-    --data-urlencode 'si_details={"billingAmount":"200.00","billingCurrency":"INR","billingCycle":"ADHOC","billingInterval":1,"paymentStartDate":"2026-07-08","paymentEndDate":"2099-01-01"}'
     ```
   </Tab>
 
