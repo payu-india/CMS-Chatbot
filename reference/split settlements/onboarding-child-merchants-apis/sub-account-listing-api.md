@@ -431,7 +431,7 @@ curl --location -g --request GET '{{onboarding_base_url}}/api/v3/product_account
 
 * When they are searching using date range:
 
-```plaintext
+```json
 {
     "child_merchants": {
         "product_accounts": [
@@ -673,7 +673,7 @@ curl --location -g --request GET '{{onboarding_base_url}}/api/v3/product_account
 
 Get Child merchants when token is invalid or expired
 
-```plaintext
+```json
 {
     "status": "Unauthorized"
 }
