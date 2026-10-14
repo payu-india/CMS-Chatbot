@@ -7,18 +7,15 @@ metadata:
 ---
 The **Create Merchant** API creates a new merchant account on PayU and posts all KYC details. This API returns the Merchant ID (MID) in the response.
 
-> 📘 Note:
->
-> After using this API to create merchants, you can use the Update Merchant API to update the merchant details. For more information, refer to [Update Merchant Details API](ref:update_merchant_details_api).
+<Callout icon="📘" theme="info">
+  ### Note:
+
+  After using this API to create merchants, you can use the Update Merchant API to update the merchant details. For more information, refer to [Update Merchant Details API](ref:update_merchant_details_api).
+</Callout>
 
 ### Authentication
 
 This API is authorised through a client token generated using the client ID and secret. To create a token, call the get token API with `refer merchant` as a scope. Refer to the [Get Token API](ref:get_token_api) doc for more information.
-
-> ❗️ Important considerations for using this API
->
-> 1. The mobile, PAN number, GSTIN passed in the request has to be valid as checks are performed in real-time.
-> 2. If Business Entity type is passed in the create merchant API, ensure that the PAN also belongs to the same entity.
 
 ## Request Parameters
 
@@ -42,7 +39,7 @@ This API is authorised through a client token generated using the client ID and 
   <tbody>
     <tr>
       <td>
-        merchant\[display\_name]<br /><code>mandatory</code>
+        merchant\[display_name]<br /><code>mandatory</code>
       </td>
 
       <td>
@@ -88,7 +85,7 @@ This API is authorised through a client token generated using the client ID and 
 
     <tr>
       <td>
-        merchant\[business\_details]\[pan]<br /><code>mandatory</code>
+        merchant\[business_details]\[pan]<br /><code>mandatory</code>
       </td>
 
       <td>
@@ -102,7 +99,7 @@ This API is authorised through a client token generated using the client ID and 
 
     <tr>
       <td>
-        merchant\[business\_details]\[business\_entity\_type]<br /><code>optional</code>
+        merchant\[business_details]\[business_entity_type]<br /><code>optional</code>
       </td>
 
       <td>
@@ -116,7 +113,7 @@ This API is authorised through a client token generated using the client ID and 
 
     <tr>
       <td>
-        merchant\[business\_details]\[registered\_name]<br /><code>mandatory</code>
+        merchant\[business_details]\[registered_name]<br /><code>mandatory</code>
       </td>
 
       <td>
@@ -130,7 +127,7 @@ This API is authorised through a client token generated using the client ID and 
 
     <tr>
       <td>
-        merchant\[business\_details]\[business\_category]<br /><code>mandatory</code>
+        merchant\[business_details]\[business_category]<br /><code>mandatory</code>
       </td>
 
       <td>
@@ -144,7 +141,7 @@ This API is authorised through a client token generated using the client ID and 
 
     <tr>
       <td>
-        merchant\[business\_details]\[business\_sub\_category]<br /><code>optional</code>
+        merchant\[business_details]\[business_sub_category]<br /><code>optional</code>
       </td>
 
       <td>
@@ -172,7 +169,7 @@ This API is authorised through a client token generated using the client ID and 
 
     <tr>
       <td>
-        merchant\[registration\_number]<br /><code>mandatory</code>
+        merchant\[registration_number]<br /><code>mandatory</code>
       </td>
 
       <td>
@@ -186,7 +183,7 @@ This API is authorised through a client token generated using the client ID and 
 
     <tr>
       <td>
-        merchant\[website\_details]\[website\_url]<br /><code>mandatory</code>
+        merchant\[website_details]\[website_url]<br /><code>mandatory</code>
       </td>
 
       <td>
@@ -200,7 +197,7 @@ This API is authorised through a client token generated using the client ID and 
 
     <tr>
       <td>
-        merchant\[registered\_address]\[address]<br /><br /><code>mandatory</code>
+        merchant\[registered_address]\[address]<br /><br /><code>mandatory</code>
       </td>
 
       <td>
@@ -214,7 +211,7 @@ This API is authorised through a client token generated using the client ID and 
 
     <tr>
       <td>
-        merchant\[registered\_address]\[settlement\_country]<br /><br /><code>mandatory</code>
+        merchant\[registered_address]\[settlement_country]<br /><br /><code>mandatory</code>
       </td>
 
       <td>
@@ -228,7 +225,7 @@ This API is authorised through a client token generated using the client ID and 
 
     <tr>
       <td>
-        merchant\[settlement\_currency]<br /><br /><code>mandatory</code>
+        merchant\[settlement_currency]<br /><br /><code>mandatory</code>
       </td>
 
       <td>
@@ -242,7 +239,7 @@ This API is authorised through a client token generated using the client ID and 
 
     <tr>
       <td>
-        merchant\[purpose\_code]<br /><br /><code>mandatory</code>
+        merchant\[purpose_code]<br /><br /><code>mandatory</code>
       </td>
 
       <td>
@@ -256,7 +253,7 @@ This API is authorised through a client token generated using the client ID and 
 
     <tr>
       <td>
-        merchant\[bank\_details]\[account\_no]<br /><code>optional</code>
+        merchant\[bank_details]\[account_no]<br /><code>optional</code>
       </td>
 
       <td>
@@ -272,7 +269,7 @@ This API is authorised through a client token generated using the client ID and 
 
     <tr>
       <td>
-        merchant\[bank\_details]\[account\_holder\_name]<br /><code>optional</code>
+        merchant\[bank_details]\[account_holder_name]<br /><code>optional</code>
       </td>
 
       <td>
@@ -286,7 +283,7 @@ This API is authorised through a client token generated using the client ID and 
 
     <tr>
       <td>
-        merchant\[bank\_details]\[ifsc\_code]<br /><code>optional</code>
+        merchant\[bank_details]\[ifsc_code]<br /><code>optional</code>
       </td>
 
       <td>
@@ -300,7 +297,7 @@ This API is authorised through a client token generated using the client ID and 
 
     <tr>
       <td>
-        merchant\[signing\_authority\_details]\[name]<br /><code>optional</code>
+        merchant\[signing_authority_details]\[name]<br /><code>optional</code>
       </td>
 
       <td>
@@ -314,11 +311,11 @@ This API is authorised through a client token generated using the client ID and 
 
     <tr>
       <td>
-        merchant\[signing\_authority\_details]\[pancard\_number]<br /><code>optional</code>
+        merchant\[signing_authority_details]\[pancard_number]<br /><code>optional</code>
       </td>
 
       <td>
-        <code>string</code> Indian PAN card number of the signing authority. If posted, pancard\_name is required.
+        <code>string</code> Indian PAN card number of the signing authority. If posted, pancard_name is required.
       </td>
 
       <td>
@@ -328,7 +325,7 @@ This API is authorised through a client token generated using the client ID and 
 
     <tr>
       <td>
-        merchant\[signing\_authority\_details]\[email]<br /><code>optional</code>
+        merchant\[signing_authority_details]\[email]<br /><code>optional</code>
       </td>
 
       <td>
@@ -336,13 +333,13 @@ This API is authorised through a client token generated using the client ID and 
       </td>
 
       <td>
-        [auth\_email@example.com](mailto:auth_email@example.com)
+        [auth_email@example.com](mailto:auth_email@example.com)
       </td>
     </tr>
 
     <tr>
       <td>
-        merchant\[integration\_type]<br /><code>optional</code>
+        merchant\[integration_type]<br /><code>optional</code>
       </td>
 
       <td>
@@ -513,87 +510,89 @@ Various error responses can be received when the API fails. Here are some common
 
 ### merchant JSON object descriptions
 
-| Field                               | Description                                      |
-| ----------------------------------- | ------------------------------------------------ |
-| name                                | Name of the merchant                             |
-| email                               | Email address of the merchant                    |
-| registered\_mobile                  | Registered mobile number of the merchant         |
-| mid                                 | Merchant ID generated by PayU                    |
-| product                             | Product type (e.g., PayUbiz)                     |
-| business\_type                      | Type of business (e.g., LongTail)                |
-| business\_name                      | Name of the business                             |
-| pancard\_name                       | Name as on PAN card                              |
-| pancard\_number                     | PAN card number                                  |
-| website\_url                        | URL of the merchant's website                    |
-| android\_url                        | URL of Android app                               |
-| ios\_url                            | URL of iOS app                                   |
-| gst\_number                         | GST registration number                          |
-| created\_at                         | Timestamp of merchant creation (ISO 8601 format) |
-| mobile                              | Contact mobile number                            |
-| blocked                             | Whether the merchant is blocked (true/false)     |
-| first\_name                         | First name of the merchant                       |
-| last\_name                          | Last name of the merchant                        |
-| business\_entity                    | Business entity type                             |
-| status                              | Current account status                           |
-| partner\_source                     | Source of merchant creation                      |
-| pan\_verification\_status           | Status of PAN verification                       |
-| website\_approval\_status           | Status of website approval                       |
-| notification\_email                 | Email for notifications                          |
-| settlement\_status                  | Status of settlement account                     |
-| is\_service\_agreement\_accepted    | Whether service agreement is accepted            |
-| is\_authorisation\_letter\_required | Whether authorization letter is required         |
-| monthly\_expected\_volume           | Expected monthly transaction volume              |
-| business\_category                  | Category of business                             |
-| business\_sub\_category             | Sub-category of business                         |
-| bank\_verification\_status          | Status of bank verification                      |
-| uuid                                | Unique identifier                                |
-| penny\_deposit\_status              | Status of penny deposit verification             |
-| document\_status                    | Status of document verification                  |
-| kyc\_status                         | KYC verification status                          |
-| agreement\_status                   | Status of agreement                              |
-| integration\_type                   | Type of integration                              |
-| service\_intent                     | Service intent type                              |
+| Field                            | Description                                      |
+| -------------------------------- | ------------------------------------------------ |
+| name                             | Name of the merchant                             |
+| email                            | Email address of the merchant                    |
+| registered_mobile                | Registered mobile number of the merchant         |
+| mid                              | Merchant ID generated by PayU                    |
+| product                          | Product type (e.g., PayUbiz)                     |
+| business_type                    | Type of business (e.g., LongTail)                |
+| business_name                    | Name of the business                             |
+| pancard_name                     | Name as on PAN card                              |
+| pancard_number                   | PAN card number                                  |
+| website_url                      | URL of the merchant's website                    |
+| android_url                      | URL of Android app                               |
+| ios_url                          | URL of iOS app                                   |
+| gst_number                       | GST registration number                          |
+| created_at                       | Timestamp of merchant creation (ISO 8601 format) |
+| mobile                           | Contact mobile number                            |
+| blocked                          | Whether the merchant is blocked (true/false)     |
+| first_name                       | First name of the merchant                       |
+| last_name                        | Last name of the merchant                        |
+| business_entity                  | Business entity type                             |
+| status                           | Current account status                           |
+| partner_source                   | Source of merchant creation                      |
+| pan_verification_status          | Status of PAN verification                       |
+| website_approval_status          | Status of website approval                       |
+| notification_email               | Email for notifications                          |
+| settlement_status                | Status of settlement account                     |
+| is_service_agreement_accepted    | Whether service agreement is accepted            |
+| is_authorisation_letter_required | Whether authorization letter is required         |
+| monthly_expected_volume          | Expected monthly transaction volume              |
+| business_category                | Category of business                             |
+| business_sub_category            | Sub-category of business                         |
+| bank_verification_status         | Status of bank verification                      |
+| uuid                             | Unique identifier                                |
+| penny_deposit_status             | Status of penny deposit verification             |
+| document_status                  | Status of document verification                  |
+| kyc_status                       | KYC verification status                          |
+| agreement_status                 | Status of agreement                              |
+| integration_type                 | Type of integration                              |
+| service_intent                   | Service intent type                              |
 
-### registration\_address or operating\_address JSON object description
+### registration_address or operating_address JSON object description
 
-| Field         | Description                    |
-| ------------- | ------------------------------ |
-| address\_line | Street address of the merchant |
-| city          | City of the merchant           |
-| state         | State of the merchant          |
-| pincode       | Postal code of the merchant    |
+| Field        | Description                    |
+| ------------ | ------------------------------ |
+| address_line | Street address of the merchant |
+| city         | City of the merchant           |
+| state        | State of the merchant          |
+| pincode      | Postal code of the merchant    |
 
-### bank\_detail JSON object description
+### bank_detail JSON object description
 
-| Field                 | Description                         |
-| --------------------- | ----------------------------------- |
-| bank\_account\_number | Bank account number of the merchant |
-| ifsc\_code            | IFSC code of the bank branch        |
-| holder\_name          | Name of the account holder          |
-| nodal\_code           | Nodal code (if applicable)          |
-| nodal\_status         | Status of nodal account             |
+| Field               | Description                         |
+| ------------------- | ----------------------------------- |
+| bank_account_number | Bank account number of the merchant |
+| ifsc_code           | IFSC code of the bank branch        |
+| holder_name         | Name of the account holder          |
+| nodal_code          | Nodal code (if applicable)          |
+| nodal_status        | Status of nodal account             |
 
 ### KYC and Document Status
 
 The following statuses can be returned for KYC and document verification:
 
-| Status              | Description                                    |
-| ------------------- | ---------------------------------------------- |
-| DOCUMENT\_SUBMITTED | Documents have been submitted for verification |
-| VERIFIED            | Documents have been verified successfully      |
-| REJECTED            | Documents have been rejected                   |
-| LOCKED              | KYC process is locked (cannot be modified)     |
-| PENDING             | Documents are pending verification             |
+| Status             | Description                                    |
+| ------------------ | ---------------------------------------------- |
+| DOCUMENT_SUBMITTED | Documents have been submitted for verification |
+| VERIFIED           | Documents have been verified successfully      |
+| REJECTED           | Documents have been rejected                   |
+| LOCKED             | KYC process is locked (cannot be modified)     |
+| PENDING            | Documents are pending verification             |
 
 If a document is rejected, the `error_message` field will contain the reason for rejection.
 
-> 📘 Note:<br />All timestamps are provided in ISO 8601 format (YYYY-MM-DDThh:mm:ss.sssZ).
+<Callout icon="📘" theme="info">
+  ### Note:<br />All timestamps are provided in ISO 8601 format (YYYY-MM-DDThh:mm:ss.sssZ).
+</Callout>
 
 <br />
 
-> 📘 Mandatory and interdependent parameters:
->
-> - The merchant display name, email, mobile, and business entity type parameters are mandatory. For the list of sample errors, refer to the [Failure scenario](#failure-scenario) table.
-> - If the PAN number is posted, PAN name must also be posted along with it. When posting bank account details, all the bank account details should be sent, i.e., account no, IFSC, account holder name.
+<Callout icon="📘" theme="info">
+  ### Mandatory and interdependent parameters:
 
-<br />
+  - The merchant display name, email, mobile, and business entity type parameters are mandatory. For the list of sample errors, refer to the [Failure scenario](#failure-scenario) table.
+  - If the PAN number is posted, PAN name must also be posted along with it. When posting bank account details, all the bank account details should be sent, i.e., account no, IFSC, account holder name.
+</Callout>
