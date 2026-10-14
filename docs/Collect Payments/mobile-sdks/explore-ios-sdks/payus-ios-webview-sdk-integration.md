@@ -8,20 +8,20 @@ metadata:
 ---
 Integrate PayU's WebView SDK into your iOS app to accept payments via Cards, Net Banking, UPI, and Wallets using a secure, PCI-compliant checkout flow powered by WKWebView.
 
-<Note>
+<Callout>
 **Prerequisites:**
 - Active PayU merchant account ([Sign up here](https://onboarding.payu.in/app/account))
 - Merchant Key and Salt from [PayU Dashboard](https://dashboard.payu.in) → Settings → Account & API Keys
 - iOS 12.0+ deployment target
 - Xcode 12.0 or later
 - Enable preferred payment methods on the PayU Dashboard under **Settings** → **Payment Methods**.
-</Note>
+</Callout>
 
 ***
 
 ## Quick Steps
 
-<CardGroup columns={3}>
+<Cards columns={3}>
 
 <Card title="1. Set Up Your Environment" icon="gear">
 Install PayU WebView SDK via CocoaPods or Swift Package Manager, configure WKWebView outlet, import SDK framework into your project.
@@ -47,7 +47,7 @@ Implement `PayUDelegate` protocol: `payUonSuccess`, `payUonFailure`, `payUonErro
 Use Verify Payment API to confirm transaction status server-side — never trust client-side responses alone.
 </Card>
 
-</CardGroup>
+</Cards>
 
 ***
 
@@ -194,7 +194,7 @@ Add PayU domain exceptions to your `Info.plist`:
   <Tab title="Mandatory Parameters">
     | Parameter                    | Type & Description                                                                                                                | Example                            |
     | ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
-    | `<Glossary>key</Glossary>`   | String `Mandatory` — Merchant key from PayU Dashboard                                                                             | `<Your Test Key>`                           |
+    | `<Glossary>key</Glossary>`   | String `Mandatory` — Merchant key from PayU Dashboard                                                                             | `<Your Test Key>`                  |
     | `<Glossary>txnid</Glossary>` | String `Mandatory` — Unique transaction ID (alphanumeric, max 25 chars). **Must be identical in hash calculation and POST body.** | `iOS_A1B2C3D4E5`                   |
     | `amount`                     | String `Mandatory` — Transaction amount (decimal format, 2 decimal places)                                                        | `100.00`                           |
     | `productinfo`                | String `Mandatory` — Product or service description                                                                               | `iPhone 14`                        |
@@ -207,18 +207,19 @@ Add PayU domain exceptions to your `Info.plist`:
   </Tab>
 
   <Tab title="Optional Parameters">
-PayU supports the following optional parameters to support metadata:
-    | Field  | Purpose              | Example                   |
-| ------ | -------------------- | ------------------------- |
-| `udf1` | User-defined field 1 | `OrderID_12345`           |
-| `udf2` | User-defined field 2 | `CouponCode_ABC`          |
-| `udf3` | User-defined field 3 | `CustomerSegment_Premium` |
-| `udf4` | User-defined field 4 | `ReferralSource_Mobile`   |
-| `udf5` | User-defined field 5 | `CampaignID_SUMMER2024`   |
+    PayU supports the following optional parameters to support metadata:
 
-<Info>
-If not using UDF fields, pass empty strings (`""`) in both the hash calculation and POST body.
-</Info>
+    | Field  | Purpose              | Example                   |
+    | ------ | -------------------- | ------------------------- |
+    | `udf1` | User-defined field 1 | `OrderID_12345`           |
+    | `udf2` | User-defined field 2 | `CouponCode_ABC`          |
+    | `udf3` | User-defined field 3 | `CustomerSegment_Premium` |
+    | `udf4` | User-defined field 4 | `ReferralSource_Mobile`   |
+    | `udf5` | User-defined field 5 | `CampaignID_SUMMER2024`   |
+
+    <Info>
+    If not using UDF fields, pass empty strings (`""`) in both the hash calculation and POST body.
+    </Info>
   </Tab>
 </Tabs>
 
@@ -227,6 +228,7 @@ If not using UDF fields, pass empty strings (`""`) in both the hash calculation 
 ### 2.2 Post Request and Build POST String
 
 #### Sample Request
+
 ```swift
     let key = "<Your Test Key>"
     let txnid = "iOS_" + UUID().uuidString.prefix(10)
@@ -247,7 +249,7 @@ If not using UDF fields, pass empty strings (`""`) in both the hash calculation 
 
     // Hash will be generated in Step 3
     let hash = "" // Fetch from backend API
-    ```
+```
 
 #### Construct the URL-encoded POST body:
 
@@ -315,7 +317,7 @@ PayU uses a **17-position pipe-separated formula** to generate the SHA-512 hash:
 <Accordion title="Hash Parameter Sequence (17 Positions)" icon="fa-lock">
   | Position | Parameter     | Value Type                                         | Example            |
   | -------- | ------------- | -------------------------------------------------- | ------------------ |
-  | 1        | `key`         | Merchant key                                       | `<Your Test Key>`           |
+  | 1        | `key`         | Merchant key                                       | `<Your Test Key>`  |
   | 2        | `txnid`       | Transaction ID                                     | `iOS_A1B2C3D4E5`   |
   | 3        | `amount`      | Amount (decimal)                                   | `100.00`           |
   | 4        | `productinfo` | Product name                                       | `iPhone 14`        |
@@ -996,9 +998,9 @@ Before making your first test payment, verify:
   | **Visa (Failure)**       | `4000000000000002` | Any future date | `123`  | Test User    |
   | **Amex (Success)**       | `341111111111111`  | Any future date | `1234` | Test User    |
 
-  <Info>
-  For EMI testing, use amount `10,000` or higher with Visa/Mastercard test cards.
-  </Info>
+    <Info>
+    For EMI testing, use amount `10,000` or higher with Visa/Mastercard test cards.
+    </Info>
 </Accordion>
 
 ***
@@ -1014,9 +1016,9 @@ Before making your first test payment, verify:
   | **Password** | `test`   |
   | **OTP**      | `123456` |
 
-  <Info>
-  To simulate a **failure**, enter incorrect credentials or close the browser window during payment.
-  </Info>
+    <Info>
+    To simulate a **failure**, enter incorrect credentials or close the browser window during payment.
+    </Info>
 </Accordion>
 
 ***
@@ -1031,9 +1033,9 @@ Before making your first test payment, verify:
   | `success@payu` | Success            |
   | `failure@payu` | Failure            |
 
-  <Warning>
-  UPI testing is **not supported on iOS Simulator**. You must test UPI payments on a **physical iOS device** with UPI apps installed (Google Pay, PhonePe, Paytm, BHIM).
-  </Warning>
+    <Warning>
+    UPI testing is **not supported on iOS Simulator**. You must test UPI payments on a **physical iOS device** with UPI apps installed (Google Pay, PhonePe, Paytm, BHIM).
+    </Warning>
 </Accordion>
 
 ***
@@ -1079,9 +1081,9 @@ Before switching to production, complete these test scenarios:
   PAYU_MERCHANT_SALT=your_production_salt
   ```
 
-  <Warning>
-  Verify production credentials are **never committed** to version control (Git, Bitbucket, etc.). Add `.env` to `.gitignore`.
-  </Warning>
+    <Warning>
+    Verify production credentials are **never committed** to version control (Git, Bitbucket, etc.). Add `.env` to `.gitignore`.
+    </Warning>
 </Accordion>
 
 <Accordion title="Checklist 2: Point to Production Endpoint" icon="fa-globe">
