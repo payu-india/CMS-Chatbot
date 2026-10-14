@@ -408,7 +408,7 @@ The first request from you to PayU with the required transaction mandatory/ opti
     **Note**: The response contains a combination of the following JSON objects (**metaData**, **result**, and binData) based on the use case used in S2S, and the fields in each of them are described in the following tables.
   </Callout>
 
-  Collect the response in the  [Collect Payment API - Server-to-Server](ref:_payment_s2s_classic_integration)  under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters,  refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis).
+  Collect the response in the  [Collect Payment API - Server-to-Server](ref:_payment_s2s_classic_integration)  under API Reference. The response for the S2S payment request is not similar to Merchant Hosted or PayU Hosted Checkout. For description of response parameters,  refer to [Additional Info for Payment APIs](ref:addl_info-payment-apis#response-parameters).
 </Accordion>
 
 ## Step 3. Verify the payment
