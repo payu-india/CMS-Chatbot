@@ -8,7 +8,7 @@ link:
 metadata:
   robots: noindex
 ---
-Initiates a card payment request and begins the 3DS authentication process for mandate creation. PayU selects the acquiring bank, submits the authentication initiation request, and returns an `acsTemplate` (Base64-encoded HTML) to redirect the customer to the OTP page.<br />
+The first step in Cards SI mandate creation initiates the payment and begins 3DS authentication. The merchant sends a `_payment` POST request to PayU with card details. This is a normal card authentication call. PayU returns a Base64-encoded `acsTemplate` — decode it, render the HTML page, and redirect the customer to the OTP screen.<br />
 
 After the customer submits the OTP, use the `bankData` from the OTP response (plus `siTokenDetails`) as `authentication_info` in the [`AuthorizeTransaction` API](doc:cards-si-step2-authorize-transaction).
 
