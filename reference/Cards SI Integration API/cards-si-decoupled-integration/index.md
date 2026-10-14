@@ -80,13 +80,23 @@ Authentication and authorization happen in two separate API calls.
 
 Once the mandate is registered, use these APIs to schedule and execute recurring debits against it.
 
+There are two approaches to scheduling pre-debit notifications and recurring debits. Choose the one that fits your integration model.
+
 <Cards>
-  <Card title="Step 2.1: Schedule Pre-Debit and Recurring Payment" href="ref:subscriptions-pdn-rp">
-    Schedules the pre-debit notification and processes the recurring debit in a single call using `command=si_transaction`. Set `debitType` to `PREDEBIT_AND_RECURRING` (default), `PREDEBIT`, or `RECURRING` based on the operation needed.
+  <Card title="Unified Pre-Debit and Recurring API" href="ref:subscriptions-pdn-rp">
+    Make a **single API call** using `command=si_transaction` with `debitType=PREDEBIT_AND_RECURRING`. PayU handles scheduling the pre-debit notification and executing the recurring debit automatically.
   </Card>
 
-  <Card title="Step 2.2: Fetch Pre-Debit and Recurring Status" href="doc:cards-si-fetch-status">
-    Retrieve the current invoice and payment lifecycle status for an existing debit. Pass `debitType: RETRIEVE` in the same `si_transaction` endpoint. Use this to confirm debit outcomes when webhooks are not received.
+  <Card title="Separate Pre-Debit and Recurring APIs" href="ref:subscriptions-pdn-rp">
+    Make **two separate API calls** using `command=si_transaction` — first with `debitType=PREDEBIT` to send the pre-debit notification, then with `debitType=RECURRING` to execute the recurring debit. Use this when your workflow requires explicit control over each step.
+  </Card>
+</Cards>
+
+After a pre-debit or recurring debit is processed, verify the transaction outcome using the Verify SI Payment Status API.
+
+<Cards>
+  <Card title="Verify SI Payment Status" href="doc:cards-si-verify-si-payment">
+    Check the status of a pre-debit or recurring payment using the `verify_si_payment` command. Pass the `rc_` prefixed transaction ID returned by the PDN/RP API as `var1`. Use this when a webhook is not received or to independently confirm the transaction outcome.
   </Card>
 </Cards>
 
