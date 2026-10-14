@@ -176,31 +176,12 @@ Check this video to see how PayU Payment Links work
 
 You do not need a website or developer to get started.<br />
 
-You will need:<br />
+You will need:
 
-<Columns layout="fixed">
-  <Column>
-    **A PayU merchant account:** <Anchor target="_blank" href="https://docs.payu.in/docs/set-up-your-account">Sign up here</Anchor> if you do not have an account.
-  </Column>
-</Columns>
-
-<Columns layout="fixed">
-  <Column>
-    **Access to the PayU Dashboard:** Where you will create and manage your <Glossary>payment links</Glossary>.
-  </Column>
-</Columns>
-
-<Columns layout="fixed">
-  <Column>
-    **Customer contact details**: Required details such as a phone number, email address, or WhatsApp contact.
-  </Column>
-</Columns>
-
-<Columns layout="fixed">
-  <Column>
-    **Payment details**: Such as the amount, purpose, and any additional information you want to collect.
-  </Column>
-</Columns>
+- **A PayU merchant account:** <Anchor target="_blank" href="https://docs.payu.in/docs/set-up-your-account">Sign up here</Anchor> if you do not have an account.
+- **Access to the PayU Dashboard:** Where you will create and manage your <Glossary>payment links</Glossary>.
+- **Customer contact details**: Required details such as a phone number, email address, or WhatsApp contact.
+- **Payment details**: Such as the amount, purpose, and any additional information you want to collect.
 
 ***
 
