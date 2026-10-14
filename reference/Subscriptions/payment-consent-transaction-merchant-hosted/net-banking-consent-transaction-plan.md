@@ -500,9 +500,9 @@ For Net Banking, you must ensure that the payment response from PayU has the exp
 
 | **Response Parameter** | **Expected Value**               | **Description**                                                                 |
 | ---------------------- | -------------------------------- | ------------------------------------------------------------------------------- |
-| status                 | success                          | This indicates that the transaction is successful                               |
-| payment_source         | sist                             | Indicates that bank details have been marked correctly for Standing Instruction |
-| mihpayid               | \<mihpayid number> sent. by PayU | Indicates PayU’s transaction acknowledgment for a Consent transaction           |
+| `status`               | success                          | This indicates that the transaction is successful                               |
+| `payment_source`       | sist                             | Indicates that bank details have been marked correctly for Standing Instruction |
+| `mihpayid`             | \<mihpayid number> sent. by PayU | Indicates PayU’s transaction acknowledgment for a Consent transaction           |
 
 The response URL returned from PayU is in the form URL format (application/x-www-form-urlencoded).
 
