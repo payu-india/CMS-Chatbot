@@ -203,8 +203,6 @@ The customer's card is already stored at the merchant's end from a previous tran
     --data-urlencode 'additional_info={"last4Digits":"1234","tavv":"ABCDEFGH","trid":"1234567890","tokenRefNo":"abcde123456"}' \
     --data-urlencode 'ccexpmon=05' \
     --data-urlencode 'ccexpyr=28' \
-    --data-urlencode 'si=1' \
-    --data-urlencode 'si_details={"billingAmount":"200.00","billingCurrency":"INR","billingCycle":"ADHOC","billingInterval":1,"paymentStartDate":"2026-07-08","paymentEndDate":"2099-01-01"}'
     ```
   </Tab>
 
