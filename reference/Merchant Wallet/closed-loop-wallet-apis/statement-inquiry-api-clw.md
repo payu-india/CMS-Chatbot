@@ -6,14 +6,6 @@ metadata:
   title: Statement Inquiry API - CLW
   robots: index
 ---
----
-title: Statement Inquiry API
-deprecated: false
-hidden: false
-metadata:
-  title: Statement Inquiry API - CLW
-  robots: index
----
 The **Statement Inquiry** API allows you to retrieve wallet transaction details, including both financial and non-financial transactions, within a specific date range. This is useful for generating account statements and transaction history.
 
 ## Environment
@@ -21,11 +13,9 @@ The **Statement Inquiry** API allows you to retrieve wallet transaction details,
 | Environment | URL                                                                  |
 | ----------- | -------------------------------------------------------------------- |
 | Test        | `https://apitest.payu.in/loyalty-points/v1/wallet/statement-inquiry` |
-| Production  | `https://api.payu.in/loyalty-points/v1/wallet/statement-inquiry`    |
+| Production  | `https://api.payu.in/loyalty-points/v1/wallet/statement-inquiry`     |
 
 **HTTP Method**: POST
-
-{/* REVIEW: The CTP-378 cURL uses --request PATCH. Confirm the correct HTTP method with engineering. */}
 
 ## Request Headers
 
@@ -92,11 +82,6 @@ The **Statement Inquiry** API allows you to retrieve wallet transaction details,
       <td>1</td>
     </tr>
     <tr>
-      <td>last4Digits <code>optional</code></td>
-      <td>Numeric (4) - Last four digits of the card</td>
-      <td>7009</td>
-    </tr>
-    <tr>
       <td>count <code>optional</code></td>
       <td>Numeric (5) - Maximum count should be 100</td>
       <td>50</td>
@@ -109,6 +94,35 @@ The **Statement Inquiry** API allows you to retrieve wallet transaction details,
   </tbody>
 </table>
 `}</HTMLBlock>
+
+## Response Parameters
+
+| Parameter        | Description                                                                                                                                                                                        | Example          |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+| responseCode     | Response status code                                                                                                                                                                               | 00               |
+| messageCode      | API response code                                                                                                                                                                                  | 1073             |
+| clientTxnId      | Echoes the request's clientTxnId                                                                                                                                                                   | StatementReq2023 |
+| urn              | Wallet reference number                                                                                                                                                                            | 7000123456       |
+| availableBalance | Current balance in the wallet                                                                                                                                                                      | 10000            |
+| openingBalance   | Wallet balance at the beginning of the specified period                                                                                                                                            | 5000             |
+| closingBalance   | Wallet balance at the end of the specified period                                                                                                                                                  | 15000            |
+| statementDetails | Array of transaction details within the date range. For the field descriptions in this object, refer to [statementDetails object fields description](#statementdetails-object-fields-description). | \[...]           |
+| responseMessage  | Response message                                                                                                                                                                                   | SUCCESS          |
+
+### statementDetails object fields description
+
+| Parameter         | Description                            | Example         |
+| ----------------- | -------------------------------------- | --------------- |
+| transactionId     | Unique transaction identifier          | TXN123456789    |
+| transactionDate   | Date of transaction (DD/MM/YYYY)       | 15/07/2023      |
+| transactionTime   | Time of transaction (HH:MM:SS)         | 14:30:25        |
+| transactionType   | Type of transaction (CREDIT/DEBIT)     | CREDIT          |
+| transactionAmount | Transaction amount in implied decimals | 5000            |
+| availableBalance  | Balance after this transaction         | 10000           |
+| merchantName      | Name of merchant or source             | Amazon          |
+| description       | Transaction description                | Cashback reward |
+| status            | Transaction status                     | SUCCESS         |
+| referenceNumber   | Reference number for the transaction   | REF789012345    |
 
 ## Sample Request
 
@@ -131,35 +145,8 @@ curl --location --request POST 'https://apitest.payu.in/loyalty-points/v1/wallet
   "count": "100"
 }'
 ```
-## Response Parameters
 
-| Parameter        | Description                                                                                                                                                                                       | Example          |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
-| responseCode     | Response status code                                                                                                                                                                              | 00               |
-| messageCode      | API response code                                                                                                                                                                                 | 1073             |
-| clientTxnId      | Echoes the request's clientTxnId                                                                                                                                                                  | StatementReq2023 |
-| urn              | Wallet reference number                                                                                                                                                                           | 7000123456       |
-| availableBalance | Current balance in the wallet                                                                                                                                                                     | 10000            |
-| openingBalance   | Wallet balance at the beginning of the specified period                                                                                                                                           | 5000             |
-| closingBalance   | Wallet balance at the end of the specified period                                                                                                                                                 | 15000            |
-| statementDetails | Array of transaction details within the date range. For the field descriptions in this object, refer to [statementDetails object fields description](#statementdetails-object-fields-description). | [...]            |
-| responseMessage  | Response message                                                                                                                                                                                  | SUCCESS          |
-
-### statementDetails object fields description
-
-| Parameter         | Description                            | Example         |
-| ----------------- | -------------------------------------- | --------------- |
-| transactionId     | Unique transaction identifier          | TXN123456789    |
-| transactionDate   | Date of transaction (DD/MM/YYYY)       | 15/07/2023      |
-| transactionTime   | Time of transaction (HH:MM:SS)         | 14:30:25        |
-| transactionType   | Type of transaction (CREDIT/DEBIT)     | CREDIT          |
-| transactionAmount | Transaction amount in implied decimals | 5000            |
-| availableBalance  | Balance after this transaction         | 10000           |
-| merchantName      | Name of merchant or source             | Amazon          |
-| description       | Transaction description                | Cashback reward |
-| status            | Transaction status                     | SUCCESS         |
-| referenceNumber   | Reference number for the transaction   | REF789012345    |
-
+{/* REVIEW: last4Digits is sent in the sample (and in the CTP-378 cURL) but is not in the Request Parameters table. Confirm whether to document it or remove it. */}
 
 ## Sample Response
 
