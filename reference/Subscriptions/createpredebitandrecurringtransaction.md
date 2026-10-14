@@ -51,6 +51,8 @@ link:
     "state": "Maharashtra",
     "country": "India",
     "zipcode": "400001",
+    "partner_webhook_success": "https://test.in/testResponse",
+    "partner_webhook_failure": "https://test.in/testResponse",
     "more_info": [
       {
         "wtParams": [
