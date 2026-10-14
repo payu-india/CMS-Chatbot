@@ -5,6 +5,13 @@ hidden: false
 metadata:
   robots: index
 ---
+---
+title: Register Customer API
+deprecated: false
+hidden: false
+metadata:
+  robots: index
+---
 The **Register Customer** API allows you to register a new customer and facilitates the creation of a digital wallet. This API performs onboarding checks when opted by the issuer.
 
 ## Environment
@@ -12,13 +19,23 @@ The **Register Customer** API allows you to register a new customer and facilita
 | Environment | URL                                                       |
 | ----------- | --------------------------------------------------------- |
 | Test        | `https://apitest.payu.in/loyalty-points/v1/wallet/enroll` |
-| Production  | `http://api.payu.in/loyalty- points/v1/wallet/enroll`     |
+| Production  | `<redacted URL>`     |
 
 **HTTP Method**: POST
 
 ## Authentication
 
 <Closed_Loop_HMAC />
+
+<Callout icon="🔐" theme="info">
+  Sign every request with **HMAC-SHA256** over the `date` and `digest` headers:
+
+  * `date`: Current time in GMT (RFC 1123 format), for example, `Tue, 13 Oct 2026 06:33:48 GMT`.
+  * `digest`: `Base64(SHA-256(raw JSON request body))`
+  * `authorization`: `hmac username="<merchant_key>", algorithm="hmac-sha256", headers="date digest", signature="<signature>"`, where `signature = Base64(HMAC-SHA256("date: <date>\ndigest: <digest>", <merchant_secret>))`
+</Callout>
+
+{/* REVIEW: Confirm the shared <Closed_Loop_HMAC /> snippet is also updated from sha512 / headers="date" to hmac-sha256 / headers="date digest". */}
 
 ## Request Parameters
 
@@ -73,7 +90,7 @@ The **Register Customer** API allows you to register a new customer and facilita
       <td>M</td>
     </tr>
     <tr>
-      <td>customerDetails.dateOfBirth</br> <code>mandatory</code></td>
+      <td>customerDetails.dateOfBirth</br> <code>optional</code></td>
       <td>Customer's date of birth in DD-MM-YYYY format. Data type: <code>String(10)</code></td>
       <td>11-07-1993</td>
     </tr>
@@ -89,12 +106,12 @@ The **Register Customer** API allows you to register a new customer and facilita
     </tr>
     <tr>
       <td>kycProfile</br> <code>mandatory</code></td>
-      <td>Type of KYC to be passed if KYC is performed by the calling application. Only the value, **30** is allowed. Data type: <code>Numeric(3)</code></td>
+      <td>Type of KYC to be passed if KYC is performed by the calling application. Only the value <code>30</code> is allowed. Data type: <code>Numeric(3)</code></td>
       <td>30</td>
     </tr>
     <tr>
       <td>riskCategory</br> <code>mandatory</code></td>
-      <td>Risk assessment of the customer. This values must be posted as **Low**. Data type: <code>String(20)</code></td>
+      <td>Risk assessment of the customer. This value must be posted as <code>Low</code>. Data type: <code>String(20)</code></td>
       <td>Low</td>
     </tr>
     <tr>
@@ -115,38 +132,41 @@ The **Register Customer** API allows you to register a new customer and facilita
 
 ## Response Parameters
 
-| Parameter                | Description                                            | Example                          |
-| ------------------------ | ------------------------------------------------------ | -------------------------------- |
-| responseCode             | Response status code                                   | 00                               |
-| messageCode              | API response code                                      | 3511                             |
-| clientTxnId              | Mirrors the request's clientTxnId                      | 20150701235959xhstiesqfds        |
-| formfactor.accountNumber | Generated account number for form factors              | 72623345                         |
-| formfactor.uniqueNumber  | Unique number generated for form factors               | 8543213624292443                 |
-| formfactor.urn           | Proxy reference number generated for the unique number | 70000000008                      |
-| responseMessage          | Response message                                       | CUSTOMER REGISTERED SUCCESSFULLY |
+| Parameter                | Description                                                                                               | Example                          |
+| ------------------------ | --------------------------------------------------------------------------------------------------------- | -------------------------------- |
+| customerId               | Unique customer ID. This is the ID you sent in the request, or the one the platform generated if you did not send one. | 000000123456                     |
+| responseCode             | Response status code                                                                                      | 00                               |
+| messageCode              | API response code                                                                                         | 3511                             |
+| clientTxnId              | Mirrors the request's clientTxnId                                                                         | 20150701235959xhstiesqfds        |
+| formfactor.accountNumber | Generated account number for form factors                                                                 | 72623345                         |
+| formfactor.uniqueNumber  | Unique number generated for form factors                                                                  | 8543213624292443                 |
+| formfactor.urn           | Proxy reference number generated for the unique number                                                    | 70000000008                      |
+| responseMessage          | Response message                                                                                          | CUSTOMER REGISTERED SUCCESSFULLY |
+
+{/* REVIEW: formfactor.accountNumber may need to be formFactor.accountDetails[].accountNumber to match the response JSON. */}
 
 ## Sample Request
 
 ```curl
 curl --location --request POST 'https://apitest.payu.in/loyalty-points/v1/wallet/enroll' \
 --header 'walletIdentifier: CLW' \
---header 'date: Wed, 12 Jun 2024 08:53:43 GMT' \
---header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="hmac_generated_signature"' \
+--header 'date: Tue, 13 Oct 2026 06:33:48 GMT' \
+--header 'digest: BASE64_SHA256_OF_REQUEST_BODY' \
+--header 'authorization: hmac username="YOUR_MERCHANT_KEY", algorithm="hmac-sha256", headers="date digest", signature="YOUR_HMAC_SIGNATURE"' \
 --header 'Content-Type: application/json' \
 --data-raw '{
   "messageCode": 3510,
-  "clientTxnId": "txn12345",
-  "requestDateTime": "20230810123015",
+  "clientTxnId": "testRegistration8",
+  "requestDateTime": "20250127182438",
   "customerDetails": {
     "firstName": "Alice",
     "lastName": "Smith",
-    "dateOfBirth": "12-12-2000",
     "mobileNumber": "917001122334"
   },
-  "kycProfile": 150,
+  "kycProfile": 30,
   "riskCategory": "Low",
-  "productId": 35,
-  "formFactorRequired": true
+  "productId": 121,
+  "formFactorRequired": false
 }'
 ```
 
@@ -154,6 +174,7 @@ curl --location --request POST 'https://apitest.payu.in/loyalty-points/v1/wallet
 
 ```json
 {
+  "customerId": "000000123456",
   "responseCode": "00",
   "messageCode": 3511,
   "clientTxnId": "testRegistration8",
@@ -164,29 +185,29 @@ curl --location --request POST 'https://apitest.payu.in/loyalty-points/v1/wallet
   "bankId": 6060,
   "accosaRefNo": "146",
   "formFactor": {
-    "uniqueNumber": "8543213624292443",
+    "uniqueNumber": "XXXXXXXXXXXX2443",
     "urn": 1000019,
-    "securityCode": "FZ7jUrSXmu7siejprnMCzsL1ZYXqF2sZI0yHMcgRGzI=",
+    "securityCode": "SECURITY_CODE",
     "uniqueNumberExpiry": "0529",
     "accountDetails": [
       {
-        "accountNumber": "606000003005780",
+        "accountNumber": "XXXXXXXXXXX5780",
         "accountNumberExpiry": "0525"
       }
     ]
   }
-}	
+}
 ```
 
 ## HTTP Status Codes
 
 | Status Code | Status Description     |
 | ----------- | ---------------------- |
-| **200**     | OK                     |
-| **201**     | Created                |
-| **404**     | Not Found              |
-| **500**     | Internal Server Error  |
-| **403**     | Forbidden              |
-| **400**     | Bad Request            |
-| **401**     | Unauthorized           |
-| **503**     | Service Unavailable    |
+| **200**     | OK                     |
+| **201**     | Created                |
+| **400**     | Bad Request            |
+| **401**     | Unauthorized           |
+| **403**     | Forbidden              |
+| **404**     | Not Found              |
+| **500**     | Internal Server Error  |
+| **503**     | Service Unavailable    |
