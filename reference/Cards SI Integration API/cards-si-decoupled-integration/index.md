@@ -65,11 +65,11 @@ Authentication and authorization happen in two separate API calls.
 | **Authentication not via PayU**         | The merchant performs 3DS externally and passes the authentication result (`authentication_info` with `cavv`, `eci`, etc.) directly in the `_payment` call. The mandate is registered in this single call — no separate `AuthorizeTransaction` needed. |
 
 <Cards>
-  <Card title="Step 1.1: Payment and Authentication Initiation" href="doc:cards-si-step1-payment-authentication">
+  <Card title="Payment and Authentication Initiation" href="doc:cards-si-step1-payment-authentication">
     Send the `_payment` request with card details. PayU performs normal card authentication and returns an `acsTemplate` (Base64-encoded HTML). Decode and render it to redirect the customer to the OTP page. After OTP submission, you receive `bankData` in the response.
   </Card>
 
-  <Card title="Step 1.2: Authorization and Mandate Registration" href="doc:cards-si-step2-authorize-transaction">
+  <Card title="Authorization and Mandate Registration" href="doc:cards-si-step2-authorize-transaction">
     Pass `bankData` (augmented with `siTokenDetails`) as `authentication_info` to the `AuthorizeTransaction` API. On success, the response contains `IsStandingInstructionSet: "1"` confirming the mandate is registered. Save the `mihpayid` — this is the `authPayuId` for all future pre-debit and recurring calls.
   </Card>
 </Cards>
