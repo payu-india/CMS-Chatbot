@@ -169,6 +169,10 @@ Check this video to see how PayU Payment Links work
   <Card title="Social Seller or D2C Brand" icon="fa-basket-shopping">
     Share a payment link directly in a WhatsApp or Instagram conversation — no website needed.
   </Card>
+
+  <Card title="Insurance Provider" icon="fad fa-shield-halved">
+    Collect premium renewals or new policy payments.  Send a personalised link before the due date and confirm payment instantly in your Dashboard.
+  </Card>
 </Cards>
 
 ***
