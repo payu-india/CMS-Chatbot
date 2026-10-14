@@ -171,7 +171,7 @@ Check this video to see how PayU Payment Links work
 
 ***
 
-## What Will I Need to Get Started?
+## What All I Need to Get Started?
 
 You do not need a website or developer to get started.<br />
 
@@ -205,11 +205,11 @@ You will need:<br />
 
 ## How do I Create a Payment Link?
 
-<Accordion title="1. Open Payment Links" icon="far fa-grid-2">
+<Accordion title="1. Open Payment Links">
   Log in to the [PayU Dashboard](https://onboarding.payu.in/) and go to **Payment Tools > Payment Links**.
 </Accordion>
 
-<Accordion title="2. Click Create New Payment Link" icon="far fa-plus">
+<Accordion title="2. Click Create New Payment Link">
   Click **Create New Payment Link** in the top-right corner. Enter the **Amount** and a brief **Purpose** description (for example, _"Invoice #1042 — Web Design Services"_).
 
   <Callout icon="👁️" theme="info">
@@ -219,11 +219,11 @@ You will need:<br />
   </Callout>
 </Accordion>
 
-<Accordion title="3. Set customer details and expiry (optional)" icon="far fa-user">
+<Accordion title="3. Set customer details and expiry (optional)">
   Add the customer's email or phone number and toggle **Notify via SMS/Email** on. PayU will send the link automatically when you create it. You can also set an expiry date (default is 1 year).
 </Accordion>
 
-<Accordion title="4. Create and send" icon="far fa-paper-plane">
+<Accordion title="4. Create and send">
   Click **Create and Send Payment Link**. The link is created instantly. If you enabled notifications, it goes to the customer right away. Otherwise, copy the URL from your Dashboard and share it manually.
 </Accordion>
 
@@ -241,27 +241,27 @@ Refer to the [Create a Payment Link](doc:send-a-payment-link) for full walkthrou
 
 When your customer receives the payment link:
 
-<Accordion title="1. Opens the link" icon="far fa-link">
+<Accordion title="1. Opens the link">
   Clicks the URL you sent them
 </Accordion>
 
-<Accordion title="Sees the payment details" icon="far fa-square-sliders-vertical">
+<Accordion title="Sees the payment details">
   Amount, purpose, and any message you included
 </Accordion>
 
-<Accordion title="Fills in any required information (optional)" icon="far fa-keyboard-down">
+<Accordion title="Fills in any required information (optional)">
   If you have set up a form to collect details like name, or delivery address
 </Accordion>
 
-<Accordion title="Chooses payment method" icon="far fa-credit-card">
+<Accordion title="Chooses payment method">
   UPI, cards, net banking, or wallets
 </Accordion>
 
-<Accordion title="Completes payment" icon="far fa-money-bills">
+<Accordion title="Completes payment">
   enters payment details and confirms
 </Accordion>
 
-<Accordion title="Receives confirmation" icon="far fa-diagram-successor">
+<Accordion title="Receives confirmation">
   sees a success or failure message
 </Accordion>
 
@@ -273,29 +273,29 @@ Your customer does not need a PayU account or any special app. The link works in
 
 Once your customer completes the payment:
 
-<Accordion title="Filter and search" icon="far fa-filter">
+<Accordion title="Filter and search">
   View links by status — **Active**, **Paid**, **Expired**, or **Deactivated** — or narrow by creation date. Use the calendar picker to set a custom date range.
 </Accordion>
 
-<Accordion title="Edit a link" icon="far fa-pen-to-square">
+<Accordion title="Edit a link">
   Open a link's Detail view and click **Edit** to update the amount, expiry date, partial payment settings, or customer details after the link has been created.
 </Accordion>
 
-<Accordion title="Duplicate a link" icon="far fa-copy">
+<Accordion title="Duplicate a link">
   Create a new link pre-filled with the same settings such as amount, purpose, and options. Use it to reuse a configuration, correct a mistake, or send the same request to a different customer.<br />
 
   Whether a link can be reused for multiple payments depends on how you configured it at creation. Specifically the **Max Transactions Allowed** and **Single-use** settings. A link with no transaction cap accepts payments until it expires or is deactivated.
 </Accordion>
 
-<Accordion title="Resend a link" icon="far fa-share">
+<Accordion title="Resend a link">
   Share any Active link again via SMS, email, or by copying the URL and sending it over WhatsApp or any channel — no limit on how many times you can resend.
 </Accordion>
 
-<Accordion title="Export records" icon="far fa-download">
+<Accordion title="Export records">
   Download your payment link history as CSV or Excel — either a link-level summary or a transaction-level detail report — for reconciliation or reporting.
 </Accordion>
 
-<Accordion title="Deactivate a link" icon="far fa-ban">
+<Accordion title="Deactivate a link">
   When a link is no longer needed, stop it from accepting further payments, either from the Dashboard or via the [Deactivate API](doc:api-cancel-status). To re-activate a deactivated or expired link, use the same API with `active: true`.
 </Accordion>
 
