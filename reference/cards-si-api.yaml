@@ -66,8 +66,6 @@ paths:
                 - hash
                 - pg
                 - bankcode
-                - si
-                - si_details
               properties:
                 key:
                   type: string
@@ -125,10 +123,8 @@ paths:
                   type: string
                   description: >
                     SHA-512 hash generated using the formula:
-                    SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|SALT).
-                    Use empty strings for udf fields not sent. Include the
-                    serialised si_details JSON string at position 16 (after six
-                    trailing pipes).
+                    SHA512SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT).
+                    Use empty strings for udf fields not sent.
                 auth_only:
                   type: string
                   description: >
@@ -317,57 +313,6 @@ paths:
                       type: string
                       description: 3DS version used.
                       example: 2.1.0
-                si:
-                  type: string
-                  description: >-
-                    Set to `1` to indicate this is a Standing Instruction
-                    (SI/mandate) transaction.
-                  example: '1'
-                si_details:
-                  type: object
-                  description: >-
-                    Mandate parameters for the Standing Instruction
-                    registration.
-                  required:
-                    - billingAmount
-                    - billingCurrency
-                    - billingCycle
-                    - billingInterval
-                    - paymentStartDate
-                    - paymentEndDate
-                  properties:
-                    billingAmount:
-                      type: string
-                      description: Maximum mandate billing amount per cycle.
-                      example: '200.00'
-                    billingCurrency:
-                      type: string
-                      description: Currency for mandate billing.
-                      example: INR
-                    billingCycle:
-                      type: string
-                      description: >
-                        Billing frequency.
-
-                        - `ADHOC` — On-demand, triggered by the merchant.
-
-                        - `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY` — Fixed
-                        scheduled intervals.
-                      example: ADHOC
-                    billingInterval:
-                      type: integer
-                      description: Number of billing cycle units between debits.
-                      example: 1
-                    paymentStartDate:
-                      type: string
-                      format: date
-                      description: Mandate start date in YYYY-MM-DD format.
-                      example: '2026-07-08'
-                    paymentEndDate:
-                      type: string
-                      format: date
-                      description: Mandate end date in YYYY-MM-DD format.
-                      example: '2099-01-01'
                 udf1:
                   type: string
                   description: User-defined field 1.
