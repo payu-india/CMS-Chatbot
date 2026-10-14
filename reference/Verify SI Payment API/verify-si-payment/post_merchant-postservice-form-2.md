@@ -420,5 +420,7 @@ Use the combination of `status` and `unmappedstatus` inside `transaction_details
 | Recurring Retrying | `in progress` | `null`           | `Transaction Retry is in progress` |
 
 <Callout icon="📘" theme="info">
+  ### **Note**:
+
   The `field9` value contains a human-readable status message. For the complete list of `error_code` and `field9` combinations, refer to the PayU error code reference.
 </Callout>
