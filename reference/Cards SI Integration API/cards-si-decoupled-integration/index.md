@@ -198,8 +198,8 @@ After mandate creation, use the following APIs to manage the mandate lifecycle.
 
 Start the integration with **Step 1 — Payment and Authentication Initiation**. Choose the flow that matches your use case:
 
-| Flow                        | When to Use                                               | Start Here                                                   |
-| :-------------------------- | :-------------------------------------------------------- | :----------------------------------------------------------- |
-| New card via PayU           | Customer is paying with a new card for the first time     | [Step 1 — Flow 1](doc:cards-si-step1-payment-authentication) |
-| Saved card via PayU         | Customer has a previously tokenised card stored with PayU | [Step 1 — Flow 2](doc:cards-si-step1-payment-authentication) |
-| Authentication not via PayU | Merchant performs 3DS authentication independently        | [Step 1 — Flow 3](doc:cards-si-step1-payment-authentication) |
+| Flow                        | When to Use                                               | Start Here                                                                                                                                                               |
+| :-------------------------- | :-------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| New card via PayU           | Customer is paying with a new card for the first time     | <Anchor target="_blank" href="https://docs.payu.in/reference/post_payment#flow-1-new-card-authentication-via-payu">Flow 1: New Card Authentication via PayU</Anchor>     |
+| Saved card via PayU         | Customer has a previously tokenised card stored with PayU | <Anchor target="_blank" href="https://docs.payu.in/reference/post_payment#flow-2-saved-card-authentication-via-payu">Flow 2: Saved Card Authentication via PayU</Anchor> |
+| Authentication not via PayU | Merchant performs 3DS authentication independently        | <Anchor target="_blank" href="https://docs.payu.in/reference/post_payment#flow-3-authentication-not-via-payu">Flow 3: Authentication Not via PayU</Anchor>               |
