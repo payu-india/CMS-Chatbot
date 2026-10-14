@@ -82,9 +82,9 @@ The **Statement Inquiry** API allows you to retrieve wallet transaction details,
       <td>1</td>
     </tr>
     <tr>
-      <td>count <code>optional</code></td>
-      <td>Numeric (5) - Maximum count should be 100</td>
-      <td>50</td>
+      <td>count <code>last4Digits</code></td>
+      <td>Numeric (4) - Last four digits of the card</td>
+      <td>7009</td>
     </tr>
     <tr>
       <td>fromRowId <code>optional</code></td>
