@@ -3,6 +3,8 @@ api:
   file: cards-si-api.yaml
   operationId: post_authorizetransaction-php
 hidden: true
+link:
+  new_tab: false
 ---
 After the customer completes OTP authentication in [Step 1](doc:cards-si-step1-payment-authentication), the merchant receives a `bankData` JSON in the OTP submission response. This step passes that `bankData` augmented with `siTokenDetails` (network token details) — as `authentication_info` to the `AuthorizeTransaction` API to complete authorization and register the mandate.
 
