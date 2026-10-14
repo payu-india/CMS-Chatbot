@@ -41,7 +41,7 @@ After you register for recurring payments in bulk, you can upload the recurring 
 * Download the sample file as in the below [procedure](#procedure) (Step 1 to 4) and update it to include the data to be uploaded.  
 * Ensure that all mandatory fields in the file are filled with the correct details. The columns in the Excel sheet for upload are described in the following table (Expandable Text):
 
-<Accordion title="Description of Columns in Excel sheet for uploading transactions in bulk" icon="fa-info-table">
+<Accordion title="Description of Columns in the CSV file for uploading transactions in bulk" icon="fa-info-table">
   | Column Name | Field Type (Mandatory/ Optional) | Character Limit | Description                                                                                                                                           |
   | ----------- | -------------------------------- | --------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
   | authpayuid  | Mandatory                        | 20              | The authpayuid for the recurring transaction.                                                                                                         |
@@ -57,7 +57,7 @@ After you register for recurring payments in bulk, you can upload the recurring 
 </Accordion>
 
 * Ensure that your bulk upload files are in the Excel format, as this is the only supported file type. 
-* Each batch can contain up to 60,000 records (approximately), which is the maximum number of records processed in a single batch.
+* Each batch can contain up to 1,00,000 records (approximately), which is the maximum number of records processed in a single batch.
 * You can schedule a transaction for a future T+1 date or any date up to 3 month in advance.
 * You cannot schedule a transaction for a date more than 3 month from today — such rows will be rejected/marked as failed with an appropriate error.
 * If you don't provide a debit date, the transaction is processed right away.
