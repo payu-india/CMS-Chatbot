@@ -99,9 +99,9 @@ HTTP Method: **POST**
 
    
 
-  - **trid** (Token Requestor ID) is the identifier given by the networks for creating the tokens. You should be able to get the same from your token provider.
-  - **tokenRefNo** (Token Reference Number) is generated along with the network token. You should be able to get the same from your token provider.
-  - **TAVV** is a token authentication verification value given by schemes or interchange. Also, known as cryptogram.
+  - `trid` (Token Requestor ID) is the _mandatory_ identifier given by the networks for creating the tokens. You should be able to get the same from your token provider.
+  - **tokenRefNo** (Token Reference Number) is a _mandatory&#x20;_&#x70;arameter generated along with the network token. You should be able to get the same from your token provider.
+  - **TAVV** is a _mandatory&#x20;_&#x70;arameter token authentication verification value given by schemes or interchange. Also, known as cryptogram.
 
   Additional notes:
 
