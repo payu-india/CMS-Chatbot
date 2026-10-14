@@ -109,31 +109,25 @@ After your file is successfully uploaded, a message similar to the following scr
 
 ***
 
-## Sample Response
+## Sample Response When `debit_date` is Enabled
 
-You will receive the following data in the response
+You will receive the following data in the response.
 
-| Column name             | value                                       |
-| ----------------------- | ------------------------------------------- |
-| authpayuid              | 30300810212                                 |
-| amount                  | 1.000000000000000000                        |
-| transactionid           | sample123497                                |
-| status                  | RC_DUE                                      |
-| pg_response             | Info Response: Invoice Created Successfully |
-| payuid                  | \{\{PAYU_ID\}\}                             |
-| scheduled_debit_date    | 06/10/26 19:26                              |
-| scheduled_predebit_date | 05/10/26 23:16                              |
-| predebit_status         | Success                                     |
-| recurring_status        | Scheduled                                   |
-| predebit_executed_at    | 05/10/26 23:16                              |
-| recurring_executed_at   | \-                                          |
-| failure_reason          | Info Response: Invoice Created Successfully |
-| currentstatus           | Scheduled                                   |
-| previousstatus          | \-                                          |
-| last_updated_at         | 05/10/26 23:16                              |
-| errormessage            | \-                                          |
-| errorcode               | \-                                          |
-| txndate                 | \-                                          |
+| Column Name               | Value                                       |
+| ------------------------- | ------------------------------------------- |
+| `authpayuid`              | 30300810212                                 |
+| `amount`                  | 1.000000000000000000                        |
+| `transactionId`           | sample123497                                |
+| `status`                  | Debit Scheduled                             |
+| `pg_response`             | Info Response: Invoice Created Successfully |
+| `payuid`                  | \{\{PAYU_ID\}\}                             |
+| `scheduled_debit_date`    | 06/10/26 19:26                              |
+| `scheduled_predebit_date` | 05/10/26 23:16                              |
+| `predebit_executed_at`    | 05/10/26 23:16                              |
+| `recurring_executed_at`   | \-                                          |
+| `previousstatus`          | \-                                          |
+| `last_updated_at`         | 05/10/26 23:16                              |
+| `errorcode`               | \-                                          |
 
 ***
 
