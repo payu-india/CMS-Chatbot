@@ -41,7 +41,7 @@ SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||
 <Callout icon="far fa-triangle-exclamation" theme="warn">
   ### **Important!**
 
-  Use empty strings for any `udf` fields not included in the request. The serialised `si_details` JSON string occupies position 16 — after six trailing pipes following `udf5`.
+  Use empty strings for any `udf` fields not sent.
 </Callout>
 
 ***
