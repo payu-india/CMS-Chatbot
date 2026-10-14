@@ -404,3 +404,21 @@ A successful API call returns `status: 1` at the envelope level. The actual tran
   }
   ```
 </Accordion>
+
+***
+
+## Transaction Status Mapping
+
+Use the combination of `status` and `unmappedstatus` inside `transaction_details` to determine the outcome:
+
+| Transaction State  | `status`      | `unmappedstatus` | `field9` (sample)                  |
+| :----------------- | :------------ | :--------------- | :--------------------------------- |
+| Pre-Debit Success  | `pending`     | `null`           | `Request Processed Successfully`   |
+| Pre-Debit Failed   | `failure`     | `null`           | `Mandate is not Active`            |
+| Recurring Success  | `success`     | `captured`       | `Transaction Completed`            |
+| Recurring Failed   | `failure`     | `failed`         | `Authorization failed at Bank`     |
+| Recurring Retrying | `in progress` | `null`           | `Transaction Retry is in progress` |
+
+<Callout icon="📘" theme="info">
+  The `field9` value contains a human-readable status message. For the complete list of `error_code` and `field9` combinations, refer to the PayU error code reference.
+</Callout>
