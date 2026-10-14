@@ -41,7 +41,7 @@ PayU enables merchants to process direct authorization for pre-authenticated tra
     | surl                | `String` The success URL for successful transactions.                                                                                  |
     | hash                | `String` <Glossary>SHA</Glossary>-512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|Salt) |
     | txn_s2s_flow        | `String` Must be passed with value 3 for Direct Authorization flow.                                                                    |
-    | authentication_info | `JSON` Contains authentication information: ECI, CAVV, XID, authentication_txn_id.                                                     |
+    | authentication_info | `JSON` Contains authentication information: ECI, CAVV, threedstransstatus, threedsservertransid, and threedstransid.                   |
     | threeDS2RequestData | `JSON` Contains 3DS2 authentication data: threeDSVersion and deviceChannel.                                                            |
 
     **Optional Parameters**
