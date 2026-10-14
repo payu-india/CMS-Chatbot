@@ -126,15 +126,16 @@ Check this video to see how PayU Payment Links work
 
 ## Is Payment Links Right for Me?
 
-| I want to…                                      |                              Works?                             |
-| ----------------------------------------------- | :-------------------------------------------------------------: |
-| Collect payment without a website or app        |                                ✅                                |
-| Share payment requests on WhatsApp or SMS       |                                ✅                                |
-| Create hundreds of links at once                |                         ✅ (Bulk Upload)                         |
-| Automate link creation from my own system       |                           ✅ (via API)                           |
-| Embed a pay button on my website                |       ⚠️ Use [Payment Button](doc:payment-button-overview)      |
-| Set up recurring auto-debit or subscriptions    |       ⚠️ Use [Recurring Payments](doc:recurring-payments)       |
-| Full server-side control over the checkout flow | ⚠️ Use [Merchant Hosted Checkout](doc:merchant-hosted-checkout) |
+| I want to…                                      |                                     Works?                                    |
+| ----------------------------------------------- | :---------------------------------------------------------------------------: |
+| Collect payment without a website or app        |                                       ✅                                       |
+| Share payment requests on WhatsApp or SMS       |                                       ✅                                       |
+| Create hundreds of links at once                |                                ✅ (Bulk Upload)                                |
+| Automate link creation from my own system       |                                  ✅ (via API)                                  |
+| Embed a pay button on my website                |              ⚠️ Use [Payment Button](doc:payment-button-overview)             |
+| Set up recurring auto-debit or subscriptions    |              ⚠️ Use [Recurring Payments](doc:recurring-payments)              |
+| Full server-side control over the checkout flow |        ⚠️ Use [Merchant Hosted Checkout](doc:merchant-hosted-checkout)        |
+| Send a Pay Now button natively inside WhatsApp  | ⚠️ Use [Enhanced Payment Links (EPL)](doc:enhanced-payment-links-on-whatsapp) |
 
 <Callout icon="far fa-face-thinking" theme="warn">
   ### **Not Sure Which PayU Solution is Right For You?**
@@ -216,6 +217,13 @@ Refer to the [Create a Payment Link](doc:send-a-payment-link) for full walkthrou
     You can create payment links one at a time, or upload multiple links at once if you need to send payment requests to many customers.
   </Column>
 </Columns>
+
+<Callout icon="fad fa-list-timeline" theme="info">
+  ### **Other Options**
+
+  - Create links programmatically via REST API: [Payment Links API](doc:api-create-share)
+  - Send a Pay Now button natively inside WhatsApp: [Enhanced Payment Links (EPL)](doc:enhanced-payment-links-on-whatsapp)
+</Callout>
 
 ***
 
