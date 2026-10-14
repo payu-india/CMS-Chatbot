@@ -95,10 +95,6 @@ After the customer completes OTP authentication in [Step 1](doc:cards-si-step1-p
   </Tab>
 
   <Tab title="Parameter Description">
-    The `result` object follows the standard PayU transaction response structure. For descriptions of common fields such as `mihpayid`, `mode`, `status`, `txnid`, `card_no`, `bank_ref_no`, and `hash`, refer to [Verify Payment](ref:verify-payment).<br />
-
-    The following fields are specific to Standing Instruction mandate registration:
-
     | Field                                             | Description                                                                                                                                                                     |
     | :------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
     | `referenceId` <br /> `mandatory`                  | `String` PayU reference ID from the `_payment` authentication response (`metaData.referenceId`). For example `4e0d4a1b8f093f9bb03ed6e5605071b62ce39a9d136698d703862953a0106c24` |
