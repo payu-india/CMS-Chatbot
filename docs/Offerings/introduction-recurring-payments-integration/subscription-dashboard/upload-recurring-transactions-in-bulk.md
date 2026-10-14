@@ -82,7 +82,7 @@ To upload recurring transactions using PayU Dashboard:
 5. Click the **Download&#x20;**&#x62;utton to download the sample file for registration or mandate. 
 
 
-<Image src="https://files.readme.io/9a8f99c19f1cb452a9bf8de652208e39027cc54ff53fd47836480a3326c14fbd-dashboard-subscription-recurring-bulk-upload.png" align="center" border={true} />
+<Image src="https://files.readme.io/4489b4b0f582aebed135aa8d5320d8463cf21e905be6d778fc6aea092d848e92-image_3.png" align="center" caption="Download the sample file" border={true} />
 
 
 6. You can either:
@@ -96,7 +96,7 @@ The file should follow the format outlined in the provided sample file. Refer to
 After uploading the file, the system will automatically check for discrepancies. If there’s an issue, an error message will appear on the screen as shown below.
 
 
-<Image src="https://files.readme.io/9870655ee9e9176030cb0cbd99f85e9dece3aabbda328c6f8be8d871d1b31bab-dashboard-subscription-recurring-bulk-upload-error.png" align="center" border={true} />
+<Image src="https://files.readme.io/f4ac5350957d248cb7e7abd745d96cb6a2cf500b74b571d5c61a94d70edc9352-image_4.png" align="center" border={true} />
 
 
 After your file is successfully uploaded, a message similar to the following screenshot is displayed.&#x20;
