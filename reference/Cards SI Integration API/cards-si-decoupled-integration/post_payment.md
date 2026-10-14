@@ -465,8 +465,8 @@ The merchant has already performed 3DS authentication externally (e.g., through 
     ```
   </Tab>
 
-  <Tab title="Tab 2">
-
+  <Tab title="Parameter Description">
+    Refer to the [Responses](https://docs.payu.in/reference/post_merchant-webservice-service-php#response-schemas) section for response parameter description.
   </Tab>
 </Tabs>
 
