@@ -146,13 +146,74 @@ HTTP Method: **POST**
 
 #### Parameter Description
 
-| Field                      | Description                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `BeneficiaryName`          | Registered name against customer's account                                                                                                                                                                                                                                                                                                                                                                                    |
-| `BeneficiaryAccountNumber` | Account number against which recurring transactions need to be executed.                                                                                                                                                                                                                                                                                                                                                      |
-| `BeneficiaryAccountType`   | SAVINGS or CURRENT                                                                                                                                                                                                                                                                                                                                                                                                            |
-| `beneficiaryIfscCode`      | 11-digit IFSC code of the customer bank                                                                                                                                                                                                                                                                                                                                                                                       |
-| `verificationMode`         | The verification mode can be any of the following: - **DEBIT_CARD** – authentication will be done through a debit card. If no value is provided, then it will trigger Net Banking login password flow. - **AADHAAR** – authentication will be done through a Aadhaar card. If no value , then it will trigger net banking login password flow. If no value is provided, then it will trigger Net Banking login password flow. |
+<Table>
+  <thead>
+    <tr>
+      <th>
+        Field
+      </th>
+
+      <th>
+        Description
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>
+        `BeneficiaryName`
+      </td>
+
+      <td>
+        Registered name against customer's account
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `BeneficiaryAccountNumber`
+      </td>
+
+      <td>
+        Account number against which recurring transactions need to be executed.
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `BeneficiaryAccountType`
+      </td>
+
+      <td>
+        SAVINGS or CURRENT
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `beneficiaryIfscCode`
+      </td>
+
+      <td>
+        11-digit IFSC code of the customer bank
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        `verificationMode`
+      </td>
+
+      <td>
+        The verification mode can be any of the following:&#x20;
+
+        - `DEBIT_CARD`: Authentication will be done through a debit card. If no value is provided, then it will trigger Net Banking login password flow.
+        - `AADHAAR`: Authentication will be done through a Aadhaar card. If no value , then it will trigger net banking login password flow. If no value is provided, then it will trigger Net Banking login password flow.
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 ### `si_details` Object Parameters
 
