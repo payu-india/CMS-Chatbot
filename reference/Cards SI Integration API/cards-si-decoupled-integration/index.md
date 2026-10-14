@@ -65,11 +65,11 @@ Authentication and authorization happen in two separate API calls.
 | **Authentication not via PayU**         | The merchant performs 3DS externally and passes the authentication result (`authentication_info` with `cavv`, `eci`, etc.) directly in the `_payment` call. The mandate is registered in this single call — no separate `AuthorizeTransaction` needed. |
 
 <Cards>
-  <Card title="Payment and Authentication Initiation" href="doc:cards-si-step1-payment-authentication">
+  <Card title="Payment and Authentication Initiation" href="https://docs.payu.in/reference/payment-and-authentication" target="_blank">
     Send the `_payment` request with card details. PayU performs normal card authentication and returns an `acsTemplate` (Base64-encoded HTML). Decode and render it to redirect the customer to the OTP page. After OTP submission, you receive `bankData` in the response.
   </Card>
 
-  <Card title="Authorization and Mandate Registration" href="doc:cards-si-step2-authorize-transaction">
+  <Card title="Authorization and Mandate Registration" href="https://docs.payu.in/reference/authorization" target="_blank">
     Pass `bankData` (augmented with `siTokenDetails`) as `authentication_info` to the `AuthorizeTransaction` API. On success, the response contains `IsStandingInstructionSet: "1"` confirming the mandate is registered. Save the `mihpayid` — this is the `authPayuId` for all future pre-debit and recurring calls.
   </Card>
 </Cards>
@@ -83,11 +83,11 @@ Once the mandate is registered, use these APIs to schedule and execute recurring
 There are two approaches to scheduling pre-debit notifications and recurring debits. Choose the one that fits your integration model.
 
 <Cards>
-  <Card title="Unified Pre-Debit and Recurring API" href="ref:subscriptions-pdn-rp">
+  <Card title="Unified Pre-Debit and Recurring API" href="https://docs.payu.in/reference/createpredebitandrecurringtransaction" target="_blank">
     Make a **single API call** using `command=si_transaction` with `debitType=PREDEBIT_AND_RECURRING`. PayU handles scheduling the pre-debit notification and executing the recurring debit automatically.
   </Card>
 
-  <Card title="Separate Pre-Debit and Recurring APIs" href="ref:subscriptions-pdn-rp">
+  <Card title="Separate Pre-Debit and Recurring APIs" href="https://docs.payu.in/reference/payment-consent-transaction-payu-hosted" target="_blank">
     Make **two separate API calls** using `command=si_transaction` — first with `debitType=PREDEBIT` to send the pre-debit notification, then with `debitType=RECURRING` to execute the recurring debit. Use this when your workflow requires explicit control over each step.
   </Card>
 </Cards>
@@ -95,7 +95,7 @@ There are two approaches to scheduling pre-debit notifications and recurring deb
 After a pre-debit or recurring debit is processed, verify the transaction outcome using the Verify SI Payment Status API.
 
 <Cards>
-  <Card title="Verify SI Payment Status" href="doc:cards-si-verify-si-payment">
+  <Card title="Verify SI Payment Status" href="https://docs.payu.in/reference/verify-si-payment-status" target="_blank">
     Check the status of a pre-debit or recurring payment using the `verify_si_payment` command. Pass the `rc_` prefixed transaction ID returned by the PDN/RP API as `var1`. Use this when a webhook is not received or to independently confirm the transaction outcome.
   </Card>
 </Cards>
