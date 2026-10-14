@@ -567,7 +567,7 @@ paths:
       x-internal: true
   /AuthorizeTransaction.php:
     post:
-      summary: 'Step2: Authorization (Mandate Registration)'
+      summary: 'Step 2: Authorization (Mandate Registration)'
       description: ''
       tags:
         - Cards SI APIs
