@@ -55,7 +55,7 @@ After the customer completes OTP authentication in [Step 1](doc:cards-si-step1-p
     | `hash` <br /> `mandatory`                | `String` SHA-512 hash for request integrity. Formula: <br /> `SHA512(key\|txnid\|amount\|authentication_info\|SALT)` <br /> **Important**: Use the exact serialised `authentication_info` JSON string (not the parsed object) when computing the hash. |
     | `authentication_info` <br /> `mandatory` | `JSON Object` The `bankData` JSON received after OTP submission, with `siTokenDetails` added. Must be serialised to a JSON string when submitted as a form field. See parameter breakdown below.                                                       |
     | `si` <br /> `mandatory`                  | `String` The value should be `1` to flag this as a Standing Instruction mandate creation transaction.                                                                                                                                                  |
-    | `si_details` <br /> `mandatory`          | `JSON Object` Mandate billing parameters. Use the exact same values submitted in the Step 1 `_payment` request. For more information, refer to [SI Parameter JSON Details](ref:si-parameter-json-details).                                             |
+    | `si_details` <br /> `mandatory`          | `JSON Object` Mandate billing parameters for registering the Standing Instruction. For more information, refer to [SI Parameter JSON Details](ref:si-parameter-json-details).                                                                          |
   </Tab>
 </Tabs>
 
