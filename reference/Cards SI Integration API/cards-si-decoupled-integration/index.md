@@ -66,7 +66,7 @@ Authentication and authorization happen in two separate API calls.
 
 <Cards>
   <Card title="Step 1.1: Payment and Authentication Initiation" href="doc:cards-si-step1-payment-authentication">
-    Send the `_payment` request with card details, `si=1`, and `si_details`. PayU returns an `acsTemplate` (Base64-encoded HTML). Decode and render it to redirect the customer to the OTP page. After OTP submission, you receive `bankData` in the response.
+    Send the `_payment` request with card details. PayU performs normal card authentication and returns an `acsTemplate` (Base64-encoded HTML). Decode and render it to redirect the customer to the OTP page. After OTP submission, you receive `bankData` in the response.
   </Card>
 
   <Card title="Step 1.2: Authorization and Mandate Registration" href="doc:cards-si-step2-authorize-transaction">
@@ -96,16 +96,16 @@ Once the mandate is registered, use these APIs to schedule and execute recurring
 
 The following steps describe the end-to-end Cards SI decoupled integration flow for the PayU-authenticated case:
 
-1. **Payment request** — The merchant sends a `_payment` POST request to PayU with card details, `si=1`, and `si_details`.
-2. **Acquirer selection** — PayU identifies the acquiring bank using the PG Selector Service.
-3. **Authentication initiation** — PayU submits an authentication initiation request to the acquirer.
-4. **Authentication initiation response** — The acquirer acknowledges and prepares the authentication session.
-5. **ACS template redirection** — Base64-decode the `acsTemplate` value from the response to generate the HTML OTP page, then redirect the customer to it.
-6. **Authentication status response** — PayU returns the authentication status after the customer enters the OTP. This response includes `bankData`.
-7. **Prepare AuthorizeTransaction payload** — Add `siTokenDetails` (network token details) to the `bankData` JSON and use the combined object as `authentication_info`.
-8. **AuthorizeTransaction** — The merchant calls the `AuthorizeTransaction` API to complete authorization and register the mandate.
-9. **Authorization response** — PayU returns the final transaction result. Verify `IsStandingInstructionSet: "1"` and store the `mihpayid` as your `authPayuId`.
-10. **Callback** — If configured, PayU triggers a merchant callback with the final transaction response.
+1. **Payment request**: The merchant sends a `_payment` POST request to PayU with card details, `si=1`, and `si_details`.
+2. **Acquirer selection**: PayU identifies the acquiring bank using the PG Selector Service.
+3. **Authentication initiation:** PayU submits an authentication initiation request to the acquirer.
+4. **Authentication initiation response**: The acquirer acknowledges and prepares the authentication session.
+5. **ACS template redirection**: Base64-decode the `acsTemplate` value from the response to generate the HTML OTP page, then redirect the customer to it.
+6. **Authentication status response**: PayU returns the authentication status after the customer enters the OTP. This response includes `bankData`.
+7. **Prepare AuthorizeTransaction payload**: Add `siTokenDetails` (network token details) to the `bankData` JSON and use the combined object as `authentication_info`.
+8. **AuthorizeTransaction**: The merchant calls the `AuthorizeTransaction` API to complete authorization and register the mandate.
+9. **Authorization response**: PayU returns the final transaction result. Verify `IsStandingInstructionSet: "1"` and store the `mihpayid` as your `authPayuId`.
+10. **Callback**: If configured, PayU triggers a merchant callback with the final transaction response.
 
 <Callout icon="📘" theme="info">
   ### **Tips:**
@@ -119,11 +119,11 @@ The following steps describe the end-to-end Cards SI decoupled integration flow 
 
 Each API requires a SHA-512 hash computed from pipe-separated parameters using your merchant salt.
 
-| API                                                 | Hash Formula                                                                                                          |
-| :-------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------- |
-| `_payment`                                          | `SHA512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|si_details\|SALT)` |
-| `AuthorizeTransaction`                              | `SHA512(key\|txnid\|amount\|authentication_info\|SALT)`                                                               |
-| `si_transaction` (Pre-Debit / Recurring / Retrieve) | `SHA512(key\|command\|var1\|SALT)`                                                                                    |
+| API                                                 | Hash Formula                                                                                              |
+| :-------------------------------------------------- | :-------------------------------------------------------------------------------------------------------- |
+| `_payment`                                          | `SHA512(key\|txnid\|amount\|productinfo\|firstname\|email\|udf1\|udf2\|udf3\|udf4\|udf5\|\|\|\|\|\|SALT)` |
+| `AuthorizeTransaction`                              | `SHA512(key\|txnid\|amount\|authentication_info\|SALT)`                                                   |
+| `si_transaction` (Pre-Debit / Recurring / Retrieve) | `SHA512(key\|command\|var1\|SALT)`                                                                        |
 
 <Callout icon="📘" theme="info">
   ### **Tips:**
@@ -137,7 +137,7 @@ Each API requires a SHA-512 hash computed from pipe-separated parameters using y
 
 ## `si_details` Parameters
 
-The `si_details` JSON object is required in both the `_payment` and `AuthorizeTransaction` requests. Use identical values in both calls. All these parameters are mandatory.
+The `si_details` JSON object is passed in the `AuthorizeTransaction` request to register the mandate billing parameters. Use identical values in both calls. All these parameters are mandatory.
 
 | Parameter          | Type    | Description                                                            |
 | :----------------- | :------ | :--------------------------------------------------------------------- |
@@ -167,15 +167,6 @@ PayU sends webhook callbacks to your configured URL for all mandate and recurrin
 | Successful registration | `success` | `captured`       | Mandate registered and initial transaction captured. |
 | Failed registration     | `failure` | `failed`         | Mandate registration failed.                         |
 
-### Recurring Payment Webhooks
-
-| `notificationType`  | `invoice_status` | `paymentStatus` | Meaning                                                                                                 |
-| :------------------ | :--------------- | :-------------- | :------------------------------------------------------------------------------------------------------ |
-| `PREDEBIT_SUCCESS`  | `PD_SUCCESS`     | Due             | Pre-debit notification processed successfully. Recurring debit will be attempted on the scheduled date. |
-| `PREDEBIT_FAILED`   | `PD_FAILED`      | Due             | Pre-debit notification failed. Payment still due.                                                       |
-| `RECURRING_SUCCESS` | `RC_SUCCESS`     | Paid            | Recurring payment successfully processed and invoice paid.                                              |
-| `RECURRING_FAILED`  | `RC_FAILED`      | Due             | Recurring payment failed. May be retried based on gateway configuration.                                |
-
 <Callout icon="📘" theme="info">
   ### **Tips:**
 
@@ -200,3 +191,15 @@ After mandate creation, use the following APIs to manage the mandate lifecycle.
 
   Mandate cancellation requests for **Visa and Mastercard** are processed without Additional Factor of Authentication (AFA) in accordance with card network guidelines for mandate management.
 </Callout>
+
+***
+
+## What to Do Next
+
+Start the integration with **Step 1 — Payment and Authentication Initiation**. Choose the flow that matches your use case:
+
+| Flow                        | When to Use                                               | Start Here                                                   |
+| :-------------------------- | :-------------------------------------------------------- | :----------------------------------------------------------- |
+| New card via PayU           | Customer is paying with a new card for the first time     | [Step 1 — Flow 1](doc:cards-si-step1-payment-authentication) |
+| Saved card via PayU         | Customer has a previously tokenised card stored with PayU | [Step 1 — Flow 2](doc:cards-si-step1-payment-authentication) |
+| Authentication not via PayU | Merchant performs 3DS authentication independently        | [Step 1 — Flow 3](doc:cards-si-step1-payment-authentication) |
