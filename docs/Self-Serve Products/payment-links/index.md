@@ -219,7 +219,7 @@ Refer to the [Create a Payment Link](doc:send-a-payment-link) for full walkthrou
 </Columns>
 
 <Callout icon="fad fa-list-timeline" theme="info">
-  ### **Other Options**
+  ### **Other Ways to Create Payment Links:**
 
   - Create links programmatically via REST API: [Payment Links API](doc:api-create-share)
   - Send a Pay Now button natively inside WhatsApp: [Enhanced Payment Links (EPL)](doc:enhanced-payment-links-on-whatsapp)
