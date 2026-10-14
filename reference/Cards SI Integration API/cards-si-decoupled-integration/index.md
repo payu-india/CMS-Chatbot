@@ -58,11 +58,11 @@ Authentication and authorization happen in two separate API calls.
 
 #### Authentication Flows Supported
 
-| Flow                                     | When to Use                                                                                                                                                                                                                                            |
-| :--------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Authentication via PayU — New Card**   | Send plain card details (`ccnum`, `ccname`, etc.). PayU handles 3DS and returns a Base64-encoded OTP page template (`acsTemplate`).                                                                                                                    |
-| **Authentication via PayU — Saved Card** | Send a stored network token (`store_card_token`) with `storecard_token_type=1`. PayU handles 3DS. `siTokenDetails` in the subsequent `AuthorizeTransaction` call is optional for this flow.                                                            |
-| **Authentication not via PayU**          | The merchant performs 3DS externally and passes the authentication result (`authentication_info` with `cavv`, `eci`, etc.) directly in the `_payment` call. The mandate is registered in this single call — no separate `AuthorizeTransaction` needed. |
+| Flow                                    | When to Use                                                                                                                                                                                                                                            |
+| :-------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Authentication via PayU: New Card**   | Send plain card details (`ccnum`, `ccname`, etc.). PayU handles 3DS and returns a Base64-encoded OTP page template (`acsTemplate`).                                                                                                                    |
+| **Authentication via PayU: Saved Card** | Send a stored network token (`store_card_token`) with `storecard_token_type=1`. PayU handles 3DS. `siTokenDetails` in the subsequent `AuthorizeTransaction` call is optional for this flow.                                                            |
+| **Authentication not via PayU**         | The merchant performs 3DS externally and passes the authentication result (`authentication_info` with `cavv`, `eci`, etc.) directly in the `_payment` call. The mandate is registered in this single call — no separate `AuthorizeTransaction` needed. |
 
 <Cards>
   <Card title="Step 1.1: Payment and Authentication Initiation" href="doc:cards-si-step1-payment-authentication">
