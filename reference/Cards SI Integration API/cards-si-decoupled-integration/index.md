@@ -206,7 +206,7 @@ After mandate creation, use the following APIs to manage the mandate lifecycle.
 
 ## What to Do Next
 
-Start the integration with **Step 1 — Payment and Authentication Initiation**. Choose the flow that matches your use case:
+Start the integration with **Step 1: Payment and Authentication Initiation**. Choose the flow that matches your use case:
 
 | Flow                        | When to Use                                               | Start Here                                                                                                                                                               |
 | :-------------------------- | :-------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
