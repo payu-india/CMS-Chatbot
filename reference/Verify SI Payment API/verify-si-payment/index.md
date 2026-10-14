@@ -1,4 +1,6 @@
 ---
 title: Verify SI Payment
-hidden: false
+hidden: true
+link:
+  new_tab: false
 ---
