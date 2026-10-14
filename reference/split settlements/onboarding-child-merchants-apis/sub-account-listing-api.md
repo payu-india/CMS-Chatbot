@@ -5,7 +5,7 @@ hidden: false
 metadata:
   robots: index
 ---
-The **Sub Account Listing**  API fetches all child merchant details linked to a parent merchant. You must pass the parent merchant MID for the **parent_merchant_uuid** parameter in this request.
+The **Sub Account Listing**  API fetches all child merchant details linked to a parent merchant. You must pass the parent merchant MID for the **parent_MID** parameter in this request.
 
 HTTP Method: **GET**
 
@@ -33,7 +33,7 @@ HTTP Method: **GET**
 </thead>
 <tbody>
 <tr>
-  <td style="border: 1px solid #ddd; padding: 8px;"><p>parent_merchant_uuid</p>
+  <td style="border: 1px solid #ddd; padding: 8px;"><p>parent_MID</p>
 </td>
   <td style="border: 1px solid #ddd; padding: 8px;"><p>Path</p>
 </td>
@@ -83,7 +83,7 @@ HTTP Method: **GET**
 ### Success scenario
 
 ```curl
-curl --location '{{onboarding_base_url}}/api/v3/product_accounts/{{product_account_uuid}}/sub_accounts?search_term=email&search_text=abcpayu.in' \
+curl --location '{{onboarding_base_url}}/api/v3/product_accounts/{{parent_MID}}/sub_accounts?search_term=email&search_text=abcpayu.in' \
  --header 'Authorization: Bearer {{access_token}}' 
 ```
 
