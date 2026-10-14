@@ -35,7 +35,7 @@ After the customer submits the OTP, use the `bankData` from the OTP response (pl
 ## Hash Formula
 
 ```text Logic
-SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||si_details|SALT)
+SHA512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
 ```
 
 <Callout icon="far fa-triangle-exclamation" theme="warn">
