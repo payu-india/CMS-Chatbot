@@ -23,27 +23,27 @@ Integrate PayU's WebView SDK into your iOS app to accept payments via Cards, Net
 
 <Cards columns={3}>
 
-<Card title="1. Set Up Your Environment" icon="gear">
+<Card title="1. Set Up Your Environment" icon="fa-gear">
 Install PayU WebView SDK via CocoaPods or Swift Package Manager, configure WKWebView outlet, import SDK framework into your project.
 </Card>
 
-<Card title="2. Build Payment Parameters" icon="list-check">
+<Card title="2. Build Payment Parameters" icon="fa-list-check">
 Prepare POST parameters: `key`, `txnid`, `amount`, `productinfo`, `firstname`, `email`, `phone`, `surl`, and `furl` — never store your merchant salt client-side.
 </Card>
 
-<Card title="3. Generate Payment Hash" icon="lock">
+<Card title="3. Generate Payment Hash" icon="fa-lock">
 Use backend API to compute SHA-512 hash using 17-position formula — use single consistent `txnid` across hash generation AND POST body.
 </Card>
 
-<Card title="4. Initialize PayU WebView" icon="mobile">
+<Card title="4. Initialize PayU WebView" icon="fa-mobile">
 Set delegate, call `load()` with payment URL and `postString`, handle WKWebView navigation.
 </Card>
 
-<Card title="5. Handle Payment Callbacks" icon="webhook">
+<Card title="5. Handle Payment Callbacks" icon="fa-webhook">
 Implement `PayUDelegate` protocol: `payUonSuccess`, `payUonFailure`, `payUonError` — always verify payment on backend before fulfillment.
 </Card>
 
-<Card title="6. Verify Payment" icon="shield-check">
+<Card title="6. Verify Payment" icon="fa-shield-check">
 Use Verify Payment API to confirm transaction status server-side — never trust client-side responses alone.
 </Card>
 
