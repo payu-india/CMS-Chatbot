@@ -147,6 +147,53 @@ Redirect the customer to complete authentication.
 
 ## Step 3: Check response from PayU
 
+### Sample Response
+
+```json
+{
+    "status": 1,
+    "msg": "1 out of 1 Transactions Fetched Successfully",
+    "transaction_details": {
+        "my_order_13766": {
+            "mihpayid": "20000006487",
+            "request_id": "",
+            "bank_ref_num": "910643247969910500",
+            "amt": "9000.00",
+            "transaction_amount": "9000.00",
+            "txnid": "my_order_13766",
+            "additional_charges": "0.00",
+            "productinfo": "iPhone",
+            "firstname": "PayU User",
+            "bankcode": "CC",
+            "udf1": "",
+            "udf2": "",
+            "udf3": "",
+            "udf4": "",
+            "udf5": "",
+            "field2": "655279",
+            "field9": "Transaction is Successful",
+            "error_code": "E000",
+            "addedon": "2026-10-13 11:22:36",
+            "payment_source": "payu",
+            "card_type": "VISA",
+            "error_Message": "NO ERROR",
+            "net_amount_debit": 9000.00,
+            "disc": "0.00",
+            "mode": "CC",
+            "PG_TYPE": "CC-PG",
+            "card_no": "XXXXXXXXXXXX1112",
+            "status": "success",
+            "unmappedstatus": "captured",
+            "Merchant_UTR": null,
+            "Settled_At": null,
+            "name_on_card": null,
+            "card_token": null,
+            "offerAvailed": null
+        }
+    }
+}
+```
+
 <ReverseHashing />
 
 ## Step 4. Verify the payment
