@@ -5,20 +5,35 @@ hidden: false
 metadata:
   robots: index
 ---
+---
+title: PG Load API
+deprecated: false
+hidden: false
+metadata:
+  robots: index
+---
 The **PG Load** API allows you to create a credit transaction entry through a payment gateway.
 
 ## Environment
 
-| Environment | URL                                                                                                                            |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| Test        | [https://apitest.payu.in/loyalty-points/ppi/payment/pg-load/v1](https://apitest.payu.in/loyalty-points/v1/wallet/load-account) |
-| Production  | `[https://api.payu.in/loyalty-points/ppi/payment/pg-load/v1](https://api.payu.in/loyalty-points/ppi/payment/pg-load/v1)        |
+| Environment | URL                                                            |
+| ----------- | -------------------------------------------------------------- |
+| Test        | `https://apitest.payu.in/loyalty-points/ppi/payment/pg-load/v1` |
+| Production  | `https://api.payu.in/loyalty-points/ppi/payment/pg-load/v1`     |
 
 **HTTP Method**: POST
 
 ## Request Headers
 
 <Closed_Loop_HMAC />
+
+<Callout icon="🔐" theme="info">
+  Sign every request with **HMAC-SHA256** over the `date` and `digest` headers:
+
+  * `date`: Current time in GMT (RFC 1123 format), for example, `Tue, 13 Oct 2026 07:05:59 GMT`.
+  * `digest`: `Base64(SHA-256(raw JSON request body))`
+  * `authorization`: `hmac username="<merchant_key>", algorithm="hmac-sha256", headers="date digest", signature="<signature>"`, where `signature = Base64(HMAC-SHA256("date: <date>\ndigest: <digest>", <merchant_secret>))`
+</Callout>
 
 ## Request Parameters
 
@@ -70,13 +85,11 @@ The **PG Load** API allows you to create a credit transaction entry through a pa
 
     <tr>
       <td>
-        customerId
-        <code>optional</code>
+        customerId<br /><code>optional</code>
       </td>
 
       <td>
-        <code>Numeric(20)</code> A unique customer ID from calling application to be shared. If the value is not passed in the request, the platform will auto-generate a unique value for this
-        field."
+        <code>Numeric(20)</code> A unique customer ID from the calling application. If the value is not passed in the request, the platform will auto-generate a unique value for this field.
       </td>
 
       <td>
@@ -86,16 +99,15 @@ The **PG Load** API allows you to create a credit transaction entry through a pa
 
     <tr>
       <td>
-        customer.firstName
-        <code>mandatory</code>
+        customer.firstName<br /><code>mandatory</code>
       </td>
 
       <td>
-        <code>String(50)</code> Customer first Name. The following validations for this field :  
+        <code>String(50)</code> Customer first name. The following validations are done for this field:
 
-        1. Start and end with valid characters (no extra characters outside the allowed set).  
-        2. Contain only:   Uppercase letters (A-Z)   Lowercase letters (a-z)   Periods (.)   Spaces ( )   Have at least one character and no invalid symbols like numbers, special characters outside the allowed set, etc.
-        3. Total length of string should be max 50 chars (including space) and it can only contain characters, hyphens and single spaces in b/w words. No double spaces allowed b/w 2 words
+        1. Start and end with valid characters (no extra characters outside the allowed set).
+        2. Contain only: Uppercase letters (A-Z), Lowercase letters (a-z), Periods (.), Spaces ( ). Have at least one character and no invalid symbols like numbers, special characters outside the allowed set, etc.
+        3. Total length of string should be max 50 chars (including space) and it can only contain characters, hyphens and single spaces in between words. No double spaces allowed between two words.
       </td>
 
       <td>
@@ -105,16 +117,15 @@ The **PG Load** API allows you to create a credit transaction entry through a pa
 
     <tr>
       <td>
-        customer.lastName
-        <code>mandatory</code>
+        customer.lastName<br /><code>mandatory</code>
       </td>
 
       <td>
-        <code>String(50)</code> Customer last name. The following validations are done for this field: 
+        <code>String(50)</code> Customer last name. The following validations are done for this field:
 
         1. Start and end with valid characters (no extra characters outside the allowed set).
-        2. Contain only:   Uppercase letters (A-Z)   Lowercase letters (a-z)   Periods (.)   Spaces ( )   Have at least one character and no invalid symbols like numbers, special characters outside the allowed set, etc.
-        3. Total length of string should be max 50 chars (including space) and it can only contain characters, hyphens and single spaces in b/w words. No double spaces allowed b/w 2 words
+        2. Contain only: Uppercase letters (A-Z), Lowercase letters (a-z), Periods (.), Spaces ( ). Have at least one character and no invalid symbols like numbers, special characters outside the allowed set, etc.
+        3. Total length of string should be max 50 chars (including space) and it can only contain characters, hyphens and single spaces in between words. No double spaces allowed between two words.
       </td>
 
       <td>
@@ -138,16 +149,15 @@ The **PG Load** API allows you to create a credit transaction entry through a pa
 
     <tr>
       <td>
-        customer.email
-        <br /> <code>mandatory</code>
+        customer.email<br /><code>optional</code>
       </td>
 
       <td>
-        <code>String(50)</code> Valid Email address with valid email format
+        <code>String(50)</code> Valid email address in a valid email format
       </td>
 
       <td>
-        [ashsih@gmail.com](mailto:ashsih@gmail.com)
+        ashish@gmail.com
       </td>
     </tr>
 
@@ -157,12 +167,11 @@ The **PG Load** API allows you to create a credit transaction entry through a pa
       </td>
 
       <td>
-        <code>String</code> This is the URL to which customer is redirected incase if PG Transaction
-        is a success
+        <code>String</code> The URL to which the customer is redirected if the PG transaction is a success
       </td>
 
       <td>
-        [https://pp1admin.payu.in/test_response](https://pp1admin.payu.in/test_response)
+        <redacted URL>
       </td>
     </tr>
 
@@ -172,12 +181,11 @@ The **PG Load** API allows you to create a credit transaction entry through a pa
       </td>
 
       <td>
-        <code>String</code> This is the URL to which customer is redirected incase if PG Transaction
-        is a failure
+        <code>String</code> The URL to which the customer is redirected if the PG transaction is a failure
       </td>
 
       <td>
-        [https://pp1admin.payu.in/test_response](https://pp1admin.payu.in/test_response)
+        <redacted URL>
       </td>
     </tr>
 
@@ -211,14 +219,14 @@ The **PG Load** API allows you to create a credit transaction entry through a pa
 
     <tr>
       <td>
-        seamlessTransaction<br /><code>mandatory</code>
+        seamlessTxn<br /><code>mandatory</code>
       </td>
 
       <td>
-        <code>String</code> Identifier if it is a seamless transaction or non seamless. This must be either true or false, where:
+        <code>Boolean</code> Identifies whether it is a seamless or non-seamless transaction. This must be either true or false, where:
 
         * **false** indicates it is a non-seamless transaction.
-        * **true**indicates it is a seamless transaction.
+        * **true** indicates it is a seamless transaction.
       </td>
 
       <td>
@@ -228,37 +236,51 @@ The **PG Load** API allows you to create a credit transaction entry through a pa
   </tbody>
 </Table>
 
+{/* REVIEW: Parameter renamed from seamlessTransaction to seamlessTxn to match the CTP-378 cURL and the response field. Confirm with engineering. */}
+
 ## Response Parameters
 
-| Parameter        | Description                                                | Example**                                                                                                                            |
-| ---------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| referenceId      | Reference ID of Transaction                                | e47293311906aeb0eb65168adacdce01                                                                                                     |
-| data.redirectUrl | Redirection link                                           | "[https://pp1api.payu.in/public/#/e47293311906aeb0eb65168adacdce0](https://pp1api.payu.in/public/#/e47293311906aeb0eb65168adacdce0)" |
-| seamlessTxn      | Identifier if it is a seamless transaction or non seamless | true/false                                                                                                                           |
+| Parameter        | Description                                                  | Example                                                              |
+| ---------------- | ------------------------------------------------------------ | -------------------------------------------------------------------- |
+| referenceId      | Reference ID of the transaction                              | 590bb71a22c54d0db685cdd752da1d2f                                     |
+| data.redirectUrl | Redirection link                                             | https://apitest.payu.in/public/#/590bb71a22c54d0db685cdd752da1d2f    |
+| seamlessTxn      | Identifies whether it is a seamless or non-seamless transaction | true/false                                                        |
 
 ## Sample Request
 
 ```curl
-curl --location --request POST 'https://apitest.payu.in/loyalty-points/ppi/payment/pg-load/v1' \ 
---header 'walletIdentifier: CLW' \ 
---header 'date: Wed, 12 Jun 2024 08:53:43 GMT' \ 
---header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="v15rnvh1InSEWRq6EW9BCfXlxO0QI/4Sxxmdxd2f4Q0="' \ 
---header 'Content-Type: application/json' \ 
---data-raw '{  
-"clientTxnId": "testRegistration10",  
-"requestDateTime": "20230620123143",  {  "customer": {  "firstName": "FGHJ",  "lastName": "DFTTYUI",  "email": "tegyh@gh.com",  "mobileNumber": "919999999999"  },  "surl": "https://pp1admin.payu.in/test_response",  "furl": "https://pp1admin.payu.in/test_response",  "currency": "INR",  "loadAmount": 4100,  "customerId": "2201919",  "seamlessTxn": false  }
+curl --location --request POST 'https://apitest.payu.in/loyalty-points/ppi/payment/pg-load/v1' \
+--header 'walletIdentifier: CLW' \
+--header 'date: Tue, 13 Oct 2026 07:05:59 GMT' \
+--header 'digest: BASE64_SHA256_OF_REQUEST_BODY' \
+--header 'authorization: hmac username="YOUR_MERCHANT_KEY", algorithm="hmac-sha256", headers="date digest", signature="YOUR_HMAC_SIGNATURE"' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "clientTxnId": "testRe9871",
+  "requestDateTime": "20250121182438",
+  "customer": {
+    "firstName": "Ashish",
+    "lastName": "Mishra",
+    "mobileNumber": "919999999999"
+  },
+  "surl": "<redacted URL>",
+  "furl": "<redacted URL>",
+  "currency": "INR",
+  "loadAmount": 99999,
+  "seamlessTxn": false
+}'
 ```
 
 ## Sample Response
 
 ```json
-{ 
-"referenceId": "e47293311906aeb0eb65168adacdce01", 
-"data": { 
-       "redirectUrl": "https://pp1api.payu.in/public/#/e47293311906aeb0eb65168adacdce0"
-}, 
-"seamlessTxn": false
-}
+{
+  "referenceId": "590bb71a22c54d0db685cdd752da1d2f",
+  "data": {
+    "redirectUrl": "https://apitest.payu.in/public/#/590bb71a22c54d0db685cdd752da1d2f"
+  },
+  "seamlessTxn": false
+}
 ```
 
 ## HTTP Status Codes
