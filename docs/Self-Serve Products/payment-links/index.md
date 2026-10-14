@@ -155,7 +155,7 @@ Check this video to see how PayU Payment Links work
   </Card>
 
   <Card title="Freelancer or Service Provider" icon="fa-briefcase">
-    Send a payment link with your invoice amount and description — get paid without sharing bank details.
+    Send a payment link with your invoice amount, description, and get paid without sharing bank details.
   </Card>
 
   <Card title="Educator or Training Institute" icon="fa-graduation-cap">
@@ -167,7 +167,7 @@ Check this video to see how PayU Payment Links work
   </Card>
 
   <Card title="Social Seller or D2C Brand" icon="fa-basket-shopping">
-    Share a payment link directly in a WhatsApp or Instagram conversation — no website needed.
+    Share a payment link directly in a WhatsApp or Instagram conversation without a website.
   </Card>
 
   <Card title="Insurance Provider" icon="fad fa-shield-halved">
@@ -202,7 +202,7 @@ You will need:
   <Callout icon="👁️" theme="info">
     ### **Payment Link Preview**
 
-    As you fill in the form, a live preview of the pre-payment page updates in real time — so you can see exactly what your customer will see before the link goes live.
+    As you fill in the form, a live preview of the pre-payment page updates in real time, so you can see exactly what your customer will see before the link goes live.
   </Callout>
 </Accordion>
 
@@ -285,7 +285,7 @@ Your customer does not need a PayU account or any special app. The link works in
 Once your customer completes the payment:
 
 <Accordion title="Filter and search">
-  View links by status — **Active**, **Paid**, **Expired**, or **Deactivated** — or narrow by creation date. Use the calendar picker to set a custom date range.
+  View links by status such as **Active**, **Paid**, **Expired**, or **Deactivated**, or narrow by creation date. Use the calendar picker to set a custom date range.
 </Accordion>
 
 <Accordion title="Edit a link">
@@ -299,11 +299,11 @@ Once your customer completes the payment:
 </Accordion>
 
 <Accordion title="Resend a link">
-  Share any Active link again via SMS, email, or by copying the URL and sending it over WhatsApp or any channel — no limit on how many times you can resend.
+  Share any Active link again via SMS, email, or by copying the URL and sending it over WhatsApp or any channel withiut any limit on how many times you can resend.
 </Accordion>
 
 <Accordion title="Export records">
-  Download your payment link history as CSV or Excel — either a link-level summary or a transaction-level detail report — for reconciliation or reporting.
+  Download your payment link history as CSV or Excel with either a link-level summary or a transaction-level detail report for reconciliation or reporting.
 </Accordion>
 
 <Accordion title="Deactivate a link">
@@ -316,7 +316,7 @@ Refer to the <Anchor target="_blank" href="https://docs.payu.in/docs/manage-paym
 
 ## Use AI to Help You
 
-You can manage Payment Links by conversation instead of navigating the Dashboard. Use **PayU Ask AI** — or paste these prompts directly into Claude, ChatGPT, or any AI assistant:
+You can manage Payment Links by conversation instead of navigating the Dashboard. Use **PayU Ask AI** or paste these prompts directly into Claude, ChatGPT, or any AI assistant:
 
 <Callout icon="🤖" theme="info">
   ### **Example Prompts to Try:**
@@ -349,6 +349,6 @@ If you are a **developer** building a backend service or AI agent that manages p
   </Card>
 
   <Card title="How Payment Links Works" href="https://docs.payu.in/docs/payment-links-workflow" icon="fa-diagram-project" target="_blank">
-    See the end-to-end flow — from creating a link to receiving funds in your bank.
+    See the end-to-end flow; From creating a link to receiving funds in your bank.
   </Card>
 </Cards>
