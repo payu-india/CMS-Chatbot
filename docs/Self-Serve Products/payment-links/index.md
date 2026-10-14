@@ -251,6 +251,23 @@ Your customer does not need a PayU account or any special app. The link works in
 
 ***
 
+## Is Payment Links Secure?
+
+Yes. Every Payment Link is served over HTTPS on PayU's PCI-DSS compliant hosted payment page. Your customer's card and UPI details never pass through your system. You do not configure anything; PayU handles it.<br />
+
+You control additional fraud exposure through two settings available at link creation:<br />
+
+- **Expiry date**: the link stops accepting payments after the date you set.
+- **Single-use**: the link closes after the first successful payment, even if shared multiple times.
+
+<Cards>
+  <Card title="For Developers" icon="fad fa-key">
+    Webhook signature verification for Payment Links uses your `client_secret`. Using the wrong secret will cause every hash check to fail silently. See <Anchor target="_blank" href="https://docs.payu.in/reference/webhooks">Webhooks</Anchor> for the correct formula and code examples.
+  </Card>
+</Cards>
+
+***
+
 ## How do I Manage Payments?
 
 Once your customer completes the payment:
@@ -304,23 +321,6 @@ You can manage Payment Links by conversation instead of navigating the Dashboard
 </Callout>
 
 If you are a **developer** building a backend service or AI agent that manages payment links programmatically, see [Integrate with AI Coding Assistants](doc:use-with-ai) (direct API) or [Use with AI Agents via MCP](doc:use-with-mcp) (MCP tool calls).
-
-***
-
-## Is Payment Links Secure?
-
-Yes. Every Payment Link is served over HTTPS on PayU's PCI-DSS compliant hosted payment page. Your customer's card and UPI details never pass through your system. You do not configure anything; PayU handles it.<br />
-
-You control additional fraud exposure through two settings available at link creation:<br />
-
-- **Expiry date**: the link stops accepting payments after the date you set.
-- **Single-use**: the link closes after the first successful payment, even if shared multiple times.
-
-<Cards>
-  <Card title="For Developers" icon="fad fa-key">
-    Webhook signature verification for Payment Links uses your `client_secret`. Using the wrong secret will cause every hash check to fail silently. See <Anchor target="_blank" href="https://docs.payu.in/reference/webhooks">Webhooks</Anchor> for the correct formula and code examples.
-  </Card>
-</Cards>
 
 ***
 
