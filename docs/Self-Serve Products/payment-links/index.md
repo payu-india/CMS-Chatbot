@@ -1,8 +1,9 @@
 ---
 title: Payment Links
 excerpt: >-
-  Create a secure payment link in 2 minutes and share it over WhatsApp, SMS, or
-  email. No code, no website, no checkout page needed.
+  Payment Links are secure, shareable URLs that let you collect payments from
+  anyone without a website or checkout page. Create a link in minutes and share
+  it over WhatsApp, SMS, or email.
 deprecated: false
 hidden: true
 link:
