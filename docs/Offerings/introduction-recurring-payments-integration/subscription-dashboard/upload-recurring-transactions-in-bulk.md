@@ -29,9 +29,9 @@ next:
 After you register for recurring payments in bulk, you can upload the recurring transactions in bulk as described in this section.
 
 <Callout icon="fad fa-thumbs-up" theme="success">
-  ### **Schedule Recurring Debits:**
+  ### **Schedule Recurring Debits (new):**
 
-  You can schedule recurring debits for future date by passing the `debit_date` field in the YYYY-MM-DD format in the bulk upload file.
+  You can now schedule recurring debits for future date by passing the `debit_date` field as another column in the YYYY-MM-DD format in the bulk upload file. You should enable this feature to schedule recurring debits. Contact your key account manager to get it enabled.
 </Callout>
 
 ***
