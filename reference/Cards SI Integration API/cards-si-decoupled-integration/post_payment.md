@@ -323,8 +323,6 @@ The merchant has already performed 3DS authentication externally (e.g., through 
     --data-urlencode 'additional_info={"tavv":"ADcBA4ZHFQAgJRImEjklAAAAAAE=","par":"PN07d26452cf9a1696e2744f470377ec48d5","last4digits":"2656"}' \
     --data-urlencode 'store_card_token=5506900480000008' \
     --data-urlencode 'storecard_token_type=1' \
-    --data-urlencode 'si=1' \
-    --data-urlencode 'si_details={"billingAmount":"1000.00","billingCurrency":"INR","billingCycle":"ADHOC","billingInterval":1,"paymentStartDate":"2026-07-08","paymentEndDate":"2028-12-01"}'
     ```
   </Tab>
 
