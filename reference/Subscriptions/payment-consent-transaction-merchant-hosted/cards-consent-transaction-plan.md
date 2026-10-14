@@ -180,13 +180,13 @@ In the case of Cards, you must ensure that the payment response from PayU has th
 
 | Response Parameter | Expected Value                   | Description                                                                     |
 | ------------------ | -------------------------------- | ------------------------------------------------------------------------------- |
-| status             | success                          | This indicates that the transaction is successful                               |
-| cardToken          | \<card_token> sent by PayU       | Indicates that card details are saved correctly in PayUBiz Database             |
-| payment_source     | sist                             | Indicates that card details have been marked correctly for Standing Instruction |
-| mihpayid           | \<mihpayid number> sent. by PayU | Indicates PayU’s transaction acknowledgment for a Consent transaction           |
+| `status`           | success                          | This indicates that the transaction is successful                               |
+| `cardToken`        | \<card_token> sent by PayU       | Indicates that card details are saved correctly in PayUBiz Database             |
+| `payment_source`   | sist                             | Indicates that card details have been marked correctly for Standing Instruction |
+| `mihpayid`         | \<mihpayid number> sent. by PayU | Indicates PayU’s transaction acknowledgment for a Consent transaction           |
 
 <Callout icon="📘" theme="info">
-  **Notes**:
+  ### **Notes**:
 
   - If any of the above four checks are not satisfied, that means the transaction has not been correctly authorized for Standing Instruction. The merchant must not consider this transaction eligible for the Recurring platform.
   - Registration transaction must be successful in making it eligible for the Recurring platform.
