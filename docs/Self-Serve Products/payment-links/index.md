@@ -281,7 +281,7 @@ Once your customer completes the payment:
   When a link is no longer needed, stop it from accepting further payments, either from the Dashboard or via the [Deactivate API](doc:api-cancel-status). To re-activate a deactivated or expired link, use the same API with `active: true`.
 </Accordion>
 
-Refer to the Manage Payment Links page for more information.
+Refer to the <Anchor target="_blank" href="https://docs.payu.in/docs/manage-payment-links">Manage Payment Links</Anchor> page for more information.
 
 ***
 
