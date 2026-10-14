@@ -62,3 +62,61 @@ Use the `verify_si_payment` command to check the status of a pre-debit or recurr
     | `hash`<br />_mandatory_    | `string` SHA-512 hash for request integrity. Formula: `SHA512(key\|command\|var1\|SALT)`                                                 | `e7929823f663946b...`   |
   </Tab>
 </Tabs>
+
+***
+
+## Sample Response
+
+A successful API call returns `status: 1` at the envelope level. The actual transaction outcome is determined by the `status` field inside `transaction_details`. The outer `status: 1` only means the API call was processed — not that the payment succeeded.
+
+<Tabs>
+  <Tab title="Response Payload">
+    ```json Success
+    {
+        "status": 1,
+        "msg": "1 out of 1 Transactions Fetched Successfully",
+        "transaction_details": {
+          "rc_613345778912516840": {
+            "mihpayid": null,
+            "request_id": null,
+            "bank_ref_num": null,
+            "amt": "1.00",
+            "transaction_amount": "1.00",
+            "txnid": "rc_613345778912516840",
+            "additional_charges": "0.00",
+            "productinfo": null,
+            "firstname": null,
+            "bankcode": null,
+            "udf1": null,
+            "udf2": null,
+            "udf3": null,
+            "udf4": null,
+            "udf5": null,
+            "field2": null,
+            "field9": "Request Processed Successfully",
+            "error_code": null,
+            "addedon": null,
+            "payment_source": null,
+            "card_type": null,
+            "error_Message": null,
+            "net_amount_debit": null,
+            "disc": "0.00",
+            "mode": "null",
+            "PG_TYPE": null,
+            "card_no": null,
+            "status": "pending",
+            "unmappedstatus": null,
+            "Merchant_UTR": null,
+            "Settled_At": null,
+            "card_token": null,
+            "offerAvailed": null
+          }
+        }
+      }
+    ```
+  </Tab>
+
+  <Tab title="Parameter Description">
+
+  </Tab>
+</Tabs>
