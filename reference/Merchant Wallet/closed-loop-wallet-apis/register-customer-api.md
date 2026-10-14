@@ -5,13 +5,6 @@ hidden: false
 metadata:
   robots: index
 ---
----
-title: Register Customer API
-deprecated: false
-hidden: false
-metadata:
-  robots: index
----
 The **Register Customer** API allows you to register a new customer and facilitates the creation of a digital wallet. This API performs onboarding checks when opted by the issuer.
 
 ## Environment
@@ -19,7 +12,7 @@ The **Register Customer** API allows you to register a new customer and facilita
 | Environment | URL                                                       |
 | ----------- | --------------------------------------------------------- |
 | Test        | `https://apitest.payu.in/loyalty-points/v1/wallet/enroll` |
-| Production  | `<redacted URL>`     |
+| Production  | `https://api.payu.in/loyalty-points/v1/wallet/enroll`     |
 
 **HTTP Method**: POST
 
@@ -132,16 +125,16 @@ The **Register Customer** API allows you to register a new customer and facilita
 
 ## Response Parameters
 
-| Parameter                | Description                                                                                               | Example                          |
-| ------------------------ | --------------------------------------------------------------------------------------------------------- | -------------------------------- |
+| Parameter                | Description                                                                                                            | Example                          |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
 | customerId               | Unique customer ID. This is the ID you sent in the request, or the one the platform generated if you did not send one. | 000000123456                     |
-| responseCode             | Response status code                                                                                      | 00                               |
-| messageCode              | API response code                                                                                         | 3511                             |
-| clientTxnId              | Mirrors the request's clientTxnId                                                                         | 20150701235959xhstiesqfds        |
-| formfactor.accountNumber | Generated account number for form factors                                                                 | 72623345                         |
-| formfactor.uniqueNumber  | Unique number generated for form factors                                                                  | 8543213624292443                 |
-| formfactor.urn           | Proxy reference number generated for the unique number                                                    | 70000000008                      |
-| responseMessage          | Response message                                                                                          | CUSTOMER REGISTERED SUCCESSFULLY |
+| responseCode             | Response status code                                                                                                   | 00                               |
+| messageCode              | API response code                                                                                                      | 3511                             |
+| clientTxnId              | Mirrors the request's clientTxnId                                                                                      | 20150701235959xhstiesqfds        |
+| formfactor.accountNumber | Generated account number for form factors                                                                              | 72623345                         |
+| formfactor.uniqueNumber  | Unique number generated for form factors                                                                               | 8543213624292443                 |
+| formfactor.urn           | Proxy reference number generated for the unique number                                                                 | 70000000008                      |
+| responseMessage          | Response message                                                                                                       | CUSTOMER REGISTERED SUCCESSFULLY |
 
 {/* REVIEW: formfactor.accountNumber may need to be formFactor.accountDetails[].accountNumber to match the response JSON. */}
 
@@ -201,13 +194,13 @@ curl --location --request POST 'https://apitest.payu.in/loyalty-points/v1/wallet
 
 ## HTTP Status Codes
 
-| Status Code | Status Description     |
-| ----------- | ---------------------- |
-| **200**     | OK                     |
-| **201**     | Created                |
-| **400**     | Bad Request            |
-| **401**     | Unauthorized           |
-| **403**     | Forbidden              |
-| **404**     | Not Found              |
-| **500**     | Internal Server Error  |
-| **503**     | Service Unavailable    |
+| Status Code | Status Description    |
+| ----------- | --------------------- |
+| **200**     | OK                    |
+| **201**     | Created               |
+| **400**     | Bad Request           |
+| **401**     | Unauthorized          |
+| **403**     | Forbidden             |
+| **404**     | Not Found             |
+| **500**     | Internal Server Error |
+| **503**     | Service Unavailable   |
