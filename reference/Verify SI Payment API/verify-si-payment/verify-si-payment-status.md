@@ -56,12 +56,12 @@ Use the `verify_si_payment` command to check the status of a pre-debit or recurr
   </Tab>
 
   <Tab title="Parameter Description">
-    | Parameter                  | Description                                                                                                                              | Example                 |
-    | :------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------- | :---------------------- |
-    | `key`<br />_mandatory_     | `string` Merchant key from the PayU dashboard. For more information, refer to [Check your API Key and Salt](doc:check-api-key-and-salt). | `G2ZB4r`                |
-    | `command`<br />_mandatory_ | `string` You should pass the value as `verify_si_payment`.                                                                               | `verify_si_payment`     |
-    | `var1`<br />_mandatory_    | `string` The `rc_` prefixed transaction ID returned by the PDN/RP merge API.                                                             | `rc_613345778912516840` |
-    | `hash`<br />_mandatory_    | `string` SHA-512 hash for request integrity. Formula: `SHA512(key\|command\|var1\|SALT)`                                                 | `e7929823f663946b...`   |
+    | Parameter                  | Description                                                                                                                                                                                                                      | Example                 |
+    | :------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------- |
+    | `key`<br />_mandatory_     | `string` Merchant key from the PayU dashboard. For more information, refer to [Check your API Key and Salt](doc:check-api-key-and-salt).                                                                                         | `G2ZB4r`                |
+    | `command`<br />_mandatory_ | `string` You should pass the value as `verify_si_payment`.                                                                                                                                                                       | `verify_si_payment`     |
+    | `var1`<br />_mandatory_    | `string` This is the recurring debit `txnid` prefixed with `rc_`. The value can be passed as pipe seperated txnIds to get status of multiple txnIds at single time. For example, `rc_613345778912516840\|rc_613345778912516841`. | `rc_613345778912516840` |
+    | `hash`<br />_mandatory_    | `string` SHA-512 hash for request integrity. Formula: `SHA512(key\|command\|var1\|SALT)`                                                                                                                                         | `e7929823f663946b...`   |
   </Tab>
 </Tabs>
 
