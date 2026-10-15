@@ -2,7 +2,7 @@
 api:
   file: cards-si-api.yaml
   operationId: post_authorizetransaction-php
-hidden: true
+hidden: false
 link:
   new_tab: false
 ---

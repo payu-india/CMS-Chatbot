@@ -2,7 +2,7 @@
 api:
   file: cards-si-api.yaml
   operationId: post_payment
-hidden: true
+hidden: false
 link:
   new_tab: false
 metadata:

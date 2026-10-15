@@ -2,7 +2,7 @@
 api:
   file: verify-si-payment.yaml
   operationId: post_merchant-postservice-form-2
-hidden: true
+hidden: false
 link:
   new_tab: false
 metadata:
