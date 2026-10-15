@@ -1,5 +1,5 @@
 ---
-title: '# Capacitor Checkout Pro Integration'
+title: Capacitor Checkout Pro Integration
 deprecated: false
 hidden: false
 icon: fad fa-air-conditioner
@@ -358,34 +358,4 @@ this.onPayUErrorListener = Plugins['PayUCheckoutProCapacitor']['addListener']('o
 - [ ] `transactionId` is unique for every payment.
 - [ ] `userCredential` is passed if you use saved cards.
 - [ ] `userToken` is passed if you use offers.
-- [ ] All payment event listeners are handled.
-
-## FAQs
-
-**I get an&#x20;**`application@theme`**&#x20;build error after installing the plugin. How do I fix it?**
-Add `tools:replace="android:theme"` to the `<application>` tag in your `AndroidManifest.xml`. See [Step 1](#step-1-install-the-plugin).
-
-**Can I generate the hash in the app?**
-No. Generating the hash in the app means storing your salt in the app, which isn't secure. Always generate the hash on your server.
-
-**Do I need to pass&#x20;**`userCredential`**?**
-Only if you want customers to save and reuse cards.
-
-**Do I need to pass&#x20;**`userToken`**?**
-Only if you use offers. It's required for offers on UPI, Net Banking and Wallets.
-
-**Can I use the sample success and failure URLs in production?**
-No. They're for testing only and may cause transaction errors in production.
-
-{/*
-REVIEWER NOTES – remove before publishing
-Open items to confirm with engineering:
-1. environment: values for test and production.
-2. Recurring payments: date format for paymentStartDate/paymentEndDate, and allowed values for billingCycle and billingInterval.
-3. iOS: is iOS supported? Code uses ios_surl/ios_furl, but source lists only Android requirements.
-4. Plugin version merchants should install (source uses 0.0.0-alpha.1).
-5. Sample response payloads for onPaymentSuccess, onPaymentFailure, onPaymentCancel and onError.
-6. additionalParam fields (payment_related_details_for_mobile_sdk, merchantAccessKey, vas_for_mobile_sdk, walletUrn, SodexoSourceId): source gives no descriptions. Descriptions here are inferred from field names – confirm purpose and when merchants should pass them.
-7. SkuDetails: source lists it but gives no format or sample – excluded until confirmed.
-Source: https://payuindia.atlassian.net/wiki/spaces/TD/pages/2714140789/Capacitor+Checkout+Pro+Integration+Document
-*/}
+- [ ] All p
