@@ -32,25 +32,7 @@ paths:
   /merchant/postservice?form=2:
     post:
       summary: Verify SI Payment Status
-      description: >
-        Checks the status of a pre-debit or recurring payment transaction
-        initiated
-
-        via the Pre-Debit and Recurring API. Uses the same endpoint and request
-        structure
-
-        as the standard `verify_payment` command — the only change is setting
-
-        `command=verify_si_payment` and passing the `rc_` prefixed transaction
-        ID as `var1`.
-
-
-        The outer envelope `status: 1` only means the API call was processed —
-        not that
-
-        the payment succeeded. Check `transaction_details[<txnid>].status` and
-
-        `.unmappedstatus` for the actual payment outcome.
+      description: ''
       tags:
         - Verify SI Payment
       requestBody:
