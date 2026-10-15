@@ -1,7 +1,7 @@
 ---
-title: '[Internal Review] UPI Consent Transaction - Plans'
+title: UPI Consent Transaction - Plans
 deprecated: false
-hidden: true
+hidden: false
 link:
   new_tab: false
 metadata:
