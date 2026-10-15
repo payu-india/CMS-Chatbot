@@ -348,7 +348,7 @@ echo $httpCode . "\n";
 echo $response . "\n";
 ```
 </Accordion>
-<Accordion title="Sample response" icon="fa-reply">
+## Sample response
   ```json
     {
       "status": 0,
@@ -358,8 +358,7 @@ echo $response . "\n";
       "guid": "f529e375-739f-4c8a-b5f5-0e67fa3f533f"
     }
   ```
-</Accordion>
-
+## Additional Request Parameters Info
 <Accordion title="Request headers" icon="fa-flask">
   <HTMLBlock>{`
             <table style="width: 100%; border-collapse: collapse;">
@@ -410,8 +409,6 @@ echo $response . "\n";
             </table>
   `}</HTMLBlock>
 </Accordion>
-
-## Query parameters
 
 <Accordion title="Reference info for query parameters" icon="fa-flask">
   | Parameter                        | Description                                                                                                                                                                                                                                  | Example                                        |
