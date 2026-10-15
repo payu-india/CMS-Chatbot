@@ -1,7 +1,5 @@
 ---
-title: >-
-  [Internal Review] Payment Consent Transaction using PayU Hosted Checkout with
-  Plan
+title: Payment Consent Transaction using PayU Hosted Checkout with Plan
 deprecated: false
 hidden: true
 link:
