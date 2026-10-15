@@ -8,7 +8,7 @@
 - predebit
 - recurring_payment_api
 - subscriptions-pdn-rp-old
-- createpredebitandrecurringtransaction
+- subscriptions-pdn-rp
 - manage-recurring-payment-for-cards
 - manage-recurring-payments-for-net-banking
 - api-commands-to-manage-upi-recurring-transaction
