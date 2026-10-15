@@ -209,7 +209,8 @@ HTTP Method: **POST**
         The verification mode can be any of the following:&#x20;
 
         - `DEBIT_CARD`: Authentication will be done through a debit card. If no value is provided, then it will trigger Net Banking login password flow.
-        - `AADHAAR`: Authentication will be done through a Aadhaar card. If no value , then it will trigger net banking login password flow. If no value is provided, then it will trigger Net Banking login password flow.
+        - `AADHAAR`: Authentication will be done through a Aadhaar card. If no value , then it will trigger net banking login password flow.
+        - `NET_BANKING`: Authentication will be done through NetBanking. If no value , then it will trigger net banking login password flow.
       </td>
     </tr>
   </tbody>
