@@ -1,7 +1,7 @@
 ---
-title: '[Internal Review] Cards Consent Transaction - Plans'
+title: Cards Consent Transaction - Plans
 deprecated: false
-hidden: true
+hidden: false
 link:
   new_tab: false
 metadata:
