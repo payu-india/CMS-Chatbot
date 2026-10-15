@@ -1,5 +1,5 @@
 ---
-title: '[Internal Review] Net Banking Consent Transaction - Plans'
+title: Net Banking Consent Transaction - Plans
 deprecated: false
 hidden: true
 link:
