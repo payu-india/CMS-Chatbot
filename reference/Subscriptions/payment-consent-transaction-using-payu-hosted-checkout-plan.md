@@ -1,7 +1,7 @@
 ---
 title: Payment Consent Transaction using PayU Hosted Checkout with Plan
 deprecated: false
-hidden: true
+hidden: false
 link:
   new_tab: false
 metadata:
