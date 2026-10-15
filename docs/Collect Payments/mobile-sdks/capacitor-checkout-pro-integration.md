@@ -1,8 +1,10 @@
 ---
-title: Capacitor Checkout Pro Integration
+title: '[Internal Review]Capacitor Checkout Pro Integration'
 deprecated: false
-hidden: false
+hidden: true
 icon: fad fa-air-conditioner
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
