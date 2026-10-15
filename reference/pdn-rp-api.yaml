@@ -519,3 +519,4 @@ paths:
                     errorCode: SIR004
                     action: SI_RECURRING
       operationId: post_merchant-postservice-php-form-2
+      x-internal: true
