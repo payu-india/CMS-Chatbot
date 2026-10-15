@@ -5,7 +5,7 @@ excerpt: >-
   authentication and authorization flow for Visa, Mastercard, and AMEX. Covers
   mandate creation, pre-debit notifications, recurring payments, and mandate
   management.
-hidden: true
+hidden: false
 link:
   new_tab: false
 metadata:
