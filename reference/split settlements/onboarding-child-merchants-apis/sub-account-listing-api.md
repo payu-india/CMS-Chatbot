@@ -90,8 +90,7 @@ curl --location '{{onboarding_base_url}}/api/v3/product_accounts/{{parent_MID}}/
 ### Failure Scenario
 
 ```curl
-curl --location -g --request GET '{{onboarding_base_url}}/api/v3/product_accounts/{{mid}}/sub_accounts' \
---header 'Authorization: Bearer {{access_token}}'
+curl --location -g --request GET '{{onboarding_base_url}}/api/v3/product_accounts/{{parent_mid}}/sub_accounts' \ --header 'Authorization: Bearer {{access_token}}'
 ```
 
 ## Response Parameters
