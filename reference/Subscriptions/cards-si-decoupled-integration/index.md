@@ -84,7 +84,7 @@ Once the mandate is registered, use these APIs to schedule and execute recurring
 There are two approaches to scheduling pre-debit notifications and recurring debits. Choose the one that fits your integration model.
 
 <Cards>
-  <Card title="Unified Pre-Debit and Recurring API" href="https://docs.payu.in/reference/createpredebitandrecurringtransaction" target="_blank">
+  <Card title="Unified Pre-Debit and Recurring API" href="https://docs.payu.in/reference/https://docs.payu.in/reference/subscriptions-pdn-rp" target="_blank">
     Make a **single API call** using `command=si_transaction` with `debitType=PREDEBIT_AND_RECURRING`. PayU handles scheduling the pre-debit notification and executing the recurring debit automatically.
   </Card>
 
