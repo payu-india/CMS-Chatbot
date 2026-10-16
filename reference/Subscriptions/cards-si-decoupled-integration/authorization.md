@@ -6,12 +6,14 @@ hidden: false
 link:
   new_tab: false
 ---
-After the customer completes OTP authentication in [Step 1](doc:cards-si-step1-payment-authentication), the merchant receives a `bankData` JSON in the OTP submission response. This step passes that `bankData` augmented with `siTokenDetails` (network token details) — as `authentication_info` to the `AuthorizeTransaction` API to complete authorization and register the mandate.
+After the customer completes OTP authentication in [Step 1](ref:cards-si-step1-payment-authentication), the merchant receives a `bankData` JSON in the OTP submission response. This step passes that `bankData` augmented with `siTokenDetails` (network token details) — as `authentication_info` to the `AuthorizeTransaction` API to complete authorization and register the mandate.
 
 <Callout icon="👍" theme="okay">
   ### **On Success**
 
-  The response contains `IsStandingInstructionSet: "1"` confirming the mandate is registered. Save the `mihpayid` from the `result` object — this is the `authPayuId` you will use in all subsequent [Pre-Debit and Recurring Payments](doc:cards-si-pre-debit-recurring) calls.
+  The response contains `IsStandingInstructionSet: "1"` confirming the mandate is registered. Save the `mihpayid` from the `result` object — this is the `authPayuId` you will use in all subsequent [Pre-Debit and Recurring Payments](doc:https://docs.payu.in/reference/subscriptions-pdn-rp)
+
+  &#x20;calls.
 </Callout>
 
 <Callout icon="📘" theme="info">
@@ -51,7 +53,7 @@ After the customer completes OTP authentication in [Step 1](doc:cards-si-step1-p
   <Tab title="Parameter Description">
     | Parameter                                | Description                                                                                                                                                                                                                                            |
     | :--------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | `key` <br /> `mandatory`                 | `String` The merchant key generated from the PayU dashboard. For more information, refer to [Check your API Key and Salt](doc:check-api-key-and-salt). For example `vqpS7W`                                                                            |
+    | `key` <br /> `mandatory`                 | `String` The merchant key generated from the PayU dashboard. For more information, refer to [Check your API Key and Salt](doc:generate-test-merchant-key-and-salt). For example `vqpS7W`                                                                            |
     | `txnid` <br /> `mandatory`               | `String` The same transaction ID used in the `_payment` request (Step 1). For example `Txn080720261125`                                                                                                                                                |
     | `amount` <br /> `mandatory`              | `String` The same amount used in the `_payment` request. For example `100.00`                                                                                                                                                                          |
     | `hash` <br /> `mandatory`                | `String` SHA-512 hash for request integrity. Formula: <br /> `SHA512(key\|txnid\|amount\|authentication_info\|SALT)` <br /> **Important**: Use the exact serialised `authentication_info` JSON string (not the parsed object) when computing the hash. |
