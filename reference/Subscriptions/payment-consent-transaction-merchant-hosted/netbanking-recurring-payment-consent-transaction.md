@@ -132,7 +132,7 @@ In this case, PayU adjusts the transaction amount as INR 2.00 for cards and UPI 
 
 #### Sample object
 
-```
+```json
 {"beneficiaryName": "Sachin Tendulkar","beneficiaryAccountNumber": "1211450021","beneficiaryAccountType": "SAVINGS", "beneficiaryIfscCode":"ICIC0000046", "verificationMode":"DEBIT_CARD"}
 ```
 
@@ -221,7 +221,7 @@ curl -X \
 
 The sample code block for Net Banking Seamless integration (Merchant-Hosted Checkout) with the **verificationMode** field of the **beneficiaryDetail** JSON parameter with the values as **Aadhaar** is similar to the following:
 
-```
+```curl
 curl -X \ 
 POST "https://test.payu.in/_payment 
  -H \
@@ -246,7 +246,7 @@ The response URL returned from PayU is in the form URL format (application/x-www
 
 ### Parsed response
 
-```
+```json
 Array
 (
     [mihpayid] => 403993715525331373
