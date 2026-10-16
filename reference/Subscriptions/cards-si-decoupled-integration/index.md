@@ -192,7 +192,7 @@ After mandate creation, use the following APIs to manage the mandate lifecycle.
 
 | Action                                                      | API Reference                                                                                 |
 | :---------------------------------------------------------- | :-------------------------------------------------------------------------------------------- |
-| Verify a payment transaction (if callback not received)     | [Verify Payment API](ref:verify-payment)                                                      |
+| Verify a payment transaction (if callback not received)     | [Verify Payment API](ref:verify_payment_api)                                                      |
 | Check current mandate status at any time                    | [Check Mandate Status API](ref:check-mandate-status-api)                                      |
 | Cancel mandate — Visa and Mastercard (existing integration) | [Cancel Recurring Payment for a VISA/MASTER Card](ref:cancel-the-recurring-payment-for-cards) |
 | Cancel mandate — Visa, Mastercard, AMEX (new integration)   | Contact your PayU KAM for the updated cancellation API for the decoupled flow                 |
