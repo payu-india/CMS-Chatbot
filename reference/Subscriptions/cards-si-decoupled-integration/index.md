@@ -23,6 +23,7 @@ metadata:
     - 3DS Authentication Authorization Flow
     - AuthorizeTransaction PayU
     - Cards SI Pre-Debit Recurring
+  robots: noindex
 ---
 PayU's Cards SI (Standing Instruction) Integration with decoupled authentication lets merchants register card mandates for Visa, Mastercard, and AMEX through a two-step flow where **authentication and authorization are handled as separate steps**. This gives merchants greater control over the mandate registration process, supports stored network tokens (saved cards), and enables merchants who perform 3DS authentication externally to pass results directly into PayU.
 
@@ -42,7 +43,7 @@ Ensure the following are in place before starting integration:
 
 - SI feature enabled on your MID. Contact your PayU Key Account Manager (KAM) to activate Standing Instructions for cards.
 
-- Test credentials (key and salt) for the test environment. For more information, refer to [Check your API Key and Salt](doc:check-api-key-and-salt).
+- Test credentials (key and salt) for the test environment. For more information, refer to [Access Merchant Key and Salt](doc:generate-test-merchant-key-and-salt).
 
 - Mandate cancellations for **Visa and Mastercard** are processed **without AFA** in accordance with card network guidelines.
 
