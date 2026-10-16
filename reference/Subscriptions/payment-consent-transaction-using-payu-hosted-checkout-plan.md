@@ -289,7 +289,7 @@ In the merchant-initiated POST REQUEST, Hash is a mandatory parameter. It is cri
 
       <td style={{ textAlign: "left" }}>
         This parameter signifies a successful consent taken from the user by the merchant. This parameter must contain 1 for a successful consent. Without this parameter sent as 1, subscription cannot be set up.
-        <br/><strong>Notes</strong>: You can modify or cancel existing recurring payment registration as described in the following sections: <br/>- <a href="https://docs.payu.in/docs/manage-recurring-payment-for-cards">Manage Recurring Payment for Cards</a>  <br/>- <a href="https://docs.payu.in/docs/api-commands-to-manage-upi-recurring-transaction">Manage UPI Recurring Transaction</a>
+        <br/><strong>Notes</strong>: You can modify or cancel existing recurring payment registration as described in the following sections: <br/>- [Manage Recurring Payment for Cards](doc:manage-recurring-payment-for-cards)  <br/>- [Manage UPI Recurring Transaction](doc:api-commands-to-manage-upi-recurring-transaction)
       </td>
 
       <td style={{ textAlign: "left" }}>
@@ -357,7 +357,7 @@ You can pass either standing instructions, or plan details or both in the reques
 | `billingInterval` _mandatory_  | `integer` The billing interval at which the amount should be debited.                                                                                                                                                                               |
 | `paymentStartDate` _mandatory_ | `string` The date on which the subscription payment should start.                                                                                                                                                                                   |
 | `paymentEndDate` _mandatory_   | `string` The date on which the subscription payment should end.                                                                                                                                                                                     |
-| `planId`_&#x20;optional_       | `string` The unique plan ID obtained after creating from the dashboard. Know more about <Anchor target="_blank" href="https://docs.payu.in/docs/internal-review-create-and-manage-plans#create-a-plan">creating a plan</Anchor> from the dashboard. |
+| `planId`_&#x20;optional_       | `string` The unique plan ID obtained after creating from the dashboard. For more information, refer to [Create a Plan](doc:create-and-manage-plans#create-a-plan) from the dashboard. |
 | `qty` _optional_               | `string` The quantity of the billing amount. The **total subscription amount** = `billingAmount` × `qty`.<br /><br />**Note:** The `qty` will not create multiple subscriptions. It only multiplies the billing amount.                             |
 
 ## Sample request
