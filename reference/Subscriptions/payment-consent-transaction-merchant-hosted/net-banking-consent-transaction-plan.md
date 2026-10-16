@@ -484,9 +484,9 @@ echo "Response: " . $response . "\n";
 
 The sample code block for Net Banking Seamless integration (Merchant-Hosted Checkout) with the **verificationMode** field of the **beneficiaryDetail** JSON parameter with the values as **Aadhaar** is similar to the following:
 
-```
+```curl
 curl -X \ 
-POST "https://test.payu.in/_payment 
+POST "https://test.payu.in/_payment" 
  -H \
 "accept: application/json" -H \
 "Content-Type: application/x-www-form-urlencoded" -d
@@ -509,7 +509,7 @@ The response URL returned from PayU is in the form URL format (application/x-www
 
 ### Parsed response
 
-```
+```json
 Array
 (
     [mihpayid] => 403993715525331373
