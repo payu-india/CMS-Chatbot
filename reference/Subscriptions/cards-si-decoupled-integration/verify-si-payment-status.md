@@ -8,7 +8,7 @@ link:
 metadata:
   robots: index
 ---
-Use the `verify_si_payment` command to check the status of a pre-debit or recurring payment transaction initiated via the [Pre-Debit and Recurring API](ref:subscriptions-pdn-rp). This command uses the same endpoint and request parameters as the standard [Verify Payment](ref:verify-payment) API — the only change is the `command` value and the `var1` input.
+Use the `verify_si_payment` command to check the status of a pre-debit or recurring payment transaction initiated via the [Pre-Debit and Recurring API](ref:subscriptions-pdn-rp). This command uses the same endpoint and request parameters as the standard [Verify Payment API](ref:verify_payment_api) API — the only change is the `command` value and the `var1` input.
 
 <Callout icon="📘" theme="info">
   ### **When to Use This API:**
@@ -58,7 +58,7 @@ Use the `verify_si_payment` command to check the status of a pre-debit or recurr
   <Tab title="Parameter Description">
     | Parameter                  | Description                                                                                                                                                                                                                      | Example                 |
     | :------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------- |
-    | `key`<br />_mandatory_     | `string` Merchant key from the PayU dashboard. For more information, refer to [Check your API Key and Salt](doc:check-api-key-and-salt).                                                                                         | `G2ZB4r`                |
+    | `key`<br />_mandatory_     | `string` Merchant key from the PayU dashboard. For more information, refer to [Check your API Key and Salt](doc:generate-test-merchant-key-and-salt).                                                                                         | `<Your Merchant Key>`                |
     | `command`<br />_mandatory_ | `string` You should pass the value as `verify_si_payment`.                                                                                                                                                                       | `verify_si_payment`     |
     | `var1`<br />_mandatory_    | `string` This is the recurring debit `txnid` prefixed with `rc_`. The value can be passed as pipe seperated txnIds to get status of multiple txnIds at single time. For example, `rc_613345778912516840\|rc_613345778912516841`. | `rc_613345778912516840` |
     | `hash`<br />_mandatory_    | `string` SHA-512 hash for request integrity. Formula: `SHA512(key\|command\|var1\|SALT)`                                                                                                                                         | `e7929823f663946b...`   |
