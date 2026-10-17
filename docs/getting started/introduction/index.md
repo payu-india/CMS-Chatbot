@@ -37,6 +37,8 @@ A payment gateway is a technology used by merchants to accept debit or credit ca
 >
 > * Understand the product integration steps on this **Integration Guide** and later refer to [API Reference](ref:introduction-api-reference).
 >
+> * Before diving into individual endpoints, read **[API Introduction](doc:api-introduction)** for authentication, environments, first request, and common API workflows.
+>
 > * The [API Reference](ref:introduction-api-reference) pages for various APIs allows you to make mock API calls with most of the PayU APIs (using a static test key).  Also, it provides support in 16 language bindings, so you can get the source code in apart from bash or cURL.
 >
 > * PayU recommends you to integrate with Test environment initially for all the integration before you go live to Production environment.
