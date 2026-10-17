@@ -1,0 +1,127 @@
+---
+name: DevExWorkflowTimeline
+---
+// DevExWorkflowTimeline - Vertical workflow timeline for developer journeys.
+// Props:
+//   stepsJson: JSON array of { id, title, description? }
+//   activeId: currently active step id
+//   onSelectId: optional - not used when embedded as preview; parent pages
+//               typically drive activeId via AcceptFirstPaymentGuide.
+//   completedIdsJson: JSON array of completed step ids
+// Usage:
+//   <DevExWorkflowTimeline
+//     stepsJson='[{"id":"overview","title":"Overview"},{"id":"prereq","title":"Prerequisites"}]'
+//     activeId="prereq"
+//   />
+
+import { useState } from 'react';
+
+export const DevExWorkflowTimeline = (props) => {
+  var DEFAULT_STEPS = JSON.parse(
+    '[{"id":"overview","title":"Overview","description":"Understand the payment flow"},{"id":"prerequisites","title":"Prerequisites","description":"Account, keys, and environment"},{"id":"choose","title":"Choose Integration Method","description":"Hosted, Seamless, SDK, or Plugins"},{"id":"credentials","title":"Get Credentials","description":"Merchant key and salt"},{"id":"hash","title":"Generate Hash","description":"SHA-512 request signature"},{"id":"create","title":"Create First Payment","description":"Build and submit the request"},{"id":"response","title":"Handle Payment Response","description":"surl, furl, and webhooks"},{"id":"verify","title":"Verify Payment","description":"Confirm status server-side"},{"id":"test","title":"Test","description":"Sandbox checklist"},{"id":"golive","title":"Go Live","description":"Production cutover"},{"id":"next","title":"Next Steps","description":"Continue into product guides"}]'
+  );
+
+  function parseSteps(raw) {
+    if (!raw) return DEFAULT_STEPS;
+    try {
+      var parsed = typeof raw === 'string' ? JSON.parse(raw) : raw;
+      return Array.isArray(parsed) && parsed.length ? parsed : DEFAULT_STEPS;
+    } catch (e) {
+      return DEFAULT_STEPS;
+    }
+  }
+
+  function parseIds(raw) {
+    if (!raw) return [];
+    try {
+      var parsed = typeof raw === 'string' ? JSON.parse(raw) : raw;
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  var steps = parseSteps(props.stepsJson);
+  var completed = parseIds(props.completedIdsJson);
+  var _active = useState(props.activeId || steps[0].id);
+  var activeId = props.activeId != null ? props.activeId : _active[0];
+  var setActiveId = _active[1];
+
+  function select(id) {
+    if (props.activeId == null) setActiveId(id);
+    if (typeof props.onSelectId === 'function') props.onSelectId(id);
+    var el = typeof document !== 'undefined' ? document.getElementById(id) : null;
+    if (el && el.scrollIntoView) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  return (
+    <nav aria-label="Workflow timeline" style={{ margin: '16px 0' }}>
+      <ol
+        style={{
+          listStyle: 'none',
+          margin: 0,
+          padding: 0,
+          borderLeft: '2px solid #e5e7eb',
+          fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif',
+        }}
+      >
+        {steps.map(function (step, index) {
+          var isActive = step.id === activeId;
+          var isDone = completed.indexOf(step.id) !== -1;
+          return (
+            <li key={step.id} style={{ position: 'relative', padding: '0 0 16px 20px' }}>
+              <span
+                aria-hidden="true"
+                style={{
+                  position: 'absolute',
+                  left: '-7px',
+                  top: '4px',
+                  width: '12px',
+                  height: '12px',
+                  borderRadius: '50%',
+                  background: isActive ? '#00A651' : isDone ? '#86efac' : '#fff',
+                  border: '2px solid ' + (isActive || isDone ? '#00A651' : '#d1d5db'),
+                  boxSizing: 'border-box',
+                }}
+              />
+              <button
+                type="button"
+                onClick={function () {
+                  select(step.id);
+                }}
+                aria-current={isActive ? 'step' : undefined}
+                style={{
+                  display: 'block',
+                  width: '100%',
+                  textAlign: 'left',
+                  background: isActive ? 'rgba(0,166,81,.06)' : 'transparent',
+                  border: '1px solid ' + (isActive ? 'rgba(0,166,81,.25)' : 'transparent'),
+                  borderRadius: '8px',
+                  padding: '8px 10px',
+                  cursor: 'pointer',
+                  color: '#1e3a5f',
+                }}
+              >
+                <span style={{ display: 'block', fontSize: '11px', color: '#6b7280', fontWeight: 600 }}>
+                  {index + 1}. {isDone ? 'Done' : isActive ? 'Current' : 'Upcoming'}
+                </span>
+                <span style={{ display: 'block', fontSize: '14px', fontWeight: 600, marginTop: '2px' }}>
+                  {step.title}
+                </span>
+                {step.description ? (
+                  <span style={{ display: 'block', fontSize: '12px', color: '#6b7280', marginTop: '2px' }}>
+                    {step.description}
+                  </span>
+                ) : null}
+              </button>
+            </li>
+          );
+        })}
+      </ol>
+    </nav>
+  );
+};
+
+<DevExWorkflowTimeline activeId="choose" />
