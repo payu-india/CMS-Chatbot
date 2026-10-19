@@ -128,13 +128,22 @@ Use the **\_payment** API to get Intent URI and transaction details for the UPI 
 
     #### Accepted values for upiAppName
 
-    | Value       | Description                                               |
-    | :---------- | :-------------------------------------------------------- |
-    | `gpay`      | Routes the UPI payment intent to Google Pay.              |
-    | `phonepe`   | Routes the UPI payment intent to PhonePe.                 |
-    | `paytm`     | Routes the UPI payment intent to Paytm.                   |
-    | `qr`        | Generates a UPI QR code for the customer to scan and pay. |
-    | `amazonpay` | Routes the UPI payment intent to Amazon Pay.              |
+# upiAppName eNum List
+
+The following are the enum's expected for UPI apps:
+
+- phonepe
+- googlepay
+- paytm
+- bhim
+- cred
+- amazonpay
+- whatsapp
+- adityabirla
+- bajajfinserv
+- bankofindiaomnineo
+- bharatpe
+
   </Tab>
 
   <Tab title="Sample Request">
