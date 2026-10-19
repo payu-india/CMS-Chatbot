@@ -129,7 +129,7 @@ Use the **\_payment** API to get Intent URI and transaction details for the UPI 
     #### Accepted values for upiAppName
 
 The following are the enum's expected for UPI apps:
-
+<Accordion title="upiAppName list" icon="fa-info-list">
 - phonepe
 - googlepay
 - paytm
@@ -141,7 +141,59 @@ The following are the enum's expected for UPI apps:
 - bajajfinserv
 - bankofindiaomnineo
 - bharatpe
-
+- bhimdlbupi
+- canaraai1pe
+- cheq
+- credilio
+- curiemoney
+- ebixcash
+- famappbytrio
+- flipkart
+- freo
+- gomobile
+- groww
+- herofincorp
+- idfcmobilebankingapp
+- imobilebyicicibank
+- indmoney
+- iris
+- jar
+- jiofinance
+- jumpp
+- jupiter
+- kiwi
+- kreditbee
+- kreditpe
+- lxme
+- mobikwik
+- moneyview
+- mufin
+- myairtel
+- navi
+- omnicard
+- onecard
+- paynearby
+- pinelabsplusplay
+- popclub
+- pzw
+- rediff
+- revolut
+- rio
+- salaryse
+- samsungpay
+- scapia
+- shriramone
+- slice
+- stashfin
+- supermoney
+- tataneu
+- timepay
+- twidpay
+- yespaynext
+- zet
+- genericintent – For any other app apart from
+above
+</Accordion>
   </Tab>
 
   <Tab title="Sample Request">
