@@ -128,8 +128,6 @@ Use the **\_payment** API to get Intent URI and transaction details for the UPI 
 
     #### Accepted values for upiAppName
 
-# upiAppName eNum List
-
 The following are the enum's expected for UPI apps:
 
 - phonepe
