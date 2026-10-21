@@ -77,6 +77,24 @@ The **Retrieve Customer Record** API allows you to fetch customer details using 
   **Note**: At least one of `customerMobile`, `customerId`, or `urn` must be provided.
 </Callout>
 
+## Sample Request
+
+```curl
+curl --location 'https://apitest.payu.in/loyalty-points/v1/wallet/retrieveCustRecord' \
+--header 'walletIdentifier: CLW' \
+--header 'authorization: hmac username="Merchant_Key", algorithm="hmac-sha256", headers="date digest", signature="9h+PZ/ocY2ovWEF8ehvbNF9VDuz/wCIToMtO75oVE3Y="' \
+--header 'date: Thu, 15 Oct 2026 11:10:44 GMT' \
+--header 'Content-Type: application/json' \
+--header 'Cookie: PHPSESSID=s4uujktf7gm484pt7uk7bdhv55; USERTXNINFO=6a4ce9368d6b52.40212033' \
+--header 'Digest: p8V80K7BOrKq2L9pEtU+TuxW8gF7DPJdYniMqXFkcCY=' \
+--data '{
+"messageCode":1930,
+"clientTxnId": "Test_93009874",
+"requestDateTime": "20260901184938",
+"customerMobile": "918954957892"
+}'
+```
+
 ## Response Parameters
 
 | Parameter        | Description                       | Example                                             |
@@ -95,105 +113,111 @@ The **Retrieve Customer Record** API allows you to fetch customer details using 
 | availableBalance | Current available balance         | 5000                                                |
 | responseMessage  | Response message                  | CUSTOMER RECORD RETRIEVED SUCCESSFULLY              |
 
-## Sample Request
-
-```curl
-curl --location --request POST 'https://apitest.payu.in/loyalty- points/v1/wallet/retrieveCustRecord' \
---header 'walletIdentifier: CLW' \
---header 'authorization: hmac username="smsplus", algorithm="sha512", headers="date", signature="v15rnvh1InSEWRq6EW9BCfXlxO0QI/4Sxxmdxd2f4Q0="' \
---header 'date: Wed, 12 Jun 2024 08:53:43 GMT' \
---header 'Content-Type: application/json' \
---header 'Cookie: PHPSESSID=s4uujktf7gm484pt7uk7bdhv55' \
---data-raw '{ 
-"messageCode":1930,
-"clientTxnId": "ram91e9112221001028", 
-"requestDateTime": "20220615123143",
-"customerMobile": "9199998035345"
-}'
-
-```
-
 ## Sample Response
 
 ```json
 {
-  "responseCode": "00",
-  "messageCode": 1931,
-  "clientTxnId": "ram91e911222100005",
-  "clientId": "7310",
-  "responseDateTime": "20240521183019",
-  "accosaTransactionId": 412,
-  "responseMessage": "SUCCESS",
-  "bankId": 6060,
-  "profileId": 300,
-  "mobile": "918878638233",
-  "email": "test@gmail.com",
-  "firstName": "test",
-  "lastName": "test",
-  "dob": "15-Dec-2009",
-  "kycName": "SHORTFALL_KYC",
-  "riskCategory": "LOW_RISK",
-  "riskScore": 12,
-  "rekyc": false,
-  "rekycValidity": "21-05-2034",
-  "form60": true,
-  "panValid": false,
-  "form60Validity": "31-03-2025",
-  "cardList": [
-    {
-      "cardNumber": "854321 XXXXXX 6168",
-      "lastFourDigit": "6168",
-      "entityName": "PAYU",
-      "cardType": "GPR",
-      "profileId": 0,
-      "cardStatus": 0,
-      "availableBalance": 0,
-      "createdOn": "21-May-2024",
-      "updatedOn": "21-May-2024",
-      "urn": 1000019,
-      "statusDescription": "Active",
-      "transactionProfiles": [
+    "customerId": "000000330412",
+    "responseCode": "00",
+    "messageCode": 1931,
+    "clientTxnId": "Test_93009874",
+    "clientId": "3000",
+    "responseDateTime": "20261015164044",
+    "accosaTransactionId": 693965,
+    "responseMessage": "SUCCESS",
+    "bankId": 6050,
+    "profileId": 30,
+    "mobile": "9189549578920",
+    "firstName": "Shubham",
+    "lastName": "Tyagi",
+    "dob": "",
+    "kycName": "MIN KYC",
+    "riskCategory": "LOW_RISK",
+    "riskScore": 12,
+    "rekyc": false,
+    "dormancy": false,
+    "rekycValidity": "13-10-2036",
+    "form60": false,
+    "panValid": false,
+    "cardList": [
         {
-          "transactionProfileId": 1,
-          "status": true,
-          "transactionType": "e-Com",
-          "transactionRegionName": "DOMESTIC"
-        },
-        {
-          "transactionProfileId": 2,
-          "status": true,
-          "transactionType": "POS",
-          "transactionRegionName": "DOMESTIC"
-        },
-        {
-          "transactionProfileId": 3,
-          "status": true,
-          "transactionType": "e-Com",
-          "transactionRegionName": "INTERNATIONAL"
-        },
-        {
-          "transactionProfileId": 4,
-          "status": true,
-          "transactionType": "POS",
-          "transactionRegionName": "INTERNATIONAL"
+            "cardNumber": "100004 XXXXXX 2603",
+            "lastFourDigit": "2603",
+            "entityName": "PAYU",
+            "cardType": "TRAVEL CARD",
+            "profileId": 0,
+            "cardStatus": 0,
+            "availableBalance": 0,
+            "createdOn": "13-Oct-2026",
+            "updatedOn": "13-Oct-2026",
+            "urn": 1009650,
+            "statusDescription": "Active",
+            "transactionProfiles": [
+                {
+                    "transactionProfileId": 1,
+                    "status": false,
+                    "transactionType": "e-Com",
+                    "transactionRegionName": "DOMESTIC"
+                },
+                {
+                    "transactionProfileId": 2,
+                    "status": false,
+                    "transactionType": "POS",
+                    "transactionRegionName": "DOMESTIC"
+                },
+                {
+                    "transactionProfileId": 3,
+                    "status": false,
+                    "transactionType": "ATM",
+                    "transactionRegionName": "DOMESTIC"
+                },
+                {
+                    "transactionProfileId": 4,
+                    "status": false,
+                    "transactionType": "NFC_CARD_BASED",
+                    "transactionRegionName": "DOMESTIC"
+                },
+                {
+                    "transactionProfileId": 5,
+                    "status": false,
+                    "transactionType": "e-Com",
+                    "transactionRegionName": "INTERNATIONAL"
+                },
+                {
+                    "transactionProfileId": 6,
+                    "status": false,
+                    "transactionType": "POS",
+                    "transactionRegionName": "INTERNATIONAL"
+                },
+                {
+                    "transactionProfileId": 7,
+                    "status": false,
+                    "transactionType": "ATM",
+                    "transactionRegionName": "INTERNATIONAL"
+                },
+                {
+                    "transactionProfileId": 8,
+                    "status": false,
+                    "transactionType": "NFC_CARD_BASED",
+                    "transactionRegionName": "INTERNATIONAL"
+                }
+            ],
+            "subwalletListDetails": [
+                {
+                    "subwallet_id": "3005cabc37e_1",
+                    "default_wallet": 1,
+                    "available_balance": "0",
+                    "account_number": "605030003190294",
+                    "account_status": "0",
+                    "subwallet_name": "General",
+                    "accountValidity": "13-10-2027"
+                }
+            ],
+            "uniqueNumberValidity": "1031",
+            "cardLinked": false
         }
-      ],
-      "subwalletListDetails": [
-        {
-          "subwallet_id": "731f7956a39_1",
-          "default_wallet": 1,
-          "available_balance": "0",
-          "account_number": "606009993005780",
-          "account_status": "0",
-          "subwallet_name": "ClosedLoop",
-          "accountValidity": "0527"
-        }
-      ],
-      "uniqueNumberValidity": "0529",
-      "cardLinked": true
-    }
-  ]
+    ],
+    "enableVideoKyc": false,
+    "kycType": "MIN_COMPLETED"
 }
 ```
-
-<br />
