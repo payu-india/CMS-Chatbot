@@ -240,7 +240,8 @@ sequenceDiagram
 
 <br />
 
-![](https://files.readme.io/7a4b497de57af34eaf7079543c134838b2a9e16b5fcde504cf6cf95898c590f0-epl-training-slide9.gif)
+
+<Image src="https://files.readme.io/2f0c1728286b340a31b15c7fff65a6127e9f61929cb2be50a7a7b8962b4e9157-wa_payu.gif" width="350px" />
 
 ***
 
@@ -272,6 +273,3 @@ Real-world examples cited in product materials include **PolicyBazaar** (reporte
 - You need **rich multi-line-item orders** and **real-time order status** purely in chat (for example food delivery or quick commerce) → **PG Deep Integration (P2M)** is usually required. See [Integrate WhatsApp Payments](doc:integrate-whatsapp-payments).
 
 ***
-
-
-<br />
