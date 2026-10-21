@@ -6,7 +6,7 @@ excerpt: >-
   generates hash logic, callback handlers, and the Verify Payment call, with
   credentials and secrets fully protected.
 deprecated: false
-hidden: true
+hidden: false
 metadata:
   robots: index
 ---
@@ -95,6 +95,8 @@ The skill expects these five variables. It only ever refers to them by name — 
 | `APP_BASE_URL`       | Public base URL of your app, used to build `surl` and `furl`                                    | _(required)_ |
 
 <Callout icon="🚫" theme="danger">
+  ### Merchant Salt Security
+
   `PAYU_MERCHANT_SALT`**&#x20;is backend-only.** Never prefix it with `NEXT_PUBLIC_`, `VITE_`, or `REACT_APP_`. Never reference it in any client-side file, HTML template, API response, or redirect URL. Only the computed hash may reach the browser — never the salt that produced it.
 </Callout>
 
