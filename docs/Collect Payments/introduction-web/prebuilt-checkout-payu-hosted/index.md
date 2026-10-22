@@ -104,7 +104,9 @@ The following is a list of benefits of PayU Hosted Checkout:
 
 To integrate PayU Hosted Integration on your website or mobile, refer to:
 
-- [Web Integration - PayU Hosted](https://docs.payu.in/docs/prebuilt-checkout-page-integration) using the **Collect Payment API (\_payment** API),
+- [Integrate PayU Hosted Checkout with AI](doc:integrate-payu-hosted-checkout-with-ai) by using the prompt and associate skill.
+
+- ​[Web Integration - PayU Hosted](https://docs.payu.in/docs/prebuilt-checkout-page-integration) using the **Collect Payment API (\_payment** API),
 
 - [Integrate WebView for Mobile Apps](https://docs.payu.in/docs/webview-for-mobile-apps) by embedding PayU's Hosted Checkout experience inside a WebView container within your mobile app.
 
@@ -115,5 +117,3 @@ To integrate PayU Hosted Integration on your website or mobile, refer to:
 > **Postman Collection**: Download the PayU Hosted Checkout Postman Collection from the following location:
 >
 > [https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/collection/rocz44o/payu-hosted-checkout-collection-complete-integration](https://www.postman.com/integratewithpayu-849372/payu-integration-s-workspace/collection/rocz44o/payu-hosted-checkout-collection-complete-integration)
-
-<br />
