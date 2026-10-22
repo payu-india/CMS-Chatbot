@@ -80,7 +80,7 @@ In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you 
 | South Indian Bank                           | `SOIB`     |
 | Standard Chartered Bank                     | `SCBNB`    |
 | State Bank of India                         | `SBIB`     |
-| State Bank of India (Corporate)             | `SBNCORP`  |
+| SVC Cooperative Bank - Corporate            | `SBNCORP`  |
 | SVC Co-operative Bank Ltd.                  | `SVCNB`    |
 | Tamilnad Mercantile Bank                    | `TMBB`     |
 | UCO Bank                                    | `UCOB`     |
@@ -88,7 +88,6 @@ In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you 
 | Union Bank - Retail Netbanking              | `UBIB`     |
 | Union Bank - Corporate Netbanking           | `UBIBC`    |
 | Yes Bank                                    | `YESB`     |
-| SVC Co-operative Bank Limited               | `SVCCB`    |
 
 <br />
 
