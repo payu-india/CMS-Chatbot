@@ -48,8 +48,6 @@ PayU assigns **one MID per currency**. The wallets shown on the checkout depend 
 | `MYR`        | Touch 'n Go       | Malaysia     | Deeplink to the TnG eWallet app, then PIN or biometric | QR (interoperates with DuitNow QR)                   |
 | `MYR`        | GrabPay Malaysia  | Malaysia     | Deeplink to the Grab app, then PIN or biometric        | Mobile number + SMS OTP; DuitNow QR interoperability |
 
-{/* REVIEW: The source doc's P0 table covers SGD and MYR only, but the transactionCurrency field and the FAQ also mention THB and IDR (PromptPay, DANA, OVO, GoPay). Confirm whether THB and IDR are live before adding them here. */}
-
 For example, a merchant using the SGD MID shows GrabPay and international cards. A merchant using the MYR MID shows Touch 'n Go, GrabPay Malaysia and international cards.
 
 **The PayU Cross-Border Exports integration involves the following steps:**
@@ -148,7 +146,7 @@ For example, a merchant using the SGD MID shows GrabPay and international cards.
       | `country`             | `string` **Exports.** Buyer's country as an ISO alpha-2 code. Must not be `IN`. For example, `SG`                                                                                                        |
       | `surl`                | `string` HTTPS URL PayU redirects the buyer to on success. For example, `<redacted URL>`                                                                                                                 |
       | `furl`                | `string` HTTPS URL PayU redirects the buyer to on failure or cancellation. For example, `<redacted URL>`                                                                                                 |
-      | `hash`                | `string` SHA-512 hash of the request, generated on your server. See Step 1.5.                                                                                                                            |
+      | `hash`                | `string` SHA-512 hash of the request, generated on your server. For for more information, refer to Step 1.5                                                                                              |
     </Tab>
 
     <Tab title="Conditional">
@@ -159,15 +157,11 @@ For example, a merchant using the SGD MID shows GrabPay and international cards.
       | `udf5`        | `string` **Exports.** Invoice ID. Required when your purpose code needs an invoice reference. For example, `INV-2026-0001`                                                                                             |
       | `api_version` | `string` API version that allows `transactionCurrency`. For example, `22`                                                                                                                                              |
     </Tab>
+
+    <Tab title="New Tab">
+
+    </Tab>
   </Tabs>
-
-  {/* REVIEW: Purpose codes P1007/P1004 are taken from the source doc as examples; confirm they are correct for edtech and software services. */}
-
-  {/* REVIEW: Source doc says "In case of Purpose code (trade with HDFC): merchant needs to pass the invoice ID in UDF 5". Confirm exactly when udf5 is required. */}
-
-  {/* REVIEW: Confluence (API Version & Hash Validation) says transactionCurrency is accepted on _payment only for api_version 22 or 23. Confirm that merchants should send api_version=22. */}
-
-  **Expected Output:** A complete set of parameters ready for hashing.
 </Accordion>
 
 <Accordion title="Step 1.5: Generate the hash" icon="fa-lock">
@@ -191,7 +185,7 @@ For example, a merchant using the SGD MID shows GrabPay and international cards.
   key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||transactionCurrency|SALT
   ```
 
-  {/* REVIEW: Formula taken from Confluence "API Version & Hash Validation for Secure _payment in Common Backend" (api_version 22). Confirm it is the merchant-facing formula for exports. */}
+
 
   <Tabs>
     <Tab title="PHP">
@@ -402,10 +396,9 @@ For example, a merchant using the SGD MID shows GrabPay and international cards.
 </Accordion>
 
 <Accordion title="Step 1.9: Verify the payment if the webhook doesn't arrive" icon="fa-magnifying-glass">
-  If you don't receive a webhook, poll PayU's **Verify Payment API** with the `txnid` or `mihpayid`.
+  <Verify_Payment_Tabs />
 
-  - If no final result is available within a reasonable polling window, keep the order as **pending** and tell the buyer the payment is being verified.
-  - Don't mark the order as paid until the webhook or a successful poll confirms `success`.
+
 </Accordion>
 
 ### Common failure scenarios
