@@ -1552,6 +1552,14 @@ Post the following additional parameters for using the Cardless EMI. Check the r
 
 ## Refund Processing
 
-Refund processing is asynchronous in nature: the create-refund response is an acknowledgement/initial outcome, while the merchant must track the refund to a final state using the applicable PayU refund-status operation or configured notification mechanism.   For cancelling or refunding a successful payment transaction, refer to [Refunds.](https://docs.payu.in/docs/introduction-refunds) 
+Refund processing is asynchronous in nature: the create-refund response is an acknowledgement/initial outcome, while the merchant must track the refund to a final state using the applicable PayU refund-status operation or configured notification mechanism. 
+
+<Callout icon="📘" theme="warn">
+  ### Reference
+
+  For cancelling or refunding a successful payment transaction, refer to [Refunds.](https://docs.payu.in/docs/introduction-refunds) 
+</Callout>
+
+<br />
 
 <br />
