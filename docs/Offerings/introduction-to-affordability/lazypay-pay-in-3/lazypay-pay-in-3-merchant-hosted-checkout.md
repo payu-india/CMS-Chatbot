@@ -226,8 +226,8 @@ After you collect the Customer's mobile number and the amount , call GCD with th
       <td style="border: 1px solid #ddd; padding: 8px;"></td>
     </tr>
     <tr>
-      <td style="borde
 
+</Accordion>
 </Accordion>
 
 <Accordion title="Sample request" icon="fa-code">
