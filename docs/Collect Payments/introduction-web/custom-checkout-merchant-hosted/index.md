@@ -317,8 +317,7 @@ Merchant Hosted Checkout supports a wide range of payment methods: 
 
 <Image src="https://files.readme.io/a350be2f359e2c4c3a0f3ef570b1db6c842c3502b74c3bb0639ebd8916e2f832-merchant_hosted_supported_payment_method.jpg" alt="PayU Merchant Hosted Checkout - Payment Methods" align="center" width="400px" border={true} />
 
-
-- **Credit Cards and Debit Cards**: Visa, Mastercard, American Express, etc. For more information, refer to [Cards Integration](https://docs.payu.in/docs/collect-payments-with-cards-seamless`).
+- **Credit Cards and Debit Cards**: Visa, Mastercard, American Express, etc. For more information, refer to [Cards Integration](doc:collect-payments-with-cards-seamless).
 - **Net Banking**: Collect payments through Net Banking using PayU’s Merchant Hosted Checkout integration. Merchants should always send both customer account no and customer IFSC Code in Request. For more information, refer to [Net Banking Integration](doc:collect-payments-with-net-banking-seamless)
 - **Wallets**: Integrate with popular wallets like Paytm, PhonePe, and others.   For more information, refer to [Wallets Integration](doc:collect-payments-with-wallets-seamless).
 - **UPI**: Capture payments via UPI using the QR or intent redirection.  For more information, refer to [UPI Intent Integration](doc:upi-intent-server-to-server)
@@ -491,5 +490,3 @@ When PayU sends a response to your server, it includes a hash value calculated u
 - **Encrypt Data in Transit**: Always transmit payment data over HTTPS using TLS encryption. 
 - **Tokenization**: Consider using tokenization to replace sensitive card details with a non-sensitive token. This reduces the risk of data breaches and simplifies PCI DSS compliance. For more information on Save Cards API integration, refer to PayU Save Cards API Integration docs. 
 - **Avoid Storing Sensitive Data**: Do not store sensitive card details (CVV, full card number) on your servers. If you need to store card information for recurring payments, use PayU’s Save Cards feature or a PCI DSS compliant tokenization service.
-
-<br />
