@@ -43,6 +43,7 @@ In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you 
 | Cosmos Bank                                 | `CSMSNB`   |
 | DCB Bank                                    | `DCBB`     |
 | Deutsche Bank                               | `DSHB`     |
+| Deutsche Bank - Corporate                   | `DCBCORP`  |
 | Dhanlaxmi Bank - Corporate                  | `DLNBCORP` |
 | Dhanlaxmi Bank - Retail                     | `DLSB`     |
 | Federal Bank                                | `FEDB`     |
