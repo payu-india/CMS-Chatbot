@@ -9,7 +9,7 @@ Visa Payment Passkey lets your customers authenticate Visa card payments with th
 
 Visa Payment Passkey is built on the FIDO2 industry standard. The passkey stays on the customer's device and can't be shared or phished the way an OTP can. This makes checkout faster and more secure.
 
-### How it works
+## How it works
 
 Visa Payment Passkey has two parts:
 
@@ -24,7 +24,7 @@ Visa Payment Passkey has two parts:
 - When the customer pays with the same card on the same device, they're asked to confirm the payment with biometrics or device PIN.
 - Authentication takes a few seconds and doesn't need an OTP.
 
-### Benefits
+## Benefits
 
 **For your customers**
 
@@ -38,7 +38,7 @@ Visa Payment Passkey has two parts:
 - **Lower fraud risk:** authentication can't be phished, which reduces fraud from shared or stolen OTPs.
 - **No extra integration work:** PayU handles the passkey flow during card authentication.
 
-### Eligibility
+## Eligibility
 
 Visa Payment Passkey is available when:
 
@@ -48,10 +48,10 @@ Visa Payment Passkey is available when:
 
 Other cards continue to use the standard 3DS/OTP flow.
 
-### Fallback
+## Fallback
 
 If passkey authentication can't be completed, the payment automatically switches to the standard OTP flow. This covers cases such as an unsupported device, the customer cancelling, or a technical error. The customer can still finish the payment, and you don't need to do anything.
 
-### How to enable
+## How to enable
 
 To enable Visa Payment Passkey for your account, contact [PayU Support](<redacted URL>). The team will check whether your account is eligible and turn on the feature.
