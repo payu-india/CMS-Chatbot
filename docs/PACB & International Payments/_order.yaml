@@ -4,3 +4,4 @@
 - pacb-import-saved-cards-with-a-network-token-integration
 - pacb-import-plain-cards-integration
 - tokenize-card-with-payu-vault-integration
+- pacb-import-upi-intent-with-s2s-integration
