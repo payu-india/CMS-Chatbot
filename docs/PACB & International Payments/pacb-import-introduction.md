@@ -159,19 +159,11 @@ To meet RBI requirements, every cross-border import transaction must follow thes
 | Invoice ID        | Send an invoice ID with every transaction, and upload the invoice to PayU.                           |
 | Proof of shipment | For physical goods, upload a copy of the airway bill (AWB) once the goods are shipped.               |
 
-{/* REVIEW (C22, open with engineering): Confluence lists ₹2.5 lakh per transaction for checkout payments (cards, NetBanking, UPI) and ₹25 lakh for virtual accounts. This page keeps the original ₹25,00,000 until engineering confirms. */}
-
 ***
 
 ## How Does My Customer Pay?
 
-
-<Image align="center" caption="Customer Journey" border={true} />
-
-
-{/* REVIEW: add the cross-border customer journey diagram. */}
-
-The following is the customer journey for a card, NetBanking or UPI payment:<br />
+The following is the customer journey for a card, NetBanking or UPI payment:
 
 1. Customer clicks **Pay Now** on your website or app.
 2. Your website starts a payment with PayU and sends the buyer and invoice details.
