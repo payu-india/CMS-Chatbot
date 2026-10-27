@@ -16,7 +16,11 @@ The `error_details` object is added alongside the existing response fields. PayU
 
 On PayU Hosted Checkout, PayU shows `userMessage` on the failure screen automatically.
 
-> **Note:** The response is always complete. If PayU can't classify an error, it still returns a generic `userMessage` with `newErrorCode` as `NA` and the category as `Unknown`. You don't need to build any fallback logic.
+<Callout icon="far fa-circle-info" theme="info">
+  ### **Note:**&#x20;
+
+  The response is always complete. If PayU can't classify an error, it still returns a generic `userMessage` with `newErrorCode` as `NA` and the category as `Unknown`. You don't need to build any fallback logic.
+</Callout>
 
 ### Sample Response
 
@@ -94,12 +98,14 @@ Every failed payment response includes an error code, for example, EN3126.
 | EN4312 | Configuration error (4) in the merchant's setup (3), message 12     |
 | EN1408 | Customer error (1) caused by customer input (4), message 8          |
 
-### Notes:
+<Callout icon="far fa-circle-info" theme="info">
+  ### Notes:
 
-- **Analytics and reporting:** Group failures by `newErrorCode`, or by its category and source digits, instead of parsing the free text in `field9`.
-- **Triage:** Use the category digit to decide what to do next. For example, 6 (Risk decline) means don't retry with the same card, and 4 (Configuration error) means contact your PayU account manager.
-- **Custom failure pages:** Show only `userMessage` to end users. Never show `merchantMessage` or `pgError`.
-- **Message updates:** PayU updates error messages often to cover new errors in the ecosystem. Make sure any logic you build on this data accounts for these updates.
+  - **Analytics and reporting:** Group failures by `newErrorCode`, or by its category and source digits, instead of parsing the free text in `field9`.
+  - **Triage:** Use the category digit to decide what to do next. For example, 6 (Risk decline) means don't retry with the same card, and 4 (Configuration error) means contact your PayU account manager.
+  - **Custom failure pages:** Show only `userMessage` to end users. Never show `merchantMessage` or `pgError`.
+  - **Message updates:** PayU updates error messages often to cover new errors in the ecosystem. Make sure any logic you build on this data accounts for these updates.
+</Callout>
 
 ### Full Error Code List
 
