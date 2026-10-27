@@ -61,43 +61,14 @@ Cross-Border Payments – Import is a good choice if you:<br />
 
 ## What Will I Need? (Prerequisites)
 
-You need these to get started:<br />
+You need these to get started:
+- **A PayU merchant account enabled for Cross-Border Payments – Import:** <Anchor target="_blank" href="<redacted URL>">Sign up here</Anchor> if you don't have an account, then ask PayU to enable cross-border import for it.
+- **An overseas bank account:** Where PayU settles your funds in your currency.
+- **A website or application:** Where your customers in India will pay.
+- **A way to collect buyer details:** First name, last name and billing PIN code for every transaction. Some payment methods also need the buyer's PAN and date of birth.
+- **An invoicing process:** An invoice ID for every transaction, and an airway bill (AWB) once physical goods are shipped.
+- **Access to your website's technical setup:** Either yourself or through a developer.
 
-<Columns layout="fixed">
-  <Column>
-    - **A PayU merchant account enabled for Cross-Border Payments – Import:** <Anchor target="_blank" href="<redacted URL>">Sign up here</Anchor> if you don't have an account, then ask PayU to enable cross-border import for it.
-  </Column>
-</Columns>
-
-<Columns layout="fixed">
-  <Column>
-    - **An overseas bank account:** Where PayU settles your funds in your currency.
-  </Column>
-</Columns>
-
-<Columns layout="fixed">
-  <Column>
-    - **A website or application:** Where your customers in India will pay.
-  </Column>
-</Columns>
-
-<Columns layout="fixed">
-  <Column>
-    - **A way to collect buyer details:** First name, last name and billing PIN code for every transaction. Some payment methods also need the buyer's PAN and date of birth.
-  </Column>
-</Columns>
-
-<Columns layout="fixed">
-  <Column>
-    - **An invoicing process:** An invoice ID for every transaction, and an airway bill (AWB) once physical goods are shipped.
-  </Column>
-</Columns>
-
-<Columns layout="fixed">
-  <Column>
-    - **Access to your website's technical setup:** Either yourself or through a developer.
-  </Column>
-</Columns>
 
 <HTMLBlock>{`
                 <style>
