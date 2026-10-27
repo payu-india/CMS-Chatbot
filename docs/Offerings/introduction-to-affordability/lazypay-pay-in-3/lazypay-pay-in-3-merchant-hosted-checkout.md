@@ -7,7 +7,7 @@ link:
 metadata:
   robots: index
 ---
-Start by using the Get Checkout Details API (get_checkout_details) to fetch the eligible payment options available for the customer. This will include the payInParts param in the response if they are eligible. The response will indicate whether the customer is an Pre approved (Existing to Bank or ETB) customer or Not Pre-approved (New to Bank or NTB customer. Make sure to do this before processing the transaction through the **Collect Payment** API (/**\_payment**) as this will help to check customer's eligibility before making payments call.
+To integrate LazyPay Pay-in-3 with Merchant Hosted Checkout integration, start by using the Get Checkout Details API (get_checkout_details) to fetch the eligible payment options available for the customer. This will include the payInParts param in the response if they are eligible. The response will indicate whether the customer is an Pre approved (Existing to Bank or ETB) customer or Not Pre-approved (New to Bank or NTB customer. Make sure to do this before processing the transaction through the **Collect Payment** API (/**\_payment**) as this will help to check customer's eligibility before making payments call.
 If the customer is eligible, proceed with the merchant-hosted collect flow and verify the transaction outcome.
 
 ### Customer Journey
@@ -1512,31 +1512,6 @@ Post the following additional parameters for using the Cardless EMI. Check the r
                           <td>LAZYPI3</td>
                         </tr>
                         <tr>
-                          <td>ccnum <code>mandatory only for Bajaj Finserv</code></td>
-                          <td><code>String</code> Use 13-19 digit card number for credit/debit cards (15 digits for AMEX, 13-19 for Maestro) and validate with LUHN algorithm. Refer to Card Number Formats and display error message on invalid input.</td>
-                          <td>5123456789012346</td>
-                        </tr>
-                        <tr>
-                          <td>ccname <code>optional</code></td>
-                          <td><code>String</code> This parameter must contain the name on card – as entered by the customer for the transaction.</td>
-                          <td>Ashish Kumar</td>
-                        </tr>
-                        <tr>
-                          <td>ccvv <code>optional</code></td>
-                          <td><code>String</code> Use 3-digit CVV number for credit/debit cards and 4-digit security code (4DBC/CID) for AMEX cards. Validate with BIN API.</td>
-                          <td>123</td>
-                        </tr>
-                        <tr>
-                          <td>ccexpmon <code>optional</code></td>
-                          <td><code>String</code> This parameter must contain the card's expiry month – as entered by the user for the transaction. It must always be in 2 digits or in MM format. For months 1-9, this parameter must be appended with 0 – like 01, 02…09. For months 10-12, this parameter must not be appended – It should be 10,11 and 12 respectively.</td>
-                          <td>10</td>
-                        </tr>
-                        <tr>
-                          <td>ccexpyr <code>optional</code></td>
-                          <td><code>String</code> This parameter must contain the card's expiry year – as entered by the customer for the transaction. It must be of four digits.</td>
-                          <td>2021</td>
-                        </tr>
-                        <tr>
                           <td>furl <code>mandatory</code></td>
                           <td><code>String</code> The success URL, which is the page PayU will redirect to if the transaction is successful.</td>
                           <td></td>
@@ -1617,7 +1592,7 @@ Post the following additional parameters for using the Cardless EMI. Check the r
 
 <Accordion title="Sample request" icon="fa-info-circle">
   ```curl
-  curl -X POST "https://test.payu.in/_payment" -H "accept: application/json" -H "Content-Type: application/x-www-form-urlencoded" -d"key=JP***g&txnid=EaE4ZO3vU4iPsp&amount=10.00&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=EMI&bankcode=LAZYPI3&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&ccnum=1234&ccexpmon=05&ccexpyr=2022&ccvv=123&ccname=undefined&store_card_token=1234 4567 2456 3566&storecard_token_type=1&additional_info={“last4Digits”: “1234”, “tavv”: “ABCDEFGH”,”trid”:”1234567890”, “tokenRefNo”:”abcde123456”}&hash=fc3206829a6b4f8e300aeefb8f91add568b83dc90d01383a8e16553cc9600a3aefd4be2e370d32f0315ef1b9f28740515a9556b55abfefa7b54b434f894c9304"
+  curl -X POST “https://test.payu.in/_payment” -H “accept: application/json” -H “Content-Type: application/x-www-form-urlencoded” -d”key=JP***g&txnid=EaE4ZO3vU4iPsp&amount=10.00&firstname=Ashish&email=test@gmail.com&phone=9876543210&productinfo=iPhone&pg=EMI&bankcode=LAZYPI3&surl=https://apiplayground-response.herokuapp.com/&furl=https://apiplayground-response.herokuapp.com/&hash=fc3206829a6b4f8e300aeefb8f91add568b83dc90d01383a8e16553cc9600a3aefd4be2e370d32f0315ef1b9f28740515a9556b55abfefa7b54b434f894c9304”
   ```
   ```javascript
   /**
@@ -1630,14 +1605,6 @@ Post the following additional parameters for using the Cardless EMI. Check the r
   // Payment endpoint
   const url = 'https://test.payu.in/_payment';
 
-  // Additional info as a JSON object
-  const additionalInfo = {
-    "last4Digits": "1234",
-    "tavv": "ABCDEFGH",
-    "trid": "1234567890",
-    "tokenRefNo": "abcde123456"
-  };
-
   // Form data parameters
   const formData = new URLSearchParams();
   formData.append('key', 'JP***g');                  // Your merchant key
@@ -1648,18 +1615,9 @@ Post the following additional parameters for using the Cardless EMI. Check the r
   formData.append('phone', '9876543210');           // Customer's phone
   formData.append('productinfo', 'iPhone');         // Product information
   formData.append('pg', 'EMI');                     // Payment gateway (EMI)
-  formData.append('bankcode', 'EMI03');             // Bank code (Cardless EMI provider)
+  formData.append('bankcode', 'LAZYPI3');           // Bank code
   formData.append('surl', 'https://apiplayground-response.herokuapp.com/'); // Success URL
   formData.append('furl', 'https://apiplayground-response.herokuapp.com/'); // Failure URL
-  // Token and card details
-  formData.append('ccnum', '1234');                 // Limited card details for verification
-  formData.append('ccexpmon', '05');                // Expiry month
-  formData.append('ccexpyr', '2022');               // Expiry year 
-  formData.append('ccvv', '123');                   // CVV
-  formData.append('ccname', 'undefined');           // Cardholder name
-  formData.append('store_card_token', '1234 4567 2456 3566'); // Tokenized card
-  formData.append('storecard_token_type', '1');     // Token type
-  formData.append('additional_info', JSON.stringify(additionalInfo)); // Tokenization details
   // Security hash
   formData.append('hash', 'fc3206829a6b4f8e300aeefb8f91add568b83dc90d01383a8e16553cc9600a3aefd4be2e370d32f0315ef1b9f28740515a9556b55abfefa7b54b434f894c9304');
 
@@ -1691,7 +1649,6 @@ Post the following additional parameters for using the Cardless EMI. Check the r
   ```python
   import urllib.request
   import urllib.parse
-  import json
   from typing import Dict, Any
 
   def process_cardless_emi_payment() -> Dict[str, Any]:
@@ -1706,14 +1663,6 @@ Post the following additional parameters for using the Cardless EMI. Check the r
       # API endpoint
       url = "https://test.payu.in/_payment"
       
-      # Additional info as a dictionary
-      additional_info = {
-          "last4Digits": "1234",
-          "tavv": "ABCDEFGH",
-          "trid": "1234567890",
-          "tokenRefNo": "abcde123456"
-      }
-      
       # Prepare the form data
       payload = {
           "key": "JP***g",                     # Your merchant key
@@ -1724,18 +1673,9 @@ Post the following additional parameters for using the Cardless EMI. Check the r
           "phone": "9876543210",               # Customer's phone
           "productinfo": "iPhone",             # Product information
           "pg": "EMI",                         # Payment gateway (EMI)
-          "bankcode": "EMI03",                 # Bank code (Cardless EMI provider)
+          "bankcode": "LAZYPI3",               # Bank code
           "surl": "https://apiplayground-response.herokuapp.com/", # Success URL
           "furl": "https://apiplayground-response.herokuapp.com/", # Failure URL
-          # Token and card details
-          "ccnum": "1234",                     # Limited card details for verification
-          "ccexpmon": "05",                    # Expiry month
-          "ccexpyr": "2022",                   # Expiry year
-          "ccvv": "123",                       # CVV
-          "ccname": "undefined",               # Cardholder name
-          "store_card_token": "1234 4567 2456 3566", # Tokenized card
-          "storecard_token_type": "1",         # Token type
-          "additional_info": json.dumps(additional_info), # Tokenization details
           # Security hash
           "hash": "fc3206829a6b4f8e300aeefb8f91add568b83dc90d01383a8e16553cc9600a3aefd4be2e370d32f0315ef1b9f28740515a9556b55abfefa7b54b434f894c9304"
       }
@@ -1802,14 +1742,6 @@ Post the following additional parameters for using the Cardless EMI. Check the r
       // API endpoint
       $url = "https://test.payu.in/_payment";
       
-      // Additional info as an array
-      $additionalInfo = [
-          "last4Digits" => "1234",
-          "tavv" => "ABCDEFGH",
-          "trid" => "1234567890",
-          "tokenRefNo" => "abcde123456"
-      ];
-      
       // Prepare the form data
       $payload = [
           "key" => "JP***g",                      // Your merchant key
@@ -1820,18 +1752,9 @@ Post the following additional parameters for using the Cardless EMI. Check the r
           "phone" => "9876543210",                // Customer's phone
           "productinfo" => "iPhone",              // Product information
           "pg" => "EMI",                          // Payment gateway (EMI)
-          "bankcode" => "EMI03",                  // Bank code (Cardless EMI provider)
+          "bankcode" => "LAZYPI3",                // Bank code
           "surl" => "https://apiplayground-response.herokuapp.com/", // Success URL
           "furl" => "https://apiplayground-response.herokuapp.com/", // Failure URL
-          // Token and card details
-          "ccnum" => "1234",                      // Limited card details for verification
-          "ccexpmon" => "05",                     // Expiry month
-          "ccexpyr" => "2022",                    // Expiry year
-          "ccvv" => "123",                        // CVV
-          "ccname" => "undefined",                // Cardholder name
-          "store_card_token" => "1234 4567 2456 3566", // Tokenized card
-          "storecard_token_type" => "1",          // Token type
-          "additional_info" => json_encode($additionalInfo), // Tokenization details
           // Security hash
           "hash" => "fc3206829a6b4f8e300aeefb8f91add568b83dc90d01383a8e16553cc9600a3aefd4be2e370d32f0315ef1b9f28740515a9556b55abfefa7b54b434f894c9304"
       ];
@@ -1918,14 +1841,6 @@ Post the following additional parameters for using the Cardless EMI. Check the r
               // Initialize URL
               URL url = new URL(PAYU_TEST_URL);
               
-              // Additional info JSON
-              String additionalInfo = "{"
-                  + "\"last4Digits\": \"1234\","
-                  + "\"tavv\": \"ABCDEFGH\","
-                  + "\"trid\": \"1234567890\","
-                  + "\"tokenRefNo\": \"abcde123456\""
-                  + "}";
-              
               // Prepare form parameters
               Map<String, String> params = new HashMap<>();
               params.put("key", "JP***g");                      // Your merchant key
@@ -1936,18 +1851,9 @@ Post the following additional parameters for using the Cardless EMI. Check the r
               params.put("phone", "9876543210");                // Customer's phone
               params.put("productinfo", "iPhone");              // Product information
               params.put("pg", "EMI");                          // Payment gateway (EMI)
-              params.put("bankcode", "EMI03");                  // Bank code (Cardless EMI provider)
+              params.put("bankcode", "LAZYPI3");                // Bank code
               params.put("surl", "https://apiplayground-response.herokuapp.com/"); // Success URL
               params.put("furl", "https://apiplayground-response.herokuapp.com/"); // Failure URL
-              // Token and card details
-              params.put("ccnum", "1234");                      // Limited card details for verification
-              params.put("ccexpmon", "05");                     // Expiry month
-              params.put("ccexpyr", "2022");                    // Expiry year
-              params.put("ccvv", "123");                        // CVV
-              params.put("ccname", "undefined");                // Cardholder name
-              params.put("store_card_token", "1234 4567 2456 3566"); // Tokenized card
-              params.put("storecard_token_type", "1");          // Token type
-              params.put("additional_info", additionalInfo);    // Tokenization details
               // Security hash
               params.put("hash", "fc3206829a6b4f8e300aeefb8f91add568b83dc90d01383a8e16553cc9600a3aefd4be2e370d32f0315ef1b9f28740515a9556b55abfefa7b54b434f894c9304");
               
@@ -2050,8 +1956,6 @@ Post the following additional parameters for using the Cardless EMI. Check the r
   using System.Collections.Generic;
   using System.Net.Http;
   using System.Threading.Tasks;
-  using System.Text;
-  using System.Text.Json;
 
   namespace PayUCardlessEmiIntegration
   {
@@ -2073,18 +1977,6 @@ Post the following additional parameters for using the Cardless EMI. Check the r
           {
               try
               {
-                  // Create additional info object
-                  var additionalInfo = new
-                  {
-                      last4Digits = "1234",
-                      tavv = "ABCDEFGH",
-                      trid = "1234567890",
-                      tokenRefNo = "abcde123456"
-                  };
-                  
-                  // Serialize additional info to JSON
-                  string additionalInfoJson = JsonSerializer.Serialize(additionalInfo);
-                  
                   // Prepare form parameters
                   var formData = new Dictionary<string, string>
                   {
@@ -2096,18 +1988,9 @@ Post the following additional parameters for using the Cardless EMI. Check the r
                       { "phone", "9876543210" },                 // Customer's phone
                       { "productinfo", "iPhone" },               // Product information
                       { "pg", "EMI" },                           // Payment gateway (EMI)
-                      { "bankcode", "EMI03" },                   // Bank code (Cardless EMI provider)
+                      { "bankcode", "LAZYPI3" },                 // Bank code
                       { "surl", "https://apiplayground-response.herokuapp.com/" }, // Success URL
                       { "furl", "https://apiplayground-response.herokuapp.com/" }, // Failure URL
-                      // Token and card details
-                      { "ccnum", "1234" },                       // Limited card details for verification
-                      { "ccexpmon", "05" },                      // Expiry month
-                      { "ccexpyr", "2022" },                     // Expiry year
-                      { "ccvv", "123" },                         // CVV
-                      { "ccname", "undefined" },                 // Cardholder name
-                      { "store_card_token", "1234 4567 2456 3566" }, // Tokenized card
-                      { "storecard_token_type", "1" },           // Token type
-                      { "additional_info", additionalInfoJson }, // Tokenization details
                       // Security hash
                       { "hash", "fc3206829a6b4f8e300aeefb8f91add568b83dc90d01383a8e16553cc9600a3aefd4be2e370d32f0315ef1b9f28740515a9556b55abfefa7b54b434f894c9304" }
                   };
