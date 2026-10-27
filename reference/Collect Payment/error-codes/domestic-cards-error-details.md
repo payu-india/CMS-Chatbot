@@ -563,3 +563,153 @@ The full list of error codes maps each `newErrorCode` to its category, source, u
 | failed | ALT_ID_PROV_ERROR | EA085\|Issuer did not respond in time. Retry the request. | Bank server is down. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
 | failed | ALT_ID_PROV_ERROR | EA085\|issuer_not_supported | Bank server is down. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
 | failed | ALT_ID_PROV_ERROR | EA087\|invalid_crypto_response | Transaction failed due to some technical issues. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | ALT_ID_PROV_ERROR | EA11\|internal_api_error | Transaction failed due to a technical issue. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | 3DS_VERIFICATION_NEGATIVE | Transaction not permitted to cardholder | Transaction failed as bank suspected fraud. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | 3DS_VERIFICATION_NEGATIVE | Low confidence | Transaction failed as bank suspected fraud. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | 3DS_VERIFICATION_NEGATIVE | Cardholder not enrolled in service | This card is currently not supported by your card network. Please use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | 3DS_CHALLENGE_NEGATIVE | 914 \| Transaction timed out at the ACS | Bank server is down. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | 3DS_CHALLENGE_NEGATIVE | SERVER_ERROR | Bank server is down. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | 3DS_CHALLENGE_NEGATIVE | 101 \| CRes is not available | Transaction failed due to a technical issue. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed |  | UNKNOWN_ERROR | Transaction failed due to a generic error. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed |  | Retry the transaction later | Transaction failed due to a generic error. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed |  | Check for New information before retry | Transaction failed due to a generic error. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed |  | General exception | Transaction failed due to a generic error. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed |  | UNKNOWN | Transaction failed due to a generic error. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed |  | Communication Error | Transaction failed due to a generic error. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed |  | 30 \| Format error | Transaction failed due to a generic error. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed |  | 101 \| CRes is not available | Transaction failed due to a technical issue. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed |  | SYSTEM ERROR | Transaction failed due to a technical issue. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed |  | 96 \| System malfunction | Transaction failed due to a technical issue. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | 3DS_VERIFICATION_NEGATIVE | E303 \| SUCCESS | Transaction Succesful |
+| failed | 3DS_VERIFICATION_NEGATIVE | UNKNOWN | Transaction failed due to a generic error. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | 3DS_CHALLENGE_NEGATIVE | 101 \| RReq is not available | Transaction failed as the card has expired please use another paymode. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | 3DS_CHALLENGE_NEGATIVE | 919 \| Exceeds ACS maximum challenges | Transaction Failed due to wrong OTP entered. Please retry and enter the correct OTP. |
+| failed | 3DS_CHALLENGE_NEGATIVE | AUTHENTICATION_INVALID_REQUEST_ERROR | Transaction failed due to a technical issue. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | NPCI56 \| NPCI56 - DECLINED (no card) | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | NPCI96 \| NPCI96 - SYSTEM ERROR | Transaction Failed due to technical error from the card scheme. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | IPAY0100357 \| IPAY0100357-Transaction declined due to OTP Page refreshed. | Transaction Failed due to technical error from the card scheme. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | NPCI400 \| NPCI400 - GENERAL ERROR | Transaction Failed due to technical error from the card scheme. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | 96 \| System malfunction \| We encountered a problem with Rupay processor: SYSTEM ERROR | Transaction Failed due to technical error from the card scheme. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | IPAY0100126 - Brand not enabled. | Transaction Failed due to technical error from the card scheme. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | 13 \| Invalid amount \| We encountered a problem with Rupay processor: Amount Error | Transaction Failed due to technical error from the card scheme. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | IPAY0100120 - Transaction denied due to invalid payment instrument for brand data. | Transaction Failed due to technical error from the card scheme. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | IPAY0200301 \| IPAY0200301-Invalid transaction details | Transaction Failed due to technical error from the card scheme. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | 400 \| GENERAL ERROR \| We encountered a problem with Rupay processor: GENERAL ERROR | Transaction Failed due to technical error from the card scheme. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | 410 \| AUTHORIZATION_FAILED_BY_BANK \| We encountered a problem with Rupay processor: Invalid BIN | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | 58 \| Transaction not permitted to acquirer/terminal \| We encountered a problem with Rupay processor: DECLINED (terminal not allowed) | Transaction Failed due to technical error from the card scheme. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | 10004 \| Could not get the proper response from NPCI | Transaction Failed due to technical error from the card scheme. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | IPAY0100189 - Transaction denied due to brand directory unavailable | Transaction Failed due to technical error from the card scheme. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | rupay response Timeout | Transaction Failed due to technical error from the card scheme. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | 412 \| Invalid BIN \| We encountered a problem with Rupay processor: Issuer Authentication Server failure | Transaction Failed due to technical error from the card scheme. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | 399 \| SYSTEM UNAVALIABLE \| We encountered a problem with Rupay processor: SYSTEM UNAVALIABLE | Transaction Failed due to technical error from the card scheme. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | IPAY0100293 \| Transaction denied due to duplicate Merchant trackid | Transaction Failed due to technical error from the card scheme. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | 96 \| System malfunction \| We encountered a problem with Rupay processor: Session expired for this transaction | Transaction Failed due to technical error from the card scheme. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | 2032 \| AUTHORIZATION_FAILED_BY_BANK \| We encountered a problem with Rupay processor: Invalid tavv value | Transaction Failed due to technical error from the card scheme. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | 96 \| System malfunction \| We encountered a problem with Rupay processor: PREVIOUSLY AUTHORIZED | Transaction Failed due to technical error from the card scheme. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | 00 \| \| Payment processor error (100004) General System Error | Transaction Failed due to technical error from the card scheme. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | 61 \| Exceeds withdrawal amount limit(s) / Withdrawal amount limit exc \| Decline - The card has reached the credit limit. | Amount limit has been reached. Please contact your bank, increase the limit or use another paymode. |
+| failed | AUTHNEGATIVE | 61 \| Exceeds withdrawal amount limit(s) / Withdrawal amount limit exc | Amount limit has been reached. Please contact your bank, increase the limit or use another paymode. |
+| failed | AUTHNEGATIVE | 65 \| Exceeds withdrawal count limit / Withdrawal count limit exceeded \| Allowable number of PIN entry tries exceeded. | Amount limit has been reached. Please contact your bank, increase the limit or use another paymode. |
+| failed | AUTHNEGATIVE | 61 \| Activity amount limit exceeded | Amount limit has been reached. Please contact your bank, increase the limit or use another paymode. |
+| failed | AUTHNEGATIVE | 13 \| Invalid amount \| Invalid amt or Currency conversion field overflow | Amount limit has been reached. Please contact your bank, increase the limit or use another paymode. |
+| failed | AUTHNEGATIVE | 15061 \| DECLINED (exceeds with) | Amount limit has been reached. Please contact your bank, increase the limit or use another paymode. |
+| failed | AUTHNEGATIVE | 13 \| Invalid amount (currency conversion field overflow) or amount exceeds maximum for card program | Amount limit has been reached. Please contact your bank, increase the limit or use another paymode. |
+| failed | AUTHNEGATIVE | 15061 \| DECLINED (Exceeds withdrawal amount limit) | Amount limit has been reached. Please contact your bank, increase the limit or use another paymode. |
+| failed | AUTHNEGATIVE | 65 \| Exceeds withdrawal count limit / Withdrawal count limit exceeded | Amount limit has been reached. Please contact your bank, increase the limit or use another paymode. |
+| failed | AUTHNEGATIVE | 65 \| Activity count limit exceeded | Amount limit has been reached. Please contact your bank, increase the limit or use another paymode. |
+| failed | AUTHNEGATIVE | 75 \| Allowable number of PIN tries exceeded | Amount limit has been reached. Please contact your bank, increase the limit or use another paymode. |
+| failed | AUTHNEGATIVE | 61 \| DECLINED (Exceeds withdrawal amount limit) | Amount limit has been reached. Please contact your bank, increase the limit or use another paymode. |
+| failed | AUTHNEGATIVE | Authorise Failure : 61 : DECLINED (Exceeds withdrawal amount limit) | Amount limit has been reached. Please contact your bank, increase the limit or use another paymode. |
+| failed | AUTHNEGATIVE | Exceeds withdrawal amount limits | Amount limit has been reached. Please contact your bank, increase the limit or use another paymode. |
+| failed | AUTHNEGATIVE | 15075 \| pin exceeded | Amount limit has been reached. Please contact your bank, increase the limit or use another paymode. |
+| failed | AUTHNEGATIVE | 16012 \| Amount limit exceeded by merchant bank | Amount limit has been reached. Please contact your bank, increase the limit or use another paymode. |
+| failed | AUTHNEGATIVE | 65 \| Exceeds withdrawal frequency limit | Amount limit has been reached. Please contact your bank, increase the limit or use another paymode. |
+| failed | AUTHNEGATIVE | N4 \| Maximum off-line refund reached \| Decline - The card has reached the credit limit. | Amount limit has been reached. Please contact your bank, increase the limit or use another paymode. |
+| failed | AUTHNEGATIVE | 70065 \| Exceeds withdrawal frequency limit | Amount limit has been reached. Please contact your bank, increase the limit or use another paymode. |
+| failed | AUTHNEGATIVE | Allowable number of PIN tries exceeded | Amount limit has been reached. Please contact your bank, increase the limit or use another paymode. |
+| failed | AUTHNEGATIVE | T7 \| Cash back exceeds daily limit | Amount limit has been reached. Please contact your bank, increase the limit or use another paymode. |
+| failed | AUTHNEGATIVE | 57 \| Transaction not permitted to issuer/cardholder \| Decline - Inactive card or card not authorized for card-not-present transactions. | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode. |
+| failed | AUTHNEGATIVE | 41 \| Lost Card - Pick Up \| Decline - Stolen or lost card. | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode. |
+| failed | AUTHNEGATIVE | 12 \| Invalid transaction \| Decline - Inactive card or card not authorized for card-not-present transactions. | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode. |
+| failed | AUTHNEGATIVE | 04 \| Pick Up Card \| Decline - Stolen or lost card. | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode. |
+| failed | AUTHNEGATIVE | 07 \| Pick Up Card, Special Conditions \| Decline - Stolen or lost card. | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode. |
+| failed | AUTHNEGATIVE | 41 \| Lost Card - Pick Up | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode. |
+| failed | AUTHNEGATIVE | 43 \| Stolen Card - Pick Up \| Decline - Stolen or lost card. | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode. |
+| failed | AUTHNEGATIVE | 04 \| Pick Up Card | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode. |
+| failed | AUTHNEGATIVE | 04 \| Pick Up Card \| We encountered a problem with Rupay processor: Pick-up | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode. |
+| failed | AUTHNEGATIVE | 41 \| Pickup card (lost card) | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode. |
+| failed | AUTHNEGATIVE | 43 \| Stolen Card - Pick Up | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode. |
+| failed | AUTHNEGATIVE | 04 \| Pickup card | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode. |
+| failed | AUTHNEGATIVE | 15043 \| DECLINED (stolen) | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode. |
+| failed | AUTHNEGATIVE | 07 \| Pickup card, special condition (other than lost/stolen card) | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode. |
+| failed | AUTHNEGATIVE | 12001 \| Pick-up | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode. |
+| failed | AUTHNEGATIVE | Pick up card | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode. |
+| failed | AUTHNEGATIVE | 43 \| Pickup card (stolen card) | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode. |
+| failed | AUTHNEGATIVE | 15041 \| DECLINED(lost card) | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode. |
+| failed | AUTHNEGATIVE | Lost Card | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode. |
+| failed | AUTHNEGATIVE | 36 \| Restricted Card—Pick Up | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode. |
+| failed | AUTHNEGATIVE | 70041 \| Lost card | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode. |
+| failed | AUTHNEGATIVE | 41 \| Lost card | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode. |
+| failed | AUTHNEGATIVE | 07 \| Pick Up Card, Special Conditions | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode. |
+| failed | AUTHNEGATIVE | Stolen Card, Pick up | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode. |
+| failed | AUTHNEGATIVE | 60 \| Contact Card Acquirer | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode. |
+| failed | AUTHNEGATIVE | 43 \| DECLINED (stolen) | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode. |
+| failed | AUTHNEGATIVE | 04 \| Pick-up | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode. |
+| failed | AUTHNEGATIVE | 41 \| DECLINED (lost card) | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode. |
+| failed | AUTHNEGATIVE | Authorise Failure : 43 : DECLINED (stolen) | Card has been reported as stolen/lost. Please contact your bank and unblock your card or retry using another paymode. |
+| failed | AUTHNEGATIVE | 14 \| Invalid card number \| Decline - Invalid account number | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | 14 \| Invalid card number | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | 78 \| Invalid/nonexistent account specified (general) \| Decline - General decline of the card. No other information provided by the issuing bank. | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | 46 \| Closed account \| Decline - Inactive card or card not authorized for card-not-present transactions. | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | 12 \| Invalid transaction \| Decline - General decline of the card. No other information provided by the issuing bank. | This card is not supported on this merchant, please use another card or another paymode. |
+| failed | AUTHNEGATIVE | 56 \| No Card Record | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | Invalid Input Parameter For Guest Checkout Transaction \| UNKNOWN | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | Invalid card number | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | 10024 \| Couldn't verify the card, card number seems to be invalid \| Bad Input Data in Request | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | 30 \| Format error \| Decline - General decline of the card. No other information provided by the issuing bank. | This card is not supported on this merchant, please use another card or another paymode. |
+| failed | AUTHNEGATIVE | 15041 \| transaction declined because card is lost | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | 55 \| Invalid PIN \| Decline - Inactive card or card not authorized for card-not-present transactions. | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | 52 \| No Checking Account \| Decline - Invalid account number | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | 14 \| Invalid card number (no such number) | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | 55 \| Invalid PIN | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | 15065 \| exceeded frequency | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | PAN Ineligible | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | 70014 \| Invalid card number (no such number) | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | GW00881 \| Invalid card holder name | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | 15014 \| card number is wrong | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | 70056 \| No card record | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | 15410 \| invalid bin or error with check bin | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | 12001 \| Mobile number record not found/ mis-match | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | 58 \| Transaction not permitted to acquirer/terminal \| Decline - Inactive card or card not authorized for card-not-present transactions. | This card is not supported on this merchant, please use another card or another paymode. |
+| failed | AUTHNEGATIVE | 42 \| No Universal Account \| Decline - General decline of the card. No other information provided by the issuing bank. | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | Authorise Failure : 54 : EXPIRED CARD | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | CheckBinFailure - 410:Invalid BIN | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | GW00852 \| Invalid card number | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | 69 \| Mobile number record not found / mis-match \| Decline - General decline of the card. No other information provided by the issuing bank. | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | 15 \| No such issuer | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | 412 \| Invalid BIN | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | 50655 \| Unable to verify card enrollment | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | 56 \| No Card Record \| Decline - Invalid account number | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | 65 \| DECLINED (exceeds frequency) | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | INVALID_PIN | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | 410 \| Invalid BIN | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | 69 \| Mobile number record not found / mis-match | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | 15056 \| No card so declined | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | 10024 \| Invalid Pan | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | 12001 \| No such issuer | The card details entered were incorrect. Please re-enter correct card details and try again. |
+| failed | AUTHNEGATIVE | FSS0001 \| Authentication Not Available | Transaction failed due to a technical issue. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | 87 \| No Envelope Inserted | Transaction failed due to a technical issue. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | 500 \| SYSTEM_ERROR \| Request failed due to system error. | Transaction failed due to a technical issue. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | N7 \| Customer selected negative file reason | Transaction failed due to a technical issue. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | T5 \| CAF status = 0 or 9 | Transaction failed due to a technical issue. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | 96 \| System malfunction \| Payment processor error System malfunction | Transaction failed due to a technical issue. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | CURL_CALL_FAILURE | Transaction failed due to a technical issue. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | 96 \| System malfunction, System malfunction or certain field error conditions | Transaction failed due to a technical issue. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | SCA required under PSD2 | Transaction failed due to a technical issue. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | 96 \| System malfunction | Transaction failed due to a technical issue. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | Initiate Failure | Transaction failed due to a technical issue. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | 90 \| Cut-off in Progress | Transaction failed due to a technical issue. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | Error - General system failure | Transaction failed due to a technical issue. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | 400 \| GENERAL ERROR | Transaction failed due to a technical issue. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | CM90000 \| Problem occured while validating xml message format | Transaction failed due to a technical issue. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
+| failed | AUTHNEGATIVE | 15400 \| General error | Transaction failed due to a technical issue. Please retry or use another paymode. If money is debited it will be refunded within 48 hours. |
