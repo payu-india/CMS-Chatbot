@@ -112,7 +112,6 @@ Every failed payment response includes an error code, for example, EN3126.
 The full list of error codes maps each `newErrorCode` to its category, source, user message, and merchant description.
 
 ### Domestic Cards Error List
-### Domestic Cards Error List (Part 1 of 7)
 
 | status | field7 | field8 | user_message |
 | :--- | :--- | :--- | :--- |
@@ -1067,4 +1066,3 @@ The full list of error codes maps each `newErrorCode` to its category, source, u
 | failed | AUTHNEGATIVE | 51 \| Insufficient funds/over credit limit / Not sufficient funds | Transaction Failed due to insufficient fund in your account. Kindly use another card or another payment mode. |
 | failed | AUTHNEGATIVE | 51 \| Insufficient funds/over credit limit / Not sufficient funds \| Decline - Insufficient funds in the account. | Transaction Failed due to insufficient fund in your account. Kindly use another card or another payment mode. |
 | failed | AUTHNEGATIVE | 13006 \| Issuer Insufficient Funds | Transaction Failed due to insufficient fund in your account. Kindly use another card or another payment mode. |
-
