@@ -33,7 +33,7 @@ This API is used to create a payment link for your customer with Partner Integra
 
 ### Body Parameters
 
-**Mandatory parameters**
+### Mandatory parameters
 
 | Parameter | Description | Example |
 | :--- | :--- | :--- |
@@ -42,38 +42,38 @@ This API is used to create a payment link for your customer with Partner Integra
 | currency | The currency of the transaction. | `INR` |
 | source | The source of the payment link creation request. | `API` |
 | customer | A JSON object containing the customer's details. | Refer to customer JSON Fields description table below. |
-### customer JSON fields description
+#### customer JSON fields description
 | Field | Description | Example |
 | :--- | :--- | :--- |
 | name | The name of the customer. | `test` |
 | phone | The phone number of the customer. | `999999999` |
 | email | The email address of the customer. | `test@payu.in` |
 
-**Optional parameters**
+### Optional parameters
 
-| Parameter | Description | Example |
-| :--- | :--- | :--- |
-| description | A short description or note for the payment link. | `test` |
-| address | A JSON object containing the customer's address details. | Refer to address JSON Fields description table below. |
+| Parameter       | Description                                                                               | Example                                               |
+| :-------------- | :---------------------------------------------------------------------------------------- | :---------------------------------------------------- |
+| description     | A short description or note for the payment link.                                         | `test`                                                |
+| address         | A JSON object containing the customer's address details.                                  | Refer to address JSON Fields description table below. |
 
-### address JSON Fields description
-| Field | Description | Example |
-| :--- | :--- | :--- |
-| line1 | The first line of the customer's address. | `test` |
-| line2 | The second line of the customer's address. | `sample` |
-| city | The city of the customer's address. | `gurgaon` |
-| state | The state of the customer's address. | `UP` |
-| country | The country of the customer's address. | `India` |
-| zipCode | The postal or ZIP code of the customer's address. | `122220` |
-| udf | A JSON object for user-defined fields that can carry custom metadata for the transaction. | Refer to udf JSON Fields description table below. |
+#### address JSON Fields description
+| Field           | Description                                                                               | Example                                               |
+| :---            | :---                                                                                      | :---                                                  |
+| address.line1   | The first line of the customer's address.                                                 | `test`                                                |
+| address.line2   | The second line of the customer's address.                                                | `sample`                                              |
+| address.city    | The city of the customer's address.                                                       | `gurgaon`                                             |
+| address.state   | The state of the customer's address.                                                      | `UP`                                                  |
+| address.country | The country of the customer's address.                                                    | `India`                                               |
+| address.zipCode | The postal or ZIP code of the customer's address.                                         | `122220`                                              |
+| udf             | A JSON object for user-defined fields that can carry custom metadata for the transaction. | Refer to udf JSON Fields description table below.     |
 
-### udf JSON fields description
-| Field | Description | Example |
-| :--- | :--- | :--- |
-| udf1 | User-defined field 1 to pass any custom information. | `sampleUdf1` |
-| udf2 | User-defined field 2 to pass any custom information. | `sampleUdf2` |
-| udf3 | User-defined field 3 to pass any custom information. | `sampleUdf3` |
+#### udf JSON fields description
 
+| Field    | Description                                          | Example      |
+| :------- | :--------------------------------------------------- | :----------- |
+| udf.udf1 | User-defined field 1 to pass any custom information. | `sampleUdf1` |
+| udf.udf2 | User-defined field 2 to pass any custom information. | `sampleUdf2` |
+| udf.udf3 | User-defined field 3 to pass any custom information. | `sampleUdf3` |
 
 ## Sample Request
 
