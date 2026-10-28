@@ -33,7 +33,7 @@ This API is used to create a payment link for your customer with Partner Integra
 
 ### Body Parameters
 
-### Mandatory parameters
+#### Mandatory parameters
 
 | Parameter | Description | Example |
 | :--- | :--- | :--- |
@@ -42,21 +42,23 @@ This API is used to create a payment link for your customer with Partner Integra
 | currency | The currency of the transaction. | `INR` |
 | source | The source of the payment link creation request. | `API` |
 | customer | A JSON object containing the customer's details. | Refer to customer JSON Fields description table below. |
-#### customer JSON fields description
+
+**customer JSON fields description**
+
 | Field | Description | Example |
 | :--- | :--- | :--- |
 | name | The name of the customer. | `test` |
 | phone | The phone number of the customer. | `999999999` |
 | email | The email address of the customer. | `test@payu.in` |
 
-### Optional parameters
+#### Optional parameters
 
 | Parameter       | Description                                                                               | Example                                               |
 | :-------------- | :---------------------------------------------------------------------------------------- | :---------------------------------------------------- |
 | description     | A short description or note for the payment link.                                         | `test`                                                |
 | address         | A JSON object containing the customer's address details.                                  | Refer to address JSON Fields description table below. |
 
-#### address JSON Fields description
+**address JSON Fields description**
 | Field           | Description                                                                               | Example                                               |
 | :---            | :---                                                                                      | :---                                                  |
 | address.line1   | The first line of the customer's address.                                                 | `test`                                                |
@@ -67,7 +69,7 @@ This API is used to create a payment link for your customer with Partner Integra
 | address.zipCode | The postal or ZIP code of the customer's address.                                         | `122220`                                              |
 | udf             | A JSON object for user-defined fields that can carry custom metadata for the transaction. | Refer to udf JSON Fields description table below.     |
 
-#### udf JSON fields description
+**udf JSON fields description**
 
 | Field    | Description                                          | Example      |
 | :------- | :--------------------------------------------------- | :----------- |
