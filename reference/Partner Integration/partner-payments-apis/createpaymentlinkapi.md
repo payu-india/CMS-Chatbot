@@ -9,7 +9,7 @@ metadata:
 This API is used to create a payment link for your customer with Partner Integration.
 
 <Callout icon="📘" theme="info">
-  **Note**:
+  ### **Note**:
 
   The access token with the scope as **create_payment_links** is required on the header. For more information on getting the access token, refer to [Get Token API](ref:get_token_api).
 </Callout>
