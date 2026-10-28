@@ -68,7 +68,6 @@ This API is used to create a payment link for your customer with Partner Integra
 ### udf JSON fields description
 | Field | Description | Example |
 | :--- | :--- | :--- |
-
 | udf.udf1 | User-defined field 1 to pass any custom information. | `sampleUdf1` |
 | udf.udf2 | User-defined field 2 to pass any custom information. | `sampleUdf2` |
 | udf.udf3 | User-defined field 3 to pass any custom information. | `sampleUdf3` |
