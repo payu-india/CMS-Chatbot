@@ -21,8 +21,55 @@ This API is used to create a payment link for your customer with Partner Integra
 | **Test Environment**       | \<[https://test-partner.payu.in](https://uat-partner.payu.in)> |
 | **Production Environment** | \<[https://partner.payu.in](https://oneapi.payu.in)>           |
 
-<details>
-  <summary>Sample request</summary>
+## Request Parameters
+Here is the request parameter table for the Create Payment Link API, split into **Mandatory** and **Optional** sections based on the curl request and the source files:
+
+---
+
+## Request parameters
+
+**Mandatory parameters**
+
+| Parameter | Description | Example |
+| :--- | :--- | :--- |
+| isAmountFilledByCustomer | Indicates whether the customer will enter the payment amount on the payment link page. Set to `false` if the amount is prefilled by the merchant. | `false` |
+| subAmount | The subtotal amount for the payment link. | `100` |
+| currency | The currency of the transaction. | `INR` |
+| source | The source of the payment link creation request. | `API` |
+| customer | A JSON object containing the customer's details. | Refer to customer JSON Fields description table below. |
+### customer JSON fields description
+| Field | Description | Example |
+| :--- | :--- | :--- |
+| name | The name of the customer. | `test` |
+| phone | The phone number of the customer. | `999999999` |
+| email | The email address of the customer. | `test@payu.in` |
+
+**Optional parameters**
+
+| Parameter | Description | Example |
+| :--- | :--- | :--- |
+| description | A short description or note for the payment link. | `test` |
+| address | A JSON object containing the customer's address details. | Refer to address JSON Fields description table below. |
+| Field | Description | Example |
+| :--- | :--- | :--- |
+| address.line1 | The first line of the customer's address. | `test` |
+| address.line2 | The second line of the customer's address. | `sample` |
+| address.city | The city of the customer's address. | `gurgaon` |
+| address.state | The state of the customer's address. | `UP` |
+| address.country | The country of the customer's address. | `India` |
+| address.zipCode | The postal or ZIP code of the customer's address. | `122220` |
+| udf | A JSON object for user-defined fields that can carry custom metadata for the transaction. | Refer to udf JSON Fields description table below. |
+
+### udf JSON fields description
+| Field | Description | Example |
+| :--- | :--- | :--- |
+
+| udf.udf1 | User-defined field 1 to pass any custom information. | `sampleUdf1` |
+| udf.udf2 | User-defined field 2 to pass any custom information. | `sampleUdf2` |
+| udf.udf3 | User-defined field 3 to pass any custom information. | `sampleUdf3` |
+
+
+## Sample Request
 
 ```curl
 curl --location -g '{{payu_base_url}}/payment-links' \
@@ -55,13 +102,9 @@ curl --location -g '{{payu_base_url}}/payment-links' \
     }
 }'
 ```
+## Sample Response
 
-</details>
-
-<details>
-  <summary>Sample response</summary>
-
-\* Success scenario
+* Success Scenario
 
 ```
 {
@@ -101,7 +144,7 @@ curl --location -g '{{payu_base_url}}/payment-links' \
 }
 ```
 
-* Failure scenario
+* Failure Scenario
 
 ```
 {
@@ -112,7 +155,3 @@ curl --location -g '{{payu_base_url}}/payment-links' \
   "guid": null
 }
 ```
-
-</details>
-
-## Request parameters
