@@ -83,7 +83,7 @@ In the Seamless integration (Merchant Hosted Checkout or Server-to-Server), you 
 | State Bank of India                              | `SBIB`     |
 | State Bank of India Cooperative Bank - Corporate | `SBNCORP`  |
 | SVC Co-operative Bank Limited                    | `SVCNB`    |
-| SVC Cooperative Bank - Corporate                 | `SVCCB`    |
+| SVC Co-operative Bank - Corporate                | `SVCCB`    |
 | Tamilnad Mercantile Bank                         | `TMBB`     |
 | UCO Bank                                         | `UCOB`     |
 | UCO Corporate                                    | `UCOCNB`   |
