@@ -20,16 +20,22 @@ The invoice number in the request header must be included as a query parameter i
 | **Test Environment**       | \<[https://uat-partner.payu.in](https://uatoneapi.payu.in)> |
 | **Production Environment** | \<[https://oneapi.payu.in](https://partner.payu.in)>        |
 
-<Accordion title="Sample request" icon="fa-code">
+## Request Header
+| Parameter | Description | Example |
+| :--- | :--- | :--- |
+| Content-Type | The format of the request body. | `application/json` |
+| Authorization | The Bearer access token used to authenticate the API request. The token must have the `create_payment_links` scope. | `Bearer {{access_token}}` |
+| merchantId | The unique merchant identifier provided by PayU. | `4825038` |
+
+## Sample Request
   ```curl
   curl --location -g '{{payu_base_url}}/payment-links/{{invoice_number}}' \
   --header 'Content-Type: application/json' \
   --header 'Authorization: Bearer {{access_token}}' \
   --header 'merchantId: 4825038'
   ```
-</Accordion>
 
-<Accordion title="Sample response" icon="fa-info-circle">
+## Sample Response
   **Success scenario**
 
   ```json
@@ -91,4 +97,3 @@ The invoice number in the request header must be included as a query parameter i
     "guid": null
   }
   ```
-</Accordion>
