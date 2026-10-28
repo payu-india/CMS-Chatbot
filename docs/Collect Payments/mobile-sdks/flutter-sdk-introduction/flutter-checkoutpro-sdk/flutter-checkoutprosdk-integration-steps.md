@@ -92,6 +92,8 @@ For IOS, refer to iOS Specific Integration and check Distributing Your App (App 
   * Implement Checkout Pro protocol methods to get hash generation callback and transaction status callback from Checkout Pro SDK: `class MyClass extends SupeprClass implements PayUCheckoutProProtocol`
   * Implement the following methods in your class to get a callback from the SDK.
 
+  <CheckoutPro_Callback_Note />
+
   ```d Dart
   @override 
     generateHash(Map response) { 
