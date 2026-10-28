@@ -1033,11 +1033,7 @@ To integrate with the CheckoutPro mobile SDK for Android:
 <Accordion title="Step 4: Handle Payment Completion (Callbacks)" icon="fa-code">
   To get the callbacks for payment-related statuses, create a NativeEventEmitter object and subscribe to the following events.
 
-  <Callout icon="far fa-circle-info" theme="info">
-    ### Note:
-
-    On Android, for  `onPaymentFailure` if you are receiving the null response, you need to call the **verify_payment** API. For more information, refer to [Verify Payment API.](ref:verify_payment_api)
-  </Callout>
+  <CheckoutPro_Callback_Note />
 
   ```javascript React.js
   import { NativeEventEmitter } from 'react-native';
