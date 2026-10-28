@@ -1012,6 +1012,8 @@ PayUCheckoutPro.open(
 
 Confirm to PayUCheckoutProListener and use these functions to get appropriate callbacks from the SDK:
 
+<CheckoutPro_Callback_Note />
+
 ```java
     PayUCheckoutPro.open(
             this,
