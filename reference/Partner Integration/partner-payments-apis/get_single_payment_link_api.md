@@ -10,7 +10,9 @@ This API is used to get a single payment link using the payment link invoice num
 The invoice number in the request header must be included as a query parameter in the **invoice_number** field.
 
 <Callout icon="📘" theme="info">
-  **Note**: The access token with the scope as **read_payment_links** is required on the header. For more information on getting the access token, refer to [User Token APIs](ref:partner-integration-user-token-apis).
+  ### **Note**:&#x20;
+
+  The access token with the scope as **read_payment_links** is required on the header. For more information on getting the access token, refer to [User Token APIs](ref:partner-integration-user-token-apis).
 </Callout>
 
 ### Environment
