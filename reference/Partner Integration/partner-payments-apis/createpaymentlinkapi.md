@@ -114,7 +114,7 @@ curl --location -g '{{payu_base_url}}/payment-links' \
 
 * Success Scenario
 
-```
+```json
 {
   "status": 0,
   "message": "paymentLink generated",
@@ -154,7 +154,7 @@ curl --location -g '{{payu_base_url}}/payment-links' \
 
 * Failure Scenario
 
-```
+```json
 {
   "status": -1,
   "message": "Invoice Number already exists. Please enter new invoice number.",
