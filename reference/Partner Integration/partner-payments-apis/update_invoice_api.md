@@ -54,7 +54,7 @@ curl --request PUT \
 
 * Success Scenaio
 
-```text
+```json
 {
   "status": 0,
   "message": "paymentLink updated",
@@ -65,7 +65,6 @@ curl --request PUT \
 
 ```
 
-* Failure Scenario
+<br />
 
-```text
-```
+<br />
