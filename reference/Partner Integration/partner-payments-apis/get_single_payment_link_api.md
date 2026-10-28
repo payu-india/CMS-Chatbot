@@ -1,7 +1,7 @@
 ---
 title: Get Single Payment Link API - Partner Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
