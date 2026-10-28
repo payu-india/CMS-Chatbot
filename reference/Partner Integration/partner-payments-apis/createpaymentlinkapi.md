@@ -22,11 +22,6 @@ This API is used to create a payment link for your customer with Partner Integra
 | **Production Environment** | \<[https://partner.payu.in](https://oneapi.payu.in)>           |
 
 ## Request Parameters
-Here is the request parameter table for the Create Payment Link API, split into **Mandatory** and **Optional** sections based on the curl request and the source files:
-
----
-
-## Request parameters
 
 **Mandatory parameters**
 
