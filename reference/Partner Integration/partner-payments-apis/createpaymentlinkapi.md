@@ -23,6 +23,16 @@ This API is used to create a payment link for your customer with Partner Integra
 
 ## Request Parameters
 
+### Request Header
+
+| Parameter     | Description                                                                                                         | Example                   |
+| :------------ | :------------------------------------------------------------------------------------------------------------------ | :------------------------ |
+| Content-Type  | The format of the request body.                                                                                     | `application/json`        |
+| Authorization | The Bearer access token used to authenticate the API request. The token must have the `create_payment_links` scope. | `Bearer {{access_token}}` |
+| merchantId    | The unique merchant identifier provided by PayU.                                                                    | `4825038`                 |
+
+### Body Parameters
+
 **Mandatory parameters**
 
 | Parameter | Description | Example |
