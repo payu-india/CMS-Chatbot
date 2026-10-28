@@ -1,7 +1,7 @@
 ---
 title: Check Refund Status API - Partner Integration
 deprecated: false
-hidden: true
+hidden: false
 link:
   new_tab: false
 metadata:
