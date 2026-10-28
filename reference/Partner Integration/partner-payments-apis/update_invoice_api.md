@@ -22,7 +22,19 @@ This API is used to update a payment link’s status and expiry date.
 
 ## Request Parameters
 
-<br />
+### Request Header
+
+| Parameter     | Description                                                                                                         | Example                   |
+| :------------ | :------------------------------------------------------------------------------------------------------------------ | :------------------------ |
+| Content-Type  | The format of the request body.                                                                                     | `application/json`        |
+| Authorization | The Bearer access token used to authenticate the API request. The token must have the `create_payment_links` scope. | `Bearer {{access_token}}` |
+| merchantId    | The unique merchant identifier provided by PayU.                                                                    | `4825038`                 |
+
+### Request Parameter
+
+| Parameter | Description                                                    | Example |
+| :-------- | :------------------------------------------------------------- | :------ |
+| active    | Post it as `false` to indicate the payment link is not active. | `false` |
 
 ## Sample Request
 
