@@ -1,5 +1,5 @@
 ---
-title: Partner Payment Links API
+title: Partner Payment Links API [WhatsApp]
 deprecated: false
 hidden: true
 metadata:
