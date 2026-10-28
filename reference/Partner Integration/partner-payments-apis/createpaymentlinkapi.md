@@ -1,7 +1,7 @@
 ---
 title: Create Payment Link API - Partner Integration
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: Create Payment Link API - Partner Integration
   robots: index
