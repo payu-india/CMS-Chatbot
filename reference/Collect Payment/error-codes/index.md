@@ -1,14 +1,13 @@
 ---
 title: Error Codes
-excerpt: ''
 deprecated: false
 hidden: false
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
 The following are possible errors and error codes for a transaction. You need to remember the following while error handling based on payment response:
 
@@ -30,7 +29,7 @@ The following are possible errors and error codes for a transaction. You need t
 <Callout icon="📘" theme="info">
   ### **Reference:**
 
-  Refer to the **[Cards](https://docs.payu.in/reference/error-codes#cards)** section for AuthN and AuthZ errors
+  Refer to the [Cards](https://docs.payu.in/reference/error-codes#cards) section for AuthN and AuthZ errors
 </Callout>
 
 <SearchableTableRemote
@@ -112,7 +111,7 @@ The following are the errors associated with cards along with their reasons and 
 <Callout icon="⬇️" theme="default">
   ### **Download Template**
 
-  **[Download AuthN Errors in the CSV Template](https://github.com/palgunams21/payu-docs-assets/releases/download/AuthN-AuthZ-errors/AuthN_error_list.csv)**
+  [Download AuthN Errors in the CSV Template](https://github.com/palgunams21/payu-docs-assets/releases/download/AuthN-AuthZ-errors/AuthN_error_list.csv)
 </Callout>
 
 ### AuthZ Errors
@@ -126,7 +125,7 @@ The following are the errors associated with cards along with their reasons and 
 <Callout icon="⬇️" theme="default">
   ### **Download Template**
 
-  **[Download AuthZ Errors in the CSV Template](https://github.com/palgunams21/payu-docs-assets/releases/download/AuthN-AuthZ-errors/AuthZ_error_list.csv)**
+  [Download AuthZ Errors in the CSV Template](https://github.com/palgunams21/payu-docs-assets/releases/download/AuthN-AuthZ-errors/AuthZ_error_list.csv)
 </Callout>
 
 ### Alt ID Errors
