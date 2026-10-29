@@ -97,7 +97,7 @@ Add the following meta-tag & JS script in the HTML header section of your websit
 
 The `bolt.launch()` function takes two arguments.
 
-* In the first argument, the data objects contain the transaction request data (see the [Request parameters](#request-parameters) section for the details of the parameters to be passed as data objects). The format of the data object is as shown below:
+* In the first argument, the data objects contain the transaction request data (see the Request parameters section below for the details of the parameters to be passed as data objects). The format of the data object is as shown below:
 
 <Accordion title="Request Data Object" icon="fa-code">
 
