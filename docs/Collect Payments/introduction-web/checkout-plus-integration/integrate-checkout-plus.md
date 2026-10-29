@@ -27,20 +27,6 @@ PayU Checkout Plus is the most convenient way to collect payment on your website
                                   cursor: pointer;
                                   font-weight: bold;
                               }
-                              .tooltip-btn:hover::after {
-                                  content: attr(data-tooltip);
-                                  position: absolute;
-                                  bottom: 125%;
-                                  left: 50%;
-                                  transform: translateX(-50%);
-                                  background-color: #333;
-                                  color: white;
-                                  padding: 5px 10px;
-                                  border-radius: 4px;
-                                  white-space: nowrap;
-                                  font-size: 12px;
-                                  z-index: 1;
-                              }
                               </style>
 
                               <button onclick="window.open('https://www.payu.in/integrationlab/checkoutplus', '_blank')"
