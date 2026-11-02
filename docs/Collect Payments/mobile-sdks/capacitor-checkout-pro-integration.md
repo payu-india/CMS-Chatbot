@@ -1,32 +1,13 @@
 ---
-title: '[Internal Review]Capacitor Checkout Pro Integration'
+title: Capacitor Checkout Pro Integration
 deprecated: false
-hidden: true
+hidden: false
 icon: fad fa-air-conditioner
 link:
   new_tab: false
 metadata:
   robots: index
 ---
----
-title: Capacitor Checkout Pro Integration
-excerpt: Integrate the PayU Checkout Pro plugin into your Ionic Capacitor app to accept payments on Android and iOS with a ready-to-use native checkout UI.
-metadata:
-  title: Capacitor Checkout Pro Integration | PayU Developer Docs
-  description: Step-by-step guide to integrate the PayU Checkout Pro Capacitor plugin on Android and iOS, including server-side hash generation, recurring payments, SKU offers and payment callbacks.
-  keywords: PayU, Capacitor, Ionic, Checkout Pro, mobile SDK, Android, iOS, payment plugin, hash generation, recurring payments
-  robots: index
-next:
-  pages:
-    - type: basic
-      slug: integration-steps-android-checkout-pro
-      title: Android Checkout Pro Integration
----
-
-<Banner color="yellow">
-**Integration effort:** Low. You install one plugin, build the payment parameters, generate hashes on your server and handle four callbacks.
-</Banner>
-
 The PayU Checkout Pro plugin for Capacitor gives your Ionic Capacitor app a complete, ready-to-use native checkout UI on both Android and iOS. Your app passes the payment details to the plugin, and the plugin handles payment method selection, authentication and the payment itself.
 
 ***
