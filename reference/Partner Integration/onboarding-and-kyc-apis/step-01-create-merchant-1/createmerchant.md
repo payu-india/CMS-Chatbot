@@ -253,3 +253,22 @@ The **CreateMerchant** API creates a new merchant shell account on PayU (Step 01
   | merchant\[latitude]                                                            | Merchant geographical latitude co-ordinate.                                                                               | 19.076090                  |
   | merchant\[longitude]                                                           | Merchant geographical longitude co-ordinate.                                                                              | 72.877426                  |
 </Accordion>
+
+#### Business entity type master list
+
+| Business entity type        | Value to be passed in the API |
+| --------------------------- | ----------------------------- |
+| Individual                  | Individual                    |
+| Sole Proprietorship         | Sole Proprietorship           |
+| Partnership                 | Partnership                   |
+| LLP                         | LLP                           |
+| Private Limited             | Private Limited               |
+| Public Limited              | Public Limited                |
+| Trust                       | Trust                         |
+| Society                     | Society                       |
+| Government                  | Government                    |
+| NGO                         | NGO                           |
+| One Person Company          | One Person Company            |
+| Hindu Undivided Family      | Hindu Undivided Family        |
+| Local Authority             | Local Authority               |
+| Artificial Juridical Person | Artificial Juridical Person   |
