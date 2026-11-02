@@ -7,177 +7,165 @@ metadata:
   robots: index
 ---
 ---
-title: PayU Omni
-excerpt: Accept in-person payments seamlessly with PayU's POS solution
-category: 65ee4b13ba7bd6003d0c61b4
-slug: payu-omni
+title: Offline Payments - Merchant Overview
+excerpt: Accept in-store card, UPI, and wallet payments at physical store counters using PayU POS terminals and QR devices.
+deprecated: false
+hidden: false
+metadata:
+  robots: index
 ---
 
-PayU Omni is PayU's comprehensive Point of Sale (POS) solution that enables merchants to accept in-person payments through secure, reliable POS devices. Designed for retail stores, restaurants, and service providers, PayU Omni supports multiple payment methods including Cards, UPI DBQR, QR codes, Wallets, and EMI options.
+## What is PayU Offline Payments?
 
----
+PayU Offline Payments is an in-store payment solution that enables merchants to accept card, UPI, wallet, and EMI payments directly at physical checkout counters. Designed for retail stores, supermarkets, restaurants, quick-service counters, and service outlets, PayU connects certified in-store payment hardware directly to your billing software, Point of Sale (POS), or ERP system through secure Cloud APIs.
 
-## How it Works?
-
-PayU Omni enables seamless in-person payment collection through an integrated flow between your billing system, PayU's API, and physical POS devices. Here's the complete flow:
-
-1. **Customer Makes Purchase:** Customer selects products/services and is ready to pay at your physical location (store, restaurant, service center).
-
-2. **Merchant Creates Order:** Your cashier creates an order in your **ERP/billing/ordering system** with the transaction amount and customer details.
-
-3. **System Initiates Payment:** Your ERP/billing system calls the **PayU Omni Initiate Payment API** with the transaction details and the specific `posDeviceId` for the POS device at that counter.
-
-4. **PayU Processes Request:** PayU validates the request, verifies the device is active and mapped to your merchant account, and processes the authentication.
-
-5. **Device Receives Payment Push:** The PayU POS device at your location receives a notification to collect payment and displays the transaction amount to the customer.
-
-6. **Customer Selects Payment Method:** Customer chooses their preferred payment method on the device (Card swipe/tap, UPI QR scan, Wallet, EMI).
-
-7. **Payment is Processed:** Customer completes the payment (enters PIN, scans QR code, etc.). PayU processes the payment through the selected payment network.
-
-8. **Transaction Confirmation:** The POS device displays the transaction result (success/failure) and prints a receipt for the customer.
-
-9. **Webhook Notification:** PayU sends a webhook notification to your server with the complete transaction status and details, which updates your ERP/billing system in real-time.
-
-<Warning>
-**Critical Prerequisite:** Your POS device **MUST be activated and mapped to your merchant account** in the PayU Partner Dashboard before it can receive payment notifications. See [Device Activation Requirements](#prerequisites) below.
-</Warning>
+<Callout icon="📘" theme="info">
+  ### **Key Capabilities for Merchants**
+  - **Omni-Channel Payment Acceptance**: Accept debit and credit cards (RuPay, Visa, Mastercard via EMV chip, contactless tap, and swipe), Dynamic Bharat QR (UPI DBQR), Wallets, and checkout EMI on a single terminal.
+  - **Automated Bill Closure**: Push payable amounts directly from your billing software to the counter terminal. Invoices reconcile and close automatically upon payment confirmation with zero manual entry errors.
+  - **Built-in Thermal Printing**: Terminals print merchant and customer receipt charge slips automatically upon transaction success.
+  - **Flexible Counter Deployment**: Run integrated smart POS terminals alongside standalone Static QR standees and Soundboxes under a single Merchant ID (MID).
+  - **Instant Audio & App Alerts**: Receive real-time voice confirmations on Soundbox devices and immediate push alerts on the PayU Merchant App.
+</Callout>
 
 ---
 
-## Customer Journey
+## In-Store Devices & Supported Modes
 
-<!-- diagram: Customer journey flow showing ERP system → PayU API → POS Device → Customer → Webhook back to ERP -->
+PayU provides dedicated hardware suited to different counter setups, checkout volumes, and store operations:
 
-**Flow:**  
-Customer at Counter → Cashier Creates Order in ERP → ERP Calls PayU API → Device Receives Payment Push → Customer Selects Payment Method → Payment Processed → Receipt Printed → Webhook Sent to ERP
+<Cards columns="2">
+  <Card title="POS Devices" href="#pos-devices">
+    Smart countertop terminals accepting cards (RuPay, Visa, Mastercard), Dynamic UPI QR, Wallets, and EMI with integrated receipt printing.
+  </Card>
 
----
+  <Card title="Static QR Devices" href="#static-qr-devices">
+    Standees and Soundboxes for cost-effective UPI acceptance with instant voice announcements or mobile app alerts.
+  </Card>
+</Cards>
 
-## Features of PayU Omni
+### POS Devices
+Terminals deployed at checkout counters to handle card, wallet, and UPI transactions. Choose these when your business accepts debit/credit cards and requires printed charge slips:
 
-### Multi-Payment Method Support
-Accept all major payment methods on a single device:
-- **Cards:** Visa, Mastercard, RuPay (Debit & Credit) via swipe, chip, or contactless tap
-- **UPI DBQR:** Dynamic Bharat QR for UPI payments
-- **QR Codes:** Generate QR codes for customer scanning
-- **Wallets:** Paytm, PhonePe, Amazon Pay, and more
-- **EMI:** Convert high-value transactions to EMI at checkout
+- **Android POS**: A high-performance smart terminal featuring a full touchscreen display, built-in thermal receipt printer, and multi-mode payment acceptance (EMV chip, NFC contactless tap, magnetic stripe, and Dynamic UPI QR).
+- **All-in-One POS**: A compact countertop terminal with an integrated customer-facing Dynamic QR screen, chip and contactless card reader, and built-in voice confirmation for completed payments.
 
-### Multiple Device Types
-Choose from three device categories based on your business needs:
-- **mPOS (mobile POS):** Portable, battery-powered devices for mobility
-- **Android POS:** Full-featured Android devices with touchscreen
-- **Static POS:** Counter-mounted devices for fixed checkout locations
+### Static QR Devices
+Lightweight, rapid-deployment solutions dedicated to UPI acceptance. Cheaper to deploy and quick to set up:
 
-### Real-Time Webhook Notifications
-Receive instant payment status updates via secure webhooks to keep your billing system synchronized.
+- **Smart QR Soundbox**: A physical Static QR standee equipped with an integrated cellular speaker that instantly announces successful payment amounts in the cashier's preferred language.
+- **Static QR Standee**: A printed QR standee placed at the counter. The customer scans the QR code, enters the bill amount in their preferred UPI app, and payment alerts reach the cashier via the PayU Merchant App.
 
-### Automated Receipt Printing
-Built-in thermal printer generates customer receipts automatically after each transaction.
+### Device Feature Matrix
 
-### Partner API Integration
-Seamlessly integrate with your existing ERP, billing, or ordering system through RESTful APIs with comprehensive authentication and security.
-
-### Secure Transactions
-All transactions are encrypted and compliant with PCI-DSS standards, ensuring customer payment data security.
+| Device | Supported Payment Modes | Integrated Mode (Cloud API) | Standalone Mode (Manual Entry) | Built-In Receipt Printer | Best Suited For |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Android POS** | RuPay, Visa, Mastercard, UPI (Dynamic QR), Wallets, EMI | **Yes** | **Yes** | **Yes** (Thermal) | Supermarkets, retail stores, restaurants |
+| **All-in-One POS** | RuPay, Visa, Mastercard, UPI (Dynamic QR), Wallets | **Yes** | **Yes** | No (Digital/Voice) | Pharmacies, quick-service counters, compact desks |
+| **Smart QR Soundbox** | UPI | No | **Yes** | No (Audio alert) | High-volume retail counters, grocery stores |
+| **Static QR Standee** | UPI | No | **Yes** | No (App alert) | Kiosks, pop-up stalls, low-cost counter deployments |
 
 ---
 
-## Benefits of PayU Omni
+## How Integration Works
 
-### For Merchants
-- **Faster Checkouts:** Reduce queue times with quick, reliable payment processing
-- **Single Integration:** One API integration supports all payment methods and device types
-- **Real-Time Reconciliation:** Instant webhook notifications enable automatic reconciliation
-- **Lower MDR:** Competitive merchant discount rates across payment methods
-- **Device Flexibility:** Choose devices that match your business environment
+PayU Offline Payments supports two operational models across your store fleet:
 
-### For Customers
-- **Payment Choice:** Multiple payment options at the point of sale
-- **Contactless Payments:** Tap-and-pay for cards and UPI QR scanning for safety
-- **Instant Confirmation:** Immediate receipt and payment confirmation
-- **EMI Options:** Convert purchases to EMI on eligible transactions
+### 1. Integrated Mode (POS / ERP Integration)
+In this mode, your billing software or ERP initiates and reconciles the payment:
 
-### For Partners/Aggregators
-- **Scalable Integration:** Single API endpoint to manage payments across multiple merchants
-- **Device Management Dashboard:** Centralized view and control of all devices across merchants
-- **Automated Token Management:** OAuth 2.0 token-based authentication for secure API access
-- **Comprehensive Webhooks:** Real-time transaction updates for all merchants
+```
+[Customer at Counter] 
+        │
+        ▼
+[Cashier Creates Bill in ERP/POS] 
+        │
+        ▼ (Calls PayU Cloud API with Amount & posDeviceId)
+[PayU Payment Gateway] 
+        │
+        ▼ (Pushes Transaction to Terminal)
+[In-Store POS Terminal Displays Amount] 
+        │
+        ▼ (Customer Taps Card / Scans Dynamic QR / Enters PIN)
+[Payment Authorized on Banking Network] 
+        │
+        ├──▶ [Terminal Prints Physical Receipt]
+        │
+        ▼ (Asynchronous Webhook / Synchronous Response)
+[ERP/POS Automatically Closes Bill]
+```
+
+1. **Bill Generation**: The cashier creates the order in your billing/ERP system.
+2. **Cloud API Trigger**: Your billing software calls the **Initiate Payment (Sale) API** with the transaction amount, unique merchant transaction ID (`txnId`), and the target counter's `posDeviceId`.
+3. **Validation & Terminal Push**: PayU verifies that the device is active and mapped to your Merchant ID, then pushes the transaction over the cloud to the terminal screen.
+4. **Customer Payment**: The customer chooses their preferred payment method on the terminal (taps/inserts card, scans dynamic UPI QR, or selects wallet/EMI) and authorizes the transaction.
+5. **Receipt Printing**: Upon successful authorization, the terminal displays the confirmation and automatically prints the charge slip on its built-in thermal printer.
+6. **Automatic Bill Closure**: PayU sends a server-to-server webhook notification to your billing server, closing the bill and updating inventory in real-time.
+
+<Callout icon="⚠️" theme="warn">
+  ### **Mandatory: Implement Status Enquiry API**
+  Counter connectivity disruptions or customer timeouts may occasionally prevent immediate response delivery even if funds have moved. To avoid duplicate charges or stranded orders, your billing system **must call the Get Status API** before voiding or retrying an unconfirmed transaction.
+</Callout>
+
+### 2. Standalone Mode (Non-Integrated)
+- The cashier enters the amount directly on the POS device keypad, or the customer scans the Static QR standee and enters the amount on their phone.
+- No software integration or API call is required.
+- Transactions reconcile post-payment via the **PayU Merchant Dashboard**, daily settlement reports, or the PayU Merchant App.
+
+<Callout icon="💡" theme="info">
+  **Hybrid Setups**: You can mix integrated Android POS terminals at primary billing lanes with standalone Static QR standees or Soundboxes at express counters under the same Merchant ID.
+</Callout>
 
 ---
 
 ## Prerequisites
 
-Before integrating with PayU Omni, ensure you have completed the following:
+Before initiating in-store transactions via API, verify the following prerequisites:
 
-<Warning>
-### Device Must Be Activated
+<Callout icon="🚨" theme="error">
+  ### **Device Activation & Account Mapping**
+  Every physical POS terminal **MUST be active and mapped to your PayU Merchant ID (MID)** by your PayU onboarding team before it can receive cloud payment requests.
 
-**Every POS device MUST be activated and mapped to a merchant account before it can process payments.**
+  If you call the API with an inactive, unmapped, or incorrect `posDeviceId`, PayU rejects the request with status code **`E342`** *(Transaction not initiated)* or **`E2081`** *(Invalid Device ID)*.
+</Callout>
 
-If you attempt to initiate a payment with an inactive or unmapped device, you will receive error code **E342** or **E343** and the transaction will fail.
-</Warning>
-
-### Required Setup Steps
-
-<Info>
-**1. Partner Registration**
-
-- Sign up for a Partner account at [partner.payu.in/app/account/signup](https://partner.payu.in/app/account/signup)
-- You will receive: `client_id`, `client_secret`, and `uuid`
-- Store these credentials securely (required for API authentication)
-</Info>
-
-<Info>
-**2. Merchant Account Setup**
-
-- Each merchant you serve must have an active PayU merchant account
-- Obtain merchant's `key` and `salt` (unique per merchant)
-- Verify merchant account has payment methods enabled (Card, UPI, etc.)
-</Info>
-
-<Info>
-**3. Device Activation & Mapping**
-
-- Log in to PayU Partner Dashboard
-- Add each POS device using its serial number
-- **Map each device to the specific merchant account** that will use it
-- Enable required payment methods for each device
-- Copy the `posDeviceId` value (required for API calls)
-- Verify device status shows "Active"
-
-**Important:** Each device can only be mapped to ONE merchant at a time. Payment methods must be enabled at BOTH merchant level AND device level.
-</Info>
-
-<Info>
-**4. Required Configurations**
-
-- Configure webhook URL in Partner Dashboard (HTTPS required)
-- Whitelist PayU IP addresses in your firewall
-- Ensure POS devices have stable internet connectivity
-- Test all payment methods before going live
-</Info>
+### Setup Checklist
+1. **Active PayU Merchant Account**: Obtain your live/test **Merchant Key**, **Salt**, and **Account ID** from the [PayU Merchant Dashboard](https://onboarding.payu.in/app/account/signin).
+2. **Terminal Serial Number & Device ID**: Ensure your assigned POS device is registered and mapped. Note the `posDeviceId` assigned to each counter.
+3. **Terminal Connectivity**: Ensure POS terminals have an active Wi-Fi connection or an activated 4G data SIM.
+4. **HTTPS Webhook Listener**: Configure a publicly accessible HTTPS endpoint on your server to receive real-time transaction updates. Ensure your firewall allows inbound webhook postbacks from PayU.
+5. **Server-Side Security**: Never store your API Salt or compute hashes within client-side billing scripts or on POS terminals. Always generate authorization signatures on your secure server.
 
 ---
+
+## Benefits of PayU Offline Payments
+
+### For Your Business
+- **Eliminate Cashier Errors**: Pushing bill amounts directly from the ERP prevents manual key-in errors, mismatched totals, and reconciliation gaps.
+- **Faster Checkout Throughput**: Reduce queue times with instant NFC contactless card taps and Dynamic QR generation on the terminal.
+- **Unified Reporting**: View online and in-store transactions, refunds, chargebacks, and daily settlements in a single pane on the PayU Merchant Dashboard.
+- **Automated Real-Time Reconciliation**: S2S webhooks and Status Enquiry APIs ensure your ERP ledger matches payment outcomes automatically.
+
+### For Your Customers
+- **Broad Payment Choice**: Customers can pay via debit/credit cards (RuPay, Visa, Mastercard), UPI apps (Google Pay, PhonePe, Paytm, BHIM), Wallets, or convert large tickets into instant EMIs.
+- **Frictionless & Contactless**: Quick tap-and-pay for cards under ₹5,000 without PIN entry, and instant QR scanning for UPI users.
+- **Immediate Physical Confirmation**: On-the-spot printed charge slips and clear terminal screen confirmation.
+
+---
+
 
 ## Next Steps
 
-To integrate PayU Omni with your system, refer to:
+<Cards columns="3">
+  <Card title="1. Setup Authentication" href="/reference/authentication">
+    Generate API credentials and build your HMAC-SHA256 signature generator.
+  </Card>
 
-- **[Collect Payment Using PayU Omni →](doc:collect-payment-using-payu-omni)**  
-  Complete integration guide with device activation, API calls, testing, and troubleshooting
+  <Card title="2. Integrate Sale API" href="/merchant/sale">
+    Trigger your first in-store payment push to a test POS device.
+  </Card>
 
-- **[Initiate Payment API Reference →](doc:initiate-payment-api-omni)**  
-  Detailed API specification for initiating payments
-
-- **[Check Transaction Status API Reference →](doc:check-transaction-status-api-omni)**  
-  Query payment status for verification and reconciliation
-
----
-
-> 📮 **Postman Collection**  
-> Download the PayU Omni Postman Collection: [Coming Soon]
-
-> 💬 **Need Help?**  
-> Contact Integration Support: **integration-support@payu.in**
+  <Card title="3. Add Status Check" href="/merchant/status-enquiry">
+    Implement the Status Enquiry API to automate bill closure and reconciliation.
+  </Card>
+</Cards>
