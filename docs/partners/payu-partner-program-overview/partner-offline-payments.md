@@ -59,20 +59,36 @@ PayU supplies certified hardware solutions that partners can allocate to their s
 
 Unlike single-merchant integrations, partner integrations operate across a portfolio of independent businesses:
 
-```
-[Partner Central Platform / Cloud POS]
-                  │
-                  ▼
-          (Partner Auth Header)
-       (Explicit MID & Device ID)
-                  │
-                  ▼
-         [PayU Partner APIs]
-        /         |         \
-       ▼          ▼          ▼
-   [Store A]   [Store B]   [Store C]
-   (MID 101)   (MID 102)   (MID 103)
-   Device 1    Device 2    Device 3
+```mermaid
+graph TD
+    Partner[Partner Central Platform / Cloud POS]
+
+    subgraph PayU_Partner_Gateway [PayU Partner Gateway]
+        Auth[Partner Authentication & Tenant Boundary Check]
+        Router[Tenant Routing & MID Mapping]
+    end
+
+    subgraph Merchant_Fleet [Sub-Merchant Portfolio]
+        subgraph Sub_Merchant_A [Sub-Merchant A - MID: 1001]
+            DevA1[Android POS: Counter 1]
+            DevA2[Static QR: Counter 2]
+        end
+        subgraph Sub_Merchant_B [Sub-Merchant B - MID: 1002]
+            DevB1[All-in-One POS: Counter 1]
+        end
+        subgraph Sub_Merchant_C [Sub-Merchant C - MID: 1003]
+            DevC1[POS Terminal]
+            DevC2[Soundbox]
+        end
+    end
+
+    Partner -->|API Request: Partner Header + Explicit MID + Device ID| Auth
+    Auth --> Router
+    Router -->|Push Transaction / Config| DevA1
+    Router -->|Push Transaction / Config| DevB1
+    Router -->|Push Transaction / Config| DevC1
+
+    PayU_Partner_Gateway -.->|Consolidated Webhook Callback: includes sub-merchant MID| Partner
 ```
 
 - **Partner-Level Authorization**: The partner authenticates using central partner credentials. One integration serves your entire merchant portfolio.
