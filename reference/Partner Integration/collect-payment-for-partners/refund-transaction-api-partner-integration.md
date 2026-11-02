@@ -12,6 +12,13 @@ The Refund Transaction for Partner integration can be used for the following pur
 * Cancel a transaction that is in ‘auth’ state at the moment
 * Refund a transaction that is in a ‘captured’ state at the moment.
 
+## Environment
+
+| Environment    | Method | URL                                                             |
+| :------------- | :----- | :-------------------------------------------------------------- |
+| **Test**       | `POST` | `https://test-partnerapilayer.payu.in/apilayer/partner/refunds` |
+| **Production** | `POST` | `https://api.payu.in/partner/refunds`                           |
+
 ## Request parameters
 
 | **Parameter**                  | **Description**                                                                                                                                                                                                                                                                      | **Example**                                  |
@@ -26,7 +33,7 @@ The Refund Transaction for Partner integration can be used for the following pur
 ## Sample request
 
 ```curl
-curl --location 'http://localhost:8080/apilayer/partner/refunds' \
+curl --location 'https://test-partnerapilayer.payu.in/apilayer/partner/refunds' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer 8c9177c718fc77046efe0d18192b98cadf798f2a136f2d31c7e09d60797403b5' \
 --data '{
@@ -152,7 +159,7 @@ curl --location 'http://localhost:8080/apilayer/partner/refunds' \
 
 ### Success scenario
 
-```plaintext
+```json
 {
     "status": 1,
     "msg": "Refund Request Queued",
