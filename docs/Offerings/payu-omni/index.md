@@ -114,12 +114,38 @@ sequenceDiagram
 </Callout>
 
 ### 2. Standalone Mode (Non-Integrated)
+
 - The cashier enters the amount directly on the POS device keypad, or the customer scans the Static QR standee and enters the amount on their phone.
 - No software integration or API call is required.
 - Transactions reconcile post-payment via the **PayU Merchant Dashboard**, daily settlement reports, or the PayU Merchant App.
+  ```mermaid
+  graph TD
+      subgraph Merchant_Premises [Merchant Store & Counter]
+          POS[Billing System / POS / ERP]
+          T1[Counter 1: Android POS]
+          T2[Counter 2: POS Terminal]
+          QR1[Counter 3: Static QR Soundbox]
+      end
+
+      subgraph PayU_Platform [PayU Gateway & Processing]
+          API[PayU Cloud Payments API]
+          MID[(Single Merchant ID - MID)]
+          Settlement[Settlement Engine]
+      end
+
+      POS -->|Cloud API: posDeviceId, txnId, amount| API
+      API -->|Authenticated via Merchant API Key & Salt| MID
+      API -->|Push payment request| T1
+      API -->|Push payment request| T2
+      QR1 -.->|Standalone UPI payment| API
+      MID --> Settlement
+      Settlement -->|Consolidated Payout| Bank[Merchant Bank Account]
+  ```
 
 <Callout icon="💡" theme="info">
-  **Hybrid Setups**: You can mix integrated Android POS terminals at primary billing lanes with standalone Static QR standees or Soundboxes at express counters under the same Merchant ID.
+  ### **Hybrid Setups**:&#x20;
+
+  You can mix integrated Android POS terminals at primary billing lanes with standalone Static QR standees or Soundboxes at express counters under the same Merchant ID.
 </Callout>
 
 ---
