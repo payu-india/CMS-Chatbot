@@ -75,24 +75,30 @@ PayU Offline Payments supports two operational models across your store fleet:
 In this mode, your billing software or ERP initiates and reconciles the payment:
 
 ```
-[Customer at Counter] 
-        │
-        ▼
-[Cashier Creates Bill in ERP/POS] 
-        │
-        ▼ (Calls PayU Cloud API with Amount & posDeviceId)
-[PayU Payment Gateway] 
-        │
-        ▼ (Pushes Transaction to Terminal)
-[In-Store POS Terminal Displays Amount] 
-        │
-        ▼ (Customer Taps Card / Scans Dynamic QR / Enters PIN)
-[Payment Authorized on Banking Network] 
-        │
-        ├──▶ [Terminal Prints Physical Receipt]
-        │
-        ▼ (Asynchronous Webhook / Synchronous Response)
-[ERP/POS Automatically Closes Bill]
+sequenceDiagram
+    autonumber
+    actor Customer
+    actor Cashier
+    participant POS as Merchant Billing / POS
+    participant PayU as PayU Cloud API
+    participant Terminal as PayU POS Terminal
+
+    Cashier->>POS: 1. Create order & select PayU POS
+    POS->>PayU: 2. POST /v2/payments (amount, posDeviceId, txnId)
+    PayU->>Terminal: 3. Push payment request to terminal screen
+    Terminal-->>Customer: 4. Display amount, QR & prompt card
+    Customer->>Terminal: 5. Tap/Insert Card or Scan Dynamic QR
+    Terminal->>PayU: 6. Authorize & process transaction
+    alt Payment Successful
+        PayU-->>Terminal: 7a. Authorization approved
+        Terminal-->>Customer: 8a. Print merchant & customer charge slips
+        PayU-->>POS: 9a. S2S Webhook / API callback (status: captured)
+        POS-->>Cashier: 10a. Auto-reconcile & close invoice
+    else Payment Declined / Timed Out
+        PayU-->>Terminal: 7b. Transaction declined
+        PayU-->>POS: 8b. Webhook / Failure callback
+        POS->>PayU: 9b. (Optional) Verify via Get Status API
+    end
 ```
 
 1. **Bill Generation**: The cashier creates the order in your billing/ERP system.
