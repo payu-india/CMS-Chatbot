@@ -9,6 +9,13 @@ metadata:
 ---
 This API allows partners to check refund status for any refund transaction. All of them are mandatory parameters.
 
+## Environment
+
+|            |                                                                                                                                          |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| Test       | [https://test-partnerapilayer.payu.in/apilayer/partner/refundStatus](https://test-partnerapilayer.payu.in/apilayer/partner/refundStatus) |
+| Production | [https://api.payu.in/partner/refundStatus](https://api.payu.in/partner/refundStatus "https://api.payu.in/partner/refundStatus")          |
+
 ## Request parameters
 
 <Callout icon="📘" theme="info">
@@ -99,6 +106,18 @@ This API allows partners to check refund status for any refund transaction. All 
 </Table>
 
 ## Sample request
+
+```curl
+curl --location --request POST 'https://test-partnerapilayer.payu.in/apilayer/partner/refundStatus' \
+--header 'Authorization: Bearer f13afdaf87c7b94fdb71827f298e517e8d99d4af625a919cbd26fb218c2050b9' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "payu_id": "403993715530093059",
+    "reseller_id": "11ed-933c-ece48d50-a41d-023f883eb17c",
+    "merchant_id": "8244519",
+    "hash": "5987c03f27fd77f7017deb2c553c1e213db555421c3cb0e0e7a0e7b8d5f31b64312acf0a0ef986b38038a1267360d820c2f36a04611f0e8f805084efd9abbc5b"
+}'
+```
 
 ## Response parameters
 
