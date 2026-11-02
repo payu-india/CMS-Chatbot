@@ -74,7 +74,7 @@ PayU Offline Payments supports two operational models across your store fleet:
 ### 1. Integrated Mode (POS / ERP Integration)
 In this mode, your billing software or ERP initiates and reconciles the payment:
 
-```
+```mermaid
 sequenceDiagram
     autonumber
     actor Customer
