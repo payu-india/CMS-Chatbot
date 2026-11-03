@@ -66,16 +66,6 @@ Diagnose and fix common issues with your PayU Hosted Checkout integration. Find 
   - Extra spaces before or after any parameter value
   - Using SHA-256 or MD5 instead of SHA-512
 
-  **How to Check:**
-
-  1. Print the exact string you pass to the hash function on your server before hashing.
-  2. Verify the order exactly matches:&#x20;
-     ```text Hash String
-     key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT
-     ```
-  3. If UDF fields are empty, they must still appear as empty strings: `...email|||||||||||SALT` (five empty UDF positions + 6 empty trailing pipes before SALT).
-  4. Verify the salt value from your **PayU Dashboard** → **Developer** →  **API Keys** matches what you're using.
-
   **Recommended Fix:**
 
   - Correct the parameter order and pipe separators.
@@ -96,27 +86,28 @@ Diagnose and fix common issues with your PayU Hosted Checkout integration. Find 
   - Browser or network firewall blocking the request
   - SSL/TLS error on the merchant's page preventing the form submission
 
-  **How to check:**
-
-  1. Inspect the form element: confirm `method="post"` and `action="https://test.payu.in/_payment"` (or the production URL).
-  2. Open browser developer tools → Network tab. Check that a POST request was made to the PayU endpoint and inspect the request payload.
-  3. Confirm all 10 mandatory parameters are present and non-empty: `key`, `txnid`, `amount`, `productinfo`, `firstname`, `email`, `phone`, `surl`, `furl`, `hash`.
-  4. Check the browser console for JavaScript errors that may have prevented the form submission.
-
-  **Fix:**
+  **Recommended Fix:**
 
   - Set `method="post"` on the form.
   - Use the correct endpoint for your environment: test → `https://test.payu.in/_payment`, production → `https://secure.payu.in/_payment`.
-  - Ensure all mandatory parameters are populated.
+  - Ensure all these mandatory parameters are populated.
+    - `key`&#x20;
+    - `txnid`
+    - `amount`
+    - `productinfo`
+    - `firstname`
+    - `email`
+    - `phone`
+    - `surl`
+    - `furl`
+    - `hash`
   - Remove any `onsubmit` handlers that might be preventing form submission.
 </Accordion>
 
 <Accordion title="Callback Not Triggered (surl / furl)" icon="fa-link-slash">
-  <Callout icon="⚠️" theme="warn">
-    **Symptoms:** Payment completes but the browser does not redirect back, or your server does not receive a POST to `surl` / `furl`.
-  </Callout>
+  Payment completes but the browser does not redirect back, or your server does not receive a POST to `surl` / `furl`.
 
-  **Common causes:**
+  **Common Error Causes:**
 
   - `surl` / `furl` is a localhost URL not reachable by PayU's servers
   - `surl` / `furl` uses HTTP instead of HTTPS
@@ -124,13 +115,7 @@ Diagnose and fix common issues with your PayU Hosted Checkout integration. Find 
   - Callback endpoint returns a non-200 status code
   - Callback URL has path encoding issues or query string characters not URL-encoded
 
-  **How to check:**
-
-  1. Confirm your callback URL is publicly reachable from the internet over HTTPS. Test it with a tool like [webhook.site](https://webhook.site) or [requestbin](https://pipedream.com/requestbin).
-  2. Confirm the URL uses `https://` not `http://`.
-  3. Check your server logs: is PayU's POST arriving but returning an error?
-
-  **Fix:**
+  **Recommended Fix:**
 
   - Use a publicly reachable HTTPS endpoint. During testing, use `https://test-payment-middleware.payu.in/simulatorResponse` as a temporary callback URL.
   - Do not use localhost, 127.0.0.1, or private/VPN-only addresses for `surl` / `furl`.
@@ -138,7 +123,9 @@ Diagnose and fix common issues with your PayU Hosted Checkout integration. Find 
   - If using tools like ngrok for local testing, ensure the tunnel is active.
 
   <Callout icon="📘" theme="info">
-    **Webhook as backup** — Browser redirects to `surl` / `furl` can be disrupted if the customer closes their browser before the redirect completes. Configure webhooks as a reliable server-to-server fallback. See [Manage Webhooks](https://docs.payu.in/docs/webhook-events-and-sample-payloads).
+    ### **Webhook as a Backup**
+
+    Browser redirects to `surl` / `furl` can be disrupted if the customer closes their browser before the redirect completes. Configure webhooks as a reliable server-to-server fallback. See <Anchor target="_blank" href="https://docs.payu.in/docs/webhook-events-and-sample-payloads">Manage Webhooks</Anchor>.
   </Callout>
 </Accordion>
 
