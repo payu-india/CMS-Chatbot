@@ -44,16 +44,16 @@ next:
       title: Errors and Troubleshooting
       type: basic
 ---
-These practices cover the areas where integrations most often have subtle gaps: conversion friction, pending payment handling, callback resilience, and failure UX. Security requirements (hash generation server-side, reverse hash validation, HTTPS callbacks) are covered in [Build Integration](./integrate/build-integration).
+These practices cover the areas where integrations most often have subtle gaps: conversion friction, pending payment handling, callback resilience, and failure UX.&#x20;
 
 To apply these practices, your integration should already be built and tested:
 
 <Cards columns="2">
-  <Card title="Build Integration" href="./integrate/build-integration" icon="fa-code">
+  <Card title="Build Integration" href="https://docs.payu.in/docs/payu-hosted-checkout-build-integration" icon="fa-code" target="_blank">
     Request parameters, hash generation, form POST, response handling, and server-side verification.
   </Card>
 
-  <Card title="Test Integration" href="./integrate/test-integration" icon="fa-flask">
+  <Card title="Test Integration" href="https://docs.payu.in/docs/payu-hosted-checkout-test-integration" icon="fa-flask" target="_blank">
     Test credentials and scenarios for all payment methods.
   </Card>
 </Cards>
