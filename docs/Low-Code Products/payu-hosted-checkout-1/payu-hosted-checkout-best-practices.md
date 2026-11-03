@@ -233,68 +233,28 @@ To apply these practices, your integration should already be built and tested:
   </Callout>
 </Accordion>
 
-<Accordion title="Process webhook notifications idempotently" icon="fa-shield-halved">
-  PayU may deliver a callback or webhook notification for the same transaction more than once (network retries, timeout re-delivery). Your handler must be idempotent — processing the same `txnid` twice must not create two successful orders or trigger fulfilment twice.
-
-  **Implementation pattern:**
-
-  ```
-  1. Receive callback/webhook POST
-  2. Verify reverse hash — reject immediately if mismatch
-  3. Look up txnid in your database
-     a. If txnid not found → reject (unknown transaction)
-     b. If order already marked as paid → return 200, do nothing
-     c. If order is pending → proceed with verification
-  4. Verify amount matches stored order amount
-  5. Update order status
-  6. Return HTTP 200
-  ```
-
-  Returning HTTP 200 even for duplicates prevents PayU from retrying delivery. Returning an error code causes PayU to retry, which can result in repeated duplicate notifications.
-</Accordion>
-
 ***
 
 ## Error Recovery UX
 
 {/* NEW CONTENT: Error recovery UX guidance by unmappedstatus value is not on any existing page. unmappedstatus values are only documented in the Payment Outcomes table in build-integration.md without UX guidance. */}
 
-<Accordion title="Show the right message for each failure type" icon="fa-triangle-exclamation">
-  The `unmappedstatus` field in the callback response tells you exactly why a payment failed. Use it to show customers a specific, actionable message rather than a generic "payment failed" error.
+<Accordion title="Show the Correct Message for Each Failure Type" icon="fa-triangle-exclamation">
+  The `unmappedstatus` field in the callback response tells you exactly why a payment failed. Use it to show customers a specific, actionable message rather than a generic **payment failed** error.
 
-  | `unmappedstatus` | What happened                                     | Recommended message                                                                      |
-  | ---------------- | ------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-  | `failed`         | Bank or card issuer declined the payment          | "Your payment was declined by your bank. Please try a different card or payment method." |
-  | `userCancelled`  | Customer clicked Back or cancelled the flow       | "Looks like you cancelled the payment. Ready to try again?"                              |
-  | `pending`        | NEFT/RTGS transfer initiated, awaiting settlement | "Your payment is being processed. We'll confirm your order once the transfer completes." |
+  | `unmappedstatus` | What happened                                     | Recommended message                                                                        |
+  | ---------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+  | `failed`         | Bank or card issuer declined the payment          | "Your payment was declined by your bank. Please try a different card or payment method."   |
+  | `userCancelled`  | Customer clicked Back or cancelled the flow       | "Looks like you cancelled the payment. Ready to try again?"                                |
+  | `pending`        | NEFT/RTGS transfer initiated, awaiting settlement | "Your payment is being processed. We will confirm your order once the transfer completes." |
 
   <Callout icon="⚠️" theme="warn">
-    **What not to do:**
+    ### **What Not to Do:**
 
-    - Do not show a generic "Something went wrong" message for all failures — it gives the customer no path forward.
-    - Do not tell the customer their card number is wrong unless you have confirmed this from the `error_Message` field — an incorrect message can erode trust.
-    - Do not mark the order as abandoned on `userCancelled` without giving the customer an easy retry path — this is the highest-recovery failure type.
+    - Do not show a generic "Something went wrong" message for all failures.
+    - Do not tell the customer their card number is wrong unless you have confirmed this from the `error_Message` field.
+    - Do not mark the order as abandoned on `userCancelled` without giving the customer an easy retry path.
   </Callout>
-</Accordion>
-
-<Accordion title="Surface the error_Message for actionable failures" icon="fa-message">
-  The `error_Message` field in the PayU response contains a human-readable description of what went wrong. For bank declines and card errors, this often provides enough context for the customer to take action.
-
-  **Pattern for using error_Message:**
-
-  - Log the raw `error_Message` for your support team (useful for diagnosing integration issues).
-  - For `unmappedstatus=failed`, you can surface a sanitised version of `error_Message` to the customer if it is actionable (e.g. "Transaction Failed at bank end" → prompt customer to retry or use a different method).
-  - Do not expose raw technical error codes (like `E308`) directly to customers — translate them into plain language.
-
-  Common response patterns:
-
-  | `error` | `error_Message`                   | What it means                                                     |
-  | ------- | --------------------------------- | ----------------------------------------------------------------- |
-  | `E000`  | `No Error`                        | Successful transaction                                            |
-  | `E227`  | `Transaction is Pending`          | NEFT/RTGS awaiting settlement                                     |
-  | `E308`  | `Transaction Failed at bank end.` | Bank-side decline — customer should retry with a different method |
-
-  For a complete list of error codes, see [Errors and Troubleshooting](./errors-and-troubleshooting).
 </Accordion>
 
 ***
