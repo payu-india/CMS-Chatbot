@@ -57,7 +57,7 @@ Use this guide to diagnose and fix common issues with your PayU Hosted Checkout 
 
 ## Invalid Hash
 
-**Symptoms:** PayU returns a hash validation error; the payment page displays "Invalid Hash" or rejects the request outright.
+PayU returns a hash validation error; the payment page displays "Invalid Hash" or rejects the request outright.
 
 **Common causes:**
 
