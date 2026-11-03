@@ -100,12 +100,12 @@ To apply these practices, your integration should already be built and tested:
   | Gujarati          | `Gujarati` |
   | Marathi           | `Marathi`  |
 
-  Set `display_lang` based on the customer's app/site language preference, not their browser locale — you know from their profile or selection what language they prefer.
+  Set `display_lang` based on the customer's app/site language preference, not their browser locale.
 
-  See [Customise PayU Hosted Checkout](./customise-payu-hosted-checkout) for the full `display_lang` reference and a visual preview.
+  See <Anchor target="_blank" href="https://docs.payu.in/docs/customise-payu-hosted-checkout">Customise PayU Hosted Checkout</Anchor> for the full `display_lang` reference and a visual preview.
 </Accordion>
 
-<Accordion title="Prevent duplicate form submissions with a loading state" icon="fa-spinner">
+<Accordion title="Prevent Duplicate Form Submissions With a Loading State" icon="fa-spinner">
   The HTML payment form auto-submits on page load using `onload="document.forms.payu.submit()"`. On slow connections, customers sometimes tap or click the submit button multiple times before the redirect happens, which can trigger multiple form submissions.
 
   Add a brief visual loading state after the form submits to prevent this:
@@ -151,10 +151,10 @@ To apply these practices, your integration should already be built and tested:
 
 {/* NEW CONTENT: txnid generation strategy and retry flow are not explained on any existing page beyond the brief "generate unique txnid" callout in build-integration.md. */}
 
-<Accordion title="Generate collision-proof transaction IDs" icon="fa-fingerprint">
+<Accordion title="Generate Collision-proof Transaction IDs" icon="fa-fingerprint">
   PayU requires a unique `txnid` for every payment attempt. If you submit a `txnid` that has already been used, PayU will reject the request or return the earlier transaction's status.
 
-  **Recommended approach:**
+  **Recommended Approach:**
 
   Generate a `txnid` by combining a prefix, the order or session identifier from your database, and a short random or timestamp component. This makes each ID unique, traceable back to a specific order, and human-readable in the PayU Dashboard.
 
@@ -166,18 +166,20 @@ To apply these practices, your integration should already be built and tested:
   Constraints to respect:
 
   - Maximum 25 characters
-  - Alphanumeric and hyphens — no spaces or special characters
-  - Store the `txnid` in your database **before** redirecting the customer, so you can reconcile it against the callback response
+  - Alphanumeric and hyphens. No spaces or special characters
+  - Store the `txnid` in your database before redirecting the customer, so you can reconcile it against the callback response
 
   <Callout icon="⚠️" theme="warn">
+    ### **Warning!**
+
     Do not use a customer's email address, phone number, or any personally identifiable information as the `txnid`. Use an internal order ID or a generated UUID.
   </Callout>
 </Accordion>
 
-<Accordion title="Design a safe payment retry flow" icon="fa-rotate-right">
-  When a payment fails and the customer wants to try again — with a different card or payment method — your system must generate a **new&#x20;**`txnid` for each attempt. Do not reuse the failed transaction's ID.
+<Accordion title="Design a Safe Payment Retry Flow" icon="fa-rotate-right">
+  When a payment fails and the customer wants to try again with a different card or payment method, your system must generate a ne&#x77;**&#x20;**`txnid` for each attempt. Do not reuse the failed transaction's ID.
 
-  **Safe retry pattern:**
+  **Safe Retry Pattern:**
 
   1. Customer arrives at the payment failure page after a `status=failure` response.
   2. Customer clicks "Try Again".
