@@ -152,24 +152,16 @@ Diagnose and fix common issues with your PayU Hosted Checkout integration. Find 
 </Accordion>
 
 <Accordion title="Duplicate Order Processing" icon="fa-clone">
-  <Callout icon="⚠️" theme="warn">
-    **Symptoms:** A single payment is processed twice — customer sees a double charge, or your order management marks the same transaction as paid more than once.
-  </Callout>
+  A single payment is processed twice. Customer sees a double charge, or your order management marks the same transaction as paid more than once.
 
-  **Common causes:**
+  **Common Error Causes:**
 
   - Callback arrives multiple times (PayU retries if your endpoint doesn't return 200)
   - Webhook and callback both processed without deduplication
   - Customer navigates back and re-submits the payment form
   - No idempotency check on `txnid`
 
-  **How to check:**
-
-  1. Confirm your callback handler returns HTTP 200 promptly — PayU retries callbacks that don't receive 200.
-  2. Check if the same `txnid` is appearing in your database multiple times.
-  3. Check whether both your callback handler and webhook handler are processing the same transaction independently.
-
-  **Fix:**
+  **Recommended Fix:**
 
   - Implement idempotency: check if the `txnid` has already been processed before updating order status.
   - Use a database unique constraint on `txnid` (or a state machine that ignores updates if the order is already in a terminal state).
