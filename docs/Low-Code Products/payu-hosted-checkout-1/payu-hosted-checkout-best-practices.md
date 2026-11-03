@@ -262,15 +262,15 @@ To apply these practices, your integration should already be built and tested:
 ## Next Steps
 
 <Cards columns="3">
-  <Card title="Customise Checkout" href="./customise-payu-hosted-checkout" icon="fa-sliders">
+  <Card title="Customise Checkout" href="https://docs.payu.in/docs/customise-payu-hosted-checkout" icon="fa-sliders" target="_blank">
     Control payment methods, set checkout language, and enable BNPL/EMI.
   </Card>
 
-  <Card title="Errors and Troubleshooting" href="./errors-and-troubleshooting" icon="fa-circle-xmark">
+  <Card title="Errors and Troubleshooting" href="https://docs.payu.in/docs/payu-hosted-errors-troubleshooting" icon="fa-circle-xmark" target="_blank">
     Full error code reference and solutions for common integration issues.
   </Card>
 
-  <Card title="PayU Hosted Checkout APIs" href="./payu-hosted-checkout-apis" icon="fa-rectangle-api">
+  <Card title="PayU Hosted Checkout APIs" href="https://docs.payu.in/reference/_payment_payu_hosted_checkout" icon="fa-rectangle-api" target="_blank">
     Collect Payment, Verify Payment, and Webhooks API reference.
   </Card>
 </Cards>
