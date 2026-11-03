@@ -4,7 +4,7 @@ excerpt: >-
   Apply normal or dynamic convenience fees on Standing Instruction recurring
   card transactions across Registration, Pre-Debit, and Recurring phases.
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   robots: index
 ---
