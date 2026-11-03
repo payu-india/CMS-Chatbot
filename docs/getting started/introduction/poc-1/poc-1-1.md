@@ -6,9 +6,6 @@ metadata:
   robots: index
 ---
 <HTMLBlock>{`
-<!-- ============================================================
-     PayU AI Prompt Component  |  ReadMe CMS Custom HTML Block
-     ============================================================ -->
 <textarea id="payu-aip-src" style="display:none;" aria-hidden="true" tabindex="-1">
 ---
 name: payu-hosted-checkout
@@ -360,133 +357,35 @@ Begin integration now.
 </textarea>
 
 <style>
-.payu-aip-wrap {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    margin: 16px 0;
-}
-.payu-aip-btn-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    align-items: center;
-}
-.payu-aip-btn {
-    background-color: #4CAF50;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 1.4;
-    transition: background-color 0.15s, box-shadow 0.15s;
-}
-.payu-aip-btn:hover {
-    background-color: #43a047;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.18);
-}
-.payu-aip-btn:active { background-color: #388e3c; }
-.payu-aip-btn:focus-visible {
-    outline: 2px solid #4CAF50;
-    outline-offset: 3px;
-}
-.payu-aip-status {
-    font-size: 13px;
-    font-weight: 600;
-    color: #388e3c;
-    min-height: 20px;
-    line-height: 20px;
-}
-.payu-aip-panel {
-    display: none;
-    margin-top: 12px;
-    border: 1px solid #d8dde6;
-    border-radius: 6px;
-    background-color: #f7f8fa;
-    padding: 16px 20px;
-    max-height: 460px;
-    overflow-y: auto;
-}
-.payu-aip-panel.payu-aip-open { display: block; }
-.payu-aip-panel pre {
-    margin: 0;
-    white-space: pre-wrap;
-    word-break: break-word;
-    font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
-    font-size: 13px;
-    line-height: 1.65;
-    color: #2d3748;
-    user-select: text;
-    -webkit-user-select: text;
-}
+.payu-aip-wrap{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;margin:16px 0}
+.payu-aip-btn-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.payu-aip-btn{background-color:#4CAF50;color:#fff;padding:10px 20px;border:none;border-radius:5px;cursor:pointer;font-weight:bold;font-size:14px;line-height:1.4;transition:background-color .15s,box-shadow .15s}
+.payu-aip-btn:hover{background-color:#43a047;box-shadow:0 2px 6px rgba(0,0,0,.18)}
+.payu-aip-btn:active{background-color:#388e3c}
+.payu-aip-btn:focus-visible{outline:2px solid #4CAF50;outline-offset:3px}
+.payu-aip-status{font-size:13px;font-weight:600;color:#388e3c;min-height:20px;line-height:20px}
+.payu-aip-panel{display:none;margin-top:12px;border:1px solid #d8dde6;border-radius:6px;background-color:#f7f8fa;padding:16px 20px;max-height:460px;overflow-y:auto}
+.payu-aip-panel.payu-aip-open{display:block}
+.payu-aip-panel pre{margin:0;white-space:pre-wrap;word-break:break-word;font-family:'SFMono-Regular','Consolas','Liberation Mono',monospace;font-size:13px;line-height:1.65;color:#2d3748;user-select:text;-webkit-user-select:text}
 </style>
 
 <div class="payu-aip-wrap">
-    <div class="payu-aip-btn-row">
-        <button class="payu-aip-btn" id="payu-aip-copy">Copy AI Prompt</button>
-        <button class="payu-aip-btn" id="payu-aip-view">View AI Prompt</button>
-        <span class="payu-aip-status" id="payu-aip-status" role="status" aria-live="polite"></span>
-    </div>
-    <div class="payu-aip-panel" id="payu-aip-panel" aria-hidden="true">
-        <pre id="payu-aip-text"></pre>
-    </div>
+  <div class="payu-aip-btn-row">
+
+    <button class="payu-aip-btn" id="payu-aip-copy"
+      onclick="(function(){var e=document.getElementById('payu-aip-src'),p=e?e.value.trim():'',s=document.getElementById('payu-aip-status');function sh(m){if(s){clearTimeout(s._t);s.textContent=m;s._t=setTimeout(function(){s.textContent='';},3000);}}if(!p){sh('No prompt found.');return;}function lg(){var a=document.createElement('textarea');a.value=p;a.setAttribute('readonly','');a.style.cssText='position:fixed;top:-9999px;left:-9999px;opacity:0;';document.body.appendChild(a);a.select();a.setSelectionRange(0,p.length);var ok=false;try{ok=document.execCommand('copy');}catch(x){}document.body.removeChild(a);sh(ok?'Prompt copied!':'Copy failed — select text manually.');}if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(p).then(function(){sh('Prompt copied!');}).catch(lg);}else{lg();}})()"
+    >Copy AI Prompt</button>
+
+    <button class="payu-aip-btn" id="payu-aip-view"
+      onclick="(function(){var panel=document.getElementById('payu-aip-panel'),btn=document.getElementById('payu-aip-view'),pre=document.getElementById('payu-aip-text');if(!panel||!btn||!pre)return;if(!pre.textContent){var src=document.getElementById('payu-aip-src');if(src)pre.textContent=src.value.trim();}var open=panel.classList.contains('payu-aip-open');if(open){panel.classList.remove('payu-aip-open');panel.setAttribute('aria-hidden','true');btn.textContent='View AI Prompt';}else{panel.classList.add('payu-aip-open');panel.setAttribute('aria-hidden','false');btn.textContent='Hide AI Prompt';}})()"
+    >View AI Prompt</button>
+
+    <span class="payu-aip-status" id="payu-aip-status" role="status" aria-live="polite"></span>
+  </div>
+  <div class="payu-aip-panel" id="payu-aip-panel" aria-hidden="true">
+    <pre id="payu-aip-text"></pre>
+  </div>
 </div>
-
-<script>
-(function () {
-    var srcEl    = document.getElementById('payu-aip-src');
-    var PROMPT   = srcEl ? srcEl.value.trim() : '';
-    var copyBtn  = document.getElementById('payu-aip-copy');
-    var viewBtn  = document.getElementById('payu-aip-view');
-    var statusEl = document.getElementById('payu-aip-status');
-    var panel    = document.getElementById('payu-aip-panel');
-    var textEl   = document.getElementById('payu-aip-text');
-
-    if (!copyBtn || !viewBtn || !statusEl || !panel || !textEl) { return; }
-
-    textEl.textContent = PROMPT;
-
-    copyBtn.addEventListener('click', function () {
-        if (!PROMPT) { showStatus('No prompt found.'); return; }
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(PROMPT)
-                .then(function () { showStatus('Prompt copied!'); })
-                .catch(function () { legacyCopy(); });
-        } else {
-            legacyCopy();
-        }
-    });
-
-    function legacyCopy() {
-        var ta = document.createElement('textarea');
-        ta.value = PROMPT;
-        ta.setAttribute('readonly', '');
-        ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;';
-        document.body.appendChild(ta);
-        ta.select();
-        ta.setSelectionRange(0, ta.value.length);
-        var ok = false;
-        try { ok = document.execCommand('copy'); } catch (e) {}
-        document.body.removeChild(ta);
-        showStatus(ok ? 'Prompt copied!' : 'Copy failed — select and copy manually.');
-    }
-
-    var statusTimer;
-    function showStatus(msg) {
-        clearTimeout(statusTimer);
-        statusEl.textContent = msg;
-        statusTimer = setTimeout(function () { statusEl.textContent = ''; }, 3000);
-    }
-
-    viewBtn.addEventListener('click', function () {
-        var isOpen = panel.classList.contains('payu-aip-open');
-        panel.classList.toggle('payu-aip-open', !isOpen);
-        panel.setAttribute('aria-hidden', isOpen ? 'true' : 'false');
-        viewBtn.textContent = isOpen ? 'View AI Prompt' : 'Hide AI Prompt';
-    });
-})();
-</script>
 `}</HTMLBlock>
 
 <br />
