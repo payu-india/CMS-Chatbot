@@ -42,14 +42,7 @@ next:
       title: PayU Hosted Checkout WebView Integration
       type: basic
 ---
-<Banner
-  isInline={true}
-  message="Integration effort: Minimal technical setup required"
-  color="#FFC107"
-  textColor="#ffffff"
-  fontSize="14px"
-  fontWeight="bold"
- />
+
 
 Diagnose and fix common issues with your PayU Hosted Checkout integration. Find common integration errors, understand their causes, and follow the recommended solutions to resolve them.
 
