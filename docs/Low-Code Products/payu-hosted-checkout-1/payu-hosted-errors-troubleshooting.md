@@ -194,22 +194,6 @@ Diagnose and fix common issues with your PayU Hosted Checkout integration. Find 
 
 ## Still Having Issues?
 
-If the issue is not covered above, use these resources to dig further or get help:
+If the issue persists, reach out to [PayU Support](https://support.payu.in/) with your `txnid` and the hash string you generated. This helps the support team locate the transaction and identify the exact failure point.
 
-<Cards columns="3">
-  <Card title="FAQs" href="./faqs" icon="fa-circle-question">
-    Answers to common questions about PayU Hosted Checkout behaviour and configuration.
-  </Card>
-
-  <Card title="Build Integration" href="./integrate/build-integration" icon="fa-code">
-    Review the correct parameter sequence, hash formulas, and response handling steps.
-  </Card>
-
-  <Card title="PayU Hosted Checkout APIs" href="./payu-hosted-checkout-apis" icon="fa-rectangle-api">
-    Full API reference: Collect Payment, Verify Payment, and Webhooks.
-  </Card>
-</Cards>
-
-<Callout icon="📘" theme="info">
-  **Contact PayU Support** — If the issue persists, reach out to [PayU Support](https://support.payu.in/) with your `txnid` and the hash string you generated. This helps the support team locate the transaction and identify the exact failure point.
-</Callout>
+<br />
