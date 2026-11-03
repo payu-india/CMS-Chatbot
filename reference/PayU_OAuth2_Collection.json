@@ -22,7 +22,7 @@
   "paths": {
     "/oauth/token": {
       "post": {
-        "summary": "Get Access Token",
+        "summary": "Get Access Token API",
         "description": "Obtain an access token using OAuth 2.0 Client Credentials flow for API authentication",
         "operationId": "getAccessToken",
         "tags": [
