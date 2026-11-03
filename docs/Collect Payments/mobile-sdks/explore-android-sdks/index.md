@@ -56,138 +56,16 @@ If you need a quick and easy way to integrate a payment interface into your app,
 
 Here is a comparison table that summarizes the key features of the different SDKs:
 
-<Table align={["left","left","left"]}>
-  <thead>
-    <tr>
-      <th>
-        SDK
-      </th>
-
-      <th>
-        Features
-      </th>
-
-      <th>
-        Use Case
-      </th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>
-        [Android CheckoutPro SDK](doc:android-checkoutpro-sdk)
-      </td>
-
-      <td>
-        Complete ready-to-use native checkout UI allows you to get started quickly with minimal effort. This SDK is a great choice for small and medium sized businesses that operates on limited tech resource.
-      </td>
-
-      <td>
-        | **Low Effort Integration**, | **Non-Seamless Checkout** | **Limited Tech** | **Resource** |
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Android Core SDK](doc:android-core-sdk)
-      </td>
-
-      <td>
-        Create your own UI for the payment flow by leveraging various methods exposed in the Core SDK. This SDK is more suitable for larger enterprises that can allocate dedicated engineering resource to develop customised payment flow.
-      </td>
-
-      <td>
-        | **Seamless Checkout** | **Medium Effort** |  **Enterprise Businesses** |
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Android UPI SDK](doc:android-upi-sdk)
-      </td>
-
-      <td>
-        This SDK best suited for creating a custom payment UI for UPI only checkout.
-      </td>
-
-      <td>
-        * _Low Effort Integration_*|
-          **UPI Checkout**
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [PhonePe SDK](https://docs.payu.in/docs/android-phonepe-sdk)
-      </td>
-
-      <td>
-        Allows you to integrate PhonePe payments into your Android app.
-      </td>
-
-      <td>
-        **Low Effort Integration** | **PhonePe InApp Support**
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Google Pay SDK](doc:android-google-pay-sdk)
-      </td>
-
-      <td>
-        Allows you to integrate Gpay payments into your Android app.
-      </td>
-
-      <td>
-        **Low Effort Integration** | **Gpay InApp Support**
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Android Ola Money SDK](doc:ola-money-sdk)
-      </td>
-
-      <td>
-        Allows you to integrate OlaMoney payments into your Android app.
-      </td>
-
-      <td>
-        **Low Effort Integration**|**OlaMoney Checkout**
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Android Native OTP Assist SDK](doc:native-otp-assist-sdk)
-      </td>
-
-      <td>
-        Allows you to capture OTP (One Time Password) directly from your Android app without redirecting the user to the bank's 3D secure page.
-      </td>
-
-      <td>
-        **Native OTP Support**| **Low Effort Integration**
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        [Android 3DS 2.0 SDK](https://docs.payu.in/docs/android-3ds20-sdk)
-      </td>
-
-      <td>
-        Power native experience on the new 3DS 2.0 protocol for card transactions.
-      </td>
-
-      <td>
-        **3DS 2.0 Support**| **Low Effort Integration**
-      </td>
-    </tr>
-  </tbody>
-</Table>
+| SDK                                                                | Features                                                                                                                                                                                                                             | Use Case                                                                                           |
+| :----------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------- |
+| [Android CheckoutPro SDK](doc:android-checkoutpro-sdk)             | Complete ready-to-use native checkout UI allows you to get started quickly with minimal effort. This SDK is a great choice for small and medium sized businesses that operates on limited tech resource.                             | \| **Low Effort Integration**, \| **Non-Seamless Checkout** \| **Limited Tech** \| **Resource** \| |
+| [Android Core SDK](doc:android-core-sdk)                           | Create your own UI for the payment flow by leveraging various methods exposed in the Core SDK. This SDK is more suitable for larger enterprises that can allocate dedicated engineering resource to develop customised payment flow. | \| **Seamless Checkout** \| **Medium Effort** \|  **Enterprise Businesses** \|                     |
+| [Android UPI SDK](doc:android-upi-sdk)                             | This SDK best suited for creating a custom payment UI for UPI only checkout.                                                                                                                                                         | **Low Effort Integration&#x20;**\| <br />**UPI Checkout**                                          |
+| [PhonePe SDK](https://docs.payu.in/docs/android-phonepe-sdk)       | Allows you to integrate PhonePe payments into your Android app.                                                                                                                                                                      | **Low Effort Integration** \| **PhonePe InApp Support**                                            |
+| [Google Pay SDK](doc:android-google-pay-sdk)                       | Allows you to integrate Gpay payments into your Android app.                                                                                                                                                                         | **Low Effort Integration** \| **Gpay InApp Support**                                               |
+| [Android Ola Money SDK](doc:ola-money-sdk)                         | Allows you to integrate OlaMoney payments into your Android app.                                                                                                                                                                     | **Low Effort Integration**\|**OlaMoney Checkout**                                                  |
+| [Android Native OTP Assist SDK](doc:native-otp-assist-sdk)         | Allows you to capture OTP (One Time Password) directly from your Android app without redirecting the user to the bank's 3D secure page.                                                                                              | **Native OTP Support**\| **Low Effort Integration**                                                |
+| [Android 3DS 2.0 SDK](https://docs.payu.in/docs/android-3ds20-sdk) | Power native experience on the new 3DS 2.0 protocol for card transactions.                                                                                                                                                           | **3DS 2.0 Support**\| **Low Effort Integration**                                                   |
 
 ## Size of SDK
 
@@ -202,5 +80,3 @@ Here is a comparison table that summarizes the key features of the different SDK
 | [OlaMoney SDK](https://docs.payu.in/docs/ola-money-sdk)              | 1.3.14             | 47KB     |
 | [Native OTP SDK](https://docs.payu.in/docs/native-otp-assist-sdk)    | 1.6.5              | 194Kb    |
 | [3DS 2.0 SDK](https://docs.payu.in/docs/android-3ds20-sdk)           | 2.0.2              | 80KB     |
-
-<br />
