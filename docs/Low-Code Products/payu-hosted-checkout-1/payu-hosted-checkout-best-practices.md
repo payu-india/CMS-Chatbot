@@ -215,19 +215,21 @@ To apply these practices, your integration should already be built and tested:
 
 {/* NEW CONTENT: Proactive callback verification approach is not described on any existing page. The Verify Payment API is mentioned in build-integration.md Step 1.5 but without guidance on when/how to use it as a fallback. */}
 
-<Accordion title="Proactively verify status when the callback doesn't arrive" icon="fa-satellite-dish">
+<Accordion title="Proactively Verify Status When the Callback Does Not Arrive" icon="fa-satellite-dish">
   Browser-based callbacks to `surl` and `furl` depend on the customer's browser session staying active through the redirect. Callbacks can fail to arrive if the customer closes the browser tab, loses network connectivity, or navigates away during the redirect.
 
-  **If a callback does not arrive within a reasonable window (e.g. 5–10 minutes after the customer was redirected to PayU):**
+  **If a callback does not arrive on time (e.g. 5–10 minutes after the customer was redirected to PayU):**
 
   1. Query the [Verify Payment API](ref:verify_payment_api) from your server using the `txnid`.
   2. Use the API response to determine the final payment status.
   3. Update your order status based on the verified result.
 
-  This is particularly important for orders where the customer's session may have dropped — for example, mobile browsers on unstable connections.
+  This is particularly important for orders where the customer's session may have dropped due to mobile browsers on unstable connections.
 
   <Callout icon="📘" theme="info">
-    Webhooks are a more reliable alternative to browser callbacks because they are server-to-server and not dependent on the customer's browser. Configure webhooks in PayU Dashboard → Developer Settings → Webhooks. See the [Go-live Checklist](./integrate/go-live-checklist) for setup steps.
+    ### **Tips:**
+
+    Webhooks are a more reliable alternative to browser callbacks because they are server-to-server and not dependent on the customer's browser. Configure webhooks in **PayU Dashboard** → **Developer** → **Webhooks**. See the <Anchor target="_blank" href="https://docs.payu.in/docs/manage-webhooks-using-dashboard">Manage Webhooks</Anchor> for setup steps.
   </Callout>
 </Accordion>
 
