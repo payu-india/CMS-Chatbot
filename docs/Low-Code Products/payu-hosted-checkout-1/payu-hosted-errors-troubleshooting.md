@@ -120,7 +120,6 @@ Diagnose and fix common issues with your PayU Hosted Checkout integration. Find 
   - Use a publicly reachable HTTPS endpoint. During testing, use `https://test-payment-middleware.payu.in/simulatorResponse` as a temporary callback URL.
   - Do not use localhost, 127.0.0.1, or private/VPN-only addresses for `surl` / `furl`.
   - Ensure your endpoint returns HTTP 200 after processing the callback.
-  - If using tools like ngrok for local testing, ensure the tunnel is active.
 
   <Callout icon="📘" theme="info">
     ### **Webhook as a Backup**
@@ -130,11 +129,9 @@ Diagnose and fix common issues with your PayU Hosted Checkout integration. Find 
 </Accordion>
 
 <Accordion title="Reverse Hash Mismatch" icon="fa-shield-halved">
-  <Callout icon="⚠️" theme="warn">
-    **Symptoms:** Your server computes a reverse hash but it does not match the `hash` field in PayU's response. You reject the callback.
-  </Callout>
+  Your server computes a reverse hash but it does not match the `hash` field in PayU's response. You reject the callback.
 
-  **Common causes:**
+  **Common Error Causes:**
 
   - Using the forward hash formula instead of the reverse hash formula
   - Wrong parameter order in the reverse hash string
@@ -142,20 +139,16 @@ Diagnose and fix common issues with your PayU Hosted Checkout integration. Find 
   - Wrong salt
   - Extra whitespace in response values
 
-  **How to check:**
-
-  1. Confirm you are using the reverse hash formula, not the forward hash: `sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)`
-  2. Note the UDF order: reverse hash uses **udf5 to udf1** (opposite of the forward hash).
-  3. Print the exact string before hashing and compare field by field against the response values.
-  4. Verify the salt value is your merchant salt, not the key.
-  5. Use the [PayU Hash Verification Tool](https://payu-hashverificationtool.onrender.com/) to validate.
-
-  **Fix:**
+  **Recommended Fix:**
 
   - Use the correct reverse hash formula.
-  - Include all response fields in the exact sequence: `SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key`
+  - Include all response fields in the below sequence:&#x20;
+    ```text Reverese Hash String
+    SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key
+    ```
   - Ensure empty UDF placeholders are preserved (six consecutive pipes: `||||||`).
   - Use the exact value of `status` from the response (e.g. `success`, `failure`, `pending`).
+  - Use the [PayU Hash Verification Tool](https://payu-hashverificationtool.onrender.com/) to validate.
 </Accordion>
 
 <Accordion title="Duplicate Order Processing" icon="fa-clone">
