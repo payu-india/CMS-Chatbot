@@ -1,9 +1,46 @@
 ---
-title: FAQs
+title: FAQs (Frequently Asked Questions)
+excerpt: >-
+  Frequently asked questions about PayU Hosted Checkout: setup, hash  
+  generation, checkout experience, callbacks, webhooks, and production go-live.
 deprecated: false
 hidden: true
 metadata:
+  title: PayU Hosted Checkout FAQs
+  description: >-
+    Frequently asked questions about PayU Hosted Checkout: prerequisites,
+    surl/furl, hash generation, reverse hash, callbacks vs webhooks, duplicate
+    processing, and production readiness.
+  keywords:
+    - payu hosted checkout faq
+    - payu hosted checkout frequently asked questions
+    - payu integration questions answers india
+    - payu hash generation faq sha512
+    - payu webhook vs callback difference
+    - payu surl furl explained
+    - payu pci compliance hosted checkout
   robots: index
+next:
+  description: Explore related information and resources.
+  pages:
+    - slug: payu-hosted-checkout-1
+      title: PayU Hosted Checkout
+      type: basic
+    - slug: payu-hosted-checkout-quick-start
+      title: Quick Start
+      type: basic
+    - slug: integrate-payu-hosted-checkout
+      title: Integrate PayU Hosted Checkout
+      type: basic
+    - slug: customise-payu-hosted-checkout
+      title: Customise PayU Hosted Checkout
+      type: basic
+    - slug: payu-hosted-checkout-webview-integration
+      title: PayU Hosted Checkout WebView Integration
+      type: basic
+    - slug: payu-hosted-checkout-best-practices
+      title: Best Practices
+      type: basic
 ---
 ## Getting Started
 
