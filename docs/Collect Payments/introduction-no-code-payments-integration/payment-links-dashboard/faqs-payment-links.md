@@ -55,11 +55,11 @@ PayU’s payment links are secure and compliant with the Payment Card Industry D
 
 * **What is the Get Token API, and how does it work?**
 
-The **Get Token** API is used to retrieve a payment token for a customer, which can be used to initiate a payment using payment links. The API generates a unique token for each customer and returns it to the merchant. The merchant can then use this token to create payment links for the customer. For more information, refer to [Get Token API - Payment Links](ref:get-token-api-for-payment-links).
+The **Get Token** API is used to retrieve a payment token for a customer, which can be used to initiate a payment using payment links. The API generates a unique token for each customer and returns it to the merchant. The merchant can then use this token to create payment links for the customer. For more information, refer to [Get Access Token](ref:get-token-api-for-payment-links).
 
 * **What are the parameters required to use the Get Token API?**
 
-To use the **Get Token** API, you need to provide the client ID & secret, grant type, and scope. For more information, refer to  [Get Token API - Payment Links](ref:get-token-api-for-payment-links).
+To use the **Get Token** API, you need to provide the client ID & secret, grant type, and scope. For more information, refer to  [Get Access Token](ref:get-token-api-for-payment-links).
 
 * **How is the payment token generated, and what is its validity?**
 
