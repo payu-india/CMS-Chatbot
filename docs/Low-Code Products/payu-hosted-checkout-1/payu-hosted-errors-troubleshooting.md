@@ -86,11 +86,9 @@ Diagnose and fix common issues with your PayU Hosted Checkout integration. Find 
 </Accordion>
 
 <Accordion title="Payment Page Not Loading" icon="fa-display">
-  <Callout icon="⚠️" theme="warn">
-    **Symptoms:** The browser redirects but the PayU checkout page does not appear, shows a blank screen, or returns an error page.
-  </Callout>
+  The browser redirects but the PayU checkout page does not appear, shows a blank screen, or returns an error page.
 
-  **Common causes:**
+  **Common Error Causes:**
 
   - Form uses `method="get"` instead of `method="post"`
   - Wrong endpoint URL (for example, using the production URL in test, or vice versa)
