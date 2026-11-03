@@ -1,5 +1,5 @@
 ---
-title: Copy of Integrate PayU Hosted Checkout with AI
+title: Integrate PayU Hosted Checkout with AI - Button
 excerpt: >-
   Integrate PayU Hosted Checkout (web redirect) into your Java, Node.js, PHP, or
   Python backend in one prompt. An AI coding skill that fetches live PayU docs,
@@ -26,6 +26,8 @@ Copy the full prompt below and save it as `.claude/commands/payu-hosted-checkout
 <Callout icon="📋" theme="info">
   The prompt is self-contained. Do not modify the GUARDRAILS or CREDENTIALS sections — they enforce the security properties described above. You can safely customise the OPERATION ORDER or add project-specific notes at the bottom.
 </Callout>
+
+<br />
 
 ````markdown
 ---
