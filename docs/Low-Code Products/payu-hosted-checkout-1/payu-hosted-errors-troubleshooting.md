@@ -169,20 +169,13 @@ Diagnose and fix common issues with your PayU Hosted Checkout integration. Find 
 </Accordion>
 
 <Accordion title="Amount Mismatch" icon="fa-receipt">
-  <Callout icon="⚠️" theme="warn">
-    **Symptoms:** The `amount` in PayU's response does not match the amount in your original order.
-  </Callout>
+  The `amount` in PayU's response does not match the amount in your original order.
 
-  **Common causes:**
+  **Common Error Causes:**
 
   - Discount or promotion applied at the PayU level (rare)
   - Amount rounded or formatted differently in your system vs what you sent to PayU
   - Incorrect amount used when computing the hash (hash was generated with a different amount than the form field)
-
-  **How to check:**
-
-  1. Compare the response `amount` with the value stored in your database for this `txnid`.
-  2. Confirm the amount in the hash string exactly matches the `amount` form field — both should be the same string (e.g. `499.00`).
 
   **Fix:**
 
@@ -194,6 +187,6 @@ Diagnose and fix common issues with your PayU Hosted Checkout integration. Find 
 
 ## Still Having Issues?
 
-If the issue persists, reach out to [PayU Support](https://support.payu.in/) with your `txnid` and the hash string you generated. This helps the support team locate the transaction and identify the exact failure point.
+If the issue persists, reach out to <Anchor target="_blank" href="https://help.payu.in/raise-ticket">PayU Support</Anchor> with your `txnid` and the hash string you generated. This helps the support team locate the transaction and identify the exact failure point.
 
 <br />
