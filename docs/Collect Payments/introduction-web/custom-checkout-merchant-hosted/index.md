@@ -25,6 +25,33 @@ metadata:
 next:
   description: ''
 ---
+---
+title: Merchant Hosted Checkout
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: Custom Checkout Integration
+  description: >-
+    Integrate Merchant Hosted Checkout with PayU to redirect customers to a
+    secure, prebuilt payment page. Accept UPI, cards, net banking, and wallets
+    with SHA-512 hash, surl/furl callbacks, and test-to-production go-live steps
+    for India merchants.
+  keywords:
+    - payu hosted checkout integration guide india
+    - prebuilt payment page redirect checkout payu
+    - payment gateway hosted checkout api _payment payu
+    - payu web checkout sha512 hash surl furl integration
+    - online payment collection website checkout payu india
+    - payu hosted checkout test sandbox go live checklist
+    - razorpay cashfree alternative payu hosted checkout india
+    - payment gateway integration for websites payu hosted
+    - payu collect payment api hosted checkout developer guide
+    - accept upi cards netbanking wallet hosted checkout payu
+  robots: index
+next:
+  description: ''
+---
 This part of the documentation provides a comprehensive overview of integrating PayU’s Merchant Hosted Checkout solution for collecting payments on your website or application. This guide is designed for developers with varying levels of experience, from those new to payment gateways to seasoned API integrators.
 
 ```php
@@ -457,7 +484,7 @@ PayU uses a hashing mechanism to ensure the security and integrity of API reques
 
 #### Sample Code
 
-```javascript
+```python
 import hashlib 
  
 def generate_hash(key, txnid, amount, productinfo, firstname, email, salt): 
