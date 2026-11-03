@@ -51,37 +51,37 @@ next:
   fontWeight="bold"
  />
 
-Diagnose and fix common issues with your PayU Hosted Checkout integration. These are the errors you may get&#x20;
+Diagnose and fix common issues with your PayU Hosted Checkout integration. Find common integration errors, understand their causes, and follow the recommended solutions to resolve them.
 
 ***
 
 <Accordion title="Invalid Hash" icon="fa-key">
-  <Callout icon="⚠️" theme="warn">
-    **Symptoms:** PayU returns a hash validation error; the payment page displays "Invalid Hash" or rejects the request outright.
-  </Callout>
+  PayU returns a hash validation error; the payment page displays "Invalid Hash" or rejects the request outright.
 
-  **Common causes:**
+  **Common Error Causes:**
 
   - Wrong parameter order in the hash string
-  - Missing pipe (`|`) separators — especially for unused UDF fields
+  - Missing pipe (`|`) separators, especially for unused UDF fields
   - Incorrect salt (test salt used in production, or vice versa)
   - Extra spaces before or after any parameter value
   - Using SHA-256 or MD5 instead of SHA-512
 
-  **How to check:**
+  **How to Check:**
 
   1. Print the exact string you pass to the hash function on your server before hashing.
-  2. Verify the order exactly matches: `key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT`
+  2. Verify the order exactly matches:&#x20;
+     ```text Hash String
+     key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT
+     ```
   3. If UDF fields are empty, they must still appear as empty strings: `...email|||||||||||SALT` (five empty UDF positions + 6 empty trailing pipes before SALT).
-  4. Verify the salt value from your PayU Dashboard → Developer Settings matches what you're using.
-  5. Use the [PayU Hash Verification Tool](https://payu-hashverificationtool.onrender.com/) to validate your hash string independently.
+  4. Verify the salt value from your **PayU Dashboard** → **Developer** →  **API Keys** matches what you're using.
 
-  **Fix:**
+  **Recommended Fix:**
 
   - Correct the parameter order and pipe separators.
   - Remove all leading/trailing spaces from parameter values.
   - Confirm you are using the correct environment salt (test vs production).
-  - Generate the hash using SHA-512, not SHA-256.
+  - Generate the hash using SHA-512 and not SHA-256.
   - Never generate the hash client-side.
 </Accordion>
 
