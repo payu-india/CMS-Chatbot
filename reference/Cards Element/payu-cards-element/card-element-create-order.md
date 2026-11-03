@@ -1,5 +1,5 @@
 ---
-title: Card Element - Create Order
+title: Cards Element - Create Order
 deprecated: false
 hidden: true
 metadata:
