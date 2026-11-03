@@ -23,6 +23,22 @@ metadata:
   title: Collect Payments with UPI - Merchant Hosted Checkout
   description: >-
     Learn how to seamlessly collect payments through UPI transactions using
+    PayU's Merchant Hosted Checkout integration. Discover the steps to validate
+    the customer's Virtual Payment Address (VPA), initiate payments, and verify
+    the payment status.
+  robots: index
+next:
+  description: ''
+---
+---
+title: UPI Collect Integration
+excerpt: ''
+deprecated: false
+hidden: false
+metadata:
+  title: Collect Payments with UPI - Merchant Hosted Checkout
+  description: >-
+    Learn how to seamlessly collect payments through UPI transactions using
     PayU\'s Merchant Hosted Checkout integration.
   robots: index
 next:
@@ -37,11 +53,12 @@ This section describes how UPI Collect should be integrated on your checkout. **
 
   Experience the end-to-end **Merchant Hosted Checkout** > **UPI** flow and instantly generate the complete code for seamless, zero-coding integration into your website.
 
-  <HTMLBlock>{`
-                      <button onclick="window.open(\'https://payu.in/integrationlab/seamless/sm-upiflow\', \'_blank\')" class="tooltip-btn">
-                          Experience the flow and get the code
-                      </button>
-  `}</HTMLBlock>
+  <Button 
+  href="https://payu.in/integrationlab/seamless/sm-upiflow" 
+  target="_blank"
+>
+  Experience the flow and get the code
+</Button>
 </Callout>
 
 **Steps to Integrate:**
