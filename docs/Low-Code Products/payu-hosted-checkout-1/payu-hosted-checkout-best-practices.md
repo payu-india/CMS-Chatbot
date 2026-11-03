@@ -182,21 +182,10 @@ To apply these practices, your integration should already be built and tested:
   **Safe Retry Pattern:**
 
   1. Customer arrives at the payment failure page after a `status=failure` response.
-  2. Customer clicks "Try Again".
+  2. Customer clicks **Try Again**.
   3. Your server creates a new payment attempt record in your database with a new unique `txnid` (linked to the same order).
   4. Your server generates a new hash using the new `txnid`.
   5. Your server renders a new HTML form with the new `txnid` and new hash and redirects the customer.
-
-  **Database model to support retries:**
-
-  ```
-  Order
-    └── PaymentAttempt (1 per retry)
-          txnid          (unique per attempt)
-          status         (pending / success / failure)
-          payu_mihpayid  (from PayU response)
-          created_at
-  ```
 
   Mark the order as paid only when one of its `PaymentAttempt` records receives `status=success` with a valid reverse hash.
 </Accordion>
@@ -207,32 +196,17 @@ To apply these practices, your integration should already be built and tested:
 
 {/* NEW CONTENT: Guidance on NEFT/RTGS pending UX and when to confirm orders is absent from all existing pages — only the status/unmappedstatus values are documented. */}
 
-<Accordion title="Treat NEFT/RTGS pending status correctly" icon="fa-clock">
-  NEFT and RTGS payments always return `status=pending` in the initial callback to your `surl`. This is expected — the bank has not yet settled the funds.
+<Accordion title="Treat NEFT/RTGS Pending Status Correctly" icon="fa-clock">
+  NEFT and RTGS payments always return `status=pending` in the initial callback to your `surl`. This is expected as the bank might have not yet settled the funds.
 
-  **What to do when you receive&#x20;**`status=pending`**:**
+  **What to Do When You Receive&#x20;**`status=pending` :
 
-  <Callout icon="⚠️" theme="warn">
-    **Do not mark the order as paid** — the payment has not been confirmed yet.
+  - Do not mark the order as paid as the payment has not been confirmed yet.
+  - Do not mark the order as failed as the payment is still in progress and may complete successfully
 
-    **Do not mark the order as failed** — the payment is still in progress and may complete successfully.
-  </Callout>
-
-  - Show the customer a "Payment Pending" confirmation page that explains the timeline (NEFT: same day to next business day; RTGS: typically same day).
-  - Store the `txnid` and `mihpayid` in your database against the order with a `pending` status.
-  - Wait for the final status via webhook. When the webhook arrives with `status=success`, mark the order as paid and trigger fulfilment. If the webhook arrives with `status=failure`, mark the order as failed.
-
-  **Sample&#x20;**`status=pending`**&#x20;response fields:**
-
-  ```
-  status=pending
-  unmappedstatus=pending
-  mode=NEFTRTGS
-  error=E227
-  error_Message=Transaction is Pending
-  ```
-
-  See [Build Integration → Payment Outcomes](./integrate/build-integration) for the full outcomes routing table.
+  * Show the customer a **Payment Pending** confirmation page that explains the timeline (NEFT: same day to next business day; RTGS: typically same day).
+  * Store the `txnid` and `mihpayid` in your database against the order with a `pending` status.
+  * Wait for the final status via webhook. When the webhook arrives with `status=success`, mark the order as paid and trigger fulfilment. If the webhook arrives with `status=failure`, mark the order as failed.
 </Accordion>
 
 ***
