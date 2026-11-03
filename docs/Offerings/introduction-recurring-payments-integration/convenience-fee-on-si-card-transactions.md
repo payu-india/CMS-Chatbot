@@ -110,7 +110,7 @@ Both models use ibibocodes to identify the SI card type:
 
 ## Applying Convenience Fee Across SI Phases
 
-An SI card transaction goes through three distinct phases. Convenience fees can be applied at each phase — the same fee parameters are used throughout, but the API and applicable ibibocodes differ per phase.
+An SI card transaction goes through three distinct phases. Convenience fees can be applied at each phase. The same fee parameters are used throughout, but the API and applicable ibibocodes differ per phase.
 
 | Phase            | When it happens                                                                                                 | API command      |
 | ---------------- | --------------------------------------------------------------------------------------------------------------- | ---------------- |
@@ -123,7 +123,7 @@ An SI card transaction goes through three distinct phases. Convenience fees can 
 <Accordion title="Phase 1: Registration" icon="fa-pen-to-square">
   The registration phase captures the customer's consent and sets up the SI mandate. For the complete registration flow including `si_details` structure, refer to [Cards SI Integration — Merchant Hosted Checkout](doc:cards-subscription-integration-merchant-hosted-checkout).
 
-  **Applicable ibibocodes:** `CCSI`, `DCSI`, `AMEXSI`, `VISASI` — `HDFCDCSI` is not supported at registration.
+  **Applicable ibibocodes:** `CCSI`, `DCSI`, `AMEXSI`, and `VISASI`.
 
   ***
 
@@ -140,7 +140,7 @@ An SI card transaction goes through three distinct phases. Convenience fees can 
 
   **Reverse hash formula (when&#x20;**`additional_charges`**&#x20;is present in response):**
 
-  ```plaintext
+  ```plaintext Reverese Hash Formula
   sha512(additional_charges|SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
   ```
 
@@ -172,22 +172,22 @@ An SI card transaction goes through three distinct phases. Convenience fees can 
     > For the full `si_details` JSON structure, refer to [Cards SI Integration — Merchant Hosted Checkout](doc:cards-subscription-integration-merchant-hosted-checkout).
   </Accordion>
 
-  **Hash formula:**
+  **Hash Formula:**
 
-  ```plaintext
+  ```plaintext Hash Formula
   sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|additional_charges|SALT)
   ```
 
-  **Response parameters:**
+  **Response Parameters:**
 
   | Parameter                       | Description                                                       |
   | ------------------------------- | ----------------------------------------------------------------- |
   | `additional_charges`            | Flat fee applied, echoed back as a `IBIBOCODE:value` string       |
   | `percentage_additional_charges` | Percentage fee applied, echoed back as a `IBIBOCODE:value` string |
 
-  **Reverse hash formula (when&#x20;**`additional_charges`**&#x20;is present in response):**
+  **Reverse Hash Formula (when&#x20;**`additional_charges`**&#x20;is present in response):**
 
-  ```plaintext
+  ```plaintext Reverse Hash Formula
   sha512(additional_charges|SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
   ```
 </Accordion>
@@ -234,9 +234,9 @@ An SI card transaction goes through three distinct phases. Convenience fees can 
     ```
   </Accordion>
 
-  **Hash formula:**
+  **Hash Formula:**
 
-  ```plaintext
+  ```plaintext Hash Formula
   sha512(key|command|var1|salt)
   ```
 
@@ -305,9 +305,9 @@ An SI card transaction goes through three distinct phases. Convenience fees can 
     ```
   </Accordion>
 
-  **Hash formula:**
+  **Hash Formula:**
 
-  ```plaintext
+  ```plaintext Hash Formula
   sha512(key|command|var1|salt)
   ```
 
