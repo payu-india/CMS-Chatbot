@@ -60,11 +60,11 @@ To apply these practices, your integration should already be built and tested:
 
 ***
 
-## Conversion & UX
+## Conversion and UX
 
 {/* NEW CONTENT: Pre-fill and vernacular checkout are UX best practices not stated as recommendations on any existing page, only implied by parameter descriptions. */}
 
-<Accordion title="Pre-fill customer data to reduce checkout friction" icon="fa-user-pen">
+<Accordion title="Pre-fill Customer Data to Reduce Checkout Friction" icon="fa-user-pen">
   The PayU checkout page pre-populates fields you send in the request. Customers who arrive with their name, email, and phone already filled in complete checkout faster and abandon less.
 
   Send these parameters from your logged-in session whenever available:
@@ -76,14 +76,16 @@ To apply these practices, your integration should already be built and tested:
   | `phone`                                | Customer account phone | Pre-fills the phone field            |
   | `address1`, `city`, `state`, `zipcode` | Saved address          | Aids fraud detection and chargebacks |
 
-  You still need to include these fields in your hash string exactly as described in [Step 1.2 of Build Integration](./integrate/build-integration). Pre-filling is purely about passing real values instead of placeholder values — the hash formula does not change.
+  You still need to include these fields in your hash string exactly as described in <Anchor target="_blank" href="https://docs.payu.in/docs/payu-hosted-checkout-build-integration#step-1-prepare-payment-request-parameters">Step 1 of Build Integration</Anchor>. Pre-filling is about passing real values instead of placeholder values without changing the hash formula.
 
   <Callout icon="📘" theme="info">
+    ### **Tips:**
+
     `address1`, `city`, `state`, `zipcode`, and `country` are optional but strengthen fraud detection for card payments. Include them when available.
   </Callout>
 </Accordion>
 
-<Accordion title="Use vernacular checkout for regional audiences" icon="fa-language">
+<Accordion title="Use Vernacular Checkout for Regional Audiences" icon="fa-language">
   Pass `display_lang` in the payment request to show the PayU checkout page in the customer's preferred language. This is particularly effective for regional audiences where customers are more comfortable completing payment in their native language.
 
   **Supported values:**
