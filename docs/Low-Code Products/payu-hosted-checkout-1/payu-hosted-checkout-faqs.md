@@ -19,6 +19,14 @@ metadata:
     - payu webhook vs callback difference
     - payu surl furl explained
     - payu pci compliance hosted checkout
+    - payu upi test vpa anything@payu sandbox
+    - payu mihpayid txnid difference
+    - payu status unmappedstatus difference
+    - payu webhook hash verification reverse hash
+    - payu webhook url configuration dashboard
+    - payu txnid reuse retry failed payment
+    - payu emi testing sandbox
+    - payu _payment endpoint postman curl test
   robots: index
 next:
   description: Explore related information and resources.
