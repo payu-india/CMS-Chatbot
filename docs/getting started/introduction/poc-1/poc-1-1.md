@@ -6,6 +6,9 @@ metadata:
   robots: index
 ---
 <HTMLBlock>{`
+<!-- ============================================================
+     PayU AI Prompt Component  |  ReadMe CMS Custom HTML Block
+     ============================================================ -->
 <textarea id="payu-aip-src" style="display:none;" aria-hidden="true" tabindex="-1">
 ---
 name: payu-hosted-checkout
@@ -363,9 +366,15 @@ Begin integration now.
 .payu-aip-btn:hover{background-color:#43a047;box-shadow:0 2px 6px rgba(0,0,0,.18)}
 .payu-aip-btn:active{background-color:#388e3c}
 .payu-aip-status{font-size:13px;font-weight:600;color:#388e3c;min-height:20px;line-height:20px}
-.payu-aip-panel{display:none;margin-top:12px;border:1px solid #d8dde6;border-radius:6px;background:#f7f8fa;padding:16px 20px;max-height:460px;overflow-y:auto}
+.payu-aip-panel{display:none;margin-top:12px;border:1px solid #d0d7de;border-radius:6px;overflow:hidden}
 .payu-aip-panel.payu-aip-open{display:block}
-.payu-aip-panel pre{margin:0;white-space:pre-wrap;word-break:break-word;font-family:'SFMono-Regular','Consolas',monospace;font-size:13px;line-height:1.65;color:#2d3748;user-select:text;-webkit-user-select:text}
+.payu-aip-panel-hdr{display:flex;justify-content:space-between;align-items:center;background:#edf0f5;border-bottom:1px solid #d0d7de;padding:7px 14px}
+.payu-aip-panel-lbl{font-size:12px;font-weight:600;color:#6b7a90;letter-spacing:.04em;text-transform:uppercase}
+.payu-aip-pcopy{background:#fff;color:#4a5568;border:1px solid #c4cdd8;border-radius:4px;padding:3px 12px;font-size:12px;font-weight:600;cursor:pointer;line-height:1.6}
+.payu-aip-pcopy:hover{background:#e8edf5;color:#1a202c}
+.payu-aip-pcopy:active{background:#dde3ee}
+.payu-aip-panel-body{background:#f7f8fa;padding:16px 20px;max-height:420px;overflow-y:auto}
+.payu-aip-panel-body pre{margin:0;white-space:pre-wrap;word-break:break-word;font-family:'SFMono-Regular','Consolas','Liberation Mono',monospace;font-size:13px;line-height:1.65;color:#2d3748;user-select:text;-webkit-user-select:text}
 </style>
 
 <div class="payu-aip-wrap">
@@ -383,13 +392,11 @@ Begin integration now.
         ta.setAttribute('readonly','');
         ta.style.cssText='position:fixed;top:-9999px;left:-9999px;width:1px;height:1px;opacity:0;';
         document.body.appendChild(ta);
-        ta.focus();
-        ta.select();
-        ta.setSelectionRange(0,p.length);
+        ta.focus();ta.select();ta.setSelectionRange(0,p.length);
         var ok=false;
         try{ok=document.execCommand('copy');}catch(e){}
         document.body.removeChild(ta);
-        show(ok?'Prompt copied!':'Copy failed — select the text above and copy manually.');
+        show(ok?'Prompt copied!':'Copy failed — select the text and copy manually.');
       })()"
     >Copy AI Prompt</button>
 
@@ -404,22 +411,39 @@ Begin integration now.
           if(src)pre.textContent=src.value.trim();
         }
         var open=panel.classList.contains('payu-aip-open');
-        if(open){
-          panel.classList.remove('payu-aip-open');
-          panel.setAttribute('aria-hidden','true');
-          btn.textContent='View AI Prompt';
-        }else{
-          panel.classList.add('payu-aip-open');
-          panel.setAttribute('aria-hidden','false');
-          btn.textContent='Hide AI Prompt';
-        }
+        if(open){panel.classList.remove('payu-aip-open');panel.setAttribute('aria-hidden','true');btn.textContent='View AI Prompt';}
+        else{panel.classList.add('payu-aip-open');panel.setAttribute('aria-hidden','false');btn.textContent='Hide AI Prompt';}
       })()"
     >View AI Prompt</button>
 
     <span class="payu-aip-status" id="payu-aip-status" role="status" aria-live="polite"></span>
   </div>
+
   <div class="payu-aip-panel" id="payu-aip-panel" aria-hidden="true">
-    <pre id="payu-aip-text"></pre>
+    <div class="payu-aip-panel-hdr">
+      <span class="payu-aip-panel-lbl">AI Prompt</span>
+      <button class="payu-aip-pcopy" id="payu-aip-pcopy"
+        onclick="(function(){
+          var src=document.getElementById('payu-aip-src');
+          var p=src?src.value.trim():'';
+          if(!p)return;
+          var btn=document.getElementById('payu-aip-pcopy');
+          var ta=document.createElement('textarea');
+          ta.value=p;
+          ta.setAttribute('readonly','');
+          ta.style.cssText='position:fixed;top:-9999px;left:-9999px;width:1px;height:1px;opacity:0;';
+          document.body.appendChild(ta);
+          ta.focus();ta.select();ta.setSelectionRange(0,p.length);
+          var ok=false;
+          try{ok=document.execCommand('copy');}catch(e){}
+          document.body.removeChild(ta);
+          if(btn){var orig=btn.textContent;btn.textContent=ok?'Copied!':'Failed';setTimeout(function(){btn.textContent=orig;},2000);}
+        })()"
+      >Copy</button>
+    </div>
+    <div class="payu-aip-panel-body">
+      <pre id="payu-aip-text"></pre>
+    </div>
   </div>
 </div>
 `}</HTMLBlock>
