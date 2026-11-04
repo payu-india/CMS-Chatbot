@@ -587,7 +587,7 @@ The skill works through seven ordered steps:
 </Accordion>
 
 <Accordion title="Step 2: Response hash verification">
-  Reverse SHA-512 checked with constant-time comparison on every callback. Covers the documented UDF, without-UDF, `additionalCharges`, and `splitInfo` variants, plus Web Checkout Pro variants (extra pipes, posted `key`, `net_amount_debit`). A mismatch does not mark the order failed — it falls through to Step 6 (Verify API) before deciding.
+  Reverse SHA-512 checked with constant-time comparison on every callback. Covers the documented UDF, without-UDF, `additionalCharges`, and `splitInfo` variants, plus Web Checkout Pro variants (extra pipes, posted `key`, `net_amount_debit`). A mismatch does not mark the order failed. It falls through to Step 6 (Verify API) before deciding.
 </Accordion>
 
 <Accordion title="Step 3: Initiate route and frontend form">
@@ -607,12 +607,12 @@ The skill works through seven ordered steps:
 </Accordion>
 
 <Accordion title="Step 7: Logging and troubleshooting">
-  Structured log lines at each stage (order id, txnid, status, outcome — never credentials or PII). A debugging table is appended to your project's README.
+  Structured log lines at each stage (order id, txnid, status, outcome). A debugging table is appended to your project's README.
 </Accordion>
 
 ***
 
-## Security model
+## Security Model
 
 The skill enforces the following at every step. None of these can be overridden by the way you phrase your request.
 
@@ -627,7 +627,7 @@ The skill enforces the following at every step. None of these can be overridden 
 
 ***
 
-## Debugging guide
+## Debugging Guide
 
 If a payment fails or behaves unexpectedly, provide the `txnid` and the exact error text shown on PayU's page (never your key or salt). The skill will query the `payu-docs` MCP for that error and walk through this table:
 
@@ -644,7 +644,7 @@ If a payment fails or behaves unexpectedly, provide the `txnid` and the exact er
 
 ***
 
-## Manual steps left to you
+## Manual Steps Left to You
 
 After the skill finishes, you must do these yourself (the skill explicitly cannot do them):
 
@@ -655,7 +655,9 @@ After the skill finishes, you must do these yourself (the skill explicitly canno
 5. **Switch credentials** — when moving to production, change both `PAYU_ENV=production` **and** your key/salt together
 
 <Callout icon="📘" theme="info">
-  **Webhooks are out of scope for this skill.** The skill generates the surl/furl browser-redirect callbacks and the on-demand Verify API route. For full reliability — especially for callbacks that may be lost in transit — also configure PayU server-to-server webhooks from your PayU dashboard.
+  ### **Webhooks are out of scope for this skill**
+
+  The skill generates the surl/furl browser-redirect callbacks and the on-demand Verify API route. For full reliability — especially for callbacks that may be lost in transit — also configure PayU server-to-server webhooks from your PayU dashboard.
 </Callout>
 
 ***
