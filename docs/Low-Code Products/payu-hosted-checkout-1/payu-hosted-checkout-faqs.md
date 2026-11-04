@@ -224,16 +224,22 @@ next:
 <Accordion title="How do I troubleshoot an invalid hash error?" icon="fab fa-adn">
   Work through this debugging checklist:
 
-  1. Verify the exact parameter order in your hash string.
-  2. Verify the amount format (decimal string, e.g. `100.00`).
-  3. Check for trailing or leading spaces in any parameter value.
-  4. Confirm you are using the correct salt for the environment (test vs production).
-  5. Confirm you have empty-string placeholders for unused UDF fields (still separated by `|`).
-  6. Verify you are using SHA-512 (not SHA-256 or MD5).
+  - [x] Verify the exact parameter order in your hash string.
+  - [x] Verify the amount format (decimal string, e.g. `100.00`).
 
-  Most hash failures come from: wrong salt, missing pipes, whitespace, or amount format mismatch.
 
-  Use the [PayU Hash Verification Tool](https://payu-hashverificationtool.onrender.com/) to validate your hash string independently.
+  - [x] Check for trailing or leading spaces in any parameter value.
+
+
+  - [x] Confirm you are using the correct salt for the environment (test vs production).
+
+
+  - [x] Confirm you have empty-string placeholders for unused UDF fields (still separated by `|`).
+
+
+  - [x] Verify you are using SHA-512 (not SHA-256 or MD5).<br />
+
+  Most hash failures come from wrong salt, missing pipes, whitespace, or amount format mismatch.
 </Accordion>
 
 <Accordion title="Can I generate the hash in the browser or mobile app?" icon="fab fa-adn">
