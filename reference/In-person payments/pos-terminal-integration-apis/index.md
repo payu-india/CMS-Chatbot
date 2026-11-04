@@ -1,14 +1,13 @@
 ---
 title: POS Terminal Integration APIs
-excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
 This part of the document includes the following POS Terminal integration APIs:
 
