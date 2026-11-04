@@ -43,11 +43,11 @@ next:
 </Accordion>
 
 <Accordion title="Works on any website, blog, or page builder">
-  WordPress, Wix, Squarespace, Webflow, a hand-coded HTML page, or any site that lets you add content — Payment Buttons work anywhere. You add the button code to a page the same way you'd add an image or a video embed.
+  WordPress, Wix, Squarespace, Webflow, a hand-coded HTML page, or any site that lets you add content. Payment Buttons work anywhere. You add the button code to a page the same way you'd add an image or a video embed.
 </Accordion>
 
 <Accordion title="Customise the button to match your brand">
-  Choose the button label ("Buy Now", "Donate", "Enrol", or any text you prefer), the colour, the size, and the fixed amount — all from the Dashboard with no code changes. Update the settings any time; the button on your site updates automatically.
+  Choose the button label ("Buy Now", "Donate", "Enrol", or any text you prefer), the colour, the size, and the fixed amount, all from the Dashboard with no code changes. Update the settings any time; the button on your site updates automatically.
 </Accordion>
 
 <Accordion title="Let customers enter their own amount">
