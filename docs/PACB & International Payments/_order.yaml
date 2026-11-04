@@ -1,7 +1,6 @@
 - pacb-import-introduction
 - pacb-import-quickstart-integration
 - pacb-import-checkout-integration
-- tokenize-card-with-payu-vault-integration
 - pacb-import-upi-intent-with-s2s-integration
 - pacb-import-upi-recurring-transaction-integration
 - pacb-import-direct-authorization-cards-integration

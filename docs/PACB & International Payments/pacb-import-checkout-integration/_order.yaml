@@ -3,3 +3,4 @@
 - pacb-import-plain-cards-integration
 - pacb-saved-cards-with-a-payu-token-integration
 - pacb-import-saved-cards-with-a-network-token-integration
+- tokenize-card-with-payu-vault-integration
