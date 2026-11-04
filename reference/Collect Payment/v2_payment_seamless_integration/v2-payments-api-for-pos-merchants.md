@@ -51,23 +51,24 @@ Requests to PayU's v2 Payments API must be signed using the PayU V2 HMAC authori
 | amount | _Number_ or _String_<br>Gross transaction amount in INR. Both numeric and decimal string formats are accepted (e.g. `10.00`, `10.55`, or `"10.55"`). |
 | currency | _String_<br>Three-letter ISO 4217 currency code. Must be set to `INR` for domestic in-store POS transactions. |
 | paymentSource | _String_<br>Source channel identifier for the payment request. Pass `POS` or `WEB` depending on your integration profile. |
-| paymentMethod | _Object_<br>Container object specifying the in-store POS payment instrument and channel. |
-| additionalInfo | _Object_<br>Container object holding transaction execution flow directives. |
-| callBackActions | _Object_<br>Container object holding callback and redirect endpoints. |
-| order | _Object_<br>Container object holding product metadata, custom tracking fields, and price specifications. |
-| omniChannelDetails | _Object_<br>Container object holding hardware terminal specifications, device routing identifiers, and charge slip display lines. |
+| paymentMethod | _Object_<br>Container object specifying the in-store POS payment instrument and channel. For more information, refer to [paymentMethod  JSON Object Fields Description](#paymentmethod--json-object-fields-description) |
+| additionalInfo | _Object_<br>Container object holding transaction execution flow directives. For more information, refer to [additionalInfo JSON Object Fields Description](#additionalinfo-json-object-fields-description)|
+| callBackActions | _Object_<br>Container object holding callback and redirect endpoints. For more information, refer to [callBackActions JSON Object Fields Description](callbackactions-json-object-fields-description)|
+| order | _Object_<br>Container object holding product metadata, custom tracking fields, and price specifications. For more information, refer to [order JSON Object Fields Description](#order-json-object-fields-description) |
+| omniChannelDetails | _Object_<br>Container object holding hardware terminal specifications, device routing identifiers, and charge slip display lines. For more information, refer to [omniChannelDetails JSON Object Fields Description](omnichanneldetails-json-object-fields-description)|
 
 ### Optional Parameters
 
 | Parameter | Description |
 | :--- | :--- |
-| gstParams | _Object_<br>Container object holding GST invoice parameters, GSTIN, and tax component breakdowns. |
+| gstParams | _Object_<br>Container object holding GST invoice parameters, GSTIN, and tax component breakdowns. For more information, refer to [gstParams JSON Object Fields Description](#gstparams-json-object-fields-description) |
 
+### Nested Object Fields Description
 #### paymentMethod  JSON Object Fields Description
 
 Defines the payment instrument and routing channel for POS terminal execution.
 
-#### Mandatory Fields
+**Mandatory Fields**
 
 | Field | Description |
 | :--- | :--- |
@@ -87,7 +88,7 @@ Defines the payment instrument and routing channel for POS terminal execution.
 
 Directs the transaction flow engine inside PayU's payment gateway.
 
-#### Mandatory Fields
+**Mandatory Fields**
 
 | Field | Description |
 | :--- | :--- |
