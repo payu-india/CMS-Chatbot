@@ -1,5 +1,6 @@
 - pacb-import-introduction
 - pacb-import-quickstart-integration
+- pacb-import-checkout-integration
 - pacb-netbanking-integration
 - pacb-saved-cards-with-a-payu-token-integration
 - pacb-import-payu-hosted-checkout-integraiton
@@ -13,4 +14,3 @@
 - international-payments-introduction-1
 - cross-border-payments-best-practices
 - common-cross-border-payments-integration-errors
-- pacb-import-checkout-integration
