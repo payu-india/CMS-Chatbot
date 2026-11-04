@@ -422,7 +422,9 @@ next:
 
 ## Duplicate Processing
 
-<Accordion title="How do I prevent duplicate order processing?" icon="fab fa-adn">
+1. #### How do I prevent duplicate order processing?
+
+<Accordion title="Answer" icon="fab fa-adn">
   PayU may send a callback or webhook more than once (if your endpoint didn't return HTTP 200, or due to retry logic). Implement idempotency:
 
   - Check if the `txnid` has already been processed before updating order status.
@@ -432,52 +434,35 @@ next:
 
 ***
 
-## APIs
-
-<Accordion title="Which APIs are used in a PayU Hosted Checkout integration?" icon="fab fa-adn">
-  PayU Hosted Checkout uses the following APIs:
-
-  | API                                                                        | Purpose                                                                                                                                                      |
-  | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-  | [Collect Payment API](ref:_payment_payu_hosted_checkout)                   | Initiates the payment — your server POSTs transaction parameters to `https://secure.payu.in/_payment` and the customer is redirected to PayU's checkout page |
-  | [Verify Payment API](ref:verify_payment_api)                               | Confirms transaction status from your server — use as a fallback when the browser callback didn't arrive or to reconcile specific transactions               |
-  | [Get Checkout Details API](ref:get_checkout_details)                       | Checks customer eligibility for cardless EMI and debit-card pre-EMI by mobile number                                                                         |
-  | [Get EMI According to Interest API](ref:get_emi_according_to_interest_api) | Calculates instalment amounts, interest, and processing fees for an EMI plan                                                                                 |
-  | [Eligible BINs for EMI API](ref:eligiblebinsforemi)                        | Checks whether a credit card BIN is eligible for EMI                                                                                                         |
-
-  Webhooks are also part of the integration — not an API you call, but an HTTPS endpoint you expose that PayU POSTs payment notifications to after each transaction.
-
-  For the full reference, see [PayU Hosted Checkout APIs](./payu-hosted-checkout-apis).
-</Accordion>
-
-<Accordion title="Do I need to call any APIs on the server side, or is the HTML form enough?" icon="fab fa-adn">
-  The HTML form POST handles the payment initiation. However, two server-side steps are mandatory regardless:
-
-  1. **Hash generation (before the form POST)** — Your server must compute the SHA-512 hash using your merchant salt and include it in the form. This cannot be done in the browser.
-  2. **Reverse hash validation (after the callback)** — When PayU POSTs the result to your `surl` or `furl`, your server must validate the response hash before marking the order as paid.
-
-  Additionally, calling the [Verify Payment API](ref:verify_payment_api) from your server is strongly recommended as a fallback — for cases where the browser callback didn't arrive (customer closed browser, network drop, etc.).
-</Accordion>
-
-***
-
 ## Production Go-Live
 
-<Accordion title="What is the production readiness checklist?" icon="fab fa-adn">
+1. #### What is the production readiness checklist?
+
+<Accordion title="Answer" icon="fab fa-adn">
   Before going live, verify:
 
   **Security:**
 
-  - Merchant salt stored securely, never in source code
-  - Hash generated server-side only
-  - HTTPS enforced on all callback and webhook endpoints
+  - [x] Merchant salt stored securely, never in source code
+
+
+  - [x] Hash generated server-side only
+
+
+  - [x] HTTPS enforced on all callback and webhook endpoints
 
   **Functional:**
 
-  - Success, failure, and pending transaction flows tested
-  - Reverse hash validation implemented and tested
-  - Webhook configured and receiving notifications
-  - Duplicate processing protection implemented
+  - [x] Success, failure, and pending transaction flows tested
 
-  See the [Go-live Checklist](./integrate/go-live-checklist) for the complete list.
+
+  - [x] Reverse hash validation implemented and tested
+
+
+  - [x] Webhook configured and receiving notifications
+
+
+  - [x] Duplicate processing protection implemented
+
+  See the <Anchor target="_blank" href="https://docs.payu.in/docs/payu-hosted-checkout-go-live-checklist">Go-Live Checklist</Anchor> for the complete list.
 </Accordion>
