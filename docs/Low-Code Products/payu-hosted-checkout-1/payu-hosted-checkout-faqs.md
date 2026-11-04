@@ -434,6 +434,102 @@ next:
 
 ***
 
+## Refunds & Cancellations
+
+1. #### How do refunds work for PACB transactions, and who bears currency fluctuations?
+
+<Accordion title="Answer" icon="fab fa-adn">
+  PACB refunds are initiated in **Indian Rupees (INR)** and processed back to the customer's original payment source (Card, UPI account, or NetBanking):
+
+  - **Refund Source**: The refund amount in INR is debited from your pending settlement balance or merchant reserve ledger.
+  - **Foreign Exchange (FX) Rate**: The AD-1 bank applies the prevailing exchange rate on the date the refund is processed. Any difference between the exchange rate at the time of initial payment and the date of refund is absorbed based on your commercial agreement.
+  - **Partial Refunds**: Supported. You can issue multiple partial refunds up to the original transaction value.
+  - **Invoice Adjustment**: When issuing a partial or full refund, you must reflect the corresponding credit note or updated commercial invoice in your trade records for regulatory audit.
+</Accordion>
+
+2. #### Can an invoice ID or buyer UDF be updated after the payment is captured?
+
+<Accordion title="Answer" icon="fab fa-adn">
+  Yes. If your order management system generates the final commercial invoice number (`udf5`) or shipping details only after payment authorization, you can update them using the **Update Trade Details API**:
+
+  - **API Command**: Use the `updateOpgspDetails` API command.
+  - **Updatable Fields**: Invoice Number (`udf5`), Carrier Airway Bill / AWB tracking number, and shipping date.
+  - **Timeline**: Updates must be submitted before the **10-day statutory settlement window** closes to prevent the transaction from being placed on hold.
+</Accordion>
+
+***
+
+## Taxation, Compliance & Identity Verification
+
+1. #### Does PayU automatically deduct 20% TCS under the Liberalised Remittance Scheme (LRS)?
+
+<Accordion title="Answer" icon="fab fa-adn">
+  No. PayU does not automatically levy or deduct Tax Collected at Source (TCS) on the checkout page:
+
+  - Under the OPGSP / PACB trade framework, transactions are classified as **commercial import of goods and software/digital services**, which are governed by trade settlement guidelines rather than consumer outward capital remittances under LRS.
+  - If your specific business model (such as overseas education, aviation, or travel packages) falls under specific LRS / TCS mandates, your platform must calculate, display, and collect the applicable tax component as part of the total cart `amount` prior to initiating the payment.
+</Accordion>
+
+2. #### What happens if the buyer's PAN does not match the name on the card or bank account?
+
+<Accordion title="Answer" icon="fab fa-adn">
+  At the payment initiation stage, PayU performs **format validation** on `udf1` using the statutory 10-character alphanumeric PAN regex (`^[A-Z]{5}[0-9]{4}[A-Z]{1}$`).
+
+  - **Name Matching**: Core checkout does not cross-verify the PAN cardholder name against the cardholder name in real-time, avoiding checkout drop-offs.
+  - **Audit Liability**: The merchant is responsible for ensuring reasonable KYC diligence. In cases of regulatory trade audits by the AD-1 Category Bank or customs authorities, mismatched buyer records may require secondary verification.
+</Accordion>
+
+***
+
+## Advanced Features & Payment Methods
+
+1. #### Can Indian customers save their cards (Tokenization) for faster PACB repeat checkout?
+
+<Accordion title="Answer" icon="fab fa-adn">
+  Yes. PayU's RBI-compliant **Card Tokenization** solution supports domestic Indian credit and debit cards for PACB import transactions:
+
+  - Customers provide explicit Additional Factor Authentication (AFA/OTP) consent during their first payment to tokenize the card.
+  - Subsequent payments allow one-click checkout using the saved card token without re-entering the 16-digit PAN.
+  - **Regulatory Rule**: Even for tokenized card transactions, mandatory PACB fields (`udf1` PAN, `udf3` DOB, `udf4` seller entity, and `udf5` invoice ID) must be passed in every payment initiation request.
+</Accordion>
+
+2. #### Is UPI Collect supported for PACB, or must merchants use UPI Intent?
+
+<Accordion title="Answer" icon="fab fa-adn">
+  Under NPCI guidelines (OC 190):
+
+  - **Mobile Browsers & Apps**: You should implement **UPI Intent** (or UPI Smart Intent), where the customer seamlessly launches their preferred installed UPI app (Google Pay, PhonePe, Paytm).
+  - **Desktop Web**: Customers should scan a **Dynamic UPI QR code** displayed on checkout.
+  - **UPI Collect Flow**: UPI Collect (entering a VPA manually) is permitted for PACB cross-border transactions as an exempt regulatory category, but UPI Intent is strongly recommended to ensure higher transaction success rates.
+</Accordion>
+
+3. #### Can I use PayU Payment Links to collect PACB cross-border payments?
+
+<Accordion title="Answer" icon="fab fa-adn">
+  Yes, provided your account has Payment Links enabled for cross-border processing:
+
+  - When creating a Payment Link via API or the PayU Dashboard, you must include the mandatory regulatory UDFs (`udf1` for PAN, `udf3` for DOB, `udf4` for overseas seller, and `udf5` for the invoice ID).
+  - The customer opens the payment link, reviews the itemized INR amount, and completes checkout using any supported domestic payment method.
+  - The standard 10-day commercial invoice upload requirement applies to Payment Links.
+</Accordion>
+
+***
+
+## Chargebacks & Dispute Resolution
+
+1. #### How are disputes and chargebacks managed for cross-border import transactions?
+
+<Accordion title="Answer" icon="fab fa-adn">
+  If an Indian buyer raises a dispute or chargeback with their issuing bank:
+
+  1. PayU notifies your registered dispute contact email and updates the PayU Dashboard under the **Disputes / Chargebacks** section.
+  2. You have **5 to 7 working days** to submit representment documentation proving legitimate order fulfillment:
+     - Commercial Invoice PDF matching `udf5`
+     - Signed Carrier Airway Bill (AWB) or courier delivery confirmation (for physical merchandise)
+     - Digital service access logs, IP address, and customer confirmation emails (for SaaS / digital goods)
+  3. PayU represents the case with the card scheme or acquiring bank. If the dispute is resolved in your favor, the withheld chargeback amount is released to your settlement balance.
+</Accordion>
+
 ## Production Go-Live
 
 1. #### What is the production readiness checklist?
