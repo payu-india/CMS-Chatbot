@@ -31,6 +31,12 @@ With the PayU Hosted Checkout:<br />
 - PayU handles the payment experience on the hosted page.
 - Customers are redirected back to your website after the payment.
 
+<Callout icon="📘" theme="info">
+  ### **Tips:**
+
+  You can initiate the redirect using an HTML form POST or by calling the [Collect Payment API](https://docs.payu.in/reference/_payment_payu_hosted_checkout) directly from your server.
+</Callout>
+
 ***
 
 ## Is PayU Hosted Checkout Right for Me?
