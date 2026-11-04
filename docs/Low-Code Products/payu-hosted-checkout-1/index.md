@@ -59,37 +59,13 @@ PayU Hosted Checkout is a good choice if you:<br />
 
 ## What Will I Need? (Prerequisites)
 
-You need these to get started:<br />
+You need these to get started:
 
-<Columns layout="fixed">
-  <Column>
-    - **A PayU merchant account:** <Anchor target="_blank" href="https://docs.payu.in/docs/set-up-your-account">Sign up here</Anchor> if you do not have an account.
-  </Column>
-</Columns>
-
-<Columns layout="fixed">
-  <Column>
-    - **Access to the PayU Dashboard:** Where you will manage checkout transactions.
-  </Column>
-</Columns>
-
-<Columns layout="fixed">
-  <Column>
-    - **A website or application**: Where you want to accept payments.
-  </Column>
-</Columns>
-
-<Columns layout="fixed">
-  <Column>
-    - **Access to your website's technical setup**: Either yourself or through a developer to integrate PayU Hosted checkout.
-  </Column>
-</Columns>
-
-<Columns layout="fixed">
-  <Column>
-    - **A way to test the integration** before going live.
-  </Column>
-</Columns>
+- [x] **A PayU merchant account:** <Anchor target="_blank" href="https://docs.payu.in/docs/set-up-your-account">Sign up here</Anchor> if you do not have an account.
+- [x] **Access to the PayU Dashboard:** Where you will manage checkout transactions.
+- [x] **A website or application**: Where you want to accept payments.
+- [x] **Access to your website's technical setup**: Either yourself or through a developer to integrate PayU Hosted checkout.
+- [x] **A way to test the integration** before going live.
 
 <HTMLBlock>{`
                 <style>
