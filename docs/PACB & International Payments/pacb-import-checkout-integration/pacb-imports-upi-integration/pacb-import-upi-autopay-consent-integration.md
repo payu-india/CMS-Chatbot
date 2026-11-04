@@ -1,5 +1,5 @@
 ---
-title: PACB Import - UPI Autopay Consent Integration
+title: UPI Autopay Consent Integration
 deprecated: false
 hidden: true
 metadata:
