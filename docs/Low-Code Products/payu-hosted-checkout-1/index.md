@@ -35,8 +35,8 @@ next:
   To add or remove a payment method such as enabling international payments or BNPL, you make a configuration change in your PayU Dashboard.
 </Accordion>
 
-<Accordion title="PCI-DSS scope reduced to near zero" icon="fa-shield-halved">
-  Card numbers and other sensitive payment data are entered directly on PayU's infrastructure, not on your website or your server. The most demanding parts of PCI-DSS compliance — handling, storing, and transmitting raw card data — are PayU's responsibility, not yours.
+<Accordion title="PCI-DSS scope reduced to near zero">
+  Card numbers and other sensitive payment data are entered directly on PayU's infrastructure, not on your website or your server. The most demanding parts of PCI-DSS compliance such as handling, storing, and transmitting raw card data are PayU's responsibility.<br />
 
   Your integration deals with transaction parameters and response verification. Your application never receives or handles raw card data.
 </Accordion>
