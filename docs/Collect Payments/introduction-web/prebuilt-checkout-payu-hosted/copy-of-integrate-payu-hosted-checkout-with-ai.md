@@ -12,20 +12,7 @@ metadata:
 ---
 The **PayU Hosted Checkout AI skill** is a prompt you load into Claude Code, Cursor, or any MCP-enabled AI coding assistant. It automatically detects your backend stack, fetches the latest integration code and hash formulas from the [PayU Developer MCP](doc:payu-devguide-builder-mcp-configuration), and scaffolds a complete PayU Hosted Checkout integration — including security, callbacks, and payment verification — adapted to your existing codebase.
 
-<Callout icon="🔒" theme="error">
-  ### **Important: Security-first design**
-
-  The skill is hardcoded never to touch your `.env` file, never to log or echo your merchant key or salt, and never to call any live PayU API. It only queries the PayU docs MCP. Your credentials never leave your environment.
-</Callout>
-
-***
-## Skill prompt
-
 Copy the full prompt below and save it as `.claude/commands/payu-hosted-checkout.md` in your project (Claude Code), or paste it into your AI assistant's system prompt / instructions pane (Cursor, VS Code Copilot, or any MCP-enabled assistant).
-
-<Callout icon="📋" theme="info">
-  The prompt is self-contained. Do not modify the GUARDRAILS or CREDENTIALS sections — they enforce the security properties described above. You can safely customise the OPERATION ORDER or add project-specific notes at the bottom.
-</Callout>
 
 <HTMLBlock>{`
 <!-- ============================================================
@@ -469,6 +456,13 @@ Begin integration now.
   </div>
 </div>
 `}</HTMLBlock>
+
+<Callout icon="🔒" theme="error">
+  ### **Important:**
+
+  - The skill is hardcoded never to touch your `.env` file, never to log or echo your merchant key or salt, and never to call any live PayU API. It only queries the PayU docs MCP. Your credentials never leave your environment.
+  - The prompt is self-contained. Do not modify the GUARDRAILS or CREDENTIALS sections — they enforce the security properties described above. You can safely customise the OPERATION ORDER or add project-specific notes at the bottom.
+</Callout>
 
 ***
 
