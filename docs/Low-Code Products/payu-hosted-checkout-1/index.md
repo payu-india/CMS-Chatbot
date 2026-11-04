@@ -21,15 +21,35 @@ next:
   fontWeight="bold"
 />
 
-## What is PayU Hosted Checkout?
+##
 
-PayU Hosted Checkout is a payment integration method that lets you accept online payments without building and hosting your own payment page.<br />
+## How Does PayU Hosted Checkout Simplify My Business?
 
-With the PayU Hosted Checkout:<br />
+<Accordion title="Redirect to PayU's secure checkout without the need to build a payment UI">
+  When a customer proceeds to pay, you send them to PayU's hosted payment page. PayU handles the entire payment experience such as page rendering, mobile optimisation, 3DS authentication, UPI flows, and net banking redirects. Your application is no longer involved in the payment interaction once the customer is redirected.
+</Accordion>
 
-- Customers are redirected from your website or application to a secured <br />PayU-hosted payment page.
-- PayU handles the payment experience on the hosted page.
-- Customers are redirected back to your website after the payment.
+<Accordion title="Accept all major Indian payment methods ">
+  A single integration with PayU Hosted Checkout enables cards (credit and debit), UPI, netbanking, wallets, EMI, and BNPL payment modes. PayU's checkout page automatically presents the payment methods enabled on your account.<br />
+
+  To add or remove a payment method such as enabling international payments or BNPL, you make a configuration change in your PayU Dashboard.
+</Accordion>
+
+<Accordion title="PCI-DSS scope reduced to near zero" icon="fa-shield-halved">
+  Card numbers and other sensitive payment data are entered directly on PayU's infrastructure, not on your website or your server. The most demanding parts of PCI-DSS compliance — handling, storing, and transmitting raw card data — are PayU's responsibility, not yours.
+
+  Your integration deals with transaction parameters and response verification. Your application never receives or handles raw card data.
+</Accordion>
+
+<Accordion title="Go live quickly, stay low-effort" icon="fa-rocket">
+  PayU Hosted Checkout can be integrated in hours, not days. The essentials are: generate a SHA-512 hash on your server, POST a form to PayU's endpoint, and verify the response when it returns. There is no payment UI to build or maintain, and no ongoing infrastructure to manage as payment methods evolve.
+</Accordion>
+
+<Accordion title="Mobile-optimised and branded out of the box" icon="fa-mobile-screen">
+  The PayU checkout page adapts to mobile screens automatically. UPI deep-linking for Google Pay, PhonePe, and Paytm works on mobile web without extra configuration on your side.
+
+  You can customise the checkout experience — add your logo, set a colour scheme, and choose the checkout language (Hindi, Kannada, Tamil, Telugu, Gujarati, Marathi, or English) — from the PayU Dashboard. See [Customise PayU Hosted Checkout](./customise-payu-hosted-checkout).
+</Accordion>
 
 <Callout icon="📘" theme="info">
   ### **Tips:**
