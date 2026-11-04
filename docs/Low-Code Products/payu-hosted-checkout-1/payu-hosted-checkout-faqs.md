@@ -262,8 +262,6 @@ next:
 
     Always use <Anchor target="_blank" href="https://docs.payu.in/docs/manage-webhooks-using-dashboard">webhooks</Anchor>, the <Anchor target="_blank" href="https://docs.payu.in/reference/verify_payment_api">Verify Payment API</Anchor>, or the PayU Dashboard to confirm payment status.
   </Callout>
-
-
 </Accordion>
 
 ***
