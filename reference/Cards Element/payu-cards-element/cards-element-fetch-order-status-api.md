@@ -17,7 +17,7 @@ The **Fetch Order Status API** allows merchant systems to query the current life
 
 ---
 
-## Endpoint & Environments
+## Environment
 
 ```http
 GET /cart/order?orderId={orderId}
@@ -41,7 +41,7 @@ Authorization: hmac username="<merchantKey>", algorithm="sha512", headers="date"
 Date: Tue, 03 Nov 2026 15:25:00 GMT
 ```
 
-### Mandatory Headers
+### Request Headers
 
 | Header | Description |
 | :--- | :--- |
@@ -51,8 +51,6 @@ Date: Tue, 03 Nov 2026 15:25:00 GMT
 ---
 
 ## Query Parameters
-
-### Mandatory Parameters
 
 | Parameter | Description |
 | :--- | :--- |
@@ -71,9 +69,9 @@ curl -X GET "<redacted URL>" \
 
 ---
 
-## Response Structure
+## Sample Response
 
-### Sample Success Response
+### Success Scenario
 
 ```json
 {
@@ -97,17 +95,23 @@ curl -X GET "<redacted URL>" \
 }
 ```
 
-### Response Parameters
+## Response Parameters
 
-| Field | Description |
-| :--- | :--- |
-| status | _Integer_<br>Response status code (`0` indicates success). |
-| message | _String_<br>Descriptive outcome message. |
-| result.orderReferenceId | _String_<br>PayU internal transaction reference identifier. |
-| result.orderId | _String_<br>Merchant order ID passed during checkout initiation. |
-| result.finalAmount | _Number_<br>Net authorized/captured amount after promotional offers or convenience fees. |
-| result.originalAmount | _Number_<br>Gross amount initiated prior to offer calculations. |
-| result.orderStatus | _String_<br>Current lifecycle state of the transaction. See table below. |
+| Parameter | Description                                                                                   |
+| :-------- | :-------------------------------------------------------------------------------------------- |
+| status    | _Integer_<br />Response status code (`0` indicates success).                                  |
+| message   | _String_<br />Descriptive outcome message.                                                    |
+| result    | _String_<br />PayU internal transaction reference identifier. For more information, refer to [result JSON object fields description](#result-json-object-fields-description) |
+
+### result JSON object fields description
+
+| Parameter        | Description                                                                                |
+| :--------------- | :----------------------------------------------------------------------------------------- |
+| orderReferenceId | _String_<br />PayU internal transaction reference identifier.                              |
+| orderId          | _String_<br />Merchant order ID passed during checkout initiation.                         |
+| finalAmount      | _Number_<br />Net authorized/captured amount after promotional offers or convenience fees. |
+| originalAmount   | _Number_<br />Gross amount initiated prior to offer calculations.                          |
+| orderStatus      | _String_<br />Current lifecycle state of the transaction. See table below.                 |
 
 ---
 
