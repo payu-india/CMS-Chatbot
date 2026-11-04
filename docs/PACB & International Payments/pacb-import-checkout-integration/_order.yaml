@@ -1,5 +1,6 @@
 - pacb-import-payu-hosted-checkout-integraiton
 - pacb-netbanking-integration
+- cards-integration
 - pacb-import-plain-cards-integration
 - pacb-import-direct-authorization-cards-integration
 - pacb-saved-cards-with-a-payu-token-integration
@@ -8,4 +9,3 @@
 - pacb-import-upi-intent-with-s2s-integration
 - pacb-import-upi-recurring-transaction-integration
 - pacb-import-upi-autopay-consent-integration
-- cards-integration
