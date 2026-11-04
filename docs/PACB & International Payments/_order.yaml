@@ -3,7 +3,6 @@
 - pacb-import-checkout-integration
 - pacb-netbanking-integration
 - pacb-saved-cards-with-a-payu-token-integration
-- pacb-import-payu-hosted-checkout-integraiton
 - pacb-import-saved-cards-with-a-network-token-integration
 - pacb-import-plain-cards-integration
 - tokenize-card-with-payu-vault-integration
