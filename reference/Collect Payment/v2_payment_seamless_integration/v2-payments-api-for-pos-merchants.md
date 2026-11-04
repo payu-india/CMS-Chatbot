@@ -304,7 +304,7 @@ curl --location 'https://api.payu.in/v2/payments' \
 
 ---
 
-## Response Structure
+## Response Parameters
 
 The API response returns two top-level containers: `metaData` (transaction status and error descriptors) and `result` (generated identifiers).
 
@@ -345,7 +345,7 @@ The following table outlines the status codes, stage flags, and resolutions enco
 
 ## Sample Responses
 
-### 1. Success — Payment Initiated Successfully (`E000`)
+### Success Scenario — Payment Initiated Successfully (`E000`)
 
 ```json
 {
@@ -365,7 +365,9 @@ The following table outlines the status codes, stage flags, and resolutions enco
 }
 ```
 
-### 2. Failure — Transaction Not Initiated (`E342`)
+### Failure Scenarios
+
+#### Transaction Not Initiated (`E342`)
 
 ```json
 {
@@ -385,7 +387,7 @@ The following table outlines the status codes, stage flags, and resolutions enco
 }
 ```
 
-### 3. Failure — Inactive Payment Option (`EX158`)
+#### Inactive Payment Option (`EX158`)
 
 ```json
 {
@@ -405,7 +407,7 @@ The following table outlines the status codes, stage flags, and resolutions enco
 }
 ```
 
-### 4. Failure — Invalid PG & Bank Code (`E1101`)
+#### Invalid PG & Bank Code (`E1101`)
 
 ```json
 {
@@ -425,7 +427,7 @@ The following table outlines the status codes, stage flags, and resolutions enco
 }
 ```
 
-### 5. Failure — Invalid Device ID (`E2081`)
+#### Invalid Device ID (`E2081`)
 
 ```json
 {
