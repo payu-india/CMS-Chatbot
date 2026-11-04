@@ -61,17 +61,18 @@ next:
 
 ## Is PayU Hosted Checkout Right for Me?
 
-PayU Hosted Checkout is a good choice if you:<br />
-
-- **Have a website or application** where customers need to make payments.
-- **Want PayU to host** the payment page.
-- **Want a ready-made checkout experience** instead of building your own.
-- **Can handle some technical setup** or have a developer or technical team<br />to help.
-
-### **Consider another PayU solution if:**<br />
-
-- **You don't have a website or don't want technical setup:&#x20;**&#x43;onsider [Payment Links](...).
-- **You need complete control over the payment page:&#x20;**&#x43;onside&#x72;**&#x20;**[Merchant Hosted Checkout](...).
+| I want to…                                                     |                                                Works?                                                |
+| -------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------: |
+| Accept payments on my website with minimal development effort  |                                                   ✅                                                  |
+| Support cards, UPI, netbanking, and wallets in one integration |                                                   ✅                                                  |
+| Let PayU host and secure the payment page                      |                                                   ✅                                                  |
+| Reduce my PCI-DSS compliance scope                             |                                                   ✅                                                  |
+| Integrate using an HTML form POST or a server-side API call    |                                                   ✅                                                  |
+| Mobile-optimised checkout with UPI deep-linking                |                                                   ✅                                                  |
+| Fully customise the payment page design to match my website    | ⚠️ Use [Merchant Hosted Checkout](https://docs.payu.in/docs/custom-checkout-merchant-hosted) instead |
+| Accept payments without a website or any technical setup       |           ⚠️ Use [Payment Links](https://docs.payu.in/docs/payment-links-dashboard) instead          |
+| Accept payments natively inside a mobile app                   |          ⚠️ Use [PayU Mobile SDK](https://docs.payu.in/docs/mobile-sdk-integration) instead          |
+| Set up recurring auto-debit payments                           |           ⚠️ Use [Recurring Payments](https://docs.payu.in/docs/recurring-payments) instead          |
 
 <Callout icon="far fa-face-thinking" theme="warn">
   ### **Not Sure Which PayU Solution is Right For You?**
