@@ -230,6 +230,10 @@ See <Anchor target="_blank" href="https://docs.payu.in/docs/manage-webhooks-usin
 
 ***
 
+## Sandbox for Testing
+
+<PayUHostedIntegrationWizard />
+
 ## Common Test Failures
 
 <Cards>
