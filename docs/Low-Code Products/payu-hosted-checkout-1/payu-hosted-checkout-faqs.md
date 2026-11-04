@@ -53,7 +53,7 @@ next:
 ## Getting Started
 
 <Accordion title="What is PayU Hosted Checkout?" icon="fab fa-adn">
-  PayU Hosted Checkout is a payment integration method where:
+  <Anchor target="_blank" href="https://docs.payu.in/docs/payu-hosted-checkout-1">PayU Hosted Checkout</Anchor> is a payment integration method where:
 
   - You redirect customers from your website to a PayU-hosted payment page
   - PayU handles the entire payment experience, including security and processing
@@ -95,10 +95,10 @@ next:
   - International Payments
 </Accordion>
 
-<Accordion title="Does Hosted Checkout reduce PCI compliance scope?" icon="fab fa-adn">
-  Yes. Since card data is collected on PayU infrastructure, PCI scope is reduced for your integration.
+<Accordion title="Does PayU Hosted Checkout reduce PCI compliance scope?" icon="fab fa-adn">
+  Yes. Since card data is collected on PayU infrastructure, PCI scope is reduced for your integration.<br />
 
-  You should still secure:
+  You should still secure:<br />
 
   - Your backend APIs and secrets
   - Callback and webhook endpoints
@@ -110,11 +110,14 @@ next:
 ## Integration Setup
 
 <Accordion title="What are surl and furl?" icon="fab fa-adn">
-  `surl` is the success URL. PayU redirects customers here after a successful payment.
+  - `surl` is the success URL. PayU redirects customers here after a successful payment.
+  - `furl` is the failure URL. PayU redirects customers here if the payment fails or is cancelled.
 
-  `furl` is the failure URL. PayU redirects customers here if the payment fails or is cancelled.
+  <Callout icon="far fa-circle-info" theme="info">
+    ### **Tips:**
 
-  **Important:** A redirect to `surl` is not proof of payment. Browser redirects can fail if the customer closes their browser, the network drops, or the redirect is intercepted. Always verify payment status using reverse hash validation, a webhook, or the Verify Payment API before marking an order as paid.
+    A redirect to `surl` is not proof of payment. Browser redirects can fail if the customer closes their browser, the network drops, or the redirect is intercepted. Always verify payment status using reverse hash validation, a webhook, or the <Anchor target="_blank" href="https://docs.payu.in/reference/verify_payment_api">Verify Payment API</Anchor> before marking an order as paid.
+  </Callout>
 </Accordion>
 
 <Accordion title="Can localhost be used for testing callbacks?" icon="fab fa-adn">
@@ -128,7 +131,7 @@ next:
 </Accordion>
 
 <Accordion title="How should I format the amount parameter?" icon="fab fa-adn">
-  Always use consistent decimal formatting. The exact `amount` string is included in the hash — any mismatch between the hash string and the form field will cause a hash error.
+  Always use consistent decimal formatting. The exact `amount` string is included in the hash. Any mismatch between the hash string and the form field will cause a hash error.
 
   **Valid formats:** `100`, `100.00`, `99.50`
 
@@ -137,7 +140,7 @@ next:
 
 {/* NEW CONTENT: added from support case and AI chatbot analysis — high-frequency question (Postman/cURL testing) */}
 
-<Accordion title="Can I test the _payment endpoint with Postman or cURL? (New)" icon="fab fa-adn">
+<Accordion title="Can I test the _payment endpoint with Postman or cURL?" icon="fab fa-adn">
   Yes, but with an important limitation: the `_payment` endpoint returns an HTML page (the PayU checkout UI), not a JSON response. A successful POST returns `HTTP 200` with checkout page HTML — this confirms your parameters and hash are accepted — but the actual payment flow requires a browser to load and redirect through that HTML.
 
   Use Postman or cURL to validate that your parameters and hash are correct before building the HTML form. Once validated, use the HTML form POST in a browser for the actual integration.
