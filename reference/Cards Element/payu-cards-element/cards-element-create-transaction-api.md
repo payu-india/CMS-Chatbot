@@ -19,7 +19,7 @@ For server-to-server or custom checkout architectures, merchants invoke this end
 
 ---
 
-## Environments
+## Environment
 
 ```http
 POST /v1/payment
