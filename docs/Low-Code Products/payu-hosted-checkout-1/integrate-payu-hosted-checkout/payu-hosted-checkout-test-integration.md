@@ -234,6 +234,8 @@ See <Anchor target="_blank" href="https://docs.payu.in/docs/manage-webhooks-usin
 
 <PayUHostedIntegrationWizard />
 
+***
+
 ## Common Test Failures
 
 <Cards>
