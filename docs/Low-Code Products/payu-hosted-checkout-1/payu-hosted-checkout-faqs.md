@@ -208,7 +208,9 @@ next:
 
 ## Hash Generation
 
-<Accordion title="Why do I need to generate a hash?" icon="fab fa-adn">
+1. #### Why do I need to generate a hash?
+
+<Accordion title="Answer" icon="fab fa-adn">
   You should generate a hash to secure the payment flow. PayU uses two types of hashing:
 
   | **Hash Type**    | Need                                                                                                                                                                                              |
@@ -217,7 +219,9 @@ next:
   | **Reverse Hash** | Authenticates PayU's response. Computed after the transaction using the response fields. Confirms the response came from PayU and was not modified.                                               |
 </Accordion>
 
-<Accordion title="What is the PayU Hosted Checkout forward hash formula?" icon="fab fa-adn">
+2. #### What is the PayU Hosted Checkout forward hash formula?
+
+<Accordion title="Answer" icon="fab fa-adn">
   ```text Hash Formula
   sha512(key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT)
   ```
@@ -233,38 +237,35 @@ next:
 
     - [x] Include pipe separators even if UDF fields are empty.
 
-
     - [x] One missing pipe produces an invalid hash.
 
-
     - [x] Generate the hash on your server only and never in the browser.
-
-
   </Callout>
 </Accordion>
 
-<Accordion title="How do I troubleshoot an invalid hash error?" icon="fab fa-adn">
+3. #### How do I troubleshoot an invalid hash error?
+
+<Accordion title="Answer" icon="fab fa-adn">
   Work through this debugging checklist:
 
   - [x] Verify the exact parameter order in your hash string.
-  - [x] Verify the amount format (decimal string, e.g. `100.00`).
 
+  - [x] Verify the amount format (decimal string, e.g. `100.00`).
 
   - [x] Check for trailing or leading spaces in any parameter value.
 
-
   - [x] Confirm you are using the correct salt for the environment (test vs production).
 
-
   - [x] Confirm you have empty-string placeholders for unused UDF fields (still separated by `|`).
-
 
   - [x] Verify you are using SHA-512 (not SHA-256 or MD5).<br />
 
   Most hash failures come from wrong salt, missing pipes, whitespace, or amount format mismatch.
 </Accordion>
 
-<Accordion title="Can I generate the hash in the browser or mobile app?" icon="fab fa-adn">
+4. #### Can I generate the hash in the browser or mobile app?
+
+<Accordion title="Answer" icon="fab fa-adn">
   No. Generating the hash client-side would expose your merchant salt to anyone who inspects the source code. The salt is a secret credential. If it is exposed, attackers can forge payment requests. Hence, generate the hash on your server.
 </Accordion>
 
@@ -272,7 +273,9 @@ next:
 
 ## Checkout Experience
 
-<Accordion title="What happens if a customer closes their browser mid-payment?" icon="fab fa-adn">
+1. #### What happens if a customer closes their browser mid-payment?
+
+<Accordion title="Answer" icon="fab fa-adn">
   The payment may still succeed depending on the stage at which the browser was closed. For example, if a customer approved a UPI payment and then closed the browser before being redirected:
 
   - The payment may have been captured successfully
@@ -292,7 +295,9 @@ next:
 
 {/* NEW CONTENT: added from support case and AI chatbot analysis — UPI test VPA is the single highest-frequency question across both data sources (972 hits) */}
 
-<Accordion title="What UPI VPA should I use to test UPI payments in the sandbox?" icon="fab fa-adn">
+1. #### What UPI VPA should I use to test UPI payments in the sandbox?
+
+<Accordion title="Answer" icon="fab fa-adn">
   Use `anything@payu` or `999999999@payu` as the UPI VPA (Virtual Payment Address) in the test environment (`https://test.payu.in/_payment`).
 
   <Callout icon="⚠️" theme="warn">
@@ -300,50 +305,57 @@ next:
 
     These test VPAs only work with the `_payment` endpoint in the test environment. They do not work with the Validate VPA API, which requires a real registered VPA.
   </Callout>
+</Accordion>
 
-  **Why does scanning the UPI QR code fail in the test environment?**
+2. #### **Why does scanning the UPI QR code fail in the test environment?**
 
-  The test checkout page renders a UPI QR code, but it is not linked to a real UPI address. Scanning it with Google Pay, PhonePe, Paytm, or any other UPI app will return "Invalid UPI ID" or "Payment failed" — this is expected behaviour in the sandbox. Instead of scanning the QR:
+<Accordion title="Answer" icon="fab fa-adn">
+  The test checkout page renders a UPI QR code, but it is not linked to a real UPI address. Scanning it with Google Pay, PhonePe, Paytm, or any other UPI app will return **Invalid UPI ID** or **Payment failed**. This is an expected behaviour in the sandbox. Instead of scanning the QR:
 
   1. On the PayU test checkout page, select **UPI**.
   2. Choose the **Enter UPI ID** option.
   3. Type `anything@payu` and proceed.
 </Accordion>
 
-<Accordion title="" icon="fa-info-circle">
-
-</Accordion>
-
 {/* NEW CONTENT: added from support case analysis — EMI testing questions appear across 179 conversation hits */}
 
-<Accordion title="How do I test EMI payments in the sandbox? (New)" icon="fab fa-adn">
-  Use a test credit card from the [Test Integration](./integrate/test-integration) page to attempt an EMI transaction. EMI will only appear as a payment option on the checkout page if:
+3. #### How do I test EMI payments in the sandbox?
 
-  - Your merchant account has EMI enabled (PayU Dashboard → Manage Checkout → Payment Modes)
-  - The credit card BIN is eligible for EMI
+<Accordion title="Answer" icon="fab fa-adn">
+  Use a test credit card from the <Anchor target="_blank" href="https://docs.payu.in/docs/test-cards-upi-id-and-wallets">Test Integration</Anchor> page to attempt an EMI transaction. EMI will only appear as a payment option on the checkout page if:
 
-  If EMI is not appearing even after enabling it, contact your PayU Key Account Manager to confirm eligibility and activation.
+  - Your merchant account has EMI enabled (**PayU Dashboard** → **Manage Checkout** → **Payment Modes**)
+  - The credit card BIN is eligible for EMI<br />
 
-  **Cardless EMI (BNPL):** Has a separate test flow — see the BNPL accordion in the [Test Integration](./integrate/test-integration) page for test credentials and expected responses.
+  If EMI is not appearing even after enabling it, contact your PayU Key Account Manager to confirm eligibility and activation.<br />
+
+  **Cardless EMI (BNPL):** Has a separate test flow. See the <Anchor target="_blank" href="https://docs.payu.in/docs/test-cards-upi-id-and-wallets#test-bnpl-credentials">Test BNPL credentials</Anchor> for test credentials and expected responses.
 </Accordion>
 
 ***
 
 ## Reverse Hashing
 
-<Accordion title="What is reverse hash validation?" icon="fab fa-adn">
-  Reverse hash validation confirms that PayU's response is authentic and was not tampered with.
+1. #### What is reverse hash validation?
 
-  After a payment, PayU POSTs a response to your `surl` or `furl`. You must:
+<Accordion title="Answer" icon="fab fa-adn">
+  Reverse hash validation confirms that PayU's response is authentic and was not tampered with.<br />
+
+  After a payment, PayU POSTs a response to your `surl` or `furl`. You should:
 
   1. Extract the `hash` field from the response.
-  2. Compute the reverse hash using: `sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)`
+  2. Compute the reverse hash using:&#x20;
+     ```text Hash Formula
+     sha512(SALT|status||||||udf5|udf4|udf3|udf2|udf1|email|firstname|productinfo|amount|txnid|key)
+     ```
   3. Compare your computed hash with the `hash` from the response.
   4. If they match, the response is authentic. If not, reject it and log the event as a security alert.
 </Accordion>
 
-<Accordion title="What causes a reverse hash mismatch?" icon="fab fa-adn">
-  Common causes:
+2. #### What causes a reverse hash mismatch?
+
+<Accordion title="Answer" icon="fab fa-adn">
+  Common causes for reverse hash mismatch are:
 
   - Using the forward hash formula instead of the reverse hash formula
   - Wrong parameter order (note: UDFs are in **reverse** order: udf5 → udf1)
@@ -356,7 +368,9 @@ next:
 
 ## Callback vs Webhook
 
-<Accordion title="What is the difference between a callback and a webhook?" icon="fab fa-adn">
+1. #### What is the difference between a callback and a webhook?
+
+<Accordion title="Answer" icon="fab fa-adn">
   | Callback                                    | Webhook                                     |
   | ------------------------------------------- | ------------------------------------------- |
   | Browser redirect to `surl` or `furl`        | Server-to-server POST to your webhook URL   |
@@ -364,12 +378,14 @@ next:
   | Can fail if browser closes or network drops | More reliable for guaranteed delivery       |
   | Arrives quickly                             | Arrives after PayU confirms the transaction |
 
-  Use both: handle the callback for immediate user feedback, and rely on webhooks for authoritative payment confirmation.
+  **We recommend to use both:** Handle the callback for immediate user feedback, and rely on webhooks for authoritative payment confirmation.
 </Accordion>
 
 {/* NEW CONTENT: added from support case analysis — webhook hash verification is one of the top webhook issues in SFDC cases */}
 
-<Accordion title="How do I verify the hash on a webhook notification? (New)" icon="fab fa-adn">
+2. #### How do I verify the hash on a webhook notification?
+
+<Accordion title="Answer" icon="fab fa-adn">
   Webhook notifications use the same hash formula as the browser callback. Compute the reverse hash on your server using:
 
   ```
@@ -379,23 +395,27 @@ next:
   Use the exact field values from the webhook POST body. If your computed hash matches the `hash` field in the webhook payload, the notification is authentic.
 
   <Callout icon="⚠️" theme="warn">
+    ### **Warning!**
+
     Note the UDF order in the reverse hash: **udf5 → udf1** (reverse of the forward hash). This is the most common cause of webhook hash mismatches.
   </Callout>
 
-  See [Build Integration → Step 1.4](./integrate/build-integration) for language-specific implementation guidance and the full reverse hash formula.
+  See <Anchor target="_blank" href="https://docs.payu.in/docs/payu-hosted-checkout-build-integration#step-4-verify-response-via-reverse-hashing">Build Integration → Step 4: Verify Response via Reverse Hashing</Anchor> for language-specific implementation guidance and the full reverse hash formula.
 </Accordion>
 
 {/* NEW CONTENT: added from support case analysis — webhook configuration is the second most common webhook support ticket (54 cases on Help in configuration) */}
 
-<Accordion title="Where do I configure my webhook URL in PayU Dashboard? (New)" icon="fab fa-adn">
-  Log in to [PayU Dashboard](https://onboarding.payu.in/) → **Developer Settings** → **Webhooks**. Add your webhook endpoint URL there.
+3. #### Where do I configure my webhook URL in PayU Dashboard?
+
+<Accordion title="Answer" icon="fab fa-adn">
+  Log in to [PayU Dashboard](https://onboarding.payu.in/) → **Developers&#x20;**→ **Webhooks**. Add your webhook endpoint URL there.
 
   Requirements for the webhook endpoint:
 
   - Publicly reachable over HTTPS
   - Returns HTTP 200 after receiving and processing the notification (returning any other code causes PayU to retry)
 
-  See [Manage Webhooks](https://docs.payu.in/docs/webhook-events-and-sample-payloads) for the full setup guide and webhook payload format.
+  See <Anchor target="_blank" href="https://docs.payu.in/docs/manage-webhooks-using-dashboard">Manage Webhooks</Anchor> for the full setup guide and webhook payload format.
 </Accordion>
 
 ***
