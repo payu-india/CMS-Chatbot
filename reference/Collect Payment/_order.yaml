@@ -10,3 +10,4 @@
 - get-additional-charge-info-api
 - order-apis
 - collect-payment-using-omni-pos-api
+- check-transaction-status-api
