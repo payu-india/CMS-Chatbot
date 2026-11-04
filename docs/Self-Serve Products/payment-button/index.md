@@ -143,11 +143,13 @@ next:
   </Card>
 </Cards>
 
-## What Will I Need?
+***
 
-You don't need a developer or any coding experience to get started.<br />
+## What All I Need to Get Started?
 
-All You need is:<br />
+You do not need a developer or any coding experience to get started.<br />
+
+You will need:<br />
 
 - <Columns layout="fixed">
     <Column>
@@ -195,6 +197,20 @@ Here is how it works:
     You can create multiple payment buttons and add them to different pages of your site.
   </Column>
 </Columns>
+
+***
+
+## Is My Payment Button Secure?
+
+Yes. When a customer clicks your button, they are taken to PayU's PCI-DSS compliant hosted payment page. Their card number, UPI details, and other payment information are entered directly on PayU's infrastructure. Your website never receives or processes sensitive payment data. You do not need to configure anything for this.<br />
+
+One practical note: **the page where you embed the button should be served over HTTPS.** If your page loads over HTTP, some browsers will show a mixed-content warning when the button tries to open PayU's secure checkout. Most modern website builders such as WordPress, Wix, Squarespace use HTTPS by default. Check your site settings if you are unsure.
+
+<Cards>
+  <Card title="For Developers" icon="fad fa-key">
+    Payment Buttons support optional hidden fields such as `udf1`–`udf5`, `phone`, and `email` to pass extra data with each payment. Webhook events for Payment Buttons use the same format as PayU Hosted Checkout. See <Anchor target="_blank" href="https://docs.payu.in/reference/webhooks">Webhooks</Anchor> for payload details.
+  </Card>
+</Cards>
 
 ***
 
