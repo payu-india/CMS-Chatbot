@@ -243,10 +243,10 @@ Captures itemized GST tax invoices, tax identification numbers, and statutory le
 
 The following cURL command demonstrates initiating a ₹10.00 in-store POS sale transaction:
 
-```bash
+```shell cURL
 curl --location 'https://api.payu.in/v2/payments' \
 --header 'Content-Type: application/json' \
---header 'date: Wed, 04 Nov 2026 12:00:00 GMT' \
+--header 'date: Wed, 04 Nov 2026 14:19:05 GMT' \
 --header 'authorization: {{authorization}}' \
 --data-raw '{
   "accountId": "smsplus",
@@ -300,6 +300,409 @@ curl --location 'https://api.payu.in/v2/payments' \
     "posPaymentMethod": "sale"
   }
 }'
+```
+```javascript Node.js
+const requestDate = new Date().toUTCString(); // RFC 1123 timestamp
+const authorizationToken = "YOUR_V2_AUTHORIZATION_HEADER";
+
+const payload = {
+  accountId: "smsplus",
+  txnId: "b5f297999999879895905",
+  amount: 10.00,
+  currency: "INR",
+  paymentSource: "WEB",
+  paymentMethod: {
+    name: "POS",
+    bankCode: "POS"
+  },
+  additionalInfo: {
+    txnFlow: "seamless",
+    txnS2sFlow: "4"
+  },
+  callBackActions: {
+    successAction: "https://yoursite.com/success",
+    failureAction: "https://yoursite.com/failure",
+    cancelAction: "https://yoursite.com/cancel"
+  },
+  order: {
+    productInfo: "POS Payment",
+    userDefinedFields: {
+      udf1: "store-123",
+      udf2: "cashier-456"
+    },
+    paymentChargeSpecification: {
+      price: 10.00
+    }
+  },
+  gstParams: {
+    invoiceNo: "INV-1234",
+    invoiceDate: "1993-01-12T06:42:12+05:30",
+    invoiceName: "Store Invoice",
+    gstIn: "08TESTF0078P1ZP",
+    gst: "10",
+    cgst: "10",
+    sgst: "40",
+    igst: "50",
+    cess: "60",
+    gstIncentive: "12.5",
+    gstPercentage: "50"
+  },
+  omniChannelDetails: {
+    printInfo: {
+      printInfo1: "Puma Store Pimpri",
+      printInfo2: "Pimpri, Pune"
+    },
+    userId: "cashier-123",
+    posDeviceId: "134",
+    posPaymentMethod: "sale"
+  }
+};
+
+async function initiatePosPayment() {
+  try {
+    const response = await fetch("https://api.payu.in/v2/payments", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "date": requestDate,
+        "authorization": authorizationToken
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await response.json();
+    console.log("POS Payment Initiation Response:", data);
+  } catch (error) {
+    console.error("Error initiating POS payment:", error);
+  }
+}
+
+initiatePosPayment();
+```
+```python Python
+import json
+from datetime import datetime, timezone
+import requests
+
+# Generate RFC 1123 timestamp
+request_date = datetime.now(timezone.utc).strftime("%a, %d %b %Y %H:%M:%S GMT")
+authorization_token = "YOUR_V2_AUTHORIZATION_HEADER"
+
+url = "https://api.payu.in/v2/payments"
+
+headers = {
+    "Content-Type": "application/json",
+    "date": request_date,
+    "authorization": authorization_token
+}
+
+payload = {
+    "accountId": "smsplus",
+    "txnId": "b5f297999999879895905",
+    "amount": 10.00,
+    "currency": "INR",
+    "paymentSource": "WEB",
+    "paymentMethod": {
+        "name": "POS",
+        "bankCode": "POS"
+    },
+    "additionalInfo": {
+        "txnFlow": "seamless",
+        "txnS2sFlow": "4"
+    },
+    "callBackActions": {
+        "successAction": "https://yoursite.com/success",
+        "failureAction": "https://yoursite.com/failure",
+        "cancelAction": "https://yoursite.com/cancel"
+    },
+    "order": {
+        "productInfo": "POS Payment",
+        "userDefinedFields": {
+            "udf1": "store-123",
+            "udf2": "cashier-456"
+        },
+        "paymentChargeSpecification": {
+            "price": 10.00
+        }
+    },
+    "gstParams": {
+        "invoiceNo": "INV-1234",
+        "invoiceDate": "1993-01-12T06:42:12+05:30",
+        "invoiceName": "Store Invoice",
+        "gstIn": "08TESTF0078P1ZP",
+        "gst": "10",
+        "cgst": "10",
+        "sgst": "40",
+        "igst": "50",
+        "cess": "60",
+        "gstIncentive": "12.5",
+        "gstPercentage": "50"
+    },
+    "omniChannelDetails": {
+        "printInfo": {
+            "printInfo1": "Puma Store Pimpri",
+            "printInfo2": "Pimpri, Pune"
+        },
+        "userId": "cashier-123",
+        "posDeviceId": "134",
+        "posPaymentMethod": "sale"
+    }
+}
+
+response = requests.post(url, headers=headers, data=json.dumps(payload))
+print("Status Code:", response.status_code)
+print("Response JSON:", response.json())
+```
+```java Java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+
+public class InitiatePosPayment {
+
+    public static void main(String[] args) {
+        try {
+            String requestDate = DateTimeFormatter.RFC_1123_DATE_TIME.format(ZonedDateTime.now(ZoneOffset.UTC));
+            String authorizationToken = "YOUR_V2_AUTHORIZATION_HEADER";
+
+            String jsonPayload = """
+            {
+              "accountId": "smsplus",
+              "txnId": "b5f297999999879895905",
+              "amount": 10.00,
+              "currency": "INR",
+              "paymentSource": "WEB",
+              "paymentMethod": {
+                "name": "POS",
+                "bankCode": "POS"
+              },
+              "additionalInfo": {
+                "txnFlow": "seamless",
+                "txnS2sFlow": "4"
+              },
+              "callBackActions": {
+                "successAction": "https://yoursite.com/success",
+                "failureAction": "https://yoursite.com/failure",
+                "cancelAction": "https://yoursite.com/cancel"
+              },
+              "order": {
+                "productInfo": "POS Payment",
+                "userDefinedFields": {
+                  "udf1": "store-123",
+                  "udf2": "cashier-456"
+                },
+                "paymentChargeSpecification": {
+                  "price": 10.00
+                }
+              },
+              "gstParams": {
+                "invoiceNo": "INV-1234",
+                "invoiceDate": "1993-01-12T06:42:12+05:30",
+                "invoiceName": "Store Invoice",
+                "gstIn": "08TESTF0078P1ZP",
+                "gst": "10",
+                "cgst": "10",
+                "sgst": "40",
+                "igst": "50",
+                "cess": "60",
+                "gstIncentive": "12.5",
+                "gstPercentage": "50"
+              },
+              "omniChannelDetails": {
+                "printInfo": {
+                  "printInfo1": "Puma Store Pimpri",
+                  "printInfo2": "Pimpri, Pune"
+                },
+                "userId": "cashier-123",
+                "posDeviceId": "134",
+                "posPaymentMethod": "sale"
+              }
+            }
+            """;
+
+            HttpClient client = HttpClient.newHttpClient();
+
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("https://api.payu.in/v2/payments"))
+                    .header("Content-Type", "application/json")
+                    .header("date", requestDate)
+                    .header("authorization", authorizationToken)
+                    .POST(HttpRequest.BodyPublishers.ofString(jsonPayload))
+                    .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            System.out.println("Status Code: " + response.statusCode());
+            System.out.println("Response Body: " + response.body());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+```php PHP
+<?php
+
+$requestDate = gmdate('D, d M Y H:i:s T'); // RFC 1123 format
+$authorizationToken = 'YOUR_V2_AUTHORIZATION_HEADER';
+
+$payload = [
+    'accountId' => 'smsplus',
+    'txnId' => 'b5f297999999879895905',
+    'amount' => 10.00,
+    'currency' => 'INR',
+    'paymentSource' => 'WEB',
+    'paymentMethod' => [
+        'name' => 'POS',
+        'bankCode' => 'POS'
+    ],
+    'additionalInfo' => [
+        'txnFlow' => 'seamless',
+        'txnS2sFlow' => '4'
+    ],
+    'callBackActions' => [
+        'successAction' => 'https://yoursite.com/success',
+        'failureAction' => 'https://yoursite.com/failure',
+        'cancelAction' => 'https://yoursite.com/cancel'
+    ],
+    'order' => [
+        'productInfo' => 'POS Payment',
+        'userDefinedFields' => [
+            'udf1' => 'store-123',
+            'udf2' => 'cashier-456'
+        ],
+        'paymentChargeSpecification' => [
+            'price' => 10.00
+        ]
+    ],
+    'gstParams' => [
+        'invoiceNo' => 'INV-1234',
+        'invoiceDate' => '1993-01-12T06:42:12+05:30',
+        'invoiceName' => 'Store Invoice',
+        'gstIn' => '08TESTF0078P1ZP',
+        'gst' => '10',
+        'cgst' => '10',
+        'sgst' => '40',
+        'igst' => '50',
+        'cess' => '60',
+        'gstIncentive' => '12.5',
+        'gstPercentage' => '50'
+    ],
+    'omniChannelDetails' => [
+        'printInfo' => [
+            'printInfo1' => 'Puma Store Pimpri',
+            'printInfo2' => 'Pimpri, Pune'
+        ],
+        'userId' => 'cashier-123',
+        'posDeviceId' => '134',
+        'posPaymentMethod' => 'sale'
+    ]
+];
+
+$ch = curl_init('https://api.payu.in/v2/payments');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    'Content-Type: application/json',
+    'date: ' . $requestDate,
+    'authorization: ' . $authorizationToken
+]);
+
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+
+echo "HTTP Code: " . $httpCode . "\n";
+echo "Response: " . $response . "\n";
+?>
+```
+```csharp C#
+using System;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        string requestDate = DateTime.UtcNow.ToString("r"); // RFC 1123 format
+        string authorizationToken = "YOUR_V2_AUTHORIZATION_HEADER";
+
+        string jsonPayload = @"{
+          ""accountId"": ""smsplus"",
+          ""txnId"": ""b5f297999999879895905"",
+          ""amount"": 10.00,
+          ""currency"": ""INR"",
+          ""paymentSource"": ""WEB"",
+          ""paymentMethod"": {
+            ""name"": ""POS"",
+            ""bankCode"": ""POS""
+          },
+          ""additionalInfo"": {
+            ""txnFlow"": ""seamless"",
+            ""txnS2sFlow"": ""4""
+          },
+          ""callBackActions"": {
+            ""successAction"": ""https://yoursite.com/success"",
+            ""failureAction"": ""https://yoursite.com/failure"",
+            ""cancelAction"": ""https://yoursite.com/cancel""
+          },
+          ""order"": {
+            ""productInfo"": ""POS Payment"",
+            ""userDefinedFields"": {
+              ""udf1"": ""store-123"",
+              ""udf2"": ""cashier-456""
+            },
+            ""paymentChargeSpecification"": {
+              ""price"": 10.00
+            }
+          },
+          ""gstParams"": {
+            ""invoiceNo"": ""INV-1234"",
+            ""invoiceDate"": ""1993-01-12T06:42:12+05:30"",
+            ""invoiceName"": ""Store Invoice"",
+            ""gstIn"": ""08TESTF0078P1ZP"",
+            ""gst"": ""10"",
+            ""cgst"": ""10"",
+            ""sgst"": ""40"",
+            ""igst"": ""50"",
+            ""cess"": ""60"",
+            ""gstIncentive"": ""12.5"",
+            ""gstPercentage"": ""50""
+          },
+          ""omniChannelDetails"": {
+            ""printInfo"": {
+              ""printInfo1"": ""Puma Store Pimpri"",
+              ""printInfo2"": ""Pimpri, Pune""
+            },
+            ""userId"": ""cashier-123"",
+            ""posDeviceId"": ""134"",
+            ""posPaymentMethod"": ""sale""
+          }
+        }";
+
+        using var client = new HttpClient();
+        var request = new HttpRequestMessage(HttpMethod.Post, "https://api.payu.in/v2/payments")
+        {
+            Content = new StringContent(jsonPayload, Encoding.UTF8, "application/json")
+        };
+
+        request.Headers.Add("date", requestDate);
+        request.Headers.Add("authorization", authorizationToken);
+
+        HttpResponseMessage response = await client.SendAsync(request);
+        string responseBody = await response.Content.ReadAsStringAsync();
+
+        Console.WriteLine($"Status Code: {response.StatusCode}");
+        Console.WriteLine($"Response: {responseBody}");
+    }
+}
 ```
 
 ---
