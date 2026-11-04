@@ -34,7 +34,7 @@ With the PayU Hosted Checkout:<br />
 <Callout icon="📘" theme="info">
   ### **Tips:**
 
-  You can initiate the redirect using an HTML form POST or by calling the [Collect Payment API](https://docs.payu.in/reference/_payment_payu_hosted_checkout) directly from your server.
+  You can initiate the redirect using an HTML form POST or by calling the <Anchor target="_blank" href="https://docs.payu.in/reference/_payment_payu_hosted_checkout">Collect Payment API</Anchor> directly from your server.
 </Callout>
 
 ***
