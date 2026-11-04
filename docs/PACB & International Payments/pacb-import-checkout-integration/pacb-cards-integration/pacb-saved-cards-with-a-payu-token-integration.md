@@ -1,5 +1,5 @@
 ---
-title: PACB-Saved Cards with a PayU Token Integration
+title: Saved Cards with a PayU Token Integration
 deprecated: false
 hidden: true
 metadata:
