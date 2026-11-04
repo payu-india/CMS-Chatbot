@@ -59,7 +59,7 @@ PayU Hosted Checkout is a good choice if you:<br />
 
 ## What Will I Need? (Prerequisites)
 
-You need these to get started:
+You need these to get started:<br />
 
 - [x] **A PayU merchant account:** <Anchor target="_blank" href="https://docs.payu.in/docs/set-up-your-account">Sign up here</Anchor> if you do not have an account.
 - [x] **Access to the PayU Dashboard:** Where you will manage checkout transactions.
@@ -161,7 +161,7 @@ Learn how to verify payment status and handle webhooks in the technical integrat
 
 ## What If My Customer Wants the Money Back?
 
-It depends on:
+It depends on:<br />
 
 - Whether you want to return the money yourself. Use PayU refunds to initiate.
   <Cards>
@@ -203,15 +203,15 @@ These are the PayU Hosted checkout integration benefits:
 ## Next Steps
 
 <Cards>
-  <Card title="Quick Start">
+  <Card title="Quick Start" href="https://docs.payu.in/docs/payu-hosted-checkout-quick-start" target="_blank">
     Set up and test your first payment.
   </Card>
 
-  <Card title="How It Works">
+  <Card title="How PayU Hosted Checkout Works" href="https://docs.payu.in/docs/payu-hosted-checkout-workflow" target="_blank">
     Understand the Hosted Checkout flow and key concepts.
   </Card>
 
-  <Card title="Integrate PayU Hosted Checkout">
+  <Card title="Integrate PayU Hosted Checkout" href="https://docs.payu.in/docs/integrate-payu-hosted-checkout" target="_blank">
     Build, test, and prepare your integration for production.
   </Card>
 </Cards>
