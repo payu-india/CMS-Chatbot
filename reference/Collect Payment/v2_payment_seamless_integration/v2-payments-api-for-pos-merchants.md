@@ -1,7 +1,9 @@
 ---
 title: v2 Payments API for POS Merchants
 deprecated: false
-hidden: false
+hidden: true
+link:
+  new_tab: false
 metadata:
   robots: index
 ---
@@ -44,36 +46,35 @@ Requests to PayU's v2 Payments API must be signed using the PayU V2 HMAC authori
 
 ### Mandatory Parameters
 
-| Parameter | Description |
-| :--- | :--- |
-| accountId | _String_<br>Merchant account identifier (MID or merchant key) registered with PayU (e.g. `smsplus`). |
-| txnId | _String_<br>Merchant's unique transaction reference identifier. Special characters allowed: `-`, `_`. Maximum length: 50 characters. |
-| amount | _Number_ or _String_<br>Gross transaction amount in INR. Both numeric and decimal string formats are accepted (e.g. `10.00`, `10.55`, or `"10.55"`). |
-| currency | _String_<br>Three-letter ISO 4217 currency code. Must be set to `INR` for domestic in-store POS transactions. |
-| paymentSource | _String_<br>Source channel identifier for the payment request. Pass `POS` or `WEB` depending on your integration profile. |
-| paymentMethod | _Object_<br>Container object specifying the in-store POS payment instrument and channel. For more information, refer to [paymentMethod  JSON Object Fields Description](#paymentmethod--json-object-fields-description) |
-| additionalInfo | _Object_<br>Container object holding transaction execution flow directives. For more information, refer to [additionalInfo JSON Object Fields Description](#additionalinfo-json-object-fields-description)|
-| callBackActions | _Object_<br>Container object holding callback and redirect endpoints. For more information, refer to [callBackActions JSON Object Fields Description](callbackactions-json-object-fields-description)|
-| order | _Object_<br>Container object holding product metadata, custom tracking fields, and price specifications. For more information, refer to [order JSON Object Fields Description](#order-json-object-fields-description) |
-| omniChannelDetails | _Object_<br>Container object holding hardware terminal specifications, device routing identifiers, and charge slip display lines. For more information, refer to [omniChannelDetails JSON Object Fields Description](omnichanneldetails-json-object-fields-description)|
+| Parameter          | Description                                                                                                                                            |
+| :----------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| accountId          | _String_<br />Merchant account identifier (MID or merchant key) registered with PayU (e.g. `smsplus`).                                                 |
+| txnId              | _String_<br />Merchant's unique transaction reference identifier. Special characters allowed: `-`, `_`. Maximum length: 50 characters.                 |
+| amount             | _Number_ or _String_<br />Gross transaction amount in INR. Both numeric and decimal string formats are accepted (e.g. `10.00`, `10.55`, or `"10.55"`). |
+| currency           | _String_<br />Three-letter ISO 4217 currency code. Must be set to `INR` for domestic in-store POS transactions.                                        |
+| paymentSource      | _String_<br />Source channel identifier for the payment request. Pass `POS` or `WEB` depending on your integration profile.                            |
+| paymentMethod      | _Object_<br />Container object specifying the in-store POS payment instrument and channel.                                                             |
+| additionalInfo     | _Object_<br />Container object holding transaction execution flow directives.                                                                          |
+| callBackActions    | _Object_<br />Container object holding callback and redirect endpoints.                                                                                |
+| order              | _Object_<br />Container object holding product metadata, custom tracking fields, and price specifications.                                             |
+| omniChannelDetails | _Object_<br />Container object holding hardware terminal specifications, device routing identifiers, and charge slip display lines.                    |
 
 ### Optional Parameters
 
-| Parameter | Description |
-| :--- | :--- |
-| gstParams | _Object_<br>Container object holding GST invoice parameters, GSTIN, and tax component breakdowns. For more information, refer to [gstParams JSON Object Fields Description](#gstparams-json-object-fields-description) |
+| Parameter | Description                                                                                         |
+| :-------- | :-------------------------------------------------------------------------------------------------- |
+| gstParams | _Object_<br />Container object holding GST invoice parameters, GSTIN, and tax component breakdowns. |
 
-### Nested Object Fields Description
-#### paymentMethod  JSON Object Fields Description
+#### Nested Object: `paymentMethod`
 
 Defines the payment instrument and routing channel for POS terminal execution.
 
-**Mandatory Fields**
+#### Mandatory Parameters
 
-| Field | Description |
-| :--- | :--- |
-| name | _String_<br>Payment method name. Must be hardcoded to `POS` for in-store terminal transactions. |
-| bankCode | _String_<br>Bank code identifier. Must be hardcoded to `POS` for in-store terminal transactions. |
+| Parameter | Description                                                                                        |
+| :-------- | :------------------------------------------------------------------------------------------------- |
+| name      | _String_<br />Payment method name. Must be hardcoded to `POS` for in-store terminal transactions.  |
+| bankCode  | _String_<br />Bank code identifier. Must be hardcoded to `POS` for in-store terminal transactions. |
 
 ```json
 "paymentMethod": {
@@ -84,16 +85,16 @@ Defines the payment instrument and routing channel for POS terminal execution.
 
 ---
 
-#### additionalInfo JSON Object Fields Description
+#### Nested Object: `additionalInfo`
 
 Directs the transaction flow engine inside PayU's payment gateway.
 
-**Mandatory Fields**
+#### Mandatory Parameters
 
-| Field | Description |
-| :--- | :--- |
-| txnFlow | _String_<br>Transaction flow mode. Must be set to `seamless` for in-store POS transactions. |
-| txnS2sFlow | _String_<br>Server-to-server flow configuration identifier. Must be set to `"4"` for in-store POS transactions. |
+| Parameter  | Description                                                                                                       |
+| :--------- | :---------------------------------------------------------------------------------------------------------------- |
+| txnFlow    | _String_<br />Transaction flow mode. Must be set to `seamless` for in-store POS transactions.                     |
+| txnS2sFlow | _String_<br />Server-to-server flow configuration identifier. Must be set to `"4"` for in-store POS transactions. |
 
 ```json
 "additionalInfo": {
@@ -110,22 +111,22 @@ Encapsulates order details, product information, user-defined fields, and price 
 
 **Mandatory Fields**
 
-| Field | Description |
-| :--- | :--- |
-| paymentChargeSpecification | _Object_<br>Financial charge container defining the payable transaction price. |
-| paymentChargeSpecification.price | _Number_ or _String_<br>Gross transaction amount in INR. Must match the top-level `amount` value (e.g. `10.00`). |
+| Parameter                        | Description                                                                                                        |
+| :------------------------------- | :----------------------------------------------------------------------------------------------------------------- |
+| paymentChargeSpecification       | _Object_<br />Financial charge container defining the payable transaction price.                                   |
+| paymentChargeSpecification.price | _Number_ or _String_<br />Gross transaction amount in INR. Must match the top-level `amount` value (e.g. `10.00`). |
 
 **Optional Fields**
 
-| Field | Description |
-| :--- | :--- |
-| productInfo | _String_<br>Concise description or title of the product, service, or retail department (e.g. `POS Payment`). |
-| userDefinedFields | _Object_<br>Container object holding custom merchant tracking metadata. |
-| userDefinedFields.udf1 | _String_<br>User Defined Field 1 (e.g. store identifier `store-123`). Maximum length: 255 characters. |
-| userDefinedFields.udf2 | _String_<br>User Defined Field 2 (e.g. cashier identifier `cashier-456`). Maximum length: 255 characters. |
-| userDefinedFields.udf3 | _String_<br>User Defined Field 3 for internal merchant metadata. Maximum length: 255 characters. |
-| userDefinedFields.udf4 | _String_<br>User Defined Field 4 for internal merchant metadata. Maximum length: 255 characters. |
-| userDefinedFields.udf5 | _String_<br>User Defined Field 5 for internal merchant metadata. Maximum length: 255 characters. |
+| Parameter              | Description                                                                                                    |
+| :--------------------- | :------------------------------------------------------------------------------------------------------------- |
+| productInfo            | _String_<br />Concise description or title of the product, service, or retail department (e.g. `POS Payment`). |
+| userDefinedFields      | _Object_<br />Container object holding custom merchant tracking metadata.                                      |
+| userDefinedFields.udf1 | _String_<br />User Defined Field 1 (e.g. store identifier `store-123`). Maximum length: 255 characters.        |
+| userDefinedFields.udf2 | _String_<br />User Defined Field 2 (e.g. cashier identifier `cashier-456`). Maximum length: 255 characters.    |
+| userDefinedFields.udf3 | _String_<br />User Defined Field 3 for internal merchant metadata. Maximum length: 255 characters.             |
+| userDefinedFields.udf4 | _String_<br />User Defined Field 4 for internal merchant metadata. Maximum length: 255 characters.             |
+| userDefinedFields.udf5 | _String_<br />User Defined Field 5 for internal merchant metadata. Maximum length: 255 characters.             |
 
 ```json
 "order": {
@@ -147,9 +148,9 @@ Defines callback actions for web redirects. While customer web browser redirecti
 
 **Mandatory Fields**
 
-| Field | Description |
-| :--- | :--- |
-| successAction | _String_<br>HTTPS URL placeholder for success redirection. Provide your application URL (e.g. `https://yoursite.com/success`). |
+| Parameter     | Description                                                                                                                      |
+| :------------ | :------------------------------------------------------------------------------------------------------------------------------- |
+| successAction | _String_<br />HTTPS URL placeholder for success redirection. Provide your application URL (e.g. `https://yoursite.com/success`). |
 
 **Optional Fields**
 
@@ -174,9 +175,9 @@ Specifies the target POS hardware terminal, enforced payment mode on the screen,
 
 **Mandatory Fields**
 
-| Field | Description |
-| :--- | :--- |
-| posDeviceId | _String_<br>The unique terminal hardware identifier mapped to your merchant account in PayU's terminal management system (e.g. `"134"`). |
+| Parameter   | Description                                                                                                                                |
+| :---------- | :----------------------------------------------------------------------------------------------------------------------------------------- |
+| posDeviceId | _String_<br />The unique terminal hardware identifier mapped to your merchant account in PayU's terminal management system (e.g. `"134"`). |
 
 **Optional Fields**
 
