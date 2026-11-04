@@ -1,14 +1,13 @@
 ---
 title: Initiate POS Payment Transaction API
-excerpt: ''
 deprecated: false
 hidden: true
+link:
+  new_tab: false
 metadata:
   title: ''
   description: ''
   robots: index
-next:
-  description: ''
 ---
 The **Initiate POS Payment Transaction** API is used to initiate a transaction on the POS terminal. This API is rate limited for each merchant and needs to be a server-to-server curl call request
 
