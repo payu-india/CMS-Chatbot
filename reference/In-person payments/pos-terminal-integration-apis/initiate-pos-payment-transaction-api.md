@@ -2,7 +2,7 @@
 title: Initiate POS Payment Transaction API
 excerpt: ''
 deprecated: false
-hidden: false
+hidden: true
 metadata:
   title: ''
   description: ''
