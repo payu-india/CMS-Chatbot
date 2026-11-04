@@ -1,5 +1,5 @@
 ---
-title: PACB Import- Direct Authorization Cards Integration
+title: Direct Authorization Cards Integration
 deprecated: false
 hidden: true
 metadata:
