@@ -34,16 +34,29 @@ next:
   fontWeight="bold"
 />
 
-## What Can I Do with a Payment Button?
+##
 
-A Payment Button is a "Buy Now" or "Pay Now" button you add to your website or blog. When a visitor clicks it, PayU's payment page opens, they pay, and they're brought back to your site — you don't need to write any code or build anything.<br />
+## How Does Payment Button Simplify My Business?
 
-You can use Payment Buttons to:<br />
+<Accordion title="Go from zero to accepting payments with a copy-paste">
+  Create a button in the PayU Dashboard, copy one line of code, and paste it anywhere on your website. No coding knowledge required, no developer to hire. If you can paste text into a website editor, you can add a payment button.
+</Accordion>
 
-- Add a **Buy Now**, **Pay Now**, or **Donate** button to any webpage or blog post
-- Accept payments from website visitors without setting up a full online store
-- Collect donations where visitors type in the amount they want to pay
-- Choose the button text, colour, size, and amount from the Dashboard
+<Accordion title="Works on any website, blog, or page builder">
+  WordPress, Wix, Squarespace, Webflow, a hand-coded HTML page, or any site that lets you add content — Payment Buttons work anywhere. You add the button code to a page the same way you'd add an image or a video embed.
+</Accordion>
+
+<Accordion title="Customise the button to match your brand">
+  Choose the button label ("Buy Now", "Donate", "Enrol", or any text you prefer), the colour, the size, and the fixed amount — all from the Dashboard with no code changes. Update the settings any time; the button on your site updates automatically.
+</Accordion>
+
+<Accordion title="Let customers enter their own amount">
+  Enable **Collect Amount** mode and the payment page prompts customers to type in the amount they want to pay. Ideal for donations, tips, or open-ended contributions where you don't want to set a fixed price.
+</Accordion>
+
+<Accordion title="Supports every Indian payment method">
+  UPI (all apps), credit and debit cards, net banking (50+ banks), wallets, EMI, and BNPL. The payment page automatically presents the methods enabled on your PayU account. No extra configuration needed for each method.
+</Accordion>
 
 <HTMLBlock>{`
                 <style>
