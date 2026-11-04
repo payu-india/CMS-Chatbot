@@ -466,20 +466,20 @@ Begin integration now.
 
 ***
 
-## What the skill builds
+## What the Skill Builds
 
 A single invocation produces a complete server-side PayU Hosted Checkout flow, wired into your existing router and order model:
 
-| Component               | What is created                                                                                                               |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| **Hash module**         | Server-side SHA-512 request hash; constant-time reverse-hash verification for callbacks; Verify Payment hash                  |
-| **Initiate route**      | `POST /api/payu/initiate` — builds payment params, returns `{ action, params }` for the browser form                          |
-| **Frontend form**       | Auto-submit hidden `<form>` POST to PayU's hosted page (never XHR/fetch)                                                      |
-| **Callback handlers**   | `POST /api/payu/success` and `POST /api/payu/failure` — verify hash, check amount and txnid, update order status idempotently |
-| **Verify route**        | `GET /api/payu/verify/<order_id>` — calls PayU Verify Payment API with retry logic, returns clean status                      |
-| **Environment wiring**  | `.env.example` (variable names only), `.gitignore` update, fail-fast startup validation                                       |
-| **Structured logging**  | Order id, txnid, status, outcome at each stage — no credentials, no PII, no hash values                                       |
-| **Troubleshooting doc** | README section with a debugging table for every known PayU error symptom                                                      |
+| Component               | What is created                                                                                                             |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| **Hash module**         | Server-side SHA-512 request hash; constant-time reverse-hash verification for callbacks; Verify Payment hash                |
+| **Initiate route**      | `POST /api/payu/initiate` builds payment params, returns `{ action, params }` for the browser form                          |
+| **Frontend form**       | Auto-submit hidden `<form>` POST to PayU's hosted page (never XHR/fetch)                                                    |
+| **Callback handlers**   | `POST /api/payu/success` and `POST /api/payu/failure` verify hash, check amount and txnid, update order status idempotently |
+| **Verify route**        | `GET /api/payu/verify/<order_id>` calls PayU Verify Payment API with retry logic, returns clean status                      |
+| **Environment wiring**  | `.env.example` (variable names only), `.gitignore` update, fail-fast startup validation                                     |
+| **Structured logging**  | Order id, txnid, status, outcome at each stage, no credentials, no PII, no hash values                                      |
+| **Troubleshooting doc** | README section with a debugging table for every known PayU error symptom                                                    |
 
 ***
 
@@ -489,8 +489,8 @@ A single invocation produces a complete server-side PayU Hosted Checkout flow, w
 | ------------------------------------- | -------------------------------------------------------------------------------------- |
 | Java (Java 11+)                       | Static HTML, server-rendered templates, or any JS framework                            |
 | Node.js                               | Same — the auto-submit form is injected into whichever template layer the project uses |
-| PHP                                   |                                                                                        |
-| Python (Flask, Django, FastAPI, etc.) |                                                                                        |
+| PHP                                   | N/A                                                                                    |
+| Python (Flask, Django, FastAPI, etc.) | N/A                                                                                    |
 
 If your backend is in a different language, the skill stops and tells you. If you are in a monorepo, it identifies the correct package before writing any code.
 
@@ -500,13 +500,13 @@ If your backend is in a different language, the skill stops and tells you. If yo
 
 Before invoking the skill, you need three things in place:
 
-**1. PayU credentials in your own environment — not in chat**
+**1. PayU credentials in your own environment&#x20;**
 
 The skill will ask you to confirm this before it writes a single line. Your `PAYU_MERCHANT_KEY` and `PAYU_MERCHANT_SALT` must be set as environment variables on your machine or CI. Never paste the real values into the chat window.
 
 **2. The PayU Developer MCP configured in your AI assistant**
 
-The skill fetches hash formulas, endpoint URLs, and code samples live from PayU's documentation MCP. Without it, the skill stops — it will not fall back to hardcoded values.
+The skill fetches hash formulas, endpoint URLs, and code samples live from PayU's documentation MCP. Without it, the skill stops.
 
 Add the MCP server to your AI assistant's MCP settings:
 
@@ -528,14 +528,14 @@ The skill plugs into your existing router, order repository, and config mechanis
 
 ***
 
-## Environment variables
+## Environment Variables
 
-The skill expects these five variables. It only ever refers to them by name — the values are yours.
+The skill expects these five variables. It only ever refers to them by name.
 
 | Variable             | Purpose                                                                                         | Default      |
 | -------------------- | ----------------------------------------------------------------------------------------------- | ------------ |
 | `PAYU_MERCHANT_KEY`  | Your PayU merchant key                                                                          | _(required)_ |
-| `PAYU_MERCHANT_SALT` | Your PayU merchant salt (backend only — never reaches frontend)                                 | _(required)_ |
+| `PAYU_MERCHANT_SALT` | Your PayU merchant salt                                                                         | _(required)_ |
 | `PAYU_HASH_MODE`     | `v1` for standard hex hash; `dual` only if your PayU account requires a JSON `{"v1","v2"}` hash | `v1`         |
 | `PAYU_ENV`           | `test` for test environment; `production` for live                                              | `test`       |
 | `APP_BASE_URL`       | Public base URL of your app, used to build `surl` and `furl`                                    | _(required)_ |
@@ -548,7 +548,7 @@ The skill expects these five variables. It only ever refers to them by name — 
 
 ***
 
-## How to invoke the skill
+## How to Invoke the Skill
 
 ### In Claude Code
 
@@ -558,9 +558,9 @@ If you have the skill saved in your project's `.claude/` directory, invoke it di
 /payu-hosted-checkout
 ```
 
-Or start a new conversation and describe what you need — the skill activates when you mention any of: _PayU hosted checkout_, _PayU web redirect_, _PayU payment_, _surl/furl_, or _verify_payment_.
+Or start a new conversation and describe what you need. The skill activates when you mention any of: _PayU hosted checkout_, _PayU web redirect_, _PayU payment_, _surl/furl_, or _verify_payment_.
 
-### In Cursor or other MCP-enabled assistants
+### In Cursor or Other MCP-enabled Assistants
 
 Paste the skill prompt into your assistant's context (system prompt or instructions pane) and then describe the task:
 
@@ -568,13 +568,13 @@ Paste the skill prompt into your assistant's context (system prompt or instructi
 
 The assistant will follow the skill's operation order automatically.
 
-### What the skill does before writing any code
+### What the Skill Does Before Writing Any Code
 
-1. Asks you to confirm your credentials are set in your own environment (stops if you have not)
-2. Detects your stack from manifest files (`package.json`, `requirements.txt`, `pom.xml`, etc.) — stops and asks if ambiguous
-3. Queries the `payu-docs` MCP for your language's code sample, hash formulas, endpoints, and Verify API details — stops if the MCP is unreachable
-4. Declares any new dependency in your manifest (does not run install commands)
-5. Proceeds with code generation in the order below
+- Asks you to confirm your credentials are set in your own environment (stops if you have not)
+- Detects your stack from manifest files (`package.json`, `requirements.txt`, `pom.xml`, etc.)
+- Queries the `payu-docs` MCP for your language's code sample, hash formulas, endpoints, and Verify API details
+- Declares any new dependency in your manifest (does not run install commands)
+- Proceeds with code generation in the order below
 
 ***
 
@@ -582,26 +582,33 @@ The assistant will follow the skill's operation order automatically.
 
 The skill works through seven ordered steps:
 
-**Step 1 — Request hash (server-side only)**
-SHA-512 of `key|txnid|amount|productinfo|firstname|email|udf1–udf5||||||salt`. The exact field order and pipe count come from the MCP. The `amount` is always a server-computed two-decimal string (`"500.00"`); the `txnid` is generated server-side, unique per payment attempt, max 25 characters.
+<Accordion title="Step 1: Request hash (server-side only)">
+  SHA-512 of `key|txnid|amount|productinfo|firstname|email|udf1–udf5||||||salt`. The exact field order and pipe count come from the MCP. The `amount` is always a server-computed two-decimal string (`"500.00"`); the `txnid` is generated server-side, unique per payment attempt, max 25 characters.
+</Accordion>
 
-**Step 2 — Response hash verification**
-Reverse SHA-512 checked with constant-time comparison on every callback. Covers the documented UDF, without-UDF, `additionalCharges`, and `splitInfo` variants, plus Web Checkout Pro variants (extra pipes, posted `key`, `net_amount_debit`). A mismatch does not mark the order failed — it falls through to Step 6 (Verify API) before deciding.
+<Accordion title="Step 2: Response hash verification">
+  Reverse SHA-512 checked with constant-time comparison on every callback. Covers the documented UDF, without-UDF, `additionalCharges`, and `splitInfo` variants, plus Web Checkout Pro variants (extra pipes, posted `key`, `net_amount_debit`). A mismatch does not mark the order failed — it falls through to Step 6 (Verify API) before deciding.
+</Accordion>
 
-**Step 3 — Initiate route and frontend form**
-`POST /api/payu/initiate` accepts `{ order_id }` from the browser. It loads the order from your existing store, builds PayU params, computes the hash, persists the `txnid` on the order, and returns `{ action, params }`. The frontend creates a hidden `<form method="POST" action="{action}">` and calls `form.submit()` — no XHR, no fetch.
+<Accordion title="Step 3: Initiate route and frontend form">
+  `POST /api/payu/initiate` accepts `{ order_id }` from the browser. It loads the order from your existing store, builds PayU params, computes the hash, persists the `txnid` on the order, and returns `{ action, params }`. The frontend creates a hidden `<form method="POST" action="{action}">` and calls `form.submit()` — no XHR, no fetch.
+</Accordion>
 
-**Step 4 — sURL / fURL handlers**
-`POST /api/payu/success` and `POST /api/payu/failure` parse `application/x-www-form-urlencoded` bodies (not JSON), are exempt from CSRF protection, and run identical verification regardless of which URL was called. After processing, they redirect the browser to your internal result page using only the order id.
+<Accordion title="Step 4: sURL / fURL handlers">
+  `POST /api/payu/success` and `POST /api/payu/failure` parse `application/x-www-form-urlencoded` bodies (not JSON), are exempt from CSRF protection, and run identical verification regardless of which URL was called. After processing, they redirect the browser to your internal result page using only the order id.
+</Accordion>
 
-**Step 5 — Route registration**
-All routes are registered in your project's existing router/blueprint/controller. Error responses follow your existing shape.
+<Accordion title="Step 5: Route registration">
+  All routes are registered in your project's existing router/blueprint/controller. Error responses follow your existing shape.
+</Accordion>
 
-**Step 6 — Verify Payment**
-`GET /api/payu/verify/<order_id>` fetches PayU's Verify Payment API (`command=verify_payment`) with bounded exponential-backoff retry. Also called automatically from the callback handlers when reverse-hash verification fails, ensuring Web Checkout Pro and edge-case flows still update the order correctly.
+<Accordion title="Step 6: Verify Payment">
+  `GET /api/payu/verify/<order_id>` fetches PayU's Verify Payment API (`command=verify_payment`) with bounded exponential-backoff retry. Also called automatically from the callback handlers when reverse-hash verification fails, ensuring Web Checkout Pro and edge-case flows still update the order correctly.
+</Accordion>
 
-**Step 7 — Logging and troubleshooting**
-Structured log lines at each stage (order id, txnid, status, outcome — never credentials or PII). A debugging table is appended to your project's README.
+<Accordion title="Step 7: Logging and troubleshooting">
+  Structured log lines at each stage (order id, txnid, status, outcome — never credentials or PII). A debugging table is appended to your project's README.
+</Accordion>
 
 ***
 
