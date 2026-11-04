@@ -10,7 +10,7 @@ hidden: true
 metadata:
   robots: index
 ---
-The **PayU Hosted Checkout AI skill** is a prompt you load into Claude Code, Cursor, or any MCP-enabled AI coding assistant. It automatically detects your backend stack, fetches the latest integration code and hash formulas from the [PayU Developer MCP](doc:payu-devguide-builder-mcp-configuration), and scaffolds a complete PayU Hosted Checkout integration — including security, callbacks, and payment verification — adapted to your existing codebase.
+The **PayU Hosted Checkout AI skill** is a prompt you load into Claude Code, Cursor, or any MCP-enabled AI coding assistant. It automatically detects your backend stack, fetches the latest integration code and hash formulas from the [PayU Developer MCP](doc:payu-devguide-builder-mcp-configuration), and scaffolds a complete PayU Hosted Checkout integration — including security, callbacks, and payment verification — adapted to your existing codebase.<br />
 
 Copy the full prompt below and save it as `.claude/commands/payu-hosted-checkout.md` in your project (Claude Code), or paste it into your AI assistant's system prompt / instructions pane (Cursor, VS Code Copilot, or any MCP-enabled assistant).
 
