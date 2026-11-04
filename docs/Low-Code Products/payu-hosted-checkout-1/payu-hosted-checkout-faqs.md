@@ -187,11 +187,12 @@ next:
 ## Hash Generation
 
 <Accordion title="Why do I need to generate a hash?" icon="fab fa-adn">
-  PayU uses two types of hashing to secure the payment flow:
+  You should generate a hash to secure the payment flow. PayU uses two types of hashing:
 
-  **Forward hash:** Authenticates your payment request. Computed before the transaction and submitted with it. Prevents an attacker from tampering with the payment amount, merchant key, or other fields in transit.
-
-  **Reverse hash:** Authenticates PayU's response. Computed after the transaction using the response fields. Confirms the response came from PayU and was not modified.
+  | **Hash Type**    | Need                                                                                                                                                                                              |
+  | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | **Forward Hash** | Authenticates your payment request. Computed before the transaction and submitted with it. Prevents an attacker from tampering with the payment amount, merchant key, or other fields in transit. |
+  | **Reverse Hash** | Authenticates PayU's response. Computed after the transaction using the response fields. Confirms the response came from PayU and was not modified.                                               |
 </Accordion>
 
 <Accordion title="What is the PayU Hosted Checkout forward hash formula?" icon="fab fa-adn">
