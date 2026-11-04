@@ -84,9 +84,39 @@ next:
 
 ***
 
-## What Will I Need? (Prerequisites)
+## Common Use Cases
 
-You need these to get started:<br />
+<Cards columns="3">
+  <Card title="E-commerce & Online Retail" icon="fa-bag-shopping">
+    Accept product and cart payments on your store. One integration covers cards, UPI, netbanking, and EMI.
+  </Card>
+
+  <Card title="EdTech & Online Courses" icon="fa-graduation-cap">
+    Collect fees for courses, certifications, and learning programmes. Supports all major payment methods used by students.
+  </Card>
+
+  <Card title="SaaS & Subscription Platforms" icon="fa-layer-group">
+    Bill customers at sign-up or on plan selection. For auto-debit after the initial payment, combine with [Recurring Payments](https://docs.payu.in/docs/recurring-payments).
+  </Card>
+
+  <Card title="Travel & Hospitality" icon="fa-plane">
+    Accept booking and reservation payments with a full checkout experience, including EMI for high-value transactions.
+  </Card>
+
+  <Card title="Healthcare & Diagnostics" icon="fa-stethoscope">
+    Collect consultation fees, lab test payments, and copays. Supports wallets and UPI for patients who prefer low-friction payment.
+  </Card>
+
+  <Card title="B2B & Enterprise" icon="fa-building">
+    Handle invoice-based payments or multi-product purchases. Supports netbanking NEFT/RTGS for large transfers.
+  </Card>
+</Cards>
+
+***
+
+## What All I Need to Get Started?
+
+Before you integrate, make sure you have:<br />
 
 - [x] **A PayU merchant account:** <Anchor target="_blank" href="https://docs.payu.in/docs/set-up-your-account">Sign up here</Anchor> if you do not have an account.
 - [x] **Access to the PayU Dashboard:** Where you will manage checkout transactions.
@@ -140,6 +170,24 @@ These are the payment methods supported in PayU Hosted Checkout:<br />
 - UPI
 - NetBanking
 - Wallets
+
+***
+
+## Is My Integration Secure?
+
+PayU Hosted Checkout is designed so that the most sensitive part of a payment such as card number entry and bank authentication happens on PayU's infrastructure, not on your website. Your server never handles raw card data.<br />
+
+Your integration has two security responsibilities:
+
+<Tabs>
+  <Tab title="Protect the Payment Request">
+    Before redirecting the customer to PayU, your server generates a SHA-512 hash of the transaction parameters using your merchant salt. PayU uses this hash to verify that the request came from you and not modified in transit. The salt must stay secret on your server and should never appear in browser code, mobile apps, or anywhere a customer could inspect it.
+  </Tab>
+
+  <Tab title="Verify the Payment Response">
+    When PayU redirects the customer back with the payment result, your server must verify the response using reverse hash validation and not just read the status from the redirect URL.
+  </Tab>
+</Tabs>
 
 ***
 
