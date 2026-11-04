@@ -1,5 +1,5 @@
 ---
-title: Cards Element - Create Order
+title: Cards Element - Create Order API
 deprecated: false
 hidden: true
 metadata:
@@ -56,8 +56,6 @@ Content-Type: application/json
 
 ## Request Headers
 
-### Mandatory Headers
-
 | Header | Description |
 | :--- | :--- |
 | Authorization | _String_<br>HMAC-SHA512 authorization header formatted as:<br>`hmac username="<merchantKey>", algorithm="sha512", headers="date", signature="<signature>"` |
@@ -68,9 +66,7 @@ Content-Type: application/json
 
 ## Request Parameters
 
-### Top-Level Parameters
-
-#### Mandatory Parameters
+### Mandatory Parameters
 
 | Parameter | Description |
 | :--- | :--- |
@@ -80,7 +76,7 @@ Content-Type: application/json
 | order | _Object_<br>Container object encapsulating order financial values, line items, and promotional offer settings. |
 | callBackActions | _Object_<br>Container defining customer redirect return URLs and asynchronous server notification endpoints. |
 
-#### Optional Parameters
+### Optional Parameters
 
 | Parameter | Description |
 | :--- | :--- |
@@ -114,16 +110,16 @@ Content-Type: application/json
 
 ---
 
-### Nested Object: customer
+#### Nested Object: customer
 
-#### Mandatory Parameters
+**Mandatory Parameters**
 
 | Parameter | Description |
 | :--- | :--- |
 | email | _String_<br>Customer's email address used for transaction notifications and payment receipts. |
 | phone | _String_<br>Customer's 10-digit mobile phone number (without country code prefix, e.g., `9876543210`). |
 
-#### Optional Parameters
+**Optional Parameters**
 
 | Parameter | Description |
 | :--- | :--- |
@@ -134,16 +130,16 @@ Content-Type: application/json
 
 ---
 
-### Nested Object: callBackActions
+#### Nested Object: callBackActions
 
-#### Mandatory Parameters
+**Mandatory Parameters**
 
 | Parameter | Description |
 | :--- | :--- |
 | successUrl | _String_<br>HTTPS URL to which the customer is redirected upon successful 3DS authorization and payment capture. |
 | failureUrl | _String_<br>HTTPS URL to which the customer is redirected if the transaction fails or is declined by the issuer. |
 
-#### Optional Parameters
+**Optional Parameters**
 
 | Parameter | Description |
 | :--- | :--- |
@@ -152,7 +148,7 @@ Content-Type: application/json
 
 ---
 
-## Sample Request Payload
+## Sample Request
 
 ```json
 {
@@ -217,7 +213,6 @@ curl -X POST "<redacted URL>" \
     }
   }'
 ```
-
 ```javascript Node.js
 const crypto = require('crypto');
 const axios = require('axios');
@@ -263,9 +258,9 @@ async function createPayUOrder() {
 
 ---
 
-## Response Structure
+## Sample Response
 
-### Sample Success Response
+### Success Scenario
 
 ```json
 {
@@ -288,7 +283,7 @@ async function createPayUOrder() {
 }
 ```
 
-### Response Parameters
+## Response Parameters
 
 | Field | Description |
 | :--- | :--- |
